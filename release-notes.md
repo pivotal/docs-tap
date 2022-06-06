@@ -52,8 +52,10 @@ This release includes the following changes, listed by component and area.
 
 #### Supply Chain Security Tools - Scan
 
-- Feature 1
-- Feature 2
+- Scan-Link's controller abstraction from scanners' output format to allow more flexibility when integrating new scanners.
+- Supply Chain Security Tools - Scan is now decoupled from the Supply Chain Security Tools - Store to allow ease of integration with different storage methods in the future.
+
+**NOTICE:** The Grype Scanner `ScanTemplate`s shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are now deprecated and will no longer be supported in future releases.
 
 #### Supply Chain Security Tools - Sign
 **TODO** deprecation notice, namespace bug as known issue
@@ -95,16 +97,22 @@ This release has the following breaking changes, listed by area and component.
 - Breaking change 1
 - Breaking change 2
 
-#### Supply Chain Security Tools - Scan
+#### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
-- Breaking change 1
-- Breaking change 2
+- Integration with Supply Chain Security Tools - Store needs to be configured for the Grype Scanner and Snyk Scanner packages to enable this feature. The configuration for Supply Chain Security Tools - Store in Supply Chain Security Tools - Scan is just for the deprecated Grype Scanner `ScanTemplate`s.
+- The rego file structure needed for the `ScanPolicies` to work with the new Grype Scanner and Snyk Scanner templates has changed. **Note:** This doesn't apply if you're using the deprecated Grype Scanner `ScanTemplate`s prior to Grype Scanner `v1.2.0`.
+  - The package name has changed from `package policies` to `package main`.
+  - The deny rule has changed from the boolean `isCompliant` to the array of strings `deny[msg]`.
+  - Please note that the sample `ScanPolicy` has differences whether you're using Grype Scanner (with a cyclonedx structure) to Snyk Scanner (with a spdx json structure).
 
 #### Supply Chain Security Tools - Store
 
 - Breaking change 1
 - Breaking change 2
 
+#### <a id="grype-scanner-changes"></a> Grype Scanner
+
+- Information to integrate with the Supply Chain Security Tools - Store should be provided in the `tap-values.yaml` file for the Grype Scanner `v1.2+` 
 
 ### <a id='1-2-resolved-issues'></a> Resolved issues
 
@@ -129,11 +137,12 @@ This following issues, listed by area and component, are resolved in this releas
 #### Supply Chain Security Tools - Scan
 
 - Resolved issue 1
+- `Open Policy Agent` updated to version `v.0.40.0`
 - Resolved issue 2
 
 #### Grype Scanner
 
-- Resolved issue 1
+- `ncurses` updated to version `6.1-5.ph3`
 - Resolved issue 2
 
 #### Supply Chain Security Tools - Store
