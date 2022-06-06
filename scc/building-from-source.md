@@ -1,6 +1,10 @@
 # Building from source
 
-Regardless of the Out of the Box Supply Chain Package you've installed, you can provide source code for the workload either from a directory in your local computer's file system or from a Git repository.
+Regardless of the Out of the Box Supply Chain Package you've installed, you can provide source code for the workload from one of three places:
+
+1. From a Git repository.
+1. A directory in your local computer's file system.
+1. A Maven repository.
 
   ```console
   Supply Chain
@@ -13,7 +17,7 @@ Regardless of the Out of the Box Supply Chain Package you've installed, you can 
               -- push config
   ```
 
-This document provides details about both approaches.
+This document provides details about each approach.
 
 >**Note:** To provide a prebuilt container image instead of
 building the application from the beginning by using the supply chain, see
@@ -70,7 +74,7 @@ Expect to see the following output:
 
 To fetch source code from a repository that requires credentials, you must
 provide those by using a Kubernetes secret object that is referenced by the
-`GitRepostiory` object created for that workload. See [How It Works](#how-it-works)
+`GitRepository` object created for that workload. See [How It Works](#how-it-works)
 to learn more about the underlying process of detecting changes to the repository.
 
 ```scala
@@ -449,3 +453,73 @@ Instead of a `GitRepository` object, an `ImageRepository` is created:
 `ImageRepository` provides the same semantics as `GitRepository`,
 except that it looks for source code in container image registries rather than
 Git repositories.
+
+## <a id="maven-artifact"></a>Maven Artifact
+
+This approach is intended to be used to aid integration with existing CI systems
+(e.g.: Jenkins) and can pull artifacts from existing Maven repositories,
+including Jfrog Artifactory.
+
+At this time, there are no dedicated fields in the `Workload` resource for
+specifying the Maven artifact configuration; you need to fill in the
+`name`/`value` pairs in the `params` structure.
+
+Example:
+
+```yaml
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: my-workload
+  labels:
+    app.tanzu.vmware.com/workload-type: web
+spec:
+  params:
+  - name: maven
+    value:
+      groupId: com.example
+      artifactId: spring-boot-initial
+      version: RELEASE      # latest 'RELEASE' or a specific version (e.g.: '1.2.2')
+      type: jar             # optional (defaults to 'jar')
+      classifier: sources   # optional
+```
+
+The `tanzu` CLI does not yet support creating workloads for Maven artifacts.
+
+The Maven repository URL and required credentials are defined in the supply
+chain, not the workload.  See the instructions in [Installing OOTB
+Basic](install-ootb-sc-basic.md) for more details.
+
+### <a id="maven-repository-secret"></a> Maven Repository Secret
+
+The MavenArtifact only supports authentication using basic auth at this time.
+
+Additionally, MavenArtifact supports security using the TLS protocol.  In
+particular, the Application Operator can configure the MavenArtifact to use a
+custom, or self-signed certificate authority (CA).
+
+The MavenArtifact expects that all of the above credentials to be provided in
+one secret, formatted as below:
+
+```yaml
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: maven-credentials
+type: Opaque
+data:
+  username: <BASE64>  # basic auth user name
+  password: <BASE64>  # basic auth password
+  caFile: <BASE64>    # PEM Encoded certificate data for custom CA 
+```
+
+At this time, you cannot use the `tanzu` CLI to create secrets like this, but
+you can use the `kubectl` CLI instead.  e.g.:
+
+``` bash
+kubectl create secret generic maven-credentials \
+  --from-literal=username=literal-username \
+  --from-file=password=/path/to/file/with/password.txt \
+  --from-file=caFile=/path/to/ca-certificate.pem
+```
