@@ -8,7 +8,6 @@
   - [Start Debugging on the Cluster](#-start-debugging-on-the-cluster)
   - [Stop Debugging on the Cluster](#-stop-debugging-on-the-cluster)
   - [Start Live Update](#-start-live-update)
-  - [Stop Live Update](#-stop-live-update)
 - [Switch Namespace](#-switch-namespace)
 
 ## <a id="before-beginning"></a> Before Beginning
@@ -21,7 +20,7 @@ The Tanzu Developer Tools extension enables you to debug your application on you
 
 Debugging requires a **workload.yaml** file in your project. For information about creating a **workload.yaml** file, see the [Set Up section](getting-started.md#set-up-tanzu-dev-tools) on the Getting Started page.
 
-> **Note:** Debugging on the cluster and Live Update can not be used simultaneously. If you have used Live Update for the current project, you must ensure you have stopped live update before attempting to debug on the cluster. See [Stop Live Update](#stop-live-update) below for more information.
+> **Note:** Debugging on the cluster and Live Update can not be used simultaneously. If you have used Live Update for the current project, you must ensure you have stopped the Tanzu Live Update Run Configuration before attempting to debug on the cluster.
 
 ### <a id="start-debugging-on-the-cluster"></a> Start Debugging on the Cluster
 
@@ -43,4 +42,5 @@ To stop debugging on the cluster:
 ### <a id="start-live-update"></a> Start Live Update
 
 - Right-click your project’s `Tiltfile` and select `Run 'Tanzu Live Update - ...'`.
+- You must compile your code before changes will be synced to the container.
 ![The IntelliJ interface showing the project tab with the Tiltfile file right-click menu open](../images/intellij-startLiveUpdate.png)
