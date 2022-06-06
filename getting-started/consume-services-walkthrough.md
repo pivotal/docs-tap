@@ -77,7 +77,7 @@ To set up a service:
         rules:
         - apiGroups: ["rabbitmq.com"]
           resources: ["rabbitmqclusters"]
-          verbs: ["get", "list", "watch", "update"]
+          verbs: ["get", "list", "watch"]
         ```
 
     1. Apply `resource-claims-rmq.yaml` by running:
