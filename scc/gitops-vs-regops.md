@@ -42,11 +42,11 @@ collection of parameters are set:
 - `gitops.repository_name` during the Out of the Box Supply Chains package installation or `gitops_repository_name` 
   configured as a workload parameter.
 
-With all three values set, Kubernetes configuration will be written to the specified repository. If a 
-value is set at installation and the corresponding workload param is also set, the value of the workload param will be 
+With all three values set, Kubernetes configuration is written to the specified repository. If a 
+value is set at installation and the corresponding workload parameter is also set, the value of the workload parameter is 
 respected.
 
-In the repository, files will be located in the `./config/{workload-namespace}/{workload-name}` directory. This allows multiple workloads to commit configuration to the same repository.
+In the repository, files are located in the `./config/{workload-namespace}/{workload-name}` directory. This allows multiple workloads to commit configuration to the same repository.
 
 #### Examples
 
@@ -145,12 +145,12 @@ Resulting gitops repository: Fails to resolve as some, but not all, of the three
 
 ### Deprecated parameters
 
-The following parameters are no longer recommended for specifying gitops repositories:
+The following parameters are deprecated and no longer recommended for specifying gitops repositories:
 
-- DEPRECATED: `gitops.repository_prefix`: configured during the Out of the Box Supply
+- `gitops.repository_prefix`: configured during the Out of the Box Supply
   Chains package installation.
 
-- DEPRECATED: `gitops_repository`: configured as a workload parameter.
+- `gitops_repository`: configured as a workload parameter.
 
 For example, assuming the installation of the supply chain packages through
 Tanzu Application Platform profiles and a `tap-values.yaml`:
@@ -208,11 +208,11 @@ In this case, at the end of the supply chain, the configuration for this
 workload is published to the repository provided under the `gitops_repository`
 parameter.
 
-If these deprecated parameters are used, kubernetes configuration is committed to the `./config` directory in the 
-repository. This can lead to collisions if two workloads specify the same repository (or two workloads in different 
-namespaces have the same name and the `gitops.repository_prefix` is set in `tap-values.yaml`).
+If you use deprecated parameters, kubernetes configuration is committed to the `./config` directory in the 
+repository. This can lead to collisions if two workloads specify the same repository, or two workloads in different 
+namespaces have the same name and the `gitops.repository_prefix` is set in `tap-values.yaml`.
 
-If the deprecated values are set and any of the suggested gitops values are set, the deprecated values will be 
+If the deprecated values are set and any of the suggested gitops values are set, the deprecated values are 
 ignored.
 
 #### Examples
@@ -283,9 +283,9 @@ deprecated value repository_prefix is ignored because suggested values are prese
 
 ### Pull Requests
 
-In the standard git-ops approach, configuration will be pushed to a repository and can be immediately applied 
-to a cluster by any deliverable watching the repository. Operators may wish to have a manual review step prior to 
-applying configuration to the cluster. In this case, operator should specify a `pull_request` commit strategy. In 
+In the standard git-ops approach, configuration is pushed to a repository and is immediately applied 
+to a cluster by any deliverable watching the repository. Operators might want to have a manual review step before 
+applying configuration to the cluster. In this case, operators must specify a `pull_request` commit strategy. In 
 order to do so, the following parameters must be set:
 
 - `commit_strategy` == `pull_request` configured during the Out of the Box Supply
@@ -299,8 +299,8 @@ order to do so, the following parameters must be set:
 - `gitops.pull_request.pull_request_body` configured during the Out of the Box Supply
   Chains package installation.
 
-The recommended value for commit_branch is an empty string. This will generate a new branch for each commit (based 
-on a hash of the time when the commit is created). This prevents collisions between multiple workloads using a single
+The recommended value for commit_branch is an empty string. This generates a new branch for each commit based 
+on a hash of the time when the commit is created. This prevents collisions between multiple workloads using a single
 git repository.
 
 For example using the following TAP values:
@@ -325,7 +325,7 @@ And a workload with the name `app` in the `dev` namespace, we would find:
 A commit to the `https://github.com/vmware-tanzu/cartographer` repository on a branch with a random name (e.g. 
 `MTY1MTYxMzE0NQo=`). There would be a pull request open to merge this branch into the base branch `main`.
 
-Note that if users wish to use the pull request approach, they must use http(s) authentication with a token.
+>**Note:** If you want to use the pull request approach, you must use http(s) authentication with a token.
 
 ### <a id="auth"></a>Authentication
 
