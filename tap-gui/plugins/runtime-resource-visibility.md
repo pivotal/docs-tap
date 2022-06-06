@@ -39,23 +39,27 @@ To view the list of your running resources:
 
    ![Screenshot of selecting Runtime resources tab](images/runtime-resources-index.png)
 
+
 ### <a id="resources-included"></a> Resources
 
-These built-in Kubernetes resources are included in this view:
+Built-in Kubernetes resources in this view are:
 
 - Services
 - Deployments
 - ReplicaSets
 - Pods
 
-The Runtime Resource Visibility plug-in will also display CRDs created with the [Supply Chain](./scc-tap-gui.md), including:
+The Runtime Resource Visibility plug-in also displays CRDs created with the
+[Supply Chain](scc-tap-gui.html), including:
 
 - Cartographer Workloads
 - Knative Services, Configurations, Revisions, and Routes
 
-This example ilustrates how CRDs from Supply Chain (yellow) are associated with Knative Resources (orange) and built-in ones (red).
+CRDs from Supply Chain are associated with Knative Resources, further down the chain, and built-in
+ones even further down the chain.
 
-![Screenshot of OwnerShip card](images/runtime-resources-crd-hierarchy.png)
+![Screenshot of ownership card. CRDs from Supply Chain have yellow arrows. Knative Resources have orange arrows. Built-in ones have red arrows.](images/runtime-resources-crd-hierarchy.png)
+
 
 ## <a id="knative-service-details"></a> Knative service details page
 
