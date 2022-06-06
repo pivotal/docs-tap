@@ -2,10 +2,10 @@
 
 You can install Tanzu Application Platform by using **either** of the following methods:
 
-- [Installing Tanzu Application Platform by using your own kubernetes clusters](#install-own-cluster)
+- [Installing Tanzu Application Platform on your own Kubernetes clusters](#install-own-cluster)
 - [Installing Tanzu Application Platform by using AWS Quick Start](#install-aws)
 
-## <a id='install-own-cluster'></a>Installing TAP using your own kubernetes clusters
+## <a id='install-own-cluster'></a>Installing Tanzu Application Platform on your own Kubernetes clusters
 
 The process of installing Tanzu Application Platform by using your own kubernetes clusters includes the following tasks:
 
