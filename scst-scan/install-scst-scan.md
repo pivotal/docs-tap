@@ -19,14 +19,6 @@ Before installing Supply Chain Security Tools - Scan:
 - Install the Tanzu Insight CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
   See [Install the Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-installation.md).
 
-## Update Supply Chain Security Tools - Store
-
-Developer namespaces (where the scans occur), need to have access to the secrets required to send results to the [Supply Chain Security Tools - Store](../install-components.md#install-scst-store). For this to occur, the [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) needs to allow the secrets to be shared. Ensure the following property is set in the Store configuration and update if it is not:
-```yaml
----
-ns_for_export_app_cert: "*"
-```
-
 ## <a id="scanner-support"></a> Scanner support
 
 | Out-Of-The-Box Scanner | Version |
