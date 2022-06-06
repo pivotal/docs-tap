@@ -7,7 +7,7 @@ You can install Tanzu Application Platform by using **either** of the following 
 
 ## <a id='install-own-cluster'></a>Installing Tanzu Application Platform on your own Kubernetes clusters
 
-The process of installing Tanzu Application Platform by using your own kubernetes clusters includes the following tasks:
+The process of installing Tanzu Application Platform on your own Kubernetes clusters includes the following tasks:
 
 |Step|Task|Link|
 |----|----|----|
