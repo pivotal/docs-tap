@@ -25,7 +25,7 @@ To install VMware Tanzu Developer Tools for IntelliJ:
 
 1. Download Tanzu Developer Tools for IntelliJ from the [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 1. Open IntelliJ.
-  1. Open the Preferences pane (**cmd** + **,**), navigate to **Plugins**.
+  1. Open the Preferences pane by pressing `cmd` + `,` and navigate to **Plugins**.
   2. Select the gear icon and choose **Install Plugin from disk...**.
   ![Gear icon inside the Plugins Preferences pane.](../images/intellij-gearIconPrefs.png)
   3. Use the file picker to select the `.zip` downloaded from the Tanzu Network.
@@ -38,7 +38,9 @@ To configure the VMware Tanzu Developer Tools extension for IntelliJ:
 1. Select **Preferences -> Build, Execution, Deployment -> Tanzu** and set the following:
 
 - [Source Image](glossary.md#source-image) (required): Destination for an image containing the source code to be published.
-    - Example: `your-registry.io/project/tanzu-java-web-app-source`
+
+    Example: `your-registry.io/project/tanzu-java-web-app-source`
+
 - [Local Path](glossary.md#local-path) (required): Path on the local file system to a directory of the source code to build.
 
     >**Note:** This must be the full path to your source code directory. You can use the file picker or enter it manually.
