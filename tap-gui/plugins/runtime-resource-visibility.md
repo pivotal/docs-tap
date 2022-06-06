@@ -58,7 +58,7 @@ The Runtime Resource Visibility plug-in also displays CRDs created with the
 CRDs from Supply Chain are associated with Knative Resources, further down the chain, and built-in
 ones even further down the chain.
 
-![Screenshot of ownership card. CRDs from Supply Chain have yellow arrows. Knative Resources have orange arrows. Built-in ones have red arrows.](images/runtime-resources-crd-hierarchy.png)
+![Ownership card. CRDs from Supply Chain have yellow arrows. Knative Resources have orange arrows. Built-in ones have red arrows.](images/runtime-resources-crd-hierarchy.png)
 
 
 ## <a id="knative-service-details"></a> Knative service details page
