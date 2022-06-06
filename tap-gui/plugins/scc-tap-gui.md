@@ -14,7 +14,8 @@ Tanzu Application Platform, and their installation guides, see [Supply Chain Cho
 ## <a id="prerequisites"></a> Prerequisites
 
 You must have the Full profile or View profile installed on your cluster, which includes
-Tanzu Application Platform GUI, or have installed the Tanzu Application Platform GUI package.
+Tanzu Application Platform GUI, or have installed the Tanzu Application Platform GUI package, to visualize the supply chain.
+You must have the Run or Full profile installed on the target cluster where you want to deploy your workload to so that you can see your workload being deployed to that cluster. For more information, see [Overview of multicluster Tanzu Application Platform]https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.2/tap/GUID-multicluster-about.html
 
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
@@ -46,7 +47,11 @@ Here is a sample result of the Build stage for the `tanzu-java-web-app` by using
 ![Screen Shot of Build Stage](images/build-stage-sample.png)
 
 Here is a sample result of the Image Scan stage, using Grype - only available in the **test-scan** OOTB supply chain
---insert image here of Image Scan showing CVEs. 
 
-When a workload is deployed to a cluster that has the `deliverable` package installed, you will observe a new section in the supply chain that will show the **Pull Config** as well as the **Delivery**. A box will surround this section, showing the name of the cluster at the top, indicating what clusters the config has been deployed to. 
--- insert image of delivery section and details being shown.
+![Supply Chain CVEs](https://user-images.githubusercontent.com/94395371/172258186-4d2c741c-1dc4-43a2-a5b3-681df0725d0a.png)
+
+
+When a workload is deployed to a cluster that has the `deliverable` package installed, you will observe a new section in the supply chain that will show the **Pull Config** as well as the **Delivery**. A box will surround this section, showing the name of the cluster at the top, indicating which clusters the config has been deployed to.
+
+<img width="751" alt="Pull Config" src="https://user-images.githubusercontent.com/94395371/172258376-697f539b-faa0-4c55-af0e-3b4bdce6c4b3.png">
+
