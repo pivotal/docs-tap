@@ -69,7 +69,8 @@ workload by including it in its set of secrets. For example:
 ## <a id="ssh"></a>SSH
 
 Aside from using HTTP(S) as a transport, the supply chains also allow you to
-use SSH.
+use SSH. Note that users wishing to use the pull request feature must use 
+HTTP(S) authentication with an access token.
 
 1. To provide the credentials for any Git operations with SHH,
 create the Kubernetes secret as follows:
