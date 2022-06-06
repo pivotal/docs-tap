@@ -132,9 +132,11 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
 
     ```yaml
     ---
-    namespace: DEV-NAMESPACE
+    namespace: DEV-NAMESPACE # defaults to default
     targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
     targetSourceSshSecret: TARGET-REPOSITORY-CREDENTIALS-SECRET
+    syft:
+      failOnSchemaErrors: FAIL-ON-SCHEMA-ERRORS # defaults to true
     ```
 
     Where:
@@ -146,6 +148,8 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
     - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, you can reuse the `tap-registry` secret created earlier in [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs) for this field.
 
     - `TARGET-REPOSITORY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull source code from a private repository for scanning. This field is not optional if the source code is located in a public repository.
+
+    - `FAIL-ON-SCHEMA-ERRORS` is a boolean (either `true` or `false`). When `true` the image scan will exit with an error if the provided Syft schema version embeded in the image is incompatible with the schema version supported in the [Grype version](#scanner-support).
 
 1. VMware recommends using the default values for this package.
 To change the default values, see the Scan controller instructions for more information.

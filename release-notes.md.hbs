@@ -7,7 +7,7 @@ This topic contains release notes for Tanzu Application Platform v1.1
 
 **Release Date**: June 14, 2022
 
-### <a id='1-1-2-new-features'></a> New features
+### <a id='1-1-2-new-features'></a> Resolved issues
 
 This release includes the following changes, listed by component and area.
 
@@ -17,9 +17,36 @@ This release includes the following changes, listed by component and area.
 - Application Live View Convention Service sets `tanzu.app.live.view.application.name` to `carto.run/workload-name` if not set in workload yaml.
 - Application Live View now supports environment editing for newer Spring Boot apps.
 
+#### <a id="1-1-2-scst-scan-grype-resolved"></a>Grype scanner
+
+- Added useful error message when the Syft schema version embeded in images is not compatible with the current Syft schema version supported by the Grype version.
+- `zlib` has been updated to `1.2.11-2.ph3`
+- `subversion` has been updated to `1.10.8-2.ph3`
+
+#### <a id="1-1-2-scst-scan-resolved"></a>Supply Chain Security Tools - Scan
+
+- Fixed `SourceScan`s failing for a blob scan without `sourcescan.spec.revision` set and without a `.git` folder in the source code.
+- Fixed the values schema to include an `importFromNamespace` key for the authentication token needed to communicate to the Metadata Store.
+
 ### <a id='1-1-2-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
+
+#### <a id="1-1-2-known-issues-grype"></a>Grype scanner
+
+**Scanning Java source code may not reveal vulnerabilities:**
+Source Code Scanning only scans files present in the source code repository.
+No network calls are made to fetch dependencies.
+For languages using dependency lock files, such as Golang and Node.js,
+Grype uses the lock files to check the dependencies for vulnerabilities.
+
+For Java, dependency lock files are not guaranteed, so Grype uses
+the dependencies present in the built binaries (`.jar` or `.war` files) instead.
+
+Because VMware discourages committing binaries to source code repositories,
+Grype fails to find vulnerabilities during a Source Scan.
+The vulnerabilities are still found during the Image Scan,
+after the binaries are built and packaged as images.
 
 #### <a id="1-1-2-known-issues-scst-sign"></a>Supply Chain Security Tools - Sign
 
