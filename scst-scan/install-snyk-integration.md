@@ -9,14 +9,6 @@ Before installing Supply Chain Security Tools - Scan (Snyk Scanner):
 
 - Install [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan). It must be present on the same cluster. The prerequisites for Scan will also be required.
 
-## Update Supply Chain Security Tools - Store
-
-Developer namespaces (where the scans occur), need to have access to the secrets required to send results to the [Supply Chain Security Tools - Store](../install-components.md#install-scst-store). For this to occur, the [Supply Chain Security Tools - Store](../install-components.md#install-scst-store) needs to allow the secrets to be shared. Ensure the following property is set in the Store configuration and update if it is not:
-```yaml
----
-ns_for_export_app_cert: "*"
-```
-
 ## Scanner support
 
 | Scanner | Version |
