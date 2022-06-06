@@ -287,6 +287,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Installing the IntelliJ Tanzu Plugin](intellij-extension/installation.md)
       - [Using Tanzu Dev Tools to get started](intellij-extension/getting-started.md)
       - [Using Tanzu Dev Tools to iterate on your workload](intellij-extension/using-the-extension.md)
+      - [Glossary of Terms](intellij-extension/glossary.md)
     - [Tanzu API portal](api-portal/about.md)
       - [Install Tanzu API portal](api-portal/install-api-portal.md)
     - [Tanzu Application Platform GUI](tap-gui/about.md)
