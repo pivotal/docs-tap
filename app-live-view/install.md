@@ -74,7 +74,7 @@ To install Application Live View Backend:
     ingressEnabled: "false"
     ```
 
-    For a multicluster environment, use the following values:
+    For a multicluster environment, TAP uses the `shared.ingress_domain` by default. You may override this setting with the following values:
 
     ```yaml
     ingressEnabled: "true"

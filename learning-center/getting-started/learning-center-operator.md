@@ -65,13 +65,15 @@ by using an external URL for access to define the domain name that is used as a 
 
 >**Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
 
-VMware recommends that you avoid using a `.dev` domain name because such domain names require
-using HTTPS and not HTTP. Although you can provide a certificate for secure
+VMware recommends that you avoid using a `.dev` or `.app` domain name because such domain names require
+browsers to use HTTPS and not HTTP. Although you can provide a certificate for secure
 connections under the domain name for use by Learning Center, this doesn't extend to what a workshop
 may do. If workshop instructions require that you create ingresses in Kubernetes
-using HTTP only, a `.dev` domain name cannot work.
+using HTTP only, a `.dev` or `.app` domain name cannot work in the browser.
 
 >**Note:** If you are running Kubernetes on your local machine using a system such as `minikube` and you don't have a custom domain name that maps to the IP address for the cluster, you can use a `nip.io` address. For example, if `minikube ip` returned `192.168.64.1`, you can use the 192.168.64.1.nip.io domain. You cannot use an address of form `127.0.0.1.nip.io`, or `subdomain.localhost`. This causes a failure as internal services needing to connect to each other end up connecting to themselves instead, because the address resolves to the host loopback address of `127.0.0.1`.
+
+If needed, you can override the `shared.ingress_domain` TAP-level setting with the `ingressDomain` parameter to learning center:
 
 ```console
 ingressDomain: learningcenter.my-domain.com
