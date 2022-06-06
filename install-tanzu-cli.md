@@ -135,14 +135,16 @@ the CLI core and plug-ins are installed by running:
 
      ```console
      cd $HOME/tanzu
-     VERSION=v0.11.2 sudo install cli/core/$VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+     export VERSION=v0.11.2 
+     sudo install cli/core/$VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
      ```
 
    - **For macOS:**
 
      ```console
      cd $HOME/tanzu
-     VERSION=v0.11.2 install cli/core/$VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+     export VERSION=v0.11.2 
+     install cli/core/$VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
      ```
 
 5. Confirm the installation by running:
@@ -177,7 +179,7 @@ the CLI core and plug-ins are installed by running:
     to
 
     ```console
-    tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
+    Program Files\tanzu\tanzu.exe
     ```
 
 5. From the `Program Files` directory, right-click the `tanzu` directory and select **Properties > Security**.
