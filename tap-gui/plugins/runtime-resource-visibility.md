@@ -100,7 +100,8 @@ The following are some attributes that are displayed in the overview card:
 
 ![Screenshot of Tanzu web app default URL](images/runtime-resources-overview.png)
 
-Note: View CPU, Memory, and Threads details are only available for Applications supporting Application Live View
+>**Note:** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
+applications supporting Application Live View.
 
 
 ### <a id="status-card"></a>Status card
@@ -144,7 +145,7 @@ This drop-down menu is only visible if the resources include Build or ConfigWrit
 
 ## <a id="navigating-to-pods"></a>Navigating to Pod Details Page
 
-Users can see the pod table in each resource details page, as shown in the following screenshot.
+Users can see the pod table in each resource details page.
 
 ![Screenshot of object detail table listing pod](images/runtime-resources-pods.png)
 
