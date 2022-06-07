@@ -43,6 +43,12 @@ This release includes the following changes, listed by component and area.
 - Feature 1
 - Feature 2
 
+#### <a id="snyk-scanner"></a> Snyk Scanner (Beta)
+
+Snyk Scanner is now available in its beta mode for the [Supply Chain Security Tools - Scan](#scst-scan) controller. This package needs to be manually installed because it's not part of any current profile. Please follow [Install Snyk scanner](scst-scan/install-snyk-integration.md) instructions
+
+- Run Snyk scanner on `ImageScan`s for the Scan-Link controller.
+
 #### Supply Chain Choreographer
 
 - View resource status on a workload
@@ -50,10 +56,11 @@ This release includes the following changes, listed by component and area.
   - Surfaces information about the health of resources directly on the owner status.
   - Adds a field in the spec `healthRule` where authors can specify how to determine the health of the underlying resource for that template. The resource can be in one of the following states: A stamped resource can be in one of three states: 'Healthy' (status True), 'Unhealthy' (status False), or 'Unknown'  (status Unknown). If no healthRule is defined, Cartographer defaults to listing the resource as `Healthy` once it is successfully applied to the cluster and any outputs are read off the resource.
 
-#### Supply Chain Security Tools - Scan
+#### <a id="scst-scan"></a> Supply Chain Security Tools - Scan
 
 - Scan-Link's controller abstraction from scanners' output format to allow more flexibility when integrating new scanners.
 - Supply Chain Security Tools - Scan is now decoupled from the Supply Chain Security Tools - Store to allow ease of integration with different storage methods in the future.
+- Beta scanner support released in the [Snyk Scanner](#snyk-scanner) package.
 
 **NOTICE:** The Grype Scanner `ScanTemplate`s shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are now deprecated and will no longer be supported in future releases.
 
@@ -136,7 +143,7 @@ This following issues, listed by area and component, are resolved in this releas
 
 #### Supply Chain Security Tools - Scan
 
-- Resolved issue 1
+- `Go` updated to version `v1.18.2`
 - `Open Policy Agent` updated to version `v.0.40.0`
 - Resolved issue 2
 
