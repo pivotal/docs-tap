@@ -46,47 +46,92 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     -b registry.tanzu.vmware.com/java-function-buildpack-for-vmware-tanzu/java-buildpack-with-deps:0.0.6
     ```
 
-1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-builders.html) by running:
+1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-builders.html). Depending on which [descriptor](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-install.html#full-profile-2) you used in the buildservice section of your tap-values.yml, will determine which command to use below:
 
-    ```console
-    kp clusterbuilder save function --store default -o - <<EOF
-    ---
-    - group:
-      - id: tanzu-buildpacks/python
-      - id: kn-fn/python-function
-    - group:
-      - id: tanzu-buildpacks/java-native-image
-      - id: kn-fn/java-function
-    - group:
-      - id: tanzu-buildpacks/java
-      - id: kn-fn/java-function
+    - For the **Full Profile**:
 
-    EOF
-    ```
+        ```console
+        kp clusterbuilder save function --store default -o - <<EOF
+        ---
+        - group:
+          - id: tanzu-buildpacks/python
+          - id: kn-fn/python-function
+        - group:
+          - id: tanzu-buildpacks/java-native-image
+          - id: kn-fn/java-function
+        - group:
+          - id: tanzu-buildpacks/java
+          - id: kn-fn/java-function
 
-    If you still want to use default Java and Python buildpacks for non-function workloads,
-    add optional `true` flags for cluster builder groups.
-    This does not enable the full capability of non-function workloads provided by the default
-    ClusterBuilder. See the following example.
+        EOF
+        ```
 
-    ```console
-    kp clusterbuilder save function --store default -o - <<EOF
-    ---
-    - group:
-      - id: tanzu-buildpacks/python
-      - id: kn-fn/python-function
-        optional: true
-    - group:
-      - id: tanzu-buildpacks/java-native-image
-      - id: kn-fn/java-function
-        optional: true
-    - group:
-      - id: tanzu-buildpacks/java
-      - id: kn-fn/java-function
-        optional: true
+        If you still want to use default Java and Python buildpacks for non-functions workloads,
+        add optional `true` flags for cluster builder groups.
+        This does not enable the full capability of non-function workloads provided by the default
+        ClusterBuilder. For example:
 
-    EOF
-    ```
+        ```console
+        kp clusterbuilder save function --store default -o - <<EOF
+        ---
+        - group:
+          - id: tanzu-buildpacks/python
+          - id: kn-fn/python-function
+          optional: true
+        - group:
+          - id: tanzu-buildpacks/java-native-image
+          - id: kn-fn/java-function
+          optional: true
+        - group:
+          - id: tanzu-buildpacks/java
+          - id: kn-fn/java-function
+          optional: true
+
+        EOF
+        ```
+
+
+    - For the **Lite Profile**:
+
+        ```console
+        kp clusterbuilder save function --store default -o - <<EOF
+        ---
+        - group:
+          - id: tanzu-buildpacks/python-lite
+          - id: kn-fn/python-function
+        - group:
+          - id: tanzu-buildpacks/java-native-image-lite
+          - id: kn-fn/java-function
+        - group:
+          - id: tanzu-buildpacks/java-lite
+          - id: kn-fn/java-function
+
+        EOF
+        ```
+
+        If you still want to use default Java and Python buildpacks for non-functions workloads,
+        add optional `true` flags for cluster builder groups.
+        This does not enable the full capability of non-function workloads provided by the default
+        ClusterBuilder. For example:
+
+        ```console
+        kp clusterbuilder save function --store default -o - <<EOF
+        ---
+        - group:
+          - id: tanzu-buildpacks/python-lite
+          - id: kn-fn/python-function
+          optional: true
+        - group:
+          - id: tanzu-buildpacks/java-native-image-lite
+          - id: kn-fn/java-function
+          optional: true
+        - group:
+          - id: tanzu-buildpacks/java-lite
+          - id: kn-fn/java-function
+          optional: true
+
+        EOF
+        ```
 
 1. After creating the ClusterBuilder, update your `tap-values.yaml` configuration to use the cluster builder you created. See the following example:
 
