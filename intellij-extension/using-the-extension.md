@@ -39,4 +39,6 @@ Select the stop button in the Debug overlay to stop debugging on the cluster:
 - Right-click your project’s `Tiltfile` and select `Run 'Tanzu Live Update - ...'`.
 - You must compile your code before the changes are synchronized to the container.
 
+> **Note:** Only one Live Update session can be active at a time. Make sure to stop any running session before starting a new one.
+
 ![The IntelliJ interface showing the project tab with the Tiltfile file right-click menu open](../images/intellij-startLiveUpdate.png)
