@@ -50,10 +50,13 @@ Built-in Kubernetes resources in this view are:
 - Pods
 
 The Runtime Resource Visibility plug-in also displays CRDs created with the
-[Supply Chain](scc-tap-gui.html), including:
+Supply Chain, including:
 
 - Cartographer Workloads
 - Knative Services, Configurations, Revisions, and Routes
+
+For more information, see
+[Supply Chain Choreographer in Tanzu Application Platform GUI](scc-tap-gui.html).
 
 CRDs from Supply Chain are associated with Knative Resources, further down the chain, and built-in
 resources even further down the chain.
