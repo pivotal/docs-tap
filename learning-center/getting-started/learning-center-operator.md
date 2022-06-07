@@ -73,7 +73,7 @@ using HTTP only, a `.dev` or `.app` domain name cannot work in the browser.
 
 >**Note:** If you are running Kubernetes on your local machine using a system such as `minikube` and you don't have a custom domain name that maps to the IP address for the cluster, you can use a `nip.io` address. For example, if `minikube ip` returned `192.168.64.1`, you can use the 192.168.64.1.nip.io domain. You cannot use an address of form `127.0.0.1.nip.io`, or `subdomain.localhost`. This causes a failure as internal services needing to connect to each other end up connecting to themselves instead, because the address resolves to the host loopback address of `127.0.0.1`.
 
-If needed, you can override the `shared.ingress_domain` TAP-level setting with the `ingressDomain` parameter to learning center:
+If needed, you can override the `shared.ingress_domain` in the values file of Tanzu Application Platform with the `ingressDomain` parameter of learning center:
 
 ```console
 ingressDomain: learningcenter.my-domain.com
