@@ -231,7 +231,7 @@ command: echo "Execute command."
 ```
 ## <a id="supported-editor"></a>Supported Workshop editor
 
-Learning Center currently only supports the code-server v4.4.0 of Vscode as an editor in workshops. 
+Learning Center currently `only` supports the code-server v4.4.0 of Vscode as an editor in workshops. 
 
 ## <a id="click-actions-dashboard"></a>Clickable actions for the dashboard
 
