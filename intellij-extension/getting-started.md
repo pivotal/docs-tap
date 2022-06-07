@@ -1,13 +1,5 @@
 # Using Tanzu Dev Tools to get started
 
-## <a id=on-this-page></a> On this page
-
-- [Before Beginning](#before-beginning)
-- [Set Up Tanzu Dev Tools](#set-up-tanzu-dev-tools)
-- [Set Up Manually](#set-up-manually)
-- [Example Project](#example-project)
-- [What’s Next](#whats-next)
-
 ## <a id="before-beginning"></a> Before Beginning
 
 Ensure you have completed the [Installation page](installation.md) before starting this page.
@@ -17,15 +9,20 @@ Ensure you have completed the [Installation page](installation.md) before starti
 In order to use the Tanzu Developer Tools extension with a project, the project must have 3 required files. The three files can be created manually (link to Set Up Manually section), or will be included in the sample applications detailed below. The required files are:
 
 1. **workload.yaml**
-  A file named **workload** with the extension **.yaml** must be included in the project (Eg. `my project/config/workload.yaml`). The **workload.yaml** file provides instructions to the [Supply Chain Choreographer](https://github.com/pivotal/docs-tap/blob/main/scc/about.md) for how a workload should be built and managed.
-  > **Note:** The Tanzu Developer Tools extension requires only one workload.yaml per project. The workload.yaml must be a single-document YAML file, not a multi-document YAML file.
+
+    A file named **workload** with the extension **.yaml** must be included in the project (Eg. `my project/config/workload.yaml`). The **workload.yaml** file provides instructions to the [Supply Chain Choreographer](https://github.com/pivotal/docs-tap/blob/main/scc/about.md) for how a workload should be built and managed.
+
+    > **Note:** The Tanzu Developer Tools extension requires only one workload.yaml per project. The workload.yaml must be a single-document YAML file, not a multi-document YAML file.
 
 1. **catalog-info.yaml**
-  A file named **catalog-info** with the extension **.yaml** must be included in the project. (Eg. `my project/catalog/catalog-info.yaml`). The **catalog-info.yaml** file enables the workloads created with the Tanzu Developer Tools extension to be visible in the [TAP GUI](https://github.com/pivotal/docs-tap/blob/main/tap-gui/about.md).
+
+    A file named **catalog-info** with the extension **.yaml** must be included in the project. (Eg. `my project/catalog/catalog-info.yaml`). The **catalog-info.yaml** file enables the workloads created with the Tanzu Developer Tools extension to be visible in the [TAP GUI](https://github.com/pivotal/docs-tap/blob/main/tap-gui/about.md).
 
 1. **Tiltfile**
-  A file named **Tiltfile** with no extension (no filetype) must be included in the project. (Eg. `My project/Tiltfile`). The **Tiltfile** provides the configuration for [Tilt](https://docs.tilt.dev/) to enable your project to live update on the Tanzu Application Platform.
-  > **Note:** The Tanzu Developer Tools extension requires only one Tiltfile per project.
+
+    A file named **Tiltfile** with no extension (no filetype) must be included in the project. (Eg. `My project/Tiltfile`). The **Tiltfile** provides the configuration for [Tilt](https://docs.tilt.dev/) to enable your project to live update on the Tanzu Application Platform.
+    
+    > **Note:** The Tanzu Developer Tools extension requires only one Tiltfile per project.
 
 
 ### <a id="creating-a-workload-yaml-file"></a> Creating a **workload.yaml** File
@@ -35,6 +32,7 @@ The “workload.yaml” file provides instructions to the Supply Chain Choreogra
 > **Note:** The Tanzu Developer Tools extension requires only one workload.yaml per project. The workload.yaml must be a single-document [YAML](glossary.md#yaml) file, not a multi-document YAML file.
 
 Before beginning to write your workload.yaml file, ensure you:
+
 - Know what you will name your application (eg. `my app`)
 - Know what type of workload the app will be (eg. `web`, see [Workload in the Glossary](glossary.md#workload) for more information)
 - Have the git source code URL (eg. `github.com/mycompany/myapp`)
@@ -59,6 +57,7 @@ spec:
 ```
 
 Certain sections of the example **workload.yaml** file above must be replaced with your values for it to function:
+
 - Replace `<app-name>` with the name of your application
 - Replace `<workload-type>` with the type of this workload (eg. web, see [Workload in the Glossary](glossary.md#workload) for more information)
 - Replace `<git-source-url>` with your git source code URL
@@ -71,6 +70,7 @@ Alternatively you can use the Tanzu CLI to create a workload.yaml file. For more
 The **catalog-info.yaml** file enables the [workloads](glossary.md#workload) created with this project to be visible in the [TAP GUI](https://github.com/pivotal/docs-tap/blob/main/tap-gui/about.md).
 
 Before beginning to write your **catalog-info.yaml** file, ensure you:
+
 - Know what you will name the workload (eg. `my app`)
 - Have a description of your application ready.
 
@@ -93,6 +93,7 @@ spec:
 ```
 
 Certain sections of the example **catalog-info.yaml** file above must be replaced with your values for it to function:
+
 - Replace both occurrences of `<app-name>` with the name of your application
 - Replace `<app-description>` with a description of your application
 
@@ -103,6 +104,7 @@ The **Tiltfile** file enables the configuration for [Tilt](https://docs.tilt.dev
 > **Note:** The Tanzu Developer Tools extension requires only one **Tiltfile** per project.
 
 Before beginning to write your **Tiltfile** file, ensure you:
+
 - Know what you will name your application (eg. `my app`)
 - Know the [source image](glossary.md#source-image) value (eg. `docker.io/mycompany/myapp`)
 - Know whether you want to compile the source image from a local directory other than the project directory, otherwise leave the `local path` value unchanged (for more information see [local path](glossary.md#local-path) in the glossary)
@@ -139,6 +141,7 @@ allow_k8s_contexts('<context-name>')
 ```
 
 Certain sections of the example **Tiltfile** file above must be replaced with your values for it to function:
+
 - Replace `<source-image>` with the [source image](glossary.md#source-image) value
 - Replace all 4 occurrences of `<app-name>` with the name of your application
 - Replace both occurrences of `<path-to-workload-yaml>` with the local file system path to your **workload.yaml** file (eg. `config/workload.yaml`)
@@ -148,8 +151,7 @@ Certain sections of the example **Tiltfile** file above must be replaced with yo
 
 If you’d like to view a sample application which demonstrates the necessary configuration files there are two ways you can obtain the sample application.
 
-Before you begin:
-- You will need a [container registry](glossary.md#container-registry) to use the sample application.
+Before you begin, you will need a [container registry](glossary.md#container-registry) to use the sample application.
 
 **Option 1: Application Accelerator**
 
