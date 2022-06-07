@@ -103,4 +103,31 @@ To solve do the following:
 ```
 kubectl delete trainingportals $PORTAL_NAME
 ```
-3. Recreate the trainingportal
+3. Redeploy the `trainingPortal` resource.
+
+## <a id="missing-training-portal-url"></a>No URL returned to your trainingportal
+
+After deploying the Learning Center Operator and Trainingportal resources you notice the following command:
+
+```
+kubectl get trainingportals
+```
+yields the resource with no url but your resources deployed correctly and are running.
+
+You also already specified learningcenter.mydomain.com in your tap values yaml file if installed via tap.
+
+See [specifying ingress domain](./getting-started/learning-center-operator.md#ingress-domain)
+
+***Solution***
+
+Learning center requires the usage of a wildcard domain(Wildcard DNS entry) to access your training portal in the browser. This configuration needs to be done in your DNS provider with a rule that points your wildcard domain to your IP/Load balancer.
+
+For example if using the default workshop on an eks cluster your URL could look something like:
+
+learning-center-guided.learningcenter.yourdomain.com
+
+where learningcenter.yourdomain.com would need a DNS configuration made to point to your default ingress controller. 
+
+In this case the wildcard domain configuration needed would be *.learningcenter.yourdomain.com
+
+Once this configuration is made you may need to restart your operator resource by deleting and redeploying to see the url update.
