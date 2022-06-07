@@ -84,3 +84,23 @@ Redeploy `trainingportal` in a maintenance window where Learning Center is unava
 
 If you don't have enough nodes or enough resources on nodes for deploying the workloads, node pressure might occur.
 In this case, follow your cloud provider's instructions on how to scale out or scale up your cluster.
+
+## <a id="kub-api-timeout"></a>Kubernetes Api Timeout error
+
+If you come across the following operator error log:
+
+```
+operator-log: unexpected error occurred. Read timed out.
+```
+
+there is a connection error with the Kubernetes API server. This error has been found when running Learning Center with the Azure AkS cloud provider.
+
+***Solution***
+
+To solve do the following:
+1. delete the operator pod on the learningcenter namespace.
+2. delete the training portal once the operator is running again using:
+```
+kubectl delete trainingportals $PORTAL_NAME
+```
+3. Recreate the trainingportal
