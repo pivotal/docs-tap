@@ -131,3 +131,20 @@ where learningcenter.yourdomain.com would need a DNS configuration made to point
 In this case the wildcard domain configuration needed would be *.learningcenter.yourdomain.com
 
 Once this configuration is made you may need to restart your operator resource by deleting and redeploying to see the url update.
+
+## <a id="updating-tap-values"></a>Updates to tap values not reflected in Learning Center Operator
+
+If you installed Learning Center via Tanzu profiles then your instalation made use of a tap_values.yaml file where configurations were specified for Learning Center. If you make updates to these configurations using 
+
+```
+tanzu package installed update tap --package-name tap.tanzu.vmware.com --version {VERSION} -f tap-values.yml -n tap-install
+```
+the changes would not be reflected in the deployed Learning Center Operator. Tap package updates currently `DO NOT` update running Learning Center resources.
+
+***Solution***
+You must restart the operator resource by first deleting the operator pod
+
+```
+kubectl delete pod -n learningcenter learningcenter-operator-$OPERATOR_POD_NAME
+```
+and then deleting the training portal resource. You must then redeploy the trainingportal resource.
