@@ -25,7 +25,7 @@ To start debugging on the cluster:
 4. Ensure the configuration parameters are set.
 
     ![Debug config parameters](../images/intellij-config.png)
-    
+
 5. You can also manually create Tanzu Debug Configurations via the `Edit Configurations` IntelliJ UI.
 
 ### <a id="stop-debugging-on-the-cluster"></a> Stop Debugging on the Cluster
@@ -39,6 +39,6 @@ Select the stop button in the Debug overlay to stop debugging on the cluster:
 - Right-click your project’s `Tiltfile` and select `Run 'Tanzu Live Update - ...'`.
 - You must compile your code before the changes are synchronized to the container.
 
-> **Note:** Only one Live Update session can be active at a time. Make sure to stop any running session before starting a new one.
+> **Note:** Only one Live Update session can be active at a time. Stop any running session before starting a new one.
 
 ![The IntelliJ interface showing the project tab with the Tiltfile file right-click menu open](../images/intellij-startLiveUpdate.png)
