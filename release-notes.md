@@ -148,9 +148,9 @@ This following issues, listed by area and component, are resolved in this releas
 
 #### Tanzu Application Platform GUI
 
-- Supply Chain Plug-in
+- Supply Chain plug-in
   - **Details for ConfigMap CRD not appearing:** The error `Unable to retrieve conditions for ConfigMap...`appears in the details section after clicking on the ConfigMap stage in the graph view of a supply chain.
-  - **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear. 
+  - **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear.
 
 
 
