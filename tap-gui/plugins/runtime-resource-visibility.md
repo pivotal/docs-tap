@@ -143,27 +143,41 @@ This drop-down menu is only visible if the resources include Build or ConfigWrit
 ![Screenshot of completed supply chain pods information. The Show Additional Resources dropdown menu is expanded.](images/runtime-resources-supply-chain-pods.png)
 
 
-## <a id="navigating-to-pods"></a>Navigating to Pod Details Page
+## <a id="navigating-to-pods"></a>Navigating to the Pod Details page
 
 Users can see the pod table in each resource details page.
 
 ![Screenshot of object detail table listing pod](images/runtime-resources-pods.png)
 
-### <a id="pod-details-metrics"></a> Understanding Pod Metrics
 
-The overview card displays the user-configured resource limits on the Pod, defined as per the Kubernetes documentation for [Configuring Pods Limits](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/). These limits do not represent actual real-time resource usage. ([The Live View Plugin can help you with that!](app-live-view-springboot.md#a-id"threads-page"a-threads-page))
+### <a id="pod-details-metrics"></a> Understanding pod metrics
 
-Each container displays its resource limits, if defined:
+The overview card displays the user-configured resource limits on the pod, defined in accordance with
+the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/).
+These limits do not represent actual real-time resource use. To monitor actual real-time resource use,
+see [Application Live View for Spring Boot Applications in Tanzu Application Platform GUI](app-live-view-springboot.html).
 
-![Container limits](images/runtime-resources-container-metrics-pod-page.png)
+Each container displays its resource limits, if defined.
 
-Pods display the sum of the limits of all their containers. If any container fails to specify a limit, both it and its Pod will be presented as requiring "Unlimited" resources.
+![Screenshot of container limits. The CPU and Memory column headers are framed.](images/runtime-resources-container-metrics-pod-page.png)
 
-![Pod limits overview](images/runtime-resources-pod-limits-overview.png)
+Pods display the sum of the limits of all their containers.
+If a limit is not specified for a container, both the container and its pod are deemed to require
+unlimited resources.
 
-Namespace-level resource limits (e.g. [default memory limits](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/) and [default CPU limits](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/)) are not considered as part of these calculations.
+![Screenshot of the pod limits overview. Unlimited ranges for Total CPU and Total Memory are framed.](images/runtime-resources-pod-limits-overview.png)
 
-These limits apply only for Memory and CPU usage that a Pod or Container could use; Kubernetes manage these resource units using a binary base as is explained on their [Quantity](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/) docs.
+Namespace-level resource limits, such as default memory limits and default CPU limits, are not
+considered as part of these calculations.
+
+For more information about
+[default memory limits](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/)
+and [default CPU limits](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/)
+see the Kubernetes documentation.
+
+These limits apply only for Memory and CPU that a pod or container can use.
+Kubernetes manages these resource units by using a binary base, which is explained in the
+[Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/).
 
 
 ## <a id="pod-details"></a>Navigating to Application Live View

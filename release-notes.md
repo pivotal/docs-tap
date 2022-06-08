@@ -43,6 +43,12 @@ This release includes the following changes, listed by component and area.
 - Feature 1
 - Feature 2
 
+#### <a id="snyk-scanner"></a> Snyk Scanner (Beta)
+
+Snyk Scanner is now available in its beta mode for the [Supply Chain Security Tools - Scan](#scst-scan) controller. This package needs to be manually installed because it's not part of any current profile. Please follow [Install Snyk scanner](scst-scan/install-snyk-integration.md) instructions
+
+- Run Snyk scanner on `ImageScan`s for the Scan-Link controller.
+
 #### Supply Chain Choreographer
 
 - View resource status on a workload
@@ -50,10 +56,13 @@ This release includes the following changes, listed by component and area.
   - Surfaces information about the health of resources directly on the owner status.
   - Adds a field in the spec `healthRule` where authors can specify how to determine the health of the underlying resource for that template. The resource can be in one of the following states: A stamped resource can be in one of three states: 'Healthy' (status True), 'Unhealthy' (status False), or 'Unknown'  (status Unknown). If no healthRule is defined, Cartographer defaults to listing the resource as `Healthy` once it is successfully applied to the cluster and any outputs are read off the resource.
 
-#### Supply Chain Security Tools - Scan
+#### <a id="scst-scan"></a> Supply Chain Security Tools - Scan
 
-- Feature 1
-- Feature 2
+- Scan-Link's controller abstraction from scanners' output format to allow more flexibility when integrating new scanners.
+- Supply Chain Security Tools - Scan is now decoupled from the Supply Chain Security Tools - Store to allow ease of integration with different storage methods in the future.
+- Beta scanner support released in the [Snyk Scanner](#snyk-scanner) package.
+
+**NOTICE:** The Grype Scanner `ScanTemplate`s shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are now deprecated and will no longer be supported in future releases.
 
 #### Supply Chain Security Tools - Sign
 **TODO** deprecation notice, namespace bug as known issue
@@ -95,16 +104,22 @@ This release has the following breaking changes, listed by area and component.
 - Breaking change 1
 - Breaking change 2
 
-#### Supply Chain Security Tools - Scan
+#### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
-- Breaking change 1
-- Breaking change 2
+- Integration with Supply Chain Security Tools - Store needs to be configured for the Grype Scanner and Snyk Scanner packages to enable this feature. The configuration for Supply Chain Security Tools - Store in Supply Chain Security Tools - Scan is just for the deprecated Grype Scanner `ScanTemplate`s.
+- The rego file structure needed for the `ScanPolicies` to work with the new Grype Scanner and Snyk Scanner templates has changed. **Note:** This doesn't apply if you're using the deprecated Grype Scanner `ScanTemplate`s prior to Grype Scanner `v1.2.0`.
+  - The package name has changed from `package policies` to `package main`.
+  - The deny rule has changed from the boolean `isCompliant` to the array of strings `deny[msg]`.
+  - Please note that the sample `ScanPolicy` has differences whether you're using Grype Scanner (with a cyclonedx structure) to Snyk Scanner (with a spdx json structure).
 
 #### Supply Chain Security Tools - Store
 
 - Breaking change 1
 - Breaking change 2
 
+#### <a id="grype-scanner-changes"></a> Grype Scanner
+
+- Information to integrate with the Supply Chain Security Tools - Store should be provided in the `tap-values.yaml` file for the Grype Scanner `v1.2+` 
 
 ### <a id='1-2-resolved-issues'></a> Resolved issues
 
@@ -128,13 +143,12 @@ This following issues, listed by area and component, are resolved in this releas
 
 #### Supply Chain Security Tools - Scan
 
-- Resolved issue 1
-- Resolved issue 2
+- `Go` updated to version `v1.18.2`
+- `Open Policy Agent` updated to version `v.0.40.0`
 
 #### Grype Scanner
 
-- Resolved issue 1
-- Resolved issue 2
+- `ncurses` updated to version `6.1-5.ph3`
 
 #### Supply Chain Security Tools - Store
 
