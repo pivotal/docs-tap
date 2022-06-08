@@ -11,87 +11,108 @@ To integrate Live Hover with Spring Boot Tools you need:
 - Spring Boot Tools [extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot) v1.33 or later.
 
 
-## <a id="activate-feature"></a> Activate Live Hover
+## <a id="activate-feature"></a> Activate the Live Hover feature
 
-Activate Live Hover by starting your vscode instance with `TAP_LIVER_HOVER=true`, as in this example:
+Activate the Live Hover feature by starting your VS Code instance with `TAP_LIVER_HOVER=true`, as in
+this example:
 
 ```console
 > TAP_LIVE_HOVER=true code /path/to/project
 ```
 
-After you have a workload deployed, the live hovers appear.
 
-## A Concrete Example
+## <a id="deploy-workload"></a> Deploy a Workload to the Cluster
 
-Assuming you have the prerequisite [Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot) installed.
-Let's go through the steps to deploy the sample [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) workload to our cluster; and get live
-hovers working.
+Follow these steps to deploy the workload for an app to a cluster, making live hovers appear.
+The examples in some steps reference the sample
+[tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) in GitHub.
 
-*Step 1:* Clone the repo
+1. Clone the repository by running:
 
-```
-$ git clone https://github.com/sample-accelerators/tanzu-java-web-app
-```
+    ```console
+    git clone REPOSITORY-ADDRESS
+    ```
 
-*Step 2*: Open the project in Vscode, with the live-hover feature enabled
+    Example:
 
-```
-$ TAP_LIVE_HOVER=true code ./tanzu-java-web-app
-```
+    ```console
+    $ git clone https://github.com/sample-accelerators/tanzu-java-web-app
+    ```
 
-*Step 3*: Target a cluster
+1. Open the project in VS Code, with the Live Hover feature enabled, by running:
 
-Vscode Tanzu Tools will periodically connect to your cluster to try and
-find pods from which live-data may be extracted and shown.
+    ```console
+    TAP_LIVE_HOVER=true code ./APP-NAME
+    ```
 
-Vscode Tanzu Tools will use your current context from `~/.kube/config` to
-determine the cluster to connect to.
+    Example:
 
-Make sure that you are targetting the cluster on which you will be running
-the workload. For example:
+    ```console
+    $ TAP_LIVE_HOVER=true code ./tanzu-java-web-app
+    ```
 
-```
-$ kubectl cluster-info
-Kubernetes control plane is running at https://...
-CoreDNS is running at https://...
+1. Verify that you are targeting the cluster on which you want to run the workload by running:
 
-To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
-```
+    ```console
+    kubectl cluster-info
+    ```
 
-*Step 3*: Deploy the workload to the cluster
+    For example:
 
-Vscode Tanzu Tools will periodically look for pods in your
-cluster that match the workload configurations it finds in your workspace.
+    ```console
+    $ kubectl cluster-info
+    Kubernetes control plane is running at https://...
+    CoreDNS is running at https://...
 
-If you don't have the workload running yet, now is a good time to deploy it.
-For our sample there is a `config/workload.yaml` file in the git repo. So you
-can do:
+    To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+    ```
 
-```
-$ kubectl create -f config/workload.yaml
-workload.carto.run/tanzu-java-web-app created
-```
+    Tanzu Developer Tools for VS Code periodically connects to your cluster to search for pods from
+    which live data can be extracted and shown.
+    Tanzu Developer Tools for VS Code uses your current context from `~/.kube/config` to choose
+    which cluster to connect with.
+    <!-- What are the steps for targeting the correct cluster? -->
 
-It will take some time for the workload to build and then startup a running pod.
-To check if a pod is running yet you can do:
+1. If you don't have the workload running yet, run:
 
-```
-$ kubectl get pods
-NAME                                                   READY   STATUS      RESTARTS   AGE
-tanzu-java-web-app-00001-deployment-8596bfd9b4-5vgx2   2/2     Running     0          20s
-tanzu-java-web-app-build-1-build-pod                   0/1     Completed   0          2m26s
-tanzu-java-web-app-config-writer-fpnzb-pod             0/1     Completed   0          67s
-```
+    ```console
+    kubectl create -f WORKLOAD-YAML-FILE
+    ```
 
-Notice the `...-0001-deployment-...` pod. This is the pod from which live data
-can be extracted.
+    For example:
 
+    ```console
+    $ kubectl create -f config/workload.yaml
+    workload.carto.run/tanzu-java-web-app created
+    ```
 
-*Step 5*: Open a file and see live hovers
+    Tanzu Developer Tools for VS Code periodically searches for pods in your cluster that correspond
+    to the workload configurations it finds in your workspace.
 
-To see some live hovers, simply open a Java file such as `HelloController.java`.
-After a short delay of upto 30 seconds (on account of a 30 second polling loop),
-green bubbles will appear as highlights in your code. Hover over any of the bubbles
-to see live info about the corresponding element. For more details about the
-functionality refer to the  documentation of
-[Vscode Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot).
+1. It takes time for the workload to build and then start a running pod. To see if a pod has started
+running, run:
+
+    ```console
+    kubectl get pods
+    ```
+
+    Example:
+
+    ```console
+    $ kubectl get pods
+    NAME                                                   READY   STATUS      RESTARTS   AGE
+    tanzu-java-web-app-00001-deployment-8596bfd9b4-5vgx2   2/2     Running     0          20s
+    tanzu-java-web-app-build-1-build-pod                   0/1     Completed   0          2m26s
+    tanzu-java-web-app-config-writer-fpnzb-pod             0/1     Completed   0          67s
+    ```
+
+    In this example, live data can be extracted from the `...-0001-deployment-...` pod.
+
+1. Open a Java file, such as `HelloController.java`.
+After a delay of up to 30 seconds, because of a 30-second polling loop, green bubbles appear as
+highlights in your code.
+
+1. Hover over any of the bubbles to see live information about the corresponding element.
+
+For more information about this feature, see the
+[VS Code documentation for Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot).
