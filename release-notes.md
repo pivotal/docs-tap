@@ -145,12 +145,10 @@ This following issues, listed by area and component, are resolved in this releas
 
 - `Go` updated to version `v1.18.2`
 - `Open Policy Agent` updated to version `v.0.40.0`
-- Resolved issue 2
 
 #### Grype Scanner
 
 - `ncurses` updated to version `6.1-5.ph3`
-- Resolved issue 2
 
 #### Supply Chain Security Tools - Store
 
