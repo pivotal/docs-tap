@@ -1,6 +1,6 @@
 # Live Hover integration with Spring Boot Tools (Experimental)
 
-This topic describes Live Hover integration with Spring Boot Tools.
+This topic describes how to integrate Live Hover with Spring Boot Tools and use the feature.
 
 
 ## <a id="prerequisites"></a> Prerequisites
@@ -8,7 +8,7 @@ This topic describes Live Hover integration with Spring Boot Tools.
 To integrate Live Hover with Spring Boot Tools you need:
 
 - A Tanzu Spring Boot application, such as [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app)
-- Spring Boot Tools [extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot) v1.33 or later.
+- Spring Boot Tools [extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot) v1.33 or later
 
 
 ## <a id="activate-feature"></a> Activate the Live Hover feature
@@ -25,7 +25,7 @@ this example:
 
 Follow these steps to deploy the workload for an app to a cluster, making live hovers appear.
 The examples in some steps reference the sample
-[tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) in GitHub.
+[tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app).
 
 1. Clone the repository by running:
 
@@ -33,7 +33,7 @@ The examples in some steps reference the sample
     git clone REPOSITORY-ADDRESS
     ```
 
-    Example:
+    For example:
 
     ```console
     $ git clone https://github.com/sample-accelerators/tanzu-java-web-app
@@ -45,7 +45,7 @@ The examples in some steps reference the sample
     TAP_LIVE_HOVER=true code ./APP-NAME
     ```
 
-    Example:
+    For example:
 
     ```console
     $ TAP_LIVE_HOVER=true code ./tanzu-java-web-app
@@ -89,14 +89,14 @@ The examples in some steps reference the sample
     Tanzu Developer Tools for VS Code periodically searches for pods in your cluster that correspond
     to the workload configurations it finds in your workspace.
 
-1. It takes time for the workload to build and then start a running pod. To see if a pod has started
+1. The workload takes time to build and then start a running pod. To see if a pod has started
 running, run:
 
     ```console
     kubectl get pods
     ```
 
-    Example:
+    For example:
 
     ```console
     $ kubectl get pods
