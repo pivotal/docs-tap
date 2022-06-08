@@ -73,7 +73,7 @@ To set up a service:
         metadata:
           name: resource-claims-rmq
           labels:
-            resourceclaims.services.apps.tanzu.vmware.com/controller: "true"
+            servicebinding.io/controller: "true"
         rules:
         - apiGroups: ["rabbitmq.com"]
           resources: ["rabbitmqclusters"]
