@@ -102,13 +102,13 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   This is an established industry best practice for reducing security risk and ensuring more
   efficient remediation.
 
-- **[Supply Chain Security Tools - Sign](scst-sign/overview.md)**
 
-  Supply Chain Security Tools - Sign provides an admission controller that allows a cluster operator
-  to specify a policy that allows or denies images from running based on signature verification
-  against public keys. It works with
+- **[Supply Chain Security Tools - Policy Controller](scst-policy/overview.md)**
+
+  Supply Chain Security Tools - Policy is an admission controller that allows a cluster operator
+  to specify policies to verify image container signatures before admitting them to a cluster. It works with
   [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for fine-tuned
-  configuration based on image source patterns.
+  configuration of policies based on image source patterns.
 
 - **[Supply Chain Security Tools - Store](scst-store/overview.md)**
 
@@ -354,20 +354,6 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Image Policy Webhook
-  </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
    <td>Learning Center
   </td>
    <td>&check;
@@ -515,6 +501,20 @@ The following table lists the packages contained in each profile:
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Supply Chain Security Tools - Policy Controller
+  </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
    <td>&check;
    </td>

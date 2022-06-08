@@ -1,38 +1,12 @@
 # Create a ScanTemplate
 
-The `ScanTemplate` custom resource (CR) is the component that defines how the scan Pod fulfills the task of vulnerability scanning. There are  default `ScanTemplates` provided out-of-the-box using the Tanzu Application Platform default scanner `Anchore's Grype`. The scan is done by using stages sequentially run on the scanning Pod. At the end a single container on the scan Pod called `summary` combines the result of the initContainers and the controller to discover and update `Scan CR` status.
+The `ScanTemplate` custom resource (CR) defines how the scan Pod fulfills the task of vulnerability scanning. There are default `ScanTemplates` provided out of the box using the Tanzu Application Platform default scanner, `Anchore Grype`. One or more `initContainers` will run to complete the scan and must save results to a shared `volume`. After the `initContainers` terminate, a single container on the scan Pod called `summary` combines the result of the initContainers so that the `Scan CR` status can be updated.
 
-## <a id="structure"></a>Structure
+A customized ScanTemplate can be created by editing or replacing `initContainer` definitions and reusing the `summary` container from the `grype` package. A container may read the `out.yaml` from a previous step to locate relevant inputs.
 
-```console
-apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-kind: ScanTemplate
-spec:
-    template:
-      # Here are list volumes mounted for writing to or 
-      # reading from during different stages of the scan
-      volumes:
-        # required the results of different scan stages 
-        # should be saved in files digestible by the scan 
-        # controller in this volume
-        - name: workspace
-        emptyDir: { }
-      # different steps required for a scanning can be staged 
-      # in sequential stages through initContainers. 
-      initContainers:
-      # Summary container will take results of initContainers 
-      # and will let Controller to update Scan CR status.
-      containers:
-        - name: summary
-```
+## <a id="output-model"></a>Output Model
 
-## <a id="summary-container"></a>Summary Container
-
-Scanning stages are required to write structured output to a specified file location in the workspace in the form of `/${WORKSPACE_PATH}/${STAGE_NAME}/out.yaml` (in the earlier example of a typical `ScanTemplates` the `${WORKSPACE_PATH}` is `workspace`). Individual stages can only populate a subset of the model depending on the nature of the stage. `Summary container` consumes and aggregates the outputs of the previous stages. And finally the controller consumes this aggregated information to populate and update the status of the `Scan CRs`.
-
-Below the general format of final aggregated `Output Model` and some examples of typical subsets provided by individual stages of scan are shown:
-
-1. General form of scan Output Model:
+Each initContainer can create a subdirectory in `/workspace` to use as a scratch space. Before terminating the container must create an `out.yaml` file in the subdirectory containing the relevant subset of fields from the output model:
 ```yaml
 fetch:
   git: 
@@ -70,9 +44,33 @@ store:
   locations: []
 ```
 
-The `scan` portion of the earlier output is required and if missing the scan controller fails to properly update final status of the `Scan CR`. Other portions of the output including those of `store` and `policy evaluation` are optional and can be omitted, if not applicable in a custom supply chain setup.
+The `scan` portion of the earlier output is required and if missing the scan controller fails to properly update the final status of the `Scan CR`. Other portions of the output, including those of `store` and `policy evaluation`, are optional and can be omitted if not applicable in a custom supply chain setup.
 
-2. Examples of sample subset outputs:
+## <a id="template-structure"></a>ScanTemplate Structure
+
+```console
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+kind: ScanTemplate
+spec:
+    template: # a core/v1 PodSpec
+      # Here are list volumes mounted for writing to or 
+      # reading from during different stages of the scan
+      volumes:
+        # required the results of different scan stages 
+        # should be saved in files digestible by the scan 
+        # controller in this volume
+        - name: workspace
+        emptyDir: { }
+      # different steps required for a scanning can be staged 
+      # in sequential stages through initContainers. 
+      initContainers:
+      # Summary container will take results of initContainers 
+      # and will let Controller to update Scan CR status.
+      containers:
+        - name: summary
+```
+
+## <a id="sample-output"></a>Sample Outputs
 
 ```yaml
 # example for a typical git clone (source scan fetch stage)

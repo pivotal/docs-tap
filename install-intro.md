@@ -1,10 +1,13 @@
 # Installing Tanzu Application Platform
 
-This topic provides an overview to installing Tanzu Application Platform.
+You can install Tanzu Application Platform by using **either** of the following methods:
 
-## <a id='install-process'></a>Installation process
+- [Installing Tanzu Application Platform on your own Kubernetes clusters](#install-own-cluster)
+- [Installing Tanzu Application Platform by using AWS Quick Start](#install-aws)
 
-The process of installing Tanzu Application Platform includes the following tasks:
+## <a id='install-own-cluster'></a>Installing Tanzu Application Platform on your own Kubernetes clusters
+
+The process of installing Tanzu Application Platform on your own Kubernetes clusters includes the following tasks:
 
 |Step|Task|Link|
 |----|----|----|
@@ -16,3 +19,13 @@ The process of installing Tanzu Application Platform includes the following task
 |6.| Install the profile to the cluster |[Install your Tanzu Application Platform package](install.html#install-package)|
 |7.| (Optional) Install any additional packages that were not in the profile |[Installing Individual Packages](install-components.html)|
 |8.| Install developer tools into your integrated development environment (IDE) | [Installing Tanzu Developer Tools for VSCode](vscode-extension/installation.html)
+
+## <a id='install-aws'></a>Installing Tanzu Application Platform by using AWS Quick Start
+
+The process of installing Tanzu Application Platform by using AWS Quick Start includes the following tasks:
+
+|Step|Task|Link|
+|----|----|----|
+|1.| task 1 |[link name 1](external link 1)|
+|2.| task 2 |[link name 2](external link 2)|
+|3.| task 3 |[link name 3](external link 3)|

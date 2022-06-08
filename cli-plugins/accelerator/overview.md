@@ -17,7 +17,7 @@ available in an Application Accelerator server.
 Developers use the `--server-url` to point to the Application Accelerator server they want to use.
 The URL depends on the configuration settings for Application Accelerator:
 
-- For installations configured with a **shared ingress**, use `https://accelerator.<domain>` where `domain` is provided in the values file for the accelerator configuration.
+- For installations configured with a **shared ingress**, use `https://accelerator.<domain>` where `domain` defaults to the `shared.ingress_domain` value provided in the values file of Tanzu Application Platform.
 - For installations using a **LoadBalancer**, look up the External IP address by using:
 
     ```

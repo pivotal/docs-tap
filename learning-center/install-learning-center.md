@@ -52,7 +52,7 @@ To install Learning Center:
 
 1. Create a config file named `learning-center-config.yaml`.
 
-1. Add the parameter `ingressDomain` to `learning-center-config.yaml`, as in this example:
+1. To override the `shared.ingress_domain` in the values file of Tanzu Application Platform, add the parameter `ingressDomain` to `learning-center-config.yaml`. For example:
 
     ```yaml
     ingressDomain: YOUR-INGRESS-DOMAIN

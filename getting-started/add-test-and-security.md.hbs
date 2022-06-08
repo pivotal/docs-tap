@@ -170,7 +170,6 @@ To install OOTB Supply Chain with Testing and Scanning, follow these steps:
 
   > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies.
 
-
 >**Important:** The grype must be installed for scanning.
 
 1. Supply Chain Security Tools - Scan is installed as part of the profiles.
@@ -183,7 +182,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
     If the packages are not already installed, follow the steps in [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan) to install the required scanning components.
 
-    During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is deployed into another namespace, these sample ScanTemplates also must be present in the other namespace. One way to accomplish this is to install Grype Scanner again, and provide the namespace in the values file.
+    During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is deployed into another namespace, these sample ScanTemplates must also be present in the other namespace. One way to accomplish this is to install Grype Scanner again and provide the namespace in the values file.
 
     A ScanPolicy is required and the following code must be in the required namespace. You can either add the namespace flag to the kubectl  command or add the namespace field to the template itself. Run:
 
@@ -196,29 +195,33 @@ Verify that both Scan Link and Grype Scanner are installed by running:
       name: scan-policy
     spec:
       regoFile: |
-        package policies
-
-        default isCompliant = false
+        package main
 
         # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-        violatingSeverities := ["Critical","High","UnknownSeverity"]
-        ignoreCVEs := []
+        notAllowedSeverities := ["Critical","High","UnknownSeverity"]
+        ignoreCves := []
 
         contains(array, elem) = true {
           array[_] = elem
         } else = false { true }
 
         isSafe(match) {
-          fails := contains(violatingSeverities, match.Ratings.Rating[_].Severity)
+          fails := contains(notAllowedSeverities, match.ratings.rating[_])
           not fails
         }
 
         isSafe(match) {
-          ignore := contains(ignoreCVEs, match.Id)
+          ignore := contains(ignoreCves, match.Id)
           ignore
         }
 
-        isCompliant = isSafe(input.currentVulnerability)
+        deny[msg] {
+          comp := input.bom.components.component[_]
+          vuln := comp.vulnerabilities.vulnerability[_]
+          ratings := vuln.ratings.rating[_]
+          not isSafe(vuln)
+          msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
+        }
     EOF
     ```
 
@@ -354,9 +357,11 @@ additional information and examples.
 <br>
 
 
-## <a id="successful-deploy"></a>Congratulations! You have successfully deployed your application on the Tanzu Application Platform.
-Through the next two sections to learn about recommended supply chain security best practices and access to a powerful Services Journey experience on the Tanzu Application Platform by enabling several advanced use cases.
+Congratulations! You have successfully deployed your application on the Tanzu Application Platform.
 
-## Next step
+Take the next steps to learn about recommended supply chain security best practices and access to a powerful Services Journey experience on the Tanzu Application Platform by enabling several advanced use cases.
+
+## Next steps
 
 - [Configure image signing and verification in your supply chain](config-supply-chain.md)
+- []()

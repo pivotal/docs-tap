@@ -16,7 +16,7 @@
 
 ## <a id="before-beginning"></a> Before Beginning
 
-Ensure the project to use the extension with has the required files specified in the [Getting Started page](../vscode-extension/getting-started.md). 
+Ensure the project to use the extension with has the required files specified in the [Getting Started page](../vscode-extension/getting-started.md).
 
 >**Note:** The Tanzu Developer Tools extension requires only one **Tiltfile** and one **workload.yaml** per project. The **workload.yaml** must be a single-document YAML file, not a multidocument YAML files.
 
@@ -24,7 +24,7 @@ Ensure the project to use the extension with has the required files specified in
 
 When working with multiple projects in a single workspace, you can configure the Tanzu Dev Tools Extension settings on a per-project basis by using the dropdown selector in the `Settings` page.
 
-![The VS Code interface showing the Settings open to the Tanzu Extension, with the Project dropdown expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
+![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu is expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
 
 ## <a id="apply-workload"></a> Apply Workload
 
@@ -182,6 +182,6 @@ To switch the namespace where you created the workload:
 
 1. Navigate to settings (`Code -> Preferences -> Settings`).
 1. Expand the **Extensions** section of the Settings and select **Tanzu**.
-1. In the Namespace option, add the namespace you want to deploy to. This defaults to the `default` namespace.
+1. In the Namespace option, add the namespace you want to deploy to. This is the `default` namespace by default.
 
 ![The VS Code settings scrolled to the Tanzu section within the Extensions section](../images/vscode-switchnamespace1.png)

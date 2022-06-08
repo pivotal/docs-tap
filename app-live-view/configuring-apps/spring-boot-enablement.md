@@ -21,7 +21,7 @@ Add the maven dependency in `pom.xml` as follows:
 The Application Live View Convention then sets the runtime environment properties `management.endpoints.web.exposure.include="*"` and `management.endpoint.health.show-details=true` onto the PodSpec to expose all the actuator endpoints and detailed health information.
 You do not need to add these properties manually in `application.properties` or `application.yml`.
 
-For more information, see [Convention server](convention-server.md).
+For more information on the labels automatically set by Application Live View Convention, see [Convention server](convention-server.md).
 
 ## <a id="security"></a> Important security advice
 

@@ -45,8 +45,10 @@ This release includes the following changes, listed by component and area.
 
 #### Supply Chain Choreographer
 
-- Feature 1
-- Feature 2
+- View resource status on a workload
+  - Added ability to indicate how Cartographer can read the state of the resource and reflect it on the owner status.
+  - Surfaces information about the health of resources directly on the owner status.
+  - Adds a field in the spec `healthRule` where authors can specify how to determine the health of the underlying resource for that template. The resource can be in one of the following states: A stamped resource can be in one of three states: 'Healthy' (status True), 'Unhealthy' (status False), or 'Unknown'  (status Unknown). If no healthRule is defined, Cartographer defaults to listing the resource as `Healthy` once it is successfully applied to the cluster and any outputs are read off the resource.
 
 #### Supply Chain Security Tools - Scan
 
@@ -54,7 +56,12 @@ This release includes the following changes, listed by component and area.
 - Feature 2
 
 #### Supply Chain Security Tools - Sign
+**TODO** deprecation notice, namespace bug as known issue
+- Feature 1
+- Feature 2
 
+#### Supply Chain Security Tools - Policy Controller
+**TODO fill this out**
 - Feature 1
 - Feature 2
 
@@ -141,8 +148,10 @@ This following issues, listed by area and component, are resolved in this releas
 
 #### Tanzu Application Platform GUI
 
-- Resolved issue 1
-- Resolved issue 2
+- Supply Chain plug-in
+  - **Details for ConfigMap CRD not appearing:** The error `Unable to retrieve conditions for ConfigMap...`appears in the details section after clicking on the ConfigMap stage in the graph view of a supply chain.
+  - **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear.
+
 
 
 ### <a id='1-2-known-issues'></a> Known issues

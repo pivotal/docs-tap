@@ -40,6 +40,30 @@ To view the list of your running resources:
    ![Screenshot of selecting Runtime resources tab](images/runtime-resources-index.png)
 
 
+### <a id="resources-included"></a> Resources
+
+Built-in Kubernetes resources in this view are:
+
+- Services
+- Deployments
+- ReplicaSets
+- Pods
+
+The Runtime Resource Visibility plug-in also displays CRDs created with the
+Supply Chain, including:
+
+- Cartographer Workloads
+- Knative Services, Configurations, Revisions, and Routes
+
+For more information, see
+[Supply Chain Choreographer in Tanzu Application Platform GUI](scc-tap-gui.html).
+
+CRDs from Supply Chain are associated with Knative Resources, further down the chain, and built-in
+resources even further down the chain.
+
+![Ownership card. CRDs from Supply Chain have yellow arrows. Knative Resources have orange arrows. Built-in resources have red arrows.](images/runtime-resources-crd-hierarchy.png)
+
+
 ## <a id="knative-service-details"></a> Knative service details page
 
 To view details about your Knative services, select any resource that has a Knative Service type.
@@ -51,23 +75,7 @@ In this page, additional information is available for Knative resources, includi
 - revisions
 - pod details
 
-   ![Screenshot of Java web app deployment page](images/runtime-resources-details.png)
-
-
-## <a id="view-resource-details"></a> View details for a specific resource
-
-The Resources index table shows Knative Services, Deployments, pods, ReplicaSets and
-Kubernetes Services that match the label indicated in the component's definition.
-
-You can see a hierarchical structure showing the owner-dependent relationship between the objects.
-Resources without an owner are listed in the table as independent elements.
-
-For information about owners and dependents, see the
-[Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/).
-
-See the following example of an expanded index table showing one of the owner resources and its dependents.
-
-![Screenshot of Tanzu Java web app Runtime resources expanded](images/runtime-resources-expanded.png)
+![Screenshot of Java web app deployment page](images/runtime-resources-knative-service-details.png)
 
 
 ## <a id="detail-pages"></a> Detail pages
@@ -83,7 +91,7 @@ Most of the information feeds from the `metadata` attribute in each object.
 The following are some attributes that are displayed in the overview card:
 
 - **View Pod Logs** button
-- **.YAML** button
+- **View .YAML** button
 - URL, which is for Knative and Kubernetes service detail pages
 - Type
 - System
@@ -91,6 +99,9 @@ The following are some attributes that are displayed in the overview card:
 - Cluster
 
 ![Screenshot of Tanzu web app default URL](images/runtime-resources-overview.png)
+
+>**Note:** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
+applications supporting Application Live View.
 
 
 ### <a id="status-card"></a>Status card
@@ -122,21 +133,57 @@ The Annotations and Labels card displays information about `metadata.annotations
 ![Screenshot of Annotations and Labels sections](images/runtime-resources-annotations.png)
 
 
-## <a id="navigating-to-pods"></a>Navigating to Pod Details Page
+## <a id="select-supply-chain-pods"></a>Selecting completed supply chain pods
 
-You can go directly to the Pod Details page from the Resources index table.
+Completed supply chain pods (build pods and ConfigWriter pods) are hidden by default in the index table.
+Users can choose to display them from the **Show Additional Resources** drop-down menu above the
+Resources index table.
+This drop-down menu is only visible if the resources include Build or ConfigWriter pods.
 
-![Screenshot of Tanzu java web app runtime resources accessing pod from index table](images/runtime-resources-index-pod.png)
+![Screenshot of completed supply chain pods information. The Show Additional Resources dropdown menu is expanded.](images/runtime-resources-supply-chain-pods.png)
 
-Alternatively, you can see the pod table in each resource details page, as shown in the following screenshot.
+
+## <a id="navigating-to-pods"></a>Navigating to the Pod Details page
+
+Users can see the pod table in each resource details page.
 
 ![Screenshot of object detail table listing pod](images/runtime-resources-pods.png)
+
+
+### <a id="pod-details-metrics"></a> Understanding pod metrics
+
+The overview card displays the user-configured resource limits on the pod, defined in accordance with
+the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/).
+These limits do not represent actual real-time resource use. To monitor actual real-time resource use,
+see [Application Live View for Spring Boot Applications in Tanzu Application Platform GUI](app-live-view-springboot.html).
+
+Each container displays its resource limits, if defined.
+
+![Screenshot of container limits. The CPU and Memory column headers are framed.](images/runtime-resources-container-metrics-pod-page.png)
+
+Pods display the sum of the limits of all their containers.
+If a limit is not specified for a container, both the container and its pod are deemed to require
+unlimited resources.
+
+![Screenshot of the pod limits overview. Unlimited ranges for Total CPU and Total Memory are framed.](images/runtime-resources-pod-limits-overview.png)
+
+Namespace-level resource limits, such as default memory limits and default CPU limits, are not
+considered as part of these calculations.
+
+For more information about
+[default memory limits](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/memory-default-namespace/)
+and [default CPU limits](https://kubernetes.io/docs/tasks/administer-cluster/manage-resources/cpu-default-namespace/)
+see the Kubernetes documentation.
+
+These limits apply only for Memory and CPU that a pod or container can use.
+Kubernetes manages these resource units by using a binary base, which is explained in the
+[Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/).
 
 
 ## <a id="pod-details"></a>Navigating to Application Live View
 
 To view additional information about your running applications, see the
-[Application Live View](app-live-view.md) section in the Pod Details page.
+[Application Live View](app-live-view-springboot.md) section in the Pod Details page.
 
 ![Screenshot of Tanzu Java web app runtime resource detail page](images/runtime-resources-pod-details.png)
 

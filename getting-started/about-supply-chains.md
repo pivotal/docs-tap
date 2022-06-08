@@ -173,3 +173,7 @@ The **OOTB Testing+Scanning** supply chain includes integrations for secure scan
    </td>
   </tr>
 </table>
+
+## Next step
+
+- [Add testing and security scanning to your application](add-test-and-security.md.hbs)

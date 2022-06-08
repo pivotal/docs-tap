@@ -8,7 +8,7 @@ information on how to expose this server follow the instructions [here](./acc-cl
 
 # Installation
 
-1. Download the file `tanzu-app-accelerator-0.1.0.vsix` from the [release page](https://github.com/pivotal/acc-ide/releases/tag/0.1.0).
+1. Download Tanzu App Accelerator Extension for Visual Studio Code from the Tanzu Network
 
 2. Open VS Code.
 
@@ -16,7 +16,7 @@ information on how to expose this server follow the instructions [here](./acc-cl
      
     1. From the Command Palette (cmd + shift + P), run "Extensions: Install from VSIX...".
     
-    2. Select the extension file **tanzu-app-accelerator-0.1.0.vsix**.
+    2. Select the extension file **tanzu-app-accelerator-0.1.1.vsix**.
     
     ![Command palette open showing text Extensions: INSTALL FROM VSIX...](../images/vscode-install1.png)
     
