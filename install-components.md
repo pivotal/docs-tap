@@ -15,7 +15,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install API portal](api-portal/install-api-portal.md)
 - [Install Application Accelerator](application-accelerator/install-app-acc.md)
 - [Install Application Live View](app-live-view/install.md)
-- [Install Application Single Sign-On](https://docs.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0/appsso/GUID-platform-operators-installation.html)
+- [Install Application Single Sign-On](https://docs.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0.0-beta/appsso-1.0.0-beta/GUID-platform-operators-installation.html)
 - [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
 - [Install Convention Service](convention-service/install-conv-service.md)
@@ -58,7 +58,6 @@ Use the following procedure to verify that the packages are installed.
     app-accelerator          accelerator.apps.tanzu.vmware.com                  1.0.0            Reconcile succeeded
     app-live-view            appliveview.tanzu.vmware.com                       1.0.2            Reconcile succeeded
     appliveview-conventions  build.appliveview.tanzu.vmware.com                 1.0.2            Reconcile succeeded
-    appsso                   sso.apps.tanzu.vmware.com                          1.0.0            Reconcile succeeded
     cartographer             cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
     convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
@@ -72,6 +71,7 @@ Use the following procedure to verify that the packages are installed.
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
     services-toolkit         services-toolkit.tanzu.vmware.com                  0.6.0            Reconcile succeeded
     source-controller        controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded
+    sso4k8s-install          sso.apps.tanzu.vmware.com                          1.0.0-beta.2-31  Reconcile succeeded
     tap-gui                  tap-gui.tanzu.vmware.com                           0.3.0-rc.4       Reconcile succeeded
     tekton-pipelines         tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded
     tbs                      buildservice.tanzu.vmware.com                      1.5.0            Reconcile succeeded
