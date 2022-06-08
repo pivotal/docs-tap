@@ -71,7 +71,6 @@ The examples in some steps reference the sample
     which live data can be extracted and shown.
     Tanzu Developer Tools for VS Code uses your current context from `~/.kube/config` to choose
     which cluster to connect with.
-    <!-- What are the steps for targeting the correct cluster? -->
 
 1. If you don't have the workload running yet, run:
 
