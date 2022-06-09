@@ -9,6 +9,8 @@ Application Live View within Tanzu Application Platform.
 For Application Live View to interact with a Steeltoe app within Tanzu Application Platform,
 
 To expose management actuator endpoints, add below configuration to your `appsettings.json` file:
+
+```json
 {
   "Management": {
     "Endpoints": {
@@ -20,9 +22,11 @@ To expose management actuator endpoints, add below configuration to your `appset
     }
   }
 }
+```
 
 To enable logging, add below configuration to your `appsettings.json` file:
 
+```json
 {
   "Logging": {
     "LogLevel": {
@@ -33,6 +37,7 @@ To enable logging, add below configuration to your `appsettings.json` file:
     }
   }
 }
+```
 
 The thread metrics is available in SteeltoeVersion `3.2.0-rc1`. Therefore, to enable Threads page in Application Live View UI, add the below configuration to your `.csproj` file:
 
@@ -50,4 +55,3 @@ metadata:
     labels:
         tanzu.app.live.view.application.flavours: steeltoe
 ```
-
