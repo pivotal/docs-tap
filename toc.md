@@ -18,6 +18,7 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [Create your application accelerator](getting-started/create-app-accelerator.md)
   - [About supply chains on Tanzu Application Platform](getting-started/about-supply-chains.md)
   - [About supply chain vulnerability scanning](getting-started/about-vulnerability-scan-store.md)
+  - [About Application Accelerator](getting-started/about-application-accelerator.md)
   - [Add testing and security scanning](getting-started/add-test-and-security.md.hbs)
   - [Configure your supply chain](getting-started/config-supply-chain.md)
   - [Consuming services on Tanzu Application Platform](getting-started/consume-services.md)
