@@ -31,3 +31,22 @@ This overrides configuration settings that your app itself might contain, for ex
 if you configured your app to expose only specific actuators.
 
 Read about the [Application Live View Convention](convention-server.md) and the [Spring Boot Convention](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-spring-boot-conventions-about.html) to understand the potential impact of this, and manually configure this to suit your security needs.
+
+
+## Enable Spring Cloud Gateway apps
+
+For Application Live View to interact with a Spring Cloud Gateway app within Tanzu Application Platform,
+add the `spring-boot-starter-actuator` and `spring-cloud-starter-gateway` module dependency.
+
+Add the maven dependencies in `pom.xml` as follows:
+
+```xml
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+<dependency>
+  <groupId>org.springframework.cloud</groupId>
+  <artifactId>spring-cloud-starter-gateway</artifactId>
+</dependency>
+```

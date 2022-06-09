@@ -6,7 +6,7 @@ Platform's Full, Iterate and Run profiles. Follow the instructions below to manu
 ## <a id='scst-policy-prereqs'></a> Prerequisites
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- A container image registry that supports TLS connections. This component does not work with insecure registries.
+- A container image registry that supports TLS connections. >**Note:** This component does not work with insecure registries.
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. An example cosign public key is provided that can validate an image from the
 public cosign registry. If you want to provide your own key and images, follow the
@@ -14,8 +14,6 @@ public cosign registry. If you want to provide your own key and images, follow t
 generate your own keys and sign an image.
 
 >**Caution:** This component WILL REJECT `Pods` if it is not correctly configured. Be sure to test your configuration in a test environment before applying policies to your production cluster.
-
-**TODO** is this true?? do we need a trouble shooting section??
 
 ## <a id='install-scst-policy'></a> Install
 
@@ -33,7 +31,7 @@ To install Supply Chain Security Tools - Policy Conroller:
     $ tanzu package available list policy.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for policy.apps.tanzu.vmware.com...
       NAME                                                VERSION        RELEASED-AT
-      policy.apps.tanzu.vmware.com                        1.0.0          2022-06-03 18:00:00 -0500 EST
+      policy.apps.tanzu.vmware.com                        1.0.0          2022-06-09 20:00:00 -0400 EDT
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
@@ -134,7 +132,7 @@ To install Supply Chain Security Tools - Policy Conroller:
 
     - `deployment_namespace`:
       This setting controls the namespace to which this component is deployed.
-      When not specified, the namespace `image-policy-system` is assumed.
+      When not specified, the namespace `cosign-system` is assumed.
       This component creates the specified namespace to deploy required
       resources. Select a namespace that is not used by any
       other components.

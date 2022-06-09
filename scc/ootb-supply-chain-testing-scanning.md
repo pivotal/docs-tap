@@ -33,6 +33,7 @@ it performs the following:
 
 To make use this supply chain, ensure:
 
+- Enable your TAP GUI installation to viaualize CVE results: [see here](../tap-gui/plugins/scc-tap-gui.md#a-id"scan"a-enable-cve-scan-results)
 - Out of the Box Templates is installed.
 - Out of the Box Supply Chain With Testing **is NOT installed**.
 - Out of the Box Supply Chain With Testing and Scanning **is installed**.
