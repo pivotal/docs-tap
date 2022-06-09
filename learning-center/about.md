@@ -118,3 +118,4 @@ Learn more about:
 - [Getting Started with Learning Center](getting-started/about.md)
 - [Installing Learning Center](../learning-center/install-learning-center.md)
 - [Local Install Guides](local-install-guides/about.md)
+- [Air Gapped Environment Requirements](../learning-center/airgapped-environment.md)

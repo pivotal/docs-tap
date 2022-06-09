@@ -61,9 +61,9 @@ added privileges they grant before allowing their use in a cluster.
 When deploying instances of workshop environments, the operator must expose the instances
 by using an external URL for access to define the domain name that is used as a suffix to host names for instances.
 
->**Note:** For the custom domain you are using, configure your DNS with a wildcard domain to forward all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
+`>**Note:** For the custom domain you are using, configure your DNS with a wildcard domain to forward all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.`
 
->**Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
+`>**Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.`
 
 VMware recommends that you avoid using a `.dev` or `.app` domain name because such domain names require
 browsers to use HTTPS and not HTTP. Although you can provide a certificate for secure
