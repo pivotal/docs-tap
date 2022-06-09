@@ -49,7 +49,7 @@ first appearing first.
 * `FavorOwn`: _Only makes sense in the context of [composition](../composition.md)._
   Selects the version of the file that comes from the current executing fragment if possible,
   falls back to the caller version otherwise.
-* `FavorSelf`: _Only makes sense in the context of [composition](../composition.md)._
+* `FavorForeign`: _Only makes sense in the context of [composition](../composition.md)._
   Selects the version of the file that was provided by the caller if present, falls
   back to the file originating from this fragment's fileset otherwise.
 
