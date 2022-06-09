@@ -45,9 +45,9 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (Beta)
 
-Snyk Scanner is now available in its beta mode for the [Supply Chain Security Tools - Scan](#scst-scan) controller. This package needs to be manually installed because it's not part of any current profile. Please follow [Install Snyk scanner](scst-scan/install-snyk-integration.md) instructions
-
-- Run Snyk scanner on `ImageScan`s for the Scan-Link controller.
+- Snyk Scanner is now available in beta for the [Supply Chain Security Tools - Scan](#scst-scan) controller. 
+  - To use Snyk Scanner, manually install it by following the [Install Snyk Scanner](scst-scan/install-snyk-integration.md) instructions.
+  - Run Snyk Scanner on `ImageScan`s for the Scan-Link controller.
 
 #### Supply Chain Choreographer
 
@@ -58,8 +58,8 @@ Snyk Scanner is now available in its beta mode for the [Supply Chain Security To
 
 #### <a id="scst-scan"></a> Supply Chain Security Tools - Scan
 
-- Scan-Link's controller abstraction from scanners' output format to allow more flexibility when integrating new scanners.
-- Supply Chain Security Tools - Scan is now decoupled from the Supply Chain Security Tools - Store to allow ease of integration with different storage methods in the future.
+- Scan-Link's controller abstraction from the scanners' output format allows more flexibility when you integrate new scanners.
+- Supply Chain Security Tools - Scan is decoupled from the Supply Chain Security Tools - Store to ease future integration with different storage methods.
 - Beta scanner support released in the [Snyk Scanner](#snyk-scanner) package.
 
 **NOTICE:** The Grype Scanner `ScanTemplate`s shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are now deprecated and will no longer be supported in future releases.
@@ -106,11 +106,11 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
-- Integration with Supply Chain Security Tools - Store needs to be configured for the Grype Scanner and Snyk Scanner packages to enable this feature. The configuration for Supply Chain Security Tools - Store in Supply Chain Security Tools - Scan is just for the deprecated Grype Scanner `ScanTemplate`s.
-- The rego file structure needed for the `ScanPolicies` to work with the new Grype Scanner and Snyk Scanner templates has changed. **Note:** This doesn't apply if you're using the deprecated Grype Scanner `ScanTemplate`s prior to Grype Scanner `v1.2.0`.
+- You must configure integration with Supply Chain Security Tools - Store for the Grype Scanner and Snyk Scanner packages to enable this feature. The configuration for Supply Chain Security Tools - Store in Supply Chain Security Tools - Scan is only for the deprecated Grype Scanner `ScanTemplate`s.
+- The rego file structure required for the `ScanPolicies` to work with the Grype Scanner and Snyk Scanner templates has changed. **Note:** This doesn't apply if you're using the deprecated Grype Scanner `ScanTemplate`s prior to Grype Scanner `v1.2.0`.
   - The package name has changed from `package policies` to `package main`.
   - The deny rule has changed from the boolean `isCompliant` to the array of strings `deny[msg]`.
-  - Please note that the sample `ScanPolicy` has differences whether you're using Grype Scanner (with a cyclonedx structure) to Snyk Scanner (with a spdx json structure).
+  - Please note that the sample `ScanPolicy` is different if you're using Grype Scanner with a cyclonedx structure or Snyk Scanner with a spdx json structure.
 
 #### Supply Chain Security Tools - Store
 
