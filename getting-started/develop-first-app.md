@@ -1,16 +1,12 @@
 # Develop your first application on Tanzu Application Platform
 
-This topic will guide you through developing your first application on Tanzu Application Platform. Before you start, be sure you've completed all of the [Getting started prerequisites](../getting-started.md#get-started-prereqs).
-
-## <a id="about-app-accs"></a>About application accelerators
-
-Developers can create applications and get started with feature development immediately with the help of application accelerators. Application accelerators are templates that not only codify best practices, but also provide important configuration and structures ready and available for use. Admins can create custom application accelerators that reflect desired architectures and configurations, enabling developers to develop according to the defined best practices. The Application Accelerator plug-in of Tanzu Application Platform GUI assists both application developers and admins with creating and generating application accelerators. To create your own application accelerator, see [Create your application accelerator](create-app-accelerator.md).
+This topic will guide you through developing your first application on Tanzu Application Platform. Before you start, be sure you've completed all of the [Getting started prerequisites](../getting-started.md#get-started-prereqs). In this walkthrough, you will use an application accelerator. For background on application accelerators, see [Application Accelerator](about-application-accelerator.md).
 
 ## <a id="deploy-your-app"></a>Deploy your application
 
 To deploy your application, you must download an accelerator, upload it on your Git repository of choice, and run a CLI command. VMware recommends using the accelerator called `Tanzu-Java-Web-App`.
 
-1. From  Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
+1. From Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
    navigation bar to see the list of available accelerators.
    For information about connecting to Tanzu Application Platform GUI, see
    [Accessing Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md.hbs).
