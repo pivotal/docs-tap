@@ -132,7 +132,7 @@ To install Supply Chain Security Tools - Policy Conroller:
 
     - `deployment_namespace`:
       This setting controls the namespace to which this component is deployed.
-      When not specified, the namespace `image-policy-system` is assumed.
+      When not specified, the namespace `cosign-system` is assumed.
       This component creates the specified namespace to deploy required
       resources. Select a namespace that is not used by any
       other components.
