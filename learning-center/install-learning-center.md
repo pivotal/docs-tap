@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use the full profile to install packages.
 Only the full profile includes Learning Center.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 To install Tanzu Learning Center, see the following sections.
 
@@ -20,9 +20,9 @@ Before installing Learning Center:
 - The cluster must have an ingress router configured. If you have installed the TAP package through
 the full profile or light profile, it already deploys a contour ingress controller.
 
-- The operator, when deploying instances of the workshop environments, needs to be able to expose them through an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster.
+- `The operator, when deploying instances of the workshop environments, needs to be able to expose them through an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster.`
 
-- By default, the workshop portal and workshop sessions are accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self-signed certificate.
+- `By default, the workshop portal and workshop sessions are accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self-signed certificate.`
 
 - Any ingress routes created use the default ingress class if you have multiple ingress class types available and you need to override which is used.
 
@@ -32,13 +32,13 @@ To install Learning Center:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list learningcenter.tanzu.vmware.com --namespace tap-install
     ```
 
     Example output:
 
-    ```
+    ```console
      NAME                             VERSION        RELEASED-AT
      learningcenter.tanzu.vmware.com  0.1.0          2021-12-01 08:18:48 -0500 EDT
     ```
@@ -46,15 +46,15 @@ To install Learning Center:
 1. (Optional) See all the configurable parameters on this package by running:
 
     **Remember to change the 0.x.x version**
-    ```
+    ```console
     tanzu package available get learningcenter.tanzu.vmware.com/0.x.x --values-schema --namespace tap-install
     ```
 
 1. Create a config file named `learning-center-config.yaml`.
 
-1. Add the parameter `ingressDomain` to `learning-center-config.yaml`, as in this example:
+1. To override the `shared.ingress_domain` in the values file of Tanzu Application Platform, add the parameter `ingressDomain` to `learning-center-config.yaml`. For example:
 
-    ```
+    ```yaml
     ingressDomain: YOUR-INGRESS-DOMAIN
     ```
 
@@ -79,8 +79,8 @@ To install Learning Center:
 
 1. Add the `ingressSecret` to `learning-center-config.yaml`, as in this example:
 
-    ```
-    ingressSecret:
+    ```yaml
+      ingressSecret:
       certificate: |
         -----BEGIN CERTIFICATE-----
         MIIFLTCCBBWgAwIBAgaSAys/V2NCTG9uXa9aAiYt7WJ3MA0GCSqGaIb3DQEBCwUA
@@ -100,7 +100,7 @@ To install Learning Center:
     - Copy the tls secret to the `learningcenter` namespace or the one you
     defined and use the `secretName` property as in this example:
 
-    ```
+    ```yaml
     ingressSecret:
      secretName: workshops.example.com-tls
     ```
@@ -118,14 +118,14 @@ To install Learning Center:
 If you have multiple ingress class types available, and you need to override which is used, define
 the `ingressClass` property in `learning-center-config.yaml` **before deploying any workshop**:
 
-    ```
+    ```yaml
     ingressClass: contour
     ```
 
 1. Install Learning Center operator by running:
 
     **Remember to change the 0.x.x version**
-    ```
+    ```console
     tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 0.x.x -f learning-center-config.yaml
     ```
 
@@ -135,7 +135,7 @@ the `ingressClass` property in `learning-center-config.yaml` **before deploying 
 
     You can check that the operator deployed successfully by running:
 
-    ```
+    ```console
     kubectl get all -n learningcenter
     ```
 
@@ -147,26 +147,26 @@ To install the Self-Guided Tour Training Portal and Workshop:
 
 1. Make sure you have the workshop package installed by running:
 
-    ```
+    ```console
     tanzu package available list workshops.learningcenter.tanzu.vmware.com --namespace tap-install
     ```
 
 1. Install the Learning Center Training Portal with the Self-Guided Tour Workshop by running:
 
     **Remember to change the 0.x.x version**
-    ```
+    ```console
     tanzu package install learning-center-workshop --package-name workshops.learningcenter.tanzu.vmware.com --version 0.x.x -n tap-install
     ```
 
 1. Check the Training Portals available in your environment by running:
 
-    ```
+    ```console
     kubectl get trainingportals
     ```
 
     Example output:
 
-    ```
+    ```console
     NAME                       URL                                           ADMINUSERNAME         ADMINPASSWORD                      STATUS
-    learningcenter-tutorials   http://learningcenter-tutorials.example.com   learningcenter        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
+        learningcenter-tutorials   http://learningcenter-tutorials.example.com   learningcenter        QGBaM4CF01toPiZLW5NrXTcIYSpw2UJK   Running
     ```

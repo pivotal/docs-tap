@@ -18,7 +18,7 @@ When the user clicks the code block, the command is executed in the first termin
 
 If using AsciiDoc, you can instead use the `role` annotation in an existing code block:
 
-```
+```text
 [source,bash,role=execute]
 ----
 echo "Execute command."
@@ -79,7 +79,7 @@ echo "Text to copy and edit."
 
 For AsciiDoc, similar to `execute`, you can add the `role` of `copy` or `copy-and-edit`:
 
-```
+```text
 [source,bash,role=copy]
 ----
 echo "Text to copy."
@@ -215,7 +215,7 @@ text: echo "Text to copy and edit."
 
 A benefit of using these over the original methods is that by using the appropriate YAML syntax, you can control whether:
 
-- A multi-line string value is concatenated into one line.
+- A multiline string value is concatenated into one line.
 - Line breaks are preserved.
 - Initial or terminating new lines are included.
 
@@ -223,12 +223,15 @@ In the original methods, the string was always trimmed before use. By using the 
 
 The method for using AsciiDoc is similar, using the `role` for the name of the annotation and YAML as the content:
 
-```
+```text
 [source,bash,role=terminal:execute]
 ----
 command: echo "Execute command."
 ----
 ```
+## <a id="supported-editor"></a>Supported Workshop editor
+
+Learning Center currently `only` supports the code-server v4.4.0 of Vscode as an editor in workshops. 
 
 ## <a id="click-actions-dashboard"></a>Clickable actions for the dashboard
 
@@ -247,6 +250,26 @@ To allow the user to click in the workshop content to display a specific dashboa
 ~~~
 ```dashboard:open-dashboard
 name: Terminal
+```
+~~~
+
+To allow the user to click in the workshop content to display the console tab, use:
+
+~~~
+```dashboard:open-dashboard
+name: Console
+```
+~~~
+
+To allow the user to click in the workshop content to display a specific view within the Kubernetes web console by using a clickable action block, rather than requiring the user to find the correct view, use:
+
+~~~
+```dashboard:reload-dashboard
+name: Console
+prefix: Console
+title: List pods in namespace {{session_namespace}}
+url: {{ingress_protocol}}://{{session_namespace}}-console.{{ingress_domain}}/#/pod?namespace={{session_namespace}}
+description: ""
 ```
 ~~~
 
@@ -489,7 +512,7 @@ The list of program arguments against the `args` field is passed to the test pro
 
 The executable program for the test must exit with a status of 0 if the test is successful, and nonzero if the test is a failure. The test should aim to return as quickly as possible and should not be a persistent program.
 
-```
+```console
 #!/bin/bash
 
 kubectl get pods --field-selector=status.phase=Running -o name | egrep -e "^pod/$1$"
@@ -692,13 +715,13 @@ The workshop environment provides the following built-in data variables:
 
 To use a data variable within the page content, surround it by matching pairs of brackets:
 
-```
+```text
 {{ session_namespace }}
 ```
 
 Do this inside of code blocks, including clickable actions, as well as in URLs:
 
-```
+```text
 http://myapp-{{ session_namespace }}.{{ ingress_domain }}
 ```
 
@@ -716,7 +739,7 @@ You can introduce your own data variables by listing them in the `workshop/modul
 
 The field under which the data variables must be specified is `config.vars`:
 
-```
+```yaml
 config:
     vars:
     - name: LANGUAGE
@@ -725,7 +748,7 @@ config:
 
 To use a name for a data variable that is different from the environment variable name, add a list of `aliases`:
 
-```
+```yaml
 config:
     vars:
     - name: LANGUAGE
@@ -738,14 +761,14 @@ The environment variables with names in the list of aliases are checked first, t
 
 You can override the default value for a data variable for a specific workshop by setting it in the corresponding workshop file. For example, `workshop/workshop-python.yaml` might contain:
 
-```
+```yaml
 vars:
   LANGUAGE: python
 ```
 
 For more control over setting the values of data variables, you can provide the file `workshop/config.js`. The form of this file is:
 
-```
+```javascript
 function initialize(workshop) {
     workshop.load_workshop();
 
@@ -769,7 +792,7 @@ You can pass environment variables, including remapping of variable names, by se
 
 For example, to display the value of the `KUBECTL_VERSION` environment variable in the workshop content, use `ENV_KUBECTL_VERSION`, as in:
 
-```
+```text
 {{ ENV_KUBECTL_VERSION }}
 ```
 
@@ -781,7 +804,7 @@ In the case of the URL being an external website, when the URL is clicked, the U
 
 You can define a URL where components of the URL are provided by data variables. Data variables useful for this are `session_namespace` and `ingress_domain`, because they can be used to create a URL to an application deployed from a workshop:
 
-```
+```text
 https://myapp-{{ session_namespace }}.{{ ingress_domain }}
 ```
 
@@ -789,7 +812,7 @@ https://myapp-{{ session_namespace }}.{{ ingress_domain }}
 
 Rendering pages is in part handled by the [Liquid](https://www.npmjs.com/package/liquidjs) template engine. So you can use any constructs the template engine supports for conditional content:
 
-```
+```text
 {% if LANGUAGE == 'java' %}
 ....
 {% endif %}
@@ -804,7 +827,7 @@ Custom HTML can be embedded in the workshop content by using the appropriate mec
 
 If using Markdown, HTML can be embedded directly without being marked as HTML:
 
-```
+```html
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin justo.
 
 <div>
@@ -832,7 +855,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin justo.
 
 If using AsciiDoc, HTML can be embedded by using a passthrough block:
 
-```
+```html
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin justo.
 
 ++++

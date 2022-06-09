@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include Out of the Box Delivery Basic.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 The Out of the Box Delivery Basic package is used by all the Out of the Box Supply Chains
 to deliver the objects that have been produced by them to a Kubernetes environment.
@@ -24,19 +24,23 @@ To install Out of the Box Delivery Basic:
 1. Familiarize yourself with the set of values of the package that can be
    configured by running:
 
-    ```
-    tanzu package available get ootb-delivery-basic.tanzu.vmware.com/0.5.1 \
+    ```console
+    tanzu package available get ootb-delivery-basic.tanzu.vmware.com/0.7.0 \
       --values-schema \
       -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     KEY                  DEFAULT  TYPE    DESCRIPTION
     service_account      default  string  Name of the service account in the
                                           namespace where the Deliverable is
                                           submitted to.
+
+
+    git_implementation   go-git   string  Which git client library to use.
+                                          Valid options are go-git or libgit2.
     ```
 
 1. Create a file named `ootb-delivery-basic-values.yaml` that specifies the
@@ -44,24 +48,24 @@ To install Out of the Box Delivery Basic:
 
    For example, the contents of the file might look like this:
 
-    ```
+    ```yaml
     service_account: default
     ```
 
 1. With the configuration ready, install the package by running:
 
 
-    ```
+    ```console
     tanzu package install ootb-delivery-basic \
       --package-name ootb-delivery-basic.tanzu.vmware.com \
-      --version 0.5.1 \
+      --version 0.7.0 \
       --namespace tap-install \
       --values-file ootb-delivery-basic-values.yaml
     ```
 
     Example output:
 
-    ```
+    ```console
     \ Installing package 'ootb-delivery-basic.tanzu.vmware.com'
     | Getting package metadata for 'ootb-delivery-basic.tanzu.vmware.com'
     | Creating service account 'ootb-delivery-basic-tap-install-sa'

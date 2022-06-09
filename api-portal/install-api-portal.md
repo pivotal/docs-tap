@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use the full profile to install packages.
 Only the full profile includes API portal.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -19,13 +19,13 @@ To install Tanzu API portal:
 
 1. Check what versions of API portal are available to install by running:
 
-    ```
+    ```console
     tanzu package available list -n tap-install api-portal.tanzu.vmware.com
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list api-portal.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for api-portal.tanzu.vmware.com...
       NAME                         VERSION  RELEASED-AT
@@ -34,7 +34,7 @@ To install Tanzu API portal:
 
 2. (Optional) Make changes to the default installation settings by running:
 
-    ```
+    ```console
     tanzu package available get api-portal.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
@@ -42,7 +42,7 @@ To install Tanzu API portal:
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available get api-portal.tanzu.vmware.com/1.0.3 --values-schema --namespace tap-install
     ```
 
@@ -50,13 +50,13 @@ To install Tanzu API portal:
 
 3. Install API portal by running:
 
-    ```
+    ```console
     tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.3
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v 1.0.3
 
     / Installing package 'api-portal.tanzu.vmware.com'

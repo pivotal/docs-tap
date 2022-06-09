@@ -6,7 +6,7 @@ This example performs a scan against source code in a `.tar.gz` file. This can b
 
 Create `public-blob-source-example.yaml`:
 
-```
+```yaml
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanTemplate
@@ -58,7 +58,7 @@ spec:
 
 Before deploying, set up a watch in another terminal to see things process:
 
-```
+```console
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
@@ -66,7 +66,7 @@ For more information, see [Observing and Troubleshooting](../observing.md).
 
 ## <a id="deploy-resources"></a>Deploy the resources
 
-```
+```console
 kubectl apply -f public-blob-source-example.yaml
 ```
 
@@ -74,7 +74,7 @@ kubectl apply -f public-blob-source-example.yaml
 
 When the scan completes, perform:
 
-```
+```console
 kubectl describe sourcescan public-blob-source-example
 ```
 
@@ -84,10 +84,10 @@ For more information, see [Viewing and Understanding Scan Status Conditions](../
 
 ## <a id="clean-up"></a>Clean up
 
-```
+```console
 kubectl delete -f public-blob-source-example.yaml
 ```
 
 ## <a id="view-vuln-reports"></a>View vulnerability reports
 
-After completing the scans, [query the Supply Chain Security Tools - Store](../../scst-store/query_data.md) to view your vulnerability results.
+After completing the scans, [query the Supply Chain Security Tools - Store](../../cli-plugins/insight/query-data.md) to view your vulnerability results.

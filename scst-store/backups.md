@@ -1,4 +1,4 @@
-# Backing up Supply Chain Security Tools – Store data
+# Database backup recommendations
 
 By default, the metadata store uses a `PersistentVolume` mounted on a Postgres instance, making it a stateful component of Tanzu Application Platform. VMware recommends implementing a regular backup strategy as part of your disaster recovery plan when using the provided Postgres instance.
 
@@ -10,9 +10,10 @@ You can use [Velero](https://velero.io/) to create regular backups.
 ```bash
 velero install --provider <provider> --bucket <bucket-name> --plugins <plugin-image-location> --secret-file <secrets-file>
 ```
+
 For example:
 
-```
+```console
 velero install --provider gcp --bucket <gcs-bucket-name> --plugins velero/velero-plugin-for-gcp:v1.3.0 --secret-file <gcp-json-credentials>
 ```
 

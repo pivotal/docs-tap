@@ -11,7 +11,7 @@ In the `PodConventionContext` API resource:
 
 The following is an example of a `PodConventionContext` resource request received by the convention server. This resource is generated for a [Go language-based application image](https://github.com/paketo-buildpacks/samples/tree/main/go/mod) in GitHub. It is built with Cloud Native Paketo Buildpacks that use Go mod for dependency management.
 
-```
+```yaml
 ---
 apiVersion: webhooks.conventions.apps.tanzu.vmware.com/v1alpha1
 kind: PodConventionContext

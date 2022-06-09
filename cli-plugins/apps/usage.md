@@ -24,7 +24,7 @@ You can use the Apps CLI plug-in to create or update a workload.
 After you've successfully submitted your changes to the platform, the CLI command exits.
 Depending on the changes you submitted, it might take time for them to be executed on the platform.
 Run `tanzu apps workload get` to check the status of your changes.
-For more information on this command, see [Tanzu Apps Workload Get](command-reference/tanzu_apps_workload_get.md).
+For more information on this command, see [Tanzu Apps Workload Get](command-reference/tanzu-apps-workload-get.md).
 
 ## <a id='yaml-files'></a> Working with YAML files
 
@@ -38,7 +38,7 @@ Plug-in commands support only one file per command.
 
 For example, a valid file looks similar to the following example:
 
-```
+```yaml
 ---
 apiVersion: carto.run/v1alpha1
 kind: Workload
@@ -50,10 +50,11 @@ metadata:
 spec:
   source:
     git:
-      url: https://github.com/spring-projects/spring-petclinic
+      url: https://github.com/sample-accelerators/spring-petclinic
       ref:
-        branch: main
+        tag: tap-1.1
 ```
+
 ## <a id='autocompletion'></a> Autocompletion
 
 To enable command autocompletion, the Tanzu CLI offers the `tanzu completion` command.
@@ -62,13 +63,13 @@ Add the following command to the shell config file according to the current setu
 
 ### <a id='bash'></a> Bash
 
-```
+```console
 tanzu completion bash >  $HOME/.tanzu/completion.bash.inc
 ```
 
 ### <a id='zsh'></a> Zsh
 
-```
+```console
 echo "autoload -U compinit; compinit" >> ~/.zshrc
 tanzu completion zsh > "${fpath[1]}/_tanzu"
 ```

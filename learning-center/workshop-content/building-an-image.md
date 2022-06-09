@@ -6,8 +6,8 @@ This topic explains how to include an extra system, third-party tool, or configu
 
 The structure of the `Dockerfile` in the sample workshop template is:
 
-```
-FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:18882f916ff833872e658bdc00e7fe81b1b921fb3993ce761372805825b155e9
+```text
+FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:a8870aa60b45495d298df5b65c69b3d7972608da4367bd6e69d6e392ac969dd4
 
 COPY --chown=1001:0 . /home/eduk8s/
 
@@ -18,10 +18,10 @@ RUN fix-permissions /home/eduk8s
 
 The default `Dockerfile` action is to:
 
-  - Copy all files from a registry to the `/home/eduk8s` directory. You must build the custom workshop images on the `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:18882f916ff833872e658bdc00e7fe81b1b921fb3993ce761372805825b155e9` workshop image. You can do this directly or you can also create an intermediate base image to install extra packages required by a number of different workshops. The `--chown=1001:0` option ensures that files are owned by the appropriate user and group. 
-  - The `workshop` subdirectory is moved to `/opt/workshop` so that it is not visible to the user. This subdirectory is in an area searchable for workshop content, in addition to `/home/eduk8s/workshop`. 
+  - Copy all files from a registry to the `/home/eduk8s` directory. You must build the custom workshop images on the `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:a8870aa60b45495d298df5b65c69b3d7972608da4367bd6e69d6e392ac969dd4` workshop image. You can do this directly or you can also create an intermediate base image to install extra packages required by a number of different workshops. The `--chown=1001:0` option ensures that files are owned by the appropriate user and group.
+  - The `workshop` subdirectory is moved to `/opt/workshop` so that it is not visible to the user. This subdirectory is in an area searchable for workshop content, in addition to `/home/eduk8s/workshop`.
 
-To customize your `Dockerfile`: 
+To customize your `Dockerfile`:
 
   - You can ignore other files or directories from the repository, by listing them in the `.dockerignore` file.
   - You can include `RUN` statements in the `Dockerfile` to run custom-build steps, but the `USER` inherited from the base image has user ID `1001` and is not the `root` user.
@@ -30,8 +30,8 @@ To customize your `Dockerfile`:
 
 The sample `Dockerfile` provided above and the GitHub repository workshop templates reference the workshop base image as follows:
 
-```
-registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:18882f916ff833872e658bdc00e7fe81b1b921fb3993ce761372805825b155e9
+```text
+registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:a8870aa60b45495d298df5b65c69b3d7972608da4367bd6e69d6e392ac969dd4
 ```
 
 
@@ -41,10 +41,10 @@ The `base-environment` workshop images include language run times for Node.js an
 
 The following Dockerfile example creates a Java JDK11-customized image:
 
-```
+```text
 ARG IMAGE_REPOSITORY=dev.registry.tanzu.vmware.com/learning-center
 FROM ${IMAGE_REPOSITORY}/pkgs-java-tools as java-tools
-FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:18882f916ff833872e658bdc00e7fe81b1b921fb3993ce761372805825b155e9
+FROM registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:a8870aa60b45495d298df5b65c69b3d7972608da4367bd6e69d6e392ac969dd4
 COPY --from=java-tools --chown=1001:0 /opt/jdk11 /opt/java
 COPY --from=java-tools --chown=1001:0 /opt/gradle /opt/gradle
 COPY --from=java-tools --chown=1001:0 /opt/maven /opt/maven
@@ -54,14 +54,14 @@ COPY --from=java-tools --chown=1001:0 /opt/eduk8s/. /opt/eduk8s/
 ENV PATH=/opt/java/bin:/opt/gradle/bin:/opt/maven/bin:$PATH \
     JAVA_HOME=/opt/java \
     M2_HOME=/opt/maven
-``` 
+```
 
 
 ## <a id="install-extra-system-pkgs"></a>Installing extra system packages
 
 Installing extra system packages requires that you run the installation as `root`. You must switch the user commands before running the command, and then switch the user back to user ID of `1001`.
 
-```
+```text
 USER root
 
 RUN ... commands to install system packages
@@ -77,7 +77,7 @@ If you don't do this the `root` user drops configuration files in `/home/eduk8s`
 
 Fixing the file and group ownership and running `fix-permissions` can help with this problem, but not in every case, because of permissions the `root` user may apply and how container image layers work. VMware recommends that you use the following:
 
-```
+```text
 USER root
 
 RUN HOME=/root && \

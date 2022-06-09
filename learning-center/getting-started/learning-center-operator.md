@@ -61,19 +61,21 @@ added privileges they grant before allowing their use in a cluster.
 When deploying instances of workshop environments, the operator must expose the instances
 by using an external URL for access to define the domain name that is used as a suffix to host names for instances.
 
->**Note:** For the custom domain you are using, configure your DNS with a wildcard domain to forward all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
+`>**Note:** For the custom domain you are using, configure your DNS with a wildcard domain to forward all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.`
 
->**Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
+`>**Note:** For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.`
 
-VMware recommends that you avoid using a `.dev` domain name because such domain names require
-using HTTPS and not HTTP. Although you can provide a certificate for secure
+VMware recommends that you avoid using a `.dev` or `.app` domain name because such domain names require
+browsers to use HTTPS and not HTTP. Although you can provide a certificate for secure
 connections under the domain name for use by Learning Center, this doesn't extend to what a workshop
 may do. If workshop instructions require that you create ingresses in Kubernetes
-using HTTP only, a `.dev` domain name cannot work.
+using HTTP only, a `.dev` or `.app` domain name cannot work in the browser.
 
 >**Note:** If you are running Kubernetes on your local machine using a system such as `minikube` and you don't have a custom domain name that maps to the IP address for the cluster, you can use a `nip.io` address. For example, if `minikube ip` returned `192.168.64.1`, you can use the 192.168.64.1.nip.io domain. You cannot use an address of form `127.0.0.1.nip.io`, or `subdomain.localhost`. This causes a failure as internal services needing to connect to each other end up connecting to themselves instead, because the address resolves to the host loopback address of `127.0.0.1`.
 
-```
+If needed, you can override the `shared.ingress_domain` in the values file of Tanzu Application Platform with the `ingressDomain` parameter of learning center:
+
+```console
 ingressDomain: learningcenter.my-domain.com
 ```
 
@@ -82,7 +84,7 @@ ingressDomain: learningcenter.my-domain.com
 Set the `INGRESS_DOMAIN` environment variable on the operator deployment. To set the `INGRESS_DOMAIN`
 environment variable, run:
 
-```
+```console
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=test
 ```
 
@@ -90,7 +92,7 @@ Where `test` is the domain name for your Kubernetes cluster.
 
 Or if using a `nip.io` address:
 
-```
+```console
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOMAIN=192.168.64.1.nip.io
 ```
 
@@ -113,7 +115,7 @@ The easiest way to define the certificate is with the configuration passed to Ta
 the `certificate` and `privateKey` properties under the `ingressSecret` property to specify the
 certificate on the configuration YAML passed to Tanzu CLI:
 
-  ```
+  ```console
   ingressSecret:
     certificate: |
       -----BEGIN CERTIFICATE-----
@@ -134,7 +136,7 @@ If you already have a TLS secret, follow these steps **before deploying any work
 1. Create the `learningcenter` namespace manually or the one you defined.
 2. Copy the TLS secret to the `learningcenter` namespace or to the one you defined, and use the `secretName` property as in this example:
 
-  ```
+  ```console
   ingressSecret:
     secretName: workshops.example.com-tls
   ```
@@ -144,7 +146,7 @@ If you already have a TLS secret, follow these steps **before deploying any work
 To add the certificate as a secret in the `learningcenter` namespace or in the one you defined, the
 secret must be of type `tls`. You can create it using the `kubectl create secret tls` command:
 
-```
+```console
 kubectl create secret tls -n learningcenter workshops.example.com-tls --cert=workshops.example.com/fullchain.pem --key=workshops.example.com/privkey.pem
 ```
 
@@ -152,7 +154,7 @@ Having created the secret, if it is the secret corresponding to the default ingr
 earlier, set the `INGRESS_SECRET` environment variable. This way you won't use the configuration passed to Tanzu CLI
 on the operator deployment. This ensures the secret is applied automatically to any ingress created:
 
-```
+```console
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_SECRET=workshops.example.com-tls
 ```
 
@@ -169,7 +171,7 @@ types available, and you must override which is used, you can define the `ingres
 
 Define the `ingressClass` property on the configuration YAML passed to Tanzu CLI:
 
-```
+```yaml
 ingressClass: contour
 ```
 
@@ -177,7 +179,7 @@ ingressClass: contour
 
 Set the `INGRESS_CLASS` environment variable for the learningcenter operator:
 
-```
+```console
 kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_CLASS=contour
 ```
 
@@ -215,7 +217,7 @@ reported `192.168.64.1`, the subnet used is `129.168.64.0/24`.
 
 With this information, when you create a fresh `minikube` instance, you must supply the `--insecure-registry` option with the subnet:
 
-```
+```console
 minikube start --insecure-registry="129.168.64.0/24"
 ```
 

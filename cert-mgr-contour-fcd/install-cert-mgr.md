@@ -1,11 +1,11 @@
-# Install cert-manager, Contour, and FluxCD Source Controller
+# Install cert-manager, Contour
 
 This document describes how to install cert-manager, Contour, and FluxCD Source Controller
 from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include cert-manager, contour, and FluxCD Source Controller.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 ## <a id='cnr-prereqs'></a>Prerequisites
 
@@ -19,20 +19,20 @@ To install cert-manager from the Tanzu Application Platform package repository:
 
 1. List version information for the package by running:
 
-      ```
+      ```console
       tanzu package available list cert-manager.tanzu.vmware.com -n tap-install
       ```
 
       For example:
 
-      ```
+      ```console
       $ tanzu package available list cert-manager.tanzu.vmware.com -n tap-install
       / Retrieving package versions for cert-manager.tanzu.vmware.com...
         NAME                           VERSION      RELEASED-AT
         cert-manager.tanzu.vmware.com  1.5.3+tap.1  2021-08-23T17:22:51Z
       ```
 
-2. Create a `cert-manager-rbac.yml` using the following sample and apply the configuration.
+2. Create a file named `cert-manager-rbac.yaml` using the following sample and apply the configuration.
 
 
       ```yaml
@@ -70,11 +70,11 @@ To install cert-manager from the Tanzu Application Platform package repository:
 
       For example:
 
-      ```
-      kubectl apply -f cert-manager-rbac.yml
+      ```console
+      kubectl apply -f cert-manager-rbac.yaml
       ```
 
-3. Create a `cert-manager-install.yml` using the following sample and apply the configuration.
+3. Create a file named `cert-manager-install.yaml` using the following sample and apply the configuration.
 
 
       ```yaml
@@ -93,25 +93,25 @@ To install cert-manager from the Tanzu Application Platform package repository:
       ```
 
       Where:
-      
+
       - `VERSION-NUMBER` is the version of the package listed in step 1.
 
 
       For example:
 
-      ```
-      kubectl apply -f cert-manager-install.yml
+      ```console
+      kubectl apply -f cert-manager-install.yaml
       ```
 
 4. Verify the package install by running:
 
-      ```
+      ```console
       tanzu package installed get cert-manager -n tap-install
       ```
 
       For example:
 
-      ```
+      ```console
       $ tanzu package installed get cert-manager -n tap-install
       / Retrieving installation details for cert-manager...
       NAME:                    cert-manager
@@ -124,13 +124,13 @@ To install cert-manager from the Tanzu Application Platform package repository:
 
       Verify that `STATUS` is `Reconcile succeeded`
 
-      ```
+      ```console
       kubectl get deployment cert-manager -n cert-manager
       ```
 
       For example:
 
-      ```
+      ```console
       $ kubectl get deploy cert-manager -n cert-manager
       NAME           READY   UP-TO-DATE   AVAILABLE   AGE
       cert-manager   1/1     1            1           2m18s
@@ -144,20 +144,20 @@ To install Contour from the Tanzu Application Platform package repository:
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list contour.tanzu.vmware.com -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $  tanzu package available list contour.tanzu.vmware.com -n tap-install
     - Retrieving package versions for contour.tanzu.vmware.com...
       NAME                      VERSION       RELEASED-AT
       contour.tanzu.vmware.com  1.18.2+tap.1  2021-10-05T00:00:00Z
     ```
 
-2. Create a `contour-rbac.yml` using the following sample and apply the configuration.
+2. Create a file named `contour-rbac.yaml` using the following sample and apply the configuration.
 
     ```yaml
     apiVersion: rbac.authorization.k8s.io/v1
@@ -194,11 +194,11 @@ To install Contour from the Tanzu Application Platform package repository:
 
 3. Apply the configuration by running:
 
-    ```
-    kubectl apply -f contour-rbac.yml
+    ```console
+    kubectl apply -f contour-rbac.yaml
     ```
 
-4. Create a `contour-install.yml` using the following sample and apply the configuration.
+4. Create a file named `contour-install.yaml` using the following sample and apply the configuration.
     The following configuration installs the Contour package with default options.
     If you want to make changes to the default installation settings, go to the next step.
 
@@ -222,9 +222,9 @@ To install Contour from the Tanzu Application Platform package repository:
 
     1. Gather values schema by running:
 
-        ```
+        ```console
         tanzu package available get contour.tanzu.vmware.com/1.18.2+tap.1 --values-schema -n tap-install
-        ````
+        ```
 
         For example:
 
@@ -319,20 +319,20 @@ To install Contour from the Tanzu Application Platform package repository:
 
 6. Install the package by running:
 
-    ```
+    ```console
     kubectl apply -f contour-install.yaml
     ```
 
 
 7. Verify the package install by running:
 
-    ```
+    ```console
     tanzu package installed get contour -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package installed get contour -n tap-install
     / Retrieving installation details for contour...
     NAME:                    contour
@@ -347,13 +347,13 @@ To install Contour from the Tanzu Application Platform package repository:
 
 8. Verify the installation by running:
 
-    ```
+    ```console
     kubectl get po -n tanzu-system-ingress
     ```
 
     For example:
 
-    ```
+    ```console
     $  kubectl get po -n tanzu-system-ingress
     NAME                       READY   STATUS    RESTARTS   AGE
     contour-857d46c845-4r6c5   1/1     Running   1          18d
@@ -363,84 +363,3 @@ To install Contour from the Tanzu Application Platform package repository:
     ```
 
     Ensure that all pods are `Running` with all containers ready.
-
-
-## <a id='install-fluxcd'></a>Install FluxCD source-controller
-
-To install FluxCD source-controller from the Tanzu Application Platform package repository:
-
-1. List version information for the package by running:
-
-    ```
-    tanzu package available list fluxcd.source.controller.tanzu.vmware.com -n tap-install
-    ```
-
-    For example:
-
-    ```
-    $ tanzu package available list fluxcd.source.controller.tanzu.vmware.com -n tap-install
-        \ Retrieving package versions for fluxcd.source.controller.tanzu.vmware.com...
-          NAME                                       VERSION  RELEASED-AT
-          fluxcd.source.controller.tanzu.vmware.com  0.16.0   2021-10-27 19:00:00 -0500 -05
-    ```
-
-2. Install the package by running:
-
-    ```
-    tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
-    ```
-
-    Where:
-
-    - `VERSION-NUMBER` is the version of the package listed in step 1.
-
-    For example:
-
-    ```
-    tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v 0.16.0 -n tap-install
-    \ Installing package 'fluxcd.source.controller.tanzu.vmware.com'
-    | Getting package metadata for 'fluxcd.source.controller.tanzu.vmware.com'
-    | Creating service account 'fluxcd-source-controller-tap-install-sa'
-    | Creating cluster admin role 'fluxcd-source-controller-tap-install-cluster-role'
-    | Creating cluster role binding 'fluxcd-source-controller-tap-install-cluster-rolebinding'
-    | Creating package resource
-    - Waiting for 'PackageInstall' reconciliation for 'fluxcd-source-controller'
-    | 'PackageInstall' resource install status: Reconciling
-
-      Added installed package 'fluxcd-source-controller'
-    ```
-
-3. Verify the package install by running:
-
-    ```
-    tanzu package installed get fluxcd-source-controller -n tap-install
-    ```
-
-    For example:
-
-    ```
-    tanzu package installed get fluxcd-source-controller -n tap-install
-    \ Retrieving installation details for fluxcd-source-controller...
-    NAME:                    fluxcd-source-controller
-    PACKAGE-NAME:            fluxcd.source.controller.tanzu.vmware.com
-    PACKAGE-VERSION:         0.16.0
-    STATUS:                  Reconcile succeeded
-    CONDITIONS:              [{ReconcileSucceeded True  }]
-    USEFUL-ERROR-MESSAGE:
-    ```
-
-    Verify that `STATUS` is `Reconcile succeeded`
-
-    ```
-    kubectl get pods -n flux-system
-    ```
-
-    For example:
-
-    ```
-    $ kubectl get pods -n flux-system
-    NAME                                 READY   STATUS    RESTARTS   AGE
-    source-controller-69859f545d-ll8fj   1/1     Running   0          3m38s
-    ```
-
-    Verify that `STATUS` is `Running`

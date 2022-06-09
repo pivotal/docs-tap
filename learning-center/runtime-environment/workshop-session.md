@@ -7,15 +7,15 @@ The `WorkshopSession` custom resource defines a workshop session.
 When running training for multiple people, typically you'll use the `TrainingPortal` custom
 resource to set up a training environment. Alternatively, you can set up a workshop environment by using the
 `WorkshopEnvironment` custom resource, and then create requests for workshop instances by using the
-`WorkshopRequest` custom resource. If you're creating requests for workshop instances and you need
+`WorkshopRequest` custom resource. If you're creating requests for workshop instances, and you need
 more control over how the workshop instances are set up, you can use `WorkshopSession` custom
 resource instead of `WorkshopRequest`.
 
 To specify the workshop environment the workshop instance is created against, set the
 `environment.name` field of the specification for the workshop session.
-At the same time, you must specify the session ID for the workshop instance. For example:
+You must also specify the session ID for the workshop instance. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -29,19 +29,19 @@ spec:
 
 The `name` of the workshop specified in the `metadata` of the training environment must be
 globally unique for the workshop instance you're creating. You must create a separate
-`WorkshopSession` custom resource for each workshop instance you want.
+`WorkshopSession` custom resource for each workshop instance.
 
 The session ID must be unique within the workshop environment that you're creating the workshop instance against.
 
 ## <a id="specify-login-creds"></a> Specifying the login credentials
 
 You can control access to each workshop instance using login credentials.
-This ensures a workshop attendee cannot interfere with another.
+This ensures one workshop attendee cannot interfere with another.
 
 To set login credentials for a workshop instance, set the `session.username` and `session.password`
 fields. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -60,7 +60,7 @@ access it.
 ## <a id="specify-ingress-domain"></a> Specifying the ingress domain
 
 To access the workshop instance by using a public URL, you must specify an ingress domain.
-If an ingress domain isn't specified, use the default ingress domain that the Learning Center Operator
+If an ingress domain isn't specified, use the default ingress domain that the Learning Center operator
 was configured with.
 
 When setting a custom domain, configure DNS with a wildcard domain to forward all
@@ -68,7 +68,7 @@ requests for sub-domains of the custom domain to the ingress router of the Kuber
 
 To provide the ingress domain, you can set the `session.ingress.domain` field. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -89,10 +89,10 @@ If you require a secure HTTPS connection, you must have access to a wildcard SSL
 the domain.
 
 You must create a secret of type `tls` for the certificate in the `learningcenter` namespace or in the
-namespace where Learning Center Operator is deployed.
+namespace where the Learning Center operator is deployed.
 You must then set the name of that secret in the `session.ingress.secret` field. For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -113,7 +113,7 @@ ingress secret by setting the `session.ingress.protocol` field.
 
 For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -132,7 +132,7 @@ ingress router is used when more than one option is available.
 
 For example:
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -152,7 +152,7 @@ spec:
 To set the environment variables for the workshop instance, provide the environment variables in the
 `session.env` field.
 
-```
+```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
 kind: WorkshopSession
 metadata:
@@ -164,10 +164,10 @@ spec:
     id: user1
     env:
     - name: REPOSITORY-URL
-      value: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
+      value: YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE
 ```
 
-Where `YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `https://github.com/eduk8s/lab-markdown-sample`.
+Where `YOUR-GIT-URL-FOR-LAB-MARKDOWN-SAMPLE` is the Git repository URL for `lab-markdown-sample`. For example, `{YOUR-GIT-REPO-URL}/lab-markdown-sample`.
 
 Values of fields in the list of resource objects can reference a number of predefined parameters.
 Available parameters are:

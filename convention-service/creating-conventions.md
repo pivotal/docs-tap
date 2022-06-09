@@ -85,7 +85,7 @@ The following prerequisites must be met before a convention can be developed and
 + The default supply chain is installed. Download Supply Chain Security Tools for VMware Tanzu from [Tanzu Network](https://network.tanzu.vmware.com/products/supply-chain-security-tools/).
 + Your kubeconfig context is set to the Tanzu Application Platform-enabled cluster:
 
-    ```
+    ```console
     kubectl config use-context CONTEXT_NAME
     ```
 
@@ -102,16 +102,16 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
 1. <a id='convention-1'></a>The example `server.go` sets up the `ConventionHandler` to ingest the webhook requests([PodConventionContext](./reference/pod-convention-context.md)) from the convention controller. Here the handler must only deal with the existing [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [`ImageConfig`](./reference/image-config.md).
 
    ```go
-    ...
-    import (
-        corev1 "k8s.io/api/core/v1"
-    )
-    ...
-    func ConventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
-        // Create custom conventions
-    }
-    ...
-    ```
+   ...
+   import (
+      corev1 "k8s.io/api/core/v1"
+   )
+   ...
+   func ConventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
+       // Create custom conventions
+   }
+   ...
+   ```
 
      Where:
 
@@ -121,29 +121,28 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
 2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests:
 
     ```go
-
+    ...
+    import (
+        "context"
+        "fmt"
+        "log"
+        "net/http"
+        "os"
         ...
-        import (
-            "context"
-            "fmt"
-            "log"
-            "net/http"
-            "os"
-            ...
-        )
-        ...
-        func main() {
-            ctx := context.Background()
-            port := os.Getenv("PORT")
-            if port == "" {
-                port = "9000"
-            }
-            http.HandleFunc("/", webhook.ServerHandler(convention.ConventionHandler))
-            log.Fatal(webhook.NewConventionServer(ctx, fmt.Sprintf(":%s", port)))
+    )
+    ...
+    func main() {
+        ctx := context.Background()
+        port := os.Getenv("PORT")
+        if port == "" {
+            port = "9000"
         }
-        ...
-
+        http.HandleFunc("/", webhook.ServerHandler(convention.ConventionHandler))
+        log.Fatal(webhook.NewConventionServer(ctx, fmt.Sprintf(":%s", port)))
+    }
+    ...
     ```
+
     Where:
 
     + `PORT` is a possible environment variable, for this example, defined in the [`Deployment`](#install-deployment).
@@ -248,6 +247,7 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
         return server.ListenAndServeTLS("", "")
     }
     ```
+
 ## <a id='define-conv-behavior'></a> Define the convention behavior
 
 Any property or value within the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) or OCI image metadata associated with a workload can be used to define the criteria for applying conventions. The following are a few examples.  
@@ -476,6 +476,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ---
     ...
     ```
+
 6. <a id='install-convention'></a>Finally, the [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the Convention Controller:
     >**Note:** The `annotations` block is only needed if you use a self-signed certificate. Otherwise, check the [cert-manager documentation](https://cert-manager.io/docs/).
 
