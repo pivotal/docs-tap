@@ -147,7 +147,6 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Install Application Live View](app-live-view/install.md)
         - [Configuring an app](app-live-view/app-config.md)
             - [Enabling Spring Boot apps for Application Live View](app-live-view/configuring-apps/spring-boot-enablement.md)
-            - [Enabling Spring Cloud Gateway apps for Application Live View](app-live-view/configuring-apps/springcloudgateway-enablement.md)
             - [Enabling Steeltoe apps for Application Live View](app-live-view/configuring-apps/steeltoe-enablement.md)
             - [Convention server](app-live-view/configuring-apps/convention-server.md)
             - [Custom configuration for the connector](app-live-view/configuring-apps/configuring-app-for-connector.md)
