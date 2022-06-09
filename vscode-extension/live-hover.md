@@ -10,17 +10,6 @@ To integrate Live Hover with Spring Boot Tools you need:
 - A Tanzu Spring Boot application, such as [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app)
 - Spring Boot Tools [extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot) v1.33 or later
 
-
-## <a id="activate-feature"></a> Activate the Live Hover feature
-
-Activate the Live Hover feature by starting your VS Code instance with `TAP_LIVER_HOVER=true`, as in
-this example:
-
-```console
-> TAP_LIVE_HOVER=true code /path/to/project
-```
-
-
 ## <a id="deploy-workload"></a> Deploy a Workload to the Cluster
 
 Follow these steps to deploy the workload for an app to a cluster, making live hovers appear.
