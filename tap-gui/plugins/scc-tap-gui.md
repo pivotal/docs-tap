@@ -15,7 +15,33 @@ Tanzu Application Platform, and their installation guides, see [Supply Chain Cho
 
 You must have the Full profile or View profile installed on your cluster, which includes
 Tanzu Application Platform GUI, or have installed the Tanzu Application Platform GUI package, to visualize the supply chain.
+
 You must have the Run or Full profile installed on the target cluster where you want to deploy your workload to so that you can see your workload being deployed to that cluster. For more information, see [Overview of multicluster Tanzu Application Platform]https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.2/tap/GUID-multicluster-about.html
+
+**If you are using the test-scan OOTB supply chain to visualize CVE results, you must 
+- First follow the steps outlined here to configure the access token to the Store: https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.2/tap/GUID-scst-store-create-service-account-access-token.html
+- then config:
+
+  /tap_gui:
+  
+  app_config:
+  
+  proxy:
+  
+  /metadata-store:
+  
+        target: https://metadata-store-app.metadata-store:8443/api/v1
+        
+        changeOrigin: true
+        
+        secure: false
+        
+        headers:
+        
+        Authorization: "Bearer <Access Token>"
+        
+        X-Custom-Source: project-star 
+        
 
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
