@@ -124,7 +124,7 @@ To generate and publish TechDocs by using the TechDocs CLI:
     TechDocs files. Therefore, the `publish` command must follow the `generate` command for each target.
 
 
-## <a id="update-app-config.yaml"></a> Update techdocs section in app-config.yaml to point to the Amazon S3 bucket
+## <a id="update-app-config-yaml"></a> Update techdocs section in app-config.yaml to point to the Amazon S3 bucket
 
 Update the config values you used during installation to point to the Amazon S3 bucket that has the published TechDocs files:
 
