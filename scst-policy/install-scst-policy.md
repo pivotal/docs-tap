@@ -15,8 +15,6 @@ generate your own keys and sign an image.
 
 >**Caution:** This component WILL REJECT `Pods` if it is not correctly configured. Be sure to test your configuration in a test environment before applying policies to your production cluster.
 
-**TODO** is this true?? do we need a trouble shooting section??
-
 ## <a id='install-scst-policy'></a> Install
 
 To install Supply Chain Security Tools - Policy Conroller:
@@ -33,7 +31,7 @@ To install Supply Chain Security Tools - Policy Conroller:
     $ tanzu package available list policy.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for policy.apps.tanzu.vmware.com...
       NAME                                                VERSION        RELEASED-AT
-      policy.apps.tanzu.vmware.com                        1.0.0          2022-06-03 18:00:00 -0500 EST
+      policy.apps.tanzu.vmware.com                        1.0.0          2022-06-09 20:00:00 -0400 EDT
     ```
 
 1. (Optional) Make changes to the default installation settings by running:

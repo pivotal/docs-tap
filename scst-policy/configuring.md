@@ -43,9 +43,9 @@ satisfied and a signature is validated, the policy is validated.
 
 ### <a id="cip-images"></a> `images`
 
-The ClusterImagePolicy specifies `spec.images` which specifies a list of glob
-matching patterns. These matching patterns will be matched against the image
-digest of PodSpec resources attempting to be deployed.
+`spec.images` in a ClusterImagePolicy specifies a list of glob matching patterns.
+These patterns will be matched against the image digest in `PodSpec` for resources
+attempting to be deployed.
 
 Glob matches against images using semantics similar to Golang filepaths. A `**`
 may be used to match against all subdirectories. To make it easier to specify
@@ -152,19 +152,19 @@ container image name pattern that matches the container being admitted.
 1. [Reading `imagePullSecrets` from the `image-policy-registry-credentials` service account](#provide-secrets-iprc-sa)
 in the deployment namespace.
 
-Authentication fails in the following scenario:
+Because order in which credentials are loaded matters, authentication will fail in the following scenario:
 
-- A valid credential is specified in the `ClusterImagePolicy` `secretRef` field,
-  or in the `image-policy-registry-credentials` service account.
 - An invalid credential is specified in the `imagePullSecrets` of the resource
-  or in the service account the resource runs as.
+  or in the service account the resource runs as. 
+- Also, a valid credential is specified in the `ClusterImagePolicy` `secretRef` field,
+  or in the `image-policy-registry-credentials` service account. 
 
 To prevent this issue, choose a single authentication method to validate signatures for your resources.
 
 If you use [containerd-configured registry credentials](https://github.com/containerd/containerd/blob/main/docs/cri/registry.md#configure-registry-credentials)
 or another mechanism that causes your resources and service accounts to not
 include an `imagePullSecrets` field, you must provide credentials to
-the WebHook using one of the following mechanisms:
+the policy controller using one of the following mechanisms:
 
 1. Create secret resources in any namespace of your preference that grants read
 access to the location of your container images and signatures and include it
@@ -184,7 +184,7 @@ configuration provided your use case meets the following conditions:
 * You do not have `signaturePullSecrets` configured in your ClusterImagePolicy
   or in the `ServiceAccount`s that your runnable resources use.
 
-* You want this WebHook to check these container images.
+* You want the policy controller to check these container images.
 
 See the following example:
 
@@ -244,7 +244,7 @@ deployment namespace and add the secret name (one or more) in the previous step 
     - name: SECRET-1
     EOF
     ```
-    Where `SECRET-1` is a secret that allows the WebHook to pull signatures from
+    Where `SECRET-1` is a secret that allows the policy controller to pull signatures from
     the private registry.
 
     Add additional secrets to `imagePullSecrets` as required.
