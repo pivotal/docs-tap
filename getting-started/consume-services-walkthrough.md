@@ -5,7 +5,7 @@ how to configure them to communicate over RabbitMQ.
 You will learn about the `tanzu services` CLI plug-in and the most
 important APIs for working with services on Tanzu Application Platform.
 
-Before you begin, for important background, see [Consuming services on Tanzu Application Platform](consume-services.md).
+Before you begin, for important background, see [Consuming services on Tanzu Application Platform](about-consuming-services.md).
 
 ## <a id="overview"></a>Overview
 

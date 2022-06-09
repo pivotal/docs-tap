@@ -1,15 +1,13 @@
 # Consuming services on Tanzu Application Platform
 
-In this guide, you will learn about working with backing services such as
-RabbitMQ, PostgreSQL and MySQL as part of Tanzu Application Platform.
-
-Particular focus is given to binding application workloads to service instances,
-which is the most common use case for services.
+As part of Tanzu Application Platform, you can work with backing services such as
+RabbitMQ, PostgreSQL, and MySQL. Particularly, binding application workloads to service instances
+is the most common use case for services.
 
 ## <a id="stk-concepts"></a> Key concepts
 
 When working with services on Tanzu Application Platform you must be familiar
-with service instances, service bindings and resource claims.
+with service instances, service bindings, and resource claims.
 This section provides a brief overview of each of these key concepts.
 
 ### Service instances
