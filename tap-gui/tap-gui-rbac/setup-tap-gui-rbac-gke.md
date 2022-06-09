@@ -151,16 +151,31 @@ After the new configuration file is ready, update the `tap` package:
 
 When leveraging Google's OIDC provider, fewer steps are needed to enable authorization:
 
-1. Add a redirect config on the OIDC side
+1. Create OAuth credentials in Google
 1. Configure the Tanzu Application Platform GUI to view the remote GKE cluster
 1. Upgrade the Tanzu Application Platform GUI package
 
 
-### <a id="add-redirect-config"></a> Add a redirect config on the OIDC side
+### <a id="create-oauth-credentials"></a> Create OAuth credentials in Google
 
-Add a redirect config on the OIDC side:
-
-(SECTION TO BE ADDED)
+1. Log in to the [Google Console](https://console.cloud.google.com)
+1. From the dropdown menu on the top bar, select the project to which your GKE
+   cluster belongs.
+1. Navigate to
+   [APIs & Services > OAuth consent screen](https://console.cloud.google.com/apis/credentials/consent), if a consent screen has not already been configured for this
+   project.
+   - Add the top domain of your TAP GUI server as an Authorized domain
+   - For scopes, select `openid`, `auth/userinfo.email` and
+     `auth/userinfo.profile`
+1. Navigate to
+   [APIs & Services > Credentials](https://console.cloud.google.com/apis/credentials)
+1. Click **Create Credentials** and choose `OAuth client ID`
+1. Set **Application Type** to `Web Application` with these settings:
+   - Name: TAP GUI (or your custom app name)
+   - Authorized JavaScript origins: `http://tap-gui.INGRESS-DOMAIN`
+   - Authorized Redirect URIs:
+     `http://tap-gui.INGRESS-DOMAIN/api/auth/google/handler/frame`
+1. Click Create
 
 
 ### <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
