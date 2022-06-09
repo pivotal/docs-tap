@@ -1,4 +1,4 @@
-# Consuming services on Tanzu Application Platform
+# About consuming services on Tanzu Application Platform
 
 As part of Tanzu Application Platform, you can work with backing services such as
 RabbitMQ, PostgreSQL, and MySQL. Particularly, binding application workloads to service instances
@@ -106,4 +106,4 @@ each user role.
 
 Apply what you've learned in this article:
 
-- [Consume services walkthrough](consume-services-walkthrough.md)
+- [Consume services on Tanzu Application Platform](consume-services.md)

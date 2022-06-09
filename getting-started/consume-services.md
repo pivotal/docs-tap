@@ -1,11 +1,11 @@
-# Consume services walkthrough
+# Consume services on Tanzu Application Platform
 
 This guide walks you through deploying two application workloads and learning
 how to configure them to communicate over RabbitMQ.
 You will learn about the `tanzu services` CLI plug-in and the most
 important APIs for working with services on Tanzu Application Platform.
 
-Before you begin, for important background, see [Consuming services on Tanzu Application Platform](about-consuming-services.md).
+Before you begin, for important background, see [About consuming services on Tanzu Application Platform](about-consuming-services.md).
 
 ## <a id="overview"></a>Overview
 
