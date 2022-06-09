@@ -1,6 +1,6 @@
 # How-to guides
 
-The articles in this section walk you through important tasks to getting started with Tanzu Application Platform. They include:
+The articles in this section walk you through important tasks in getting started with Tanzu Application Platform. They include:
 
 - [Develop your first application on Tanzu Application Platform](develop-first-app.md)
 - [Work with your new application](work-with-new-app.md)
