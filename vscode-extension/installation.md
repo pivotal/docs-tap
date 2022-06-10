@@ -75,8 +75,8 @@ To configure the VMware Tanzu Developer Tools extension for Visual Studio Code:
 
 1. Select **File -> Preferences -> Settings -> Extensions -> Tanzu** and set the following:
 
-    - **Confirm Delete** (required): Controls whether the extension should ask for confirmation when deleting a workload.
-    - **Enable Live Hover** (required): Enable Live Hover. VSCode will need to be reloaded for this change to take effect.
+    - **Confirm Delete**: Controls whether the extension should ask for confirmation when deleting a workload.
+    - **Enable Live Hover**: Enable Live Hover. VSCode will need to be reloaded for this change to take effect.
     - **Source Image** (required): Registry location to publish local source code, for example `registry.io/yourapp-source`. Must include both a registry and a project name.
     - **Local Path** (optional): Path on the local file system to a directory of source code to build (defaults to current directory).
     - **Namespace** (optional): Namespace that workloads are deployed into (defaults to namespace set in `kubeconfig`).
