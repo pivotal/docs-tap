@@ -335,20 +335,6 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-  <td>Application Live View (GUI)
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-  </tr>
-  <tr>
   <td>Cloud Native Runtimes
    </td>
    <td>&check;
