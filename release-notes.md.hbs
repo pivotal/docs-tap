@@ -57,6 +57,13 @@ Grype fails to find vulnerabilities during a Source Scan.
 The vulnerabilities are still found during the Image Scan,
 after the binaries are built and packaged as images.
 
+#### <a id="1-1-2-known-issues-scst-scan"></a>Supply Chain Security Tools - Scan
+
+**Error: Unable to decode cyclonedx:**
+Supply Chain Security Tools - Scan has a known issue where it will set the phase to `Error` and show an `unable to decode cyclonedx` error in the `Succeeded` condition. The root cause of the problem is not yet discovered, but it's associated with a flake that cuts the CycloneDX XML stream to the logs and then the Scan-Link controller can't process the results properly.
+
+**Workaround:** This is a flake related, if you're applying the scan manually you can delete it and re-apply it again to retry the scan. If this problem happend while running a Supply Chain from the OOTB Supply Chains, you can run `kubectl get imagescans -n <workload namespace>` or `kubectl get sourcescans -n <workload namespace>` to get the scan name, delete it running `kubectl delete <imagescan or sourcescan> <scan name> -n <workload namespace>` and the Choreographer controller will recreate it for you. 
+
 #### <a id="1-1-2-known-issues-scst-sign"></a>Supply Chain Security Tools - Sign
 
 Supply Chain Security Tools - Sign rejects images from private registries when the image is deployed to a non-default namespace.
@@ -115,10 +122,6 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="1-1-1-known-issues-grype"></a>Grype scanner
 
-- [CVE-2018-25032](https://nvd.nist.gov/vuln/detail/CVE-2018-25032) at high severity from `zlib 1.2.11-1.ph3`
-- [CVE-2022-24070](https://nvd.nist.gov/vuln/detail/CVE-2022-24070) at high severity from `subversion 1.10.2-7.ph3`
-- [CVE-2022-24975](https://nvd.nist.gov/vuln/detail/CVE-2022-24975) at high severity from `git 2.23.3-3.ph3`
-
 **Scanning Java source code may not reveal vulnerabilities:**
 Source Code Scanning only scans files present in the source code repository.
 No network calls are made to fetch dependencies.
@@ -137,13 +140,6 @@ after the binaries are built and packaged as images.
 
 The Supply Change Security Tools - Scan has the following CVEs at high severity
 from the `kube-rbac-proxy v0.11.0-vmware.1` image:
-
-- [CVE-2022-23772](https://nvd.nist.gov/vuln/detail/CVE-2022-23772)
-- [CVE-2022-23806](https://nvd.nist.gov/vuln/detail/CVE-2022-23806)
-- [CVE-2022-24921](https://nvd.nist.gov/vuln/detail/CVE-2022-24921)
-- [CVE-2022-23773](https://nvd.nist.gov/vuln/detail/CVE-2022-23773)
-- [CVE-2021-29923](https://nvd.nist.gov/vuln/detail/CVE-2021-29923)
-- [CVE-2022-27191](https://nvd.nist.gov/vuln/detail/CVE-2022-27191)
 
 #### <a id="1-1-1-known-issues-scst-store"></a>Supply Chain Security Tools - Store
 
