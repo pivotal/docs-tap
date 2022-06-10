@@ -7,7 +7,7 @@ This topic describes Application Live View pages for Spring Cloud Gateway Applic
 
 To navigate to the **API Success Rate** page, the user can select the **API Success Rate** option from the
 **Information Category** drop-down menu.
-The API success rate page displays the total successes, average response time and max response time for the gateway routes. 
+The API success rate page displays the total successes, average response time, and max response time for the gateway routes. 
 It also displays the details of each successful route path.
 
 
@@ -15,7 +15,7 @@ It also displays the details of each successful route path.
 
 To navigate to the **API Overview** page, the user can select the **API Overview** option from the
 **Information Category** drop-down menu.
-The API Overview page provides route count, number of successes, errors and the rate limited requests. It also provides a `auto refresh` feature to get the updated results.
+The API Overview page provides route count, number of successes, errors, and the rate-limited requests. It also provides a `auto refresh` feature to get the updated results.
 These metrics are depicted in a line graph.
 
 
@@ -23,12 +23,11 @@ These metrics are depicted in a line graph.
 
 To navigate to the **API Authentications By Path** page, the user can select the **API Authentications By Path** option from the
 **Information Category** drop-down menu.
-The API Authentications By Path page displays the total requests, number of successes, forbidden and unsuccessful authentications grouped by the HTTP method and gateway route path. 
+The API Authentications By Path page displays the total requests, number of successes, and forbidden and unsuccessful authentications grouped by the HTTP method and gateway route path. 
 The page also displays the success rate for each of the routes.
 
 
- >**Note:**
-In addition to the above three pages, the Spring Boot actuator pages are also displayed. 
+ >**Note:** In addition to the preceding three pages, the Spring Boot actuator pages are also displayed. 
 
 
 ## <a id="troubleshooting"></a> Troubleshooting

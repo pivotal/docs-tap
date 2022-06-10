@@ -1,4 +1,4 @@
-# Internal Architecture
+# Internal architecture
 
 This topic describes the architectural view of Application Live View and its components.
 You can deploy this system on a Kubernetes stack and use it to monitor containerized
@@ -50,4 +50,4 @@ Application Live View server proxies the call to the connector for querying
 actuator endpoint information.
 
 The Application Live View Server fetches the actuator data of the app by proxying
-the request to Application Live View Connector using an RSocket connection.
+the request to Application Live View Connector by using an RSocket connection.
