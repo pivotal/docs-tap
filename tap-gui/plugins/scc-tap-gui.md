@@ -14,27 +14,33 @@ Tanzu Application Platform, and their installation guides, see [Supply Chain Cho
 ## <a id="prerequisites"></a> Prerequisites
 
 You must have the Full profile or View profile installed on your cluster, which includes
-Tanzu Application Platform GUI, or have installed the Tanzu Application Platform GUI and Metadata Store packages, to visualize the supply chain.
+Tanzu Application Platform GUI, or have installed the Tanzu Application Platform GUI package and
+Metadata Store package, to visualize the supply chain.
 
-You must have the Run or Full profile installed on the target cluster where you want to deploy your workload, so that you can see your workload being deployed to that cluster. For more information, see [Overview of multicluster Tanzu Application Platform](../../multicluster/about.md)
+You must have the Run or Full profile installed on the target cluster where you want to deploy your
+workload, so that you can see your workload being deployed to that cluster. For more information, see
+[Overview of multicluster Tanzu Application Platform](../../multicluster/about.md)
 
 ## <a id="scan"></a> Enable CVE scan results
 
-1. follow the steps outlined to get a read only access token, to the Metadata Store, see [Get Read Only Access Token](../../scst-store/create-service-account-access-token.md#a-idro-serv-acctsaread-only-service-account)
-2. update your installation `tap-values.yaml` file.  Include the proxy configuration below to your `tap-gui:` section and substitute the `<Access Token>` with the value from step 1 above: 
+1. [Create a read-only service account](../../scst-store/create-service-account-access-token.md#ro-serv-accts) to obtain an access token for the Metadata Store.
+1. Add this proxy configuration to the `tap-gui:` section of `tap-values.yaml`:
 
-```yaml
-tap_gui:
-  app_config:
-    proxy:
-      /metadata-store:
-        target: https://metadata-store-app.metadata-store:8443/api/v1
-        changeOrigin: true
-        secure: false
-        headers:
-          Authorization: "Bearer <Access Token>"
-          X-Custom-Source: project-star 
-```        
+    ```yaml
+    tap_gui:
+      app_config:
+        proxy:
+          /metadata-store:
+            target: https://metadata-store-app.metadata-store:8443/api/v1
+            changeOrigin: true
+            secure: false
+            headers:
+              Authorization: "Bearer ACCESS-TOKEN"
+              X-Custom-Source: project-star
+    ```        
+
+    Where `ACCESS-TOKEN` is the token you obtained after creating a read-only service account.
+
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 
@@ -48,12 +54,12 @@ installed on your cluster.
 
 For this example, we are looking at the `tanzu-java-web-app`.
 
-![Screen Shot of Workloads](./images/workloads.png)
+![Screenshot of Workloads that includes the apps spring-petclinic and tanzu-java-web-app](images/workloads.png)
 
 Click **tanzu-java-web-app** in the **WORKLOADS** table to navigate to the visualization of the
 supply chain.
 
-![Screen Shot of Supply Chain Visualization](./images/visual-sc.png)
+![Screenshot of the Supply Chain visualization. The source-scanner stage is selected.](images/visual-sc.png)
 
 There are two sections within this view:
 
@@ -62,13 +68,14 @@ There are two sections within this view:
 
 Here is a sample result of the Build stage for the `tanzu-java-web-app` by using Tanzu Build Service:
 
-![Screen Shot of Build Stage](./images/build-stage-sample.png)
+![Screenshot of details of the Build stage of the app tanzu-java-web-app](images/build-stage-sample.png)
 
 Here is a sample result of the Image Scan stage, using Grype - only available in the **test-scan** OOTB supply chain
 
-![Supply Chain CVEs](./images/scc-scan.png)
+![Screenshot of details of the Image Scanner stage. CVEs are listed.](images/scc-scan.png)
 
 
 When a workload is deployed to a cluster that has the `deliverable` package installed, you will observe a new section in the supply chain that will show the **Pull Config** as well as the **Delivery**. A box will surround this section, showing the name of the cluster at the top, indicating which clusters the config has been deployed to.
 
-<img width="751" alt="Pull Config" src="./images/pull-config.png">
+
+![Screenshot of details of the Pull Config stage.](images/pull-config.png)

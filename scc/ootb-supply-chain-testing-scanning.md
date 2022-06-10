@@ -33,7 +33,7 @@ it performs the following:
 
 To make use this supply chain, ensure:
 
-- Enable your TAP GUI installation to viaualize CVE results: [see here](../tap-gui/plugins/scc-tap-gui.md#a-id"scan"a-enable-cve-scan-results)
+- [CVE scan results appear in Tanzu Application Platform GUI](../tap-gui/plugins/scc-tap-gui.md#scan)
 - Out of the Box Templates is installed.
 - Out of the Box Supply Chain With Testing **is NOT installed**.
 - Out of the Box Supply Chain With Testing and Scanning **is installed**.
@@ -243,7 +243,7 @@ You can configure your developer namespace to include more than one pipeline usi
     +         apps.tanzu.vmware.com/language: #@ data.values.workload.metadata.labels["apps.tanzu.vmware.com/language"]
 
     ```
-    
+
     The following example shows one namespace per-language pipeline:
 
     ```
