@@ -60,9 +60,9 @@ after the binaries are built and packaged as images.
 #### <a id="1-1-2-known-issues-scst-scan"></a>Supply Chain Security Tools - Scan
 
 **Error: Unable to decode cyclonedx:**
-Supply Chain Security Tools - Scan has a known issue where it will set the phase to `Error` and show an `unable to decode cyclonedx` error in the `Succeeded` condition. The root cause of the problem is not yet discovered, but it's associated with a flake that cuts the CycloneDX XML stream to the logs and then the Scan-Link controller can't process the results properly.
+Supply Chain Security Tools - Scan has a known issue where it will set the phase to `Error` and show an `unable to decode cyclonedx` error in the `Succeeded` condition. The root cause of the problem is not known, but it is an intermittent issue that cuts the CycloneDX XML stream to the logs and then the scan controller can't process the results properly.
 
-**Workaround:** This is a flake related, if you're applying the scan manually you can delete it and re-apply it again to retry the scan. If this problem happend while running a Supply Chain from the OOTB Supply Chains, you can run `kubectl get imagescans -n <workload namespace>` or `kubectl get sourcescans -n <workload namespace>` to get the scan name, delete it running `kubectl delete <imagescan or sourcescan> <scan name> -n <workload namespace>` and the Choreographer controller will recreate it for you. 
+**Workaround:** As this is an intermittent issue, if you're applying the scan manually, you can delete the scan and re-apply it again to retry the scan. If this problem happened while running a Supply Chain from the OOTB Supply Chains, you can run `kubectl get imagescans -n <workload namespace>` or `kubectl get sourcescans -n <workload namespace>` to get the scan name, delete it running `kubectl delete <imagescan or sourcescan> <scan name> -n <workload namespace>` and the Choreographer controller will recreate it for you.
 
 #### <a id="1-1-2-known-issues-scst-sign"></a>Supply Chain Security Tools - Sign
 
