@@ -472,7 +472,7 @@ kind: Workload
 metadata:
   name: my-workload
   labels:
-    app.tanzu.vmware.com/workload-type: web
+    apps.tanzu.vmware.com/workload-type: web
 spec:
   params:
   - name: maven
