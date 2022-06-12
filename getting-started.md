@@ -647,7 +647,7 @@ the workload must be updated to point at your Tekton pipeline.
 1. Update the workload by running the following with the Tanzu CLI:
 
     ```console
-    tanzu apps workload create tanzu-java-web-app \
+    tanzu apps workload update tanzu-java-web-app \
       --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
       --git-branch main \
       --type web \
