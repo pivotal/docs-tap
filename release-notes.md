@@ -76,8 +76,13 @@ This release includes the following changes, listed by component and area.
 
 #### Supply Chain Security Tools - Store
 
-- Feature 1
-- Feature 2
+- Added more accepted vulnerability method types (CVSSv31, OWASP)
+- Updated logging format to follow the Logging RFC recommendations
+- Bumped postgres and paketo images to fix CVE-2022-1292
+- Added support for insight plug-in to consume vulnerabilities through VEX in CycloneDX 1.4 reports
+- Added support for insight plug-in to consume SPDX 2.2/3.0 reports and introduced new --spdxtype option to tanzu insight image/source add command
+- Changed insight plug-in text response to return only highest CVE 
+- Added aliases for insight plug-in vulnerabilities command
 
 #### Tanzu Application Platform GUI
 
