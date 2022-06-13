@@ -1,4 +1,4 @@
-# Iterate on your function
+# Iterating on your function
 
 This topic provides instructions about how to iterate on your function using the
 VMware Tanzu Developer Tools extension for Visual Studio Code.
@@ -14,9 +14,7 @@ Before you can iterate on your function, you must have:
 
 > **Note:** The Tanzu Developer Tools extension currently only supports Java Functions.
 
-## <a id="configuration"></a> Configuration
-
-<!-- Configure VSCode? Configure the Tanzu Developer Tools extension? -->
+## <a id="configuration"></a> Configure the Tanzu Developer Tools extension
 
 1. Open your function as a project within your VSCode IDE.
 
@@ -42,7 +40,7 @@ To live update your application:
 
 1. Open the Command Palette by pressing **⇧⌘P**.
 
-1. Form the Command Palette, type in and select **Tanzu: Live Update Start**.
+1. From the Command Palette, type in and select **Tanzu: Live Update Start**.
 You can view output from Tanzu Application Platform and from Tilt indicating that
 the container is being built and deployed.
 
@@ -50,22 +48,24 @@ the container is being built and deployed.
 
     - Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
 
-2. Note: Depending on the type of cluster you use, you might see an error message similar to the following:
-`ERROR: Stop! cluster-name might be production.` If you're sure you want to deploy there, add: allow_k8s_contexts('cluster-name') to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt. Follow the instructions and add the line allow_k8s_contexts('cluster-name') to your Tiltfile. <!-- Clarify this step. Is this all part of the error message or are these instructions? -->
+    >Note: Depending on the type of cluster you use, you might see an error message similar to the following:
+    >`ERROR: Stop! cluster-name might be production.` If you're sure you want to deploy there,
+    >add `allow_k8s_contexts('cluster-name')` to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.
+    >Follow the instructions and add the line `allow_k8s_contexts('cluster-name')` to your Tiltfile.
 
-3. When the Live Update status in the status bar is visible, resolve to
-`Live Update Started`, <!-- clarify --> navigate to `http://localhost:8080` in your browser,
+1. When the Live Update status in the status bar is visible, resolve to
+`Live Update Started`, <!-- clarify - what does this mean? --> navigate to `http://localhost:8080` in your browser,
 and view your running application.
 
-4. Enter the IDE and make a change to the source code.
+1. Enter the IDE and make a change to the source code.
 For example, in `HelloController.java`, edit the string returned to say `Hello!` and save.
 
-5. The container is updated when the logs stop streaming. Navigate to your browser and refresh the page.
+1. The container is updated when the logs stop streaming. Navigate to your browser and refresh the page.
 
-6. View the changes to your workload running on the cluster.
+1. View the changes to your workload running on the cluster.
 
-7. Either continue making changes, or stop and deactivate the live update when finished.
-Open the command palette by pressing **⇧⌘P**, type Tanzu, and choose an option. <!-- Clarify -->
+1. Either continue making changes, or stop and deactivate the live update when finished.
+Open the command palette by pressing **⇧⌘P**, type Tanzu, and choose an option. <!-- Clarify which options? Are these the options to continue or stop? -->
 
 ## <a id="debug-app"></a> Debug your application
 
@@ -75,11 +75,11 @@ To debug your cluster:
 
 1. Set a breakpoint in your code.
 
-2. Right-click the file `workload.yaml` within the config directory, and select **Tanzu: Java Debug Start**.
+1. Right-click the file `workload.yaml` within the config directory, and select **Tanzu: Java Debug Start**.
 
     In a few moments, the workload is redeployed with debugging enabled.
     You will see the `Deploy and Connect` task complete and the debug menu actions
     are available to you, indicating that the debugger has attached.
 
-3. Navigate to `http://localhost:8080` in your browser. This hits the breakpoint within VSCode.
+1. Navigate to `http://localhost:8080` in your browser. This hits the breakpoint within VSCode.
 Play to the end of the debug session using VSCode debugging controls.
