@@ -147,7 +147,7 @@ In case either the shape of a supply chain or the templates that it points to mu
 1. Edit the supply chain object.
 1. Submit the modified supply chain to the cluster.
 
-### <a id="NAME"></a> Example
+### <a id="example-ootb-sc"></a> Example
 
 In this example, you have a new `ClusterImageTemplate` object named `foo` that you
 want use for building container images instead of the out of the box object that
@@ -234,7 +234,7 @@ modification to is `source-to-url` provided by the
     >**Note:** The modified supply chain does not outlive the destruction of the cluster. VMware recommends that you save it, for example in a git repository, to install on every cluster where you expect the supply chain to exist.
 
 
-## a id="modify-ootb-sc"></a> Modifying an Out of the Box Supply template
+## <a id="modify-ootb-sc"></a> Modifying an Out of the Box Supply template
 
 The Out of the Box Templates package (`ootb-templates`) includes all of the
 templates and shared Tekton tasks used by the supply chains shipped through
@@ -257,7 +257,7 @@ chains, because you're preserving the name of the object referenced
 by the supply chain.
 
 
-### <a id="example"></a> Example
+### <a id="example-ootb-st"></a> Example
 
 In this example, you want to update the `ClusterImageTemplate` object called
 `kpack-template`, which provides a template for creating `kpack/Image`s to
