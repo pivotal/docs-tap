@@ -18,17 +18,17 @@ ootb_supply_chain_testing_scanning:
     repository: "REPO-NAME"
   gitops:
     ssh_secret: "SSH-SECRET-KEY"
-scanning:
-  metadataStore:
-    url: "METADATA-STORE-URL-ON-VIEW-CLUSTER"
-    caSecret:
-      name: store-ca-cert
-      importFromNamespace: metadata-store-secrets
-    authSecret:
-      name: store-auth-token
 grype:
   namespace: "MY-DEV-NAMESPACE" # (optional) Defaults to default namespace.
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+  metadataStore:
+    url: METADATA-STORE-URL-ON-VIEW-CLUSTER
+    caSecret:
+        name: store-ca-cert
+        importFromNamespace: metadata-store-secrets
+    authSecret:
+        name: store-auth-token
+        importFromNamespace: metadata-store-secrets
 ```
 
 Where:
