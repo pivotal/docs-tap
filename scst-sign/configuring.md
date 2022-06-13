@@ -1,7 +1,7 @@
 # Configuring Supply Chain Security Tools - Sign
 
 >**Caution:** This component is being deprecated in favor of [Supply Chain Security Tools - Policy Controller](../scst-policy/overview.md).
->To migrate from Supply Chain Security Tools - Sign to Supply Chain Security Tools - Policy Controller, please follow these [steps](./migrate.md)
+>To migrate from Supply Chain Security Tools - Sign to Supply Chain Security Tools - Policy Controller, follow these [steps](./migrate.md)
 
 This component requires extra configuration steps to start verifying your
 container images properly.

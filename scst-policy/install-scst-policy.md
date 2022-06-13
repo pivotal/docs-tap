@@ -1,4 +1,4 @@
-# Install Supply Chain Security Tools - Policy Controller
+# Install Supply Chain Security Tools - Policy Controller 
 
 Supply Chain Security Tools - Policy Controller is installed as part of Tanzu Application 
 Platform's Full, Iterate and Run profiles. Use the instructions in this topic to manually install this component.
@@ -12,14 +12,13 @@ Platform's Full, Iterate and Run profiles. Use the instructions in this topic to
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. An example cosign public key is provided that can validate an image from the
 public cosign registry. To provide your own key and images, follow the
-[cosign quick start guide](https://github.com/sigstore/cosign#quick-start) in Github to 
-generate your own keys and sign an image.
+[cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
 
 >**Caution:** This component WILL REJECT `Pods` if it is not correctly configured. Test your configuration in a test environment before applying policies to your production cluster.
 
 ## <a id='install-scst-policy'></a> Install
 
-To install Supply Chain Security Tools - Policy Conroller:
+To install Supply Chain Security Tools - Policy Controller:
 
 1. List version information for the package by running:
 
@@ -168,7 +167,7 @@ To install Supply Chain Security Tools - Policy Conroller:
     - `requests_cpu`:
       This setting controls the minimum CPU resource allocated to the Policy
       admission controller. During CPU contention, this value is used as a weighting
-      where higher values indicate more CPU time is allocated. The default value is "100m".
+      where higher values indicate more CPU time is allocated. The default value is `100m`.
       See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
 
     - `requests_memory`:
@@ -210,7 +209,7 @@ To install Supply Chain Security Tools - Policy Conroller:
       Added installed package 'policy-controller'
     ```
 
-After you run the commands above the policy controller is running.
+After you run the commands earlier the policy controller is running.
 
 >**Note:** Policy Controller is now installed, but it does not enforce any
 policies by default. Policies must be explicitly configured on the cluster.
