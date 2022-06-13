@@ -35,7 +35,7 @@ The cluster image policy is a custom resource containing the following propertie
 * `authorities`: The authorities block defines the rules for discovering and validating signatures. Discovery is done by using the `sources` field, and is specified on any entry. Signatures are cryptographically verified using one of the `key` or `keyless` fields.
 
 When a policy is selected to be evaluated against the matched image, the
-authorities is used to validate signatures. If at least one authority is
+authorities are used to validate signatures. If at least one authority is
 satisfied and a signature is validated, the policy is validated.
 
 ### <a id="cip-images"></a> `images`
@@ -44,14 +44,14 @@ In a ClusterImagePolicy, `spec.images` specifies a list of glob matching pattern
 These patterns are matched against the image digest in `PodSpec` for resources
 attempting deployment.
 
-Glob matches against images using semantics similar to golang filepaths. A `**` can be used to match against all subdirectories. To make it easier to specify images, there are few defaults when an image is matched, namely:
+Glob matches against images using semantics similar to golang filepaths. A `**` is used to match against all subdirectories. To make it easier to specify images, there are few defaults when an image is matched, namely:
 
 - If there is no host in the glob pattern, `index.docker.io` is used for the host.
   This allows users to specify commonly found images from Docker as
   `myproject/nginx` instead of `index.docker.io/myproject/nginx`
 
 - If the image is specified without multiple path elements (not separated by
-  `/`), then library is defaulted. For example, specifying busybox results in library/busybox. And combined with earlier, results in a match being made
+  `/`), then library is defaulted. For example, specifying busybox causes library/busybox. And combined with earlier, causes a match being made
   against index.docker.io/library/busybox.
 
 A sample of a ClusterImagePolicy which matches against all images using glob:
@@ -86,7 +86,7 @@ spec:
           name: secretName
     - key:
         kms: KMSPATH
-``` 
+```  
 
 Authorities can be `keyless` specifications. Each keyless authority can contain
 a Fulcio URL, a certificate or an array of identities.
@@ -147,7 +147,7 @@ in the deployment namespace.
 
 Because the order in which credentials are loaded matters, authentication fails in the following scenarios:
 
-- An invalid credential is specified in the `imagePullSecrets` of the resource
+- A not valid credential is specified in the `imagePullSecrets` of the resource
   or in the service account the resource runs as. 
 - A valid credential is specified in the `ClusterImagePolicy` `secretRef` field, or in the `image-policy-registry-credentials` service account. 
 
@@ -171,7 +171,7 @@ deployment namespace.
 You can provide secrets for authentication as part of the name pattern policy
 configuration provided your use meets the following conditions:
 
-* Your images and signatures reside in a registry protected by authentication.
+*  Your images and signatures reside in a registry protected by authentication.
 
 * You do not have `signaturePullSecrets` configured in your ClusterImagePolicy
   or in the `ServiceAccount`s that your runnable resources use.
@@ -196,9 +196,9 @@ spec:
         - oci: registry.example.com/project/signature-location
           signaturePullSecrets:
           - name: mysecret
-``` 
+```  
 
->**Note:** You might need to grant the service account
+>**Note:** You must grant the service account
 `image-policy-controller-manager` in the deployment namespace RBAC
 permissions for the verbs `get` and `list` in the namespace that hosts
 your secrets.
@@ -244,7 +244,7 @@ deployment namespace and add the secret name (one or more) in the earlier step t
 ## <a id="verify-configuration"></a> Verify your configuration
 
 If you are using the suggested key `cosign-key` shown in the previous section
-then you can run these commands to verify your configuration:
+then run these commands to verify your configuration:
 
 1. Verify that a signed image, validated with a configured public key, starts.
 Run:
