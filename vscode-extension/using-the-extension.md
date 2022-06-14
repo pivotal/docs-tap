@@ -46,6 +46,14 @@ To apply a workload from the command palette:
 
     ![Apply Workload notification showing workload has been applied](../images/vscode-applyworkload3.png)
 
+4. A new workload should appear on the Tanzu Workloads panel.
+
+    ![Workload on Tanzu Workloads](../images/vscode-panel-workload-unknown.png)
+
+5. Once the workload has been deployed the status on the Tanzu Workloads panel will change to Ready
+
+    ![Workload ready on Tanzu Workloads](../images/vscode-panel-workload-ready.png)
+
 To apply a workload from the context menu:
 
 1. Right click on your workload file and select `Tanzu: Apply Workload`.
@@ -55,6 +63,14 @@ To apply a workload from the context menu:
 2. A notification appears showing that the workload was applied.
 
     ![Apply Workload notification showing workload has been applied](../images/vscode-applyworkload3.png)
+
+3. A new workload should appear on the Tanzu Workloads panel.
+
+    ![Workload on Tanzu Workloads](../images/vscode-panel-workload-unknown.png)
+
+4. Once the workload has been deployed the status on the Tanzu Workloads panel will change to Ready
+
+    ![Workload ready on Tanzu Workloads](../images/vscode-panel-workload-ready.png)
 
 ## <a id="debugging-on-the-cluster"></a> Debugging on the Cluster
 
@@ -185,3 +201,11 @@ To switch the namespace where you created the workload:
 1. In the Namespace option, add the namespace you want to deploy to. This is the `default` namespace by default.
 
 ![The VS Code settings scrolled to the Tanzu section within the Extensions section](../images/vscode-switchnamespace1.png)
+
+## <a id="workload-panel"></a> Tanzu Workloads Panel
+
+The current state of the workloads is visible on the Tanzu Workloads panel in the bottom left corner of the VS Code window. The panel shows the current status of each workload, namespace, cluster and whether Live Update and Debug are running, stopped or disabled.
+
+The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context.
+
+![VS Code Workload Panel](../images/vscode-panel-live-update-running.png)
