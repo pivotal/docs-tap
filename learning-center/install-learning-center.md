@@ -17,12 +17,11 @@ Before installing Learning Center:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 
-- The cluster must have an ingress router configured. If you have installed the TAP package through
-the full profile or light profile, it already deploys a contour ingress controller.
+- The cluster must have an ingress router configured. If you have installed the TAP package through the full profile or light profile, it already deploys a contour ingress controller.
 
-- `The operator, when deploying instances of the workshop environments, needs to be able to expose them through an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster.`
+- The operator, when deploying instances of the workshop environments, needs to be able to expose them through an external URL for access. For the custom domain you are using, DNS must have been configured with a wildcard domain to forward all requests for sub-domains of the custom domain to the ingress router of the Kubernetes cluster.
 
-- `By default, the workshop portal and workshop sessions are accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self-signed certificate.`
+- By default, the workshop portal and workshop sessions are accessible over HTTP connections. If you wish to use secure HTTPS connections, you must have access to a wildcard SSL certificate for the domain under which you wish to host the workshops. You cannot use a self-signed certificate.
 
 - Any ingress routes created use the default ingress class if you have multiple ingress class types available and you need to override which is used.
 
@@ -46,6 +45,7 @@ To install Learning Center:
 1. (Optional) See all the configurable parameters on this package by running:
 
     **Remember to change the 0.x.x version**
+
     ```console
     tanzu package available get learningcenter.tanzu.vmware.com/0.x.x --values-schema --namespace tap-install
     ```
@@ -60,9 +60,7 @@ To install Learning Center:
 
     Where `YOUR-INGRESS-DOMAIN` is the domain name for your Kubernetes cluster.
 
-    When deploying workshop environment instances, the operator must be able to expose the instances
-    through an external URL. This access is needed to discover the domain name that can be used as a
-    suffix to hostnames for instances.
+    When deploying workshop environment instances, the operator must be able to expose the instances through an external URL. This access is needed to discover the domain name that can be used as a suffix to host names for instances.
 
     For the custom domain you are using, DNS must have been configured with a wildcard domain to
     forward all requests for sub-domains of the custom domain to the ingress router of the
@@ -70,12 +68,7 @@ To install Learning Center:
 
     If you are running Kubernetes on your local machine using a system such as `minikube` and you
     don't have a custom domain name that maps to the IP for the cluster, you can use a `nip.io`
-    address.
-    For example, if `minikube ip` returns `192.168.64.1`, you can use the `192.168.64.1.nip.io`
-    domain.
-    You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a
-    failure. Internal services needing to connect to each other will connect to themselves instead
-    because the address would resolve to the host loopback address of `127.0.0.1`.
+    address. For example, if `minikube ip` returns `192.168.64.1`, you can use the `192.168.64.1.nip.io` domain. You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This will cause a failure. Internal services needing to connect to each other connect to themselves instead, because the address resolves to the host loopback address of `127.0.0.1`.
 
 1. Add the `ingressSecret` to `learning-center-config.yaml`, as in this example:
 
@@ -97,7 +90,7 @@ To install Learning Center:
 
     If you already have a TLS secret, follow these steps **before deploying any workshop**:
     - Create the `learningcenter` namespace manually or the one you defined
-    - Copy the tls secret to the `learningcenter` namespace or the one you
+    - Copy the TLS secret to the `learningcenter` namespace or the one you
     defined and use the `secretName` property as in this example:
 
     ```yaml
@@ -112,11 +105,10 @@ To install Learning Center:
 
     Wildcard certificates can be created using letsencrypt <https://letsencrypt.org/>_.
     After you have the certificate, you can define the `certificate` and `privateKey` properties
-    under the `ingressSecret` property to specify the certificate on the configuration yaml.
+    under the `ingressSecret` property to specify the certificate on the configuration YAML.
 
 1. Any ingress routes created use the default ingress class.
-If you have multiple ingress class types available, and you need to override which is used, define
-the `ingressClass` property in `learning-center-config.yaml` **before deploying any workshop**:
+If you have multiple ingress class types available, and you need to override which is used, define the `ingressClass` property in `learning-center-config.yaml` **before deploying any workshop**:
 
     ```yaml
     ingressClass: contour
@@ -129,7 +121,7 @@ the `ingressClass` property in `learning-center-config.yaml` **before deploying 
     tanzu package install learning-center --package-name learningcenter.tanzu.vmware.com --version 0.x.x -f learning-center-config.yaml
     ```
 
-    The command above will create a default namespace in your Kubernetes cluster called `learningcenter`,
+    The command above creates a default namespace in your Kubernetes cluster called `learningcenter`,
     and the operator, along with any required namespaced resources, is created in it.
     A set of custom resource definitions and a global cluster role binding are also created.
 

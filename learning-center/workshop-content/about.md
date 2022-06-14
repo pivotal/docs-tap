@@ -9,4 +9,4 @@ This section includes information on creating Learning Center workshops.
 - [Workshop instructions](workshop-instructions.md)
 - [Workshop runtime](workshop-runtime.md)
 - [Workshop slides](presenter-slides.md)
-- [Airgapped Environment Requirements](../airgapped-environment.md)
+- [Air-gapped environment requirements](../airgapped-environment.md)

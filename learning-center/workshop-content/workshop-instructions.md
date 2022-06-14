@@ -229,9 +229,9 @@ The method for using AsciiDoc is similar, using the `role` for the name of the a
 command: echo "Execute command."
 ----
 ```
-## <a id="supported-editor"></a>Supported Workshop editor
+## <a id="supported-editor"></a>Supported workshop editor
 
-Learning Center currently `only` supports the code-server v4.4.0 of Vscode as an editor in workshops. 
+Learning Center currently **only** supports the code-server v4.4.0 of VS Code as an editor in workshops. 
 
 ## <a id="click-actions-dashboard"></a>Clickable actions for the dashboard
 

@@ -51,12 +51,13 @@ To recover from this error you only need to redeploy the trainingPortal resource
 
 ## <a id='cannot-update-parameters'></a>Updates to TAP values file not reflected in Learning Center Training Portal
 
-If you installed Learning Center via Tanzu profiles then your installation made use of a tap_values.yaml file where configurations were specified for Learning Center. If you make updates to these configurations using 
+If you installed Learning Center through Tanzu profiles, then your installation made use of a tap_values.yaml file where configurations were specified for Learning Center. If you make updates to these configurations using this command:
 
 ```
 tanzu package installed update tap --package-name tap.tanzu.vmware.com --version {VERSION} -f tap-values.yml -n tap-install
 ```
-the changes would not be reflected in the deployed Learning Center Training Portal resource. Tap package updates currently `DO NOT` update running Learning Center Training Portal resources.
+
+then the changes are not reflected in the deployed Learning Center Training Portal resource. Tap package updates currently `DO NOT` update running Learning Center Training Portal resources.
 
 Run one of the following commands to validate changes made to parameters provided to the Learning
 Center Operator. These parameters include ingressDomain, TLS secret, ingressClass, and others.
@@ -80,12 +81,13 @@ when the training portals were created. This prevents any change on the `trainin
 from affecting any online user running a workshop.
 
 ***Solution***
-You must restart the operator resource by first deleting the operator pod
+You must restart the operator resource by first deleting the operator pod:
 
 ```
 kubectl delete pod -n learningcenter learningcenter-operator-$OPERATOR_POD_NAME
 ```
-and then deleting the training portal resource. Redeploy `trainingportal` in a maintenance window where Learning Center is unavailable while the`systemprofile` is updated.
+
+Then delete the training portal resource. Redeploy `trainingportal` in a maintenance window where Learning Center is unavailable while the`systemprofile` is updated.
 
 
 ## <a id="increase-cluster-rsrcs"></a>Increase your cluster's resources
@@ -95,47 +97,47 @@ In this case, follow your cloud provider's instructions on how to scale out or s
 
 ## <a id="kub-api-timeout"></a>Kubernetes Api Timeout error
 
-If you come across the following operator error log:
+The following operator error log means there is a connection error with the Kubernetes API server:
 
 ```
 operator-log: unexpected error occurred. Read timed out.
 ```
 
-there is a connection error with the Kubernetes API server. This error has been found when running Learning Center with the Azure AkS cloud provider.
+This error has been found when running Learning Center with the Azure AkS cloud provider.
 
 ***Solution***
 
-To solve do the following:
-1. delete the operator pod on the learningcenter namespace.
-2. delete the training portal once the operator is running again using:
+To fix this error:
+
+1. Delete the operator pod on the learningcenter namespace.
+2. Delete the training portal once the operator is running again by using:
+
 ```
 kubectl delete trainingportals $PORTAL_NAME
 ```
+
 3. Redeploy the `trainingPortal` resource.
 
 ## <a id="missing-training-portal-url"></a>No URL returned to your trainingportal
 
-After deploying the Learning Center Operator and Trainingportal resources you notice the following command:
+After deploying the Learning Center Operator and Trainingportal resources, the following command can yield the resource with no URL, even though your resources deployed correctly and are running:
 
 ```
 kubectl get trainingportals
 ```
-yields the resource with no url but your resources deployed correctly and are running.
 
-You also already specified learningcenter.mydomain.com in your tap values yaml file if installed via tap.
-
-See [specifying ingress domain](./getting-started/learning-center-operator.md#ingress-domain)
+You also already specified learningcenter.mydomain.com in your tap values YAML file if installed through Tanzu Application Platform. See [specifying ingress domain](./getting-started/learning-center-operator.md#ingress-domain)
 
 ***Solution***
 
-Learning center requires the usage of a wildcard domain(Wildcard DNS entry) to access your training portal in the browser. This configuration needs to be done in your DNS provider with a rule that points your wildcard domain to your IP/Load balancer.
+Learning center requires that you use a wildcard domain (Wildcard DNS entry) to access your training portal in the browser. This configuration must be done in your DNS provider with a rule that points your wildcard domain to your IP/Load balancer.
 
-For example if using the default workshop on an eks cluster your URL could look something like:
+For example, if using the default workshop on an Elastic Kubernetes Service (EKS) cluster, your URL could look something like:
 
-learning-center-guided.learningcenter.yourdomain.com
+`learning-center-guided.learningcenter.yourdomain.com`
 
-where learningcenter.yourdomain.com would need a DNS configuration made to point to your default ingress controller. 
+Where learningcenter.yourdomain.com needs a DNS configuration made to point to your default ingress controller. 
 
-In this case the wildcard domain configuration needed would be *.learningcenter.yourdomain.com
+In this case, the wildcard domain configuration needed is `*.learningcenter.yourdomain.com`.
 
-Once this configuration is made you may need to restart your operator resource by deleting and redeploying to see the url update.
+Once this configuration is made, you might need to restart your operator resource by deleting and redeploying to see the URL update.

@@ -210,7 +210,7 @@ This is the table of contents from which the Tanzu Application Platform Document
           - [Workshop instructions](learning-center/workshop-content/workshop-instructions.md)
           - [Workshop runtime](learning-center/workshop-content/workshop-runtime.md)
           - [Presenter slides](learning-center/workshop-content/presenter-slides.md)
-          - [Airgapped Environment Requirements](learning-center/airgapped-environment.md)
+          - [Air-gapped environment requirements](learning-center/airgapped-environment.md)
         - [Runtime environment](learning-center/runtime-environment/about.md)
           - [Custom resources](learning-center/runtime-environment/custom-resources.md)
           - [Workshop resource](learning-center/runtime-environment/workshop-definition.md)

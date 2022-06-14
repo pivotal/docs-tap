@@ -36,7 +36,7 @@ The Tanzu Build Service `full` descriptor contains more dependencies, which allo
 types.
 
 The dependencies are pre-packaged so builds don't have to download them from the Internet.
-This can speed up build times and allows builds to occur in airgapped environments.
+This can speed up build times and allows builds to occur in air-gapped environments.
 
 The `full` descriptor contains the following stacks, which support different use cases:
 
