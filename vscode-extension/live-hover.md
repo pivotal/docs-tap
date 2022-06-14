@@ -12,7 +12,7 @@ To integrate Live Hover with Spring Boot Tools you need:
 
 ## <a id="activate-feature"></a> Activate the Live Hover feature
 
-Activate the Live Hover feature by enabling it in **File -> Preferences -> Settings -> Extensions -> Tanzu**.
+Activate the Live Hover feature by enabling it in **File** > **Preferences** > **Settings** > **Extensions** > **Tanzu**.
 
 ## <a id="deploy-workload"></a> Deploy a Workload to the Cluster
 
