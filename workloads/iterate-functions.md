@@ -53,8 +53,8 @@ the container is being built and deployed.
     >add `allow_k8s_contexts('cluster-name')` to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.
     >Follow the instructions and add the line `allow_k8s_contexts('cluster-name')` to your Tiltfile.
 
-1. When the Live Update status in the status bar is visible, resolve to
-`Live Update Started`, <!-- clarify - what does this mean? --> navigate to `http://localhost:8080` in your browser,
+1. When the Live Update status in the status bar is visible and says
+`Live Update Started`, navigate to `http://localhost:8080` in your browser
 and view your running application.
 
 1. Enter the IDE and make a change to the source code.
