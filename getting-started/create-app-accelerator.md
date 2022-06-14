@@ -99,6 +99,8 @@ You can also create a separate manifest file and apply it to the cluster by usin
     kubectl apply -f simple-manifest.yaml
     ```
 
-## Next step
+## Next steps
 
-- [Add testing and security scanning to your application](add-test-and-security.md.hbs)
+Learn about:
+
+- [Supply chains on Tanzu Application Platform](about-supply-chains.md)

@@ -2,13 +2,14 @@
 
 Supply Chain Security Tools - Store has ingress support by using Contour's HTTPProxy resources. To enable ingress support, a Contour installation must be available in the cluster.
 
-Supply Chain Security Tools - Store's configuration includes two options to configure the proxy: `ingress_enabled` and `ingress_domain`.
+Supply Chain Security Tools - Store's configuration includes two options to configure the proxy: `ingress_enabled` and `ingress_domain`. If needed, you can override the `shared.ingress_domain` Tanzu Application Platform level setting with the `ingress_domain` parameter.
 
 For example:
 
 ```yaml
 ingress_enabled: "true"
 ingress_domain: "example.com"
+app_service_type: "ClusterIP"  # recommended if ingress is enabled
 ```
 
 Supply Chain Security Tools - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>` (`metadata-store.example.com`). The create route supports HTTPS communication through a self-signed certificate with the same subject Alternative Name.

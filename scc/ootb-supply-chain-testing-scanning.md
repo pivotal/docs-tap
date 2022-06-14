@@ -322,4 +322,4 @@ Create workload:
 
 ## <a id="scan-image-using-snyk"> Scan Image using Snyk
 
-[Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan) includes an additional integration for running an image scan using Snyk. For instructions on how to install this integration and how to modify the supply chain template to use it, refer to [Install Snyk scanner](../scst-scan/install-snyk-integration.md).
+[Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan) includes an additional integration for running an image scan using Snyk. For information on how to install this integration and how to modify the supply chain template, see [Install Snyk scanner](../scst-scan/install-snyk-integration.md).

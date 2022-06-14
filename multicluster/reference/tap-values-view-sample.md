@@ -38,9 +38,6 @@ tap_gui:
               authProvider: serviceAccount
               serviceAccountToken: CLUSTER-TOKEN
               skipTLSVerify: TRUE-OR-FALSE-VALUE
-
-metadata_store:
-  app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
 ```
 
 Where:

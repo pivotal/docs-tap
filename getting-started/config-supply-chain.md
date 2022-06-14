@@ -49,8 +49,12 @@ When you apply the `ClusterImagePolicy` resource, your cluster requires valid si
 
 ## <a id="config-img-next-steps"></a>Next steps
 
-- [Vulnerability scanning and metadata storage for your supply chain](about-vulnerability-scan-store.md)
-- [Add testing and security scanning to your application](add-test-and-security.md.hbs)
+Learn about:
+
+- [Consuming services on Tanzu Application Platform](about-consuming-services.md)
+
+Or learn more about Supply Chain Security Tools:
+
 - [Overview for Supply Chain Security Tools - Sign](../scst-sign/overview.md)
 - [Configuring Supply Chain Security Tools - Sign](../scst-sign/configuring.md)
 - [Supply Chain Security Tools - Sign known issues](../release-notes.md)

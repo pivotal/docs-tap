@@ -110,6 +110,6 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 >**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md.hbs) database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
 
-## Next step
+## Next steps
 
-- [Work with your new application](work-with-new-app.md)
+- How to [Work with your new application](work-with-new-app.md)

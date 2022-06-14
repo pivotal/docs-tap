@@ -81,6 +81,6 @@ Follow the following steps to diagnose Spring Boot-based applications using Appl
 
 1. Select your running application to view the diagnostic options and inside the application. For more information, see [Application Live View features](../tap-gui/plugins/app-live-view.md).
 
-## Next step
+## Next steps
 
-- [Create your application accelerator](create-app-accelerator.md)
+- How to [Create your application accelerator](create-app-accelerator.md)
