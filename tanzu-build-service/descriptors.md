@@ -6,7 +6,7 @@ owner: Build Service Team
 This topic describes the descriptors that are available so you can choose
 which option to configure depending on your use case.
 
-## <a id="descriptors"> About descriptors
+## <a id="descriptors"></a> About descriptors
 
 Tanzu Build Service descriptors are curated sets of dependencies, including stacks and buildpacks, that are
 continuously released on VMware Tanzu Network to resolve all workload Critical and High CVEs.
@@ -19,7 +19,7 @@ For the differences between the descriptors, see [Descriptor comparison](#descri
 
 You configure which descriptor is imported when installing Tanzu Build Service.
 
-### <a id="lite-descriptor"> Lite descriptor
+### <a id="lite-descriptor"></a> Lite descriptor
 
 The Tanzu Build Service `lite` descriptor is the default descriptor selected if none is configured.
 
@@ -30,7 +30,7 @@ The `lite` descriptor only contains the `base` stack.
 The `default` stack is installed, but is identical to the `base` stack.
 For more information, see [Stacks](https://docs.pivotal.io/tanzu-buildpacks/stacks.html).
 
-### <a id="full-descriptor"> Full descriptor
+### <a id="full-descriptor"></a> Full descriptor
 
 The Tanzu Build Service `full` descriptor contains more dependencies, which allows for more workload
 types.
@@ -48,7 +48,7 @@ The `full` descriptor contains the following stacks, which support different use
 For more information, see [Stacks](https://docs.pivotal.io/tanzu-buildpacks/stacks.html).
 Due to the larger footprint of `full`, installations might take longer.
 
-### <a id="descriptor-comparison"> Descriptor comparison
+### <a id="descriptor-comparison"></a> Descriptor comparison
 
 Both `lite` and `full` descriptors are suitable for production environments.
 

@@ -1,15 +1,20 @@
 # Tanzu Build Service
 
-VMware Tanzu Build Service automates container creation, management, and governance at enterprise scale. Tanzu Build Service uses the open-source [Cloud Native Buildpacks](https://buildpacks.io/) project to turn application source code into container images. It executes reproducible builds aligned with modern container standards and keeps images up to date. For more information about Tanzu Build Service, see the [Tanzu Build Service Documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
+VMware Tanzu Build Service automates container creation, management, and governance at enterprise scale.
+Tanzu Build Service uses the open-source [Cloud Native Buildpacks](https://buildpacks.io/)
+project to turn application source code into container images.
+It executes reproducible builds aligned with modern container standards and keeps images up to date.
+For more information about Tanzu Build Service, see the
+[Tanzu Build Service Documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
 
-## <a id="dependencies"> Tanzu Build Service Dependencies
+## <a id="dependencies"></a> Tanzu Build Service Dependencies
 
 Tanzu Build Service requires dependencies in the form of
 [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html) and
 [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
 to build OCI images.
 
-### <a id="configuration"> Configuration
+### <a id="configuration"></a> Configuration
 
 On non-air-gapped clusters, dependencies are imported as a part of installation of a
 Tanzu Application Platform profile or the Tanzu Build Service component.
@@ -36,7 +41,7 @@ Where:
     * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
     * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
 
-### <a id="descriptors"> Descriptors
+### <a id="descriptors"></a> Descriptors
 
 Tanzu Build Service descriptors are curated sets of dependencies, including stacks and buildpacks, that are
 continuously released on [VMware Tanzu Network](https://network.pivotal.io/products/tbs-dependencies/)
@@ -50,7 +55,7 @@ Tanzu Application Platform or the Tanzu Build Service component.
 
 For more information, see [Descriptors](descriptors.html).
 
-### <a id="auto-updates"> Automatic Dependency Updates
+### <a id="auto-updates"></a> Automatic Dependency Updates
 
 You can configure Tanzu Build Service to update dependencies in the background as they are released.
 This enables workloads to keep up to date automatically.
@@ -71,7 +76,7 @@ enable_automatic_dependency_updates: true
 ...
 ```
 
-### <a id="manual-updates"> Manual Control of Dependency Updates
+### <a id="manual-updates"></a> Manual Control of Dependency Updates
 
 Sometimes you might not want Tanzu Build Service to automatically update dependencies in the
 background.
