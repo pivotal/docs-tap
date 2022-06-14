@@ -25,6 +25,9 @@ To start debugging on the cluster:
     ![The IntelliJ interface showing the project tab with the workload.yaml file right-click menu open and the "Tanzu -> Debug Workload" option highlighted](../images/intellij-debugWorkload.png)
 
 4. Ensure the configuration parameters are set.
+    - Source Image: Registry location to publish local source code, for example registry.io/yourapp-source. This must include both a registry and a project name.
+    - Local Path: Path on the local file system to a directory of source code to build.
+    - Namespace: Namespace that workloads are deployed into.
 
     ![Debug config parameters](../images/intellij-config.png)
 
@@ -37,10 +40,20 @@ Click the stop button in the Debug overlay to stop debugging on the cluster:
 ![The IntelliJ interface showing the debug interface pointing out the stop rectangle icon and mouseover description](../images/intellij-stopDebug.png)
 
 ### <a id="start-live-update"></a> Start Live Update
-
-- Right-click your project’s `Tiltfile` and select **Run 'Tanzu Live Update - ...'**.
-- You must compile your code before the changes are synchronized to the container. For example, `Build Project`: `⌘`+`F9`. 
-
 > **Note:** Only one Live Update session can be active at a time. Stop any running session before starting a new one.
 
+1. Right-click your project’s `Tiltfile` and select **Run 'Tanzu Live Update - ...'**.
 ![The IntelliJ interface showing the project tab with the Tiltfile file right-click menu open](../images/intellij-startLiveUpdate.png)
+2. Ensure the configuration parameters are set.
+    - Source Image: Registry location to publish local source code, for example registry.io/yourapp-source. This must include both a registry and a project name.
+    - Local Path: Path on the local file system to a directory of source code to build.
+    - Namespace: Namespace that workloads are deployed into.
+
+    ![Live Update config parameters](../images/intellij-liveupdate-config.png)
+
+> **Note:** You must compile your code before the changes are synchronized to the container. For example, `Build Project`: `⌘`+`F9`. 
+
+### <a id="stop-liveupdate"></a> Stop Live Update
+- To stop Live Update, use the native controls to stop the currently running `Tanzu Live Update` Run Configuration
+
+![Stop Live Update](../images/intellij-stopliveupdate.png)
