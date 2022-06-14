@@ -46,7 +46,7 @@ To do so:
       name: k8s-reader
     rules:
     - apiGroups: ['']
-      resources: ['pods', 'services', 'configmaps']
+      resources: ['pods', 'pods/log', 'services', 'configmaps']
       verbs: ['get', 'watch', 'list']
     - apiGroups: ['apps']
       resources: ['deployments', 'replicasets']
