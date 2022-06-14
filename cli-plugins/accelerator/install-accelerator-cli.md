@@ -24,7 +24,7 @@ To install the Accelerator CLI plug-in:
     tanzu accelerator version
     ```
 
-    A version should be displayed in the output.
+    A version will be displayed in the output.
 
     If the following error is displayed during installation:
 
