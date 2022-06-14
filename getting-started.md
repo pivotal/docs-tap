@@ -45,6 +45,6 @@ See [Install the Visual Studio Code Tanzu Extension](vscode-extension/installati
 
 When you have completed these prerequisites, you are ready to get started.
 
-## Next step
+## Next steps
 
-- [Develop your first application on Tanzu Application Platform](getting-started/develop-first-app.md)
+- How to [Develop your first application on Tanzu Application Platform](getting-started/develop-first-app.md)
