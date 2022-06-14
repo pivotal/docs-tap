@@ -2,7 +2,7 @@
 
 This topic includes the list of required configurations needed for Learning Center to properly function in an air-gapped environment.
 
-Learning Center is able to run in an air-gapped environment but workshops do not have this capability by default. Users must therefore take the following steps to ensure Learning Center functions as expected.
+Learning Center can run in an air-gapped environment but workshops do not have this capability by default. Users must therefore take the following steps to ensure Learning Center functions as expected.
 
 ## <a id="workshop-yaml-changes"></a>Workshop yaml changes
 
@@ -11,7 +11,7 @@ In an air-gapped environment a user has no Internet access, so workshop yamls sh
 1. Private container registries.
 2. Private Maven, NPM, Python, Go, or any other language repository.
 
-For example, in NPM we can modify the npmrc file to use:
+For example, in NPM you can modify the npmrc file to use:
 
 ```js
 // .npmrc
@@ -35,4 +35,4 @@ spec:
 
 ## <a id="internet-dependencies"></a>Internet dependencies
 
-If the workshop requires the install of any Internet dependency such as a Linux Tool or any other tool, it should be done in the workshop image. See [building an image](./workshop-content/building-an-image.md)
+If the workshop requires the installation of any Internet dependency, such as a Linux Tool or any other tool, it must be done in the workshop image. See [building an image](./workshop-content/building-an-image.md)

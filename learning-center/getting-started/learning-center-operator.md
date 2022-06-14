@@ -9,7 +9,7 @@ For basic information about installing the operator, see [Install Learning Cente
 
 The following is additional information about installing and setting up the Learning Center operator.
 
-The Learning Center operator can be deployed to any Kubernetes cluster supporting custom
+You can deploy the Learning Center operator to any Kubernetes cluster supporting custom
 resource definitions and the concept of operators.
 The cluster must have an ingress router configured, though only a basic deployment of the ingress controller
 is usually required. You do not need to configure the ingress controller to handle cluster wide edge
@@ -25,11 +25,11 @@ handle loss of websocket connections so gracefully, and they might be impacted d
 ingress controller. This problem is not specific to Learning Center. It can impact any application when
 an nginx ingress controller is used frequently and ingresses are created or deleted frequently.
 
-You can use a hosted Kubernetes solution from an IaaS provider such as Google, AWS, or Azure. If you do, as needed, increase any HTTP request timeout specified on the inbound load balancer for the ingress controller so that long-lived websocket connections can be used. In some cases, load balancers of hosted Kubernetes solutions only have a 30-second timeout. If possible, configure the timeout applying to websockets to be 1 hour.
+You can use a hosted Kubernetes solution from an IaaS provider such as Google, AWS, or Azure. If you do, as needed, increase any HTTP request timeout specified on the inbound load balancer for the ingress controller so that you can use long-lived websocket connections. In some cases, load balancers of hosted Kubernetes solutions only have a 30-second timeout. If possible, configure the timeout applying to websockets to be 1 hour.
 
 If you deploy the web-based training portal, the cluster must have available persistent volumes of type `ReadWriteOnce (RWO)`.
-A default storage class should have been defined so that persistent volume claims do not need to specify a storage class.
-For some Kubernetes distributions, including from IBM, it is necessary to configure Learning Center as to
+A default storage class must be defined so that persistent volume claims do not need to specify a storage class.
+For some Kubernetes distributions, including from IBM, you must configure Learning Center as to
 what user and group must be used for persistent volumes. If no default storage class is specified, or a specified
 storage class is required, you can configure Learning Center with the name of the storage class.
 
@@ -149,7 +149,7 @@ kubectl create secret tls -n learningcenter workshops.example.com-tls --cert=wor
 ```
 
 Having created the secret, if it is the secret corresponding to the default ingress domain you specified
-earlier, set the `INGRESS_SECRET` environment variable. This way you won't use the configuration passed to Tanzu CLI
+earlier, set the `INGRESS_SECRET` environment variable. This way you do not use the configuration passed to Tanzu CLI
 on the operator deployment. This ensures the secret is applied automatically to any ingress created:
 
 ```console

@@ -19,7 +19,7 @@ The TLS secret `tls` is not available.
     kubectl logs deployment/learningcenter-operator -n learningcenter
     ```
 
-1. Observe that the TLS secret `tls` is not available. The TLS secret should be on the Learning
+1. Observe that the TLS secret `tls` is not available. The TLS secret must be on the Learning
     Center operator namespace. If the TLS secret is not on the Learning Center operator namespace,
     the operator logs contain the following error:
 
@@ -35,7 +35,7 @@ The TLS secret `tls` is not available.
 
 ## <a id="img-pol-wbhk-srvc-nt-fnd"></a>image-policy-webhook-service not found
 
-You are installing a TAP profile and you get this error:
+You are installing a Tanzu Application Platform profile and you get this error:
 
 ```console
 Internal error occurred: failed calling webhook "image-policy-webhook.signing.run.tanzu.vmware.com": failed to call webhook: Post "https://image-policy-webhook-service.image-policy-system.svc:443/signing-policy-check?timeout=10s": service "image-policy-webhook-service" not found
@@ -49,7 +49,7 @@ This is a race condition error among some packages.
 
 To recover from this error you only need to redeploy the trainingPortal resource.
 
-## <a id='cannot-update-parameters'></a>Updates to TAP values file not reflected in Learning Center Training Portal
+## <a id='cannot-update-parameters'></a>Updates to Tanzu Application Platform values file not reflected in Learning Center Training Portal
 
 If you installed Learning Center through Tanzu profiles, then your installation made use of a tap_values.yaml file where configurations were specified for Learning Center. If you make updates to these configurations using this command:
 
@@ -59,7 +59,7 @@ tanzu package installed update tap --package-name tap.tanzu.vmware.com --version
 
 then the changes are not reflected in the deployed Learning Center Training Portal resource. Tap package updates currently `DO NOT` update running Learning Center Training Portal resources.
 
-Run one of the following commands to validate changes made to parameters provided to the Learning
+Run one of these commands to validate changes made to parameters provided to the Learning
 Center Operator. These parameters include ingressDomain, TLS secret, ingressClass, and others.
 
 Command:
@@ -81,6 +81,7 @@ when the training portals were created. This prevents any change on the `trainin
 from affecting any online user running a workshop.
 
 ***Solution***
+
 You must restart the operator resource by first deleting the operator pod:
 
 ```
@@ -140,4 +141,4 @@ Where learningcenter.yourdomain.com needs a DNS configuration made to point to y
 
 In this case, the wildcard domain configuration needed is `*.learningcenter.yourdomain.com`.
 
-Once this configuration is made, you might need to restart your operator resource by deleting and redeploying to see the URL update.
+After this configuration is made, you might need to restart your operator resource by deleting and redeploying to see the URL update.
