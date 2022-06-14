@@ -109,8 +109,7 @@ uses symbolic reference and is not a URL.
 The format of the reference to a GitHub or GitLab repository is similar to what you use with Kustomize
 when referencing remote repositories. For example:
 
-- `github.com/organisation/project`: Use the workshop content you host at the root of the GitHub
-repository. Use the `master` or `main` branch.
+- `github.com/organisation/project?ref=master` or `github.com/organisation/project?ref=main`: Use the workshop content you host at the root of the GitHub repository. Use the `master` or `main` branch. `Be sure to specify the ref branch as not specifying the branch may lead to content download errors`.
 - `github.com/organisation/project/subdir?ref=develop`: Use the workshop content you host at `subdir`
 of the GitHub repository. Use the `develop` branch.
 - `gitlab.com/organisation/project`: Use the workshop content you host at the root of the GitLab
