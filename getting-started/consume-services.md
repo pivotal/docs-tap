@@ -112,7 +112,7 @@ To set up a service:
         kubectl apply -f rabbitmqcluster-app-operator-reader.yaml
         ```
 
-1. Make the new API seen as claimable to Application Operators.
+1. Make the new API seen as claimable to application operators.
 
     1. In a file named `rabbitmqcluster-clusterinstanceclass.yaml`, create a `ClusterInstanceClass`
     that refers to the new service, and set any additional metadata. For example:
@@ -162,7 +162,7 @@ To create a service instance:
     > over who has access to what. However, this is not a strict requirement.
     > You can create both service instances and application workloads in the same namespace if desired.
 
-2.  Find the list of Service Instance Classes that are available on your cluster by running:
+2.  Find the list of service instance classes available on your cluster by running:
 
     ```console
     tanzu service classes list
