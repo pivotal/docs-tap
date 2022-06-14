@@ -75,6 +75,7 @@ Supply Chain Security Tools - Store's values file allows you to enable ingress s
 ```yaml
 ingress_enabled: "true"
 ingress_domain: "example.com"
+app_service_type: "ClusterIP" # recommended setting
 ```
 
 An HTTPProxy object is then installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress and multicluster support](ingress-multicluster.md).

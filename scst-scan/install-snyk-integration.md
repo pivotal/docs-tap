@@ -135,9 +135,12 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
 ## Using the Synk scanner to run an ImageScan
 
-The OOTB Scanning Supply Chain implements a `SourceScan` and `ImageScan`, which references `ScanTemplate`s that use the Grype scanner. To use the Snyk scanner for the `ImageScan` (the Snyk `SourceScan` is not yet supported), the `ImageScan` `ScanTemplate` will need to be used instead. In the OOTB Scanning Supply Chain, update `spec.scanTemplate` from `public-image-scan-template` to `snyk-public-image-scan-template`.
+The out of the box Scanning Supply Chain implements a `SourceScan` and `ImageScan`, which reference `ScanTemplate`s that use the Grype scanner. To use the Snyk scanner for the `ImageScan`, the `ImageScan` `ScanTemplate` must be used instead. In the out of the box Scanning Supply Chain, update `spec.scanTemplate` from `public-image-scan-template` to `snyk-public-image-scan-template`.
 
-Similarly, to run a scan manually, apply the following to the developer namespace:
+>**Note:** The Snyk `SourceScan` is not supported.
+
+To run a scan manually, apply the following to the developer namespace:
+
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ImageScan
