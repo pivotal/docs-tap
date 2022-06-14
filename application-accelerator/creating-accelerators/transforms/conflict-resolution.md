@@ -39,21 +39,21 @@ transformations:
 
 The following values and behaviors are available:
 
-* `Fail`: Stop processing on the first file that exhibits `path` conflicts.
-* `UseFirst`: For each conflicting file, the file produced first
+- `Fail`: Stop processing on the first file that exhibits `path` conflicts.
+- `UseFirst`: For each conflicting file, the file produced first
   (typically by a transform appearing earlier in the YAML definition) is retained.
-* `UseLast`: For each conflicting file, the file produced last
+- `UseLast`: For each conflicting file, the file produced last
   (typically by a transform appearing later in the YAML definition) is retained.
-* `Append`: The conflicting versions of files are concatenated (as if using `cat file1 file2 ...`), with files produced
+- `Append`: The conflicting versions of files are concatenated (as if using `cat file1 file2 ...`), with files produced
 first appearing first.
-* `FavorOwn`: _Only makes sense in the context of [composition](../composition.md)._
+- `FavorOwn`: _Only makes sense in the context of [composition](../composition.md)._
   Selects the version of the file that comes from the current executing fragment if possible,
   falls back to the caller version otherwise.
-* `FavorForeign`: _Only makes sense in the context of [composition](../composition.md)._
+- `FavorForeign`: _Only makes sense in the context of [composition](../composition.md)._
   Selects the version of the file that was provided by the caller if present, falls
   back to the file originating from this fragment's fileset otherwise.
 
 ## See also
 
-* [Combo](combo.md)
-* [UniquePath](unique-path.md)
+- [Combo](combo.md)
+- [UniquePath](unique-path.md)
