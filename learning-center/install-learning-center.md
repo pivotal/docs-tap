@@ -165,7 +165,7 @@ To install the Self-Guided Tour Training Portal and Workshop:
 
 ## <a id='support-lc-values'></a> Supported Learning Center Values Configuration
 
-Admins are provided the following sample learning-center-config.yaml file to see the possible configurations supported by Learning Center. These configurations are additional ones that admins can provide to the operator resource but are by no means necessary for Learning Center to work out of the box. It is enough to follow the previous instrucions on this page to get Learning Center up and running.
+Admins are provided the following sample learning-center-config.yaml file to see the possible configurations supported by Learning Center. These configurations are additional ones that admins can provide to the operator resource but are by no means necessary for Learning Center to work out of the box. It is enough to follow the previous instructions on this page to get Learning Center up and running.
 
 It is important to note that Learning Center has default values in place for the learning-center-config.yaml file and admins only need to provide the values that they are looking to override. As in the example above, overriding the ingressDomain property is enough to get Learning Center to work out of the box.
 
