@@ -20,7 +20,7 @@ Tanzu Application Platform GUI.
 
 In order to view your applications on Tanzu Application Platform GUI, use the following steps:
 
-1. [Develop your application on the Tanzu Application Platform via Application Accelerators](../../getting-started.html#dev-first-app)
+1. [Deploy your first application on the Tanzu Application Platform](../../getting-started/deploy-first-app.md)
 2. [Add your application to Tanzu Application Platform GUI Software Catalog](../../getting-started.html#add-app-to-gui-cat)
 
 

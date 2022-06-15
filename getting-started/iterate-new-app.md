@@ -1,21 +1,30 @@
-# Work with your new application
+# Iterate on your new application
 
-In the previous Getting started topic, [Develop your first application](develop-first-app.md), you developed your first application on Tanzu Application Platform.
-Now that you have a skeleton workload developed, you are ready to begin working with your new application.
+This how-to topic guides you through iterating on your first application on Tanzu Application Platform, which you created in the previous Getting started how-to, [Deploy your first application](deploy-first-app.md). 
 
-## <a id="iterate"></a>Iterate on your application
+## <a id="you-will"></a>What you will do
 
-Begin by iterating on your application and testing code changes on the cluster. Tanzu Developer Tools for Visual Studio Code, VMware Tanzu’s official IDE extension for VSCode,
-helps you develop and receive fast feedback on your workloads running on the Tanzu Application Platform.
+- Prepare your IDE to iterate on your application.
+- Live update your application to view code changes updating live on the cluster.
+- Debug your application.
+- Monitor your running application on the Application Live View UI.
 
-The VSCode extension enables live updates of your application while running on the cluster
+## <a id="prepare-to-iterate"></a>Prepare your IDE to iterate on your application
+
+In the previous Getting started how-to topic, [Deploy your first application](deploy-first-app.md), you deployed your first application on Tanzu Application Platform.
+Now that you have a skeleton workload developed, you are ready to begin to iterate on your new application and test code changes on the cluster.
+
+Tanzu Developer Tools for Visual Studio Code is VMware Tanzu’s official IDE extension for VS Code.
+It helps you develop and receive fast feedback on your workloads running on the Tanzu Application Platform.
+
+The VS Code extension enables live updates of your application while running on the cluster
 and allows you to debug your application directly on the cluster.
 For information about installing the prerequisites and the Tanzu Developer Tools extension, see
-[Install Tanzu Dev Tools for VSCode](../vscode-extension/installation.md).
+[Install Tanzu Dev Tools for VS Code](../vscode-extension/installation.md).
 
 >**Important:** Use Tilt v0.23.2 or a later version for the sample application.
 
-1. Open the Tanzu Java Web App as a project within your VSCode IDE.
+1. Open the Tanzu Java Web App as a project within your VS Code IDE.
 
 2. To ensure your extension assists you with iterating on the correct project, configure its settings using the following instructions.
 
@@ -60,7 +69,7 @@ Follow the following steps to debug your cluster:
 
 1. Set a breakpoint in your code.
 2. Right-click the file `workload.yaml` within the `config` directory, and select **Tanzu: Java Debug Start**. In a few moments, the workload is redeployed with debugging enabled. You are going to see the "Deploy and Connect" Task complete and the debug menu actions are available to you, indicating that the debugger has attached.
-3. Navigate to `http://localhost:8080` in your browser. This hits the breakpoint within VSCode. Play to the end of the debug session using VSCode debugging controls.
+3. Navigate to `http://localhost:8080` in your browser. This hits the breakpoint within VS Code. Play to the end of the debug session using VS Code debugging controls.
 
 ## <a id="monitor-running-app"></a>Monitor your running application
 

@@ -1,6 +1,17 @@
-# Develop your first application on Tanzu Application Platform
+# Deploy your first application on Tanzu Application Platform
 
-This topic will guide you through developing your first application on Tanzu Application Platform. Before you start, be sure you've completed all of the [Getting started prerequisites](../getting-started.md#get-started-prereqs). In this walkthrough, you will use an application accelerator. For background on application accelerators, see [Application Accelerator](about-application-accelerator.md).
+This how-to topic guides you through deploying your first application on Tanzu Application Platform. 
+
+## <a id="you-will"></a>What you will do
+
+- Download an application accelerator, which serves as a template that codifies best practices and provides important configuration and structures ready and available for use.
+- Upload it to your Git repository of choice.
+- Run a CLI command to deploy the app.
+- View the build and runtime logs for your app.
+- View the Web App in your browser.
+- Optionally add your application to Tanzu Application Platform GUI Software Catalog.
+
+Before you start, be sure you've completed all of the [Getting started prerequisites](../getting-started.md#get-started-prereqs). For background on application accelerators, see [Application Accelerator](about-application-accelerator.md).
 
 ## <a id="deploy-your-app"></a>Deploy your application
 
@@ -62,7 +73,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     For more information, see [Tanzu Apps Workload Create](../cli-plugins/apps/command-reference/tanzu-apps-workload-create.md).
 
-    > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VSCode extension
+    > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VS Code extension
     to debug and live-update this application.
 
 8. View the build and runtime logs for your app by running the `tail` command:
@@ -112,4 +123,4 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 ## Next steps
 
-- How to [Work with your new application](work-with-new-app.md)
+- How to [Iterate on your new application](iterate-new-app.md)

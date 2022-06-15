@@ -47,4 +47,4 @@ When you have completed these prerequisites, you are ready to get started.
 
 ## Next steps
 
-- How to [Develop your first application on Tanzu Application Platform](getting-started/develop-first-app.md)
+- How to [Deploy your first application on Tanzu Application Platform](getting-started/deploy-first-app.md)

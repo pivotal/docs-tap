@@ -14,4 +14,4 @@ Administrators use create, update, and delete commands for managing accelerators
 
 Apply what you have learned:
 
-- How to [Develop your first application on Tanzu Application Platform](develop-first-app.md)
+- How to [Deploy your first application on Tanzu Application Platform](deploy-first-app.md)
