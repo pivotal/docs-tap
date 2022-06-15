@@ -176,7 +176,7 @@ This release has the following known issues, listed by area and component.
 
 #### Tanzu Application Platform
 
-- **AWS EKS clusters:** When connecting to AWS EKS clusters an error might appear with the text `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`. The cause of the issue is that [v1.24](https://kubernetes.io/blog/2022/05/03/kubernetes-1-24-release-announcement/) drops support for `client.authentication.k8s.io/v1alpha1`, see [aws/aws-cli/issues/6920](https://github.com/aws/aws-cli/issues/6920) for more info. To fix, update the version of aws-cli to latest and kubectl to 1.24 then run:
+- **AWS EKS clusters:** When connecting to AWS EKS clusters an error might appear with the text `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`. The cause of the issue is that Kubernetes release [v1.24](https://kubernetes.io/blog/2022/05/03/kubernetes-1-24-release-announcement/) drops support for `client.authentication.k8s.io/v1alpha1`, see [aws/aws-cli/issues/6920](https://github.com/aws/aws-cli/issues/6920) for more info. To fix, update the version of aws-cli to latest and kubectl to 1.24 then run:
 
 ```console
     aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
