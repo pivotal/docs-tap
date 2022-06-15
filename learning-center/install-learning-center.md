@@ -228,4 +228,4 @@ network:
   - 169.254.169.254/32
   - fd00:ec2::254/128
 ```
-See [Restricting Network Access](./runtime-environment/system-profile.md#restrict-network-access) for more information on blocking CIDRs
+See [Restricting Network Access](./runtime-environment/system-profile.md#restrict-network-access) for more information on blocking CIDRs.
