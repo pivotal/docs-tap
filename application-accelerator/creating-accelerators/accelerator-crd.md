@@ -45,11 +45,15 @@ The `Accelerator` CRD _spec_ defined in the `AcceleratorSpec` type has the follo
 
 ## <a id="excluding-files"></a>Excluding files
 
-The `git.ignore` field defaults to `.git/`, which is different from the defaults provided by the Flux Source Controller GitRepository implementation. You can override this, and provide your own exclusions. For more information, see  [fluxcd/source-controller Excluding files](https://github.com/fluxcd/source-controller/blob/v0.15.0/docs/spec/v1beta1/gitrepositories.md#excluding-files).
+The `git.ignore` field defaults to `.git/`, which is different from the defaults provided by the Flux Source Controller GitRepository implementation. You can override this, and provide your own exclusions. For more information, see  [fluxcd/source-controller Excluding files](https://fluxcd.io/docs/components/source/gitrepositories/#excluding-files).
 
 ## <a id="non-public-repos"></a>Non-public repositories
 
-For Git repositories that aren't accessible anonymously, you need to provide credentials in a Secret. For HTTPS repositories the secret must contain user name and password fields. For SSH repositories, the secret must contain identity, identity.pub and known_hosts fields. For more information, see [fluxcd/source-controller HTTPS authentication](https://github.com/fluxcd/source-controller/blob/v0.15.0/docs/spec/v1beta1/gitrepositories.md#https-authentication) and [fluxcd/source-controller SSH authentication](https://github.com/fluxcd/source-controller/blob/v0.15.0/docs/spec/v1beta1/gitrepositories.md#ssh-authentication).
+For Git repositories that aren't accessible anonymously, you need to provide credentials in a Secret. 
+
+- For HTTPS repositories the secret must contain user name and password fields. The password field can contain a personal access token instead of an actual password. See [fluxcd/source-controller Basic access authentication](https://fluxcd.io/docs/components/source/gitrepositories/#basic-access-authentication)
+- For HTTPS with self-signed certificates, you can add a `.data.caFile value to the secret created for HTTPS authentication. See [fluxcd/source-controller HTTPS Certificate Authority](https://fluxcd.io/docs/components/source/gitrepositories/#https-certificate-authority)
+- For SSH repositories, the secret must contain identity, identity.pub and known_hosts fields. See [fluxcd/source-controller SSH authentication](https://fluxcd.io/docs/components/source/gitrepositories/#ssh-authentication).
 
 For Image repositories that aren't publicly available, an image pull secret can be provided. For more information, see [Using imagePullSecrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
 
