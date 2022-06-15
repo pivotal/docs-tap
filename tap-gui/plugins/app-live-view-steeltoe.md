@@ -8,17 +8,17 @@ This topic describes Application Live View pages for Steeltoe Applications in Ta
 This is the default page loaded in the **Live View** section.
 This page gives a tabular overview containing the following information:
 
-- application name
-- instance ID
-- location
-- actuator location
-- health endpoint
-- direct actuator access
-- framework
-- version
-- new patch version
-- new major version
-- build version
+- Application name
+- Instance ID
+- Location
+- Actuator location
+- Health endpoint
+- Direct actuator access
+- Framework
+- Version
+- New patch version
+- New major version
+- Build version
 
 You can navigate between **Information Categories** by selecting from the drop-down menu on the
 top right corner of the page.
@@ -51,7 +51,7 @@ The page includes the following features:
 - The **Applied Overrides** section also allows you to add new environment properties to the application.
 
 > **Note:** The `management.endpoint.env.post.enabled=true` has to be set in the application config
-> properties of the application, and a corresponding, editable Environment has to be present in the application.
+> properties of the application, and a corresponding editable Environment has to be present in the application.
 
 
 ### <a id="log-levels-page"></a> Log Levels page

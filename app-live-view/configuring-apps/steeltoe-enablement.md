@@ -47,7 +47,7 @@ The thread metrics is available in SteeltoeVersion `3.2.0-rc1`. Therefore, to en
 </PropertyGroup>
 ```
 
-To enable Application Live View on the Steeltoe TAP workload, you need to manually add the label `tanzu.app.live.view.application.flavours: steeltoe` on your workload yaml:
+To enable Application Live View on the Steeltoe TAP workload, you must manually add the label `tanzu.app.live.view.application.flavours: steeltoe` on your workload yaml:
 
 ```
 metadata:

@@ -17,9 +17,9 @@ For more information about profiles, see [About Tanzu Application Platform packa
 ## <a id='prereqs'></a>Prerequisites
 
 Before installing Application Live View, complete all prerequisites to install Tanzu Application Platform.
-For more information, see [Prerequisites](https://docs-staging.vmware.com/en/draft/Tanzu-Application-Platform/1.2/tap/GUID-prerequisites.html).
+For more information, see [Prerequisites](/prerequisites.md).
 
-In addition, install Convention Controller from the Tanzu Application Platform package repository. For more information, see (https://docs-staging.vmware.com/en/draft/Tanzu-Application-Platform/1.2/tap/GUID-convention-service-install-conv-service.html).
+In addition, install Convention Controller from the Tanzu Application Platform package repository. For more information, see [Install Convention Service](/convention-service/install-conv-service.md).
 
 
 ## <a id='install-app-live-view'></a> Install Application Live View
@@ -328,4 +328,4 @@ To install Application Live View Conventions:
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
-see [Application Live View in Tanzu Application Platform GUI](https://docs-staging.vmware.com/en/draft/Tanzu-Application-Platform/1.2/tap/GUID-tap-gui-plugins-app-live-view.html).
+see [Application Live View in Tanzu Application Platform GUI](/tap-gui/plugins/app-live-view.md).
