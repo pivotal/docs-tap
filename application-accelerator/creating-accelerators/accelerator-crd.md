@@ -2,6 +2,8 @@
 
 The `Accelerator` custom resource definition (CRD) defines any accelerator resources to be made available to the Application Accelerator for VMware Tanzu system. It is a namespaced CRD, meaning that any resources created belong to a namespace. In order for the resource to be available to the Application Accelerator system, it must be created in the namespace that the Application Accelerator UI server is configured to watch.
 
+The `Fragment` custom resource definition (CRD) defines any accelerator fragment resources to be made available to the Application Accelerator for VMware Tanzu system. It is a namespaced CRD, meaning that any resources created belong to a namespace. In order for the resource to be available to the Application Accelerator system, it must be created in the namespace that the Application Accelerator UI server is configured to watch.
+
 ## <a id="api-definitions"></a>API definitions
 
 The `Accelerator` CRD is defined with the following properties:
@@ -36,6 +38,31 @@ The `Accelerator` CRD _spec_ defined in the `AcceleratorSpec` type has the follo
 | source.imagePullSecrets | ImagePullSecrets contains the names of the Kubernetes Secrets containing registry login information to resolve image metadata. | Optional |
 | source.interval | The interval at which to check for repository updates. | Optional |
 | source.serviceAccountName | ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. | Optional |
+
+The `Fragment` CRD is defined with the following properties:
+
+| Property | Value |
+| --- | --- |
+| Name | Fragment |
+| Group | accelerator.apps.tanzu.vmware.com |
+| Version | v1alpha1 |
+| ShortName | frag |
+
+The `Fragment` CRD _spec_ defined in the `FragmentSpec` type has the following fields:
+
+| Field | Description | Required/Optional |
+| --- | --- | --- |
+| displayName | DisplayName is a short descriptive name used for a Fragment. | Optional |
+| git | Defines the fragment source Git repository. | Required |
+| git.url | The repository URL, can be a HTTP/S or SSH address. | Required |
+| git.ignore | Overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default of `.git/` is used. | Optional (**) |
+| git.interval | The interval at which to check for repository updates. If not provided it defaults to 10 min.| Optional (**) |
+| git.ref | Git reference to checkout and monitor for changes, defaults to master branch. | Optional (**) |
+| git.ref.branch | The Git branch to checkout, defaults to master. | Optional (**) |
+| git.ref.commit | The Git commit SHA to checkout, if specified tag filters are ignored. | Optional (**) |
+| git.ref.semver | The Git tag semver expression, takes precedence over tag. | Optional (**) |
+| git.ref.tag | The Git tag to checkout, takes precedence over branch. | Optional (**) |
+| git.secretRef | The secret name containing the Git credentials. For HTTPS repositories, the secret must contain user name and password fields. For SSH repositories, the secret must contain identity, identity.pub, and known_hosts fields. | Optional (**) |
 
 \* Any optional fields marked with an asterisk (*) are populated from a field of the same name in the `accelerator` definition in the `accelerator.yaml` file if that is present in the Git repository for the accelerator.
 
