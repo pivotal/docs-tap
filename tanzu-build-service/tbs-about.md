@@ -14,38 +14,55 @@ Tanzu Build Service requires dependencies in the form of
 [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
 to build OCI images.
 
-### <a id="configuration"></a> Configuration
+This topic describes how Tanzu Build Service uses and installs dependencies.
 
-On non-air-gapped clusters, dependencies are imported as a part of installation of a
-Tanzu Application Platform profile or the Tanzu Build Service component.
+## <a id="tap-install"></a> Installing TAP with Full Dependencies
 
-When creating the values file during installation, include the `tanzunet_username`, `tanzunet_password`,
-and `descriptor_name` key-value pairs, in addition to any other `buildservice` key-value pairs, as
-in this example:
+By default, TAP is installed with `lite` dependencies. See [here](#descriptors) for a comparison of lite vs full dependencies.
 
-<code>
-...
-kp_default_repository: REPOSITORY
-kp_default_repository_username: REGISTRY-USERNAME
-kp_default_repository_password: REGISTRY-PASSWORD
-tanzunet_username: TANZUNET-USERNAME
-tanzunet_password: TANZUNET-PASSWORD
-descriptor_name: DESCRIPTOR-NAME
-...
-</code>
+Full dependencies must be installed separately from TAP. Follow these steps:
 
-Where:
+1. Follow the standard TAP profile instructions and when configuring the `tap-values.yaml`, use the following `buildservice` settings:
 
-- `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to VMware Tanzu Network.
-- `DESCRIPTOR-NAME` is the name of the descriptor to import automatically. For more information, see [Descriptors](#descriptors). Available options are:
-    * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
-    * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
+```yaml
+buildservice:
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  exclude_dependencies: true
+```
+
+2. Get the latest version of the buildservice package:
+
+```console
+tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+```
+
+3. Relocate the TBS full dependencies package repository using the version from the previous step. This should be a similar command to the one used during TAP install:
+
+```console
+imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps
+```
+
+4. Add the TBS full dependencies package repository using the same version used in the previous step:
+
+```console
+tanzu package repository add tbs-full-deps-repository \
+  --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps:${VERSION} \
+  --namespace tap-install
+```
+
+5. Install the Full Dependencies package (no `values.yaml` needed):
+
+```console
+tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v $VERSION -n tap-install
+```
 
 ### <a id="descriptors"></a> Descriptors
 
 Tanzu Build Service descriptors are curated sets of dependencies, including stacks and buildpacks, that are
 continuously released on [VMware Tanzu Network](https://network.pivotal.io/products/tbs-dependencies/)
-to resolve all workload Critical and High CVEs.
+to resolve all workload Critical and High CVEs. Descriptors are only used if TAP is configured for automatic dependency updates.
 Descriptors are imported into Tanzu Build Service to update the entire cluster.
 
 There are two types of descriptor, `lite` and `full`.
