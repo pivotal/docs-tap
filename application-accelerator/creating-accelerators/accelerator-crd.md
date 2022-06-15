@@ -2,6 +2,8 @@
 
 The `Accelerator` custom resource definition (CRD) defines any accelerator resources to be made available to the Application Accelerator for VMware Tanzu system. It is a namespaced CRD, meaning that any resources created belong to a namespace. In order for the resource to be available to the Application Accelerator system, it must be created in the namespace that the Application Accelerator UI server is configured to watch.
 
+The `Fragment` custom resource definition (CRD) defines any accelerator fragment resources to be made available to the Application Accelerator for VMware Tanzu system. It is a namespaced CRD, meaning that any resources created belong to a namespace. In order for the resource to be available to the Application Accelerator system, it must be created in the namespace that the Application Accelerator UI server is configured to watch.
+
 ## <a id="api-definitions"></a>API definitions
 
 The `Accelerator` CRD is defined with the following properties:
@@ -37,6 +39,31 @@ The `Accelerator` CRD _spec_ defined in the `AcceleratorSpec` type has the follo
 | source.interval | The interval at which to check for repository updates. | Optional |
 | source.serviceAccountName | ServiceAccountName is the name of the Kubernetes ServiceAccount used to authenticate the image pull if the service account has attached pull secrets. | Optional |
 
+The `Fragment` CRD is defined with the following properties:
+
+| Property | Value |
+| --- | --- |
+| Name | Fragment |
+| Group | accelerator.apps.tanzu.vmware.com |
+| Version | v1alpha1 |
+| ShortName | frag |
+
+The `Fragment` CRD _spec_ defined in the `FragmentSpec` type has the following fields:
+
+| Field | Description | Required/Optional |
+| --- | --- | --- |
+| displayName | DisplayName is a short descriptive name used for a Fragment. | Optional |
+| git | Defines the fragment source Git repository. | Required |
+| git.url | The repository URL, can be a HTTP/S or SSH address. | Required |
+| git.ignore | Overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default of `.git/` is used. | Optional (**) |
+| git.interval | The interval at which to check for repository updates. If not provided it defaults to 10 min.| Optional (**) |
+| git.ref | Git reference to checkout and monitor for changes, defaults to master branch. | Optional (**) |
+| git.ref.branch | The Git branch to checkout, defaults to master. | Optional (**) |
+| git.ref.commit | The Git commit SHA to checkout, if specified tag filters are ignored. | Optional (**) |
+| git.ref.semver | The Git tag semver expression, takes precedence over tag. | Optional (**) |
+| git.ref.tag | The Git tag to checkout, takes precedence over branch. | Optional (**) |
+| git.secretRef | The secret name containing the Git credentials. For HTTPS repositories, the secret must contain user name and password fields. For SSH repositories, the secret must contain identity, identity.pub, and known_hosts fields. | Optional (**) |
+
 \* Any optional fields marked with an asterisk (*) are populated from a field of the same name in the `accelerator` definition in the `accelerator.yaml` file if that is present in the Git repository for the accelerator.
 
 \*\* Any fields marked with a double asterisk (**) are part of the Flux GitRepository CRD that is documented in the Flux Source Controller [Git Repositories](https://fluxcd.io/docs/components/source/gitrepositories/) documentation.
@@ -45,11 +72,15 @@ The `Accelerator` CRD _spec_ defined in the `AcceleratorSpec` type has the follo
 
 ## <a id="excluding-files"></a>Excluding files
 
-The `git.ignore` field defaults to `.git/`, which is different from the defaults provided by the Flux Source Controller GitRepository implementation. You can override this, and provide your own exclusions. For more information, see  [fluxcd/source-controller Excluding files](https://github.com/fluxcd/source-controller/blob/v0.15.0/docs/spec/v1beta1/gitrepositories.md#excluding-files).
+The `git.ignore` field defaults to `.git/`, which is different from the defaults provided by the Flux Source Controller GitRepository implementation. You can override this, and provide your own exclusions. For more information, see  [fluxcd/source-controller Excluding files](https://fluxcd.io/docs/components/source/gitrepositories/#excluding-files).
 
 ## <a id="non-public-repos"></a>Non-public repositories
 
-For Git repositories that aren't accessible anonymously, you need to provide credentials in a Secret. For HTTPS repositories the secret must contain user name and password fields. For SSH repositories, the secret must contain identity, identity.pub and known_hosts fields. For more information, see [fluxcd/source-controller HTTPS authentication](https://github.com/fluxcd/source-controller/blob/v0.15.0/docs/spec/v1beta1/gitrepositories.md#https-authentication) and [fluxcd/source-controller SSH authentication](https://github.com/fluxcd/source-controller/blob/v0.15.0/docs/spec/v1beta1/gitrepositories.md#ssh-authentication).
+For Git repositories that aren't accessible anonymously, you need to provide credentials in a Secret. 
+
+- For HTTPS repositories the secret must contain user name and password fields. The password field can contain a personal access token instead of an actual password. See [fluxcd/source-controller Basic access authentication](https://fluxcd.io/docs/components/source/gitrepositories/#basic-access-authentication)
+- For HTTPS with self-signed certificates, you can add a `.data.caFile value to the secret created for HTTPS authentication. See [fluxcd/source-controller HTTPS Certificate Authority](https://fluxcd.io/docs/components/source/gitrepositories/#https-certificate-authority)
+- For SSH repositories, the secret must contain identity, identity.pub and known_hosts fields. See [fluxcd/source-controller SSH authentication](https://fluxcd.io/docs/components/source/gitrepositories/#ssh-authentication).
 
 For Image repositories that aren't publicly available, an image pull secret can be provided. For more information, see [Using imagePullSecrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
 

@@ -1,4 +1,4 @@
-# Using function workloads (Beta)
+# Using functions (Beta)
 
 This topic describes how to create and deploy an HTTP function from an application accelerator starter template.
 
@@ -10,7 +10,7 @@ Functions provide a quick way to get started writing an application. Compared wi
 
 * Functions have a single entry-point and perform a single task. This means that functions can be easier to understand and monitor.
 
-* The initial webserver and application boilerplate are managed by the function supplychain.
+* The initial webserver and application boilerplate are managed by the function supply chain.
 This means that you can update the webserver and application boilerplate without needing to update each function application.
 
 * A traditional webserver application might be a better fit if you want to implement an entire website or API in a single container
@@ -91,7 +91,6 @@ you used in the `buildservice` section of your [`tap-values.yaml` file](../insta
 
         EOF
         ```
-
 
     - For the **lite descriptor**, run:
 
