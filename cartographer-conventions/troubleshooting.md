@@ -43,7 +43,7 @@ Ensure that the `convention server` ([ClusterPodConvention](reference/cluster-po
 + When a `PodIntent` is submitted, the `convention` is not applied.
 + The `convention-controller` [logs](#gathering-logs) reports `failed to apply convention` error like this.
 
-    ```console
+    ```json
     {"level":"error","ts":1638205387.8813763,"logger":"controllers.PodIntent.PodIntent.ApplyConventions","msg":"failed to apply convention","Convention":{"Name":"base-convention","Selectors":null,"Priority":"Normal","ClientConfig":{"service":{"namespace":"convention-template","name":"webhook","port":443},"caBundle":"..."}},"error":"Post \"https://webhook.convention-template.svc:443/?timeout=30s\": EOF","stacktrace":"reflect.Value.call\n\treflect/value.go:543\nreflect.Value.Call\n\treflect/value.go:339\ngithub.com/vmware-labs/reconciler-runtime/reconcilers.(*SyncReconciler).sync\n\tgithub.com/vmware-labs/reconciler-runtime@v0.3.0/reconcilers/reconcilers.go:287\ngithub.com/vmware-labs/reconciler-runtime/reconcilers.(*SyncReconciler).Reconcile\n\tgithub.com/vmware-labs/reconciler-runtime@v0.3.0/reconcilers/reconcilers.go:276\ngithub.com/vmware-labs/reconciler-runtime/reconcilers.Sequence.Reconcile\n\tgithub.com/vmware-labs/reconciler-runtime@v0.3.0/reconcilers/reconcilers.go:815\ngithub.com/vmware-labs/reconciler-runtime/reconcilers.(*ParentReconciler).reconcile\n\tgithub.com/vmware-labs/reconciler-runtime@v0.3.0/reconcilers/reconcilers.go:146\ngithub.com/vmware-labs/reconciler-runtime/reconcilers.(*ParentReconciler).Reconcile\n\tgithub.com/vmware-labs/reconciler-runtime@v0.3.0/reconcilers/reconcilers.go:120\nsigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller).Reconcile\n\tsigs.k8s.io/controller-runtime@v0.10.0/pkg/internal/controller/controller.go:114\nsigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller).reconcileHandler\n\tsigs.k8s.io/controller-runtime@v0.10.0/pkg/internal/controller/controller.go:311\nsigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller).processNextWorkItem\n\tsigs.k8s.io/controller-runtime@v0.10.0/pkg/internal/controller/controller.go:266\nsigs.k8s.io/controller-runtime/pkg/internal/controller.(*Controller).Start.func2.2\n\tsigs.k8s.io/controller-runtime@v0.10.0/pkg/internal/controller/controller.go:227"}
     ```
 
@@ -130,4 +130,4 @@ When a `convention server` is provided without using Transport Layer Security (T
 ### Solution
 
 1. Deploy a `convention server` with TLS enabled.
-1. Create `ClusterPodConvention` resource for the convention server with annotation `conventions.carto.run/inject-ca-from` as a pointer to the deployed *Certificate* resource.
+1. Create `ClusterPodConvention` resource for the convention server with annotation `conventions.carto.run/inject-ca-from` as a pointer to the deployed `Certificate` resource.
