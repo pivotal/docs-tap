@@ -40,7 +40,7 @@ as follows:
       tekton.dev/git-0: https://github.com
   type: kubernetes.io/basic-auth
   stringData:
-    username: ""
+    username: GITHUB-USERNAME
     password: GITHUB-ACCESS-TOKEN
   ```
 
