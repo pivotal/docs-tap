@@ -86,6 +86,12 @@ Accelerator fragments are reusable accelerator components that can provide optio
 
 The accelerator samples include three fragments - `java-version`, `tap-initialize`, and `live-update`. See the [sample-accelerators/fragments](https://github.com/sample-accelerators/fragments/tree/tap-1.2) Git repository for the content of these fragments.
 
+To discover what fragments are available to use, you can run the following command:
+
+```
+tanzu accelerator fragment list
+```
+
 We'll look a the `java-version` as an example. It contains the following `accelerator.yaml` file:
 
 ```
