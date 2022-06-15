@@ -46,7 +46,7 @@ between fully compatible and incompatible.
 The minimum requirement for compatibility is that there must be a declarative,
 Kubernetes-based API on which there is at least one API resource type adhering to the
 [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service)
-duck type defined by the [Service Binding for Kubernetes](https://servicebinding.io/) standard.
+duck type defined by the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec) on GitHub.
 This duck type includes any resource type with the following schema:
 
 ```yaml
