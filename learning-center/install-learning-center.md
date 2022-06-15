@@ -171,60 +171,61 @@ It is important to note that Learning Center has default values in place for the
 
 ```yaml
 #! The namespace in which to deploy Learning Center. For now this must be "learningcenter" as
-  namespace: learningcenter
-  #! DNS parent subdomain used for training portal and workshop ingresses.
-  ingressDomain: workshops.example.com
-  #! Ingress class for where multiple ingress controllers exist and need to
-  #! use that which is not marked as the default.
-  ingressClass: null
-  #! SSL certificate for secure ingress. This must be a wildcard certificate for
-  #! children of DNS parent ingress subdomain.
-  ingressSecret:
-    certificate: null
-    privateKey: null
-    secretName: null
-  #! Configuration for persistent volumes. The default storage class specified
-  #! by the cluster is used if not defined. You might need to set storage group
-  #! where a cluster has pod security policies enabled, usually
-  #! to one. Set storage user and storage group in exceptional cases
-  #! where storage class uses maps to NFS storage and storage server requires
-  #! that a specific user and group always be used.
-  storageClass: null
-  storageUser: null
-  storageGroup: null
-  #! Credentials for accessing training portal instances. If not specified,
-  #! random passwords are generated that you can obtain from the custom resource
-  #! for the training portal.
-  portalCredentials:
-    systemAdmin:
-      username: learningcenter
-      password: null
-    clientAccess:
-      username: robot@learningcenter
-      password: null
-  #! Primary image registry where Learning Center container images are stored. It
-  #! is only necessary to define the host and credentials when that image
-  #! registry requires authentication to access images. This principally
-  #! exists to allow relocation of images through Carvel image bundles.
-  imageRegistry:
-    host: null
+namespace: learningcenter
+#! DNS parent subdomain used for training portal and workshop ingresses.
+ingressDomain: workshops.example.com
+#! Ingress class for where multiple ingress controllers exist and need to
+#! use that which is not marked as the default.
+ingressClass: null
+#! SSL certificate for secure ingress. This must be a wildcard certificate for
+#! children of DNS parent ingress subdomain.
+ingressSecret:
+  certificate: null
+  privateKey: null
+  secretName: null
+#! Configuration for persistent volumes. The default storage class specified
+#! by the cluster is used if not defined. You might need to set storage group
+#! where a cluster has pod security policies enabled, usually
+#! to one. Set storage user and storage group in exceptional cases
+#! where storage class uses maps to NFS storage and storage server requires
+#! that a specific user and group always be used.
+storageClass: null
+storageUser: null
+storageGroup: null
+#! Credentials for accessing training portal instances. If not specified,
+#! random passwords are generated that you can obtain from the custom resource
+#! for the training portal.
+portalCredentials:
+  systemAdmin:
+    username: learningcenter
+    password: null
+  clientAccess:
+    username: robot@learningcenter
+    password: null
+#! Container image versions for various components of Learning Center. The Learning Center
+#! operator needs to be modified to read names of images for the registry
+#! and docker-in-docker from config map to enable disconnected install.
+#! Prepull images to nodes in cluster. Should be an empty list if no images
+#! should be prepulled. Normally you would only want to prepull workshop
+#! images. This is done to reduce start-up times for sessions.
+prepullImages: ["base-environment"]
+#! Docker daemon settings when building docker images in a workshop is
+#! enabled. Proxy cache provides a way of partially getting around image
+#! pull limits for Docker Hub image registry, with the remote URL being
+#! set to "https://registry-1.docker.io".
+dockerDaemon:
+  networkMTU: 1500
+  proxyCache:
+    remoteURL: null
     username: null
     password: null
-  #! Container image versions for various components of Learning Center. The Learning Center
-  #! operator needs to be modified to read names of images for the registry
-  #! and docker-in-docker from config map to enable disconnected install.
-  #! Prepull images to nodes in cluster. Should be an empty list if no images
-  #! should be prepulled. Normally you would only want to prepull workshop
-  #! images. This is done to reduce start-up times for sessions.
-  prepullImages: ["base-environment"]
-  #! Docker daemon settings when building docker images in a workshop is
-  #! enabled. Proxy cache provides a way of partially getting around image
-  #! pull limits for Docker Hub image registry, with the remote URL being
-  #! set to "https://registry-1.docker.io".
-  dockerDaemon:
-    networkMTU: 1500
-    proxyCache:
-      remoteURL: null
-      username: null
-      password: null
+#! Used to restrict access to IP addresses or IP subnets. This must be a CIDR block range corresponding to the subnet or a portion of a
+#! subnet you want to block. A Kubernetes `NetworkPolicy` is used to enforce the restriction. So the
+#! Kubernetes cluster must use a network layer supporting network policies, and the necessary Kubernetes
+#! controllers supporting network policies must be enabled when the cluster is installed.
+network:
+  blockCIDRs:
+  - 169.254.169.254/32
+  - fd00:ec2::254/128
 ```
+See [Restricting Network Access](./runtime-environment/system-profile.md#restrict-network-access) for more information on blocking CIDRs
