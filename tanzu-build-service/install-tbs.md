@@ -206,28 +206,28 @@ credentials for `kp_default_repository` and the VMware Tanzu Network registry.
 
 Use the following alternative configuration for `values.yaml`:
 
-    ```yaml
-    ---
-    kp_default_repository: "KP-DEFAULT-REPO"
-    kp_default_repository_secret:
-      name: "KP-DEFAULT-REPO-SECRET-NAME"
-      namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
-    tanzunet_secret:
-      name: "TANZUNET-SECRET-NAME"
-      namespace: "TANZUNET-SECRET-NAMESPACE"
-    enable_automatic_dependency_updates: TRUE-OR-FALSE-VALUE
-    ```
+```yaml
+---
+kp_default_repository: "KP-DEFAULT-REPO"
+kp_default_repository_secret:
+  name: "KP-DEFAULT-REPO-SECRET-NAME"
+  namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
+tanzunet_secret:
+  name: "TANZUNET-SECRET-NAME"
+  namespace: "TANZUNET-SECRET-NAMESPACE"
+enable_automatic_dependency_updates: TRUE-OR-FALSE-VALUE
+```
 
-    Where:
+Where:
 
-    - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
-        * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
-        * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
-        * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
-    - `KP-DEFAULT-REPO-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson` Secret containing credentials for `KP-DEFAULT-REPO`. You can write to this location with this credential.
-    - `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson` Secret containing credentials for `KP-DEFAULT-REPO`. You can write to this location with this credential.
-    - `TANZUNET-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson` Secret containing credentials for VMware Tanzu Network registry.
-    - `TANZUNET-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson` Secret containing credentials for the VMware Tanzu Network registry.
-    - `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Descriptors](tbs-about.html#descriptors). Available options are:
-        * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
-        * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
+- `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
+    * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
+    * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+    * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
+- `KP-DEFAULT-REPO-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson` Secret containing credentials for `KP-DEFAULT-REPO`. You can write to this location with this credential.
+- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson` Secret containing credentials for `KP-DEFAULT-REPO`. You can write to this location with this credential.
+- `TANZUNET-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson` Secret containing credentials for VMware Tanzu Network registry.
+- `TANZUNET-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson` Secret containing credentials for the VMware Tanzu Network registry.
+- `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Descriptors](tbs-about.html#descriptors). Available options are:
+    * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
+    * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
