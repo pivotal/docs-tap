@@ -15,8 +15,12 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="app-acc-features"></a> Application Accelerator
 
-- Feature 1
-- Feature 2
+- Add support for fragments
+    - Introduce new Fragment custom resource
+    - Add subPath in spec for Git repository
+- Add telemetry support
+    - Introduce new InvocationEvent custom resource to track request to generate project ZIP file
+    - Add job to remove InvocationEvent resources that are older than certain number of days (30 is default)
 
 #### Application Live View
 
@@ -102,11 +106,6 @@ This release includes the following changes, listed by component and area.
 
 This release has the following breaking changes, listed by area and component.
 
-#### <a id="app-acc-changes"></a> Application Accelerator
-
-- Breaking change 1
-- Breaking change 2
-
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
 - You must configure integration with Supply Chain Security Tools - Store for the Grype Scanner and Snyk Scanner packages to enable this feature. The configuration for Supply Chain Security Tools - Store in Supply Chain Security Tools - Scan is only for the deprecated Grype Scanner `ScanTemplate`s.
@@ -131,8 +130,8 @@ This following issues, listed by area and component, are resolved in this releas
 
 #### <a id="app-acc-resolved"></a> Application Accelerator
 
-- Resolved issue 1
-- Resolved issue 2
+- Limit server logging to startup and generate zip requests
+- Update engine to use Spring Boot 2.7.0
 
 #### <a id="alv-resolved"></a> Application Live View
 
