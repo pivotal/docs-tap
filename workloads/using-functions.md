@@ -92,7 +92,6 @@ you used in the `buildservice` section of your [`tap-values.yaml` file](../insta
         EOF
         ```
 
-
     - For the **lite descriptor**, run:
 
         ```console
