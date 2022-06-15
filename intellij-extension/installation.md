@@ -30,23 +30,6 @@ To install VMware Tanzu Developer Tools for IntelliJ:
   ![Gear icon inside the Plugins Preferences pane.](../images/intellij-gearIconPrefs.png)
   3. Use the file picker to select the `.zip` downloaded from the Tanzu Network.
 
-## <a id="configuration"></a> Configuration
-
-To configure the VMware Tanzu Developer Tools extension for IntelliJ:
-
-1. Ensure that you target the correct cluster. See [Kubernetes documentation](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) for more information.
-1. Select **Preferences -> Build, Execution, Deployment -> Tanzu** and set the following:
-
-    - [Source Image](glossary.md#source-image) (required): Destination for an image containing the source code to be published.
-
-        Example: `your-registry.io/project/tanzu-java-web-app-source`
-
-    - [Local Path](glossary.md#local-path) (required): Path on the local file system to a directory of the source code to build.
-
-        >**Note:** This must be the full path to your source code directory. You can use the file picker or enter it manually.
-        
-    - [Namespace](glossary.md#namespace) (optional): Namespace that the workloads are deployed into (defaults to `default`).
-
 ## <a id="uninstallation"></a> Uninstallation
 
 To uninstall the Tanzu Dev Tools extension:
