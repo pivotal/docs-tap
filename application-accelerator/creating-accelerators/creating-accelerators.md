@@ -43,7 +43,7 @@ Use the following procedure to create an accelerator based on this Git repositor
 2. To publish your new accelerator, run this command in your terminal:
     
     ```sh
-    tanzu acc create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
+    tanzu accelerator create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
     ```
 
     Where:
@@ -77,7 +77,7 @@ An alternative to using the Tanzu CLI is to create a separate manifest file and 
 1. To apply the `simple-manifest.yaml`, run this command in your terminal in the directory where you created this file:
 
     ```sh
-    kubectl apply -f simple-manifest.yaml
+    tanzu accelerator apply -f simple-manifest.yaml
     ```
 
 ## <a id="using-accelerator-fragments"></a>Using accelerator fragments
@@ -92,7 +92,7 @@ To discover what fragments are available to use, you can run the following comma
 tanzu accelerator fragment list
 ```
 
-We'll look a the `java-version` as an example. It contains the following `accelerator.yaml` file:
+We will look a the `java-version` fragment as an example. It contains the following `accelerator.yaml` file:
 
 ```
 accelerator:
@@ -165,6 +165,8 @@ To create the fragment (we can save the above manifest in a `java-version.yaml` 
 ```
 tanzu accelerator apply -f ./java-version.yaml
 ```
+
+>**Note:** The `accelerator apply` command can be used to apply both Accelerator and Fragment resources.
 
 To avoid having to create a separate manifest file, you can use the following command instead:
 
