@@ -126,6 +126,9 @@
 - apiGroups: ["conventions.carto.run"]
   resources: ["podintents"]
   verbs: ["get","list","watch"]
+- apiGroups: ["conventions.apps.tanzu.vmware.com"]
+  resources: ["podintents"]
+  verbs: ["get","list","watch"]
 ```
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer-cluster-access: "true"`
@@ -134,12 +137,18 @@
 - apiGroups: ["conventions.carto.run"]
   resources: ["clusterpodconventions"]
   verbs: ["get","list","watch"]
+- apiGroups: ["conventions.apps.tanzu.vmware.com"]
+  resources: ["clusterpodconventions"]
+  verbs: ["get","list","watch"]
 ```
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access`
 
 ```yaml
 - apiGroups: ["conventions.carto.run"]
+  resources: ["clusterpodconventions"]
+  verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
+- apiGroups: ["conventions.apps.tanzu.vmware.com"]
   resources: ["clusterpodconventions"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 ```
@@ -172,6 +181,8 @@
   resources: ["deliverables","runnables"]
   verbs: ["get","list","watch"]
 - apiGroups: ["conventions.carto.run"]
+  resources: ["podintents"]
+- apiGroups: ["conventions.apps.tanzu.vmware.com"]
   resources: ["podintents"]
   verbs: ["get","list","watch"]
 - apiGroups: ["kappctrl.k14s.io"]
@@ -210,6 +221,8 @@
   resources: ["deliverables","runnables"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 - apiGroups: ["conventions.carto.run"]
+  resources: ["podintents"]
+- apiGroups: ["conventions.apps.tanzu.vmware.com"]
   resources: ["podintents"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 - apiGroups: ["kpack.io"]
