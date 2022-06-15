@@ -227,6 +227,4 @@ It is important to note that Learning Center has default values in place for the
       remoteURL: null
       username: null
       password: null
-  #! Override operator image.
-  operatorImage: null
 ```
