@@ -16,6 +16,8 @@ Before you can iterate on your function, you must have:
 
 ## <a id="configuration"></a> Configure the Tanzu Developer Tools extension
 
+Before iterating on your application, you must configure the Tanzu Developer Tools extension as follows:
+
 1. Open your function as a project within your VSCode IDE.
 
 2. To ensure your extension assists you with iterating on the correct project,
@@ -33,8 +35,8 @@ You are now ready to iterate on your application.
 
 ## <a id="live-update"></a> Live update your application
 
-Deploy your function application to view it updating live on the cluster to demonstrate
-how code changes are going to behave on a production cluster early in the development process.
+Deploy your function application to view it updating live on the cluster.
+This demonstrates how code changes will behave on a production cluster early in the development process.
 
 To live update your application:
 
@@ -49,8 +51,9 @@ the container is being built and deployed.
     - Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
 
     >Note: Depending on the type of cluster you use, you might see an error message similar to the following:
-    >`ERROR: Stop! cluster-name might be production.` If you're sure you want to deploy there,
-    >add `allow_k8s_contexts('cluster-name')` to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.
+
+    >`ERROR: Stop! cluster-name might be production. If you're sure you want to deploy there,
+    >add allow_k8s_contexts('cluster-name') to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.`
     >Follow the instructions and add the line `allow_k8s_contexts('cluster-name')` to your Tiltfile.
 
 1. When the Live Update status in the status bar is visible and says
@@ -64,8 +67,10 @@ For example, in `HelloController.java`, edit the string returned to say `Hello!`
 
 1. View the changes to your workload running on the cluster.
 
-1. Either continue making changes, or stop and deactivate the live update when finished.
-Open the command palette by pressing **⇧⌘P**, type Tanzu, and choose an option. <!-- Clarify which options? Are these the options to continue or stop? -->
+1. If necessary, continue making changes to the source code.
+
+1. When you have finished making changes, stop and deactivate the live update.
+To do so, open the command palette by pressing **⇧⌘P**, type `Tanzu`, and select **Tanzu: Live Update Stop**.
 
 ## <a id="debug-app"></a> Debug your application
 
@@ -75,11 +80,11 @@ To debug your cluster:
 
 1. Set a breakpoint in your code.
 
-1. Right-click the file `workload.yaml` within the config directory, and select **Tanzu: Java Debug Start**.
+1. Right-click the file `workload.yaml` within the `config` directory, and select **Tanzu: Java Debug Start**.
 
     In a few moments, the workload is redeployed with debugging enabled.
-    You will see the `Deploy and Connect` task complete and the debug menu actions
-    are available to you, indicating that the debugger has attached.
+    You will see the Deploy and Connect task complete and the debug menu actions
+    available to you, indicating that the debugger has attached.
 
 1. Navigate to `http://localhost:8080` in your browser. This hits the breakpoint within VSCode.
 Play to the end of the debug session using VSCode debugging controls.
