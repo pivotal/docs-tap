@@ -60,7 +60,7 @@ Use the following procedure to verify that the packages are installed.
     appliveview-conventions  build.appliveview.tanzu.vmware.com                 1.0.2            Reconcile succeeded
     cartographer             cartographer.tanzu.vmware.com                      0.1.0            Reconcile succeeded
     cloud-native-runtimes    cnrs.tanzu.vmware.com                              1.0.3            Reconcile succeeded
-    convention-controller    controller.conventions.apps.tanzu.vmware.com       0.4.2            Reconcile succeeded
+    convention-controller    controller.conventions.apps.tanzu.vmware.com       0.7.0            Reconcile succeeded
     developer-conventions    developer-conventions.tanzu.vmware.com             0.3.0-build.1    Reconcile succeeded
     grype-scanner            grype.scanning.apps.tanzu.vmware.com               1.0.0            Reconcile succeeded
     image-policy-webhook     image-policy-webhook.signing.apps.tanzu.vmware.com 1.1.2            Reconcile succeeded

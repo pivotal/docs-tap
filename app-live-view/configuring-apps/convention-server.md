@@ -141,7 +141,7 @@ by the Application Live View Convention default values.
 You can verify the applied labels and annotations by running:
 
 ```console
-kubectl get podintents.conventions.apps.tanzu.vmware.com WORKLOAD-NAME -o yaml
+kubectl get podintents.conventions.carto.run WORKLOAD-NAME -o yaml
 ```
 
 Where `WORKLOAD-NAME` the name of the deployed workload, for example `tanzu-java-web-app`.
@@ -149,7 +149,7 @@ Where `WORKLOAD-NAME` the name of the deployed workload, for example `tanzu-java
 Expected output for Spring Boot Workload:
 
 ```console
-apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+apiVersion: conventions.carto.run/v1alpha1
 kind: PodIntent
 metadata:
   creationTimestamp: "2021-11-10T10:19:38Z"
@@ -206,7 +206,7 @@ status:
       annotations:
         boot.spring.io/actuator: http://:8080/actuator
         boot.spring.io/version: 2.5.4
-        conventions.apps.tanzu.vmware.com/applied-conventions: |-
+        conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-connector-boot
           appliveview-sample/app-live-view-appflavours-boot
           appliveview-sample/app-live-view-systemproperties
@@ -219,7 +219,7 @@ status:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: tanzu-java-web-appweb
         carto.run/workload-name: tanzu-java-web-app
-        conventions.apps.tanzu.vmware.com/framework: spring-boot
+        conventions.carto.run/framework: spring-boot
         tanzu.app.live.view: "true"
         tanzu.app.live.view.application.flavours: spring-boot
         tanzu.app.live.view.application.name: demo
@@ -244,7 +244,7 @@ status:
 Expected output for Spring Cloud Gateway workload:
 
 ```console
-apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+apiVersion: conventions.carto.run/v1alpha1
 kind: PodIntent
 metadata:
   creationTimestamp: "2021-11-10T10:19:38Z"
@@ -301,7 +301,7 @@ status:
       annotations:
         boot.spring.io/actuator: http://:8080/actuator
         boot.spring.io/version: 2.5.4
-        conventions.apps.tanzu.vmware.com/applied-conventions: |-
+        conventions.carto.run/applied-conventions: |-
           appliveview-sample/app-live-view-connector-boot
           appliveview-sample/app-live-view-connector-scg
           appliveview-sample/app-live-view-appflavours-boot
@@ -316,7 +316,7 @@ status:
         app.kubernetes.io/component: run
         app.kubernetes.io/part-of: tanzu-java-web-appweb
         carto.run/workload-name: tanzu-java-web-app
-        conventions.apps.tanzu.vmware.com/framework: spring-boot
+        conventions.carto.run/framework: spring-boot
         tanzu.app.live.view: "true"
         tanzu.app.live.view.application.flavours: spring-boot,spring-cloud-gateway
         tanzu.app.live.view.application.name: demo
