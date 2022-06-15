@@ -392,7 +392,7 @@ procedures in this topic, such as Direct Secret References and Dedicated Service
   <th><strong>Short Description</strong></th>
   <tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_on_tap.html">Consuming AWS RDS on Tanzu Application Platform</a>
+      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_on_tap.html">Consuming AWS RDS on Tanzu Application Platform</a>
     </td>
     <td>
       Using the Controllers for Kubernetes (ACK) in order to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
@@ -400,7 +400,7 @@ procedures in this topic, such as Direct Secret References and Dedicated Service
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-direct_secret_references.html">Direct Secret References</a>
+      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-direct_secret_references.html">Direct Secret References</a>
     </td>
     <td>
       Binding to services running external to the cluster, for example, and in-house oracle database.<br>
@@ -409,7 +409,7 @@ procedures in this topic, such as Direct Secret References and Dedicated Service
   </tr>
   <tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a>
+      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a>
     </td>
     <td>Separates application workloads from service instances across dedicated clusters.</td>
   </tr>
