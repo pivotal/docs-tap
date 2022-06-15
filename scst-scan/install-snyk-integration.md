@@ -133,15 +133,15 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
      Added installed package 'snyk-scanner' in namespace 'tap-install'
     ```
 
-## Using the Synk scanner to run an ImageScan
+## Verify integration with Synk 
 
-The out of the box Scanning Supply Chain implements a `SourceScan` and `ImageScan`, which reference `ScanTemplate`s that use the Grype scanner. To use the Snyk scanner for the `ImageScan`, the `ImageScan` `ScanTemplate` must be used instead. In the out of the box Scanning Supply Chain, update `spec.scanTemplate` from `public-image-scan-template` to `snyk-public-image-scan-template`.
+To verify the integration with Synk you can apply the following `ImageScan` in the Developer namespace and check the result.
 
->**Note:** The Snyk `SourceScan` is not supported.
-
-To run a scan manually, apply the following to the developer namespace:
+1. Apply
 
 ```yaml
+kubectl apply -n $DEVELOPER_NAMESPACE -f - << EOF
+---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ImageScan
 metadata:
@@ -151,8 +151,39 @@ spec:
     image: "nginx:1.16"
   scanTemplate: snyk-public-image-scan-template
   scanPolicy: scan-policy
+EOF
 ```
 
-Applying both of these into a developer namespace would result in an image scan being run using the Snyk scanner instead of the Grype scanner.
+2. Verify
 
-*NOTE:* Currently, the Snyk Scanner Integration is only available for an image scan, not a source scan.
+```bash
+kubectl get imagescan sample-snyk-public-image-scan -n $DEVELOPER_NAMESPACE
+```
+
+You should see results similar to below:
+```console
+NAME                            PHASE       SCANNEDIMAGE   AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+sample-snyk-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
+```
+
+3. Cleanup
+
+```bash
+kubectl delete imagescan sample-snyk-public-image-scan -n $DEVELOPER_NAMESPACE
+```
+
+## Configure Supply Chains
+
+To enable Synk rather than the default Grype in the out of the box Scanning Supply Chain, you will need to update your Tanzu Application Platform installation.
+
+Edit your `tap-values.yaml` adding the `ootb_supply_chain_testing_scanning.scanning` section below and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
+
+```yaml
+ootb_supply_chain_testing_scanning:
+  scanning:
+    image:
+      template: snyk-private-image-scan-template
+      policy: scan-policy
+```
+
+>**Note:** Currently, the Snyk Scanner Integration is only available for an image scan, not a source scan.
