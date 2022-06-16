@@ -1,8 +1,8 @@
 # Building from source
 
-Regardless of the Out of the Box Supply Chain Package you've installed, you can provide source code for the workload from one of three places:
+Regardless of the out of the box Supply Chain Package you've installed, you can provide source code for the workload from one of three places:
 
-1. From a Git repository.
+1. A Git repository.
 1. A directory in your local computer's file system.
 1. A Maven repository.
 
@@ -454,17 +454,16 @@ Instead of a `GitRepository` object, an `ImageRepository` is created:
 except that it looks for source code in container image registries rather than
 Git repositories.
 
-## <a id="maven-artifact"></a>Maven Artifact
+## <a id="maven-artifact"></a> Maven Artifact
 
-This approach is intended to be used to aid integration with existing CI systems
-(e.g.: Jenkins) and can pull artifacts from existing Maven repositories,
+This approach is used to aid integration with existing CI systems, such as Jenkins, and can pull artifacts from existing Maven repositories,
 including Jfrog Artifactory.
 
-At this time, there are no dedicated fields in the `Workload` resource for
-specifying the Maven artifact configuration; you need to fill in the
+There are no dedicated fields in the `Workload` resource for
+specifying the Maven artifact configuration. You must fill in the
 `name`/`value` pairs in the `params` structure.
 
-Example:
+For example:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -484,22 +483,21 @@ spec:
       classifier: sources   # optional
 ```
 
-The `tanzu` CLI does not yet support creating workloads for Maven artifacts.
+The `tanzu` CLI does not support creating workloads for Maven artifacts.
 
 The Maven repository URL and required credentials are defined in the supply
-chain, not the workload.  See the instructions in [Installing OOTB
-Basic](install-ootb-sc-basic.md) for more details.
+chain, not the workload. For more information, see [Installing OOTB
+Basic](install-ootb-sc-basic.md).
 
 ### <a id="maven-repository-secret"></a> Maven Repository Secret
 
-The MavenArtifact only supports authentication using basic auth at this time.
+The MavenArtifact only supports authentication using basic auth.
 
-Additionally, MavenArtifact supports security using the TLS protocol.  In
-particular, the Application Operator can configure the MavenArtifact to use a
+Additionally, MavenArtifact supports security using the TLS protocol.  The Application Operator can configure the MavenArtifact to use a
 custom, or self-signed certificate authority (CA).
 
-The MavenArtifact expects that all of the above credentials to be provided in
-one secret, formatted as below:
+The MavenArtifact expects that all of the above credentials are provided in
+one secret, formatted as shown below:
 
 ```yaml
 ---
@@ -514,8 +512,10 @@ data:
   caFile: <BASE64>    # PEM Encoded certificate data for custom CA 
 ```
 
-At this time, you cannot use the `tanzu` CLI to create secrets like this, but
-you can use the `kubectl` CLI instead.  e.g.:
+You cannot use the `tanzu` CLI to create secrets like this, but
+you can use the `kubectl` CLI instead.  
+
+For example:
 
 ``` bash
 kubectl create secret generic maven-credentials \
