@@ -49,7 +49,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (Beta)
 
-- Snyk Scanner is now available in beta for the [Supply Chain Security Tools - Scan](#scst-scan) controller. 
+- Snyk Scanner is now available in beta for the [Supply Chain Security Tools - Scan](#scst-scan) controller.
   - To use Snyk Scanner, manually install it by following the [Install Snyk Scanner](scst-scan/install-snyk-integration.md) instructions.
   - Run Snyk Scanner on `ImageScan`s for the Scan-Link controller.
 
@@ -85,7 +85,7 @@ This release includes the following changes, listed by component and area.
 - Bumped postgres and paketo images to fix CVE-2022-1292
 - Added support for insight plug-in to consume vulnerabilities through VEX in CycloneDX 1.4 reports
 - Added support for insight plug-in to consume SPDX 2.2/3.0 reports and introduced new --spdxtype option to tanzu insight image/source add command
-- Changed insight plug-in text response to return only highest CVE 
+- Changed insight plug-in text response to return only highest CVE
 - Added aliases for insight plug-in vulnerabilities command
 
 #### Tanzu Application Platform GUI
@@ -123,7 +123,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="grype-scanner-changes"></a> Grype Scanner
 
-- Information to integrate with the Supply Chain Security Tools - Store should be provided in the `tap-values.yaml` file for the Grype Scanner `v1.2+` 
+- Information to integrate with the Supply Chain Security Tools - Store should be provided in the `tap-values.yaml` file for the Grype Scanner `v1.2+`
 
 ### <a id='1-2-resolved-issues'></a> Resolved issues
 
@@ -178,11 +178,11 @@ This release has the following known issues, listed by area and component.
 
 #### Tanzu Application Platform
 
-- **AWS EKS clusters:** When connecting to AWS EKS clusters an error might appear with the text `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`. The cause of the issue is that Kubernetes release [v1.24](https://kubernetes.io/blog/2022/05/03/kubernetes-1-24-release-announcement/) drops support for `client.authentication.k8s.io/v1alpha1`, see [aws/aws-cli/issues/6920](https://github.com/aws/aws-cli/issues/6920) for more info. To fix, update the version of aws-cli to latest and kubectl to 1.24 then run:
+- **AWS EKS clusters:** When connecting to AWS EKS clusters an error might appear with the text `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`. The cause is [Kubernetes v1.24](https://kubernetes.io/blog/2022/05/03/kubernetes-1-24-release-announcement/) dropping support for `client.authentication.k8s.io/v1alpha1`. For more information, see [aws/aws-cli/issues/6920](https://github.com/aws/aws-cli/issues/6920) in GitHub. To fix, update `aws-cli` to the latest version, update kubectl to v1.24, and then run:
 
-```console
+    ```console
     aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
-```
+    ```
 
 #### Tanzu Cluster Essentials
 
