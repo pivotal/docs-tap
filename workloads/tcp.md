@@ -50,7 +50,7 @@ Before using `tcp` workloads on Tanzu Application Platform, you must:
 
 ## <a id="create-tcp"></a> Create a `tcp` SupplyChain
 
-This section decribes how to create a supply chain for the `tcp` workload type.
+This section describes how to create a supply chain for the `tcp` workload type.
 
 ### <a id="templates"></a>Create supply chain templates
 
