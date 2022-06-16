@@ -61,7 +61,6 @@ the container is being built and deployed.
 and view your running application.
 
 1. Enter the IDE and make a change to the source code.
-For example, in `HelloController.java`, edit the string returned to say `Hello!` and save.
 
 1. The container is updated when the logs stop streaming. Navigate to your browser and refresh the page.
 
