@@ -8,7 +8,7 @@ There are several [resources](convention-resources.md) involved in the applicati
 
 ### <a id="api-structure"></a>API Structure
 
-The [`PodConventionContext`](pod-convention-context.md) API object in the `webhooks.conventions.apps.tanzu.vmware.com` API group is the structure used for both request and response from the convention server.
+The [`PodConventionContext`](pod-convention-context.md) API object in the `webhooks.conventions.carto.run` API group is the structure used for both request and response from the convention server.
 
 ### <a id="template-status"></a>Template Status
 
@@ -26,7 +26,7 @@ You can use strategic naming to control the order in which the conventions are a
 
 After the conventions are applied, the `Ready` status condition on the `PodIntent` resource is used to indicate
 whether it is applied successfully.
-A list of all applied conventions is stored under the annotation `conventions.apps.tanzu.vmware.com/applied-conventions`.
+A list of all applied conventions is stored under the annotation `conventions.carto.run/applied-conventions`.
 
 ## <a id="collect-logs-from-ctrlr"></a>Collecting Logs from the Controller
 

@@ -92,7 +92,7 @@ To do so:
       resources:
       - imagerepositories
       verbs: ['get', 'watch', 'list']
-    - apiGroups: ['conventions.apps.tanzu.vmware.com']
+    - apiGroups: ['conventions.carto.run']
       resources:
       - podintents
       verbs: ['get', 'watch', 'list']

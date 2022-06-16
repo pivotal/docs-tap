@@ -79,7 +79,7 @@ To verify the label:
 shows the newly added label has propagated through the Supply Chain:
 
     ```console
-    kubectl get podintents.conventions.apps.tanzu.vmware.com spring-petclinic -oyaml  
+    kubectl get podintents.conventions.carto.run spring-petclinic -oyaml  
 
     status:
       conditions:
@@ -96,7 +96,7 @@ shows the newly added label has propagated through the Supply Chain:
             autoscaling.knative.dev/minScale: "1"
             boot.spring.io/actuator: http://:8080/actuator
             boot.spring.io/version: 2.5.6
-            conventions.apps.tanzu.vmware.com/applied-conventions: |-
+            conventions.carto.run/applied-conventions: |-
               appliveview-sample/app-live-view-connector-boot
               appliveview-sample/app-live-view-appflavours-boot
               appliveview-sample/app-live-view-systemproperties
@@ -109,16 +109,16 @@ shows the newly added label has propagated through the Supply Chain:
             kapp.k14s.io/identity: v1;default/carto.run/Workload/spring-petclinic;carto.run/v1alpha1
             kapp.k14s.io/original: '{"apiVersion":"carto.run/v1alpha1","kind":"Workload","metadata":{"annotations":{"autoscaling.knative.dev/minScale":"2"},"labels":{"app.kubernetes.io/part-of":"tanzu-java-web-app","apps.tanzu.vmware.com/workload-type":"web","kapp.k14s.io/app":"1638455805474051000","kapp.k14s.io/association":"v1.5a9384bd7b93ca74ef494c4dec2caa4b","tanzu.app.live.view":"false"},"name":"spring-petclinic","namespace":"default"},"spec":{"source":{"git":{"ref":{"branch":"main"},"url":"https://github.com/ksankaranara-vmw/spring-petclinic"}}}}'
             kapp.k14s.io/original-diff-md5: 58e0494c51d30eb3494f7c9198986bb9
-            services.conventions.apps.tanzu.vmware.com/mysql: mysql-connector-java/8.0.27
+            services.conventions.carto.run/mysql: mysql-connector-java/8.0.27
           labels:
             app.kubernetes.io/component: run
             app.kubernetes.io/part-of: tanzu-java-web-app
             apps.tanzu.vmware.com/workload-type: web
             carto.run/workload-name: spring-petclinic
-            conventions.apps.tanzu.vmware.com/framework: spring-boot
+            conventions.carto.run/framework: spring-boot
             kapp.k14s.io/app: "1638455805474051000"
             kapp.k14s.io/association: v1.5a9384bd7b93ca74ef494c4dec2caa4b
-            services.conventions.apps.tanzu.vmware.com/mysql: workload
+            services.conventions.carto.run/mysql: workload
             tanzu.app.live.view: "false"
             tanzu.app.live.view.application.flavours: spring-boot
             tanzu.app.live.view.application.name: petclinic

@@ -59,6 +59,8 @@ This release includes the following changes, listed by component and area.
   - Added ability to indicate how Cartographer can read the state of the resource and reflect it on the owner status.
   - Surfaces information about the health of resources directly on the owner status.
   - Adds a field in the spec `healthRule` where authors can specify how to determine the health of the underlying resource for that template. The resource can be in one of the following states: A stamped resource can be in one of three states: 'Healthy' (status True), 'Unhealthy' (status False), or 'Unknown'  (status Unknown). If no healthRule is defined, Cartographer defaults to listing the resource as `Healthy` once it is successfully applied to the cluster and any outputs are read off the resource.
+- [Cartographer Conventions](./cartographer-conventions/about.md) v0.1.0 is now bundled with the Supply Chain Choreographer
+  - As of v0.7.0 release of [Convention Controller](./convention-service/about.md), it's APIs haven been deprecated in favor of continuing future development on [Cartographer Conventions](./cartographer-conventions/about.md) which is now bundled with Supply Chain Choreographer.
 
 #### <a id="scst-scan"></a> Supply Chain Security Tools - Scan
 

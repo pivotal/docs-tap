@@ -13,7 +13,7 @@ The following is an example of a `PodConventionContext` resource request receive
 
 ```yaml
 ---
-apiVersion: webhooks.conventions.apps.tanzu.vmware.com/v1alpha1
+apiVersion: webhooks.conventions.carto.run/v1alpha1
 kind: PodConventionContext
 metadata:
   name: sample # the name of the ClusterPodConvention
