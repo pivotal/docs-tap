@@ -3,11 +3,18 @@ title: Descriptors
 owner: Build Service Team
 ---
 
+## <a id="auto-updates"></a> Automatic Updates (deprecated)
+
+The automatic updates feature is in the process of being deprecated. The recommended way to patch dependencies is by upgrading or patching TAP.
+
+This section describes descriptors and how TBS can be configured to automatically update dependencies.
+
 ## <a id="descriptors"></a> About descriptors
 
 Tanzu Build Service descriptors are curated sets of dependencies, including stacks and buildpacks, that are
-continuously released on VMware Tanzu Network to resolve all workload Critical and High CVEs. Descriptors are only used 
-if TAP is configured for automatic dependency updates. Descriptors are imported into Tanzu Build Service to update the entire cluster.
+continuously released on VMware Tanzu Network to resolve all workload Critical and High CVEs. 
+
+Descriptors are only used if TAP is configured for automatic dependency updates. Descriptors are imported into Tanzu Build Service to update the entire cluster.
 
 There are two types of descriptor, `lite` and `full`, available on the
 [Tanzu Network Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/) page.
