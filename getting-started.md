@@ -1,13 +1,6 @@
 # Getting started with the Tanzu Application Platform
 
-Welcome to the Tanzu Application Platform. The guides in this section offer hands-on instruction to get you started on Tanzu Application Platform. Specifically, you are going to learn how to:
-
-- Develop and promote an application
-- Create an application accelerator
-- Add testing and security scanning to an application
-- Administer, set up, and manage supply chains
-
-Before you start, be sure to complete all of the prerequisites in the following section.
+Welcome to the Tanzu Application Platform. The guides in this section offer hands-on instruction to get developers and operators started on Tanzu Application Platform. Before you start, be sure to complete all of the prerequisites in the following section.
 
 ## <a id="get-started-prereqs"></a>Getting started prerequisites
 
@@ -47,4 +40,10 @@ When you have completed these prerequisites, you are ready to get started.
 
 ## Next steps
 
+For developers:
+
 - How to [Deploy your first application on Tanzu Application Platform](getting-started/deploy-first-app.md)
+
+For operators:
+
+- [Create an application accelerator]create-app-accelerator.md
