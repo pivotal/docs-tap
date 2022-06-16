@@ -39,7 +39,7 @@ Tanzu Application Platform GUI supports multiple OIDC providers. For the purpose
 
 After creating an Application with your OIDC provider, you will get the following credentials for setting up RBAC for your remote cluster:
 
-* Domain - to be used as `issuerURL` in the sections below
+* Domain - to be used as `issuerURL` in the sections below. *Note:* for Auth0, the format of the `issuerURL` is `https://${AUTH0_DOMAIN}/`
 * Client ID - to be used as `CLIENT-ID` in the sections below
 * Client Secret - to be used as `CLIENT-SECRET` in the sections below
 
@@ -71,7 +71,7 @@ auth:
 Where:
 
    - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider
-   - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider
+   - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider. *Note:* for Auth0, the format of the `ISSUER-URL` is `https://${AUTH0_DOMAIN}/`
    - `CLIENT-SECRET` is the Client Secret you obtained while setting up the OIDC provider
 
 

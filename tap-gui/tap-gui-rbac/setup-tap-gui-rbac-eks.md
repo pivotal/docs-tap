@@ -39,7 +39,7 @@ Auth0 is used here as an example.
 After creating an application with your OIDC provider, you receive the following credentials for setting
 up RBAC for your remote cluster:
 
-* **Domain**, which is used as `issuerURL` in the following sections
+* **Domain**, which is used as `issuerURL` in the following sections. *Note:* for Auth0, the format of the `issuerURL` is `https://${AUTH0_DOMAIN}/` 
 * **Client ID**, which is used as `CLIENT-ID` in the following sections
 * **Client Secret**, which is used as `CLIENT-SECRET` in the following sections
 
@@ -75,7 +75,7 @@ This content applies to EKS clusters.
     - `CLUSTER-NAME` is the cluster name for your EKS cluster as an AWS identifier
     - `AWS-REGION` is the AWS region of the EKS cluster
     - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider
-    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider
+    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider. *Note:* for Auth0, the format of the `ISSUER-URL` is `https://${AUTH0_DOMAIN}/`
 
 
 1. Using `eksctl`, run:
@@ -129,7 +129,7 @@ uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
 
     - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider
     - `CLIENT-SECRET` is the Client Secret you obtained while setting up the OIDC provider
-    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider
+    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider. *Note:* for Auth0, the format of the `ISSUER-URL` is `https://${AUTH0_DOMAIN}/`
 
 1. Add a `kubernetes` section to the `app_config` section that Tanzu Application Platform GUI
 uses. This section must have an entry for each cluster that has resources to view.
