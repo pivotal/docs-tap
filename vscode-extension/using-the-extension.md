@@ -50,6 +50,8 @@ To apply a workload from the command palette:
 
     ![Workload on Tanzu Workloads](../images/vscode-panel-workload-unknown.png)
 
+>**Note:** The workload panel is populated by the workloads running in the namespace defined in the current kubernetes context. To check which context and namespace are currently configured use: `kubectl config get-contexts`. To set a namespace for the current context run: `kubectl config set-context --current --namespace=YOURNAMESPACE`.
+
 5. Once the workload has been deployed the status on the Tanzu Workloads panel will change to Ready
 
     ![Workload ready on Tanzu Workloads](../images/vscode-panel-workload-ready.png)
@@ -67,6 +69,8 @@ To apply a workload from the context menu:
 3. A new workload should appear on the Tanzu Workloads panel.
 
     ![Workload on Tanzu Workloads](../images/vscode-panel-workload-unknown.png)
+
+>**Note:** The workload panel is populated by the workloads running in the namespace defined in the current kubernetes context. To check which context and namespace are currently configured use: `kubectl config get-contexts`. To set a namespace for the current context run: `kubectl config set-context --current --namespace=YOURNAMESPACE`.
 
 4. Once the workload has been deployed the status on the Tanzu Workloads panel will change to Ready
 
@@ -206,6 +210,6 @@ To switch the namespace where you created the workload:
 
 The current state of the workloads is visible on the Tanzu Workloads panel in the bottom left corner of the VS Code window. The panel shows the current status of each workload, namespace, cluster and whether Live Update and Debug are running, stopped or disabled.
 
-The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context.
+The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context. You can run: `kubectl config get-contexts` to view the current context and namespace. To set a namespace for the current context run: `kubectl config set-context --current --namespace=YOURNAMESPACE`.
 
 ![VS Code Workload Panel](../images/vscode-panel-live-update-running.png)
