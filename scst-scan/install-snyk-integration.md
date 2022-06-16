@@ -133,50 +133,52 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
      Added installed package 'snyk-scanner' in namespace 'tap-install'
     ```
 
-## Verify integration with Synk 
+## Verify integration with Snyk 
 
-To verify the integration with Synk you can apply the following `ImageScan` in the Developer namespace and check the result.
+To verify the integration with Snyk you can apply the following `ImageScan` in the developer namespace and review the result.
 
-1. Apply
+1. Apply the following:
 
-```yaml
-kubectl apply -n $DEVELOPER_NAMESPACE -f - << EOF
----
-apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-kind: ImageScan
-metadata:
-  name: sample-snyk-public-image-scan
-spec:
-  registry:
-    image: "nginx:1.16"
-  scanTemplate: snyk-public-image-scan-template
-  scanPolicy: scan-policy
-EOF
-```
+  ```yaml
+  kubectl apply -n $DEVELOPER_NAMESPACE -f - << EOF
+  ---
+  apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+  kind: ImageScan
+  metadata:
+    name: sample-snyk-public-image-scan
+  spec:
+    registry:
+      image: "nginx:1.16"
+    scanTemplate: snyk-public-image-scan-template
+    scanPolicy: scan-policy
+  EOF
+  ```
 
-2. Verify
+2. To verify the integration, run:
 
-```bash
-kubectl get imagescan sample-snyk-public-image-scan -n $DEVELOPER_NAMESPACE
-```
+  ```bash
+  kubectl get imagescan sample-snyk-public-image-scan -n $DEVELOPER_NAMESPACE
+  ```
 
-You should see results similar to below:
-```console
-NAME                            PHASE       SCANNEDIMAGE   AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
-sample-snyk-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
-```
+  For example:
+
+  ```console
+  kubectl get imagescan sample-snyk-public-image-scan -n $DEVELOPER_NAMESPACE
+  NAME                            PHASE       SCANNEDIMAGE   AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+  sample-snyk-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
+  ```
 
 3. Cleanup
 
-```bash
-kubectl delete imagescan sample-snyk-public-image-scan -n $DEVELOPER_NAMESPACE
-```
+  ```bash
+  kubectl delete imagescan sample-snyk-public-image-scan -n $DEVELOPER_NAMESPACE
+  ```
 
 ## Configure Supply Chains
 
-To enable Synk rather than the default Grype in the out of the box Scanning Supply Chain, you will need to update your Tanzu Application Platform installation.
-
-Edit your `tap-values.yaml` adding the `ootb_supply_chain_testing_scanning.scanning` section below and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
+To enable Snyk, rather than the default Grype in the out of the box Scanning Supply Chain, you need to update your Tanzu Application Platform installation.
+ 
+Add the `ootb_supply_chain_testing_scanning.scanning` section below to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
 
 ```yaml
 ootb_supply_chain_testing_scanning:
@@ -186,4 +188,4 @@ ootb_supply_chain_testing_scanning:
       policy: scan-policy
 ```
 
->**Note:** Currently, the Snyk Scanner Integration is only available for an image scan, not a source scan.
+>**Note:** The Snyk Scanner integration is only available for an image scan, not a source scan.
