@@ -18,7 +18,7 @@ This is the table of contents from which the Tanzu Application Platform Document
           - [Deploy your first app on Tanzu Application Platform](getting-started/deploy-first-app.md)
           - [Iterate on your new application](getting-started/iterate-new-app.md)
           - [Consume services on Tanzu Application Platform](getting-started/consume-services.md)
-  - [For operators](getting-startefor-operators.md)
+  - [For operators](getting-started/for-operators.md)
       - [How-to guides](getting-started/operator-how-to-guides.md)
           - [Create your application accelerator](getting-started/create-app-accelerator.md)
           - [Add testing and security scanning](getting-started/add-test-and-security.md.hbs)
