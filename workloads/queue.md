@@ -43,7 +43,7 @@ Before using `queue` workloads on Tanzu Application Platform, you must:
 
 ## <a id="create-queue"></a> Create a `queue` SupplyChain
 
-This section decribes how to create a supply chain for the `queue` workload type.
+This section describes how to create a supply chain for the `queue` workload type.
 
 ### <a id="templates"></a> Create supply chain templates
 
