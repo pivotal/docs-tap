@@ -204,7 +204,7 @@
   resources: ["services"]
   verbs: ["get","list","watch"]
 - apiGroups: ["source.apps.tanzu.vmware.com"]
-  resources: ["imagerepositories"]
+  resources: ["imagerepositories","mavenartifacts"]
   verbs: ["get","list","watch"]
 - apiGroups: ["source.toolkit.fluxcd.io"]
   resources: ["gitrepositories"]
@@ -232,7 +232,7 @@
   resources: ["imagescans","sourcescans"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 - apiGroups: ["source.apps.tanzu.vmware.com"]
-  resources: ["imagerepositories"]
+  resources: ["imagerepositories","mavenartifacts"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 - apiGroups: ["source.toolkit.fluxcd.io"]
   resources: ["gitrepositories"]
@@ -261,7 +261,7 @@
   resources: ["services"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 - apiGroups: ["source.apps.tanzu.vmware.com"]
-  resources: ["imagerepositories"]
+  resources: ["imagerepositories","mavenartifacts"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 - apiGroups: ["source.toolkit.fluxcd.io"]
   resources: ["gitrepositories"]
@@ -318,7 +318,7 @@
 
 ```yaml
 - apiGroups: ["source.apps.tanzu.vmware.com"]
-  resources: ["imagerepositories"]
+  resources: ["imagerepositories","mavenartifacts"]
   verbs: ["get","list","watch"]
 ```
 
