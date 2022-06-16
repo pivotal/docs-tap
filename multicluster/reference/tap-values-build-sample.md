@@ -39,9 +39,6 @@ Where:
   * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. This credential can also be configured by using a Secret reference. For more information, see [Install Tanzu Build Service](../../tanzu-build-service/install-tbs.html#install-secret-refs) for details.
   * For Google Cloud Registry, use the contents of the service account JSON file.
-- `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Descriptors](../../tanzu-build-service/tbs-about.html#descriptors). Available options are:
-  * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
-  * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Dockerhub has the form `server: "index.docker.io"`.

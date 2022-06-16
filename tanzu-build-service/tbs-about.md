@@ -16,7 +16,7 @@ to build OCI images.
 
 This topic describes how Tanzu Build Service uses and installs dependencies.
 
-## <a id="tap-install"></a> Installing TAP with Full Dependencies
+## <a id="tap-install-full-deps"></a> Installing TAP with Full Dependencies
 
 By default, TAP is installed with `lite` dependencies. See [here](#descriptors) for a comparison of lite vs full dependencies.
 
