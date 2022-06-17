@@ -1,6 +1,6 @@
 # Getting started with Tanzu Application Platform for developers
 
-Welcome to the Tanzu Application Platform. The guides in this section offer hands-on instruction to get developers started on Tanzu Application Platform. Specifically, you are going to learn how to:
+Welcome to the Tanzu Application Platform. The guides in this section offer hands-on instruction to help get developers started on Tanzu Application Platform. Specifically, you are going to learn how to:
 
 - Deploy your first application on Tanzu Application Platform
 - Iterate on your application

@@ -1,4 +1,6 @@
-# Welcome to the Tanzu Application Platform. The guides in this section offer hands-on instruction to get operators started on Tanzu Application Platform. Specifically, you are going to learn how to:
+# Getting started with Tanzu Application Platform for developers
+
+Welcome to the Tanzu Application Platform. The guides in this section offer hands-on instruction to help operators get started on Tanzu Application Platform. Specifically, you are going to learn how to:
 
 - Create an application accelerator
 - Add testing and security scanning to an application
