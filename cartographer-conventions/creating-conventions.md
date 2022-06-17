@@ -147,7 +147,7 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
 
     + `PORT` is a possible environment variable, for this example, defined in the [`Deployment`](#install-deployment).
     + `ServerHandler` is the *handler* function called when any request comes to the server.
-    + `NewConventionServer` is the function in charge of configure and create the *http webhook* server.
+    + `NewConventionServer` is the function in charge of configuring and creating the *http webhook* server.
     + `port` is the calculated port of the server to listen for requests. It needs to match the [`Deployment`](#install-deployment) if the `PORT` variable is not defined in it.
     + The `path` or pattern (default to `/`) is the convention server's default path. If it is changed, it must be changed in the [`ClusterPodConvention`](#install-convention).
 
@@ -224,7 +224,7 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
         if err := watcher.Load(); err != nil {
             return err
         }
-        // Defines the server with the TSL configuration.
+        // Defines the server with the TLS configuration.
         server := &http.Server{
             Addr: addr,
             TLSConfig: &tls.Config{
@@ -278,12 +278,12 @@ When using labels or annotations to define whether a convention should be applie
         c:= []string{}
         // This convention is applied if a specific label is present.
         if lv, le := template.Labels["awesome-label"]; le && lv == "awesome-value" {
-            // DO COOl STUFF
+            // DO COOL STUFF
             c = append(c, "awesome-label-convention")
         }
         // This convention is applied if a specific annotation is present.
         if av, ae := template.Annotations["awesome-annotation"]; ae && av == "awesome-value" {
-            // DO COOl STUFF
+            // DO COOL STUFF
             c = append(c, "awesome-annotation-convention")
         }
 
@@ -295,8 +295,11 @@ When using labels or annotations to define whether a convention should be applie
  Where:
 
 + `conventionHandler` is the *handler*.
+
 + `awesome-label` is the **label** that we want to validate.
+
 + `awesome-annotation` is the **annotation** that we want to validate.
+
 + `awesome-value` is the value that must have the **label**/**annotation**.
 
 ### <a id='match-criteria-env-var'></a> Matching criteria by environment variables
