@@ -441,7 +441,7 @@ from your `tap-values.yaml` file:
 ## <a id="using"></a> Use the `tcp` workload type
 
 The `spring-sensors-consumer-web` workload in the getting started example
-[using Service Toolkit claims](../getting-started/consume-services.md#stk-bind)
+[using Service Toolkit claims](../getting-started.md#stk-bind)
 is a good match for the `tcp` workload type.
 This is because it runs continuously to extract information from a RabbitMQ queue, and stores the resulting data locally in-memory and presents it through a web UI.
 

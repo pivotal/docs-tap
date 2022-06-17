@@ -395,7 +395,7 @@ from your `tap-values.yaml` file:
 ## <a id="using"></a> Use the `queue` workload type
 
 The `spring-sensors-sensor` workload in the getting started example
-[using Service Toolkit claims](../getting-started/consume-services.md#stk-bind)
+[using Service Toolkit claims](../getting-started.md#stk-bind)
 is a good match for the `queue` workload type.
 This is because it runs continuously without a UI to report sensor information to a RabbitMQ topic.
 
