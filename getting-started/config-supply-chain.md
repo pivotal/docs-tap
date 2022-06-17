@@ -3,7 +3,7 @@
 In this guide, you are going to:
 
   - Configure your supply chain to sign your image builds.
-  - Configure an admission control policy to verify image signatures before admitting Pods to the cluster.
+  - Configure an admission control policy to verify image signatures before admitting pods to the cluster.
 
 ## <a id="config-sc-to-img-builds"></a>Configure your supply chain to sign your image builds
 
