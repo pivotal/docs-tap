@@ -130,7 +130,7 @@ To troubleshoot:
 1. Try deleting the connector pod so it is re-created by running:
 
     ```bash
-    kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+    kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
     ```
 
 ## <a id="no-live-info"></a> No live information for pod with ID
