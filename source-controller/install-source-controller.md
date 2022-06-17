@@ -33,6 +33,7 @@ To install Source Controller:
       controller.source.apps.tanzu.vmware.com  0.3.1    2022-01-23 19:00:00 -0500 -05
       controller.source.apps.tanzu.vmware.com  0.3.2    2022-02-21 19:00:00 -0500 -05
       controller.source.apps.tanzu.vmware.com  0.3.3    2022-03-03 19:00:00 -0500 -05
+      controller.source.apps.tanzu.vmware.com  0.4.1    2022-06-09 19:00:00 -0500 -05
     ```
 
 2. (Optional) Gather values schema:
@@ -46,27 +47,39 @@ To install Source Controller:
     For example:
 
     ```console
-    $ tanzu package available get controller.source.apps.tanzu.vmware.com/0.3.3 --values-schema --namespace tap-install
-     Retrieving package details for controller.source.apps.tanzu.vmware.com/0.3.3...
-     KEY           DEFAULT  TYPE    DESCRIPTION
-     ca_cert_data           string  Optional: PEM Encoded certificate data for image registries with private CA.
+    tanzu package available get controller.source.apps.tanzu.vmware.com/0.4.1 --values-schema --namespace tap-install
+    
+    Retrieving package details for controller.source.apps.tanzu.vmware.com/0.4.1... 
+    KEY               DEFAULT  TYPE    DESCRIPTION                                                                        
+    aws_iam_role_arn           string  Optional: The AWS IAM Role ARN to attach to the source controller service account  
+    ca_cert_data               string  Optional: PEM Encoded certificate data for image registries with private CA.
     ```
 
-3. (Optional) Enable Source Controller to connect to image registries that use self-signed or private certificate authorities.
-If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities.
+3. (Optional) There are two optional fields that can override Source Controller's default installation setting.
 
-    To provide a custom certificate, create a file named `source-controller-values.yaml` that includes the PEM-encoded CA certificate data.
+- `ca_cert_data` Enables Source Controller to connect to image registries that use self-signed or private certificate authorities. If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities.
 
-      For example:
+- `aws_iam_role_arn` Annotates Source Controller service with an AWS IAM role. This allows Source Controller to pull images from ECR.
 
-      ```yaml
-      ca_cert_data: |
-          -----BEGIN CERTIFICATE-----
-          MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
-          ...
-          9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
-          -----END CERTIFICATE-----
-      ```
+  To provide a custom certificate, create a file named `source-controller-values.yaml` that includes the PEM-encoded CA certificate data.
+
+  For example:
+
+  ```yaml
+  ca_cert_data: |
+      -----BEGIN CERTIFICATE-----
+      MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
+      ...
+      9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
+      -----END CERTIFICATE-----
+  ```
+
+  To add AWS IAM role ARN in Source Controller Servc, create a file named `source-controller-values.yaml` that includes the following:
+
+  ```yaml
+  aws_iam_role_arn: "eks.amazonaws.com/role-arn: arn:aws:iam::112233445566:role/source-controller-manager"
+
+  ```
 
 4. Install the package:
 
@@ -82,7 +95,7 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
     For example:
 
     ```console
-    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.3.3  -n tap-install -f source-controller-values.yaml
+    tanzu package install source-controller -p controller.source.apps.tanzu.vmware.com -v 0.4.1  -n tap-install -f source-controller-values.yaml
     \ Installing package 'controller.source.apps.tanzu.vmware.com'
     | Getting package metadata for 'controller.source.apps.tanzu.vmware.com'
     | Creating service account 'source-controller-default-sa'
@@ -111,7 +124,7 @@ If a certificate error `x509: certificate signed by unknown authority` occurs, t
    - Retrieving installation details for source-controller...
     NAME:                    source-controller
     PACKAGE-NAME:            controller.source.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         0.3.3
+    PACKAGE-VERSION:         0.4.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
