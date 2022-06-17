@@ -1,9 +1,15 @@
 # Consume services on Tanzu Application Platform
 
-This guide walks you through deploying two application workloads and learning
-how to configure them to communicate over RabbitMQ.
-You will learn about the `tanzu services` CLI plug-in and the most
-important APIs for working with services on Tanzu Application Platform.
+This how-to guide walks you through deploying two application workloads and learning how to configure them to communicate over RabbitMQ. You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
+
+>**Note:** The first three parts of this walkthrough applies to operators and the final part to developers.
+
+## <a id="you-will"></a>What you will do
+
+- Set up a service.
+- Create a service instance.
+- Claim a service instance.
+- Bind an application workload to the service instance.
 
 Before you begin, for important background, see [About consuming services on Tanzu Application Platform](about-consuming-services.md).
 
@@ -43,12 +49,12 @@ This section covers the following:
 * Installing the [RabbitMQ Cluster Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/using-operator.html)
 * Creating the RBAC rules to grant Tanzu Application Platform permission to interact
 with the newly-installed APIs provided by the RabbitMQ Cluster Kubernetes Operator.
-* Creating the additional supporting resources to aid with discovery of services
+* Creating the additional supporting resources to aid with discovery of services.
 
 For this part of the walkthrough, you assume the role of the **service operator**.
 
-> **Note:** Although this walkthrough uses the RabbitMQ Cluster Kubernetes Operator
-> as an example, the set up steps remain mostly the same for any compatible Operator.
+> **Note:** Although this walkthrough uses the RabbitMQ Cluster Kubernetes operator
+> as an example, the set up steps remain mostly the same for any compatible operator.
 
 To set up a service:
 
@@ -57,13 +63,13 @@ To set up a service:
     ```console
     kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
     ```
+
     As a result, a new API Group (`rabbitmq.com`) and Kind (`RabbitmqCluster`) are
     now available in the cluster.
 
 1. Apply RBAC rules to grant Tanzu Application Platform permission to interact with the new API.
 
-    1. In a file named `resource-claims-rmq.yaml`, create a `ClusterRole` that defines the rules and label it
-    so that the rules are aggregated to the appropriate controller:
+    1. In a file named `resource-claims-rmq.yaml`, create a `ClusterRole` that defines the rules and label it so that the rules are aggregated to the appropriate controller:
 
         ```yaml
         # resource-claims-rmq.yaml
@@ -137,6 +143,7 @@ To set up a service:
         ```console
         kubectl apply -f rabbitmqcluster-clusterinstanceclass.yaml
         ```
+
         After applying this resource, it will be listed in the output of the
         `tanzu service classes list` command, and is discoverable in the `tanzu` tooling.
 
@@ -242,7 +249,7 @@ This section covers the following:
 * Using `tanzu service claimable list --class` to view details about service instances claimable from a namespace.
 * Using `tanzu service claim create` to create a claim for the service instance.
 
-For this part of the walkthrough you assume the role of the **application operator**.
+For this part of the walkthrough, you assume the role of the **application operator**.
 
 Resource claims in Tanzu Application Platform are a powerful concept that serve many purposes.
 Arguably their most important role is to enable application operators to request
@@ -297,16 +304,16 @@ In the next section you will see how to inspect the claim and to then use it to 
 
 This section covers the following:
 
-* Using `tanzu service claim list` and `tanzu service claim get` to find information about the claim to use for binding
-* Using `tanzu apps workload create` with the `--service-ref` flag to create a Workload and bind it to the Service Instance
+* Using `tanzu service claim list` and `tanzu service claim get` to find information about the claim to use for binding.
+* Using `tanzu apps workload create` with the `--service-ref` flag to create a workload and bind it to the service instance.
 
-For this part of the walkthrough you assume the role of the **application developer**.
+For this part of the walkthrough, you assume the role of the **application developer**.
 
-As a final step, you must create application workloads and to bind them to the service instance using the claim.
+As a final step, you must create application workloads and bind them to the service instance using the claim.
 
-In Tanzu Application Platform Service bindings are created when application workloads
+In Tanzu Application Platform, service bindings are created when application workloads
 that specify `.spec.serviceClaims` are created.
-In this section, you will see how to create such workloads using the `--service-ref`
+In this section, you create such workloads using the `--service-ref`
 flag of the `tanzu apps workload create` command.
 
 To create an application workload:
@@ -376,7 +383,7 @@ This is the value to pass to `--service-ref` to create the application workload.
 
     > **Note:** You are not passing a service ref to the `RabbitmqCluster` service instance directly,
     > but rather to the resource claim that has claimed the `RabbitmqCluster` service instance.
-    > See the [consuming services diagram](#stk-walkthrough) at the beginning of this walkthrough.
+    > See the [consuming services diagram](#overview) at the beginning of this walkthrough.
 
 1. After the workloads are ready, visit the URL of the `spring-sensors-consumer-web` app.
 Confirm that sensor data, passing from the `spring-sensors-producer` workload to

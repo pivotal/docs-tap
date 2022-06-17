@@ -1,6 +1,15 @@
 # Create your application accelerator
 
-In this guide, you are going to create an application accelerator by using Tanzu Application Platform GUI and CLI. For more information on application accelerators, see [Application Accelerator](about-application-accelerator.md).
+This how-to guide walks you through creating an application accelerator by using Tanzu Application Platform GUI and CLI.
+
+For background information on application accelerators, see [Application Accelerator](about-application-accelerator.md).
+
+## <a id="you-will"></a>What you will do
+
+- Select an appropriate Git repository to create your accelerator and clone the repository.
+- Create an `accelerator.yaml` file that defines your accelerator, and add it to your Git repository.
+- Publish your application accelerator and view it in the Tanzu Application Platform GUI.
+- Begin to work with your accelerator.
 
 ## <a id="create-an-app-acc"></a>Create an application accelerator
 
@@ -55,7 +64,7 @@ To publish the new application accelerator that is created in your Git repositor
 
 ### <a id="accelerator-updates"></a>Updating an accelerator
 
-After you push any changes to your Git repository, the Accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default value is 10 minutes. You can run the following command to force an immediate reconciliation:
+After you push any changes to your Git repository, the accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default value is 10 minutes. You can run the following command to force an immediate reconciliation:
 
 ```console
 tanzu accelerator update ACCELERATOR-NAME --reconcile

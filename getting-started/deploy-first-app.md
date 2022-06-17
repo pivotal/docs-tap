@@ -1,6 +1,6 @@
 # Deploy your first application on Tanzu Application Platform
 
-This how-to topic guides you through deploying your first application on Tanzu Application Platform. 
+This how-to guide walks you through deploying your first application on Tanzu Application Platform.
 
 ## <a id="you-will"></a>What you will do
 

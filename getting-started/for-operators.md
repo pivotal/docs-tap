@@ -9,3 +9,4 @@ Before you start, be sure to complete all the [Getting started prerequisites](..
 - [Create your application accelerator](create-app-accelerator.md)
 - [Add testing and security scanning](add-test-and-security.md.hbs)
 - [Configure image signing and verification in your supply chain](config-supply-chain.md)
+- [Consume services on Tanzu Application Platform](getting-started/consume-services.md)
