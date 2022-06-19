@@ -9,7 +9,7 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [Accepting the EULAs and installing the Tanzu CLI and plug-ins](install-tanzu-cli.md)
   - [Installing the Tanzu Application Platform package and profiles](install.md.hbs)
   - [Installing individual packages](install-components.md)
-  - [Setting up developer namespaces](set-up-dev-namespaces.md)
+  - [Setting up developer namespaces](set-up-namespaces.md)
 - [About Tanzu Application Platform package and profiles](about-package-profiles.md)
 - [Migrating Profiles in Tanzu Application Platform](migrate-profile.md)
 - [Upgrading Tanzu Application Platform](upgrading.md)
