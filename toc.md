@@ -4,7 +4,7 @@ This is the table of contents from which the Tanzu Application Platform Document
 
 - [Tanzu Application Platform v1.2](overview.md)
 - [Release notes](release-notes.md)
-- [Installing Tanzu Application Platform](install-components.md)
+- [Installing Tanzu Application Platform](install-intro.md)
   - [Prerequisites](prerequisites.md)
   - [Accepting the EULAs and installing the Tanzu CLI and plug-ins](install-tanzu-cli.md)
   - [Installing the Tanzu Application Platform package and profiles](install.md.hbs)
