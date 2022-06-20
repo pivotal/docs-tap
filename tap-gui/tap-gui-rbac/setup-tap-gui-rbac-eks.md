@@ -75,7 +75,7 @@ This content applies to EKS clusters.
     - `CLUSTER-NAME` is the cluster name for your EKS cluster as an AWS identifier
     - `AWS-REGION` is the AWS region of the EKS cluster
     - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider
-    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider
+    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider. For Auth0, this is `https://${AUTH0_DOMAIN}/`.
 
 
 1. Using `eksctl`, run:
