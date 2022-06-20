@@ -93,10 +93,10 @@ $ AUTH_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.me
 Create the corresponding secret on the second cluster. Run:
 
 ```bash
-$ kubectl create secret generic store-auth-token --from-literal=auth_token=$AUTH_TOKEN -n scan-link-system
+$ kubectl create secret generic store-auth-token --from-literal=auth_token=$AUTH_TOKEN -n metadata-store-secrets
 ```
 
-This secret is created in the Supply Chain Security Tools - Scan namespace, which is `scan-link-system` by default.
+This secret is created in the `metadata-store-secrets` namespace to be imported by the Supply Chain Security Tools - Scan.
 
 ## <a id="scst-scan-install"></a>Supply Chain Security Tools - Scan installation
 
@@ -104,10 +104,10 @@ To allow Supply Chain Security Tools - Scan to access the created secrets, `Secr
 
 >**Note:** Corresponding `SecretImport` resources that receive the exported secrets are installed with the Supply Chain Security Tools - Scan package.
 
-Here is an example for supporting Supply Chain Security Tools - Scan installation on the default namespace `scan-link-system`:
+These secrets have to be exported to each developer namspace. Here is an example for supporting Supply Chain Security Tools - Scan installation on the developer namespace:
 
 ```bash
-$ cat <<EOF > store_secrets_export.yaml
+$ cat <<EOF | kubectl apply -f -
 ---
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretExport
@@ -115,7 +115,7 @@ metadata:
   name: store-ca-cert
   namespace: metadata-store-secrets
 spec:
-  toNamespace: scan-link-system
+  toNamespaces: [<DEV-NAMESPACE>]
 ---
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretExport
@@ -123,11 +123,8 @@ metadata:
   name: store-auth-token
   namespace: metadata-store-secrets
 spec:
-  toNamespace: scan-link-system
+  toNamespaces: [<DEV-NAMESPACE>]
 EOF
-
-# Export secrets to the Supply Chain Security Tools - Scan namespace
-$ kubectl apply -f store_secrets_export.yaml
 ```
 
 Install Supply Chain Security Tools - Scan with the following configuration:
