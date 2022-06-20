@@ -8,7 +8,7 @@ the top of ribbon.
 
 After you click **Runtime Resources**, Tanzu Application Platform GUI uses your credentials to
 query the clusters for the respective runtime resources.
-The system verifies that you are authenticated with the OIDC providers configured for the remote 
+The system verifies that you are authenticated with the OIDC providers configured for the remote
 clusters.
 If you are not authenticated, the system prompts you for your OIDC credentials.
 
@@ -39,7 +39,7 @@ For globally-scoped components, when you access **Runtime Resources** Tanzu Appl
 queries all Kubernetes namespaces for runtime resources that have a matching `kubernetes-label-selector`,
 usually with a `part-Of` prefix.
 
-For example, `demo-component-a` does not have a `kubernetes-namespace` in the `metadata.annotations`
+For example, `demo-component-a` does not have a `backstage.io/kubernetes-namespace` in the `metadata.annotations`
 section. This makes it a globally-scoped component. See the following example YAML.
 
 ```yaml
@@ -63,7 +63,7 @@ spec:
 
 If a component is namespace-scoped, when you access **Runtime Resources** Tanzu Application Platform GUI
 queries only the associated Kubernetes namespace for each remote cluster that is visible to
-Tanzu Application Platform GUI.  
+Tanzu Application Platform GUI.
 
 To make a component namespace-scoped, pass the following annotation to the definition
 YAML file of the component:
