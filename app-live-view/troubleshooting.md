@@ -149,7 +149,7 @@ old instance that no longer exists while the new instance doesn't show up yet.
 The workaround is to delete the connector pod so it is re-created by running:
 
 ```bash
-kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
 ```
 
 ## <a id="cannot-override-act-path"></a> Cannot override the actuator path in the labels
