@@ -189,3 +189,7 @@ that you plan to create the `Workload` in:
         [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
 4. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the bindings are applied.
+
+## <a id='next-steps'></a>Next steps
+
+- [Getting started with the Tanzu Application Platform](getting-started.html)

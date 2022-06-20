@@ -227,4 +227,7 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
     insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.2.1       installed
     ```
 
-You can now proceed with [installing the Tanzu Application Platform Package and Profiles](install.html).
+## <a id='next-steps'></a>Next steps
+
+- [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html)
+- [Installing the Tanzu Application Platform package and profiles](install.html)

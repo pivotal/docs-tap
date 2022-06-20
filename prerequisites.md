@@ -118,3 +118,7 @@ See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-se
 Installation requires:
 
 - The Kubernetes CLI, kubectl, v1.20, v1.21 or v1.22, installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
+
+## <a id='next-steps'></a>Next steps
+
+- [Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)
