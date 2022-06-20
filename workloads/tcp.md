@@ -41,7 +41,7 @@ YAML workload description to support this deployment type.
 > VMware cannot guarantee that you can upgrade any beta feature in the future.
 
 
-### <a id="prereqs"></a> Prerequisites
+## <a id="prereqs"></a> Prerequisites
 
 Before using `tcp` workloads on Tanzu Application Platform, you must:
 
