@@ -268,7 +268,49 @@ this can reuse the `tap-registry` secret created in
 > For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
 > To update dependencies, follow the upgrade instructions to upgrade TAP to the latest patch version.
 > By default, a small-footprint (lite) set of dependencies is installed in TAP which does not contain all Buildpacks and Stacks.
-> To install the larger-footprint (full) set of dependencies which contains all buildpacks and stacks, see [Installing TAP with Full Dependencies](tanzu-build-service/tbs-about.html#tap-install-full-deps).
+> To install the larger-footprint (full) set of dependencies which contains all buildpacks and stacks, follow below instructions.
+
+### <a id='full-dependencies'></a> Installing TAP with the Full Dependencies
+
+By default, TAP is installed with `lite` dependencies.
+
+Full dependencies must be installed separately from TAP:
+
+1. When configuring the `tap-values.yaml`, use the following `buildservice` settings with `exclude_dependencies: true`:
+
+```yaml
+buildservice:
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  exclude_dependencies: true
+```
+
+2. Get the latest version of the buildservice package:
+
+```console
+tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+```
+
+3. Relocate the TBS full dependencies package repository using the version from the previous step:
+
+```console
+imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps
+```
+
+4. Add the TBS full dependencies package repository using the same version used in the previous step:
+
+```console
+tanzu package repository add tbs-full-deps-repository \
+  --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps:${VERSION} \
+  --namespace tap-install
+```
+
+5. Install the Full Dependencies package (no `values.yaml` needed):
+
+```console
+tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v $VERSION -n tap-install
+```
 
 ### <a id='light-profile'></a> Light Profile
 

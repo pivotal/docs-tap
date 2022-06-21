@@ -95,6 +95,39 @@ To install Tanzu Build Service by using the Tanzu CLI:
     tanzu package installed get tbs -n tap-install
     ```
 
+## <a id='tbs-tcli-install-ecr'></a> Install TBS or TAP using AWS IAM Authentication
+
+TAP and TBS support using AWS IAM roles to authenticate with ECR on EKS clusters.
+
+1. Configure an AWS IAM role that has read and write access to the `INSTALL_REGISTRY_HOSTNAME/TARGET-REPOSITORY` registry location that will be used for installation.
+2. Follow the standard TAP installation docs until the configuration of `tap-values.yaml` and use the following `buildservice` config:
+
+```yaml
+buildservice:
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_aws_iam_role_arn: "IAM-ROLE-ARN"
+```
+
+Where:
+
+- `IAM-ROLE-ARN` is the AWS IAM role ARN for the role configured in step 1 ex. `arn:aws:iam::xyz:role/my-install-role`
+
+## <a id='tbs-tcli-install-ecr-dev-ns'></a> Configuring the Developer Namespace for AWS IAM Authentication
+
+The developer namespace requires configuration for TAP to use AWS IAM authentication for ECR.
+
+1. Configure an AWS IAM role that has read and write access to the registry location where workload images will be stored.
+2. Using the supply chain service account (`default` if unset), add an annotation including the role ARN configured in step 1.
+
+```console
+kubectl annotate serviceaccount -n <developer-namespace> <service-account-name> \
+  eks.amazonaws.com/role-arn=${IAM-ROLE-ARN}
+```
+
+Where:
+
+- `IAM-ROLE-ARN` is the AWS IAM role ARN for the role configured in step 1 ex. `arn:aws:iam::xyz:role/my-developer-role`
+
 ## <a id='tbs-tcli-install-offline'></a> Install Tanzu Build Service using the Tanzu CLI air-gapped
 
 ### <a id='tbs-offline-install-package'></a> Install Tanzu Build Service package
@@ -224,3 +257,45 @@ Where:
 - `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Descriptors](tbs-about.html#descriptors). Available options are:
     * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
     * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
+
+## <a id="tap-install-full-deps"></a> Installing TBS or TAP with Full Dependencies
+
+By default, TAP and TBS are installed with `lite` dependencies. See [here](#<get-link>) for a comparison of lite vs full dependencies.
+
+Full dependencies must be installed separately from TAP. Follow these steps:
+
+1. Follow the standard TAP profile instructions and when configuring the `tap-values.yaml`, use the following `buildservice` settings:
+
+```yaml
+buildservice:
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  exclude_dependencies: true
+```
+
+2. Get the latest version of the buildservice package:
+
+```console
+tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+```
+
+3. Relocate the TBS full dependencies package repository using the version from the previous step. This should be a similar command to the one used during TAP install:
+
+```console
+imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps
+```
+
+4. Add the TBS full dependencies package repository using the same version used in the previous step:
+
+```console
+tanzu package repository add tbs-full-deps-repository \
+  --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps:${VERSION} \
+  --namespace tap-install
+```
+
+5. Install the Full Dependencies package (no `values.yaml` needed):
+
+```console
+tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v $VERSION -n tap-install
+```
