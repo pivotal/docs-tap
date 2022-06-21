@@ -368,6 +368,7 @@ This is the value to pass to `--service-ref` to create the application workload.
       --git-repo https://github.com/sample-accelerators/spring-sensors-rabbit \
       --git-branch main \
       --type web \
+      --label app.kubernetes.io/part-of=spring-sensors \
       --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1"
 
     tanzu apps workload create \
@@ -375,6 +376,7 @@ This is the value to pass to `--service-ref` to create the application workload.
       --git-repo https://github.com/tanzu-end-to-end/spring-sensors-sensor \
       --git-branch main \
       --type web \
+      --label app.kubernetes.io/part-of=spring-sensors \
       --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1" \
       --annotation=autoscaling.knative.dev/minScale="1"
     ```
