@@ -115,7 +115,7 @@ metadata:
   name: store-ca-cert
   namespace: metadata-store-secrets
 spec:
-  toNamespaces: [<DEV-NAMESPACE>]
+  toNamespaces: [DEV-NAMESPACE]
 ---
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretExport
@@ -123,7 +123,7 @@ metadata:
   name: store-auth-token
   namespace: metadata-store-secrets
 spec:
-  toNamespaces: [<DEV-NAMESPACE>]
+  toNamespaces: [DEV-NAMESPACE]
 EOF
 ```
 
