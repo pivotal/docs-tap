@@ -8,7 +8,7 @@ Both the full and light profiles include Supply Chain Choreographer.
 For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
 >**Note:** The Supply Chain Choreographer is now bundled with the Cartographer Conventions.
-For instructions on configuring and using Cartographer Conventions follow these [docs](../cartographer-conventions/creating-conventions.md)
+For information on configuring and using Cartographer Conventions, see [Creating conventions](../cartographer-conventions/creating-conventions.md).
 
 Supply Chain Choreographer provides the custom resource definitions the supply chain uses.
 Each pre-approved supply chain creates a clear road to production and orchestrates supply chain resources. You can test, build, scan, and deploy. Developers can focus on delivering value to
@@ -29,7 +29,7 @@ Before installing Supply Chain Choreographer:
 
 To install Supply Chain Choreographer:
 
-1. Get the values schema to see what properties can be configured during the installation
+1. Get the values schema to see what properties can be configured during installation. Run:
 
     ```console
     tanzu package available get cartographer.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
@@ -40,7 +40,7 @@ To install Supply Chain Choreographer:
     excluded_components  []       array   Optional: List of components to exclude from installation (e.g. [conventions])
     ```
 
-1. Install v0.4.0 of the `cartographer.tanzu.vmware.com` package, naming the installation `cartographer`.
+1. Install v0.4.0 of the `cartographer.tanzu.vmware.com` package, naming the installation `cartographer`. Run:
 
     ```console
     tanzu package install cartographer \
