@@ -63,8 +63,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
    - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can write to this location with this credential. This credential can also be configured by using a Secret reference. For more information, see [Installation using Secret References for registry credentials](#install-secret-refs) for details.
      * For Google Cloud Registry, use the contents of the service account json file.
 
-     >**Note:** TBS is bootstrapped with a set of dependencies. For information about updating dependencies manually,
-     >see [Manual Control of Dependency Updates](tbs-about.html#manual-updates).
+     >**Note:** TBS is bootstrapped with a set of dependencies.
 
 3. Install the package by running:
 
@@ -112,7 +111,7 @@ Where:
 
 - `IAM-ROLE-ARN` is the AWS IAM role ARN for the role configured in step 1 ex. `arn:aws:iam::xyz:role/my-install-role`
 
-## <a id='tbs-tcli-install-ecr-dev-ns'></a> Configuring the Developer Namespace for AWS IAM Authentication
+### <a id='tbs-tcli-install-ecr-dev-ns'></a> Configuring the Developer Namespace for AWS IAM Authentication
 
 The developer namespace requires configuration for TAP to use AWS IAM authentication for ECR.
 
@@ -260,7 +259,7 @@ Where:
 
 ## <a id="tap-install-full-deps"></a> Installing TBS or TAP with Full Dependencies
 
-By default, TAP and TBS are installed with `lite` dependencies. See [here](#<get-link>) for a comparison of lite vs full dependencies.
+By default, TAP and TBS are installed with `lite` dependencies. See [here](dependencies.html#lite-vs-full-table) for a comparison of lite vs full dependencies.
 
 Full dependencies must be installed separately from TAP. Follow these steps:
 
