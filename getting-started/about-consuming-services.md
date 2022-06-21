@@ -106,4 +106,4 @@ each user role.
 
 Apply what you've learned:
 
-- How to [Consume services on Tanzu Application Platform](consume-services.md)
+- [Consume services on Tanzu Application Platform](consume-services.md)

@@ -42,8 +42,8 @@ When you have completed these prerequisites, you are ready to get started.
 
 For developers:
 
-- How to [Deploy your first application on Tanzu Application Platform](getting-started/deploy-first-app.md)
+- [Deploy your first application on Tanzu Application Platform](getting-started/deploy-first-app.md)
 
 For operators:
 
-- [Create an application accelerator]create-app-accelerator.md
+- [Create an application accelerator](getting-started/create-app-accelerator.md)

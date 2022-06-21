@@ -178,8 +178,8 @@ The **OOTB Testing+Scanning** supply chain includes integrations for secure scan
 
 Apply what you have learned:
 
-- How to [Add testing and security scanning to your application](add-test-and-security.md.hbs)
+- [Add testing and security scanning to your application](add-test-and-security.md.hbs)
 
-Learn about vulnerability scanning for your supply chain:
+Or learn about:
 
 - [Vulnerability scanning and metadata storage for your supply chain](about-vulnerability-scan-store.md)
