@@ -1,21 +1,23 @@
 # Install Snyk scanner
 
-This document describes how to install Supply Chain Security Tools - Scan
+This document describes how to install Supply Chain Security Tools - Scan 
 (Snyk Scanner) from the Tanzu Application Platform package repository.
 
-## Prerequisites
+## <a id="prerecs"></a> Prerequisites
 
 Before installing Supply Chain Security Tools - Scan (Snyk Scanner):
 
-- Install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan will also be required.
+- Install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan are also required.
 
-## Scanner support
+## <a id="support"></a> Scanner support
+
+The following table shows supported scanners.
 
 | Scanner | Version |
 | --- | --- |
-| [Snyk](https://github.com/snyk/cli) |  |
+| [Snyk](https://github.com/snyk/cli) |  |  
 
-## Install
+## <a id="install-snyk"></a> Install
 
 To install Supply Chain Security Tools - Scan (Snyk scanner):
 
@@ -64,7 +66,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
 1. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
 
-  The Grype and Snyk Scanner Integrations both enable the Metadata Store. As such, the configuration values will be slightly different based on whether the Grype Scanner Integration is installed or not. (If TAP was installed via the Full Profile, then the Grype Scanner Integration was installed, unless it was explicitly excluded.)
+  The Grype and Snyk Scanner Integrations both enable the Metadata Store. As such, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform was installed using the Full Profile, then the Grype Scanner Integration was installed, unless it was explicitly excluded.
 
   * If the Grype Scanner Integration is installed:
     ```yaml
@@ -133,9 +135,9 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
      Added installed package 'snyk-scanner' in namespace 'tap-install'
     ```
 
-## Verify integration with Snyk 
+## <a id="verify"></a> Verify integration with Snyk 
 
-To verify the integration with Snyk you can apply the following `ImageScan` in the developer namespace and review the result.
+To verify the integration with Snyk, apply the following `ImageScan` in the developer namespace and review the result.
 
 1. Apply the following:
 
@@ -174,11 +176,11 @@ To verify the integration with Snyk you can apply the following `ImageScan` in t
   kubectl delete imagescan sample-snyk-public-image-scan -n $DEVELOPER_NAMESPACE
   ```
 
-## Configure Supply Chains
+## <a id="sc-config"></a> Configure Supply Chains
 
-To enable Snyk, rather than the default Grype in the out of the box Scanning Supply Chain, you need to update your Tanzu Application Platform installation.
+To enable Snyk, rather than the default Grype in the out of the box Scanning Supply Chain, you must update your Tanzu Application Platform installation.
  
-Add the `ootb_supply_chain_testing_scanning.scanning` section below to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
+Add the `ootb_supply_chain_testing_scanning.scanning` section later to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
 
 ```yaml
 ootb_supply_chain_testing_scanning:
