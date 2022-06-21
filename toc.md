@@ -1,5 +1,5 @@
 # Tanzu Application Platform
-
+<!-- Your Markdown linter might tell you to fix the 4-tab indentation for the sublists (relative to the list items above). Don't. For more information, see https://confluence.eng.vmware.com/display/CSOT/Formatting+best+practices. -->
 This is the table of contents from which the Tanzu Application Platform Documentation site on docs.vmware.com is built.
 
 - [Tanzu Application Platform v1.1](overview.md)
