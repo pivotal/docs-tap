@@ -1,5 +1,5 @@
 # Tanzu Application Platform
-
+<!-- Your Markdown linter might tell you to fix the 4-tab indentation for the sublists (relative to the list items above). Don't. For more information, see https://confluence.eng.vmware.com/display/CSOT/Formatting+best+practices. -->
 This is the table of contents from which the Tanzu Application Platform Documentation site on docs.vmware.com is built.
 
 - [Tanzu Application Platform v1.2](overview.md)
@@ -289,7 +289,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Using Tanzu Dev Tools to get started](vscode-extension/getting-started.md)
       - [Using Tanzu Dev Tools to iterate on your workload](vscode-extension/using-the-extension.md)
       - [Pinniped compatibility](vscode-extension/pinniped-auth.md)
-      - [Live Hover integration with Spring Boot Tools (Experimental)](vscode-extension/live-hover.md)    
+      - [Live Hover integration with Spring Boot Tools (Experimental)](vscode-extension/live-hover.md)
     - [Tanzu Developer Tools for IntelliJ](intellij-extension/about.md)
       - [Installing the IntelliJ Tanzu Plugin](intellij-extension/installation.md)
       - [Using Tanzu Dev Tools to get started](intellij-extension/getting-started.md)
