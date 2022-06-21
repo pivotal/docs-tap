@@ -40,7 +40,6 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [Troubleshoot using](troubleshooting-tap/troubleshoot-using-tap.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
 - [Component documentation](components.md)
-  - [Installing individual packages](install-components.md)
     - [Tanzu CLI](cli-plugins/tanzu-cli.md)
       - [CLI plug-ins](cli-plugins/tanzu-cli-plugin.md)
           - [apps](cli-plugins/apps/overview.md)
