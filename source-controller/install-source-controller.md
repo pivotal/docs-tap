@@ -12,7 +12,7 @@ For more information about profiles, see [About Tanzu Application Platform packa
 Before installing Source Controller:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install cert-manager on the cluster. For more information, see [Install cert-manager, Contour](../cert-mgr-contour-fcd/install-cert-mgr.md).
+- Install cert-manager on the cluster. For more information, see [Install cert-manager](../cert-mgr-contour-fcd/install-cert-mgr.md#install-cert-mgr).
 
 ## <a id='sc-install'></a> Install
 
