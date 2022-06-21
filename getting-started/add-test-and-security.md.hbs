@@ -190,7 +190,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     tanzu package installed get grype -n tap-install
     ```
 
-    If the packages are not already installed, follow the steps in [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan) to install the required scanning components.
+    If the packages are not already installed, follow the steps in [Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) to install the required scanning components.
 
     During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is deployed into another namespace, these sample ScanTemplates must also be present in the other namespace. One way to accomplish this is to install Grype Scanner again and provide the namespace in the values file.
 
@@ -241,7 +241,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     tanzu package installed get metadata-store -n tap-install
     ```
 
-    If the package is not installed, follow [the installation instructions](../install-components.md#install-scst-store).
+    If the package is not installed, follow [the installation instructions](../scst-store/install-scst-store.md).
 
 
 3. Update the profile to use the supply chain with testing and scanning by

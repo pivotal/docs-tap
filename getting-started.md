@@ -22,7 +22,7 @@ See [Install Out of The Box Supply Chain Basic](scc/install-ootb-sc-basic.md).
     you have already installed the Out of The Box (OOTB) Supply Chain Basic.
 
 - **Installed Tekton-Pipelines**<br>
-See [Install Tekton Pipelines](install-components.md#install-tekton-pipelines).
+See [Install Tekton Pipelines](tekton/install-tekton.md).
 
     >**Note:** If you used the default profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install.md),
     you have already installed Tekton Pipelines.
@@ -31,7 +31,7 @@ See [Install Tekton Pipelines](install-components.md#install-tekton-pipelines).
 See [Set up developer namespaces to use installed packages](set-up-namespaces.md).
 
 - **Installed Tanzu Application Platform GUI**<br>
-See [Install Tanzu Application Platform GUI](install-components.md#install-tap-gui).
+See [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md).
 
 - **Installed the VSCode Tanzu Extension**<br>
 See [Install the Visual Studio Code Tanzu Extension](vscode-extension/installation.md) for instructions.

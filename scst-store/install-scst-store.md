@@ -10,7 +10,7 @@ from the Tanzu Application Platform package repository.
 Before installing Supply Chain Security Tools - Store:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
+- Install cert-manager on the cluster. For more information, see [Install cert-manager, Contour](../cert-mgr-contour-fcd/install-cert-mgr.md).
 - See [Deployment Details and Configuration](deployment-details.md) to review what resources will be deployed. For more information, see the [overview](overview.md).
 
 ## <a id='install'></a>Install

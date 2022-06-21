@@ -7,7 +7,7 @@ This document describes how to install Supply Chain Security Tools - Scan
 
 Before installing Supply Chain Security Tools - Scan (Snyk Scanner):
 
-- Install [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan). It must be present on the same cluster. The prerequisites for Scan will also be required.
+- Install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan will also be required.
 
 ## Scanner support
 
