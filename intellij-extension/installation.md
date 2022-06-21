@@ -10,7 +10,7 @@ Before installing the Tanzu Developer Tools IDE extension, you must have:
 
 - [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac)
 - The Kubernetes command-line tool. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/#kubectl).
-- [Tilt](https://docs.tilt.dev/install.html) v0.24.0 or later
+- [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later
 
     >**Note:** Docker Desktop and local Kubernetes are not prerequisites for using Tanzu Developer Tools for VS Code.
 
