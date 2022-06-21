@@ -175,7 +175,7 @@ If you are targeting a namespace that does not match the one configured in the
 Tanzu Application Platform profiles, for example if `grype.namespace` is not the same as the one
 you are writing the workload to, you can install these in such namespace by making use of the
 `tanzu package install` command as described in [Install Supply Chain Security
-Tools - Scan](../install-components.md#install-scst-scan):
+Tools - Scan](../scst-scan/install-scst-scan.md):
 
 1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the corresponding values
 to the properties you want to change. For example:
