@@ -123,4 +123,4 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 ## Next steps
 
-- How to [Iterate on your new application](iterate-new-app.md)
+- [Iterate on your new application](iterate-new-app.md)

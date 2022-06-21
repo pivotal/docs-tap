@@ -92,4 +92,4 @@ Follow the following steps to diagnose Spring Boot-based applications using Appl
 
 ## Next steps
 
-- How to [Create your application accelerator](create-app-accelerator.md)
+- [Consume services on Tanzu Application Platform](consume-services.md)

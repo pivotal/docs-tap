@@ -22,7 +22,7 @@ This is the table of contents from which the Tanzu Application Platform Document
   - [How-to guides for operators](getting-started/for-operators.md)
       - [Create your application accelerator](getting-started/create-app-accelerator.md)
       - [Add testing and security scanning](getting-started/add-test-and-security.md.hbs)
-      - [Configure your supply chain](getting-started/config-supply-chain.md)
+      - [Configure image signing in your supply chain](getting-started/config-supply-chain.md)
       - [Consume services on Tanzu Application Platform](getting-started/consume-services.md)
   - [Concepts](getting-started/concepts.md)
       - [Application Accelerator](getting-started/about-application-accelerator.md)

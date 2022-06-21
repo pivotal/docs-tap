@@ -52,9 +52,7 @@ When you apply the `ClusterImagePolicy` resource, your cluster requires valid si
 
 ## <a id="config-img-next-steps"></a>Next steps
 
-Learn about:
-
-- [Consuming services on Tanzu Application Platform](about-consuming-services.md)
+- [Consume services on Tanzu Application Platform](consume-services.md)
 
 Or learn more about Supply Chain Security Tools:
 
