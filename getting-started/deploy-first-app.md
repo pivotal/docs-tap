@@ -41,7 +41,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 5. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
-6. Ensure you have [set up developer namespaces to use installed packages](../install-components.md#setup).
+6. Ensure you have [set up developer namespaces to use installed packages](set-up-namespaces.md).
 
 7. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 

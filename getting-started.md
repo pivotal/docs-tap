@@ -28,7 +28,7 @@ See [Install Tekton Pipelines](install-components.md#install-tekton-pipelines).
     you have already installed Tekton Pipelines.
 
 - **Set up a developer namespace to accommodate the developer Workload**<br>
-See [Set up developer namespaces to use installed packages](install-components.md#setup).
+See [Set up developer namespaces to use installed packages](set-up-namespaces.md).
 
 - **Installed Tanzu Application Platform GUI**<br>
 See [Install Tanzu Application Platform GUI](install-components.md#install-tap-gui).
