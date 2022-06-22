@@ -27,13 +27,13 @@ See [Install Tekton Pipelines](tekton/install-tekton.md).
     >**Note:** If you used the default profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install.md),
     you have already installed Tekton Pipelines.
 
-- **Set up a developer namespace to accommodate the developer Workload**<br>
+- **Set up a developer namespace to accommodate the developer workload**<br>
 See [Set up developer namespaces to use installed packages](set-up-namespaces.md).
 
 - **Installed Tanzu Application Platform GUI**<br>
 See [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md).
 
-- **Installed the VSCode Tanzu Extension**<br>
+- **Installed the VS Code Tanzu Extension**<br>
 See [Install the Visual Studio Code Tanzu Extension](vscode-extension/installation.md) for instructions.
 
 When you have completed these prerequisites, you are ready to get started.

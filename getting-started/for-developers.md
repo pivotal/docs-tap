@@ -2,7 +2,7 @@
 
 The how-to guides in this section offer hands-on instruction to help get developers started on Tanzu Application Platform.
 
-Before you start, be sure to complete all the [Getting started prerequisites](../getting-started.md).
+Before you start, be sure to complete all [Getting started prerequisites](../getting-started.md).
 
 ## <a id='how-to-developers'></a>How-to guides for developers
 

@@ -28,9 +28,9 @@ For information about installing the prerequisites and the Tanzu Developer Tools
 
 2. To ensure your extension assists you with iterating on the correct project, configure its settings using the following instructions.
 
-   - In Visual Studio Code, navigate to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
-   - In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App. The current directory is the default.
-   - In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
+   1. In Visual Studio Code, navigate to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
+   1. In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App. The current directory is the default.
+   1. In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
     For example, `gcr.io/myteam/tanzu-java-web-app-source`.
 
 You are now ready to iterate on your application.
@@ -53,10 +53,10 @@ You can view output from Tanzu Application Platform and from Tilt indicating tha
     >allow_k8s_contexts('cluster-name')
     >to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.
       `
-    >Follow the instructions and add the line `allow_k8s_contexts('cluster-name')` to your `Tiltfile`.
+    >Follow the instructions and add the line, `allow_k8s_contexts('cluster-name')` to your `Tiltfile`.
 
 2. When the Live Update status in the status bar is visible, resolve to "Live Update Started," navigate to `http://localhost:8080` in your browser, and view your running application.
-3. Enter to the IDE and make a change to the source code. For example, in `HelloController.java`, edit the string returned to say `Hello!` and save.
+3. In the IDE, make a change to the source code. For example, in `HelloController.java`, edit the string returned to say `Hello!` and save.
 4. The container is updated when the logs stop streaming. Navigate to your browser and refresh the page.
 5. View the changes to your workload running on the cluster.
 6. Either continue making changes, or stop and deactivate the live update when finished. Open the command palette (⇧⌘P), type `Tanzu`, and choose an option.
@@ -65,10 +65,10 @@ You can view output from Tanzu Application Platform and from Tilt indicating tha
 
 Debug your cluster either on the application or in your local environment.
 
-Follow the following steps to debug your cluster:
+Use the following steps to debug your cluster:
 
 1. Set a breakpoint in your code.
-2. Right-click the file `workload.yaml` within the `config` directory, and select **Tanzu: Java Debug Start**. In a few moments, the workload is redeployed with debugging enabled. You are going to see the "Deploy and Connect" Task complete and the debug menu actions are available to you, indicating that the debugger has attached.
+2. Right-click the file `workload.yaml` within the `config` directory and select **Tanzu: Java Debug Start**. In a few moments, the workload is redeployed with debugging enabled. The "Deploy and Connect" Task completes and the debug menu actions are made available to you, indicating that the debugger has attached.
 3. Navigate to `http://localhost:8080` in your browser. This hits the breakpoint within VS Code. Play to the end of the debug session using VS Code debugging controls.
 
 ## <a id="monitor-running-app"></a>Monitor your running application
@@ -82,7 +82,7 @@ Inspect the runtime characteristics of your running application using the Applic
 
 You can also troubleshoot environment variables and fine-tune the running application.
 
-Follow the following steps to diagnose Spring Boot-based applications using Application Live View:
+Use the following steps to diagnose Spring Boot-based applications by using Application Live View:
 
 1. Confirm that the Application Live View components installed successfully. For instructions, see [Install Application Live View](../app-live-view/install.md#install-app-live-view-connector).
 

@@ -1,6 +1,6 @@
 # Consume services on Tanzu Application Platform
 
-This how-to guide walks you through deploying two application workloads and learning how to configure them to communicate over RabbitMQ. You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
+This how-to guide walks you through deploying two application workloads and configuring them to communicate over RabbitMQ. You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
 
 >**Note:** The first three parts of this walkthrough applies to operators and the final part to developers.
 
@@ -19,7 +19,7 @@ The following diagram depicts a summary of what this walkthrough covers.
 
 ![Diagram shows the default namespace and service instances namespace. The default namespace has two application workloads, each connected to a service binding. The service bindings connect to the service instance in the service instances namespace through a resource claim.](../images/getting-started-stk-1.png)
 
-Bear the following observations in mind as you work through this guide.
+Bear the following observations in mind as you work through this guide:
 
 1. There is a clear separation of concerns across the various user roles:
     * The life cycle of workloads is determined by application developers.
@@ -28,8 +28,7 @@ Bear the following observations in mind as you work through this guide.
     * The life cycle of service bindings is implicitly tied to lifecycle of workloads.
 1. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding.
 1. [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload.
-1. Exclusivity of resource claims:
-    * Resource claims are considered to be mutually exclusive, meaning that service instances can be claimed by at most one resource claim.
+1. Exclusivity of resource claims: Resource claims are considered to be mutually exclusive, meaning that service instances can be claimed by at most one resource claim.
 
 ## <a id="stk-prereqs"></a> Prerequisites
 
@@ -47,7 +46,7 @@ For more information, see [Set up developer namespaces to use installed packages
 This section covers the following:
 
 * Installing the [RabbitMQ Cluster Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/using-operator.html)
-* Creating the RBAC rules to grant Tanzu Application Platform permission to interact
+* Creating the role-based access control (RBAC) rules to grant Tanzu Application Platform permission to interact
 with the newly-installed APIs provided by the RabbitMQ Cluster Kubernetes Operator.
 * Creating the additional supporting resources to aid with discovery of services.
 
@@ -189,7 +188,7 @@ To create a service instance:
 
 1. Create a `RabbitmqCluster` service instance.
 
-    1. Create a file named `rmq-1-service-instance.yaml` using the `APIVERSION` and
+    1. Create a file named `rmq-1-service-instance.yaml` by using the `APIVERSION` and
     `KIND` from the output of the `tanzu service types list` command:
 
         ```yaml
@@ -208,11 +207,11 @@ To create a service instance:
         kubectl apply -f rmq-1-service-instance.yaml
         ```
 
-3. Create a resource claim policy to define the namespaces the instance can be claimed and bound from:
+3. Create a resource claim policy to define the namespaces the instance can be claimed and bound from.
 
     > **Note:** By default, you can only claim and bind to service instances that
     > are running in the _same_ namespace as the application workloads.
-    > To claim service instances that are running in a different namespace, you must
+    > To claim service instances running in a different namespace, you must
     > create a resource claim policy.
 
     1. Create a file named `rmq-claim-policy.yaml` as follows:
@@ -253,17 +252,14 @@ For this part of the walkthrough, you assume the role of the **application opera
 
 Resource claims in Tanzu Application Platform are a powerful concept that serve many purposes.
 Arguably their most important role is to enable application operators to request
-services that they can use with their application workloads without them having
-to create and manage the services themselves.
-Resource claims provide a mechanism for application operators to say what
-they want, without having to worry about anything that goes into providing what they want.
-For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-service_resource_claims-terminology_and_apis.html).
+services that they can use with their application workloads without having
+to create and manage the services themselves. For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-service_resource_claims-terminology_and_apis.html).
 
 In cases where service instances are running in the same namespace as
 application workloads, you do not have to create a claim. You can bind to the service instance directly.
 
-In this section you will use the `tanzu service claims create` command to create
-claim that the `RabbitmqCluster` service instance you created earlier can fulfill.
+In this section you use the `tanzu service claims create` command to create
+a claim that the `RabbitmqCluster` service instance you created earlier can fulfill.
 This command requires the following information to create a claim successfully:
 
 - `--resource-name`
@@ -298,7 +294,7 @@ To claim a service instance:
       --resource-api-version rabbitmq.com/v1beta1
     ```
 
-In the next section you will see how to inspect the claim and to then use it to bind to application workloads.
+The next section shows how to inspect the claim and to use it to bind to application workloads.
 
 ## <a id="stk-bind"></a> Bind an application workload to the service instance
 
@@ -313,7 +309,7 @@ As a final step, you must create application workloads and bind them to the serv
 
 In Tanzu Application Platform, service bindings are created when application workloads
 that specify `.spec.serviceClaims` are created.
-In this section, you create such workloads using the `--service-ref`
+In this section, you create such workloads by using the `--service-ref`
 flag of the `tanzu apps workload create` command.
 
 To create an application workload:
@@ -387,11 +383,11 @@ This is the value to pass to `--service-ref` to create the application workload.
 
 1. After the workloads are ready, visit the URL of the `spring-sensors-consumer-web` app.
 Confirm that sensor data, passing from the `spring-sensors-producer` workload to
-the `create spring-sensors-consumer-web` workload using our `RabbitmqCluster` service instance, is displayed.
+the `create spring-sensors-consumer-web` workload using the `RabbitmqCluster` service instance, is displayed.
 
 ## <a id="stk-advanced-use-cases"></a> Advanced use cases and further reading
 
-There are a couple more advanced service use cases that not covered in the
+There are a couple more advanced service use cases not covered in the
 procedures in this topic, such as Direct Secret References and Dedicated Service Clusters.
 
 <table class="nice">
@@ -403,14 +399,14 @@ procedures in this topic, such as Direct Secret References and Dedicated Service
     </td>
     <td>
       Using the Controllers for Kubernetes (ACK) in order to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
-      Involves making a third party API consumable from Tanzu Application Platform.
+      Involves making a third-party API consumable from Tanzu Application Platform.
     </td>
   </tr><tr>
     <td>
       <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-direct_secret_references.html">Direct Secret References</a>
     </td>
     <td>
-      Binding to services running external to the cluster, for example, and in-house oracle database.<br>
+      Binding to services running external to the cluster, for example, an in-house oracle database.<br>
       Binding to services that do not conform with the binding specification.
     </td>
   </tr>
