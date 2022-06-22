@@ -68,17 +68,20 @@ To install Application Live View Backend:
 
 1. Create `app-live-view-backend-values.yaml` with the following details:
 
-    For single cluster environment, use the following values:
+    For a SINGLE-CLUSTER environment, the Application Live View Backend is exposed via Kubernetes cluster service.
+
+    >**Note:** If it is a TAP profile installation and top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the backend is automatically exposed via the ingress. The following configurations are applied by default:
 
     ```yaml
-    ingressEnabled: "false"
+    ingressEnabled: true
+    ingress_domain: ${shared.ingress_domain}
     ```
 
-    For a multicluster environment, Tanzu Application Platform uses the `shared.ingress_domain` by default. 
+    For a MULTI-CLUSTER environment, Tanzu Application Platform uses the `shared.ingress_domain` by default. 
     You can override this setting with the following values:
 
     ```yaml
-    ingressEnabled: "true"
+    ingressEnabled: true
     ingressDomain: ${INGRESS-DOMAIN}
     ```
 
@@ -186,27 +189,31 @@ To install Application Live View Connector:
 
 1. Create `app-live-view-connector-values.yaml` with the following details:
 
-    For single cluster environment, use the following values:
+    For SINGLE-CLUSTER environment, the Application Live View Connector connects to the `cluster-local` Application Live View Backend to register the applications.
+
+    >**Note:** If it is a TAP profile installation and top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the Application Live View Connector and Application Live View Backend are configured to communicate via ingress. The `shared.ingress_domain` is used by the Application Live View Connector to reach the backend.
+
+    When using `shared.ingress_domain`, unless you enable TLS in the appliveview (Application Live View Backend), you should set:
 
     ```yaml
     backend:
-        sslDisabled: "true"
+        sslDisabled: false
     ```
 
-    >**Note:** The Application Live View Connector connects to the `cluster-local` back end to register the applications.
-
-    For a multicluster environment, use the following values:
+    For a MULTI-CLUSTER environment, use the following values:
 
     ```yaml
     backend:
-        sslDisabled: "false"
+        sslDisabled: false
         host: appliveview.INGRESS-DOMAIN
     ```
-    
-    Where `INGRESS-DOMAIN` is the top level domain the Application Live View Backend exposes by using `tanzu-shared-ingress` for the Connectors in other clusters to reach the back end. Prepend the `appliveview` subdomain to the provided value.
 
-    The `sslDisabled` boolean flag is treated as a string in Kubernetes YAML.
-    Therefore it must be specified in `double-quotes` for the configuration to be picked up.
+    Where `INGRESS-DOMAIN` is the top level domain the Application Live View Backend exposes by using `tanzu-shared-ingress` for the Connectors in other clusters to reach the Application Live View Backend. Prepend the `appliveview` subdomain to the provided value.
+
+    >**Note:** The `backend.sslDisabled` is set to `false` by default. If TLS is not enabled for the `INGRESS-DOMAIN` in the Application Live View Backend, the `backend.sslDisabled` should be set to `true`.
+
+    >**Note:** If it is a TAP profile installation and top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the Application Live View Connector is automatically configured to use the `shared.ingress_domain` to reach the Application Live View Backend.    
+
 
     You can edit the values to suit your project needs or leave the default values as is.
 
