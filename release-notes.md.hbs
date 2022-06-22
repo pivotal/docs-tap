@@ -75,9 +75,9 @@ CycloneDX XML stream to the logs and then the scan controller can't process the 
 **Workaround:** As this is an intermittent issue, if you're applying the scan manually, you can delete the
 scan and re-apply it again to retry the scan.
 If this problem happened while running a Supply Chain from the OOTB Supply Chains, you can run
-`kubectl get imagescans -n <workload namespace>` or
-`kubectl get sourcescans -n <workload namespace>` to get the scan name, and then delete it by running
-`kubectl delete <imagescan or sourcescan> <scan name> -n <workload namespace>`.
+`kubectl get imagescans -n WORKLOAD-NAMESPACE` or
+`kubectl get sourcescans -n WORKLOAD-NAMESPACE` to get the scan name, and then delete it by running
+`kubectl delete IMAGESCAN-OR-SOURCESCAN SCAN-NAME -n WORKLOAD-NAMESPACE`.
 The Choreographer controller then recreates it for you.
 
 #### <a id="1-1-2-known-issues-scst-sign"></a>Supply Chain Security Tools - Sign
