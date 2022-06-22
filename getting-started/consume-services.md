@@ -365,6 +365,7 @@ This is the value to pass to `--service-ref` to create the application workload.
       --git-branch main \
       --type web \
       --label app.kubernetes.io/part-of=spring-sensors \
+      --annotation autoscaling.knative.dev/minScale=1 \
       --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1"
 
     tanzu apps workload create \
@@ -373,8 +374,8 @@ This is the value to pass to `--service-ref` to create the application workload.
       --git-branch main \
       --type web \
       --label app.kubernetes.io/part-of=spring-sensors \
-      --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1" \
-      --annotation=autoscaling.knative.dev/minScale="1"
+      --annotation autoscaling.knative.dev/minScale=1 \
+      --service-ref="rmq=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:rmq-1"
     ```
 
     Using the `--service-ref` flag instructs Tanzu Application Platform to bind the application workload to the service provided in the `ref`.
