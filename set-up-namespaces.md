@@ -192,4 +192,4 @@ that you plan to create the `Workload` in:
 
 ## <a id='next-steps'></a>Next steps
 
-- [Getting started with the Tanzu Application Platform](getting-started.html)
+- [Installing Tanzu Developer Tools for VSCode](vscode-extension/installation.html)
