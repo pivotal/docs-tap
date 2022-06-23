@@ -15,20 +15,17 @@
   - [Live Update Status](#live-update-status)
 - [Switch Namespace](#switch-namespace)
 
-
 ## <a id="before-beginning"></a> Before Beginning
 
 Ensure the project to use the extension with has the required files specified in the [Getting Started page](../vscode-extension/getting-started.md).
 
 >**Note:** The Tanzu Developer Tools extension requires only one **Tiltfile** and one **workload.yaml** per project. The **workload.yaml** must be a single-document YAML file, not a multidocument YAML files.
 
-
 ## <a id="multiple-projects-in-workspace"></a> Multiple Projects in Workspace
 
 When working with multiple projects in a single workspace, you can configure the Tanzu Dev Tools Extension settings on a per-project basis by using the dropdown selector in the `Settings` page.
 
 ![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu is expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
-
 
 ## <a id="apply-workload"></a> Apply Workload
 
@@ -104,7 +101,6 @@ To apply a workload from the context menu:
 
     ![Workload ready on Tanzu Workloads](../images/vscode-panel-workload-ready.png)
 
-
 ## <a id="debugging-on-the-cluster"></a> Debugging on the Cluster
 
 The Tanzu Developer Tools extension enables you to debug your application on your TAP-enabled Kubernetes cluster.
@@ -137,7 +133,6 @@ To stop debugging on the cluster:
 
     ![The VS Code interface close-up on the tasks panel showing the delete trash can icon](../images/vscode-stopdebug2.png)
 
-
 ## <a id="live-update"></a> Live Update
 
 By using Live Update facilitated by [Tilt](https://docs.tilt.dev/), the Tanzu Developer Tools extension enables you to deploy your workload once, save changes to the code and see those changes reflected in the workload running on the cluster within seconds.
@@ -158,7 +153,6 @@ There are two ways to start live update:
 
     ![Command palette open showing text Tanzu: Live Update Start](../images/vscode-startliveupdate2.png)
 
-
 ### <a id="stop-live-update"></a> Stop Live Update
 
 When Live Update stops, your application continues to run on the cluster, but the changes you made and saved in your editor will not be present in your running application unless you redeploy your application to the cluster.
@@ -172,7 +166,6 @@ There are two ways to stop live update:
 - Start the Command Palette (`⇧⌘P`) and run the `Tanzu: Live Update Stop` command.
 
     ![Command palette open showing text Tanzu: Live Update Stop](../images/vscode-stopliveupdate2.png)
-
 
 ### <a id="disable-live-update"></a> Disable Live Update
 
@@ -190,7 +183,6 @@ To disable Live Update:
 
 1. Enter the name of the workload you want to deactivate live update for.
 
-
 ### <a id="live-update-status"></a> Live Update Status
 
 The current status of Live Update is visible on the right side of the Status Bar at the bottom of the VS Code window.
@@ -206,7 +198,6 @@ The Live Update status bar entry reflects the following states:
 The Live Update status bar entry can be hidden by right-clicking on it and selecting `Hide ‘Tanzu Developer Tools (Extension)’`.
 
 ![The VS Code interface showing the Tanzu Live Update Status section of the Status bar with the right-click menu open and the "Hide 'Tanzu Developer Tools (Extension)'" option highlighted](../images/vscode-liveupdatestatus2.png)
-
 
 ## <a id="delete-workload"></a> Delete Workload
 
@@ -232,7 +223,6 @@ To delete a workload:
 
     ![Delete Workload Notification showing workload has been deleted](../images/vscode-deleteworkload4.png)
 
-
 ## <a id="switch-namespace"></a> Switch Namespace
 
 To switch the namespace where you created the workload:
@@ -243,11 +233,24 @@ To switch the namespace where you created the workload:
 
 ![The VS Code settings scrolled to the Tanzu section within the Extensions section](../images/vscode-switchnamespace1.png)
 
-
 ## <a id="workload-panel"></a> Tanzu Workloads Panel
 
-The current state of the workloads is visible on the Tanzu Workloads panel in the bottom left corner of the VS Code window. The panel shows the current status of each workload, namespace, cluster and whether Live Update and Debug are running, stopped or disabled.
+The current state of the workloads is visible on the Tanzu Workloads panel in the bottom left corner
+of the VS Code window. The panel shows the current status of each workload, namespace, and cluster.
+It also shows whether Live Update and Debug are running, stopped, or disabled.
 
-The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context. You can run: `kubectl config get-contexts` to view the current context and namespace. To set a namespace for the current context run: `kubectl config set-context --current --namespace=YOURNAMESPACE`.
+The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context.
+
+1. View the current context and namespace by running
+
+    ```console
+    kubectl config get-contexts
+    ```
+
+1. Set a namespace for the current context by running
+
+    ```console
+    kubectl config set-context --current --namespace=YOUR-NAMESPACE
+    ```
 
 ![VS Code Workload Panel](../images/vscode-panel-live-update-running.png)
