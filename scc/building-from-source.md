@@ -73,9 +73,9 @@ Expect to see the following output:
 ### <a id="private-git-repo"></a>Private `GitRepository`
 
 To fetch source code from a repository that requires credentials, you must
-provide those by using a Kubernetes secret object that is referenced by the
-`GitRepository` object created for that workload. See [How It Works](#how-it-works)
-to learn more about the underlying process of detecting changes to the repository.
+provide those by using a Kubernetes secret object that the `GitRepository` object created for that workload references. 
+See [How It Works](#how-it-works)
+to learn more about detecting changes to the repository.
 
 ```scala
 Workload/tanzu-java-web-app
@@ -84,7 +84,7 @@ Workload/tanzu-java-web-app
                                                    |
                                       either a default from TAP installation or
                                            gitops_ssh_secret Workload parameter
-```
+``` 
 
 Platform operators who install the Out of the Box Supply Chain packages
 by using Tanzu Application Platform profiles can customize the default name of
@@ -152,7 +152,7 @@ not reference a secret, set the value to an empty string (`""`).
 After defining the name of the Kubernetes secret, you can define
 the secret.
 
-#### <a id="http-auth"></a>HTTP(S) Basic-auth / Token-based authentication
+#### <a id="http-auth"></a>HTTP(S) Basic-authentication and Token-based authentication
 
 Despite both the package value and workload parameter being called `gitops.ssh_secret`, you can use HTTP(S) transports as well:
 
@@ -199,12 +199,12 @@ example:
 For more information about the credentials and setting up the Kubernetes secret, see
 [Git Authentication's HTTP section](git-auth.md#http).
 
-#### <a id="ssh-auth"></a>SSH auth
+#### <a id="ssh-auth"></a>SSH authentication
 
 Aside from using HTTP(S) as a transport, you can also use SSH:
 
 1. Ensure that the repository URL in the workload specification uses
-`ssh://` as the scheme in the URL, for example, `ssh://git@github.com:my-org/my-repo.git`.  
+`ssh://` as the scheme in the URL, for example, `ssh://git@github.com:my-org/my-repo.git`
 
 1. Create a Kubernetes secret object of type `kubernetes.io/ssh-auth`:
 
@@ -254,7 +254,8 @@ Git repository stated in `workload.spec.source.git`.
 For each revision found, `gitrepository.status.artifact` gets updated providing
 information about an HTTP endpoint that the controller makes available for
 other components to fetch the source code from within the cluster.
-The digest of the latest commit looks like this:
+
+The digest of the latest commit:
 
   ```yaml
   apiVersion: source.toolkit.fluxcd.io/v1beta1
@@ -286,7 +287,7 @@ The digest of the latest commit looks like this:
 
 Cartographer passes the artifact URL and revision to further
 components in the supply chain. Those components must consume the source code from
-an internal URL where a tarball with the source code can be fetched, without
+an internal URL where a tarball with the source code is fetched, without
 having to process any Git-specific details in multiple places.
 
 
@@ -296,11 +297,9 @@ You can pass the following parameters by using the workload object's
 `workload.spec.params` field to override the default behavior of the
 `GitRepository` object created for keeping track of the changes to a repository:
 
-- `gitImplementation`: name of the Git implementation (either `libgit2` or
-  `go-git`) to fetch the source code.
-
+- `gitImplementation`: name of the Git implementation (either `libgit2` or `go-git`) to fetch the source code.
 - `gitops_ssh_secret`: name of the secret in the same namespace as the workload
-  where credentials to fetch the repository can be found.
+  where credentials to fetch the repository are found.
 
 You can also customize the following parameters with defaults for the whole cluster.
 Do this by using properties for either `tap-values.yaml`
@@ -313,7 +312,7 @@ individually):
 
 ## <a id="local-source"></a>Local source
 
-You can provide source code from a local directory; that is, from a directory in the
+You can provide source code from a local directory such as, from a directory in the
 developer's file system. The `tanzu` CLI provides two flags to specify
 the source code location in the file system and where the source code is
 pushed to as a container image:
@@ -391,9 +390,9 @@ credentials available for the Tanzu CLI to perform the image push. Run:
 
 #### <a id="auth"></a>Supply chain components
 
-Aside from the developer's ability to push source code to the image registry,
+Aside from the developer's ability to push source code to the container image registry,
 the cluster must also have the proper credentials, so it can pull that
-container image, unpack it, run tests, build the application, and so on.
+container image, unpack it, run tests, and build the application.
 
 To provide the cluster with the credentials, point the ServiceAccount used by the workload at the
 Kubernetes secret that contains the credentials.
@@ -408,7 +407,7 @@ application image.
 
 A workload specifies that source code must come from an image by setting
 `workload.spec.source.image` to point at the registry provided by using
-`--source-image`. Then, instead of having a GitRepository object created, an
+`--source-image`. Instead of having a GitRepository object created, an
 ImageRepository object is instantiated, with its specification filled in such a
 way to keep track of images pushed to the registry provided by the user.
 
@@ -456,7 +455,7 @@ Git repositories.
 
 ## <a id="maven-artifact"></a> Maven Artifact
 
-This approach is used to aid integration with existing CI systems, such as Jenkins, and can pull artifacts from existing Maven repositories,
+This approach aids integration with existing CI systems, such as Jenkins, and can pull artifacts from existing Maven repositories,
 including Jfrog Artifactory.
 
 There are no dedicated fields in the `Workload` resource for
@@ -491,13 +490,13 @@ Basic](install-ootb-sc-basic.md).
 
 ### <a id="maven-repository-secret"></a> Maven Repository Secret
 
-The MavenArtifact only supports authentication using basic auth.
+The MavenArtifact only supports authentication using basic authentication.
 
 Additionally, MavenArtifact supports security using the TLS protocol.  The Application Operator can configure the MavenArtifact to use a
 custom, or self-signed certificate authority (CA).
 
-The MavenArtifact expects that all of the above credentials are provided in
-one secret, formatted as shown below:
+The MavenArtifact expects that all of the earlier credentials are provided in
+one secret, formatted as shown later:
 
 ```yaml
 ---
@@ -512,8 +511,8 @@ data:
   caFile: <BASE64>    # PEM Encoded certificate data for custom CA 
 ```
 
-You cannot use the `tanzu` CLI to create secrets like this, but
-you can use the `kubectl` CLI instead.  
+You cannot use the `tanzu` CLI to create secrets such as this, but
+you can use the kubectl CLI instead.  
 
 For example:
 
