@@ -4,4 +4,3 @@ _md-cli/*
 _md-cli/
 
 .idea/
-.markdownlint.jsonc
