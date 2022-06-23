@@ -141,8 +141,8 @@ To verify the integration with Snyk, apply the following `ImageScan` in the deve
 
 1. Apply the following:
 
-  ```yaml
-  kubectl apply -n $DEVELOPER_NAMESPACE -f - << EOF
+  ```console
+  kubectl apply -n $DEV_NAMESPACE -f - << EOF
   ---
   apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
   kind: ImageScan
@@ -159,13 +159,13 @@ To verify the integration with Snyk, apply the following `ImageScan` in the deve
 2. To verify the integration, run:
 
   ```bash
-  kubectl get imagescan sample-snyk-public-image-scan -n $DEVELOPER_NAMESPACE
+  kubectl get imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
   ```
 
   For example:
 
   ```console
-  kubectl get imagescan sample-snyk-public-image-scan -n $DEVELOPER_NAMESPACE
+  kubectl get imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
   NAME                            PHASE       SCANNEDIMAGE   AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
   sample-snyk-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
   ```
@@ -173,7 +173,7 @@ To verify the integration with Snyk, apply the following `ImageScan` in the deve
 3. Cleanup
 
   ```bash
-  kubectl delete imagescan sample-snyk-public-image-scan -n $DEVELOPER_NAMESPACE
+  kubectl delete imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
   ```
 
 ## <a id="sc-config"></a> Configure Supply Chains
