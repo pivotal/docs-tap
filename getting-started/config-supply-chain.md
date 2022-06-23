@@ -9,9 +9,9 @@ This how-to guide walks you through configuring your supply chain to sign your i
 
 ## <a id="config-sc-to-img-builds"></a>Configure your supply chain to sign your image builds
 
-1. Configure Tanzu Build Service to sign your container image builds by using cosign. See [Managing Image Resources and Builds](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html) for instructions.
+1. Use cosign to configure Tanzu Build Service to sign your container image builds. For instructions, see [Managing Image Resources and Builds](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html).
 
-2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy web-hook. See [Install Supply Chain Security Tools - Sign](../scst-sign/install-scst-sign.md) for instructions.
+2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy web-hook. For instructions, see [Install Supply Chain Security Tools - Sign](../scst-sign/install-scst-sign.md).
 
 3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources. The resource must be named `image-policy`.
 

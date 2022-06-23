@@ -6,15 +6,15 @@ For more information on available supply chains, see [Supply chains on Tanzu App
 
 ## <a id="you-will"></a>What you will do
 
-- Install OOTB Supply Chain with Testing
+- Install OOTB Supply Chain with Testing.
 - Add a Tekton pipeline to the cluster and update the workload to point to the pipeline and resolve errors.
-- Install OOTB Supply Chain with Testing and Scanning
+- Install OOTB Supply Chain with Testing and Scanning.
 - Update the workload to point to the Tekton pipeline and resolve errors.
 - Query for vulnerabilities and dependencies.
 
 ## <a id="overview"></a> Overview
 
-The default Out of the Box (OOTB) Supply Chain Basic and its dependencies were installed on your cluster during the Tanzu Application Platform install. You also have the option to add testing and security scanning to your application.
+The default Out of the Box (OOTB) Supply Chain Basic and its dependencies were installed on your cluster during the Tanzu Application Platform install. As demonstrated in this guide, you can add testing and security scanning to your application.
 
 The following installations also provide a sample Tekton pipeline that tests your sample application.  The pipeline is configurable. Therefore, you can customize the steps to perform
 either additional testing or other tasks with Tekton Pipelines.
@@ -23,11 +23,11 @@ either additional testing or other tasks with Tekton Pipelines.
 
 ## <a id="install-OOTB-test"></a>Install OOTB Supply Chain with Testing 
 
-To install OOTB Supply Chain with Testing, follow these steps:
+To install OOTB Supply Chain with Testing:
 
-1. You can activate the OOTB Supply Chain with Testing by updating our profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster.
-Update `tap-values.yaml` (the file used to customize the profile in `Tanzu package install tap
---values-file=...`) with the following changes:
+1. You can activate the OOTB Supply Chain with Testing by updating your profile to use `testing` rather than `basic` as the selected supply chain for workloads in this cluster.
+The `tap-values.yaml` is the file used to customize the profile in `Tanzu package install tap
+--values-file=...`. Update `tap-values.yaml` with the following changes:
 
     ```yaml
     - supply_chain: basic
@@ -53,8 +53,7 @@ Update `tap-values.yaml` (the file used to customize the profile in `Tanzu packa
 In this section, a Tekton pipeline is added to the cluster. In the next section,
 the workload is updated to point to the pipeline and resolve any current errors.
 
->**Note:** Developers can perform this step because they know how their application needs to be tested.
-The operator can also add the Tekton supply chain to a cluster before the developer get access.
+>**Note:** Developers can perform this step because they know how their application needs to be tested. The operator can also add the Tekton supply chain to a cluster before the developer get access.
 
 To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
@@ -90,20 +89,16 @@ spec:
               ./mvnw test
 ```
 
-The preceding YAML defines a Tekton Pipeline with a single step.
-The step itself contained in the `steps` pull the code from the repository indicated
-in the developers `workload` and run the tests within the repository.
-The steps of the Tekton pipeline are configurable and allow the developer to add any additional items
-that is needed to test their code.
-Because this step is one of many in the supply chain (and the next step is an image build in this case),
-the developer is free to focus on testing their code.
-Any additional steps that the developer adds to the Tekton pipeline is independent
-for the image being built and any subsequent steps of the supply chain being executed.
+The preceding YAML defines a Tekton pipeline with a single step.
+The step contained in the `steps` pulls the code from the repository indicated
+in the developers `workload` and runs the tests within the repository. The steps of the Tekton pipeline are configurable and allow the developer to add additional items needed to test their code. 
 
-The `params` are templated by the Supply Chain Choreographer.
+There are many steps in the supply chain. In this case, the next step is an image build. Any additional steps the developer adds to the Tekton pipeline to test their code are independent of the image being built and of any subsequent steps executed in the supply chain. This independence gives the developer freedom to focus on testing their code. 
+
+The `params` are templated by Supply Chain Choreographer.
 Additionally, Tekton pipelines require a Tekton `pipelineRun` in order to execute on the cluster.
-The Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time
-that step of the supply requires execution.
+Supply Chain Choreographer handles creating the `pipelineRun` dynamically each time
+that step of the supply chain requires execution.
 
 ### <a id="test-workload-update"></a>Workload update
 
@@ -149,7 +144,7 @@ the workload must be updated to point at your Tekton pipeline.
     kubectl get workload,gitrepository,pipelinerun,images.kpack,podintent,app,services.serving
     ```
 
-  You will see output similar to the following example that shows the objects that were created by the Supply Chain Choreographer:
+  You will see output similar to the following example that shows the objects created by Supply Chain Choreographer:
 
     ```console
     NAME                                    AGE
@@ -176,13 +171,13 @@ the workload must be updated to point at your Tekton pipeline.
 
 ## <a id="install-OOTB-test-scan"></a>Install OOTB Supply Chain with Testing and Scanning
 
-To install OOTB Supply Chain with Testing and Scanning, follow these steps:
+To install OOTB Supply Chain with Testing and Scanning:
 
   > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies.
 
 >**Important:** The grype must be installed for scanning.
 
-1. Supply Chain Security Tools - Scan is installed as part of the profiles.
+1. Supply Chain Security Tools - Scan is installed as part of the Tanzu Application Platform profiles.
 Verify that both Scan Link and Grype Scanner are installed by running:
 
     ```console
@@ -194,7 +189,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
     During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is deployed into another namespace, these sample ScanTemplates must also be present in the other namespace. One way to accomplish this is to install Grype Scanner again and provide the namespace in the values file.
 
-    A ScanPolicy is required and the following code must be in the required namespace. You can either add the namespace flag to the kubectl  command or add the namespace field to the template itself. Run:
+    A ScanPolicy is required and the following code must be in the required namespace. You can either add the namespace flag to the kubectl command or add the namespace field to the template itself. Run:
 
     ```console
     kubectl apply -f - -o yaml << EOF
@@ -235,7 +230,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     EOF
     ```
 
-2. (optional) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](../scst-store/overview.md) is installed using the following command. The Tanzu Application Platform profiles install the package by default.
+2. (optional) To persist and query the vulnerability results post-scan, ensure that [Supply Chain Security Tools - Store](../scst-store/overview.md) is installed by using the following command. The Tanzu Application Platform profiles install the package by default.
 
     ```console
     tanzu package installed get metadata-store -n tap-install
@@ -314,7 +309,7 @@ pipeline:
     kubectl get workload,gitrepository,sourcescan,pipelinerun,images.kpack,imagescan,podintent,app,services.serving
     ```
 
-    The following is an example output, which shows the objects that the Supply Chain Choreographer created:
+    The following is an example output, which shows the objects that Supply Chain Choreographer created:
 
     ```console
     NAME                                    AGE
@@ -349,7 +344,7 @@ pipeline:
 
 ### <a id="query-for-vuln"></a> Query for vulnerabilities
 
-Scan reports are automatically saved to the [Supply Chain Security Tools - Store](../scst-store/overview.md), and can be queried for vulnerabilities and dependencies. For example, open-source software (OSS) or third-party packages.
+Scan reports are automatically saved to the [Supply Chain Security Tools - Store](../scst-store/overview.md), and can be queried for vulnerabilities and dependencies. For example, related to open-source software (OSS) or third-party packages.
 
 1. Query the tanzu-java-web-app image dependencies and vulnerabilities with the following commands:
 
@@ -358,12 +353,11 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
     insight image vulnerabilities --digest  DIGEST
   ```
 
-  `DIGEST` is the component version, or image digest printed in the `KUBECTL GET` command.
+  `DIGEST` is the component version or image digest printed in the `KUBECTL GET` command.
 
   > **Important:** The `Insight CLI` is separate from the Tanzu CLI.
 
-See [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md)
-additional information and examples.
+See [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md) for additional information and examples.
 <br>
 
 

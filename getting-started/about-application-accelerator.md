@@ -1,8 +1,8 @@
 # Application Accelerator
 
-Developers can create applications and get started with feature development immediately with the help of application accelerators. Application accelerators are templates that not only codify best practices, but also provide important configuration and structures ready and available for use.
+Developers can create applications and get started with feature development immediately with the help of application accelerators. Application accelerators are templates that not only codify best practices but also provide important configuration and structures ready and available for use.
 
-Enterprise Architects use Application Accelerator to create application accelerators, which provide developers and admins in their organization with the ready-made, enterprise-conformant code and configurations. Accelerators contain complete and runnable application code and deployment configurations. They also contain metadata for altering the code and deployment configurations based on input values provided for specific options defined in the accelerator metadata.
+Enterprise Architects use Application Accelerator to create application accelerators, which provide developers and admins in their organization with ready-made, enterprise-conformant code and configurations. Accelerators contain complete and runnable application code and deployment configurations. They also contain metadata for altering the code and deployment configurations based on input values provided for specific options defined in the accelerator metadata.
 
 ## <a id="work-with-accelerators"></a>Working with accelerators
 

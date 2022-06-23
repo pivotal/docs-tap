@@ -6,16 +6,19 @@ For background information on application accelerators, see [Application Acceler
 
 ## <a id="you-will"></a>What you will do
 
-- Select an appropriate Git repository to create your accelerator and clone the repository.
-- Create an `accelerator.yaml` file that defines your accelerator, and add it to your Git repository.
+- Select a Git repository to create your accelerator and clone the repository.
+- Create an `accelerator.yaml` file that defines your accelerator and add it to your Git repository.
 - Publish your application accelerator and view it in the Tanzu Application Platform GUI.
 - Begin to work with your accelerator.
 
 ## <a id="create-an-app-acc"></a>Create an application accelerator
 
-You can use any Git repository to create an accelerator. You need the repository URL to create an accelerator.
+You can use any Git repository to create an accelerator provided it: 
 
-The Git repository must be `public` and contain a `README.md` file. These options are available to configure when you create repositories on GitHub.
+- Is public
+- Contains a README.md file
+
+You can configure these options when you create a repository on GitHub. You need the repository URL to create an accelerator.
 
 To create a new application accelerator by using your Git repository, follow these steps:
 
@@ -37,7 +40,7 @@ To create a new application accelerator by using your Git repository, follow the
 
     >**Note:** You can use any icon with a reachable URL.
 
-4. Add the new `accelerator.yaml` file, commit this change and push to your Git repository.
+4. Add the new `accelerator.yaml` file, commit this change, and push it to your Git repository.
 
 ## <a id="publish-accelerator"></a>Publish the new accelerator
 
@@ -58,7 +61,7 @@ To publish the new application accelerator that is created in your Git repositor
 
     ![Another accelerator appears in Tanzu Application Platform GUI](../images/new-accelerator-deployed-v1-1.png)
 
-    >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for new accelerator.
+    >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for your new accelerator.
 
 ## <a id="work-with-accelerators"></a>Working with accelerators
 
@@ -69,6 +72,8 @@ After you push any changes to your Git repository, the accelerator is refreshed 
 ```console
 tanzu accelerator update ACCELERATOR-NAME --reconcile
 ```
+
+Where `ACCELERATOR-NAME` is the name of your accelerator.
 
 ### <a id="accelerator-deletes"></a>Deleting an accelerator
 

@@ -1,6 +1,6 @@
 # Getting started with the Tanzu Application Platform
 
-Welcome to the Tanzu Application Platform. The guides in this section offer hands-on instruction to get developers and operators started on Tanzu Application Platform. Before you start, be sure to complete all of the prerequisites in the following section.
+Welcome to the Tanzu Application Platform. The guides in this section offer hands-on instruction to help get developers and operators started on Tanzu Application Platform. Before you start, be sure to complete all of the prerequisites in the following section.
 
 ## <a id="get-started-prereqs"></a>Getting started prerequisites
 
