@@ -1,5 +1,7 @@
 {
-    // Example markdownlint JSON(C) configuration with all properties set to their default value
+    // This file configures markdownlinter in VS Code to ignore Markdown style deviations that
+    // DocWorks requires, such as HTML anchors. To work, this file must be in the same repo as the
+    // affected docs. For more information, see https://github.com/DavidAnson/vscode-markdownlint#configure.
 
     // Default state for all rules
     "default": true,
