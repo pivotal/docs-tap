@@ -58,28 +58,26 @@ To get Supply Chain Security Tools - Store's TLS CA certificate, run:
 
 ```bash
 # On the Supply Chain Security Tools - Store's cluster
-$ CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"")
-$ cat <<EOF > store_ca.yaml
+CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"")
+cat <<EOF > store_ca.yaml
 ---
 apiVersion: v1
 kind: Secret
-type: kubernetes.io/tls
+type: Opaque
 metadata:
   name: store-ca-cert
   namespace: metadata-store-secrets
 data:
   ca.crt: $CA_CERT
-  tls.crt: ""
-  tls.key: ""
 EOF
 
 # On the second Cluster
 
 # Create secrets namespace
-$ kubectl create ns metadata-store-secrets
+kubectl create ns metadata-store-secrets
 
 # Create the CA Certificate secret
-$ kubectl apply -f store_ca.yaml
+kubectl apply -f store_ca.yaml
 ```
 
 ## <a id="rbac-auth-token"></a>RBAC Auth token
@@ -87,13 +85,13 @@ $ kubectl apply -f store_ca.yaml
 To get the Supply Chain Security Tools - Store's Auth token, run:
 
 ```bash
-$ AUTH_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
+AUTH_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
 ```
 
 Create the corresponding secret on the second cluster. Run:
 
 ```bash
-$ kubectl create secret generic store-auth-token --from-literal=auth_token=$AUTH_TOKEN -n metadata-store-secrets
+kubectl create secret generic store-auth-token --from-literal=auth_token=$AUTH_TOKEN -n metadata-store-secrets
 ```
 
 This secret is created in the `metadata-store-secrets` namespace to be imported by the Supply Chain Security Tools - Scan.
@@ -107,7 +105,7 @@ To allow Supply Chain Security Tools - Scan to access the created secrets, `Secr
 These secrets must be exported to each developer namspace. The following is an example for supporting Supply Chain Security Tools - Scan installation on the developer namespace:
 
 ```bash
-$ cat <<EOF | kubectl apply -f -
+cat <<EOF | kubectl apply -f -
 ---
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretExport
