@@ -1,4 +1,4 @@
-# Enable Authorization on Remote Clusters in Tanzu Application Platform GUI
+# Enabling authorization on remote clusters in Tanzu Application Platform GUI
 
 You can control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based
 on user roles and permissions for each of the visible remote clusters.
