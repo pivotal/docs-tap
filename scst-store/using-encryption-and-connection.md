@@ -1,17 +1,22 @@
 # Configure target endpoint and certificate
 
-The connection to the Store requires TLS encryption, the configuration depends on the kind of installation. 
-Use the following instructions to set up the TLS connection according to the type of your setup:
+The connection to the Store requires TLS encryption, the configuration depends on the kind of installation. Use the following instructions to set up the TLS connection according to the your setup:
 
-- [Use `Ingress`](#ingress)
-- [Not use `Ingress`](#no-ingress)
-    - [Use `LoadBalancer`](#use-lb)
-    - [Use `NodePort`](#use-np)
+- [With `Ingress`](#ingress)
+- [Without `Ingress`](#no-ingress)
+    - [`LoadBalancer`](#use-lb)
+    - [Port forwarding](#config-pf)
+    - [`NodePort`](#use-np)
     
-        >**Note:** `NodePort`is commonly used with local clusters such as kind or minikube.
+Recommended connection methods based on TAP set up:
 
+* Single or multi-cluster with Contour = `Ingress`
+* Single cluster without Contour and with `LoadBalancer` support = `LoadBalancer`
+* Single cluster without Contour and without `LoadBalancer` = Port forwarding
+* Single cluster without Contour, without `LoadBalancer` and user does not have port forwarding access = `NodePort`
+* Multi-cluster without Contour = Not supported
 
-## <a id="ingress"></a>Use `Ingress`
+## <a id="ingress"></a>With `Ingress`
 
 When using an [Ingress setup](ingress-multicluster.md), the Store creates a 
 specific TLS Certificate for HTTPS communications under the `metadata-store` namespace.
@@ -46,7 +51,7 @@ Set the target by running:
 tanzu insight config set-target https://$METADATA_STORE_DOMAIN --ca-cert insight-ca.crt
 ```
 
-## <a id="no-ingress"></a>Not use `Ingress`
+## <a id="no-ingress"></a>Without `Ingress`
 
 If you install the Store without using the Ingress alternative, 
 you must use a different Certificate resource for HTTPS communication. 
@@ -56,7 +61,7 @@ In this case, query the `app-tls-cert` to get the CA Certificate:
 kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > insight-ca.crt
 ```
 
-### <a id='use-lb'></a>Use `LoadBalancer`
+### <a id='use-lb'></a>`LoadBalancer`
 
 To use a `LoadBalancer` configuration, you must find the external IP address of the `metadata-store-app` service by using kubectl.
 
@@ -79,20 +84,24 @@ Set the target by running:
 tanzu insight config set-target https://$METADATA_STORE_DOMAIN:$METADATA_STORE_PORT --ca-cert insight-ca.crt
 ```
 
-## <a id='use-np'></a>Use `NodePort`
+### <a id='config-pf'></a>Port forwarding
 
-To use `NodePort`, you must obtain the CA certificate by following the instructions in [Not use `Ingress`](#no-ingress), 
-then [Configure port forwarding](#config-pf) and [Modify your `/etc/hosts` file](#mod-etchost).
-
-### <a id='config-pf'></a>Configure port forwarding
-
-When using `NodePort`, configure port forwarding for the service so the CLI can access Supply Chain Security Tools - Store. Run:
+Configure port forwarding for the service so the CLI can access Supply Chain Security Tools - Store. Run:
 
 ```console
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 ```
 
 >**Note:** You must run this command in a separate terminal window.
+
+### <a id='use-np'></a>`NodePort`
+
+`NodePort` may be used to connect the CLI and Metadata Store as an alterative to port forwarding.  This is useful when the user does not have port forward access to the cluster.
+
+>**Note:** NodePort only recommended when (1) the cluster does not support ingress, (2) the cluster does not support `LoadBalancer`.  `NodePort` is not supported for a multi-cluster set up, as certificates cannot be modified (i.e., Metadata Store does not currently support a BYO-certificate)
+
+To use `NodePort`, you must obtain the CA certificate by following the instructions in [Without `Ingress`](#no-ingress), 
+then [Configure port forwarding](#config-pf) and [Modify your `/etc/hosts` file](#mod-etchost).
 
 ### <a id='mod-etchost'></a>Modify your `/etc/hosts` file
 

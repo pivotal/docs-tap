@@ -87,9 +87,7 @@ To install Supply Chain Security Tools - Store:
       log_level                         default              string   Sets the log level. This can be set to "minimum", "less", "default", "more", "debug" or "trace". "minimum" currently does not output logs. "less" outputs log configuration options only. "default" and "more" outputs API endpoint access information. "debug" and "trace" outputs extended API endpoint access information(such as body payload) and other debug information.
     ```
 
-1. (Optional) Modify one of the deployment configurations by creating a configuration YAML with the
-custom configuration values you want. For example, if your environment does not support `LoadBalancer`,
-and you want to use `NodePort`, then create a `metadata-store-values.yaml` and configure the
+1. (Optional) Modify one of the deployment configurations by creating a configuration YAML with the custom configuration values you want. For example, if your environment does not support `LoadBalancer`, and you want to use `NodePort`, then create a `metadata-store-values.yaml` and configure the
 `app_service_type` property.
 
     ```yaml
