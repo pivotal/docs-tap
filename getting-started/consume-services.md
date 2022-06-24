@@ -21,13 +21,14 @@ The following diagram depicts a summary of what this walkthrough covers.
 
 Bear the following observations in mind as you work through this guide:
 
-1. There is a clear separation of concerns across the various user roles:
+1. There is a clear separation of concerns across the various user roles.
+
     * The life cycle of workloads is determined by application developers.
     * The life cycle of resource claims is determined by application operators.
     * The life cycle of service instances is determined by service operators.
-    * The life cycle of service bindings is implicitly tied to lifecycle of workloads.
+    * The life cycle of service bindings is implicitly tied to the life cycle of workloads.
 1. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding.
-1. [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload.
+1. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see[ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
 1. Exclusivity of resource claims: Resource claims are considered to be mutually exclusive, meaning that service instances can be claimed by at most one resource claim.
 
 ## <a id="stk-prereqs"></a> Prerequisites
@@ -35,17 +36,17 @@ Bear the following observations in mind as you work through this guide:
 Before following this walkthrough, you must:
 
 1. Have access to a cluster with Tanzu Application Platform installed.
-1. Have downloaded and installed the `tanzu` CLI and the corresponding plug-ins.
-1. Have setup the `default` namespace to use installed packages and use it as your developer namespace.
+1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
+1. Have set up the `default` namespace to use installed packages and use it as your developer namespace.
 For more information, see [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-install-components.html#setup)).
 1. Ensure your Tanzu Application Platform cluster can pull source code from GitHub.
-1. Ensure your Tanzu Application Platform cluster can pull the images required by the [RabbitMQ Cluster Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
+1. Ensure your Tanzu Application Platform cluster can pull the images required by the RabbitMQ Cluster Kubernetes Operator. For more information, see the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
 
 ## <a id="stk-set-up"></a> Set up a service
 
 This section covers the following:
 
-* Installing the [RabbitMQ Cluster Kubernetes Operator](https://www.rabbitmq.com/kubernetes/operator/using-operator.html)
+* Installing the RabbitMQ Cluster Kubernetes Operator.
 * Creating the role-based access control (RBAC) rules to grant Tanzu Application Platform permission to interact
 with the newly-installed APIs provided by the RabbitMQ Cluster Kubernetes Operator.
 * Creating the additional supporting resources to aid with discovery of services.
@@ -57,7 +58,7 @@ For this part of the walkthrough, you assume the role of the **service operator*
 
 To set up a service:
 
-1. Use `kapp` to install the RabbitMQ Cluster Kubernetes Operator by running:
+1. Use `kapp` to install the RabbitMQ Cluster Kubernetes operator by running:
 
     ```console
     kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
@@ -143,10 +144,10 @@ To set up a service:
         kubectl apply -f rabbitmqcluster-clusterinstanceclass.yaml
         ```
 
-        After applying this resource, it will be listed in the output of the
+        After applying this resource, it is listed in the output of the
         `tanzu service classes list` command, and is discoverable in the `tanzu` tooling.
 
-## <a id="stk-create-svc-instances"></a> Create a service instance
+## <a id="create-svc-instances"></a> Create a service instance
 
 This section covers the following:
 
@@ -166,7 +167,7 @@ To create a service instance:
     > **Note:** Using namespaces to separate service instances from application workloads allows
     > for greater separation of concerns, and means that you can achieve greater control
     > over who has access to what. However, this is not a strict requirement.
-    > You can create both service instances and application workloads in the same namespace if desired.
+    > You can create both service instances and application workloads in the same namespace.
 
 2.  Find the list of service instance classes available on your cluster by running:
 
@@ -183,7 +184,7 @@ To create a service instance:
      rabbitmq  It's a RabbitMQ cluster!
     ```
 
-    > **Note**: If you see `No service types found.`, ensure you have completed the
+    > **Note:** If you see `No service types found.`, ensure you have completed the
     > steps in [Set up a service](#stk-set-up) earlier in this walkthrough.
 
 1. Create a `RabbitmqCluster` service instance.
@@ -401,7 +402,7 @@ procedures in this topic, such as Direct Secret References and Dedicated Service
       <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_on_tap.html">Consuming AWS RDS on Tanzu Application Platform</a>
     </td>
     <td>
-      Using the Controllers for Kubernetes (ACK) in order to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
+      Using the Controllers for Kubernetes (ACK) to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
       Involves making a third-party API consumable from Tanzu Application Platform.
     </td>
   </tr><tr>
@@ -426,6 +427,6 @@ For more information about the APIs and concepts underpinning Services on Tanzu 
 
 ## Next step
 
-Now that you've completed the Getting started guides, you might want to learn about:
+Now that you've completed the Getting started guides, learn about:
 
 - [Multicluster Tanzu Application Platform](../multicluster/about.md)

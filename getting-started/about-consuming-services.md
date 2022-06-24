@@ -2,7 +2,7 @@
 
 As part of Tanzu Application Platform, you can work with backing services such as
 RabbitMQ, PostgreSQL, and MySQL. Binding application workloads to service instances
-is the most common use case for services.
+is the most common use of services.
 
 ## <a id="stk-concepts"></a> Key concepts
 
@@ -10,25 +10,25 @@ When working with services on Tanzu Application Platform, you must be familiar
 with service instances, service bindings, and resource claims.
 This section provides a brief overview of each of these key concepts.
 
-### Service instances
+### <a id="service-instances"></a>Service instances
 
 A **service instance** is any Kubernetes resource that exposes its capability
 through a well-defined interface.
-For example, you could consider Kubernetes resources that have `MySQL` as the API Kind
+For example, you might consider Kubernetes resources that have `MySQL` as the API Kind
 to be MySQL service instances. These resources expose their capability over the MySQL protocol.
 Other examples include resources that have `PostgreSQL` or `RabbitmqCluster` as the API Kind.
 
-### Service bindings
+### <a id="service-bindings"></a>Service bindings
 
 **Service binding** refers to a mechanism in which connectivity information, such
-as service instance credentials, are automatically communicated to application workloads.
+as binding credentials, are automatically communicated to application workloads.
 Tanzu Application Platform uses a standard named [Service Binding for Kubernetes](https://servicebinding.io/)
 to implement this mechanism. To fully understand the services aspect of Tanzu Application Platform,
 you must learn about this standard.
 
-### Resource claims
+### <a id="resource-claims"></a>Resource claims
 
-**Resource claims** are inspired in part by [Persistent Volume Claims](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) in Kubernetes.
+**Resource claims** are inspired in part by Persistent Volume Claims. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
 Resource claims provide a mechanism for users to "claim" service instance resources
 on a cluster, while also decoupling the life cycle of application workloads and service instances.
 
@@ -36,9 +36,9 @@ on a cluster, while also decoupling the life cycle of application workloads and 
 
 The following list of Kubernetes operators expose APIs that integrate well with Tanzu Application Platform:
 
-1. [RabbitMQ Cluster Operator for Kubernetes](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html)
-1. [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html)
-1. [VMware Tanzu SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html)
+1. RabbitMQ Cluster Operator for Kubernetes. For more information, see the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html).
+1. [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html).
+1. [VMware Tanzu SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html).
 
 Compatibility of a service with Tanzu Application Platform ranges on a scale
 between fully compatible and incompatible. The minimum requirement for compatibility is that there must be a declarative,
@@ -64,7 +64,7 @@ the resources of the CRDs, as is the case with the three Kubernetes operators li
 ## <a id="stk-user-roles"></a> User roles and responsibilities
 
 It is important to understand the user roles for services on Tanzu Application Platform
-along with the responsibilities assumed by each. The following table describes
+and the responsibilities assumed by each. The following table describes
 each user role.
 
 <table class="nice">
@@ -100,7 +100,7 @@ each user role.
   </tr>
 </table>
 
-## Next step
+## Next steps
 
 Apply what you've learned:
 

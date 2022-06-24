@@ -11,9 +11,9 @@ CI/CD is the method used by supply chains to deliver applications through automa
 A path to production allows users to create a unified access point for all of the tools required
 for their applications to reach a customer-facing environment.
 Instead of having four tools that are loosely coupled to each other, a path to production defines
-all four tools in a single, unified layer of abstraction. The path to production may be automated and repeatable between teams for applications at scale.
+all four tools in a single, unified layer of abstraction. The path to production can be automated and repeatable between teams for applications at scale.
 
-Typically tools are not able to integrate with one another without additional scripting or
+Typically tools cannot integrate with one another without additional scripting or
 webhooks. Whereas with a path to production, there is a unified automation tool to codify all the interactions between each of the tools. Supply chains used to codify the organization's path to production are configurable, allowing their authors to add all of the steps of their application's path to production.
 
 ## <a id="avail-supply-chains"></a>Available Supply Chains
@@ -148,7 +148,7 @@ The following table and diagrams provide descriptions for each of the supply cha
    </td>
    <td><code>ootb-supply-chain-testing-scanning.tanzu.vmware.com</code>
    </td>
-   <td>Out of the Box Testing and Scanning contains all of the same elements as the Out of the Box Testing supply chain but it also includes integrations out of the box with the secure scanning components of Tanzu Application Platform.
+   <td>Out of the Box Testing and Scanning contains all of the same elements as the Out of the Box Testing supply chain, and it also includes integrations with the secure scanning components of Tanzu Application Platform.
 <ul>
 
 <li>The application is tested using the provided Tekton pipeline.
