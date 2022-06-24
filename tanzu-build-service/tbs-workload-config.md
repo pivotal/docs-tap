@@ -54,6 +54,11 @@ Some TBS configurations for workloads can be configured inline while creating th
 
 #### <a id="env-vars"></a> Environment Variables
 
+If you have build-time environment variable dependencies you can set env vars that will be available at build-time.
+
+Buildpacks can also be configured with environment variables. Buildpack configuration depends on the specific buildpack being used.
+For documentation on buildpacks, see [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+
 ```console
 tanzu apps workload create <workload-name> \
  --build-env "ENV_NAME=ENV_VALUE" \
