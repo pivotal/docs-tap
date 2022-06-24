@@ -82,6 +82,23 @@ Here is a sample result of the Image Scan stage, using Grype - only available in
 
 ![Screenshot of details of the Image Scanner stage. CVEs are listed.](images/scc-scan.png)
 
+## <a id="w-scc-deliverable"></a> Workload to Supply Chain to Deliverable Relationships
+
+It is important to understand how a workload is related to a supply chain, and in turn, how the deliverable is also related to the workload.
+In order to display which clusters your workload has been delivered to, the following will all need the same `app.kubernetes.io/part-of` label applied: 
+- Workload
+- Supply Chain Template
+- `deliverable` package
+
+In the following example, all three have the same `app.kubernetes.io/part-of` label applied. The Supply Chain Choreographer Plug-in will be able to link the three together. 
+<insert graphic>
+ 
+However, if you create two workloads with the exact same name, using the same `app.kubernetes.io/part-of` label on each, the result will be a deliverable being linked to more than one workload and visualizing the workload in the Supply Chain will show multiple **Delivery** segments as shown below: 
+
+
+If you must create multiple workloads with the exact same name, you will need to specify a different `app.kubernetes.io/part-of` label for each workload, and apply the same  `app.kubernetes.io/part-of` label to the supply chain and `deliverable` that you want linked to each workload. Here is a graphic representing this scenario:
+
+
 When a workload is deployed to a cluster that has the `deliverable` package installed, a new section
 appears in the supply chain that shows **Pull Config** and **Delivery**.
 A box surrounds this section and shows the name of the cluster at the top.
