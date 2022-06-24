@@ -23,7 +23,6 @@ more feedback.
 kubectl -n scan-link-system logs -f deployment/scan-link-controller-manager -c manager
 ```
 
-
 ### <a id="miss-img-ps"></a> Missing target image pull secret
 
 Scanning an image from a private registry requires an image pull secret to exist in the Scan CR's
@@ -37,7 +36,6 @@ the error as follows:
 ```console
 Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
 ```
-
 
 ### <a id="diasble-scst-store"></a> Disable Supply Chain Security Tools - Store
 
@@ -78,3 +76,10 @@ configurations to disable the Store:
     syft:
       failOnSchemaErrors: false
     ```
+
+### <a id="unable-to-decode-cyclonedx"></a> Resolving "Unable to decode cyclonedx"
+
+Supply Chain Security Tools - Scan intermittently sets the phase of a scan to `Error` with the message `unable to decode cyclonedx`. To resolve this issue:
+
+* If you’re applying the scan manually, you can delete the failed scan job and re-apply with `kubectl apply -f PATH-TO-IMAGESCAN-OR-SOURCESCAN -n DEV-NAMESPACE` to retrigger the scan.
+* If this problem happened while running an out-of-the-box TAP Supply Chain, you can run `kubectl get imagescans -n WORKLOAD-NAMESPACE` or `kubectl get sourcescans -n WORKLOAD-NAMESPACE` to get the scan name, and then delete it by running `kubectl delete IMAGESCAN-OR-SOURCESCAN SCAN-NAME -n WORKLOAD-NAMESPACE`. The Choreographer controller will then recreate it for you.
