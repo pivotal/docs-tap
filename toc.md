@@ -1,6 +1,7 @@
 # Tanzu Application Platform
 <!-- Your Markdown linter might tell you to fix the 4-tab indentation for the sublists (relative to the list items above). Don't. For more information, see https://confluence.eng.vmware.com/display/CSOT/Formatting+best+practices. -->
-This is the table of contents from which the Tanzu Application Platform Documentation site on docs.vmware.com is built.
+This is the table of contents from which the Tanzu Application Platform Documentation site on
+docs.vmware.com is built.
 
 - [Tanzu Application Platform v1.2](overview.md)
 - [Release notes](release-notes.md)
@@ -311,7 +312,7 @@ This is the table of contents from which the Tanzu Application Platform Document
       - [Authentication](tap-gui/auth.md)
       - [Authorization on remote clusters](tap-gui/tap-gui-rbac/setup-tap-gui-rbac-only-gke.md)
           - [Authorization on GKE clusters](tap-gui/tap-gui-rbac/setup-tap-gui-rbac-with-gke-auth.md)
-          - [View Runtime Resources on Authorization-Enabled Clusters](./tap-gui/tap-gui-rbac/view-resouces-rbac-only-global.md)
+          - [View Runtime Resources on Authorization-Enabled Clusters](tap-gui/tap-gui-rbac/view-rsrcs-rbac-only-global.md)
           - [Assigning Roles and Permissions on Kubernetes Clusters](tap-gui/tap-gui-rbac/assigning-kubernetes-roles.md)
       - [Integrations](tap-gui/integrations.md)
       - [Database configuration](tap-gui/database.md)
