@@ -24,7 +24,7 @@ docs.vmware.com is built.
       - [Create your application accelerator](getting-started/create-app-accelerator.md)
       - [Add testing and security scanning](getting-started/add-test-and-security.md.hbs)
       - [Configure image signing in your supply chain](getting-started/config-supply-chain.md)
-      - [Consume services on Tanzu Application Platform](getting-started/consume-services.md)
+      - [Set up services for consumption by developers](getting-started/set-up-services.md)
   - [Concepts](getting-started/concepts.md)
       - [Application Accelerator](getting-started/about-application-accelerator.md)
       - [Supply chains on Tanzu Application Platform](getting-started/about-supply-chains.md)

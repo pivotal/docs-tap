@@ -6,6 +6,6 @@ Before you start, complete all [Getting started prerequisites](../getting-starte
 
 ## <a id='how-to-developers'></a>How-to guides for developers
 
-- [Deploy your first app on Tanzu Application Platform](getting-started/deploy-first-app.md)
-- [Iterate on your new application](getting-started/iterate-new-app.md)
-- [Consume services on Tanzu Application Platform](getting-started/consume-services.md)
+- [Deploy your first app on Tanzu Application Platform](deploy-first-app.md)
+- [Iterate on your new application](iterate-new-app.md)
+- [Consume services on Tanzu Application Platform](consume-services.md)
