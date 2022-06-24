@@ -26,7 +26,7 @@ Meet these prerequisites:
 If you are running Tanzu Application Platform on a single cluster, both components `Pinniped Supervisor` and `Pinniped Concierge` are installed to this cluster.
 
 When running a multicluster setup you must decide which cluster to deploy the Supervisor onto. Furthermore, every cluster must have the Concierge deployed.
-`Pinniped Supervisor` is supposed to run as a central component that is consumed by potentially multiple `Pinniped Concierge` instances. That means that a `Pinniped Supervisor` must be deployed to a single cluster that meets the [prerequisites](#prereqs). In the current Tanzu Application Platform, the `view cluster` is a good place for it, because it is defined as a central single instance cluster. For more information, see [Overview of multicluster Tanzu Application Platform](multicluster/about.md).
+`Pinniped Supervisor` is supposed to run as a central component that is consumed by potentially multiple `Pinniped Concierge` instances. That means that a `Pinniped Supervisor` must be deployed to a single cluster that meets the [prerequisites](#prereqs). In the current Tanzu Application Platform, the `view cluster` is a good place for it, because it is defined as a central single instance cluster. For more information, see [Overview of multicluster Tanzu Application Platform](../multicluster/about.md).
 
 In contrast, the `Pinniped Concierge` must be deployed to every cluster that you want to enable authentication for, including the `view cluster` itself.
 

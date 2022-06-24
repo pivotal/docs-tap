@@ -18,7 +18,6 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install Application Single Sign-On](https://docs.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0.0-beta/appsso-1.0.0-beta/GUID-platform-operators-installation.html)
 - [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
-- [Install Convention Service](convention-service/install-conv-service.md)
 - [Install default roles for Tanzu Application Platform](authn-authz/install.md)  
 - [Install Developer Conventions](developer-conventions/install-dev-conventions.md)
 - [Install Learning Center for Tanzu Application Platform](learning-center/install-learning-center.md)
