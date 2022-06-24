@@ -34,6 +34,8 @@ Tanzu Build Service descriptors are curated sets of dependencies, including stac
 continuously released on VMware Tanzu Network to provide updated buildpack dependencies and updated stack images.
 This allows the use of dependencies which have patched CVEs.
 
+For more information about buildpacks and stacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+
 Descriptors are only used if TAP is configured for automatic dependency updates. Descriptors are imported into Tanzu Build Service to update the entire cluster.
 
 There are two types of descriptor, `lite` and `full`, available on the

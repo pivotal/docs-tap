@@ -52,7 +52,7 @@ workload types. For example, the `lite` descriptor does not contain the PHP buil
 
 The `lite` descriptor only contains the `base` stack.
 The `default` stack is installed, but is identical to the `base` stack.
-For more information, see [Stacks](https://docs.pivotal.io/tanzu-buildpacks/stacks.html).
+For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html).
 
 ### <a id="full-dependencies"></a> Full dependencies
 
@@ -69,7 +69,7 @@ The `full` descriptor contains the following stacks, which support different use
 - `full`
 - `tiny`
 
-For more information, see [Stacks](https://docs.pivotal.io/tanzu-buildpacks/stacks.html).
+For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html).
 Due to the larger footprint of `full`, installations might take longer.
 The `full` set of dependencies must be installed separately from TAP or TBS which can be found [here](install-tbs.html#tap-install-full-deps).
 
