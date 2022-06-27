@@ -9,7 +9,7 @@ Once the Authorization is enabled, you can view your runtime resources on a remo
 
 When levearging Google's OIDC provider, the process of enabling Authorization requires the following steps:
 
-1. Add a redirect config on the OIDC side
+1. Create OAuth credentials in Google
 2. Configure the Tanzu Application Platform GUI to view the remote GKE cluster
 3. Upgrade the Tanzu Application GUI package
 
@@ -52,7 +52,7 @@ Where:
 
 ![OAuth client created](./../plugins/images/tap-gui-gke-auth-4.png)
 
-### <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
+### <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI to view the remote GKE cluster
 
 The next step is to configure visibility of the remote GKE cluster in Tanzu Application Platform GUI. 
 
