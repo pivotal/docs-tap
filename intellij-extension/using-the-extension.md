@@ -25,7 +25,7 @@ To start debugging on the cluster:
     ![The IntelliJ interface showing the project tab with the workload.yaml file right-click menu open and the "Tanzu -> Debug Workload" option highlighted](../images/intellij-debugWorkload.png)
 
 4. Ensure the configuration parameters are set.
-    - Source Image: Registry location to publish local source code, for example registry.io/yourapp-source. This must include both a registry and a project name.
+    - Source Image: Registry location to publish local source code, for example "registry.io/yourapp-source". Must include both a registry and a project name.
     - Local Path: Path on the local file system to a directory of source code to build.
     - Namespace: Namespace that workloads are deployed into.
 
@@ -45,7 +45,7 @@ Click the stop button in the Debug overlay to stop debugging on the cluster:
 1. Right-click your project’s `Tiltfile` and select **Run 'Tanzu Live Update - ...'**.
 ![The IntelliJ interface showing the project tab with the Tiltfile file right-click menu open](../images/intellij-startLiveUpdate.png)
 2. Ensure the configuration parameters are set.
-    - Source Image: Registry location to publish local source code, for example registry.io/yourapp-source. This must include both a registry and a project name.
+    - Source Image: Registry location to publish local source code, for example "registry.io/yourapp-source". Must include both a registry and a project name.
     - Local Path: Path on the local file system to a directory of source code to build.
     - Namespace: Namespace that workloads are deployed into.
 

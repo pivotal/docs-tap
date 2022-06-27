@@ -28,9 +28,7 @@ The catalog-info yaml file enables the workloads created with the Tanzu Develope
 [Code snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets) enable you to quickly add the files necessary to develop against the Tanzu Application Platform (TAP) to existing projects by creating a template in an empty file which you fill out with the required information.
 
 ### <a id="source-image"></a>Source Image
-The Source Image value tells the Tanzu Developer Tools extension where to publish the container image with your source code, and what to name that image. The image must be published to a [container registry](https://github.com/pivotal/docs-tap/blob/main/vscode-extension/glossary-of-terms.md) where you have write (push) access. Example registries: [Docker Hub](https://www.docker.com/products/docker-hub), [Google Cloud](https://cloud.google.com/container-registry), etc
-
-> **Example:** your-registry.io/project/tanzu-java-web-app-source
+Registry location to publish local source code, for example "registry.io/yourapp-source". Must include both a registry and a project name.
 
 ### <a id="local-path"></a>Local Path
 The Local Path value tells the Tanzu Developer Tools extension which directory on your local file system to bring into the source image (link to source image definition on this page) container image. The default local path value is the current directory (where your open VS Code project’s files are saved).
