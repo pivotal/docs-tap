@@ -19,12 +19,12 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="app-acc-features"></a> Application Accelerator
 
-- Add support for fragments
-    - Introduce new Fragment custom resource
-    - Add subPath in spec for Git repository
-- Add telemetry support
-    - Introduce new InvocationEvent custom resource to track request to generate project ZIP file
-    - Add job to remove InvocationEvent resources that are older than certain number of days (30 is default)
+- [Accelerator Fragments](./application-accelerator/creating-accelerators/composition.md) are now available.
+  - Allows for re-usable Accelerator Fragments to be imported into other Accelerators.
+- [Tanzu Application Accelerator for VS Code Extension](./application-accelerator/vscode.md#vs-code-app-accel-install) is now available.
+  - Allows for developers to quickly generate projects from their organization's Accelerator Catalog right from within VS Code.
+- Added the `subPath` field for [Accelerators](./application-accelerator/creating-accelerators/accelerator-crd.md#accelerator-crd-spec) and [Fragments](./application-accelerator/creating-accelerators/accelerator-crd.md#fragment-crd-spec)
+  - Provides the option for altering where the root of an Accelerator or Fragment lives.
 
 #### Application Live View
 

@@ -14,7 +14,7 @@ The `Accelerator` CRD is defined with the following properties:
 | Group | accelerator.apps.tanzu.vmware.com |
 | Version | v1alpha1 |
 | ShortName | acc |
-
+## <a id="accelerator-crd-spec"></a>
 The `Accelerator` CRD _spec_ defined in the `AcceleratorSpec` type has the following fields:
 
 | Field | Description | Required/Optional |
@@ -33,6 +33,7 @@ The `Accelerator` CRD _spec_ defined in the `AcceleratorSpec` type has the follo
 | git.ref.semver | The Git tag semver expression, takes precedence over tag. | Optional (**) |
 | git.ref.tag | The Git tag to checkout, takes precedence over branch. | Optional (**) |
 | git.secretRef | The secret name containing the Git credentials. For HTTPS repositories, the secret must contain user name and password fields. For SSH repositories, the secret must contain identity, identity.pub, and known_hosts fields. | Optional (**) |
+| git.subPath | SubPath is the folder inside the git repository to consider as the root of the accelerator or fragment. Defaults at the root of the repository. | Optional |
 | source | Defines the source image repository. | Optional (***) |
 | source.image | Image is a reference to an image in a remote registry. | Optional (***) |
 | source.imagePullSecrets | ImagePullSecrets contains the names of the Kubernetes Secrets containing registry login information to resolve image metadata. | Optional |
@@ -47,7 +48,7 @@ The `Fragment` CRD is defined with the following properties:
 | Group | accelerator.apps.tanzu.vmware.com |
 | Version | v1alpha1 |
 | ShortName | frag |
-
+## <a id="fragment-crd-spec"></a>
 The `Fragment` CRD _spec_ defined in the `FragmentSpec` type has the following fields:
 
 | Field | Description | Required/Optional |
@@ -63,6 +64,7 @@ The `Fragment` CRD _spec_ defined in the `FragmentSpec` type has the following f
 | git.ref.semver | The Git tag semver expression, takes precedence over tag. | Optional (**) |
 | git.ref.tag | The Git tag to checkout, takes precedence over branch. | Optional (**) |
 | git.secretRef | The secret name containing the Git credentials. For HTTPS repositories, the secret must contain user name and password fields. For SSH repositories, the secret must contain identity, identity.pub, and known_hosts fields. | Optional (**) |
+| git.subPath | SubPath is the folder inside the git repository to consider as the root of the accelerator or fragment. Defaults at the root of the repository. | Optional |
 
 \* Any optional fields marked with an asterisk (*) are populated from a field of the same name in the `accelerator` definition in the `accelerator.yaml` file if that is present in the Git repository for the accelerator.
 
