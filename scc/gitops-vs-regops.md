@@ -291,13 +291,15 @@ order to do so, the following parameters must be set:
 - `commit_strategy` == `pull_request` configured during the Out of the Box Supply
   Chains package installation.
 - `gitops.pull_request.server_kind` configured during the Out of the Box Supply
-  Chains package installation.
+  Chains package installation or `gitops_server_kind` configured as a workload parameter.
 - `gitops.pull_request.commit_branch` configured during the Out of the Box Supply
-  Chains package installation.
+  Chains package installation or `gitops_commit_branch` configured as a workload parameter.
 - `gitops.pull_request.pull_request_title` configured during the Out of the Box Supply
-  Chains package installation.
+  Chains package installation or `gitops_pull_request_title` configured as a workload parameter.
 - `gitops.pull_request.pull_request_body` configured during the Out of the Box Supply
-  Chains package installation.
+  Chains package installation or `gitops_pull_request_body` configured as a workload parameter.
+
+If a value is set at both installation and in a workload parameter, the workload parameter will be respected.
 
 The recommended value for commit_branch is an empty string. This generates a new branch for each commit based 
 on a hash of the time when the commit is created. This prevents collisions between multiple workloads using a single
