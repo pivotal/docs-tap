@@ -9,5 +9,7 @@ An `ImageRepository` resource can resolve the source from the contents of an ima
 
 A `MavenArtifact` resource can resolve a binary artifact from a Maven repository. This functionality enables the supply chain to support artifacts produced externally.
 
+> Note: Fetching `RELEASE` version from github packages is not currently supported
+
 Tanzu Source Controller extends the functionality of the FluxCD Source Controller Kubernetes operator. For more information about FluxCD Source Controller, see the
 [fluxcd/source-controller](https://github.com/fluxcd/source-controller) project on GitHub.
