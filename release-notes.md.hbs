@@ -206,6 +206,11 @@ This release has the following known issues, listed by area and component.
 
 - Known issue 1
 - Known issue 2
+#### Convention Service
+- **Issue:**
+  If the self signed CA for a registry is provided through `convention-controller.ca_cert_data`, it will not be successfully propagated to the convention service.
+  **Workaround:**
+  Define the CA using the available `.shared.ca_cert_data` top-level key to supply the CA to the convention service.
 
 #### Grype scanner
 
