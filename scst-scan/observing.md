@@ -82,4 +82,4 @@ configurations to disable the Store:
 Supply Chain Security Tools - Scan intermittently sets the phase of a scan to `Error` with the message `unable to decode cyclonedx`. To resolve this issue:
 
 * If you’re applying the scan manually, you can delete the failed scan job and re-apply with `kubectl apply -f PATH-TO-IMAGESCAN-OR-SOURCESCAN -n DEV-NAMESPACE` to retrigger the scan.
-* If this problem happened while running an out-of-the-box TAP Supply Chain, you can run `kubectl get imagescans -n WORKLOAD-NAMESPACE` or `kubectl get sourcescans -n WORKLOAD-NAMESPACE` to get the scan name, and then delete it by running `kubectl delete IMAGESCAN-OR-SOURCESCAN SCAN-NAME -n WORKLOAD-NAMESPACE`. The Choreographer controller will then recreate it for you.
+* If this problem happened while running an out-of-the-box TAP Supply Chain, you can run `kubectl get imagescans -n WORKLOAD-NAMESPACE` or `kubectl get sourcescans -n WORKLOAD-NAMESPACE` to get the scan name, and then delete it by running `kubectl delete IMAGESCAN-OR-SOURCESCAN SCAN-NAME -n WORKLOAD-NAMESPACE`. The Choreographer controller then recreates it for you.
