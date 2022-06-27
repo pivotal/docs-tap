@@ -1,12 +1,12 @@
-# Install Supply Chain Security Tools - Policy Controller 
+# Install Supply Chain Security Tools - Policy Controller
 
-Supply Chain Security Tools - Policy Controller is installed as part of Tanzu Application 
+Supply Chain Security Tools - Policy Controller is installed as part of Tanzu Application
 Platform's Full, Iterate and Run profiles. Use the instructions in this topic to manually install this component.
 
 ## <a id='scst-policy-prereqs'></a> Prerequisites
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- A container image registry that supports TLS connections. 
+- A container image registry that supports TLS connections.
 >**Note:** This component does not work with not secure registries.
 
 - During configuration for this component, you are asked to provide a cosign public key to use to
@@ -154,11 +154,11 @@ To install Supply Chain Security Tools - Policy Controller:
 
       The default value for this field is `5`. If your use case requires
       more than 5 Pods, change this value to allow the number of replicas you intend to deploy.
-      
+
       >**Note:** VMware recommends to run this component with a critical priority level to prevent the cluster from rejecting all admission requests if the component's `Pod`s are evicted due to resource limitations.
 
     - `replicas`:
-      This setting controls the default amount of replicas deployed by  this
+      This setting controls the default amount of replicas deployed by this
       component. The default value is `1`.
 
       **For production environments**: VMware recommends you increase the number of replicas to

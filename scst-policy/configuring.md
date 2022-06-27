@@ -8,7 +8,7 @@ container images properly.
 An image is admitted after it is validated against all policies with
 matching image patterns, and where at least one valid signature obtained from
 the authorities provided in each of the matched
-[ClusterImagePolicy](#create-cip-resource). Within a single policy, any single 
+[ClusterImagePolicy](#create-cip-resource). Within a single policy, any single
 signature must be valid. When more than one policy has a matching image pattern,
 the image much match at least one signature from each ClusterImagePolicy.
 
@@ -86,7 +86,7 @@ spec:
           name: secretName
     - key:
         kms: KMSPATH
-```  
+```
 
 Authorities can be `keyless` specifications. Each keyless authority can contain
 a Fulcio URL, a certificate or an array of identities.
@@ -148,12 +148,12 @@ in the deployment namespace.
 Because the order in which credentials are loaded matters, authentication fails in the following scenarios:
 
 - A not valid credential is specified in the `imagePullSecrets` of the resource
-  or in the service account the resource runs as. 
-- A valid credential is specified in the `ClusterImagePolicy` `secretRef` field, or in the `image-policy-registry-credentials` service account. 
+  or in the service account the resource runs as.
+- A not valid credential is specified in the `ClusterImagePolicy` `signaturePullSecrets` field.
 
 To prevent this issue, choose a single authentication method to validate signatures for your resources.
 
-If you use [containerd-configured registry credentials](https://github.com/containerd/containerd/blob/main/docs/cri/registry.md#configure-registry-credentials) 
+If you use [containerd-configured registry credentials](https://github.com/containerd/containerd/blob/main/docs/cri/registry.md#configure-registry-credentials)
 or another mechanism that causes your resources and service accounts to not
 include an `imagePullSecrets` field, you must provide credentials to
 the policy controller using one of the following mechanisms:
@@ -171,7 +171,7 @@ deployment namespace.
 You can provide secrets for authentication as part of the name pattern policy
 configuration provided your use meets the following conditions:
 
-*  Your images and signatures reside in a registry protected by authentication.
+* Your images and signatures reside in a registry protected by authentication.
 
 * You do not have `signaturePullSecrets` configured in your ClusterImagePolicy
   or in the `ServiceAccount`s that your runnable resources use.
@@ -196,7 +196,7 @@ spec:
         - oci: registry.example.com/project/signature-location
           signaturePullSecrets:
           - name: mysecret
-```  
+```
 
 >**Note:** You must grant the service account
 `image-policy-controller-manager` in the deployment namespace RBAC

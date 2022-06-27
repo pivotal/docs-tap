@@ -26,7 +26,7 @@ The possible log entries the webhook emits and their explanations are summarized
     <tr>
         <td><code>&lt;Namespace&gt; is excluded. The ImagePolicy will not be applied.</code></td>
         <td>
-          <ul>          
+          <ul>
             <li>
               An image policy is present in the cluster.
             </li>
@@ -35,14 +35,14 @@ The possible log entries the webhook emits and their explanations are summarized
             </li>
             <li>
               Any container images trying to get created in this namespace are not checked for signatures.
-            </li>                        
-          </ul>        
+            </li>
+          </ul>
         </td>
     </tr>
     <tr>
         <td><code>Could not verify against any image policies for container image: &lt;ContainerImage&gt;.</code></td>
         <td>
-          <ul>          
+          <ul>
             <li>
               An image policy is present in the cluster.
             </li>
@@ -54,14 +54,14 @@ The possible log entries the webhook emits and their explanations are summarized
             </li>
             <li>
               Image of the container being installed does not match any pattern present in the policy and was rejected by the webhook.
-            </li>                         
-          </ul>                
+            </li>
+          </ul>
         </td>
     </tr>
     <tr>
         <td><code>&lt;ContainerImage&gt; did not match any image policies. Container will be created as AllowUnmatchedImages flag is true.</code></td>
         <td>
-          <ul>          
+          <ul>
             <li>
               An image policy is present in the cluster.
             </li>
@@ -73,14 +73,14 @@ The possible log entries the webhook emits and their explanations are summarized
             </li>
             <li>
               Image of the container being installed does not match any pattern present in the policy and was allowed to be created.
-            </li>                         
-          </ul>           
+            </li>
+          </ul>
         </td>
     </tr>
     <tr>
         <td><code>failed to find signature for image.</code></td>
         <td>
-          <ul>          
+          <ul>
             <li>
               An image policy is present in the cluster.
             </li>
@@ -92,14 +92,14 @@ The possible log entries the webhook emits and their explanations are summarized
             </li>
             <li>
               The webhook can not verify the signature.
-            </li>                         
-          </ul>           
+            </li>
+          </ul>
         </td>
     </tr>
     <tr>
         <td><code>The image: &lt;ContainerImage&gt; is not signed.</code></td>
         <td>
-          <ul>          
+          <ul>
             <li>
               An image policy is present in the cluster.
             </li>
@@ -111,20 +111,20 @@ The possible log entries the webhook emits and their explanations are summarized
             </li>
             <li>
               The image is not signed.
-            </li>                         
-          </ul>    
+            </li>
+          </ul>
         </td>
     </tr>
     <tr>
         <td><code>failed to decode resource</code></td>
         <td>
-          <ul>          
+          <ul>
             <li>
               The resource type is not supported.
             </li>
             <li>
               Currently supported v1 versions of:
-                  <ul>          
+                  <ul>
                     <li>
                       Pod
                     </li>
@@ -146,15 +146,15 @@ The possible log entries the webhook emits and their explanations are summarized
                     <li>
                       CronJob (and v1beta1)
                     </li>
-                  </ul>    
+                  </ul>
             </li>
-          </ul>    
+          </ul>
         </td>
     </tr>
     <tr>
         <td><code>failed to verify</code></td>
         <td>
-          <ul>          
+          <ul>
             <li>
               An image policy is present in the cluster.
             </li>
@@ -166,8 +166,8 @@ The possible log entries the webhook emits and their explanations are summarized
             </li>
             <li>
               The webhook can not verify the signature.
-            </li>                         
-          </ul>            
+            </li>
+          </ul>
         </td>
     </tr>
     <tr>
@@ -178,31 +178,31 @@ The possible log entries the webhook emits and their explanations are summarized
           </code>
         </td>
         <td>
-          <ul>          
+          <ul>
             <li>
               Provide the pattern that matches the container image.
             </li>
             <li>
               Provide the corresponding <code>Image</code> configuration from the <code>ClusterImagePolicy</code> that matches the container image.
-            </li>                       
-          </ul>           
+            </li>
+          </ul>
         </td>
     </tr>
     <tr>
         <td><code>service account not found</code></td>
         <td>
-          <ul>          
+          <ul>
             <li>
               The fallback service account, “image-policy-registry-credentials”, was not found in the namespace of which the webhook is installed.
             </li>
             <li>
               The fallback service account is deprecated and was originally purposed to storing <code>imagePullSecrets</code> for container images and their co-located <code>cosign</code> signatures.
-            </li>                       
-          </ul>           
+            </li>
+          </ul>
         </td>
     </tr>
     <tr>
         <td><code>unmatched image policy: &lt;ContainerImage&gt;</code></td>
         <td>Container image does not match any policy image patterns.</td>
-    </tr>                    
+    </tr>
 </table>
