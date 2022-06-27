@@ -7,7 +7,7 @@ Once the Authorization is enabled, you can view your runtime resources on a remo
 
 ## <a id="googles-oidc-provider"></a> Leveraging Google Auth
 
-When levearging Google's OIDC provider, the process of enabling Authorization requires fewer steps:
+When levearging Google's OIDC provider, the process of enabling Authorization requires the following steps:
 
 1. Add a redirect config on the OIDC side
 2. Configure the Tanzu Application Platform GUI to view the remote GKE cluster
