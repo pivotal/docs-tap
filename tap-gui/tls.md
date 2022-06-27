@@ -31,7 +31,7 @@ In order to configure a TLS certificate for Tanzu Application Platform GUI, foll
 
         ```kubectl apply -f certificate.yaml```
 
-2. Update your `tap-gui` values to include a top level `tls` key, with subkeys for `namespace` and `secretName`. The namespace should refer to the namespace where tap-gui is running. The secret name should refer to the `secretName` value defined in your Certificate resource above.
+2. Update your `tap-gui` values to include a top level `tls` key, with subkeys for `namespace` and `secretName`. The namespace should refer to the namespace containing the above `Certificate` object. The secret name should refer to the `secretName` value defined in your Certificate resource above.
    ```yaml
     tls:
         namespace: tap-gui
