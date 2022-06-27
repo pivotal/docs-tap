@@ -10,21 +10,21 @@ In order to configure a TLS certificate for Tanzu Application Platform GUI, foll
         apiVersion: cert-manager.io/v1
         kind: Issuer
         metadata:
-        name: ca-issuer
-        namespace: tap-gui
+          name: ca-issuer
+          namespace: tap-gui
         spec:
-        selfSigned: {}
+          selfSigned: {}
         ---
         apiVersion: cert-manager.io/v1
         kind: Certificate
         metadata:
-        name: tap-gui-cert
-        namespace: tap-gui
+          name: tap-gui-cert
+          namespace: tap-gui
         spec:
-        secretName: tap-gui-cert
-        dnsNames:
-        - tap-gui.INGRESS-DOMAIN
-        issuerRef:
+          secretName: tap-gui-cert
+          dnsNames:
+          - tap-gui.INGRESS-DOMAIN
+          issuerRef:
             name: ca-issuer
         ```
     * add the Issuer and Certificate to your cluster:
