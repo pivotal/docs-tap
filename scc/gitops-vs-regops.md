@@ -285,8 +285,11 @@ deprecated value repository_prefix is ignored because suggested values are prese
 
 In the standard git-ops approach, configuration is pushed to a repository and is immediately applied 
 to a cluster by any deliverable watching the repository. Operators might want to have a manual review step before 
-applying configuration to the cluster. In this case, operators must specify a `pull_request` commit strategy. In 
-order to do so, the following parameters must be set:
+applying configuration to the cluster. In this case, operators must specify a `pull_request` commit strategy. 
+
+>**Note:** If you want to use the pull request approach, you must use http(s) authentication with a token.
+
+To use the `pull_request` commit strategy, set the following parameters:
 
 - `commit_strategy` == `pull_request` configured during the Out of the Box Supply
   Chains package installation.
@@ -326,8 +329,6 @@ And a workload with the name `app` in the `dev` namespace, we would find:
 
 A commit to the `https://github.com/vmware-tanzu/cartographer` repository on a branch with a random name (e.g. 
 `MTY1MTYxMzE0NQo=`). There would be a pull request open to merge this branch into the base branch `main`.
-
->**Note:** If you want to use the pull request approach, you must use http(s) authentication with a token.
 
 ### <a id="auth"></a>Authentication
 
