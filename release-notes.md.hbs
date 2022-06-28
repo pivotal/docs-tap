@@ -209,6 +209,7 @@ This release has the following known issues, listed by area and component.
 #### Convention Service
 - **Issue:**
   If the self-signed certificate authority (CA) for a registry is provided through `convention-controller.ca_cert_data`, it is not successfully propagated to the convention service.
+  
   **Workaround:**
   Define the CA using the available `.shared.ca_cert_data` top-level key to supply the CA to the convention service.
 
