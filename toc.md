@@ -330,6 +330,7 @@ docs.vmware.com is built.
          - [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.md)
       - [Upgrading Tanzu Application Platform GUI](tap-gui/upgrades.md)
       - [Troubleshoot Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
+      - [Configuring TLS for Tanzu Application Platform GUI](tap-gui/tls.md)
     - [Tanzu Build Service](tanzu-build-service/tbs-about.md)
       - [Install Tanzu Build Service](tanzu-build-service/install-tbs.md)
       - [Descriptors](tanzu-build-service/descriptors.md)
