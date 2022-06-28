@@ -1,5 +1,7 @@
 # Enable Authorization on Remote GKE Clusters in Tanzu Application Platform GUI using Google Auth
 
+<!-- Temporary topic that exists until EKS RBAC is sorted out. -->
+
 This section describes how to leverage Google Auth to add access-controlled visibility for a remote GKE cluster.
 
 Once the Authorization is enabled, you can view your runtime resources on a remote cluster in Tanzu Application Platform GUI. For more detail, please refer to [View Runtime Resources on Remote Clusters in Tanzu Application Platform GUI](./view-resouces-rbac.md).
