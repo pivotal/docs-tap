@@ -1,5 +1,7 @@
 # Enable Authorization on Remote EKS Clusters in Tanzu Application Platform GUI
 
+<!-- This topic is missing from toc.md because it is for TAP v1.3 and onwards only -->
+
 To add access-controlled visibility for a remote EKS cluster:
 
 1. Set up the OIDC provider

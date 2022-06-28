@@ -1,5 +1,7 @@
 # Enable Authorization on Remote Clusters in Tanzu Application Platform GUI
 
+<!-- This topic is missing from toc.md because it is for TAP v1.3 and onwards only -->
+
 You can control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based
 on user roles and permissions for each of the visible remote clusters.
 Role-based Access Control (RBAC) is currently supported for the following Kubernetes cluster
