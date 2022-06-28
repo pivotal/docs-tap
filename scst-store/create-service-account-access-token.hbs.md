@@ -138,14 +138,14 @@ The access token is a "Bearer" token used in the http request header "Authorizat
 
 When using the CLI, you'll need to set the `METADATA_STORE_ACCESS_TOKEN` environment variable, or use the `--access-token` flag. It is not recommended to use the `--access-token` flag as the token will appear in your shell history.
 
-The following command will retrieve the access token from Kubernetes and store it in `METADATA_STORE_ACCESS_TOKEN` where `SERVICE-ACCOUNT-NAME` is the name of the service account you plan to use.  
+The following command will retrieve the access token from Kubernetes and store it in `METADATA_STORE_ACCESS_TOKEN` where `SERVICE-ACCOUNT-SECRET-NAME` is the name of the secret for the service account you plan to use.  
 
 ```console
-export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='SERVICE-ACCOUNT-NAME')].data.token}" | base64 -d)
+export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets SERVICE-ACCOUNT-SECRET-NAME -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
 ```
 
 For example:
 
 ```console
-$ export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
+$ export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
 ```
