@@ -1,7 +1,5 @@
 # Enabling authorization on remote clusters in Tanzu Application Platform GUI
 
-<!-- Temporary topic that exists until EKS RBAC is sorted out. -->
-
 You can control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based
 on user roles and permissions for each of the visible remote clusters.
 
