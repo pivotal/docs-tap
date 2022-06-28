@@ -18,10 +18,6 @@ End User License Agreements (EULAs) as follows:
 
     - [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
     - [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/)
-    - [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
-    - [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
-    - [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
-
 
 ### <a id='accept-tap-eula'></a> Example of accepting the Tanzu Application Platform EULA
 
