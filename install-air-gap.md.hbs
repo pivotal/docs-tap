@@ -184,12 +184,12 @@ The sample values file contains the necessary defaults for:
 
     >**Important:** Keep the values file for future configuration use.
 
-1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
+1. Proceed to the [View possible configuration settings for your package](install.html#view-pkge-config-settings)
 section.
 
 ### <a id='full-profile'></a> Full Profile
 
-To install Tanzu Application Platform with Basic Supply Chains, 
+To install Tanzu Application Platform with Supply Chain Basic, 
 you must retrieve your cluster’s base64 encoded ca certificate from `$HOME/.kube/config`. 
 Retrieve the `certificate-authority-data` from the respective cluster section 
 and input it as `B64_ENCODED_CA` in the `tap-values.yaml`:
@@ -209,8 +209,8 @@ contour:
   infrastructure_provider: aws
   envoy:
       service:
-    	type: LoadBalancer
-    	annotations:
+      type: LoadBalancer
+      annotations:
          service.beta.kubernetes.io/aws-load-balancer-internal: "true"
 ootb_supply_chain_basic:
   registry:
@@ -220,43 +220,43 @@ ootb_supply_chain_basic:
       ssh_secret: "CA-SECRET-NAME"
   maven:
       repository:
-        	  url: https://MAVEN-URL
-           	credentials_secret_name: "MAVEN-CREDENTIALS"
-          	ca_cert_secret_name: "CA-SECRET-NAME"
+         url: https://MAVEN-URL
+         credentials_secret_name: "MAVEN-CREDENTIALS"
+         ca_cert_secret_name: "CA-SECRET-NAME"
 
 accelerator:
-    	samples:
+      samples:
             include: false
 tap_gui:
   service_type: ClusterIP
   ingressEnabled: "true"
   app_config:
       kubernetes:
-     	  serviceLocatorMethod:
-       	  type: multiTenant
-     	  clusterLocatorMethods:
-     	  - type: config
-     	    clusters:
-     	    - url: https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}
-     	      name: host
-     	      authProvider: serviceAccount
-     	      serviceAccountToken: ${KUBERNETES_SERVICE_ACCOUNT_TOKEN}
-     	      skipTLSVerify: false
-     	      caData: B64_ENCODED_CA
+          serviceLocatorMethod:
+            type: multiTenant
+        clusterLocatorMethods:
+        - type: config
+          clusters:
+          - url: https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}
+            name: host
+            authProvider: serviceAccount
+            serviceAccountToken: ${KUBERNETES_SERVICE_ACCOUNT_TOKEN}
+            skipTLSVerify: false
+            caData: B64_ENCODED_CA
       app:
-    	  baseUrl: http://tap-gui.INGRESS-DOMAIN
-    	  catalog:
-     	   locations:
-       	   - type: url
-         	   target: https://GIT-CATALOG-URL/catalog-info.yaml
+       baseUrl: http://tap-gui.INGRESS-DOMAIN
+       catalog:
+        locations:
+          - type: url
+            target: https://GIT-CATALOG-URL/catalog-info.yaml
       integrations:
-     	  gitlab:
-     	     - host: GITLABURL
-           	 apiBaseUrl: https://GITLABURL/api/v4/
+        gitlab:
+           - host: GITLABURL
+             apiBaseUrl: https://GITLABURL/api/v4/
       backend:
-    	  baseUrl: http://tap-gui.INGRESS-DOMAIN
-    	  cors:
-      	  origin: http://tap-gui.INGRESS-DOMAIN
+        baseUrl: http://tap-gui.INGRESS-DOMAIN
+        cors:
+          origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   ingress_domain: INGRESS-DOMAIN
@@ -268,8 +268,8 @@ scanning:
   metadataStore:
       url: ""
 shared:
-    	ingress_domain: INGRESS-DOMAIN
-    	ca_cert_data: |
+      ingress_domain: INGRESS-DOMAIN
+      ca_cert_data: |
             -----BEGIN CERTIFICATE-----
             MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
             -----END CERTIFICATE-----
@@ -319,114 +319,6 @@ this can reuse the `tap-registry` secret created in
 > [manual process in a CI/CD context](tanzu-build-service/tbs-about.html#dependencies-manual), or
 > an [automatic update process](tanzu-build-service/tbs-about.html#auto-updates)
 > in the background by Tanzu Application Platform.
-
-### <a id="view-pkge-config-settings"></a>View possible configuration settings for your package
-
-To view possible configuration settings for a package, run:
-
-```console
-tanzu package available get tap.tanzu.vmware.com/$TAP_VERSION --values-schema --namespace tap-install
-```
-
-Where `$TAP_VERSION` is the Tanzu Application Platform version environment variable
-you defined earlier.
-
->**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
->it plans to install. The package only shows top-level keys.
->You can view individual package configuration settings with the same `tanzu package available get` command.
->For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
-
-```yaml
-profile: full
-
-# ...
-
-# e.g. CNRs specific values go under its name
-cnrs:
-  provider: local
-
-# e.g. App Accelerator specific values go under its name
-accelerator:
-  server:
-    service_type: "ClusterIP"
-```
-
-### <a id="identify-values"></a>Identify the values for your package
-
-You can identify the values for your Tanzu package by running:
-
-```console
-tanzu package available get PACKAGE-NAME.tanzu.vmware.com/VERSION --values-schema -n tap-install
-```
-
-Where:
-
-- `VERSION` is the version number of the package. For example, `0.5.1` for Supply Chain Basic package.
-- `PACKAGE-NAME` is the value of `Top-level Key` for package-specific configuration within
-your `tap-values.yaml`, as summarized in the following table:  
-
-|Package|Top-level Key|
-|----|----|
-|_see table below_|`shared`|
-|API portal|`api_portal`|
-|Application Accelerator|`accelerator`|
-|Application Live View|`appliveview`|
-|Application Live View Connector|`appliveview_connector`|
-|Application Live View Conventions|`appliveview-conventions`|
-|Cartographer|`cartographer`|
-|Cloud Native Runtimes|`cnrs`|
-|Convention Controller|`convention_controller`|
-|Source Controller|`source_controller`|
-|Supply Chain|`supply_chain`|
-|Supply Chain Basic|`ootb_supply_chain_basic`|
-|Supply Chain Testing|`ootb_supply_chain_testing`|
-|Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
-|Supply Chain Security Tools - Scan|`scanning`|
-|Supply Chain Security Tools - Scan (Grype Scanner)|`grype`|
-|Supply Chain Security Tools - Store|`metadata_store`|
-|Image Policy Webhook|`image_policy_webhook`|
-|Build Service|`buildservice`|
-|Tanzu Application Platform GUI|`tap_gui`|
-|Learning Center|`learningcenter`|
-
-Shared Keys define values that configure multiple packages. These keys are defined under the `shared` Top-level Key, as summarized in the following table:
-
-|Shared Key|Used By|Description|
-|----|----|----|
-|`ca_cert_data`|`convention_controller`, `source_controller`|Optional: PEM Encoded certificate data to trust TLS connections with a private CA.|
-
-For information about package-specific configuration, see [Installing individual packages](install-components.md).
-
-For example, to identify the SSH secret keys for Supply Chain Basic, you can run:
-
-```console
-tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.5.1 --values-schema -n tap-install
-```
-
-Expect to see the following outputs that list the all the SSH secret keys and the descriptions applicable to the package:
-
-```console
-KEY                       DEFAULT                    TYPE    DESCRIPTION
-cluster_builder           default                    string  Name of the Tanzu Build Service (TBS) ClusterBuilder to use by default on image objects managed by the supply chain.
-
-gitops.branch             main                       string  Default branch to use for pushing Kubernetes configuration files produced by the supply chain.
-
-gitops.commit_message     bump configuration         string  Default git commit message to write when publishing Kubernetes configuration files produces by the supply chain to git.
-
-gitops.email              supplychain@cluster.local  string  Default user email to be used for the commits produced by the supply chain.
-
-gitops.repository_prefix  <nil>                      string  Default prefix to be used for forming Git SSH URLs for pushing Kubernetes configuration produced by the supply chain.
-
-gitops.ssh_secret         git-ssh                    string  Name of the default Secret containing SSH credentials to lookup in the developer namespace for the supply chain to fetch source code from and push configuration to.
-
-gitops.username           supplychain                string  Default user name to be used for the commits produced by the supply chain.
-
-registry.repository       <nil>                      string  Name of the repository in the image registry server where the application images from the workloads should be pushed to (required).
-
-registry.server           index.docker.io            string  Name of the registry server where application images should be pushed to (required).
-
-service_account           default                    string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
-```  
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
