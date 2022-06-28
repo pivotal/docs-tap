@@ -195,7 +195,13 @@ This release has the following known issues, listed by area and component.
 
 #### Tanzu Application Platform
 
-- **AWS EKS clusters:** When connecting to AWS EKS clusters an error might appear with the text `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`. The cause is [Kubernetes v1.24](https://kubernetes.io/blog/2022/05/03/kubernetes-1-24-release-announcement/) dropping support for `client.authentication.k8s.io/v1alpha1`. For more information, see [aws/aws-cli/issues/6920](https://github.com/aws/aws-cli/issues/6920) in GitHub. To fix, update `aws-cli` to the latest version, and then run:
+- **AWS EKS clusters:** When connecting to AWS EKS clusters an error might appear with the text
+`Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
+`invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
+The cause is [Kubernetes v1.24](https://kubernetes.io/blog/2022/05/03/kubernetes-1-24-release-announcement/)
+dropping support for `client.authentication.k8s.io/v1alpha1`.
+For more information, see [aws/aws-cli/issues/6920](https://github.com/aws/aws-cli/issues/6920) in
+GitHub. To fix, update `aws-cli` to the latest version, and then run:
 
     ```console
     aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
@@ -213,7 +219,7 @@ This release has the following known issues, listed by area and component.
 #### Convention Service
 - **Issue:**
   If the self-signed certificate authority (CA) for a registry is provided through `convention-controller.ca_cert_data`, it is not successfully propagated to the convention service.
-  
+
   **Workaround:**
   Define the CA using the available `.shared.ca_cert_data` top-level key to supply the CA to the convention service.
 
@@ -235,7 +241,7 @@ This release has the following known issues, listed by area and component.
 #### Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
-    - Delivery section of the supply chain graph may show deliverables that do not pertain to the currently selected workload. There is currently no workaround.  
+    - Delivery section of the supply chain graph may show deliverables that do not pertain to the currently selected workload. There is currently no workaround.
 - Known issue 2
 
 #### VSCode Extension
