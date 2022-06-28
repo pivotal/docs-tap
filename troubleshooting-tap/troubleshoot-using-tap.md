@@ -427,3 +427,15 @@ defined. The provisioner of `storageclass` is responsible for creating the persi
     # set the storage class as default
     kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
      ```
+
+## <a id="scst-sign-reject-imgs"></a>Supply Chain Security Tools - Sign rejects images
+
+Supply Chain Security Tools - Sign rejects images from private registries.
+
+**Explanation**
+
+The image is deployed to a non-default namespace.
+
+**Solution**
+
+Make the private registry secret available to the `default` namespace.
