@@ -1,6 +1,6 @@
 # Migration From Supply Chain Security Tools - Sign
 
-This section will go over how to migrate the ClusterImagePolicy resource
+This section will go over how to migrate the `ClusterImagePolicy` resource
 from Image Policy Webhook to Policy Controller. For more information on
 additional features introduced in Policy Controller, see
 [Configuring Supply Chain Security Tools - Policy](configuring.md).
@@ -8,18 +8,19 @@ additional features introduced in Policy Controller, see
 **Note:** There is currently no equivalent of "AllowUnmatchedImages"
 VMware recommends that users sign public images and have the signature
 stored in their own repository that can be referenced by specifying a source
-in the ClusterImagePolicy authorities.
+in the `ClusterImagePolicy` authorities.
 
-# Namespace exclude cosign-system
-[comment]: <> (TODO: Exclude 'cosign-system' namespace)
+## Add Policy Controller Namespace to Image Policy Webhook
 
-# Map ImagePolicyWebhook
-[comment]: <> (TODO: Quick overview on what is required)
+If there is an active Image Policy Webhook `ClusterImagePolicy`, it will prevent
+Policy Controller from deploying. To ensure that Policy Controller deploys,
+update the Image Policy Webhook installation by adding `cosign-system` to the
+values file. If an alternative `deployment_namespace` will be specified for
+installing Policy Controller, exclude that namespace. For more information on
+how to exclude namespaces, see [Configuring Supply Chain Security Tools - Sign](../scst-sign/configuring.md#create-cip-resource)
 
-## Apply namespace labels to enable Policy Controller
-[comment]: <> (TODO: How to include namespaces)
+## Enable Policy Controller on Namespaces
 
-### Excluding Namespaces
 Policy Controller works with an opt-in system. Operators must update namespaces
 with the label `policy.sigstore.dev/include: "true"` to the namespace resource
 to enable Policy Controller verification.
@@ -28,9 +29,23 @@ to enable Policy Controller verification.
 kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
 ```
 
-The namespaces found in `spec.verification.exclude.resources.namespaces[]` would
-not be updated with the label. Therefore, they are exempted from Policy
-Controller validation.
+## Policy Controller ClusterImagePolicy
+
+The Policy Controller `ClusterImagePolicy` does not have a name requirement.
+Image Policy Controller required that the `ClusterImagePolicy` be named
+`image-policy` and that there be only one `ClusterImagePolicy`. Multiple
+Policy Controller `ClusterImagePolicies` can be applied. During validation, all
+`ClusterImagePolicy` that have an image `glob` pattern that matches the
+deploying image will be evaluated. All matched `ClusterImagePolicies` must be
+valid. For a `ClusterImagePolicy` to be valid, at least one authority in the
+policy must successfully validate the signature of the deploying image.
+
+
+## Excluding Namespaces
+
+The namespaces listed in `spec.verification.exclude.resources.namespaces[]`
+should have `policy.sigstore.dev/include` set to `false` or not be set.
+Therefore, they are exempted from Policy Controller validation.
 
 **Image Policy Webhook:**
 ```yaml
@@ -53,21 +68,21 @@ spec:
     ...
 ```
 
-### Specifying Public Keys
+## Specifying Public Keys
 
 `spec.verification.keys[].publicKey` from Image Policy Webhook is mapped to
-`spec.authorities[].key.data` from Policy Controller.
+`spec.authorities[].key.data` for Policy Controller.
 
 The `name` associated to each `key` is no longer required. Image Policy Webhook
 has direct association between `key` name and `imagePattern`. For Policy
-Controller, multiple ClusterImagePolicy resources can be defined to create
+Controller, multiple `ClusterImagePolicy` resources can be defined to create
 direct association between image patterns and key authorities.
 
-image patterns and keys are scoped to each ClusterImagePolicy resource.
+image patterns and keys are scoped to each `ClusterImagePolicy` resource.
 
 Therefore, to have direct association be isolated between `key` and
-`imagePattern`, multiple Policy Controller ClusterImagePolicy must be created.
-Each ClusterImagePolicy would have the image glob pattern defined and the
+`imagePattern`, multiple Policy Controller `ClusterImagePolicy` must be created.
+Each `ClusterImagePolicy` would have the image glob pattern defined and the
 associated key authorities defined.
 
 **Image Policy Webhook:**
@@ -114,11 +129,24 @@ spec:
 ```
 
 
-# Specifying Image Matching
+## Specifying Image Matching
 
-[comment]: <> (TODO [denny] wildcarding differences)
-[comment]: <> (previously required index.docker.io/[library])
-[comment]: <> (now uses slash separating wildcarding so * and ** is different)
+`spec.verification.images[].namePattern` from Image Policy Webhook maps to
+`spec.images[].glob` for Policy Controller.
+
+Policy Controller follows more closely to `glob` matching. For Image Policy
+Webhook, `registry.com/*` would wildcard all projects and images under the
+registry. However, `glob` matching uses `/` separator delimiting. Therefore,
+the `glob` wildcard matching equivalent is `registry.com/**/*`. The `**` allows
+for recursive project path matching while the trailing `*` images found in the
+terminating project path.
+
+If only one level of pathing is required, the `glob` pattern would be
+`registry.com/*/*`.
+
+Policy Controller also have defaults defined. If `*` is specified, the `glob`
+matching behavior will be `index.docker.io/library/*`. If `*/*` is specified,
+the `glob` matching behavior will be `index.docker.io/*/*`.
 
 **Image Policy Webhook:**
 ```yaml
