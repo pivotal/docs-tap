@@ -1,6 +1,6 @@
 # Install Tanzu Application Platform in an air-gapped environment
 
-This topic describes how to install Tanzu Application Platform on your Kubernetes cluster and registry that are air-gapped from external traffic
+This topic describes how to install Tanzu Application Platform on your Kubernetes cluster and registry that are air-gapped from external traffic.
 
 Before installing the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
@@ -159,7 +159,35 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
-## <a id='install-basic-sc'></a> Install with Basic Supply Chains
+## <a id='install-profile'></a> Install your Tanzu Application Platform profile
+
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
+This is done by using the package manager installed by Tanzu Cluster Essentials.
+
+For more information about profiles, see [About Tanzu Application Platform package and profiles](about-package-profiles.md).
+
+To prepare to install a profile:
+
+1. List version information for the package by running:
+
+    ```console
+    tanzu package available list tap.tanzu.vmware.com --namespace tap-install
+    ```
+
+1. Create a `tap-values.yaml` file by using the
+[Full Profile sample](#full-profile) as a guide.
+These samples have the minimum configuration required to deploy Tanzu Application Platform.
+The sample values file contains the necessary defaults for:
+
+    - The meta-package, or parent Tanzu Application Platform package
+    - Subordinate packages, or individual child packages
+
+    >**Important:** Keep the values file for future configuration use.
+
+1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
+section.
+
+### <a id='full-profile'></a> Full Profile
 
 To install Tanzu Application Platform with Basic Supply Chains, 
 you must retrieve your cluster’s base64 encoded ca certificate from `$HOME/.kube/config`. 
@@ -427,6 +455,6 @@ Follow these steps to install the Install the Tanzu Application Platform package
     tanzu package installed list -A
     ```
 
-After installing Tanzu Application Platform with Basic Supply Chains on to your cluster, 
-you can install Tanzu Application Platform with Testing-Scanning Supply Chain.
+After installing Tanzu Application Platform with Supply Chain Basic on to your cluster, 
+you can install Supply Chain with Testing and Scanning.
 For instructions, see [Install OOTB Supply Chain with Testing and Scanning](getting-started/add-test-and-security.html#install-OOTB-test-scan).
