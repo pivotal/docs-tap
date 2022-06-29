@@ -57,3 +57,8 @@ Click the stop button in the Debug overlay to stop debugging on the cluster:
 - To stop Live Update, use the native controls to stop the currently running `Tanzu Live Update` Run Configuration
 
 ![Stop Live Update](../images/intellij-stopliveupdate.png)
+
+---
+## <a id="known-issues"></a> Known Issues
+
+If you encounter any issues while using the plugin please refer to the [Known Issues](known-issues.md) page.

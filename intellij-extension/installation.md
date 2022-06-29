@@ -1,12 +1,13 @@
 # Installing Tanzu Dev Tools for IntelliJ
 
-This topic explains how to install the VMware Tanzu Developer Tools extension for IntelliJ IDEA.
+This topic explains how to install the VMware Tanzu Developer Tools plugin for IntelliJ IDEA.
 
 ## <a id="prerequisites"></a> Prerequisites
 
-> **Note:** The Tanzu Developer Tools extension currently only supports macOS, and Java Applications.
+> **Note:** The Tanzu Developer Tools plugin currently only supports macOS, and Java Applications.
+> **Note:** Currently supporting IntelliJ IDEA versions 2021.1 - 2022.1
 
-Before installing the Tanzu Developer Tools IDE extension, you must have:
+Before installing the Tanzu Developer Tools IDE plugin, you must have:
 
 - [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac)
 - The Kubernetes command-line tool. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/#kubectl).
@@ -32,7 +33,7 @@ To install VMware Tanzu Developer Tools for IntelliJ:
 
 ## <a id="uninstallation"></a> Uninstallation
 
-To uninstall the Tanzu Dev Tools extension:
+To uninstall the Tanzu Dev Tools plugin:
 
 1. Navigate to **Preferences -> Plugins**.
 2. Select the Tanzu Dev Tools plugin, navigate to the gear icon and select `Uninstall`.
@@ -42,3 +43,8 @@ To uninstall the Tanzu Dev Tools extension:
 ## <a id="whats-next"></a> What's Next
 
 When finished on this page, proceed to [Using Tanzu Dev Tools to get started](getting-started.md).
+
+---
+## <a id="known-issues"></a> Known Issues
+
+If you encounter any issues while using the plugin please refer to the [Known Issues](known-issues.md) page.
