@@ -102,7 +102,7 @@ To allow Supply Chain Security Tools - Scan to access the created secrets, `Secr
 
 >**Note:** Corresponding `SecretImport` resources that receive the exported secrets are installed with the Supply Chain Security Tools - Scan package.
 
-These secrets must be exported to each developer namspace. The following is an example for supporting Supply Chain Security Tools - Scan installation on the developer namespace:
+These secrets must be exported to each developer namespace. The following is an example for supporting Supply Chain Security Tools - Scan installation on the developer namespace:
 
 ```bash
 cat <<EOF | kubectl apply -f -
@@ -125,4 +125,4 @@ spec:
 EOF
 ```
 
-Install Supply Chain Security Tools - Scan with the YAML file sample configuration for the build-profile specified [here](../multicluster/reference/tap-values-build-sample.md)
+Install Supply Chain Security Tools - Scan with the YAML file sample configuration for the build-profile specified in [Build profile](../multicluster/reference/tap-values-build-sample.md).
