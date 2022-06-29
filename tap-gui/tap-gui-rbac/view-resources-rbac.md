@@ -1,4 +1,4 @@
-# View Runtime Resources on Authorization-Enabled Clusters in Tanzu Application Platform GUI
+# View runtime resources on authorization-enabled clusters
 
 <!-- This topic is missing from toc.md because it is for TAP v1.3 and onwards only -->
 
@@ -34,7 +34,6 @@ do not have visibility into runtime resources of globally-scoped components.
 You need cluster-scoped access to have visibility into runtime resources of globally-scoped
 components.
 
-
 ## <a id="globally-scoped-comps"></a> Globally-scoped components
 
 For globally-scoped components, when you access **Runtime Resources** Tanzu Application Platform GUI
@@ -44,22 +43,21 @@ usually with a `part-Of` prefix.
 For example, `demo-component-a` does not have a `backstage.io/kubernetes-namespace` in the `metadata.annotations`
 section. This makes it a globally-scoped component. See the following example YAML.
 
-```yaml
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: demo-component-a
-  description: Demo Component A
-  tags:
-    - java
-  annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=component-a'
-spec:
-  type: service
-  lifecycle: experimental
-  owner: team-a
-```
-
+    ```yaml
+    apiVersion: backstage.io/v1alpha1
+    kind: Component
+    metadata:
+      name: demo-component-a
+      description: Demo Component A
+      tags:
+        - java
+      annotations:
+        'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=component-a'
+    spec:
+      type: service
+      lifecycle: experimental
+      owner: team-a
+    ```
 
 ## <a id="namespace-scoped-comps"></a> Namespace-scoped components
 
@@ -70,10 +68,10 @@ Tanzu Application Platform GUI.
 To make a component namespace-scoped, pass the following annotation to the definition
 YAML file of the component:
 
-```yaml
-annotations:
-  'backstage.io/kubernetes-namespace': NAMESPACE-NAME
-```
+    ```yaml
+    annotations:
+      'backstage.io/kubernetes-namespace': NAMESPACE-NAME
+    ```
 
 Where `NAMESPACE-NAME` is the Kubernetes namespace you want to associate your component with.
 
@@ -81,22 +79,22 @@ For example, `demo-component-b` has a `kubernetes-namespace` in the `metadata.an
 which associates it with the `component-b` namespaces on each of the visible clusters.
 This makes it a namespace-scoped component. See the following example YAML.
 
-```yaml
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: demo-component-b
-  description: Demo Component B
-  tags:
-    - java
-  annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=component-b'
-    'backstage.io/kubernetes-namespace': component-b
-spec:
-  type: service
-  lifecycle: experimental
-  owner: team-b
-```
+    ```yaml
+    apiVersion: backstage.io/v1alpha1
+    kind: Component
+    metadata:
+      name: demo-component-b
+      description: Demo Component B
+      tags:
+        - java
+      annotations:
+        'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=component-b'
+        'backstage.io/kubernetes-namespace': component-b
+    spec:
+      type: service
+      lifecycle: experimental
+      owner: team-b
+    ```
 
 When the `kubernetes-namespace` annotation is absent, the component is considered globally-scoped by
 default. For more information, see

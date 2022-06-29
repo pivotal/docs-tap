@@ -1,16 +1,15 @@
-# Enable Authorization on Remote GKE Clusters in Tanzu Application Platform GUI
+# Enable Authorization on Remote GKE Clusters
 
 <!-- This topic is missing from toc.md because it is for TAP v1.3 and onwards only -->
 
 This section describes two supported options to add access-controlled visibility for a remote GKE cluster:
 
-* [Leverage an external OIDC provider](#external-oidc-provider)
-* [Leveraging Google's OIDC provider](#googles-oidc-provider)
+- [Leverage an external OIDC provider](#external-oidc-provider)
+- [Leveraging Google's OIDC provider](#googles-oidc-provider)
 
 After the authorization is enabled, you can view your runtime resources on a remote cluster in
 Tanzu Application Platform GUI. For more information, see
-[View Runtime Resources on Remote Clusters in Tanzu Application Platform GUI](view-resouces-rbac.html).
-
+[View runtime resources on remote clusters](view-resouces-rbac.html).
 
 ## <a id="external-oidc-provider"></a> Leverage an external OIDC provider
 
@@ -20,7 +19,6 @@ To leverage an external OIDC provider, such as Auth0:
 1. Configure the GKE cluster with the OIDC provider
 1. Configure the Tanzu Application Platform GUI to view the remote GKE cluster
 1. Upgrade the Tanzu Application Platform GUI package
-
 
 ### <a id="set-up-oidc-provider"></a> Set up the OIDC provider
 
@@ -33,39 +31,37 @@ Auth0 is used here as an example.
 
 1. Log in to the Auth0 dashboard.
 1. Go to **Applications**.
-1. Create an application of the type `Single Page Web Application` named `TAP-GUI` or a name of your choice.
+1. Create an application of the type `Single Page Web Application` named `TAP-GUI` or a name of your
+choice.
 1. Click the **Settings** tab.
-1. Under **Application URIs > Allowed Callback URLs**, add
+1. Under **Application URIs** > **Allowed Callback URLs**, add
 
-    ```
+    ```url
     http://tap-gui.INGRESS-DOMAIN/api/auth/auth0/handler/frame
     ```
 
     Where `INGRESS-DOMAIN` is the domain you chose for your Tanzu Application Platform GUI in
     [Installing the Tanzu Application Platform package and profiles](../../install.html).
 
-
 1. Click **Save Changes**.
 
-After creating an application with your OIDC provider, you receive the following credentials for setting
-up RBAC for your remote cluster:
+After creating an application with your OIDC provider, you receive the following credentials for
+setting up RBAC for your remote cluster:
 
-* **Domain**, which is used as `issuerURL` in the following sections
-* **Client ID**, which is used as `CLIENT-ID` in the following sections
-* **Client Secret**, which is used as `CLIENT-SECRET` in the following sections
+- **Domain**, which is used as `issuerURL` in the following sections
+- **Client ID**, which is used as `CLIENT-ID` in the following sections
+- **Client Secret**, which is used as `CLIENT-SECRET` in the following sections
 
 For more information, see [Auth0 Setup Walkthrough](https://backstage.io/docs/auth/auth0/provider) in
 the Backstage documentation.
 To configure other OIDC providers, see [Authentication in Backstage](https://backstage.io/docs/auth/)
 in the Backstage documentation.
 
-
 ### <a id="configure-cluster"></a> Configure the GKE cluster with the OIDC provider
 
 To configure the cluster with the OIDC provider's credentials:
 
 (SECTION TO BE ADDED)
-
 
 ### <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
 
@@ -125,11 +121,11 @@ To do so, copy this YAML content into `tap-values.yaml`:
     Where:
 
     - `CLUSTER-NAME-UNCONSTRAINED` is the cluster name of your choice for your GKE cluster
-    - `CLUSTER-URL` is the URL for the remote cluster you are connecting to Tanzu Application Platform GUI. You obtained this earlier in the procedure.
+    - `CLUSTER-URL` is the URL for the remote cluster you are connecting to
+    Tanzu Application Platform GUI. You obtained this earlier in the procedure.
 
-    If there are any other clusters that you want to make visible in Tanzu Application Platform GUI, add
-    their entries to `clusters` as well.
-
+    If there are any other clusters that you want to make visible in Tanzu Application Platform GUI,
+    add their entries to `clusters` as well.
 
 ### <a id="upgrade-tap-gui"></a> Upgrade the Tanzu Application Platform GUI package
 
@@ -148,7 +144,6 @@ After the new configuration file is ready, update the `tap` package:
     tanzu package installed get tap-gui -n tap-install
     ```
 
-
 ## <a id="googles-oidc-provider"></a> Leverage Google's OIDC provider
 
 When leveraging Google's OIDC provider, fewer steps are needed to enable authorization:
@@ -157,13 +152,11 @@ When leveraging Google's OIDC provider, fewer steps are needed to enable authori
 1. Configure the Tanzu Application Platform GUI to view the remote GKE cluster
 1. Upgrade the Tanzu Application Platform GUI package
 
-
 ### <a id="add-redirect-config"></a> Add a redirect config on the OIDC side
 
 Add a redirect config on the OIDC side:
 
 (SECTION TO BE ADDED)
-
 
 ### <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
 
@@ -218,13 +211,13 @@ To do so, copy this YAML content into `tap-values.yaml`:
 
     Where:
 
-   - `CLUSTER-NAME-UNCONSTRAINED` is the cluster name of your choice for your GKE cluster.
-   - `CLUSTER-URL` is the URL for the remote cluster you are connecting to Tanzu Application Platform GUI. You obtained this earlier in the procedure.
-   - `CA-DATA` is the CA certificate data.
+    - `CLUSTER-NAME-UNCONSTRAINED` is the cluster name of your choice for your GKE cluster.
+    - `CLUSTER-URL` is the URL for the remote cluster you are connecting to
+    Tanzu Application Platform GUI. You obtained this earlier in the procedure.
+    - `CA-DATA` is the CA certificate data.
 
     If there are any other clusters that you want to make visible in Tanzu Application Platform GUI,
     add their entries to `clusters` as well.
-
 
 ### <a id="upgrade-tap-gui"></a> Upgrade the Tanzu Application Platform GUI package
 

@@ -1,11 +1,21 @@
-# View Runtime Resources on Authorization-enabled Clusters in Tanzu Application Platform GUI
+# View runtime resources on authorization-enabled clusters
 
-To visualize runtime resources on Authorization-enabled clusters in Tanzu Application Platform GUI, you will need to proceed to the Software Catalog `Component` of choice and click on the `Runtime Resources` tab on the top of ribbon.
+To visualize runtime resources on authorization-enabled clusters in Tanzu Application Platform GUI,
+proceed to the software catalog **Component** of choice and click the **Runtime Resources** tab
+at the top of the ribbon.
 
-![Screenshot of Runtime Resources](./../images/tap-gui-multiple-clusters.png)
+![Screenshot of Runtime Resources](../images/tap-gui-multiple-clusters.png)
 
-Once you click on `Runtime Resources`, Tanzu Application Platform GUI will use your credentials to query the clusters for the respective Runtime Resources. The system will check if you are authenticated with the OIDC providers configured for the remote clusters. If you are not authenticated, the system shall prompt for your OIDC credentials.
+After you click **Runtime Resources**, Tanzu Application Platform GUI uses your credentials to
+query the clusters for the respective runtime resources.
+The system checks if you are authenticated with the OIDC providers configured for the remote clusters.
+If you are not authenticated, the system prompts you for your OIDC credentials.
 
-Visibility of remote clusters that are not restricted by Authorization, is done through the general Service Account of Tanzu Application Platform GUI and is not restricted for users. For more information on how to set up unrestrictred remote cluster visibility, please refer to [Viewing resources on multiple clusters in Tanzu Application Platform GUI](./../cluster-view-setup.md).
+Remote clusters that are not restricted by authorization are made visible by using the
+general service account of Tanzu Application Platform GUI. The visibility is not restricted for users.
+For more information about how to set up unrestricted remote cluster visibility, see
+[Viewing resources on multiple clusters in Tanzu Application Platform GUI](../cluster-view-setup.md).
 
-When you access `Runtime Resources`, Tanzu Application Platform GUI will query all Kubernetes namespaces for runtime resources that with a matching `kubernetes-label-selector` (usually with a `part-Of` prefix).
+When you access **Runtime Resources**, Tanzu Application Platform GUI queries all Kubernetes
+namespaces for runtime resources that have a matching `kubernetes-label-selector`. This is usually
+has a `part-Of` prefix.
