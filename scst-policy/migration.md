@@ -14,10 +14,11 @@ in the `ClusterImagePolicy` authorities.
 
 If there is an active Image Policy Webhook `ClusterImagePolicy`, it will prevent
 Policy Controller from deploying. To ensure that Policy Controller deploys,
-update the Image Policy Webhook installation by adding `cosign-system` to the
-values file. If an alternative `deployment_namespace` will be specified for
-installing Policy Controller, exclude that namespace. For more information on
-how to exclude namespaces, see [Configuring Supply Chain Security Tools - Sign](../scst-sign/configuring.md#create-cip-resource)
+update the Image Policy Webhook `ClusterImagePolicy` by adding `cosign-system`
+to the excluded namespaces. If an alternative `deployment_namespace` will be
+specified for installing Policy Controller, exclude that namespace.
+For more information on how to exclude namespaces, see
+[Configuring Supply Chain Security Tools - Sign](../scst-sign/configuring.md#create-cip-resource)
 
 ## Enable Policy Controller on Namespaces
 

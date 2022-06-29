@@ -8,6 +8,9 @@ Platform's Full, Iterate and Run profiles. Use the instructions in this topic to
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - A container image registry that supports TLS connections.
 >**Note:** This component does not work with not secure registries.
+- If Supply Chain Security Tools - Sign is installed with a running
+`ClusterImagePolicy`, see
+[Migration From Supply Chain Security Tools - Sign](./migration.md).
 
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. An example cosign public key is provided that can validate an image from the
