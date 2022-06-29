@@ -10,11 +10,11 @@ The Scan Controller supports policy enforcement by using an Open Policy Agent (O
 
 To define a Rego file for an image scan or source scan, you must comply with the requirements defined for every Rego file for the policy verification to work properly.
 
-- **Package main:** The Rego file must define a package in its body called `main`, because the system looks for this package to verify the scan's results compliance.
+- **Package main:** The Rego file must define a package in its body called `main`, because the system looks for this package to verify the scan results compliance.
 
 - **Input match:** The Rego file evaluates one vulnerability match at a time, iterating as many times as different vulnerabilities are found in the scan. The match structure can be accessed in the `input.currentVulnerability` object inside the Rego file and has the [CycloneDX](https://cyclonedx.org/docs/1.3/) format.
 
-- **deny rule:** The Rego file must define inside its body a `deny` rule. `deny` is a set of error messages that is returned to the user. Each rule you write adds to that set of error messages. If the conditions in the body of the `deny` statement are true then the user is handed an error message. If false the vulnerability is allowed in the Source or Image scan.
+- **deny rule:** The Rego file must define inside its body a `deny` rule. `deny` is a set of error messages that is returned to the user. Each rule you write adds to that set of error messages. If the conditions in the body of the `deny` statement are true then the user is handed an error message. If false, the vulnerability is allowed in the Source or Image scan.
 
 ## <a id="define-rego-file"></a>Define a Rego file for policy enforcement
 
