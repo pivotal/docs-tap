@@ -76,8 +76,7 @@ prevent the conflicts mentioned earlier, by using the
 
 ```yaml
 # add to exclued_packages `ootb-*` packages you DON'T want to install
-#
-excluded_packages:
+# excluded_packages:
   - ootb-supply-chain-basic.apps.tanzu.vmware.com
   - ootb-supply-chain-testing.apps.tanzu.vmware.com
   - ootb-supply-chain-testing-scanning.apps.tanzu.vmware.com
@@ -133,13 +132,13 @@ ootb_templates:
 ```
 
 For details about how to edit an existing template, see
-[Modifying an Out of the Box Supply template](#modifying-an-out-of-the-box-template)
+[Modifying an Out of the Box Supply template](#modifying-an-out-of-the-box-template) 
 section.
 
 
 ## <a id="modify-sc"></a> Modifying an Out of the Box Supply Chain
 
-In case either the shape of a supply chain or the templates that it points to must be changed, VMware recommends the following:
+To change the shape of a supply chain or the template that it points to, do the following:
 
 1. Copy one of the reference supply chains.
 1. Remove the old supply chain. See [preventing Tanzu Application Platform supply chains from being
@@ -147,7 +146,7 @@ In case either the shape of a supply chain or the templates that it points to mu
 1. Edit the supply chain object.
 1. Submit the modified supply chain to the cluster.
 
-### <a id="NAME"></a> Example
+### <a id="example-ootb-sc"></a> Example
 
 In this example, you have a new `ClusterImageTemplate` object named `foo` that you
 want use for building container images instead of the out of the box object that
@@ -218,7 +217,7 @@ modification to is `source-to-url` provided by the
 4. Submit the supply chain to Kubernetes:
 
     The supply chain definition found in the bundle expects the values you provided
-    through `tap-values.yaml` to be interpolated through YTT before
+    by using `tap-values.yaml` to be interpolated by using YTT before
     they are submitted to Kubernetes. So before applying the modified supply chain
     to the cluster, use YTT to interpolate those values. After that, run:
 
@@ -231,14 +230,14 @@ modification to is `source-to-url` provided by the
       kubectl apply -f-
     ```
 
-    >**Note:** The modified supply chain does not outlive the destruction of the cluster. VMware recommends that you save it, for example in a git repository, to install on every cluster where you expect the supply chain to exist.
+    >**Note:** The modified supply chain does not outlive the destruction of the cluster. VMware recommends that you save it, for example, in a Git repository to install on every cluster where you expect the supply chain to exist.
 
 
-## a id="modify-ootb-sc"></a> Modifying an Out of the Box Supply template
+## <a id="modify-ootb-sc"></a> Modifying an Out of the Box Supply template
 
 The Out of the Box Templates package (`ootb-templates`) includes all of the
-templates and shared Tekton tasks used by the supply chains shipped through
-`ootb-supply-chain-*` packages. Any template that you want to edit, for example to change details about
+templates and shared Tekton tasks used by the supply chains shipped by using
+`ootb-supply-chain-*` packages. Any template that you want to edit, for example, to change details about
 the resources that are created based on them, is part of this
 package.
 
@@ -252,12 +251,12 @@ The workflow for updating a template is as follows:
 1. Edit the template.
 1. Submit the modified template to the cluster.
 
->**Note:** Here you don't need to change anything related to supply
+>**Note:** You don't need to change anything related to supply
 chains, because you're preserving the name of the object referenced
 by the supply chain.
 
 
-### <a id="example"></a> Example
+### <a id="example-ootb-st"></a> Example
 
 In this example, you want to update the `ClusterImageTemplate` object called
 `kpack-template`, which provides a template for creating `kpack/Image`s to
@@ -368,7 +367,7 @@ contents of some of the objects that the installation submits to the cluster.
 Namely, such modifications result in the original definition
 persisting instead of the changes.
 
-For this reason, before you perform any customization to what is provided by
+For this reason, before you perform any customization to 
 the Out of the Box packages, you must pause the top-level
 `PackageInstall/tap` object. Run:
 
@@ -396,7 +395,7 @@ are still there, but changes to those children `PackageInstall` objects
 are not overwritten.
 
 Now you can pause the `PackageInstall` objects that relate to the
-templates/supply chains you want to edit.
+templates or supply chains you want to edit.
 
 For example:
 
@@ -408,6 +407,6 @@ For example:
 
 setting `packageinstall.spec.paused: true`.
 
-With the installations paused, further live changes to templates/supply
+With the installations paused, further live changes to templates or supply
 chains are persisted until you revert the `PackageInstall`s to not being
 paused. To persist the changes, follow the steps outlined in the earlier sections.

@@ -1,25 +1,24 @@
-# Install Supply Chain Security Tools - Policy Controller
+# Install Supply Chain Security Tools - Policy Controller 
 
-Supply Chain Security Tools - Policy Controller is automatically installed as part of Tanzu Application
-Platform's Full, Iterate and Run profiles. Follow the instructions below to manually install this component.
+Supply Chain Security Tools - Policy Controller is installed as part of Tanzu Application 
+Platform's Full, Iterate and Run profiles. Use the instructions in this topic to manually install this component.
 
 ## <a id='scst-policy-prereqs'></a> Prerequisites
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- A container image registry that supports TLS connections. This component does not work with insecure registries.
+- A container image registry that supports TLS connections. 
+>**Note:** This component does not work with not secure registries.
+
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. An example cosign public key is provided that can validate an image from the
-public cosign registry. If you want to provide your own key and images, follow the
-[cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to
-generate your own keys and sign an image.
+public cosign registry. To provide your own key and images, follow the
+[cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
 
->**Caution:** This component WILL REJECT `Pods` if it is not correctly configured. Be sure to test your configuration in a test environment before applying policies to your production cluster.
-
-**TODO** is this true?? do we need a trouble shooting section??
+>**Caution:** This component WILL REJECT `Pods` if it is not correctly configured. Test your configuration in a test environment before applying policies to your production cluster.
 
 ## <a id='install-scst-policy'></a> Install
 
-To install Supply Chain Security Tools - Policy Conroller:
+To install Supply Chain Security Tools - Policy Controller:
 
 1. List version information for the package by running:
 
@@ -33,7 +32,7 @@ To install Supply Chain Security Tools - Policy Conroller:
     $ tanzu package available list policy.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for policy.apps.tanzu.vmware.com...
       NAME                                                VERSION        RELEASED-AT
-      policy.apps.tanzu.vmware.com                        1.0.0          2022-06-03 18:00:00 -0500 EST
+      policy.apps.tanzu.vmware.com                        1.0.0          2022-06-09 20:00:00 -0400 EDT
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
@@ -134,7 +133,7 @@ To install Supply Chain Security Tools - Policy Conroller:
 
     - `deployment_namespace`:
       This setting controls the namespace to which this component is deployed.
-      When not specified, the namespace `image-policy-system` is assumed.
+      When not specified, the namespace `cosign-system` is assumed.
       This component creates the specified namespace to deploy required
       resources. Select a namespace that is not used by any
       other components.
@@ -148,18 +147,18 @@ To install Supply Chain Security Tools - Policy Conroller:
       admission controller. The default value is "256Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
 
     - `quota.pod_number`:
-      This setting controls the maximum number of pods that are allowed in the
+      This setting controls the maximum number of Pods that are allowed in the
       deployment namespace with the `system-cluster-critical`
-      priority class. This priority class is added to the pods to prevent
-      preemption of this component's pods in case of node pressure.
+      priority class. This priority class is added to the Pods to prevent
+      preemption of this component's Pods in case of node pressure.
 
       The default value for this field is `5`. If your use case requires
-      more than 5 pods, change this value to allow the number of replicas you intend to deploy.
+      more than 5 Pods, change this value to allow the number of replicas you intend to deploy.
       
-      Note: It is recommended to run this component with a critical priority level to prevent the cluster from rejecting all admission requests if the component's `Pod`s are evicted due to resource limitations.
+      >**Note:** VMware recommends to run this component with a critical priority level to prevent the cluster from rejecting all admission requests if the component's `Pod`s are evicted due to resource limitations.
 
     - `replicas`:
-      This setting controls the default amount of replicas to be deployed by this
+      This setting controls the default amount of replicas deployed by  this
       component. The default value is `1`.
 
       **For production environments**: VMware recommends you increase the number of replicas to
@@ -168,7 +167,7 @@ To install Supply Chain Security Tools - Policy Conroller:
     - `requests_cpu`:
       This setting controls the minimum CPU resource allocated to the Policy
       admission controller. During CPU contention, this value is used as a weighting
-      where higher values indicate more CPU time is allocated. The default value is "100m".
+      where higher values indicate more CPU time is allocated. The default value is `100m`.
       See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
 
     - `requests_memory`:
@@ -210,9 +209,9 @@ To install Supply Chain Security Tools - Policy Conroller:
       Added installed package 'policy-controller'
     ```
 
-After you run the commands above the policy controller will be running.
+After you run the commands earlier the policy controller is running.
 
-**Note:** Policy Controller is now installed, but it will not enforce any
+>**Note:** Policy Controller is now installed, but it does not enforce any
 policies by default. Policies must be explicitly configured on the cluster.
 To configure signature verification policies, see [Configuring Supply Chain
 Security Tools - Policy](configuring.md).

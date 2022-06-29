@@ -1,4 +1,6 @@
-# Enable Authorization on Remote EKS Clusters in Tanzu Application Platform GUI
+# Enable authorization on remote EKS clusters
+
+<!-- This topic is missing from toc.md because it is for TAP v1.3 and onwards only -->
 
 To add access-controlled visibility for a remote EKS cluster:
 
@@ -9,7 +11,7 @@ To add access-controlled visibility for a remote EKS cluster:
 
 After these steps are complete, you can view your runtime resources on a remote EKS cluster in
 Tanzu Application Platform GUI. For more information, see
-[View Runtime Resources on Remote Clusters in Tanzu Application Platform GUI](view-resouces-rbac.html).
+[View runtime resources on remote clusters](view-resouces-rbac.html).
 
 
 ## <a id="set-up-oidc-provider"></a> Set up the OIDC provider
@@ -75,7 +77,7 @@ This content applies to EKS clusters.
     - `CLUSTER-NAME` is the cluster name for your EKS cluster as an AWS identifier
     - `AWS-REGION` is the AWS region of the EKS cluster
     - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider
-    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider
+    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider. For Auth0, this is `https://${AUTH0_DOMAIN}/`.
 
 
 1. Using `eksctl`, run:

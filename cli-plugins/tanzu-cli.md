@@ -2,51 +2,51 @@
 
 This topic provides an overview of the Tanzu command-line interface (CLI).
 
-## Tanzu CLI
+## <a id="tanzu-cli"></a>Tanzu CLI
 
 The Tanzu CLI is a command-line interface that connects you to Tanzu. For example, you can use the Tanzu CLI to:
 
-* Configure the Tanzu CLI itself
-* Install and manage packages
-* Create and manage application workloads
+- Configure the Tanzu CLI itself
+- Install and manage packages
+- Create and manage application workloads
 
 
-## Tanzu CLI Architecture
+## <a id="itanzu-cli-architecture"></a>Tanzu CLI Architecture
 
-The Tanzu CLI has a pluggable architecture. Plugins contain CLI commands. Here are the CLI plugins that can be installed with Tanzu Application Platform. 
+The Tanzu CLI has a pluggable architecture. Plug-ins contain CLI commands. Here are the CLI plug-ins that may be installed with Tanzu Application Platform.
 
-* Accelerator: manage accelerators in a Kubernetes cluster
-* Apps: manage application workloads running on workload clusters
-* Insight: post and query image, package, source, and vulunerability data
-* Package: package management
-* Secret: secret management
-* Services: discover service tyeps, service instances, and manage resource claims
+- Accelerator: manage accelerator's in a Kubernetes cluster
+- Apps: manage application workloads running on workload clusters
+- Insight: post and query image, package, source, and vulnerability data
+- Package: package management
+- Secret: secret management
+- Services: discover service types, service instances, and manage resource claims
 
 
-You can also develop your own plugins to add custom commands to the Tanzu CLI. For more information about plugins, see the [Sync New Plugins](#plugin-sync), [Install New Plugins](#install-new), [Install Local Plugins](#install-local) sections below.
+You can also develop your own plug-ins to add custom commands to the Tanzu CLI. For more information about plug-ins, see the [Sync New Plugins](#plugin-sync), [Install New Plugins](#install-new), [Install Local Plugins](#install-local) following sections.
 
-## Tanzu CLI Installation
+## <a id="tanzu-cli-install"></a>Tanzu CLI Installation
 
-You install and initialize the Tanzu CLI on a computer. The computer may be a laptop, host, or server.
+You install and initialize the Tanzu CLI on a computer. The computer can be a laptop, host, or server.
 
-To install the CLI:
+To install the CLI :
 
-* If you intend to use the Tanzu CLI with **Tanzu Kubernetes Grid,** see [Install the Tanzu CLI and Other Tools](../install-cli.md).
-* If you intend to use the Tanzu CLI with **Tanzu Application Platform,** see [Installing the Tanzu CLI](https://docs.vmware.com/en/Tanzu-Application-Platform/1.0/tap/GUID-install-tanzu-cli.html#cli-and-plugin).
+- To use the Tanzu CLI with **Tanzu Application Platform,** see [Installing the Tanzu CLI](install-tanzu-cli.md#cli-and-plugin).
+- To use the Tanzu CLI with **Tanzu Kubernetes Grid,** see [Install the Tanzu CLI and Other Tools](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.14/tkgi/GUID-installing-cli.html#install-the-tkgi-cli-0).
 
-## Tanzu CLI Command Groups
+## <a id="tanzu-cli-command-groups"></a>Tanzu CLI Command Groups
 
-Tanzu CLI commands are organized into command groups. To view a list of available command groups, run `tanzu`. The list of command groups that you see depends on which CLI plugins are installed on your machine.
+Tanzu CLI commands are organized into command groups. To view a list of available command groups, run `tanzu`. The list of command groups that you see depends on which CLI plug-ins are installed on your local machine.
 
 ## <a id="cli-config"></a> Tanzu CLI Configuration
 
 The Tanzu CLI configuration file, `~/.config/tanzu/config.yaml`, contains your Tanzu CLI configuration, including:
 
-* Sources for CLI plugin discovery
-* Global and plugin-specific configuration options, or *features*
-* Names, contexts, and `kubeconfig` locations for the management clusters that the CLI knows about, and which is the current one
+- Sources for CLI plug-in discovery
+- Global and plug-in-specific configuration options, or *features*
+- Names, contexts, and `kubeconfig` locations for the management clusters that the CLI knows about, and which is the current one
 
-You can use the `tanzu config set PATH VALUE` and `tanzu config unset PATH` commands to customize your CLI configuration, as described in the table below. Running these commands updates the `~/.config/tanzu/config.yaml` file.
+You can use the `tanzu config set PATH VALUE` and `tanzu config unset PATH` commands to customize your CLI configuration, as described in the following table. Running these commands updates the `~/.config/tanzu/config.yaml` file.
 
 <table>
   <thead>
@@ -65,22 +65,22 @@ You can use the `tanzu config set PATH VALUE` and `tanzu config unset PATH` comm
     <tr>
       <td><code>features.global.FEATURE</code></td>
       <td><code>true</code> or <code>false</code></td>
-      <td>This path activates or deactivates global features in your CLI configuration. Use only if you want to change or restore the defaults. For example, <code>tanzu config set features.global.context-aware-cli-for-plugins true</code>.</td>
+      <td>This path activates or deactivates global features in your CLI configuration to. For example, <code>tanzu config set features.global.context-aware-cli-for-plugins true</code>.</td>
     </tr>
     <tr>
       <td><code>features.PLUGIN.FEATURE</code></td>
       <td><code>true</code> or <code>false</code></td>
-      <td>This path activates or deactivates plugin-specific features in your CLI configuration. Use only if you want to change or restore the defaults; some of these features are experimental and intended for evaluation and test purposes only. For example, running <code>tanzu config set features.cluster.dual-stack-ipv4-primary true</code> sets the <code>dual-stack-ipv4-primary</code> feature of the <code>cluster</code> CLI plugin to <code>true</code>. By default, only production-ready plugin features are set to <code>true</code> in the CLI. For more information, see <a href="../experimental-features.md">Experimental Features</a>.</td>
+      <td>This path activates or deactivates plug-in-specific features in your CLI configuration. To change or restore the defaults. Some of these features are beta and intended for evaluation and test purposes only. For example, running <code>tanzu config set features.cluster.dual-stack-ipv4-primary true</code> sets the <code>dual-stack-ipv4-primary</code> feature of the <code>cluster</code> CLI plug-in to <code>true</code>. By default, only production-ready plug-in features are set to <code>true</code> in the CLI. For more information, see <a href="../experimental-features.md">Experimental Features</a>.</td>
     </tr>
     <tr>
       <td><code>unstable-versions</code></td>
       <td><code>none</code> (default), <code>alpha</code>, <code>experimental</code>, and <code>all</code></td>
-      <td><p>This path sets the <code>clientOptions.cli.unstableVersionSelector</code> property in the CLI configuration file. By default, the CLI uses only stable versions of CLI plugins. You can modify this behavior by setting <code>unstable-versions</code> to <code>alpha</code>, <code>experimental</code>, or <code>all</code>:</p>
+      <td><p>This path sets the <code>clientOptions.cli.unstableVersionSelector</code> property in the CLI configuration file. By default, the CLI uses only stable versions of CLI plug-ins. You can edit this behavior by setting <code>unstable-versions</code> to <code>alpha</code>, <code>experimental</code>, or <code>all</code>:</p>
         <ul>
-          <li><code>none</code>: Allows only stable plugin versions. <code>clientOptions.cli.unstableVersionSelector</code> is set to <code>none</code> by default.
-          <li><code>alpha</code>: Allows stable and alpha plugin versions.</li>
+          <li><code>none</code>: Allows only stable plug-in versions. <code>clientOptions.cli.unstableVersionSelector</code> is set to <code>none</code> by default.
+          <li><code>alpha</code>: Allows stable and alpha plug-in versions.</li>
           <li><code>experimental</code>: Allows stable and pre-release plugin versions, including alpha versions.</li>
-          <li><code>all</code>: Allows all plugin versions, including stable, pre-release, and build-tagged versions.</li>
+          <li><code>all</code>: Allows all plug-in< versions, including stable, pre-release, and build-tagged versions.</li>
         </ul>
       <p>To restore the default, set <code>unstable-versions</code> to <code>none</code>.</p>
       </td>
@@ -88,9 +88,9 @@ You can use the `tanzu config set PATH VALUE` and `tanzu config unset PATH` comm
   </tbody>
 </table>
 
-The table below lists the global and plugin-specific features that you can configure in the Tanzu CLI.
+The following table lists the global and plug-in-specific features that you can configure in the Tanzu CLI.
 
-### <a id="features"></a> Features
+### <a id="features"></a>Features
 
 <table>
   <thead>
@@ -110,7 +110,7 @@ The table below lists the global and plugin-specific features that you can confi
       <td>Enables auto-discovery of CLI plugins.</td>
     </tr>
     <tr>
-      <td colspan="3"><code>management-cluster</code> plugin features:</td>
+      <td colspan="3"><code>management-cluster</code> plug-in features:</td>
     </tr>
     <tr>
       <td><code>custom-nameservers</code></td>
@@ -143,7 +143,7 @@ The table below lists the global and plugin-specific features that you can confi
       <td>Enables you to deploy standalone clusters in Tanzu Community Edition. This feature is not available in Tanzu Kubernetes Grid.</td>
     </tr>
     <tr>
-      <td colspan="3"><code>cluster</code> plugin features:</td>
+      <td colspan="3"><code>cluster</code> plug-in features:</td>
     </tr>
     <tr>
       <td><code>custom-nameservers</code></td>
@@ -165,19 +165,19 @@ The table below lists the global and plugin-specific features that you can confi
 
 ## <a id="plugin-sync"></a> Sync New Plugins
 
-The `tanzu plugin sync` command discovers and downloads new CLI plugins that are associated with either a newer version of Tanzu Kubernetes Grid or a package installed on your management cluster that your local CLI does not know about, for example, if another user installed it.
+The `tanzu plugin sync` command discovers and downloads new CLI plug-ins that are associated with either a newer version of Tanzu Kubernetes Grid or a package installed on your management cluster that your local CLI does not know about, for example, if another user installed it.
 
 Run this command when:
 
-* You install the Tanzu CLI for the first time or upgrade to a newer version of Tanzu Kubernetes Grid. For more information, see [Install the Tanzu CLI Plugins](../install-cli.md#install-the-tanzu-cli-plugins-3) in *Install the Tanzu CLI and Other Tools*.
+- **update this?** You install the Tanzu CLI for the first time or upgrade to a newer version of Tanzu Kubernetes Grid see [Install the Tanzu CLI Plugins](install-cli.md#install-the-tanzu-cli-plugins-4) in *Install the Tanzu CLI and Other Tools*.
 
-* You are already logged in to a management cluster and another user installs a package with an associated CLI plugin on the same management cluster. If you are not logged in, these CLI plugins will be installed when you run `tanzu login`.
+- You are already logged in to a management cluster and another user installs a package with an associated CLI plug-in on the same management cluster. If you are not logged in, these CLI plug-ins are installed when you run `tanzu login`.
 
 For more information, see [Sync Command](https://github.com/vmware-tanzu/tanzu-framework/blob/main/docs/design/context-aware-plugin-discovery-design.md#sync-command) in the Tanzu Framework repository.
 
 ## <a id="install-new"></a> Install New Plugins
 
-If you want to install a Tanzu CLI plugin that was not automatically downloaded when running `tanzu login` or `tanzu plugin sync`, install it manually by following these steps.
+To install a Tanzu CLI plug-in that was not automatically downloaded when running `tanzu login` or `tanzu plugin sync`, install it manually by following these steps.
 
 1. In a terminal, run:
 
@@ -197,21 +197,21 @@ If you want to install a Tanzu CLI plugin that was not automatically downloaded 
 
 ## <a id="install-local"></a> Install Local Plugins
 
-If your network is not connected to the Internet or you want to download and inspect 
-the Tanzu CLI plugin binaries before installing, follow these steps.
+If your network is not connected to the Internet or you want to download and inspect
+the Tanzu CLI plug-in binaries before installing, follow these steps:
 
-1. Download the plugin `tar.gz` from the release artifacts for your distribution.
+1. Download the plug-in `tar.gz` from the release artifacts for your distribution.
 
-1. Extract the `tar.gz` to a location on your local machine using the extraction tool of your choice.
+2. Extract the `tar.gz` to a location on your local machine using the extraction tool of your choice.
 For example, the `tar -xvf` command.
 
-1. From that location, run:
+2. From that location, run:
 
    ```
-   tanzu plugin install all --local /PATH/TO/FILE/ 
+   tanzu plugin install all --local /PATH/TO/FILE/
    ```
 
-1. Verify that you installed the plugins successfully by running:
+3. Verify that you installed the plug-ins successfully by running:
 
    ```
    tanzu plugin list --local /PATH/TO/FILE/

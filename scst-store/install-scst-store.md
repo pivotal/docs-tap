@@ -10,7 +10,7 @@ from the Tanzu Application Platform package repository.
 Before installing Supply Chain Security Tools - Store:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install cert-manager on the cluster. See [Install Prerequisites](../install-components.md#install-prereqs).
+- Install cert-manager on the cluster. For more information, see [Install cert-manager](../cert-mgr-contour-fcd/install-cert-mgr.md#install-cert-mgr).
 - See [Deployment Details and Configuration](deployment-details.md) to review what resources will be deployed. For more information, see the [overview](overview.md).
 
 ## <a id='install'></a>Install
@@ -60,7 +60,7 @@ To install Supply Chain Security Tools - Store:
     $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
     | Retrieving package details for metadata-store.apps.tanzu.vmware.com/1.0.2...
       KEY                               DEFAULT              TYPE     DESCRIPTION
-      app_service_type                  LoadBalancer         string   The type of service to use for the metadata app service. This can be set to 'NodePort' or 'LoadBalancer'.
+      app_service_type                  LoadBalancer         string   The type of service to use for the metadata app service. This can be set to 'Nodeport', 'ClusterIP' or 'LoadBalancer'.
       auth_proxy_host                   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
       db_host                           metadata-store-db    string   The address to the postgres database host that the metdata-store app uses to connect. The default is set to metadata-store-db which is the postgres service name. Changing this does not change the postgres service name
       db_replicas                       1                    integer  The number of replicas for the metadata-store-db
@@ -89,12 +89,12 @@ To install Supply Chain Security Tools - Store:
 
 1. (Optional) Modify one of the deployment configurations by creating a configuration YAML with the
 custom configuration values you want. For example, if your environment does not support `LoadBalancer`,
-and you want to use `NodePort`, then create a `metadata-store-values.yaml` and configure the
+and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and configure the
 `app_service_type` property.
 
     ```yaml
     ---
-    app_service_type: "NodePort"
+    app_service_type: "ClusterIP"
     ```
 
     See [Deployment details and configuration](deployment-details.md#configuration) for

@@ -12,13 +12,14 @@ The process of installing Tanzu Application Platform on your own Kubernetes clus
 |Step|Task|Link|
 |----|----|----|
 |1.| Review the prerequisites to ensure that you have set up everything required before beginning the installation |[Prerequisites](prerequisites.html)|
-|2.| Accept the end-user license agreements |[Accept the EULAs](install-tanzu-cli.html)|
-|3.| Install the Tanzu command line interface (CLI) and plug-ins for the Tanzu CLI |[Install the Tanzu CLI and plug-ins](install-tanzu-cli.html#cli-and-plugin)|
-|4.| Create a namespace, add a secret, and add the Tanzu Application Platform package repository |[Add the Tanzu Application Platform Package Repository](install.html#add-package-repositories)|
-|5.| Prepare your Tanzu Application Platform profile |[Prepare to install your Tanzu Application Platform profile](install.html#install-profile)|
-|6.| Install the profile to the cluster |[Install your Tanzu Application Platform package](install.html#install-package)|
-|7.| (Optional) Install any additional packages that were not in the profile |[Installing Individual Packages](install-components.html)|
-|8.| Install developer tools into your integrated development environment (IDE) | [Installing Tanzu Developer Tools for VSCode](vscode-extension/installation.html)
+|2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI |[Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)|
+|3.| Install Cluster Essentials for Tanzu* |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html)|
+|4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Installing the Tanzu Application Platform package and profiles](install.html)|
+|5.| (Optional) Install any additional packages that were not in the profile |[Installing Individual Packages](install-components.html)|
+|6.| Set up developer namespaces to use installed packages |[Setting up developer namespaces to use installed packages](set-up-namespaces.html)|
+|7.| Install developer tools into your integrated development environment (IDE) |[Installing Tanzu Developer Tools for VSCode](vscode-extension/installation.html)|
+
+\* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
 
 ## <a id='install-aws'></a>Installing Tanzu Application Platform by using AWS Quick Start
 

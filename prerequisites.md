@@ -42,6 +42,8 @@ There are some optional but recommended DNS records you must allocate if you dec
 The default host name consists of `tap-gui` and the `shared.ingress_domain` value. For example,
 `tap-gui.example.com`.
 
+- Supply Chain Security Tools - Store - Similar to Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `metadata-store` and the `shared.ingress_domain` value. For example, `metadata-store.example.com`.
+
 
 ### <a id='tap-gui'></a>Tanzu Application Platform GUI
 
@@ -116,3 +118,7 @@ See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-se
 Installation requires:
 
 - The Kubernetes CLI, kubectl, v1.20, v1.21 or v1.22, installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
+
+## <a id='next-steps'></a>Next steps
+
+- [Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)

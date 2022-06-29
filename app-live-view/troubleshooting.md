@@ -130,7 +130,7 @@ To troubleshoot:
 1. Try deleting the connector pod so it is re-created by running:
 
     ```bash
-    kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+    kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
     ```
 
 ## <a id="no-live-info"></a> No live information for pod with ID
@@ -149,7 +149,7 @@ old instance that no longer exists while the new instance doesn't show up yet.
 The workaround is to delete the connector pod so it is re-created by running:
 
 ```bash
-kubectl -n app-live-view delete pods -l=name=application-live-view-connector
+kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
 ```
 
 ## <a id="cannot-override-act-path"></a> Cannot override the actuator path in the labels
@@ -198,7 +198,7 @@ To verify that the labels in your workload YAML file are working:
 1. Verify that the conventions are applied properly to the PodSpec by running:
 
     ```bash
-    kubectl get podintents.conventions.apps.tanzu.vmware.com WORKLOAD-NAME -oyaml
+    kubectl get podintents.conventions.carto.run WORKLOAD-NAME -oyaml
     ```
 
     Where `WORKLOAD-NAME` is the name of your workload.
@@ -219,7 +219,7 @@ To verify that the labels in your workload YAML file are working:
     template:
       metadata:
         annotations:
-          conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          conventions.carto.run/applied-conventions: |-
             appliveview-sample/app-live-view-connector
             appliveview-sample/app-live-view-appflavours
             appliveview-sample/app-live-view-systemproperties

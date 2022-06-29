@@ -1,6 +1,17 @@
-# Develop your first application on Tanzu Application Platform
+# Deploy your first application on Tanzu Application Platform
 
-This topic will guide you through developing your first application on Tanzu Application Platform. Before you start, be sure you've completed all of the [Getting started prerequisites](../getting-started.md#get-started-prereqs). In this walkthrough, you will use an application accelerator. For background on application accelerators, see [Application Accelerator](about-application-accelerator.md).
+This how-to guide walks developers through deploying your first application on Tanzu Application Platform.
+
+## <a id="you-will"></a>What you will do
+
+- Download an application accelerator, which serves as a template that codifies best practices and provides important configuration and structures ready and available for use.
+- Upload it to your Git repository of choice.
+- Run a CLI command to deploy the app.
+- View the build and runtime logs for your app.
+- View the Web App in your browser.
+- (Optional) Add your application to Tanzu Application Platform GUI software catalog.
+
+Before you start, complete all [Getting started prerequisites](../getting-started.md#get-started-prereqs). For background on application accelerators, see [Application Accelerator](about-application-accelerator.md).
 
 ## <a id="deploy-your-app"></a>Deploy your application
 
@@ -30,7 +41,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 5. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
-6. Ensure you have [set up developer namespaces to use installed packages](../install-components.md#setup).
+6. Ensure you have [set up developer namespaces to use installed packages](../set-up-namespaces.md).
 
 7. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
@@ -44,7 +55,10 @@ To deploy your application, you must download an accelerator, upload it on your 
     --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
-    Where `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to in step 5 and `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
+    Where:
+    
+    - `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to earlier.
+    - `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
     If you bypassed step 5 or were unable to upload your accelerator to a Git repository, use the following public version to test:
 
@@ -58,11 +72,11 @@ To deploy your application, you must download an accelerator, upload it on your 
     --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
-    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
+    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
     For more information, see [Tanzu Apps Workload Create](../cli-plugins/apps/command-reference/tanzu-apps-workload-create.md).
 
-    > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VSCode extension
+    > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VS Code extension
     to debug and live-update this application.
 
 8. View the build and runtime logs for your app by running the `tail` command:
@@ -71,24 +85,22 @@ To deploy your application, you must download an accelerator, upload it on your 
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
-    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
+    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
-9. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the command below, and then press **ctrl-click** on the
-   Workload Knative Services URL at the bottom of the command output.
+9. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the following command, and then press **ctrl-click** on the Workload Knative Services URL at the bottom of the command output.
 
     ```console
     tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
-    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
+    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
     ![Tanzu-java-web-app default screen](../images/getting-started-tap-gui-8.png)
 
 
-## <a id="add-app-to-gui-cat"></a>Add your application to Tanzu Application Platform GUI Software Catalog
+## <a id="add-app-to-gui-cat"></a>Add your application to Tanzu Application Platform GUI software catalog
 
-1. Navigate to the home page of Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
-   Click **REGISTER ENTITY**.
+1. Navigate to the home page of Tanzu Application Platform GUI and click **Home**, located on the left navigation bar. Click **REGISTER ENTITY**.
 
     ![REGISTER button on the right side of the header](../images/getting-started-tap-gui-5.png)
 
@@ -110,6 +122,6 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 >**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md.hbs) database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
 
-## Next step
+## Next steps
 
-- [Work with your new application](work-with-new-app.md)
+- [Iterate on your new application](iterate-new-app.md)

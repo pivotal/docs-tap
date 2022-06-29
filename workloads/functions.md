@@ -6,5 +6,5 @@ Developers can run a single CLI command to deploy their functions to an auto-sca
 
 In this section:
 
-- Using function workloads
-- Iterate on your function
+- [Using functions](using-functions.md)
+- [Iterate on your function](iterate-functions.md)

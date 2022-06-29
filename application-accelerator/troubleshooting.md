@@ -1,4 +1,4 @@
-# Troubleshooting Application Accelerator for VMware Tanzu 
+# Troubleshooting Application Accelerator for VMware Tanzu
 
 This topic has troubleshooting steps for:
 
@@ -202,7 +202,7 @@ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
     $ kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system hello-fun
     ```
 
-2. Read `status.conditions.message` near the end of the output to learn the likely cause of failure. For example:
+2. Read `status.conditions.message` near the end of the output to learn the likely cause of failure. Run:
 
     ```yaml
     status:
@@ -262,7 +262,7 @@ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
 1. See the resource status. Run:
 
     ```console
-    $ kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system hello-fun
+     kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system hello-fun
     ```
 
 2. Locate `status.conditions` at the end of the output. For example:
@@ -285,10 +285,10 @@ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
       observedGeneration: 1
     ```
 
-3. Verify that the Flux system is running and that the `READY` column has `1/1`. For example:
+3. Verify that the Flux system is running and that the `READY` column has `1/1`. Run:
 
     ```console
-    $ kubectl get -n flux-system deployment/source-controller
+     kubectl get -n flux-system deployment/source-controller
     NAME                READY   UP-TO-DATE   AVAILABLE   AGE
     source-controller   1/1     0            0           5d4h
     ```
@@ -296,7 +296,7 @@ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
 #### <a id="reson-ImageRepositoryResolutionPending"></a> REASON: `ImageRepositoryResolutionPending`
 
 ```console
-$ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
+ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
 NAME        READY   REASON                             AGE
 more-fun    False   ImageRepositoryResolutionPending   28s
 ```
@@ -304,13 +304,13 @@ more-fun    False   ImageRepositoryResolutionPending   28s
 1. See the resource status. Run:
 
     ```console
-    $ kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system hello-fun
+     kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system hello-fun
     ```
 
-2. Locate `status.conditions` at the end of the output. For example:
+2. Locate `status.conditions` at the end of the output. Run:
 
     ```console
-    $ kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system more-fun
+     kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system more-fun
     apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
     kind: Accelerator
     metadata:
@@ -344,10 +344,10 @@ more-fun    False   ImageRepositoryResolutionPending   28s
       observedGeneration: 1
     ```
 
-3. Verify that Tanzu Application Platform source-controller system is running and the `READY` column has `1/1`. For example:
+3. Verify that Tanzu Application Platform source-controller system is running and the `READY` column has `1/1`. Run:
 
     ```console
-    $ kubectl get -n source-system deployment/source-controller-manager
+     kubectl get -n source-system deployment/source-controller-manager
     NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
     source-controller-manager   1/1     0            0           5d5h
     ```

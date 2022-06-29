@@ -7,7 +7,7 @@ Before any spring boot conventions are applied, the pod intent will
 look something like the following:
 
   ```yaml
-  apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+  apiVersion: conventions.carto.run/v1alpha1
   kind: PodIntent
   metadata:
     name: spring-sample
@@ -74,7 +74,7 @@ under `dependencies`, the Spring Boot convention is applied to the `PodTemplateS
 
 - `spring-boot`
 
-The Spring Boot convention adds a _label_ (`conventions.apps.tanzu.vmware.com/framework: spring-boot`) to the
+The Spring Boot convention adds a _label_ (`conventions.carto.run/framework: spring-boot`) to the
 `PodTemplateSpec` that describes the framework associated with the workload, and
 adds an _annotation_ (`boot.spring.io/version: VERSION-NO`) that describes the
 Spring Boot version of the _dependency_.
@@ -84,12 +84,12 @@ The label and annotation are added informational purposes only.
 Example of PodIntent after applying the convention:
 
   ```yaml
-  apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+  apiVersion: conventions.carto.run/v1alpha1
   kind: PodIntent
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"conventions.apps.tanzu.vmware.com/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
+        {"apiVersion":"conventions.carto.run/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
 
   ...
 
@@ -106,10 +106,10 @@ Example of PodIntent after applying the convention:
       metadata:
         annotations:
           boot.spring.io/version: 2.3.3.RELEASE
-          conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          conventions.carto.run/applied-conventions: |-
             spring-boot-convention/spring-boot
         labels:
-          conventions.apps.tanzu.vmware.com/framework: spring-boot
+          conventions.carto.run/framework: spring-boot
       spec:
         containers:
         - image: index.docker.io/springio/petclinic@sha256:...
@@ -138,12 +138,12 @@ default value for `.target.Spec.TerminationGracePeriodSeconds` is 30 seconds.
 Example of PodIntent after applying the convention:
 
   ```yaml
-  apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+  apiVersion: conventions.carto.run/v1alpha1
   kind: PodIntent
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"conventions.apps.tanzu.vmware.com/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
+        {"apiVersion":"conventions.carto.run/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
 
   ...
 
@@ -160,11 +160,11 @@ Example of PodIntent after applying the convention:
       metadata:
         annotations:
           boot.spring.io/version: 2.3.3.RELEASE
-          conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          conventions.carto.run/applied-conventions: |-
             spring-boot-convention/spring-boot
             spring-boot-convention/spring-boot-graceful-shutdown
         labels:
-          conventions.apps.tanzu.vmware.com/framework: spring-boot
+          conventions.carto.run/framework: spring-boot
       spec:
         containers:
         - env:
@@ -192,12 +192,12 @@ sets the value to `8080`, which is the Spring Boot default.
 Example of PodIntent after applying the convention:
 
   ```yaml
-  apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+  apiVersion: conventions.carto.run/v1alpha1
   kind: PodIntent
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"conventions.apps.tanzu.vmware.com/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
+        {"apiVersion":"conventions.carto.run/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
 
   ...
 
@@ -214,11 +214,11 @@ Example of PodIntent after applying the convention:
       metadata:
         annotations:
           boot.spring.io/version: 2.3.3.RELEASE
-          conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          conventions.carto.run/applied-conventions: |-
             spring-boot-convention/spring-boot
             spring-boot-convention/spring-boot-web
         labels:
-          conventions.apps.tanzu.vmware.com/framework: spring-boot
+          conventions.carto.run/framework: spring-boot
       spec:
         containers:
         - env:
@@ -267,12 +267,12 @@ a service pointing to port `8081` and base path `/actuator`.
 Example of PodIntent after applying the convention:
 
   ```yaml
-  apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+  apiVersion: conventions.carto.run/v1alpha1
   kind: PodIntent
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"conventions.apps.tanzu.vmware.com/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
+        {"apiVersion":"conventions.carto.run/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
 
   ...
 
@@ -290,12 +290,12 @@ Example of PodIntent after applying the convention:
         annotations:
           boot.spring.io/actuator: http://:8080/actuator
           boot.spring.io/version: 2.3.3.RELEASE
-          conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          conventions.carto.run/applied-conventions: |-
             spring-boot-convention/spring-boot
             spring-boot-convention/spring-boot-web
             spring-boot-convention/spring-boot-actuator
         labels:
-          conventions.apps.tanzu.vmware.com/framework: spring-boot
+          conventions.carto.run/framework: spring-boot
       spec:
         containers:
         - env:
@@ -339,12 +339,12 @@ When this convention is applied, the probes are exposed as follows:
 Example of PodIntent after applying the convention:
 
   ```yaml
-  apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+  apiVersion: conventions.carto.run/v1alpha1
   kind: PodIntent
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"conventions.apps.tanzu.vmware.com/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
+        {"apiVersion":"conventions.carto.run/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
 
   ...
 
@@ -362,12 +362,12 @@ Example of PodIntent after applying the convention:
         annotations:
           boot.spring.io/actuator: http://:8080/actuator
           boot.spring.io/version: 2.6.0
-          conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          conventions.carto.run/applied-conventions: |-
             spring-boot-convention/spring-boot
             spring-boot-convention/spring-boot-web
             spring-boot-convention/spring-boot-actuator
         labels:
-          conventions.apps.tanzu.vmware.com/framework: spring-boot
+          conventions.carto.run/framework: spring-boot
       spec:
         containers:
         - env:
@@ -397,50 +397,50 @@ The _Service intent_ conventions do not change the behavior of the final deploym
 but you can use them as added information to process in the supply chain.
 For example, when an app requires to be bound to database service.
 This convention adds an annotation and a label to the `PodTemplateSpec` for each detected dependency.
-It also adds an annotation and a label to the `conventions.apps.tanzu.vmware.com/applied-conventions`.
+It also adds an annotation and a label to the `conventions.carto.run/applied-conventions`.
 
 The list of the supported intents are:
 
 **MySQL**
 
 - __Name__: `service-intent-mysql`
-- __Label__: `services.conventions.apps.tanzu.vmware.com/mysql`
+- __Label__: `services.conventions.carto.run/mysql`
 - __Dependencies__: `mysql-connector-java`, `r2dbc-mysql`
 
 **PostgreSQL**
 
 - __Name__: `service-intent-postgres`
-- __Label__: `services.conventions.apps.tanzu.vmware.com/postgres`
+- __Label__: `services.conventions.carto.run/postgres`
 - __Dependencies__: `postgresql`, `r2dbc-postgresql`
 
 **MongoDB**
 
 - __Name__: `service-intent-mongodb`
-- __Label__: `services.conventions.apps.tanzu.vmware.com/mongodb`
+- __Label__: `services.conventions.carto.run/mongodb`
 - __Dependencies__: `mongodb-driver-core`
 
 **RabbitMQ**
 
 - __Name__: `service-intent-rabbitmq`
-- __Label__: `services.conventions.apps.tanzu.vmware.com/rabbitmq`
+- __Label__: `services.conventions.carto.run/rabbitmq`
 - __Dependencies__: `amqp-client`
 
 **Redis**
 
 - __Name__: `service-intent-redis`
-- __Label__: `services.conventions.apps.tanzu.vmware.com/redis`
+- __Label__: `services.conventions.carto.run/redis`
 - __Dependencies__: `jedis`
 
 **Kafka**
 
 - __Name__: `service-intent-kafka`
-- __Label__: `services.conventions.apps.tanzu.vmware.com/kafka`
+- __Label__: `services.conventions.carto.run/kafka`
 - __Dependencies__: `kafka-clients`
 
 **Kafka-streams**
 
 - __Name__: `service-intent-kafka-streams`
-- __Label__: `services.conventions.apps.tanzu.vmware.com/kafka-streams`
+- __Label__: `services.conventions.carto.run/kafka-streams`
 - __Dependencies__: `kafka-streams`
 
 ### <a id="example"></a>Example
@@ -448,12 +448,12 @@ The list of the supported intents are:
 When you apply the `Pod Intent` and the image contains a dependency, for example, of _MySQL_, then the output of the convention will be:
 
 ```yaml
-  apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+  apiVersion: conventions.carto.run/v1alpha1
   kind: PodIntent
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"conventions.apps.tanzu.vmware.com/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
+        {"apiVersion":"conventions.carto.run/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
     creationTimestamp: "..."
     generation: 1
     name: spring-sample
@@ -483,15 +483,15 @@ When you apply the `Pod Intent` and the image contains a dependency, for example
         annotations:
           boot.spring.io/actuator: http://:8080/actuator
           boot.spring.io/version: 2.3.3.RELEASE
-          conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          conventions.carto.run/applied-conventions: |-
             spring-boot-convention/spring-boot
             spring-boot-convention/spring-boot-web
             spring-boot-convention/spring-boot-actuator
             spring-boot-convention/service-intent-mysql
-          services.conventions.apps.tanzu.vmware.com/mysql: mysql-connector-java/8.0.21
+          services.conventions.carto.run/mysql: mysql-connector-java/8.0.21
         labels:
-          conventions.apps.tanzu.vmware.com/framework: spring-boot
-          services.conventions.apps.tanzu.vmware.com/mysql: workload
+          conventions.carto.run/framework: spring-boot
+          services.conventions.carto.run/mysql: workload
       spec:
         containers:
         - env:

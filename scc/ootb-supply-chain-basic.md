@@ -10,7 +10,7 @@ The supply chains included in this package perform the following:
 
 - Building from source code:
 
-  1. Watching a Git repository or local directory for changes
+  1. Watching a Git repository, Maven repository, or local directory for changes
   1. Building a container image out of the source code with Buildpacks
   1. Applying operator-defined conventions to the container definition
   1. Creating a deliverable object for deploying the application to a cluster
@@ -104,6 +104,7 @@ run pods using images from the installation of Tanzu Application Platform.
     type: kubernetes.io/dockerconfigjson
     data:
       .dockerconfigjson: e30K
+    EOF
     ```
 
 With the two secrets created:

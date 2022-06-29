@@ -4,7 +4,7 @@ Individual module files making up the workshop instructions can use either [Mark
 
 ## <a id="annotation-of-executable"></a>Annotation of executable commands
 
-In conjunction with the standard Markdown and AsciiDoc, additional annotations can be applied to code blocks. The annotations indicate that a user can click the code block and have it copied to the terminal and executed.
+In conjunction with the standard Markdown and AsciiDoc, you can apply additional annotations to code blocks. The annotations indicate that a user can click the code block and have it copied to the terminal and executed.
 
 If using Markdown, to annotate a code block so it is copied to the terminal and executed, use:
 
@@ -229,9 +229,10 @@ The method for using AsciiDoc is similar, using the `role` for the name of the a
 command: echo "Execute command."
 ----
 ```
-## <a id="supported-editor"></a>Supported Workshop editor
 
-Learning Center currently `only` supports the code-server v4.4.0 of Vscode as an editor in workshops. 
+## <a id="supported-editor"></a>Supported workshop editor
+
+Learning Center currently **only** supports the code-server v4.4.0 of VS Code as an editor in workshops. 
 
 ## <a id="click-actions-dashboard"></a>Clickable actions for the dashboard
 
@@ -493,7 +494,7 @@ The action triggers saving the file to the user's local computer, and the file i
 
 If the test examiner is enabled, special actions are available to run verification checks to verify whether a workshop user has performed a required step. You can trigger these verification checks by clicking on the action, or you can configure them to start running when the page loads.
 
-For a single verification check the user must click to run, use:
+For a single verification check that the user must click to run, use:
 
 ~~~
 ```examiner:execute-test
@@ -510,7 +511,7 @@ There must be an executable program (script or compiled application) in the `wor
 
 The list of program arguments against the `args` field is passed to the test program.
 
-The executable program for the test must exit with a status of 0 if the test is successful, and nonzero if the test is a failure. The test should aim to return as quickly as possible and should not be a persistent program.
+The executable program for the test must exit with a status of 0 if the test is successful and nonzero if the test is a failure. The test should aim to return as quickly as possible and should not be a persistent program.
 
 ```console
 #!/bin/bash
@@ -627,7 +628,7 @@ The `title` must be set to the text you want to include in the banner for the cl
 
 A clickable action is only shown for the beginning of the section, and the action for the end is always hidden. Clicking the action for the beginning expands the section. The user can collapse the section again by clicking the action.
 
-To create nested sections, you must name the action blocks for the beginning and end so they can be correctly matched:
+To create nested sections, you must name the action blocks for the beginning and end so they are correctly matched:
 
 ~~~
 ```section:begin

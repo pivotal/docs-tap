@@ -1,21 +1,23 @@
 # Install Snyk scanner
 
-This document describes how to install Supply Chain Security Tools - Scan
+This document describes how to install Supply Chain Security Tools - Scan 
 (Snyk Scanner) from the Tanzu Application Platform package repository.
 
-## Prerequisites
+## <a id="prerecs"></a> Prerequisites
 
 Before installing Supply Chain Security Tools - Scan (Snyk Scanner):
 
-- Install [Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan). It must be present on the same cluster. The prerequisites for Scan will also be required.
+- Install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan are also required.
 
-## Scanner support
+## <a id="support"></a> Scanner support
+
+The following table shows supported scanners.
 
 | Scanner | Version |
 | --- | --- |
-| [Snyk](https://github.com/snyk/cli) |  |
+| [Snyk](https://github.com/snyk/cli) |  |  
 
-## Install
+## <a id="install-snyk"></a> Install
 
 To install Supply Chain Security Tools - Scan (Snyk scanner):
 
@@ -64,7 +66,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
 1. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
 
-  The Grype and Snyk Scanner Integrations both enable the Metadata Store. As such, the configuration values will be slightly different based on whether the Grype Scanner Integration is installed or not. (If TAP was installed via the Full Profile, then the Grype Scanner Integration was installed, unless it was explicitly excluded.)
+  The Grype and Snyk Scanner Integrations both enable the Metadata Store. As such, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform was installed using the Full Profile, then the Grype Scanner Integration was installed, unless it was explicitly excluded.
 
   * If the Grype Scanner Integration is installed:
     ```yaml
@@ -133,23 +135,59 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
      Added installed package 'snyk-scanner' in namespace 'tap-install'
     ```
 
-## Using the Synk scanner to run an ImageScan
+## <a id="verify"></a> Verify integration with Snyk 
 
-The OOTB Scanning Supply Chain implements a `SourceScan` and `ImageScan`, which references `ScanTemplate`s that use the Grype scanner. To use the Snyk scanner for the `ImageScan` (the Snyk `SourceScan` is not yet supported), the `ImageScan` `ScanTemplate` will need to be used instead. In the OOTB Scanning Supply Chain, update `spec.scanTemplate` from `public-image-scan-template` to `snyk-public-image-scan-template`.
+To verify the integration with Snyk, apply the following `ImageScan` in the developer namespace and review the result.
 
-Similarly, to run a scan manually, apply the following to the developer namespace:
+1. Apply the following:
+
+  ```console
+  kubectl apply -n $DEV_NAMESPACE -f - << EOF
+  ---
+  apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+  kind: ImageScan
+  metadata:
+    name: sample-snyk-public-image-scan
+  spec:
+    registry:
+      image: "nginx:1.16"
+    scanTemplate: snyk-public-image-scan-template
+    scanPolicy: scan-policy
+  EOF
+  ```
+
+2. To verify the integration, run:
+
+  ```bash
+  kubectl get imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
+  ```
+
+  For example:
+
+  ```console
+  kubectl get imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
+  NAME                            PHASE       SCANNEDIMAGE   AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+  sample-snyk-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
+  ```
+
+3. Cleanup
+
+  ```bash
+  kubectl delete imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
+  ```
+
+## <a id="sc-config"></a> Configure Supply Chains
+
+To enable Snyk, rather than the default Grype in the out of the box Scanning Supply Chain, you must update your Tanzu Application Platform installation.
+ 
+Add the `ootb_supply_chain_testing_scanning.scanning` section later to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
+
 ```yaml
-apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-kind: ImageScan
-metadata:
-  name: sample-snyk-public-image-scan
-spec:
-  registry:
-    image: "nginx:1.16"
-  scanTemplate: snyk-public-image-scan-template
-  scanPolicy: scan-policy
+ootb_supply_chain_testing_scanning:
+  scanning:
+    image:
+      template: snyk-private-image-scan-template
+      policy: scan-policy
 ```
 
-Applying both of these into a developer namespace would result in an image scan being run using the Snyk scanner instead of the Grype scanner.
-
-*NOTE:* Currently, the Snyk Scanner Integration is only available for an image scan, not a source scan.
+>**Note:** The Snyk Scanner integration is only available for an image scan, not a source scan.

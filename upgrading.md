@@ -75,7 +75,7 @@ Your output is similar, but probably not identical, to the following example out
   cert-manager              cert-manager.tanzu.vmware.com                       1.5.3+tap.1      Reconcile succeeded
   cnrs                      cnrs.tanzu.vmware.com                               1.1.1            Reconcile succeeded
   contour                   contour.tanzu.vmware.com                            1.18.2+tap.1     Reconcile succeeded
-  conventions-controller    controller.conventions.apps.tanzu.vmware.com        0.5.1            Reconcile succeeded
+  conventions-controller    controller.conventions.apps.tanzu.vmware.com        0.7.0            Reconcile succeeded
   developer-conventions     developer-conventions.tanzu.vmware.com              0.5.0            Reconcile succeeded
   fluxcd-source-controller  fluxcd.source.controller.tanzu.vmware.com           0.16.3           Reconcile succeeded
   grype                     grype.scanning.apps.tanzu.vmware.com                1.0.1            Reconcile succeeded

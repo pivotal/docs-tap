@@ -1,19 +1,18 @@
-**TODO** update this section
 # Logs messages and reasons
 
-Log messages follow a JSON format. Each log can contain the following keys:
+Log entries follow a JSON format. Each log can contain the following keys:
 
 | Key        | Description |
 | ---------- | ----------- |
 | level      | Log level |
 | ts         | Timestamp |
-| logger     | Name of the logger component which provided the log message |
-| msg        | Log message |
-| object     | Relevant object that triggered the log message |
+| logger     | Name of the logger component which provided the log entry |
+| msg        | Log entry |
+| object     | Relevant object that triggered the log entry |
 | error      | A message for the error.<br> Only present with "error" log level |
 | stacktrace | A stacktrace for where the error occured.<br> Only present with error level |
 
-The possible log messages the webhook emits and their explanations are summarized in the following table:
+The possible log entries the webhook emits and their explanations are summarized in the following table:
 
 <table>
   <thead>
@@ -22,7 +21,7 @@ The possible log messages the webhook emits and their explanations are summarize
   </thead>
     <tr>
         <td><code>clusterimagepolicies.signing.apps.tanzu.vmware.com "image-policy" not found. Image policy enforcement was not applied.</code></td>
-        <td>The Image Policy was not created in the cluster and the webhook did not check any container images for signatures.</td>
+        <td>The Image Policy was not created in the cluster and the webhook did not verify any container images for signatures.</td>
     </tr>
     <tr>
         <td><code>&lt;Namespace&gt; is excluded. The ImagePolicy will not be applied.</code></td>
@@ -35,7 +34,7 @@ The possible log messages the webhook emits and their explanations are summarize
               The namespace is present in the <code>verification.exclude.resouces.namespaces</code> property of the policy.
             </li>
             <li>
-              Any container images trying to get created in this namespace will not be checked for signatures.
+              Any container images trying to get created in this namespace are not checked for signatures.
             </li>                        
           </ul>        
         </td>
@@ -92,7 +91,7 @@ The possible log messages the webhook emits and their explanations are summarize
               Image of the container being installed matches a pattern in the policy.
             </li>
             <li>
-              The webhook was not able to verify the signature.
+              The webhook can not verify the signature.
             </li>                         
           </ul>           
         </td>

@@ -6,9 +6,11 @@ Application Live View within Tanzu Application Platform.
 
 ## Enable Steeltoe apps
 
-For Application Live View to interact with a Steeltoe app within Tanzu Application Platform,
+You can enable Application Live View to interact with a Steeltoe app within Tanzu Application Platform.
 
-To expose management actuator endpoints, add below configuration to your `appsettings.json` file:
+To expose management actuator endpoints, add following configuration to your `appsettings.json` file:
+
+```json
 {
   "Management": {
     "Endpoints": {
@@ -20,9 +22,11 @@ To expose management actuator endpoints, add below configuration to your `appset
     }
   }
 }
+```
 
-To enable logging, add below configuration to your `appsettings.json` file:
+To enable logging, add the following configuration to your `appsettings.json` file:
 
+```json
 {
   "Logging": {
     "LogLevel": {
@@ -33,8 +37,9 @@ To enable logging, add below configuration to your `appsettings.json` file:
     }
   }
 }
+```
 
-The thread metrics is available in SteeltoeVersion `3.2.0-rc1`. Therefore, to enable Threads page in Application Live View UI, add the below configuration to your `.csproj` file:
+The thread metrics is available in SteeltoeVersion `3.2.0-rc1`. Therefore, to enable Threads page in Application Live View UI, add the following configuration to your `.csproj` file:
 
 ```xml
 <PropertyGroup>
@@ -42,12 +47,10 @@ The thread metrics is available in SteeltoeVersion `3.2.0-rc1`. Therefore, to en
 </PropertyGroup>
 ```
 
-**Note:**
-To enable Application Live View on the Steeltoe TAP workload, you need to manually add the label `tanzu.app.live.view.application.flavours: steeltoe` on your Workload yaml:
+To enable Application Live View on the Steeltoe TAP workload, you must manually add the label `tanzu.app.live.view.application.flavours: steeltoe` on your workload yaml:
 
 ```
 metadata:
     labels:
         tanzu.app.live.view.application.flavours: steeltoe
 ```
-

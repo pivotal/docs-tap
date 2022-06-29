@@ -6,7 +6,7 @@ You must deactivate both of these external calls. For the `grype` CLI to functio
 
 The `grype` URL accepts environment variables to satisfy these needs.
 
-For information about setting up an offline vulnerability database, see the (Anchore Grype README)[https://github.com/anchore/grype#offline-and-air-gapped-environments] in Github.
+For information about setting up an offline vulnerability database, see the [Anchore Grype README](https://github.com/anchore/grype#offline-and-air-gapped-environments) in Github.
 
 To update the existing ScanTemplates that call the `grype` CLI, you must pause the `kapp` installed `PackageInstall` before editing and then unpause after. Otherwise, Kubernetes overwrites the edits.
 

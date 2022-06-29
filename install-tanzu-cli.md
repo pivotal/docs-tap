@@ -1,10 +1,9 @@
-# Accepting Tanzu Application Platform EULAs, installing Cluster Essentials and the Tanzu CLI
+# Accepting Tanzu Application Platform EULAs and installing Tanzu CLI
 
 This topic describes how to:
 
   - [Accept Tanzu Application Platform EULAs](#accept-eulas)
   - [Set the Kubernetes cluster context](#cluster-context)
-  - [Install Cluster Essentials for Tanzu](#tanzu-cluster-essentials)
   - [Install or update the Tanzu CLI and plug-ins](#cli-and-plugin)
 
 
@@ -19,10 +18,6 @@ End User License Agreements (EULAs) as follows:
 
     - [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
     - [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/)
-    - [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
-    - [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
-    - [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
-
 
 ### <a id='accept-tap-eula'></a> Example of accepting the Tanzu Application Platform EULA
 
@@ -72,22 +67,6 @@ To set the Kubernetes cluster context:
     $ kubectl config use-context aks-tap-cluster
     Switched to context "aks-tap-cluster".
     ```
-
-
-## <a id='tanzu-cluster-essentials'></a> Install Cluster Essentials for Tanzu
-
-[Cluster Essentials for VMware Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/index.html)
-simplifies the process of installing the open-source [Carvel](https://carvel.dev) tools on your cluster.
-It includes a script to download and install supported versions of kapp-controller and
-secretgen-controller on the target cluster.
-It also installs the kapp, imgpkg, ytt, and kbld CLIs on your local machine.
-Currently, Cluster Essentials only supports macOS and Linux.
-
-When you are using a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials
-because the contents of Cluster Essentials are already installed on your cluster.
-
-To install Cluster Essentials, see [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html).
-
 
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plug-ins
 
@@ -244,4 +223,7 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
     insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.2.1       installed
     ```
 
-You can now proceed with [installing the Tanzu Application Platform Package and Profiles](install.html).
+## <a id='next-steps'></a>Next steps
+
+- [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html)
+- [Installing the Tanzu Application Platform package and profiles](install.html)

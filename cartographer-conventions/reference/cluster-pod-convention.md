@@ -5,12 +5,12 @@
 Webhook servers are currently the only way to define conventions.
 
 ```yaml
-apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+apiVersion: conventions.carto.run/v1alpha1
 kind: ClusterPodConvention
 metadata:
   name: base-convention
   annotations:
-    conventions.apps.tanzu.vmware.com/inject-ca-from: "convention-template/webhook-cert"
+    conventions.carto.run/inject-ca-from: "convention-template/webhook-cert"
 spec:
   webhook:
     clientConfig:

@@ -204,7 +204,7 @@ in the provided `tap-config.yml` file.
       scanning                  scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded  tap-install
       metadata-store            metadata-store.apps.tanzu.vmware.com               1.0.2            Reconcile succeeded  tap-install
       service-bindings          service-bindings.labs.vmware.com                   0.6.0            Reconcile succeeded  tap-install
-      services-toolkit          services-toolkit.tanzu.vmware.com                  0.5.1            Reconcile succeeded  tap-install
+      services-toolkit          services-toolkit.tanzu.vmware.com                  0.7.1            Reconcile succeeded  tap-install
       source-controller         controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded  tap-install
       spring-boot-conventions   spring-boot-conventions.tanzu.vmware.com           0.2.0            Reconcile succeeded  tap-install
       tap                       tap.tanzu.vmware.com                               0.4.0-build.12   Reconciling          tap-install
@@ -240,7 +240,7 @@ in the provided `tap-config.yml` file.
     ootb-templates             ootb-templates.tanzu.vmware.com                      0.6.1             Reconcile succeeded                                                    109m
     scanning                   scanning.apps.tanzu.vmware.com                       1.0.0             Reconcile succeeded                                                    119m
     service-bindings           service-bindings.labs.vmware.com                     0.6.0             Reconcile succeeded                                                    119m
-    services-toolkit           services-toolkit.tanzu.vmware.com                    0.5.1             Reconcile succeeded                                                    119m
+    services-toolkit           services-toolkit.tanzu.vmware.com                    0.7.1             Reconcile succeeded                                                    119m
     source-controller          controller.source.apps.tanzu.vmware.com              0.2.0             Reconcile succeeded                                                    119m
     spring-boot-conventions    spring-boot-conventions.tanzu.vmware.com             0.3.0             Reconcile succeeded                                                    109m
     tap                        tap.tanzu.vmware.com                                 1.0.1             Reconcile failed: Error (see .status.usefulErrorMessage for details)   119m

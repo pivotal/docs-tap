@@ -1,8 +1,8 @@
 # Create a ScanTemplate
 
-The `ScanTemplate` custom resource (CR) defines how the scan Pod fulfills the task of vulnerability scanning. There are default `ScanTemplates` provided out of the box using the Tanzu Application Platform default scanner, `Anchore Grype`. One or more `initContainers` will run to complete the scan and must save results to a shared `volume`. After the `initContainers` terminate, a single container on the scan Pod called `summary` combines the result of the initContainers so that the `Scan CR` status can be updated.
+The `ScanTemplate` custom resource (CR) defines how the scan Pod fulfills the task of vulnerability scanning. There are default `ScanTemplates` provided out of the box using the Tanzu Application Platform default scanner, `Anchore Grype`. One or more `initContainers` run to complete the scan and must save results to a shared `volume`. After the `initContainers` completes, a single container on the scan Pod called `summary` combines the result of the initContainers so that the `Scan CR` status is updated.
 
-A customized ScanTemplate can be created by editing or replacing `initContainer` definitions and reusing the `summary` container from the `grype` package. A container may read the `out.yaml` from a previous step to locate relevant inputs.
+A customized ScanTemplate is created by editing or replacing `initContainer` definitions and reusing the `summary` container from the `grype` package. A container can read the `out.yaml` from an earlier step to locate relevant inputs.
 
 ## <a id="output-model"></a>Output Model
 

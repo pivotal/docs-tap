@@ -19,6 +19,9 @@ With Live Update (facilitated by Tilt), the Tanzu Developer Tools extension enab
 
 **Debug workloads directly on the cluster**
 
-The Tanzu Developer Tools extension enables you to debug your application in a production-like environment* by debugging on your Kubernetes cluster enabled by Tanzu Application Platform.
+The Tanzu Developer Tools extension enables you to debug your application in a production-like environment by debugging on your Kubernetes cluster enabled by Tanzu Application Platform.
+An environment’s similarity to production relies on keeping dependencies and other variables updated.
 
-*An environment’s similarity to production relies on keeping dependencies updated, among other variables.
+**See workloads running on the cluster**
+
+From the workload panel you can see any workload found within the cluster and namespace specified in the current kubectl context.

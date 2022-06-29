@@ -49,10 +49,10 @@ Where `PASSWORD-0123` is the same password used between deployments.
 
 ### <a id='appserv-type'></a>App service type
 
-If your environment does not support `LoadBalancer`, and you want to use `NodePort`, configure the `app_service_type` property in your `metadata-store-values.yaml`:
+If your environment does not support `LoadBalancer`, and you want to use `ClusterIP` or `NodePort`, configure the `app_service_type` property in your `metadata-store-values.yaml`:
 
 ```yaml
-app_service_type: "LoadBalancer"
+app_service_type: "ClusterIP"
 ```
 
 ### <a id='service-accounts'></a>Service accounts
@@ -75,6 +75,7 @@ Supply Chain Security Tools - Store's values file allows you to enable ingress s
 ```yaml
 ingress_enabled: "true"
 ingress_domain: "example.com"
+app_service_type: "ClusterIP" # recommended setting
 ```
 
 An HTTPProxy object is then installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress and multicluster support](ingress-multicluster.md).

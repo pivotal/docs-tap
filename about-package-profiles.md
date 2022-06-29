@@ -256,11 +256,11 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-  <td>Application Live View (GUI)
+  <td>Application Live View GUI Backend
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
    </td>
    <td>
    </td>
@@ -308,7 +308,7 @@ The following table lists the packages contained in each profile:
    </td>
    <td>&check;
    </td>
-   <td>&check;
+   <td>
    </td>
   </tr>
   <tr>

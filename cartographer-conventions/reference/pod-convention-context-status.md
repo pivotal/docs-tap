@@ -28,7 +28,7 @@ yaml version:
 
 ```yaml
 ---
-apiVersion: webhooks.conventions.apps.tanzu.vmware.com/v1alpha1
+apiVersion: webhooks.conventions.carto.run/v1alpha1
 kind: PodConventionContext
 metadata:
   name: sample # the name of the ClusterPodConvention

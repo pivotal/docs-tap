@@ -33,6 +33,7 @@ it performs the following:
 
 To make use this supply chain, ensure:
 
+- [CVE scan results appear in Tanzu Application Platform GUI](../tap-gui/plugins/scc-tap-gui.md#scan)
 - Out of the Box Templates is installed.
 - Out of the Box Supply Chain With Testing **is NOT installed**.
 - Out of the Box Supply Chain With Testing and Scanning **is installed**.
@@ -179,7 +180,7 @@ If you are targeting a namespace that does not match the one configured in the
 Tanzu Application Platform profiles, for example if `grype.namespace` is not the same as the one
 you are writing the workload to, you can install these in such namespace by making use of the
 `tanzu package install` command as described in [Install Supply Chain Security
-Tools - Scan](../install-components.md#install-scst-scan):
+Tools - Scan](../scst-scan/install-scst-scan.md):
 
 1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the corresponding values
 to the properties you want to change. For example:
@@ -242,7 +243,7 @@ You can configure your developer namespace to include more than one pipeline usi
     +         apps.tanzu.vmware.com/language: #@ data.values.workload.metadata.labels["apps.tanzu.vmware.com/language"]
 
     ```
-    
+
     The following example shows one namespace per-language pipeline:
 
     ```
@@ -321,4 +322,4 @@ Create workload:
 
 ## <a id="scan-image-using-snyk"> Scan Image using Snyk
 
-[Supply Chain Security Tools - Scan](../install-components.md#install-scst-scan) includes an additional integration for running an image scan using Snyk. For instructions on how to install this integration and how to modify the supply chain template to use it, refer to [Install Snyk scanner](../scst-scan/install-snyk-integration.md).
+[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes an additional integration for running an image scan using Snyk. For information on how to install this integration and how to modify the supply chain template, see [Install Snyk scanner](../scst-scan/install-snyk-integration.md).

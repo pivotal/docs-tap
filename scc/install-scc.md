@@ -7,6 +7,9 @@ from the Tanzu Application Platform package repository.
 Both the full and light profiles include Supply Chain Choreographer.
 For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
+>**Note:** The Supply Chain Choreographer is now bundled with the Cartographer Conventions.
+For information on configuring and using Cartographer Conventions, see [Creating conventions](../cartographer-conventions/creating-conventions.md).
+
 Supply Chain Choreographer provides the custom resource definitions the supply chain uses.
 Each pre-approved supply chain creates a clear road to production and orchestrates supply chain resources. You can test, build, scan, and deploy. Developers can focus on delivering value to
 users. Application operators can rest assured that all code in production has passed
@@ -26,13 +29,24 @@ Before installing Supply Chain Choreographer:
 
 To install Supply Chain Choreographer:
 
-1. Install v0.3.0 of the `cartographer.tanzu.vmware.com` package, naming the installation `cartographer`.
+1. Get the values schema to see what properties can be configured during installation. Run:
+
+    ```console
+    tanzu package available get cartographer.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
+    
+    KEY                  DEFAULT  TYPE    DESCRIPTION
+    aws_iam_role_arn              string  Optional: Arn role that has access to pull images from ECR container registry
+    ca_cert_data                  string  Optional: PEM Encoded certificate data for image registries with private CA.
+    excluded_components  []       array   Optional: List of components to exclude from installation (e.g. [conventions])
+    ```
+
+1. Install v0.4.0 of the `cartographer.tanzu.vmware.com` package, naming the installation `cartographer`. Run:
 
     ```console
     tanzu package install cartographer \
       --namespace tap-install \
       --package-name cartographer.tanzu.vmware.com \
-      --version 0.3.0
+      --version 0.4.0
     ```
 
     Example output:

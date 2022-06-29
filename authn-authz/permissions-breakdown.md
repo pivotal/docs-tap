@@ -123,6 +123,9 @@
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 
 ```yaml
+- apiGroups: ["conventions.carto.run"]
+  resources: ["podintents"]
+  verbs: ["get","list","watch"]
 - apiGroups: ["conventions.apps.tanzu.vmware.com"]
   resources: ["podintents"]
   verbs: ["get","list","watch"]
@@ -131,6 +134,9 @@
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer-cluster-access: "true"`
 
 ```yaml
+- apiGroups: ["conventions.carto.run"]
+  resources: ["clusterpodconventions"]
+  verbs: ["get","list","watch"]
 - apiGroups: ["conventions.apps.tanzu.vmware.com"]
   resources: ["clusterpodconventions"]
   verbs: ["get","list","watch"]
@@ -139,6 +145,9 @@
 ### `apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access`
 
 ```yaml
+- apiGroups: ["conventions.carto.run"]
+  resources: ["clusterpodconventions"]
+  verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 - apiGroups: ["conventions.apps.tanzu.vmware.com"]
   resources: ["clusterpodconventions"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -171,6 +180,8 @@
 - apiGroups: ["carto.run"]
   resources: ["deliverables","runnables"]
   verbs: ["get","list","watch"]
+- apiGroups: ["conventions.carto.run"]
+  resources: ["podintents"]
 - apiGroups: ["conventions.apps.tanzu.vmware.com"]
   resources: ["podintents"]
   verbs: ["get","list","watch"]
@@ -193,7 +204,7 @@
   resources: ["services"]
   verbs: ["get","list","watch"]
 - apiGroups: ["source.apps.tanzu.vmware.com"]
-  resources: ["imagerepositories"]
+  resources: ["imagerepositories","mavenartifacts"]
   verbs: ["get","list","watch"]
 - apiGroups: ["source.toolkit.fluxcd.io"]
   resources: ["gitrepositories"]
@@ -209,6 +220,8 @@
 - apiGroups: ["carto.run"]
   resources: ["deliverables","runnables"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
+- apiGroups: ["conventions.carto.run"]
+  resources: ["podintents"]
 - apiGroups: ["conventions.apps.tanzu.vmware.com"]
   resources: ["podintents"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
@@ -219,7 +232,7 @@
   resources: ["imagescans","sourcescans"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 - apiGroups: ["source.apps.tanzu.vmware.com"]
-  resources: ["imagerepositories"]
+  resources: ["imagerepositories","mavenartifacts"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 - apiGroups: ["source.toolkit.fluxcd.io"]
   resources: ["gitrepositories"]
@@ -248,7 +261,7 @@
   resources: ["services"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 - apiGroups: ["source.apps.tanzu.vmware.com"]
-  resources: ["imagerepositories"]
+  resources: ["imagerepositories","mavenartifacts"]
   verbs: ["get","list","watch","create","patch","update","delete","deletecollection"]
 - apiGroups: ["source.toolkit.fluxcd.io"]
   resources: ["gitrepositories"]
@@ -305,7 +318,7 @@
 
 ```yaml
 - apiGroups: ["source.apps.tanzu.vmware.com"]
-  resources: ["imagerepositories"]
+  resources: ["imagerepositories","mavenartifacts"]
   verbs: ["get","list","watch"]
 ```
 

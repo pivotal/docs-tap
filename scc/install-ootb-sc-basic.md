@@ -46,7 +46,8 @@ To install Out of the Box Supply Chain Basic:
                                            libgit2.
 
     gitops.server_address                  Default server address to be used for forming Git URLs for pushing 
-                                           Kubernetes configuration produced by the supply chain.
+                                           Kubernetes configuration produced by the supply chain. This must
+                                           include the scheme/protocol (e.g. https:// or ssh://)
 
     gitops.repository_owner                Default project or user of the repository. Used to create URLs for pushing 
                                            Kubernetes configuration produced by the supply chain.
@@ -94,11 +95,11 @@ To install Out of the Box Supply Chain Basic:
                                            Tanzu Build Service (TBS) Image objects as well as deploying the
                                            application.
 
-    maven.repository.url                      The URL of the Maven repository to be used when pulling Maven
-                                              artifacts.  HTTP is not supported.  e.g.: "https://repo.maven.apache.org/maven"
+    maven.repository.url                   The URL of the Maven repository to be used when pulling Maven
+                                           artifacts.  HTTP is not supported.  e.g.: "https://repo.maven.apache.org/maven"
 
-    maven.repository.credentials_secret_name  The name of the Secret resource that contains the credentials used
-                                              to access the Maven repository.
+    maven.repository.secret_name           The name of the Secret resource that contains the credentials used
+                                           to access the Maven repository.
     ```
 
 1. Create a file named `ootb-supply-chain-basic-values.yaml` that specifies the
@@ -122,7 +123,7 @@ To install Out of the Box Supply Chain Basic:
     maven:
       repository:
         url: https://my-maven-repository/releases
-        credentials_secret_name: my-maven-repository-credentials
+        secret_name: my-maven-repository-credentials
 
     cluster_builder: default
     service_account: default

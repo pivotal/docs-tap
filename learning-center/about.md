@@ -23,21 +23,21 @@ Use case scenarios that Learning Center supports include:
 
 - Personal training or demos. This is where anyone who wants to run a workshop on their own Kubernetes cluster to learn that
   topic, or where a product demo was packaged up as a workshop and they want to use it to demonstrate the product to a
-  customer. The workshop environment can be destroyed when complete, but there is no need for the cluster to be destroyed.
+  customer. You can destroy the workshop environment when complete, but there is no need for the cluster to be destroyed.
 
-When running workshops, wherever possible a shared Kubernetes cluster reduces the amount of setup required. This works for developer-focused workshops as it is usually not necessary to provide elevated access to the
-Kubernetes cluster, and role-based access controls (RBAC) can be used to prevent users from interfering with each other.
-Quotas can also be set so that users are restricted to how much resources they can use.
+When running workshops, wherever possible a shared Kubernetes cluster reduces the amount of setup required. This works for developer-focused workshops, becauses it is usually not necessary to provide elevated access to the
+Kubernetes cluster, and you can use role-based access controls (RBAC) to prevent users from interfering with each other.
+You can also set quotas so users are restricted as to how much resources they can use.
 
-When needing to run workshops that deal with cluster operations, for which users need cluster admin access,
-a separate cluster is created for each user. Learning Center doesn't deal with provisioning clusters, only with
+When you run workshops that deal with cluster operations, for which users need cluster admin access,
+create a separate cluster for each user. Learning Center doesn't deal with provisioning clusters, only with
 deploying a workshop environment in a cluster after it exists.
 
 ## <a id="use-cases-requirements"></a>Use case requirements
 
-In implementing to the preceding scenarios, the primary requirements related to creation of workshop content, and what can be done at runtime, are as follows:
+In implementing to the preceding scenarios, the primary requirements related to creation of workshop content, and what you can do at runtime, are as follows:
 
-- Everything for the workshop must be stored in a Git repository, with no dependency on using a special
+- You must store everything for the workshop in a Git repository, with no dependency on using a special
   web application or service to create a workshop.
 
 - Use GitHub as a means to distribute workshop content. Alternatively, you can distribute the workshop as a
@@ -45,16 +45,16 @@ In implementing to the preceding scenarios, the primary requirements related to 
 
 - Provide instructions to the user to complete the workshop as Markdown or AsciiDoc files.
 
-- Instructions can be annotated as executable commands so that when clicked in the workshop dashboard, they execute for the user in the appropriate terminal to avoid mistakes when commands are entered manually.
+- You can annotate instructions as executable commands so that when clicked in the workshop dashboard, they execute for the user in the appropriate terminal to avoid mistakes when commands are entered manually.
 
-- Text can be annotated as copyable so when clicked in the workshop dashboard, it is copied into the
+- You can annotate text as copyable so when clicked in the workshop dashboard, it is copied into the
   browser paste buffer ready for pasting into the terminal or other web application.
 
 - Provide each user access to one or more namespaces in the Kubernetes cluster unique to their session. For Kubernetes based workshops, this is where applications are deployed as part of the workshop.
 
-- Additional Kubernetes resources specific to a workshop session can be created in advance of the session. This enables the deployment of applications for each user session.
+- You can create additional Kubernetes resources specific to a workshop session in advance of the session. This enables the deployment of applications for each user session.
 
-- Additional Kubernetes resources common to all workshop sessions can be deployed when the workshop environment
+- You can deploy additional Kubernetes resources common to all workshop sessions when the workshop environment
   is first created. This enables deployment of applications shared by all users.
 
 - Apply resource quotas on each workshop session to control how much resources users can consume.
@@ -115,7 +115,7 @@ In this scenario, the custom resource types that come into play are:
 Learn more about:
 
 - [Workshops](workshop-content/about.md)
-- [Getting Started with Learning Center](getting-started/about.md)
+- [Getting started with Learning Center](getting-started/about.md)
 - [Installing Learning Center](../learning-center/install-learning-center.md)
-- [Local Install Guides](local-install-guides/about.md)
-- [Air Gapped Environment Requirements](../learning-center/airgapped-environment.md)
+- [Local install guides](local-install-guides/about.md)
+- [Air-gapped environment requirements](../learning-center/airgapped-environment.md)

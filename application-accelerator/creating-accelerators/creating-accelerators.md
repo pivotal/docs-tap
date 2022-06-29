@@ -43,7 +43,7 @@ Use the following procedure to create an accelerator based on this Git repositor
 2. To publish your new accelerator, run this command in your terminal:
     
     ```sh
-    tanzu acc create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
+    tanzu accelerator create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
     ```
 
     Where:
@@ -77,9 +77,132 @@ An alternative to using the Tanzu CLI is to create a separate manifest file and 
 1. To apply the `simple-manifest.yaml`, run this command in your terminal in the directory where you created this file:
 
     ```sh
-    kubectl apply -f simple-manifest.yaml
+    tanzu accelerator apply -f simple-manifest.yaml
     ```
 
+## <a id="using-accelerator-fragments"></a>Using accelerator fragments
+
+Accelerator fragments are reusable accelerator components that can provide options, files or transforms. They can be imported into accelerators using an `import` entry and the transforms from the fragment can be referenced in an `InvokeFragment` transform in the accelerator that is declaring the import. For additional detail see [InvokeFragment transform](transforms/invoke-fragment.md).
+
+The accelerator samples include three fragments - `java-version`, `tap-initialize`, and `live-update`. See the [sample-accelerators/fragments](https://github.com/sample-accelerators/fragments/tree/tap-1.2) Git repository for the content of these fragments.
+
+To discover what fragments are available to use, you can run the following command:
+
+```
+tanzu accelerator fragment list
+```
+
+We will look a the `java-version` fragment as an example. It contains the following `accelerator.yaml` file:
+
+```
+accelerator:
+  options:
+  - name: javaVersion
+    inputType: select
+    label: Java version to use
+    choices:
+    - value: "1.8"
+      text: Java 8
+    - value: "11"
+      text: Java 11
+    - value: "17"
+      text: Java 17
+    defaultValue: "11"
+    required: true
+
+engine:
+  merge:
+    - include: [ "pom.xml" ]
+      chain:
+      - type: ReplaceText
+        regex:
+          pattern: "<java.version>.*<"
+          with: "'<java.version>' + #javaVersion + '<'"
+    - include: [ "build.gradle" ]
+      chain:
+      - type: ReplaceText
+        regex:
+          pattern: "sourceCompatibility = .*"
+          with: "'sourceCompatibility = ''' + #javaVersion + ''''"
+    - include: [ "config/workload.yaml" ]
+      chain:
+      - type: ReplaceText
+        condition: "#javaVersion == '17'"
+        substitutions:
+          - text: "spec:"
+            with: "'spec:\n  build:\n    env:\n    - name: BP_JVM_VERSION\n      value: \"17\"'"
+```
+
+This fragment will contribute the following to any accelerator that imports it:
+
+1. An option named `javaVersion` with three choices `Java 8`, `Java 11`, and `Java 17`
+1. Three `ReplaceText` transforms:
+    - if the accelerator has a `pom.xml` file then what is specified for `<java.version>` will be replaced with the chosen version.
+    - if the accelerator has a `build.gradle` file then what is specified for `sourceCompatibility` will be replaced with the chosen version.
+    - if the accelerator has a `config/workload.yaml` file and the user selected "Java 17" then a build env entry of BP_JVM_VERSION will be inserted into the `spec:` section.
+
+To deploy new fragments to the accelerator system you can use the new `tanzu accelerator fragment create` CLI command or you can apply a custom resource manifest file with either `kubectl apply` or the `tanzu accelerator apply` commands.
+
+The resource manifest for the `java-version` fragment looks like this:
+
+```
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: java-version
+  namespace: accelerator-system
+spec:
+  displayName: Select Java Version
+  git:
+    ref:
+      branch: tap-1.2
+    url: https://github.com/sample-accelerators/fragments.git
+    subPath: java-version
+```
+
+To create the fragment (we can save the above manifest in a `java-version.yaml` file) and use:
+
+```
+tanzu accelerator apply -f ./java-version.yaml
+```
+
+>**Note:** The `accelerator apply` command can be used to apply both Accelerator and Fragment resources.
+
+To avoid having to create a separate manifest file, you can use the following command instead:
+
+```
+tanzu accelerator fragment create java-version \
+  --git-repo https://github.com/sample-accelerators/fragments.git \
+  --git-branch main \
+  --git-tag tap-1.2 \
+  --git-sub-path java-version
+```
+
+Now you can use this `java-version` fragment in an accelerator:
+
+```
+accelerator:
+  displayName: Hello Fragment
+  description: A sample app
+  tags:
+  - java
+  - spring
+  - cloud
+  - tanzu
+
+  imports:
+  - name: java-version
+
+engine:
+  merge:
+    - include: ["**/*"]
+    - type: InvokeFragment
+      reference: java-version
+```
+
+The above acelerator imports the `java-version` which, as we saw above, provides an option to select the Java version to use for the project. It then instructs the engine to invoke the transforms provided in the fragment that will update the Java version used in `pom.xml` and/or `build.gradle` files from the accelerator.
+
+For more detail on the use of fragments, see [InvokeFragment transform](transforms/invoke-fragment.md).
 
 ## <a id="Next-steps"></a>Next steps
 
