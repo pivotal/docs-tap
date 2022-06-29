@@ -1,6 +1,6 @@
 # Live Hover integration with Spring Boot Tools (Experimental)
 
-This topic describes how to integrate Live Hover with Spring Boot Tools and use the feature.
+For more information about this feature, see the **Live application information hovers** section of [VS Code documentation for Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot).
 
 
 ## <a id="prerequisites"></a> Prerequisites
@@ -106,5 +106,3 @@ highlights in your code.
 
 1. Hover over any of the bubbles to see live information about the corresponding element.
 
-For more information about this feature, see the
-[VS Code documentation for Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot).
