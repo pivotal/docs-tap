@@ -248,7 +248,7 @@ docs.vmware.com is built.
       - [Git authentication](scc/git-auth.md)
       - [GitOps vs. RegistryOps](scc/gitops-vs-regops.md)
       - [Authoring Supply Chains](scc/authoring-supply-chains.md)
-    - [Supply Chain Security Tools – Scan](scst-scan/overview.md)
+    - [Supply Chain Security Tools for Tanzu – Scan](scst-scan/overview.md)
         - [Install](scst-scan/install-scst-scan.md)
         - [Spec reference](scst-scan/explanation.md)
         - [Scan samples](scst-scan/samples/overview.md)
