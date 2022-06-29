@@ -125,17 +125,4 @@ spec:
 EOF
 ```
 
-Install Supply Chain Security Tools - Scan with the following configuration:
-
-```yaml
----
-scanning:
-  metadataStore:
-    url: https://metadata-store.example.com
-    caSecret:
-        name: store-ca-cert
-        importFromNamespace: metadata-store-secrets
-    authSecret:
-        name: store-auth-token
-        importFromNamespace: metadata-store-secrets
-```
+Install Supply Chain Security Tools - Scan with the YAML file sample configuration for the build-profile specified [here](../multicluster/reference/tap-values-build-sample.md)
