@@ -101,9 +101,24 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
     - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, you can reuse the `tap-registry` secret created earlier in [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs) for this field.
 
-    - `SNYK-TOKEN-SECRET` is the name of the secret that contains the SNYK_TOKEN to connect to the [Snyk API](https://docs.snyk.io/snyk-cli/configure-the-snyk-cli#environment-variables). This field is not optional.
+    - `SNYK-TOKEN-SECRET` is the name of the secret that contains the `snyk_token` to connect to the [Snyk API](https://docs.snyk.io/snyk-cli/configure-the-snyk-cli#environment-variables). This field is not optional.
+      - Create this snyk secret json file, insert the snyk api token into the snyk_token key, and run `kubectl apply -f <json file>`:
+      ```
+      {
+        "metadata": {
+          "annotations": {},
+          "name": "snyk-token-secret",
+          "namespace": "my-apps"
+        },
+        "apiVersion": "v1",
+        "kind": "Secret",
+        "data": {
+          "snyk_token": "<INSERT SNYK API TOKEN>"
+        }
+      }
+      ```
 
-1. Install the package by running:
+2. Install the package by running:
 
     ```console
     tanzu package install snyk-scanner \
