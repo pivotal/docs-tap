@@ -21,6 +21,7 @@ This is the table of contents from which the Tanzu Application Platform Document
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
   - [Troubleshoot installing](troubleshooting-tap/troubleshoot-install-tap.md)
   - [Troubleshoot using](troubleshooting-tap/troubleshoot-using-tap.md)
+  - [Troubleshoot components](troubleshooting-tap/troubleshoot-components.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
 - [Component documentation](components.md)
   - [Installing individual packages](install-components.md)
