@@ -192,7 +192,7 @@ ootb_supply_chain_testing_scanning:
 
 >**Note:** The Snyk Scanner integration is only available for an image scan, not a source scan.
 
-## <a id="opt-out-of-synk"></a> Opt-out of using Snyk
+## <a id="opt-out-of-snyk"></a> Opt-out of using Snyk
 
 You can opt out of using Snyk for either a specific supply chain or for all of Tanzu Application Platform.
 
@@ -217,7 +217,7 @@ To opt-out of Snyk for all of Tanzu Application Platform, do the following:
 1. Run the following command to uninstall Snyk:
 
   ```console
-  tanzu package installed delete synk-scanner \
+  tanzu package installed delete snyk-scanner \
     --namespace tap-install
   ```
 1. Follow the [Opt-out of Snyk for a specific Supply Chain](#-opt-out-of-snyk-for-a-supply-chain) for all Supply Chains in the env to not use snyk and use another scanner such as grype.
