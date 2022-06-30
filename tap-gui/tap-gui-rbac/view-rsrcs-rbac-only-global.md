@@ -17,5 +17,5 @@ For more information about how to set up unrestricted remote cluster visibility,
 [Viewing resources on multiple clusters in Tanzu Application Platform GUI](../cluster-view-setup.md).
 
 When you access **Runtime Resources**, Tanzu Application Platform GUI queries all Kubernetes
-namespaces for runtime resources that have a matching `kubernetes-label-selector`. This is usually
+namespaces for runtime resources that have a matching `kubernetes-label-selector`. This usually
 has a `part-Of` prefix.

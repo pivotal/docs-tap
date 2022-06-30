@@ -1,16 +1,15 @@
 # Enable authorization on remote GKE clusters by using Google Auth
 
-This section describes how to leverage Google Auth to add access-controlled visibility for a remote
+This section describes how to use Google Auth to add access-controlled visibility for a remote
 GKE cluster.
 
 After the authorization is enabled, you can view your runtime resources on a remote cluster in
 Tanzu Application Platform GUI. For more information, see
 [View runtime resources on remote clusters](view-rsrcs-rbac-only-global.md).
 
-## <a id="googles-oidc-provider"></a> Leverage Google Auth
+## <a id="googles-oidc-provider"></a> Use Google Auth
 
-When leveraging Google's OIDC provider, the process of enabling authorization requires the following
-steps:
+Google's OIDC provider reduces the steps needed to enable authorization:
 
 1. Create OAuth credentials in Google Cloud
 1. Configure the Tanzu Application Platform GUI to view the remote GKE cluster
@@ -23,13 +22,13 @@ the [Consent](https://console.cloud.google.com/apis/credentials/consent) and
 [Credentials](https://console.cloud.google.com/apis/credentials) topics in the Google Cloud
 documentation.
 
-1. Log in to the [Google Cloud console](https://console.cloud.google.com)
+1. Log in to the [Google Cloud console](https://console.cloud.google.com).
 1. From the drop-down menu on the top bar, select the project to which your GKE cluster belongs.
 1. If a consent screen has not already been configured for this project
 
-    - Go to **APIs & Services** > **OAuth consent screen**
-    - Add the top domain of your Tanzu Application Platform GUI server as an authorized domain
-    - For scopes, select **openid**, **auth/userinfo.email**, and **auth/userinfo.profile**
+    1. Go to **APIs & Services** > **OAuth consent screen**
+    1. Add the top domain of your Tanzu Application Platform GUI server as an authorized domain
+    1. For scopes, select **openid**, **auth/userinfo.email**, and **auth/userinfo.profile**
 
 1. Go to **APIs & Services** > **Credentials**.
 1. Click **Create Credentials** and select **OAuth client ID**.
@@ -77,7 +76,7 @@ uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
     - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider
     - `CLIENT-SECRET` is the Client Secret you obtained while setting up the OIDC provider
 
-1. Record your cluster URL for use later by running:
+1. Record your cluster URL for later use by running:
 
     ```console
     CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
@@ -85,7 +84,7 @@ uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
     echo CLUSTER-URL: $CLUSTER_URL
     ```
 
-1. Record the CA certificate data for use later by running:
+1. Record the CA certificate data for later use by running:
 
     ```console
     CA_DATA=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.certificate-authority-data}' --raw)
@@ -128,7 +127,7 @@ To upgrade the Tanzu Application Platform GUI package:
     tanzu package installed update tap-gui --values-file tap-gui-values.yaml
     ```
 
-    Or, if you were updating the `tap-values.yaml` file, run:
+    Or, if using the `tap-values.yaml` file, run:
 
     ```console
     tanzu package installed update tap --values-file tap-values.yaml
