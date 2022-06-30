@@ -9,11 +9,11 @@ Tanzu Application Platform GUI. For more information, see
 
 ## <a id="googles-oidc-provider"></a> Use Google Auth
 
-Google's OIDC provider reduces the steps needed to enable authorization:
+To use Google's OIDC provider to enable authorization:
 
-1. Create OAuth credentials in Google Cloud
-1. Configure the Tanzu Application Platform GUI to view the remote GKE cluster
-1. Upgrade the Tanzu Application GUI package
+1. [Create OAuth credentials in Google Cloud](#create-oauth-creds)
+1. [Configure the Tanzu Application Platform GUI to view the remote GKE cluster](#configure-tap-gui)
+1. [Upgrade the Tanzu Application GUI package](#upgrade-tap-gui)
 
 ### <a id="create-oauth-creds"></a> Create OAuth credentials in Google Cloud
 
