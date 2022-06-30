@@ -191,3 +191,27 @@ ootb_supply_chain_testing_scanning:
 ```
 
 >**Note:** The Snyk Scanner integration is only available for an image scan, not a source scan.
+
+## <a id="opt-out-of-synk"></a> Opt-out of using Synk
+
+### <a id="opt-out-of-snyk-supply-chain"></a> Opt-out of Snyk for a Supply Chain
+
+To opt out of snyk for a specific Supply Chain, reconfigure the supply chain to use another scanner.
+
+Modifying the `ootb_supply_chain_testing_scanning.scanning.image.template` value to use a scan template that is not using snyk. (i.e. such as grype)
+```yaml
+ootb_supply_chain_testing_scanning:
+  scanning:
+    image:
+      template: "ALTERNATIVE-SCAN-TEMPLATE"
+      policy: scan-policy
+```
+
+### <a id="opt-out-of-snyk-entirely"></a> Opt-out of Snyk Entirely
+
+- Run the following command to uninstall Snyk:
+  ```console
+  tanzu package installed delete synk-scanner \
+    --namespace tap-install
+  ```
+- Follow the [Opt-out of Snyk for a specific Supply Chain](#-opt-out-of-snyk-for-a-supply-chain) for all Supply Chains in the env to not use snyk and use another scanner such as grype.
