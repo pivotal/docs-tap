@@ -2,11 +2,11 @@
 
 You can install Tanzu Application Platform by using one of the following methods:
 
-- [Installing Tanzu Application Platform with internet access](#install-online)
+- [Installing Tanzu Application Platform online](#install-online)
 - [Installing Tanzu Application Platform in an airgapped environment](#install-air-gap)
 - [Installing Tanzu Application Platform by using AWS Quick Start](#install-aws)
 
-## <a id='install-online'></a>Installing Tanzu Application Platform with internet access
+## <a id='install-online'></a>Installing Tanzu Application Platform online
 
 The process of installing Tanzu Application Platform on your own Kubernetes clusters with internet access includes the following tasks:
 
