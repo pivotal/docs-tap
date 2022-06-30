@@ -40,6 +40,7 @@ docs.vmware.com is built.
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
   - [Troubleshoot installing](troubleshooting-tap/troubleshoot-install-tap.md)
   - [Troubleshoot using](troubleshooting-tap/troubleshoot-using-tap.md)
+  - [Troubleshoot components](troubleshooting-tap/troubleshoot-components.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
 - [Component documentation](components.md)
     - [Tanzu CLI](cli-plugins/tanzu-cli.md)
