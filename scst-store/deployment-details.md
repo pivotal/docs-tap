@@ -10,11 +10,11 @@ The installation creates the following in your Kubernetes cluster:
     * deployment
     * replicaset
     * pod
-* Persistent volume and persistent volume claim.
+* Persistent volume claim
 * External IP address (based on a deployment configuration set to use `LoadBalancer`).
 * A Kubernetes secret to allow pulling Supply Chain Security Tools - Store images from a registry.
 * A namespace called `metadata-store`.
-* A service account with read-write privileges named `metadata-store-read-write-client`. It's bound to a ClusterRole named `metadata-store-read-write`.
+* A service account with read-write privileges named `metadata-store-read-write-client`, and a corresponding secret for the service account. It's bound to a ClusterRole named `metadata-store-read-write`.
 * A read-only ClusterRole named `metadata-store-read-only` that isn't bound to a service account. See [Service Accounts](#service-accounts).
 * (Optional) An HTTPProxy object for ingress support.
 
@@ -49,11 +49,13 @@ Where `PASSWORD-0123` is the same password used between deployments.
 
 ### <a id='appserv-type'></a>App service type
 
-If your environment does not support `LoadBalancer`, and you want to use `ClusterIP` or `NodePort`, configure the `app_service_type` property in your `metadata-store-values.yaml`:
+Supported values include `LoadBalancer`, `ClusterIP`, `NodePort`. It is set to `LoadBalancer` by default. If your environment does not support `LoadBalancer`, and you want to use `ClusterIP`, configure the `app_service_type` property in your `metadata-store-values.yaml`:
 
 ```yaml
 app_service_type: "ClusterIP"
 ```
+
+If the `ingress_enabled` property is set to `"true"`, then it is recommended to set the `app_service_type` property to `"ClusterIP"`.
 
 ### <a id='service-accounts'></a>Service accounts
 
@@ -66,7 +68,7 @@ The store creates a read-only cluster role, which can be bound to a service acco
 
 ## <a id='export-cert'></a>Exporting certificates
 
-Supply Chain Security Tools - Store creates [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed. 
+Supply Chain Security Tools - Store creates a [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed. 
 
 ## <a id='ingress'></a>Ingress support
 
