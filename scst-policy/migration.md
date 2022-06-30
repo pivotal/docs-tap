@@ -79,7 +79,7 @@ has direct association between `key` name and `imagePattern`. For Policy
 Controller, multiple `ClusterImagePolicy` resources can be defined to create
 direct association between image patterns and key authorities.
 
-image patterns and keys are scoped to each `ClusterImagePolicy` resource.
+Image patterns and keys are scoped to each `ClusterImagePolicy` resource.
 
 Therefore, to have direct association be isolated between `key` and
 `imagePattern`, multiple Policy Controller `ClusterImagePolicy` must be created.
@@ -111,7 +111,7 @@ spec:
 **Policy Controller:**
 ```yaml
 ---
-apiVersion: policy.sigstore.dev/v1alpha1
+apiVersion: policy.sigstore.dev/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: POLICY_NAME
@@ -147,7 +147,8 @@ If only one level of pathing is required, the `glob` pattern would be
 
 Policy Controller also have defaults defined. If `*` is specified, the `glob`
 matching behavior will be `index.docker.io/library/*`. If `*/*` is specified,
-the `glob` matching behavior will be `index.docker.io/*/*`.
+the `glob` matching behavior will be `index.docker.io/*/*`. With these defaults,
+the `glob` pattern `**` will match against all images.
 
 **Image Policy Webhook:**
 ```yaml
@@ -174,7 +175,7 @@ spec:
 **Policy Controller:**
 ```yaml
 ---
-apiVersion: policy.sigstore.dev/v1alpha1
+apiVersion: policy.sigstore.dev/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: POLICY_NAME
