@@ -204,6 +204,20 @@ The above acelerator imports the `java-version` which, as we saw above, provides
 
 For more detail on the use of fragments, see [InvokeFragment transform](transforms/invoke-fragment.md).
 
+## <a id="air-gapped-instructions"></a>Setting up Accelerator in and air gapped inviroment
+
+In order to use accelerators the certificate for the private git repo is needed in the accelerator system namespace it can be created with the following:
+
+```
+kubectl create secret generic custom-ca --from-file=caFile=CA_PATH  -n accelerator-system
+```
+
+Now accelerators can be created with the following:
+
+```
+tanzu accelerator create spring-petclinic --git-repo https:/GITREPO --git-branch BRANCH --git-tag TAG --secret-ref custom-ca
+```
+
 ## <a id="Next-steps"></a>Next steps
 
 Learn how to:
