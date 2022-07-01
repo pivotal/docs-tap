@@ -22,6 +22,8 @@ The process of installing Tanzu Application Platform on your own Kubernetes clus
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
 
+After installing Tanzu Application Platform on to your Kubernetes clusters, proceed with [Getting started with the Tanzu Application Platform](getting-started.html).
+
 ## <a id='install-air-gap'></a>Installing Tanzu Application Platform in an airgapped environment (Beta)
 
 The process of installing Tanzu Application Platform on your own Kubernetes clusters in an airgapped environment includes the following tasks:
