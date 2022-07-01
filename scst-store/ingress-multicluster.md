@@ -92,10 +92,10 @@ $ AUTH_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.me
 Create the corresponding secret on the second cluster. Run:
 
 ```bash
-$ kubectl create secret generic store-auth-token --from-literal=auth_token=$AUTH_TOKEN -n scan-link-system
+$ kubectl create secret generic store-auth-token --from-literal=auth_token=$AUTH_TOKEN -n metadata-store-secrets
 ```
 
-This secret is created in the Supply Chain Security Tools - Scan namespace, which is `scan-link-system` by default.
+This secret is created in the metadata-store-secrets namespace to be imported by the Supply Chain Security Tools - Scan.
 
 ## <a id="scst-scan-install"></a>Supply Chain Security Tools - Scan installation
 
