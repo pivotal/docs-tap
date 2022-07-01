@@ -3,7 +3,7 @@
 You can install Tanzu Application Platform by using one of the following methods:
 
 - [Installing Tanzu Application Platform online](#install-online)
-- [Installing Tanzu Application Platform in an airgapped environment](#install-air-gap)
+- [Installing Tanzu Application Platform in an airgapped environment (Beta)](#install-air-gap)
 - [Installing Tanzu Application Platform by using AWS Quick Start](#install-aws)
 
 ## <a id='install-online'></a>Installing Tanzu Application Platform online
@@ -22,7 +22,7 @@ The process of installing Tanzu Application Platform on your own Kubernetes clus
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
 
-## <a id='install-air-gap'></a>Installing Tanzu Application Platform in an airgapped environment
+## <a id='install-air-gap'></a>Installing Tanzu Application Platform in an airgapped environment (Beta)
 
 The process of installing Tanzu Application Platform on your own Kubernetes clusters in an airgapped environment includes the following tasks:
 
