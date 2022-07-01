@@ -294,13 +294,12 @@ To claim a service instance:
 
 You have successfully set the scene for the application developer to inspect the claim and to use it to bind to application workloads, as described in [Consume services on Tanzu Application Platform](consume-services.md).
 
-## <a id="stk-advanced-use-cases"></a> Advanced use cases and further reading
+## <a id="stk-use-cases"></a> Further use cases and reading
 
-There are a couple more advanced service use cases not covered in the
-procedures in this topic, such as Direct Secret References and Dedicated Service Clusters.
+There are more service use cases not covered in this getting started guide, see below:
 
 <table class="nice">
-  <th><strong>Advanced Use Case</strong></th>
+  <th><strong>Use Case</strong></th>
   <th><strong>Short Description</strong></th>
   <tr>
     <td>
@@ -321,14 +320,14 @@ procedures in this topic, such as Direct Secret References and Dedicated Service
   </tr>
   <tr>
     <td>
-      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a>
+      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a> (Experimental)
     </td>
     <td>Separates application workloads from service instances across dedicated clusters.</td>
   </tr>
 </table>
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
-[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-overview.html)
+[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-overview.html)
 
 ## Next steps
 
