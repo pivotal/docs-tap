@@ -137,12 +137,12 @@ This is the value to pass to `--service-ref` to create the application workload.
 Confirm that sensor data, passing from the `spring-sensors-producer` workload to
 the `create spring-sensors-consumer-web` workload using the `RabbitmqCluster` service instance, is displayed.
 
-## <a id="stk-advanced-use-cases"></a> Advanced use cases and further reading
+## <a id="stk-use-cases"></a> Further use cases and reading
 
-There are a couple more advanced service use cases not covered in this guide, such as Direct Secret References and Dedicated Service Clusters.
+There are more service use cases not covered in this getting started guide, see below:
 
 <table class="nice">
-  <th><strong>Advanced Use Case</strong></th>
+  <th><strong>Use Case</strong></th>
   <th><strong>Short Description</strong></th>
   <tr>
     <td>
@@ -163,14 +163,14 @@ There are a couple more advanced service use cases not covered in this guide, su
   </tr>
   <tr>
     <td>
-      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a>
+      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a> (Experimental)
     </td>
     <td>Separates application workloads from service instances across dedicated clusters.</td>
   </tr>
 </table>
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
-[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-overview.html)
+[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-overview.html)
 
 ## Next step
 
