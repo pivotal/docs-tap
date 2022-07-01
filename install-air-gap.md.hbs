@@ -4,7 +4,7 @@ This topic describes how to install Tanzu Application Platform on your Kubernete
 
 Before installing the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
-See [Accepting Tanzu Application Platform EULA and installing Tanzu CLI](install-tanzu-cli.html) for more information.
+See [Prerequisites](prerequisites.html) and [Accepting Tanzu Application Platform EULA and installing Tanzu CLI](install-tanzu-cli.html) for more information.
 
 ## <a id='add-tap-package-repo'></a> Relocate images to an air-gapped registry
 
@@ -322,7 +322,7 @@ this can reuse the `tap-registry` secret created in
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
-Follow these steps to install the Install the Tanzu Application Platform package:
+Follow these steps to install the Tanzu Application Platform package:
 
 1. Install the package by running:
 
@@ -346,7 +346,3 @@ Follow these steps to install the Install the Tanzu Application Platform package
     ```console
     tanzu package installed list -A
     ```
-
-After installing Tanzu Application Platform with Supply Chain Basic on to your cluster, 
-you can install Supply Chain with Testing and Scanning.
-For instructions, see [Install OOTB Supply Chain with Testing and Scanning](getting-started/add-test-and-security.html#install-OOTB-test-scan).
