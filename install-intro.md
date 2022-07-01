@@ -34,7 +34,7 @@ The process of installing Tanzu Application Platform on your own Kubernetes clus
 |4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)|
 |5.| Install Tanzu Build Service full dependencies |[Install Tanzu Build Service Dependencies (air-gapped)](tanzu-build-service/install-tbs.html#tbs-offline-install-dependencies)|
 |6.| Apply patch to Tanzu Application Platform GUI |TBD|
-|7.| Set up Application Accelerator |TBD|
+|7.| Add the certificate for the private Git repository in the Accelerator system namespace |TBD|
 |8.| Apply patch to Grype |[Using Grype in offline and air gapped environments](scst-scan/offline-airgap.html)|
 |9.| Set up developer namespaces to use installed packages |[Setting up developer namespaces to use installed packages](set-up-namespaces.html)|
 
