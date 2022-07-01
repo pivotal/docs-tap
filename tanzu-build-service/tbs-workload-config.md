@@ -1,108 +1,141 @@
----
-title: Tanzu Build Service Workload Config
-owner: Build Service Team
----
+# Configuring Tanzu Build Service properties on a workload
 
-## <a id="workload"></a> Configuring TBS Properties on a Workload
+This topic describes how to configure your workload with Tanzu Build Service properties.
 
-Tanzu Build Service builds registry images from source code for TAP and these build configurations can be
-customized through a workload.
+Tanzu Build Service builds registry images from source code for Tanzu Application Platform.
+You can configure these build configurations by using a workload.
 
-It is important to note that TBS is only concerned with the build process. Configurations (such as env vars and service bindings) may
-require a different process for runtime.
+>**Note:** Tanzu Build Service is only applicable to the build process.
+>Configurations, such as environment variables and service bindings, might require
+>a different process for runtime.
 
-### <a id="service-bindings"></a> Build-Time Service Bindings
+## <a id="service-bindings"></a> Configure build-time service bindings
 
-This topic discusses how to configure build-time service bindings for TAP/TBS.
+You can configure build-time service bindings for Tanzu Build Service.
 
-TAP/TBS supports using [Service Binding Specification for Kubernetes](https://github.com/k8s-service-bindings/spec) for app builds.
+Tanzu Build Service supports using [Service Binding Specification for Kubernetes](https://github.com/k8s-service-bindings/spec) for app builds.
 
-Service binding configuration is specific to the buildpack that is used to build the app. For documentation on buildpack service bindings
-configuration, see [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+Service binding configuration is specific to the buildpack that is used to build the app.
+For more information about configuring buildpack service bindings, see the
+[VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+<!-- is there a more specific location in the buildpack docs we should point to? -->
 
-To configure a service binding for a TAP workload, follow these steps:
+To configure a service binding for a Tanzu Application Platform workload, follow these steps:
 
-1. Create a yaml file for a Secret. ex `service-binding-secret.yaml`:
+1. Create a YAML file named `service-binding-secret.yaml` for a Secret:
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: settings-xml
-  namespace: <developer-namespace>
-type: service.binding/maven
-stringData:
-  type: maven
-  provider: sample
-  settings.xml: |
-	<my-settings>
-```
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: settings-xml
+      namespace: DEVELOPER-NAMESPACE
+    type: service.binding/maven
+    stringData:
+      type: maven
+      provider: sample
+      settings.xml: |
+      MY-SETTINGS
+    ```
 
-2. Apply the config with `kubectl apply -f service-binding-secret.yaml`
+    Where:
+    - `DEVELOPER-NAMESPACE` is ...
+    - `MY-SETTINGS` is ... <!-- what would be in these settings? is there an example? -->
+
+2. Apply the YAML file by running:
+
+    ```console
+    kubectl apply -f service-binding-secret.yaml
+    ```
 
 3. Create the workload with `buildServiceBindings` configured:
 
+    ```console
+    tanzu apps workload create WORKLOAD-NAME \
+      --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' \
+      ...
+    ```
+
+    Where `WORKLOAD-NAME` is the name of the workload you want to configure.
+
+## <a id="env-vars"></a> Configure environment variables
+
+If you have build-time environment variable dependencies, you can set environment variables
+that are available at build-time.
+
+You can also configure buildpacks with environment variables.
+Buildpack configuration depends on the specific buildpack being used.
+For more information on buildpacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+
 ```console
-tanzu apps workload create <workload-name> \
-  --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' \
-  ...
-```
-
-### <a id="workload-configurations"></a> Workload Configurations
-
-Some TBS configurations for workloads can be configured inline while creating the workload.
-
-#### <a id="env-vars"></a> Environment Variables
-
-If you have build-time environment variable dependencies you can set env vars that will be available at build-time.
-
-Buildpacks can also be configured with environment variables. Buildpack configuration depends on the specific buildpack being used.
-For documentation on buildpacks, see [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
-
-```console
-tanzu apps workload create <workload-name> \
+tanzu apps workload create WORKLOAD-NAME \
  --build-env "ENV_NAME=ENV_VALUE" \
  --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true"
 ```
 
-#### <a id="service-account"></a> Service Account
+Where `WORKLOAD-NAME` is the name of the workload you want to configure.
+<!-- what are the placeholders here? -->
 
-This can be used to set the service account used during builds. This service account is the one configured for the
-developer namespace. If unset, `default` will be used.
+## <a id="service-account"></a> Configure the service account
 
-```console
-tanzu apps workload create <workload-name> \
-  --param serviceAccount=<service-account-name> \
-```
+Using the Tanzu CLI, you can configure the service account used during builds.
+This service account is the one configured for the developer namespace.
+If unset, `default` is used.
 
-#### <a id="cluster-builder"></a> Cluster Builder
-
-This can be used to set the ClusterBuilder used during builds. You can view the available ClusterBuilds by running
-`kubectl get clusterbuilder`.
+To configure the service account used during builds, run:
 
 ```console
-tanzu apps workload create <workload-name> \
-  --param clusterBuilder=<cluster-builder-name> \
-```
-
-#### <a id="registry"></a> Registry
-
-The registry where workload images are saved can be configured with the `tanzu` cli. The service account used
-for this workload must have read and write access to this registry location.
-
-```console
-tanzu apps workload create <workload-name> \
-  --param-yaml registry={"server": <SERVER-NAME>, "repository": <REPO-NAME>}
+tanzu apps workload create WORKLOAD-NAME \
+  --param serviceAccount=SERVICE-ACCOUNT-NAME \
 ```
 
 Where:
 
-- `SERVER-NAME` is the hostname of the registry server. Examples:
-    * Harbor has the form `server: "my-harbor.io"`
-    * Dockerhub has the form `server: "index.docker.io"`
-    * Google Cloud Registry has the form `server: "gcr.io"`
+- `WORKLOAD-NAME` is the name of the workload you want to configure.
+- `SERVICE-ACCOUNT-NAME` is the name of the service account you want to use during builds.
+
+## <a id="cluster-builder"></a> Configure the cluster builder
+
+To configure the ClusterBuilder used during builds:
+
+1. View the available ClusterBuilds by running:
+
+    ```console
+    kubectl get clusterbuilder
+    ```
+
+1. Set the ClusterBuilder used during builds by running:
+
+    ```console
+    tanzu apps workload create WORKLOAD-NAME \
+      --param clusterBuilder=CLUSTER-BUILDER-NAME \
+    ```
+
+    Where:
+
+    - `WORKLOAD-NAME` is the name of the workload you want to configure.
+    - `CLUSTER-BUILDER-NAME` is the ClusterBuilder you want to use.
+
+## <a id="registry"></a> Configure the workload image registry
+
+Using the Tanzu CLI, you can configure the registry where workload images are saved.
+The service account used for this workload must have read and write access to this registry location.
+
+To configure the registry where workload images are saved, run:
+
+```console
+tanzu apps workload create WORKLOAD-NAME \
+  --param-yaml registry={"server": SERVER-NAME, "repository": REPO-NAME}
+```
+
+Where:
+
+- `SERVER-NAME` is the host name of the registry server. Examples:
+  - Harbor has the form `"my-harbor.io"`
+  - Docker Hub has the form `"index.docker.io"`
+  - Google Cloud Registry has the form `"gcr.io"`
 - `REPO-NAME` is where workload images are stored in the registry.
-  Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
-    * Harbor has the form `repository: "my-project/supply-chain"`
-    * Dockerhub has the form `repository: "my-dockerhub-user"`
-    * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
+Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
+  - Harbor has the form `"my-project/supply-chain"`
+  - Docker Hub has the form `"my-dockerhub-user"`
+  - Google Cloud Registry has the form `"my-project/supply-chain"`
