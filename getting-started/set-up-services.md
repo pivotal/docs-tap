@@ -1,6 +1,6 @@
 # Set up services for consumption by developers
 
-This how-to guide walks you through setting up services for consumption by Tanzu Application Platform developers. For the sake of example, you'll set up the RabbitMQ Cluster Kubernetes operator.
+This how-to guide walks service and application operators through setting up services for consumption by Tanzu Application Platform developers. For the sake of example, you'll set up the RabbitMQ Cluster Kubernetes operator.
 You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
 
 ## <a id="you-will"></a>What you will do
@@ -37,9 +37,6 @@ Before following this walkthrough, you must:
 
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
-1. Have set up the `default` namespace to use installed packages and use it as your developer namespace.
-For more information, see [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-install-components.html#setup)).
-1. Ensure your Tanzu Application Platform cluster can pull source code from GitHub.
 1. Ensure your Tanzu Application Platform cluster can pull the images required by the RabbitMQ Cluster Kubernetes operator. For more information, see the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
 
 ## <a id="stk-set-up"></a> Set up a service

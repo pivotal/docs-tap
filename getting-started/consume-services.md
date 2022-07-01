@@ -13,7 +13,7 @@ This how-to guide walks the application developer through deploying two applicat
 ## <a id="you-will"></a>What you will do
 
 - Inspect the resource claim created for the service instance by the application operator.
-- Use it to bind an application workload to the service instance.
+- Bind the application workload to the ResourceClaim so the workload utilizes the service instance.
 
 Before you begin, for important background, see [About consuming services on Tanzu Application Platform](about-consuming-services.md).
 
@@ -31,9 +31,8 @@ Bear the following observations in mind as you work through this guide:
     * The life cycle of resource claims is determined by application operators.
     * The life cycle of service instances is determined by service operators.
     * The life cycle of service bindings is implicitly tied to the life cycle of workloads.
-1. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding. For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-service_resource_claims-terminology_and_apis.html).
-1. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see[ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
-1. Exclusivity of resource claims: Resource claims are considered to be mutually exclusive, meaning that service instances can be claimed by at most one resource claim.
+
+1. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
 
 ## <a id="stk-prereqs"></a> Prerequisites
 
@@ -44,7 +43,6 @@ Before following this walkthrough, you must:
 1. Have set up the `default` namespace to use installed packages and use it as your developer namespace.
 For more information, see [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-install-components.html#setup)).
 1. Ensure your Tanzu Application Platform cluster can pull source code from GitHub.
-1. Ensure your Tanzu Application Platform cluster can pull the images required by the RabbitMQ Cluster Kubernetes operator. For more information, see the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
 1. Ensure the service operator and application operator has completed the work of setting up the service, creating the service instance, and claiming the service instance, as described in [Set up services for consumption by developers](set-up-services.md).
 
 As application developer, you are now ready to inspect the resource claim created for the service instance by the application operator in [Set up services for consumption by developers](set-up-services.md) and use it to bind to application workloads.
