@@ -35,7 +35,7 @@ The examples in some steps reference the sample
 1. Open the project in VS Code, with the Live Hover feature enabled, by running:
 
     ```console
-    TAP_LIVE_HOVER=true code ./APP-NAME
+    TAP_LIVE_HOVER=true code ./PROJECT-FOLDER
     ```
 
     For example:
@@ -65,18 +65,7 @@ The examples in some steps reference the sample
     Tanzu Developer Tools for VS Code uses your current context from `~/.kube/config` to choose
     which cluster to connect with.
 
-1. If you don't have the workload running yet, run:
-
-    ```console
-    kubectl create -f WORKLOAD-YAML-FILE
-    ```
-
-    For example:
-
-    ```console
-    $ kubectl create -f config/workload.yaml
-    workload.carto.run/tanzu-java-web-app created
-    ```
+1. If you don't have the workload running yet, run `Tanzu: Apply Workload` from the Command Palette.
 
     Tanzu Developer Tools for VS Code periodically searches for pods in your cluster that correspond
     to the workload configurations it finds in your workspace.
@@ -101,8 +90,8 @@ running, run:
     In this example, live data can be extracted from the `...-0001-deployment-...` pod.
 
 1. Open a Java file, such as `HelloController.java`.
-After a delay of up to 30 seconds, because of a 30-second polling loop, green bubbles appear as
-highlights in your code.
+After a delay of up to 30 seconds, because of a 30-second polling loop, green highlights will appear in your code.
+![Live Hover Example](../images/vscode-live-hover-example.png)
 
 1. Hover over any of the bubbles to see live information about the corresponding element.
 
