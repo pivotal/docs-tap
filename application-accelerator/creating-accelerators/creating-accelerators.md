@@ -204,7 +204,7 @@ The above acelerator imports the `java-version` which, as we saw above, provides
 
 For more detail on the use of fragments, see [InvokeFragment transform](transforms/invoke-fragment.md).
 
-## <a id="air-gapped-instructions"></a>Setting up Accelerator in and air gapped inviroment
+## <a id="air-gapped-instructions"></a>Setting up Accelerator in an air gapped enviroment
 
 In order to use accelerators the certificate for the private git repo is needed in the accelerator system namespace it can be created with the following:
 
