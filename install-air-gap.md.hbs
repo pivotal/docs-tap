@@ -31,6 +31,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     export IMGPKG_REGISTRY_USERNAME=MY-REGISTRY-USER
     export IMGPKG_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
     export TAP_VERSION=VERSION-NUMBER
+    export REGISTRY_CA_PATH=PATH-TO-CA
     ```
 
     Where:
@@ -44,8 +45,8 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 
     ```console
     imgpkg copy \
-      -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} \
-      --to-tar tap-packages-${TAP_VERSION}.tar \
+      -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:$TAP_VERSION \
+      --to-tar tap-packages-$TAP_VERSION.tar \
       --include-non-distributable-layers
     ```
 
@@ -58,9 +59,10 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 
     ```console
     imgpkg copy \
-      --tar tap-packages-${TAP_VERSION}.tar \
-      --to-repo ${IMGPKG_REGISTRY_HOSTNAME}/tap-packages \
+      --tar tap-packages-$TAP_VERSION.tar \
+      --to-repo $IMGPKG_REGISTRY_HOSTNAME/tap-packages \
       --include-non-distributable-layers
+      --registry-ca-cert-path $REGISTRY_CA_PATH
     ```
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
@@ -75,9 +77,9 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 
     ```console
     tanzu secret registry add tap-registry \
-        --server   ${IMGPKG_REGISTRY_HOSTNAME} \
-        --username ${IMGPKG_REGISTRY_USERNAME} \
-        --password ${IMGPKG_REGISTRY_PASSWORD} \
+        --server   $IMGPKG_REGISTRY_HOSTNAME \
+        --username $IMGPKG_REGISTRY_USERNAME \
+        --password $IMGPKG_REGISTRY_PASSWORD \
         --namespace tap-install \
         --export-to-all-namespaces \
         --yes 
@@ -87,7 +89,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 
     ```console
     tanzu package repository add tanzu-tap-repository \
-      --url MY-REGISTRY/tap-packages:$TAP_VERSION \
+      --url $IMGPKG_REGISTRY_HOSTNAME/tap-packages:$TAP_VERSION \
       --namespace tap-install
     ```
 
@@ -100,19 +102,6 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 
     ```console
     tanzu package repository get tanzu-tap-repository --namespace tap-install
-    ```
-
-    For example:
-
-    ```console
-    $ tanzu package repository get tanzu-tap-repository --namespace tap-install
-    - Retrieving repository tap...
-    NAME:          tanzu-tap-repository
-    VERSION:       16253001
-    REPOSITORY:    tapmdc.azurecr.io/mdc/1.0.2/tap-packages
-    TAG:           1.0.2
-    STATUS:        Reconcile succeeded
-    REASON:
     ```
 
     > **Note:** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
