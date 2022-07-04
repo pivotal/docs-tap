@@ -1,4 +1,4 @@
-# Tanzu Application Platform GUI
+# Overview of Tanzu Application Platform GUI
 
 Tanzu Application Platform GUI is a tool for your developers to view your
 applications and services running for your organization.
@@ -30,7 +30,7 @@ Tanzu Application Platform GUI consists of the following components:
 
   ![Screenshot of a Tanzu Application Platform catalog displayed within Tanzu Application Platform GUI.](images/tap-gui-catalog.png)
 
-* **A Git repository:**  
+* **A Git repository:**
   Tanzu Application Platform GUI stores the following in a Git repository:
 
   * The structure for your application catalog.
