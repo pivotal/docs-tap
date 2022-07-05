@@ -3,7 +3,7 @@
 This document describes how to install Supply Chain Security Tools - Scan 
 (Snyk Scanner) from the Tanzu Application Platform package repository.
 
-**NOTE:** Snyk's image scanning capability is currently in BETA. Snyk may only return a partial list of CVEs when scanning Buildpack images.
+>**Note:** Snyk's image scanning capability is in beta. Snyk might only return a partial list of CVEs when scanning Buildpack images.
 
 ## <a id="prerecs"></a> Prerequisites
 
@@ -85,7 +85,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
 1. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
 
-  The Grype and Snyk Scanner Integrations both enable the Metadata Store. As such, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform was installed using the Full Profile, then the Grype Scanner Integration was installed, unless it was explicitly excluded.
+  The Grype and Snyk Scanner Integrations both enable the Metadata Store. As such, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform was installed using the Full Profile, the Grype Scanner Integration was installed, unless it was explicitly excluded.
 
  * If the Grype Scanner Integration is installed:
 
@@ -221,7 +221,7 @@ You can opt out of using Snyk for either a specific supply chain or for all of T
 
 To opt-out of snyk for a specific Supply Chain, reconfigure the supply chain to use another scanner:
 
--  Modify the `ootb_supply_chain_testing_scanning.scanning.image.template` value to use a scan template that does not use Snyk, such as Grype.
+-  Edit the `ootb_supply_chain_testing_scanning.scanning.image.template` value to use a scan template that does not use Snyk, such as Grype.
 
     ```yaml
     ootb_supply_chain_testing_scanning:
@@ -235,10 +235,10 @@ To opt-out of snyk for a specific Supply Chain, reconfigure the supply chain to 
 
 To opt-out of Snyk for all of Tanzu Application Platform, do the following:
 
-1. Run the following command to uninstall Snyk:
+1. To uninstall Snyk, run:
 
   ```console
   tanzu package installed delete snyk-scanner \
     --namespace tap-install
   ```
-2. Follow the [Opt-out of Snyk for a specific Supply Chain](#-opt-out-of-snyk-for-a-supply-chain) for all Supply Chains in the env to not use snyk and use another scanner such as grype.
+2. Follow the [Opt-out of Snyk for a specific Supply Chain](#-opt-out-of-snyk-for-a-supply-chain) for all Supply Chains in the environment to not use snyk and use another scanner such as grype.
