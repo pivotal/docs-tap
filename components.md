@@ -34,7 +34,7 @@ into this Tanzu Application Platform documentation site.
 
 - [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
 
-- [Tanzu Application Platform GUI](tap-gui/about.md)
+- [Tanzu Application Platform GUI](tap-gui/landing.md)
 
 - [VMware Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html)
 
