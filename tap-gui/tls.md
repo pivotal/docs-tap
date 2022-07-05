@@ -30,8 +30,8 @@ To configure a TLS certificate for Tanzu Application Platform GUI:
 
 1. Add the Issuer and Certificate to your cluster by running:
 
-    ```kubectl
-    apply -f certificate.yaml
+    ```console
+    kubectl apply -f certificate.yaml
     ```
 
 1. Update your `tap-gui` values to include a top-level `tls` key with subkeys for `namespace` and
