@@ -287,7 +287,7 @@ In the standard git-ops approach, configuration is pushed to a repository and is
 to a cluster by any deliverable watching the repository. Operators might want to have a manual review step before 
 applying configuration to the cluster. In this case, operators must specify a `pull_request` commit strategy. 
 
->**Note:** If you want to use the pull request approach, you must use http(s) authentication with a token.
+>**Note:** If you want to use the pull request approach, you must use HTTP(S) authentication with a token.
 
 To use the `pull_request` commit strategy, set the following parameters:
 
