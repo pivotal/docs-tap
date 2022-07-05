@@ -117,7 +117,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   It integrates with Supply Chain Security Tools - Scan to automatically store the resulting source
   and image vulnerability reports.
 
-- **[Tanzu Application Platform GUI](tap-gui/about.md)**
+- **[Overview of Tanzu Application Platform GUI](tap-gui/about.md)**
 
   Tanzu Application Platform GUI lets your developers view your organization's running applications
   and services. It provides a central location for viewing dependencies, relationships, technical
@@ -191,7 +191,7 @@ The following table lists the packages contained in each profile:
    <td><strong>Full</strong>
    </td>
    <td><strong>Iterate</strong>
-   </td>   
+   </td>
    <td><strong>Build</strong>
    </td>
    <td><strong>Run</strong>
