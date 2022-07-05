@@ -34,7 +34,7 @@ Tanzu Application Platform to store images.
 
 There are some optional but recommended DNS records you must allocate if you decide to use these particular components:
 
-- Cloud Native Runtimes (knative) - Allocate a wildcard subdomain for your developer's applications. This is specified in the `cnrs.domain_name` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service. See [Ingress Method](tap-gui/accessing-tap-gui.md#ingress-method) for more information about `tanzu-system-ingress`.
+- Cloud Native Runtimes (knative) - Allocate a wildcard subdomain for your developer's applications. This is specified in the `cnrs.domain_name` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service. See [Access with the shared Ingress method](tap-gui/accessing-tap-gui.md#ingress-method) for more information about `tanzu-system-ingress`.
 
 - Tanzu Learning Center - Similar to Cloud Native Runtimes, allocate a wildcard subdomain for your workshops and content. This is specified in the `learningcenter.ingressDomain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
 
@@ -84,7 +84,7 @@ providers:
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
 - Tanzu Kubernetes Grid multicloud
 - vSphere with Tanzu v7.0 U3a (not possible with Tanzu Application Platform v1.0.0 or earlier).<br>
-For vSphere with Tanzu, pod security policies must be configured so that Tanzu Application Platform controller pods can run as root. 
+For vSphere with Tanzu, pod security policies must be configured so that Tanzu Application Platform controller pods can run as root.
 See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) for more information.
 
     To set the pod security policies, run:
@@ -107,7 +107,7 @@ See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-se
 
 - For the [`full` profile](install.html#full-profile), or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
-- Pod Security Policies must be configured so that Tanzu Application Platform controller pods can run as root. 
+- Pod Security Policies must be configured so that Tanzu Application Platform controller pods can run as root.
 See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) for more information.
 
 
