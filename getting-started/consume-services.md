@@ -139,7 +139,7 @@ the `create spring-sensors-consumer-web` workload using the `RabbitmqCluster` se
 
 ## <a id="stk-use-cases"></a> Further use cases and reading
 
-There are more service use cases not covered in this getting started guide, see below:
+There are more service use cases not covered in this getting started guide. See the following:
 
 <table class="nice">
   <th><strong>Use Case</strong></th>
@@ -170,9 +170,9 @@ There are more service use cases not covered in this getting started guide, see 
 </table>
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
-[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-overview.html)
+[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-overview.html).
 
-## Next step
+## Next steps
 
 Now that you've completed the Getting started guides, learn about:
 

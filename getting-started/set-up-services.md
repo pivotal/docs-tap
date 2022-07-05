@@ -296,7 +296,7 @@ You have successfully set the scene for the application developer to inspect the
 
 ## <a id="stk-use-cases"></a> Further use cases and reading
 
-There are more service use cases not covered in this getting started guide, see below:
+There are more service use cases not covered in this getting started guide. See the following:
 
 <table class="nice">
   <th><strong>Use Case</strong></th>
