@@ -204,6 +204,22 @@ The above acelerator imports the `java-version` which, as we saw above, provides
 
 For more detail on the use of fragments, see [InvokeFragment transform](transforms/invoke-fragment.md).
 
+## <a id="air-gapped-instructions"></a>Setting up Accelerator in an air gapped environment
+
+Follow these steps to set up accelerators in an air gapped environment: 
+
+1. Create the certificate for the private Git repository in the accelerator system namespace:
+
+    ```
+    kubectl create secret generic custom-ca --from-file=caFile=CA_PATH  -n accelerator-system
+    ```
+
+1. Create the accelerators:
+
+    ```
+    tanzu accelerator create spring-petclinic --git-repo https:/GITREPO --git-branch BRANCH --git-tag TAG --secret-ref custom-ca
+    ```
+
 ## <a id="Next-steps"></a>Next steps
 
 Learn how to:

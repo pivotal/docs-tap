@@ -1,4 +1,4 @@
-# Enabling authorization on remote clusters in Tanzu Application Platform GUI
+# Enabling authorization on remote clusters
 
 You can control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based
 on user roles and permissions for each of the visible remote clusters.
@@ -6,7 +6,7 @@ on user roles and permissions for each of the visible remote clusters.
 Role-based Access Control (RBAC) is currently supported for the Kubernetes cluster provider
 GKE (Google Kubernetes Engine) on GCP.
 For more information, see
-[Enable Authorization on Remote GKE Clusters in Tanzu Application Platform GUI using Google Auth](setup-tap-gui-rbac-with-gke-auth.md)
+[Enable authorization on remote GKE clusters by using Google Auth](set-up-tap-gui-rbac-with-gke-auth.md)
 
 Support for other Kubernetes cluster providers is planned for future releases of
 Tanzu Application Platform.
@@ -29,4 +29,4 @@ To do so:
 After following these steps, you can view your runtime resources on a remote cluster in
 Tanzu Application Platform GUI.
 For more information, see
-[View Runtime Resources on Authorization-enabled Clusters in Tanzu Application Platform GUI](view-rsrcs-rbac-only-global.md).
+[View runtime resources on authorization-enabled clusters](view-rsrcs-rbac-only-global.md).

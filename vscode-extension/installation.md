@@ -31,7 +31,7 @@ Before installing the Tanzu Developer Tools IDE extension, you must have:
 
 To install VMware Tanzu Developer Tools for Visual Studio Code:
 
-1. Download Tanzu Developer Tools for Visual Studio Code from the Tanzu Network.
+1. Sign in to VMware Tanzu Network and [download Tanzu Developer Tools for Visual Studio Code](https://network.tanzu.vmware.com/products/tanzu-developer-tools-for-vscode/).
 
 1. Open VS Code.
 

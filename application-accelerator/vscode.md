@@ -6,7 +6,7 @@ from the defined accelerators in Tanzu Application Platform using VSCode.
 To use the vscode extension, you need to interact with the `acc-server`, for more 
 information on how to expose this server follow the instructions [here](./acc-cli.md#server-api-connections)
 
-# Installation
+# <a id="vs-code-app-accel-install"></a> Installation
 
 1. Download Tanzu App Accelerator Extension for Visual Studio Code from the Tanzu Network
 

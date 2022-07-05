@@ -12,19 +12,12 @@ This section provides a brief overview of each of these key concepts.
 
 ### <a id="service-instances"></a>Service instances
 
-A **service instance** is any Kubernetes resource that exposes its capability
-through a well-defined interface.
-For example, you might consider Kubernetes resources that have `MySQL` as the API Kind
-to be MySQL service instances. These resources expose their capability over the MySQL protocol.
-Other examples include resources that have `PostgreSQL` or `RabbitmqCluster` as the API Kind.
+A **service instance** is a logical grouping of one or more Kubernetes resources that together expose a known capability through a well-defined interface. For example, a theoretical "MySQL" service instance might consist of a resource and a `MySQLDatabase` and a `MySQLUser` resource. When considering compatibility of service instances for Tanzu Application Platform, one of the resources of a service instance must adhere to the [Service Binding for Kubernetes](https://servicebinding.io/) specification.
 
 ### <a id="service-bindings"></a>Service bindings
 
-**Service binding** refers to a mechanism in which connectivity information, such
-as binding credentials, are automatically communicated to application workloads.
-Tanzu Application Platform uses a standard named [Service Binding for Kubernetes](https://servicebinding.io/)
-to implement this mechanism. To fully understand the services aspect of Tanzu Application Platform,
-you must learn about this standard.
+**Service binding** refers to a mechanism in which connectivity information, such as service instance credentials and connectivity information (host, port, and so on), are automatically communicated to application workloads.
+Tanzu Application Platform uses a standard named [Service Binding for Kubernetes](https://servicebinding.io/) to implement this mechanism. See this standard to fully understand the services aspect of Tanzu Application Platform.
 
 ### <a id="resource-claims"></a>Resource claims
 

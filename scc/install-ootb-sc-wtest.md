@@ -83,7 +83,8 @@ Install by following these steps:
                                            libgit2.
 
     gitops.server_address                  Default server address to be used for forming Git URLs for pushing 
-                                           Kubernetes configuration produced by the supply chain.
+                                           Kubernetes configuration produced by the supply chain. This must
+                                           include the scheme/protocol (e.g. https:// or ssh://)
 
     gitops.repository_owner                Default project or user of the repository. Used to create URLs for pushing 
                                            Kubernetes configuration produced by the supply chain.

@@ -19,14 +19,6 @@ Before installing Supply Chain Security Tools - Scan:
 - Install the Tanzu Insight CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
   See [Install the Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-installation.md).
 
-## <a id="scanner-support"></a> Scanner support
-
-| Out-Of-The-Box Scanner | Version |
-| --- | --- |
-| [Anchore Grype](https://github.com/anchore/grype) | v0.38.0 |
-
-Let us know if there's a scanner you'd like us to support.
-
 ## <a id='install-scst-scan'></a> Install
 
 The installation for Supply Chain Security Tools – Scan involves installing two packages:

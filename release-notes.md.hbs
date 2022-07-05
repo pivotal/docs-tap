@@ -19,17 +19,17 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="app-acc-features"></a> Application Accelerator
 
-- Add support for fragments
-    - Introduce new Fragment custom resource
-    - Add subPath in spec for Git repository
-- Add telemetry support
-    - Introduce new InvocationEvent custom resource to track request to generate project ZIP file
-    - Add job to remove InvocationEvent resources that are older than certain number of days (30 is default)
+- [Accelerator Fragments](./application-accelerator/creating-accelerators/composition.md) are now available.
+  - Allows for re-usable Accelerator Fragments to be imported into other Accelerators.
+- [Tanzu Application Accelerator for VS Code Extension](./application-accelerator/vscode.md#vs-code-app-accel-install) is now available.
+  - Allows for developers to quickly generate projects from their organization's Accelerator Catalog right from within VS Code.
+- Added the `subPath` field for [Accelerators](./application-accelerator/creating-accelerators/accelerator-crd.md#accelerator-crd-spec) and [Fragments](./application-accelerator/creating-accelerators/accelerator-crd.md#fragment-crd-spec)
+  - Provides the option for altering where the root of an Accelerator or Fragment lives.
 
 #### Application Live View
 
-- Feature 1
-- Feature 2
+- Live Hover Integration with Spring Tools Suite
+  - Users can hover over Spring Actuator endpoints to see live data. This feature can be enabled from Preferences.
 
 #### Tanzu CLI - Apps plug-in
 
@@ -53,9 +53,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (Beta)
 
-- Snyk Scanner is now available in beta for the [Supply Chain Security Tools - Scan](#scst-scan) controller.
-  - To use Snyk Scanner, manually install it by following the [Install Snyk Scanner](scst-scan/install-snyk-integration.md) instructions.
-  - Run Snyk Scanner on `ImageScan`s for the Scan-Link controller.
+- Snyk scanner image scanning integration (Beta) is available for [Supply Chain Security Tools - Scan](#scst-scan)
+  - See [Snyk Installation and Configuration Guide](scst-scan/install-snyk-integration.md) for instructions on how to use Snyk with Tanzu Application Platform Supply Chains
 
 #### Supply Chain Choreographer
 
@@ -71,6 +70,7 @@ This release includes the following changes, listed by component and area.
 - Scan-Link's controller abstraction from the scanners' output format allows more flexibility when you integrate new scanners.
 - Supply Chain Security Tools - Scan is decoupled from the Supply Chain Security Tools - Store to ease future integration with different storage methods.
 - Beta scanner support released in the [Snyk Scanner](#snyk-scanner) package.
+- [Documentation available](scst-scan/offline-airgap.md) on how to use Grype in offline and air gapped environments.
 
 **NOTICE:** The Grype Scanner `ScanTemplate`s shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are now deprecated and will no longer be supported in future releases.
 
@@ -104,18 +104,26 @@ This release includes the following changes, listed by component and area.
 
 #### Tanzu Developer Tools for VS Code
 
-- Workload Panel
-  - Users can see the status of their Workloads
-- Apply and Delete Workload Commands
-  - Users can execute "Tanzu: Apply Workload" and "Tanzu: Delete Workload" from the Command Palette
-- Live Hover Integration with Spring Tools Suite
-  - Users can hover over Spring Actuator endpoints to see live data. This feature can be enabled from Preferences.
+- **View workload statuses:** You can see the status of your workloads from the Workload Panel.
+For more information, see
+[Using the Tanzu Dev Tools Extension](vscode-extension/using-the-extension.md).
+- **Apply and Delete workload commands:** You can run **Tanzu: Apply Workload** and
+**Tanzu: Delete Workload** from the Command Palette. For more information, see
+[Using the Tanzu Dev Tools Extension](vscode-extension/using-the-extension.md).
+- **Live Hover Integration with Spring Tools Suite:** You can point to Spring annotations and see
+the live data from a running Spring Boot application by way of Spring Boot Actuator endpoints.
+For more information, see
+[Live Hover integration with Spring Boot Tools (Experimental)](vscode-extension/live-hover.md).
 
 #### Functions (Beta)
 
 - Feature 1
 - Feature 2
 
+#### <a id="tbs"></a> Tanzu Build Service
+
+- Automatic dependency updates is in the process of being deprecated. It will receive continued support on existing TAP versions.
+  - Configuring TAP with automatic dependency updates is not recommended due to compatibility risks. Updates to dependencies will be provided in TAP patches.
 
 ### <a id='1-2-breaking-changes'></a> Breaking changes
 
@@ -128,6 +136,7 @@ This release has the following breaking changes, listed by area and component.
   - The package name has changed from `package policies` to `package main`.
   - The deny rule has changed from the boolean `isCompliant` to the array of strings `deny[msg]`.
   - Please note that the sample `ScanPolicy` is different if you're using Grype Scanner with a cyclonedx structure or Snyk Scanner with a spdx json structure.
+  - See [Enforce compliance policy using Open Policy Agent](./scst-scan/policies.md) for an example of the current ScanPolicy format for version 1.2.0 and later.
 
 #### Supply Chain Security Tools - Store
 
@@ -183,19 +192,18 @@ This following issues, listed by area and component, are resolved in this releas
   - **Details for ConfigMap CRD not appearing:** The error `Unable to retrieve conditions for ConfigMap...`appears in the details section after clicking on the ConfigMap stage in the graph view of a supply chain.
   - **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear.
 
-
-
 ### <a id='1-2-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
 
 #### Tanzu Application Platform
 
-- **AWS EKS clusters:** When connecting to AWS EKS clusters an error might appear with the text `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`. The cause is [Kubernetes v1.24](https://kubernetes.io/blog/2022/05/03/kubernetes-1-24-release-announcement/) dropping support for `client.authentication.k8s.io/v1alpha1`. For more information, see [aws/aws-cli/issues/6920](https://github.com/aws/aws-cli/issues/6920) in GitHub. To fix, update `aws-cli` to the latest version, and then run:
-
-    ```console
-    aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
-    ```
+- **Failure to connect to AWS EKS clusters:**
+When connecting to AWS EKS clusters an error might appear with the text
+`Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
+`invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
+To prevent this, see
+[Failure to connect to AWS EKS clusters](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters).
 
 #### Tanzu Cluster Essentials
 
@@ -206,6 +214,14 @@ This release has the following known issues, listed by area and component.
 
 - Known issue 1
 - Known issue 2
+
+#### Convention Service
+
+- **Issue:**
+  If the self-signed certificate authority (CA) for a registry is provided through `convention-controller.ca_cert_data`, it is not successfully propagated to the convention service.
+
+  **Workaround:**
+  Define the CA using the available `.shared.ca_cert_data` top-level key to supply the CA to the convention service.
 
 #### Grype scanner
 
@@ -224,13 +240,16 @@ This release has the following known issues, listed by area and component.
 
 #### Tanzu Application Platform GUI
 
-- Known issue 1
+- Supply Chain Plug-in
+    - Delivery section of the supply chain graph may show deliverables that do not pertain to the currently selected workload. There is currently no workaround.
 - Known issue 2
 
 #### VSCode Extension
 
-- When debugging an application with service bindings, debug sessions might prematurely end on the first time-only due to services being late-bound.
+- When debugging an application with service bindings, debug sessions might prematurely end on the
+first run only. This is because of services being late-bound.
 
 #### Intellij Extension
 
-- When debugging an application with service bindings, debug sessions might prematurely end on the first time-only due to services being late-bound.
+- When debugging an application with service bindings, debug sessions might prematurely end on the
+first run only. This is because of services being late-bound.

@@ -170,3 +170,8 @@ If your company has configured [Application Accelerator](https://docs.vmware.com
 ## <a id="whats-next"></a> What's Next
 
 When finished on this page, proceed to the [Using the Extension](using-the-extension.md) page.
+
+---
+## <a id="known-issues"></a> Known Issues
+
+If you encounter any issues while using the plugin please refer to the [Known Issues](known-issues.md) page.

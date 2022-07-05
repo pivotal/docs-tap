@@ -9,14 +9,6 @@ Before installing Supply Chain Security Tools - Scan (Snyk Scanner):
 
 - Install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan are also required.
 
-## <a id="support"></a> Scanner support
-
-The following table shows supported scanners.
-
-| Scanner | Version |
-| --- | --- |
-| [Snyk](https://github.com/snyk/cli) |  |  
-
 ## <a id="install-snyk"></a> Install
 
 To install Supply Chain Security Tools - Scan (Snyk scanner):
@@ -64,34 +56,61 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
     targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry.
     ```
 
+1. Create a snyk secret JSON file and insert the Snyk API token into the `snyk_token` key as follows:
+
+    ```yaml
+    {
+      "metadata": {
+        "annotations": {},
+        "name": "snyk-token-secret",
+        "namespace": "my-apps"
+      },
+      "apiVersion": "v1",
+      "kind": "Secret",
+      "data": {
+        "snyk_token": "SNYK-API-TOKEN"
+      }
+    }
+    ```
+
+1. Apply the snyk secret JSON file by running:
+
+    ```console
+    kubectl apply -f JSON-FILE
+    ```
+
+    Where `JSON-FILE` is the name of the snyk secret JSON file you created.
+
 1. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
 
   The Grype and Snyk Scanner Integrations both enable the Metadata Store. As such, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform was installed using the Full Profile, then the Grype Scanner Integration was installed, unless it was explicitly excluded.
 
-  * If the Grype Scanner Integration is installed:
-    ```yaml
-    ---
-    namespace: DEV-NAMESPACE
-    targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
-    snyk:
-      tokenSecret:
-        name: SNYK-TOKEN-SECRET
-    metadataStore:
-      caSecret:
-        importFromNamespace: "" #! since both snyk and grype both enable store, one must leave importFromNamespace blank
-      authSecret:
-        importFromNamespace: "" #! since both snyk and grype both enable store, one must leave importFromNamespace blank
-    ```
+    * If the Grype Scanner Integration is installed:
 
-  * If the Grype Scanner Integration is NOT installed:
-    ```yaml
-    ---
-    namespace: DEV-NAMESPACE
-    targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
-    snyk:
-      tokenSecret:
-        name: SNYK-TOKEN-SECRET
-    ```
+        ```yaml
+        ---
+        namespace: DEV-NAMESPACE
+        targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
+        snyk:
+          tokenSecret:
+            name: SNYK-TOKEN-SECRET
+        metadataStore:
+          caSecret:
+            importFromNamespace: "" #! since both snyk and grype both enable store, one must leave importFromNamespace blank
+          authSecret:
+            importFromNamespace: "" #! since both snyk and grype both enable store, one must leave importFromNamespace blank
+        ```
+
+    * If the Grype Scanner Integration is NOT installed:
+
+        ```yaml
+        ---
+        namespace: DEV-NAMESPACE
+        targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
+        snyk:
+          tokenSecret:
+            name: SNYK-TOKEN-SECRET
+        ```
 
     In either case, where:
 
@@ -101,9 +120,9 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
     - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, you can reuse the `tap-registry` secret created earlier in [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs) for this field.
 
-    - `SNYK-TOKEN-SECRET` is the name of the secret that contains the SNYK_TOKEN to connect to the [Snyk API](https://docs.snyk.io/snyk-cli/configure-the-snyk-cli#environment-variables). This field is not optional.
+    - `SNYK-TOKEN-SECRET` is the name of the secret you created that contains the `snyk_token` to connect to the [Snyk API](https://docs.snyk.io/snyk-cli/configure-the-snyk-cli#environment-variables). This field is not optional.
 
-1. Install the package by running:
+2. Install the package by running:
 
     ```console
     tanzu package install snyk-scanner \
@@ -191,3 +210,33 @@ ootb_supply_chain_testing_scanning:
 ```
 
 >**Note:** The Snyk Scanner integration is only available for an image scan, not a source scan.
+
+## <a id="opt-out-of-snyk"></a> Opt-out of using Snyk
+
+You can opt out of using Snyk for either a specific supply chain or for all of Tanzu Application Platform.
+
+### <a id="opt-out-of-snyk-supply-chain"></a> Opt-out of Snyk for a Supply Chain
+
+To opt-out of snyk for a specific Supply Chain, reconfigure the supply chain to use another scanner:
+
+1. Modify the `ootb_supply_chain_testing_scanning.scanning.image.template` value to use a scan template that does not use Snyk, such as Grype.
+
+    ```yaml
+    ootb_supply_chain_testing_scanning:
+      scanning:
+        image:
+          template: "ALTERNATIVE-SCAN-TEMPLATE"
+          policy: scan-policy
+    ```
+
+### <a id="opt-out-of-snyk-entirely"></a> Opt-out of Snyk Entirely
+
+To opt-out of Snyk for all of Tanzu Application Platform, do the following:
+
+1. Run the following command to uninstall Snyk:
+
+  ```console
+  tanzu package installed delete snyk-scanner \
+    --namespace tap-install
+  ```
+1. Follow the [Opt-out of Snyk for a specific Supply Chain](#-opt-out-of-snyk-for-a-supply-chain) for all Supply Chains in the env to not use snyk and use another scanner such as grype.
