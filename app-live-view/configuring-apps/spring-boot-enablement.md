@@ -51,12 +51,14 @@ Add the maven dependencies in `pom.xml` as follows:
 </dependency>
 ```
 
->**Note:** If your application image is not built with TBS and to enable Application Live View on Spring Boot TAP workload, you may use the command below. For example:
+>**Note:** If your application image is not built with Tanzu Build Service, to enable Application Live View on Spring Boot Tanzu Application Platform workload, use the following command. For example:
+
 ```
 tanzu apps workload create boot-app --type web --app boot-app --image <IMAGE NAME> --annotation autoscaling.knative.dev/min-scale=1 --yes --label tanzu.app.live.view=true --label tanzu.app.live.view.application.name=boot-app --label tanzu.app.live.view.application.flavours=spring-boot
 ```
 
->**Note:** If your application image is not built with TBS and to enable Application Live View on Spring Cloud Gateway TAP workload, you may use the command below. For example:
+>**Note:** If your application image is not built with Tanzu Build Service, to enable Application Live View on Spring Cloud Gateway Tanzu Application Platform workload, use the following command. For example:
+
 ```
 tanzu apps workload create scg-app --type web --app scg-app --image <IMAGE NAME> --annotation autoscaling.knative.dev/min-scale=1 --yes --label tanzu.app.live.view=true --label tanzu.app.live.view.application.name=scg-app --label tanzu.app.live.view.application.flavours=spring-boot_spring-cloud-gateway-server
 ```
