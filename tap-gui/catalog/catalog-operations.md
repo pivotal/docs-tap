@@ -183,6 +183,16 @@ To deregister an entity, follow these steps:
     - Raw URL: `https://raw.githubusercontent.com/user/repo/catalog.yaml`
     - Target URL: `https://github.com/user/repo/blob/main/catalog.yaml`
 
+    When targeting GitLab it is important to use a
+    [scoped route](https://docs.gitlab.com/ee/development/routing.html#project-routes) to the
+    catalog file, i.e. a route with the `/-/` separator after the project name. Otherwise your
+    entity will fail to appear in the catalog.
+
+    For example:
+
+    - Unscoped URL: `https://gitlab.com/group/project/blob/main/catalog.yaml`
+    - Target URL: `https://gitlab.com/group/project/-/blob/main/catalog.yaml`
+
     For more information about static catalog configuration, see the
     [Backstage documentation](https://backstage.io/docs/features/software-catalog/configuration#static-location-configuration).
 
