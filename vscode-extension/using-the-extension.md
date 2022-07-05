@@ -91,13 +91,13 @@ To apply a workload from the context menu:
     The workload panel shows the workloads running in the namespace that is defined in the current
     Kubernetes context.
 
-1. (Optional) See the context and namespace currently configured by running
+1. (Optional) See the context and namespace currently configured by running:
 
     ```console
     kubectl config get-contexts
     ```
 
-1. (Optional) Set a namespace for the current context by running
+1. (Optional) Set a namespace for the current context by running:
 
     ```console
     kubectl config set-context --current --namespace=YOUR-NAMESPACE
