@@ -14,7 +14,7 @@ the image much match at least one signature from each ClusterImagePolicy.
 
 ## <a id="including-namespaces"></a> Including Namespaces
 
-The cosigned admission controller only validates resources in namespaces
+The Policy Controller only validates resources in namespaces
 that have chosen to opt-in. This is done by adding the label
 `policy.sigstore.dev/include: "true"` to the namespace resource.
 
@@ -57,7 +57,7 @@ Glob matches against images using semantics similar to golang filepaths. A `**` 
 A sample of a ClusterImagePolicy which matches against all images using glob:
 
 ```console
-apiVersion: cosigned.sigstore.dev/v1alpha1
+apiVersion: policy.sigstore.dev/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -115,7 +115,7 @@ The following is an example `ClusterImagePolicy` which matches against all
 images using a glob:
 
 ```yaml
-apiVersion: cosigned.sigstore.dev/v1alpha1
+apiVersion: policy.sigstore.dev/v1beta1
 kind: ClusterImagePolicy
 metadata:
   name: image-policy
@@ -156,7 +156,7 @@ To prevent this issue, choose a single authentication method to validate signatu
 If you use [containerd-configured registry credentials](https://github.com/containerd/containerd/blob/main/docs/cri/registry.md#configure-registry-credentials)
 or another mechanism that causes your resources and service accounts to not
 include an `imagePullSecrets` field, you must provide credentials to
-the policy controller using one of the following mechanisms:
+the Policy Controller using one of the following mechanisms:
 
 1. Create secret resources in any namespace of your preference that grants read
 access to the location of your container images and signatures and include it
@@ -176,7 +176,7 @@ configuration provided your use meets the following conditions:
 * You do not have `signaturePullSecrets` configured in your ClusterImagePolicy
   or in the `ServiceAccount`s that your runnable resources use.
 
-* You want the policy controller to verify these container images.
+* You want the Policy Controller to verify these container images.
 
 See the following example:
 
@@ -236,7 +236,7 @@ deployment namespace and add the secret name (one or more) in the earlier step t
     - name: SECRET-1
     EOF
     ```
-    Where `SECRET-1` is a secret that allows the policy controller to pull signatures from
+    Where `SECRET-1` is a secret that allows the Policy Controller to pull signatures from
     the private registry.
 
     Add additional secrets to `imagePullSecrets` as required.
