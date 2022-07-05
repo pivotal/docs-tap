@@ -439,3 +439,12 @@ The image is deployed to a non-default namespace.
 **Solution**
 
 Make the private registry secret available to the `default` namespace.
+
+## <a id="scst-scan-cyclonedx"></a> Supply Chain Security Tools - Scan unable to decode CycloneDX
+
+Supply Chain Security Tools - Scan has a known issue where it sets the phase of a scan to `Error` with the message `unable to decode cyclonedx`. This is an intermittent issue that cuts the CycloneDX XML stream to the logs such that the scan controller is unable to process the results properly.
+
+**Explanation**
+The root cause of the problem is unknown.
+
+**Workaround:** See the [Troubleshooting Guide](scst-scan/observing.md#unable-to-decode-cyclonedx) for how to exit this error state.
