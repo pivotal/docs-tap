@@ -9,7 +9,7 @@ The installation creates the following in your Kubernetes cluster:
     * service
     * deployment
     * replicaset
-    * pod
+    * Pod
 * Persistent volume claim
 * External IP address (based on a deployment configuration set to use `LoadBalancer`).
 * A Kubernetes secret to allow pulling Supply Chain Security Tools - Store images from a registry.
@@ -20,7 +20,7 @@ The installation creates the following in your Kubernetes cluster:
 
 ## <a id='configuration'></a> Deployment configuration
 
-### Database configuration
+### <a id="db-config"></a> Database configuration
 
 The default database included with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
 
@@ -30,11 +30,11 @@ Users can also configure the deployment to use their own RDS database instead of
 
 #### <a id='cust-data-pass'></a>Custom database password
 
-By default, a database password is generated automatically upon deployment. To configure a custom password, use the `db_password` property in the `metadata-store-values.yaml` during deployment.
+By default, a database password is generated upon deployment. To configure a custom password, use the `db_password` property in the `metadata-store-values.yaml` during deployment.
 
 ```yaml
 db_password: "PASSWORD-0123"
-```
+``` 
 
 If you're deploying with Tanzu Application Platform profiles, in `tap-values.yaml`, put:
 
@@ -49,13 +49,13 @@ Where `PASSWORD-0123` is the same password used between deployments.
 
 ### <a id='appserv-type'></a>App service type
 
-Supported values include `LoadBalancer`, `ClusterIP`, `NodePort`. It is set to `LoadBalancer` by default. If your environment does not support `LoadBalancer`, and you want to use `ClusterIP`, configure the `app_service_type` property in your `metadata-store-values.yaml`:
+Supported values include `LoadBalancer`, `ClusterIP`, `NodePort`. The `app_service_type` is set to `LoadBalancer` by default. If your environment does not support `LoadBalancer`, and you want to use `ClusterIP`, configure the `app_service_type` property in your `metadata-store-values.yaml`:
 
 ```yaml
 app_service_type: "ClusterIP"
 ```
 
-If the `ingress_enabled` property is set to `"true"`, then it is recommended to set the `app_service_type` property to `"ClusterIP"`.
+If the `ingress_enabled` property is set to `"true"`, VMware recommends setting the `app_service_type` property to `"ClusterIP"`.
 
 ### <a id='service-accounts'></a>Service accounts
 
@@ -64,11 +64,11 @@ This service account is a cluster-wide account that uses ClusterRole.
 If you don't want the service account and role, set the `add_default_rw_service_account` property to `"false"`.
 To create a custom service account, see [Configure access tokens](create-service-account-access-token.md).
 
-The store creates a read-only cluster role, which can be bound to a service account through `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [Configure access tokens](create-service-account-access-token.md).
+The store creates a read-only cluster role, which is bound to a service account by using `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [Configure access tokens](create-service-account-access-token.md).
 
 ## <a id='export-cert'></a>Exporting certificates
 
-Supply Chain Security Tools - Store creates a [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed. 
+Supply Chain Security Tools - Store creates a [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed.
 
 ## <a id='ingress'></a>Ingress support
 
