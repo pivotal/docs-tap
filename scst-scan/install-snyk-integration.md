@@ -122,7 +122,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
     - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, you can reuse the `tap-registry` secret created earlier in [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs) for this field.
 
-    - `SNYK-TOKEN-SECRET` is the name of the secret you created that contains the `snyk_token` to connect to the [Snyk API](https://docs.snyk.io/snyk-cli/configure-the-snyk-cli#environment-variables). This field is not optional.
+    - `SNYK-TOKEN-SECRET` is the name of the secret you created that contains the `snyk_token` to connect to the [Snyk API](https://docs.snyk.io/snyk-cli/configure-the-snyk-cli#environment-variables). This field is required.
 
 2. Install the package by running:
 
@@ -233,7 +233,7 @@ To opt-out of snyk for a specific Supply Chain, reconfigure the supply chain to 
 
 ### <a id="opt-out-of-snyk-entirely"></a> Opt-out of Snyk Entirely
 
-To opt-out of Snyk for all of Tanzu Application Platform, do the following:
+To opt-out of Snyk for all of Tanzu Application Platform:
 
 1. To uninstall Snyk, run:
 
