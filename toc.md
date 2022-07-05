@@ -12,6 +12,7 @@ docs.vmware.com is built.
   - [Installing the Tanzu Application Platform in an air-gapped environment (Beta)](install-air-gap.md.hbs)
   - [Installing individual packages](install-components.md)
   - [Setting up developer namespaces](set-up-namespaces.md)
+  - [Customizing package installation](customize-package-installation.md)
 - [About Tanzu Application Platform package and profiles](about-package-profiles.md)
 - [Migrating Profiles in Tanzu Application Platform](migrate-profile.md)
 - [Upgrading Tanzu Application Platform](upgrading.md)
