@@ -17,9 +17,9 @@ For more information about profiles, see [About Tanzu Application Platform packa
 ## <a id='prereqs'></a>Prerequisites
 
 Before installing Application Live View, complete all prerequisites to install Tanzu Application Platform.
-For more information, see [Prerequisites](/prerequisites.md).
+For more information, see [Prerequisites](../prerequisites.md).
 
-In addition, install Convention Controller from the Tanzu Application Platform package repository. For more information, see [Install Convention Service](/convention-service/install-conv-service.md).
+In addition, install Convention Controller from the Tanzu Application Platform package repository. For more information, see [Install Convention Service](../convention-service/install-conv-service.md).
 
 
 ## <a id='install-app-live-view'></a> Install Application Live View
@@ -77,7 +77,7 @@ To install Application Live View back end:
     ingress_domain: ${shared.ingress_domain}
     ```
 
-    For a MULTI-CLUSTER environment, Tanzu Application Platform uses the `shared.ingress_domain` by default. 
+    For a MULTI-CLUSTER environment, Tanzu Application Platform uses the `shared.ingress_domain` by default.
     You can override this setting with the following values:
 
     ```yaml
@@ -110,7 +110,7 @@ To install Application Live View back end:
     ```console
     tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-backend-values.yaml
     ```
-    
+
     Where `VERSION-NUMBER` is the version of the package listed.
 
     For example:
@@ -170,7 +170,7 @@ To install Application Live View connector:
       NAME                                    VERSION        RELEASED-AT           
       connector.appliveview.tanzu.vmware.com  1.2.0-build.2  2022-06-01T00:00:10Z
     ```
-    
+
 1. (Optional) Change the default installation settings by running:
 
     ```console
@@ -276,7 +276,7 @@ To install Application Live View Conventions:
     ```console
     tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
     ```
-    
+
     For example:
 
     ```console
@@ -335,4 +335,4 @@ To install Application Live View Conventions:
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To access the Application Live View UI,
-see [Application Live View in Tanzu Application Platform GUI](/tap-gui/plugins/app-live-view.md).
+see [Application Live View in Tanzu Application Platform GUI](../tap-gui/plugins/app-live-view.md).
