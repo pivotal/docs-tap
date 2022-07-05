@@ -143,6 +143,15 @@ To do so:
     echo CLUSTER_TOKEN: $CLUSTER_TOKEN
     ```
 
+    If you would like the Kubernetes client to verify the TLS certificates presented by a cluster's API server then discover the `CLUSTER_CA_CERTIFICATES` by running:
+
+    ```console
+    CLUSTER_CA_CERTIFICATES=$(kubectl config view --raw -o jsonpath='{.clusters[0].cluster.certificate-authority-data}')
+
+    echo CLUSTER_CA_CERTIFICATES: $CLUSTER_CA_CERTIFICATES
+    ```
+
+
 1. Record the `CLUSTER_URL` and `CLUSTER_TOKEN` values for when you
 [Update Tanzu Application Platform GUI to view resources on multiple clusters](#update-tap-gui) later.
 
@@ -181,6 +190,14 @@ To do so:
 
     If there are resources to view on the cluster that hosts Tanzu Application Platform GUI, add an
     entry to `clusters` for it as well.
+
+    If you would like the Kubernetes client to verify the TLS certificates presented by a cluster's API server then set the following properties for the cluster:
+
+    ```yaml
+    skipTLSVerify: false
+    caData: CLLUSTER-CA-CERTIFICATES
+    ```
+    Where `CLUSTER-CA-CERTIFICATES` is the value you discovered earlier.
 
 1. Update the `tap-gui` package by running this command:
 
