@@ -211,13 +211,13 @@ Follow these steps to set up accelerators in an air gapped environment:
 1. Create the certificate for the private Git repository in the accelerator system namespace:
 
     ```
-    k <!-- The opening code fence needs the language. The closing code fence needs a newline beneath it. -->ubectl create secret generic custom-ca --from-file=caFile=CA_PATH  -n accelerator-system
+    kubectl create secret generic custom-ca --from-file=caFile=CA_PATH  -n accelerator-system
     ```
 
 2. Create the accelerators:
 
     ```
-    t <!-- The opening code fence needs the language. The closing code fence needs a newline beneath it. -->anzu accelerator create spring-petclinic --git-repo https:/GITREPO --git-branch BRANCH --git-tag TAG --secret-ref custom-ca
+    tanzu accelerator create spring-petclinic --git-repo https:/GITREPO --git-branch BRANCH --git-tag TAG --secret-ref custom-ca
     ```
 
 ## <a id="Next-steps"></a>Next steps
