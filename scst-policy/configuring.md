@@ -73,8 +73,8 @@ spec:
 Authorities listed in the `authorities` block of the ClusterImagePolicy can be
 `key` or `keyless` specifications.
 
-Each `key` authority can contain a raw ECDSA public key, a `secretRef`, or a
-`kms` path.
+Each `key` authority can contain a PEM-encoded ECDSA public key, a `secretRef`,
+or a `kms` path.
 
 >**Note:** Currently, only ECDSA public keys are supported.
 
@@ -202,8 +202,8 @@ spec:
 
 When using the sample policy, run these commands to verify your configuration:
 
-1. Verify that a signed image, validated with the configured public key, starts.
-Run:
+1. Verify that the Policy Controller admits the signed image that validates
+with the configured public key. Run:
 
     ```console
     kubectl run cosign \
@@ -220,7 +220,7 @@ Run:
     pod/cosign created (server dry run)
     ```
 
-1. Verify that an unsigned image does not start. Run:
+1. Verify that the Policy Controller rejects the unsigned image. Run:
 
     ```console
     kubectl run busybox --image=busybox --dry-run=server
@@ -239,8 +239,8 @@ Run:
     no policy found that matched the image.
     Therefore, the image fails to validate for a signature and fails to deploy.
 
-1. Verify that an image signed with a key that does not match the configured
-public key does not start. Run:
+1. Verify that the Policy Controller rejects a matched image signed with a
+different key than the one configured. Run:
 
     ```console
     kubectl run cosign-fail \
