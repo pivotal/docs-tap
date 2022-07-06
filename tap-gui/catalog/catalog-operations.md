@@ -147,8 +147,9 @@ To deregister an entity, follow these steps:
 1. Select the entity to deregister, such as component, group, or user.
 1. Click the three dots at the top-right of the page and then click **Unregister...**.
 
-
 ### <a id='add-or-change'></a> Add or change organization catalog locations
+
+To add or change organization catalog locations:
 
 1. Use static configuration to add or change catalog locations.
 
@@ -183,10 +184,10 @@ To deregister an entity, follow these steps:
     - Raw URL: `https://raw.githubusercontent.com/user/repo/catalog.yaml`
     - Target URL: `https://github.com/user/repo/blob/main/catalog.yaml`
 
-    When targeting GitLab it is important to use a
+    When targeting GitLab use a
     [scoped route](https://docs.gitlab.com/ee/development/routing.html#project-routes) to the
-    catalog file, i.e. a route with the `/-/` separator after the project name. Otherwise your
-    entity will fail to appear in the catalog.
+    catalog file. This is a route with the `/-/` separator after the project name.
+    If you don't use a scoped route, your entity fails to appear in the catalog.
 
     For example:
 
