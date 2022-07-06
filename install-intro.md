@@ -32,7 +32,7 @@ The process of installing Tanzu Application Platform on your own Kubernetes clus
 |----|----|----|
 |1.| Review the prerequisites to ensure that you have set up everything required before beginning the installation |[Prerequisites](prerequisites.html)|
 |2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI |[Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)|
-|3.| Install Cluster Essentials for Tanzu* |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html)|
+|3.| Install Cluster Essentials for Tanzu* |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)|
 |4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)|
 |5.| Install Tanzu Build Service full dependencies |[Install Tanzu Build Service Dependencies (air-gapped)](tanzu-build-service/install-tbs.html#tbs-offline-install-dependencies)|
 |6.| Apply patch to Tanzu Application Platform GUI |TBD|
