@@ -58,7 +58,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
     targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry.
     ```
 
-1. Create a snyk secret JSON file and insert the Snyk API token into the `snyk_token` key as follows:
+1. Create a Snyk secret JSON file and insert the Snyk API token into the `snyk_token` key as follows:
 
     ```yaml
     {
@@ -75,13 +75,13 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
     }
     ```
 
-1. Apply the snyk secret JSON file by running:
+1. Apply the Snyk secret JSON file by running:
 
     ```console
     kubectl apply -f JSON-FILE
     ```
 
-    Where `JSON-FILE` is the name of the snyk secret JSON file you created.
+    Where `JSON-FILE` is the name of the Snyk secret JSON file you created.
 
 1. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
 
@@ -98,9 +98,9 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
          name: SNYK-TOKEN-SECRET
      metadataStore:
        caSecret:
-         importFromNamespace: "" #! since both snyk and grype both enable store, one must leave importFromNamespace blank
+         importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
        authSecret:
-         importFromNamespace: "" #! since both snyk and grype both enable store, one must leave importFromNamespace blank
+         importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
      ```
 
  * If the Grype Scanner Integration is NOT installed:
@@ -199,7 +199,7 @@ To verify the integration with Snyk, apply the following `ImageScan` in the deve
 
 ## <a id="sc-config"></a> Configure Supply Chains
 
-To enable Snyk, rather than the default Grype in the out of the box Scanning Supply Chain, you must update your Tanzu Application Platform installation.
+In order to scan your images with Snyk instead of the default Grype scanner in the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.md), you must update your Tanzu Application Platform installation.
  
 Add the `ootb_supply_chain_testing_scanning.scanning` section later to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
 
@@ -219,7 +219,7 @@ You can opt out of using Snyk for either a specific supply chain or for all of T
 
 ### <a id="opt-out-of-snyk-supply-chain"></a> Opt-out of Snyk for a Supply Chain
 
-To opt-out of snyk for a specific Supply Chain, reconfigure the supply chain to use another scanner:
+To opt-out of Snyk for a specific Supply Chain, reconfigure the supply chain to use another scanner:
 
 -  Edit the `ootb_supply_chain_testing_scanning.scanning.image.template` value to use a scan template that does not use Snyk, such as Grype.
 
@@ -241,4 +241,4 @@ To opt-out of Snyk for all of Tanzu Application Platform:
   tanzu package installed delete snyk-scanner \
     --namespace tap-install
   ```
-2. Follow the [Opt-out of Snyk for a specific Supply Chain](#-opt-out-of-snyk-for-a-supply-chain) for all Supply Chains in the environment to not use snyk and use another scanner such as grype.
+2. Follow the [Opt-out of Snyk for a specific Supply Chain](#-opt-out-of-snyk-for-a-supply-chain) for all Supply Chains in the environment to not use Snyk and use another scanner such as Grype.
