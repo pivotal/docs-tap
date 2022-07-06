@@ -46,7 +46,7 @@ to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Appl
 You can configure Tanzu Build Service to update dependencies in the background as they are released.
 This enables workloads to keep up to date automatically.
 
-#### <a id="descriptors"></a> Descriptors
+#### <a id="descriptors"></a> Descriptors (deprecated)
 
 Tanzu Build Service descriptors are curated sets of dependencies that include stacks and buildpacks.
 Descriptors are continuously released on the [VMware Tanzu Network Build Service Dependencies](https://network.pivotal.io/products/tbs-dependencies/)
@@ -57,7 +57,7 @@ For more information about buildpacks and stacks, see the [VMware Tanzu Buildpac
 Descriptors are only used if Tanzu Build Service is configured for automatic dependency updates.
 Descriptors are imported into Tanzu Build Service to update the entire cluster.
 
-There are two types of descriptor, `lite` and `full`. <!-- are these based on the full and lite dependencies? -->
+There are two types of descriptor, `lite` and `full`. <!-- are these based on the full and lite dependencies? they are separate but the do the same thing -- one for auto install and the other for not auto install -->
 The different descriptors can apply to different use cases and workload types.
 For the differences between the `lite` and `full` descriptors, see [Lite and full dependencies](#lite-vs-full).
 
