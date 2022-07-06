@@ -12,6 +12,7 @@ For more information about profiles, see [About Tanzu Application Platform packa
 Before installing Cloud Native Runtimes:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+- **Important** Cloud Native Runtimes fails to install when configured with `reuse_crds:true` and no internal and/or external Contour namespace provided on a cluster with Contour installed at a version other than 1.19.1. 
 
 ## <a id='cnr-install'></a> Install
 
