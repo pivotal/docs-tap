@@ -10,6 +10,7 @@ This document describes how to install Supply Chain Security Tools - Scan
 Before installing Supply Chain Security Tools - Scan (Snyk Scanner):
 
 - Install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan are also required.
+- Obtain a Snyk API Token from the [Snyk Docs](https://docs.snyk.io/snyk-cli/authenticate-the-cli-with-your-account).
 
 ## <a id="install-snyk"></a> Install
 
@@ -58,32 +59,27 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
     targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry.
     ```
 
-1. Create a Snyk secret JSON file and insert the Snyk API token into the `snyk_token` key as follows:
+1. Create a Snyk secret YAML file and insert the Snyk API token (base64 encoded) into the `snyk_token` key as follows:
 
     ```yaml
-    {
-      "metadata": {
-        "annotations": {},
-        "name": "snyk-token-secret",
-        "namespace": "my-apps"
-      },
-      "apiVersion": "v1",
-      "kind": "Secret",
-      "data": {
-        "snyk_token": "SNYK-API-TOKEN"
-      }
-    }
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: snyk-token-secret
+      namespace: my-apps
+    data:
+      snyk_token: BASE64-SNYK-API-TOKEN
     ```
 
-1. Apply the Snyk secret JSON file by running:
+2. Apply the Snyk secret YAML file by running:
 
     ```console
-    kubectl apply -f JSON-FILE
+    kubectl apply -f YAML-FILE
     ```
 
-    Where `JSON-FILE` is the name of the Snyk secret JSON file you created.
+    Where `YAML-FILE` is the name of the Snyk secret YAML file you created.
 
-1. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
+3. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
 
   The Grype and Snyk Scanner Integrations both enable the Metadata Store. As such, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform was installed using the Full Profile, the Grype Scanner Integration was installed, unless it was explicitly excluded.
 
@@ -160,24 +156,26 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
 To verify the integration with Snyk, apply the following `ImageScan` in the developer namespace and review the result.
 
-1. Apply the following:
+1. Create the following yaml:
 
-  ```console
-  kubectl apply -n $DEV_NAMESPACE -f - << EOF
-  ---
-  apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-  kind: ImageScan
-  metadata:
-    name: sample-snyk-public-image-scan
-  spec:
-    registry:
-      image: "nginx:1.16"
-    scanTemplate: snyk-public-image-scan-template
-    scanPolicy: scan-policy
-  EOF
-  ```
+```yaml
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+kind: ImageScan
+metadata:
+  name: sample-snyk-public-image-scan
+spec:
+  registry:
+    image: "nginx:1.16"
+  scanTemplate: snyk-public-image-scan-template
+  scanPolicy: scan-policy
+```
 
-2. To verify the integration, run:
+2. Apply the above created yaml:
+```console
+kubectl apply -n $DEV_NAMESPACE -f <IMAGE-SCAN-YAML>
+```
+
+3. To verify the integration, run:
 
   ```bash
   kubectl get imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
@@ -191,7 +189,7 @@ To verify the integration with Snyk, apply the following `ImageScan` in the deve
   sample-snyk-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
   ```
 
-3. Cleanup:
+4. Cleanup:
 
   ```bash
   kubectl delete imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
