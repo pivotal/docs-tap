@@ -9,3 +9,4 @@ Before you start, complete all [Getting started prerequisites](../getting-starte
 - [Deploy your first app on Tanzu Application Platform](deploy-first-app.md)
 - [Iterate on your new application](iterate-new-app.md)
 - [Consume services on Tanzu Application Platform](consume-services.md)
+- [Deploy your first air-gapped workload (Beta)](getting-started/air-gap-workload.md)
