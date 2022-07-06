@@ -341,7 +341,6 @@ docs.vmware.com is built.
     - [Tanzu Build Service](tanzu-build-service/tbs-about.md)
       - [Install Tanzu Build Service](tanzu-build-service/install-tbs.md)
       - [Dependencies](tanzu-build-service/dependencies.md)
-      - [Auto Updates (Deprecated)](tanzu-build-service/auto-updates.md)
     - [Tekton](tekton/tekton-about.md)
       - [Install Tekton](tekton/install-tekton.md)
 - [Workload types](workloads/workload-types.md)
