@@ -143,7 +143,7 @@ that you plan to create the `Workload` in:
       resources: [gitrepositories]
       verbs: ['*']
     - apiGroups: [source.apps.tanzu.vmware.com]
-      resources: [imagerepositories]
+      resources: [imagerepositories, mavenartifacts]
       verbs: ['*']
     - apiGroups: [carto.run]
       resources: [deliverables, runnables]
