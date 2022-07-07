@@ -1,14 +1,14 @@
 # Configuring Supply Chain Security Tools - Policy
 
-This component requires extra configuration steps to start verifying your
-container images properly.
+This component requires extra configuration steps to verify your
+container images.
 
 ## <a id="admission-of-images"></a> Admission of Images
 
 An image is admitted after it is validated against all policies with
 matching image patterns, and where at least one valid signature is obtained from
-the authorities provided in each of the matched
-[ClusterImagePolicy](#create-cip-resource). Within a single policy, any single
+the authorities provided in the matched
+[ClusterImagePolicy](#create-cip-resource) later in the topic. Within a single policy, every 
 signature must be valid. When more than one policy has a matching image pattern,
 the image much match at least one signature from each ClusterImagePolicy.
 
@@ -27,7 +27,7 @@ kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
 The cluster image policy is a custom resource containing the following properties:
 
 * `images`: The images block defines the patterns of images that must be
-  subject to the ClusterImagePolicy. If multiple policies match a particular
+  subject to the `ClusterImagePolicy`. If multiple policies match a particular
   image, _ALL_ of those policies must be satisfied for the image to be admitted.
   If there is no host in the `glob` field, `index.docker.io` is used for the
   host. When no repository is specified, the image pattern defaults to `library`.
@@ -44,7 +44,7 @@ In a ClusterImagePolicy, `spec.images` specifies a list of glob matching pattern
 These patterns are matched against the image digest in `PodSpec` for resources
 attempting deployment.
 
-Glob matches against images using semantics similar to golang filepaths. A `**` is used to match against all subdirectories. To make it easier to specify images, there are few defaults when an image is matched, namely:
+Glob matches against images using semantics similar to golang filepaths. A `**` is matched against all subdirectories. To make it easier to specify images, there are few defaults when an image is matched, such as:
 
 - If there is no host in the glob pattern, `index.docker.io` is used for the host.
   This allows users to specify commonly found images from Docker as
@@ -52,8 +52,8 @@ Glob matches against images using semantics similar to golang filepaths. A `**` 
 
 - If the image is specified without multiple path elements (not separated by
   `/`), then `library` is defaulted. For example, specifying `busybox`, the
-  resultant glob will default to `library/busybox`. And combined
-  with the previous defaulting, the resultant glob will be
+  resultant glob defaults to `library/busybox`. And combined
+  with the previous defaulting, the resultant glob is
   `index.docker.io/library/busybox`.
 
 A sample of a ClusterImagePolicy which matches against all images using glob:
@@ -70,7 +70,7 @@ spec:
 
 ### <a id="cip-authorities"></a> `authorities`
 
-Authorities listed in the `authorities` block of the ClusterImagePolicy can be
+Authorities listed in the `authorities` block of the ClusterImagePolicy are
 `key` or `keyless` specifications.
 
 Each `key` authority can contain a PEM-encoded ECDSA public key, a `secretRef`,
@@ -91,7 +91,7 @@ spec:
           name: secretName
     - key:
         kms: KMSPATH
-```
+``` 
 
 Each keyless authority can contain a Fulcio URL, a Rekor URL, a certificate, or
 an array of identities.
@@ -123,16 +123,16 @@ images. For each Pod, the Policy Controller iterates over the list of containers
 and init containers. For every policy that matches against the images, they must
 each have at least one valid signature obtained using the authorities specified.
 If an image does not match any policy, the Policy Controller
-will not admit the image.
+does not admit the image.
 
 ## <a id='provide-creds-for-package'></a> Provide credentials for the package
 
 There are three ways the package reads credentials to authenticate to registries
 protected by authentication:
 
-1. [Reading `imagePullSecrets` directly from the resource being admitted](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
+1. Reading `imagePullSecrets` directly from the resource being admitted. See [Container image pull secrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets) in the Kubernetes documentation.
 
-1. [Reading `imagePullSecrets` from the service account the resource is running as](https://kubernetes.io/docs/concepts/configuration/secret/#arranging-for-imagepullsecrets-to-be-automatically-attached).
+1. Reading `imagePullSecrets` from the service account the resource is running as. See [Arranging for imagePullSecrets to be automatically attached](https://kubernetes.io/docs/concepts/configuration/secret/#arranging-for-imagepullsecrets-to-be-automatically-attached) in the Kubernetes documentation.
 
 1. Reading a `secretRef` from the `ClusterImagePolicy` resource's
 `signaturePullSecrets` when specifying the cosign signature source.
@@ -146,7 +146,7 @@ Authentication can fail for the following scenarios:
 ### <a id="provide-pol-auth-secrets"></a> Provide secrets for authentication in your policy
 
 You can provide secrets for authentication as part of the policy
-configuration. The `oci` location can be the image location or a remote location
+configuration. The `oci` location is the image location or a remote location
 where signatures are configured to be stored during signing.
 The `signaturePullSecrets` must be found in the namespace of the
 deploying Pod resource.
@@ -174,7 +174,7 @@ spec:
         - oci: registry.example.com/project/signature-location
           signaturePullSecrets:
             - name: mysecret
-```
+``` 
 
 VMware recommends using a set of credentials with the least amount of
 privilege that allows reading the signature stored in your registry.
@@ -198,7 +198,7 @@ spec:
         MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhyQCx0E9wQWSFI9ULGwy3BuRklnt
         IqozONbbdbqz11hlRJy9c7SG+hdcFl9jE9uE/dwtuwU2MqU9T/cN0YkWww==
         -----END PUBLIC KEY-----
-```
+``` 
 
 When using the sample policy, run these commands to verify your configuration:
 
@@ -260,5 +260,5 @@ different key than the one configured. Run:
 
     In the output, it specifies which authorities were used for validation when
     a policy was found that matched the image. In this case, the authority used
-    was `official-cosign-key`. If no name is specified, it will be defaulted to
+    was `official-cosign-key`. If no name is specified, it is defaulted to
     `authority-#`.
