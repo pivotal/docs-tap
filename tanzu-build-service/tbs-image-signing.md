@@ -78,7 +78,7 @@ This section will walk through creating a Tanzu Build Service [Image](https://do
 
 3. Create an Image resource:
 
-   Note that this Image has a references `tutorial-cosign-service-account`.
+   Note that this Image has references `tutorial-cosign-service-account`.
 
    ```yaml
    apiVersion: kpack.io/v1alpha2
