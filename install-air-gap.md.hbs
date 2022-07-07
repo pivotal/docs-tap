@@ -191,8 +191,7 @@ buildservice:
   kp_default_repository: "REPOSITORY"
   kp_default_repository_username: "REGISTRY-USERNAME"
   kp_default_repository_password: "REGISTRY-PASSWORD"
-  enable_automatic_dependency_updates: false
-  descriptor_name: full
+  exclude_dependencies: true
 supply_chain: basic
 scanning:
   metadataStore:
@@ -209,7 +208,6 @@ contour:
 ootb_supply_chain_basic:
   registry:
       server: "SERVER-NAME"
-      #IE tap/ootb
       repository: "REPO-NAME"
   gitops:
       ssh_secret: "SSH-SECRET"
