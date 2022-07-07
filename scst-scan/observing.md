@@ -1,6 +1,61 @@
-# Observing and troubleshooting
+# Observability and Troubleshooting
 
-This section shows how to observe the scan job and get logs.
+This section outlines observability and troubleshooting methods for using the Supply Chain Security Tools - Scan components.
+
+#This section shows how to observe the scan job and get logs.
+
+## <a id="observability"></a>Observability
+
+The scans will run inside a k8s Job where the Job creates a Pod. Both the Job and Pod will be cleaned up automatically after completion.
+
+You can set a watch on the Job and Pod to observe progression before applying a new scan to observe the Job deployment:
+```console
+watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
+```
+
+Run the following to e
+
+## <a id="troubleshooting"></a>Troubleshooting
+
+### Debugging
+
+#### Inspecting Scan Jobs
+
+When the scan pods are in a failing state:
+```console
+kubectl logs <scan-pod-name> -n <DEV-NAMESPACE>
+```
+
+To inspect the init containers:
+```console
+kubectl logs <scan-pod-name> -n <DEV-NAMESPACE> -c <init-container-name>
+```
+See [here](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/) for debug init container tips.
+
+To retrieve status conditions of an SourceScan or ImageScan run the following:
+```console
+kubectl describe sourcescan <sourcescan> -n <DEV-NAMESPACE>
+```
+
+```console
+kubectl describe imagescan <imagescan> -n <DEV-NAMESPACE>
+```
+
+To retrieve scan-controller manager logs:
+```console
+kubectl -n scan-link-system logs -f deployment/scan-link-controller-manager -c manager
+```
+
+#### Debugging within a SupplyChain
+
+#### Restarting Deployment
+
+If you encounter an issue with the scan-link controller not being able to start, run the following to restart the deployment to see if it's reproducible or flaking upon starting:
+```console
+kubectl rollout restart deployment scan-link-controller-manager  -n scan-link-system
+```
+
+--------------
 
 ## <a id="watch-inflight-jobs"></a>Watching in-flight jobs
 The scan will run inside the job, which creates a Pod. Both the job and Pod will be cleaned up automatically after completion. You can set a watch on the job and Pod before applying a new scan to observe the job deployment.
@@ -15,6 +70,8 @@ If you run into any problems or face non-expected behavior, you can always addre
 ```console
 kubectl -n scan-link-system logs -f deployment/scan-link-controller-manager -c manager
 ```
+
+
 
 ### <a id="miss-img-ps"></a>Missing target image pull secret
 
