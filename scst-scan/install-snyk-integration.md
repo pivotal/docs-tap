@@ -156,7 +156,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
 To verify the integration with Snyk, apply the following `ImageScan` in the developer namespace and review the result.
 
-1. Create the following yaml:
+1. Create the following YAML:
 
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -170,10 +170,10 @@ spec:
   scanPolicy: scan-policy
 ```
 
-2. Apply the above created yaml:
+2. Apply the earlier created YAML:
 ```console
 kubectl apply -n $DEV_NAMESPACE -f <IMAGE-SCAN-YAML>
-```
+``` 
 
 3. To verify the integration, run:
 
