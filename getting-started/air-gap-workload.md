@@ -4,12 +4,12 @@ This how-to guide walks developers through deploying your first workload on Tanz
 
 For information about installing Tanzu Application Platform in an air-gapped environment, see [Install Tanzu Application Platform in an air-gapped environment (Beta)](install-air-gap.md.hbs).
 
->**Important:** This is a beta feature. Beta features have been tested for functionality, but not performance. Features enter the beta stage so that customers can gain early access and give feedback on design and behavior. Beta features might undergo changes based on this feedback before the end of the beta stage. VMware discourages running beta features in production and does not guarantee that you can upgrade any beta feature in the future.
-
 ## <a id="you-will"></a>What you will do
 
 - Create a workload from Git.
 - Create a basic supply chain workload.
+
+>**Important:** This is a beta feature. Beta features have been tested for functionality, but not performance. Features enter the beta stage so that customers can gain early access and give feedback on design and behavior. Beta features might undergo changes based on this feedback before the end of the beta stage. VMware discourages running beta features in production and does not guarantee that you can upgrade any beta feature in the future.
 
 ## Create a workload from Git
 
