@@ -4,7 +4,7 @@ The `Accelerator` custom resource definition (CRD) defines any accelerator resou
 
 The `Fragment` custom resource definition (CRD) defines any accelerator fragment resources to be made available to the Application Accelerator for VMware Tanzu system. It is a namespaced CRD, meaning that any resources created belong to a namespace. In order for the resource to be available to the Application Accelerator system, it must be created in the namespace that the Application Accelerator UI server is configured to watch.
 
-## <a id="api-definitions"></a>API definitions
+## <a id="api-definitions"></a> API definitions
 
 The `Accelerator` CRD is defined with the following properties:
 
@@ -14,7 +14,8 @@ The `Accelerator` CRD is defined with the following properties:
 | Group | accelerator.apps.tanzu.vmware.com |
 | Version | v1alpha1 |
 | ShortName | acc |
-## <a id="accelerator-crd-spec"></a>
+
+## <a id="accelerator-crd-spec"></a> Accelerator CRD Spec
 The `Accelerator` CRD _spec_ defined in the `AcceleratorSpec` type has the following fields:
 
 | Field | Description | Required/Optional |
@@ -48,7 +49,8 @@ The `Fragment` CRD is defined with the following properties:
 | Group | accelerator.apps.tanzu.vmware.com |
 | Version | v1alpha1 |
 | ShortName | frag |
-## <a id="fragment-crd-spec"></a>
+
+## <a id="fragment-crd-spec"></a> Fragment CRD Spec
 The `Fragment` CRD _spec_ defined in the `FragmentSpec` type has the following fields:
 
 | Field | Description | Required/Optional |
@@ -78,7 +80,7 @@ The `git.ignore` field defaults to `.git/`, which is different from the defaults
 
 ## <a id="non-public-repos"></a>Non-public repositories
 
-For Git repositories that aren't accessible anonymously, you need to provide credentials in a Secret. 
+For Git repositories that aren't accessible anonymously, you need to provide credentials in a Secret.
 
 - For HTTPS repositories the secret must contain user name and password fields. The password field can contain a personal access token instead of an actual password. See [fluxcd/source-controller Basic access authentication](https://fluxcd.io/docs/components/source/gitrepositories/#basic-access-authentication)
 - For HTTPS with self-signed certificates, you can add a `.data.caFile value to the secret created for HTTPS authentication. See [fluxcd/source-controller HTTPS Certificate Authority](https://fluxcd.io/docs/components/source/gitrepositories/#https-certificate-authority)

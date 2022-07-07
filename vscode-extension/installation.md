@@ -73,7 +73,7 @@ To configure the VMware Tanzu Developer Tools extension for Visual Studio Code:
 
 1. Ensure that you are targeting the correct cluster. See [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) in the Kubernetes documentation.
 
-1. Select **File** > **Preferences** > **Settings** > **Extensions** > **Tanzu** and set the following:
+1. Select **Code** > **Preferences** > **Settings** > **Extensions** > **Tanzu Developer Tools** and set the following:
 
     - **Confirm Delete**: Controls whether the extension asks for confirmation when deleting a workload.
     - **Enable Live Hover**: For more information, see [Live Hover integration with Spring Boot Tools](live-hover.md). Reload VS Code for this change to take effect.

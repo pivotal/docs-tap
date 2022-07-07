@@ -41,7 +41,7 @@ Before following this walkthrough, you must:
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
 1. Have set up the `default` namespace to use installed packages and use it as your developer namespace.
-For more information, see [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-install-components.html#setup)).
+For more information, see [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/Tanzu-Application-Platform/1.1/tap/GUID-install-components.html#setup).
 1. Ensure your Tanzu Application Platform cluster can pull source code from GitHub.
 1. Ensure the service operator and application operator has completed the work of setting up the service, creating the service instance, and claiming the service instance, as described in [Set up services for consumption by developers](set-up-services.md).
 
@@ -139,7 +139,7 @@ the `create spring-sensors-consumer-web` workload using the `RabbitmqCluster` se
 
 ## <a id="stk-use-cases"></a> Further use cases and reading
 
-There are more service use cases not covered in this getting started guide, see below:
+There are more service use cases not covered in this getting started guide. See the following:
 
 <table class="nice">
   <th><strong>Use Case</strong></th>
@@ -170,9 +170,9 @@ There are more service use cases not covered in this getting started guide, see 
 </table>
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
-[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-overview.html)
+[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-overview.html).
 
-## Next step
+## Next steps
 
 Now that you've completed the Getting started guides, learn about:
 

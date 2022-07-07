@@ -115,6 +115,10 @@ the live data from a running Spring Boot application by way of Spring Boot Actua
 For more information, see
 [Live Hover integration with Spring Boot Tools (Experimental)](vscode-extension/live-hover.md).
 
+#### Tanzu Developer Tools for IntelliJ
+- **Live Update and Debug your workloads:** The first release of our IntelliJ plugin will allow you to Live Update and Debug your workloads.
+For more information, see [Getting Started](intellij-extension/getting-started.md).
+
 #### Functions (Beta)
 
 - Feature 1
@@ -122,8 +126,12 @@ For more information, see
 
 #### <a id="tbs"></a> Tanzu Build Service
 
-- Automatic dependency updates is in the process of being deprecated. It will receive continued support on existing TAP versions.
-  - Configuring TAP with automatic dependency updates is not recommended due to compatibility risks. Updates to dependencies will be provided in TAP patches.
+- Updates to dependencies are now provided as part of Tanzu Application Platform patches.
+- The automatic dependency update feature is being deprecated.
+Configuring Tanzu Application Platform with automatic dependency updates is
+not recommended due to compatibility risks.
+This feature will receive continued support on existing <!-- previous? which versions? --> Tanzu Application Platform versions.
+<!-- Since Auto dep updates is deprecated, does this mean that the tap descriptors are also being phased out? -->
 
 ### <a id='1-2-breaking-changes'></a> Breaking changes
 
@@ -189,8 +197,12 @@ This following issues, listed by area and component, are resolved in this releas
 #### Tanzu Application Platform GUI
 
 - Supply Chain plug-in
-  - **Details for ConfigMap CRD not appearing:** The error `Unable to retrieve conditions for ConfigMap...`appears in the details section after clicking on the ConfigMap stage in the graph view of a supply chain.
-  - **Scan results not shown:** Current CVEs found during Image or Build scanning do not appear.
+
+  - **Details for ConfigMap CRD now appear as expected:** The error
+  `Unable to retrieve conditions for ConfigMap...` no longer appears in the details section after
+  clicking on the ConfigMap stage in the graph view of a supply chain.
+  - **Scan results now appear as expected:** Current CVEs found during Image or Build scanning now
+  appear as expected.
 
 ### <a id='1-2-known-issues'></a> Known issues
 
@@ -212,8 +224,11 @@ To prevent this, see
 
 #### Application Live View
 
-- Known issue 1
-- Known issue 2
+- Application Live View with custom CA does not support air-gapped installation.
+
+#### Application Single Sign-On
+
+- Application Single Sign-On with custom CA does not support air-gapped installation.
 
 #### Convention Service
 
@@ -241,7 +256,7 @@ To prevent this, see
 #### Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
-    - Delivery section of the supply chain graph may show deliverables that do not pertain to the currently selected workload. There is currently no workaround.
+    - Delivery section of the supply chain graph might show deliverables that do not pertain to the selected workload. There is currently no workaround.
 - Known issue 2
 
 #### VSCode Extension

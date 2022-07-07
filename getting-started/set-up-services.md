@@ -5,7 +5,7 @@ You will learn about the `tanzu services` CLI plug-in and the most important API
 
 ## <a id="you-will"></a>What you will do
 
-- Set up a service. 
+- Set up a service.
 - Create a service instance.
 - Claim a service instance.
 
@@ -28,7 +28,7 @@ Bear the following observations in mind as you work through this guide:
     * The life cycle of service instances is determined by service operators.
     * The life cycle of service bindings is implicitly tied to the life cycle of workloads.
 1. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding.
-1. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see[ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
+1. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
 1. Exclusivity of resource claims: Resource claims are considered to be mutually exclusive, meaning that service instances can be claimed by at most one resource claim.
 
 ## <a id="stk-prereqs"></a> Prerequisites
@@ -296,14 +296,14 @@ You have successfully set the scene for the application developer to inspect the
 
 ## <a id="stk-use-cases"></a> Further use cases and reading
 
-There are more service use cases not covered in this getting started guide, see below:
+There are more service use cases not covered in this getting started guide. See the following:
 
 <table class="nice">
   <th><strong>Use Case</strong></th>
   <th><strong>Short Description</strong></th>
   <tr>
     <td>
-      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_on_tap.html">Consuming AWS RDS on Tanzu Application Platform</a>
+      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html">Consuming AWS RDS on Tanzu Application Platform</a>
     </td>
     <td>
       Using the Controllers for Kubernetes (ACK) to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>

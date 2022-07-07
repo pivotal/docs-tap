@@ -225,5 +225,5 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
 ## <a id='next-steps'></a>Next steps
 
-- [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html)
+- (Optional) [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)
 - [Installing the Tanzu Application Platform package and profiles](install.html)
