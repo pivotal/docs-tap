@@ -263,63 +263,36 @@ If built images are pushed to the same registry as the Tanzu Application Platfor
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
-> **Note:** When you install Tanzu Application Platform, it is bootstrapped with
-> a set of dependencies, such as buildpacks and stacks, for application builds.
-> For more information about buildpacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
-> For more information about stacks, see the [VMware Tanzu Stacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html).
-> To update dependencies, follow the upgrade instructions to upgrade Tanzu Application Platform to the latest patch version.
-> By default, a small-footprint (lite) set of dependencies is installed in Tanzu Application Platform which does not contain all buildpacks and stacks.
-> To install the larger-footprint (full) set of dependencies which contains all buildpacks and stacks, follow the instructions in [Installing TAP with the Full Dependencies](#full-dependencies).
-> For a comparison of lite vs full dependencies, see [Lite vs Full Dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
+### <a id='full-dependencies'></a> Configure Tanzu Application Platform with full dependencies
 
-### <a id='full-dependencies'></a> Installing TAP with the Full Dependencies
-<!-- this procedure needs to be edited to match procedure in the TBS component docs tanzu-build-service/install-tbs.md#tap-install-full-deps -->
+By default, when you install a profile that includes Tanzu Build Service,
+Tanzu Application Platform is installed with `lite` dependencies
+containing buildpacks and stacks required for application builds.
+For more information about buildpacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+For more information about stacks, see the [VMware Tanzu Stacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html).
 
-By default, TAP is installed with `lite` dependencies.
-<!-- is this only an option for full, iterate, and build profiles? -->
+The `lite` set of dependencies does not contain all buildpacks and stacks.
+To use all buildpacks and stacks, you must install `full` dependencies.
+For more information about the differences between lite and full dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
 
-Full dependencies must be installed separately from TAP:
+To configure `full` Tanzu Application Platform dependencies, add the key-value pair
+`exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
 
-1. Update your `tap-values.yaml` to use the following `buildservice` settings with `exclude_dependencies: true`:
+For example:
 
-    ```yaml
-    buildservice:
-      kp_default_repository: "KP-DEFAULT-REPO"
-      kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-      kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
-      exclude_dependencies: true
-    ```
+```yaml
+buildservice:
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  exclude_dependencies: true
+```
 
-2. Get the latest version of the `buildservice` package by running:
+After configuring `full` dependencies, you must install the dependencies after
+you have finished installing and configuring your Tanzu Application Platform package.
 
-    ```console
-    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
-    ```
-
-3. Relocate the Tanzu Build Service full dependencies package repository using the version from
-the previous step by running:
-
-    ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps
-    ```
-    <!-- have we set VERSION and INSTALL_REGISTRY_HOSTNAME} variables earlier or should these
-    be manually added before running the command? -->
-
-4. Add the Tanzu Build Service full dependencies package repository using the same version used in the previous step:
-
-    ```console
-    tanzu package repository add tbs-full-deps-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps:${VERSION} \
-      --namespace tap-install
-    ```
-    <!-- have we set VERSION and INSTALL_REGISTRY_HOSTNAME} variables earlier or should these
-    be manually added before running the command? -->
-
-5. Install the full dependencies package by running:
-
-    ```console
-    tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v $VERSION -n tap-install
-    ```
+To update dependencies, follow the instructions to [upgrade Tanzu Application Platform](upgrading.md)
+to the latest patch version.
 
 ### <a id='light-profile'></a> Light Profile
 
@@ -460,9 +433,71 @@ Follow these steps to install the Tanzu Application Platform package:
     tanzu package installed list -A
     ```
 
+1. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
+by following the procedure in [Install full dependencies](#tap-install-full-deps).
+
 After installing Full Profile on to your cluster, you can install the
 Tanzu Developer Tools for VSCode extension to help you develop against it.
 For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/installation.md).
+
+## <a id="tap-install-full-deps"></a> Install full dependencies
+
+If you configured full dependencies in your `tap-values.yaml` file in
+[Configure Tanzu Application Platform with full dependencies](#full-dependencies) earlier,
+you must install the full dependencies.
+
+To install `full` dependencies:
+
+1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
+ to your `tap-values.yaml` file under the `buildservice` section, for example:
+
+    ```yaml
+    buildservice:
+      kp_default_repository: "KP-DEFAULT-REPO"
+      kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+      kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+      exclude_dependencies: true
+    ...
+    ```
+
+1. Get the latest version of the `buildservice` package by running:
+
+    ```console
+    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    ```
+
+1. Relocate the Tanzu Build Service full dependencies package repository by running:
+
+    ```console
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
+      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps
+    ```
+
+    Where:
+
+    - `VERSION` is the version of the `buildservice` package you retrieved in the previous step.
+    - `TARGET-REPOSITORY` is the ...
+
+1. Add the Tanzu Build Service full dependencies package repository by running:
+
+    ```console
+    tanzu package repository add tbs-full-deps-repository \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps:VERSION \
+      --namespace tap-install
+    ```
+
+    Where:
+
+    - `VERSION` is the version of the `buildservice` package you retrieved earlier.
+    - `TARGET-REPOSITORY` is the ...
+
+1. Install the full dependencies package by running:
+
+    ```console
+    tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
+    ```
+
+    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
 
 ## <a id="configure-envoy-lb"></a> Configure LoadBalancer for Contour ingress
 
