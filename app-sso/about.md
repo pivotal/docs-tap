@@ -19,8 +19,3 @@ and client restrictions.
 
 AppSSO's authorization server is based off
 of [Spring Authorization Server](https://github.com/spring-projects/spring-authorization-server) in GitHub.
-
-> **Important:** The functionality of beta features is tested, but performance is not. Features enter the beta 
->stage for customers to gain early access to them and give feedback on their design and behavior. Beta features might 
->undergo changes based on that feedback before leaving beta. VMware discourages running beta features in production. 
->VMware does not guarantee that any beta feature can be upgraded in the future.
