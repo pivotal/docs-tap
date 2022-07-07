@@ -192,4 +192,10 @@ that you plan to create the `Workload` in:
 
 ## <a id='next-steps'></a>Next steps
 
+For online installation:
+
 - [Installing Tanzu Developer Tools for VSCode](vscode-extension/installation.html)
+
+For air-gapped installation:
+
+- [Deploy your first air-gapped workload (beta)](getting-started/air-gap-workload.html)
