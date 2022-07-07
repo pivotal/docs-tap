@@ -17,7 +17,7 @@ This section will walk through creating a Tanzu Build Service [Image](https://do
 
 1. Generate a cosign key pair
 
-   The `cosign generate-key-pair k8s://<secret-name>` command generates a key-pair for you and stores it as a kubernetes secret with name `tutorial-cosign-key-pair` in the `default` namespace.
+   The `cosign generate-key-pair k8s://<secret-name>` command generates a key-pair for you and stores it as a kubernetes secret with name `tutorial-cosign-key-pair` in the `default` namespace. This command requires a Kubernetes context where the operator is already authenticated and is authorized to create and edit the secret and service account resources.
 
    ```bash
    cosign generate-key-pair k8s://default/tutorial-cosign-key-pair
