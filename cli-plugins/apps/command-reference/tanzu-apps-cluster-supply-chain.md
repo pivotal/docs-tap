@@ -20,4 +20,5 @@ This topic includes patterns for building and configuring workloads.
 ## <a id="see-also"></a> See also
 
 - [Tanzu applications](tanzu-apps.md)	- Applications on Kubernetes
+- [tanzu apps cluster-supply-chain get](tanzu-apps-cluster-supply-chain-get.md)	 - Get details from a cluster supply chain
 - [Tanzu apps cluster supply chain list](tanzu-apps-cluster-supply-chain-list.md)	- Table listing of cluster supply chains
