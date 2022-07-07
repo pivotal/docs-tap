@@ -124,6 +124,8 @@ docs.vmware.com is built.
         - [Additional resources](authn-authz/additional.md)
             - [Install default roles independently](authn-authz/install.md)
     - [Application Accelerator](application-accelerator/about-application-accelerator.md)
+        - [Install Application Accelerator](application-accelerator/install-app-acc.md)
+        - [Configure Application Accelerator](application-accelerator/configuration.md)
         - [Creating accelerators](application-accelerator/creating-accelerators/creating-accelerators.md)
             - [Creating accelerator.yaml](application-accelerator/creating-accelerators/accelerator-yaml.md)
             - [Introduction to transforms](application-accelerator/creating-accelerators/transform-intro.md)
