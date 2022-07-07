@@ -3,7 +3,6 @@
 You can configure Tanzu Application Platform GUI to retrieve Kubernetes object details from multiple
 clusters and then surface those details in the Runtime Resources Visibility plug-in.
 
-
 ## <a id="set-up-service-account"></a> Set up a Service Account to view resources on a cluster
 
 To view resources on a cluster, you must create a service account on the cluster that can
@@ -129,7 +128,7 @@ To do so:
     This ensures the `kubeconfig` context is set to the cluster with resources to be viewed in
     Tanzu Application Platform GUI.
 
-1.  Discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values by running:
+1. Discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values by running:
 
     ```console
     CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
@@ -143,7 +142,8 @@ To do so:
     echo CLUSTER_TOKEN: $CLUSTER_TOKEN
     ```
 
-    If you would like the Kubernetes client to verify the TLS certificates presented by a cluster's API server then discover the `CLUSTER_CA_CERTIFICATES` by running:
+1. (Optional) Configure the Kubernetes client to verify the TLS certificates presented by a cluster's
+API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
 
     ```console
     CLUSTER_CA_CERTIFICATES=$(kubectl config view --raw -o jsonpath='{.clusters[0].cluster.certificate-authority-data}')
@@ -151,17 +151,16 @@ To do so:
     echo CLUSTER_CA_CERTIFICATES: $CLUSTER_CA_CERTIFICATES
     ```
 
-
 1. Record the `CLUSTER_URL` and `CLUSTER_TOKEN` values for when you
 [Update Tanzu Application Platform GUI to view resources on multiple clusters](#update-tap-gui) later.
-
 
 ## <a id="update-tap-gui"></a> Update Tanzu Application Platform GUI to view resources on multiple clusters
 
 The cluster must be identified to Tanzu Application Platform GUI with the `ServiceAccount` token
 and the cluster Kubernetes control plane URL.
 
-You must add a `kubernetes` section to the `app_config` file that Tanzu Application Platform GUI uses. This section must have an entry for each cluster that has resources to view.
+You must add a `kubernetes` section to the `app_config` file that Tanzu Application Platform GUI uses.
+This section must have an entry for each cluster that has resources to view.
 
 To do so:
 
@@ -191,12 +190,14 @@ To do so:
     If there are resources to view on the cluster that hosts Tanzu Application Platform GUI, add an
     entry to `clusters` for it as well.
 
-    If you would like the Kubernetes client to verify the TLS certificates presented by a cluster's API server then set the following properties for the cluster:
+    If you would like the Kubernetes client to verify the TLS certificates presented by a cluster's
+    API server, set the following properties for the cluster:
 
     ```yaml
     skipTLSVerify: false
-    caData: CLLUSTER-CA-CERTIFICATES
+    caData: CLUSTER-CA-CERTIFICATES
     ```
+
     Where `CLUSTER-CA-CERTIFICATES` is the value you discovered earlier.
 
 1. Update the `tap-gui` package by running this command:
