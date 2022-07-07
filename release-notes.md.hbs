@@ -140,6 +140,9 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
 - You must configure integration with Supply Chain Security Tools - Store for the Grype Scanner and Snyk Scanner packages to enable this feature. The configuration for Supply Chain Security Tools - Store in Supply Chain Security Tools - Scan is only for the deprecated Grype Scanner `ScanTemplate`s.
+- For the profile configuration of scanning, the scanning component no longer takes the metadata store configurations as of v1.2.0.
+  - See [here](multicluster/installing-multicluster.md) for the current way of configuring metadata store through the grype component instead of the scanning component as of v1.2.0+.
+  - See [here](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-multicluster-reference-tap-values-build-sample.html) for the deprecated way of writing the metadata store configuration through the scanning component.
 - The rego file structure required for the `ScanPolicies` to work with the Grype Scanner and Snyk Scanner templates has changed. **Note:** This doesn't apply if you're using the deprecated Grype Scanner `ScanTemplate`s prior to Grype Scanner `v1.2.0`.
   - The package name has changed from `package policies` to `package main`.
   - The deny rule has changed from the boolean `isCompliant` to the array of strings `deny[msg]`.
