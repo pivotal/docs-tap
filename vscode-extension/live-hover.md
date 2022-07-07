@@ -89,6 +89,6 @@ run:
 1. Open a Java file, such as `HelloController.java`.
 After a delay of up to 30 seconds, because of a 30-second polling loop, green highlights appear in
 your code.
-![Live Hover Example](../images/vscode-live-hover-example.png)
+![Live Hover example showing @RestController and @RequestMapping in the code highlighted in green.](../images/vscode-live-hover-example.png)
 
 1. Hover over any of the bubbles to see live information about the corresponding element.
