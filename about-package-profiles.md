@@ -438,6 +438,20 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
+   <td>Policy Controller
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
    <td>Service Bindings
    </td>
    <td>&check;
