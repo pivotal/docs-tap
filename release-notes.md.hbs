@@ -106,9 +106,9 @@ This release includes the following changes, listed by component and area.
 #### Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
-  - Added ability to visualize CVE scan results in the Details pane for both Build and Image Scan stages, as well as scan policy information, without using the CLI
+  - Added ability to visualize CVE scan results in the Details pane for both Source and Image Scan stages, as well as scan policy information, without using the CLI
   - Added ability to visualize the deployment of a workload as a deliverable in a multicluster environment in the supply chain graph
-  - Added a deeplink to view approvals for PRs in a GitHub repository so that PRs can be reviewed and approved, resulting in the deployment of a workload to any cluster configured to accept a deployment
+  - Added a deeplink to view approvals for PRs in a GitOps repository so that PRs can be reviewed and approved, resulting in the deployment of a workload to any cluster configured to accept a deployment
   - Added Reason column to the Workloads table to indicate causes for errors encountered during supply chain execution
 
 - Feature 2
@@ -214,7 +214,7 @@ This following issues, listed by area and component, are resolved in this releas
   - **Details for ConfigMap CRD now appear as expected:** The error
   `Unable to retrieve conditions for ConfigMap...` no longer appears in the details section after
   clicking on the ConfigMap stage in the graph view of a supply chain.
-  - **Scan results now appear as expected:** Current CVEs found during Image or Build scanning now
+  - **Scan results now appear as expected:** Current CVEs found during Image or Source scanning now
   appear as expected.
 
 ### <a id='1-2-known-issues'></a> Known issues
@@ -284,8 +284,10 @@ after the binaries are built and packaged as images.
 #### Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
-    - Delivery section of the supply chain graph might show deliverables that do not pertain to the selected workload. There is currently no workaround.
-- Known issue 2
+    - Delivery section of the supply chain graph might show deliverables that do not pertain to the selected workload. This will occur if there are more than one `Build` cluster per namespace
+    - In order for `Deliverables` to show up for a given `Workload` they need to have the following labels in both resources:'carto.run/workload-name','app.kubernetes.io/part-of','carto.run/supply-chain-name'
+    - ConfigMap has no conditions and as a result its status is reported as `Unknown`
+    - ConfigWriter shows an error but no error details are displayed.
 
 #### VSCode Extension
 
