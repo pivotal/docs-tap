@@ -8,12 +8,12 @@ before being admitted to a cluster.
 
 The Policy Controller:
 
-- Verifies signatures on container images used by Kubernetes resources
-- Enforces policies to allow or deny images being admitted a cluster
-- NEW: Allows operators to define multiple policies in the cluster
-- NEW: Allows operators to select which `namespaces` to enforce policies against
-- NEW: Supports `cosign` signatures and keyless signing
-- NEW: Supports storing public keys in a KMS
+* Verifies signatures on container images used by Kubernetes resources
+* Enforces policies to allow or deny images being admitted a cluster
+* Allows operators to define multiple policies in the cluster
+* Allows operators to select which `namespaces` to enforce policies against
+* Supports `cosign` signatures and keyless signing
+* Supports storing public keys in a KMS
 
 It enforces its policies against all resources that create `Pod`s as part of their lifecycle:
 
