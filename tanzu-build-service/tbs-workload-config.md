@@ -65,7 +65,7 @@ that are available at build-time.
 
 You can also configure buildpacks with environment variables.
 Buildpack configuration depends on the specific buildpack being used.
-For more information on buildpacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+For more information about buildpacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
 
 ```console
 tanzu apps workload create WORKLOAD-NAME \
@@ -131,11 +131,11 @@ tanzu apps workload create WORKLOAD-NAME \
 Where:
 
 - `SERVER-NAME` is the host name of the registry server. Examples:
-  - Harbor has the form `"my-harbor.io"`
-  - Docker Hub has the form `"index.docker.io"`
-  - Google Cloud Registry has the form `"gcr.io"`
+  - Harbor has the form `"my-harbor.io"`.
+  - Docker Hub has the form `"index.docker.io"`.
+  - Google Cloud Registry has the form `"gcr.io"`.
 - `REPO-NAME` is where workload images are stored in the registry.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
-  - Harbor has the form `"my-project/supply-chain"`
-  - Docker Hub has the form `"my-dockerhub-user"`
-  - Google Cloud Registry has the form `"my-project/supply-chain"`
+  - Harbor has the form `"my-project/supply-chain"`.
+  - Docker Hub has the form `"my-dockerhub-user"`.
+  - Google Cloud Registry has the form `"my-project/supply-chain"`.
