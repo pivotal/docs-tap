@@ -3,7 +3,7 @@
 You can install Tanzu Application Platform by using one of the following methods:
 
 - [Installing Tanzu Application Platform online](#install-online)
-- [Installing Tanzu Application Platform in an airgapped environment (Beta)](#install-air-gap)
+- [Installing Tanzu Application Platform in an air-gapped environment (Beta)](#install-air-gap)
 - [Installing Tanzu Application Platform by using AWS Quick Start](#install-aws)
 
 ## <a id='install-online'></a>Installing Tanzu Application Platform online
@@ -24,9 +24,9 @@ The process of installing Tanzu Application Platform on your own Kubernetes clus
 
 After installing Tanzu Application Platform on to your Kubernetes clusters, proceed with [Getting started with the Tanzu Application Platform](getting-started.html).
 
-## <a id='install-air-gap'></a>Installing Tanzu Application Platform in an airgapped environment (Beta)
+## <a id='install-air-gap'></a>Installing Tanzu Application Platform in an air-gapped environment (Beta)
 
-The process of installing Tanzu Application Platform on your own Kubernetes clusters in an airgapped environment includes the following tasks:
+The process of installing Tanzu Application Platform on your own Kubernetes clusters in an air-gapped environment includes the following tasks:
 
 |Step|Task|Link|
 |----|----|----|
@@ -36,7 +36,7 @@ The process of installing Tanzu Application Platform on your own Kubernetes clus
 |4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)|
 |5.| Install Tanzu Build Service full dependencies |[Install Tanzu Build Service Dependencies (air-gapped)](tanzu-build-service/install-tbs.html#tbs-offline-install-dependencies)|
 |6.| Apply patch to Tanzu Application Platform GUI |TBD|
-|7.| Add the certificate for the private Git repository in the Accelerator system namespace |[Setting up Accelerator in an air gapped environment](application-accelerator/creating-accelerators/creating-accelerators.html#air-gapped-instructions)|
+|7.| Add the certificate for the private Git repository in the Accelerator system namespace |[Setting up Accelerator in an air-gapped environment](application-accelerator/creating-accelerators/creating-accelerators.html#air-gapped-instructions)|
 |8.| Apply patch to Grype |TBD|
 |9.| Set up developer namespaces to use installed packages |[Setting up developer namespaces to use installed packages](set-up-namespaces.html)|
 

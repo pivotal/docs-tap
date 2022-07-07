@@ -10,7 +10,7 @@ For information about setting up an offline vulnerability database, see the [Anc
 
 ## <a id="overview"></a> Overview
 
-To enable Grype in offline air gap environments:
+To enable Grype in offline air-gapped environments:
 1. Create ConfigMap
 2. Create Patch Secret
 3. Configure tap-values.yaml to use `package_overlays` and update tap
