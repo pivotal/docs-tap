@@ -61,15 +61,15 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
 1. Create a Snyk secret YAML file and insert the Snyk API token (base64 encoded) into the `snyk_token` key as follows:
 
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: snyk-token-secret
-      namespace: my-apps
-    data:
-      snyk_token: BASE64-SNYK-API-TOKEN
-    ```
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: snyk-token-secret
+    namespace: my-apps
+  data:
+    snyk_token: BASE64-SNYK-API-TOKEN
+  ```
 
 2. Apply the Snyk secret YAML file by running:
 
@@ -85,30 +85,30 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
  * If the Grype Scanner Integration is installed:
 
-     ```yaml
-     ---
-     namespace: DEV-NAMESPACE
-     targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
-     snyk:
-       tokenSecret:
-         name: SNYK-TOKEN-SECRET
-     metadataStore:
-       caSecret:
-         importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
-       authSecret:
-         importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
-     ```
+  ```yaml
+  ---
+  namespace: DEV-NAMESPACE
+  targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
+  snyk:
+    tokenSecret:
+      name: SNYK-TOKEN-SECRET
+  metadataStore:
+    caSecret:
+      importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
+    authSecret:
+      importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
+  ```
 
  * If the Grype Scanner Integration is NOT installed:
 
-     ```yaml
-     ---
-     namespace: DEV-NAMESPACE
-     targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
-     snyk:
-       tokenSecret:
-         name: SNYK-TOKEN-SECRET
-     ```
+    ```yaml
+    ---
+    namespace: DEV-NAMESPACE
+    targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
+    snyk:
+      tokenSecret:
+        name: SNYK-TOKEN-SECRET
+    ```
 
     In either case, where:
 
@@ -221,13 +221,13 @@ To opt-out of Snyk for a specific Supply Chain, reconfigure the supply chain to 
 
 -  Edit the `ootb_supply_chain_testing_scanning.scanning.image.template` value to use a scan template that does not use Snyk, such as Grype.
 
-    ```yaml
-    ootb_supply_chain_testing_scanning:
-      scanning:
-        image:
-          template: "ALTERNATIVE-SCAN-TEMPLATE"
-          policy: scan-policy
-    ```
+  ```yaml
+  ootb_supply_chain_testing_scanning:
+    scanning:
+      image:
+        template: "ALTERNATIVE-SCAN-TEMPLATE"
+        policy: scan-policy
+  ```
 
 ### <a id="opt-out-of-snyk-entirely"></a> Opt-out of Snyk Entirely
 
