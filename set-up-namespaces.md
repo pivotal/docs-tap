@@ -35,7 +35,7 @@ that you plan to create the `Workload` in:
     kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
     ```
 
-   **Note:** If you are installing on AWS with EKS and choose to leverage (IAM Roles for Kubernetes Service Accounts)[https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html] instead of secrets, this step is not required.  You will specify the Role ARN in the next step. 
+    >**Note:** If you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) instead of secrets, this step is not required. You can specify the Role ARN in the next step. 
 
 2. Add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace by running:
 
@@ -87,9 +87,9 @@ that you plan to create the `Workload` in:
     EOF
     ```
 
-   **Note:** If you are installing on AWS with EKS and choose to leverage [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html), you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret.  Your service account entry will look like the following:
+    >**Note:** If you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html), you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret. Your service account entry will look like the following:
 
-   ```
+    ```
     apiVersion: v1
     kind: ServiceAccount
     metadata:
