@@ -1,4 +1,4 @@
-# Install Snyk scanner
+# Install Snyk scanner (Beta)
 
 This document describes how to install Supply Chain Security Tools - Scan 
 (Snyk Scanner) from the Tanzu Application Platform package repository.
