@@ -191,11 +191,13 @@ spec:
       msg = sprintf("%s %s %s", [comp, vuln.id, ratings])
     }
 ```
-3. Apply the earlier created YAML:
+
+2. Apply the earlier created YAML:
 ```console
 kubectl apply -n $DEV_NAMESPACE -f <SCAN-POLICY-YAML>
 ```
-4. Create the following ImageScan YAML:
+
+3. Create the following ImageScan YAML:
 
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -209,12 +211,12 @@ spec:
   scanPolicy: scan-policy
 ```
 
-5. Apply the earlier created YAML:
+4. Apply the earlier created YAML:
 ```console
 kubectl apply -n $DEV_NAMESPACE -f <IMAGE-SCAN-YAML>
 ``` 
 
-6. To verify the integration, run:
+5. To verify the integration, run:
 
   ```bash
   kubectl get imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
@@ -228,7 +230,7 @@ kubectl apply -n $DEV_NAMESPACE -f <IMAGE-SCAN-YAML>
   sample-snyk-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
   ```
 
-7. Cleanup:
+6. Cleanup:
 
   ```bash
   kubectl delete imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
