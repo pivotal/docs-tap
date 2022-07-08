@@ -30,7 +30,7 @@ This release includes the following changes, listed by component and area.
 
 - Live Hover Integration with Spring Tools Suite
   - Users can hover over Spring Actuator endpoints to see live data. This feature can be enabled from Preferences.
-  
+
 #### Application Single Sign-On
 
 - Application Single Sign-On package comes installed with iterate, run, and full profiles.
@@ -127,8 +127,10 @@ For more information, see
 [Live Hover integration with Spring Boot Tools (Experimental)](vscode-extension/live-hover.md).
 
 #### Tanzu Developer Tools for IntelliJ
-- **Live Update and Debug your workloads:** The first release of our IntelliJ plugin will allow you to Live Update and Debug your workloads.
-For more information, see [Getting Started](intellij-extension/getting-started.md).
+
+- **Live Update and Debug your workloads:** The new IntelliJ extension enables you to Live Update and
+Debug your workloads.
+For more information, see [VMware Tanzu Developer Tools for IntelliJ](intellij-extension/about.md).
 
 #### Functions (Beta)
 
@@ -154,7 +156,7 @@ This release has the following breaking changes, listed by area and component.
   - For information about configuring metadata store by using the grype component instead of the scanning component as of v1.2.0, see [Install multicluster Tanzu Application Platform profiles
 ](multicluster/installing-multicluster.md).
   - See [Build profile](multicluster/reference/tap-values-build-sample.md) for the deprecated way of writing the metadata store configuration through the scanning component.
-- The rego file structure required for the `ScanPolicies` to work with the Grype Scanner and Snyk Scanner templates changed. 
+- The rego file structure required for the `ScanPolicies` to work with the Grype Scanner and Snyk Scanner templates changed.
   >**Note:** This doesn't apply if you are using the deprecated Grype Scanner `ScanTemplate`s prior to Grype Scanner `v1.2.0`.
   - The package name changed from `package policies` to `package main`.
   - The deny rule changed from the boolean `isCompliant` to the array of strings `deny[msg]`.
