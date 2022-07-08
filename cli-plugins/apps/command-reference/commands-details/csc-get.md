@@ -4,7 +4,7 @@
 
 ## Default view
 
-The default view of `get` command will show the status of the supply chain, and the selectors that a workload needs to match so it os taken by that workload
+The default view of `get` command shows the status of the supply chain, and the selectors that a workload must match so it's OS is taken by that workload
 
 For example:
 
