@@ -1,4 +1,4 @@
-# Install Snyk scanner (Beta)
+# Install Snyk Scanner (Beta)
 
 This document describes how to install Supply Chain Security Tools - Scan 
 (Snyk Scanner) from the Tanzu Application Platform package repository.
@@ -151,6 +151,44 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
      Added installed package 'snyk-scanner' in namespace 'tap-install'
     ```
+
+## <a id="snyk-policy"></a> Sample Scan Policy
+
+Create a scan policy with a Rego file for scanner output in the SPDX JSON format. Here is a sample scan policy resource:
+```yaml
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+kind: ScanPolicy
+metadata:
+  name: scan-policy
+spec:
+  regoFile: |
+    package main
+
+    notAllowedSeverities := ["Low"]
+    ignoreCves := []
+
+    contains(array, elem) = true {
+      array[_] = elem
+    } else = false { true }
+
+    isSafe(match) {
+      fails := contains(notAllowedSeverities, match.relationships[_].ratedBy.rating[_].severity)
+      not fails
+    }
+
+    isSafe(match) {
+      ignore := contains(ignoreCves, match.id)
+      ignore
+    }
+
+    deny[msg] {
+      vuln := input.vulnerabilities[_]
+      ratings := vuln.relationships[_].ratedBy.rating[_].severity
+      comp := vuln.relationships[_].affect.to[_]
+      not isSafe(vuln)
+      msg = sprintf("%s %s %s", [comp, vuln.id, ratings])
+    }
+```
 
 ## <a id="verify"></a> Verify integration with Snyk 
 
