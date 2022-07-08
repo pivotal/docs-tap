@@ -4,7 +4,7 @@ This document describes how to install Application Single Sign-On (AppSSO) from 
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages. 
 Both the run, iterate and full profiles include AppSSO. 
-For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 ## <a id="installation"></a>Installation
 

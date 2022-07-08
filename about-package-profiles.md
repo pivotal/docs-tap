@@ -1,4 +1,4 @@
-# About Tanzu Application Platform package and profiles
+# About Tanzu Application Platform components and profiles
 
 Tanzu Application Platform is a modular, composable platform that comprises the following components.
 

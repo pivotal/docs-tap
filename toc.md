@@ -17,7 +17,7 @@ docs.vmware.com is built.
   - [Installing individual packages](install-components.md)
   - [Setting up developer namespaces](set-up-namespaces.md)
   - [Customizing package installation](customize-package-installation.md)
-- [About Tanzu Application Platform package and profiles](about-package-profiles.md)
+- [About Tanzu Application Platform components and profiles](about-package-profiles.md)
 - [Migrating Profiles in Tanzu Application Platform](migrate-profile.md)
 - [Upgrading Tanzu Application Platform](upgrading.md)
 - [Opting out of telemetry collection](opting-out-telemetry.md)

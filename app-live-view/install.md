@@ -11,7 +11,7 @@ Application Live View installs three packages for `full`, `light`, and `iterate`
 - For the `build` profile, Application Live View installs Application Live View Conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View Convention Service in `app-live-view-conventions` namespace.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 
 ## <a id='prereqs'></a>Prerequisites
