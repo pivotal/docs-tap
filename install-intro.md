@@ -4,7 +4,7 @@ You can install Tanzu Application Platform by using one of the following methods
 
 - [Installing Tanzu Application Platform online](#install-online)
 - [Installing Tanzu Application Platform in an air-gapped environment (Beta)](#install-air-gap)
-- [Installing Tanzu Application Platform by using AWS Quick Start](#install-aws)
+- [Deploying Tanzu Application Platform on Amazon EKS using AWS QuickStart](https://furry-guide-233b9019.pages.github.io/)
 
 ## <a id='install-online'></a>Installing Tanzu Application Platform online
 
@@ -44,13 +44,3 @@ The process of installing Tanzu Application Platform on your own Kubernetes clus
 
 After installing Tanzu Application Platform on to your air-gapped cluster, you can start creating workloads that run in your air-gapped containers.
 For instructions, see [Deploy your first air-gapped workload (beta)](getting-started/air-gap-workload.html).
-
-## <a id='install-aws'></a>Installing Tanzu Application Platform by using AWS Quick Start
-
-The process of installing Tanzu Application Platform by using AWS Quick Start includes the following tasks:
-
-|Step|Task|Link|
-|----|----|----|
-|1.| task 1 |[link name 1](external link 1)|
-|2.| task 2 |[link name 2](external link 2)|
-|3.| task 3 |[link name 3](external link 3)|
