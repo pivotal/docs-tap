@@ -1,15 +1,27 @@
-# Configuring Custom CAs for Tanzu Application Platform GUI
+# Configuring custom certificate authorities for Tanzu Application Platform GUI
 
-This section describes how you can configure Tanzu Application Platform GUI to trust unusual certificate authorities when making outbound connections. You will need to understand how to use overlays with PackageInstalls. There are two ways to implement this workaround:
+This topic describes how to configure Tanzu Application Platform GUI to trust unusual certificate
+authorities (CA) when making outbound connections.
+You do this by using overlays with PackageInstalls. There are two ways to implement this workaround:
 
-## Turn off all SSL verification
-To turn off SSL verification to allow for self signed certificates, set the Tanzu Application Platform GUI pod's environment variable NODE_TLS_REJECT_UNAUTHORIZED=0. If the value equals '0', certificate validation is disabled for TLS connections. This can be done by utilizing the `package_overlays` key in the TAP values-file. Instructions on how to do this are [here](../customize-package-installation.md).
+- [Deactivate all SSL verification](#deactivate-ssl)
+- [Add a custom CA](#add-custom-ca)
 
-The following is an example overlay to disable TLS. It assumes that your TAP GUI instance is deployed in the namespace: tap-gui. Please adjust accordingly.
+## <a id='deactivate-ssl'></a> Deactivate all SSL verification
+
+To deactivate SSL verification to allow for self-signed certificates, set the
+Tanzu Application Platform GUI pod's environment variable as `NODE_TLS_REJECT_UNAUTHORIZED=0`.
+When the value equals `0`, certificate validation is deactivated for TLS connections.
+
+To do this, use the `package_overlays` key in the Tanzu Application Platform values file.
+For instructions, see [Customizing Package Installation](../customize-package-installation.md).
+
+The following is an example overlay to deactivate TLS:
+
 ```yaml
 #@ load("@ytt:overlay", "overlay")
 
-#@overlay/match by=overlay.subset({"kind":"Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}),expects="1+"
+#@overlay/match by=overlay.subset({"kind":"Deployment", "metadata": {"name": "server", "namespace": "NAMESPACE"}}),expects="1+"
 ---
 spec:
   template:
@@ -22,16 +34,30 @@ spec:
             value: "0"
 ```
 
-## Add a custom CA
-If you would like to keep verifications on, you can add a custom CA and mount it to the Tanzu Application Platform GUI pod. Then set the pod's environment variable NODE_EXTRA_CA_CERTS=<path to mounted file>. To do so, follow these steps:
+Where `NAMESPACE` is the namespace in which your Tanzu Application Platform GUI instance is deployed.
+For example, `tap-gui`.
 
-1. Encode your extra CA certs you would like to trust in base64. You can provide many certs in PEM format in the same file. For example with a file named cert-chain.pem
+## <a id='add-custom-ca'></a> Add a custom CA
+
+If you want to keep verification enabled, you can add a custom CA and mount it to the
+Tanzu Application Platform GUI pod, and then set the pod's environment variable as
+`NODE_EXTRA_CA_CERTS=PATH-TO-MOUNTED-FILE`.
+
+To do so:
+
+1. Encode the extra CA certificates you want to trust in base64.
+You can provide many certificates in PEM format in the same file.
+Get the output you need for the next step by running:
+
+    ```console
+    cat FILENAME | base64 -w0
     ```
-    cat cert-chain.pem | base64 -w0
-    ``` 
-    will give you the output you need for the next step
 
-1. Copy the output from the previous command into the example field `tap-gui-certs.crt` in the example `secret.yaml` shown here:
+    Where `FILENAME` is your filename. For example, `cert-chain.pem`.
+
+1. Copy the output from the previous command into the example field `tap-gui-certs.crt` into the
+following example `secret.yaml`:
+
     ```yaml
     ---
     apiVersion: v1
@@ -41,18 +67,25 @@ If you would like to keep verifications on, you can add a custom CA and mount it
       namespace: tap-gui
     type: Opaque
     data:
-      tap-gui-certs.crt: "<encoded list of certs>"
+      tap-gui-certs.crt: "ENCODED-LIST-OF-CERTS"
     ```
-    Please adjust metadata and naming from this example accordingly.
 
-1. Apply the secret to your cluster
-   ```
+    Adjust metadata and naming from this example accordingly.
+
+1. Apply the secret to your cluster by running:
+
+    ```console
     kubectl apply -f secret.yaml
-   ```
+    ```
 
-1. To set the environment variable NODE_EXTRA_CA_CERTS, you can utilize the `package_overlays` key in the TAP values-file. Instructions on how to do this are [here](../customize-package-installation.md).
+1. To set the environment variable `NODE_EXTRA_CA_CERTS`, use the `package_overlays` key in the
+Tanzu Application Platform values file.
+For instructions, see [Customizing Package Installation](../customize-package-installation.md).
 
-    The following is an example overlay to add a custom CA. It assumes that your TAP GUI instance is deployed in the namespace: tap-gui. Please adjust all naming accordingly.
+    The following is an example overlay to add a custom CA.
+    It assumes that your Tanzu Application Platform GUI instance is deployed in the namespace `tap-gui`.
+    Adjust all names accordingly.
+
     ```yaml
     #@ load("@ytt:overlay", "overlay")
 

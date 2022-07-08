@@ -35,7 +35,7 @@ The process of installing Tanzu Application Platform on your own Kubernetes clus
 |3.| Install Cluster Essentials for Tanzu* |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)|
 |4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)|
 |5.| Install Tanzu Build Service full dependencies |[Install Tanzu Build Service dependencies air-gapped](tanzu-build-service/install-airgapped.html#tbs-offline-install-deps)|
-|6.| Configure custom CAs for Tanzu Application Platform GUI | [Configuring custom CAs for Tanzu Application Platform GUI](tap-gui/non-standard-certs.md) |
+|6.| Configure custom certificate authorities for Tanzu Application Platform GUI | [Configuring custom certificate authorities for Tanzu Application Platform GUI](tap-gui/non-standard-certs.md) |
 |7.| Add the certificate for the private Git repository in the Accelerator system namespace |[Configure Application Accelerator](application-accelerator/configuration.html)|
 |8.| Apply patch to Grype |[Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.html)|
 |9.| Set up developer namespaces to use installed packages |[Setting up developer namespaces to use installed packages](set-up-namespaces.html)|
