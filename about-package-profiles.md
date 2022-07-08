@@ -814,7 +814,7 @@ Tanzu Application Platform components.
   <tr>
    <td>Ruby
    </td>
-   <td>****
+   <td>\****
    </td>
    <td>
    </td>
