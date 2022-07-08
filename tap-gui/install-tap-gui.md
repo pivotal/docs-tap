@@ -6,7 +6,7 @@ installing Tanzu Application Platform through a Full or View profile.
 Use the instructions on this page if you do not want to use a profile to install packages.
 
 For more information about profiles, see
-[About Tanzu Application Platform package and profiles](../about-package-profiles.md).
+[About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 
 ## <a id='prereqs'></a> Prerequisites

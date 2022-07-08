@@ -1,5 +1,7 @@
 # Install Tanzu Application Platform in an air-gapped environment (Beta)
 
+>**Caution:** Tanzu Application Platform in an air-gapped environment is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+
 This topic describes how to install Tanzu Application Platform on your Kubernetes cluster and registry that are air-gapped from external traffic.
 
 Before installing the packages, ensure that you have completed the following tasks:
@@ -155,7 +157,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials.
 
-For more information about profiles, see [About Tanzu Application Platform package and profiles](about-package-profiles.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](about-package-profiles.md).
 
 To prepare to install a profile:
 
@@ -327,4 +329,4 @@ Follow these steps to install the Tanzu Application Platform package:
 
 ## <a id='next-steps'></a>Next steps
 
-- [Install the Tanzu Build Service dependencies](tanzu-build-service/install-airgapped.html#tbs-offline-install-deps)
+- [Install the Tanzu Build Service dependencies](tanzu-build-service/tbs-offline-install-deps.md)

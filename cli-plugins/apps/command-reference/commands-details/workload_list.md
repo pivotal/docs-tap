@@ -22,7 +22,7 @@ spring-petclinic3   spring-petclinic   Ready                   29d
 
 ## >Workload List flags
 
-### `--all-namespaces`, `-A`
+### <a id="list-all-namespaces"></a> `--all-namespaces`, `-A`
 
 Shows workloads in all namespaces in cluster. 
 ```bash
@@ -40,7 +40,7 @@ nginx-ns    nginx2              <empty>            TemplateRejectedByAPIServer  
 nginx-ns    nginx4              <empty>            TemplateRejectedByAPIServer   8d
 ```
 
-### `--app`
+### <a id="list-app"></a> `--app`
 
 Shows workloads which app is the one specified in the command.
 
@@ -52,7 +52,7 @@ spring-petclinic2   Unknown   29d
 spring-petclinic3   Ready     29d
 ```
 
-### `--namespace`, `-n`
+### <a id="list-namespace"></a> `--namespace`, `-n`
 
 Lists all the workloads present in the specified namespace.
 
@@ -65,7 +65,7 @@ app2     <empty>   Ready                         8d
 app3     <empty>   Unknown                       8d
 ```
 
-### `--output`, `-o`
+### <a id="list-output"></a> `--output`, `-o`
 
 Allows to list all workloads in the specified namespace in yaml, yml or json format.
 - yaml/yml

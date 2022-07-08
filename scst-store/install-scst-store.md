@@ -3,7 +3,7 @@
 This document describes how to install Supply Chain Security Tools - Store
 from the Tanzu Application Platform package repository.
 
->**Note:** VMware recommends installing Supply Chain Security Tools - Store by using Tanzu Application Platform Profiles.  See [About Tanzu Application Platform package and profiles](../about-package-profiles.md) and [Installing the Tanzu Application Platform Package and Profiles](../install.md).  Use the following instructions if you do not want to use a profile to install the Supply Chain Security Tools - Store package.
+>**Note:** VMware recommends installing Supply Chain Security Tools - Store by using Tanzu Application Platform Profiles.  See [About Tanzu Application Platform components and profiles](../about-package-profiles.md) and [Installing the Tanzu Application Platform Package and Profiles](../install.md).  Use the following instructions if you do not want to use a profile to install the Supply Chain Security Tools - Store package.
 
 ## <a id='prereqs'></a>Prerequisites
 

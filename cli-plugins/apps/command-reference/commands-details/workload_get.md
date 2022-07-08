@@ -60,7 +60,7 @@ rmq-sample-app   Ready   http://rmq-sample-app.default.example.com
 To see logs: "tanzu apps workload tail rmq-sample-app"
 ```
 
-### `--export`
+### <a id="get-export"></a> `--export`
 
 Exports the submitted workload in `yaml` format. This flag can also be used with `--output` flag. With export, the output is shortened because some fields are removed.
 
@@ -84,7 +84,7 @@ source:
     url: https://github.com/sample-accelerators/spring-petclinic
 ```
 
-### `--output`/`-o`
+### <a id="get-output"></a> `--output`/`-o`
 
 Configures how the workload is being shown, it supports the values `yaml`, `yml` and `json`, where `yaml` and `yml` are equal. It shows the actual workload in the cluster.
 + `yaml/yml`
@@ -207,7 +207,7 @@ Configures how the workload is being shown, it supports the values `yaml`, `yml`
     }
     ```
 
-### `--namespace`/`-n`
+### <a id="get-namespace"></a> `--namespace`/`-n`
 
 Specifies the namespace where the workload was deployed
 

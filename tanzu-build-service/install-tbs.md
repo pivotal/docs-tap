@@ -6,7 +6,7 @@ package repository by using the Tanzu CLI.
 Use this topic if you do not want to use a Tanzu Application Platform profile that includes
 Tanzu Build Service.
 The Full, Iterate, and Build profiles include Tanzu Build Service.
-For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 >**Note:** The following procedure might not include some configurations required for your environment.
 >For advanced information about installing Tanzu Build Service, see the

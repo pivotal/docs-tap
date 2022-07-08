@@ -1,4 +1,4 @@
-# About Tanzu Application Platform package and profiles
+# About Tanzu Application Platform components and profiles
 
 Tanzu Application Platform is a modular, composable platform that comprises the following components.
 
@@ -656,13 +656,13 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Runtime Conventions</strong>
    </td>
-   <td><strong>Tanzu Developer Tooling **</strong>
+   <td><strong>Tanzu Developer Tooling \*\*</strong>
    </td>
    <td><strong>Application Live View for VMware Tanzu</strong>
    </td>
    <td><strong>Functions (beta)</strong>
    </td>
-   <td><strong>Supply Chain Security Tools - Scan & Store ***</strong>
+   <td><strong>Extended Scanning Coverage using Anchore Grype \*\*\*</strong>
    </td>
    <td><strong>Application Accelerators for VMware Tanzu</strong>
    </td>
@@ -676,7 +676,7 @@ Tanzu Application Platform components.
    </td>
    <td>&check;
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>&check;
    </td>
@@ -692,13 +692,13 @@ Tanzu Application Platform components.
    </td>
    <td>&check;
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>&check;
    </td>
    <td>&check;
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>&check;
    </td>
@@ -712,7 +712,7 @@ Tanzu Application Platform components.
    </td>
    <td>
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>
    </td>
@@ -724,17 +724,17 @@ Tanzu Application Platform components.
   <tr>
    <td>Steeltoe
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>
    </td>
-   <td>_n/a_
+   <td>
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>&check;
    </td>
@@ -814,8 +814,7 @@ Tanzu Application Platform components.
   <tr>
    <td>Ruby
    </td>
-   <td>
-     Users can leverage the open-source Paketo Ruby buildpack for building Ruby applications with Tanzu Build Service
+   <td><sup>\*\*\*\*</sup>
    </td>
    <td>
    </td>
@@ -835,11 +834,13 @@ Tanzu Application Platform components.
 <sup>\**</sup> Tanzu Developer Tooling refers to the developer conventions that enable debugging
 and live update functionality in inner loop.
 
-<sup>\***</sup> Out of the Box Tanzu Application Platform scanning leverages a tool by Anchore called Grype.
+<sup>\***</sup> Extended Scanning Coverage: Supply Chain Security Tools - Scan & Store using Anchore Grype. Out of the Box Tanzu Application Platform scanning leverages a tool by Anchore called Grype.
 Grype provides standard CVE scanning support for a wide variety of languages.
 However, if you use Tanzu Build Service to build application images using a buildpack
 that produces a Bill of Materials in the Syft format,
 Tanzu Application Platform scanning can provide a more comprehensive scan of the application image.
+
+<sup>\****</sup> Users can leverage the open-source Paketo Ruby buildpack for building Ruby applications with Tanzu Build Service
 
 ## <a id='install'></a> Installing the Tanzu Application Platform
 

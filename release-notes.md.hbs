@@ -42,25 +42,24 @@ This release includes the following changes, listed by component and area.
 - Secure Tokens - Token signature keys are created and applied to AuthServer so that tokens can be signed and verified.
 - TLS secured
 
-#### Tanzu CLI - Apps plug-in
+#### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
-- Feature 1
-- Feature 2
-
-#### Service Bindings
-
-- Feature 1
-- Feature 2
+- Added support for [`--subPath`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-subpatha---sub-path) flag where users can specify a relative path inside the repo or image to treat as application root for source.
+- Added [`--service-account`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-service-accounta---service-account) flag to specify ServiceAccount name used by the workload to create resources submitted by the supply chain.
+- Added shorthand `-s` for [`--source-image`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-source-imagea---source-image--s) flag.
+- Added support for [`--output`](cli-plugins/apps/command-reference/commands-details/workload_list.md#a-idlist-outputa---output--o) flag to `workloads list` command.
+- Added support for json/yaml params using new flag [`--param-yaml`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-param-yamla---param-yaml).
+- Added support for creating workloads from `jar/war/zip` files via [`--local-path`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-local-patha---local-path) flag.
+- Added source information from workload  in the `workload get` command output
+- Added New command [`tanzu apps cluster-supply-chain get`](cli-plugins/apps/command-reference/tanzu-apps-cluster-supply-chain-get.md) 
+- Added support for excluding files on local path using `.tanzuignore` file 
+- Added supply chain step information in `workload get` command output 
+- Added support for short names for Cartographer workload (wld) & cluster-supply-chain commands (csc) 
+- Added support for providing ServiceAccount name in workload commands via file input
 
 #### Source Controller
 
-- Feature 1
-- Feature 2
-
-#### Spring Boot Conventions
-
-- Feature 1
-- Feature 2
+- Added support for pulling Artifacts from a Maven repository using the `MavenArtifact` CR. 
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (Beta)
 
@@ -165,13 +164,37 @@ This release has the following breaking changes, listed by area and component.
   >**Note:** This doesn't apply if you are using the deprecated Grype Scanner `ScanTemplate`s prior to Grype Scanner `v1.2.0`.
   - The package name changed from `package policies` to `package main`.
   - The deny rule changed from the boolean `isCompliant` to the array of strings `deny[msg]`.
-  - Please note that the sample `ScanPolicy` is different if you're using Grype Scanner with a cyclonedx structure or Snyk Scanner with a spdx json structure.
+  - Please note that the sample `ScanPolicy` is different if you're using Grype Scanner with a CycloneDX structure or Snyk Scanner with a SPDX JSON structure. See [Install Snyk Scanner](./scst-scan/install-snyk-integration) for an example of a Scan Policy.
   - See [Enforce compliance policy using Open Policy Agent](./scst-scan/policies.md) for an example of the current ScanPolicy format for version 1.2.0 and later.
 
 #### Supply Chain Security Tools - Store
 
 - Breaking change 1
 - Breaking change 2
+
+#### <a id="tbs-breaking"></a> Tanzu Build Service
+
+##### <a id="tbs-breaking-upgrading"></a> Breaking Change when Upgrading TAP 1.1 to TAP 1.2
+
+**Note:** If your TAP 1.1 installation was configured with `enable_automatic_updates: false`, this breaking change can be ignored.
+
+When upgrading TAP from 1.1 to 1.2, Tanzu Build Service Image resources will automatically run a build that will fail due to a missing dependency.
+This error will not persist and any subsequent builds will resolve this error. This means that users can safely wait for the next build of their workloads which
+will be triggered by source code changes.
+
+If you do not want to wait for subsequent builds to run, you can use the open source [kp](https://github.com/vmware-tanzu/kpack-cli) cli:
+
+1. List the image resources in the developer namespace:
+
+```console
+kp image list -n DEVELOPER-NAMESPACE
+```
+
+1. Manually trigger the image resources to re-run builds for each failing image:
+
+```console
+kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
+```
 
 #### <a id="grype-scanner-changes"></a> Grype Scanner
 
@@ -211,10 +234,22 @@ This following issues, listed by area and component, are resolved in this releas
 - Resolved issue 1
 - Resolved issue 2
 
-#### Tanzu CLI - Apps plug-in
+#### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
-- Resolved issue 1
-- Resolved issue 2
+- Updated output for list when there are no workloads. It now shows a more user friendly message `No workloads found.`
+- Fixed error messaging for empty kubeconfig and invalid kube context.
+- Fixed incorrect error message for `workload create` when the user did not have enough permissions to create a workload.
+- Removing namespace from `--service-ref` is not ignored
+- Issue for Windows error x509: certificate signed by unknown authority by upgrading imgpkg versions v0.29.0. The new version supports loading Windows root ca certs.
+
+#### <a id="service-bindings-resolved"></a> Service Bindings
+
+- Added a new ClusterRole `service-binding-provisioned-services`  with label selector `servicebinding.io/controller: "true"` for get, list, and watch which fixes the issue where Service Binding controller was aggregating non-provisioned service RBAC to the controller manager.
+
+#### <a id="spring-conventions-resolved"></a> Spring Boot Conventions
+
+- No environment variables are added if conventions are not applied. Fixes the issue where `JAVA_TOOL_OPTS` was added to non-java apps. 
+- Controller does not error out if no image metadata is present. Fixes the edge case when the image metadata is missing.
 
 #### Tanzu Application Platform GUI
 

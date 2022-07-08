@@ -1,6 +1,6 @@
 # Deploy your first application on Tanzu Application Platform
 
-This how-to guide walks developers through deploying your first application on Tanzu Application Platform.
+This how-to guide walks developers through deploying your first application on Tanzu Application Platform by using the Tanzu Application Platform GUI.
 
 ## <a id="you-will"></a>What you will do
 
@@ -15,13 +15,12 @@ Before you start, complete all [Getting started prerequisites](../getting-starte
 
 ## <a id="deploy-your-app"></a>Deploy your application
 
-To deploy your application, you must download an accelerator, upload it on your Git repository of choice, and run a CLI command. In this example, we use the `Tanzu-Java-Web-App` accelerator.
+To deploy your application, you must download an accelerator, upload it on your Git repository of choice, and run a CLI command. In this example, we use the `Tanzu-Java-Web-App` accelerator. We also use the Tanzu Application Platform GUI. For information about connecting to Tanzu Application Platform GUI, see
+   [Accessing Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md.hbs). 
 
 1. From Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
    navigation bar to see the list of available accelerators.
-   For information about connecting to Tanzu Application Platform GUI, see
-   [Accessing Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md.hbs).
-
+   
     ![List of accelerators in Tanzu Application Platform GUI](../images/getting-started-tap-gui-1.png)
 
 1. Locate the Tanzu Java Web App accelerator and click **CHOOSE**.

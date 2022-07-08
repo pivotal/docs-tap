@@ -40,10 +40,9 @@ In the first section, the definition of workload is displayed. It's followed by 
 
 ## <a id='workload_apply_flags'></a> Workload Apply flags
 
-### `--annotation`
+### <a id="apply-annotation"></a> `--annotation`
 
-Set the annotations to be applied to the workload, to specify more than one annotation set the flag multiple times, these annotations are passed as parameters to be processed in the supply chain.
-
+Set the annotations to be applied to the workload, to specify more than one annotation set the flag multiple times. These annotations will be passed as parameters to be processed in the supply chain.
 <details><summary>Example</summary>
 
 ```bash
@@ -94,9 +93,9 @@ Update workload:
 ```
 </details>
 
-### `--app`
+### <a id="apply-app"></a> `--app`
 
-The app of which the workload is part of. This is part of the workload metadata section.
+The app of which the workload is part of. This will be part of the workload metadata section.
 
 <details><summary>Example</summary>
 
@@ -129,9 +128,9 @@ To get status: "tanzu apps workload get pet-clinic"
 ```
 </details>
 
-### `--build-env`
+### <a id="apply-build-env"></a> `--build-env`
 
-Sets environment variables to be used in the **build** phase by the build resources in the supply chain where some *build* specific behavior may be set or changed.
+Sets environment variables to be used in the **build** phase by the build resources in the supply chain where some *build* specific behavior can be set or changed
 
 <details><summary>Example</summary>
 
@@ -187,7 +186,7 @@ Update workload:
 ```
 </details>
 
-### `--debug`
+### <a id="apply-debug"></a> `--debug`
 
 Sets the param variable debug to true  in workload.
 
@@ -218,9 +217,9 @@ Create workload:
 ```
 </details>
 
-### `--dry-run`
+### <a id="apply-dry-run"></a> `--dry-run`
 
-Prepares all the steps to submit the workload to the cluster but stops right before sending it, showing as output how the final structure of the workload will be.
+Prepares all the steps to submit the workload to the cluster and stops before sending it, showing as an output how the final structure of the workload.
 
 <details><summary>Example</summary>
 
@@ -255,7 +254,7 @@ status:
 ```
 </details>
 
-### `--env`
+### <a id="apply-env"></a> `--env`
 
  Set the environment variables to the workload so the supply chain resources can used it to properly deploy the workload application
 
@@ -308,9 +307,9 @@ Update workload:
 ```
 </details>
 
-### `--file`, `-f`
+### <a id="apply-file"></a> `--file`, `-f`
 
-Set a workload specification file to create the workload from, any other workload specification passed by flags to the command sets or overrides whatever is in the file. Another way to use this flag is using `-` in the command, to receive workload definition by using standard input<. See [Working with Yaml Files](../../usage.md#a-idyaml-filesaworking-with-yaml-files) section to see an example.
+Set a workload specification file to create the workload from, any other workload specification passed by flags to the command will set or override whatever is in the file. Another way to use this flag is using `-` in the command, to receive workload definition through standard input. Refer to [Working with Yaml Files](../../usage.md#a-idyaml-filesaworking-with-yaml-files) section to see an example.
 
 <details><summary>Example</summary>
 
@@ -345,13 +344,13 @@ Create workload:
 ```
 </details>
 
-### `--git-repo`
+### <a id="apply-git-repo"></a> `--git-repo`
 
-Git repository from which the workload is going to be created. With this, `--git-tag`, `--git-commit` or `--git-branch` may be specified.
+Git repository from which the workload is going to be created. With this, `--git-tag`, `--git-commit` or `--git-branch` can be specified.
 
-### `--git-branch`
+### <a id="apply-git-branch"></a> `--git-branch`
 
-Branch in a Git repository from where the workload is going to be created. This may be specified with a commit or a tag.
+Branch in a Git repository from where the workload is going to be created. This may be specified along with a commit or a tag.
 
 <details><summary>Example</summary>
 
@@ -377,13 +376,13 @@ Create workload:
 ```
 </details>
 
-### `--git-tag`
+### <a id="apply-git-tag"></a> `--git-tag`
 
 Tag in a Git repository from which the workload is going to be created. Can be used with `--git-commit` or `--git-branch`
 
-### `--git-commit`
+### <a id="apply-git-commit"></a> `--git-commit`
 
-Commit in Git repository from where the workload is going to be resolved. Can be used with `--git-branch` or `git-tag`.
+Commit in Git repo from where the workload is going to be resolved. Can be used with `--git-branch` or `git-tag`.
 
 <details><summary>Example</summary>
 
@@ -410,9 +409,9 @@ Create workload:
 ```
 </details>
 
-### `--image`
+### <a id="apply-image"></a> `--image`
 
-Sets the OSI image to be used as the workload application source instead of a git repository.
+Sets the OSI image to be used as the workload application source instead of a Git repository
 
  <details><summary>Example</summary>
 
@@ -447,9 +446,9 @@ Create workload:
 ```
 </details>
 
-### `--label`
+### <a id="apply-label"></a> `--label`
 
-Sets the label applied to the workload, to specify more than one label set the flag multiple times.
+Set the label to be applied to the workload, to specify more than one label set the flag multiple times
 
 <details><summary>Example</summary>
 
@@ -499,7 +498,7 @@ Update workload:
 ```
 </details>
 
-### `--limit-cpu`
+### <a id="apply-limit-cpu"></a> `--limit-cpu`
 
  Refers to the maximum CPU the workload pods are allowed to use.
 
@@ -530,7 +529,7 @@ Create workload:
 ```
 </details>
 
-### `--limit-memory`
+### <a id="apply-limit-memory"></a> `--limit-memory`
 
 Refers to the maximum memory the workload pods are allowed to use.
 
@@ -561,7 +560,7 @@ Create workload:
 ```
 </details>
 
-### `--live-update`
+### <a id="apply-live-update"></a> `--live-update`
 
 Enable to deploy a workload once, save changes to the code, and see those changes reflected within seconds in the workload running on the cluster.
 
@@ -638,7 +637,7 @@ Enable to deploy a workload once, save changes to the code, and see those change
     ```
 </details>
 
-### `--local-path`
+### <a id="apply-local-path"></a> `--local-path`
 
 Sets the path to a source in the local machine from where the workload creates an image to use as an application source. The local path may be a directory, a JAR, a ZIP, or a WAR file. Java/Spring Boot compiled binaries are also supported. This flag must be used with `--source-image` flag.
 
@@ -647,9 +646,9 @@ Sets the path to a source in the local machine from where the workload creates a
 When working with local source code, you can exclude files from the source code to be uploaded within the image by creating a file `.tanzuignore` at the root of the source code.
 The `.tanzuignore` file contains a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`). If the file contains directories that are not in the source code, they are ignored and lines starting with `#` character.
 
-### `--source-image`, `-s`
+### <a id="apply-source-image"></a> `--source-image`, `-s`
 
-Registry path where the local source code is to be uploaded as an image.
+Registry path where the local source code will be uploaded as an image.
 
 <details><summary>Example</summary>
 
@@ -676,7 +675,7 @@ Create workload:
 ```
 </details>
 
-### `--namespace`, `-n`
+### <a id="apply-namespace"></a> `--namespace`, `-n`
 
 Specifies the namespace in which the workload is to be created or updated.
 
@@ -704,7 +703,7 @@ Create workload:
 ```
 </details>
 
-### `--param`
+### <a id="apply-param"></a> `--param`
 
 Additional parameters to be sent to the supply chain, the value is sent as a string, for complex yaml/json objects use `--param-yaml`
 
@@ -761,7 +760,7 @@ Update workload:
 ```
 </details>
 
-### `--param-yaml`
+### <a id="apply-param-yaml"></a> `--param-yaml`
 
 Additional parameters to be sent to the supply chain, the value is sent as a complex object.
 
@@ -821,7 +820,7 @@ Update workload:
 ```
 </details>
 
-### `--request-cpu`
+### <a id="apply-request-cpu"></a> `--request-cpu`
 
 Refers to the minimum CPU the workload pods are requesting to use.
 
@@ -852,7 +851,7 @@ Create workload:
 ```
 </details>
 
-### `--request-memory`
+### <a id="apply-request-memory"></a> `--request-memory`
 
 Refers to the minimum memory the workload pods are requesting to use.
 
@@ -883,7 +882,7 @@ Create workload:
 ```
 </details>
 
-### `--service-account`
+### <a id="apply-service-account"></a> `--service-account`
 
 Refers to the service account to be associated with the workload. A service account provides an identity for a workload object.
 
@@ -935,9 +934,9 @@ Update workload:
 ```
 </details>
 
-### `--service-ref`
+### <a id="apply-service-ref"></a> `--service-ref`
 
-Binds a service to a workload to provide the information from a service resource to an application.
+Binds a service to a workload to provide the info from a service resource to an application.
 
 |>**Note:**| For more information see [Tanzu Application Platform documentation](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.2/tap/GUID-getting-started-consume-services.html#bind-an-application-workload-to-the-service-instance-6).
 
@@ -997,7 +996,7 @@ Update workload:
 ```
 </details>
 
-### `--sub-path`
+### <a id="apply-subpath"></a> `--sub-path`
 
 It's used to define which path is going to be used as root to create and update the workload.
 
@@ -1005,7 +1004,7 @@ It's used to define which path is going to be used as root to create and update 
 
   - Git repo
     ```bash
-    tanzu apps workload apply subpathtester --git-repo https://github.com/tfynes-pivotal/subpathtester --git-branch main --type web --sub-path service1
+    tanzu apps workload apply subpathtester --git-repo https://github.com/path-to-repo/my-repo --git-branch main --type web --sub-path my-subpath
 
     Create workload:
         1 + |---
@@ -1021,8 +1020,8 @@ It's used to define which path is going to be used as root to create and update 
        11 + |    git:
        12 + |      ref:
        13 + |        branch: main
-       14 + |      url: https://github.com/tfynes-pivotal/subpathtester
-       15 + |    subPath: service1
+       14 + |      url: https://github.com/path-to-repo/my-repo
+       15 + |    subPath: my-subpath
 
     ? Do you want to create this workload? (y/N)
     ```
@@ -1051,7 +1050,7 @@ It's used to define which path is going to be used as root to create and update 
       ```
 </details>
 
-### `--tail`
+### <a id="apply-tail"></a> `--tail`
 
 Prints the logs of the workload creation in every step.
 
@@ -1099,7 +1098,7 @@ spring-pet-clinic-build-1-build-pod[prepare] 	+     url: http://source-controlle
 ```
 </details>
 
-### `--tail-timestamp`
+### <a id="apply-tail-timestamp"></a> `--tail-timestamp`
 
 Prints the logs of the workload creation in every step adding the time in which the log is occurring.
 
@@ -1147,7 +1146,7 @@ spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.365372427-05:00
 ```
 </details>
 
-### `--type`
+### <a id="apply-type"></a> `--type`
 
 Sets the type of the workload by adding the label `apps.tanzu.vmware.com/workload-type`, which is very common to be used as a matcher by supply chains.
 
@@ -1173,7 +1172,7 @@ Create workload:
 ```
 </details>
 
-### `--wait`
+### <a id="apply-wait"></a> `--wait`
 
 Holds until workload is ready.
 
@@ -1201,7 +1200,7 @@ Workload "spring-pet-clinic" is ready
 ```
 </details>
 
-### `--wait-timeout`
+### <a id="apply-wait-timeout"></a> `--wait-timeout`
 
 Sets a timeout to wait for workload to become ready.
 
@@ -1230,9 +1229,9 @@ Workload "spring-pet-clinic" is ready
 ```
 </details>
 
-### `--yes`, `-y`
+### <a id="apply-yes"></a> `--yes`, `-y`
 
-Assumes yes on all the survey prompts.
+Assume yes on all the survey prompts
 
 <details><summary>Example</summary>
 

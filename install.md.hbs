@@ -161,7 +161,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials.
 
-For more information about profiles, see [About Tanzu Application Platform package and profiles](about-package-profiles.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](about-package-profiles.md).
 
 To prepare to install a profile:
 
@@ -262,6 +262,10 @@ credentials to pull an image from the registry for scanning.
 If built images are pushed to the same registry as the Tanzu Application Platform images,
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
+
+>**Note:** When upgrading TAP from 1.1 to 1.2, Tanzu Build Service Image resources will automatically run a build that will fail due to a missing dependency.
+>This error will not persist and any subsequent builds will resolve this error. This means that users can safely wait for the next build of their workloads which
+>will be triggered by new source code changes. For more info see [here](release-notes.html#tbs-breaking-upgrading).
 
 ### <a id='full-dependencies'></a> Configure Tanzu Application Platform with full dependencies
 
