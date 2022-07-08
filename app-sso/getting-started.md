@@ -1,0 +1,8 @@
+# Getting started with AppSSO
+
+This document provides references for getting started with AppSSO.
+
+## <a id="getting-started">Getting started
+
+- If this is your first time using AppSSO, see the full [Getting Started guide](https://docs.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0/appsso/GUID-getting-started-index.html).
+- If already have a basic understanding of AppSSO, and want to integrate with TAP Workloads, see [Register an app with AppSSO](https://docs.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0/appsso/GUID-app-operators-register-an-app-with-app-sso.html).
