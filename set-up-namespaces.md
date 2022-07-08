@@ -28,12 +28,13 @@ that you plan to create the `Workload` in:
     panic: runtime error: invalid memory address or nil pointer dereference
     [signal SIGSEGV: segmentation violation code=0x1 addr=0x128 pc=0x2bcce00]
     ```
-
     Use `kubectl` to create the secret:
 
     ```console
     kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
     ```
+
+   **Note:** If you are installing on AWS with EKS and choose to leverage (IAM Roles for Kubernetes Service Accounts)[https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html] instead of secrets, this step is not required.  You will specify the Role ARN in the next step. 
 
 2. Add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace by running:
 
@@ -83,6 +84,19 @@ that you plan to create the `Workload` in:
       - kind: ServiceAccount
         name: default
     EOF
+    ```
+
+   **Note:** If you are installing on AWS with EKS and choose to leverage (IAM Roles for Kubernetes Service Accounts)[https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html], you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret.  Your service account entry will look like the following:
+
+   ```
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: default
+      annotations:
+        eks.amazonaws.com/role-arn: <Role ARN>
+    imagePullSecrets:
+      - name: tap-registry
     ```
 
 3. Perform one of the following actions to give developers namespace-level access and view access to appropriate cluster-level resources:
