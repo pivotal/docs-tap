@@ -676,7 +676,7 @@ Tanzu Application Platform components.
    </td>
    <td>&check;
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>&check;
    </td>
@@ -692,13 +692,13 @@ Tanzu Application Platform components.
    </td>
    <td>&check;
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>&check;
    </td>
    <td>&check;
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>&check;
    </td>
@@ -712,7 +712,7 @@ Tanzu Application Platform components.
    </td>
    <td>
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>
    </td>
@@ -724,17 +724,17 @@ Tanzu Application Platform components.
   <tr>
    <td>Steeltoe
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>
    </td>
-   <td>_n/a_
+   <td>
    </td>
-   <td>_n/a_
+   <td>
    </td>
    <td>&check;
    </td>
