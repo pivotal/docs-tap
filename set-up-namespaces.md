@@ -28,6 +28,7 @@ that you plan to create the `Workload` in:
     panic: runtime error: invalid memory address or nil pointer dereference
     [signal SIGSEGV: segmentation violation code=0x1 addr=0x128 pc=0x2bcce00]
     ```
+    
     Use `kubectl` to create the secret:
 
     ```console
