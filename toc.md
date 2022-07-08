@@ -268,6 +268,7 @@ docs.vmware.com is built.
             - [Public source scan of a blob/tar file](scst-scan/samples/blob.md)
         - [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.md)
         - [Install Snyk scanner](scst-scan/install-snyk-integration.md)
+        - [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md)
         - [Observing and troubleshooting](scst-scan/observing.md)
         - [Additional scan resources](scst-scan/additional.md)
             - [Configure code repositories and image artifacts to be scanned](scst-scan/scan-crs.md)

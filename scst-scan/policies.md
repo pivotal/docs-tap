@@ -22,7 +22,7 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
 
 1. Create a scan policy with a Rego file. Here is a sample scan policy resource:
 
-    ```console
+    ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ScanPolicy
     metadata:
@@ -69,7 +69,7 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
 In order for the Tanzu Application Platform GUI to view the ScanPolicy resource, it must have a matching `kubernetes-label-selector` with a `part-of` prefix.
 
 Here is an example of a ScanPolicy that is viewable by the TAP GUI:
-```
+```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
@@ -90,7 +90,7 @@ Before Scan Controller v1.2.0, you must use the following format where the rego 
 - The deny rule is a Boolean `isCompliant` instead of `deny[msg]`.
   - **isCompliant rule:** The Rego file must define inside its body an `isCompliant` rule. This must be a Boolean type containing the result whether the vulnerability violates the security policy or not. If `isCompliant` is `true`, the vulnerability is allowed in the Source or Image scan; `false` is considered otherwise. Any scan that finds at least one vulnerability that evaluates to `isCompliant=false` makes the `PolicySucceeded` condition set to false.
 - Here is a sample scan policy resource:
-```
+```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ScanPolicy
 metadata:

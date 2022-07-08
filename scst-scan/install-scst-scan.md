@@ -81,7 +81,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
     - `META-DATA-STORE-URL` is the URL pointing to the Supply Chain Security Tools - Store ingress in the cluster that has your Supply Chain Security Tools - Store deployment. For example, `https://metadata-store.example.com:8443`.
     - `AUTH-SECRET-NAME` is the name of the secret that has the auth token to post to the Supply Chain Security Tools - Store.
 
-To install Supply Chain Security Tools - Scan (Grype scanner):
+<a id="install-grype"></a> To install Supply Chain Security Tools - Scan (Grype scanner):
 
 1. List version information for the package by running:
 
