@@ -52,6 +52,7 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION  --values-
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
 For information about upgrading Tanzu Application Platform GUI, see [upgrading Tanzu Application Platform GUI](tap-gui/upgrades.html).
+For information about upgrading Supply Chain Security Tools - Scan, see [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
 
 ## <a id="verify"></a> Verify the upgrade
 
