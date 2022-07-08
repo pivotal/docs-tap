@@ -45,8 +45,8 @@ These dependencies consist of the buildpacks and stacks required for application
 Each type serves different use cases.
 Both types are suitable for production workloads.
 
-By default, Tanzu Build Service is installed with `lite` dependencies.
-The `lite` dependencies do not contain all buildpacks and stacks.
+By default, Tanzu Build Service is installed with `lite` dependencies, which do
+not contain all buildpacks and stacks.
 To use all buildpacks and stacks, you must install the `full` dependencies.
 For instructions about installing `full` dependencies, see [Install full dependencies](install-tbs.html#tap-install-full-deps).
 
@@ -57,8 +57,8 @@ For a table comparing the differences between `full` and `lite` dependencies, se
 
 The `lite` dependencies are the default set installed with Tanzu Build Service.
 
-It contains a smaller footprint to speed up installation time.
-However, it does not support all workload types.
+`lite` dependencies contain a smaller footprint to speed up installation time,
+but do not support all workload types.
 For example, `lite` dependencies do not contain the PHP buildpack and
 cannot be used to build PHP workloads.
 
@@ -110,7 +110,8 @@ The `full` dependencies contain the following stacks, which support different us
 - `full`
 - `tiny`
 
-For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html).
+For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
+in the VMware Tanzu Buildpacks documentation.
 
 #### <a id="full-buildpacks"></a> Full dependencies: buildpacks
 
