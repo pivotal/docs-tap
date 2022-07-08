@@ -59,13 +59,30 @@ The `lite` dependencies are the default set installed with Tanzu Build Service.
 
 It contains a smaller footprint to speed up installation time.
 However, it does not support all workload types.
-For example, the `lite` descriptor <!-- should this say deps? --> does not
-contain the PHP buildpack and cannot be used to build PHP workloads.
+For example, `lite` dependencies do not contain the PHP buildpack and
+cannot be used to build PHP workloads.
 
-The `lite` descriptor <!-- should this say deps? --> only contains the `base` stack.
-The `default` stack is installed, but is identical to the `base` stack.
+The `lite` dependencies contain the following stacks:
+
+- `base`
+- `default` (identical to `base`)
+
 For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
 in the VMware Tanzu Buildpacks documentation.
+
+The `lite` dependencies contain the following buildpacks:
+
+| Buildpack | Version included in Tanzu Application Platform v1.2 |
+|-----------|-----------|
+| Java Buildpack for VMware Tanzu (Lite) | 6.27.0 |
+| Java Native Image Buildpack for Tanzu (Lite) | 6.18.1 |
+| .NET Core Buildpack for VMware Tanzu (Lite) | 1.14.3 |
+| Node.js Buildpack for VMware Tanzu (Lite) | 1.14.2 |
+| Python Buildpack for VMware Tanzu (Lite) | 2.0.0  |
+| Go Buildpack for VMware Tanzu (Lite) | 1.12.0 |
+| NGINX Buildpack for VMware Tanzu (Lite) | 0.6.0  |
+| Procfile Buildpack for VMware Tanzu (Lite) | 5.2.1  |
+| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.3.54 |
 
 ### <a id="full-dependencies"></a> Full dependencies
 
@@ -74,8 +91,13 @@ which allows for more workload types.
 
 The dependencies are pre-packaged, so builds do not have to download them from the Internet.
 This can speed up build times and allows builds to occur in air-gapped environments.
+Due to the larger footprint of `full`, installations might take longer.
 
-The `full` descriptor <!-- should this say deps? --> contains the following stacks, which support different use cases:
+The `full` dependencies are not installed with Tanzu Build Service by default,
+you must install them.
+For instructions for installing `full` dependencies, see [Install Tanzu Build Service with full dependencies](install-tbs.html#tap-install-full-deps).
+
+The `full` dependencies contain the following stacks, which support different use cases:
 
 - `base`
 - `default` (identical to `base`)
@@ -83,10 +105,24 @@ The `full` descriptor <!-- should this say deps? --> contains the following stac
 - `tiny`
 
 For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html).
-Due to the larger footprint of `full`, installations might take longer.
 
-The full set of dependencies must be installed separately.
-For instructions for installing `full` dependencies, see [Install Tanzu Build Service with full dependencies](install-tbs.html#tap-install-full-deps)
+The `full` dependencies contain the following buildpacks:
+
+| Buildpack | Version included in Tanzu Application Platform v1.2 |
+|-----------|------------|
+| Java Buildpack for VMware Tanzu | 6.27.0 |
+| Java Native Image Buildpack for Tanzu | 6.18.1 |
+| .NET Core Buildpack for VMware Tanzu | 1.14.3 |
+| Node.js Buildpack for VMware Tanzu | 1.14.2 |
+| Python Buildpack for VMware Tanzu | 2.0.0 |
+| Go Buildpack for VMware Tanzu | 1.12.0 |
+| PHP Buildpack for VMware Tanzu | 0.1.0 |
+| Web Servers Buildpack for VMware Tanzu | 1.0.1 |
+| NGINX Buildpack for VMware Tanzu | 0.6.0 |
+| Procfile Buildpack for VMware Tanzu | 5.2.1 |
+| Tiny Stack of Ubuntu Bionic for VMware Tanzu | 1.1.72 |
+| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.3.54 |
+| Full Stack of Ubuntu Bionic for VMware Tanzu | 1.3.62 |
 
 ### <a id="lite-vs-full-table"></a> Dependency comparison
 

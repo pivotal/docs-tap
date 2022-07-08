@@ -20,7 +20,7 @@ Before installing Tanzu Build Service:
 For more information, see [Prerequisites](../prerequisites.md).
 
 - You must have access to a Docker registry that Tanzu Build Service can use to create builder images.
-Approximately 10&nbsp;GB of registry space is required when using the `full` descriptor. <!-- should this say deps? -->
+Approximately 10&nbsp;GB of registry space is required when using the `full` dependencies.
 
 - Your Docker registry must be accessible with user name and password credentials.
 
