@@ -86,7 +86,7 @@ that you plan to create the `Workload` in:
     EOF
     ```
 
-   **Note:** If you are installing on AWS with EKS and choose to leverage (IAM Roles for Kubernetes Service Accounts)[https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html], you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret.  Your service account entry will look like the following:
+   **Note:** If you are installing on AWS with EKS and choose to leverage [IAM Roles for Kubernetes Service Accounts])https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html), you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret.  Your service account entry will look like the following:
 
    ```
     apiVersion: v1
