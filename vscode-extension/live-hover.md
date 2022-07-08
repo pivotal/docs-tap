@@ -16,7 +16,7 @@ later
 ## <a id="activate-feature"></a> Activate the Live Hover feature
 
 Activate the Live Hover feature by enabling it in
-**File** > **Preferences** > **Settings** > **Extensions** > **Tanzu**.
+**Code** > **Preferences** > **Settings** > **Extensions** > **Tanzu Developer Tools**.
 
 ## <a id="deploy-workload"></a> Deploy a Workload to the Cluster
 

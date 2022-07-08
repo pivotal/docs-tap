@@ -30,7 +30,7 @@ This release includes the following changes, listed by component and area.
 
 - Live Hover Integration with Spring Tools Suite
   - Users can hover over Spring Actuator endpoints to see live data. This feature can be enabled from Preferences.
-  
+
 #### Application Single Sign-On
 
 - Application Single Sign-On package comes installed with iterate, run, and full profiles.
@@ -106,9 +106,9 @@ This release includes the following changes, listed by component and area.
 #### Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
-  - Added ability to visualize CVE scan results in the Details pane for both Build and Image Scan stages, as well as scan policy information, without using the CLI
+  - Added ability to visualize CVE scan results in the Details pane for both Source and Image Scan stages, as well as scan policy information, without using the CLI
   - Added ability to visualize the deployment of a workload as a deliverable in a multicluster environment in the supply chain graph
-  - Added a deeplink to view approvals for PRs in a GitHub repository so that PRs can be reviewed and approved, resulting in the deployment of a workload to any cluster configured to accept a deployment
+  - Added a deeplink to view approvals for PRs in a GitOps repository so that PRs can be reviewed and approved, resulting in the deployment of a workload to any cluster configured to accept a deployment
   - Added Reason column to the Workloads table to indicate causes for errors encountered during supply chain execution
 
 - Feature 2
@@ -127,8 +127,10 @@ For more information, see
 [Live Hover integration with Spring Boot Tools (Experimental)](vscode-extension/live-hover.md).
 
 #### Tanzu Developer Tools for IntelliJ
-- **Live Update and Debug your workloads:** The first release of our IntelliJ plugin will allow you to Live Update and Debug your workloads.
-For more information, see [Getting Started](intellij-extension/getting-started.md).
+
+- **Live Update and Debug your workloads:** The new IntelliJ extension enables you to Live Update and
+Debug your workloads.
+For more information, see [VMware Tanzu Developer Tools for IntelliJ](intellij-extension/about.md).
 
 #### Functions (Beta)
 
@@ -150,12 +152,14 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
 - You must configure integration with Supply Chain Security Tools - Store for the Grype Scanner and Snyk Scanner packages to enable this feature. The configuration for Supply Chain Security Tools - Store in Supply Chain Security Tools - Scan is only for the deprecated Grype Scanner `ScanTemplate`s.
-- For the profile configuration of scanning, the scanning component no longer takes the metadata store configurations as of v1.2.0.
-  - See [here](multicluster/installing-multicluster.md) for the current way of configuring metadata store through the grype component instead of the scanning component as of v1.2.0+.
-  - See [here](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-multicluster-reference-tap-values-build-sample.html) for the deprecated way of writing the metadata store configuration through the scanning component.
-- The rego file structure required for the `ScanPolicies` to work with the Grype Scanner and Snyk Scanner templates has changed. **Note:** This doesn't apply if you're using the deprecated Grype Scanner `ScanTemplate`s prior to Grype Scanner `v1.2.0`.
-  - The package name has changed from `package policies` to `package main`.
-  - The deny rule has changed from the boolean `isCompliant` to the array of strings `deny[msg]`.
+- For the profile configuration of Supply Chain Security Tools - Scan, the scanning component no longer takes the metadata store configurations as of v1.2.0.
+  - For information about configuring metadata store by using the grype component instead of the scanning component as of v1.2.0, see [Install multicluster Tanzu Application Platform profiles
+](multicluster/installing-multicluster.md).
+  - See [Build profile](multicluster/reference/tap-values-build-sample.md) for the deprecated way of writing the metadata store configuration through the scanning component.
+- The rego file structure required for the `ScanPolicies` to work with the Grype Scanner and Snyk Scanner templates changed.
+  >**Note:** This doesn't apply if you are using the deprecated Grype Scanner `ScanTemplate`s prior to Grype Scanner `v1.2.0`.
+  - The package name changed from `package policies` to `package main`.
+  - The deny rule changed from the boolean `isCompliant` to the array of strings `deny[msg]`.
   - Please note that the sample `ScanPolicy` is different if you're using Grype Scanner with a cyclonedx structure or Snyk Scanner with a spdx json structure.
   - See [Enforce compliance policy using Open Policy Agent](./scst-scan/policies.md) for an example of the current ScanPolicy format for version 1.2.0 and later.
 
@@ -214,7 +218,7 @@ This following issues, listed by area and component, are resolved in this releas
   - **Details for ConfigMap CRD now appear as expected:** The error
   `Unable to retrieve conditions for ConfigMap...` no longer appears in the details section after
   clicking on the ConfigMap stage in the graph view of a supply chain.
-  - **Scan results now appear as expected:** Current CVEs found during Image or Build scanning now
+  - **Scan results now appear as expected:** Current CVEs found during Image or Source scanning now
   appear as expected.
 
 ### <a id='1-2-known-issues'></a> Known issues
@@ -284,8 +288,10 @@ after the binaries are built and packaged as images.
 #### Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
-    - Delivery section of the supply chain graph might show deliverables that do not pertain to the selected workload. There is currently no workaround.
-- Known issue 2
+    - Delivery section of the supply chain graph might show deliverables that do not pertain to the selected workload. This will occur if there are more than one `Build` cluster per namespace
+    - In order for `Deliverables` to show up for a given `Workload` they need to have the following labels in both resources:'carto.run/workload-name','app.kubernetes.io/part-of','carto.run/supply-chain-name'
+    - ConfigMap has no conditions and as a result its status is reported as `Unknown`
+    - ConfigWriter shows an error but no error details are displayed.
 
 #### VSCode Extension
 

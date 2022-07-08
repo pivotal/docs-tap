@@ -15,7 +15,7 @@ Before you start, complete all [Getting started prerequisites](../getting-starte
 
 ## <a id="deploy-your-app"></a>Deploy your application
 
-To deploy your application, you must download an accelerator, upload it on your Git repository of choice, and run a CLI command. VMware recommends using the accelerator called `Tanzu-Java-Web-App`.
+To deploy your application, you must download an accelerator, upload it on your Git repository of choice, and run a CLI command. In this example, we use the `Tanzu-Java-Web-App` accelerator.
 
 1. From Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
    navigation bar to see the list of available accelerators.
@@ -24,26 +24,24 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     ![List of accelerators in Tanzu Application Platform GUI](../images/getting-started-tap-gui-1.png)
 
-2. Locate the Tanzu Java Web App accelerator, which is a Spring Boot web app, and click **CHOOSE**.
+1. Locate the Tanzu Java Web App accelerator and click **CHOOSE**.
 
     ![Tile for Tanzu Java Web App Getting Started GUI](../images/getting-started-tap-gui-2.png)
 
-3. In the **Generate Accelerators** dialog box, replace the default value `dev.local` in the **prefix for container image registry** field
+1. In the **Generate Accelerators** dialog box, replace the default value `dev.local` in the **prefix for container image registry** field
    with the registry in the form of `SERVER-NAME/REPO-NAME`.
-   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`.
+   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See [Installing Tanzu Application Platform package and profiles](../install.md.hbs#full-profile).
    Click **NEXT STEP**, verify the provided information, and click **CREATE**.
 
     ![Generate Accelerators prompt](../images/getting-started-tap-gui-3.png)
 
-4. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
+1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
 
     ![Task Activity progress bar](../images/getting-started-tap-gui-4.png)
 
-5. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
+1. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
-6. Ensure you have [set up developer namespaces to use installed packages](../set-up-namespaces.md).
-
-7. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
+1. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
     ```console
     tanzu apps workload create tanzu-java-web-app \
@@ -79,7 +77,7 @@ To deploy your application, you must download an accelerator, upload it on your 
     > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VS Code extension
     to debug and live-update this application.
 
-8. View the build and runtime logs for your app by running the `tail` command:
+1. View the build and runtime logs for your app by running the `tail` command:
 
     ```console
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
@@ -87,7 +85,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
-9. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the following command, and then press **ctrl-click** on the Workload Knative Services URL at the bottom of the command output.
+1. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the following command, and then press **ctrl-click** on the Workload Knative Services URL at the bottom of the command output.
 
     ```console
     tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE

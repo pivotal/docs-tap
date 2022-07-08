@@ -1,6 +1,6 @@
 # Using Grype in offline and air-gapped environments
 
-The `grype` CLI attempts to perform two over the internet calls: one to verify for newer versions of the CLI and another to update the vulnerability database before scanning.
+The `grype` CLI attempts to perform two over the Internet calls: one to verify for newer versions of the CLI and another to update the vulnerability database before scanning.
 
 You must deactivate both of these external calls. For the `grype` CLI to function in an offline or air-gapped environment, the vulnerability database must be hosted within the environment. You must configure the `grype` CLI with the internal URL.
 
@@ -16,9 +16,9 @@ To enable Grype in offline air-gapped environments:
 3. Configure tap-values.yaml to use `package_overlays`
 4. Update Tanzu Application Platform
 
-## Using Grype
+## <a id="use-grype"></a> Using Grype
 
-To use Grype in offline and air-gapped environments, do the following:
+To use Grype in offline and air-gapped environments:
 
 1. Create a ConfigMap that contains the public ca.crt to the file server hosting the Grype database files. Apply this ConfigMap to your developer namespace.
 
@@ -64,9 +64,9 @@ To use Grype in offline and air-gapped environments, do the following:
               name: <CONFIGMAP-NAME> #! name of the configmap created
   ``` 
 
-You can also add more certificates to the ConfigMap created in step 1, to handle connections to a private registry for example, and mount them in the `volumeMounts` section if needed.
+You can also add more certificates to the ConfigMap created earlier, to handle connections to a private registry for example, and mount them in the `volumeMounts` section if needed.
 
-e.g.
+For example:
 
 ```yaml
               #! ...

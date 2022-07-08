@@ -37,6 +37,10 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   endpoints (in our case, HTTP endpoints). Application Live View uses those endpoints to get the
   data from the application and to interact with it.
 
+- **[Application Single Sign-On for VMware Tanzu](app-sso/about.md)**
+
+  Application Single Sign-On enables application users to sign into their identity provider once and be authorized and identified to access any Kubernetes-deployed workload. It is a secure, straightforward, and delightful approach for developers and operators to manage access across all workloads in the enterprise.
+
 - **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based
@@ -270,6 +274,20 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
+  <tr>
+   <td>Application Single Sign-On
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
   <td>Cloud Native Runtimes
    </td>
    <td>&check;
@@ -431,6 +449,20 @@ The following table lists the packages contained in each profile:
    <td>&check;
    </td>
    <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Policy Controller
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
    </td>
    <td>&check;
    </td>
@@ -610,6 +642,204 @@ The following table lists the packages contained in each profile:
 
 <sup>\*</sup> Only one supply chain should be installed at any given time.
 For information on switching from one supply chain to another, see [Add testing and security scanning to your application](getting-started/add-test-and-security.md.hbs).
+
+## <a id='language-support'></a> Language and framework support in Tanzu Application Platform
+
+The following table shows the languages and frameworks that are supported by
+Tanzu Application Platform components.
+
+<table>
+  <tr>
+   <td><strong>Language or Framework</strong>
+   </td>
+   <td><strong>Tanzu Build Service</strong>
+   </td>
+   <td><strong>Runtime Conventions</strong>
+   </td>
+   <td><strong>Tanzu Developer Tooling **</strong>
+   </td>
+   <td><strong>Application Live View for VMware Tanzu</strong>
+   </td>
+   <td><strong>Functions (beta)</strong>
+   </td>
+   <td><strong>Supply Chain Security Tools - Scan & Store ***</strong>
+   </td>
+   <td><strong>Application Accelerators for VMware Tanzu</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Java
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>_n/a_
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Spring Boot
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>_n/a_
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>_n/a_
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>.NET Core
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>_n/a_
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Steeltoe
+   </td>
+   <td>_n/a_
+   </td>
+   <td>
+   </td>
+   <td>_n/a_
+   </td>
+   <td>
+   </td>
+   <td>_n/a_
+   </td>
+   <td>_n/a_
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>NodeJS
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Python
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Golang
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>PHP
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Ruby
+   </td>
+   <td>
+     Users can leverage the open-source Paketo Ruby buildpack for building Ruby applications with Tanzu Build Service
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+</table>
+
+<sup>\**</sup> Tanzu Developer Tooling refers to the developer conventions that enable debugging
+and live update functionality in inner loop.
+
+<sup>\***</sup> Out of the Box Tanzu Application Platform scanning leverages a tool by Anchore called Grype.
+Grype provides standard CVE scanning support for a wide variety of languages.
+However, if you use Tanzu Build Service to build application images using a buildpack
+that produces a Bill of Materials in the Syft format,
+Tanzu Application Platform scanning can provide a more comprehensive scan of the application image.
 
 ## <a id='install'></a> Installing the Tanzu Application Platform
 

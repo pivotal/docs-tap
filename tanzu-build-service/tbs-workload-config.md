@@ -13,16 +13,16 @@ You can configure these build configurations by using a workload.
 
 You can configure build-time service bindings for Tanzu Build Service.
 
-Tanzu Build Service supports using [Service Binding Specification for Kubernetes](https://github.com/k8s-service-bindings/spec) for app builds.
+Tanzu Build Service supports using [Service Binding Specification for Kubernetes](https://github.com/k8s-service-bindings/spec)
+for app builds.
 
 Service binding configuration is specific to the buildpack that is used to build the app.
-For more information about configuring buildpack service bindings, see the
-[VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
-<!-- is there a more specific location in the buildpack docs we should point to? -->
+For more information about configuring buildpack service bindings for the buildpack you are using,
+see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
 
 To configure a service binding for a Tanzu Application Platform workload, follow these steps:
 
-1. Create a YAML file named `service-binding-secret.yaml` for a Secret:
+1. Create a YAML file named `service-binding-secret.yaml` for a Secret as follows:
 
     ```yaml
     apiVersion: v1
@@ -48,7 +48,7 @@ To configure a service binding for a Tanzu Application Platform workload, follow
     kubectl apply -f service-binding-secret.yaml
     ```
 
-3. Create the workload with `buildServiceBindings` configured:
+3. Create the workload with `buildServiceBindings` configured by running:
 
     ```console
     tanzu apps workload create WORKLOAD-NAME \
@@ -65,16 +65,18 @@ that are available at build-time.
 
 You can also configure buildpacks with environment variables.
 Buildpack configuration depends on the specific buildpack being used.
-For more information on buildpacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+For more information about configuring environment variables for the buildpack you are using,
+see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
+
+For example:
 
 ```console
 tanzu apps workload create WORKLOAD-NAME \
- --build-env "ENV_NAME=ENV_VALUE" \
- --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true"
+  --build-env "ENV_NAME=ENV_VALUE" \
+  --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true"
 ```
 
 Where `WORKLOAD-NAME` is the name of the workload you want to configure.
-<!-- what are the placeholders here? -->
 
 ## <a id="service-account"></a> Configure the service account
 
@@ -131,11 +133,11 @@ tanzu apps workload create WORKLOAD-NAME \
 Where:
 
 - `SERVER-NAME` is the host name of the registry server. Examples:
-  - Harbor has the form `"my-harbor.io"`
-  - Docker Hub has the form `"index.docker.io"`
-  - Google Cloud Registry has the form `"gcr.io"`
+  - Harbor has the form `"my-harbor.io"`.
+  - Docker Hub has the form `"index.docker.io"`.
+  - Google Cloud Registry has the form `"gcr.io"`.
 - `REPO-NAME` is where workload images are stored in the registry.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
-  - Harbor has the form `"my-project/supply-chain"`
-  - Docker Hub has the form `"my-dockerhub-user"`
-  - Google Cloud Registry has the form `"my-project/supply-chain"`
+  - Harbor has the form `"my-project/supply-chain"`.
+  - Docker Hub has the form `"my-dockerhub-user"`.
+  - Google Cloud Registry has the form `"my-project/supply-chain"`.

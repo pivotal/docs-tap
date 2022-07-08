@@ -89,32 +89,6 @@ To set up a service:
         kubectl apply -f resource-claims-rmq.yaml
         ```
 
-    1. In a file named `rabbitmqcluster-app-operator-reader.yaml`, define RBAC
-    rules that permit the users of the cluster to interact with the new APIs.
-    For example, to permit application operators to get, list, and watch for `RabbitmqCluster` service instances,
-    apply the following RBAC `ClusterRole`, labeled so that the rules are aggregated to the `app-operator` role:
-
-        ```yaml
-        # rabbitmqcluster-app-operator-reader.yaml
-        ---
-        apiVersion: rbac.authorization.k8s.io/v1
-        kind: ClusterRole
-        metadata:
-          name: rabbitmqcluster-app-operator-reader
-          labels:
-            apps.tanzu.vmware.com/aggregate-to-app-operator-cluster-access: "true"
-        rules:
-        - apiGroups: ["rabbitmq.com"]
-          resources: ["rabbitmqclusters"]
-          verbs: ["get", "list", "watch"]
-        ```
-
-    1. Apply `rabbitmqcluster-app-operator-reader.yaml` by running:
-
-        ```console
-        kubectl apply -f rabbitmqcluster-app-operator-reader.yaml
-        ```
-
 1. Make the new API seen as claimable to application operators.
 
     1. In a file named `rabbitmqcluster-clusterinstanceclass.yaml`, create a `ClusterInstanceClass`

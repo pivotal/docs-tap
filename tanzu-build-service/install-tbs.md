@@ -3,8 +3,8 @@
 This topic describes how to install Tanzu Build Service from the Tanzu Application Platform
 package repository by using the Tanzu CLI.
 
-Use the instructions on this page if you do not want to use a Tanzu Application Platform
-profile that includes Tanzu Build Service.
+Use this topic if you do not want to use a Tanzu Application Platform profile that includes
+Tanzu Build Service.
 The Full, Iterate, and Build profiles include Tanzu Build Service.
 For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
 
@@ -20,7 +20,7 @@ Before installing Tanzu Build Service:
 For more information, see [Prerequisites](../prerequisites.md).
 
 - You must have access to a Docker registry that Tanzu Build Service can use to create builder images.
-Approximately 10&nbsp;GB of registry space is required when using the full descriptor.
+Approximately 10&nbsp;GB of registry space is required when using the `full` dependencies.
 
 - Your Docker registry must be accessible with user name and password credentials.
 
@@ -28,7 +28,7 @@ Approximately 10&nbsp;GB of registry space is required when using the full descr
 
 To install Tanzu Build Service by using the Tanzu CLI:
 
-1. List version information for the package by running:
+1. Get the latest version of the Tanzu Build Service package by running:
 
     ```console
     tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
@@ -37,48 +37,65 @@ To install Tanzu Build Service by using the Tanzu CLI:
 1. Gather the values schema by running:
 
     ```console
-    tanzu package available get buildservice.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get buildservice.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
+
+    Where `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
 
 1. Create a `tbs-values.yaml` file using the following template:
 
     ```yaml
     ---
-    kp_default_repository: "KP-DEFAULT-REPO"
-    kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-    kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+    kp_default_repository: "REPO-NAME"
+    kp_default_repository_username: "REPO-USERNAME"
+    kp_default_repository_password: "REPO-PASSWORD"
     ```
 
     Where:
 
-    - `KP-DEFAULT-REPO` is a writable repository in your registry.
+    - `REPO-NAME` is a writable repository in your registry.
     Tanzu Build Service dependencies are written to this location. Examples:
       - Harbor has the form `"my-harbor.io/my-project/build-service"`.
-      - Dockerhub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
+      - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
-    - `KP-DEFAULT-REPO-USERNAME` is the name of the user who can write to `KP-DEFAULT-REPO`.
-    You can write to this location with this credential.
-      - For Google Cloud Registry, use `_json_key`.
-    - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`.
-    You can write to this location with this credential.
-    You can also configure this credential by using a Secret reference.
-    For more information, see [Installation using Secret References for registry credentials](#install-secret-refs). <!-- can you also use AWS IAM Auth? YEA >
-      - For Google Cloud Registry, use the contents of the service account JSON file.
+    - `REPO-USERNAME` and `REPO-PASSWORD` are the user name
+    and password for the user that can write to `REPO-NAME`.
+    You can write to this location with these credentials.
+    For Google Cloud Registry, use `_json_key` as the user name and the contents
+    of the service account JSON file for the password.
 
-     >**Note:** TBS is bootstrapped with a set of dependencies.
+        >**Note:** If you do not want to use plaintext for these credentials, you can configure them
+        by using a Secret reference or by using AWS IAM authentication.
+        >For more information, see [Use Secret References for registry credentials](#install-secret-refs)
+        >or [Use AWS IAM authentication for registry credentials](#tbs-tcli-install-ecr).
 
-1. Optional add full deps to the values file
+1. (Optional) Tanzu Build Service is bootstrapped with the `lite` set of dependencies.
+To configure `full` dependencies, add the key-value pair `exclude_dependencies: true`
+to your `tbs-values.yaml` file. For example:
 
-1. Install the package by running:
+    ```yaml
+    ---
+    kp_default_repository: "REPO-NAME"
+    kp_default_repository_username: "REPO-USERNAME"
+    kp_default_repository_password: "REPO-PASSWORD"
+    exclude_dependencies: true
+    ```
+
+    For more information about the differences between `full` and `lite` dependencies, see
+    [About lite and full dependencies](dependencies.md#lite-vs-full).
+
+1. Install the Tanzu Build Service package by running:
 
     ```console
-    tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f tbs-values.yaml
+    tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION -n tap-install -f tbs-values.yaml
     ```
+
+    Where `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
 
     For example:
 
     ```console
-    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f tbs-values.yaml
+    $ tanzu package install tbs -p buildservice.tanzu.vmware.com -v VERSION -n tap-install -f tbs-values.yaml
 
     | Installing package 'buildservice.tanzu.vmware.com'
     | Getting namespace 'tap-install'
@@ -99,177 +116,195 @@ To install Tanzu Build Service by using the Tanzu CLI:
     tanzu package installed get tbs -n tap-install
     ```
 
-1. If you installed full deps see section below.
+1. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
+by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
-### <a id='tbs-tcli-install-ecr'></a> Install Tanzu Build Service using AWS IAM Authentication
+## <a id='alternative-creds'></a> (Optional) Alternatives to plaintext registry credentials
 
-Tanzu Build Service supports using AWS IAM roles to authenticate with
-Amazon Elastic Container Registry (ECR) on Amazon Elastic Kubernetes Service (EKS) clusters.
+Tanzu Build Service requires credentials for the `kp_default_repository` and the Tanzu Network registry.
 
-1. Configure an AWS IAM role that has read and write access to the
-`INSTALL_REGISTRY_HOSTNAME/TARGET-REPOSITORY` registry location to be used for installation.
+You can apply them directly in-line in plaintext in the `tbs-values.yaml` or `tap-values.yaml`
+configuration by using the `kp_default_repository_username`, `kp_default_repository_password`, `tanzunet_username`,
+and `tanzunet_password` fields.
 
-1. Follow the standard Tanzu Application Platform installation documentation
-<!-- can this be done after following the TBS install procedure above? -->
-until the configuration of `tap-values.yaml` and use the following `buildservice` config: <!-- why is this in the tap-values.yaml not the tbs-values.yaml? -- use tbs-values but note about tap-values.yaml -->
+If you do not want credentials saved in plaintext, you can use existing Secrets or IAM roles by using
+[Secret references](#install-secret-refs) or [AWS IAM authentication](#tbs-tcli-install-ecr)
+in your `tbs-values.yaml` or `tap-values.yaml`.
+
+### <a id='install-secret-refs'></a> Use Secret references for registry credentials
+
+To use Secret references:
+
+1. Create a Secret of type `kubernetes.io/dockerconfigjson` containing
+credentials for the writable repository in your registry (`kp_default_repository`)
+and the VMware Tanzu Network registry.
+
+1. Use the following alternative configuration for `tbs-values.yaml`:
+
+    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Service
+    >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
-    buildservice:
-      kp_default_repository: "KP-DEFAULT-REPO"
-      kp_default_repository_aws_iam_role_arn: "IAM-ROLE-ARN"
+    ...
+    kp_default_repository: "REPO-NAME"
+    kp_default_repository_secret:
+      name: "REPO-SECRET-NAME"
+      namespace: "REPO-SECRET-NAMESPACE"
+    tanzunet_secret:
+      name: "TANZU-NET-SECRET-NAME"
+      namespace: "TANZU-NET-SECRET-NAMESPACE"
+    ...
     ```
 
     Where:
 
-    - `KP-DEFAULT-REPO` is a writable repository in your registry.
+    - `REPO-NAME` is a writable repository in your registry.
+    Tanzu Build Service dependencies are written to this location. Examples:
+      - Harbor has the form `"my-harbor.io/my-project/build-service"`
+      - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`
+      - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`
+    - `REPO-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson`
+    Secret containing credentials for `REPO-NAME`. You can write to this location with this credential.
+    - `REPO-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson`
+    Secret containing credentials for `REPO-NAME`. You can write to this location with this credential.
+    - `TANZU-NET-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson`
+    Secret containing credentials for VMware Tanzu Network registry.
+    - `TANZU-NET-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson`
+    Secret containing credentials for the VMware Tanzu Network registry.
+
+### <a id='tbs-tcli-install-ecr'></a> Use AWS IAM authentication for registry credentials
+
+Tanzu Build Service supports using AWS IAM roles to authenticate with
+Amazon Elastic Container Registry (ECR) on Amazon Elastic Kubernetes Service (EKS) clusters.
+
+To use AWS IAM authentication:
+
+1. Configure an AWS IAM role that has read and write access to the
+`INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY` registry location to be used for installation.
+
+1. Use the following alternative configuration for `tbs-values.yaml`:
+
+    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Service
+    >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
+
+    ```yaml
+    ...
+      kp_default_repository: "REPO-NAME"
+      kp_default_repository_aws_iam_role_arn: "IAM-ROLE-ARN"
+    ...
+    ```
+
+    Where:
+
+    - `REPO-NAME` is a writable repository in your registry.
     Tanzu Build Service dependencies are written to this location.
     - `IAM-ROLE-ARN` is the AWS IAM role ARN for the role configured in the previous step.
     For example, `arn:aws:iam::xyz:role/my-install-role`.
 
 1. The developer namespace requires configuration for Tanzu Application Service
-to use AWS IAM authentication for ECR. Configure an AWS IAM role that has read and write access to the registry location
+to use AWS IAM authentication for ECR.
+Configure an AWS IAM role that has read and write access to the registry location
 where workload images will be stored.
 
-1. Using the supply chain service account, `default` if unset, add an annotation
-including the role ARN configured in step 1<!-- |earlier| or |later| is preferred instead of referring to the step number: numbers can change with edits. -->.
+1. Using the supply chain service account, add an annotation including the role
+ARN configured earlier by running:
 
     ```console
     kubectl annotate serviceaccount -n DEVELOPER-NAMESPACE SERVICE-ACCOUNT-NAME \
       eks.amazonaws.com/role-arn=IAM-ROLE-ARN
     ```
 
-Where:
+    Where:
 
-<!-- are <developer-namespace> <service-account-name>  also placeholders? -->
-- `IAM-ROLE-ARN` is the AWS IAM role ARN for the role configured in step.
-For example, `arn:aws:iam::xyz:role/my-developer-role`.
+    - `DEVELOPER-NAMESPACE` is ... <!-- what should this be? -->
+    - `SERVICE-ACCOUNT-NAME` is the supply chain service account. This is `default` if unset.
+    - `IAM-ROLE-ARN` is the AWS IAM role ARN for the role configured earlier.
+    For example, `arn:aws:iam::xyz:role/my-developer-role`.
 
-## <a id="tap-install-full-deps"></a> (Optional) Install Tanzu Build Service with full dependencies
+## <a id="tap-install-full-deps"></a> Install full dependencies
 
-<!-- consider location for installing full deps - maybe move to dependencies page.
-Think about the order we want users to follow. -->
+If you configured `full` dependencies in your `tbs-values.yaml` file, you must
+install the `full` dependencies package.
 
-By default, Tanzu Build Service is installed with `lite` dependencies.
-Full dependencies must be installed separately.
-For a comparison of lite and full dependencies, see [Dependency comparison](dependencies.html#lite-vs-full-table).
+For a more information about `lite` and `full` dependencies, see [About lite and full dependencies](dependencies.md#lite-vs-full).
 
-To install full Tanzu Build Service dependencies:
+To install `full` Tanzu Build Service dependencies:
 
-1. Follow the standard Tanzu Application Platform profile instructions
-<!-- link? At what point can users follow this procedure? can they update this after installing TAP?
-Could this also be done after following the TBS install procedure above? -->
-and when configuring the `tap-values.yaml`,
-use the following `buildservice` settings: <!-- why is this in the tap-values.yaml not the tbs-values.yaml? -->
+1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
+ to your `tbs-values.yaml` file, for example:
+
+    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Service
+    >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
-    buildservice:
-      kp_default_repository: "KP-DEFAULT-REPO"
-      kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-      kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+    ...
+      kp_default_repository: "REPO-NAME"
+      kp_default_repository_username: "REPO-USERNAME"
+      kp_default_repository_password: "REPO-PASSWORD"
       exclude_dependencies: true
+    ...
     ```
 
-1. Get the latest version of the buildservice package by running:
+1. Get the latest version of the Tanzu Build Service package by running:
 
     ```console
     tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Relocate the Tanzu Build Service full dependencies package repository using the
-version from the previous step.
-This should<!-- Favour certainty, agency, and imperatives: |the app now works| over |the app should now work|. |VMware recommends| over |you should|. If an imperative, |do this| over |you should do this|.   --> be a similar command to the one used during Tanzu Application Platform install:
+1. Relocate the Tanzu Build Service `full` dependencies package repository by running:
 
     ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
+    --to-repo INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/tbs-full-deps
     ```
 
     Where:
 
-    <!-- are these variables INSTALL_REGISTRY_HOSTNAME and VERSION set somewhere?
-    should they be placeholders that users add manually? -->
-    - `TARGET-REPOSITORY` is
+    - `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
+    - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
+    - `TARGET-REPOSITORY` is ...
 
-4. Add the TBS full dependencies package repository using the same version used in the previous step<!-- Write |earlier in this procedure| or, if referring to a separate procedure, link to it. -->:
+1. Add the TBS `full` dependencies package repository by running:
 
     ```console
     tanzu package repository add tbs-full-deps-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps:${VERSION} \
+      --url INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/tbs-full-deps:VERSION \
       --namespace tap-install
     ```
 
     Where:
 
-    <!-- are these variables INSTALL_REGISTRY_HOSTNAME and VERSION set somewhere?
-    should they be placeholders that users add manually? -->
-    - `TARGET-REPOSITORY` is
+    - `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
+    - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
+    - `TARGET-REPOSITORY` is ...
 
-5. Install the Full Dependencies package (no `values.yaml` needed):
+1. Install the `full` dependencies package by running:
 
     ```console
-    tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v $VERSION -n tap-install
+    tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
     ```
 
-    <!-- is the variable VERSION set somewhere?
-    should it be a placeholder that users add manually? -->
+    Where `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
 
-## <a id='install-secret-refs'></a> Installation using Secret references for registry credentials
+## <a id="auto-updates-config"></a> (Optional) Configure automatic dependency updates
 
-<!-- can this be used with airgapped install -->
+>**Important:** The automatic updates feature is being deprecated.
+>The recommended way to patch dependencies is by upgrading Tanzu Application Platform
+>to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
 
-Tanzu Build Service requires credentials for the `kp_default_repository` and the Tanzu Network registry.
+You can configure Tanzu Build Service to update dependencies in the background as they are released.
+This enables workloads to keep up to date automatically.
+For more information about automatic dependency updates, see [About automatic dependency updates (deprecated)](dependencies.md#deprecated-auto-updates).
 
-You can apply them in the `values.yaml` configuration directly in-line by using the
-`kp_default_repository_username` `kp_default_repository_password` and
-`tanzunet_username` `tanzunet_password` fields.
+To configure automatic dependency updates, add the following to your `tbs-values.yaml`:
 
-If you do not want credentials saved in ConfigMaps in plaintext, you can use Secret references in the
-`values.yaml` configuration to use existing Secrets.
-
-To use Secret references you must create Secrets of type `kubernetes.io/dockerconfigjson` containing
-credentials for `kp_default_repository` and the VMware Tanzu Network registry.
-
-Use the following alternative configuration for `values.yaml`: <!-- tbs-values.yaml? tap-values.yaml? -->
-
-```yaml
----
-kp_default_repository: "KP-DEFAULT-REPO"
-kp_default_repository_secret:
-  name: "KP-DEFAULT-REPO-SECRET-NAME"
-  namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
-tanzunet_secret:
-  name: "TANZUNET-SECRET-NAME"
-  namespace: "TANZUNET-SECRET-NAMESPACE"
-enable_automatic_dependency_updates: AUTOMATIC-UPDATES
-```
-
-Where:
-
-- `KP-DEFAULT-REPO` is a writable repository in your registry.
-Tanzu Build Service dependencies are written to this location. Examples:
-  - Harbor has the form `"my-harbor.io/my-project/build-service"`
-  - Dockerhub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`
-  - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`
-- `KP-DEFAULT-REPO-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson`
-Secret containing credentials for `KP-DEFAULT-REPO`. You can write to this location with this credential.
-- `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson`
-Secret containing credentials for `KP-DEFAULT-REPO`. You can write to this location with this credential.
-- `TANZUNET-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson`
-Secret containing credentials for VMware Tanzu Network registry.
-- `TANZUNET-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson`
-Secret containing credentials for the VMware Tanzu Network registry.
-- `AUTOMATIC-UPDATES` is whether to enable automatic dependency updates.
-The options for this value are `true` or `false`.
-
-## <a id="auto-updates-config"></a> Enable automatic dependency updates
-
-To enable automatic dependency updates, update your values file
-to include the key-value pair `enable_automatic_dependency_updates: true`
-under the `buildservice` section. For example: <!--maybe put tap option in note -->
+>**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Service
+>profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
 ```yaml
 ...
-  tanzunet_username: TANZUNET-USERNAME
-  tanzunet_password: TANZUNET-PASSWORD
+  tanzunet_username: TANZU-NET-USERNAME
+  tanzunet_password: TANZU-NET-PASSWORD
   descriptor_name: DESCRIPTOR-NAME
   enable_automatic_dependency_updates: true
 ...
@@ -277,16 +312,12 @@ under the `buildservice` section. For example: <!--maybe put tap option in note 
 
 Where:
 
-- `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository.
-This path must be writable. For example:
-  - Harbor: `harbor.io/my-project/build-service`.
-  - Artifactory: `artifactory.com/my-project/build-service`.
-- `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
-- `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password to log in to VMware Tanzu Network.
+- `TANZU-NET-USERNAME` and `TANZU-NET-PASSWORD` are the email address and password
+to log in to VMware Tanzu Network.
 You can also configure this credential by using a secret reference.
 For more information, see [Install Tanzu Build Service](install-tbs.md#install-secret-refs).
 - `DESCRIPTOR-NAME` is the name of the descriptor to import.
-For more information about descriptor options, see [About Descriptors](#descriptors).
+For more information, see [Descriptors](#descriptors).
 Available options are:
   - `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
   - `full` is optimized to speed up builds and includes dependencies for all supported workload types.
