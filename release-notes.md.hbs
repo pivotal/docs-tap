@@ -86,12 +86,17 @@ This release includes the following changes, listed by component and area.
 **NOTICE:** The Grype Scanner `ScanTemplate`s shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are now deprecated and will no longer be supported in future releases. Refer to [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 
 #### Supply Chain Security Tools - Sign
-- Feature 1
-- Feature 2
+- Update cosign to 1.9.0
+- Fix resources without namespace defined causing errors
+
+**NOTICE:** Supply Chain Security Tools - Sign is being deprecated and being replaced
+by Supply Chain Security Tools - Policy Controller.
+Supply Chain Security Tools - Sign will longer be supported after
+Tanzu Application Platform v1.4.0. See [Migration From Supply Chain Security Tools - Sign](scst-policy/migration.md)
+for migration instructions.
 
 #### Supply Chain Security Tools - Policy Controller
-- Feature 1
-- Feature 2
+- Initial release of Policy Controller which uses Sigstore Policy Controller
 
 #### Supply Chain Security Tools - Store
 
