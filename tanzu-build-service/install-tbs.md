@@ -119,7 +119,7 @@ to your `tbs-values.yaml` file. For example:
 1. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
 by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
-## <a id='alternative-creds'></a> (Optional) Use an alternative to plaintext registry credentials
+## <a id='alternative-creds'></a> (Optional) Alternatives to plaintext registry credentials
 
 Tanzu Build Service requires credentials for the `kp_default_repository` and the Tanzu Network registry.
 
