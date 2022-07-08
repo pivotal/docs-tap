@@ -656,13 +656,13 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Runtime Conventions</strong>
    </td>
-   <td><strong>Tanzu Developer tooling **</strong>
+   <td><strong>Tanzu Developer Tooling **</strong>
    </td>
    <td><strong>Application Live View for VMware Tanzu</strong>
    </td>
    <td><strong>Functions (beta)</strong>
    </td>
-   <td><strong>Supply Chain Security Tools - Scan & Store using Grype ***</strong>
+   <td><strong>Supply Chain Security Tools - Scan & Store ***</strong>
    </td>
    <td><strong>Application Accelerators for VMware Tanzu</strong>
    </td>
@@ -815,7 +815,7 @@ Tanzu Application Platform components.
    <td>Ruby
    </td>
    <td>
-     Users can currently leverage the  open-source Paketo Ruby buildpack for building Ruby application with Tanzu Build Service
+     Users can leverage the  open-source Paketo Ruby buildpack for building Ruby application with Tanzu Build Service
    </td>
    <td>
    </td>
@@ -832,9 +832,14 @@ Tanzu Application Platform components.
   </tr>
 </table>
 
-<sup>\**</sup> Tanzu Developer Tooling - Tanzu Developer Tooling refers to the Developer Conventions that enables debugging and Live update functionality in inner loop
+<sup>\**</sup> Tanzu Developer Tooling refers to the developer conventions that enable debugging
+and live update functionality in inner loop.
 
-<sup>\***</sup> Extended Scanning Coverage - Supply Chain Security Tools - Scan & Store using Anchore Grype - Out-of-the-box TAP scanning currently leverages a tool by Anchore called Grype, which provides standard CVE scanning support for a wide variety of languages. However, if TAP users use Tanzu Build Service to build their application images and the Buildpack they leverage produces a Bill of Materials in a particular format (Syft), then TAP scanning can provide a fuller and more comprehensive scan of the user’s application image.
+<sup>\***</sup> Out of the Box Tanzu Application Platform scanning leverages a tool by Anchore called Grype.
+Grype provides standard CVE scanning support for a wide variety of languages.
+However, if Tanzu Application Platform users use Tanzu Build Service to build their
+application images and the buildpack they use produces a Bill of Materials in the Syft format,
+Tanzu Application Platform scanning can provide a more comprehensive scan of the user’s application image.
 
 ## <a id='install'></a> Installing the Tanzu Application Platform
 
