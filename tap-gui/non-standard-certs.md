@@ -12,13 +12,13 @@ The following is an example overlay to disable TLS. It assumes that your TAP GUI
 #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}),expects="1+"
 ---
 spec:
-template:
+  template:
     spec:
-    containers:
+      containers:
         #@overlay/match by=overlay.all,expects="1+"
         #@overlay/match-child-defaults missing_ok=True
         - env:
-        - name: NODE_TLS_REJECT_UNAUTHORIZED
+          - name: NODE_TLS_REJECT_UNAUTHORIZED
             value: "0"
 ```
 
@@ -37,11 +37,11 @@ If you would like to keep verifications on, you can add a custom CA and mount it
     apiVersion: v1
     kind: Secret
     metadata:
-        name: tap-gui-extra-certs
-        namespace: tap-gui
+      name: tap-gui-extra-certs
+      namespace: tap-gui
     type: Opaque
     data:
-        tap-gui-certs.crt: "<encoded list of certs>" 
+      tap-gui-certs.crt: "<encoded list of certs>"
     ```
     Please adjust metadata and naming from this example accordingly.
 
@@ -52,27 +52,27 @@ If you would like to keep verifications on, you can add a custom CA and mount it
 
 1. To set the environment variable NODE_EXTRA_CA_CERTS, you can utilize the `package_overlays` key in the TAP values-file. Instructions on how to do this are [here](../customize-package-installation.md).
 
-    The following is an example overlay to add a custom CA. It assumes that your TAP GUI instance is deployed in the namespace: tap-gui. Please adjust accordingly.
+    The following is an example overlay to add a custom CA. It assumes that your TAP GUI instance is deployed in the namespace: tap-gui. Please adjust all naming accordingly.
     ```yaml
     #@ load("@ytt:overlay", "overlay")
 
     #@overlay/match by=overlay.subset({"kind": "Deployment", "metadata": {"name": "server", "namespace": "tap-gui"}}), expects="1+"
     ---
     spec:
-    template:
+      template:
         spec:
-        containers:
+          containers:
             #@overlay/match by=overlay.subset({"name": "backstage"}),expects="1+"
             #@overlay/match-child-defaults missing_ok=True
             - env:
                 - name: NODE_EXTRA_CA_CERTS
-                value: /etc/tap-gui-certs/tap-gui-certs.crt
-            volumeMounts:
+                  value: /etc/tap-gui-certs/tap-gui-certs.crt
+              volumeMounts:
                 - name: tap-gui-extra-certs
-                mountPath: /etc/tap-gui-certs
-                readOnly: true
-        volumes:
-            - name: tap-gui-extra-certs
-            secret:
-                secretName: tap-gui-extra-certs
+                  mountPath: /etc/tap-gui-certs
+                  readOnly: true
+            volumes:
+              - name: tap-gui-extra-certs
+                secret:
+                  secretName: tap-gui-extra-certs
     ```
