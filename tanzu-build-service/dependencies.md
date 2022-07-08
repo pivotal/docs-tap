@@ -62,6 +62,8 @@ However, it does not support all workload types.
 For example, `lite` dependencies do not contain the PHP buildpack and
 cannot be used to build PHP workloads.
 
+#### <a id="lite-stacks"></a> Lite dependencies: stacks
+
 The `lite` dependencies contain the following stacks:
 
 - `base`
@@ -69,6 +71,8 @@ The `lite` dependencies contain the following stacks:
 
 For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
 in the VMware Tanzu Buildpacks documentation.
+
+#### <a id="lite-buildpacks"></a> Lite dependencies: buildpacks
 
 The `lite` dependencies contain the following buildpacks:
 
@@ -97,6 +101,8 @@ The `full` dependencies are not installed with Tanzu Build Service by default,
 you must install them.
 For instructions for installing `full` dependencies, see [Install Tanzu Build Service with full dependencies](install-tbs.html#tap-install-full-deps).
 
+#### <a id="full-stacks"></a> Full dependencies: stacks
+
 The `full` dependencies contain the following stacks, which support different use cases:
 
 - `base`
@@ -105,6 +111,8 @@ The `full` dependencies contain the following stacks, which support different us
 - `tiny`
 
 For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html).
+
+#### <a id="full-buildpacks"></a> Full dependencies: buildpacks
 
 The `full` dependencies contain the following buildpacks:
 
