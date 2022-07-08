@@ -643,6 +643,199 @@ The following table lists the packages contained in each profile:
 <sup>\*</sup> Only one supply chain should be installed at any given time.
 For information on switching from one supply chain to another, see [Add testing and security scanning to your application](getting-started/add-test-and-security.md.hbs).
 
+## <a id='language-support'></a> Language and framework support in Tanzu Application Platform
+
+The following table shows the languages and frameworks that are supported by
+Tanzu Application Platform components.
+
+<table>
+  <tr>
+   <td><strong>Language or Framework</strong>
+   </td>
+   <td><strong>Tanzu Build Service</strong>
+   </td>
+   <td><strong>Runtime Conventions</strong>
+   </td>
+   <td><strong>Tanzu Developer tooling **</strong>
+   </td>
+   <td><strong>Application Live View for VMware Tanzu</strong>
+   </td>
+   <td><strong>Functions (beta)</strong>
+   </td>
+   <td><strong>Supply Chain Security Tools - Scan & Store using Grype ***</strong>
+   </td>
+   <td><strong>Application Accelerators for VMware Tanzu</strong>
+   </td>
+  </tr>
+  <tr>
+   <td>Java
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>_n/a_
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>Spring Boot
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>_n/a_
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>_n/a_
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>.NET Core
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>_n/a_
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Steeltoe
+   </td>
+   <td>_n/a_
+   </td>
+   <td>
+   </td>
+   <td>_n/a_
+   </td>
+   <td>
+   </td>
+   <td>_n/a_
+   </td>
+   <td>_n/a_
+   </td>
+   <td>&check;
+   </td>
+  </tr>
+  <tr>
+   <td>NodeJS
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Python
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Golang
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>PHP
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Ruby
+   </td>
+   <td>
+     Users can currently leverage the  open-source Paketo Ruby buildpack for building Ruby application with Tanzu Build Service
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+</table>
+
+<sup>\**</sup> Tanzu Developer Tooling - Tanzu Developer Tooling refers to the Developer Conventions that enables debugging and Live update functionality in inner loop
+
+<sup>\***</sup> Extended Scanning Coverage - Supply Chain Security Tools - Scan & Store using Anchore Grype - Out-of-the-box TAP scanning currently leverages a tool by Anchore called Grype, which provides standard CVE scanning support for a wide variety of languages. However, if TAP users use Tanzu Build Service to build their application images and the Buildpack they leverage produces a Bill of Materials in a particular format (Syft), then TAP scanning can provide a fuller and more comprehensive scan of the user’s application image.
+
 ## <a id='install'></a> Installing the Tanzu Application Platform
 
 To install the Tanzu Application Platform profiles, see [Installing the Tanzu Application Platform package and profiles](install.md.hbs).
