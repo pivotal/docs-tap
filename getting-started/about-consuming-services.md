@@ -1,7 +1,7 @@
 # About consuming services on Tanzu Application Platform
 
 As part of Tanzu Application Platform, you can work with backing services such as
-RabbitMQ, PostgreSQL, and MySQL. Binding application workloads to service instances
+RabbitMQ, PostgreSQL, and MySQL amongst others. Binding application workloads to service instances
 is the most common use of services.
 
 ## <a id="stk-concepts"></a> Key concepts
@@ -12,7 +12,7 @@ This section provides a brief overview of each of these key concepts.
 
 ### <a id="service-instances"></a>Service instances
 
-A **service instance** is a logical grouping of one or more Kubernetes resources that together expose a known capability through a well-defined interface. For example, a theoretical "MySQL" service instance might consist of a resource and a `MySQLDatabase` and a `MySQLUser` resource. When considering compatibility of service instances for Tanzu Application Platform, one of the resources of a service instance must adhere to the [Service Binding for Kubernetes](https://servicebinding.io/) specification.
+A **service instance** is a logical grouping of one or more Kubernetes resources that together expose a known capability through a well-defined interface. For example, a theoretical "MySQL" service instance might consist of a `MySQLDatabase` and a `MySQLUser` resource. When considering compatibility of service instances for Tanzu Application Platform, one of the resources of a service instance must adhere to the [Service Binding for Kubernetes](https://servicebinding.io/) specification.
 
 ### <a id="service-bindings"></a>Service bindings
 
@@ -22,12 +22,12 @@ Tanzu Application Platform uses a standard named [Service Binding for Kubernetes
 ### <a id="resource-claims"></a>Resource claims
 
 **Resource claims** are inspired in part by Persistent Volume Claims. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/storage/persistent-volumes/).
-Resource claims provide a mechanism for users to "claim" service instance resources
+Resource claims provide a mechanism for users to "claim" service instances
 on a cluster, while also decoupling the life cycle of application workloads and service instances.
 
 ## <a id="stk-available-services"></a> Services you can use with Tanzu Application Platform
 
-The following list of Kubernetes operators expose APIs that integrate well with Tanzu Application Platform:
+The following list of Kubernetes operators expose APIs that integrate well with Tanzu Application Platform out of the box:
 
 1. RabbitMQ Cluster Operator for Kubernetes. For more information, see the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html).
 1. [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html).
@@ -37,7 +37,7 @@ Compatibility of a service with Tanzu Application Platform ranges on a scale
 between fully compatible and incompatible. The minimum requirement for compatibility is that there must be a declarative,
 Kubernetes-based API on which at least one API resource type adheres to the
 [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service)
-duck type defined by the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec) on GitHub.
+duck type defined by the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec).
 This duck type includes any resource type with the following schema:
 
 ```yaml
@@ -53,6 +53,13 @@ Typically, APIs that include these resource types are installed onto the Tanzu A
 cluster as Kubernetes operators.
 These Kubernetes operators provide custom resource definitions (CRDs) and corresponding controllers to reconcile
 the resources of the CRDs, as is the case with the three Kubernetes operators listed earlier.
+
+For services that do not provide a resource adhering to the Service Binding Specification for Kubernetes, it may still
+be possible to provide configurations allowing such services to integrate with Tanzu Application Platform. See the following
+for examples of how to do this for Amazon AWS RDS.
+
+* [Consuming AWS RDS on Tanzu Application Platform (TAP) with AWS Controllers for Kubernetes (ACK)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html)
+* [Consuming AWS RDS on Tanzu Application Platform (TAP) with Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html)
 
 ## <a id="stk-user-roles"></a> User roles and responsibilities
 
