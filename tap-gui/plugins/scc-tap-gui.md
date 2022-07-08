@@ -49,6 +49,8 @@ To enable CVE scan results:
 
     Where `ACCESS-TOKEN` is the token you obtained after creating a read-only service account.
 
+## <a id="view-approvals"></a> Enable View Approvals 
+To enable the supply chain graph to show **View Approvals** follow the instructions on setting up GitOps and then Pull Request [here](../../scc/gitops-vs-regops.md)
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 
@@ -84,7 +86,11 @@ Here is a sample result of the Image Scan stage, using Grype - only available in
 
 When a workload is deployed to a cluster that has the `deliverable` package installed, a new section
 appears in the supply chain that shows **Pull Config** and **Delivery**.
-A box surrounds this section and shows the name of the cluster at the top.
-This indicates which clusters the config has been deployed to.
 
-![Screenshot of details of the Pull Config stage.](images/pull-config.png)
+![Screen Shot 2022-07-07 at 1 19 19 PM](https://user-images.githubusercontent.com/94395371/177854611-f6082025-1882-4405-acd2-a86ee76ad3c9.png)
+
+When you have a `Pull Request` configured in your environment, you will be able to access the merge request from within the supply chain by using the **Approve a Request** button that is displayed when **View Approvals** has been clicked on in the supply chain graph.
+
+In the example below, the merge request was approved, which lead to a **Pull Config** and **Delivery** to be shown in the supply chain graph.
+
+![Screen Shot 2022-07-06 at 2 04 38 PM](https://user-images.githubusercontent.com/94395371/177854268-ffdd1c35-ec23-44f6-a005-8c4b2671192b.png)

@@ -35,6 +35,8 @@ that you plan to create the `Workload` in:
     kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
     ```
 
+    >**Note:** If you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) instead of secrets, this step is not required. You can specify the Role ARN in the next step. 
+
 2. Add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace by running:
 
     ```console
@@ -83,6 +85,19 @@ that you plan to create the `Workload` in:
       - kind: ServiceAccount
         name: default
     EOF
+    ```
+
+    >**Note:** If you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html), you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret. Your service account entry will look like the following:
+
+    ```
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: default
+      annotations:
+        eks.amazonaws.com/role-arn: <Role ARN>
+    imagePullSecrets:
+      - name: tap-registry
     ```
 
 3. Perform one of the following actions to give developers namespace-level access and view access to appropriate cluster-level resources:
@@ -192,4 +207,10 @@ that you plan to create the `Workload` in:
 
 ## <a id='next-steps'></a>Next steps
 
+For online installation:
+
 - [Installing Tanzu Developer Tools for VSCode](vscode-extension/installation.html)
+
+For air-gapped installation:
+
+- [Deploy your first air-gapped workload (beta)](getting-started/air-gap-workload.html)

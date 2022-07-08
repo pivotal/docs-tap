@@ -11,4 +11,5 @@
         - [Workload tail](command-reference/tanzu-apps-workload-tail.md)
 
 - [Cluster supply chain](command-reference/tanzu-apps-cluster-supply-chain.md)
+    - [Get cluster supply chain](command-reference/tanzu-apps-cluster-supply-chain-get.md)
     - [List cluster supply chain](command-reference/tanzu-apps-cluster-supply-chain-list.md)

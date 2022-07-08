@@ -55,6 +55,22 @@ spec:
         tag: tap-1.1
 ```
 
+To create a workload from a file like the one just shown, run:
+
+```console
+tanzu apps workload create -f my-workload-file.yaml
+```
+
+Another way to create a workload from `yaml` is passing the definition through `stdin`. For example, run:
+
+```console
+tanzu apps workload create -f - --yes
+```
+
+The console will remain waiting for some input, and the content with a valid `yaml` definition for a workload can be either written or pasted, then press `ctrl`+D three times to start workload creation. This can also be done with `workload update` and `workload apply` commands.
+
+**Note**: to pass workload through `stdin`, `--yes` flag is needed. If not used, command will fail.
+
 ## <a id='autocompletion'></a> Autocompletion
 
 To enable command autocompletion, the Tanzu CLI offers the `tanzu completion` command.

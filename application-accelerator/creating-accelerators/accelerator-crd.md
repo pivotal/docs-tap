@@ -4,7 +4,7 @@ The `Accelerator` custom resource definition (CRD) defines any accelerator resou
 
 The `Fragment` custom resource definition (CRD) defines any accelerator fragment resources to be made available to the Application Accelerator for VMware Tanzu system. It is a namespaced CRD, meaning that any resources created belong to a namespace. In order for the resource to be available to the Application Accelerator system, it must be created in the namespace that the Application Accelerator UI server is configured to watch.
 
-## <a id="api-definitions"></a>API definitions
+## <a id="api-definitions"></a> API definitions
 
 The `Accelerator` CRD is defined with the following properties:
 
@@ -15,6 +15,7 @@ The `Accelerator` CRD is defined with the following properties:
 | Version | v1alpha1 |
 | ShortName | acc |
 
+## <a id="accelerator-crd-spec"></a> Accelerator CRD Spec
 The `Accelerator` CRD _spec_ defined in the `AcceleratorSpec` type has the following fields:
 
 | Field | Description | Required/Optional |
@@ -33,6 +34,7 @@ The `Accelerator` CRD _spec_ defined in the `AcceleratorSpec` type has the follo
 | git.ref.semver | The Git tag semver expression, takes precedence over tag. | Optional (**) |
 | git.ref.tag | The Git tag to checkout, takes precedence over branch. | Optional (**) |
 | git.secretRef | The secret name containing the Git credentials. For HTTPS repositories, the secret must contain user name and password fields. For SSH repositories, the secret must contain identity, identity.pub, and known_hosts fields. | Optional (**) |
+| git.subPath | SubPath is the folder inside the git repository to consider as the root of the accelerator or fragment. Defaults at the root of the repository. | Optional |
 | source | Defines the source image repository. | Optional (***) |
 | source.image | Image is a reference to an image in a remote registry. | Optional (***) |
 | source.imagePullSecrets | ImagePullSecrets contains the names of the Kubernetes Secrets containing registry login information to resolve image metadata. | Optional |
@@ -48,6 +50,7 @@ The `Fragment` CRD is defined with the following properties:
 | Version | v1alpha1 |
 | ShortName | frag |
 
+## <a id="fragment-crd-spec"></a> Fragment CRD Spec
 The `Fragment` CRD _spec_ defined in the `FragmentSpec` type has the following fields:
 
 | Field | Description | Required/Optional |
@@ -63,6 +66,7 @@ The `Fragment` CRD _spec_ defined in the `FragmentSpec` type has the following f
 | git.ref.semver | The Git tag semver expression, takes precedence over tag. | Optional (**) |
 | git.ref.tag | The Git tag to checkout, takes precedence over branch. | Optional (**) |
 | git.secretRef | The secret name containing the Git credentials. For HTTPS repositories, the secret must contain user name and password fields. For SSH repositories, the secret must contain identity, identity.pub, and known_hosts fields. | Optional (**) |
+| git.subPath | SubPath is the folder inside the git repository to consider as the root of the accelerator or fragment. Defaults at the root of the repository. | Optional |
 
 \* Any optional fields marked with an asterisk (*) are populated from a field of the same name in the `accelerator` definition in the `accelerator.yaml` file if that is present in the Git repository for the accelerator.
 
@@ -73,175 +77,3 @@ The `Fragment` CRD _spec_ defined in the `FragmentSpec` type has the following f
 ## <a id="excluding-files"></a>Excluding files
 
 The `git.ignore` field defaults to `.git/`, which is different from the defaults provided by the Flux Source Controller GitRepository implementation. You can override this, and provide your own exclusions. For more information, see  [fluxcd/source-controller Excluding files](https://fluxcd.io/docs/components/source/gitrepositories/#excluding-files).
-
-## <a id="non-public-repos"></a>Non-public repositories
-
-For Git repositories that aren't accessible anonymously, you need to provide credentials in a Secret. 
-
-- For HTTPS repositories the secret must contain user name and password fields. The password field can contain a personal access token instead of an actual password. See [fluxcd/source-controller Basic access authentication](https://fluxcd.io/docs/components/source/gitrepositories/#basic-access-authentication)
-- For HTTPS with self-signed certificates, you can add a `.data.caFile value to the secret created for HTTPS authentication. See [fluxcd/source-controller HTTPS Certificate Authority](https://fluxcd.io/docs/components/source/gitrepositories/#https-certificate-authority)
-- For SSH repositories, the secret must contain identity, identity.pub and known_hosts fields. See [fluxcd/source-controller SSH authentication](https://fluxcd.io/docs/components/source/gitrepositories/#ssh-authentication).
-
-For Image repositories that aren't publicly available, an image pull secret can be provided. For more information, see [Using imagePullSecrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
-
-## <a id="examples"></a>Examples
-
-A minimal example could look like the following manifest:
-
-> hello-fun.yaml
-
-```yaml
-apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
-kind: Accelerator
-metadata:
-  name: hello-fun
-spec:
-  git:
-    url: https://github.com/sample-accelerators/hello-fun
-    ref:
-      branch: main
-```
-
-This minimal example creates an accelerator named `hello-fun`. The `displayName`, `description`, `iconUrl`, and `tags` fields are populated based on the content under the `accelerator` key in the `accelerator.yaml` file found in the `main` branch of the Git repository at https://github.com/sample-accelerators/hello-fun. For example:
-
-> accelerator.yaml
-
-```yaml
-accelerator:
-  displayName: Hello Fun
-  description: A simple Spring Cloud Function serverless app
-  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
-  tags:
-  - java
-  - spring
-  - cloud
-  - function
-  - serverless
-
-...
-```
-
-We can also explicitly specify the `displayName`, `description`, `iconUrl`, and `tags` fields and this overrides any values provided in the accelerator's Git repository. The following example explicitly sets those fields plus the `ignore` field:
-
-> my-hello-fun.yaml
-
-```yaml
-apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
-kind: Accelerator
-metadata:
-  name: my-hello-fun
-spec:
-  displayName: My Hello Fun
-  description: My own Spring Cloud Function serverless app
-  iconUrl: https://github.com/simple-starters/icons/raw/master/icon-cloud.png
-  tags:
-    - spring
-    - cloud
-    - function
-    - serverless
-  git:
-    ignore: ".git/, bin/"
-    url: https://github.com/sample-accelerators/hello-fun
-    ref:
-      branch: test
-```
-
-## <a id="git-repo-example"></a>Example for a private Git repo
-
-To create an accelerator by using a private Git repository, first create a secret by using HTTP credentials or SSH credentials.
-
-### <a id="http-cred-example"></a>Example using http credentials
-
->**Note:** For better security, use an access token as the password.
-
-```shell
-kubectl create secret generic https-credentials \
-    --from-literal=username=<user> \
-    --from-literal=password=<password>
-```
-
-> https-credentials.yaml
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: https-credentials
-  namespace: default
-type: Opaque
-data:
-  username: <BASE64>
-  password: <BASE64>
-```
-
-After you have the secret file, you can create the accelerator by using the `secretRef` property:
-
-> private-acc.yaml
-
-```yaml
-apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
-kind: Accelerator
-metadata:
-  name: private-acc
-spec:
-  displayName: private
-  description: Accelerator using private repository
-  git:
-    url: <repository-URL>
-    ref:
-      branch: main
-    secretRef:
-      name: https-credentials
-```
-
-### <a id="ssh-example"></a>Example using SSH credentials
-
-```shell
-ssh-keygen -q -N "" -f ./identity
-ssh-keyscan github.com > ./known_hosts
-kubectl create secret generic ssh-credentials \
-    --from-file=./identity \
-    --from-file=./identity.pub \
-    --from-file=./known_hosts
-```
-
-This example assumes you don't have a key file already created. If you do, replace the values using the following format:  
-
-`--from-file=identity=<path to your identity file>`
-
-`--from-file=identity.pub=<path to your identity.pub file>`
-
-`--from-file=known_hosts=<path to your know_hosts file>`
-
-> ssh-credentials.yaml
-
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: ssh-credentials
-  namespace: default
-type: Opaque
-data:
-  identity: <BASE64>
-  identity.pub: <BASE64>
-  known_hosts: <BASE64>
-```
-
-> private-acc-ssh.yaml
-
-```yaml
-apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
-kind: Accelerator
-metadata:
-  name: private-acc
-spec:
-  displayName: private
-  description: Accelerator using private repository
-  git:
-    url: <repository-URL>
-    ref:
-      branch: main
-    secretRef:
-      name: ssh-credentials
-```

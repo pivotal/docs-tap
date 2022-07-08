@@ -285,19 +285,24 @@ deprecated value repository_prefix is ignored because suggested values are prese
 
 In the standard git-ops approach, configuration is pushed to a repository and is immediately applied 
 to a cluster by any deliverable watching the repository. Operators might want to have a manual review step before 
-applying configuration to the cluster. In this case, operators must specify a `pull_request` commit strategy. In 
-order to do so, the following parameters must be set:
+applying configuration to the cluster. In this case, operators must specify a `pull_request` commit strategy. 
+
+>**Note:** If you want to use the pull request approach, you must use HTTP(S) authentication with a token.
+
+To use the `pull_request` commit strategy, set the following parameters:
 
 - `commit_strategy` == `pull_request` configured during the Out of the Box Supply
   Chains package installation.
 - `gitops.pull_request.server_kind` configured during the Out of the Box Supply
-  Chains package installation.
+  Chains package installation or `gitops_server_kind` configured as a workload parameter.
 - `gitops.pull_request.commit_branch` configured during the Out of the Box Supply
-  Chains package installation.
+  Chains package installation or `gitops_commit_branch` configured as a workload parameter.
 - `gitops.pull_request.pull_request_title` configured during the Out of the Box Supply
-  Chains package installation.
+  Chains package installation or `gitops_pull_request_title` configured as a workload parameter.
 - `gitops.pull_request.pull_request_body` configured during the Out of the Box Supply
-  Chains package installation.
+  Chains package installation or `gitops_pull_request_body` configured as a workload parameter.
+
+If a value is set at both installation and in a workload parameter, the workload parameter will be respected.
 
 The recommended value for commit_branch is an empty string. This generates a new branch for each commit based 
 on a hash of the time when the commit is created. This prevents collisions between multiple workloads using a single
@@ -324,8 +329,6 @@ And a workload with the name `app` in the `dev` namespace, we would find:
 
 A commit to the `https://github.com/vmware-tanzu/cartographer` repository on a branch with a random name (e.g. 
 `MTY1MTYxMzE0NQo=`). There would be a pull request open to merge this branch into the base branch `main`.
-
->**Note:** If you want to use the pull request approach, you must use http(s) authentication with a token.
 
 ### <a id="auth"></a>Authentication
 

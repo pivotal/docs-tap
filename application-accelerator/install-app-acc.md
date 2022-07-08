@@ -35,8 +35,10 @@ When you install the Application Accelerator, you can configure the following op
 | ingress.include | False | Option to include the ingress configuration in the installation |
 | ingress.enable_tls | False | Option to include TLS for the ingress configuration |
 | domain | tap.example.com | Top-level domain to use for ingress configuration, defaults to `shared.ingress_domain` |
-| tls.secretName | tls | The name of the secret |
+| tls.secret_n_ame | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
+| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.                         
+| telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?  
 
 VMware recommends that you do not override the defaults for `registry.secret_ref`,
 `server.engine_invocation_url`, or `engine.service_type`.
@@ -67,7 +69,7 @@ To install Application Accelerator:
     $ tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for accelerator.apps.tanzu.vmware.com...
       NAME                               VERSION  RELEASED-AT
-      accelerator.apps.tanzu.vmware.com  0.5.1    2021-12-02T00:00:00Z
+      accelerator.apps.tanzu.vmware.com  1.2.1    2022-06-22 13:00:00 -0400 EDT
     ```
 
 1. (Optional) To make changes to the default installation settings, run:
@@ -81,7 +83,7 @@ To install Application Accelerator:
     For example:
 
     ```console
-    $ tanzu package available get accelerator.apps.tanzu.vmware.com/0.5.1 --values-schema --namespace tap-install
+    tanzu package available get accelerator.apps.tanzu.vmware.com/1.2.1 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the properties listed earlier.
@@ -113,7 +115,7 @@ To install Application Accelerator:
     For example:
 
     ```console
-    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 1.0.0 -n tap-install -f app-accelerator-values.yaml
+    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 1.2.1 -n tap-install -f app-accelerator-values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
     | Creating service account 'app-accelerator-tap-install-sa'
@@ -139,7 +141,7 @@ To install Application Accelerator:
     | Retrieving installation details for cc...
     NAME:                    app-accelerator
     PACKAGE-NAME:            accelerator.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.0
+    PACKAGE-VERSION:         1.2.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:

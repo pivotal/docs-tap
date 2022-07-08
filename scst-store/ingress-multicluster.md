@@ -12,9 +12,9 @@ ingress_domain: "example.com"
 app_service_type: "ClusterIP"  # recommended if ingress is enabled
 ```
 
-Supply Chain Security Tools - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>` (`metadata-store.example.com`). The create route supports HTTPS communication through a self-signed certificate with the same subject Alternative Name.
+Supply Chain Security Tools - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>` (`metadata-store.example.com`). The create route supports HTTPS communication by using a self-signed certificate with the same subject Alternative Name.
 
-Contour and DNS setup are not part of Supply Chain Security Tools - Store installation. Access to Supply Chain Security Tools - Store through Contour depends on the correct configuration of these two components.
+Contour and DNS setup are not part of Supply Chain Security Tools - Store installation. Access to Supply Chain Security Tools - Store using Contour depends on the correct configuration of these two components.
 
 Make the proper DNS record available to clients to resolve `metadata-store.<ingress_domain>` to Envoy service's external IP address.
 
@@ -31,11 +31,11 @@ $ kubectl describe svc envoy -n tanzu-system-ingress
   ...
 
 $ nslookup metadata-store.example.com
-> Server:		8.8.8.8
-  Address:	8.8.8.8#53
+> Server:    8.8.8.8
+  Address:  8.8.8.8#53
 
   Non-authoritative answer:
-  Name:	metadata-store.example.com
+  Name:  metadata-store.example.com
   Address: 100.2.3.4
 
 $ curl https://metadata-store.example.com/api/health -k -v
@@ -44,7 +44,7 @@ $ curl https://metadata-store.example.com/api/health -k -v
   ...
 ```
 
->**Note:** The preceding curl example uses the insecure (`-k`) flag to skip TLS verification because the Store installs a self-signed certificate. The following section shows how to access the CA certificate to enable TLS verification for HTTP clients.
+>**Note:** The preceding curl example uses the not secure (`-k`) flag to skip TLS verification because the Store installs a self-signed certificate. The following section shows how to access the CA certificate to enable TLS verification for HTTP clients.
 
 ## <a id="multicluster-setup"></a>Multicluster setup
 
@@ -58,45 +58,43 @@ To get Supply Chain Security Tools - Store's TLS CA certificate, run:
 
 ```bash
 # On the Supply Chain Security Tools - Store's cluster
-$ CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"")
-$ cat <<EOF > store_ca.yaml
+CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"")
+cat <<EOF > store_ca.yaml
 ---
 apiVersion: v1
 kind: Secret
-type: kubernetes.io/tls
+type: Opaque
 metadata:
   name: store-ca-cert
   namespace: metadata-store-secrets
 data:
   ca.crt: $CA_CERT
-  tls.crt: ""
-  tls.key: ""
 EOF
 
-# On the second Cluster
+# On the second cluster 
 
 # Create secrets namespace
-$ kubectl create ns metadata-store-secrets
+kubectl create ns metadata-store-secrets
 
 # Create the CA Certificate secret
-$ kubectl apply -f store_ca.yaml
+kubectl apply -f store_ca.yaml
 ```
 
-## <a id="rbac-auth-token"></a>RBAC Auth token
+## <a id="rbac-auth-token"></a>RBAC Authentication token
 
 To get the Supply Chain Security Tools - Store's Auth token, run:
 
 ```bash
-$ AUTH_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
+AUTH_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
 ```
 
 Create the corresponding secret on the second cluster. Run:
 
 ```bash
-$ kubectl create secret generic store-auth-token --from-literal=auth_token=$AUTH_TOKEN -n metadata-store-secrets
+kubectl create secret generic store-auth-token --from-literal=auth_token=$AUTH_TOKEN -n metadata-store-secrets
 ```
 
-This secret is created in the `metadata-store-secrets` namespace to be imported by the Supply Chain Security Tools - Scan.
+This secret is created in the `metadata-store-secrets` namespace and imported by the Supply Chain Security Tools - Scan.
 
 ## <a id="scst-scan-install"></a>Supply Chain Security Tools - Scan installation
 
@@ -104,10 +102,10 @@ To allow Supply Chain Security Tools - Scan to access the created secrets, `Secr
 
 >**Note:** Corresponding `SecretImport` resources that receive the exported secrets are installed with the Supply Chain Security Tools - Scan package.
 
-These secrets must be exported to each developer namspace. The following is an example for supporting Supply Chain Security Tools - Scan installation on the developer namespace:
+These secrets must be exported to each developer namespace. The following is an example for supporting Supply Chain Security Tools - Scan installation on the developer namespace:
 
 ```bash
-$ cat <<EOF | kubectl apply -f -
+cat <<EOF | kubectl apply -f -
 ---
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretExport
@@ -127,17 +125,4 @@ spec:
 EOF
 ```
 
-Install Supply Chain Security Tools - Scan with the following configuration:
-
-```yaml
----
-scanning:
-  metadataStore:
-    url: https://metadata-store.example.com
-    caSecret:
-        name: store-ca-cert
-        importFromNamespace: metadata-store-secrets
-    authSecret:
-        name: store-auth-token
-        importFromNamespace: metadata-store-secrets
-```
+Install Supply Chain Security Tools - Scan with the YAML file sample configuration for the build-profile specified in [Build profile](../multicluster/reference/tap-values-build-sample.md).

@@ -46,7 +46,7 @@ YAML workload description to support this deployment type.
 Before using `tcp` workloads on Tanzu Application Platform, you must:
 
 * Follow all instructions in [Installing Tanzu Application Platform](../install-intro.md).
-* Follow all instructions in [Set up developer namespaces to use installed packages](../install-components.html#setup).
+* Follow all instructions in [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
 
 ## <a id="create-tcp"></a> Create a `tcp` SupplyChain
 
@@ -341,7 +341,7 @@ from your `tap-values.yaml` file:
         name: gitops_user_email
       - default: supplychain@cluster.local
         name: gitops_commit_message
-      - default: git-ssh
+      - default: DEFAULT-GIT-SECRET
         name: gitops_ssh_secret
       - default:
         - containerPort: 8080
@@ -427,6 +427,8 @@ from your `tap-values.yaml` file:
 
     Where:
 
+    - `DEFAULT-GIT-SECRET` is the value from `gitops.ssh_secret` in your
+      `tap-values.yaml` file, or `""` to disable SSH auth.
     - `REGISTRY-SERVER` is the registry server from your `tap-values.yaml` file.
     - `REGISTRY-REPO` is the registry repository from your `tap-values.yaml` file.
 
@@ -441,7 +443,7 @@ from your `tap-values.yaml` file:
 ## <a id="using"></a> Use the `tcp` workload type
 
 The `spring-sensors-consumer-web` workload in the getting started example
-[using Service Toolkit claims](../getting-started/consume-services.md#stk-bind)
+[using Service Toolkit claims](../getting-started-consume-services.md)
 is a good match for the `tcp` workload type.
 This is because it runs continuously to extract information from a RabbitMQ queue, and stores the resulting data locally in-memory and presents it through a web UI.
 
