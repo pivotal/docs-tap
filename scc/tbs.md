@@ -1,14 +1,14 @@
 # Tanzu Build Service (TBS) Integration
 
-By default, the Out of the Box supply chains (`ootb-supply-chain-*`) in TAP
+By default, the Out of the Box supply chains (`ootb-supply-chain-*`) in Tanzu Application Platform
 make use of Tanzu Build Service (TBS) for building container images out of
 source code.
 
-To tweak its behavior, a **platform operator** is able of configuring via
+You can configure a **platform operator** by using
 `tap-values`:
 
-1. the default container image registry where application images should be
-   pushed to
+1. The default container image registry where application images must be
+   pushed:
 
     ```yaml
     ootb_supply_chain_basic:
@@ -17,16 +17,16 @@ To tweak its behavior, a **platform operator** is able of configuring via
         repository: <>
     ```
 
-2. name of the Kpack `ClusterBuilder` to use by default
+2. The name of the Kpack `ClusterBuilder` used by default:
 
     ```yaml
     ootb_supply_chain_basic:
       cluster_builder: my-custom-cluster-builder
     ```
 
-Similarly, an **application operator** can configure via `Workload`:
+You can configure an **application operator** by using `Workload`:
 
-- `spec.build.env`: environment variables to be during the build
+- `spec.build.env` are the environment variables used during the build:
 
   ```yaml
   kind: Workload
@@ -47,8 +47,8 @@ Similarly, an **application operator** can configure via `Workload`:
   ```
 
 
-- `spec.params.clusterBuilder`: name of the ClusterBuilder to make use of for
-  builds of that Workload
+- `spec.params.clusterBuilder` is the name of the ClusterBuilder to use for
+builds of that Workload:
 
   ```yaml
   kind: Workload
@@ -63,8 +63,8 @@ Similarly, an **application operator** can configure via `Workload`:
   ```
 
 
-- `spec.params.buildServiceBindings`: object carrying the definition of a list
-  of service bindings to make use of at build time
+- `spec.params.buildServiceBindings` is the object carrying the definition of a list
+  of service bindings to use at build time:
 
   ```yaml
   ---
@@ -92,11 +92,10 @@ Similarly, an **application operator** can configure via `Workload`:
     settings.xml: <settings>...</settings>
   ```
 
- > **Note**: see Kpack's [ServiceBinding
- > documentation](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md)
- > for more details about build-time service bindings.
+>**Note:** See the Kpack [ServiceBinding documentation](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md) in GitHub 
+for more details about build-time service bindings.
 
-> **Note**: these configuration will only take effect in the case of Kpack
-> being used for building container image. If instead Dockerfile-based builds
-> are used (by leveraging the `dockerfile` parameter - see [dockerfile-based
-> builds](dockerfile-based-builds.md) for details).
+>**Note:** these configuration only take effect when Kpack
+is used for building a container image. If you use Dockerfile-based builds
+by leveraging the `dockerfile` parameter, see [dockerfile-based
+ builds](dockerfile-based-builds.md) for more information.
