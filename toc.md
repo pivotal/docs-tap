@@ -346,7 +346,7 @@ docs.vmware.com is built.
       - [Configuring TLS for Tanzu Application Platform GUI](tap-gui/tls.md)
     - [Tanzu Build Service](tanzu-build-service/tbs-about.md)
       - [Installing Tanzu Build Service](tanzu-build-service/install-tbs.md)
-      - [Installing Tanzu Build Service in an air-gapped environment](tanzu-build-service/install-tbs.md)
+      - [Installing Tanzu Build Service in an air-gapped environment](tanzu-build-service/install-airgapped.md)
       - [Configuring Tanzu Build Service properties on a workload](tanzu-build-service/tbs-workload-config.md)
       - [Dependencies](tanzu-build-service/dependencies.md)
     - [Tekton](tekton/tekton-about.md)
