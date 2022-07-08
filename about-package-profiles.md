@@ -656,13 +656,13 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Runtime Conventions</strong>
    </td>
-   <td><strong>Tanzu Developer Tooling <sup>\*\*</sup></strong>
+   <td><strong>Tanzu Developer Tooling \*\*</strong>
    </td>
    <td><strong>Application Live View for VMware Tanzu</strong>
    </td>
    <td><strong>Functions (beta)</strong>
    </td>
-   <td><strong>Extended Scanning Coverage using Anchore Grype <sup>\*\*\*</sup></strong>
+   <td><strong>Extended Scanning Coverage using Anchore Grype \*\*\*</strong>
    </td>
    <td><strong>Application Accelerators for VMware Tanzu</strong>
    </td>
