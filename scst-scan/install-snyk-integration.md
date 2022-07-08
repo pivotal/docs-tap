@@ -152,9 +152,11 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
      Added installed package 'snyk-scanner' in namespace 'tap-install'
     ```
 
-## <a id="snyk-policy"></a> Sample Scan Policy
+## <a id="verify"></a> Verify integration with Snyk
 
-Create a scan policy with a Rego file for scanner output in the SPDX JSON format. Here is a sample scan policy resource:
+To verify the integration with Snyk, apply the following `ImageScan` and its `ScanPolicy` in the developer namespace and review the result.
+
+1. Create a ScanPolicy YAML with a Rego file for scanner output in the SPDX JSON format. Here is a sample scan policy resource:
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
@@ -189,12 +191,11 @@ spec:
       msg = sprintf("%s %s %s", [comp, vuln.id, ratings])
     }
 ```
-
-## <a id="verify"></a> Verify integration with Snyk 
-
-To verify the integration with Snyk, apply the following `ImageScan` in the developer namespace and review the result.
-
-1. Create the following YAML:
+3. Apply the earlier created YAML:
+```console
+kubectl apply -n $DEV_NAMESPACE -f <SCAN-POLICY-YAML>
+```
+4. Create the following ImageScan YAML:
 
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -208,12 +209,12 @@ spec:
   scanPolicy: scan-policy
 ```
 
-2. Apply the earlier created YAML:
+5. Apply the earlier created YAML:
 ```console
 kubectl apply -n $DEV_NAMESPACE -f <IMAGE-SCAN-YAML>
 ``` 
 
-3. To verify the integration, run:
+6. To verify the integration, run:
 
   ```bash
   kubectl get imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
@@ -227,7 +228,7 @@ kubectl apply -n $DEV_NAMESPACE -f <IMAGE-SCAN-YAML>
   sample-snyk-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
   ```
 
-4. Cleanup:
+7. Cleanup:
 
   ```bash
   kubectl delete imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE

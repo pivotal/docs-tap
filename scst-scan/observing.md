@@ -70,4 +70,4 @@ configurations to disable the Store:
 ### <a id="incompatible-scan-policy"></a> Resolving Incompatible Scan Policy
   If your scan policy appears to not be enforced, it may be because the Rego file defined in the scan policy is incompatible with the scanner that is being used. For example, the Grype Scanner outputs in the CycloneDX XML format while the Snyk Scanner outputs SPDX JSON.
 
-  See [Install Snyk Scanner](install-snyk-integration.md#a-idsnyk-policya-create-a-scan-policy-for-outputs-in-the-spdx-json-format) for an example of a ScanPolicy formatted for the SPDX JSON structure.
+  See [Install Snyk Scanner](install-snyk-integration.md#a-idverifya-verify-integration-with-snyk) for an example of a ScanPolicy formatted for SPDX JSON.

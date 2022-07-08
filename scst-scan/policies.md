@@ -20,7 +20,7 @@ To define a Rego file for an image scan or source scan, you must comply with the
 
 Follow these steps to define a Rego file for policy enforcement that you can reuse across image scan and source scan CRs that output in the CycloneDX XML format.
 
->**Note:** The Snyk Scanner outputs SPDX JSON. See [Install Snyk Scanner](install-snyk-integration.md#a-idsnyk-policya-create-a-scan-policy-for-outputs-in-the-spdx-json-format) for an example of a ScanPolicy formatted for SPDX JSON output.
+>**Note:** The Snyk Scanner outputs SPDX JSON. See [Install Snyk Scanner](install-snyk-integration.md#a-idverifya-verify-integration-with-snyk) for an example of a ScanPolicy formatted for SPDX JSON output.
 
 1. Create a scan policy with a Rego file. Here is a sample scan policy resource:
 
