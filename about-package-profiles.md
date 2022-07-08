@@ -815,7 +815,7 @@ Tanzu Application Platform components.
    <td>Ruby
    </td>
    <td>
-     Users can leverage the  open-source Paketo Ruby buildpack for building Ruby application with Tanzu Build Service
+     Users can leverage the open-source Paketo Ruby buildpack for building Ruby applications with Tanzu Build Service
    </td>
    <td>
    </td>
