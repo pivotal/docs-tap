@@ -339,7 +339,7 @@ When using environment variables to define whether the convention is applicable,
 
 ### <a id='match-crit-img-metadata'></a>Matching criteria by image metadata
 
-For each image contained within the PodTemplateSpec, the convention controller fetches the OCI image metadata and known [`bill of materials (BOMs)`](reference/bom.md) providing it to the convention server as [`ImageConfig`](./reference/image-config.md). This metadata is introspected to make decisions about how to configure the PodTemplateSpec.
+For each image contained within the PodTemplateSpec, the convention controller fetches the OCI image metadata and known [`bill of materials (BOMs)`](reference/bom.md), providing it to the convention server as [`ImageConfig`](./reference/image-config.md). This metadata is introspected to make decisions about how to configure the PodTemplateSpec.
 
 ## <a id='install'></a> Configure and install the convention server
 
@@ -405,7 +405,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-4. <a id='install-deployment'></a>A Kubernetes `Deployment` is created for the webhook to run from. The [`Service`](#install-service) uses the container port defined by the `Deployment` to expose the server.
+4. <a id='install-deployment'></a>A Kubernetes `Deployment` is created to run the webhook from. The [`Service`](#install-service) uses the container port defined by the `Deployment` to expose the server.
 
     ```yaml
     ...
@@ -459,7 +459,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-5. <a id='install-service'></a>A Kubernetes `Service` to expose the convention deployment is also created. For this example, the exposed port is the default `443`, but if it is changed, the [`ClusterPodConvention`](#install-convention) needs to be updated with the proper one.
+5. <a id='install-service'></a>A Kubernetes `Service` to expose the convention deployment is created. For this example, the exposed port is the default `443`. If you change the port, the [`ClusterPodConvention`](#install-convention) must be updated.
 
     ```yaml
     ...
@@ -482,7 +482,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-6. <a id='install-convention'></a>Finally, the [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the Convention Controller:
+6. <a id='install-convention'></a>The [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the Convention Controller:
     >**Note:** The `annotations` block is only needed if you use a self-signed certificate. Otherwise, check the [cert-manager documentation](https://cert-manager.io/docs/).
 
     ```yaml
@@ -531,7 +531,7 @@ To deploy a convention server:
         ```
 
 2. Verify the convention server.
-To verify the status of the convention server, check for the running convention Pods:
+To verify the status of the convention server, check for the running convention pods:
 
     + If the server is running, `kubectl get all -n awesome-convention` returns output such as:
 
@@ -556,7 +556,7 @@ To verify the status of the convention server, check for the running convention 
         replicaset.apps/awesome-webhook-9b6957476        0         0         0       24h
         ```
 
-    + To verify the conventions are being applied, check the `PodIntent` of a workload that matches the convention criteria:  
+    + To verify that the conventions are applied, check the `PodIntent` of a workload that matches the convention criteria:  
 
         ```bash
         kubectl -o yaml get podintents.conventions.apps.tanzu.vmware.co awesome-app
