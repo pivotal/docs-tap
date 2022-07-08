@@ -37,7 +37,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   endpoints (in our case, HTTP endpoints). Application Live View uses those endpoints to get the
   data from the application and to interact with it.
 
-- **[Application Single Sign-On for VMware Tanzu](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-app-sso-about.html)**
+- **[Application Single Sign-On for VMware Tanzu](app-sso/about.md)**
 
   Application Single Sign-On enables application users to sign into their identity provider once and be authorized and identified to access any Kubernetes-deployed workload. It is a secure, straightforward, and delightful approach for developers and operators to manage access across all workloads in the enterprise.
 
