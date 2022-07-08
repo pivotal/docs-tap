@@ -2,7 +2,7 @@
 
 AWS Elastic Container Registry (ECR) is the container registry within the AWS ecosystem.
 
-The Tanzu Application platform supports using ECR as for both Tanzu Build Service images, as well as the images created as part of a workload in a supply chain.
+The Tanzu Application platform supports using ECR for both Tanzu Build Service images, as well as the images created as part of a workload in a supply chain.
 
 While you can use the typical "secret" configuration to store credentials for ECR, the token that is used to authenticate to ECR expires every 12 hours.  For this reason, it is suggested to use an [AWS IAM role bound to a Kubernetes service account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) to allow the Tanzu Application Services to authenticate to ECR.
 
@@ -31,17 +31,17 @@ chains can be configured to make use of this feature by having in
 # tap-values.yaml
 #
 buildservice:
-	kp_default_repository: "REPO-NAME"
-	kp_default_repository_aws_iam_role_arn: "IAM-ROLE-ARN"
+  kp_default_repository: "REPO-NAME"
+  kp_default_repository_aws_iam_role_arn: "IAM-ROLE-ARN"
 
 cartographer:
-	aws_iam_role_arn: "IAM-ROLE-ARN"
+  aws_iam_role_arn: "IAM-ROLE-ARN"
 
 source_controller:
   aws_iam_role_arn: "IAM-ROLE-ARN"
 
 ootb_templates:
-	iaas_auth: true
+  iaas_auth: true
 ```
 
 - `ootb_templates`: with `iaas_auth: true`, when using RegOps (i.e., pushing
@@ -72,7 +72,7 @@ kind: ServiceAccount
 metadata:
   name: default
   annotations:
-    eks.amazonaws.com/role-arn: "IAM-ROLE-ARN"  # <<<
+    eks.amazonaws.com/role-arn: "IAM-ROLE-ARN"
 imagePullSecrets:
   - name: tap-registry
 ```
