@@ -109,3 +109,7 @@ For instructions, see [Customizing Package Installation](../customize-package-in
                 secret:
                   secretName: tap-gui-extra-certs
     ```
+
+## <a id='next-steps'></a>Next steps
+
+- [Configuring Application Accelerator](../application-accelerator/configuration.html)

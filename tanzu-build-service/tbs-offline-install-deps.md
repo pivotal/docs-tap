@@ -48,4 +48,4 @@ To install `full` dependencies:
     
 ## <a id='next-steps'></a>Next steps
 
-- [Configuring custom CAs for Tanzu Application Platform GUI](tap-gui/non-standard-certs.md)
+- [Configuring custom CAs for Tanzu Application Platform GUI](../tap-gui/non-standard-certs.md)

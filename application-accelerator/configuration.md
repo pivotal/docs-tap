@@ -342,3 +342,7 @@ spec:
 ```
 
 If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
+
+## <a id='next-steps'></a>Next steps
+
+- [Using Grype in offline and air-gapped environments](../scst-scan/offline-airgap.html)

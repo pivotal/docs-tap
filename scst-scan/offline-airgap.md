@@ -97,3 +97,7 @@ For example:
   ```console
   tanzu package installed update tap -f tap-values.yaml -n tap-install
   ```
+
+## <a id='next-steps'></a>Next steps
+
+- [Setting up developer namespaces to use installed packages](../set-up-namespaces.html)
