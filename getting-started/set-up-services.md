@@ -89,12 +89,6 @@ To set up a service:
         kubectl apply -f resource-claims-rmq.yaml
         ```
 
-    1. Apply `rabbitmqcluster-app-operator-reader.yaml` by running:
-
-        ```console
-        kubectl apply -f rabbitmqcluster-app-operator-reader.yaml
-        ```
-
 1. Make the new API seen as claimable to application operators.
 
     1. In a file named `rabbitmqcluster-clusterinstanceclass.yaml`, create a `ClusterInstanceClass`
