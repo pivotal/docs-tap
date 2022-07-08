@@ -266,18 +266,17 @@ this can reuse the `tap-registry` secret created in
 ### <a id='full-dependencies'></a> Configure Tanzu Application Platform with full dependencies
 
 By default, when you install a profile that includes Tanzu Build Service,
-Tanzu Application Platform is installed with `lite` dependencies
-containing buildpacks and stacks required for application builds.
-For more information about buildpacks, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
-For more information about stacks, see the [VMware Tanzu Stacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html).
+Tanzu Application Platform is installed with the `lite` set of dependencies.
+These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html)
+and [stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
+required for application builds.
 
-The `lite` set of dependencies does not contain all buildpacks and stacks.
-To use all buildpacks and stacks, you must install `full` dependencies.
-For more information about the differences between lite and full dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
+The `lite` set of dependencies do not contain all buildpacks and stacks.
+To use all buildpacks and stacks, you must install the `full` dependencies.
+For more information about the differences between `lite` and `full` dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
 
 To configure `full` Tanzu Application Platform dependencies, add the key-value pair
 `exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
-
 For example:
 
 ```yaml
@@ -289,10 +288,7 @@ buildservice:
 ```
 
 After configuring `full` dependencies, you must install the dependencies after
-you have finished installing and configuring your Tanzu Application Platform package.
-
-To update dependencies, follow the instructions to [upgrade Tanzu Application Platform](upgrading.md)
-to the latest patch version.
+you have finished installing your Tanzu Application Platform package.
 
 ### <a id='light-profile'></a> Light Profile
 
@@ -444,12 +440,12 @@ For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/i
 
 If you configured full dependencies in your `tap-values.yaml` file in
 [Configure Tanzu Application Platform with full dependencies](#full-dependencies) earlier,
-you must install the full dependencies.
+you must install the `full` dependencies package.
 
-To install `full` dependencies:
+To install the `full` dependencies package:
 
 1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
- to your `tap-values.yaml` file under the `buildservice` section, for example:
+ to your `tap-values.yaml` file under the `buildservice` section. For example:
 
     ```yaml
     buildservice:

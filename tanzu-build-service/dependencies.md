@@ -39,15 +39,16 @@ Cluster builders contain stack and buildpack metadata.
 
 ## <a id="lite-vs-full"></a> About lite and full dependencies
 
-There are two types of Tanzu Build Service dependencies: `lite` and `full`.
+Each version of Tanzu Application Platform is released with two types of
+Tanzu Build Service dependencies: `lite` and `full`.
+These dependencies consist of the buildpacks and stacks required for application builds.
 Each type serves different use cases.
 Both types are suitable for production workloads.
-Each version of Tanzu Build Service is released with a set of `lite` and `full` dependencies.
 
-`lite` dependencies are installed by default when installing Tanzu Build Service
-and require no user configuration.
-The `full` set of dependencies must be installed separately.
-For instructions for installing `full` dependencies, see [Install Tanzu Build Service with full dependencies](install-tbs.html#tap-install-full-deps).
+By default, Tanzu Build Service is installed with `lite` dependencies.
+The `lite` dependencies do not contain all buildpacks and stacks.
+To use all buildpacks and stacks, you must install the `full` dependencies.
+For instructions about installing `full` dependencies, see [Install full dependencies](install-tbs.html#tap-install-full-deps).
 
 For a table comparing the differences between `full` and `lite` dependencies, see
 [Dependency comparison](#lite-vs-full-table).
@@ -68,10 +69,10 @@ in the VMware Tanzu Buildpacks documentation.
 
 ### <a id="full-dependencies"></a> Full dependencies
 
-The Tanzu Build Service `full` set of dependencies contains more buildpacks and stacks,
+The Tanzu Build Service `full` set of dependencies contain more buildpacks and stacks,
 which allows for more workload types.
 
-The dependencies are pre-packaged so builds don't have to download them from the Internet.
+The dependencies are pre-packaged, so builds do not have to download them from the Internet.
 This can speed up build times and allows builds to occur in air-gapped environments.
 
 The `full` descriptor <!-- should this say deps? --> contains the following stacks, which support different use cases:
@@ -111,9 +112,9 @@ The following table compares the contents of the `lite` and `full` dependencies.
 
 ## <a id="deprecated-auto-updates"></a> About automatic dependency updates (deprecated)
 
-The automatic updates feature is being deprecated.
-The recommended way to patch dependencies is by upgrading Tanzu Application Platform
-to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
+>**Important:** The automatic updates feature is being deprecated.
+>The recommended way to patch dependencies is by upgrading Tanzu Application Platform
+>to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
 
 You can configure Tanzu Build Service to update dependencies in the background as they are released.
 This enables workloads to keep up to date automatically.
