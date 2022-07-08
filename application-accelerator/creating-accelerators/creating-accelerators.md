@@ -41,13 +41,13 @@ Use the following procedure to create an accelerator based on this Git repositor
 ## <a id="publishing-the-new-accelerator"></a>Publishing the new accelerator
 
 2. To publish your new accelerator, run this command in your terminal:
-    
+
     ```sh
     tanzu accelerator create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
     ```
 
     Where:
-    
+
     - `YOUR-GIT-REPOSITORY-URL` is the URL for your Git repository.
     - `YOUR-GIT-BRANCH` is the name of the branch where you pushed the new `accelerator.yaml` file.
 
@@ -82,7 +82,7 @@ An alternative to using the Tanzu CLI is to create a separate manifest file and 
 
 ## <a id="using-accelerator-fragments"></a>Using accelerator fragments
 
-Accelerator fragments are reusable accelerator components that can provide options, files or transforms. They can be imported into accelerators using an `import` entry and the transforms from the fragment can be referenced in an `InvokeFragment` transform in the accelerator that is declaring the import. For additional detail see [InvokeFragment transform](transforms/invoke-fragment.md).
+Accelerator fragments are reusable accelerator components that can provide options, files or transforms. They may be imported to accelerators using an `import` entry and the transforms from the fragment may be referenced in an `InvokeFragment` transform in the accelerator that is declaring the import. For additional details see [InvokeFragment transform](transforms/invoke-fragment.md).
 
 The accelerator samples include three fragments - `java-version`, `tap-initialize`, and `live-update`. See the [sample-accelerators/fragments](https://github.com/sample-accelerators/fragments/tree/tap-1.2) Git repository for the content of these fragments.
 
@@ -92,7 +92,7 @@ To discover what fragments are available to use, you can run the following comma
 tanzu accelerator fragment list
 ```
 
-We will look a the `java-version` fragment as an example. It contains the following `accelerator.yaml` file:
+Look a the `java-version` fragment as an example. It contains the following `accelerator.yaml` file:
 
 ```
 accelerator:
@@ -133,13 +133,13 @@ engine:
             with: "'spec:\n  build:\n    env:\n    - name: BP_JVM_VERSION\n      value: \"17\"'"
 ```
 
-This fragment will contribute the following to any accelerator that imports it:
+This fragment contributes the following to any accelerator that imports it:
 
 1. An option named `javaVersion` with three choices `Java 8`, `Java 11`, and `Java 17`
-1. Three `ReplaceText` transforms:
-    - if the accelerator has a `pom.xml` file then what is specified for `<java.version>` will be replaced with the chosen version.
-    - if the accelerator has a `build.gradle` file then what is specified for `sourceCompatibility` will be replaced with the chosen version.
-    - if the accelerator has a `config/workload.yaml` file and the user selected "Java 17" then a build env entry of BP_JVM_VERSION will be inserted into the `spec:` section.
+2. Three `ReplaceText` transforms:
+    - if the accelerator has a `pom.xml` file then what is specified for `<java.version>` is replaced with the chosen version.
+    - if the accelerator has a `build.gradle` file then what is specified for `sourceCompatibility` is replaced with the chosen version.
+    - if the accelerator has a `config/workload.yaml` file and the user selected "Java 17" then a build environment entry of BP_JVM_VERSION is inserted into the `spec:` section.
 
 To deploy new fragments to the accelerator system you can use the new `tanzu accelerator fragment create` CLI command or you can apply a custom resource manifest file with either `kubectl apply` or the `tanzu accelerator apply` commands.
 
@@ -200,7 +200,7 @@ engine:
       reference: java-version
 ```
 
-The above acelerator imports the `java-version` which, as we saw above, provides an option to select the Java version to use for the project. It then instructs the engine to invoke the transforms provided in the fragment that will update the Java version used in `pom.xml` and/or `build.gradle` files from the accelerator.
+The earlier acelerator imports the `java-version` which, as seen earlier, provides an option to select the Java version to use for the project. It then instructs the engine to invoke the transforms provided in the fragment that updates the Java version used in `pom.xml` or `build.gradle` files from the accelerator.
 
 For more detail on the use of fragments, see [InvokeFragment transform](transforms/invoke-fragment.md).
 

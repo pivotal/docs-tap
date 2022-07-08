@@ -1,18 +1,22 @@
 # Live Hover integration with Spring Boot Tools (Experimental)
 
-This topic describes how to integrate Live Hover with Spring Boot Tools and use the feature.
-
+For more information about this feature, see the **Live application information hovers** section of
+[VS Code documentation for Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot).
 
 ## <a id="prerequisites"></a> Prerequisites
 
 To integrate Live Hover with Spring Boot Tools you need:
 
-- A Tanzu Spring Boot application, such as [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app)
-- Spring Boot Tools [extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot) v1.33 or later
+- A Tanzu Spring Boot application, such as
+[tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app)
+- Spring Boot Tools
+[extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot) v1.33 or
+later
 
 ## <a id="activate-feature"></a> Activate the Live Hover feature
 
-Activate the Live Hover feature by enabling it in **File** > **Preferences** > **Settings** > **Extensions** > **Tanzu**.
+Activate the Live Hover feature by enabling it in
+**Code** > **Preferences** > **Settings** > **Extensions** > **Tanzu Developer Tools**.
 
 ## <a id="deploy-workload"></a> Deploy a Workload to the Cluster
 
@@ -26,23 +30,17 @@ The examples in some steps reference the sample
     git clone REPOSITORY-ADDRESS
     ```
 
-    For example:
-
-    ```console
-    $ git clone https://github.com/sample-accelerators/tanzu-java-web-app
-    ```
+    Where `REPOSITORY-ADDRESS` is your repository address.
+    For example, `https://github.com/sample-accelerators/tanzu-java-web-app`.
 
 1. Open the project in VS Code, with the Live Hover feature enabled, by running:
 
     ```console
-    TAP_LIVE_HOVER=true code ./APP-NAME
+    TAP_LIVE_HOVER=true code ./PROJECT-DIRECTORY
     ```
 
-    For example:
-
-    ```console
-    $ TAP_LIVE_HOVER=true code ./tanzu-java-web-app
-    ```
+    Where `PROJECT-DIRECTORY` is your project directory.
+    For example, `./tanzu-java-web-app`.
 
 1. Verify that you are targeting the cluster on which you want to run the workload by running:
 
@@ -65,24 +63,12 @@ The examples in some steps reference the sample
     Tanzu Developer Tools for VS Code uses your current context from `~/.kube/config` to choose
     which cluster to connect with.
 
-1. If you don't have the workload running yet, run:
+1. If you don't have the workload running yet, run `Tanzu: Apply Workload` from the Command Palette.
+Tanzu Developer Tools for VS Code periodically searches for pods in your cluster that correspond to
+the workload configurations it finds in your workspace.
 
-    ```console
-    kubectl create -f WORKLOAD-YAML-FILE
-    ```
-
-    For example:
-
-    ```console
-    $ kubectl create -f config/workload.yaml
-    workload.carto.run/tanzu-java-web-app created
-    ```
-
-    Tanzu Developer Tools for VS Code periodically searches for pods in your cluster that correspond
-    to the workload configurations it finds in your workspace.
-
-1. The workload takes time to build and then start a running pod. To see if a pod has started
-running, run:
+1. The workload takes time to build and then start a running pod. To see if a pod has started running,
+run:
 
     ```console
     kubectl get pods
@@ -101,10 +87,8 @@ running, run:
     In this example, live data can be extracted from the `...-0001-deployment-...` pod.
 
 1. Open a Java file, such as `HelloController.java`.
-After a delay of up to 30 seconds, because of a 30-second polling loop, green bubbles appear as
-highlights in your code.
+After a delay of up to 30 seconds, because of a 30-second polling loop, green highlights appear in
+your code.
+![Live Hover example showing @RestController and @RequestMapping in the code highlighted in green.](../images/vscode-live-hover-example.png)
 
 1. Hover over any of the bubbles to see live information about the corresponding element.
-
-For more information about this feature, see the
-[VS Code documentation for Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot).

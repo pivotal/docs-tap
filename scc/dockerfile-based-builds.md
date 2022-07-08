@@ -1,11 +1,10 @@
 # Dockerfile-based builds
 
-For any of the supply chains that are source-based (i.e. that are not taking a
-pre-built image), by specifying the new `dockerfile` parameter in a Workload
-the builds will switch from using Kpack to using Kaniko, an open-source tool
+For any source-based supply chains, that is supply chains that are not taking a
+pre-built image, when you specify the new `dockerfile` parameter in a Workload
+the builds switch from using Kpack to using Kaniko. Kaniko is an open-source tool
 for building container images from a Dockerfile even without privileged root
 access.
-
 
 <table>
   <tr>
@@ -22,24 +21,24 @@ access.
 
   <tr>
     <td><code>docker_build_context<code></td>
-    <td>relative path to the directory where the build context lives</td>
+    <td>relative path to the directory where the build context is</td>
     <td><pre>.</pre></td>
   </tr>
 
   <tr>
     <td><code>docker_build_extra_args<code></td>
     <td>
-      list of flags to pass directly to kaniko (e.g., for providing arguments,
-      etc to a build)
+      list of flags to pass directly to Kaniko (such as providing arguments,
+      and so on to a build)
     </td>
     <td><pre>- --build-arg=FOO=BAR</pre></td>
   </tr>
 </table>
 
 
-For instance, assuming that we want to build a container image our of a
+For example, assuming that you want to build a container image our of a
 repository named `github.com/foo/bar` whose Dockerfile resides in the root of
-that repository, we can switch from using Kpack to building from that
+that repository, you can switch from using Kpack to building from that
 dockerfile by passing the `dockerfile` parameter:
 
 ```console
@@ -66,9 +65,9 @@ $ tanzu apps workload create foo \
        15 + |      url: https://github.com/foo/bar
 ```
 
-Similarly, if the context to be used for the build should be set to a different
-directory within the repository, we can make use of the `docker_build_context`
-to tweak that:
+Similarly, if the context to be used for the build must be set to a different
+directory within the repository, you can make use of the `docker_build_context`
+to change that:
 
 ```
 $ tanzu apps workload create foo \
@@ -79,6 +78,6 @@ $ tanzu apps workload create foo \
 ```
 
 >**Note:** this feature has no platform operator configurations to be passed
-via `tap-values.yaml`, but if `ootb-supply-chain-*.registry.ca_cert_data` or
-`shared.ca_cert_data` has been configured in `tap-values`, the certificates
-will considered when pushing the container image.
+through `tap-values.yaml`, but if `ootb-supply-chain-*.registry.ca_cert_data` or
+`shared.ca_cert_data` is configured in `tap-values`, the certificates
+are considered when pushing the container image.

@@ -1,11 +1,11 @@
-# Installing the Tanzu Application Platform package and profiles
+# Installing Tanzu Application Platform package and profiles
 
 This topic describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
 
 Before installing the packages, ensure that you have completed the prerequisites, configured
 and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
-See [Accepting Tanzu Application Platform EULA and installing Tanzu CLI](install-tanzu-cli.md) for more information.
+See [Prerequisites](prerequisites.html) and [Accepting Tanzu Application Platform EULA and installing Tanzu CLI](install-tanzu-cli.html) for more information.
 
 
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
@@ -139,14 +139,14 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       controller.source.apps.tanzu.vmware.com              Tanzu Source Controller                                                   Tanzu Source Controller enables workload create/update from source code.
       developer-conventions.tanzu.vmware.com               Tanzu App Platform Developer Conventions                                  Developer Conventions
       grype.scanning.apps.tanzu.vmware.com                 Grype Scanner for Supply Chain Security Tools - Scan                      Default scan templates using Anchore Grype
-      image-policy-webhook.signing.apps.tanzu.vmware.com    Image Policy Webhook                                                     The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
+      image-policy-webhook.signing.apps.tanzu.vmware.com   Image Policy Webhook                                                      The Image Policy Webhook allows platform operators to define a policy that will use cosign to verify signatures of container images
       learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            Guided technical workshops
       ootb-supply-chain-basic.tanzu.vmware.com             Tanzu App Platform Out of The Box Supply Chain Basic                      Out of The Box Supply Chain Basic.
       ootb-supply-chain-testing-scanning.tanzu.vmware.com  Tanzu App Platform Out of The Box Supply Chain with Testing and Scanning  Out of The Box Supply Chain with Testing and Scanning.
       ootb-supply-chain-testing.tanzu.vmware.com           Tanzu App Platform Out of The Box Supply Chain with Testing               Out of The Box Supply Chain with Testing.
       ootb-templates.tanzu.vmware.com                      Tanzu App Platform Out of The Box Templates                               Out of The Box Templates.
       scanning.apps.tanzu.vmware.com                       Supply Chain Security Tools - Scan                                        Scan for vulnerabilities and enforce policies directly within Kubernetes native Supply Chains.
-      metadata-store.apps.tanzu.vmware.com                          Tanzu Supply Chain Security Tools - Store                                 The Metadata Store enables saving and querying image, package, and vulnerability data.
+      metadata-store.apps.tanzu.vmware.com                 Tanzu Supply Chain Security Tools - Store                                 The Metadata Store enables saving and querying image, package, and vulnerability data.
       service-bindings.labs.vmware.com                     Service Bindings for Kubernetes                                           Service Bindings for Kubernetes implements the Service Binding Specification.
       services-toolkit.tanzu.vmware.com                    Services Toolkit                                                          The Services Toolkit enables the management, lifecycle, discoverability and connectivity of Service Resources (databases, message queues, DNS records, etc.).
       spring-boot-conventions.tanzu.vmware.com             Tanzu Spring Boot Conventions Server                                      Default Spring Boot convention server.
@@ -158,7 +158,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. 
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials.
 
 For more information about profiles, see [About Tanzu Application Platform package and profiles](about-package-profiles.md).
@@ -199,9 +199,6 @@ buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
-  tanzunet_username: "TANZUNET-USERNAME"
-  tanzunet_password: "TANZUNET-PASSWORD"
-  descriptor_name: "DESCRIPTOR-NAME"
 
 supply_chain: basic
 
@@ -228,7 +225,7 @@ tap_gui:
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
-  app_service_type: LoadBalancer # (optional) Defaults to LoadBalancer. Change to NodePort for distributions that don't support LoadBalancer
+  app_service_type: ClusterIP
 
 grype:
   namespace: "MY-DEV-NAMESPACE" # (optional) Defaults to default namespace.
@@ -245,10 +242,6 @@ Where:
     * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. You can also configure this credential by using a secret reference. See [Install Tanzu Build Service](tanzu-build-service/install-tbs.html#install-secret-refs) for details.
     * For Google Cloud Registry, use the contents of the service account JSON file.
-- `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password to log in to VMware Tanzu Network. Your VMware Tanzu Network credentials enable you to configure the dependencies updater. This resource accesses and installs the build dependencies (buildpacks and stacks) that Tanzu Build Service requires on your cluster. It can also optionally keep these dependencies up to date as new versions are released on VMware Tanzu Network. You can also configure this credential by using a secret reference. For more information, see [Install Tanzu Build Service](tanzu-build-service/install-tbs.html#install-secret-refs).
-- `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Overview of Tanzu Build Service](tanzu-build-service/tbs-about.html#descriptors). Available options are:
-    * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
-    * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`
     * Dockerhub has the form `server: "index.docker.io"`
@@ -270,17 +263,32 @@ If built images are pushed to the same registry as the Tanzu Application Platfor
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
-> **Note:** When you install Tanzu Application Platform, it is bootstrapped with
-> a set of dependencies (buildpacks and stacks) for application builds.
-> For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
-> You can find the buildpack and stack artifacts installed with Tanzu Application Platform
-> in the descriptor file on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
-> The current installed version of the descriptor is
-> [100.0.293](https://network.pivotal.io/products/tbs-dependencies#/releases/1086670). Sometimes the dependencies
-> require updates. You can use a
-> [manual process in a CI/CD context](tanzu-build-service/tbs-about.html#dependencies-manual), or
-> an [automatic update process](tanzu-build-service/tbs-about.html#auto-updates)
-> in the background by Tanzu Application Platform.
+### <a id='full-dependencies'></a> Configure Tanzu Application Platform with full dependencies
+
+By default, when you install a profile that includes Tanzu Build Service,
+Tanzu Application Platform is installed with the `lite` set of dependencies.
+These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html)
+and [stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
+required for application builds.
+
+The `lite` set of dependencies do not contain all buildpacks and stacks.
+To use all buildpacks and stacks, you must install the `full` dependencies.
+For more information about the differences between `lite` and `full` dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
+
+To configure `full` Tanzu Application Platform dependencies, add the key-value pair
+`exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
+For example:
+
+```yaml
+buildservice:
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  exclude_dependencies: true
+```
+
+After configuring `full` dependencies, you must install the dependencies after
+you have finished installing your Tanzu Application Platform package.
 
 ### <a id='light-profile'></a> Light Profile
 
@@ -329,7 +337,7 @@ Where:
 
 - `VERSION` is the version number of the package. For example, `0.5.1` for Supply Chain Basic package.
 - `PACKAGE-NAME` is the value of `Top-level Key` for package-specific configuration within
-your `tap-values.yaml`, as summarized in the following table:  
+your `tap-values.yaml`, as summarized in the following table:
 
 |Package|Top-level Key|
 |----|----|
@@ -392,11 +400,11 @@ registry.repository       <nil>                      string  Name of the reposit
 registry.server           index.docker.io            string  Name of the registry server where application images should be pushed to (required).
 
 service_account           default                    string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
-```  
+```
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
-Follow these steps to install the Install the Tanzu Application Platform package:
+Follow these steps to install the Tanzu Application Platform package:
 
 1. Install the package by running:
 
@@ -421,9 +429,71 @@ Follow these steps to install the Install the Tanzu Application Platform package
     tanzu package installed list -A
     ```
 
+1. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
+by following the procedure in [Install full dependencies](#tap-install-full-deps).
+
 After installing Full Profile on to your cluster, you can install the
 Tanzu Developer Tools for VSCode extension to help you develop against it.
 For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/installation.md).
+
+## <a id="tap-install-full-deps"></a> Install full dependencies
+
+If you configured full dependencies in your `tap-values.yaml` file in
+[Configure Tanzu Application Platform with full dependencies](#full-dependencies) earlier,
+you must install the `full` dependencies package.
+
+To install the `full` dependencies package:
+
+1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
+ to your `tap-values.yaml` file under the `buildservice` section. For example:
+
+    ```yaml
+    buildservice:
+      kp_default_repository: "KP-DEFAULT-REPO"
+      kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+      kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+      exclude_dependencies: true
+    ...
+    ```
+
+1. Get the latest version of the `buildservice` package by running:
+
+    ```console
+    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    ```
+
+1. Relocate the Tanzu Build Service full dependencies package repository by running:
+
+    ```console
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
+      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps
+    ```
+
+    Where:
+
+    - `VERSION` is the version of the `buildservice` package you retrieved in the previous step.
+    - `TARGET-REPOSITORY` is the ...
+
+1. Add the Tanzu Build Service full dependencies package repository by running:
+
+    ```console
+    tanzu package repository add tbs-full-deps-repository \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps:VERSION \
+      --namespace tap-install
+    ```
+
+    Where:
+
+    - `VERSION` is the version of the `buildservice` package you retrieved earlier.
+    - `TARGET-REPOSITORY` is the ...
+
+1. Install the full dependencies package by running:
+
+    ```console
+    tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
+    ```
+
+    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
 
 ## <a id="configure-envoy-lb"></a> Configure LoadBalancer for Contour ingress
 

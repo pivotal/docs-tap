@@ -16,12 +16,14 @@ Recommended connection methods based on TAP set up:
 * Single cluster without Contour, without `LoadBalancer` and user does not have port forwarding access = `NodePort`
 * Multi-cluster without Contour = Not supported
 
-## <a id="ingress"></a>With `Ingress`
+For a production environment, VMware recommends that the Store is installed with ingress enabled. 
+
+## <a id="ingress"></a>Using `Ingress`
 
 When using an [Ingress setup](ingress-multicluster.md), the Store creates a 
 specific TLS Certificate for HTTPS communications under the `metadata-store` namespace.
 
-To get such certificate, run the following command:
+To get such certificate, run:
 
 ```bash
 kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > insight-ca.crt
@@ -36,10 +38,10 @@ If no accessible DNS record exists for such domain, edit the `/etc/hosts` file t
 ```bash
 ENVOY_IP=$(kubectl get svc envoy -n tanzu-system-ingress -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 
-# replace with your domain
+# Replace with your domain
 METADATA_STORE_DOMAIN="metadata-store.example.domain.com"
 
-# delete any previously added entry
+# Delete any previously added entry
 sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts
 
 echo "$ENVOY_IP $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
@@ -65,18 +67,18 @@ kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt
 
 To use a `LoadBalancer` configuration, you must find the external IP address of the `metadata-store-app` service by using kubectl.
 
->**Note**: For all kubectl commands, use the `--namespace metadata-store` flag.
-
 ```bash
 METADATA_STORE_IP=$(kubectl get service/metadata-store-app --namespace metadata-store -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
 METADATA_STORE_PORT=$(kubectl get service/metadata-store-app --namespace metadata-store -o jsonpath="{.spec.ports[0].port}")
 METADATA_STORE_DOMAIN="metadata-store-app.metadata-store.svc.cluster.local"
 
-# delete any previously added entry
+# Delete any previously added entry
 sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts
 
 echo "$METADATA_STORE_IP $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
 ```
+
+> On EKS, you must get the IP address for the LoadBalancer. The IP address is found by running something similar to the following: `dig RANDOM-SHA.us-east-2.elb.amazonaws.com`. Where `RANDOM-SHA` is the EXTERNAL-IP received for the LoadBalancer. Select one of the IP addresses returned from the `dig` command written to the `/etc/hosts` file.
 
 Set the target by running:
 
@@ -92,7 +94,7 @@ Configure port forwarding for the service so the CLI can access Supply Chain Sec
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 ```
 
->**Note:** You must run this command in a separate terminal window.
+>**Note:** You must run this command in a separate terminal window. Or run the command in the background: `kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store &`
 
 ### <a id='use-np'></a>`NodePort`
 
@@ -111,7 +113,7 @@ Use the following script to add a new local entry to `/etc/hosts`:
 METADATA_STORE_PORT=$(kubectl get service/metadata-store-app --namespace metadata-store -o jsonpath="{.spec.ports[0].port}")
 METADATA_STORE_DOMAIN="metadata-store-app.metadata-store.svc.cluster.local"
 
-# delete any previously added entry
+# Delete any previously added entry
 sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts
 
 echo "127.0.0.1 $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
