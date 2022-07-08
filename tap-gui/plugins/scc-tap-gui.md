@@ -80,7 +80,7 @@ Here is a sample result of the Build stage for the `tanzu-java-web-app` by using
 
 ![Screenshot of details of the Build stage of the app tanzu-java-web-app](images/build-stage-sample.png)
 
-Here is a sample result of the Image Scan stage, using Grype - only available in the **test-scan** OOTB supply chain
+Here is a sample result of the Image Scan stage, using Grype - only available in the **test-scan** OOTB supply chain.  See [View Vulnerability Scan Results](#sc-view-scan-results) for more information.
 
 ![Screenshot of details of the Image Scanner stage. CVEs are listed.](images/scc-scan.png)
 
@@ -94,3 +94,11 @@ When you have a `Pull Request` configured in your environment, you will be able 
 In the example below, the merge request was approved, which lead to a **Pull Config** and **Delivery** to be shown in the supply chain graph.
 
 ![Screen Shot 2022-07-06 at 2 04 38 PM](https://user-images.githubusercontent.com/94395371/177854268-ffdd1c35-ec23-44f6-a005-8c4b2671192b.png)
+
+## <a id="sc-view-scan-results"></a> View Vulnerability Scan Results
+
+Vulnerability source scans and image scans for workload builds can be viewed by clicking on the Source Scan stage or Image Scan stage.  The data is provided by the [Supply Chain Security Tools - Store](../../scst-store/overview.md).
+
+The vulnerabilities (i.e., CVEs) displayed represent any vulnerability associated to a package/version found in the source code or image, including vulnerabilities from past scans.  In other words, the vulnerability scan data represents the scan that just occurred, plus any other vulnerabilities related to the packages found in that scan.  
+
+>**Note:** For example, the log4shell package is found in image ABC on January 1st without any CVEs.  On January 15th, the log4j CVE is found while scanning image DEF.  If a user returns to the Image Scan stage for image ABC, the log4j CVE will be shown associated to the log4shell package.
