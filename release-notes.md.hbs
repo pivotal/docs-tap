@@ -173,6 +173,30 @@ This release has the following breaking changes, listed by area and component.
 - Breaking change 1
 - Breaking change 2
 
+#### <a id="tbs-breaking"></a> Tanzu Build Service
+
+##### <a id="tbs-breaking-upgrading"></a> Breaking Change when Upgrading TAP 1.1 to TAP 1.2
+
+**Note:** If your TAP 1.1 installation was configured with `enable_automatic_updates: false`, this breaking change can be ignored.
+
+When upgrading TAP from 1.1 to 1.2, Tanzu Build Service Image resources will automatically run a build that will fail due to a missing dependency.
+This error will not persist and any subsequent builds will resolve this error. This means that users can safely wait for the next build of their workloads which
+will be triggered by source code changes.
+
+If you do not want to wait for subsequent builds to run, you can use the open source [kp](https://github.com/vmware-tanzu/kpack-cli) cli:
+
+1. List the image resources in the developer namespace:
+
+```console
+kp image list -n DEVELOPER-NAMESPACE
+```
+
+1. Manually trigger the image resources to re-run builds for each failing image:
+
+```console
+kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
+```
+
 #### <a id="grype-scanner-changes"></a> Grype Scanner
 
 - Information to integrate with the Supply Chain Security Tools - Store should be provided in the `tap-values.yaml` file for the Grype Scanner `v1.2+`
