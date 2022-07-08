@@ -42,25 +42,24 @@ This release includes the following changes, listed by component and area.
 - Secure Tokens - Token signature keys are created and applied to AuthServer so that tokens can be signed and verified.
 - TLS secured
 
-#### Tanzu CLI - Apps plug-in
+#### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
-- Feature 1
-- Feature 2
-
-#### Service Bindings
-
-- Feature 1
-- Feature 2
+- Added support for [`--subPath`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-subpatha---sub-path) flag where users can specify a relative path inside the repo or image to treat as application root for source.
+- Added [`--service-account`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-service-accounta---service-account) flag to specify ServiceAccount name used by the workload to create resources submitted by the supply chain.
+- Added shorthand `-s` for [`--source-image`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-source-imagea---source-image--s) flag.
+- Added support for [`--output`](cli-plugins/apps/command-reference/commands-details/workload_list.md#a-idlist-outputa---output--o) flag to `workloads list` command.
+- Added support for json/yaml params using new flag [`--param-yaml`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-param-yamla---param-yaml).
+- Added support for creating workloads from `jar/war/zip` files via [`--local-path`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-local-patha---local-path) flag.
+- Added source information from workload  in the `workload get` command output
+- Added New command [`tanzu apps cluster-supply-chain get`](cli-plugins/apps/command-reference/tanzu-apps-cluster-supply-chain-get.md) 
+- Added support for excluding files on local path using `.tanzuignore` file 
+- Added supply chain step information in `workload get` command output 
+- Added support for short names for Cartographer workload (wld) & cluster-supply-chain commands (csc) 
+- Added support for providing ServiceAccount name in workload commands via file input
 
 #### Source Controller
 
-- Feature 1
-- Feature 2
-
-#### Spring Boot Conventions
-
-- Feature 1
-- Feature 2
+- Added support for pulling Artifacts from a Maven repository using the `MavenArtifact` CR. 
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (Beta)
 
@@ -211,10 +210,22 @@ This following issues, listed by area and component, are resolved in this releas
 - Resolved issue 1
 - Resolved issue 2
 
-#### Tanzu CLI - Apps plug-in
+#### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
-- Resolved issue 1
-- Resolved issue 2
+- Updated output for list when there are no workloads. It now shows a more user friendly message `No workloads found.`
+- Fixed error messaging for empty kubeconfig and invalid kube context.
+- Fixed incorrect error message for `workload create` when the user did not have enough permissions to create a workload.
+- Removing namespace from `--service-ref` is not ignored
+- Issue for Windows error x509: certificate signed by unknown authority by upgrading imgpkg versions v0.29.0. The new version supports loading Windows root ca certs.
+
+#### <a id="service-bindings-resolved"></a> Service Bindings
+
+- Added a new ClusterRole `service-binding-provisioned-services`  with label selector `servicebinding.io/controller: "true"` for get, list, and watch which fixes the issue where Service Binding controller was aggregating non-provisioned service RBAC to the controller manager.
+
+#### <a id="spring-conventions-resolved"></a> Spring Boot Conventions
+
+- No environment variables are added if conventions are not applied. Fixes the issue where `JAVA_TOOL_OPTS` was added to non-java apps. 
+- Controller does not error out if no image metadata is present. Fixes the edge case when the image metadata is missing.
 
 #### Tanzu Application Platform GUI
 

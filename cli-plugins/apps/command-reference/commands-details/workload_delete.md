@@ -19,7 +19,7 @@ Deleted workload "spring-pet-clinic"
 
 ## Workload Delete flags
 
-### `--all`
+### <a id="delete-all"></a> `--all`
 Deletes all workloads in a namespace
 
 ```bash
@@ -34,7 +34,7 @@ tanzu apps workload delete --all -n my-namespace
 Deleted workloads in namespace "my-namespace"
 ```
 
-### `--file`, `-f`
+### <a id="delete-file"></a> `--file`, `-f`
 
 Path to a file that contains the specification of the workload to be deleted.
 
@@ -44,7 +44,7 @@ tanzu apps workload delete -f path/to/file/spring-petclinic.yaml
 Deleted workload "spring-petclinic"
 ```
 
-### `--namespace`, `-n`
+### <a id="delete-namespace"></a> `--namespace`, `-n`
 
 Specifies the namespace in which the workload is to be deleted.
 
@@ -54,7 +54,7 @@ tanzu apps workload delete spring-petclinic -n spring-petclinic-ns
 Deleted workload "spring-petclinic"
 ```
 
-### `wait`
+### <a id="delete-wait"></a> `wait`
 
 Waits until workload is deleted.
 ```bash
@@ -65,7 +65,7 @@ Waiting for workload "spring-petclinic" to be deleted...
 Workload "spring-petclinic" was deleted
 ```
 
-### `--wait-timeout`
+### <a id="delete-wait-timeout"></a> `--wait-timeout`
 Sets a timeout to wait for workload to be deleted.
 
 ```bash
@@ -88,7 +88,7 @@ Error: exit status 1
 ✖  exit status 1
 ```
 
-### `--yes`, `-f`
+### <a id="delete-yes"></a> `--yes`, `-f`
 
 Assume yes on all the survey prompts
 
