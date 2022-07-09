@@ -60,7 +60,6 @@ To install Tanzu Build Service by using the Tanzu CLI:
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
     - `REPO-USERNAME` and `REPO-PASSWORD` are the user name
     and password for the user that can write to `REPO-NAME`.
-    You can write to this location with these credentials.
     For Google Cloud Registry, use `_json_key` as the user name and the contents
     of the service account JSON file for the password.
 
@@ -179,8 +178,8 @@ Amazon Elastic Container Registry (ECR) on Amazon Elastic Kubernetes Service (EK
 
 To use AWS IAM authentication:
 
-1. Configure an AWS IAM role that has read and write access to the
-`INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY` registry location to be used for installation.
+1. Configure an AWS IAM role that has read and write access to the repository in the container
+registry used when installing Tanzu Application Platform.
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
@@ -216,7 +215,7 @@ ARN configured earlier by running:
 
     Where:
 
-    - `DEVELOPER-NAMESPACE` is ... <!-- what should this be? -->
+    - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
     - `SERVICE-ACCOUNT-NAME` is the supply chain service account. This is `default` if unset.
     - `IAM-ROLE-ARN` is the AWS IAM role ARN for the role configured earlier.
     For example, `arn:aws:iam::xyz:role/my-developer-role`.
@@ -262,7 +261,7 @@ To install `full` Tanzu Build Service dependencies:
 
     - `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
     - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
-    - `TARGET-REPOSITORY` is ...
+    - `TARGET-REPOSITORY` is your target repository.
 
 1. Add the TBS `full` dependencies package repository by running:
 
@@ -276,7 +275,7 @@ To install `full` Tanzu Build Service dependencies:
 
     - `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
     - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
-    - `TARGET-REPOSITORY` is ...
+    - `TARGET-REPOSITORY` is your target repository.
 
 1. Install the `full` dependencies package by running:
 

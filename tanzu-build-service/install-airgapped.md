@@ -1,6 +1,7 @@
 # Install Tanzu Build Service on an air-gapped environment
 
-This topic describes how to install Tanzu Build Service on an air-gapped environment.
+This topic describes how to install Tanzu Build Service on a Kubernetes cluster
+and registry that are air-gapped from external traffic.
 
 Use this topic if you do not want to use a Tanzu Application Platform profile that includes
 Tanzu Build Service.
@@ -26,13 +27,10 @@ Approximately 10&nbsp;GB of registry space is required when using the `full` dep
 
 ## <a id='tbs-offline-install-package'></a> Install the Tanzu Build Service package
 
-You can install Tanzu Build Service to a Kubernetes Cluster and registry that are
-air-gapped from external traffic.
-
 These steps assume that you have installed the Tanzu Application Platform packages
 in your air-gapped environment.
 
-To install the Tanzu Build Service package in an air-gapped environment:
+To install the Tanzu Build Service package on an air-gapped environment:
 
 1. Get the latest version of the Tanzu Build Service package by running:
 
@@ -61,15 +59,13 @@ To install the Tanzu Build Service package in an air-gapped environment:
 
     Where:
 
-    - `REPO-NAME` is the fully qualified path to the Tanzu Build Service repository.
-    <!-- does this mean the repo you want to install TBS in? "is a writable repository in your
-    registry." -->
-    This path must be writable. For example:
+    - `REPO-NAME` is the fully qualified path to a writeable repository in your internal registry.
+    Tanzu Build Service dependencies are written to this location. For example:
       - For Harbor: `harbor.io/my-project/build-service`
       - For Artifactory: `artifactory.com/my-project/build-service`
 
-    - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
-    You can write to this location with this credential. <!--  are the user name and password for the user that can write to `KP-DEFAULT-REPO` -->
+    - `REPO-USERNAME` and `REPO-PASSWORD` are the user name and password for the user that can
+    write to `REPO-NAME`.
 
         >**Note:** If you do not want to use plaintext for these credentials, you can
         >instead configure these credentials by using a Secret reference.
@@ -106,7 +102,7 @@ To install the Tanzu Build Service package in an air-gapped environment:
 
 By default, Tanzu Build Service is installed with `lite` dependencies.
 
-When installing Tanzu Build Service to an air-gapped environment, the `lite` dependencies
+When installing Tanzu Build Service on an air-gapped environment, the `lite` dependencies
 cannot be used as they require Internet access.
 You must install the `full` dependencies.
 
@@ -126,7 +122,7 @@ To install `full` dependencies:
 
     - `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
     - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
-    - `TARGET-REPOSITORY` is ... <!-- is this the same as the repository you used for kp_default_repository? -->
+    - `TARGET-REPOSITORY` is your target repository.
 
 1. Add the Tanzu Build Service `full` dependencies package repository by running:
 
@@ -139,7 +135,7 @@ To install `full` dependencies:
     Where:
 
     - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
-    - `TARGET-REPOSITORY` is ...
+    - `TARGET-REPOSITORY` is your target repository.
     - `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
 
 1. Install the `full` dependencies package by running:

@@ -13,8 +13,9 @@ You can configure these build configurations by using a workload.
 
 You can configure build-time service bindings for Tanzu Build Service.
 
-Tanzu Build Service supports using [Service Binding Specification for Kubernetes](https://github.com/k8s-service-bindings/spec)
-for app builds.
+Tanzu Build Service supports using the Service Binding Specification for Kubernetes for application builds.
+For more information, see the [service binding specification for Kubernetes](https://github.com/k8s-service-bindings/spec)
+in GitHub.
 
 Service binding configuration is specific to the buildpack that is used to build the app.
 For more information about configuring buildpack service bindings for the buildpack you are using,
@@ -39,8 +40,8 @@ To configure a service binding for a Tanzu Application Platform workload, follow
     ```
 
     Where:
-    - `DEVELOPER-NAMESPACE` is ...
-    - `MY-SETTINGS` is ... <!-- what would be in these settings? is there an example? -->
+    - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
+    - `MY-SETTINGS` is the contents of your service bindings file.
 
 2. Apply the YAML file by running:
 
