@@ -313,8 +313,8 @@ Where:
 
 - `TANZU-NET-USERNAME` and `TANZU-NET-PASSWORD` are the email address and password
 to log in to VMware Tanzu Network.
-You can also configure this credential by using a secret reference.
-For more information, see [Install Tanzu Build Service](install-tbs.md#install-secret-refs).
+You can also configure these credentials by using a secret reference.
+For more information, see [Use Secret references for registry credentials](#install-secret-refs).
 - `DESCRIPTOR-NAME` is the name of the descriptor to import.
 For more information, see [Descriptors](#descriptors).
 Available options are:
