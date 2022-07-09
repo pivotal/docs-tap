@@ -140,7 +140,7 @@ and the VMware Tanzu Network registry.
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
-    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Service
+    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
@@ -183,7 +183,7 @@ registry used when installing Tanzu Application Platform.
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
-    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Service
+    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
@@ -200,7 +200,7 @@ registry used when installing Tanzu Application Platform.
     - `IAM-ROLE-ARN` is the AWS IAM role ARN for the role configured in the previous step.
     For example, `arn:aws:iam::xyz:role/my-install-role`.
 
-1. The developer namespace requires configuration for Tanzu Application Service
+1. The developer namespace requires configuration for Tanzu Application Platform
 to use AWS IAM authentication for ECR.
 Configure an AWS IAM role that has read and write access to the registry location
 where workload images will be stored.
@@ -232,7 +232,7 @@ To install `full` Tanzu Build Service dependencies:
 1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
  to your `tbs-values.yaml` file, for example:
 
-    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Service
+    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
@@ -297,7 +297,7 @@ For more information about automatic dependency updates, see [About automatic de
 
 To configure automatic dependency updates, add the following to your `tbs-values.yaml`:
 
->**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Service
+>**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
 >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
 ```yaml
