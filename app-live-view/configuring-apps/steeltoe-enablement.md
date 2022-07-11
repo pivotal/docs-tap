@@ -1,8 +1,7 @@
 # Enabling Steeltoe apps for Application Live View
 
-This topic describes how to configure a Steeltoe app to be observed by
+This topic describes how developers configure a Steeltoe app to be observed by
 Application Live View within Tanzu Application Platform.
-
 
 ## Enable Steeltoe apps
 

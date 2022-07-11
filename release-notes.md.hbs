@@ -82,7 +82,7 @@ This release includes the following changes, listed by component and area.
 - Beta scanner support released in the [Snyk Scanner](#snyk-scanner) package.
 - [Documentation available](scst-scan/offline-airgap.md) on how to use Grype in offline and air-gapped environments.
 
-**NOTICE:** The Grype Scanner `ScanTemplate`s shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are now deprecated and will no longer be supported in future releases. Refer to [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
+>**Note:** The Grype Scanner `ScanTemplate`s shipped with versions before Supply Chain Security Tools - Scan `v1.2.0` are now deprecated and are no longer supported in future releases. See [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 
 #### Supply Chain Security Tools - Sign
 - Update cosign to 1.9.0
@@ -136,18 +136,17 @@ For more information, see
 Debug your workloads.
 For more information, see [VMware Tanzu Developer Tools for IntelliJ](intellij-extension/about.md).
 
-#### Functions (Beta)
+#### <a id="functions-features"></a> Functions (Beta)
 
 - Live Update and Debug your Java functions. For more information, see [Iterate on your function](workloads/iterate-functions.md).
 
-#### <a id="tbs"></a> Tanzu Build Service
+#### <a id="tbs-features"></a> Tanzu Build Service
 
 - Updates to dependencies are now provided as part of Tanzu Application Platform patches.
 - The automatic dependency update feature is being deprecated.
 Configuring Tanzu Application Platform with automatic dependency updates is
 not recommended due to compatibility risks.
-This feature will receive continued support on existing <!-- previous? which versions? --> Tanzu Application Platform versions.
-<!-- Since Auto dep updates is deprecated, does this mean that the tap descriptors are also being phased out? -->
+This feature will still receive support until stated otherwise.
 
 ### <a id='1-2-breaking-changes'></a> Breaking changes
 
@@ -179,25 +178,10 @@ This release has the following breaking changes, listed by area and component.
 
 When upgrading Tanzu Application Platform to v1.2, Tanzu Build Service image
 resources automatically run a build that fails due to a missing dependency.
-This error does not persist and subsequent builds will resolve this error.
+This error does not persist and subsequent builds will automatically resolve this error.
 Users can safely wait for the next build of their workloads, which will be triggered
 by source code changes.
-
-<!-- which page would be best to move this to? TBS component troubleshooting or TAP troubleshooting? -->
-If you do not want to wait for subsequent builds to run automatically, you can use the open source
-[kp](https://github.com/vmware-tanzu/kpack-cli) CLI to re-run failing builds:
-
-1. List the image resources in the developer namespace:
-
-    ```console
-    kp image list -n DEVELOPER-NAMESPACE
-    ```
-
-1. Manually trigger the image resources to re-run builds for each failing image:
-
-    ```console
-    kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
-    ```
+For how to manually re-run builds, see [Re-run builds after upgrading](upgrading.md#tbs-breaking-change).
 
 #### <a id="grype-scanner-changes"></a> Grype Scanner
 
@@ -298,9 +282,11 @@ To prevent this, see
   **Workaround:**
   Define the CA using the available `.shared.ca_cert_data` top-level key to supply the CA to the convention service.
 
-#### Functions (Beta)
+#### <a id="functions-issues"></a> Functions (Beta)
 
-- When using LiveUpdate, hot reload of your function on your cluster may not display changes made to your function. To manually push changes to the cluster use the "tilt up" command.
+- When using Live Update, hot reload of your function on your cluster might not
+display changes made to your function.
+To manually push changes to the cluster, run the `tilt up` command.
 
 #### Grype scanner
 

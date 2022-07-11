@@ -1,6 +1,6 @@
 # Create your application accelerator
 
-This how-to guide walks you through creating an application accelerator by using Tanzu Application Platform GUI and CLI.
+This is the first in a series of Getting started how-to guides for operators. It walks you through creating an application accelerator by using Tanzu Application Platform GUI and CLI.
 
 For background information about application accelerators, see [Application Accelerator](about-application-accelerator.md).
 
