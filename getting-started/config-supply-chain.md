@@ -36,13 +36,14 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
 4. Enable the policy controller verification in your namespace by adding the label
 `policy.sigstore.dev/include: "true"` to the namespace resource.
+
     For example:
     ```console
     kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
     ```
 
-> **Note:** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
-that have chosen to opt-in.
+>**Note:** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
+that have chosen to opt in.
 
 When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `spec.images.glob[]` you define in the configuration. For more information about configuring an image policy, see [Configuring Supply Chain Security Tools - Policy](../scst-policy/configuring.md).
 
