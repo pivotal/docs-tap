@@ -2,9 +2,9 @@
 
 This document describes how to upgrade Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
 
-You can perform a fresh install of Supply Chain Security Tools - Scan by following the instructions in [Install Supply Chain Security Tools - Scan](install-scst-scan.md) 
+You can perform a fresh install of Supply Chain Security Tools - Scan by following the instructions in [Install Supply Chain Security Tools - Scan](install-scst-scan.md). 
 
-Here you can find instructions for:
+This topic includes instructions for:
 
 1. [Prerequisites](#prereqs)
 
@@ -18,13 +18,13 @@ Here you can find instructions for:
 
 Before you upgrade Supply Chain Security Tools - Scan:
 
-* Upgrade the Tanzu Application Platform following the instructions in [Upgrading Tanzu Application Platform](../upgrading.md) 
+* Upgrade the Tanzu Application Platform by following the instructions in [Upgrading Tanzu Application Platform](../upgrading.md) 
 
 ## <a id="general-upgrades"></a> General Upgrades for Supply Chain Security Tools - Scan
 
-When you're upgrading to any version of Supply Chain Security Tools - Scan these are some of the factors to keep in mind for accomplishing this task successfully: 
+When you're upgrading to any version of Supply Chain Security Tools - Scan these are some factors to accomplish this task successfully: 
 
-1. Inspect the [Release Notes](../release-notes.md) for the version you're upgrading to. There you can find if there is any breaking changes for the installation.
+1. Inspect the [Release Notes](../release-notes.md) for the version you're upgrading to. There you can find any breaking changes for the installation.
 2. Get the values schema for the package version you're upgrading to by running: 
 
     ```tanzu package available get scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
@@ -33,15 +33,15 @@ Where `$VERSION` is the new version. This gives you insights on the values you c
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading to Version v1.2.0
 
-If you're upgrading from a previous version of Supply Chain Security Tools - Scan to the version `v1.2.0`, do the following: 
+If you're upgrading from a previous version of Supply Chain Security Tools - Scan to the version `v1.2.0`, do the following:
 
 1. Change the `SecretExports` from Supply Chain Security Tools - Store. 
 
-  Supply Chain Security Tools - Scan needs information to connect to the Supply Chain Security Tools - Store deployment, you must change where this secrets are exported to enable the connection with the version `v1.2.0` of Supply Chain Security Tools - Scan.
+  Supply Chain Security Tools - Scan needs information to connect to the Supply Chain Security Tools - Store deployment, you must change where these secrets are exported to enable the connection with the version `v1.2.0` of Supply Chain Security Tools - Scan.
 
   **Single Cluster Deployment**
 
-  Edit the `tap-values.yaml` file you have used to deploy Supply Chain Security Tools - Store to export the ca secret to your developer namespace. 
+  Edit the `tap-values.yaml` file you used to deploy Supply Chain Security Tools - Store to export the ca secret to your developer namespace. 
 
   ```yaml
   metadata_store:
@@ -50,7 +50,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
   >**Note:** The `ns_for_export_app_cert` currently supports only one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this is discourage due to security reasons.
 
-  Now update Tanzu Application Platform to apply the changes:
+  Update Tanzu Application Platform to apply the changes:
 
   ```console
   tanzu package installed update tap -f tap-values.yaml -n tap-install
@@ -176,7 +176,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
   View the scan results
 
   ```console
-  kubectl describe imagescan sample-public-image-scan -n <DEV-NAMESPACE> 
+  kubectl describe imagescan sample-public-image-scan -n <DEV-NAMESPACE>  
   ```
 
-  If everything is working properly, the `ImageScan` goes to the `Failed` phase and show the results of the scan in the `Status`. 
+  If it is successful, the `ImageScan` goes to the `Failed` phase and shows the results of the scan in the `Status`. 
