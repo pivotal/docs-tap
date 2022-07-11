@@ -135,7 +135,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
 
-2. Install the package by running:
+1. Install the package by running:
 
     ```console
     tanzu package install grype-scanner \
