@@ -32,7 +32,7 @@ Before using function workloads on Tanzu Application Platform, complete the foll
 [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) page on Tanzu Network.
 For more information, see the [kp CLI help text](https://github.com/vmware-tanzu/kpack-cli/blob/v0.4.0/docs/kp.md) on GitHub.
 
-* Follow all instructions in [Set up developer namespaces to use installed packages](../install-components.html#setup).
+* Follow all instructions in [Set up developer namespaces to use installed packages](../set-up-namespaces.mdp).
 
 ## <a id="add-buildpacks"></a> Adding function buildpacks
 

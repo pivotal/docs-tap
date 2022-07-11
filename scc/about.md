@@ -1,14 +1,8 @@
----
-title: Supply Chain Choreographer for Tanzu
-subtitle: Supply Chain Choreography
-weight: 1
----
-
-## Supply Chain Choreographer for Tanzu 
+# Supply Chain Choreographer for Tanzu
 
 This topic introduces Supply Chain Choreographer.
 
-### <a id="overview"></a> Overview
+## <a id="overview"></a> Overview
 
 Supply Chain Choreographer is based on open source [Cartographer](https://cartographer.sh/docs/).
 It allows App Operators to create pre-approved paths to production by integrating Kubernetes
