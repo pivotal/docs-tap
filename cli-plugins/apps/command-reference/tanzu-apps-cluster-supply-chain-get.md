@@ -1,16 +1,16 @@
 ## tanzu apps cluster-supply-chain get
 
-Get details from a cluster supply chain
+Get details from a cluster supply chain.
 
-### Synopsis
+### <a id="synopsis"></a> Synopsis
 
-Get details from a cluster supply chain
+Get details from a cluster supply chain.
 
 ```
 tanzu apps cluster-supply-chain get <name> [flags]
 ```
 
-### Examples
+### <a id="examples"></a> Examples
 
 ```
 tanzu apps cluster-supply-chain get
@@ -22,7 +22,7 @@ tanzu apps cluster-supply-chain get
   -h, --help   help for get
 ```
 
-### Options inherited from parent commands
+### <a id="parent-commands-options"></a> Options inherited from parent commands
 
 ```
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
@@ -31,6 +31,6 @@ tanzu apps cluster-supply-chain get
   -v, --verbose int32     number for the log level verbosity (default 1)
 ```
 
-### SEE ALSO
+### <a id="see-also"></a> SEE ALSO
 
-* [tanzu apps cluster-supply-chain](tanzu-apps-cluster-supply-chain.md)	 - patterns for building and configuring workloads
+- [tanzu apps cluster-supply-chain](tanzu-apps-cluster-supply-chain.md)	 - patterns for building and configuring workloads

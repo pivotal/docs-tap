@@ -4,11 +4,11 @@ This topic helps you apply configurations to a new or existing workload.
 
 ### <a id="synopsis"></a> Synopsis
 
-Apply configurations to a new or existing workload. If the resource does not exist, it will be created.
+Apply configurations to a new or existing workload. If the resource does not exist, it's created.
 
 Workload configuration options include:
 
-- Source code to build (if there is a `.tanzuignore` file, filepaths listed there will be ignored in the build)
+- Source code to build (if there is a `.tanzuignore` file, file paths listed there will be ignored in the build)
 - runtime resource limits
 - environment variables
 - services to bind

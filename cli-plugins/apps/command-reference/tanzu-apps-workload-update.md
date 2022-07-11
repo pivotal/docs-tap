@@ -8,7 +8,7 @@ Update the configuration of an existing workload.
 
 Workload configuration options include:
 
-- Source code to build (if there is a `.tanzuignore` file, filepaths listed there will be ignored in the build)
+- Source code to build (if there is a `.tanzuignore` file, file paths listed there are ignored in the build)
 - runtime resource limits
 - environment variables
 - services to bind
