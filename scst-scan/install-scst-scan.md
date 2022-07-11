@@ -114,6 +114,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
         name: "<TOKEN-SECRET-NAME>" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where the connection secrets were created (if multi-cluster)
     ```
+    Note: You must either define both the METADATA-STORE-URL and caSecret or not define them as they depend on each other.
 
     You can retrieve any other configurable setting using the following command, and appending the key-value pair to the previous `grype-values.yaml` file:
 
