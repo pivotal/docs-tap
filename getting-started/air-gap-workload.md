@@ -16,13 +16,13 @@ For information about installing Tanzu Application Platform in an air-gapped env
 To create a workload from Git through https, create a secret in your developer namespace with the caFile that matches the gitops_ssh_secret name in tap_values:
 
 ```console
-   kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
+kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
 ```
 
 If you would like to pass in a custom settings.xml for Java, create a file called settings-xml.yaml similar to the sample [settings-xml.yaml](https://gitlab.eng.vmware.com/tanzu-compliance/tap-airgapped/-/blob/main/service-bindings/settings-xml.yaml) on GitLab. To apply the file:
 
 ```console
-   kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
+kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
 ```   
 
 ## Create a basic supply chain workload
