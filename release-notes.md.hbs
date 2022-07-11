@@ -136,18 +136,17 @@ For more information, see
 Debug your workloads.
 For more information, see [VMware Tanzu Developer Tools for IntelliJ](intellij-extension/about.md).
 
-#### Functions (Beta)
+#### <a id="functions-features"></a> Functions (Beta)
 
 - Live Update and Debug your Java functions. For more information, see [Iterate on your function](workloads/iterate-functions.md).
 
-#### <a id="tbs"></a> Tanzu Build Service
+#### <a id="tbs-features"></a> Tanzu Build Service
 
 - Updates to dependencies are now provided as part of Tanzu Application Platform patches.
 - The automatic dependency update feature is being deprecated.
 Configuring Tanzu Application Platform with automatic dependency updates is
 not recommended due to compatibility risks.
 This feature will receive continued support on existing <!-- previous? which versions? --> Tanzu Application Platform versions.
-<!-- Since Auto dep updates is deprecated, does this mean that the tap descriptors are also being phased out? -->
 
 ### <a id='1-2-breaking-changes'></a> Breaking changes
 
@@ -283,7 +282,7 @@ To prevent this, see
   **Workaround:**
   Define the CA using the available `.shared.ca_cert_data` top-level key to supply the CA to the convention service.
 
-#### Functions (Beta)
+#### <a id="functions-issues"></a> Functions (Beta)
 
 - When using Live Update, hot reload of your function on your cluster might not
 display changes made to your function.
