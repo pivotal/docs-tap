@@ -48,18 +48,17 @@ the container is being built and deployed.
 
     - You see `Live Update starting…` in the status bar at the bottom right.
 
-    - Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
+    - Live update can take 1 to 3 minutes while the workload deploys and the Knative service
+    becomes available.
 
-
-1. Configure the Tiltfile.
-
-   >Note: Depending on the type of cluster you use, you might see an error message similar to the following:
+1. Depending on the type of cluster you use, you might see an error message similar to the following:
 
     >`ERROR: Stop! cluster-name might be production. If you're sure you want to deploy there,
-    >add allow_k8s_contexts('cluster-name') to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.`
+    >add allow_k8s_contexts('cluster-name') to your Tiltfile. Otherwise, switch k8scontexts
+    >and restart Tilt.`
 
-    The Tiltfile has configuration fields unique to your source image and Kubernetes context. You will need to update source-image-location and add the     line `allow_k8s_contexts('cluster-name')` to your Tiltfile.
-
+    If you see this error, add the line `allow_k8s_contexts('CLUSTER-NAME')` to your Tiltfile,
+    where `CLUSTER-NAME` is the name of your cluster.
 
 1. When the Live Update status in the status bar is visible and says
 `Live Update Started`, navigate to `http://localhost:8080` in your browser
