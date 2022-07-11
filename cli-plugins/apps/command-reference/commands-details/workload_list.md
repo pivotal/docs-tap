@@ -1,6 +1,6 @@
 # tanzu apps workload list
 
-`tanzu apps workload list` is used to get the workloads present in the cluster, either in the current namespace, in another namespace or in all namespaces.
+`tanzu apps workload list` gets the workloads present in the cluster, either in the current namespace, in another namespace or in all namespaces.
 
 ## Default view
 
@@ -24,7 +24,8 @@ spring-petclinic3   spring-petclinic   Ready                   29d
 
 ### <a id="list-all-namespaces"></a> `--all-namespaces`, `-A`
 
-Shows workloads in all namespaces in cluster. 
+Shows workloads in all namespaces in cluster.
+
 ```bash
 tanzu apps workload list -A
 
@@ -68,6 +69,7 @@ app3     <empty>   Unknown                       8d
 ### <a id="list-output"></a> `--output`, `-o`
 
 Allows to list all workloads in the specified namespace in yaml, yml or json format.
+
 - yaml/yml
     ```yaml
     ---
@@ -169,4 +171,3 @@ Allows to list all workloads in the specified namespace in yaml, yml or json for
     ...
     ]
     ```
-

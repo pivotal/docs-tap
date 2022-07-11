@@ -1,10 +1,10 @@
 # tanzu apps workload tail
 
-`tanzu apps workload tail` is used to check the runtime logs of a workload.
+`tanzu apps workload tail` checks the runtime logs of a workload.
 
 ## Default view
 
-Without timestamp set, workload tail will show the stage where it is/was and the log related. 
+Without timestamp set, workload tail will show the stage where it is and the log related.
 
 ```bash
 + spring-pet-clinic-build-1-build-pod › prepare
@@ -39,7 +39,7 @@ spring-pet-clinic-build-1-build-pod[detect] paketo-buildpacks/image-labels      
 
 ### <a id="tail-component"></a> `--component`
 
-Set the component from which the tail command should stream the logs, the values that the flag can take depends on the final deployed pods label `app.kubernetes.io/component`, for example, `build`, `run` and `config-writer`
+Set the component from which the tail<!-- Missing code tags? --> command should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> stream the logs, the values that the flag can take depends on the final deployed pods label `app.kubernetes.io/component`, for example, `build`, `run` and `config-writer`
 
 ```bash
 tanzu apps workload tail pet-clinic --component build
@@ -63,7 +63,8 @@ pet-clinic-build-1-build-pod[export] Adding cache layer 'cache.sbom'
 
 ### <a id="tail-namespace"></a> `--namespace`, `-n`
 
-Specifies the namespace where the workload was deployed to get logs from
+Specifies the namespace where the workload was deployed to get logs from.
+
 ```bash
 tanzu apps workload tail pet-clinic -n development
 
@@ -81,7 +82,7 @@ pet-clinic-00004-deployment-6445565f7b-ts8l5[workload] 2022-06-14 16:28:53.231  
 
 ### <a id="tail-since"></a> `--since`
 
-Sets the time duration to start reading logs from, this can be set in seconds (`s`), minutes(`m`) or hours (`h`) in the format `0h0m0s`, when the duration is `0` it is net neccesary to be written for example for 1 hour, 0 minutes and 1 seconds is `1h1s`. The default value for this flag is 1 second `1s`
+Sets the time duration to start reading logs from, this is set in seconds (`s`), minutes(`m`) or hours (`h`) in the format `0h0m0s`, when the duration is `0` it is net necessary to be written for example, for 1 hour, 0 minutes and 1 seconds is `1h1s`. The default value for this flag is 1 second `1s`
 
 ```bash
 tanzu apps workload tail pet-clinic --since 1h1s
@@ -99,7 +100,7 @@ pet-clinic-config-writer-9fbk6-pod[step-main] ++ jq -r 'to_entries | .[] | @sh "
 + pet-clinic-config-writer-kpmc6-pod › step-main
 + pet-clinic-config-writer-kpmc6-pod › step-init
 + pet-clinic-config-writer-kpmc6-pod › place-scripts
-pet-clinic-config-writer-9fbk6-pod[step-main] + eval 'mkdir -p $(dirname '\''delivery.yml'\'') && echo '\''apiVersion: serving.knative.dev/v1
+pet-clinic-config-writer-9fbk6-pod[step-main] + eval 'mkdir -p $(dirname '\''delivery.yml'\'') && echo '\''apiVersion: serving.knative.dev/v1'
 pet-clinic-config-writer-9fbk6-pod[step-main] kind: Service
 pet-clinic-config-writer-9fbk6-pod[step-main] metadata:
 pet-clinic-config-writer-9fbk6-pod[step-main]   name: pet-clinic
@@ -113,7 +114,7 @@ pet-clinic-config-writer-9fbk6-pod[step-main]     carto.run/workload-name: pet-c
 ### <a id="tail-timestamp"></a> `--timestamp`, `-t`
 
 Adds the timestamp to the begining of each log message
- 
+
 ```bash
 tanzu apps workload tail pet-clinic -t
 
