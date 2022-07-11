@@ -12,7 +12,7 @@ docs.vmware.com is built.
   - [Installing Tanzu Application Platform package and profiles](install.md.hbs)
   - [Installing Tanzu Application Platform in an air-gapped environment (Beta)](install-air-gap.md.hbs)
       - [Installing Tanzu Application Platform](install-air-gap.md.hbs)
-      - [Installing the Tanzu Build Service dependencies](tanzu-build-service/tbs-offline-install-deps.md)
+      - [Installing the Tanzu Build Service dependencies](tbs-offline-install-deps.md)
       - [Configuring custom CAs for Tanzu Application Platform GUI](tap-gui/non-standard-certs.md)
       - [Configuring Application Accelerator](application-accelerator/configuration.md)
       - [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.md)
