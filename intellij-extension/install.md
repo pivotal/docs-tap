@@ -1,50 +1,43 @@
 # Installing Tanzu Dev Tools for IntelliJ
 
-This topic explains how to install the VMware Tanzu Developer Tools plugin for IntelliJ IDEA.
+This topic explains how to install the VMware Tanzu Developer Tools for IntelliJ IDE extension.
+The extension currently only supports macOS and Java applications.
+The extension currently supports IntelliJ IDEA v2021.1 to v2022.1.
 
-## <a id="prerequisites"></a> Prerequisites
+## <a id="prereqs"></a> Prerequisites
 
-> **Note:** The Tanzu Developer Tools plugin currently only supports macOS, and Java Applications.
-> **Note:** Currently supporting IntelliJ IDEA versions 2021.1 - 2022.1
-
-Before installing the Tanzu Developer Tools IDE plugin, you must have:
+Before installing the extension, you must have:
 
 - [IntelliJ](https://www.jetbrains.com/idea/download/#section=mac)
-- The Kubernetes command-line tool. For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/#kubectl).
+- [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 - [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later
+- [Tanzu CLI and plug-ins](../install-tanzu-cli.md#cli-and-plugin)
+- [A cluster with the Tanzu Application Platform Full profile or Iterate profile](../install.md.hbs)
 
-    >**Note:** Docker Desktop and local Kubernetes are not prerequisites for using Tanzu Developer Tools for VS Code.
+Docker Desktop and local Kubernetes are not prerequisites for using Tanzu Developer Tools for VS Code.
 
-- The Tanzu CLI and plug-ins. See [Install or update the Tanzu CLI and plug-ins](../install-tanzu-cli.html#-install-or-update-the-tanzu-cli-and-plug-ins) for more information.
-- A cluster with Tanzu Application Platform’s Iterate or Full profiles. Download the profiles from the [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). See [Installing the Tanzu Application Platform package and profiles](install.html) for more information.
+> **Note:** If you are an app developer, someone else in your organization might have already set up
+> the Tanzu Application Platform environment.
 
-> **Note:** If you are an app developer, the Tanzu Application Platform environment might be set up by someone else in your organization. Contact the respective group within your organization to verify if a Tanzu Application Platform environment already exists.
-
-## <a id="installation"></a> Installation
+## <a id="install"></a> Install
 
 To install VMware Tanzu Developer Tools for IntelliJ:
 
-1. Download Tanzu Developer Tools for IntelliJ from the [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+1. Download VMware Tanzu Developer Tools for IntelliJ from the [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 1. Open IntelliJ.
-  1. Open the Preferences pane by pressing `cmd` + `,` and navigate to **Plugins**.
-  2. Select the gear icon and choose **Install Plugin from disk...**.
-  ![Gear icon inside the Plugins Preferences pane.](../images/intellij-gearIconPrefs.png)
-  3. Use the file picker to select the `.zip` downloaded from the Tanzu Network.
+1. Open the **Preferences** pane and then go to **Plugins**.
+1. Click the gear icon and then click **Install Plugin from disk...**.
+![Gear icon inside the Plugins Preferences pane.](../images/intellij-gearIconPrefs.png)
+1. Use the file picker to select the ZIP file downloaded from the VMware Tanzu Network.
 
-## <a id="uninstallation"></a> Uninstallation
+## <a id="uninstall"></a> Uninstall
 
-To uninstall the Tanzu Dev Tools plugin:
+To uninstall the VMware Tanzu Developer Tools for IntelliJ:
 
-1. Navigate to **Preferences -> Plugins**.
-2. Select the Tanzu Dev Tools plugin, navigate to the gear icon and select `Uninstall`.
+1. Open the **Preferences** pane and then go to **Plugins**.
+1. Select the extension, click the gear icon, and then click **Uninstall**.
+1. Restart IntelliJ.
 
->**Note:** You might need to restart IntelliJ for the changes to take effect.
+## <a id="next-steps"></a> Next steps
 
-## <a id="whats-next"></a> What's Next
-
-When finished on this page, proceed to [Using Tanzu Dev Tools to get started](getting-started.md).
-
----
-## <a id="known-issues"></a> Known Issues
-
-If you encounter any issues while using the plugin please refer to the [Known Issues](known-issues.md) page.
+Proceed to [Getting started](getting-started.md).
