@@ -1,7 +1,22 @@
 # Known Issues
 
-## Only supports using a single IntelliJ window
-- You may see a notification that the Tanzu Language Server has failed to start. Check that you only have one IntelliJ Project open in a single window. Try close the other windows, quitting IntelliJ, and trying again.
+This topic describes known issues with VMware Tanzu Developer Tools for IntelliJ.
 
-## Workload File Path and Local Path properties on Tanzu Debug and Tanzu Live Update Run Configurations must be fully qualified paths
-- Ensure the `Workload File Path` and `Local Path` properties on your debug and live update configurations are the fully qualified paths. You can use the file picker provided on each input field to help enter correct values.
+## No support for multiple IntelliJ windows
+
+**Symptom:** A notification appears saying that the Tanzu Language Server has failed to start.
+
+**Cause:** You have more than one IntelliJ Project open in a single window.
+
+**Solution:** Close the other windows, quit IntelliJ, and re-open IntelliJ.
+
+## Unqualified paths for Workload File Path and Local Path properties
+
+**Symptom:**
+
+**Cause:** Unqualified paths for the Workload File Path and Local Path properties on Tanzu Debug and
+Tanzu Live Update Run Configurations.
+
+**Solution:** Make the Workload File Path and Local Path properties on your Debug and Live Update
+configurations the fully qualified paths. Use the file picker on each input field to help you
+enter the correct values.
