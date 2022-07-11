@@ -2,11 +2,18 @@
 
 `tanzu apps workload get` is a command used to retrieve information and status about a workload.
 
-You can view workload details at anytime in the process. Some details, such as the status of the workload, the source of the workload application, the supply chain which took care of the workload, the supply chain resources which interact with the workload, if there is/was any issue while deploying the workload and finally which *Pods* the workload generates and the knative services related to the workload, if the supply chain is using knative.
+You can view workload details at whenever. Some details are:
+
+ - The status of the workload.
+ - The source of the workload application.
+ - The supply chain which took care of the workload.
+ - The supply chain resources which interact with the workload.
+ - If there is any issue while deploying the workload and finally which *pods* the workload generates and the knative services related to the workload.
+ - if the supply chain is using knative.
 
 ## Default view
 
-There are multiple sections in workload get command output. Following data is displayed
+There are multiple sections in workload get command output. Following data is displayed:
 
 - Name of the workload and its status.
 - Display source information of workload.
@@ -86,7 +93,8 @@ source:
 
 ### <a id="get-output"></a> `--output`/`-o`
 
-Configures how the workload is being shown, it supports the values `yaml`, `yml` and `json`, where `yaml` and `yml` are equal. It shows the actual workload in the cluster.
+Configures how the workload is being shown. This supports the values `yaml`, `yml` and `json`, where `yaml` and `yml` are equal. It shows the actual workload in the cluster.
+
 + `yaml/yml`
     ```yaml
     tanzu apps workload get pet-clinic -o yaml]
@@ -209,7 +217,7 @@ Configures how the workload is being shown, it supports the values `yaml`, `yml`
 
 ### <a id="get-namespace"></a> `--namespace`/`-n`
 
-Specifies the namespace where the workload was deployed
+Specifies the namespace where the workload is deployed.
 
 ```bash
 tanzu apps workload get pet-clinic -n development
