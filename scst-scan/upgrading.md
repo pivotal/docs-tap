@@ -1,4 +1,4 @@
-# Upgrading Supply Chain Security Tools - Scan
+# Upgrading Supply Chain Security Tools - Scan 
 
 This document describes how to upgrade Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
 
@@ -22,29 +22,33 @@ Before you upgrade Supply Chain Security Tools - Scan:
 
 ## <a id="general-upgrades"></a> General Upgrades for Supply Chain Security Tools - Scan
 
-When you're upgrading to any version of Supply Chain Security Tools - Scan these are some of the factors you need to keep in top of mind for accomplish this task successfully: 
+When you're upgrading to any version of Supply Chain Security Tools - Scan these are some of the factors to keep in mind for accomplishing this task successfully: 
 
-1. Check the [Release Notes](../release-notes.md) for the version you're upgrading to. There you can find if there is any breaking changes for the installation.
-2. Get the values schema for the package version you're upgrading to using `tanzu package available get scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install` where `$VERSION` is the new version. This will give you insights on the values you can configure in your `tap-values.yaml` for the new version.
+1. Inspect the [Release Notes](../release-notes.md) for the version you're upgrading to. There you can find if there is any breaking changes for the installation.
+2. Get the values schema for the package version you're upgrading to by running: 
+
+    ```tanzu package available get scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
+    ```
+Where `$VERSION` is the new version. This gives you insights on the values you can configure in your `tap-values.yaml` for the new version.
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading to Version v1.2.0
 
-If you're upgrading from a previous version of Supply Chain Security Tools - Scan to the version `v1.2.0` you have to follow these steps: 
+If you're upgrading from a previous version of Supply Chain Security Tools - Scan to the version `v1.2.0`, do the following: 
 
 1. Change the `SecretExports` from Supply Chain Security Tools - Store. 
 
-  Supply Chain Security Tools - Scan need information to connect to the Supply Chain Security Tools - Store deployment, we need to change where this secrets are exported to in order to enable the connection with the version `v1.2.0` of Supply Chain Security Tools - Scan.
+  Supply Chain Security Tools - Scan needs information to connect to the Supply Chain Security Tools - Store deployment, you must change where this secrets are exported to enable the connection with the version `v1.2.0` of Supply Chain Security Tools - Scan.
 
   **Single Cluster Deployment**
 
-  Modify the `tap-values.yaml` file you have used to deploy Supply Chain Security Tools - Store to export the ca secret to your developer namespace. 
+  Edit the `tap-values.yaml` file you have used to deploy Supply Chain Security Tools - Store to export the ca secret to your developer namespace. 
 
   ```yaml
   metadata_store:
       ns_for_export_app_cert: "<DEV-NAMESPACE>"
-  ```
+  ``` 
 
-  >**Note:** The `ns_for_export_app_cert` currently supports only one namespace at a time. If you have multiple namespaces you could replace this value with a `"*"`, but this is discourage due to security reasons.
+  >**Note:** The `ns_for_export_app_cert` currently supports only one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this is discourage due to security reasons.
 
   Now update Tanzu Application Platform to apply the changes:
 
@@ -54,7 +58,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
   **Multi-Cluster Deployment**
 
-  We need to reapply the SecretExport by changing the toNamespace: scan-link-system to toNamespace: `DEV-NAMESPACE`
+  You must reapply the SecretExport by changing the toNamespace: scan-link-system to Namespace: `DEV-NAMESPACE`
 
   ```yaml
   ---
@@ -77,7 +81,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
  
 2. Update your `tap-values.yaml` file.
 
-  The installation of the Supply Chain Security Tools - Scan and the Grype scanner have some changes. The connection to the Supply Chain Security Tools - Store component have moved to the Grype scanner package. You need to disable the connection from the Supply Chain Security Tools - Scan, which is still present for backwards compatibility, but is deprecated and will be removed by `v1.3.0`.
+  The installation of the Supply Chain Security Tools - Scan and the Grype scanner have some changes. The connection to the Supply Chain Security Tools - Store component have moved to the Grype scanner package. To deactivate the connection from the Supply Chain Security Tools - Scan, which is still present for backwards compatibility, but is deprecated and is removed in `v1.3.0`.
 
   ```yaml
   # Disable scan controller embedded Supply Chain Security Tools - Store integration
@@ -98,7 +102,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
         importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where the connection secrets were created (if multi-cluster)
   ```
 
-  For more insights on how to install Grype, please check out [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype).
+  For more insights on how to install Grype, see [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype).
 
   Now update Tanzu Application Platform to apply the changes:
 
@@ -108,11 +112,11 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
  
 3. Update the `ScanPolicy` to include the latest structure changes for `v1.2.0`.
 
-  To update to the latest valid Rego File in the `ScanPolicy`, please take a look at the [Enforce compliance policy using Open Policy Agent](policies.md) page for insights and examples. The `v1.2.0` introduced some breaking changes in the Rego File structure used for the `ScanPolicies`, they're documented in the [Release Notes](../release-notes.md#scst-scan-changes).
+  To update to the latest valid Rego File in the `ScanPolicy`, [Enforce compliance policy using Open Policy Agent](policies.md). `v1.2.0` introduced some breaking changes in the Rego File structure used for the `ScanPolicies`, See the [Release Notes](../release-notes.md#scst-scan-changes).
 
 4. Verify the upgrade.
 
-  You could run any `ImageScan` or `SourceScan` in your `<DEV-NAMESPACE>` where the Grype Scanner was installed, and it should finish successfully. Here is a sample you can try to run to see if everything upgraded successfully.
+  You can run any `ImageScan` or `SourceScan` in your `<DEV-NAMESPACE>` where the Grype Scanner was installed, and it finishes successfully. Here is a sample you can try to run to detect if everything upgraded successfully.
 
   Create the `verify-upgrade.yaml` file in your system with the following content: 
 
@@ -172,7 +176,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
   View the scan results
 
   ```console
-  kubectl describe imagescan sample-public-image-scan -n <DEV-NAMESPACE>
+  kubectl describe imagescan sample-public-image-scan -n <DEV-NAMESPACE> 
   ```
 
-  If everything is working properly, the `ImageScan` will go to the `Failed` phase and show the results of the scan in the `Status`. 
+  If everything is working properly, the `ImageScan` goes to the `Failed` phase and show the results of the scan in the `Status`. 
