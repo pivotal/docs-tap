@@ -9,7 +9,7 @@ This topic contains release notes for Tanzu Application Platform v1.2
 
 ## <a id='1-2-0'></a> v1.2.0
 
-**Release Date**: MONTH DAY, 2022
+**Release Date**: July 12, 2022
 
 ### <a id='1-2-new-features'></a> New features
 
@@ -115,8 +115,6 @@ for migration instructions.
   - Added a deeplink to view approvals for PRs in a GitOps repository so that PRs can be reviewed and approved, resulting in the deployment of a workload to any cluster configured to accept a deployment
   - Added Reason column to the Workloads table to indicate causes for errors encountered during supply chain execution
 
-- Feature 2
-
 #### Tanzu Developer Tools for VS Code
 
 - **View workload statuses:** You can see the status of your workloads from the Workload Panel.
@@ -166,11 +164,6 @@ This release has the following breaking changes, listed by area and component.
   - Please note that the sample `ScanPolicy` is different if you're using Grype Scanner with a CycloneDX structure or Snyk Scanner with a SPDX JSON structure. See [Install Snyk Scanner](./scst-scan/install-snyk-integration) for an example of a Scan Policy.
   - See [Enforce compliance policy using Open Policy Agent](./scst-scan/policies.md) for an example of the current ScanPolicy format for version 1.2.0 and later.
 
-#### Supply Chain Security Tools - Store
-
-- Breaking change 1
-- Breaking change 2
-
 #### <a id="tbs-breaking-changes"></a> Tanzu Build Service
 
 **Note:** If your Tanzu Application Platform v1.1 installation is configured with
@@ -197,16 +190,6 @@ This following issues, listed by area and component, are resolved in this releas
 - Limit server logging to startup and generate zip requests
 - Update engine to use Spring Boot 2.7.0
 
-#### <a id="alv-resolved"></a> Application Live View
-
-- Resolved issue 1
-- Resolved issue 2
-
-#### Services Toolkit
-
-- Resolved issue 1
-- Resolved issue 2
-
 #### Supply Chain Security Tools - Scan
 
 - `Go` updated to version `v1.18.2`
@@ -215,11 +198,6 @@ This following issues, listed by area and component, are resolved in this releas
 #### Grype Scanner
 
 - `ncurses` updated to version `6.1-5.ph3`
-
-#### Supply Chain Security Tools - Store
-
-- Resolved issue 1
-- Resolved issue 2
 
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
@@ -261,11 +239,6 @@ When connecting to AWS EKS clusters an error might appear with the text
 To prevent this, see
 [Failure to connect to AWS EKS clusters](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters).
 
-#### Tanzu Cluster Essentials
-
-- Known issue 1
-- Known issue 2
-
 #### Application Live View
 
 - Application Live View with custom CA does not support air-gapped installation.
@@ -303,16 +276,6 @@ Because VMware discourages committing binaries to source code repositories,
 Grype fails to find vulnerabilities during a Source Scan.
 The vulnerabilities are still found during the Image Scan,
 after the binaries are built and packaged as images.
-
-#### Supply Chain Security Tools - Scan
-
-- Known issue 1
-- Known issue 2
-
-#### Supply Chain Security Tools - Store
-
-- Known issue 1
-- Known issue 2
 
 #### Tanzu Application Platform GUI
 
