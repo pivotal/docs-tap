@@ -9,6 +9,8 @@ The extension currently only supports Java apps.
 
 ## <a id="extension-features"></a> Extension features
 
+This extension gives the following features.
+
 - **Deploy applications directly from IntelliJ**
 
     Rapidly iterate on your applications on Tanzu Application Platform and deploy them as workloads
