@@ -49,14 +49,17 @@ To install Supply Chain Security Tools - Scan (Scan controller):
     ```
 
 1. (Optional) Make changes to the default installation settings:
-   
-    If you're using the Grype Scanner `v1.2.0` or later, or the Snyk Scanner, then you need to disable the embedded Supply Chain Security Tools - Store integration with a `scan-values.yaml` file like this: 
+
+    If you're using the Grype Scanner `≥v1.2.0`, or the Snyk Scanner, the following scanning configuration can disable the embedded Supply Chain Security Tools - Store integration with a `scan-values.yaml` file like this:
 
     ```yaml
     ---
     metadataStore:
       url: ""
     ```
+
+    If you're using the Grype Scanner `<1.2.0`, the scanning configuration needs to configure the store parameters. See the [v1.1 docs](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-scst-scan-install-scst-scan.html) for reference.
+
 
     You can retrieve any other configurable setting using the following command, and appending the key-value pair to the previous `scan-values.yaml` file:
 
@@ -66,7 +69,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
     Where `VERSION` is your package version number. For example, `1.1.0`.
 
-1. Install the package by running:
+2. Install the package by running:
 
     ```console
     tanzu package install scan-controller \
@@ -111,6 +114,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
         name: "<TOKEN-SECRET-NAME>" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where the connection secrets were created (if multi-cluster)
     ```
+    Note: You must either define both the METADATA-STORE-URL and caSecret or not define them as they depend on each other.
 
     You can retrieve any other configurable setting using the following command, and appending the key-value pair to the previous `grype-values.yaml` file:
 

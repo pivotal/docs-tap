@@ -2,7 +2,7 @@
 
 This section outlines observability and troubleshooting methods and issues for using the Supply Chain Security Tools - Scan components.
 
-## <a id="observability"></a>Observability
+## <a id="observability"></a> **Observability**
 
 The scans will run inside a k8s Job where the Job creates a Pod. Both the Job and Pod will be cleaned up automatically after completion.
 
@@ -11,13 +11,13 @@ Before applying a new scan, you can set a watch on the Jobs, Pods, SourceScans, 
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
-## <a id="troubleshooting"></a>Troubleshooting
+## <a id="troubleshooting"></a> **Troubleshooting**
 
-### <a id="debugging-commands"></a>Debugging commands
+### <a id="debugging-commands"></a> **Debugging commands**
 
 Run the following commands to get more logs and details on the errors around scanning. The Jobs and Pods will only persist for a predefined amount of seconds before getting deleted. (`deleteScanJobsSecondsAfterFinished` is the tap pkg variable that defines this)
 
-####  <a id="debugging-scan-pods"></a> Debugging Scan Pods
+####  <a id="debugging-scan-pods"></a> **Debugging Scan Pods**
 Run the following to get error logs from a pod when scan pods are in a failing state:
 ```console
 kubectl logs <scan-pod-name> -n <DEV-NAMESPACE>
@@ -54,7 +54,7 @@ kubectl logs <scan-pod-name> -n <DEV-NAMESPACE> -c <init-container-name>
 ```
 See [here](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/) for debug init container tips.
 
-####  <a id="debug-source-image-scan"></a> Debugging SourceScan and ImageScan
+####  <a id="debug-source-image-scan"></a> **Debugging SourceScan and ImageScan**
 
 To retrieve status conditions of an SourceScan and ImageScan run the following:
 ```console
@@ -66,27 +66,27 @@ kubectl describe imagescan <imagescan> -n <DEV-NAMESPACE>
 
 Under `Status.Conditions`, for a condition look at the "Reason", "Type", "Message" values that use the keyword "Error" to investigate issues.
 
-#### <a id="debug-scanning-in-supplychain"></a> Debugging Scanning within a SupplyChain
+#### <a id="debug-scanning-in-supplychain"></a> **Debugging Scanning within a SupplyChain**
 
 See [here](../cli-plugins/apps/debug-workload.md) for tanzu workload commands for tailing build and runtime logs and getting workload status and details.
 
 
-#### <a id="view-scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs
+#### <a id="view-scan-controller-manager-logs"></a> **Viewing the Scan-Controller manager logs**
 To retrieve scan-controller manager logs:
 ```console
 kubectl -n scan-link-system logs -f deployment/scan-link-controller-manager -c manager
 ```
 
-### <a id="restarting-deployment"></a> Restarting Deployment
+### <a id="restarting-deployment"></a> **Restarting Deployment**
 
 If you encounter an issue with the scan-link controller not being able to start, run the following to restart the deployment to see if it's reproducible or flaking upon starting:
 ```console
 kubectl rollout restart deployment scan-link-controller-manager -n scan-link-system
 ```
 
-### <a id="troubleshooting-issues"></a> Troubleshooting issues
+### <a id="troubleshooting-issues"></a> **Troubleshooting issues**
 
-#### <a id="miss-img-ps"></a> Missing target image pull secret
+#### <a id="miss-img-ps"></a> **Missing target image pull secret**
 
 Scanning an image from a private registry requires an image pull secret to exist in the Scan CR's namespace and be referenced as `grype.targetImagePullSecret` in `tap-values.yaml`. See [Installing the Tanzu Application Platform Package and Profiles](../install.md) for more information.
 
@@ -96,7 +96,7 @@ If a private image scan is triggered and the secret is not configured, the scan 
 Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
 ```
 
-#### <a id="disable-scst-store"></a> Disable Supply Chain Security Tools - Store
+#### <a id="disable-scst-store"></a> **Disable Supply Chain Security Tools - Store**
 
 Supply Chain Security Tools - Store is a prerequisite for installing Supply Chain Security Tools - Scan.
 If you choose to install without the Supply Chain Security Tools - Store,  you need to edit the
@@ -118,7 +118,7 @@ configurations to disable the Store:
     --values-file tap-values.yaml
   ```
 
-#### <a id="incompatible-syft-schema-version"></a> Resolving Incompatible Syft Schema Version
+#### <a id="incompatible-syft-schema-version"></a> **Resolving Incompatible Syft Schema Version**
 
   You might encounter the following error:
 
@@ -136,7 +136,26 @@ configurations to disable the Store:
       failOnSchemaErrors: false
     ```
 
-### <a id="incompatible-scan-policy"></a> Resolving Incompatible Scan Policy
+#### <a id="incompatible-scan-policy"></a> **Resolving Incompatible Scan Policy**
   If your scan policy appears to not be enforced, it may be because the Rego file defined in the scan policy is incompatible with the scanner that is being used. For example, the Grype Scanner outputs in the CycloneDX XML format while the Snyk Scanner outputs SPDX JSON.
 
   See [Install Snyk Scanner](install-snyk-integration.md#a-idverifya-verify-integration-with-snyk) for an example of a ScanPolicy formatted for SPDX JSON.
+
+#### <a id="incompatible-scan-policy"></a> **Could not find CA in Secret**
+
+  If you encouter the following issue, it can be due to not exporting the "app-tls-cert" to the correct namespace:
+  ```console
+  {"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
+  ```
+
+  In your tap-values.yaml it should look like this:
+  ```yaml
+  metadata_store:
+    ns_for_export_app_cert: "<DEV-NAMESPACE>"
+  ```
+
+  However it that doesn't work try (this is discouraged due to security reasons):
+  ```yaml
+  metadata_store:
+    ns_for_export_app_cert: "*"
+  ```

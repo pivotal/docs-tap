@@ -31,7 +31,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
       snyk.scanning.apps.tanzu.vmware.com   1.0.0
     ```
 
-1. (Optional) Make changes to the default installation settings by running:
+2. (Optional) Make changes to the default installation settings by running:
 
     ```console
     tanzu package available get snyk.scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
@@ -59,7 +59,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
     targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry.
     ```
 
-1. Create a Snyk secret YAML file and insert the Snyk API token (base64 encoded) into the `snyk_token` key as follows:
+3. Create a Snyk secret YAML file and insert the Snyk API token (base64 encoded) into the `snyk_token` key as follows:
 
     ```yaml
     apiVersion: v1
@@ -71,7 +71,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
       snyk_token: BASE64-SNYK-API-TOKEN
     ```
 
-2. Apply the Snyk secret YAML file by running:
+4. Apply the Snyk secret YAML file by running:
 
     ```console
     kubectl apply -f YAML-FILE
@@ -79,27 +79,9 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
     Where `YAML-FILE` is the name of the Snyk secret YAML file you created.
 
-3. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
+5. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
 
-  The Grype and Snyk Scanner Integrations both enable the Metadata Store. As such, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform was installed using the Full Profile, the Grype Scanner Integration was installed, unless it was explicitly excluded.
-
- * If the Grype Scanner Integration is installed:
-
-  ```yaml
-  ---
-  namespace: DEV-NAMESPACE
-  targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
-  snyk:
-    tokenSecret:
-      name: SNYK-TOKEN-SECRET
-  metadataStore:
-    caSecret:
-      importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
-    authSecret:
-      importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
-  ```
-
- * If the Grype Scanner Integration is NOT installed:
+    The main general fields you need to define in the `values.yaml` file for the Snyk Scanner configuration. You can add some extra fields as needed to enable or disable different behaviors. You can append to this file the values you need as shown further down in this document. 
 
     ```yaml
     ---
@@ -110,17 +92,73 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
         name: SNYK-TOKEN-SECRET
     ```
 
-    In either case, where:
+     - `DEV-NAMESPACE` is your developer namespace.
 
-    - `DEV-NAMESPACE` is your developer namespace.
+       >**Note:** To use a namespace other than the default namespace, ensure the namespace exists before you install. If the namespace does not exist, the scanner installation fails.
 
-      >**Note:** To use a namespace other than the default namespace, ensure the namespace exists before you install. If the namespace does not exist, the scanner installation fails.
+     - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, you can reuse the `tap-registry` secret created earlier in [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs) for this field.
 
-    - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, you can reuse the `tap-registry` secret created earlier in [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs) for this field.
+     - `SNYK-TOKEN-SECRET` is the name of the secret you created that contains the `snyk_token` to connect to the [Snyk API](https://docs.snyk.io/snyk-cli/configure-the-snyk-cli#environment-variables). This field is required.
 
-    - `SNYK-TOKEN-SECRET` is the name of the secret you created that contains the `snyk_token` to connect to the [Snyk API](https://docs.snyk.io/snyk-cli/configure-the-snyk-cli#environment-variables). This field is required.
 
-2. Install the package by running:
+    The Snyk Scanner integration can work with or without the Supply Chain Security Tools - Store integration, the `values.yaml` file is slightly different for each configuration.
+
+    **Using Supply Chain Security Tools - Store Integration:** To persist the results found by the Snyk Scanner, you can enable the Supply Chain Security Tools - Store integration by appending the next fields to the `values.yaml` file created previously. 
+
+    The Grype and Snyk Scanner Integrations both enable the Metadata Store. To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform was installed using the Full Profile, the Grype Scanner Integration was installed, unless it was explicitly excluded.
+
+     * If the Grype Scanner Integration is installed in the same `dev-namespace` Snyk Scanner is going to be installed:
+
+       ```yaml
+       #! ...
+       metadataStore:
+         #! The url where the Store deployment is accesible.
+         #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
+         url: "<STORE-URL>" 
+         caSecret:
+           #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
+           #! Default value is: "app-tls-cert"
+           name: "<CA-SECRET-NAME>"
+           importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
+         #! authSecret is for multicluster configurations.
+         authSecret:
+           #! The name of the secret that contains the auth token to authenticate to the Store Deployment.
+           name: "<AUTH-SECRET-NAME>"
+           importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
+       ```
+
+     * If the Grype Scanner Integration is **not** installed in the same `dev-namespace` Snyk Scanner is going to be installed:
+
+       ```yaml
+       #! ...
+       metadataStore:
+         #! The url where the Store deployment is accesible.
+         #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
+         url: "<STORE-URL>" 
+         caSecret:
+           #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
+           #! Default value is: "app-tls-cert"
+           name: "<CA-SECRET-NAME>"
+           #! The namespace where the secrets for the Store Deployment live. 
+           #! Default value is: "metadata-store"
+           importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
+         #! authSecret is for multicluster configurations.
+         authSecret:
+           #! The name of the secret that contains the auth token to authenticate to the Store Deployment.
+           name: "<AUTH-SECRET-NAME>"
+           #! The namespace where the secrets for the Store Deployment live.
+           importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
+       ```
+
+    **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, you need to explicitly disable the integration by appending the next fields to the `values.yaml` file created previously, since it's enabled by default: 
+
+    ```yaml
+    # ... 
+    metadataStore:
+      url: "" # Disable Supply Chain Security Tools - Store integration
+    ```
+
+6. Install the package by running:
 
     ```console
     tanzu package install snyk-scanner \

@@ -38,7 +38,7 @@ You can find the options available for specifying the workload in the command re
 
 ### <a id="workload-local-source"></a> Create a workload from local source code
 
-Tanzu Application Platform supports creating a workload from an existing local project by setting the flags `--local-path` and `--source-image`, then this will allow the out of the box [supply chain](../../scc/about.md) to generate an image ([carvel-imgpkg](https://carvel.dev/imgpkg/)) and push it to the given registry to be used in the workload.
+Tanzu Application Platform supports creating a workload from an existing local project by setting the flags `--local-path` and `--source-image`, this allows the [supply chain](../../scc/about.md) to generate an image ([carvel-imgpkg](https://carvel.dev/imgpkg/)) and push it to the given registry to be used in the workload.
 
 - To create a named workload and specify where the local source code is, run:
 
@@ -55,13 +55,13 @@ Tanzu Application Platform supports creating a workload from an existing local p
     - `--source-image` is the registry path where the local source code will be uploaded as an image.
 
     **Exclude Files**
-    When working with local source code, you can exclude files from the source code to be uploaded within the image by creating a file `.tanzuignore` at the root of the source code. You can find the options available to specify the workload in the command reference for [`workload create`](command-reference/tanzu-apps-workload-create.md), or you can run `tanzu apps workload create --help`.
-    
-    The file should contain a list of filepaths to exclude from the image including the file itself and the folders should not end with the system path separator (`/` or `\`).
+    When working with local source code, you can exclude files from the source code to be uploaded within the image by creating a file `.tanzuignore` at the root of the source code. You can find the options available to specify the workload in the command reference for [`workload create`](command-reference/tanzu-apps-workload-create.md), or run `tanzu apps workload create --help`.
 
-    If the file contains files/folders that are not in the source code, they will be ignored.
+    The file must contain a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`).
 
-    If a line in the file starts with a `#` character, the line will be ignored.
+    If the file contains files or directories that are not in the source code, they are ignored.
+
+    If a line in the file starts with a `#` hashtag , the line is ignored.
 
     **Example**
 
@@ -92,7 +92,7 @@ Respond `Y` to prompts to complete process.
 <!-- -->
 ### <a id="workload-maven"></a> Create a workload from Maven repository artifact
 
-Tanzu Application Platform supports creating a workload from a Maven repository artifact ([Source-Controller](../../source-controller/about.md)) by setting some specific properties as yaml parameters in the workload when using the out of the box [supply chain](../../scc/about.md).
+Tanzu Application Platform supports creating a workload from a Maven repository artifact ([Source-Controller](../../source-controller/about.md)) by setting some specific properties as yaml parameters in the workload when using the [supply chain](../../scc/about.md).
 
 The maven repository url is being set when the supply chain is created.
 
@@ -105,8 +105,8 @@ The maven repository url is being set when the supply chain is created.
     version: ...
     groupId: ...
 
-    ``` 
-    - JSON: 
+    ```
+    - JSON:
     ```json
     {
         "artifactId": ...,

@@ -104,6 +104,8 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
   For more insights on how to install Grype, see [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype).
 
+  Note: If a mix of Grype templates (`<v1.2.0` and `≥v1.2.0`) are used, both `scanning` and `grype` need to configure the parameters, and the secret needs to export to both scan-link-system and the dev namespace (either by exporting to "*" or by defining multiple secrets and exports. (similarly if grype is installed to multiple namespaces there must be corresponding exports). See [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype)
+
   Now update Tanzu Application Platform to apply the changes:
 
   ```console
