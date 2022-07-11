@@ -2,7 +2,7 @@
 
 By default, Tanzu Build Service is installed with `lite` dependencies.
 
-When installing Tanzu Build Service to an air-gapped environment, the `lite` dependencies
+When installing Tanzu Build Service on an air-gapped environment, the `lite` dependencies
 cannot be used as they require Internet access.
 You must install the `full` dependencies.
 
@@ -22,7 +22,7 @@ To install `full` dependencies:
 
     - `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
     - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
-    - `TARGET-REPOSITORY` is your air-gapped container registry.
+    - `TARGET-REPOSITORY` is your target repository.
 
 1. Add the Tanzu Build Service `full` dependencies package repository by running:
 
@@ -35,7 +35,7 @@ To install `full` dependencies:
     Where:
 
     - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
-    - `TARGET-REPOSITORY` is your air-gapped container registry.
+    - `TARGET-REPOSITORY` is your target repository.
     - `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
 
 1. Install the `full` dependencies package by running:

@@ -36,8 +36,8 @@ The process of installing Tanzu Application Platform on your own Kubernetes clus
 |2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI |[Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)|
 |3.| Install Cluster Essentials for Tanzu* |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)|
 |4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Installing Tanzu Application Platform in an air-gapped environment (Beta)](install-air-gap.html)|
-|5.| Install Tanzu Build Service full dependencies |[Installing the Tanzu Build Service dependencies](tanzu-build-service/tbs-offline-install-deps.md)|
-|6.| Configure custom certificate authorities for Tanzu Application Platform GUI |[Configuring custom certificate authorities for Tanzu Application Platform GUI](tap-gui/non-standard-certs.md) |
+|5.| Install Tanzu Build Service full dependencies |[Installing the Tanzu Build Service dependencies](tbs-offline-install-deps.html)|
+|6.| Configure custom certificate authorities for Tanzu Application Platform GUI |[Configuring custom certificate authorities for Tanzu Application Platform GUI](tap-gui/non-standard-certs.html) |
 |7.| Add the certificate for the private Git repository in the Accelerator system namespace |[Configuring Application Accelerator](application-accelerator/configuration.html)|
 |8.| Apply patch to Grype |[Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.html)|
 |9.| Set up developer namespaces to use installed packages |[Setting up developer namespaces to use installed packages](set-up-namespaces.html)|
