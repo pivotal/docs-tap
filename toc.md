@@ -174,7 +174,7 @@ docs.vmware.com is built.
     - [Application Live View](app-live-view/about-app-live-view.md)
         - [Overview Application Live View](app-live-view/about-app-live-view.md)
         - [Install Application Live View](app-live-view/install.md)
-        - [Configuring an app](app-live-view/configuring-apps/spring-boot-enablement.md)
+        - [Configuring apps](app-live-view/configuring-apps/spring-boot-enablement.md)
             - [Enabling Spring Boot apps for Application Live View](app-live-view/configuring-apps/spring-boot-enablement.md)
             - [Enabling Steeltoe apps for Application Live View](app-live-view/configuring-apps/steeltoe-enablement.md)
             - [Convention server](app-live-view/configuring-apps/convention-server.md)
