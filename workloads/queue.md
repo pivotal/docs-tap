@@ -382,7 +382,7 @@ from your `tap-values.yaml` file:
     Where:
 
     - `DEFAULT-GIT-SECRET` is the value from `gitops.ssh_secret` in your
-      `tap-values.yaml` file, or `""` to disable SSH auth.
+      `tap-values.yaml` file, or `""` to disable SSH authentication.
     - `REGISTRY-SERVER` is the registry server from your `tap-values.yaml` file.
     - `REGISTRY-REPO` is the registry repository from your `tap-values.yaml` file.
 
@@ -397,7 +397,7 @@ from your `tap-values.yaml` file:
 ## <a id="using"></a> Use the `queue` workload type
 
 The `spring-sensors-producer` workload in the getting started example
-[using Service Toolkit claims](../getting-started-consume-services.md)
+[using Service Toolkit claims](../getting-started/consume-services.md#stk-bind)
 is a good match for the `queue` workload type.
 This is because it runs continuously without a UI to report sensor information to a RabbitMQ topic.
 
