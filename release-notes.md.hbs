@@ -331,9 +331,9 @@ after the binaries are built and packaged as images.
 #### Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
-    - Delivery section of the supply chain graph might show deliverables that do not pertain to the selected workload. This will occur if there are more than one `Build` cluster per namespace
-    - In order for `Deliverables` to show up for a given `Workload` they need to have the following labels in both resources:'carto.run/workload-name','app.kubernetes.io/part-of','carto.run/supply-chain-name'
-    - ConfigMap has no conditions and as a result its status is reported as `Unknown`
+    - Delivery section of the supply chain graph might show deliverables that do not pertain to the selected workload. This occurs if there are more than one `Build` cluster per namespace
+    - In order for `Deliverables` to show up for a `Workload` they must have the following labels in both resources:'carto.run/workload-name','app.kubernetes.io/part-of','carto.run/supply-chain-name'
+    - ConfigMap has no conditions and as a result its status is `Unknown`
     - ConfigWriter shows an error but no error details are displayed.
 
 #### VSCode Extension
