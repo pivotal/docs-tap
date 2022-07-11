@@ -50,8 +50,8 @@ the container is being built and deployed.
 
     - Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
 
-   
-1. Configure the Tiltfile. 
+
+1. Configure the Tiltfile.
 
    >Note: Depending on the type of cluster you use, you might see an error message similar to the following:
 
@@ -71,9 +71,13 @@ and view your running application.
 
 1. View the changes to your workload running on the cluster.
 
+    > **Note:** When using Live Update, hot reload of your function on your cluster might not
+    > display changes made to your function.
+    > To manually push changes to the cluster, run the `tilt up` command.
+
 1. If necessary, continue making changes to the source code.
 
-1. When you have finished making changes, stop and deactivate the live update.
+1. When you have finished making changes, stop and deactivate the Live Update.
 To do so, open the command palette by pressing **⇧⌘P**, type `Tanzu`, and select **Tanzu: Live Update Stop**.
 
 ## <a id="debug-app"></a> Debug your application
