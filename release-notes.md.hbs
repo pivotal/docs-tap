@@ -19,12 +19,12 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="app-acc-features"></a> Application Accelerator
 
-- [Accelerator Fragments](./application-accelerator/creating-accelerators/composition.md) are now available.
-  - Allows for re-usable Accelerator Fragments to be imported into other Accelerators.
+- [Accelerator fragments](./application-accelerator/creating-accelerators/composition.md) are now available.
+  - Allows for re-usable accelerator fragments to be imported into other accelerators.
 - [Tanzu Application Accelerator for VS Code Extension](./application-accelerator/vscode.md#vs-code-app-accel-install) is now available.
   - Allows for developers to quickly generate projects from their organization's Accelerator Catalog right from within VS Code.
-- Added the `subPath` field for [Accelerators](./application-accelerator/creating-accelerators/accelerator-crd.md#accelerator-crd-spec) and [Fragments](./application-accelerator/creating-accelerators/accelerator-crd.md#fragment-crd-spec)
-  - Provides the option for altering where the root of an Accelerator or Fragment lives.
+- Added the `subPath` field for [Accelerators](./application-accelerator/creating-accelerators/accelerator-crd.md#accelerator-crd-spec) and [Fragments](./application-accelerator/creating-accelerators/accelerator-crd.md#fragment-crd-spec).
+  - Provides the option for altering where the root of an accelerator or fragment lives.
 
 #### Application Live View
 
@@ -36,11 +36,11 @@ This release includes the following changes, listed by component and area.
 - Application Single Sign-On package comes installed with iterate, run, and full profiles.
 - Secure a workload with AppSSO. For more information, see [AppSSO documentation](https://docs.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0/appsso/GUID-app-operators-register-an-app-with-app-sso.html).
 - AppSSO Starter Java Accelerator shows how to enable SSO on a Spring Boot application.
-- OpenID Connect Identity Providers supported
+- OpenID Connect Identity Providers are supported.
 - Grant types supported: authorization code, client credentials, refresh token.
-- Audit logs for troubleshooting
-- Secure Tokens - Token signature keys are created and applied to AuthServer so that tokens can be signed and verified.
-- TLS secured
+- Audit logs for troubleshooting.
+- Secure tokens - Token signature keys are created and applied to AuthServer so that tokens can be signed and verified.
+- TLS secured.
 
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
@@ -49,7 +49,7 @@ This release includes the following changes, listed by component and area.
 - Added shorthand `-s` for [`--source-image`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-source-imagea---source-image--s) flag.
 - Added support for [`--output`](cli-plugins/apps/command-reference/commands-details/workload_list.md#a-idlist-outputa---output--o) flag to `workloads list` command.
 - Added support for json/yaml params using new flag [`--param-yaml`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-param-yamla---param-yaml).
-- Added support for creating workloads from `jar/war/zip` files via [`--local-path`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-local-patha---local-path) flag.
+- Added support for creating workloads from `jar/war/zip` files through the [`--local-path`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-local-patha---local-path) flag.
 - Added source information from workload  in the `workload get` command output
 - Added New command [`tanzu apps cluster-supply-chain get`](cli-plugins/apps/command-reference/tanzu-apps-cluster-supply-chain-get.md)
 - Added support for excluding files on local path using `.tanzuignore` file

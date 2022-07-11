@@ -1,9 +1,9 @@
 # Application Accelerator Visual Studio Code extension
 The application Accelerator Visual Studio Code extension lets you explore and generate projects
-from the defined accelerators in Tanzu Application Platform using VSCode.
+from the defined accelerators in Tanzu Application Platform using VS Code.
 
 # Dependencies
-To use the VSCode extension, you need to interact with the `acc-server`, for more
+To use the VS Code extension, you need to interact with the `acc-server`, for more
 information on how to expose this server follow the instructions [here](../cli-plugins/accelerator/overview.md#server-api-connections)
 
 # <a id="vs-code-app-accel-install"></a> Installation
@@ -32,11 +32,11 @@ information on how to expose this server follow the instructions [here](../cli-p
 
 Before using the extension, you need follow the next steps:
 
-1. go to VSCode settings - select **Code > Preferences > Settings > Extensions > Tanzu App Accelerator** and set the following:
+1. Go to VS Code settings - select **Code > Preferences > Settings > Extensions > Tanzu App Accelerator** and set the following:
 
-2. look for the setting `Acc Server Url`
+2. Look for the setting `Acc Server Url`.
 
-3. Add the `acc-server` URL
+3. Add the `acc-server` URL.
 
 ![Setting](../images/acc-server-config.png)
 

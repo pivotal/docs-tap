@@ -169,7 +169,7 @@ docs.vmware.com is built.
             - [Options specification](application-accelerator/specs/options-spec.md)
             - [Engine specification](application-accelerator/specs/engine-spec.md)
             - [HTTP endpoint specification](application-accelerator/specs/endpoint-spec.md)
-        - [VSCode extension](application-accelerator/vscode.md))
+        - [VS Code extension](application-accelerator/vscode.md))
         - [Troubleshooting](application-accelerator/troubleshooting.md)
     - [Application Live View](app-live-view/about-app-live-view.md)
         - [Overview Application Live View](app-live-view/about-app-live-view.md)
