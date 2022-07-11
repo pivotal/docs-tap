@@ -1,5 +1,5 @@
 # Tanzu Build Service with image signing
-This section will walk through creating a Tanzu Build Service [Image](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-images.html) resource to build a container image from source that is signed with [cosign](https://github.com/sigstore/cosign). This article builds upon the steps in the [kpack Tutorial](https://github.com/pivotal/kpack/blob/main/docs/tutorial.md).
+This section will walk through creating a Tanzu Build Service [Image](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html) resource to build a container image from source that is signed with [cosign](https://github.com/sigstore/cosign). This article builds upon the steps in the [kpack Tutorial](https://github.com/pivotal/kpack/blob/main/docs/tutorial.md).
 
 ###  Prerequisites
 1. Tanzu Build Service is installed and available.
@@ -10,7 +10,7 @@ This section will walk through creating a Tanzu Build Service [Image](https://do
 2. Cosign
     > Follow the official docs to [install cosign](https://docs.sigstore.dev/cosign/installation/)
 
-3. A [Builder or ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-builders.html) and [Image](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-images.html) resource configured.
+3. A [Builder or ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-builders.html) and [Image](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html) resource configured.
 
 
 ### Configure Tanzu Build Service to sign your image builds
@@ -50,7 +50,7 @@ This section will walk through creating a Tanzu Build Service [Image](https://do
      cosign.pub: <PUBLIC KEY DATA>
    ```
 
-    > Note: Learn more about configuring cosign key pairs with the [Tanzu Build Service Image documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-images.html#image-signing-with-cosign)
+    > Note: Learn more about configuring cosign key pairs with the [Tanzu Build Service Image documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html#image-signing-with-cosign)
 
 
 2. Create or modify the service account that is referenced in the Image resource so it includes the cosign key pair secret created in the previous step.

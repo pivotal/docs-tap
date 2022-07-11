@@ -58,14 +58,11 @@ If built images are pushed to the same registry as Tanzu Application Platform im
 you can reuse the `tap-registry` Secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
-> **Note:** When you install Tanzu Application Platform, it is bootstrapped with
-> a set of dependencies (buildpacks and stacks) for application builds.
+> **Note:** When you install Tanzu Application Platform, it is bootstrapped with the `lite`
+> set of dependencies, including buildpacks and stacks, for application builds.
 > For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
 > You can find the buildpack and stack artifacts installed with Tanzu Application Platform
-> in the descriptor file on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
-> The current installed version of the descriptor is
-> [100.0.293](https://network.pivotal.io/products/tbs-dependencies#/releases/1086670). Sometimes the dependencies get
-> out of date and require updates. You can do this using a
-> [manual process in a CI/CD context](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-tbs-in-ci.html), or
-> an [automatic update process](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-updating-deps.html)
-> in the background by Tanzu Application Platform.
+> on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
+> You can update dependencies by [upgrading Tanzu Application Platform](../../upgrading.md)
+> to the latest patch, or
+> by using an [automatic update process (deprecated)](../../tanzu-build-service/install-tbs.md#auto-updates-config).
