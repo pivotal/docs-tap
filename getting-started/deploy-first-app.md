@@ -2,6 +2,8 @@
 
 This is the first in a series of Getting started how-to guides for developers. It walks you through deploying your first application on Tanzu Application Platform by using the Tanzu Application Platform GUI.
 
+>**Note:** This walk-through uses the Tanzu Application Platform GUI. Alternatively, you can deploy your first application on Tanzu Application Platform using the [Application Accelerator Extension for VS Code](../application-accelerator/vscode.md).
+
 ## <a id="you-will"></a>What you will do
 
 - Download an application accelerator, which serves as a template that codifies best practices and provides important configuration and structures ready and available for use.
@@ -13,7 +15,7 @@ This is the first in a series of Getting started how-to guides for developers. I
 
 Before you start, complete all [Getting started prerequisites](../getting-started.md#get-started-prereqs). For background on application accelerators, see [Application Accelerator](about-application-accelerator.md).
 
-## <a id="deploy-your-app"></a>Deploy your application
+## <a id="deploy-your-app"></a>Deploy your application through Tanzu Application Platform GUI
 
 To deploy your application, you must download an accelerator, upload it on your Git repository of choice, and run a CLI command. In this example, we use the `Tanzu-Java-Web-App` accelerator. We also use the Tanzu Application Platform GUI. For information about connecting to Tanzu Application Platform GUI, see
    [Accessing Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md.hbs). 
@@ -29,7 +31,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 1. In the **Generate Accelerators** dialog box, replace the default value `dev.local` in the **prefix for container image registry** field
    with the registry in the form of `SERVER-NAME/REPO-NAME`.
-   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See [Installing Tanzu Application Platform package and profiles](../install.md.hbs#full-profile).
+   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See the Full Profile section on [Installing Tanzu Application Platform package and profiles](../install.md.hbs#full-profile).
    Click **NEXT STEP**, verify the provided information, and click **CREATE**.
 
     ![Generate Accelerators prompt](../images/getting-started-tap-gui-3.png)
