@@ -12,7 +12,7 @@ This topic describes known issues with VMware Tanzu Developer Tools for IntelliJ
 
 ## Unqualified paths for Workload File Path and Local Path properties
 
-**Symptom:**
+**Symptom:** Debug and Live Update are unable to find their paths
 
 **Cause:** Unqualified paths for the Workload File Path and Local Path properties on Tanzu Debug and
 Tanzu Live Update Run Configurations.
