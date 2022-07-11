@@ -51,15 +51,15 @@ This release includes the following changes, listed by component and area.
 - Added support for json/yaml params using new flag [`--param-yaml`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-param-yamla---param-yaml).
 - Added support for creating workloads from `jar/war/zip` files via [`--local-path`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-local-patha---local-path) flag.
 - Added source information from workload  in the `workload get` command output
-- Added New command [`tanzu apps cluster-supply-chain get`](cli-plugins/apps/command-reference/tanzu-apps-cluster-supply-chain-get.md) 
-- Added support for excluding files on local path using `.tanzuignore` file 
-- Added supply chain step information in `workload get` command output 
-- Added support for short names for Cartographer workload (wld) & cluster-supply-chain commands (csc) 
+- Added New command [`tanzu apps cluster-supply-chain get`](cli-plugins/apps/command-reference/tanzu-apps-cluster-supply-chain-get.md)
+- Added support for excluding files on local path using `.tanzuignore` file
+- Added supply chain step information in `workload get` command output
+- Added support for short names for Cartographer workload (wld) & cluster-supply-chain commands (csc)
 - Added support for providing ServiceAccount name in workload commands via file input
 
 #### Source Controller
 
-- Added support for pulling Artifacts from a Maven repository using the `MavenArtifact` CR. 
+- Added support for pulling Artifacts from a Maven repository using the `MavenArtifact` CR.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (Beta)
 
@@ -172,29 +172,32 @@ This release has the following breaking changes, listed by area and component.
 - Breaking change 1
 - Breaking change 2
 
-#### <a id="tbs-breaking"></a> Tanzu Build Service
+#### <a id="tbs-breaking-changes"></a> Tanzu Build Service
 
-##### <a id="tbs-breaking-upgrading"></a> Breaking Change when Upgrading TAP 1.1 to TAP 1.2
+**Note:** If your Tanzu Application Platform v1.1 installation is configured with
+`enable_automatic_updates: false`, you can ignore this breaking change.
 
-**Note:** If your TAP 1.1 installation was configured with `enable_automatic_updates: false`, this breaking change can be ignored.
+When upgrading Tanzu Application Platform to v1.2, Tanzu Build Service image
+resources automatically run a build that fails due to a missing dependency.
+This error does not persist and subsequent builds will resolve this error.
+Users can safely wait for the next build of their workloads, which will be triggered
+by source code changes.
 
-When upgrading TAP from 1.1 to 1.2, Tanzu Build Service Image resources will automatically run a build that will fail due to a missing dependency.
-This error will not persist and any subsequent builds will resolve this error. This means that users can safely wait for the next build of their workloads which
-will be triggered by source code changes.
-
-If you do not want to wait for subsequent builds to run, you can use the open source [kp](https://github.com/vmware-tanzu/kpack-cli) cli:
+<!-- which page would be best to move this to? TBS component troubleshooting or TAP troubleshooting? -->
+If you do not want to wait for subsequent builds to run automatically, you can use the open source
+[kp](https://github.com/vmware-tanzu/kpack-cli) CLI to re-run failing builds:
 
 1. List the image resources in the developer namespace:
 
-```console
-kp image list -n DEVELOPER-NAMESPACE
-```
+    ```console
+    kp image list -n DEVELOPER-NAMESPACE
+    ```
 
 1. Manually trigger the image resources to re-run builds for each failing image:
 
-```console
-kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
-```
+    ```console
+    kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
+    ```
 
 #### <a id="grype-scanner-changes"></a> Grype Scanner
 
@@ -248,7 +251,7 @@ This following issues, listed by area and component, are resolved in this releas
 
 #### <a id="spring-conventions-resolved"></a> Spring Boot Conventions
 
-- No environment variables are added if conventions are not applied. Fixes the issue where `JAVA_TOOL_OPTS` was added to non-java apps. 
+- No environment variables are added if conventions are not applied. Fixes the issue where `JAVA_TOOL_OPTS` was added to non-java apps.
 - Controller does not error out if no image metadata is present. Fixes the edge case when the image metadata is missing.
 
 #### Tanzu Application Platform GUI

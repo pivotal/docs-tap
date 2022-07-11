@@ -279,36 +279,13 @@ If built images are pushed to the same registry as the Tanzu Application Platfor
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
->**Note:** When upgrading TAP from 1.1 to 1.2, Tanzu Build Service Image resources will automatically run a build that will fail due to a missing dependency.
->This error will not persist and any subsequent builds will resolve this error. This means that users can safely wait for the next build of their workloads which
->will be triggered by new source code changes. For more info see [here](release-notes.html#tbs-breaking-upgrading).
-
-### <a id='full-dependencies'></a> Configure Tanzu Application Platform with full dependencies
-
-By default, when you install a profile that includes Tanzu Build Service,
-Tanzu Application Platform is installed with the `lite` set of dependencies.
-These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html)
-and [stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
-required for application builds.
-
-The `lite` set of dependencies do not contain all buildpacks and stacks.
-To use all buildpacks and stacks, you must install the `full` dependencies.
-For more information about the differences between `lite` and `full` dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
-
-To configure `full` Tanzu Application Platform dependencies, add the key-value pair
-`exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
-For example:
-
-```yaml
-buildservice:
-  kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
-  exclude_dependencies: true
-```
-
-After configuring `full` dependencies, you must install the dependencies after
-you have finished installing your Tanzu Application Platform package.
+>**Note:** When upgrading Tanzu Application Platform from v1.1 to v1.2,
+>Tanzu Build Service Image resources automatically run a build that fails due to a missing dependency.
+>This error does not persist and any subsequent builds will resolve this error.
+>Users can safely wait for the next build of their workloads, which
+>will be triggered by new source code changes.
+>For more information, see [Tanzu Build Service breaking changes](release-notes.html#tbs-breaking-upgrading) in the release notes.
+<!-- update link to the troubleshooting section for this issue -->
 
 ### <a id='light-profile'></a> Light Profile
 
@@ -344,6 +321,33 @@ accelerator:
   server:
     service_type: "ClusterIP"
 ```
+
+### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
+
+By default, when you install a profile that includes Tanzu Build Service,
+Tanzu Application Platform is installed with the `lite` set of dependencies.
+These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html)
+and [stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
+required for application builds.
+
+The `lite` set of dependencies do not contain all buildpacks and stacks.
+To use all buildpacks and stacks, you must install the `full` dependencies.
+For more information about the differences between `lite` and `full` dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
+
+To configure `full` dependencies, add the key-value pair
+`exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
+For example:
+
+```yaml
+buildservice:
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  exclude_dependencies: true
+```
+
+After configuring `full` dependencies, you must install the dependencies after
+you have finished installing your Tanzu Application Platform package.
 
 ### <a id="identify-values"></a>Identify the values for your package
 
@@ -456,10 +460,10 @@ After installing Full Profile on to your cluster, you can install the
 Tanzu Developer Tools for VSCode extension to help you develop against it.
 For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/installation.md).
 
-## <a id="tap-install-full-deps"></a> Install full dependencies
+## <a id="tap-install-full-deps"></a> Install the full dependencies package
 
-If you configured full dependencies in your `tap-values.yaml` file in
-[Configure Tanzu Application Platform with full dependencies](#full-dependencies) earlier,
+If you configured `full` dependencies in your `tap-values.yaml` file in
+[Configure your profile with full dependencies](#full-dependencies) earlier,
 you must install the `full` dependencies package.
 
 To install the `full` dependencies package:

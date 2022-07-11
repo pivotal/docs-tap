@@ -310,7 +310,7 @@ docs.vmware.com is built.
       - [Pinniped compatibility](vscode-extension/pinniped-auth.md)
       - [Live Hover integration with Spring Boot Tools (Experimental)](vscode-extension/live-hover.md)
     - [Tanzu Developer Tools for IntelliJ](intellij-extension/about.md)
-      - [Installing the IntelliJ Tanzu Plugin](intellij-extension/installation.md)
+      - [Installing the IntelliJ Tanzu Plugin](intellij-extension/install.md)
       - [Using Tanzu Dev Tools to get started](intellij-extension/getting-started.md)
       - [Using Tanzu Dev Tools to iterate on your workload](intellij-extension/using-the-extension.md)
       - [Glossary of Terms](intellij-extension/glossary.md)
