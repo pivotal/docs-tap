@@ -179,25 +179,10 @@ This release has the following breaking changes, listed by area and component.
 
 When upgrading Tanzu Application Platform to v1.2, Tanzu Build Service image
 resources automatically run a build that fails due to a missing dependency.
-This error does not persist and subsequent builds will resolve this error.
+This error does not persist and subsequent builds will automatically resolve this error.
 Users can safely wait for the next build of their workloads, which will be triggered
 by source code changes.
-
-<!-- which page would be best to move this to? TBS component troubleshooting or TAP troubleshooting? -->
-If you do not want to wait for subsequent builds to run automatically, you can use the open source
-[kp](https://github.com/vmware-tanzu/kpack-cli) CLI to re-run failing builds:
-
-1. List the image resources in the developer namespace:
-
-    ```console
-    kp image list -n DEVELOPER-NAMESPACE
-    ```
-
-1. Manually trigger the image resources to re-run builds for each failing image:
-
-    ```console
-    kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
-    ```
+For how to manually re-run builds, see [Re-run builds after upgrading](upgrading.md#tbs-breaking-change).
 
 #### <a id="grype-scanner-changes"></a> Grype Scanner
 
