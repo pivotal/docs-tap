@@ -157,7 +157,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings. 
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials.
 
 For more information about profiles, see [Installation profiles in Tanzu Application Platform](overview.md#profiles-and-packages).
@@ -344,7 +344,7 @@ Where:
 
 - `VERSION` is the version number of the package. For example, `0.5.1` for Supply Chain Basic package.
 - `PACKAGE-NAME` is the value of `Top-level Key` for package-specific configuration within
-your `tap-values.yaml`, as summarized in the following table:  
+your `tap-values.yaml`, as summarized in the following table:
 
 |Package|Top-level Key|
 |----|----|
@@ -407,7 +407,7 @@ registry.repository       <nil>                      string  Name of the reposit
 registry.server           index.docker.io            string  Name of the registry server where application images should be pushed to (required).
 
 service_account           default                    string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
-```  
+```
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
@@ -444,7 +444,7 @@ your profile.
 
 After installing Full Profile on to your cluster, you can install the
 Tanzu Developer Tools for VSCode extension to help you develop against it.
-For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/installation.md).
+For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/install.md).
 
 ## <a id="configure-envoy-lb"></a> Configure LoadBalancer for Contour ingress
 

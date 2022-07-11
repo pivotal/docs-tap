@@ -9,7 +9,7 @@ cluster, and allows you to debug your application directly on the cluster.
 
 Before you can iterate on your function, you must have:
 
-- [Tanzu Developer Tools for Visual Studio Code](../vscode-extension/installation.md)
+- [Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.md)
 - [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later.
 
 > **Note:** The Tanzu Developer Tools extension currently only supports Java Functions.
