@@ -18,7 +18,7 @@ The process of installing Tanzu Application Platform on your own Kubernetes clus
 |4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Installing the Tanzu Application Platform package and profiles](install.html)|
 |5.| (Optional) Install any additional packages that were not in the profile |[Installing Individual Packages](install-components.html)|
 |6.| Set up developer namespaces to use installed packages |[Setting up developer namespaces to use installed packages](set-up-namespaces.html)|
-|7.| Install developer tools into your integrated development environment (IDE) |[Installing Tanzu Developer Tools for VSCode](vscode-extension/installation.html)|
+|7.| Install developer tools into your integrated development environment (IDE) |[Installing Tanzu Developer Tools for VSCode](vscode-extension/install.html)|
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
 

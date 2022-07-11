@@ -346,7 +346,7 @@ docs.vmware.com is built.
           - [Ingress and multicluster support](scst-store/ingress-multicluster.md)
     - [Tanzu Developer Tools for VS Code](vscode-extension/about.md)
       - [Overview of Tanzu Developer Tools for VS Code](vscode-extension/about.md)
-      - [Installing the VSCode Tanzu Extension](vscode-extension/installation.md)
+      - [Installing the VSCode Tanzu Extension](vscode-extension/install.md)
       - [Using Tanzu Dev Tools to get started](vscode-extension/getting-started.md)
       - [Using Tanzu Dev Tools to iterate on your workload](vscode-extension/using-the-extension.md)
       - [Pinniped compatibility](vscode-extension/pinniped-auth.md)

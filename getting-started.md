@@ -34,7 +34,7 @@ See [Set up developer namespaces to use installed packages](set-up-namespaces.md
 See [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md).
 
 - **Installed the VS Code Tanzu Extension**<br>
-See [Install the Visual Studio Code Tanzu Extension](vscode-extension/installation.md) for instructions.
+See [Install the Visual Studio Code Tanzu Extension](vscode-extension/install.md) for instructions.
 
 When you have completed these prerequisites, you are ready to get started.
 

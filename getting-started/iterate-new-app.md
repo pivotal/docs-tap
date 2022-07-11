@@ -20,7 +20,7 @@ It helps you develop and receive fast feedback on your workloads running on the 
 The VS Code extension enables live updates of your application while running on the cluster
 and allows you to debug your application directly on the cluster.
 For information about installing the prerequisites and the Tanzu Developer Tools for VS Code extension, see
-[Install Tanzu Dev Tools for VS Code](../vscode-extension/installation.md).
+[Install Tanzu Dev Tools for VS Code](../vscode-extension/install.md).
 
 >**Important:** Use Tilt v0.27.2 or a later version for the sample application.
 

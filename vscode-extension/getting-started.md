@@ -11,7 +11,7 @@
 
 ## <a id="prereqs"></a> Prerequisites
 
-Ensure you have completed the [Installation](../vscode-extension/installation.md) before continuing on to the following sections.
+Ensure you have completed the [Installation](../vscode-extension/install.md) before continuing on to the following sections.
 
 ## <a id="set-up-tanzu-dev-tools"></a> Set Up Tanzu Dev Tools
 
