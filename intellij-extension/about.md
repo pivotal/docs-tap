@@ -2,8 +2,8 @@
 
 Tanzu Developer Tools for IntelliJ is VMware Tanzu's official IDE extension for IntelliJ IDEA to help
 you develop with the Tanzu Application Platform.
-This Tanzu Developer Tools extension enables you to rapidly iterate on your workloads on supported
-Kubernetes clusters that have Tanzu Application Platform installed.
+This extension enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
+have Tanzu Application Platform installed.
 
 The extension currently only supports Java apps.
 
@@ -26,6 +26,6 @@ The extension currently only supports Java apps.
     An environment’s similarity to production relies on keeping dependencies updated, among other
     variables.
 
-## <a id="whats-next"></a> What’s Next
+## <a id="next-steps"></a> Next steps
 
-When you’re ready, [follow the steps to install the extension](install.html).
+[Follow the steps to install the extension](install.md).
