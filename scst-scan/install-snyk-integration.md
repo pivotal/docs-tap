@@ -157,84 +157,87 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 To verify the integration with Snyk, apply the following `ImageScan` and its `ScanPolicy` in the developer namespace and review the result.
 
 1. Create a ScanPolicy YAML with a Rego file for scanner output in the SPDX JSON format. Here is a sample scan policy resource:
-```yaml
-apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-kind: ScanPolicy
-metadata:
-  name: scan-policy
-spec:
-  regoFile: |
-    package main
 
-    notAllowedSeverities := ["Low"]
-    ignoreCves := []
+    ```yaml
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+    kind: ScanPolicy
+    metadata:
+      name: scan-policy
+    spec:
+      regoFile: |
+        package main
 
-    contains(array, elem) = true {
-      array[_] = elem
-    } else = false { true }
+        notAllowedSeverities := ["Low"]
+        ignoreCves := []
 
-    isSafe(match) {
-      fails := contains(notAllowedSeverities, match.relationships[_].ratedBy.rating[_].severity)
-      not fails
-    }
+        contains(array, elem) = true {
+          array[_] = elem
+        } else = false { true }
 
-    isSafe(match) {
-      ignore := contains(ignoreCves, match.id)
-      ignore
-    }
+        isSafe(match) {
+          fails := contains(notAllowedSeverities, match.relationships[_].ratedBy.rating[_].severity)
+          not fails
+        }
 
-    deny[msg] {
-      vuln := input.vulnerabilities[_]
-      ratings := vuln.relationships[_].ratedBy.rating[_].severity
-      comp := vuln.relationships[_].affect.to[_]
-      not isSafe(vuln)
-      msg = sprintf("%s %s %s", [comp, vuln.id, ratings])
-    }
-```
+        isSafe(match) {
+          ignore := contains(ignoreCves, match.id)
+          ignore
+        }
 
-2. Apply the earlier created YAML:
-```console
-kubectl apply -n $DEV_NAMESPACE -f <SCAN-POLICY-YAML>
-```
+        deny[msg] {
+          vuln := input.vulnerabilities[_]
+          ratings := vuln.relationships[_].ratedBy.rating[_].severity
+          comp := vuln.relationships[_].affect.to[_]
+          not isSafe(vuln)
+          msg = sprintf("%s %s %s", [comp, vuln.id, ratings])
+        }
+    ```
 
-3. Create the following ImageScan YAML:
+1. Apply the earlier created YAML:
 
-```yaml
-apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-kind: ImageScan
-metadata:
-  name: sample-snyk-public-image-scan
-spec:
-  registry:
-    image: "nginx:1.16"
-  scanTemplate: snyk-public-image-scan-template
-  scanPolicy: scan-policy
-```
+    ```console
+    kubectl apply -n $DEV_NAMESPACE -f <SCAN-POLICY-YAML>
+    ```
 
-4. Apply the earlier created YAML:
-```console
-kubectl apply -n $DEV_NAMESPACE -f <IMAGE-SCAN-YAML>
-``` 
+1. Create the following ImageScan YAML:
 
-5. To verify the integration, run:
+    ```yaml
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+    kind: ImageScan
+    metadata:
+      name: sample-snyk-public-image-scan
+    spec:
+      registry:
+        image: "nginx:1.16"
+      scanTemplate: snyk-public-image-scan-template
+      scanPolicy: scan-policy
+    ```
 
-  ```bash
-  kubectl get imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
-  ```
+1. Apply the earlier created YAML:
 
-  For example:
+    ```console
+    kubectl apply -n $DEV_NAMESPACE -f <IMAGE-SCAN-YAML>
+    ``` 
 
-  ```console
-  kubectl get imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
-  NAME                            PHASE       SCANNEDIMAGE   AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
-  sample-snyk-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
-  ```
+1. To verify the integration, run:
 
-6. Cleanup:
+    ```bash
+    kubectl get imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
+    ```
 
-  ```bash
-  kubectl delete imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
-  ```
+    For example:
+
+    ```console
+    kubectl get imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
+    NAME                            PHASE       SCANNEDIMAGE   AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+    sample-snyk-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
+    ```
+
+1. Cleanup:
+
+    ```bash
+    kubectl delete imagescan sample-snyk-public-image-scan -n $DEV_NAMESPACE
+    ```
 
 ## <a id="sc-config"></a> Configure Supply Chains
 
