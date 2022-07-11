@@ -61,15 +61,15 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
 1. Create a Snyk secret YAML file and insert the Snyk API token (base64 encoded) into the `snyk_token` key as follows:
 
-  ```yaml
-  apiVersion: v1
-  kind: Secret
-  metadata:
-    name: snyk-token-secret
-    namespace: my-apps
-  data:
-    snyk_token: BASE64-SNYK-API-TOKEN
-  ```
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: snyk-token-secret
+      namespace: my-apps
+    data:
+      snyk_token: BASE64-SNYK-API-TOKEN
+    ```
 
 2. Apply the Snyk secret YAML file by running:
 
