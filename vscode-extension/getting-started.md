@@ -7,7 +7,8 @@ This topic guides you through getting started with VMware Tanzu Developer Tools 
 
 [Install VMware Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.md).
 
-## <a id="set-up-tanzu-dev-tools"></a> Set up Tanzu Developer Tools
+Ensure you have completed the [Installation](../vscode-extension/install.md) before continuing on to
+the following sections.
 
 To use the extension with a project, the project must have three required files.
 There are two ways to create these files:
