@@ -8,7 +8,8 @@ This repo contains the content for Tanzu Application Platform docs, v1.0–v1.2
 
 | Branch | Usage |
 |--------|-------|
-| main | Development branch for pre-release v1.2 docs staged at https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html |
+| main | Development branch for pre-release v1.3 docs staged at https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html |
+| 1-2 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html |
 | 1-1 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html |
 | 1-0 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html |
 
