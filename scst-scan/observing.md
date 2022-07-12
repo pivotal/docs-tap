@@ -84,7 +84,7 @@ Supply Chain Security Tools - Scan intermittently sets the phase of a scan to `E
 * If you’re applying the scan manually, you can delete the failed scan job and re-apply with `kubectl apply -f PATH-TO-IMAGESCAN-OR-SOURCESCAN -n DEV-NAMESPACE` to retrigger the scan.
 * If this problem happened while running an out-of-the-box TAP Supply Chain, you can run `kubectl get imagescans -n WORKLOAD-NAMESPACE` or `kubectl get sourcescans -n WORKLOAD-NAMESPACE` to get the scan name, and then delete it by running `kubectl delete IMAGESCAN-OR-SOURCESCAN SCAN-NAME -n WORKLOAD-NAMESPACE`. The Choreographer controller then recreates it for you.
 
-#### <a id="reporting-wrong-blob-url"></a> **Blob Source Scan is reporting wrong source URL**
+### <a id="reporting-wrong-blob-url"></a> **Blob Source Scan is reporting wrong source URL**
 
   A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote ssh URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message. 
 
