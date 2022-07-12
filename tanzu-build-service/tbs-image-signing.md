@@ -1,4 +1,4 @@
-# Tanzu Build Service with image signing
+# Creating a signed Tanzu Build Service image
 
 <!-- where should this page be in the TOC? -->
 
@@ -62,10 +62,10 @@ After the command has completed successfully, you will see the following output:
     ```
 
     You will also see a `cosign.pub` file in your current directory.
-    Keep this file as you will need it to verify the signature of the images built in this tutorial.
+    Keep this file as you will need it to verify the signature of the images that are built.
 
 1. If you are using [Docker Hub](https://hub.docker.com/) or a registry that does not support OCI
-media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the cosign as follows:
+media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the Cosign secret as follows:
 
     ```yaml
     apiVersion: v1
@@ -85,10 +85,8 @@ media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the
     >**Note:** For more information about configuring Cosign keypairs, see the
     >[Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html#image-signing-with-cosign).
 
-1. Create or modify the service account that is referenced in the Image resource
-so that it includes the cosign keypair secret created earlier.
-
-    Adding a Cosign secret to the service account that is referenced in an Image resource enables Cosign signing.
+1. To enable Cosign signing, create or modify the service account that is referenced in the image resource
+so that it includes the Cosign keypair secret created earlier.
 
     ```yaml
     apiVersion: v1
@@ -103,15 +101,15 @@ so that it includes the cosign keypair secret created earlier.
     - name: registry-credentials
     ```
 
+    <!-- which items can be the placeholders here? -->
+
 1. Apply the service account to the cluster by running:
 
     ```bash
     kubectl apply -f cosign-service-account.yaml
     ```
 
-1. Create an Image resource file named `image-cosign.yaml`:
-
-    Note that this Image has references to `tutorial-cosign-service-account`.
+1. Create an image resource file named `image-cosign.yaml`:
 
     ```yaml
     apiVersion: kpack.io/v1alpha2
@@ -130,29 +128,32 @@ so that it includes the cosign keypair secret created earlier.
           url: https://github.com/spring-projects/spring-petclinic
           revision: 82cb521d636b282340378d80a6307a08e3d4a4c4
     ```
+
     <!-- get a list of all placeholders in this snippet -->
 
     Where:
 
     - `IMAGE-REGISTRY` with a writable repository in your registry.
-    The secret `registry-credentials` referenced in the ServiceAccount is a secret providing credentials
+    The secret referenced in the ServiceAccount is a secret providing credentials
     for the registry where application container images are pushed to. For example:
       - Harbor has the form `"my-harbor.io/my-project/my-repo"`
       - Docker Hub has the form `"my-dockerhub-user/my-repo"` or `"index.docker.io/my-user/my-repo"`
       - Google Cloud Registry has the form `"gcr.io/my-project/my-repo"`
 
-    - If you are using Out of the Box Supply Chains, you will [need to modify the respective](../scc/authoring-supply-chains.md) `ClusterImageTemplate` to enable signing in your supply chain.
-    Referencing the service account using the `service_account` value when installing the
-    Out of the Box Supply Chain is not recommended<!-- |VMware discourages| is preferred for closed source. |Cloud Foundry discourages| for open source. --> because that would<!-- Re-phrase for present tense if possible. --> give your run cluster access
-    to the private signing key.
+    >**Note:** If you are using Out of the Box Supply Chains, modify the respective `ClusterImageTemplate`
+    >to enable signing in your supply chain. For more information, see [Authoring supply chains](../scc/authoring-supply-chains.md).
+    >
+    >Referencing the service account using the `service_account` value when installing the
+    >Out of the Box Supply Chain is not recommended.
+    >This is because it gives your run cluster access to the private signing key.
 
-1. Apply the Image resource to the cluster by running:
+1. Apply the image resource to the cluster by running:
 
     ```bash
     kubectl apply -f image-cosign.yaml
     ```
 
-1. After the Image resource finishes building you can get the fully resolved built OCI image by running:
+1. After the image resource finishes building, you can get the fully resolved and built OCI image by running:
 
     ```bash
     kubectl -n default get image tutorial-cosign-image
@@ -171,7 +172,7 @@ so that it includes the cosign keypair secret created earlier.
     cosign verify --key cosign.pub <latest-image-with-digest>
     ```
 
-    <!-- is <latest-image-with-digest> a placeholder? -->
+    <!-- is <latest-image-with-digest> a placeholder? whats the definition? -->
     The image built will have been signed. Example output:
 
     ```bash
@@ -182,5 +183,6 @@ so that it includes the cosign keypair secret created earlier.
     - Any certificates were verified against the Fulcio roots.
     ```
 
-1. Configure [Supply Chain Security Tools for VMware Tanzu - Policy Controller](../scst-policy/overview.md)
+1. Configure Supply Chain Security Tools for VMware Tanzu - Policy Controller
 to ensure that only signed images are allowed in your cluster.
+For more information, see the [Supply Chain Security Tools for VMware Tanzu - Policy Controller](../scst-policy/overview.md) documentation.
