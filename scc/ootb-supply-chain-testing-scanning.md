@@ -320,6 +320,6 @@ Create workload:
      16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
 
-## <a id="scan-image-using-snyk"> Scan Image using Snyk
+## <a id="scan-image-using-snyk"></a> Scan Image using Snyk
 
 [Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes an additional integration for running an image scan using Snyk. For information on how to install this integration and how to modify the supply chain template, see [Install Snyk scanner](../scst-scan/install-snyk-integration.md).
