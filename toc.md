@@ -417,7 +417,7 @@ docs.vmware.com is built.
       - [Installing Tanzu Build Service](tanzu-build-service/install-tbs.md)
       - [Installing Tanzu Build Service in an air-gapped environment](tanzu-build-service/install-airgapped.md)
       - [Configuring Tanzu Build Service properties on a workload](tanzu-build-service/tbs-workload-config.md)
-      - [Creating a signed Tanzu Build Service image](tanzu-build-service/tbs-image-signing.md)
+      - [Creating a signed container image with Tanzu Build Service](tanzu-build-service/tbs-image-signing.md)
       - [Dependencies](tanzu-build-service/dependencies.md)
       - [Troubleshooting Tanzu Build Service](tanzu-build-service/troubleshooting.md)
     - [Tekton](tekton/tekton-about.md)
