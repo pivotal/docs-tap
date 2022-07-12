@@ -147,6 +147,17 @@ For more information, see [VMware Tanzu Developer Tools for IntelliJ](intellij-e
 VMware discourages configuring Tanzu Application Platform with automatic dependency updates due to compatibility risks.
 This feature is still supported until stated otherwise.
 
+#### <a id="srvc-toolkit-features"></a> Services Toolkit
+
+- Services Toolkit now integrates with Amazon RDS using the ACK Operator or Crossplane. See [documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-use.html).
+- New `ClusterInstanceClass` supports service instance abstraction.
+  - It is available using `tanzu service classes list` in `v0.3.0` of the `tanzu services` CLI plug-in.
+- Claimable resources are now discoverable through the `InstanceQuery` API.
+  - It is available using `tanzu service claimable list --class <class>` in `v0.3.0` of the `tanzu services` CLI plug-in.
+- ResourceClaims now aggregates on ClusterRoles for service resources with the standard
+`servicebinding.io/controller: "true"` label from the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec).
+- Deprecation warning: `tanzu service types list` and `tanzu service instances list` commands are now deprecated. These commands are hidden from help text but remain functional if invoked. VMware will continue to support these commands for either two additional minor releases(v0.6.0 of the CLI plug-in) or after one year (2023-07-12), whichever comes later. VMware recommends using `tanzu service class` and `tanzu service claimable` commands in place of `tanzu service type` and `tanzu service instance` from now on.
+
 ### <a id='1-2-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
@@ -210,6 +221,11 @@ The following issues, listed by area and component, are resolved in this release
 - Fixed incorrect error message for `workload create` when the user did not have enough permissions to create a workload.
 - Removing namespace from `--service-ref` is not ignored.
 - Issue for Windows error x509: certificate signed by unknown authority by upgrading imgpkg versions v0.29.0. The new version supports loading Windows root CA certificates.
+
+#### <a id="srvc-toolkit-resolved"></a> Services Toolkit
+
+- ResourceClaims no longer mutate service resources with an annotation to mark a claimed resource.
+- ResourceClaims no longer requires `update` permission when adding new service resources to Tanzu Application Platform.
 
 #### <a id="srvc-bindings-resolved"></a> Service Bindings
 
