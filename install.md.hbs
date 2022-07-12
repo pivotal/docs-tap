@@ -316,15 +316,16 @@ accelerator:
 
 ### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
 
-By default, when you install a profile that includes Tanzu Build Service,
+When you install a profile that includes Tanzu Build Service,
 Tanzu Application Platform is installed with the `lite` set of dependencies.
-These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html)
+These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
 and [stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
 required for application builds.
 
 The `lite` set of dependencies do not contain all buildpacks and stacks.
 To use all buildpacks and stacks, you must install the `full` dependencies.
-For more information about the differences between `lite` and `full` dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
+For more information about the differences between `lite` and `full` dependencies, see
+[About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
 
 To configure `full` dependencies, add the key-value pair
 `exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
@@ -457,6 +458,9 @@ For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/i
 If you configured `full` dependencies in your `tap-values.yaml` file in
 [Configure your profile with full dependencies](#full-dependencies) earlier,
 you must install the `full` dependencies package.
+
+For more information about the differences between `lite` and `full` dependencies, see
+[About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
 
 To install the `full` dependencies package:
 

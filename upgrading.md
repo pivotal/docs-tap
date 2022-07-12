@@ -2,7 +2,7 @@
 
 This document describes how to upgrade Tanzu Application Platform.
 
-You can perform fresh install of Tanzu Application Platform by following the instructions in [Installing Tanzu Application Platform](install-intro.md).
+You can perform a fresh install of Tanzu Application Platform by following the instructions in [Installing Tanzu Application Platform](install-intro.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
