@@ -16,11 +16,11 @@ or use the files in the [View an example project](#example-project) section.
 
 ## <a id="prereqs"></a> Prerequisites
 
-Before you get started, ensure you have completed [Installing Tanzu Developer Tools for IntelliJ](installation.md).
+Before you get started, ensure you have completed [Installing Tanzu Developer Tools for IntelliJ](install.md).
 
 ## <a id="create-workload-yaml"></a> Create the workload.yaml file
 
-You must include a file named `workload.yaml` in your project, for example, `my-project/config/workload.yaml`.
+In your project, you must include a file named `workload.yaml`, for example, `my-project/config/workload.yaml`.
 
 The `workload.yaml` file provides instructions to the Supply Chain Choreographer
 about how to build and manage a workload.
@@ -52,18 +52,19 @@ spec:
 
 Where:
 
-- `APP-NAME` is the name of your application, for example, `my app`.
-- `WORKLOAD-TYPE` is the type of this workload, for example, `web`.
-For more information, see [Workload in the glossary](glossary.md#workload).
-- `GIT-SOURCE-URL` is the Git source code URL for your app, for example, `github.com/mycompany/myapp`.
-- `GIT-BRANCH-NAME` is the branch of the Git source code you want to use, for example, `main`.
+- `APP-NAME` is the name of your application. For example, `my app`.
+- `WORKLOAD-TYPE` is the type of workload for your app. For example, `web`.
+For more information, see [Workload types](../workloads/workload-types.md).
+- `GIT-SOURCE-URL` is the Git source code URL for your app. For example, `github.com/mycompany/myapp`.
+- `GIT-BRANCH-NAME` is the branch of the Git source code you want to use. For example, `main`.
 
 Alternatively you can use the Tanzu CLI to create a `workload.yaml` file.
-For more information about the Tanzu CLI command, see [Tanzu apps workload create in the Tanzu CLI documentation](../cli-plugins/apps/command-reference/tanzu-apps-workload-create.md).
+For more information about the Tanzu CLI command, see [Tanzu apps workload create](../cli-plugins/apps/command-reference/tanzu-apps-workload-create.md)
+in the Tanzu CLI documentation.
 
 ## <a id="create-catalog-info-yaml"></a> Create the catalog-info.yaml file
 
-You must include a file named `catalog-info.yaml` in your project, for example, `my-project/catalog/catalog-info.yaml`).
+In your project, you must include a file named `catalog-info.yaml`, for example, `my-project/catalog/catalog-info.yaml`.
 
 The `catalog-info.yaml` file enables the workloads created with the
 Tanzu Developer Tools for IntelliJ extension to be visible in the Tanzu Application Platform GUI.
@@ -96,10 +97,10 @@ Where:
 
 ## <a id="create-tiltfile"></a> Create the Tiltfile file
 
-You must create a file named `Tiltfile` with no extension (no filetype) in the project,
+In your project, you must include a file named `Tiltfile` with no extension (no filetype),
 for example, `my-project/Tiltfile`.
 
-The **Tiltfile** provides the configuration for Tilt to enable your project to [live update](glossary.md#live-update)
+The `Tiltfile` provides the configuration for Tilt to enable your project to [live update](glossary.md#live-update)
 on the Tanzu Application Platform enabled Kubernetes cluster.
 For more information, see the [Tilt](https://docs.tilt.dev/) documentation.
 
@@ -139,7 +140,7 @@ Where:
 
 - `SOURCE-IMAGE-VALUE` is your [source image](glossary.md#source-image).
 - `APP-NAME` is the name of your application.
-- `PATH-TO-WORKLOAD-YAML` is the local file system path to your `workload.yaml` file, for example, `config/workload.yaml`.
+- `PATH-TO-WORKLOAD-YAML` is the local file system path to your `workload.yaml` file. For example, `config/workload.yaml`.
 - `CONTEXT-NAME` is the name of your current
 [Kubernetes context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 If your Tanzu Application Platform enabled Kubernetes cluster is running on your local machine,
@@ -152,14 +153,14 @@ For more information about this line, see the [Tilt documentation](https://docs.
 
 ## <a id="example-project"></a> View an example project
 
-There are two ways to view a sample application which demonstrates the necessary configuration files.
+There are two ways to view a sample application that demonstrates the necessary configuration files.
 
 Before you begin, you will need a container image registry to use the sample application.
 
-### <a id="example-app-acc"></a>  Option 1: Application Accelerator**
+### <a id="example-app-acc"></a>  Option 1: Application Accelerator
 
-If your company has configured Application Accelerator, you can obtain the sample
-application there if it has not been removed.
+If your company has configured Application Accelerator, you can use it to obtain the sample
+application if the application has not been removed.
 For more information about Application Accelerator, see [Application Accelerator](../application-accelerator/about-application-accelerator.md).
 
 To view the example using Application Accelerator:

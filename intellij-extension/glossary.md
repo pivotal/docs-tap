@@ -9,7 +9,7 @@ included here for clarification.
 ## <a id="live-update"></a> Live Update
 
 Live Update, facilitated by [Tilt](https://docs.tilt.dev/), enables you to deploy
-your workload once, then save changes to the code and see those changes
+your workload once, save changes to the code, and see those changes
 reflected in the workload running on the cluster within seconds.
 In their own words:
 
@@ -54,18 +54,18 @@ Tanzu Developer Tools for IntelliJ extension to be visible in the
 ## <a id="code-snippet"></a> Code snippet
 
 [Code snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets)
-enable you to quickly add the files necessary to develop against the Tanzu Application Platform
-to existing projects by creating a template in an empty file that you fill out
-with the required information. <!-- clarify -->
+enable you to quickly add project files that are necessary to develop
+using Tanzu Application Platform by creating a template in an empty file that you fill out
+with the required information.
 
 ## <a id="source-image"></a> Source image
 
-The registry location to publish local source code, for example, `registry.io/yourapp-source`.
+The source image is the registry location to publish local source code, for example, `registry.io/yourapp-source`.
 This must include both a registry and a project name.
 
 ## <a id="local-path"></a> Local path
 
-The Local Path value tells the Tanzu Developer Tools for IntelliJ extension which directory
+The local Path value tells the Tanzu Developer Tools for IntelliJ extension which directory
 on your local file system to bring into the [source image](#source-image) container image.
 The default local path value is the current directory where you saved the files
 for your open IntelliJ project.
@@ -74,9 +74,9 @@ for your open IntelliJ project.
 
 A Kubernetes Context is _“... a set of access parameters that contains a Kubernetes cluster,
 a user, and a namespace."_
-A Kubernetes context acts like a set of coordinates that describe the target of t
-he Kubernetes commands you run.
-For more information, see the [Kubernetes Documentation](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
+A Kubernetes context acts like a set of coordinates that describe the target of
+the Kubernetes commands that you run.
+For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
 ## <a id="kubernetes-namespace"></a>Kubernetes namespace
 
