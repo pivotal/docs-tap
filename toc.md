@@ -49,7 +49,7 @@ docs.vmware.com is built.
   - [Run profile](multicluster/reference/tap-values-run-sample.md)
   - [View profile](multicluster/reference/tap-values-view-sample.md)
 - [Troubleshooting Tanzu Application Platform](troubleshooting.md)
-  - [Overview of troubleshooting](troubleshooting-tap/troubleshooting.md)
+  - [Overview of troubleshooting](troubleshooting.md)
   - [Troubleshoot installing](troubleshooting-tap/troubleshoot-install-tap.md)
   - [Troubleshoot using](troubleshooting-tap/troubleshoot-using-tap.md)
   - [Troubleshoot components](troubleshooting-tap/troubleshoot-components.md)
