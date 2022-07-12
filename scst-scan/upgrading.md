@@ -27,7 +27,8 @@ When you're upgrading to any version of Supply Chain Security Tools - Scan these
 1. Inspect the [Release Notes](../release-notes.md) for the version you're upgrading to. There you can find any breaking changes for the installation.
 2. Get the values schema for the package version you're upgrading to by running: 
 
-    ```tanzu package available get scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
+    ```console
+    tanzu package available get scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
     ```
 Where `$VERSION` is the new version. This gives you insights on the values you can configure in your `tap-values.yaml` for the new version.
 
@@ -60,47 +61,47 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
   You must reapply the SecretExport by changing the toNamespace: scan-link-system to Namespace: `DEV-NAMESPACE`
 
-  ```yaml
-  ---
-  apiVersion: secretgen.carvel.dev/v1alpha1
-  kind: SecretExport
-  metadata:
-    name: store-ca-cert
-    namespace: metadata-store-secrets
-  spec:
-    toNamespace: "<DEV-NAMESPACE>"
-  ---
-  apiVersion: secretgen.carvel.dev/v1alpha1
-  kind: SecretExport
-  metadata:
-    name: store-auth-token
-    namespace: metadata-store-secrets
-  spec:
-    toNamespace: "<DEV-NAMESPACE>"
-  ```
+    ```yaml
+    ---
+    apiVersion: secretgen.carvel.dev/v1alpha1
+    kind: SecretExport
+    metadata:
+      name: store-ca-cert
+      namespace: metadata-store-secrets
+    spec:
+      toNamespace: "<DEV-NAMESPACE>"
+    ---
+    apiVersion: secretgen.carvel.dev/v1alpha1
+    kind: SecretExport
+    metadata:
+      name: store-auth-token
+      namespace: metadata-store-secrets
+    spec:
+      toNamespace: "<DEV-NAMESPACE>"
+    ```
  
 2. Update your `tap-values.yaml` file.
 
   The installation of the Supply Chain Security Tools - Scan and the Grype scanner have some changes. The connection to the Supply Chain Security Tools - Store component have moved to the Grype scanner package. To deactivate the connection from the Supply Chain Security Tools - Scan, which is still present for backwards compatibility, but is deprecated and is removed in `v1.3.0`.
 
-  ```yaml
-  # Disable scan controller embedded Supply Chain Security Tools - Store integration
-  scanning:
-    metadataStore:
-      url: ""
-  
-  # Install Grype Scanner v1.2.0 
-  grype:
-    namespace: "<DEV-NAMESPACE>" # The developer namespace where the ScanTemplates are gonna be deployed
-    metadataStore:
-      url: "<METADATA-STORE-URL>" # The base URL where the Store deployment can be reached
-      caSecret:
-        name: "<CA-SECRET-NAME>" # The name of the secret containing the ca.crt
-        importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where Store is deployed (if single cluster) or where the connection secrets were created (if multi-cluster)
-      authSecret:
-        name: "<TOKEN-SECRET-NAME>" # The name of the secret containing the auth token to connect to Store
-        importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where the connection secrets were created (if multi-cluster)
-  ```
+    ```yaml
+    # Disable scan controller embedded Supply Chain Security Tools - Store integration
+    scanning:
+      metadataStore:
+        url: ""
+    
+    # Install Grype Scanner v1.2.0 
+    grype:
+      namespace: "<DEV-NAMESPACE>" # The developer namespace where the ScanTemplates are gonna be deployed
+      metadataStore:
+        url: "<METADATA-STORE-URL>" # The base URL where the Store deployment can be reached
+        caSecret:
+          name: "<CA-SECRET-NAME>" # The name of the secret containing the ca.crt
+          importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where Store is deployed (if single cluster) or where the connection secrets were created (if multi-cluster)
+        authSecret:
+          name: "<TOKEN-SECRET-NAME>" # The name of the secret containing the auth token to connect to Store
+          importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where the connection secrets were created (if multi-cluster)
+    ```
 
   For more insights on how to install Grype, see [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype).
 
@@ -122,52 +123,52 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
   Create the `verify-upgrade.yaml` file in your system with the following content: 
 
-  ```yaml
-  ---
-  apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-  kind: ScanPolicy
-  metadata:
-    name: scanpolicy-sample
-  spec:
-    regoFile: |
-      package main
+    ```yaml
+    ---
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+    kind: ScanPolicy
+    metadata:
+      name: scanpolicy-sample
+    spec:
+      regoFile: |
+        package main
 
-      # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-      notAllowedSeverities := ["Critical", "High"]
-      ignoreCves := []
+        # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+        notAllowedSeverities := ["Critical", "High"]
+        ignoreCves := []
 
-      contains(array, elem) = true {
-        array[_] = elem
-      } else = false { true }
+        contains(array, elem) = true {
+          array[_] = elem
+        } else = false { true }
 
-      isSafe(match) {
-        fails := contains(notAllowedSeverities, match.ratings.rating[_])
-        not fails
-      }
+        isSafe(match) {
+          fails := contains(notAllowedSeverities, match.ratings.rating[_])
+          not fails
+        }
 
-      isSafe(match) {
-        ignore := contains(ignoreCves, match.Id)
-        ignore
-      }
+        isSafe(match) {
+          ignore := contains(ignoreCves, match.Id)
+          ignore
+        }
 
-      deny[msg] {
-        comp := input.bom.components.component[_]
-        vuln := comp.vulnerabilities.vulnerability[_]
-        ratings := vuln.ratings.rating[_]
-        not isSafe(vuln)
-        msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
-      }
-  ---
-  apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-  kind: ImageScan
-  metadata:
-    name: sample-public-image-scan
-  spec:
-    registry:
-      image: "nginx:1.16"
-    scanTemplate: public-image-scan-template
-    scanPolicy: scanpolicy-sample
-  ```
+        deny[msg] {
+          comp := input.bom.components.component[_]
+          vuln := comp.vulnerabilities.vulnerability[_]
+          ratings := vuln.ratings.rating[_]
+          not isSafe(vuln)
+          msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
+        }
+    ---
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+    kind: ImageScan
+    metadata:
+      name: sample-public-image-scan
+    spec:
+      registry:
+        image: "nginx:1.16"
+      scanTemplate: public-image-scan-template
+      scanPolicy: scanpolicy-sample
+    ```
 
   Deploy the resources
 
