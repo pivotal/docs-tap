@@ -13,6 +13,7 @@ Before you upgrade Tanzu Application Platform:
 - For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.md#cli-and-plugin).
 - For information on Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations).
 - Verify all packages are reconciled by running `tanzu package installed list -A`.
+- It is strongly recommended to [upgrade](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html#upgrade-7) the Cluster Essentials to version 1.2 to avoid the temporary warning state as described in the following section.
 
 ## <a id="add-new-package-repo"></a> Add the new package repository
 
@@ -20,12 +21,27 @@ Follow these steps to add the new package repository:
 
 1. Add the target version of the Tanzu Application Platform package repository by running:
 
-    ```console
-    tanzu package repository update tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION  \
-        --namespace tap-install
-    ```
-   Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
+    - For Cluster Essentials 1.2 and above:
+
+        ```console
+        tanzu package repository add tanzu-tap-repository \
+            --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION  \
+            --namespace tap-install
+        ```
+        
+        Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
+
+    - For Cluster Essentials 1.1 and 1.0:
+
+        ```console
+        tanzu package repository update tanzu-tap-repository \
+            --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION  \
+            --namespace tap-install
+        ```
+        
+        Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
+
+>**Note:** If you are using Cluster Essentials 1.0 or 1.1, you will see the installed Tanzu Application Platform packages in a temporary “Reconcile Failed” state, following a “Package not found” description. These warnings will disappear after you upgrade the installed Tanzu Application Platform packages to version 1.2.0. 
 
 2. Verify you have added the new package repository by running:
 
