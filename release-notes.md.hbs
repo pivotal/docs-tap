@@ -60,6 +60,7 @@ This release includes the following changes, listed by component and area.
 #### <a id="src-cont-features"></a>Source Controller
 
 - Added support for pulling Artifacts from a Maven repository using the `MavenArtifact` CR.
+- **Note:** Fetching `RELEASE` version from GitHub packages is not currently supported. The metadata.xml in GitHub packages does not have the `release` tag that contains the released version number. For more information, see [Maven-metadata.xml is corrupted on upload to registry](https://github.community/t/maven-metadata-xml-is-corrupted-on-upload-to-registry/177725) on GitHub.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
