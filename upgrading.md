@@ -9,10 +9,10 @@ You can perform a fresh install of Tanzu Application Platform by following the i
 Before you upgrade Tanzu Application Platform:
 
 - Verify that you meet all the [prerequisites](prerequisites.md) of the target Tanzu Application Platform version. If the target Tanzu Application Platform version does not support your existing Kubernetes version, VMware recommends upgrading to a supported version before proceeding with the upgrade.
-- For information about installing your Tanzu Application Platform, see [Install your Tanzu Application Platform profile](install.md#install-profile)
-- For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.md#cli-and-plugin)
-- For information on Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations)
-- Verify all packages are reconciled by running `tanzu package installed list -A`
+- For information about installing your Tanzu Application Platform, see [Install your Tanzu Application Platform profile](install.md#install-profile).
+- For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.md#cli-and-plugin).
+- For information on Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations).
+- Verify all packages are reconciled by running `tanzu package installed list -A`.
 
 ## <a id="add-new-package-repo"></a> Add the new package repository
 

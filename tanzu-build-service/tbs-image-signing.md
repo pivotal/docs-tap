@@ -1,23 +1,21 @@
 # Creating a signed Tanzu Build Service image
 
-<!-- where should this page be in the TOC? -->
-
 This topic describes how to create a Tanzu Build Service
 [Image](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html)
-resource to build a container image from source that is signed with
+resource that builds a container image from source that is signed with
 [Cosign](https://github.com/sigstore/cosign).
 After completing these steps, you can configure
 [Supply Chain Security Tools for VMware Tanzu - Policy Controller](../scst-policy/overview.md)
 to ensure that only signed images are allowed in your cluster. <!-- is this an expected goal for users? -->
 
 This topic builds upon the steps in the
-[kpack Tutorial](https://github.com/pivotal/kpack/blob/main/docs/tutorial.md).
+[kpack tutorial](https://github.com/pivotal/kpack/blob/main/docs/tutorial.md).
 
 ## <a id="prereqs"></a> Prerequisites
 
 Before you can configure Tanzu Build Service to sign your image builds, you must:
 
-- Install Tanzu Build Service. The Full, Iterate, and Build profiles include Tanzu Build Service.
+- Install Tanzu Build Service. The Full, Iterate, and Build profiles include Tanzu Build Service by default.
 If you have not installed Tanzu Application Platform with one of these profiles,
 see [Installing Tanzu Build Service](install-tbs.md).
 
@@ -34,9 +32,9 @@ resource configured.
 To configure Tanzu Build Service to sign your image builds:
 
 1. Ensure your in a Kubernetes context where you are authenticated and authorized to
-create and edit the secret and service account resources.
+create and edit Secret and Service Account resources.
 
-1. Generate a cosign keypair and store it as a Kubernetes secret by running:
+1. Generate a cosign keypair and store it as a Kubernetes Secret by running:
 
     ```bash
     cosign generate-key-pair k8s://NAMESPACE/SECRET-NAME
@@ -44,8 +42,8 @@ create and edit the secret and service account resources.
 
     Where:
 
-    - `NAMESPACE` is the namespace to store the Kubernetes secret in.
-    - `SECRET-NAME` is the name of the Kubernetes secret.
+    - `NAMESPACE` is the namespace to store the Kubernetes Secret in.
+    - `SECRET-NAME` is the name of the Kubernetes Secret.
 
     For example:
 
@@ -65,7 +63,7 @@ After the command has completed successfully, you will see the following output:
     Keep this file as you will need it to verify the signature of the images that are built.
 
 1. If you are using [Docker Hub](https://hub.docker.com/) or a registry that does not support OCI
-media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the Cosign secret as follows:
+media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the Cosign Secret as follows:
 
     ```yaml
     apiVersion: v1
@@ -85,8 +83,8 @@ media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the
     >**Note:** For more information about configuring Cosign keypairs, see the
     >[Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html#image-signing-with-cosign).
 
-1. To enable Cosign signing, create or modify the service account that is referenced in the image resource
-so that it includes the Cosign keypair secret created earlier.
+1. To enable Cosign signing, create or modify the Service Account that is referenced in the Image resource
+so that it includes the Cosign keypair Secret created earlier.
 
     ```yaml
     apiVersion: v1
@@ -103,13 +101,13 @@ so that it includes the Cosign keypair secret created earlier.
 
     <!-- which items can be the placeholders here? -->
 
-1. Apply the service account to the cluster by running:
+1. Apply the Service Account to the cluster by running:
 
     ```bash
     kubectl apply -f cosign-service-account.yaml
     ```
 
-1. Create an image resource file named `image-cosign.yaml`:
+1. Create an Image resource file named `image-cosign.yaml`:
 
     ```yaml
     apiVersion: kpack.io/v1alpha2
@@ -134,7 +132,7 @@ so that it includes the Cosign keypair secret created earlier.
     Where:
 
     - `IMAGE-REGISTRY` with a writable repository in your registry.
-    The secret referenced in the ServiceAccount is a secret providing credentials
+    The Secret referenced in the ServiceAccount is a Secret providing credentials
     for the registry where application container images are pushed to. For example:
       - Harbor has the form `"my-harbor.io/my-project/my-repo"`
       - Docker Hub has the form `"my-dockerhub-user/my-repo"` or `"index.docker.io/my-user/my-repo"`
@@ -143,17 +141,17 @@ so that it includes the Cosign keypair secret created earlier.
     >**Note:** If you are using Out of the Box Supply Chains, modify the respective `ClusterImageTemplate`
     >to enable signing in your supply chain. For more information, see [Authoring supply chains](../scc/authoring-supply-chains.md).
     >
-    >Referencing the service account using the `service_account` value when installing the
+    >Referencing the Service Account using the `service_account` value when installing the
     >Out of the Box Supply Chain is not recommended.
     >This is because it gives your run cluster access to the private signing key.
 
-1. Apply the image resource to the cluster by running:
+1. Apply the Image resource to the cluster by running:
 
     ```bash
     kubectl apply -f image-cosign.yaml
     ```
 
-1. After the image resource finishes building, you can get the fully resolved and built OCI image by running:
+1. After the Image resource finishes building, you can get the fully resolved and built OCI image by running:
 
     ```bash
     kubectl -n default get image tutorial-cosign-image
