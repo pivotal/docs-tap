@@ -25,3 +25,38 @@ If a private image scan is triggered and the secret is not configured, the scan 
 ```
 Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
 ```
+
+### <a id="reporting-wrong-blob-url"></a> **Blob Source Scan is reporting wrong source URL**
+
+  A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote ssh URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message. 
+
+  You can confirm you're having this problem running a `kubectl describe` in the affected resource and compare the `spec.blob.url` value against the `status.artifact.blob.url` and see they're different URLs. For example:
+
+  ```console
+  kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE>
+  ```
+
+  And compare the output:
+
+  ```console
+  ...
+  spec:
+    blob:
+      ...
+      url: http://source-controller.flux-system.svc.cluster.local./gitrepository/sample/repo/8d4cea98b0fa9e0112d58414099d0229f190f7f1.tar.gz
+      ...
+  status:
+    artifact:
+      blob:
+        ...
+        url: ssh://git@github.com:sample/repo.git
+    compliantArtifact:
+      blob:
+        ...
+        url: ssh://git@github.com:sample/repo.git
+  ```
+
+  **Workaround:** There are a few workarounds you can try to fix this issue:
+    1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Please upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
+    2. Configure your SourceScan (or Workload) to connect via HTTPS to the repository instead of using SSH.
+    3. Edit the FluxCD GitRepository resource to don't include the `.git` folder 
