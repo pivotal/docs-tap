@@ -19,8 +19,7 @@ For more information about profiles, see [About Tanzu Application Platform compo
 Before installing Application Live View, complete all prerequisites to install Tanzu Application Platform.
 For more information, see [Prerequisites](../prerequisites.md).
 
-In addition, install Convention Controller from the Tanzu Application Platform package repository. For more information, see [Install Convention Service](../convention-service/install-conv-service.md).
-
+In addition, install Cartographer Conventions which is bundled with Supply Chain Choreographer as of the v0.4.0 release. To install, see [Installing Supply Chain Choreographer](../scc/install-scc.md). For more information, see [Cartographer Conventions](../cartographer-conventions/about.md). 
 
 ## <a id='install-app-live-view'></a> Install Application Live View
 
