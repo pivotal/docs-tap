@@ -369,7 +369,7 @@ docs.vmware.com is built.
       - [Installing the IntelliJ Tanzu plug-in](intellij-extension/install.md)
       - [Setting up your project](intellij-extension/getting-started.md)
       - [Using Tanzu Dev Tools to iterate on your workload](intellij-extension/using-the-extension.md)
-      - [Glossary of Terms](intellij-extension/glossary.md)
+      - [Glossary of terms](intellij-extension/glossary.md)
     - [Tanzu API portal](api-portal/about.md)
       - [Overview of Tanzu API portal](api-portal/about.md)
       - [Install Tanzu API portal](api-portal/install-api-portal.md)
