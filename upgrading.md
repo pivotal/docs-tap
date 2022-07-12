@@ -41,7 +41,7 @@ Follow these steps to add the new package repository:
         
         Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
 
-        >**Note:** If you are using Cluster Essentials 1.0 or 1.1, you will see the installed Tanzu Application Platform packages in a temporary “Reconcile Failed” state, following a “Package not found” description. These warnings will disappear after you upgrade the installed Tanzu Application Platform packages to version 1.2.0. 
+        >**Note:** If you are using Cluster Essentials 1.0 or 1.1, expect to see the installed Tanzu Application Platform packages in a temporary “Reconcile Failed” state, following a “Package not found” warning. These warnings will disappear after you upgrade the installed Tanzu Application Platform packages to version 1.2.0. 
 
 2. Verify you have added the new package repository by running:
 
