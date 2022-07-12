@@ -476,13 +476,29 @@ spec:
   - name: maven
     value:
       groupId: com.example
-      artifactId: spring-boot-initial
+      artifactId: springboot-initial
       version: RELEASE      # latest 'RELEASE' or a specific version (e.g.: '1.2.2')
       type: jar             # optional (defaults to 'jar')
       classifier: sources   # optional
 ```
 
-The `tanzu` CLI does not support creating workloads for Maven artifacts.
+The `tanzu` CLI can be used for creating workloads that define Maven artifacts as source
+
+For example to create a workload that defines a specific version of a maven artifact as source, use:
+
+```bash
+tanzu apps workload apply my-workload \
+      --param-yaml maven='{"artifactId": "springboot-initial", "version": "2.6.0", "groupId": "com.example"}'\
+      --type web --app spring-boot-initial -y
+```
+
+To create a workload that defines the RELEASE version of a maven artifact as source, use:
+
+```bash
+tanzu apps workload apply my-workload \
+      --param-yaml maven='{"artifactId": "springboot-initial", "version": "RELEASE", "groupId": "com.example"}'\
+      --type web --app spring-boot-initial -y
+```
 
 The Maven repository URL and required credentials are defined in the supply
 chain, not the workload. For more information, see [Installing OOTB
