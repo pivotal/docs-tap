@@ -47,7 +47,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
     For example:
 
     ```console
-    $ tanzu package available get snyk.scanning.apps.tanzu.vmware.com/1.0.0 --values-schema -n scan-install
+    $ tanzu package available get snyk.scanning.apps.tanzu.vmware.com/1.0.0 --values-schema -n tap-install
 
     KEY                                           DEFAULT                                                           TYPE    DESCRIPTION
     metadataStore.authSecret.name                                                                                   string  Name of deployed Secret with key auth_token
