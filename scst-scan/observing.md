@@ -148,7 +148,7 @@ configurations to deactivate the Store:
 
   See [Install Snyk Scanner](install-snyk-integration.md#a-idverifya-verify-integration-with-snyk) for an example of a ScanPolicy formatted for SPDX JSON.
 
-#### <a id="incompatible-scan-policy"></a> **Could not find CA in Secret**
+#### <a id="ca-not-found-in-secret"></a> **Could not find CA in Secret**
 
   If you encounter the following issue, it might be due to not exporting the "app-tls-cert" to the correct namespace:
   
@@ -169,3 +169,35 @@ configurations to deactivate the Store:
   metadata_store:
     ns_for_export_app_cert: "*"
   ```
+
+#### <a id="reporting-wrong-blob-url"></a> **Blob Source Scan is reporting wrong source URL**
+
+  A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote ssh URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message. 
+
+  You can confirm you're having this problem running a `kubectl describe` in the affected resource and compare the `spec.blob.url` value against the `status.artifact.blob.url` and see they're different URLs. For example:
+
+  ```console
+  kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE>
+  ```
+
+  And compare the output:
+
+  ```console
+  ...
+  spec:
+    blob:
+      ...
+      url: http://source-controller.flux-system.svc.cluster.local./gitrepository/sample/repo/8d4cea98b0fa9e0112d58414099d0229f190f7f1.tar.gz
+      ...
+  status:
+    artifact:
+      blob:
+        ...
+        url: ssh://git@github.com:sample/repo.git
+    compliantArtifact:
+      blob:
+        ...
+        url: ssh://git@github.com:sample/repo.git
+  ```
+
+  **Workaround:** This problem happens in Supply Chain Security Tools - Scan `v1.2.0` when you use a Grype Scanner ScanTemplates previous to Grype Scanner `v1.2.0` since this is a deprecated path. The solution to fix this problem is to upgrade your Grype Scanner deployment to `v1.2.0` or later. You can take a look at [Upgrading Supply Chain Security Tools - Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
