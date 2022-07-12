@@ -159,9 +159,9 @@ This release has the following breaking changes, listed by area and component.
 ](multicluster/installing-multicluster.md).
   - See [Build profile](multicluster/reference/tap-values-build-sample.md) for the deprecated way of writing the metadata store configuration through the scanning component.
 - The rego file structure required for the `ScanPolicies` to work with the Grype Scanner and Snyk Scanner templates changed.
-  
+
   >**Note:** This doesn't apply if you are using the deprecated Grype Scanner `ScanTemplate`s prior to Grype Scanner `v1.2.0`.
-  
+
   - The package name changed from `package policies` to `package main`.
   - The deny rule changed from the boolean `isCompliant` to the array of strings `deny[msg]`.
   - The sample `ScanPolicy` is different if you're using Grype Scanner with a CycloneDX structure or Snyk Scanner with a SPDX JSON structure. See [Install Snyk Scanner](./scst-scan/install-snyk-integration) for an example of a Scan Policy.
@@ -177,7 +177,8 @@ resources automatically run a build that fails due to a missing dependency.
 This error does not persist and subsequent builds automatically resolve this error.
 Users can safely wait for the next build of their workloads, which is triggered
 by source code changes.
-To manually re-run builds, see [Re-run builds after upgrading](upgrading.md#tbs-breaking-change).
+To manually re-run builds, follow the instructions in the troubleshooting item
+[Builds fail after upgrading to Tanzu Application Platform v1.2](tanzu-build-service/troubleshooting.md#tbs-1-2-breaking-change).
 
 #### <a id="grype-scanner-changes"></a> Grype Scanner
 

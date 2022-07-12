@@ -420,6 +420,7 @@ docs.vmware.com is built.
       - [Configuring Tanzu Build Service properties on a workload](tanzu-build-service/tbs-workload-config.md)
       - [Creating a signed Tanzu Build Service image](tanzu-build-service/tbs-image-signing.md)
       - [Dependencies](tanzu-build-service/dependencies.md)
+      - [Troubleshooting Tanzu Build Service](tanzu-build-service/troubleshooting.md)
     - [Tekton](tekton/tekton-about.md)
       - [Overview of Tekton](tekton/tekton-about.md)
       - [Install Tekton](tekton/install-tekton.md)

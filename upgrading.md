@@ -49,40 +49,18 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION  --values-
 
 Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
 
+>**Note:** When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically
+>run a build that fails due to a missing dependency.
+>This error does not persist and any subsequent builds will resolve this error.
+>You can safely wait for the next build of the workloads, which is triggered by new source code changes.
+>If you do not want to wait for subsequent builds to run automatically,
+>follow the instructions in the troubleshooting item
+>[Builds fail after upgrading to Tanzu Application Platform v1.2](tanzu-build-service/troubleshooting.md#tbs-1-2-breaking-change).
+
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
 For information about upgrading Tanzu Application Platform GUI, see [upgrading Tanzu Application Platform GUI](tap-gui/upgrades.html).
 For information about upgrading Supply Chain Security Tools - Scan, see [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
-
-### <a id="tbs-breaking-change"></a> Re-run builds after upgrading
-
-If you are upgrading a profile that includes Tanzu Build Service to Tanzu Application Platform v1.2,
-Tanzu Build Service image resources automatically run a build that fails due to a missing dependency.
-
-This error does not persist and any subsequent builds will resolve this error.
-You can safely wait for the next build of the workloads, which is triggered by new source code changes.
-
-If you do not want to wait for subsequent builds to run automatically, you can use the open source
-[kp](https://github.com/vmware-tanzu/kpack-cli) CLI to re-run failing builds:
-
-1. List the image resources in the developer namespace by running:
-
-    ```console
-    kp image list -n DEVELOPER-NAMESPACE
-    ```
-
-    Where `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
-
-1. Manually trigger the image resources to re-run builds for each failing image by running:
-
-    ```console
-    kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
-    ```
-
-    Where:
-
-    - `IMAGE-NAME` is the name of the failing image.
-    - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
 
 ## <a id="verify"></a> Verify the upgrade
 
