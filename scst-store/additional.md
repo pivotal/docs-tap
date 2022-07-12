@@ -1,5 +1,7 @@
 # Additional documentation
 
+This section includes the following topics:
+
 - [API details](api.md)
 - [API walkthrough](api-walkthrough.md)
 - [Deployment details and configuration](deployment-details.md)
