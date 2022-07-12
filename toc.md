@@ -391,7 +391,6 @@ docs.vmware.com is built.
           - [Enabling authorization on remote GKE clusters by using Google Auth](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac-with-gke-auth.md)
           - [View runtime resources on authorization-enabled clusters](tap-gui/tap-gui-rbac/view-rsrcs-rbac-only-global.md)
           - [Assigning roles and permissions on Kubernetes clusters](tap-gui/tap-gui-rbac/assigning-kubernetes-roles.md)
-      - [Configuring custom CAs for Tanzu Application Platform GUI](tap-gui/non-standard-certs.md)
       - [Integrations](tap-gui/integrations.md)
       - [Database configuration](tap-gui/database.md)
       - [TechDocs](tap-gui/techdocs/usage.md)
