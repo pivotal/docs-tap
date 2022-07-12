@@ -197,7 +197,7 @@ registry used when installing Tanzu Application Platform.
 
     - `REPO-NAME` is a writable repository in your registry.
     Tanzu Build Service dependencies are written to this location.
-    - `IAM-ROLE-ARN` is the AWS IAM role ARN for the role configured in the previous step.
+    - `IAM-ROLE-ARN` is the AWS IAM role Amazon Resource Name (ARN) for the role configured in the previous step.
     For example, `arn:aws:iam::xyz:role/my-install-role`.
 
 1. The developer namespace requires configuration for Tanzu Application Platform
