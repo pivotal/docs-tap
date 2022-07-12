@@ -1,6 +1,6 @@
 # Configure target endpoint and certificate
 
-The connection to the Store requires TLS encryption, the configuration depends on the kind of installation. Use the following instructions to set up the TLS connection according to the your setup:
+The connection to the Store requires TLS encryption and the configuration depends on the kind of installation. Use the following instructions to set up the TLS connection according to the your setup:
 
 - [With `Ingress`](#ingress)
 - [Without `Ingress`](#no-ingress)
@@ -8,7 +8,7 @@ The connection to the Store requires TLS encryption, the configuration depends o
     - [Port forwarding](#config-pf)
     - [`NodePort`](#use-np)
     
-Recommended connection methods based on TAP set up:
+VMware recommended connection methods based on Tanzu Application Platform setup:
 
 * Single or multi-cluster with Contour = `Ingress`
 * Single cluster without Contour and with `LoadBalancer` support = `LoadBalancer`
@@ -23,17 +23,17 @@ For a production environment, VMware recommends that the Store is installed with
 When using an [Ingress setup](ingress-multicluster.md), the Store creates a 
 specific TLS Certificate for HTTPS communications under the `metadata-store` namespace.
 
-To get such certificate, run:
+To get a certificate, run:
 
 ```bash
 kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > insight-ca.crt
 ```
 
 The endpoint host is set to `metadata-store.<ingress-domain>`, 
-for example, `metadata-store.example.domain.com`). 
+such as `metadata-store.example.domain.com`). 
 This value matches the value of `ingress_domain`.
 
-If no accessible DNS record exists for such domain, edit the `/etc/hosts` file to add a local record:
+If no accessible DNS record exists for the domain, edit the `/etc/hosts` file to add a local record:
 
 ```bash
 ENVOY_IP=$(kubectl get svc envoy -n tanzu-system-ingress -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
@@ -98,14 +98,13 @@ kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 
 ### <a id='use-np'></a>`NodePort`
 
-`NodePort` may be used to connect the CLI and Metadata Store as an alterative to port forwarding.  This is useful when the user does not have port forward access to the cluster.
+`NodePort` can be used to connect the CLI and Metadata Store as an alterative to port forwarding.  This is useful when the user does not have port forward access to the cluster.
 
 >**Note:** NodePort only recommended when (1) the cluster does not support ingress, (2) the cluster does not support `LoadBalancer`.  `NodePort` is not supported for a multi-cluster set up, as certificates cannot be modified (i.e., Metadata Store does not currently support a BYO-certificate)
 
-To use `NodePort`, you must obtain the CA certificate by following the instructions in [Without `Ingress`](#no-ingress), 
-then [Configure port forwarding](#config-pf) and [Modify your `/etc/hosts` file](#mod-etchost).
+To use `NodePort`, you must obtain the CA certificate by following the instructions in [Without `Ingress`](#no-ingress), [Configure port forwarding](#config-pf), and [Modify your `/etc/hosts` file](#mod-etchost).
 
-### <a id='mod-etchost'></a>Modify your `/etc/hosts` file
+### <a id='mod-etchost'></a>Edit your `/etc/hosts` file
 
 Use the following script to add a new local entry to `/etc/hosts`:
 
