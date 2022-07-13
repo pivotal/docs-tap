@@ -1,4 +1,4 @@
-# Tanzu Application Platform v1.2
+# Tanzu Application Platform v1.3
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
