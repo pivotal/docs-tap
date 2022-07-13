@@ -273,8 +273,8 @@ This is the namespace where the scanning feature runs.
 credentials to pull an image from the registry for scanning.
 - `METADATA-STORE-URL` is the base URL where the Supply Chain Security Tools - Store deployment can be reached, e.g.: `https://metadata-store-app.metadata-store.svc.cluster.local:8443`
 - `CA-SECRET-NAME` is the name of the secret containing the ca.crt to connect to Supply Chain Security Tools - Store deployment.
-- `SECRET-NAMESPACE` is the namespace where Supply Chain Security Tools - Store is deployed (if single cluster) or where the connection secrets were created (if multi-cluster)
-- `TOKEN-SECRET-NAME` is the name of the secret containing the auth token to connect to Supply Chain Security Tools - Store deployment when installed in a different cluster (multi-cluster)
+- `SECRET-NAMESPACE` is the namespace where Supply Chain Security Tools - Store is deployed, if you are using a single cluster. If you are using multi-cluster, it is where the connection secrets were created.
+- `TOKEN-SECRET-NAME` is the name of the secret containing the auth token to connect to Supply Chain Security Tools - Store deployment when installed in a different cluster, if you are using multi-cluster.
 If built images are pushed to the same registry as the Tanzu Application Platform images,
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
