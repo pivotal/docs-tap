@@ -147,6 +147,10 @@ For more information, see [VMware Tanzu Developer Tools for IntelliJ](intellij-e
 VMware discourages configuring Tanzu Application Platform with automatic dependency updates due to compatibility risks.
 This feature is still supported until stated otherwise.
 
+#### <a id="srvc-toolkit-features"></a> Services Toolkit
+
+See the [Services Toolkit release notes](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-release_notes.html).
+
 ### <a id='1-2-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
@@ -211,6 +215,10 @@ The following issues, listed by area and component, are resolved in this release
 - Removing namespace from `--service-ref` is not ignored.
 - Issue for Windows error x509: certificate signed by unknown authority by upgrading imgpkg versions v0.29.0. The new version supports loading Windows root CA certificates.
 
+#### <a id="srvc-toolkit-resolved"></a> Services Toolkit
+
+See the [Services Toolkit release notes](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-release_notes.html).
+
 #### <a id="srvc-bindings-resolved"></a> Service Bindings
 
 - Added a new ClusterRole `service-binding-provisioned-services`  with label selector `servicebinding.io/controller: "true"` for get, list, and watch, which fixes the issue where Service Binding controller was aggregating non-provisioned service RBAC to the controller manager.
@@ -268,7 +276,7 @@ To manually push changes to the cluster, run the `tilt up` command.
 #### <a id="scst-scan-issues"></a>Supply Chain Security Tools - Scan
 
 **Blob Source Scan is reporting wrong source URL:**
-- When running a Source Scan of a blob compressed file, it looks for a `.git` directory present in the files to extract information that is usefull for the report sent to the Supply Chain Security Tools - Store deployment. This problem happens when you use Grype Scanner ScanTemplates earlier than version `v1.2.0` because the Scan Controller has a deprecated path to support previous ScanTemplates. This will be removed by Supply Chain Security Tools - Scan `v1.3.0`. 
+- When running a Source Scan of a blob compressed file, it looks for a `.git` directory present in the files to extract information that is usefull for the report sent to the Supply Chain Security Tools - Store deployment. This problem happens when you use Grype Scanner ScanTemplates earlier than version `v1.2.0` because the Scan Controller has a deprecated path to support previous ScanTemplates. This will be removed by Supply Chain Security Tools - Scan `v1.3.0`.
 
 - Workaround: Upgrade your Grype Scanner deployment to version `v1.2.0` or later. For more information, see [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md#upgrade-to-1-2-0).
 
@@ -295,6 +303,11 @@ after the binaries are built and packaged as images.
     - For `Deliverables` to show up for a `Workload`, they must have the following labels in both resources:'carto.run/workload-name','app.kubernetes.io/part-of','carto.run/supply-chain-name'.
     - ConfigMap has no conditions and as a result its status is `Unknown`.
     - ConfigWriter shows an error but no error details are displayed.
+<<<<<<< HEAD
+=======
+    - Source Scan stage vulnerabilities table displays "No records to display" even though there are CVEs in the source scan.
+    See [Troubleshoot TAP GUI](tap-gui/troubleshooting.md)
+>>>>>>> afaef750 ([#182702549] Replace Services Toolkit content with links)
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
@@ -305,3 +318,13 @@ first run only. This is because of services being late-bound.
 
 - When debugging an application with service bindings, debug sessions might prematurely end on the
 first run only. This is because of services being late-bound.
+<<<<<<< HEAD
+=======
+
+#### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
+
+- Querying by insight source returns zero CVEs even though there are CVEs in the source scan:
+When attempting to look up CVE and affected packages, querying `insight source get` (or other
+`insight source` commands) may return zero results due to supply chain configuration and repo URL.
+See [Troubleshoot Supply Chain Security Tools - Store](scst-store/troubleshooting.md)
+>>>>>>> afaef750 ([#182702549] Replace Services Toolkit content with links)
