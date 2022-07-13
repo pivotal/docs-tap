@@ -8,7 +8,7 @@ You can install Tanzu Application Platform by using one of the following methods
 
 ## <a id='install-online'></a>Installing Tanzu Application Platform online
 
-The process of installing Tanzu Application Platform on your own Kubernetes clusters with internet access includes the following tasks:
+The process of installing Tanzu Application Platform on your Kubernetes clusters with internet access includes the following tasks:
 
 |Step|Task|Link|
 |----|----|----|
