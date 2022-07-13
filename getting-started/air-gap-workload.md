@@ -2,7 +2,7 @@
 
 This how-to guide walks developers through deploying your first workload on Tanzu Application Platform in an air-gapped environment.
 
-For information about installing Tanzu Application Platform in an air-gapped environment, see [Install Tanzu Application Platform in an air-gapped environment (Beta)](install-air-gap.md.hbs).
+For information about installing Tanzu Application Platform in an air-gapped environment, see [Install Tanzu Application Platform in an air-gapped environment (Beta)](../install-air-gap.md.hbs).
 
 ## <a id="you-will"></a>What you will do
 
@@ -23,7 +23,7 @@ If you would like to pass in a custom settings.xml for Java, create a file calle
 
 ```console
 kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
-```   
+```
 
 ## Create a basic supply chain workload
 

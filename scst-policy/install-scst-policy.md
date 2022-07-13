@@ -1,6 +1,6 @@
 # Install Supply Chain Security Tools - Policy Controller
 
-Supply Chain Security Tools - Policy Controller is installed as part of Tanzu Application 
+Supply Chain Security Tools - Policy Controller is installed as part of Tanzu Application
 Platform's Full, Iterate and Run profiles. Use the instructions in this topic to manually install this component.
 
 ## <a id='scst-policy-prereqs'></a> Prerequisites
@@ -12,13 +12,13 @@ Platform's Full, Iterate and Run profiles. Use the instructions in this topic to
 
 - If Supply Chain Security Tools - Sign is installed with an existing running
 Image Policy Webhook `ClusterImagePolicy`, see
-[Migration From Supply Chain Security Tools - Sign](../migration.md).
+[Migration From Supply Chain Security Tools - Sign](migration.md).
 
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. The Policy Controller only supports ECDSA public keys.
 An example cosign public key is provided that can validate an image from the
 public cosign registry. To provide your own key and images, follow the
-[Cosign Quick Start Guide](https://github.com/sigstore/cosign#quick-start) in GitHub to generate your own keys and sign an image. 
+[Cosign Quick Start Guide](https://github.com/sigstore/cosign#quick-start) in GitHub to generate your own keys and sign an image.
 
 >**Caution:** This component WILL REJECT `pods` if it is not correctly configured. Test your configuration in a test environment before applying policies to your production cluster.
 

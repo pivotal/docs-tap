@@ -31,7 +31,7 @@ You install and initialize the Tanzu CLI on a computer. The computer can be a la
 
 To install the CLI :
 
-- To use the Tanzu CLI with **Tanzu Application Platform,** see [Installing the Tanzu CLI](install-tanzu-cli.md#cli-and-plugin).
+- To use the Tanzu CLI with **Tanzu Application Platform,** see [Installing the Tanzu CLI](../install-tanzu-cli.md#cli-and-plugin).
 - To use the Tanzu CLI with **Tanzu Kubernetes Grid,** see [Install the Tanzu CLI and Other Tools](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid-Integrated-Edition/1.14/tkgi/GUID-installing-cli.html#install-the-tkgi-cli-0).
 
 ## <a id="tanzu-cli-command-groups"></a>Tanzu CLI Command Groups
@@ -96,5 +96,5 @@ For example, the `tar -xvf` command.
     accelerator         Manage accelerators in a Kubernetes cluster                                                        Standalone             v1.2.0-build.1  installed
     apps                Applications on Kubernetes                                                                         Standalone             v0.0.0-dev      installed
     services            Explore Service Instance Classes, discover claimable Service Instances and manage Resource Claims  Standalone             v0.3.0-rc.2     installed
-    
+
    ```
