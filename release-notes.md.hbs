@@ -150,15 +150,7 @@ This feature is still supported until stated otherwise.
 
 #### <a id="srvc-toolkit-features"></a> Services Toolkit
 
-- Services Toolkit now integrates with Amazon RDS by using the ACK Operator or Crossplane. 
-For more information, see [Services Toolkit documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-use.html).
-- New `ClusterInstanceClass` supports service instance abstraction by using `tanzu service classes list` in `v0.3.0` of the `tanzu services` CLI plug-in.
-- Claimable resources are now discoverable by using the `InstanceQuery` API and `tanzu service claimable list --class <class>` in `v0.3.0` of the `tanzu services` CLI plug-in.
-- ResourceClaims now aggregates on ClusterRoles for service resources with the standard
-`servicebinding.io/controller: "true"` label from the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec) in Github.
-- Deprecation warning: `tanzu service types list` and `tanzu service instances list` commands are now deprecated. These commands are hidden from help text but remain functional if invoked. 
-VMware continues to support these commands for either two additional minor releases(v0.6.0 of the CLI plug-in) or after one year (2023-07-12), whichever comes later. 
-VMware recommends using `tanzu service class` and `tanzu service claimable` commands in place of `tanzu service type` and `tanzu service instance` from now on.
+See the [Services Toolkit release notes](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-release_notes.html).
 
 ### <a id='1-2-breaking-changes'></a> Breaking changes
 
@@ -226,8 +218,7 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="srvc-toolkit-resolved"></a> Services Toolkit
 
-- ResourceClaims no longer mutate service resources with an annotation to mark a claimed resource.
-- ResourceClaims no longer require `update` permission when adding new service resources to Tanzu Application Platform.
+See the [Services Toolkit release notes](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-release_notes.html).
 
 #### <a id="srvc-bindings-resolved"></a> Service Bindings
 
@@ -286,7 +277,7 @@ To manually push changes to the cluster, run the `tilt up` command.
 #### <a id="scst-scan-issues"></a>Supply Chain Security Tools - Scan
 
 **Blob Source Scan is reporting wrong source URL:**
-- When running a Source Scan of a blob compressed file, it looks for a `.git` directory present in the files to extract information that is usefull for the report sent to the Supply Chain Security Tools - Store deployment. This problem happens when you use Grype Scanner ScanTemplates earlier than version `v1.2.0` because the Scan Controller has a deprecated path to support previous ScanTemplates. This will be removed by Supply Chain Security Tools - Scan `v1.3.0`. 
+- When running a Source Scan of a blob compressed file, it looks for a `.git` directory present in the files to extract information that is usefull for the report sent to the Supply Chain Security Tools - Store deployment. This problem happens when you use Grype Scanner ScanTemplates earlier than version `v1.2.0` because the Scan Controller has a deprecated path to support previous ScanTemplates. This will be removed by Supply Chain Security Tools - Scan `v1.3.0`.
 
 - Workaround: Upgrade your Grype Scanner deployment to version `v1.2.0` or later. For more information, see [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md#upgrade-to-1-2-0).
 
@@ -313,7 +304,7 @@ after the binaries are built and packaged as images.
     - For `Deliverables` to show up for a `Workload`, they must have the following labels in both resources:'carto.run/workload-name','app.kubernetes.io/part-of','carto.run/supply-chain-name'.
     - ConfigMap has no conditions and as a result its status is `Unknown`.
     - ConfigWriter shows an error but no error details are displayed.
-    - Source Scan stage vulnerabilities table displays "No records to display" even though there are CVEs in the source scan.  
+    - Source Scan stage vulnerabilities table displays "No records to display" even though there are CVEs in the source scan.
     See [Troubleshoot TAP GUI](tap-gui/troubleshooting.md)
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
@@ -328,7 +319,7 @@ first run only. This is because of services being late-bound.
 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
-- Querying by insight source returns zero CVEs even though there are CVEs in the source scan: 
-When attempting to look up CVE and affected packages, querying `insight source get` (or other 
-`insight source` commands) may return zero results due to supply chain configuration and repo URL. 
+- Querying by insight source returns zero CVEs even though there are CVEs in the source scan:
+When attempting to look up CVE and affected packages, querying `insight source get` (or other
+`insight source` commands) may return zero results due to supply chain configuration and repo URL.
 See [Troubleshoot Supply Chain Security Tools - Store](scst-store/troubleshooting.md)
