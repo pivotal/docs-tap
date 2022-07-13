@@ -1,6 +1,6 @@
 # Install Supply Chain Security Tools - Scan
 
-This document describes how to install Supply Chain Security Tools - Scan
+This document describes how to install Supply Chain Security Tools - Scan 
 from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
@@ -12,12 +12,12 @@ For more information about profiles, see [About Tanzu Application Platform compo
 Before installing Supply Chain Security Tools - Scan:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install [Supply Chain Security Tools - Store](../scst-store/install-scst-store.md) for scan results to persist. The integration with Supply Chain Security Tools - Store can be handled in:
-  - **Single Cluster:** The Supply Chain Security Tools - Store is present in the same cluster where Supply Chain Security Tools - Scan and the `ScanTemplates` will be present.
-  - **Multi-Cluster:** The Supply Chain Security Tools - Store is present in a different cluster (e.g.: view cluster) where the Supply Chain Security Tools - Scan and `ScanTemplates` will be present.
-  - **Integration Disabled:** The Supply Chain Security Tools - Scan deployment doesn't need to communicate with Supply Chain Security Tools - Store. 
+- Install [Supply Chain Security Tools - Store](../scst-store/install-scst-store.md) for scan results to persist. The integration with Supply Chain Security Tools - Store are handled in:
+  - **Single Cluster:** The Supply Chain Security Tools - Store is present in the same cluster where Supply Chain Security Tools - Scan and the `ScanTemplates` are present.
+  - **Multi-Cluster:** The Supply Chain Security Tools - Store is present in a different cluster (e.g.: view cluster) where the Supply Chain Security Tools - Scan and `ScanTemplates` are present.
+  - **Integration Deactivated:** The Supply Chain Security Tools - Scan deployment is not required to communicate with Supply Chain Security Tools - Store. 
 
-    For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
+    For more information, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
 - Install the Tanzu Insight CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
   See [Install the Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-installation.md).
@@ -50,7 +50,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. (Optional) Make changes to the default installation settings:
 
-    If you're using the Grype Scanner `≥v1.2.0`, or the Snyk Scanner, the following scanning configuration can disable the embedded Supply Chain Security Tools - Store integration with a `scan-values.yaml` file like this:
+    If you're using the Grype Scanner `≥v1.2.0`, or the Snyk Scanner, the following scanning configuration can deactivate the embedded Supply Chain Security Tools - Store integration with a `scan-values.yaml` file, such as:
 
     ```yaml
     ---
@@ -58,7 +58,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
       url: ""
     ```
 
-    If you're using the Grype Scanner `<1.2.0`, the scanning configuration needs to configure the store parameters. See the [v1.1 docs](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-scst-scan-install-scst-scan.html) for reference.
+    If you're using the Grype Scanner `<1.2.0`, the scanning configuration must configure the store parameters. See the [v1.1 docs](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-scst-scan-install-scst-scan.html) for reference.
 
 
     You can retrieve any other configurable setting using the following command, and appending the key-value pair to the previous `scan-values.yaml` file:
@@ -100,7 +100,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. (Optional) Make changes to the default installation settings:
 
-    You need to define the configuration for the Supply Chain Security Tools - Store integration in the `grype-values.yaml` file for the Grype Scanner: 
+    To define the configuration for the Supply Chain Security Tools - Store integration in the `grype-values.yaml` file for the Grype Scanner: 
 
     ```yaml
     ---
