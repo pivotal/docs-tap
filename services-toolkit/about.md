@@ -10,4 +10,4 @@ DNS records, and so on) on Kubernetes:
 - Service resource claims
 
 To learn more about Services Toolkit, see the
-[Services Toolkit for VMware Tanzu documentation](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-overview.html)
+[Services Toolkit for VMware Tanzu documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-overview.html)
