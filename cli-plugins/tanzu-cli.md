@@ -92,9 +92,9 @@ For example, the `tar -xvf` command.
     login               Login to the platform                                                                              Standalone  default    v0.11.6         not installed
     package             Tanzu package management                                                                           Standalone  default    v0.11.6         installed
     secret              Tanzu secret management                                                                            Standalone  default    v0.11.6         installed
-    insight             post & query image, package, source, and vulnerability data                                        Standalone             v1.2.1          installed
-    accelerator         Manage accelerators in a Kubernetes cluster                                                        Standalone             v1.2.0-build.1  installed
-    apps                Applications on Kubernetes                                                                         Standalone             v0.0.0-dev      installed
-    services            Explore Service Instance Classes, discover claimable Service Instances and manage Resource Claims  Standalone             v0.3.0-rc.2     installed
+    insight             post & query image, package, source, and vulnerability data                                        Standalone             v1.2.2          installed
+    accelerator         Manage accelerators in a Kubernetes cluster                                                        Standalone             v1.2.0          installed
+    apps                Applications on Kubernetes                                                                         Standalone             v0.7.0          installed
+    services            Explore Service Instance Classes, discover claimable Service Instances and manage Resource Claims  Standalone             v0.3.0          installed
 
    ```
