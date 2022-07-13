@@ -9,4 +9,4 @@ For more information about Tanzu Build Service, see the
 [Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
 
 
-{{> 'partials/sim/test-partial' }} 
+{{> 'docs-partials/sim/test-partial' }} 
