@@ -38,4 +38,4 @@ You can open the project in your favorite integrated development environment(IDE
 
 Learn more about:
 
-- [Creating Accelerators](creating-accelerators/index.md)
+- [Creating Accelerators](creating-accelerators/creating-accelerators.md)
