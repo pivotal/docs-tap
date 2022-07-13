@@ -20,9 +20,9 @@ Run the following commands to get more logs and details on the errors around sca
 ####  <a id="debugging-scan-pods"></a> **Debugging Scan Pods**
 Run the following to get error logs from a pod when scan pods are in a failing state:
 ```console
-kubectl logs <scan-pod-name> -n <DEV-NAMESPACE>
-```
-See [here](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/) for more details on debugging k8s pods.
+kubectl logs <scan-pod-name> -n <DEV-NAMESPACE> <!-- If a placeholder, delete the angle brackets. -->
+``` 
+See [here](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/) for more details about debugging Kubernetes pods.
 
 The following is an example of a successful scan run output:
 ```yaml
@@ -45,8 +45,8 @@ eval:
 store:
   locations:
   - https://metadata-store-app.metadata-store.svc.cluster.local:8443/api/sources?repo=hound&sha=5805c6502976c10f5529e7f7aeb0af0c370c0354&org=houndci
-```
-A scan run that had an error would mean one of the init containers: scan-plugin, metadata-store-plugin, compliance-plugin, summary, or any other additional containers had a failure.
+``` 
+A scan run that has an error means that one of the init containers: `scan-plugin`, `metadata-store-plugin`, `compliance-plugin`, `summary`, or any other additional containers had a failure.
 
 To inspect for a specific init container in a pod:
 ```console
@@ -58,11 +58,12 @@ See [here](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-c
 
 To retrieve status conditions of an SourceScan and ImageScan run the following:
 ```console
-kubectl describe sourcescan <sourcescan> -n <DEV-NAMESPACE>
-```
+kubectl describe sourcescan <sourcescan> -n <DEV-NAMESPACE> 
+``` 
+
 ```console
-kubectl describe imagescan <imagescan> -n <DEV-NAMESPACE>
-```
+kubectl describe imagescan <imagescan> -n <DEV-NAMESPACE> 
+``` 
 
 Under `Status.Conditions`, for a condition look at the "Reason", "Type", "Message" values that use the keyword "Error" to investigate issues.
 
@@ -154,8 +155,41 @@ configurations to disable the Store:
     ns_for_export_app_cert: "<DEV-NAMESPACE>"
   ```
 
-  However it that doesn't work try (this is discouraged due to security reasons):
+  However, if the earlier tap-values.yaml doesn't work, include:
+  
   ```yaml
   metadata_store:
     ns_for_export_app_cert: "*"
   ```
+
+#### <a id="reporting-wrong-blob-url"></a> **Blob Source Scan is reporting wrong source URL**
+
+  A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote ssh<!-- |SSH| is preferred. --> URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message. 
+
+  You can confirm you're having this problem by running a `kubectl describe` in the affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url` and see if they're different URLs. For example:
+
+  ```console
+  kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE> 
+  ```
+
+  And compare the output:
+
+  ```console
+  ...
+  spec:
+    blob:
+      ...
+      url: http://source-controller.flux-system.svc.cluster.local./gitrepository/sample/repo/8d4cea98b0fa9e0112d58414099d0229f190f7f1.tar.gz
+      ...
+  status:
+    artifact:
+      blob:
+        ...
+        url: ssh://git@github.com:sample/repo.git
+    compliantArtifact:
+      blob:
+        ...
+        url: ssh://git@github.com:sample/repo.git
+  ```
+
+  **Workaround:** This problem happens in Supply Chain Security Tools - Scan `v1.2.0` when you use a Grype Scanner ScanTemplates earlier than  `v1.2.0` because this is a deprecated path. The solution to fix this problem is to upgrade your Grype Scanner deployment to `v1.2.0` or later. You can take a look at [Upgrading Supply Chain Security Tools - Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
