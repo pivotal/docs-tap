@@ -48,7 +48,7 @@ When you configure the `Combo` transform with all properties, it behaves as foll
    The default value is `['**']`; if not present, all files are retained.
 
 2. Applies the `exclude` as if it were the second element of the chain. The default
-   value is `[]`; if not present, no files are excluded.  At this point<!-- Remove (this phrase is unnecessary in steps) or replace with a less wordy alternative. --> of the chain,
+   value is `[]`; if not present, no files are excluded.  At this point of the chain,
    only files that match the `include`, but are not excluded by the `exclude`, remain.
 
 3. Feeds all those files as input to all transforms declared in the `merge` property,

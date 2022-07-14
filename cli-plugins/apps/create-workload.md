@@ -89,7 +89,6 @@ Respond `Y` to prompts to complete process.
 - `petclinic-image` is the name of the workload.
 - `--image` is an existing image, pulled from a registry, that contains the source that the workload is going to use to create the application.
 
-<!-- -->
 ### <a id="workload-maven"></a> Create a workload from Maven repository artifact
 
 Tanzu Application Platform supports creating a workload from a Maven repository artifact ([Source-Controller](../../source-controller/about.md)) by setting some specific properties as yaml parameters in the workload when using the [supply chain](../../scc/about.md).
