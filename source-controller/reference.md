@@ -44,9 +44,9 @@ spec:
 
 `MavenArtifact` resolves artifact from a Maven repository, exposing the resulting artifact at a URL defined by `.status.artifact.url`.
 
-The `interval` determines how often to check artifact for changes. Setting this value too high will result in delays in discovering new sources, while setting it too low may trigger a repository's rate limits.
+The `interval` determines how often to check artifact for changes. Setting this value too high results in delays in discovering new sources, while setting it too low may trigger a repository's rate limits.
 
-Repository credentials may be defined as secrets referenced from the resources at `.spec.repository.secretRef`. Secret referenced by `spec.repository.secretRef` is parsed as follows:
+Repository credentials may be defined as secrets referenced from the resources at `.spec.repository.secretRef`. Secrets referenced by `spec.repository.secretRef` is parsed as follows:
 
 ```yaml
 ---
