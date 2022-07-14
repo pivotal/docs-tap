@@ -2,7 +2,7 @@
 
 This topic contains troubleshooting and known issues for **Supply Chain Security Tools - Store**.
 
-## Querying by insight source returns zero CVEs even though there are CVEs in the source scan
+## Querying by `insight source` returns zero CVEs even though there are CVEs in the source scan
 
 ### Symptom
 
@@ -10,7 +10,7 @@ When attempting to look up CVE and affected packages, querying `insight source g
 
 ### <a id='source-scan-no-cves-solution'></a>Solution
 
-You may have to include different combinations of `--repo`, `--org`, `--commit` depending on (1) how your supply chain is configured and (2) whether your repository URL is HTTP or SSH.  See [Query Data - Source].  A fix is targeted for TAP 1.2.1.
+You may have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the SBOM.  See [Query Data - Source].
 
 ## Persistent volume retains data
 
