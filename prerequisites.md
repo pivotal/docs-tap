@@ -21,10 +21,12 @@ associated with some free registry offerings.
 
     - If installing using the `lite` descriptor for Tanzu Build Service, 1&nbsp;GB of available
     storage is recommended.
-    This descriptor are suitable for production use.
-    - If installing using the `full` descriptor for Tanzu Build Service, which you can use for
-    offline environments, 10&nbsp;GB of available storage is recommended.
-    This descriptor are suitable for production use.
+    - If installing using the `full` descriptor for Tanzu Build Service, which is suitable for offline
+    environments, 10 GB of available storage is recommended.
+
+        >**Note:** For production environments, the `full` descriptor is recommended to
+        >optimize security and performance. For more information about Tanzu Build Service
+        >descriptors, see [About descriptors](tanzu-build-service/descriptors.md).
 
 - Registry credentials with read and write access made available to
 Tanzu Application Platform to store images.
