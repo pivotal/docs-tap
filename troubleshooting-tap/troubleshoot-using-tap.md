@@ -447,4 +447,4 @@ Supply Chain Security Tools - Scan has a known issue where it sets the phase of 
 **Explanation**
 The root cause of the problem is unknown.
 
-**Workaround:** See the [Troubleshooting Guide](scst-scan/observing.md#unable-to-decode-cyclonedx) for how to exit this error state.
+**Workaround:** See the [Troubleshooting Guide](../scst-scan/observing.md#unable-to-decode-cyclonedx) for how to exit this error state.

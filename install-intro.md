@@ -15,4 +15,4 @@ The process of installing Tanzu Application Platform includes the following task
 |5.| Prepare your Tanzu Application Platform profile |[Prepare to install your Tanzu Application Platform profile](install.html#install-profile)|
 |6.| Install the profile to the cluster |[Install your Tanzu Application Platform package](install.html#install-package)|
 |7.| (Optional) Install any additional packages that were not in the profile |[Installing Individual Packages](install-components.html)|
-|8.| Install developer tools into your integrated development environment (IDE) | [Installing Tanzu Developer Tools for Visual Studio Code](vscode-extension/installation.html)
+|8.| Install developer tools into your integrated development environment (IDE) | [Installing Tanzu Developer Tools for Visual Studio Code](vscode-extension/install.html)
