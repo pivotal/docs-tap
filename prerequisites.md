@@ -21,7 +21,7 @@ associated with some free registry offerings.
 
     - If installing using the `lite` dependencies for Tanzu Build Service, 1&nbsp;GB of available
     storage is recommended.
-    - If installing using the `full` dependencies for Tanzu Build Service, which is suitable for offline
+    - If installing using the `full` dependencies for Tanzu Build Service, which are suitable for offline
     environments, 10 GB of available storage is recommended.
 
         >**Note:** For production environments, `full` dependencies are recommended to
