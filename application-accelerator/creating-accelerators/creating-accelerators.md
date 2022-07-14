@@ -40,7 +40,7 @@ Use the following procedure to create an accelerator based on this Git repositor
 
 ## <a id="publishing-the-new-accelerator"></a>Publishing the new accelerator
 
-2. To publish your new accelerator, run this command in your terminal:
+1. To publish your new accelerator, run this command in your terminal:
 
     ```sh
     tanzu accelerator create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
@@ -51,7 +51,7 @@ Use the following procedure to create an accelerator based on this Git repositor
     - `YOUR-GIT-REPOSITORY-URL` is the URL for your Git repository.
     - `YOUR-GIT-BRANCH` is the name of the branch where you pushed the new `accelerator.yaml` file.
 
-3. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
+2. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
 
     ![Screenshot of another accelerator in Tanzu Application Platform GUI](../images/new-accelerator-deployed-v1-1.png)
 
@@ -74,7 +74,7 @@ An alternative to using the Tanzu CLI is to create a separate manifest file and 
           branch: YOUR-GIT-BRANCH
     ```
 
-1. To apply the `simple-manifest.yaml`, run this command in your terminal in the directory where you created this file:
+2. To apply the `simple-manifest.yaml`, run this command in your terminal in the directory where you created this file:
 
     ```sh
     tanzu accelerator apply -f simple-manifest.yaml
