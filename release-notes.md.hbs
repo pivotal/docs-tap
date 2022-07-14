@@ -106,8 +106,23 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
+<<<<<<< HEAD
 - Breaking change 1
 - Breaking change 2
+=======
+- You must configure integration with Supply Chain Security Tools - Store for the Grype Scanner and Snyk Scanner packages to enable this feature. The configuration for Supply Chain Security Tools - Store in Supply Chain Security Tools - Scan is only for the deprecated Grype Scanner `ScanTemplate`s.
+- For the profile configuration of Supply Chain Security Tools - Scan, the scanning component no longer takes the metadata store configurations as of v1.2.0.
+  - For information about configuring metadata store by using the Grype component instead of the scanning component as of v1.2.0, see [Install multicluster Tanzu Application Platform profiles
+](multicluster/installing-multicluster.md).
+  - See [Build profile](multicluster/reference/tap-values-build-sample.md) for the deprecated way of writing the metadata store configuration through the scanning component.
+
+  >**Note:** This doesn't apply if you are using the deprecated Grype Scanner `ScanTemplate`s prior to Grype Scanner `v1.2.0`.
+
+  - The package name changed from `package policies` to `package main`.
+  - The deny rule changed from the boolean `isCompliant` to the array of strings `deny[msg]`.
+  - The sample `ScanPolicy` is different if you're using Grype Scanner with a CycloneDX structure or Snyk Scanner with a SPDX JSON structure. See [Install Snyk Scanner](scst-scan/install-snyk-integration.md) for an example of a Scan Policy.
+  - See [Enforce compliance policy using Open Policy Agent](scst-scan/policies.md) for an example of the current ScanPolicy format for v1.2.0 and later.
+>>>>>>> 6fee8dbe ([#182720137] Fix broken cross-references)
 
 #### <a id="tbs-breaking-changes"></a> Tanzu Build Service
 

@@ -12,7 +12,7 @@ For more information about profiles, see [About Tanzu Application Platform compo
 Before installing Developer Conventions:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install [Convention Service](../convention-service/install-conv-service.md).
+- Install [Supply Chain Choreographer](../scc/install-scc.md).
 
 ## <a id='dc-install'></a>Install
 
