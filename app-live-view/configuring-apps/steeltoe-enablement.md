@@ -1,8 +1,7 @@
 # Enabling Steeltoe apps for Application Live View
 
-This topic describes how to configure a Steeltoe app to be observed by
+This topic describes how developers configure a Steeltoe app to be observed by
 Application Live View within Tanzu Application Platform.
-
 
 ## Enable Steeltoe apps
 
@@ -53,4 +52,10 @@ To enable Application Live View on the Steeltoe TAP workload, you must manually 
 metadata:
     labels:
         tanzu.app.live.view.application.flavours: steeltoe
+```
+
+>**Note:** If your application image is not built with Tanzu Build Service, to enable Application Live View on Steeltoe Tanzu Application Platform workload, use the following command. For example:
+
+```
+tanzu apps workload create steeltoe-app --type web --app steeltoe-app --image <IMAGE NAME> --annotation autoscaling.knative.dev/min-scale=1 --yes --label tanzu.app.live.view=true --label tanzu.app.live.view.application.name=steeltoe-app --label tanzu.app.live.view.application.flavours=steeltoe
 ```

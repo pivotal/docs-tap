@@ -1,14 +1,14 @@
 # Create your application accelerator
 
-This how-to guide walks you through creating an application accelerator by using Tanzu Application Platform GUI and CLI.
+This is the first in a series of Getting started how-to guides for operators. It walks you through creating an application accelerator by using Tanzu Application Platform GUI and CLI.
 
-For background information on application accelerators, see [Application Accelerator](about-application-accelerator.md).
+For background information about application accelerators, see [Application Accelerator](about-application-accelerator.md).
 
 ## <a id="you-will"></a>What you will do
 
 - Select a Git repository to create your accelerator and clone the repository.
 - Create an `accelerator.yaml` file that defines your accelerator and add it to your Git repository.
-- Publish your application accelerator and view it in the Tanzu Application Platform GUI.
+- Publish your application accelerator and view it in Tanzu Application Platform GUI.
 - Begin to work with your accelerator.
 
 ## <a id="create-an-app-acc"></a>Create an application accelerator
@@ -46,7 +46,7 @@ To create a new application accelerator by using your Git repository, follow the
 
 To publish the new application accelerator that is created in your Git repository, follow these steps:
 
-1. Run the following command to publish the new application accelerator:
+1. To publish the new application accelerator, run:
 
     ```console
     tanzu accelerator create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
@@ -67,7 +67,7 @@ To publish the new application accelerator that is created in your Git repositor
 
 ### <a id="accelerator-updates"></a>Updating an accelerator
 
-After you push any changes to your Git repository, the accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default value is 10 minutes. You can run the following command to force an immediate reconciliation:
+After you push any changes to your Git repository, the accelerator is refreshed based on the `git.interval` setting for the Accelerator resource. The default value is 10 minutes. To force an immediate reconciliation, run:
 
 ```console
 tanzu accelerator update ACCELERATOR-NAME --reconcile

@@ -157,22 +157,28 @@ Verify that the `READY` status is `true` for all accelerators.
 
 ### <a id="ready-blank"></a>When Accelerator ready column is blank
 
-1. View the status of `accelerator-system`. For example:
+1. View the status of `accelerator-system` by running:
 
     ```console
-        $ kubectl get deployment -n accelerator-system
-        NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
-        acc-engine                       1/1     1            1           3d5h
-        acc-server                       1/1     1            1           2d1h
-        accelerator-controller-manager   0/1     1            0           3d5h
+    kubectl get deployment -n accelerator-system
+    ```
 
+    Example output:
+
+    ```console
+    NAME                             READY   UP-TO-DATE   AVAILABLE   AGE
+    acc-engine                       1/1     1            1           3d5h
+    acc-server                       1/1     1            1           2d1h
+    accelerator-controller-manager   0/1     1            0           3d5h
     ```
 
 2. View the logs for any component with no Pods available by running:
 
     ```console
-    $ kubectl logs deployment/accelerator-controller-manager/ -n accelerator-system -p
+    kubectl logs deployment/COMPONENT-NAME/ -n accelerator-system -p
     ```
+
+    Where `COMPONENT-NAME` is the component with no pods you retrieved in the previous step.
 
     - If the log has the following error then the FluxCD source-controller is not installed:
 
@@ -194,15 +200,24 @@ View the `REASON` column for non-ready accelerators. Run:
 kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
 ```
 
-#### <a id="reason-GitRepositoryResolutionFailed"></a >REASON: `GitRepositoryResolutionFailed`
+#### <a id="reason-GitRepositoryResolutionFailed"></a> REASON: `GitRepositoryResolutionFailed`
+
+For example:
+
+```console
+$ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
+NAME        READY   REASON                             AGE
+more-fun    False   GitRepositoryResolutionFailed      28s
+```
 
 1. View the resource status. Run:
 
     ```console
-    $ kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system hello-fun
+    kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system hello-fun
     ```
 
-2. Read `status.conditions.message` near the end of the output to learn the likely cause of failure. Run:
+2. Read `status.conditions.message` near the end of the output to learn the likely
+cause of failure. For example:
 
     ```yaml
     status:
@@ -226,7 +241,9 @@ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
     ```
 
     In this example, `couldn't find remote ref "refs/heads/test"` reveals that the branch or tag
-    specified doesn't exist. Another common problem is that the Git repository doesn't exist.
+    specified doesn't exist.
+
+    Another common problem is that the Git repository doesn't exist.
     For example:
 
     ```yaml
@@ -257,12 +274,20 @@ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
     unable to clone 'https://github.com/sample-accelerators/hello-funk', error: authentication required
     ```
 
-#### <a id="reson-GitRepositoryResolutionPending"></a> REASON: `GitRepositoryResolutionPending`
+#### <a id="reason-GitRepositoryResolutionPending"></a> REASON: `GitRepositoryResolutionPending`
+
+For example:
+
+```console
+$ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
+NAME        READY   REASON                             AGE
+more-fun    False   GitRepositoryResolutionPending     28s
+```
 
 1. See the resource status. Run:
 
     ```console
-     kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system hello-fun
+    kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system hello-fun
     ```
 
 2. Locate `status.conditions` at the end of the output. For example:
@@ -288,15 +313,22 @@ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
 3. Verify that the Flux system is running and that the `READY` column has `1/1`. Run:
 
     ```console
-     kubectl get -n flux-system deployment/source-controller
+    kubectl get -n flux-system deployment/source-controller
+    ```
+
+    Example output:
+
+    ```console
     NAME                READY   UP-TO-DATE   AVAILABLE   AGE
     source-controller   1/1     0            0           5d4h
     ```
 
-#### <a id="reson-ImageRepositoryResolutionPending"></a> REASON: `ImageRepositoryResolutionPending`
+#### <a id="reason-ImageRepositoryResolutionPending"></a> REASON: `ImageRepositoryResolutionPending`
+
+For example:
 
 ```console
- kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
+$ kubectl get accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system
 NAME        READY   REASON                             AGE
 more-fun    False   ImageRepositoryResolutionPending   28s
 ```
@@ -304,13 +336,14 @@ more-fun    False   ImageRepositoryResolutionPending   28s
 1. See the resource status. Run:
 
     ```console
-     kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system hello-fun
+    kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system hello-fun
     ```
 
-2. Locate `status.conditions` at the end of the output. Run:
+2. Locate `status.conditions` at the end of the output. For example:
 
     ```console
-     kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system more-fun
+    $ kubectl get -oyaml accelerators.accelerator.apps.tanzu.vmware.com -n accelerator-system more-fun
+
     apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
     kind: Accelerator
     metadata:
@@ -344,10 +377,16 @@ more-fun    False   ImageRepositoryResolutionPending   28s
       observedGeneration: 1
     ```
 
-3. Verify that Tanzu Application Platform source-controller system is running and the `READY` column has `1/1`. Run:
+3. Verify that Tanzu Application Platform source-controller system is running and
+the `READY` column has `1/1`. Run:
 
     ```console
-     kubectl get -n source-system deployment/source-controller-manager
+    kubectl get -n source-system deployment/source-controller-manager
+    ```
+
+    Expected output:
+
+    ```console
     NAME                        READY   UP-TO-DATE   AVAILABLE   AGE
     source-controller-manager   1/1     0            0           5d5h
     ```

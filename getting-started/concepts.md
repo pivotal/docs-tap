@@ -1,4 +1,4 @@
-# Concepts
+# Concepts overview
 
 The articles in this section can help you understand concepts important to getting started with Tanzu Application Platform. They include:
 

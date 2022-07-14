@@ -3,7 +3,7 @@
 This document describes how to install Supply Chain Security Tools - Store
 from the Tanzu Application Platform package repository.
 
->**Note:** VMware recommends installing Supply Chain Security Tools - Store by using Tanzu Application Platform Profiles.  See [About Tanzu Application Platform package and profiles](../about-package-profiles.md) and [Installing the Tanzu Application Platform Package and Profiles](../install.md).  Use the following instructions if you do not want to use a profile to install the Supply Chain Security Tools - Store package.
+>**Note:** VMware recommends installing Supply Chain Security Tools - Store by using Tanzu Application Platform Profiles.  See [About Tanzu Application Platform components and profiles](../about-package-profiles.md) and [Installing the Tanzu Application Platform Package and Profiles](../install.md).  Use the following instructions if you do not want to use a profile to install the Supply Chain Security Tools - Store package.
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -60,7 +60,7 @@ To install Supply Chain Security Tools - Store:
     $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
     | Retrieving package details for metadata-store.apps.tanzu.vmware.com/1.0.2...
       KEY                               DEFAULT              TYPE     DESCRIPTION
-      app_service_type                  LoadBalancer         string   The type of service to use for the metadata app service. This can be set to 'NodePort' or 'LoadBalancer'.
+      app_service_type                  LoadBalancer         string   The type of service to use for the metadata app service. This can be set to 'Nodeport', 'ClusterIP' or 'LoadBalancer'.
       auth_proxy_host                   0.0.0.0              string   The binding ip address of the kube-rbac-proxy sidecar
       db_host                           metadata-store-db    string   The address to the postgres database host that the metdata-store app uses to connect. The default is set to metadata-store-db which is the postgres service name. Changing this does not change the postgres service name
       db_replicas                       1                    integer  The number of replicas for the metadata-store-db
@@ -87,12 +87,14 @@ To install Supply Chain Security Tools - Store:
       log_level                         default              string   Sets the log level. This can be set to "minimum", "less", "default", "more", "debug" or "trace". "minimum" currently does not output logs. "less" outputs log configuration options only. "default" and "more" outputs API endpoint access information. "debug" and "trace" outputs extended API endpoint access information(such as body payload) and other debug information.
     ```
 
-1. (Optional) Modify one of the deployment configurations by creating a configuration YAML with the custom configuration values you want. For example, if your environment does not support `LoadBalancer`, and you want to use `NodePort`, then create a `metadata-store-values.yaml` and configure the
+1. (Optional) Modify one of the deployment configurations by creating a configuration YAML with the
+custom configuration values you want. For example, if your environment does not support `LoadBalancer`,
+and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and configure the
 `app_service_type` property.
 
     ```yaml
     ---
-    app_service_type: "NodePort"
+    app_service_type: "ClusterIP"
     ```
 
     See [Deployment details and configuration](deployment-details.md#configuration) for

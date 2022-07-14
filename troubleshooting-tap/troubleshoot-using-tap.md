@@ -427,3 +427,25 @@ defined. The provisioner of `storageclass` is responsible for creating the persi
     # set the storage class as default
     kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
      ```
+
+## <a id='connect-aws-eks-clusters'></a> Failure to connect to AWS EKS clusters
+
+When connecting to AWS EKS clusters an error might appear with the text
+`Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
+`invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
+
+**Explanation**
+
+The cause is [Kubernetes v1.24](https://kubernetes.io/blog/2022/05/03/kubernetes-1-24-release-announcement/)
+dropping support for `client.authentication.k8s.io/v1alpha1`.
+For more information, see [aws/aws-cli/issues/6920](https://github.com/aws/aws-cli/issues/6920) in
+GitHub.
+
+**Solution**
+
+1. Update `aws-cli` to the latest version.
+1. Run:
+
+    ```console
+    aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
+    ```

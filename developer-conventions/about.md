@@ -18,7 +18,9 @@ and the [Tanzu Dev Tools for VSCode](../vscode-extension/about.md) IDE extension
 Developer Conventions modifies your workload to enable live updates in either of the following situations:
 
 - You deploy a workload by using the Tanzu CLI Apps plug-in and include the flag `--live-update=true`. For more information about how to deploy a workload with the CLI, see [Tanzu apps workload apply](../cli-plugins/apps/command-reference/tanzu-apps-workload-apply.md).
-- You deploy a workload by using the `Tanzu: Live Update Start` option through the Tanzu Dev Tools for VSCode extension. For more information about live updating with the Tanzu Dev Tools extension, see [Using Tanzu Dev Tools to get started](../vscode-extension/getting-started.md).
+- You deploy a workload by using the `Tanzu: Live Update Start` option through the
+Tanzu Developer Tools for VS Code extension. For more information about live updating with the
+extension, see [Overview of Tanzu Developer Tools for Visual Studio Code](../vscode-extension/about.md).
 
 When either of the preceding actions take place, the convention behaves as follows:
 
@@ -34,7 +36,8 @@ or the Tilt CLI to make live update changes to source code directly on the clust
 Developer Conventions modifies your workload to enable debugging in either of the following situations:
 
 - You deploy a workload by using the Tanzu CLI Apps plug-in and include the flag `--debug=true`. For more information about how to deploy a workload with the CLI, see [Tanzu apps workload apply](../cli-plugins/apps/command-reference/tanzu-apps-workload-apply.md).
-- You deploy a workload by using the `Tanzu Java Debug Start` option through the Tanzu Dev Tools for VSCode extension. For more information about debugging with the Tanzu Dev Tools extension, see [Using Tanzu Dev Tools to get started](../vscode-extension/getting-started.md).
+- You deploy a workload by using the `Tanzu Java Debug Start` option through the
+Tanzu Developer Tools for VS Code extension. For more information about debugging with the extension, see [Overview of Tanzu Developer Tools for Visual Studio Code](../vscode-extension/about.md).
 
 When either of the preceding actions take place, the convention behaves as follows:
 

@@ -18,10 +18,6 @@ End User License Agreements (EULAs) as follows:
 
     - [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/)
     - [Cluster Essentials for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/)
-    - [Tanzu Build Service Dependencies](https://network.tanzu.vmware.com/products/tbs-dependencies/)
-    - [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
-    - [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
-
 
 ### <a id='accept-tap-eula'></a> Example of accepting the Tanzu Application Platform EULA
 
@@ -229,5 +225,14 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
 ## <a id='next-steps'></a>Next steps
 
-- [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html)
+For online installation:
+
+- [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)*
 - [Installing the Tanzu Application Platform package and profiles](install.html)
+
+For air-gapped installation:
+
+- [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)*
+- [Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)
+
+\* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._

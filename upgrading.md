@@ -2,30 +2,46 @@
 
 This document describes how to upgrade Tanzu Application Platform.
 
-You can perform fresh install of Tanzu Application Platform by following the instructions in [Installing Tanzu Application Platform](install-intro.md).
+You can perform a fresh install of Tanzu Application Platform by following the instructions in [Installing Tanzu Application Platform](install-intro.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
 Before you upgrade Tanzu Application Platform:
 
 - Verify that you meet all the [prerequisites](prerequisites.md) of the target Tanzu Application Platform version. If the target Tanzu Application Platform version does not support your existing Kubernetes version, VMware recommends upgrading to a supported version before proceeding with the upgrade.
-- For information about installing your Tanzu Application Platform, see [Install your Tanzu Application Platform profile](install.md#install-profile)
-- For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.md#cli-and-plugin)
-- For information on Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations)
-- Verify all packages are reconciled by running `tanzu package installed list -A`
+- For information about installing your Tanzu Application Platform, see [Install your Tanzu Application Platform profile](install.md#install-profile).
+- For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.md#cli-and-plugin).
+- For information on Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations).
+- Verify all packages are reconciled by running `tanzu package installed list -A`.
+- It is strongly recommended to [upgrade](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html#upgrade-7) the Cluster Essentials to version 1.2 to avoid the temporary warning state as described in the following section.
 
-## <a id="add-new-package-repo"></a> Add new package repository
+## <a id="add-new-package-repo"></a> Add the new package repository
 
 Follow these steps to add the new package repository:
 
 1. Add the target version of the Tanzu Application Platform package repository by running:
 
-    ```console
-    tanzu package repository update tanzu-tap-repository \
-        --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION  \
-        --namespace tap-install
-    ```
-   Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
+    - For Cluster Essentials 1.2 and above:
+
+        ```console
+        tanzu package repository add tanzu-tap-repository \
+            --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION  \
+            --namespace tap-install
+        ```
+        
+        Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
+
+    - For Cluster Essentials 1.1 and 1.0:
+
+        ```console
+        tanzu package repository update tanzu-tap-repository \
+            --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:VERSION  \
+            --namespace tap-install
+        ```
+        
+        Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
+
+        >**Note:** If you are using Cluster Essentials 1.0 or 1.1, expect to see the installed Tanzu Application Platform packages in a temporary “Reconcile Failed” state, following a “Package not found” warning. These warnings will disappear after you upgrade the installed Tanzu Application Platform packages to version 1.2.0. 
 
 2. Verify you have added the new package repository by running:
 
@@ -33,11 +49,9 @@ Follow these steps to add the new package repository:
     tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
 
-## <a id="upgrade-tap"></a> Perform upgrade of Tanzu Application Platform
+## <a id="upgrade-tap"></a> Perform the upgrade of Tanzu Application Platform
 
 ### <a id="profile-based-instruct"></a> Upgrade instructions for Profile-based installation
-
->**Important:** Before performing the upgrade, ensure `descriptor_name` is either unset or set to `full`, or `lite` in the [`tap-values.yaml`](install.md#full-profile).
 
 For Tanzu Application Platform that is installed by profile, you can perform the upgrade by running:
 
@@ -47,11 +61,20 @@ For Tanzu Application Platform that is installed by profile, you can perform the
 tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION  --values-file tap-values.yaml -n tap-install
 ```
 
-   Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
+Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
+
+>**Note:** When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically
+>run a build that fails due to a missing dependency.
+>This error does not persist and any subsequent builds will resolve this error.
+>You can safely wait for the next build of the workloads, which is triggered by new source code changes.
+>If you do not want to wait for subsequent builds to run automatically,
+>follow the instructions in the troubleshooting item
+>[Builds fail after upgrading to Tanzu Application Platform v1.2](tanzu-build-service/troubleshooting.md#tbs-1-2-breaking-change).
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
 For information about upgrading Tanzu Application Platform GUI, see [upgrading Tanzu Application Platform GUI](tap-gui/upgrades.html).
+For information about upgrading Supply Chain Security Tools - Scan, see [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
 
 ## <a id="verify"></a> Verify the upgrade
 

@@ -8,7 +8,7 @@ into this Tanzu Application Platform documentation site.
 
 - [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)
 
-- [Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)
+- [Application Accelerator for VMware Tanzu](application-accelerator/about-application-accelerator.md)
 
 - [Application Live View for VMware Tanzu](app-live-view/about-app-live-view.md)
 
@@ -40,6 +40,7 @@ into this Tanzu Application Platform documentation site.
 
 - [Tanzu Application Platform GUI](tap-gui/about.md)
 
-- [VMware Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html)
+- [VMware Tanzu Build Service](tanzu-build-service/tbs-about.md)
+  - [VMware Tanzu Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html)
 
 - [Workload types](workloads/workload-types.md)

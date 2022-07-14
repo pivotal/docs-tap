@@ -1,6 +1,6 @@
 # Custom configuration for the connector
 
-This topic describes how to custom configure an app or workload for Application Live View.
+This topic describes how developers custom configure an app or workload for Application Live View.
 
 The connector component is responsible for discovering the app and registering
 it with Application Live View.
@@ -79,7 +79,7 @@ To verify the label:
 shows the newly added label has propagated through the Supply Chain:
 
     ```console
-    kubectl get podintents.conventions.carto.run spring-petclinic -oyaml  
+    kubectl get podintents.conventions.carto.run spring-petclinic -oyaml
 
     status:
       conditions:

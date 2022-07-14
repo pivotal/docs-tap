@@ -8,12 +8,12 @@ When a `tanzu apps` command is run, the plug-in uses the default context that's 
 There are two ways to change the target cluster:
 
 1. Use `kubectl config use-context <context-name>` to change the default context. All subsequent `tanzu apps` commands will target the cluster defined in the new default kubeconfig context.
-1. Include the `--context <context-name>` flag when running any `tanzu apps` command. All subsequent `tanzu apps` commands without the `--context <context-name>` flag will continue to use the default context set in the kubeconfig.
+2. Include the `--context <context-name>` flag when running any `tanzu apps` command. All subsequent `tanzu apps` commands without the `--context <context-name>` flag will continue to use the default context set in the kubeconfig.
 
 There are also two ways to override the default kubeconfig:
 
-1. Set the env var `KUBECONFIG=<path>` to change the kubeconfig the Apps CLI plug-in should reference. All subsequent `tanzu apps` commands will reference the non-default kubeconfig assigned to the env var.
-1. Include the  `--kubeconfig <path>` flag when running any `tanzu apps` command. All subsequent `tanzu apps` commands without the `--kubeconfig <path>` flag will continue to use the default kubeconfig.
+3. Set the env var `KUBECONFIG=<path>` to change the kubeconfig the Apps CLI plug-in should reference. All subsequent `tanzu apps` commands will reference the non-default kubeconfig assigned to the env var.
+4. Include the  `--kubeconfig <path>` flag when running any `tanzu apps` command. All subsequent `tanzu apps` commands without the `--kubeconfig <path>` flag will continue to use the default kubeconfig.
 
 For more information about kubeconfig, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
@@ -54,6 +54,22 @@ spec:
       ref:
         tag: tap-1.1
 ```
+
+To create a workload from a file like the one just shown, run:
+
+```console
+tanzu apps workload create -f my-workload-file.yaml
+```
+
+Another way to create a workload from `yaml` is passing the definition through `stdin`. For example, run:
+
+```console
+tanzu apps workload create -f - --yes
+```
+
+The console remains waiting for some input, and the content with a valid `yaml` definition for a workload can be either written or pasted, then press `ctrl`+D three times to start workload creation. This can also be done with `workload update` and `workload apply` commands.
+
+**Note**: to pass workload through `stdin`, `--yes` flag is needed. If not used, command will fail.
 
 ## <a id='autocompletion'></a> Autocompletion
 

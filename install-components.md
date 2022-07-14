@@ -1,6 +1,6 @@
 # Installing individual packages
 
-You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [About Tanzu Application Platform package and profiles](about-package-profiles.md).
+You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [About Tanzu Application Platform components and profiles](about-package-profiles.md).
 
 Installing individual Tanzu Application Platform packages
 is useful if you do not want to use a profile to install packages
@@ -15,10 +15,9 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install API portal](api-portal/install-api-portal.md)
 - [Install Application Accelerator](application-accelerator/install-app-acc.md)
 - [Install Application Live View](app-live-view/install.md)
-- [Install Application Single Sign-On](https://docs.vmware.com/en/Application-Single-Sign-On-for-VMware-Tanzu/1.0.0-beta/appsso-1.0.0-beta/GUID-platform-operators-installation.html)
+- [Install Application Single Sign-On](app-sso/install-appsso.md)
 - [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
-- [Install Convention Service](convention-service/install-conv-service.md)
 - [Install default roles for Tanzu Application Platform](authn-authz/install.md)  
 - [Install Developer Conventions](developer-conventions/install-dev-conventions.md)
 - [Install Learning Center for Tanzu Application Platform](learning-center/install-learning-center.md)

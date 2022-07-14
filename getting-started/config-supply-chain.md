@@ -1,54 +1,51 @@
 # Configure image signing and verification in your supply chain
 
-This how-to guide walks you through configuring your supply chain to sign your image builds.
+This how-to guide walks you through configuring your supply chain to sign and verify your image builds.
 
 ## <a id="you-will"></a>What you will do
 
   - Configure your supply chain to sign your image builds.
   - Configure an admission control policy to verify image signatures before admitting pods to the cluster.
 
-## <a id="config-sc-to-img-builds"></a>Configure your supply chain to sign your image builds
+## <a id="config-sc-to-img-builds"></a>Configure your supply chain to sign and verify your image builds
 
-1. Use cosign to configure Tanzu Build Service to sign your container image builds. For instructions, see [Managing Image Resources and Builds](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html).
+1. Use cosign to configure Tanzu Build Service to sign your container image builds. For instructions, see [Configure Tanzu Build Service to sign your image builds](../tanzu-build-service/tbs-image-signing.md).
 
-2. Create a `values.yaml` file, and install the sign supply chain security tools and image policy web-hook. For instructions, see [Install Supply Chain Security Tools - Sign](../scst-sign/install-scst-sign.md).
+2. Create a `values.yaml` file, and install the Supply Chain Security Tools - Policy Controller. For instructions, see [Install Supply Chain Security Tools - Policy Controller](../scst-policy/install-scst-policy.md).
 
-3. Configure a `ClusterImagePolicy` resource to verify image signatures when deploying resources. The resource must be named `image-policy`.
+3. Configure at least one `ClusterImagePolicy` resource to verify image signatures when deploying resources. For instructions, see [Create a `ClusterImagePolicy` resource](../scst-policy/configuring.md#create-cip-resource).
 
     For example:
 
     ```yaml
     ---
-    apiVersion: signing.apps.tanzu.vmware.com/v1beta1
+    apiVersion: policy.sigstore.dev/v1beta1
     kind: ClusterImagePolicy
     metadata:
-       name: image-policy
+      name: example-policy
     spec:
-       verification:
-         exclude:
-           resources
-             namespaces:
-             - kube-system
-             - test-namespace
-             - <TAP system namespaces>
-         keys:
-         - name: first-key
-           publicKey: |
-             -----BEGIN PUBLIC KEY-----
-             <content ...>
-             -----END PUBLIC KEY-----
-         images:
-         - namePattern: registry.example.org/myproject/*
-           keys:
-           - name: first-key
-
+      images:
+      - glob: registry.example.org/myproject/*
+      authorities:
+      - key:
+          data: |
+            -----BEGIN PUBLIC KEY-----
+            <content ...>
+            -----END PUBLIC KEY-----
     ```
 
-> **Note:** System namespaces specific to your cloud provider might need to be excluded from the policy.
+4. Enable the policy controller verification in your namespace by adding the label
+`policy.sigstore.dev/include: "true"` to the namespace resource.
 
-To prevent the Image Policy Webhook from blocking components of Tanzu Application Platform, VMware recommends configuring exclusions for Tanzu Application Platform system namespaces listed in [Create a `ClusterImagePolicy` resource](../scst-sign/configuring.md#create-cip-resource).
+    For example:
+    ```console
+    kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
+    ```
 
-When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `namePattern:` you define in the configuration. For more information about configuring an image signature policy, see [Configuring Supply Chain Security Tools - Sign](../scst-sign/configuring.md).
+>**Note:** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
+that have chosen to opt in.
+
+When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `spec.images.glob[]` you define in the configuration. For more information about configuring an image policy, see [Configuring Supply Chain Security Tools - Policy](../scst-policy/configuring.md).
 
 ## <a id="config-img-next-steps"></a>Next steps
 
@@ -56,6 +53,6 @@ When you apply the `ClusterImagePolicy` resource, your cluster requires valid si
 
 Or learn more about Supply Chain Security Tools:
 
-- [Overview for Supply Chain Security Tools - Sign](../scst-sign/overview.md)
-- [Configuring Supply Chain Security Tools - Sign](../scst-sign/configuring.md)
-- [Supply Chain Security Tools - Sign known issues](../release-notes.md)
+- [Overview for Supply Chain Security Tools - Policy](../scst-policy/overview.md)
+- [Configuring Supply Chain Security Tools - Policy](../scst-policy/configuring.md)
+- [Supply Chain Security Tools - Policy known issues](../release-notes.md)

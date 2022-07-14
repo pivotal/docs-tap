@@ -1,4 +1,4 @@
-# Tanzu Application Platform v1.2
+# Tanzu Application Platform v1.3
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
@@ -62,7 +62,7 @@ It also allows operators to customize the platform by replacing Tanzu Applicatio
 
 ![Diagram depicting the layered structure of TAP](images/tap-layered-capabilities.png)
 
-For more information about Tanzu Application Platform components, see [About Tanzu Application Platform package and profiles](about-package-profiles.md).
+For more information about Tanzu Application Platform components, see [About Tanzu Application Platform components and profiles](about-package-profiles.md).
 
 ## <a id='telemetry-notice'></a> Notice of telemetry collection for Tanzu Application Platform
 

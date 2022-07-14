@@ -19,13 +19,13 @@ See [Changing clusters](cli-plugins/apps/usage.md#changing-clusters).
 See [Install Out of The Box Supply Chain Basic](scc/install-ootb-sc-basic.md).
 
     >**Note:** If you used the default profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install.md),
-    you have already installed the Out of The Box (OOTB) Supply Chain Basic.
+    >you have already installed the Out of The Box (OOTB) Supply Chain Basic.
 
 - **Installed Tekton-Pipelines**<br>
 See [Install Tekton Pipelines](tekton/install-tekton.md).
 
     >**Note:** If you used the default profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install.md),
-    you have already installed Tekton Pipelines.
+    >you have already installed Tekton Pipelines.
 
 - **Set up a developer namespace to accommodate the developer workload**<br>
 See [Set up developer namespaces to use installed packages](set-up-namespaces.md).
@@ -34,7 +34,7 @@ See [Set up developer namespaces to use installed packages](set-up-namespaces.md
 See [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md).
 
 - **Installed the VS Code Tanzu Extension**<br>
-See [Install the Visual Studio Code Tanzu Extension](vscode-extension/installation.md) for instructions.
+See [Install the Visual Studio Code Tanzu Extension](vscode-extension/install.md) for instructions.
 
 When you have completed these prerequisites, you are ready to get started.
 

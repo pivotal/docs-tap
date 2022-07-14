@@ -1,4 +1,4 @@
-# Query data
+# Query vulnerabilities, images, and packages
 
 This topic describes how to query the database to understand vulnerability, image, and dependency relationships. The Tanzu Insight CLI plug-in queries the database for vulnerability scan reports or Software Bill of Materials (SBoM) files.
 
@@ -57,6 +57,42 @@ Packages:
 
 ## <a id='example2'></a>Example #2: What packages & CVEs does my source code contain?
 
+### Determining source code org, repo, and commit SHA
+
+In order to query a source scan for vulnerabilities, you will need git org and git repo, or the commit SHA.  Find these by examining the source scan resource.
+
+Run:
+
+```console
+kubectl describe sourcescan <workload name> -n <workload namespace>
+```
+
+For example:
+
+```console
+kubectl describe sourcescan tanzu-java-web-app -n my-apps
+```
+In the resource look for the `Spec.Blob` field. Within, there's `Revision` and `URL`. 
+
+For example:
+
+```yaml
+Spec:
+  Blob:
+    Revision:     master/c7e4c27ba43250a4b7c46f030355c108aa73cc39
+    URL:          http://source-controller.flux-system.svc.cluster.local./gitrepository/my-apps/tanzu-java-web-app-gitops/c7e4c27ba43250a4b7c46f030355c108aa73cc39.tar.gz
+```
+
+In the above example, the URL is parsed and split into the org and repo. Revision will be parsed as the commit SHA.
+
+* Org will be parsed as `gitrepository`
+* Repo will be parsed as `my-apps/tanzu-java-web-app-gitops/c7e4c27ba43250a4b7c46f030355c108aa73cc39.tar.gz`
+* Commit SHA is parsed as `master/c7e4c27ba43250a4b7c46f030355c108aa73cc39`
+
+Use this information to perform your search.
+
+### Source code query with repo & org
+
 Run:
 
 ```console
@@ -65,16 +101,47 @@ tanzu insight source get --repo REPO --org ORG
 
 Where:
 
-- `REPO` specifies XML or JSON, the two supported file types
+- `REPO` specifies the repository
+	- E.g., java-web-app
+	- E.g., my-apps/java-web-app/c7ls8bakd87sakjda8d7.tar.gz
 - `ORG` is the source code's organization
+	- E.g., gitrepository
+	- E.g., gitrepositiory-kj32kal8
 
-
-> You may also use `tanzu insight source get --commit COMMIT` where `COMMIT` is the commit sha.  `--repo` and `--org` must be used together.
-
-For example, to get a recent scan for https://github.com/pivotal/kpack.git:
+For example:
 
 ```console
-$ tanzu insight source get --repo kpack --org pivotal
+$ tanzu insight source get --repo my-apps/java-web-app/c7ls8bakd87sakjda8d7.tar.gz --org gitrepository
+ID:       	1
+Repository:  my-apps/java-web-app/c7ls8bakd87sakjda8d7.tar.gz
+Commit:  c7e4c27ba43250a4b7c46f030355c108aa73cc39
+Organization:	gitrepository
+Packages:
+		1. go.uber.org/atomic@v1.7.0
+		CVEs:
+			1. CVE-2022-42322 (Low)
+		2. golang.org/x/crypto@v0.0.0-20220518034528-6f7dac969898
+		3. github.com/valyala/bytebufferpool@v1.0.0
+```
+
+### Source code query with commit SHA
+
+Run:
+
+```console
+tanzu insight source get --commit COMMIT
+```
+
+Where:
+
+- `COMMIT` specifies the commit
+	- E.g., d7e4c27ba43250a4b7c46f030355c108aa73cc39
+	- E.g., master/d7e4c27ba43250a4b7c46f030355c108aa73cc39
+
+For example:
+
+```console
+$ tanzu insight source get --commit b66668e
 ID:       	2
 Repository:  kpack
 Commit:  b66668e
@@ -86,6 +153,7 @@ Packages:
 			1. CVE-2021-30999 (Low)
 		3. github.com/Microsoft/go-winio@v0.5.2
 ```
+
 
 ## <a id='example3'></a>Example #3: What dependencies are affected by a specific CVE?
 

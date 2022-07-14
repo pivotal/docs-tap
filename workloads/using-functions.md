@@ -32,7 +32,7 @@ Before using function workloads on Tanzu Application Platform, complete the foll
 [Tanzu Build Service](https://network.tanzu.vmware.com/products/build-service/) page on Tanzu Network.
 For more information, see the [kp CLI help text](https://github.com/vmware-tanzu/kpack-cli/blob/v0.4.0/docs/kp.md) on GitHub.
 
-* Follow all instructions in [Set up developer namespaces to use installed packages](../install-components.html#setup).
+* Follow all instructions in [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
 
 ## <a id="add-buildpacks"></a> Adding function buildpacks
 
@@ -46,11 +46,11 @@ To use the function `buildpacks`, you must upload their buildpackages to Build S
     -b registry.tanzu.vmware.com/java-function-buildpack-for-vmware-tanzu/java-buildpack-with-deps:0.0.6
     ```
 
-1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-managing-builders.html).
-Run one of the following commands depending on the descriptor
+1. Create and save a new [ClusterBuilder](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-builders.html).
+Run one of the following commands depending on the dependencies
 you used in the `buildservice` section of your [`tap-values.yaml` file](../install.md#full-profile):
 
-    - For the **full descriptor**, run:
+    - For the **full dependencies**, run:
 
         ```console
         kp clusterbuilder save function --store default -o - <<EOF
@@ -92,7 +92,7 @@ you used in the `buildservice` section of your [`tap-values.yaml` file](../insta
         EOF
         ```
 
-    - For the **lite descriptor**, run:
+    - For the **lite dependencies**, run:
 
         ```console
         kp clusterbuilder save function --store default -o - <<EOF

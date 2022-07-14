@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include Out of the Box Supply Chain with Testing.
-For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 The Out of the Box Supply Chain with Testing package provides a
 ClusterSupplyChain that brings an application from source code to a deployed
@@ -83,7 +83,8 @@ Install by following these steps:
                                            libgit2.
 
     gitops.server_address                  Default server address to be used for forming Git URLs for pushing 
-                                           Kubernetes configuration produced by the supply chain.
+                                           Kubernetes configuration produced by the supply chain. This must
+                                           include the scheme/protocol (e.g. https:// or ssh://)
 
     gitops.repository_owner                Default project or user of the repository. Used to create URLs for pushing 
                                            Kubernetes configuration produced by the supply chain.

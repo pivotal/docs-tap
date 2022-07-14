@@ -10,6 +10,8 @@ Before you install the Apps CLI plug-in:
 
 ## <a id='Install'></a>Install
 
+### <a id=”from-tap-net”></a>From Tanzu Network
+
 To install the Apps CLI plug-in:
 
 1. From the `$HOME/tanzu` directory, run:
@@ -43,3 +45,17 @@ To install the Apps CLI plug-in:
         description: Applications on Kubernetes
         versions: []
     ```
+
+### <a id=”from-release”></a>From Release
+
+The latest release can be found in the [repository release page](https://github.com/vmware-tanzu/apps-cli-plugin/releases/). Each of these releases has the *Assets* section where the packages for each *system-architecture* are placed.
+
+To install the Apps CLI plug-in:
+
+Download binary executable `tanzu-apps-plugin-{OS_ARCH}-{version}.tar.gz`
+Run the following commands(for example for macOS and plugin version v0.7.0)
+
+```bash
+tar -xvf tanzu-apps-plugin-darwin-amd64-v0.7.0.tar.gz
+tanzu plugin install apps --local ./tanzu-apps-plugin-darwin-amd64-v0.7.0 --version v0.7.0
+```

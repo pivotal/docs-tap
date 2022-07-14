@@ -39,7 +39,7 @@ YAML workload description to support this deployment type.
 Before using `queue` workloads on Tanzu Application Platform, you must:
 
 * Follow all instructions in [Installing Tanzu Application Platform](../install-intro.md).
-* Follow all instructions in [Set up developer namespaces to use installed packages](../install-components.html#setup).
+* Follow all instructions in [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
 
 ## <a id="create-queue"></a> Create a `queue` SupplyChain
 
@@ -289,7 +289,7 @@ from your `tap-values.yaml` file:
     apiVersion: carto.run/v1alpha1
     kind: ClusterSupplyChain
     metadata:
-      name: tcp
+      name: queue
     spec:
       params:
       - default: main
@@ -300,7 +300,7 @@ from your `tap-values.yaml` file:
         name: gitops_user_email
       - default: supplychain@cluster.local
         name: gitops_commit_message
-      - default: git-ssh
+      - default: DEFAULT-GIT-SECRET
         name: gitops_ssh_secret
       resources:
       - name: source-provider
@@ -376,11 +376,13 @@ from your `tap-values.yaml` file:
           kind: ClusterTemplate
           name: config-writer-template
       selector:
-        apps.tanzu.vmware.com/workload-type: tcp
+        apps.tanzu.vmware.com/workload-type: queue
     ```
 
     Where:
 
+    - `DEFAULT-GIT-SECRET` is the value from `gitops.ssh_secret` in your
+      `tap-values.yaml` file, or `""` to disable SSH authentication.
     - `REGISTRY-SERVER` is the registry server from your `tap-values.yaml` file.
     - `REGISTRY-REPO` is the registry repository from your `tap-values.yaml` file.
 
@@ -394,23 +396,23 @@ from your `tap-values.yaml` file:
 
 ## <a id="using"></a> Use the `queue` workload type
 
-The `spring-sensors-sensor` workload in the getting started example
+The `spring-sensors-producer` workload in the getting started example
 [using Service Toolkit claims](../getting-started/consume-services.md#stk-bind)
 is a good match for the `queue` workload type.
 This is because it runs continuously without a UI to report sensor information to a RabbitMQ topic.
 
-If you have followed the Services Toolkit example, you can update the `spring-sensors-sensor`
+If you have followed the Services Toolkit example, you can update the `spring-sensors-producer`
 to use the `queue` supply chain by changing the workload type by running:
 
 ```console
-tanzu apps workload update spring-sensors-sensor --type=queue
+tanzu apps workload update spring-sensors-producer --type=queue
 ```
 
 This shows a diff in the workload label, and prompts you to accept the change.
 After the workload completes the new deployment, you'll notice a few differences:
 
 * The workload no longer has a URL. Because the workload does not present a web UI,
-this more closely matches the original intent.
+this more closely matches the original application intent.
 
-* The workload no longer autoscales based on request traffic. For the `srping-sensors-sensor`
+* The workload no longer autoscales based on request traffic. For the `spring-sensors-producer`
 workload, this means that it does not scale down to zero instances when there is no request traffic.

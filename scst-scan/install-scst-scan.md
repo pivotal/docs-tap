@@ -5,27 +5,22 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 The full profile includes Supply Chain Security Tools - Scan.
-For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 ## <a id='scst-scan-prereqs'></a> Prerequisites
 
 Before installing Supply Chain Security Tools - Scan:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install [Supply Chain Security Tools - Store](../scst-store/install-scst-store.md) for scan results to persist. It can be present on the same cluster or a different one. You can install Supply Chain Security Tools - Scan by using the CA Secret name for Supply Chain Security Tools - Store present in the same cluster, with Token Secret name for Supply Chain Security Tools - Store in different cluster, or without Supply Chain Security Tools - Store. After you complete installing Supply Chain Security Tools - Store, you must update the Supply Chain Security Tools - Scan values file.
+- Install [Supply Chain Security Tools - Store](../scst-store/install-scst-store.md) for scan results to persist. The integration with Supply Chain Security Tools - Store can be handled in:
+  - **Single Cluster:** The Supply Chain Security Tools - Store is present in the same cluster where Supply Chain Security Tools - Scan and the `ScanTemplates` will be present.
+  - **Multi-Cluster:** The Supply Chain Security Tools - Store is present in a different cluster (e.g.: view cluster) where the Supply Chain Security Tools - Scan and `ScanTemplates` will be present.
+  - **Integration Disabled:** The Supply Chain Security Tools - Scan deployment doesn't need to communicate with Supply Chain Security Tools - Store. 
 
     For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
 - Install the Tanzu Insight CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
   See [Install the Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-installation.md).
-
-## <a id="scanner-support"></a> Scanner support
-
-| Out-Of-The-Box Scanner | Version |
-| --- | --- |
-| [Anchore Grype](https://github.com/anchore/grype) | v0.38.0 |
-
-Let us know if there's a scanner you'd like us to support.
 
 ## <a id='install-scst-scan'></a> Install
 
@@ -53,7 +48,20 @@ To install Supply Chain Security Tools - Scan (Scan controller):
       scanning.apps.tanzu.vmware.com   1.1.0
     ```
 
-1. (Optional) Make changes to the default installation settings by running:
+1. (Optional) Make changes to the default installation settings:
+
+    If you're using the Grype Scanner `≥v1.2.0`, or the Snyk Scanner, the following scanning configuration can disable the embedded Supply Chain Security Tools - Store integration with a `scan-values.yaml` file like this:
+
+    ```yaml
+    ---
+    metadataStore:
+      url: ""
+    ```
+
+    If you're using the Grype Scanner `<1.2.0`, the scanning configuration needs to configure the store parameters. See the [v1.1 docs](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-scst-scan-install-scst-scan.html) for reference.
+
+
+    You can retrieve any other configurable setting using the following command, and appending the key-value pair to the previous `scan-values.yaml` file:
 
     ```console
     tanzu package available get scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
@@ -61,35 +69,19 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
     Where `VERSION` is your package version number. For example, `1.1.0`.
 
-1. Gather the values schema.
-
-1. Install the package with default configuration by running:
+2. Install the package by running:
 
     ```console
     tanzu package install scan-controller \
       --package-name scanning.apps.tanzu.vmware.com \
       --version VERSION \
-      --namespace tap-install
+      --namespace tap-install \
+      --values-file scan-values.yaml
     ```
 
     Where `VERSION` is your package version number. For example, `1.1.0`.
 
-1. (Optional) Configure Supply Chain Security Tools - Store in a different cluster
-
-    ```yaml
-    ---
-    metadataStore:
-      url: META-DATA-STORE-URL
-      authSecret:
-        name: AUTH-SECRET-NAME
-    ```
-
-    Where:
-
-    - `META-DATA-STORE-URL` is the URL pointing to the Supply Chain Security Tools - Store ingress in the cluster that has your Supply Chain Security Tools - Store deployment. For example, `https://metadata-store.example.com:8443`.
-    - `AUTH-SECRET-NAME` is the name of the secret that has the auth token to post to the Supply Chain Security Tools - Store.
-
-To install Supply Chain Security Tools - Scan (Grype scanner):
+<a id="install-grype"></a> To install Supply Chain Security Tools - Scan (Grype scanner):
 
 1. List version information for the package by running:
 
@@ -106,7 +98,25 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
       grype.scanning.apps.tanzu.vmware.com  1.1.0
     ```
 
-1. (Optional) Make changes to the default installation settings by running:
+1. (Optional) Make changes to the default installation settings:
+
+    You need to define the configuration for the Supply Chain Security Tools - Store integration in the `grype-values.yaml` file for the Grype Scanner: 
+
+    ```yaml
+    ---
+    namespace: "<DEV-NAMESPACE>" # The developer namespace where the ScanTemplates are gonna be deployed
+    metadataStore:
+      url: "<METADATA-STORE-URL>" # The base URL where the Store deployment can be reached
+      caSecret:
+        name: "<CA-SECRET-NAME>" # The name of the secret containing the ca.crt
+        importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where Store is deployed (if single cluster) or where the connection secrets were created (if multi-cluster)
+      authSecret:
+        name: "<TOKEN-SECRET-NAME>" # The name of the secret containing the auth token to connect to Store
+        importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where the connection secrets were created (if multi-cluster)
+    ```
+    Note: You must either define both the METADATA-STORE-URL and caSecret or not define them as they depend on each other.
+
+    You can retrieve any other configurable setting using the following command, and appending the key-value pair to the previous `grype-values.yaml` file:
 
     ```console
     tanzu package available get grype.scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
@@ -127,28 +137,6 @@ To install Supply Chain Security Tools - Scan (Grype scanner):
       targetImagePullSecret      <EMPTY>  string  Reference to the secret used for pulling images from private registry.
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
-
-1. (Optional) You can define the `--values-file` flag to customize the default configuration. Create a `grype-values.yaml` file by using the following configuration:
-
-    ```yaml
-    ---
-    namespace: DEV-NAMESPACE
-    targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
-    targetSourceSshSecret: TARGET-REPOSITORY-CREDENTIALS-SECRET
-    ```
-
-    Where:
-
-    - `DEV-NAMESPACE` is your developer namespace.
-
-      >**Note:** To use a namespace other than the default namespace, ensure the namespace exists before you install. If the namespace does not exist, the Grype scanner installation fails.
-
-    - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, you can reuse the `tap-registry` secret created earlier in [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs) for this field.
-
-    - `TARGET-REPOSITORY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull source code from a private repository for scanning. This field is not optional if the source code is located in a public repository.
-
-1. VMware recommends using the default values for this package.
-To change the default values, see the Scan controller instructions for more information.
 
 1. Install the package by running:
 

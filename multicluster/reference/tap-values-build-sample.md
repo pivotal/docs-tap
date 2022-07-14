@@ -9,8 +9,6 @@ buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
-  tanzunet_username: "TANZUNET-USERNAME"
-  tanzunet_password: "TANZUNET-PASSWORD"
 supply_chain: testing_scanning
 ootb_supply_chain_testing_scanning:
   registry:
@@ -29,6 +27,9 @@ grype:
     authSecret:
         name: store-auth-token
         importFromNamespace: metadata-store-secrets
+scanning:
+  metadataStore:
+    url: "" # Disable embedded integration since it's deprecated
 ```
 
 Where:
@@ -41,10 +42,6 @@ Where:
   * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. This credential can also be configured by using a Secret reference. For more information, see [Install Tanzu Build Service](../../tanzu-build-service/install-tbs.html#install-secret-refs) for details.
   * For Google Cloud Registry, use the contents of the service account JSON file.
-- `TANZUNET-USERNAME` and `TANZUNET-PASSWORD` are the email address and password that you use to log in to VMware Tanzu Network. Your VMware Tanzu Network credentials enable you to configure the dependencies updater. This resource accesses and installs the build dependencies (buildpacks and stacks) Tanzu Build Service needs on your cluster. It can also optionally keep these dependencies up to date as new versions are released on VMware Tanzu Network. This credential can also be configured by using a Secret reference. For more information, see [Install Tanzu Build Service](../../tanzu-build-service/install-tbs.html#install-secret-refs).
-- `DESCRIPTOR-NAME` is the name of the descriptor to import. For more information, see [Descriptors](../../tanzu-build-service/tbs-about.html#descriptors). Available options are:
-  * `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
-  * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Dockerhub has the form `server: "index.docker.io"`.
@@ -64,14 +61,13 @@ If built images are pushed to the same registry as Tanzu Application Platform im
 you can reuse the `tap-registry` Secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
-> **Note:** When you install Tanzu Application Platform, it is bootstrapped with
-> a set of dependencies (buildpacks and stacks) for application builds.
-> For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html).
+> **Note:** When you install Tanzu Application Platform, it is bootstrapped with the `lite`
+> set of dependencies, including buildpacks and stacks, for application builds.
+> For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
 > You can find the buildpack and stack artifacts installed with Tanzu Application Platform
-> in the descriptor file on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
-> The current installed version of the descriptor is
-> [100.0.293](https://network.pivotal.io/products/tbs-dependencies#/releases/1086670). Sometimes the dependencies get
-> out of date and require updates. You can do this using a
-> [manual process in a CI/CD context](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-tbs-in-ci.html), or
-> an [automatic update process](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-updating-deps.html)
-> in the background by Tanzu Application Platform.
+> on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
+> You can update dependencies by [upgrading Tanzu Application Platform](../../upgrading.md)
+> to the latest patch, or
+> by using an [automatic update process (deprecated)](../../tanzu-build-service/install-tbs.md#auto-updates-config).
+
+> **Note:** The `scanning.metadatastore.url` must be set to an empty string if you're installing Grype Scanner v1.2.0 or later or Snyk Scanner to disable the embedded Supply Chain Security Tools - Store integration.

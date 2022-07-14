@@ -2,21 +2,27 @@
 
 This topic contains troubleshooting and known issues for **Supply Chain Security Tools - Store**.
 
+## Querying by `insight source` returns zero CVEs even though there are CVEs in the source scan
+
+### Symptom
+
+When attempting to look up CVE and affected packages, querying `insight source get` (or other `insight source` commands) may return zero results due to supply chain configuration and repo URL.
+
+### <a id='source-scan-no-cves-solution'></a>Solution
+
+You may have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the SBOM.  See [Query Data - Source].
+
 ## Persistent volume retains data
 
 ### Symptom
 
-If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the
-`metadata-store-db` pod fails to start.
-This is caused by the persistent volume used by postgres retaining old data, even though the retention
-policy is set to `DELETE`.
+If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the `metadata-store-db` pod fails to start. This is caused by the persistent volume used by postgres retaining old data, even though the retention policy is set to `DELETE`.
 
 ### <a id='persistent-volume-retains-data-solution'></a>Solution
 
 >**Warning:** Changing the database password deletes your **Supply Chain Security Tools - Store** data.
 
-To redeploy the app, either use the same database password or follow the steps below to erase the
-data on the volume:
+To redeploy the app, either use the same database password or follow the steps below to erase the data on the volume:
 
 1. Deploy metadata-store app by using `kapp`.
 1. Verify that the `metadata-store-db-*` pod fails.
@@ -40,10 +46,9 @@ data on the volume:
 ### Symptom
 
 After Store is deployed, `metadata-store-db` pod might fail for missing volume while
-`postgres-db-pv-claim` pvc is in `PENDING` state.
-This is because the cluster where Store is deployed does not have `storageclass` defined.
-`storageclass`'s provisioner is responsible for creating the persistent volume after
-`metadata-store-db` attaches `postgres-db-pv-claim`.
+`postgres-db-pv-claim` pvc is in `PENDING` state. 
+
+This is because the cluster where Store is deployed does not have `storageclass` defined. `storageclass`'s provisioner is responsible for creating the persistent volume after `metadata-store-db` attaches `postgres-db-pv-claim`.
 
 ### <a id='missing-persistent-volume-solution'></a>Solution
 

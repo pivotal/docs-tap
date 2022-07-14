@@ -1,20 +1,26 @@
-# Install Supply Chain Security Tools - Policy Controller 
+# Install Supply Chain Security Tools - Policy Controller
 
-Supply Chain Security Tools - Policy Controller is installed as part of Tanzu Application 
+Supply Chain Security Tools - Policy Controller is installed as part of Tanzu Application
 Platform's Full, Iterate and Run profiles. Use the instructions in this topic to manually install this component.
 
 ## <a id='scst-policy-prereqs'></a> Prerequisites
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- A container image registry that supports TLS connections. 
+
+- A container image registry that supports TLS connections.
 >**Note:** This component does not work with not secure registries.
 
-- During configuration for this component, you are asked to provide a cosign public key to use to
-validate signed images. An example cosign public key is provided that can validate an image from the
-public cosign registry. To provide your own key and images, follow the
-[cosign quick start guide](https://github.com/sigstore/cosign#quick-start) to generate your own keys and sign an image.
+- If Supply Chain Security Tools - Sign is installed with an existing running
+Image Policy Webhook `ClusterImagePolicy`, see
+[Migration From Supply Chain Security Tools - Sign](migration.md).
 
->**Caution:** This component WILL REJECT `Pods` if it is not correctly configured. Test your configuration in a test environment before applying policies to your production cluster.
+- During configuration for this component, you are asked to provide a cosign public key to use to
+validate signed images. The Policy Controller only supports ECDSA public keys.
+An example cosign public key is provided that can validate an image from the
+public cosign registry. To provide your own key and images, follow the
+[Cosign Quick Start Guide](https://github.com/sigstore/cosign#quick-start) in GitHub to generate your own keys and sign an image.
+
+>**Caution:** This component WILL REJECT `pods` if it is not correctly configured. Test your configuration in a test environment before applying policies to your production cluster.
 
 ## <a id='install-scst-policy'></a> Install
 
@@ -31,8 +37,9 @@ To install Supply Chain Security Tools - Policy Controller:
     ```console
     $ tanzu package available list policy.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for policy.apps.tanzu.vmware.com...
-      NAME                                                VERSION        RELEASED-AT
-      policy.apps.tanzu.vmware.com                        1.0.0          2022-06-09 20:00:00 -0400 EDT
+      NAME                          VERSION        RELEASED-AT
+      policy.apps.tanzu.vmware.com  1.0.0          2022-06-02 20:00:00 -0400 EDT
+      policy.apps.tanzu.vmware.com  1.0.1          2022-06-08 20:00:00 -0400 EDT
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
@@ -41,13 +48,13 @@ To install Supply Chain Security Tools - Policy Controller:
     tanzu package available get policy.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
 
-    Where `VERSION` is the version number you discovered. For example, `1.0.0`.
+    Where `VERSION` is the version number you discovered. For example, `1.0.1`.
 
     For example:
 
     ```console
-    $ tanzu package available get policy.apps.tanzu.vmware.com/1.0.0 --values-schema --namespace tap-install
-    | Retrieving package details for policy.apps.tanzu.vmware.com/1.0.0...
+    $ tanzu package available get policy.apps.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
+    | Retrieving package details for policy.apps.tanzu.vmware.com/1.0.1...
 
     KEY                   DEFAULT        TYPE     DESCRIPTION
     custom_ca_secrets     <nil>          array    List of custom CA secrets that should be included in the application container
@@ -144,21 +151,21 @@ To install Supply Chain Security Tools - Policy Controller:
 
     - `limits_memory`:
       This setting controls the maximum memory resource allocated to the Policy
-      admission controller. The default value is "256Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
+      admission controller. The default value is "200Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
 
     - `quota.pod_number`:
-      This setting controls the maximum number of Pods that are allowed in the
+      This setting controls the maximum number of pods that are allowed in the
       deployment namespace with the `system-cluster-critical`
-      priority class. This priority class is added to the Pods to prevent
-      preemption of this component's Pods in case of node pressure.
+      priority class. This priority class is added to the pods to prevent
+      preemption of this component's pods in case of node pressure.
 
-      The default value for this field is `5`. If your use case requires
-      more than 5 Pods, change this value to allow the number of replicas you intend to deploy.
-      
-      >**Note:** VMware recommends to run this component with a critical priority level to prevent the cluster from rejecting all admission requests if the component's `Pod`s are evicted due to resource limitations.
+      The default value for this field is `6`. If your use requires
+      more than 6 pods, change this value to allow the number of replicas you intend to deploy.
+
+      >**Note:** VMware recommends to run this component with a critical priority level to prevent the cluster from rejecting all admission requests if the component's `pod`s are evicted due to resource limitations.
 
     - `replicas`:
-      This setting controls the default amount of replicas deployed by  this
+      This setting controls the default amount of replicas deployed by this
       component. The default value is `1`.
 
       **For production environments**: VMware recommends you increase the number of replicas to
@@ -167,12 +174,12 @@ To install Supply Chain Security Tools - Policy Controller:
     - `requests_cpu`:
       This setting controls the minimum CPU resource allocated to the Policy
       admission controller. During CPU contention, this value is used as a weighting
-      where higher values indicate more CPU time is allocated. The default value is `100m`.
+      where higher values indicate more CPU time is allocated. The default value is "20m".
       See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
 
     - `requests_memory`:
       This setting controls the minimum memory resource allocated to the Policy
-      admission controller. The default value is "50Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
+      admission controller. The default value is "20Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
 
 1. Install the package:
 
@@ -184,14 +191,14 @@ To install Supply Chain Security Tools - Policy Controller:
       --values-file scst-policy-values.yaml
     ```
 
-    Where `VERSION` is the version number you discovered earlier. For example, `1.0.0`.
+    Where `VERSION` is the version number you discovered earlier. For example, `1.0.1`.
 
     For example:
 
     ```console
     $ tanzu package install policy-controller \
         --package-name policy.apps.tanzu.vmware.com \
-        --version 1.0.0 \
+        --version 1.0.1 \
         --namespace tap-install \
         --values-file scst-policy-values.yaml
 

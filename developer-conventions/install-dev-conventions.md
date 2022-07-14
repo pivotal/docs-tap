@@ -5,14 +5,14 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include Developer Conventions.
-For more information about profiles, see [About Tanzu Application Platform package and profiles](../about-package-profiles.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 ## <a id='dc-prereqs'></a>Prerequisites
 
 Before installing Developer Conventions:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install [Convention Service](../convention-service/install-conv-service.md).
+- Install [Supply Chain Choreographer](../scc/install-scc.md).
 
 ## <a id='dc-install'></a>Install
 

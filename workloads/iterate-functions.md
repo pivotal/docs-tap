@@ -9,7 +9,7 @@ cluster, and allows you to debug your application directly on the cluster.
 
 Before you can iterate on your function, you must have:
 
-- [Tanzu Developer Tools for Visual Studio Code](../vscode-extension/installation.md)
+- [Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.md)
 - [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later.
 
 > **Note:** The Tanzu Developer Tools extension currently only supports Java Functions.
@@ -48,18 +48,17 @@ the container is being built and deployed.
 
     - You see `Live Update starting…` in the status bar at the bottom right.
 
-    - Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
+    - Live update can take 1 to 3 minutes while the workload deploys and the Knative service
+    becomes available.
 
-   
-1. Configure the Tiltfile. 
-
-   >Note: Depending on the type of cluster you use, you might see an error message similar to the following:
+1. Depending on the type of cluster you use, you might see an error message similar to the following:
 
     >`ERROR: Stop! cluster-name might be production. If you're sure you want to deploy there,
-    >add allow_k8s_contexts('cluster-name') to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.`
+    >add allow_k8s_contexts('cluster-name') to your Tiltfile. Otherwise, switch k8scontexts
+    >and restart Tilt.`
 
-    The Tiltfile has configuration fields unique to your source image and Kubernetes context. You will need to update source-image-location and add the     line `allow_k8s_contexts('cluster-name')` to your Tiltfile.
-
+    If you see this error, add the line `allow_k8s_contexts('CLUSTER-NAME')` to your Tiltfile,
+    where `CLUSTER-NAME` is the name of your cluster.
 
 1. When the Live Update status in the status bar is visible and says
 `Live Update Started`, navigate to `http://localhost:8080` in your browser
@@ -71,9 +70,13 @@ and view your running application.
 
 1. View the changes to your workload running on the cluster.
 
+    > **Note:** When using Live Update, hot reload of your function on your cluster might not
+    > display changes made to your function.
+    > To manually push changes to the cluster, run the `tilt up` command.
+
 1. If necessary, continue making changes to the source code.
 
-1. When you have finished making changes, stop and deactivate the live update.
+1. When you have finished making changes, stop and deactivate the Live Update.
 To do so, open the command palette by pressing **⇧⌘P**, type `Tanzu`, and select **Tanzu: Live Update Stop**.
 
 ## <a id="debug-app"></a> Debug your application

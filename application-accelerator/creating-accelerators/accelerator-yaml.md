@@ -61,7 +61,7 @@ The following option properties are used by both the UI and the engine.
   available as a [SPeL](spel-samples.md) variable name. For example, `#deploymentType`.
 
 - **dataType**:  
-  Data types that work with the UI are `string`, `boolean`, `number`, and arrays of those, 
+  Data types that work with the UI are `string`, `boolean`, `number`, and arrays of those,
   as in `[string]`, `[number]`, and so on. Most input types return a string, which is the default. Use Boolean values with `checkbox`.
 
 - **defaultValue**:  
@@ -71,11 +71,11 @@ The following option properties are used by both the UI and the engine.
   value for that option.
 
 - **validationRegex**:
-  When present, a regex validates the string representation of the 
+  When present, a regex validates the string representation of the
   option value _when set_. It doesn't apply when the value is blank. As a consequence, don't use the regex
-  to enforce a requirement. See **required** for that purpose.
-  
-  This regex can be used by several layers in Application Accelerator,
+  to enforce a prerequisite. See **required** for that purpose.
+
+  This regex is used by several layers in Application Accelerator,
   built using several technologies, for example, JavaScript and Java. So refrain from using "exotic" regex features. Also, the regex applies to portions of the value by default. That is, `[a-z ]+` matches `Hello world` despite the capital `H`. To apply it to the whole value (or just start/end), anchor it using `^` and `$`.
 
   Finally, backslashes in a YAML string using double quotes must be escaped, so to match a number, write `validationRegex: "\\d+"` or use another string style.
@@ -211,7 +211,7 @@ It produces a modified set of files as output derived from this input.
 
 Different types of transforms do different tasks:
 
-- Filtering the set of files: that is, removing or keeping files that match certain criteria.
+- Filtering the set of files: that is, removing, or keeping files that match certain criteria.
 - Changing the contents of files. For example, replacing some strings in the files.
 - Renaming or moving files: that is, changing the paths of the files.
 
@@ -226,7 +226,7 @@ To learn the notation, see [Introduction to transforms](transform-intro.md).
 ```yaml
 engine:
   include:
-    ["**/*.md", "**/*.xml", "**/*.gradle", "**/*.java"]
+    ["**/*.md", "**/*.xml", "**/*.gradle", "**/*.java"] <!-- Change the file extension to |.html| because the doc could change to |.md.erb| or |.md.hbs| in future. -->
   exclude:
     ["**/secret/**"]
   let:
@@ -241,7 +241,7 @@ engine:
       include: ["*.gradle"]
     - condition: "#includePoms"
       include: ["pom.xml"]
-    - include: ["**/*.java", "README.md"]
+    - include: ["**/*.java", "README.md"] <!-- Change the file extension to |.html| because the doc could change to |.md.erb| or |.md.hbs| in future. -->
       chain:
         - type: ReplaceText
           substitutions:
@@ -287,7 +287,7 @@ If more than one child produces a file with the same path, the transform resolve
 file contents from the earlier child and keeping the contents from the later child.
 
 `engine.merge.chain` specifies additional transformations to apply to the set of files produced by
-this child. In the example, `ReplaceText` is only applied to Java files and `README.md`.
+this child. In the example, `ReplaceText` is only applied to Java files and `README.md`. 
 
 `engine.chain` applies transformation to all files globally. The chain has a list of child
 transformations. These transformations are applied after everything else in the same node.
