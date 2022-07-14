@@ -444,7 +444,7 @@ your profile.
 
 After installing Full Profile on to your cluster, you can install the
 Tanzu Developer Tools for VSCode extension to help you develop against it.
-For instructions, see [Installing Tanzu Dev Tools for VSCode](vscode-extension/install.md).
+For instructions, see [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md).
 
 ## <a id="configure-envoy-lb"></a> Configure LoadBalancer for Contour ingress
 

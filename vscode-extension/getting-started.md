@@ -1,4 +1,4 @@
-# Getting started
+# Getting started with Tanzu Developer Tools for Visual Studio Code
 
 This topic guides you through getting started with VMware Tanzu Developer Tools for Visual Studio Code
 (VS Code).
@@ -302,4 +302,4 @@ you can obtain the sample application there if it was not removed.
 
 ## <a id="next-steps"></a> Next steps
 
-Proceed to [Using the Tanzu Developer Tools extension](../vscode-extension/using-the-extension.md).
+Proceed to [Using Tanzu Developer Tools for VS Code](../vscode-extension/using-the-extension.md).
