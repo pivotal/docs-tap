@@ -26,7 +26,7 @@ associated with some free registry offerings.
 
         >**Note:** For production environments, `full` dependencies are recommended to
         >optimize security and performance. For more information about Tanzu Build Service
-        >dependencies, see [About lite and full dependencies](dependencies.md#lite-vs-full).
+        >dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.md#lite-vs-full).
 
 - Registry credentials with read and write access made available to
 Tanzu Application Platform to store images.
