@@ -2,9 +2,9 @@
 
 You can install Tanzu Application Platform by using one of the following methods:
 
-- [Installing Tanzu Application Platform online](#install-online)
-- [Installing Tanzu Application Platform in an air-gapped environment (Beta)](#install-air-gap)
-- [Deploying Tanzu Application Platform on Amazon EKS using AWS QuickStart](https://github.com/aws-quickstart/quickstart-vmware-tanzu-application-platform)
+- [Installing Tanzu Application Platform](#installing-tanzu-application-platform)
+  - [<a id='install-online'></a>Installing Tanzu Application Platform online](#installing-tanzu-application-platform-online)
+  - [<a id='install-air-gap'></a>Installing Tanzu Application Platform in an air-gapped environment (Beta)](#installing-tanzu-application-platform-in-an-air-gapped-environment-beta)
 
 ## <a id='install-online'></a>Installing Tanzu Application Platform online
 
@@ -18,7 +18,7 @@ The process of installing Tanzu Application Platform on your Kubernetes clusters
 |4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Installing the Tanzu Application Platform package and profiles](install.html)|
 |5.| (Optional) Install any additional packages that were not in the profile |[Installing Individual Packages](install-components.html)|
 |6.| Set up developer namespaces to use installed packages |[Setting up developer namespaces to use installed packages](set-up-namespaces.html)|
-|7.| Install developer tools into your integrated development environment (IDE) |[Installing Tanzu Developer Tools for VSCode](vscode-extension/install.html)|
+|7.| Install developer tools into your integrated development environment (IDE) |[Installing Tanzu Developer Tools for VS Code](vscode-extension/install.html)|
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
 
