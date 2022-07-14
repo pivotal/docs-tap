@@ -21,8 +21,10 @@ associated with some free registry offerings.
 
     - If installing using the `lite` descriptor for Tanzu Build Service, 1&nbsp;GB of available
     storage is recommended.
-    - If installing using the `full` descriptor for Tanzu Build Service, which is intended for production use
-    and offline environments, 10&nbsp;GB of available storage is recommended.
+    These dependencies are suitable for production use.
+    - If installing using the `full` descriptor for Tanzu Build Service, which you can use for
+    offline environments, 10&nbsp;GB of available storage is recommended.
+    These dependencies are suitable for production use.
 
 - Registry credentials with read and write access made available to
 Tanzu Application Platform to store images.
