@@ -164,7 +164,7 @@ You can check workload details and status, add environment variables, export def
     tanzu apps workload get pet-clinic --export
     ```
 
-4. To bind a service to a workload, see the [--service-ref flag](../cli-plugins/apps/command-reference/commands-details/workload-create-update-apply.md#apply-service-ref).
+4. To bind a service to a workload, see the [--service-ref flag](command-reference/commands-details/workload_create_update_apply.md#apply-service-ref).
 
 5. To see flags available for the workload commands, run:
 
