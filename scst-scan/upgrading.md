@@ -27,9 +27,9 @@ When you're upgrading to any version of Supply Chain Security Tools - Scan these
 1. Inspect the [Release Notes](../release-notes.md) for the version you're upgrading to. There you can find any breaking changes for the installation.
 2. Get the values schema for the package version you're upgrading to by running: 
 
-    ```console
-    tanzu package available get scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
-    ```
+      ```console
+      tanzu package available get scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
+      ```
 Where `$VERSION` is the new version. This gives you insights on the values you can configure in your `tap-values.yaml` for the new version.
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading to Version v1.2.0
@@ -61,47 +61,47 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
   You must reapply the SecretExport by changing the toNamespace: scan-link-system to Namespace: `DEV-NAMESPACE`
 
-    ```yaml
-    ---
-    apiVersion: secretgen.carvel.dev/v1alpha1
-    kind: SecretExport
-    metadata:
-      name: store-ca-cert
-      namespace: metadata-store-secrets
-    spec:
-      toNamespace: "<DEV-NAMESPACE>"
-    ---
-    apiVersion: secretgen.carvel.dev/v1alpha1
-    kind: SecretExport
-    metadata:
-      name: store-auth-token
-      namespace: metadata-store-secrets
-    spec:
-      toNamespace: "<DEV-NAMESPACE>"
-    ```
+      ```yaml
+      ---
+      apiVersion: secretgen.carvel.dev/v1alpha1
+      kind: SecretExport
+      metadata:
+        name: store-ca-cert
+        namespace: metadata-store-secrets
+      spec:
+        toNamespace: "<DEV-NAMESPACE>"
+      ---
+      apiVersion: secretgen.carvel.dev/v1alpha1
+      kind: SecretExport
+      metadata:
+        name: store-auth-token
+        namespace: metadata-store-secrets
+      spec:
+        toNamespace: "<DEV-NAMESPACE>"
+      ```
  
 2. Update your `tap-values.yaml` file.
 
   The installation of the Supply Chain Security Tools - Scan and the Grype scanner have some changes. The connection to the Supply Chain Security Tools - Store component have moved to the Grype scanner package. To deactivate the connection from the Supply Chain Security Tools - Scan, which is still present for backwards compatibility, but is deprecated and is removed in `v1.3.0`.
 
-    ```yaml
-    # Disable scan controller embedded Supply Chain Security Tools - Store integration
-    scanning:
-      metadataStore:
-        url: ""
-    
-    # Install Grype Scanner v1.2.0 
-    grype:
-      namespace: "<DEV-NAMESPACE>" # The developer namespace where the ScanTemplates are gonna be deployed
-      metadataStore:
-        url: "<METADATA-STORE-URL>" # The base URL where the Store deployment can be reached
-        caSecret:
-          name: "<CA-SECRET-NAME>" # The name of the secret containing the ca.crt
-          importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where Store is deployed (if single cluster) or where the connection secrets were created (if multi-cluster)
-        authSecret:
-          name: "<TOKEN-SECRET-NAME>" # The name of the secret containing the auth token to connect to Store
-          importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where the connection secrets were created (if multi-cluster)
-    ```
+      ```yaml
+      # Disable scan controller embedded Supply Chain Security Tools - Store integration
+      scanning:
+        metadataStore:
+          url: ""
+      
+      # Install Grype Scanner v1.2.0 
+      grype:
+        namespace: "<DEV-NAMESPACE>" # The developer namespace where the ScanTemplates are gonna be deployed
+        metadataStore:
+          url: "<METADATA-STORE-URL>" # The base URL where the Store deployment can be reached
+          caSecret:
+            name: "<CA-SECRET-NAME>" # The name of the secret containing the ca.crt
+            importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where Store is deployed (if single cluster) or where the connection secrets were created (if multi-cluster)
+          authSecret:
+            name: "<TOKEN-SECRET-NAME>" # The name of the secret containing the auth token to connect to Store
+            importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where the connection secrets were created (if multi-cluster)
+      ```
 
   For more insights on how to install Grype, see [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype).
 
