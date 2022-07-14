@@ -2,9 +2,8 @@
 
 You can install Tanzu Application Platform by using one of the following methods:
 
-- [Installing Tanzu Application Platform](#installing-tanzu-application-platform)
-  - [<a id='install-online'></a>Installing Tanzu Application Platform online](#installing-tanzu-application-platform-online)
-  - [<a id='install-air-gap'></a>Installing Tanzu Application Platform in an air-gapped environment (Beta)](#installing-tanzu-application-platform-in-an-air-gapped-environment-beta)
+- [Installing Tanzu Application Platform online](#install-online)
+- [Installing Tanzu Application Platform in an air-gapped environment (Beta)](#install-air-gap)
 
 ## <a id='install-online'></a>Installing Tanzu Application Platform online
 
