@@ -21,10 +21,12 @@ associated with some free registry offerings.
 
     - If installing using the `lite` dependencies for Tanzu Build Service, 1&nbsp;GB of available
     storage is recommended.
-    These dependencies are suitable for production use.
-    - If installing using the `full` dependencies for Tanzu Build Service, which you can use for
-    offline environments, 10&nbsp;GB of available storage is recommended.
-    These dependencies are suitable for production use.
+    - If installing using the `full` dependencies for Tanzu Build Service, which is suitable for offline
+    environments, 10 GB of available storage is recommended.
+
+        >**Note:** For production environments, `full` dependencies are recommended to
+        >optimize security and performance. For more information about Tanzu Build Service
+        >dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.md#lite-vs-full).
 
 - Registry credentials with read and write access made available to
 Tanzu Application Platform to store images.
