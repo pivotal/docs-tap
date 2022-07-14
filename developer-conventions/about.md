@@ -9,7 +9,7 @@ weight: 1
 Developer Conventions is a set of [conventions](../convention-service/about.md) that
 enable your workloads to support live-update and debug operations.
 It is used alongside the [Tanzu CLI Apps plug-in](../cli-plugins/apps/overview.md)
-and the [Tanzu Dev Tools for VSCode](../vscode-extension/about.md) IDE extension.
+and the [Tanzu Developer Tools for Visual Studio Code](../vscode-extension/about.md) IDE extension.
 
 ## <a id='features'></a>Features
 

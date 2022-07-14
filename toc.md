@@ -203,7 +203,7 @@ This is the table of contents from which the Tanzu Application Platform Document
           - [Troubleshoot upgrading](scst-store/upgrading.md)
           - [Failover, redundancy, and backups](scst-store/failover.md)
           - [Ingress and multicluster support](scst-store/ingress-multicluster.md)
-    - [Tanzu Developer Tools for VS Code](vscode-extension/about.md)
+    - [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
       - [Installing](vscode-extension/install.md)
       - [Getting started](vscode-extension/getting-started.md)
       - [Using](vscode-extension/using-the-extension.md)

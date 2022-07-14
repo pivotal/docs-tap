@@ -128,7 +128,7 @@ The following packages are part of the Tanzu Application Platform:
 
   It’s meant to be a “deploy and forget” component for developers: after it is installed on the
   cluster with the Tanzu Package CLI, developers do not need to directly interact with it.
-  Developers instead interact with the Tanzu Developer Tools for VSCode IDE Extension or
+  Developers instead interact with the Tanzu Developer Tools for VS Code IDE Extension or
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to modify the workload to enable
   inner loop capabilities.
 
@@ -202,9 +202,9 @@ The following packages are part of the Tanzu Application Platform:
   The kpack CLI tool, kp, can aid in managing kpack resources. Build Service helps you
   develop and automate containerized software workflows securely and at scale.
 
-- **[Tanzu Developer Tools for VSCode](vscode-extension/about.md)**
+- **[Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)**
 
-  Tanzu Developer Tools for Visual Studio Code is the official VMware Tanzu IDE extension for VSCode
+  Tanzu Developer Tools for Visual Studio Code is the official VMware Tanzu IDE extension for VS Code
   to help you develop code using the Tanzu Application Platform.
   The VSCode extension enables live updates of your application while it runs on the cluster and
   lets you debug your application directly on the cluster.
@@ -270,7 +270,7 @@ The following table lists the packages contained in each profile:
    <td><strong>Full</strong>
    </td>
    <td><strong>Iterate</strong>
-   </td>   
+   </td>
    <td><strong>Build</strong>
    </td>
    <td><strong>Run</strong>
