@@ -209,7 +209,7 @@ that you plan to create the `Workload` in:
 
 For online installation:
 
-- [Installing Tanzu Developer Tools for VSCode](vscode-extension/install.html)
+- [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.html)
 
 For air-gapped installation:
 

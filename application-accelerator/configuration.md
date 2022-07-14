@@ -128,7 +128,7 @@ kubectl create secret generic https-credentials \
     --from-literal=password=<access-token>
 ```
 
-This will create a secret such as the following:
+This creates a secret such as the following:
 
 > https-credentials.yaml
 
@@ -180,7 +180,7 @@ kubectl create secret generic https-ca-credentials \
     --from-file=caFile=<path-to-CA-file>
 ```
 
-This will create a secret that looks like this:
+This creates a secret that looks like this:
 
 > https-ca-credentials.yaml
 
@@ -307,7 +307,7 @@ create secret generic registry-credentials \
     --from-literal=password=<password>
 ```
 
-This will create a secret that looks like this:
+This creates a secret that looks like this:
 
 > https-credentials.yaml
 

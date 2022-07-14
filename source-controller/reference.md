@@ -67,14 +67,14 @@ Maven supports a broad set of `version` syntax. Source Controller supports a str
 
 Version support implemented in the following order:
 
-1. pinned version - an exact match of a version in `maven-metadata.xml (versioning/versions/version)`
+1. Pinned version - an exact match of a version in2 `maven-metadata.xml (versioning/versions/version)`.
 
-2. `RELEASE` - metaversion defined in `maven-metadata.xml (versioning/release)`
+2. `RELEASE` - metaversion defined in `maven-metadata.xml (versioning/release)`.
 
-3. `*-SNAPSHOT` - the newest artifact for a snapshot version (**Will be supported in future release**)
+3. `*-SNAPSHOT` - the newest artifact for a snapshot version. Support is planned for a future release.
 
-4. `LATEST` - metaversion defined in `maven-metadata.xml (versioning/latest)` (**Will be supported in a future release**)
+4. `LATEST` - metaversion defined in `maven-metadata.xml (versioning/latest)`. Support is planned for a future release.
 
-5. version ranges - <https://maven.apache.org/enforcer/enforcer-rules/versionRanges.html> (**Will be supported in future release**)
+5. Version ranges - <https://maven.apache.org/enforcer/enforcer-rules/versionRanges.html>. Support is planned for a future release.
 
 **NOTE:** Pinned versions should be immutable, all other versions are dynamic and may change at any time. The `.spec.interval` defines how frequently to check for updated artifacts.

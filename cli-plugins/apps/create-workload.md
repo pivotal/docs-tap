@@ -22,7 +22,7 @@ Tanzu Application Platform supports creating a workload from an existing git rep
 To create a named workload and specify a git source code location, run:
 
  ```bash
-tanzu apps workload create pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web  
+tanzu apps workload create pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web
 ```
 
 Respond `Y` to prompts to complete process.
@@ -147,7 +147,7 @@ Check [services consumption documentation](../../getting-started/consume-service
 
 ## <a id="next-steps"></a> Next steps
 
-You can check workload details and status, add environment variables, export definitions, bind services and use flags with these [commands](command-reference.md). See more detailed explanation of flags usage for each command in [command details folder](./command-reference/commands-details/).
+You can check workload details and status, add environment variables, export definitions, bind services and use flags with these [commands](command-reference.md). See more detailed explanation of flags usage for each command in [Command reference](command-reference.md).
 
 1. To check workload status and details, use `workload get` command and to get workload logs, use `workload tail` command. For more info about these, refer to [debug workload section](debug-workload.md).
 
@@ -164,7 +164,7 @@ You can check workload details and status, add environment variables, export def
     tanzu apps workload get pet-clinic --export
     ```
 
-4. To bind a service to a workload, check the [--service-ref flag](bind-services-to-workload.md).
+4. To bind a service to a workload, see the [--service-ref flag](../cli-plugins/apps/command-reference/commands-details/workload-create-update-apply.md#apply-service-ref).
 
 5. To see flags available for the workload commands, run:
 

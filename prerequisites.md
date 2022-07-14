@@ -19,10 +19,14 @@ Tanzu Application Platform packages.
 When available, VMware recommends using a paid registry account to avoid potential rate-limiting
 associated with some free registry offerings.
 
-    - If installing using the `lite` descriptor for Tanzu Build Service, 1&nbsp;GB of available
+    - If installing using the `lite` dependencies for Tanzu Build Service, 1&nbsp;GB of available
     storage is recommended.
-    - If installing using the `full` descriptor for Tanzu Build Service, which is intended for production use
-    and offline environments, 10&nbsp;GB of available storage is recommended.
+    - If installing using the `full` dependencies for Tanzu Build Service, which are suitable for offline
+    environments, 10 GB of available storage is recommended.
+
+        >**Note:** For production environments, `full` dependencies are recommended to
+        >optimize security and performance. For more information about Tanzu Build Service
+        >dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.md#lite-vs-full).
 
 - Registry credentials with read and write access made available to
 Tanzu Application Platform to store images.
@@ -34,15 +38,15 @@ Tanzu Application Platform to store images.
 
 There are some optional but recommended DNS records you must allocate if you decide to use these particular components:
 
-- Cloud Native Runtimes (knative) - Allocate a wildcard subdomain for your developer's applications. This is specified in the `shared.ingress_domain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service. See [Access with the shared Ingress method](tap-gui/accessing-tap-gui.html#ingress-method) for more information about `tanzu-system-ingress`.
+- Cloud Native Runtimes (knative): Allocate a wildcard subdomain for your developer's applications. This is specified in the `shared.ingress_domain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service. See [Access with the shared Ingress method](tap-gui/accessing-tap-gui.html#ingress-method) for more information about `tanzu-system-ingress`.
 
-- Tanzu Learning Center - Similar to Cloud Native Runtimes, allocate a wildcard subdomain for your workshops and content. This is also specified by the `shared.ingress_domain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
+- Tanzu Learning Center: Similar to Cloud Native Runtimes, allocate a wildcard subdomain for your workshops and content. This is also specified by the `shared.ingress_domain` key of the `tap-values.yaml` configuration file that you input with the installation. This wildcard must be pointed at the external IP address of the `tanzu-system-ingress`'s `envoy` service.
 
-- Tanzu Application Platform GUI - If you decide to implement the shared ingress and include Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service.
+- Tanzu Application Platform GUI: If you decide to implement the shared ingress and include Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service.
 The default host name consists of `tap-gui` and the `shared.ingress_domain` value. For example,
 `tap-gui.example.com`.
 
-- Supply Chain Security Tools - Store - Similar to Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `metadata-store` and the `shared.ingress_domain` value. For example, `metadata-store.example.com`.
+- Supply Chain Security Tools - Store: Similar to Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `metadata-store` and the `shared.ingress_domain` value. For example, `metadata-store.example.com`.
 
 
 ### <a id='tap-gui'></a>Tanzu Application Platform GUI

@@ -1,6 +1,6 @@
 # Install Application Accelerator
 
-This document describes how to install Application Accelerator
+This topic describes how to install Application Accelerator
 from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
@@ -44,7 +44,7 @@ VMware recommends that you do not override the defaults for `registry.secret_ref
 `server.engine_invocation_url`, or `engine.service_type`.
 These properties are only used to configure non-standard installations.
 
-The following table is the resource usage configurations for the components of Application Accelerator.
+The following table is the resource use configurations for the components of Application Accelerator.
 
 | Component | Resource requests | Resource limits |
 | --- | --- | --- |
@@ -72,7 +72,7 @@ To install Application Accelerator:
       accelerator.apps.tanzu.vmware.com  1.2.1    2022-06-22 13:00:00 -0400 EDT
     ```
 
-1. (Optional) To make changes to the default installation settings, run:
+2. (Optional) To make changes to the default installation settings, run:
 
     ```console
     tanzu package available get accelerator.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
@@ -89,7 +89,7 @@ To install Application Accelerator:
     For more information about values schema options, see the properties listed earlier.
 
 
-1. Create an `app-accelerator-values.yaml` using the following example code:
+3. Create an `app-accelerator-values.yaml` using the following example code:
 
     ```yaml
     server:
@@ -104,7 +104,7 @@ To install Application Accelerator:
     >**Note:** For clusters that do not support the `LoadBalancer` service type, override the default
     >value for `server.service_type`.
 
-1. Install the package by running:
+3. Install the package by running:
 
     ```console
     tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-accelerator-values.yaml
@@ -128,7 +128,7 @@ To install Application Accelerator:
      Added installed package 'app-accelerator' in namespace 'tap-install'
     ```
 
-1. Verify the package install by running:
+4. Verify the package install by running:
 
     ```console
     tanzu package installed get app-accelerator -n tap-install
@@ -149,7 +149,7 @@ To install Application Accelerator:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-1. To see the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
+5. To see the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
 
     ```console
     kubectl get service -n accelerator-system

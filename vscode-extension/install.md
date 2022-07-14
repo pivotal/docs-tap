@@ -1,4 +1,4 @@
-# Installing Tanzu Dev Tools for Visual Studio Code
+# Installing Tanzu Developer Tools for Visual Studio Code
 
 This topic explains how to install VMware Tanzu Developer Tools for Visual Studio Code (VS Code).
 
@@ -58,7 +58,7 @@ set the following:
     - **Confirm Delete**: This controls whether the extension asks for confirmation when deleting a
     workload.
     - **Enable Live Hover**: For more information, see
-    [Live Hover integration with Spring Boot Tools](live-hover.md). Reload VS Code for this change to
+    [Integrating Live Hover by using Spring Boot Tools](live-hover.md). Reload VS Code for this change to
     take effect.
     - **Source Image**: (Required) The registry location for publishing local source code. For example,
     `registry.io/yourapp-source`. This must include both a registry and a project name.
@@ -76,4 +76,4 @@ To uninstall VMware Tanzu Developer Tools for VS Code:
 
 ## <a id="next-steps"></a> Next steps
 
-Proceed to [Getting started](../vscode-extension/getting-started.md).
+Proceed to [Getting started with Tanzu Developer Tools for Visual Studio Code](../vscode-extension/getting-started.md).
