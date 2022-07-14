@@ -67,7 +67,7 @@ docs.vmware.com is built.
                 - [Debug a workload](cli-plugins/apps/debug-workload.md)
                 - [Command reference](cli-plugins/apps/command-reference.md)
                     - [Overview](cli-plugins/apps/command-reference.md)
-                    - [Cammands Details](cli-plugins/apps/command-reference/commands-details/commands-details.md)
+                    - [Commands details](cli-plugins/apps/command-reference/commands-details/commands-details.md)
                         - [Tanzu Apps Cluster Supply Chain Get](cli-plugins/apps/command-reference/commands-details/csc-get.md)
                         - [Workload create update apply](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md)
                         - [Workload delete](cli-plugins/apps/command-reference/commands-details/workload_delete.md)
