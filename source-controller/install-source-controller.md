@@ -57,29 +57,29 @@ To install Source Controller:
 
 3. (Optional) There are two optional fields that can override Source Controller's default installation setting.
 
-    - `ca_cert_data` Enables Source Controller to connect to image registries that use self-signed or private certificate authorities. If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities.
+  - `ca_cert_data` Enables Source Controller to connect to image registries that use self-signed or private certificate authorities. If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities.
 
-    - `aws_iam_role_arn` Annotates Source Controller service with an AWS IAM role. This allows Source Controller to pull images from ECR.
+  - `aws_iam_role_arn` Annotates Source Controller service with an AWS IAM role. This allows Source Controller to pull images from ECR.
 
-    To provide a custom certificate, create a file named `source-controller-values.yaml` that includes the PEM-encoded CA certificate data.
+  To provide a custom certificate, create a file named `source-controller-values.yaml` that includes the PEM-encoded CA certificate data.
 
-    For example:
+  For example:
 
-    ```yaml
-    ca_cert_data: |
-        -----BEGIN CERTIFICATE-----
-        MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
-        ...
-        9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
-        -----END CERTIFICATE-----
-    ```
+  ```yaml
+  ca_cert_data: |
+      -----BEGIN CERTIFICATE-----
+      MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
+      ...
+      9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
+      -----END CERTIFICATE-----
+  ```
 
-    To add AWS IAM role ARN in Source Controller Servc, create a file named `source-controller-values.yaml` that includes the following:
+  To add AWS IAM role ARN in Source Controller Servc, create a file named `source-controller-values.yaml` that includes the following:
 
-    ```yaml
-    aws_iam_role_arn: "eks.amazonaws.com/role-arn: arn:aws:iam::112233445566:role/source-controller-manager"
+  ```yaml
+  aws_iam_role_arn: "eks.amazonaws.com/role-arn: arn:aws:iam::112233445566:role/source-controller-manager"
 
-    ```
+  ```
 
 4. Install the package:
 
