@@ -136,7 +136,7 @@ configurations to deactivate the Store:
   This means that the Syft Schema Version from the provided SBOM doesn't match the version supported by the installed grype-scanner. There are two different methods to resolve this incompatibility issue:
 
   - (Preferred method) Install a version of [Tanzu Build Service](../tanzu-build-service/tbs-about.md) that provides an SBOM with a compatible Syft Schema Version.
-  - Deactivate the `failOnSchemaErrors` in `grype-values.yaml`. See [Install Supply Chain Security Tools - Scan](install-scst-scan.md). Although this change bypasses the check <!-- |verify|, |ensure|, and |confirm| are all preferred. -->on Syft Schema Version, it does not resolve the incompatibility issue and produces a partial scanning result.
+  - Deactivate the `failOnSchemaErrors` in `grype-values.yaml`. See [Install Supply Chain Security Tools - Scan](install-scst-scan.md). Although this change bypasses the check on Syft Schema Version, it does not resolve the incompatibility issue and produces a partial scanning result.
 
     ```yaml
     syft:
