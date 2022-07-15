@@ -31,6 +31,7 @@ kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt
 
 The endpoint host is set to `metadata-store.<ingress-domain>`, 
 such as `metadata-store.example.domain.com`). 
+
 This value matches the value of `ingress_domain`.
 
 If no accessible DNS record exists for the domain, edit the `/etc/hosts` file to add a local record:
@@ -55,7 +56,7 @@ tanzu insight config set-target https://$METADATA_STORE_DOMAIN --ca-cert insight
 
 ## <a id="no-ingress"></a>Without `Ingress`
 
-If you install the Store without using the Ingress alternative, 
+If you install the Store without using the Ingress alternative,
 you must use a different Certificate resource for HTTPS communication. 
 In this case, query the `app-tls-cert` to get the CA Certificate:
 
@@ -86,25 +87,17 @@ Set the target by running:
 tanzu insight config set-target https://$METADATA_STORE_DOMAIN:$METADATA_STORE_PORT --ca-cert insight-ca.crt
 ```
 
-### <a id='config-pf'></a>Port forwarding
+#### <a id='config-pf'></a>Port forwarding
 
 Configure port forwarding for the service so the CLI can access Supply Chain Security Tools - Store. Run:
 
 ```console
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 ```
+To use `Port Forward`, you must obtain the CA certificate by following the instructions in [Without `Ingress`](#no-ingress),
+then [Configure port forwarding](#config-pf) and [Modify your `/etc/hosts` file for Port Forwarding](#mod-etchost-port-forward).
 
->**Note:** You must run this command in a separate terminal window. Or run the command in the background: `kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store &`
-
-### <a id='use-np'></a>`NodePort`
-
-`NodePort` can be used to connect the CLI and Metadata Store as an alterative to port forwarding.  This is useful when the user does not have port forward access to the cluster.
-
->**Note:** NodePort only recommended when (1) the cluster does not support ingress, (2) the cluster does not support `LoadBalancer`.  `NodePort` is not supported for a multi-cluster set up, as certificates cannot be modified (i.e., Metadata Store does not currently support a BYO-certificate)
-
-To use `NodePort`, you must obtain the CA certificate by following the instructions in [Without `Ingress`](#no-ingress), [Configure port forwarding](#config-pf), and [Modify your `/etc/hosts` file](#mod-etchost).
-
-### <a id='mod-etchost'></a>Edit your `/etc/hosts` file
+#### <a id='mod-etchost-port-forward'></a>Modify your `/etc/hosts` file for Port Forwarding
 
 Use the following script to add a new local entry to `/etc/hosts`:
 
@@ -112,10 +105,43 @@ Use the following script to add a new local entry to `/etc/hosts`:
 METADATA_STORE_PORT=$(kubectl get service/metadata-store-app --namespace metadata-store -o jsonpath="{.spec.ports[0].port}")
 METADATA_STORE_DOMAIN="metadata-store-app.metadata-store.svc.cluster.local"
 
-# Delete any previously added entry
+# delete any previously added entry
 sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts
 
 echo "127.0.0.1 $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
+```
+>**Note:** You must run this command in a separate terminal window. Or run the command in the background: `kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store &`
+>
+Set the target by running:
+```bash
+tanzu insight config set-target https://$METADATA_STORE_DOMAIN:$METADATA_STORE_PORT --ca-cert insight-ca.crt
+```
+
+### <a id='use-np'></a>`NodePort`
+
+`NodePort` can be used to connect the CLI and Metadata Store as an alterative to port forwarding.  This is useful when the user does not have port forward access to the cluster.
+
+>**Note:** NodePort only recommended when (1) the cluster does not support ingress, (2) the cluster does not support `LoadBalancer` type to services.  `NodePort` is not supported for a multi-cluster set up, as certificates cannot be modified (i.e., Metadata Store does not currently support a BYO-certificate)
+
+
+To use `NodePort`, you must obtain the CA certificate by following the instructions in [Without `Ingress`](#no-ingress), [Configure port forwarding](#config-pf), and [Modify your `/etc/hosts` file for Node Port](#mod-etchost-node-port).
+
+#### <a id='mod-etchost-node-port'></a>Edit your `/etc/hosts` file for Node Port
+
+
+Use the following script to add a new local entry to `/etc/hosts`:
+
+```bash
+METADATA_STORE_PORT=$(kubectl get service/metadata-store-app -n metadata-store -o jsonpath='{.spec.ports[?(@.name=="https")].nodePort}')
+
+METADATA_STORE_HOST_IP=$(kubectl get pods -n metadata-store -o jsonpath='{.items[?(@.metadata.labels.app=="metadata-store-app")].status.hostIP}' | xargs -n1 | head -n1)
+
+METADATA_STORE_DOMAIN="metadata-store-app.metadata-store.svc.cluster.local"
+
+# Delete any previously added entry
+sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts
+
+echo "$METADATA_STORE_HOST_IP $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
 ```
 
 Set the target by running:
