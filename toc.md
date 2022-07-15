@@ -200,7 +200,7 @@ docs.vmware.com is built.
         - [Install Application Live View](app-live-view/install.md)
         - [Configuring apps](app-live-view/configuring-apps/spring-boot-enablement.md)
             - [Enabling Spring Boot apps for Application Live View](app-live-view/configuring-apps/spring-boot-enablement.md)
-            - [Enabling Steeltoe apps for Application Live View](app-live-view/configuring-apps/steeltoe-enablement.md)
+            - [Enabling Steeltoe apps for Application Live View (beta)](app-live-view/configuring-apps/steeltoe-enablement.md)
             - [Convention server](app-live-view/configuring-apps/convention-server.md)
             - [Custom configuration for the connector](app-live-view/configuring-apps/configuring-app-for-connector.md)
             - [Custom configuration for application actuator endpoints](app-live-view/configuring-apps/configuring-actuator.md)
