@@ -1,9 +1,7 @@
-# Enabling Steeltoe apps for Application Live View (beta)
+# Enabling Steeltoe apps for Application Live View
 
 This topic describes how developers configure a Steeltoe app to be observed by
 Application Live View within Tanzu Application Platform.
-
->**Caution:** Enabling Steeltoe apps for Application Live View is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
 ## Enable Steeltoe apps
 
