@@ -2,7 +2,7 @@
 
 This section outlines observability and troubleshooting methods and issues for using the Supply Chain Security Tools - Scan components.
 
-## <a id="observability"></a> **Observability**
+## <a id="observability"></a> Observability
 
 The scans will run inside a k8s Job where the Job creates a Pod. Both the Job and Pod will be cleaned up automatically after completion.
 
@@ -11,17 +11,20 @@ Before applying a new scan, you can set a watch on the Jobs, Pods, SourceScans, 
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
 
-## <a id="troubleshooting"></a> **Troubleshooting**
+## <a id="troubleshooting"></a> Troubleshooting
 
-### <a id="debugging-commands"></a> **Debugging commands**
+### <a id="debugging-commands"></a> Debugging commands
 
-Run the following commands to get more logs and details on the errors around scanning. The Jobs and Pods will only persist for a predefined amount of seconds before getting deleted. (`deleteScanJobsSecondsAfterFinished` is the tap pkg variable that defines this)
+Run these commands to get more logs and details about the errors around scanning. The Jobs and pods persist for a predefined amount of seconds before getting deleted. (`deleteScanJobsSecondsAfterFinished` is the tap pkg variable that defines this)
+
+####  <a id="debugging-scan-pods"></a> Debugging Scan pods
 
 ####  <a id="debugging-scan-pods"></a> **Debugging Scan Pods**
 Run the following to get error logs from a pod when scan pods are in a failing state:
+
 ```console
-kubectl logs <scan-pod-name> -n <DEV-NAMESPACE>
-```
+kubectl logs <scan-pod-name> -n <DEV-NAMESPACE> 
+``` 
 See [here](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/) for more details about debugging Kubernetes pods.
 
 The following is an example of a successful scan run output:
@@ -54,40 +57,41 @@ kubectl logs <scan-pod-name> -n <DEV-NAMESPACE> -c <init-container-name>
 ```
 See [here](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/) for debug init container tips.
 
-####  <a id="debug-source-image-scan"></a> **Debugging SourceScan and ImageScan**
+####  <a id="debug-source-image-scan"></a> Debugging SourceScan and ImageScan
 
 To retrieve status conditions of an SourceScan and ImageScan run the following:
 ```console
 kubectl describe sourcescan <sourcescan> -n <DEV-NAMESPACE>
-```
+``` 
 
 ```console
 kubectl describe imagescan <imagescan> -n <DEV-NAMESPACE>
-```
+``` 
 
 Under `Status.Conditions`, for a condition look at the "Reason", "Type", "Message" values that use the keyword "Error" to investigate issues.
 
-#### <a id="debug-scanning-in-supplychain"></a> **Debugging Scanning within a SupplyChain**
+#### <a id="debug-scanning-in-supplychain"></a> Debugging Scanning within a SupplyChain
 
 See [here](../cli-plugins/apps/debug-workload.md) for tanzu workload commands for tailing build and runtime logs and getting workload status and details.
 
 
-#### <a id="view-scan-controller-manager-logs"></a> **Viewing the Scan-Controller manager logs**
+#### <a id="view-scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs
+
 To retrieve scan-controller manager logs:
 ```console
 kubectl -n scan-link-system logs -f deployment/scan-link-controller-manager -c manager
 ```
 
-### <a id="restarting-deployment"></a> **Restarting Deployment**
+### <a id="restarting-deployment"></a> Restarting Deployment
 
 If you encounter an issue with the scan-link controller not being able to start, run the following to restart the deployment to see if it's reproducible or flaking upon starting:
 ```console
 kubectl rollout restart deployment scan-link-controller-manager -n scan-link-system
 ```
 
-### <a id="troubleshooting-issues"></a> **Troubleshooting issues**
+### <a id="troubleshooting-issues"></a> Troubleshooting issues
 
-#### <a id="miss-img-ps"></a> **Missing target image pull secret**
+#### <a id="miss-img-ps"></a> Missing target image pull secret
 
 Scanning an image from a private registry requires an image pull secret to exist in the Scan CR's namespace and be referenced as `grype.targetImagePullSecret` in `tap-values.yaml`. See [Installing the Tanzu Application Platform Package and Profiles](../install.md) for more information.
 
@@ -97,7 +101,7 @@ If a private image scan is triggered and the secret is not configured, the scan 
 Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
 ```
 
-#### <a id="disable-scst-store"></a> **Disable Supply Chain Security Tools - Store**
+#### <a id="disable-scst-store"></a> Deactivate Supply Chain Security Tools - Store
 
 Supply Chain Security Tools - Store is a prerequisite for installing Supply Chain Security Tools - Scan.
 If you choose to install without the Supply Chain Security Tools - Store,  you need to edit the
@@ -119,7 +123,7 @@ configurations to disable the Store:
     --values-file tap-values.yaml
   ```
 
-#### <a id="incompatible-syft-schema-version"></a> **Resolving Incompatible Syft Schema Version**
+#### <a id="incompatible-syft-schema-version"></a> Resolving Incompatible Syft Schema Version
 
   You might encounter the following error:
 
@@ -130,21 +134,22 @@ configurations to disable the Store:
   This means that the Syft Schema Version from the provided SBOM doesn't match the version supported by the installed grype-scanner. There are two different methods to resolve this incompatibility issue:
 
   - (Preferred method) Install a version of [Tanzu Build Service](../tanzu-build-service/tbs-about.md) that provides an SBOM with a compatible Syft Schema Version.
-  - Deactivate the `failOnSchemaErrors` in `grype-values.yaml` (see [installation steps](install-scst-scan.md)). Although this change bypasses the check on Syft Schema Version, it does not resolve the incompatibility issue and produces a partial scanning result.
+  - Deactivate the `failOnSchemaErrors` in `grype-values.yaml`. See [Install Supply Chain Security Tools - Scan](install-scst-scan.md). Although this change bypasses the check on Syft Schema Version, it does not resolve the incompatibility issue and produces a partial scanning result.
 
     ```yaml
     syft:
       failOnSchemaErrors: false
     ```
 
-#### <a id="incompatible-scan-policy"></a> **Resolving Incompatible Scan Policy**
-  If your scan policy appears to not be enforced, it may be because the Rego file defined in the scan policy is incompatible with the scanner that is being used. For example, the Grype Scanner outputs in the CycloneDX XML format while the Snyk Scanner outputs SPDX JSON.
+#### <a id="incompatible-scan-policy"></a> Resolving Incompatible Scan Policy
+  If your scan policy appears to not be enforced, it might be because the Rego file defined in the scan policy is incompatible with the scanner that is being used. For example, the Grype Scanner outputs in the CycloneDX XML format while the Snyk Scanner outputs SPDX JSON.
 
   See [Install Snyk Scanner](install-snyk-integration.md#a-idverifya-verify-integration-with-snyk) for an example of a ScanPolicy formatted for SPDX JSON.
 
-#### <a id="incompatible-scan-policy"></a> **Could not find CA in Secret**
+#### <a id="ca-not-found-in-secret"></a> Could not find CA in Secret
 
-  If you encouter the following issue, it can be due to not exporting the "app-tls-cert" to the correct namespace:
+  If you encounter the following issue, it might be due to not exporting  "app-tls-cert" to the correct namespace:
+  
   ```console
   {"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
   ```
@@ -162,14 +167,14 @@ configurations to disable the Store:
     ns_for_export_app_cert: "*"
   ```
 
-#### <a id="reporting-wrong-blob-url"></a> **Blob Source Scan is reporting wrong source URL**
+#### <a id="reporting-wrong-blob-url"></a> Blob Source Scan is reporting wrong source URL
 
-  A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote ssh URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message.
+  A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote SSH URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message. 
 
-  You can confirm you're having this problem by running a `kubectl describe` in the affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url` and see if they're different URLs. For example:
+  You can confirm you're having this problem by running a `kubectl describe` in the affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url` and see if they are different URLs. For example:
 
   ```console
-  kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE>
+  kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE> <!-- If a placeholder, delete the angle brackets. --> 
   ```
 
   And compare the output:
