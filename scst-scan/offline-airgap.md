@@ -36,6 +36,7 @@ To use Grype in offline and air-gapped environments:
         #@ load("@ytt:overlay", "overlay")
 
         #@overlay/match by=overlay.subset({"kind":"ScanTemplate","metadata":{"namespace":"<DEV-NAMESPACE>"}}),expects="1+" #! developer namespace you are using
+        ---
         spec:
           template:
             initContainers:
