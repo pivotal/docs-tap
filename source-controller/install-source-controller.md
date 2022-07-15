@@ -55,7 +55,7 @@ To install Source Controller:
     ca_cert_data               string  Optional: PEM Encoded certificate data for image registries with private CA.
     ```
 
-3. (Optional) There are two optional fields that can override Source Controller's default installation setting.
+3. (Optional) There are two optional fields that can override Source Controller's default installation setting:
 
     - `ca_cert_data` Enables Source Controller to connect to image registries that use self-signed or private certificate authorities. If a certificate error `x509: certificate signed by unknown authority` occurs, this option can be used to trust additional certificate authorities.
 
