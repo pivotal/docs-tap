@@ -1,10 +1,11 @@
-# Customizing branding
+# Customizing your Tanzu Application Platform GUI portal
 
-This section describes how to customize the branding within the Tanzu Application Platform GUI portal:
+This section describes how to add customizations to your Tanzu Application Platform GUI portal:
 
 - [Customize logo and portal name on the top banner](#customize-logo-name)
 - [Customize Software Catalog page](#customize-catalog-page)
 - [Customize Authentication page](#customize-auth-page)
+- [Customize Default view](#customize-default-view)
 
 ## <a id="customize-logo-name"></a> Customize logo and portal name on the top banner
 
@@ -106,3 +107,39 @@ file:
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.
+
+## <a id="customize-logo-name"></a> Customize logo and portal name on the top banner
+
+You can customize the logo and the name displayed in the top banner in the
+Tanzu Application Platform GUI portal.
+By default, the portal displays the VMware Tanzu logo and **Tanzu Application Platform** as the name.
+
+![Screenshot displaying the default VMware Tanzu branding within the Tanzu Application Platform GUI portal](../images/standard-branding.png)
+
+### <a id="customize-default-view"></a> Customize default view
+
+You can choose to set your default route when the user is accessing your portal. Without this customization, when the user accesses Tanzu Application Platform GUI's URL, it would display the list of **Owned** components of the Software Catalog. 
+
+To change the default view, please follow these steps:
+
+1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
+file:
+
+    ```yaml
+    tap_gui:
+      app_config:
+        customize:
+          default_route: 'YOUR-PREFERRED-ROUTE'
+    ```
+
+    Where:
+
+    - `YOUR-PREFERRED-ROUTE` is the path to your route of choice that the portal would default to. For example, it could be `/catalog?filters%5Bkind%5D=component&filters%5Buser%5D=all` to show **All** components of the Software Catalog instead of defaulting to **Owned** components. As another example, it could be `/create` to show the Application Accelerator at portal launch.
+
+1. Reinstall your Tanzu Application Platform GUI package by following steps in
+[Upgrading Tanzu Application Platform](../../upgrading.html).
+
+After the updated values configuration file is applied in Tanzu Application Platform GUI,
+you see the customized version of your portal.
+
+If there is an error in `YOUR-PREFERRED-ROUTE`, Tanzu Application Platform GUI would still redirect you to `tap-gui.INGRESS-DOMAIN/YOUR-PREFERRED-ROUTE`.
