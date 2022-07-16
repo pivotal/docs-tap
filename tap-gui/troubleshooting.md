@@ -2,7 +2,6 @@
 
 This topic describes troubleshooting information for problems with installing Tanzu Application Platform GUI.
 
-
 ## <a id='catalog-not-found'></a> Catalog not found
 
 ### Symptom
@@ -246,6 +245,19 @@ app_config:
 Source Scan stage vulnerabilities table displays "No records to display" even though there are CVEs in the source scan.
 
 ![Screenshot of source scan stage not showing any CVEs](images/troubleshooting-no-cves-source-scan.png)
+
+### Solution
+
+If no CVEs are displayed, run `kubectl describe sourcescan <workload name> -n <workload namespace>` to see if any CVEs were found during the source scan. If so, use the tanzu insight CLI plug-in to query for vulnerability details.  See [Query vulnerabilities, images, and packages](../cli-plugins/insight/query-data.md).
+
+
+## <a id='maven-artifact-error'></a> Maven artifacts access error
+
+### Symptom
+
+Source Scan stage vulnerabilities table displays "No records to display" even though there are CVEs in the source scan.
+
+![Screenshot warning of no Maven artifact access ](../images/../tap-gui/images/tap-gui-maven-artifact-1.png)
 
 ### Solution
 
