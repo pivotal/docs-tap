@@ -3,7 +3,7 @@
 You can install Tanzu Application Platform by using one of the following methods:
 
 - [Installing Tanzu Application Platform online](#install-online)
-- [Installing Tanzu Application Platform in an air-gapped environment (Beta)](#install-air-gap)
+- [Installing Tanzu Application Platform in an air-gapped environment (beta)](#install-air-gap)
 
 ## <a id='install-online'></a>Installing Tanzu Application Platform online
 
@@ -23,18 +23,18 @@ The process of installing Tanzu Application Platform on your Kubernetes clusters
 
 After installing Tanzu Application Platform on to your Kubernetes clusters, proceed with [Getting started with the Tanzu Application Platform](getting-started.html).
 
-## <a id='install-air-gap'></a>Installing Tanzu Application Platform in an air-gapped environment (Beta)
+## <a id='install-air-gap'></a>Installing Tanzu Application Platform in an air-gapped environment (beta)
 
 >**Caution:** Tanzu Application Platform in an air-gapped environment is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
-The process of installing Tanzu Application Platform on your own Kubernetes clusters in an air-gapped environment includes the following tasks:
+The process of installing Tanzu Application Platform on your Kubernetes clusters in an air-gapped environment includes the following tasks:
 
 |Step|Task|Link|
 |----|----|----|
 |1.| Review the prerequisites to ensure that you have set up everything required before beginning the installation |[Prerequisites](prerequisites.html)|
 |2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI |[Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)|
 |3.| Install Cluster Essentials for Tanzu* |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)|
-|4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Installing Tanzu Application Platform in an air-gapped environment (Beta)](install-air-gap.html)|
+|4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Installing Tanzu Application Platform in an air-gapped environment (beta)](install-air-gap.html)|
 |5.| Install Tanzu Build Service full dependencies |[Installing the Tanzu Build Service dependencies](tbs-offline-install-deps.html)|
 |6.| Configure custom certificate authorities for Tanzu Application Platform GUI |[Configuring custom certificate authorities for Tanzu Application Platform GUI](tap-gui/non-standard-certs.html) |
 |7.| Add the certificate for the private Git repository in the Accelerator system namespace |[Configuring Application Accelerator](application-accelerator/configuration.html)|
