@@ -238,6 +238,7 @@ app_config:
       allow:
       - host: acc-server.accelerator-system.svc.cluster.local
 ```
+
 ## <a id='source-scan-no-cves'></a> Source Scan stage may not display CVEs
 
 ### Symptom
@@ -262,3 +263,4 @@ Source Scan stage vulnerabilities table displays "No records to display" even th
 ### Solution
 
 If no CVEs are displayed, run `kubectl describe sourcescan <workload name> -n <workload namespace>` to see if any CVEs were found during the source scan. If so, use the tanzu insight CLI plug-in to query for vulnerability details.  See [Query vulnerabilities, images, and packages](../cli-plugins/insight/query-data.md).
+```
