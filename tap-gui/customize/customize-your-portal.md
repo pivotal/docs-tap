@@ -1,21 +1,8 @@
 # Customizing your Tanzu Application Platform GUI portal
 
-This section describes how to add customizations to your Tanzu Application Platform GUI portal:
+This section describes how to customize your Tanzu Application Platform GUI portal.
 
-- [Customize logo and portal name on the top banner](#customize-logo-name)
-- [Customize Software Catalog page](#customize-catalog-page)
-- [Customize Authentication page](#customize-auth-page)
-- [Customize Default view](#customize-default-view)
-
-## <a id="customize-logo-name"></a> Customize logo and portal name on the top banner
-
-You can customize the logo and the name displayed in the top banner in the
-Tanzu Application Platform GUI portal.
-By default, the portal displays the VMware Tanzu logo and **Tanzu Application Platform** as the name.
-
-![Screenshot displaying the default VMware Tanzu branding within the Tanzu Application Platform GUI portal](../images/standard-branding.png)
-
-### <a id="brand-customizing"></a> Customize branding
+## <a id="brand-customizing"></a> Customize branding
 
 To customize the branding in your portal:
 
@@ -47,16 +34,16 @@ the original branding template.
 
 ![Screenshot displaying the custom branding within the Tanzu Application Platform GUI portal](../images/customized-branding.png)
 
-## <a id="customize-catalog-page"></a> Customize Software Catalog page
+## <a id="customize-catalog-page"></a> Customize the Software Catalog page
 
 You can customize the name of your organization on the Software Catalog page of
 Tanzu Application Platform GUI portal.
-By default, the portal displays **Your Organization** in front of the **Catalog** and in the
+By default, the portal displays **Your Organization** in next to **Catalog** and in the
 selection box.
 
 ![Screenshot displaying the default Software Catalog naming in the Tanzu Application Platform GUI portal. The words Your Organization are framed.](../images/standard-catalog.png)
 
-### <a id="catalog-name-customize"></a> Customize the name of the organization
+## <a id="catalog-name-customize"></a> Customize the name of the organization
 
 To customize the name of the organization for the software catalog in your portal:
 
@@ -84,7 +71,7 @@ reverts to the original organization name.
 
 ![Screenshot displaying the custom Software Catalog naming within the Tanzu Application Platform GUI portal](../images/customized-catalog-name.png)
 
-## <a id="customize-auth-page"></a> Customize Authentication page
+## <a id="customize-auth-page"></a> Customize the Authentication page
 
 To customize the portal name on the **Authentication** page and the name of the browser tab
 for Tanzu Application Platform GUI:
@@ -108,7 +95,7 @@ file:
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.
 
-## <a id="customize-logo-name"></a> Customize logo and portal name on the top banner
+## <a id="customize-logo-name"></a> Customize the logo and portal name on the top banner
 
 You can customize the logo and the name displayed in the top banner in the
 Tanzu Application Platform GUI portal.
@@ -116,11 +103,13 @@ By default, the portal displays the VMware Tanzu logo and **Tanzu Application Pl
 
 ![Screenshot displaying the default VMware Tanzu branding within the Tanzu Application Platform GUI portal](../images/standard-branding.png)
 
-### <a id="customize-default-view"></a> Customize default view
+## <a id="customize-default-view"></a> Customize the default view
 
-You can choose to set your default route when the user is accessing your portal. Without this customization, when the user accesses Tanzu Application Platform GUI's URL, it would display the list of **Owned** components of the Software Catalog. 
+You can set your default route when the user is accessing your portal.
+Without this customization, when the user accesses the Tanzu Application Platform GUI URL,
+it displays the list of owned components of the software catalog.
 
-To change the default view, please follow these steps:
+To change the default view:
 
 1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
 file:
@@ -132,14 +121,16 @@ file:
           default_route: 'YOUR-PREFERRED-ROUTE'
     ```
 
-    Where:
+    Where `YOUR-PREFERRED-ROUTE` is the path to the route that the portal uses by default.
+    For example, you can type `/catalog?filters%5Bkind%5D=component&filters%5Buser%5D=all` to show
+    all components of the software catalog instead of defaulting to owned components.
+    As another example, you can type `/create` to show Application Accelerator when the portal starts.
 
-    - `YOUR-PREFERRED-ROUTE` is the path to your route of choice that the portal would default to. For example, it could be `/catalog?filters%5Bkind%5D=component&filters%5Buser%5D=all` to show **All** components of the Software Catalog instead of defaulting to **Owned** components. As another example, it could be `/create` to show the Application Accelerator at portal launch.
+    > **Caution:** Tanzu Application Platform GUI redirects you to `tap-gui.INGRESS-DOMAIN/YOUR-PREFERRED-ROUTE`
+    > even if there is an error in `YOUR-PREFERRED-ROUTE`.
 
-1. Reinstall your Tanzu Application Platform GUI package by following steps in
-[Upgrading Tanzu Application Platform](../../upgrading.html).
+1. Reinstall your Tanzu Application Platform GUI package by following the steps in
+[Upgrading Tanzu Application Platform](../../upgrading.md).
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.
-
-If there is an error in `YOUR-PREFERRED-ROUTE`, Tanzu Application Platform GUI would still redirect you to `tap-gui.INGRESS-DOMAIN/YOUR-PREFERRED-ROUTE`.
