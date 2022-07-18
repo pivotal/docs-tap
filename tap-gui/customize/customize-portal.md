@@ -1,6 +1,6 @@
-# Customizing your Tanzu Application Platform GUI portal
+# Customizing the Tanzu Application Platform GUI portal
 
-This section describes how to customize your Tanzu Application Platform GUI portal.
+This section describes how to customize the Tanzu Application Platform GUI portal.
 
 ## <a id="brand-customizing"></a> Customize branding
 
