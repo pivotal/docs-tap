@@ -30,6 +30,7 @@ When you're upgrading to any version of Supply Chain Security Tools - Scan these
   ```
   tanzu package available get scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
   ```
+  
 Where `$VERSION` is the new version. This gives you insights on the values you can configure in your `tap-values.yaml` for the new version.
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading to Version v1.2.0
