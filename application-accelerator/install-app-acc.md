@@ -26,7 +26,7 @@ When you install the Application Accelerator, you can configure the following op
 | Property | Default | Description |
 | --- | --- | --- |
 | registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located |
-| server.service_type | LoadBalancer | The service type for the acc-ui-server service including LoadBalancer, NodePort, or ClusterIP |
+| server.service_type | ClusterIP | The service type for the acc-ui-server service including LoadBalancer, NodePort, or ClusterIP |
 | server.watched_namespace | accelerator-system | The namespace the server watches for accelerator resources |
 | server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine |
 | engine.service_type | ClusterIP | The service type for the acc-engine service including LoadBalancer, NodePort, or ClusterIP |
