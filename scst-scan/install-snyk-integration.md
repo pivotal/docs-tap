@@ -200,7 +200,7 @@ To verify the integration with Snyk, apply the following `ImageScan` and its `Sc
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ScanPolicy
     metadata:
-      name: scan-policy
+      name: snyk-scan-policy
     spec:
       regoFile: |
         package main
@@ -248,7 +248,7 @@ To verify the integration with Snyk, apply the following `ImageScan` and its `Sc
       registry:
         image: "nginx:1.16"
       scanTemplate: snyk-public-image-scan-template
-      scanPolicy: scan-policy
+      scanPolicy: snyk-scan-policy
     ```
 
 1. Apply the earlier created YAML:
@@ -288,7 +288,7 @@ ootb_supply_chain_testing_scanning:
   scanning:
     image:
       template: snyk-private-image-scan-template
-      policy: scan-policy
+      policy: snyk-scan-policy
 ```
 
 >**Note:** The Snyk Scanner integration is only available for an image scan, not a source scan.
