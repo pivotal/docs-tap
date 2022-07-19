@@ -2,7 +2,7 @@
 
 This topic describes Application Live View pages for Spring Boot Applications in Tanzu Application Platform GUI.
 
-### <a id="details-page"></a> Details page
+## <a id="details-page"></a> Details page
 
 This is the default page loaded in the **Live View** section.
 This page gives a tabular overview containing the following information:
@@ -24,8 +24,7 @@ top right corner of the page.
 
 ![Details Page in UI](images/details.png)
 
-
-### <a id="health-page"></a> Health page
+## <a id="health-page"></a> Health page
 
 To navigate to the health page, the user can select the **Health** option from the
 **Information Category** drop-down menu.
@@ -36,8 +35,7 @@ It displays the status, details associated with each of the components.
 
 ![Health Page in UI](images/health.png)
 
-
-### <a id="environment-page"></a> Environment page
+## <a id="environment-page"></a> Environment page
 
 To navigate to the **Environment** page, the user can select the **Environment** option from the
 **Information Category** drop-down menu.
@@ -62,8 +60,7 @@ The page includes the following features:
 
 ![Environment Page Editable in UI](images/environment-2.png)
 
-
-### <a id="log-levels-page"></a> Log Levels page
+## <a id="log-levels-page"></a> Log Levels page
 
 To navigate to the **Log Levels** page, the user can select the **Log Levels** option from the
 **Information Category** drop-down menu.
@@ -81,8 +78,7 @@ The **Reset All** on top right corner of the page resets all the loggers to defa
 
 ![Log Levels Page in UI](images/log-levels.png)
 
-
-### <a id="threads-page"></a> Threads page
+## <a id="threads-page"></a> Threads page
 
 To navigate to the **Threads** page, the user can select the **Threads** option from the
 **Information Category** drop-down menu.
@@ -100,8 +96,7 @@ The page also has a feature to download thread dump for analysis purposes.
 
 ![Thread Details Page in UI](images/threads-2.png)
 
-
-### <a id="memory-page"></a> Memory page
+## <a id="memory-page"></a> Memory page
 
 To navigate to the **Memory** page, the user can select the `Memory` option from the `Information Category` drop-down menu.
 
@@ -114,8 +109,7 @@ To navigate to the **Memory** page, the user can select the `Memory` option from
 As mentioned at the top, the Application Live View features do not store any information.
 That means the graphs visualize the data over time only for as long as you stay on that page.
 
-
-### <a id="request-mappings-page"></a> Request Mappings page
+## <a id="request-mappings-page"></a> Request Mappings page
 
 To navigate to the Request Mappings page, the user should select the **Request Mappings** option from
 the **Information Category** drop-down menu.
@@ -136,8 +130,7 @@ The application displays a message when the actuator toggle is enabled.
 
 ![Request Mappings Details Page in UI](images/request-mappings-2.png)
 
-
-### <a id="http-requests-page"></a> HTTP Requests page
+## <a id="http-requests-page"></a> HTTP Requests page
 
 To navigate to the HTTP Requests page, the user should select the **HTTP Requests** option from the
 **Information Category** drop-down menu.
@@ -164,8 +157,7 @@ In this case, a message is displayed when the actuator toggle is enabled.
 
 ![Http Request Details Page in UI](images/http-requests-2.png)
 
-
-### <a id="caches-page"></a> Caches page
+## <a id="caches-page"></a> Caches page
 
 To navigate to the **Caches** page, the user can select the **Caches** option from the
 **Information Category** drop-down menu.
@@ -182,8 +174,7 @@ If there are no cache managers for the application, the message
 
 ![Caches Page in UI](images/caches.png)
 
-
-### <a id="config-props-page"></a> Configuration Properties page
+## <a id="config-props-page"></a> Configuration Properties page
 
 To navigate to the **Configuration Properties** page, the user can select the
 **Configuration Properties** option from the **Information Category** drop-down menu.
@@ -195,8 +186,7 @@ The search feature allows the user to look up for property's key/value or the be
 
 ![Configuration Properties Page in UI](images/config-props.png)
 
-
-### <a id="conditions-page"></a> Conditions page
+## <a id="conditions-page"></a> Conditions page
 
 To navigate to the **Conditions** page, the user can select the **Conditions** option from the
 **Information Category** drop-down menu.
@@ -213,8 +203,7 @@ The user can filter out on the beans and the conditions using the search feature
 
 ![Conditions Page in UI](images/conditions.png)
 
-
-### <a id="scheduled-tasks-page"></a> Scheduled Tasks page
+## <a id="scheduled-tasks-page"></a> Scheduled Tasks page
 
 To navigate to the **Scheduled Tasks** page, the user can select the **Scheduled Tasks** option from
 the **Information Category** drop-down menu.
@@ -228,8 +217,7 @@ property details.
 
 ![Scheduled Tasks Page in UI](images/scheduled-tasks.png)
 
-
-### <a id="beans-page"></a> Beans page
+## <a id="beans-page"></a> Beans page
 
 To navigate to the **Beans** page, the user can select the **Beans** option from the
 **Information Category** drop-down menu.
@@ -239,12 +227,10 @@ The user can search by the bean name or its corresponding fields.
 
 ![Beans Page in UI](images/beans.png)
 
-
-### <a id="metrics-page"></a> Metrics page
+## <a id="metrics-page"></a> Metrics page
 
 To navigate to the **Metrics** page, the user can select the **Metrics** option from the
 **Information Category** drop-down menu.
-
 
 The metrics page provides access to application metrics information.
 The user can choose from the list of various metrics available for the application such as
@@ -261,8 +247,7 @@ They can delete a particular metric by clicking the minus symbol in the same row
 
 ![Metrics Page in UI](images/metrics.png)
 
-
-### <a id="actuator-page"></a> Actuator page
+## <a id="actuator-page"></a> Actuator page
 
 To navigate to the **Actuator** page, the user can select the **Actuator** option from the
 **Information Category** drop-down menu.
@@ -270,7 +255,6 @@ The actuator page provides a tree view of the actuator data.
 The user can choose from a list of actuator endpoints and parse through the raw actuator data.
 
 ![Actuator Page in UI](images/actuator.png)
-
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
