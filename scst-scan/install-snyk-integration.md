@@ -96,7 +96,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
        >**Note:** To use a namespace other than the default namespace, ensure the namespace exists before you install. If the namespace does not exist, the scanner installation fails.
 
-     - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning. If built images are pushed to the same registry as the Tanzu Application Platform images, you can reuse the `tap-registry` secret created earlier in [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories-and-EULAs) for this field.
+     - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning.
 
      - `SNYK-TOKEN-SECRET` is the name of the secret you created that contains the `snyk_token` to connect to the [Snyk API](https://docs.snyk.io/snyk-cli/configure-the-snyk-cli#environment-variables). This field is required.
 
@@ -200,7 +200,7 @@ To verify the integration with Snyk, apply the following `ImageScan` and its `Sc
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ScanPolicy
     metadata:
-      name: scan-policy
+      name: snyk-scan-policy
     spec:
       regoFile: |
         package main
@@ -248,7 +248,7 @@ To verify the integration with Snyk, apply the following `ImageScan` and its `Sc
       registry:
         image: "nginx:1.16"
       scanTemplate: snyk-public-image-scan-template
-      scanPolicy: scan-policy
+      scanPolicy: snyk-scan-policy
     ```
 
 1. Apply the earlier created YAML:
@@ -288,7 +288,7 @@ ootb_supply_chain_testing_scanning:
   scanning:
     image:
       template: snyk-private-image-scan-template
-      policy: scan-policy
+      policy: snyk-scan-policy
 ```
 
 >**Note:** The Snyk Scanner integration is only available for an image scan, not a source scan.
