@@ -148,7 +148,7 @@ To install Cloud Native Runtimes:
 
     1. Create an image pull secret in the current namespace and fill it from the `tap-registry`
     secret mentioned in
-       [Add the Tanzu Application Platform package repository](../install.md#add-package-repositories).
+       [Add the Tanzu Application Platform package repository](../install.md#add-tap-package-repo).
        Run the following commands to create an empty secret and annotate it as a target of the secretgen
        controller:
 

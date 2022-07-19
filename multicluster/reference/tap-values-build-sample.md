@@ -57,9 +57,6 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
 credentials to pull an image from the registry for scanning.
-If built images are pushed to the same registry as Tanzu Application Platform images,
-you can reuse the `tap-registry` Secret created in
-[Add the Tanzu Application Platform package repository](#add-tap-package-repo).
 
 > **Note:** When you install Tanzu Application Platform, it is bootstrapped with the `lite`
 > set of dependencies, including buildpacks and stacks, for application builds.
