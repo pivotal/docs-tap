@@ -27,18 +27,12 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 1. Locate the Tanzu Java Web App accelerator and click **CHOOSE**.
 
-    ![Tile for Tanzu Java Web App Getting Started GUI](../images/getting-started-tap-gui-2.png)
-
 1. In the **Generate Accelerators** dialog box, replace the default value `dev.local` in the **prefix for container image registry** field
    with the registry in the form of `SERVER-NAME/REPO-NAME`.
    The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See the Full Profile section on [Installing Tanzu Application Platform package and profiles](../install.md.hbs#full-profile).
-   Click **NEXT STEP**, verify the provided information, and click **CREATE**.
-
-    ![Generate Accelerators prompt](../images/getting-started-tap-gui-3.png)
+   Click **NEXT**, verify the provided information, and click **GENERATE ACCELERATOR**.
 
 1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
-
-    ![Task Activity progress bar](../images/getting-started-tap-gui-4.png)
 
 1. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
