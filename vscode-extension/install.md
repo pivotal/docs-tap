@@ -21,14 +21,14 @@ Docker Desktop and local Kubernetes are not prerequisites for using Tanzu Develo
 
 To install the extension:
 
-1. Sign in to VMware Tanzu Network and [download Tanzu Developer Tools for Visual Studio Code](https://network.tanzu.vmware.com/products/tanzu-developer-tools-for-vscode/).
-1. Open VS Code.
-1. Press cmd+shift+P to open the Command Palette and run `Extensions: Install from VSIX...`.
-1. Select the extension file **tanzu-vscode-extension.vsix**.
+1. Sign in to VMware Tanzu Network and [download Tanzu Developer Tools for Visual Studio Code](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+2. Open VS Code.
+3. Press cmd+shift+P to open the Command Palette and run `Extensions: Install from VSIX...`.
+4. Select the extension file **tanzu-vscode-extension.vsix**.
 
     ![Command palette open showing text Extensions: INSTALL FROM VSIX...](../images/vscode-install1.png)
 
-1. If you do not have the following extensions, and they do not automatically install, install them
+5. If you do not have the following extensions, and they do not automatically install, install them
 from VS Code Marketplace:
 
     - [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
