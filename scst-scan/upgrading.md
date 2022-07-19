@@ -25,13 +25,14 @@ Before you upgrade Supply Chain Security Tools - Scan:
 When you're upgrading to any version of Supply Chain Security Tools - Scan these are some factors to accomplish this task successfully:
 
 1. Inspect the [Release Notes](../release-notes.md) for the version you're upgrading to. There you can find any breaking changes for the installation.
-2. Get the values schema for the package version you're upgrading to by running:
+1. Get the values schema for the package version you're upgrading to by running:
 
-  ```
+  ```console
   tanzu package available get scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
   ```
 
-Where `$VERSION` is the new version. This gives you insights on the values you can configure in your `tap-values.yaml` for the new version.
+   Where `$VERSION` is the new version. This gives you insights on the values you can configure in
+   your `tap-values.yaml` for the new version.
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading to Version v1.2.0
 
