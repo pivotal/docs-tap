@@ -4,6 +4,7 @@ You can install Tanzu Application Platform by using one of the following methods
 
 - [Installing Tanzu Application Platform online](#install-online)
 - [Installing Tanzu Application Platform in an air-gapped environment (beta)](#install-air-gap)
+- [Deploying Tanzu Application Platform through AWS Quick Start on Amazon EKS](https://aws.amazon.com/quickstart/architecture/vmware-tanzu-application-platform/)
 
 ## <a id='install-online'></a>Installing Tanzu Application Platform online
 
