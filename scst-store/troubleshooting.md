@@ -2,11 +2,6 @@
 
 This topic contains troubleshooting and known issues for **Supply Chain Security Tools - Store**.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 0c02408d (Not affected by source scan)
 ## Querying by `insight source` returns zero CVEs even though there are CVEs in the source scan
 
 ### Symptom
@@ -15,17 +10,8 @@ When attempting to look up CVE and affected packages, querying `insight source g
 
 ### <a id='source-scan-no-cves-solution'></a>Solution
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-You may have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM).
-=======
-You may have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the SBOM.  See [Query Data - Source].
->>>>>>> 0c02408d (Not affected by source scan)
-=======
-You may have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM).
->>>>>>> fd754bb8 ([#182726302] edits PR)
+You may have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM). See [Query vulnerabilities, images, and packages](https://github.com/pivotal/docs-tap/blob/main/cli-plugins/insight/query-data.md#example-2-what-packages--cves-does-my-source-code-contain).
 
->>>>>>> fd754bb8 ([#182726302] edits PR)
 ## Persistent volume retains data
 
 ### Symptom
