@@ -10,7 +10,7 @@ When attempting to look up CVE and affected packages, querying `insight source g
 
 ### <a id='source-scan-no-cves-solution'></a>Solution
 
-You may have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the SBOM.  See [Query Data - Source].
+You may have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM).
 
 ## Persistent volume retains data
 
