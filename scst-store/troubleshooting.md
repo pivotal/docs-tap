@@ -2,6 +2,19 @@
 
 This topic contains troubleshooting and known issues for **Supply Chain Security Tools - Store**.
 
+<<<<<<< HEAD
+=======
+## Querying by `insight source` returns zero CVEs even though there are CVEs in the source scan
+
+### Symptom
+
+When attempting to look up CVE and affected packages, querying `insight source get` (or other `insight source` commands) may return zero results due to supply chain configuration and repo URL.
+
+### <a id='source-scan-no-cves-solution'></a>Solution
+
+You may have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM).
+
+>>>>>>> fd754bb8 ([#182726302] edits PR)
 ## Persistent volume retains data
 
 ### Symptom

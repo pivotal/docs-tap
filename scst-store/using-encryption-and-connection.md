@@ -93,16 +93,32 @@ Configure port forwarding for the service so the CLI can access Supply Chain Sec
 ```console
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 ```
+To use `Port Forward`, you must obtain the CA certificate by using the following instructions:
+- [Without `Ingress`](#no-ingress),
+- [Configure port forwarding](#config-pf)
+- [Modify your `/etc/hosts` file for Port Forwarding](#mod-etchost-port-forward)
+
+#### <a id='mod-etchost-port-forward'></a>Modify your `/etc/hosts` file for Port Forwarding
+
+Use the following script to add a new local entry to `/etc/hosts`:
 
 >**Note:** You must run this command in a separate terminal window. Or run the command in the background: `kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store &`
 
 ### <a id='use-np'></a>`NodePort`
 
-`NodePort` can be used to connect the CLI and Metadata Store as an alterative to port forwarding.  This is useful when the user does not have port forward access to the cluster.
+`NodePort` is used to connect the CLI and Metadata Store as an alternative to port forwarding.  This is useful when the user does not have port forward access to the cluster.
 
->**Note:** NodePort only recommended when (1) the cluster does not support ingress, (2) the cluster does not support `LoadBalancer`.  `NodePort` is not supported for a multi-cluster set up, as certificates cannot be modified (i.e., Metadata Store does not currently support a BYO-certificate)
+>**Note:** NodePort is only recommended when: the cluster does not support ingress or the cluster does not support `LoadBalancer` type to services.  `NodePort` is not supported for a multi-cluster set up, as certificates cannot be modified. For example, the Metadata Store does not currently support a BYO-certificate.
 
-To use `NodePort`, you must obtain the CA certificate by following the instructions in [Without `Ingress`](#no-ingress), [Configure port forwarding](#config-pf), and [Modify your `/etc/hosts` file](#mod-etchost).
+
+To use `NodePort`, you must obtain the CA certificate by using the following instructions:
+- [Without `Ingress`](#no-ingress),
+- [Configure port forwarding](#config-pf)
+- [Modify your `/etc/hosts` file for Node Port](#mod-etchost-node-port)
+
+#### <a id='mod-et
+
+#### <a id='mod-etchost-node-port'></a>Edit your `/etc/hosts` file for Node Port
 
 ### <a id='mod-etchost'></a>Edit your `/etc/hosts` file
 
