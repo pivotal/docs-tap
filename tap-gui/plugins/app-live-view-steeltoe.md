@@ -23,6 +23,8 @@ This page gives a tabular overview containing the following information:
 You can navigate between **Information Categories** by selecting from the drop-down menu on the
 top right corner of the page.
 
+![Details Page in UI](images/details-steeltoe.png)
+
 ## <a id="health-page"></a> Health page
 
 To access the health page, select the **Health** option from the
@@ -32,6 +34,8 @@ The health page provides detailed information about the health of the applicatio
 It lists all the components that make up the health of the application, such as readiness, liveness,
 and disk space.
 It displays the status and details associated with each of the components.
+
+![Health Page in UI](images/health-steeltoe.png)
 
 ## <a id="environment-page"></a> Environment page
 
@@ -61,25 +65,7 @@ top of the page.
 > properties of the application, and a corresponding editable Environment has to be present in the
 > application.
 
-## <a id="log-levels-page"></a> Log Levels page
-
-To access the **Log Levels** page, select the **Log Levels** option from the
-**Information Category** drop-down menu.
-
-The log levels page provides access to the application’s loggers and the configuration of their
-levels. You can:
-
-- Configure the log levels, such as INFO, DEBUG, and TRACE in real time from the UI.
-- Search for a package and edit its respective log level.
-- Configure the log levels at a specific class and package.
-- Deactivate all the log levels by modifying the log level of root logger to OFF.
-
-The UI on the Log Levels page includes the following features:
-
-- Toggle **Changes Only** to display the changed log levels.
-- The search feature allows you to search by logger name.
-- **Reset** resets the log levels to the original state.
-- **Reset All** on the top-right corner of the page resets all the loggers to the default state.
+![Environment Page in UI](images/environment-steeltoe.png)
 
 ## <a id="threads-page"></a> Threads page
 
@@ -95,6 +81,10 @@ trace.
 - To view more thread details, click the Thread ID.
 - The page also has a feature to download thread dump for analysis.
 
+![Threads Page in UI](images/threads-page-steeltoe-1.png)
+
+![Threads Page in UI](images/threads-page-steeltoe-2.png)
+
 ## <a id="memory-page"></a> Memory page
 
 To access the **Memory** page, select the **Memory** option from the **Information Category**
@@ -103,6 +93,8 @@ drop-down menu.
 This page displays all details related to used and committed memory of the application.
 This also displays the garbage collection count by generation (gen0/gen1).
 The page also has a feature to download heap dump for analysis.
+
+![Memory Page in UI](images/memory-page-steeltoe.png)
 
 ## <a id="metrics-page"></a> Metrics page
 
@@ -124,12 +116,16 @@ The UI on the Metrics page includes the features that allow you to:
 - Change the format of the metric value according to your needs.
 - Delete a particular metric by clicking the minus symbol in the same row.
 
+![Metrics Page in UI](images/metrics-steeltoe.png)
+
 ## <a id="actuator-page"></a> Actuator page
 
 To access the **Actuator** page, select the **Actuator** option from the
 **Information Category** drop-down menu.
 The actuator page provides a tree view of the actuator data.
 You can choose from a list of actuator endpoints and parse through the raw actuator data.
+
+![Actuator Page in UI](images/actuator-steeltoe.png)
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
