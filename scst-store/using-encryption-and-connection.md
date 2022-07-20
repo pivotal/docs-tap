@@ -130,7 +130,7 @@ To use `NodePort`, you must obtain the CA certificate by using the following ins
 - [Configure port forwarding](#config-pf)
 - [Modify your `/etc/hosts` file for Node Port](#mod-etchost-node-port)
 
->**Note:** NodePort only recommended when (1) the cluster does not support ingress, (2) the cluster does not support `LoadBalancer` type to services.  `NodePort` is not supported for a multi-cluster set up, as certificates cannot be modified (i.e., Metadata Store does not currently support a BYO-certificate)
+#### <a id='mod-et
 
 To use `NodePort`, you must obtain the CA certificate by following the instructions in [Without `Ingress`](#no-ingress),
 then [Modify your `/etc/hosts` file for Node Port](#mod-etchost-node-port).
