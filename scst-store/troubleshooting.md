@@ -10,7 +10,7 @@ When attempting to look up CVE and affected packages, querying `insight source g
 
 ### <a id='source-scan-no-cves-solution'></a>Solution
 
-You may have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM).
+You may have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM). See [Query vulnerabilities, images, and packages](https://github.com/pivotal/docs-tap/blob/main/cli-plugins/insight/query-data.md#example-2-what-packages--cves-does-my-source-code-contain).
 
 ## Persistent volume retains data
 
