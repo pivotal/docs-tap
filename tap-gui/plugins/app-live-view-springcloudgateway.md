@@ -12,6 +12,8 @@ The API success rate page displays the total successes, average response time, a
 time for the gateway routes.
 It also displays the details of each successful route path.
 
+![API Success Rate Page in UI](images/api-success-rate.png)
+
 ## <a id="api-overview-page"></a> API Overview page
 
 To access the API Overview page, select the **API Overview** option from the
@@ -22,6 +24,8 @@ requests.
 It also provides an **auto refresh** feature to get the updated results.
 These metrics are depicted in a line graph.
 
+![API Overview Page in UI](images/api-overview.png)
+
 ## <a id="api-auth-by-path-page"></a> API Authentications By Path page
 
 To access the API Authentications By Path page, select the **API Authentications By Path**
@@ -30,6 +34,8 @@ option from the **Information Category** drop-down menu.
 The API Authentications By Path page displays the total requests, number of successes, and forbidden
 and unsuccessful authentications grouped by the HTTP method and gateway route path.
 The page also displays the success rate for each of the routes.
+
+![API Authentications By Path Page in UI](images/api-authentications-by-path.png)
 
 > **Note:** In addition to the preceding three pages, the Spring Boot actuator pages are
 > also displayed.
