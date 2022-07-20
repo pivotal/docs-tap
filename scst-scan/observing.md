@@ -19,7 +19,6 @@ Run these commands to get more logs and details about the errors around scanning
 
 ####  <a id="debugging-scan-pods"></a> Debugging Scan pods
 
-####  <a id="debugging-scan-pods"></a> **Debugging Scan Pods**
 Run the following to get error logs from a pod when scan pods are in a failing state:
 
 ```console
@@ -160,12 +159,12 @@ configurations to disable the Store:
     ns_for_export_app_cert: "<DEV-NAMESPACE>"
   ```
 
-  However, if the earlier tap-values.yaml doesn't work, include:
-
+  However, if the above doesn't work, try the following:
   ```yaml
   metadata_store:
     ns_for_export_app_cert: "*"
   ```
+  **Note**: This may not align with security best practices.
 
 #### <a id="reporting-wrong-blob-url"></a> Blob Source Scan is reporting wrong source URL
 
