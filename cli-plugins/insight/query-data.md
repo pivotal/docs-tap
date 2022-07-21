@@ -6,9 +6,9 @@ This topic describes how to query the database to understand vulnerability, imag
 
 The following are a few use cases supported by the CLI:
 
-+  What packages and CVEs exist in a particular image? (`image`)
-+  What packages and CVEs exist in my source code? (`source`)
-+  What dependencies are affected by a specific CVE? (`vulnerabilities`)
+-  What packages and CVEs exist in a particular image? (`image`)
+-  What packages and CVEs exist in my source code? (`source`)
+-  What dependencies are affected by a specific CVE? (`vulnerabilities`)
 
 ## <a id='query-insight'></a> Query using the Tanzu Insight CLI plug-in
 
@@ -16,12 +16,12 @@ The following are a few use cases supported by the CLI:
 
 There are four commands for querying and adding data.
 
-+ `image` - [Post an image SBOM](add-data.md) or query images for packages and vulnerabilities.
-+ `package` - Query packages for vulnerabilities or by image or source code.
-+ `source` - [Post a source code SBOM](add-data.md) or query source code for packages and vulnerabilties.
-+ `vulnerabilities` - Query vulnerabilities by image, package, or source code.
+- `image` - [Post an image SBOM](add-data.md) or query images for packages and vulnerabilities.
+- `package` - Query packages for vulnerabilities or by image or source code.
+- `source` - [Post a source code SBOM](add-data.md) or query source code for packages and vulnerabilties.
+- `vulnerabilities` - Query vulnerabilities by image, package, or source code.
 
-Use `tanzu insight -h` or see [Tanzu Insight Details](cli-docs/insight.md) for more information.
+Use `tanzu insight -h` or for more information see [Tanzu Insight Details](cli-docs/insight.md).
 
 ## <a id='example1'></a>Example #1: What packages & CVEs does a specific image contain?
 
@@ -59,7 +59,7 @@ Packages:
 
 ### Determining source code org, repo, and commit SHA
 
-In order to query a source scan for vulnerabilities, you will need git org and git repo, or the commit SHA.  Find these by examining the source scan resource.
+In order to query a source scan for vulnerabilities, you need a Git org and Git repository, or the commit SHA.  Find these by examining the source scan resource.
 
 Run:
 
@@ -83,10 +83,10 @@ Spec:
     URL:          http://source-controller.flux-system.svc.cluster.local./gitrepository/my-apps/tanzu-java-web-app-gitops/c7e4c27ba43250a4b7c46f030355c108aa73cc39.tar.gz
 ```
 
-In the above example, the URL is parsed and split into the org and repo. Revision will be parsed as the commit SHA.
+In the earlier example, the URL is parsed and split into the org and repo. Revision is parsed as the commit SHA.
 
-* Org will be parsed as `gitrepository`
-* Repo will be parsed as `my-apps/tanzu-java-web-app-gitops/c7e4c27ba43250a4b7c46f030355c108aa73cc39.tar.gz`
+* Org is parsed as `gitrepository`
+* Repo is parsed as `my-apps/tanzu-java-web-app-gitops/c7e4c27ba43250a4b7c46f030355c108aa73cc39.tar.gz`
 * Commit SHA is parsed as `master/c7e4c27ba43250a4b7c46f030355c108aa73cc39`
 
 Use this information to perform your search.
@@ -181,4 +181,4 @@ Packages:
 
 ## <a id='add-data'></a>Add data
 
-See [Add Data](add-data.md) for more information about manually adding data.
+For more information about manually adding data see [Add Data](add-data.md).
