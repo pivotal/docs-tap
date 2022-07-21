@@ -18,7 +18,7 @@ Do one of the following actions to access the Runtime Resources Visibility plug-
 In order to view your applications on Tanzu Application Platform GUI, use the following steps:
 
 1. [Deploy your first application on the Tanzu Application Platform](../../getting-started/deploy-first-app.md)
-1. [Add your application to Tanzu Application Platform GUI Software Catalog](../../getting-started-deploy-first-app.html#add-app-to-gui-cat)
+1. [Add your application to Tanzu Application Platform GUI Software Catalog](../../getting-started/deploy-first-app.html#add-app-to-gui-cat)
 
 ## <a id="nav-rr-vis-screen"></a> Navigate to the **Runtime Resources Visibility** screen
 
