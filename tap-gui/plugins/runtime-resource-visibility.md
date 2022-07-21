@@ -2,12 +2,10 @@
 
 This topic describes runtime resources visibility.
 
-
 ## <a id="Introduction"></a> Introduction
 
 Runtime Resources Visibility plug-in part of Tanzu Application Platform GUI allows users to
 visualize their Kubernetes resources associated with their Workloads.
-
 
 ## <a id="prerequisite"></a> Prerequisite
 
@@ -15,14 +13,12 @@ In order to access the Runtime Resources Visibility plug-in, you must first have
 [installed Tanzu Application Platform](../../install-intro.md), which includes
 Tanzu Application Platform GUI.
 
-
 ## <a id="Visualize-app"></a> Visualize Workloads on Tanzu Application Platform GUI
 
 In order to view your applications on Tanzu Application Platform GUI, use the following steps:
 
 1. [Deploy your first application on the Tanzu Application Platform](../../getting-started/deploy-first-app.md)
-2. [Add your application to Tanzu Application Platform GUI Software Catalog](../../getting-started.html#add-app-to-gui-cat)
-
+2. [Add your application to Tanzu Application Platform GUI Software Catalog](../../getting-started-deploy-first-app.html#add-app-to-gui-cat)
 
 ## <a id="nav-rr-vis-screen"></a> Navigate to the **Runtime Resources Visibility** screen
 
@@ -35,10 +31,9 @@ To view the list of your running resources:
 
    ![Screenshot of selecting component on runtime resources index table](images/runtime-resources-components.png)
 
-2. Select the **Runtime Resources** tab.
+1. Select the **Runtime Resources** tab.
 
    ![Screenshot of selecting Runtime resources tab](images/runtime-resources-index.png)
-
 
 ### <a id="resources-included"></a> Resources
 
@@ -63,7 +58,6 @@ resources even further down the chain.
 
 ![Ownership card. CRDs from Supply Chain have yellow arrows. Knative Resources have orange arrows. Built-in resources have red arrows.](images/runtime-resources-crd-hierarchy.png)
 
-
 ## <a id="knative-service-details"></a> Knative service details page
 
 To view details about your Knative services, select any resource that has a Knative Service type.
@@ -77,12 +71,10 @@ In this page, additional information is available for Knative resources, includi
 
 ![Screenshot of Java web app deployment page](images/runtime-resources-knative-service-details.png)
 
-
 ## <a id="detail-pages"></a> Detail pages
 
 The Runtime Resources Visibility plug-in provides additional details of the Kubernetes resources in
 the Detail pages.
-
 
 ### <a id="overview-card"></a> Overview card
 
@@ -103,7 +95,6 @@ The following are some attributes that are displayed in the overview card:
 >**Note:** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
 applications supporting Application Live View.
 
-
 ### <a id="status-card"></a>Status card
 
 The status section displays all of the conditions in the resource's attribute `status.conditions`.
@@ -113,7 +104,6 @@ For more information about object `spec` and `status`, see the
 [Kubernetes documentation](https://kubernetes.io/docs/concepts/_print/#object-spec-and-status).
 
 ![Screenshot of condition types and status conditions](images/runtime-resources-status.png)
-
 
 ### <a id="ownership-card"></a>Ownership card
 
@@ -125,13 +115,11 @@ For more information about owners and dependents, see the
 
 ![Screenshot of metadata owner references](images/runtime-resources-ownership.png)
 
-
 ### <a id="annotations"></a>Annotations and Labels
 
 The Annotations and Labels card displays information about `metadata.annotations` and `metadata.labels`.
 
 ![Screenshot of Annotations and Labels sections](images/runtime-resources-annotations.png)
-
 
 ## <a id="select-supply-chain-pods"></a>Selecting completed supply chain pods
 
@@ -142,13 +130,11 @@ This drop-down menu is only visible if the resources include Build or ConfigWrit
 
 ![Screenshot of completed supply chain pods information. The Show Additional Resources dropdown menu is expanded.](images/runtime-resources-supply-chain-pods.png)
 
-
 ## <a id="navigating-to-pods"></a>Navigating to the Pod Details page
 
 Users can see the pod table in each resource details page.
 
 ![Screenshot of object detail table listing pod](images/runtime-resources-pods.png)
-
 
 ### <a id="pod-details-metrics"></a> Understanding pod metrics
 
@@ -179,14 +165,12 @@ These limits apply only for Memory and CPU that a pod or container can use.
 Kubernetes manages these resource units by using a binary base, which is explained in the
 [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/quantity/).
 
-
 ## <a id="pod-details"></a>Navigating to Application Live View
 
 To view additional information about your running applications, see the
 [Application Live View](app-live-view-springboot.md) section in the Pod Details page.
 
 ![Screenshot of Tanzu Java web app runtime resource detail page](images/runtime-resources-pod-details.png)
-
 
 ## <a id="viewing-pod-logs"></a>Viewing pod logs
 
@@ -198,12 +182,10 @@ By default, you see all the logs for the pod since its creation for all the pod'
 
 ![Screenshot of Pod Logs page, which displays information for Tanzu Java Web App](images/runtime-resources-pod-logs.png)
 
-
 ### <a id="filter-by-container"></a>Filtering by container
 
 To display logs for a specific container only, select the desired container from the **Container**
 drop-down menu. Clearing this drop-down menu causes logs for all containers within the pod to appear.
-
 
 ### <a id="filter-by-date-and-time"></a>Filtering by date and time
 
@@ -211,7 +193,6 @@ To see all logs since a specific date and time, select or type the UTC timestamp
 **Since date** field.
 If no logs are displayed, try adjusting the timestamp to an earlier time.
 Clear this field to see all logs created since the pod was created.
-
 
 ### <a id="changing-log-levels"></a>Changing log levels
 
@@ -233,5 +214,5 @@ After refreshing, if no log entries for the expected levels appear, ensure that:
 
 1. You adjusted the correct application loggers
 1. You are viewing logs for the correct container and time frame
-1. Your application is producing logs at the expected levels. Your application might be
-idling or otherwise not running a code path that invokes the desired logger.
+1. Your application is producing logs at the expected levels. Your application might be idling or
+otherwise not running a code path that invokes the desired logger.
