@@ -4,6 +4,7 @@ This is the table of contents from which the Tanzu Application Platform Document
 docs.vmware.com is built.
 
 - [Tanzu Application Platform v1.2](overview.md)
+  - [About Tanzu Application Platform components and profiles](about-package-profiles.md)
 - [Release notes](release-notes.md)
 - [Installing Tanzu Application Platform](install-intro.md)
   - [Installation overview](install-intro.md)
@@ -22,7 +23,6 @@ docs.vmware.com is built.
   - [Migrating Profiles in Tanzu Application Platform](migrate-profile.md)
   - [Upgrading Tanzu Application Platform](upgrading.md)
   - [Opting out of telemetry collection](opting-out-telemetry.md)
-- [About Tanzu Application Platform components and profiles](about-package-profiles.md)
 - [Getting started with Tanzu Application Platform](getting-started.md)
   - [Prerequisites](getting-started.md)
   - [How-to guides for developers](getting-started/deploy-first-app.md)
