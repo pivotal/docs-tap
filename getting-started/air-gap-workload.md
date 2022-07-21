@@ -13,17 +13,51 @@ For information about installing Tanzu Application Platform in an air-gapped env
 
 ## Create a workload from Git
 
-To create a workload from Git through https, create a secret in your developer namespace with the caFile that matches the gitops_ssh_secret name in tap_values:
+To create a workload from Git through https, follow these steps:
 
-```console
-kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
-```
+1. Create a secret in your developer namespace with the caFile that matches the gitops_ssh_secret name in tap_values:
 
-If you would like to pass in a custom settings.xml for Java, create a file called settings-xml.yaml similar to the sample [settings-xml.yaml](https://gitlab.eng.vmware.com/tanzu-compliance/tap-airgapped/-/blob/main/service-bindings/settings-xml.yaml) on GitLab. To apply the file:
+    ```console
+    kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
+    ```
 
-```console
-kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
-```
+2. If you would like to pass in a custom settings.xml for Java, create a file called settings-xml.yaml similar to the following example:
+
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: settings-xml
+   type: service.binding/maven
+   stringData:
+     type: maven
+     provider: sample
+     settings.xml: |
+       <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 https://maven.apache.org/xsd/settings-1.0.0.xsd">
+           <mirrors>
+               <mirror>
+                   <id>reposilite</id>
+                   <name>Tanzu seal Internal Repo</name>
+                   <url>https://reposilite.tap-trust.cf-app.com/releases</url>
+                   <mirrorOf>*</mirrorOf>
+               </mirror>
+           </mirrors>
+           <servers>
+                <server>
+                   <id>reposilite</id>
+                   <username>USERNAME</username>
+                   <password>PASSWORD</password>
+                </server>
+           </servers>
+       </settings>
+   ```
+
+3. Apply the file:
+
+   ```console
+   kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
+   ```
 
 ## Create a basic supply chain workload
 
