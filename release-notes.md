@@ -35,12 +35,13 @@ occurs during scanning, the Scan Phase field is not updated to `Error` and remai
 #### <a id="1-0-3-known-issues-scst-scan"></a>Supply Chain Security Tools - Scan
 
 **Blob Source Scan is reporting wrong source URL:**
-- When running a Source Scan of a blob compressed file, it looks for a `.git` directory present in the files to extract information that is usefull for the report sent to the Supply Chain Security Tools - Store deployment.
+- When running a Source Scan of a blob compressed file, Supply Chain Security Tools - Scan looks for a `.git` directory present in the files to extract information that is useful for the report sent to the Supply Chain Security Tools - Store deployment.
 
-- Workaround - There are a few workarounds you can try to fix this issue: 
-  1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Please upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
-  2. Configure your SourceScan (or Workload) to connect via HTTPS to the repository instead of using SSH.
-  3. Edit the FluxCD GitRepository resource to don't include the `.git` folder 
+- Workaround - The following workarounds fix this issue: 
+
+  1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
+  1. Configure your SourceScan or Workload to connect to the repository by using HTTPS instead of using SSH.
+  1. Edit the FluxCD GitRepository resource to not include the `.git` directory.
 
 ### <a id='1-0-3-resolved-issues'></a> Resolved issues
 
