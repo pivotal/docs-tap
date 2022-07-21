@@ -165,7 +165,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
 
-## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.2
+## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.3
 
 You can deploy Tanzu Application Platform through predefined profiles, each containing various packages, or you can install  packages individually. The profiles are designed to allow the Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customer use cases, but serve as a starting point to allow for further customization.
 
