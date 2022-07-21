@@ -399,6 +399,7 @@ docs.vmware.com is built.
           - [Enabling authorization on remote clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac.md)
           - [Enabling authorization on remote EKS clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac-eks.md)
           - [Enabling authorization on remote GKE clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac-gke.md)
+          - [Viewing runtime resources on authorization-enabled clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-view-resources-rbac.md)
           - [Assigning roles and permissions on Kubernetes clusters](tap-gui/tap-gui-rbac/assigning-kubernetes-roles.md)
       - [Integrations](tap-gui/integrations.md)
       - [Database configuration](tap-gui/database.md)
