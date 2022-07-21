@@ -2,23 +2,23 @@
 
 This topic describes runtime resources visibility.
 
-## <a id="Introduction"></a> Introduction
-
-Runtime Resources Visibility plug-in part of Tanzu Application Platform GUI allows users to
-visualize their Kubernetes resources associated with their Workloads.
+The Runtime Resources Visibility plug-in enables users to visualize their Kubernetes resources
+associated with their workloads.
 
 ## <a id="prerequisite"></a> Prerequisite
 
-In order to access the Runtime Resources Visibility plug-in, you must first have successfully
-[installed Tanzu Application Platform](../../install-intro.md), which includes
-Tanzu Application Platform GUI.
+Do one of the following actions to access the Runtime Resources Visibility plug-in:
+
+- [Install the Tanzu Application Platform Full or View profile](../../install-intro.md)
+- [Install Tanzu Application Platform without using a profile](../../install-intro.md) and then install
+[Tanzu Application Platform GUI separately](../install-tap-gui.md).
 
 ## <a id="Visualize-app"></a> Visualize Workloads on Tanzu Application Platform GUI
 
 In order to view your applications on Tanzu Application Platform GUI, use the following steps:
 
 1. [Deploy your first application on the Tanzu Application Platform](../../getting-started/deploy-first-app.md)
-2. [Add your application to Tanzu Application Platform GUI Software Catalog](../../getting-started-deploy-first-app.html#add-app-to-gui-cat)
+1. [Add your application to Tanzu Application Platform GUI Software Catalog](../../getting-started-deploy-first-app.html#add-app-to-gui-cat)
 
 ## <a id="nav-rr-vis-screen"></a> Navigate to the **Runtime Resources Visibility** screen
 
@@ -69,7 +69,7 @@ In this page, additional information is available for Knative resources, includi
 - revisions
 - pod details
 
-![Screenshot of Java web app deployment page](images/runtime-resources-knative-service-details.png)
+![Screenshot of the Java web app deployment page](images/runtime-resources-knative-service-details.png)
 
 ## <a id="detail-pages"></a> Detail pages
 
@@ -90,7 +90,7 @@ The following are some attributes that are displayed in the overview card:
 - Namespace
 - Cluster
 
-![Screenshot of Tanzu web app default URL](images/runtime-resources-overview.png)
+![Screenshot of the Tanzu web app default URL](images/runtime-resources-overview.png)
 
 >**Note:** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
 applications supporting Application Live View.
@@ -113,7 +113,7 @@ specified in `metadata.ownerReferences`. You can use this section to navigate be
 For more information about owners and dependents, see the
 [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/).
 
-![Screenshot of metadata owner references](images/runtime-resources-ownership.png)
+![Screenshot of the metadata owner references](images/runtime-resources-ownership.png)
 
 ### <a id="annotations"></a>Annotations and Labels
 
@@ -136,7 +136,7 @@ Users can see the pod table in each resource details page.
 
 ![Screenshot of object detail table listing pod](images/runtime-resources-pods.png)
 
-### <a id="pod-details-metrics"></a> Understanding pod metrics
+### <a id="pod-details-metrics"></a> Overview of pod metrics
 
 The overview card displays the user-configured resource limits on the pod, defined in accordance with
 the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/).
@@ -168,13 +168,13 @@ Kubernetes manages these resource units by using a binary base, which is explain
 ## <a id="pod-details"></a>Navigating to Application Live View
 
 To view additional information about your running applications, see the
-[Application Live View](app-live-view-springboot.md) section in the Pod Details page.
+[Application Live View](app-live-view-springboot.md) section in the **Pod Details** page.
 
 ![Screenshot of Tanzu Java web app runtime resource detail page](images/runtime-resources-pod-details.png)
 
 ## <a id="viewing-pod-logs"></a>Viewing pod logs
 
-To view logs for a pod, click **View Pod Logs** from the Pod Details page.
+To view logs for a pod, click **View Pod Logs** from the **Pod Details** page.
 By default, you see all the logs for the pod since its creation for all the pod's containers.
 
 > **Note:** The logs displayed are not streamed in real time. To fetch new log entries, click
@@ -185,14 +185,14 @@ By default, you see all the logs for the pod since its creation for all the pod'
 ### <a id="filter-by-container"></a>Filtering by container
 
 To display logs for a specific container only, select the desired container from the **Container**
-drop-down menu. Clearing this drop-down menu causes logs for all containers within the pod to appear.
+drop-down menu. Deselecting this drop-down menu causes logs for all containers within the pod to appear.
 
 ### <a id="filter-by-date-and-time"></a>Filtering by date and time
 
 To see all logs since a specific date and time, select or type the UTC timestamp in the
 **Since date** field.
-If no logs are displayed, try adjusting the timestamp to an earlier time.
-Clear this field to see all logs created since the pod was created.
+If no logs are displayed, adjust the timestamp to an earlier time.
+Deselect this field to see all logs created since the pod was created.
 
 ### <a id="changing-log-levels"></a>Changing log levels
 
@@ -215,4 +215,4 @@ After refreshing, if no log entries for the expected levels appear, ensure that:
 1. You adjusted the correct application loggers
 1. You are viewing logs for the correct container and time frame
 1. Your application is producing logs at the expected levels. Your application might be idling or
-otherwise not running a code path that invokes the desired logger.
+otherwise not running a code path that starts the desired logger.
