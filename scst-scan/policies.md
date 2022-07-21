@@ -83,12 +83,12 @@ kind: ScanPolicy
 metadata:
   name: scanpolicy-sample
   annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=component-a'
+    'app.kubernetes.io/part-of': 'component-a'
 spec:
   regoFile: |
     ...
 ```
->**Note:** After the `part-of=` in `app.kubernetes.io/part-of=component-a`, it can be anything. The Tanzu Application Platform GUI is looking for the existence of the `part-of` prefix string and doesn't match for anything else specific.
+>**Note:** The value for the annotation can be anything. The Tanzu Application Platform GUI is looking for the existence of the `part-of` prefix string and doesn't match for anything else specific.
 
 ## <a id="deprecated-rego-file"></a> Deprecated Rego file Definition
 
