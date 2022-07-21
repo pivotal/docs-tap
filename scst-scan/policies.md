@@ -42,19 +42,25 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
         } else = false { true }
 
         isSafe(match) {
-          fails := contains(notAllowedSeverities, match.ratings.rating[_])
+          severities := { e | e := match.ratings.rating.severity } | { e | e := match.ratings.rating[_].severity }
+          some i
+          fails := contains(notAllowedSeverities, severities[i])
           not fails
         }
 
         isSafe(match) {
-          ignore := contains(ignoreCves, match.Id)
+          ignore := contains(ignoreCves, match.id)
           ignore
         }
 
         deny[msg] {
-          comp := input.bom.components.component[_]
-          vuln := comp.vulnerabilities.vulnerability[_]
-          ratings := vuln.ratings.rating[_]
+          comps := { e | e := input.bom.components.component } | { e | e := input.bom.components.component[_] }
+          some i
+          comp := comps[i]
+          vulns := { e | e := comp.vulnerabilities.vulnerability } | { e | e := comp.vulnerabilities.vulnerability[_] }
+          some j
+          vuln := vulns[j]
+          ratings := { e | e := vuln.ratings.rating.severity } | { e | e := vuln.ratings.rating[_].severity }
           not isSafe(vuln)
           msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
         }
@@ -76,13 +82,13 @@ apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: scanpolicy-sample
-  annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=component-a'
+  labels:
+    'app.kubernetes.io/part-of': 'component-a'
 spec:
   regoFile: |
     ...
 ```
->**Note:** After the `part-of=` in `app.kubernetes.io/part-of=component-a`, it can be anything. The Tanzu Application Platform GUI is looking for the existence of the `part-of` prefix string and doesn't match for anything else specific.
+>**Note:** The value for the label can be anything. The Tanzu Application Platform GUI is looking for the existence of the `part-of` prefix string and doesn't match for anything else specific.
 
 ## <a id="deprecated-rego-file"></a> Deprecated Rego file Definition
 
