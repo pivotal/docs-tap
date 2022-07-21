@@ -451,7 +451,7 @@ GitHub.
     ```
 ## <a id='unbound-tasks'></a> Unbound number of TaskRuns in pull-request based GitOps
 
-> **Note**: This workaround only applies to Tanzu Application Platform 1.2.0. A fix is included for TAP 1.2.1 and later. It affects only  installations that use [pull requests](scc/gitops-vs-regops.md) to configuration promotion.
+> **Note**: This workaround only applies to Tanzu Application Platform 1.2.0. A fix is included for TAP 1.2.1 and later. It affects only  installations that use [pull requests](../scc/gitops-vs-regops.md) to configuration promotion.
 
 In TAP 1.2.0, a bug is introduced that causes unbound number of Tekton TaskRun objects.
 
