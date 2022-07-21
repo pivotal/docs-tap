@@ -125,52 +125,58 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
   Create the `verify-upgrade.yaml` file in your system with the following content:
 
-  ```yaml
-  ---
-  apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-  kind: ScanPolicy
-  metadata:
-    name: scanpolicy-sample
-  spec:
-    regoFile: |
-      package main
+    ```yaml
+    ---
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+    kind: ScanPolicy
+    metadata:
+      name: scanpolicy-sample
+    spec:
+      regoFile: |
+        package main
 
-      # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-      notAllowedSeverities := ["Critical", "High"]
-      ignoreCves := []
+        # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+        notAllowedSeverities := ["Critical", "High"]
+        ignoreCves := []
 
-      contains(array, elem) = true {
-        array[_] = elem
-      } else = false { true }
+        contains(array, elem) = true {
+          array[_] = elem
+        } else = false { true }
 
-      isSafe(match) {
-        fails := contains(notAllowedSeverities, match.ratings.rating[_])
-        not fails
-      }
+        isSafe(match) {
+          severities := { e | e := match.ratings.rating.severity } | { e | e := match.ratings.rating[_].severity }
+          some i
+          fails := contains(notAllowedSeverities, severities[i])
+          not fails
+        }
 
-      isSafe(match) {
-        ignore := contains(ignoreCves, match.Id)
-        ignore
-      }
+        isSafe(match) {
+          ignore := contains(ignoreCves, match.id)
+          ignore
+        }
 
-      deny[msg] {
-        comp := input.bom.components.component[_]
-        vuln := comp.vulnerabilities.vulnerability[_]
-        ratings := vuln.ratings.rating[_]
-        not isSafe(vuln)
-        msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
-      }
-  ---
-  apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-  kind: ImageScan
-  metadata:
-    name: sample-public-image-scan
-  spec:
-    registry:
-      image: "nginx:1.16"
-    scanTemplate: public-image-scan-template
-    scanPolicy: scanpolicy-sample
-  ```
+        deny[msg] {
+          comps := { e | e := input.bom.components.component } | { e | e := input.bom.components.component[_] }
+          some i
+          comp := comps[i]
+          vulns := { e | e := comp.vulnerabilities.vulnerability } | { e | e := comp.vulnerabilities.vulnerability[_] }
+          some j
+          vuln := vulns[j]
+          ratings := { e | e := vuln.ratings.rating.severity } | { e | e := vuln.ratings.rating[_].severity }
+          not isSafe(vuln)
+          msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
+        }
+    ---
+    apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+    kind: ImageScan
+    metadata:
+      name: sample-public-image-scan
+    spec:
+      registry:
+        image: "nginx:1.16"
+      scanTemplate: public-image-scan-template
+      scanPolicy: scanpolicy-sample
+    ```
 
   Deploy the resources
 
