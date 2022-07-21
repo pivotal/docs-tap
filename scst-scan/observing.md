@@ -82,19 +82,19 @@ configurations to disable the Store:
 Supply Chain Security Tools - Scan intermittently sets the phase of a scan to `Error` with the message `unable to decode cyclonedx`. To resolve this issue:
 
 * If you’re applying the scan manually, you can delete the failed scan job and re-apply with `kubectl apply -f PATH-TO-IMAGESCAN-OR-SOURCESCAN -n DEV-NAMESPACE` to retrigger the scan.
-* If this problem happened while running an out-of-the-box TAP Supply Chain, you can run `kubectl get imagescans -n WORKLOAD-NAMESPACE` or `kubectl get sourcescans -n WORKLOAD-NAMESPACE` to get the scan name, and then delete it by running `kubectl delete IMAGESCAN-OR-SOURCESCAN SCAN-NAME -n WORKLOAD-NAMESPACE`. The Choreographer controller then recreates it for you.
+* If this happens while running an out of the box Tanzu Application Platform Supply Chain, run `kubectl get imagescans -n WORKLOAD-NAMESPACE` or `kubectl get sourcescans -n WORKLOAD-NAMESPACE` to get the scan name. Delete the failed scan by running `kubectl delete IMAGESCAN-OR-SOURCESCAN SCAN-NAME -n WORKLOAD-NAMESPACE`. The Choreographer controller then recreates the scan.
 
-### <a id="reporting-wrong-blob-url"></a> **Blob Source Scan is reporting wrong source URL**
+### <a id="reporting-wrong-blob-url"></a> Blob Source Scan is reporting wrong source URL
 
-  A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote ssh URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message. 
+  A Source Scan for a blob artifact can result in reporting the `status.artifact` and `status.compliantArtifact` for the wrong URL for the resource. This passes the remote SSH URL instead of the cluster local fluxcd URL. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message. 
 
-  You can confirm you're having this problem running a `kubectl describe` in the affected resource and compare the `spec.blob.url` value against the `status.artifact.blob.url` and see they're different URLs. For example:
+  You can confirm you're having this problem running a `kubectl describe` in the affected resource and compare the `spec.blob.url` value against the `status.artifact.blob.url`. For example:
 
   ```console
   kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE>
   ```
 
-  And compare the output:
+  Compare the output:
 
   ```console
   ...
@@ -114,7 +114,8 @@ Supply Chain Security Tools - Scan intermittently sets the phase of a scan to `E
         url: ssh://git@github.com:sample/repo.git
   ```
 
-  **Workaround:** There are a few workarounds you can try to fix this issue:
-    1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Please upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
-    2. Configure your SourceScan (or Workload) to connect via HTTPS to the repository instead of using SSH.
-    3. Edit the FluxCD GitRepository resource to don't include the `.git` folder 
+  **Workaround:** The following workarounds fix this issue:
+  
+    1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
+    2. Configure your SourceScan or Workload to connect to the repository by using HTTPS instead of using SSH.
+    3. Edit the FluxCD GitRepository resource to not include the `.git` directory. 
