@@ -81,7 +81,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
 5. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
 
-    The main general fields you need to define in the `values.yaml` file for the Snyk Scanner configuration. You can add some extra fields as needed to enable or disable different behaviors. You can append to this file the values you need as shown further down in this document. 
+    You must define the following fields in the `values.yaml` file for the Snyk Scanner configuration. You can add fields as needed to enable or disable behaviors. You can append the values to this file as shown later in this document. 
 
     ```yaml
     ---
@@ -100,14 +100,13 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
 
      - `SNYK-TOKEN-SECRET` is the name of the secret you created that contains the `snyk_token` to connect to the [Snyk API](https://docs.snyk.io/snyk-cli/configure-the-snyk-cli#environment-variables). This field is required.
 
+    The Snyk Scanner integration can work with or without the Supply Chain Security Tools - Store integration. The `values.yaml` file is slightly different for each configuration.
 
-    The Snyk Scanner integration can work with or without the Supply Chain Security Tools - Store integration, the `values.yaml` file is slightly different for each configuration.
-
-    **Using Supply Chain Security Tools - Store Integration:** To persist the results found by the Snyk Scanner, you can enable the Supply Chain Security Tools - Store integration by appending the next fields to the `values.yaml` file created previously. 
+    **Using Supply Chain Security Tools - Store Integration:** To persist the results found by the Snyk Scanner, you can enable the Supply Chain Security Tools - Store integration by appending the fields to the `values.yaml` file. 
 
     The Grype and Snyk Scanner Integrations both enable the Metadata Store. To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform was installed using the Full Profile, the Grype Scanner Integration was installed, unless it was explicitly excluded.
 
-     * If the Grype Scanner Integration is installed in the same `dev-namespace` Snyk Scanner is going to be installed:
+     * If the Grype Scanner Integration is installed in the same `dev-namespace` Snyk Scanner is installed:
 
        ```yaml
        #! ...
@@ -127,7 +126,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
            importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
        ```
 
-     * If the Grype Scanner Integration is **not** installed in the same `dev-namespace` Snyk Scanner is going to be installed:
+     * If the Grype Scanner Integration is not installed in the same `dev-namespace` Snyk Scanner is installed:
 
        ```yaml
        #! ...
@@ -150,7 +149,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
            importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
        ```
 
-    **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, you need to explicitly disable the integration by appending the next fields to the `values.yaml` file created previously, since it's enabled by default: 
+    **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, explicitly disable the integration by appending the next fields to the `values.yaml` file, since it's enabled by default: 
 
     ```yaml
     # ... 
