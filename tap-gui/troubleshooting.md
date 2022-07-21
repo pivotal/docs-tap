@@ -20,7 +20,7 @@ There are a number of potential causes:
 1. Ensure you've either built your own [Backstage Compatible](http://backstage.io) catalog,
 or that you've downloaded one of the Tanzu Application Platform GUI catalogs from VMware Tanzu Network.
 Ensure you defined the catalog in the values file that you input as part of installation.
-If you need to update this location, you can change the definition file.
+To update this location, you can change the definition file.
 Change either the Tanzu Application Platform profile file if you used the profile method to install,
 or change the standalone Tanzu Application Platform GUI values file if you're only installing that package
 on its own.
@@ -88,9 +88,9 @@ method or as a standalone package installation, you don't know whether the confi
     kubectl delete pod -l app=backstage -n tap-gui
     ```
 
-> **Note:** Depending on your database configuration, deleting and re-instantiating
+> **Note:** Depending on your database configuration, deleting, and re-instantiating
 > the pod might cause the loss of user preferences and manually registered entities.
-> If you have configured an external PostgreSQL database, then `tap-gui` pods are not stateful.
+> If you have configured an external PostgreSQL database, `tap-gui` pods are not stateful.
 > In most cases, state is held in ConfigMaps, Secrets, or the database.
 > For more information, see [Configuring the Tanzu Application Platform GUI database](database.html) and
 > [Register components](catalog/catalog-operations.html#register-comp).
