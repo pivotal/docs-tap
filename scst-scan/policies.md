@@ -82,13 +82,13 @@ apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: scanpolicy-sample
-  annotations:
+  labels:
     'app.kubernetes.io/part-of': 'component-a'
 spec:
   regoFile: |
     ...
 ```
->**Note:** The value for the annotation can be anything. The Tanzu Application Platform GUI is looking for the existence of the `part-of` prefix string and doesn't match for anything else specific.
+>**Note:** The value for the label can be anything. The Tanzu Application Platform GUI is looking for the existence of the `part-of` prefix string and doesn't match for anything else specific.
 
 ## <a id="deprecated-rego-file"></a> Deprecated Rego file Definition
 
