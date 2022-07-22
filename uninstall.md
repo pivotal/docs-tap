@@ -16,7 +16,7 @@ The process for uninstalling Tanzu Application Platform is made up of four tasks
 run the following command to delete the `tap` metadata package:
 
     ```console
-    tanzu package installed delete tap -n tap-install
+    tanzu package installed delete tap --namespace tap-install
     ```
 
 - If you install any additional packages that were not in the predefined profiles, 
@@ -85,9 +85,9 @@ To delete the Tanzu Application Platform package repository:
     For example:
 
     ```console
-    $ tanzu package repository delete tanzu-application-platform-package-repository --namespace tap-install
-    - Deleting package repository 'tanzu-application-platform-package-repository'...
-     Deleted package repository 'tanzu-application-platform-package-repository' in namespace 'tap-install'
+    $ tanzu package repository delete tanzu-tap-repository --namespace tap-install
+    - Deleting package repository 'tanzu-tap-repository'...
+     Deleted package repository 'tanzu-tap-repository' in namespace 'tap-install'
     ```
 
 ## <a id='remove-tanzu-cli'></a> Remove Tanzu CLI, plug-ins, and associated files
