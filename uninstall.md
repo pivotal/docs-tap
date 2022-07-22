@@ -19,8 +19,8 @@ run the following command to delete the `tap` metadata package:
     tanzu package installed delete tap -n tap-install
     ```
 
-- If you install individual Tanzu Application Platform packages instead of using predefined profiles, 
-follow these steps to delete the installed individual packages:
+- If you install any additional packages that were not in the predefined profiles, 
+follow these steps to delete the individual packages:
 
     1. List the installed packages by running:
 
