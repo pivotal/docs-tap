@@ -298,16 +298,16 @@ To manually push changes to the cluster, run the `tilt up` command.
 
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
-**Scanning Java source code may not reveal vulnerabilities:**
-- Source Code Scanning only scans files present in the source code repository.
-No network calls are made to fetch dependencies.
+**Scanning Java source code that uses Gradle package manager may not reveal vulnerabilities:**
+- For most languages, Source Code Scanning only scans files present in the source code repository.
+Except for support added for Java projects using Maven, no network calls are made to fetch dependencies.
 For languages using dependency lock files, such as Golang and Node.js,
 Grype uses the lock files to check the dependencies for vulnerabilities.
 
-- For Java, dependency lock files are not guaranteed, so Grype uses
+- For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
 the dependencies present in the built binaries (`.jar` or `.war` files) instead.
 
-- Because VMware discourages committing binaries to source code repositories,
+- Because VMware does not encourage committing binaries to source code repositories,
 Grype fails to find vulnerabilities during a Source Scan.
 The vulnerabilities are still found during the Image Scan
 after the binaries are built and packaged as images.
