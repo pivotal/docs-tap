@@ -1,6 +1,6 @@
 # Enable authorization on remote clusters
 
-<!-- This topic is missing from toc.md because it is for TAP v1.3 and onwards only -->
+<!-- This topic is for TAP v1.3 and onwards only -->
 
 You can control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based
 on user roles and permissions for each of the visible remote clusters.
@@ -23,9 +23,9 @@ Adding access-controlled visibility for a remote cluster is similar to
 The steps are:
 
 1. Set up the OIDC provider
-1. Configure the Kubernetes cluster with the OIDC provider
-1. Configure the Tanzu Application Platform GUI to view the remote cluster
-1. Upgrade the Tanzu Application Platform GUI package
+2. Configure the Kubernetes cluster with the OIDC provider
+3. Configure the Tanzu Application Platform GUI to view the remote cluster
+4. Upgrade the Tanzu Application Platform GUI package
 
 After following these steps, you can view your runtime resources on a remote cluster in
 Tanzu Application Platform GUI.
