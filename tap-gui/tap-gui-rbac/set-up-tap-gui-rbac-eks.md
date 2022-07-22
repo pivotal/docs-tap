@@ -11,45 +11,44 @@ To add access-controlled visibility for a remote EKS cluster:
 
 After these steps are complete, you can view your runtime resources on a remote EKS cluster in
 Tanzu Application Platform GUI. For more information, see
-[View runtime resources on remote clusters](view-resouces-rbac.html).
-
+[View runtime resources on remote clusters](view-resources-rbac.md).
 
 ## <a id="set-up-oidc-provider"></a> Set up the OIDC provider
 
 You must set up the OIDC provider to enable RBAC visibility of remote EKS clusters.
 You can see the list of supported OIDC providers in
-[Setting up a Tanzu Application Platform GUI authentication provider](../auth.html).
+[Setting up a Tanzu Application Platform GUI authentication provider](../auth.md).
 
 Tanzu Application Platform GUI supports multiple OIDC providers.
 Auth0 is used here as an example.
 
 1. Log in to the Auth0 dashboard.
 1. Go to **Applications**.
-1. Create an application of the type `Single Page Web Application` named `TAP-GUI` or a name of your choice.
+1. Create an application of the type `Single Page Web Application` named `TAP-GUI` or a name of your
+choice.
 1. Click the **Settings** tab.
 1. Under **Application URIs > Allowed Callback URLs**, add
 
-    ```
+    ```console
     http://tap-gui.INGRESS-DOMAIN/api/auth/auth0/handler/frame
     ```
 
     Where `INGRESS-DOMAIN` is the domain you chose for your Tanzu Application Platform GUI in
-    [Installing the Tanzu Application Platform package and profiles](../../install.html).
+    [Installing the Tanzu Application Platform package and profiles](../../install.md.hbs).
 
 1. Click **Save Changes**.
 
 After creating an application with your OIDC provider, you receive the following credentials for setting
 up RBAC for your remote cluster:
 
-* **Domain**, which is used as `issuerURL` in the following sections
-* **Client ID**, which is used as `CLIENT-ID` in the following sections
-* **Client Secret**, which is used as `CLIENT-SECRET` in the following sections
+- **Domain**, which is used as `issuerURL` in the following sections
+- **Client ID**, which is used as `CLIENT-ID` in the following sections
+- **Client Secret**, which is used as `CLIENT-SECRET` in the following sections
 
 For more information, see [Auth0 Setup Walkthrough](https://backstage.io/docs/auth/auth0/provider) in
 the Backstage documentation.
 To configure other OIDC providers, see [Authentication in Backstage](https://backstage.io/docs/auth/)
 in the Backstage documentation.
-
 
 ## <a id="configure-cluster"></a> Configure the Kubernetes cluster with the OIDC provider
 
@@ -77,8 +76,8 @@ This content applies to EKS clusters.
     - `CLUSTER-NAME` is the cluster name for your EKS cluster as an AWS identifier
     - `AWS-REGION` is the AWS region of the EKS cluster
     - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider
-    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider. For Auth0, this is `https://${AUTH0_DOMAIN}/`.
-
+    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider. For Auth0, this
+    is `https://${AUTH0_DOMAIN}/`.
 
 1. Using `eksctl`, run:
 
@@ -86,7 +85,7 @@ This content applies to EKS clusters.
     eksctl associate identityprovider -f rbac-setup.yaml
     ```
 
-1. Verify that the association of the OIDC provider with the EKS cluster was successful by running:
+2. Verify that the association of the OIDC provider with the EKS cluster was successful by running:
 
     ```console
     eksctl get identityprovider --cluster CLUSTER-NAME
@@ -95,7 +94,6 @@ This content applies to EKS clusters.
     Where `CLUSTER-NAME` is the cluster name for your EKS cluster as an AWS identifier
 
     Verify that the output shows `ACTIVE` in the `STATUS` column.
-
 
 ## <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
 
@@ -155,11 +153,11 @@ To do so, copy this YAML content into `tap-values.yaml`:
     Where:
 
     - `CLUSTER-NAME-UNCONSTRAINED` is the cluster name of your choice for your EKS cluster
-    - `CLUSTER-URL` is the URL for the remote cluster you are connecting to Tanzu Application Platform GUI. You obtained this earlier in the procedure.
+    - `CLUSTER-URL` is the URL for the remote cluster you are connecting to
+    Tanzu Application Platform GUI. You obtained this earlier in the procedure.
 
     If there are any other clusters that you want to make visible in Tanzu Application Platform GUI,
     add their entries to `clusters` as well.
-
 
 ## <a id="upgrade-tap-gui"></a> Upgrade the Tanzu Application Platform GUI package
 

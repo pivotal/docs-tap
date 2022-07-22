@@ -5,11 +5,11 @@
 This section describes two supported options to add access-controlled visibility for a remote GKE cluster:
 
 - [Leverage an external OIDC provider](#external-oidc-provider)
-- [Leveraging Google's OIDC provider](#googles-oidc-provider)
+- [Leveraging Google's OIDC provider](#google-oidc-provider)
 
 After the authorization is enabled, you can view your runtime resources on a remote cluster in
 Tanzu Application Platform GUI. For more information, see
-[View runtime resources on remote clusters](view-resouces-rbac.html).
+[View runtime resources on remote clusters](view-resources-rbac.md).
 
 ## <a id="external-oidc-provider"></a> Leverage an external OIDC provider
 
@@ -24,7 +24,7 @@ To leverage an external OIDC provider, such as Auth0:
 
 You must set up the OIDC provider to enable RBAC visibility of remote clusters.
 You can see the list of supported OIDC providers in
-[Setting up a Tanzu Application Platform GUI authentication provider](../auth.html).
+[Setting up a Tanzu Application Platform GUI authentication provider](../auth.md).
 
 Tanzu Application Platform GUI supports multiple OIDC providers.
 Auth0 is used here as an example.
@@ -41,7 +41,7 @@ choice.
     ```
 
     Where `INGRESS-DOMAIN` is the domain you chose for your Tanzu Application Platform GUI in
-    [Installing the Tanzu Application Platform package and profiles](../../install.html).
+    [Installing the Tanzu Application Platform package and profiles](../../install.md.hbs).
 
 1. Click **Save Changes**.
 
@@ -144,7 +144,7 @@ After the new configuration file is ready, update the `tap` package:
     tanzu package installed get tap-gui -n tap-install
     ```
 
-## <a id="googles-oidc-provider"></a> Leverage Google's OIDC provider
+## <a id="google-oidc-provider"></a> Leverage Google's OIDC provider
 
 When leveraging Google's OIDC provider, fewer steps are needed to enable authorization:
 
