@@ -29,4 +29,4 @@ The steps are:
 
 After following these steps, you can view your runtime resources on a remote cluster in
 Tanzu Application Platform GUI.
-For more information, see [View runtime resources on remote clusters](view-resouces-rbac.html).
+For more information, see [View runtime resources on remote clusters](view-resources-rbac.md).
