@@ -28,7 +28,7 @@ resource configured.
 
 To configure Tanzu Build Service to sign your image builds:
 
-1. Ensure your in a Kubernetes context where you are authenticated and authorized to
+1. Ensure you are in a Kubernetes context where you are authenticated and authorized to
 create and edit Secret and Service Account resources.
 
 1. Generate a cosign keypair and store it as a Kubernetes Secret by running:
