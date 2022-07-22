@@ -3,49 +3,57 @@
 This document describes how to uninstall Tanzu Application Platform packages from the
 Tanzu Application Platform package repository.
 
-The process for uninstalling Tanzu Application Platform is made up of three tasks:
+The process for uninstalling Tanzu Application Platform is made up of four tasks:
 
-+ [Delete the Packages](#del-packages)
-+ [Delete the Tanzu Application Platform Package Repository](#del-repo)
-+ [Remove Tanzu CLI, plug-ins, and associated files](#remove-tanzu-cli)
+- [Delete the Packages](#del-packages)
+- [Delete the Tanzu Application Platform Package Repository](#del-repo)
+- [Remove Tanzu CLI, plug-ins, and associated files](#remove-tanzu-cli)
+- [Remove Cluster Essentials](#remove-ce)
 
 ## <a id='del-packages'></a> Delete the packages
 
-To delete the installed packages:
-
-1. List the installed packages by running:
-
-    ```console
-    tanzu package installed list --namespace tap-install
-    ```
-
-2. Remove a package by running:
+- If you install Tanzu Application Platform through predefined profiles, 
+run the following command to delete the `tap` metadata package:
 
     ```console
-    tanzu package installed delete PACKAGE-NAME --namespace tap-install
+    tanzu package installed delete tap -n tap-install
     ```
 
-    For example:
+- If you install individual Tanzu Application Platform packages instead of using predefined profiles, 
+follow these steps to delete the installed individual packages:
 
-    ```console
-    $ tanzu package installed delete cloud-native-runtimes --namespace tap-install
-    | Uninstalling package 'cloud-native-runtimes' from namespace 'tap-install'
-    / Getting package install for 'cloud-native-runtimes'
-    \ Deleting package install 'cloud-native-runtimes' from namespace 'tap-install'
-    \ Package uninstall status: Reconciling
-    / Package uninstall status: Deleting
-    | Deleting admin role 'cloud-native-runtimes-tap-install-cluster-role'
-    | Deleting role binding 'cloud-native-runtimes-tap-install-cluster-rolebinding'
-    | Deleting secret 'cloud-native-runtimes-tap-install-values'
-    / Deleting service account 'cloud-native-runtimes-tap-install-sa'    
+    1. List the installed packages by running:
 
-     Uninstalled package 'cloud-native-runtimes' from namespace 'tap-install'
-    ```
+        ```console
+        tanzu package installed list --namespace tap-install
+        ```
 
-    Where `PACKAGE-NAME` is the name of a package listed in step 1.
+    2. Remove a package by running:
 
-3. Repeat step 2 for each package installed.
+        ```console
+        tanzu package installed delete PACKAGE-NAME --namespace tap-install
+        ```
 
+        For example:
+
+        ```console
+        $ tanzu package installed delete cloud-native-runtimes --namespace tap-install
+        | Uninstalling package 'cloud-native-runtimes' from namespace 'tap-install'
+        / Getting package install for 'cloud-native-runtimes'
+        \ Deleting package install 'cloud-native-runtimes' from namespace 'tap-install'
+        \ Package uninstall status: Reconciling
+        / Package uninstall status: Deleting
+        | Deleting admin role 'cloud-native-runtimes-tap-install-cluster-role'
+        | Deleting role binding 'cloud-native-runtimes-tap-install-cluster-rolebinding'
+        | Deleting secret 'cloud-native-runtimes-tap-install-values'
+        / Deleting service account 'cloud-native-runtimes-tap-install-sa'    
+
+         Uninstalled package 'cloud-native-runtimes' from namespace 'tap-install'
+        ```
+
+        Where `PACKAGE-NAME` is the name of a package listed in step 1.
+
+    3. Repeat step 2 for each individual package installed.
 
 ## <a id='del-repo'></a>Delete the Tanzu Application Platform package repository
 
@@ -97,3 +105,7 @@ To completely remove the Tanzu CLI, plug-ins, and associated files, run the scri
     rm -rf ~/.cache/tanzu         # remove cached catalog.yaml
     rm -rf ~/Library/Application\ Support/tanzu-cli/* # Remove plug-ins
     ```
+
+## <a id='remove-ce'></a> Remove Cluster Essentials
+
+To completely remove Cluster Essentials, see [Cluster Essentials documentation](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html#uninstall-8)
