@@ -302,13 +302,13 @@ To opt-out of Snyk for a specific Supply Chain, reconfigure the supply chain to 
 
 -  Edit the `ootb_supply_chain_testing_scanning.scanning.image.template` value to use a scan template that does not use Snyk, such as Grype.
 
-  ```yaml
-  ootb_supply_chain_testing_scanning:
-    scanning:
-      image:
-        template: "ALTERNATIVE-SCAN-TEMPLATE"
-        policy: scan-policy
-  ```
+      ```yaml
+      ootb_supply_chain_testing_scanning:
+        scanning:
+          image:
+            template: "ALTERNATIVE-SCAN-TEMPLATE"
+            policy: snyk-scan-policy
+      ```
 
 ### <a id="opt-out-of-snyk-entirely"></a> Opt-out of Snyk Entirely
 
