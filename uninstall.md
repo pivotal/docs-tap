@@ -3,7 +3,7 @@
 This document describes how to uninstall Tanzu Application Platform packages from the
 Tanzu Application Platform package repository.
 
-The process for uninstalling Tanzu Application Platform is made up of four tasks:
+To uninstall Tanzu Application Platform, you must:
 
 - [Delete the Packages](#del-packages)
 - [Delete the Tanzu Application Platform Package Repository](#del-repo)
@@ -12,15 +12,15 @@ The process for uninstalling Tanzu Application Platform is made up of four tasks
 
 ## <a id='del-packages'></a> Delete the packages
 
-- If you install Tanzu Application Platform through predefined profiles, 
-run the following command to delete the `tap` metadata package:
+- If you installed Tanzu Application Platform through predefined profiles, 
+delete the `tap` metadata package by running:
 
     ```console
     tanzu package installed delete tap --namespace tap-install
     ```
 
-- If you install any additional packages that were not in the predefined profiles, 
-follow these steps to delete the individual packages:
+- If you installed any additional packages that were not in the predefined profiles, 
+delete the individual packages by running:
 
     1. List the installed packages by running:
 
@@ -108,4 +108,4 @@ To completely remove the Tanzu CLI, plug-ins, and associated files, run the scri
 
 ## <a id='remove-ce'></a> Remove Cluster Essentials
 
-To completely remove Cluster Essentials, see [Cluster Essentials documentation](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html#uninstall-8)
+To completely remove Cluster Essentials, see [Cluster Essentials documentation](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html#uninstall-8).
