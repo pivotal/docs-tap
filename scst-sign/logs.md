@@ -19,7 +19,7 @@ The possible log messages the webhook emits and their explanations are summarize
               An image policy is present in the cluster.
             </li>
             <li>
-              The namespace is present in the <code>verification.exclude.resouces.namespaces</code> property of the policy.
+              The namespace is present in the <code>verification.exclude.resources.namespaces</code> property of the policy.
             </li>
             <li>
               Any container images trying to get created in this namespace will not be checked for signatures.
