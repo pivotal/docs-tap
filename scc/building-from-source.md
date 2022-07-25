@@ -163,7 +163,7 @@ For example, `https://github.com/my-org/my-repo` instead of
 
 1. In the same namespace as the workload, create a Kubernetes secret object
 of type `kubernetes.io/basic-auth` with the name matching the one
-expected by the supply chain as explained in the earlier section. For example:
+expected by the supply chain. For example:
 
     ```yaml
     apiVersion: v1
@@ -241,7 +241,7 @@ example:
       - name: tap-registry
     ```
 
-To learn more about how to generate the keys and set it up with the Git server,
+For information about how to generate the keys and set up SSH with the Git server,
 see [Git Authentication's SSH section](git-auth.md#ssh).
 
 
@@ -482,9 +482,9 @@ spec:
       classifier: sources   # optional
 ```
 
-The `tanzu` CLI can be used for creating workloads that define Maven artifacts as source
+The `tanzu` CLI is used for creating workloads that define Maven artifacts as source.
 
-For example to create a workload that defines a specific version of a maven artifact as source, use:
+To create a workload that defines a specific version of a maven artifact as source, run:
 
 ```bash
 tanzu apps workload apply my-workload \
@@ -492,7 +492,7 @@ tanzu apps workload apply my-workload \
       --type web --app spring-boot-initial -y
 ```
 
-To create a workload that defines the RELEASE version of a maven artifact as source, use:
+To create a workload that defines the `RELEASE` version of a maven artifact as source, run:
 
 ```bash
 tanzu apps workload apply my-workload \
