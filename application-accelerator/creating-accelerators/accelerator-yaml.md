@@ -56,15 +56,15 @@ The list of options is passed to the UI to create input fields for each option.
 
 The following option properties are used by both the UI and the engine.
 
-- **name**:  
+- **name**:
   Each option must have a unique, camelCase name. The option value entered by a user is made
   available as a [SPeL](spel-samples.md) variable name. For example, `#deploymentType`.
 
-- **dataType**:  
+- **dataType**:
   Data types that work with the UI are `string`, `boolean`, `number`, and arrays of those,
   as in `[string]`, `[number]`, and so on. Most input types return a string, which is the default. Use Boolean values with `checkbox`.
 
-- **defaultValue**:  
+- **defaultValue**:
   This literal value pre-populates the option. Ensure its type matches the dataType.
   For example, use `["text 1", "text 2"]` for the dataType `[string]`.
   Options without a `defaultValue` can trigger a processing error if the user doesn't provide a
@@ -86,14 +86,14 @@ The following option properties are for UI purposes only.
 
 - **description**: A tooltip to accompany the input.
 
-- **inputType**:  
+- **inputType**:
     - `text`: The default input type.
     - `textarea`: Single text value with larger input that allows line breaks.
     - `checkbox`: Ideal for Boolean values or multivalue selection from choices.
     - `select`: Single-value selection from choices using a drop-down menu.
     - `radio`: Alternative single-value selection from choices using buttons.
 
-- **choices**:  
+- **choices**:
   This is a list of predefined choices. Users can select from the list in the UI.
   Choices are supported by `checkbox`, `select`, and `radio`.
   Each choice must have a `text` property for the displayed text, and a `value` property for the
@@ -102,7 +102,7 @@ The following option properties are for UI purposes only.
 
 - **required**: `true` forces users to enter a value in the UI.
 
-- **dependsOn**:  
+- **dependsOn**:
   This is a way to control visibility by specifying the `name` and optional `value` of another input
   option.
   When the other option has a matching value, or any value if no `value` is specified,
@@ -226,7 +226,7 @@ To learn the notation, see [Introduction to transforms](transform-intro.md).
 ```yaml
 engine:
   include:
-    ["**/*.md", "**/*.xml", "**/*.gradle", "**/*.java"] <!-- Change the file extension to |.html| because the doc could change to |.md.erb| or |.md.hbs| in future. -->
+    ["**/*.md", "**/*.xml", "**/*.gradle", "**/*.java"]
   exclude:
     ["**/secret/**"]
   let:
@@ -241,7 +241,7 @@ engine:
       include: ["*.gradle"]
     - condition: "#includePoms"
       include: ["pom.xml"]
-    - include: ["**/*.java", "README.md"] <!-- Change the file extension to |.html| because the doc could change to |.md.erb| or |.md.hbs| in future. -->
+    - include: ["**/*.java", "README.md"]
       chain:
         - type: ReplaceText
           substitutions:
@@ -287,7 +287,7 @@ If more than one child produces a file with the same path, the transform resolve
 file contents from the earlier child and keeping the contents from the later child.
 
 `engine.merge.chain` specifies additional transformations to apply to the set of files produced by
-this child. In the example, `ReplaceText` is only applied to Java files and `README.md`. 
+this child. In the example, `ReplaceText` is only applied to Java files and `README.md`.
 
 `engine.chain` applies transformation to all files globally. The chain has a list of child
 transformations. These transformations are applied after everything else in the same node.
