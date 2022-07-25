@@ -159,12 +159,13 @@ configurations to disable the Store:
     ns_for_export_app_cert: "<DEV-NAMESPACE>"
   ```
 
-  However, if the above doesn't work, try the following:
+  However, if the earlier tap-values.yaml doesn't work, try the following:
   ```yaml
   metadata_store:
     ns_for_export_app_cert: "*"
   ```
-  **Note**: This may not align with security best practices.
+  
+  >**Note**: This might not align with security best practices.
 
 #### <a id="reporting-wrong-blob-url"></a> Blob Source Scan is reporting wrong source URL
 
