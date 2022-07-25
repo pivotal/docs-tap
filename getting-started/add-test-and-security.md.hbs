@@ -19,9 +19,9 @@ The default Out of the Box (OOTB) Supply Chain Basic and its dependencies were i
 The following installations also provide a sample Tekton pipeline that tests your sample application.  The pipeline is configurable. Therefore, you can customize the steps to perform
 either additional testing or other tasks with Tekton Pipelines.
 
->**Important:** You can only have one Tekton pipeline per namespace. 
+>**Important:** You can only have one Tekton pipeline per namespace.
 
-## <a id="install-OOTB-test"></a>Install OOTB Supply Chain with Testing 
+## <a id="install-OOTB-test"></a>Install OOTB Supply Chain with Testing
 
 To install OOTB Supply Chain with Testing:
 
@@ -96,9 +96,9 @@ spec:
 
 The preceding YAML defines a Tekton pipeline with a single step.
 The step contained in the `steps` pulls the code from the repository indicated
-in the developers `workload` and runs the tests within the repository. The steps of the Tekton pipeline are configurable and allow the developer to add additional items needed to test their code. 
+in the developers `workload` and runs the tests within the repository. The steps of the Tekton pipeline are configurable and allow the developer to add additional items needed to test their code.
 
-There are many steps in the supply chain. In this case, the next step is an image build. Any additional steps the developer adds to the Tekton pipeline to test their code are independent of the image being built and of any subsequent steps executed in the supply chain. This independence gives the developer freedom to focus on testing their code. 
+There are many steps in the supply chain. In this case, the next step is an image build. Any additional steps the developer adds to the Tekton pipeline to test their code are independent of the image being built and of any subsequent steps executed in the supply chain. This independence gives the developer freedom to focus on testing their code.
 
 The `params` are templated by Supply Chain Choreographer.
 Additionally, Tekton pipelines require a Tekton `pipelineRun` to execute on the cluster.
@@ -264,7 +264,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
         registry:
           server: "<SERVER-NAME>"
           repository: "<REPO-NAME>"
-    ```<!-- If a placeholder, delete the angle brackets. -->
+    ```
 
 4. Update the `tap` package:
 

@@ -39,7 +39,7 @@ spring-pet-clinic-build-1-build-pod[detect] paketo-buildpacks/image-labels      
 
 ### <a id="tail-component"></a> `--component`
 
-Set the component from which the tail<!-- Missing code tags? --> command should<!-- In most cases, replace with |must|. If using |should| is unavoidable, it must be paired with information on the exceptions that |should| implies exist. --> stream the logs, the values that the flag can take depends on the final deployed pods label `app.kubernetes.io/component`, for example, `build`, `run` and `config-writer`
+Set the component from which the tail command should stream the logs, the values that the flag can take depends on the final deployed pods label `app.kubernetes.io/component`, for example, `build`, `run` and `config-writer`
 
 ```bash
 tanzu apps workload tail pet-clinic --component build

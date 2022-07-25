@@ -131,7 +131,7 @@ accelerator:
         - name: "*"
 
     - name: yet-another-fragment
-      expose:                    
+      expose:
         - name: someOption
 
         - name: someOtherOption
@@ -194,4 +194,4 @@ engine:
     type: InvokeFragment
     condition: "#deploymentType == 'workload'"
     reference: tap-initialize```
-` <!-- The opening code fence needs the language. The closing code fence needs a newline beneath it. -->``
+```

@@ -127,7 +127,7 @@ Expression evaluation errors include:
 
 - `SpelEvaluationException`, such as:
 
-    ```console <!-- DocWorks has struggled with this. Use a specific language identifier. -->
+    ```console
     Could not read response from accelerator: org.springframework.expression.spel.SpelEvaluationException: EL1007E: Property or field 'test' cannot be found on null
     ```
 
