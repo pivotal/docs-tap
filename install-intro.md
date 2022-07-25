@@ -12,7 +12,7 @@ To install Tanzu Application Platform on your Kubernetes clusters with internet 
 
 |Step|Task|Link|
 |----|----|----|
-|1.| Review the prerequisites to ensure that you have set up everything required before beginning the installation. |[Prerequisites](prerequisites.html)|
+|1.| Review the prerequisites to ensure you have met all requirements before installing. |[Prerequisites](prerequisites.html)|
 |2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI. |[Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)|
 |3.| Install Cluster Essentials for Tanzu*. |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)|
 |4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster. |[Installing the Tanzu Application Platform package and profiles](install.html)|
@@ -32,7 +32,7 @@ To install Tanzu Application Platform on your Kubernetes clusters in an air-gapp
 
 |Step|Task|Link|
 |----|----|----|
-|1.| Review the prerequisites to ensure that you have set up everything required before beginning the installation. |[Prerequisites](prerequisites.html)|
+|1.| Review the prerequisites to ensure you have met all requirements before installing. |[Prerequisites](prerequisites.html)|
 |2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI. |[Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)|
 |3.| Install Cluster Essentials for Tanzu*. |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)|
 |4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster. |[Installing Tanzu Application Platform in an air-gapped environment (beta)](install-air-gap.html)|
