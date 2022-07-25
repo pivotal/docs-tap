@@ -307,7 +307,7 @@ To opt-out of Snyk for a specific Supply Chain, reconfigure the supply chain to 
         scanning:
           image:
             template: "ALTERNATIVE-SCAN-TEMPLATE"
-            policy: scan-policy
+            policy: snyk-scan-policy
       ```
 
 ### <a id="opt-out-of-snyk-entirely"></a> Opt-out of Snyk Entirely
