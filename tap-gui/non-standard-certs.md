@@ -104,10 +104,10 @@ For instructions, see [Customizing Package Installation](../customize-package-in
                 - name: tap-gui-extra-certs
                   mountPath: /etc/tap-gui-certs
                   readOnly: true
-            volumes:
-              - name: tap-gui-extra-certs
-                secret:
-                  secretName: tap-gui-extra-certs
+          volumes:
+            - name: tap-gui-extra-certs
+              secret:
+                secretName: tap-gui-extra-certs
     ```
 
 ## <a id='next-steps'></a>Next steps
