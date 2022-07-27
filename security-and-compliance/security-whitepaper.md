@@ -373,7 +373,7 @@ resources:
 - [Kubernetes SIG Security 2020 Annual Report](https://github.com/kubernetes/community/blob/master/sig-security/annual-report-2020.md):
    Update in progress for 2021.
 
-- [Cloud native security whitepaper (2020)](https://github.com/cncf/sig-security/blob/master/security-whitepaper/CNCF_cloud-native-security-whitepaper-Nov2020.pdf):
+- [Cloud native security whitepaper (2020)](https://github.com/cncf/tag-security/blob/main/security-whitepaper/v1/CNCF_cloud-native-security-whitepaper-Nov2020.pdf):
    Update in progress for 2021.
 
 - [Cloud Native Security for your Clusters:](https://kubernetes.io/blog/2020/11/18/cloud-native-security-for-your-clusters/)
