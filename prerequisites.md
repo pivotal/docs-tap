@@ -48,6 +48,8 @@ The default host name consists of `tap-gui` and the `shared.ingress_domain` valu
 
 - Supply Chain Security Tools - Store: Similar to Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `metadata-store` and the `shared.ingress_domain` value. For example, `metadata-store.example.com`.
 
+- Application Live View - If you select the `ingressEnabled` option, allocate a corresponding fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `appliveview` and the `shared.ingress_domain` value. For example,
+`appliveview.example.com`.
 
 ### <a id='tap-gui'></a>Tanzu Application Platform GUI
 
