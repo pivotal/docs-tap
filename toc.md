@@ -36,7 +36,6 @@ docs.vmware.com is built.
       - [Consume services on Tanzu Application Platform](getting-started/consume-services.md)
       - [Deploy your first air-gapped workload (beta)](getting-started/air-gap-workload.md)
   - [Learn more about Tanzu Application Platform](getting-started/concepts.md)
-      - [Learn more overview](getting-started/concepts.md)
       - [Application Accelerator](getting-started/about-application-accelerator.md)
       - [Supply chains on Tanzu Application Platform](getting-started/about-supply-chains.md)
       - [Vulnerability scanning and metadata storage for your supply chain](getting-started/about-vulnerability-scan-store.md)
