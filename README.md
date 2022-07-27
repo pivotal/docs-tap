@@ -190,3 +190,7 @@ General information about landing pages:
 - Typically there will be a new docs publication for each minor release but not each point release. This version number become part of the URL e.g. Our first release was version `0.1` (see form section above for the current release).
 - Some products like [Tanzu Kubernetes Grid](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/index.html) publish separate release notes publications for each point release.
 - For comparison see https://docs.vmware.com/en/VMware-Tanzu-Application-Catalog/index.html
+
+## Partials
+
+For information about how we use partials, see our [Working with partials Confluence page](https://confluence.eng.vmware.com/display/MIX/Working+with+TAP+partials).
