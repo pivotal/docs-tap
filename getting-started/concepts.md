@@ -1,6 +1,6 @@
-# Concepts overview
+# Learn more about Tanzu Application Platform
 
-The articles in this section can help you understand concepts important to getting started with Tanzu Application Platform. They include:
+The articles in this section explain concepts important to getting started with Tanzu Application Platform:
 
 - [Application Accelerator](about-application-accelerator.md)
 - [Supply chains on Tanzu Application Platform](about-supply-chains.md)
