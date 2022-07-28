@@ -1,27 +1,35 @@
 # Upgrade Tanzu Application Platform GUI
 
-This page outlines the necessary considerations to take into account when upgrading Tanzu Application Platform GUI.
-
-## <a id="considerations"></a>Considerations
-
-- As part of the upgrade process, the Tanzu Application Platform updates its container with the new version. As a result, if you have installed Tanzu Application Platform GUI without the support of a backing [database](database.md), you will lose your in-memory data for any manual component registrations when the container restarts.
-- While the update is pulling the new pod from the registry, users might experience a short UI interruption and might need to re-authenticate because in-memory session data is rebuilt.
-- You need the values-file that you used when installing Tanzu Application Platform GUI.
-
+This topic describes how to upgrade Tanzu Application Platform GUI outside of a
+Tanzu Application Platform profile installation.
+If you installed Tanzu Application Platform through a profile, see
+[Upgrading Tanzu Application Platform](../upgrading.md) instead.
 
 ## <a id="upgrade-profile"></a> Upgrade via Profile
 
-If you've installed Tanzu Application Platform GUI as part of a Tanzu Application Platform Profile, you must upgrade the entire profile rather than follow these steps for an individual component.
+As part of the upgrade, Tanzu Application Platform updates its container with the new version.
 
-## <a id="upgrade-component"></a> Upgrade Tanzu Application Platform GUI Individually
+As a result, if you installed Tanzu Application Platform GUI without the support of a backing
+[database](database.md.hbs), you lose your in-memory data for any manual component registrations
+when the container restarts.
+While the update is pulling the new pod from the registry, users might experience a short UI
+interruption and might need to re-authenticate because the in-memory session data is rebuilt.
 
-To upgrade only the Upgrade Tanzu Application Platform GUI:
+## <a id="upgrade-profile"></a> Upgrade within a Tanzu Application Platform profile
 
->**Note:** These steps only apply to installing Tanzu Application Platform GUI individually as opposed to part of a profile.
+If you installed Tanzu Application Platform GUI as part of a Tanzu Application Platform profile,
+see [Upgrading Tanzu Application Platform](../upgrading.md).
+
+## <a id="upgrade-component"></a> Upgrade Tanzu Application Platform GUI individually
+
+These steps only apply to installing Tanzu Application Platform GUI individually, not as part of a
+Tanzu Application Platform profile.
+
+To upgrade Tanzu Application Platform GUI outside of a Tanzu Application Platform profile:
 
 1. Make sure your repository has access to the new version of the package:
 
-    ```bash
+    ```console
     tanzu package available list tap-gui.tanzu.vmware.com -n tap-install
     ```
 
@@ -43,10 +51,11 @@ To upgrade only the Upgrade Tanzu Application Platform GUI:
 
     Where:
 
-     - `VERSION` is the desired target version of Tanzu Application Platform GUI.
-     - `TAP_GUI_VAULES.yaml` is the configuration values file that contains the configuration used when you installed Tanzu Application Platform GUI.
+    - `VERSION` is the desired target version of Tanzu Application Platform GUI.
+    - `TAP-GUI-VALUES` is the configuration values file that contains the configuration used when you
+      installed Tanzu Application Platform GUI.
 
-3. Verify your application has been successfully upgraded:
+3. Verify that you upgraded your application by running:
 
     ```
     tanzu package installed get tap-gui -n tap-install
