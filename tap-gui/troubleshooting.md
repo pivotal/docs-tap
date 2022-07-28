@@ -62,13 +62,19 @@ or as a standalone package installation, you don't know whether the configuratio
 
 1. Get the name you need by running:
 
+    ```console
+    kubectl get pods -n tap-gui
     ```
+
+    For example:
+
+    ```console
     $ kubectl get pods -n tap-gui
     NAME                      READY   STATUS    RESTARTS   AGE
     server-6b9ff657bd-hllq9   1/1     Running   0          13m
     ```
 
-1. Read the log of the pod to see if the configuration reloaded by running:
+2. Read the log of the pod to see if the configuration reloaded by running:
 
     ```console
     kubectl logs NAME -n tap-gui
@@ -76,13 +82,13 @@ or as a standalone package installation, you don't know whether the configuratio
 
     Where `NAME` is the value you recorded earlier, such as `server-6b9ff657bd-hllq9`.
 
-1. Search for a line similar to this one:
+3. Search for a line similar to this one:
 
    ```console
    2021-10-29T15:08:49.725Z backstage info Reloaded config from app-config.yaml, app-config.yaml
    ```
 
-1. If need be, delete and re-instantiate the pod.
+4. If need be, delete and re-instantiate the pod.
 
    > **Caution:** Depending on your database configuration, deleting, and re-instantiating
    > the pod might cause the loss of user preferences and manually registered entities.
@@ -93,7 +99,7 @@ or as a standalone package installation, you don't know whether the configuratio
 
    To delete and re-instantiate the pod, run:
 
-    ```
+    ```console
     kubectl delete pod -l app=backstage -n tap-gui
     ```
 
@@ -110,7 +116,7 @@ Get timestamped logs from the running pod and review the logs:
 
 1. Pull the logs by using the pod label by running:
 
-    ```
+    ```console
     kubectl logs -l app=backstage -n tap-gui
     ```
 
