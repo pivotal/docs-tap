@@ -48,7 +48,7 @@ The default host name consists of `tap-gui` and the `shared.ingress_domain` valu
 
 - Supply Chain Security Tools - Store: Similar to Tanzu Application Platform GUI, allocate a fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `metadata-store` and the `shared.ingress_domain` value. For example, `metadata-store.example.com`.
 
-- Application Live View - If you select the `ingressEnabled` option, allocate a corresponding fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `appliveview` and the `shared.ingress_domain` value. For example,
+- Application Live View: If you select the `ingressEnabled` option, allocate a corresponding fully Qualified Domain Name (FQDN) that can be pointed at the `tanzu-system-ingress` service. The default host name consists of `appliveview` and the `shared.ingress_domain` value. For example,
 `appliveview.example.com`.
 
 ### <a id='tap-gui'></a>Tanzu Application Platform GUI
@@ -83,17 +83,17 @@ providers:
 - Azure Kubernetes Service
 - Amazon Elastic Kubernetes Service
 - Google Kubernetes Engine
-    - GKE Autopilot clusters do not have required features enabled
+    - GKE Autopilot clusters do not have the required features enabled
     - GKE clusters that are set up in zonal mode might detect Kubernetes API errors when the GKE
     control plane is resized after traffic increases. Users can mitigate this by creating a
-    regional cluster with 3 control-plane nodes right from the start.
+    regional cluster with three control-plane nodes right from the start.
 - Minikube
-    - Reference the following resource requirements
+    - Reference the following [resource requirements](#resource-requirements)
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
 - Tanzu Kubernetes Grid multicloud
 - vSphere with Tanzu v7.0 U3a (not possible with Tanzu Application Platform v1.0.0 or earlier).<br>
 For vSphere with Tanzu, pod security policies must be configured so that Tanzu Application Platform controller pods can run as root.
-See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) for more information.
+For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
 
     To set the pod security policies, run:
 
