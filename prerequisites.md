@@ -54,7 +54,7 @@ The default host name consists of `tap-gui` and the `shared.ingress_domain` valu
 ### <a id='tap-gui'></a>Tanzu Application Platform GUI
 
 - Latest version of Chrome, Firefox, or Edge. Tanzu Application Platform GUI currently does not support Safari browser.
-- Git repository for Tanzu Application Platform GUI's software catalogs, with a token allowing read access. For more information about how to use your Git repository, see the Using accelerator.yaml section in [Getting started with the Tanzu Application Platform](getting-started.html).
+- Git repository for Tanzu Application Platform GUI's software catalogs, with a token allowing read access. For more information about how to use your Git repository, see [Create an application accelerator](getting-started/create-app-accelerator.html#create-an-app-acc).
   Supported Git infrastructure includes:
     - GitHub
     - GitLab
