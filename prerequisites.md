@@ -19,10 +19,10 @@ Tanzu Application Platform packages.
 When available, VMware recommends using a paid registry account to avoid potential rate-limiting
 associated with some free registry offerings.
 
-    - If installing using the `lite` dependencies for Tanzu Build Service, 1&nbsp;GB of available
-    storage is recommended.
-    - If installing using the `full` dependencies for Tanzu Build Service, which are suitable for offline
-    environments, 10 GB of available storage is recommended.
+    - If installing Tanzu Build Service with the `lite` set of dependencies, VMware recommends 1&nbsp;GB of available
+    storage.
+    - If installing Tanzu Build Service with the `full` set of dependencies, which are suitable for offline
+    environments, VMware recommends 10 GB of available storage.
 
         >**Note:** For production environments, `full` dependencies are recommended to
         >optimize security and performance. For more information about Tanzu Build Service
