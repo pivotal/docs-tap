@@ -5,7 +5,7 @@ Tanzu Application Platform profile installation.
 If you installed Tanzu Application Platform through a profile, see
 [Upgrading Tanzu Application Platform](../upgrading.md) instead.
 
-## <a id="upgrade-profile"></a> Upgrade via Profile
+## <a id="considerations"></a> Considerations
 
 As part of the upgrade, Tanzu Application Platform updates its container with the new version.
 
