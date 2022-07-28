@@ -449,91 +449,100 @@ GitHub.
     ```console
     aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
     ```
+
 ## <a id='unbound-tasks'></a> Unbound number of TaskRuns in pull-request based GitOps
 
-> **Note**: This workaround only applies to Tanzu Application Platform 1.2.0. A fix is included for TAP 1.2.1 and later. It affects only  installations that use [pull requests](../scc/gitops-vs-regops.md) to configuration promotion.
+>**Note:** This workaround only applies to Tanzu Application Platform v1.2.0.
+>A fix is included for Tanzu Application Platform v1.2.1 and later.
+>It affects only  installations that use [pull requests](../scc/gitops-vs-regops.md)
+>to configuration promotion.
 
-In TAP 1.2.0, a bug is introduced that causes unbound number of Tekton TaskRun objects.
+In Tanzu Application Platform v1.2.0, an issue is introduced that causes unbound
+number of Tekton TaskRun objects.
 
 **Explanation**
 
-Unbound Tekton TaskRun objects are created when multiple `Workload`s in the same namespace reference the same `ClusterRunTemplate`.
+Unbound Tekton TaskRun objects are created when multiple `Workload`s in the same
+namespace reference the same `ClusterRunTemplate`.
 
 **Solution**
 
-The workaround is to update the `ClusterRunTemplate` to include `$(runnable.metadata.name)$` in the name used for the TaskRun.
+The workaround is to update the `ClusterRunTemplate` to include `$(runnable.metadata.name)$`
+in the name used for the TaskRun.
 
-You must patch the object by providing a package overlay during the installation of Tanzu Application Platform:
+You must patch the object by providing a package overlay during the installation of
+Tanzu Application Platform:
 
-1. Create a Kubernetes `Secret` object in the `tap-install` with the overlay to apply:
+1. Create a Kubernetes `Secret` object in the `tap-install` namespace with the overlay to apply:
 
-  ```yaml
-  ---
-  apiVersion: v1
-  kind: Secret
-  metadata:
-    name: ootb-templates-overlay
-    namespace: tap-install
-  stringData:
-    runtemplate-fix.yaml: |-
-      #@ load("@ytt:overlay", "overlay")
-      #@ def commit_clusterruntemp():
-      kind: ClusterRunTemplate
-      metadata:
-        name: commit-and-pr-pipelinerun
-      #@ end
-      #@overlay/match by=overlay.subset(commit_clusterruntemp())
-      ---
-      spec:
-        template:
-          metadata:
-            generateName: $(runnable.metadata.name)$-pr-
-            #@overlay/match missing_ok=True
-            labels: $(runnable.metadata.labels)$
-  ```
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+        name: ootb-templates-overlay
+        namespace: tap-install
+    stringData:
+        runtemplate-fix.yaml: |-
+        #@ load("@ytt:overlay", "overlay")
+        #@ def commit_clusterruntemp():
+        kind: ClusterRunTemplate
+        metadata:
+            name: commit-and-pr-pipelinerun
+        #@ end
+        #@overlay/match by=overlay.subset(commit_clusterruntemp())
+        ---
+        spec:
+            template:
+            metadata:
+                generateName: $(runnable.metadata.name)$-pr-
+                #@overlay/match missing_ok=True
+                labels: $(runnable.metadata.labels)$
+    ```
 
-2. Reference the secret containing the overlay in the `package_overlays` field of `tap-values.yaml`. For example:
+1. Reference the secret containing the overlay in the `package_overlays` field of
+`tap-values.yaml`. For example:
 
-  ```yaml
-  # tap-values.yaml
-  package_overlays:
+    ```yaml
+    # tap-values.yaml
+    package_overlays:
     - name: "ootb-templates"
-      secrets:
+        secrets:
         - name: ootb-templates-overlay
-  ```
+    ```
 
-3. Update the Tanzu Application Platform installation:
-
-  ```console
-  tanzu package installed update tap -n tap-install --values-file tap-values.yaml
-  ```
-
-  With Tanzu Application Platform updated, you can observe that the
-  `commit-and-pr-pipelinerun` `ClusterRunTemplate` object is successfully
-  patched:
-
-  - Before:
+1. Update the Tanzu Application Platform installation by running:
 
     ```console
-    $ kubectl get clusterruntemplate commit-and-pr-pipelinerun -o yaml
+    tanzu package installed update tap -n tap-install --values-file tap-values.yaml
     ```
 
-    ```yaml
-    # ...
-    kind: TaskRun
-    metadata:
-      generateName: commit-and-pr-
-    ```
+    After Tanzu Application Platform is updated, you can observe that the
+    `commit-and-pr-pipelinerun` `ClusterRunTemplate` object is successfully
+    patched:
 
-  - After:
+    - Before:
 
-    ```console
-    $ kubectl get clusterruntemplate commit-and-pr-pipelinerun -o yaml
-    ```
+        ```console
+        $ kubectl get clusterruntemplate commit-and-pr-pipelinerun -o yaml
+        ```
 
-    ```yaml
-    # ...
-    kind: TaskRun
-    metadata:
-      generateName: $(runnable.metadata.name)$-pr-
-    ```
+        ```yaml
+        # ...
+        kind: TaskRun
+        metadata:
+        generateName: commit-and-pr-
+        ```
+
+    - After:
+
+        ```console
+        $ kubectl get clusterruntemplate commit-and-pr-pipelinerun -o yaml
+        ```
+
+        ```yaml
+        # ...
+        kind: TaskRun
+        metadata:
+        generateName: $(runnable.metadata.name)$-pr-
+        ```
