@@ -318,6 +318,7 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
+	    # if you have ca_cert_data, add it here, too.
         templateRef:
           kind: ClusterTemplate
           name: deliverable-template
@@ -331,6 +332,7 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
+	    # if you have ca_cert_data, add it here, too.
         sources:
         - name: source
           resource: source-provider
@@ -372,6 +374,7 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
+	    # if you have ca_cert_data, add it here, too.
         templateRef:
           kind: ClusterTemplate
           name: config-writer-template
@@ -385,6 +388,8 @@ from your `tap-values.yaml` file:
       `tap-values.yaml` file, or `""` to disable SSH authentication.
     - `REGISTRY-SERVER` is the registry server from your `tap-values.yaml` file.
     - `REGISTRY-REPO` is the registry repository from your `tap-values.yaml` file.
+    - If you set `ca_cert_data` in your `tap-values.yaml` file, add a
+      `ca_cert_data` key and that value to each `registry` section as well.
 
 1. Apply the YAML file by running the command:
 
