@@ -1,6 +1,6 @@
 # Install Supply Chain Security Tools - Scan
 
-This document describes how to install Supply Chain Security Tools - Scan 
+This document describes how to install Supply Chain Security Tools - Scan
 from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
@@ -15,7 +15,7 @@ Before installing Supply Chain Security Tools - Scan:
 - Install [Supply Chain Security Tools - Store](../scst-store/install-scst-store.md) for scan results to persist. The integration with Supply Chain Security Tools - Store are handled in:
   - **Single Cluster:** The Supply Chain Security Tools - Store is present in the same cluster where Supply Chain Security Tools - Scan and the `ScanTemplates` are present.
   - **Multi-Cluster:** The Supply Chain Security Tools - Store is present in a different cluster (e.g.: view cluster) where the Supply Chain Security Tools - Scan and `ScanTemplates` are present.
-  - **Integration Deactivated:** The Supply Chain Security Tools - Scan deployment is not required to communicate with Supply Chain Security Tools - Store. 
+  - **Integration Deactivated:** The Supply Chain Security Tools - Scan deployment is not required to communicate with Supply Chain Security Tools - Store.
 
     For more information, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
@@ -100,7 +100,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. (Optional) Make changes to the default installation settings:
 
-    To define the configuration for the Supply Chain Security Tools - Store integration in the `grype-values.yaml` file for the Grype Scanner: 
+    To define the configuration for the Supply Chain Security Tools - Store integration in the `grype-values.yaml` file for the Grype Scanner:
 
     ```yaml
     ---
@@ -114,7 +114,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
         name: "<TOKEN-SECRET-NAME>" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where the connection secrets were created (if multi-cluster)
     ```
-    >**Note:** You must either define both the METADATA-STORE-URL and CA-SECRET-NAME, or not define them as they depend on each other.
+    >**Note:** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`, or not define them as they depend on each other.
 
     You can retrieve any other configurable setting using the following command, and appending the key-value pair to the previous `grype-values.yaml` file:
 
