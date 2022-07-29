@@ -29,7 +29,7 @@ Installation requires:
         >optimize security and performance. For more information about Tanzu Build Service
         >dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.md#lite-vs-full).
 
-- Registry credentials with read and write access made available to
+- Registry credentials with read and write access available to
 Tanzu Application Platform to store images.
 
 - Network access to your chosen container image registry.
@@ -54,22 +54,24 @@ The default host name consists of `tap-gui` and the `shared.ingress_domain` valu
 
 ### <a id='tap-gui'></a>Tanzu Application Platform GUI
 
+For Tanzu Applicatiop Platform GUI, you must have:
+
 - Latest version of Chrome, Firefox, or Edge. Tanzu Application Platform GUI currently does not support Safari browser.
 - Git repository for Tanzu Application Platform GUI's software catalogs, with a token allowing read access. For more information about how to use your Git repository, see [Create an application accelerator](getting-started/create-app-accelerator.html#create-an-app-acc).
   Supported Git infrastructure includes:
     - GitHub
     - GitLab
     - Azure DevOps
-- Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of VMware Tanzu Network
-  - To install, navigate to [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). Under the list of available files to download, there is a folder titled `tap-gui-catalogs-latest`. Inside that folder is a compressed archive titled `Tanzu Application Platform GUI Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your Organization's Catalog inside Tanzu Application Platform GUI.
-- The Tanzu Application Platform GUI catalog allows for two approaches towards storing catalog information:
+- Tanzu Application Platform GUI Blank Catalog from the Tanzu Application section of VMware Tanzu Network.
+  - To install, navigate to [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/). Under the list of available files to download, there is a folder titled `tap-gui-catalogs-latest`. Inside that folder is a compressed archive titled `Tanzu Application Platform GUI Blank Catalog`. You must extract that catalog to the preceding Git repository of choice. This serves as the configuration location for your organization's catalog inside Tanzu Application Platform GUI.
+- The Tanzu Application Platform GUI catalog allows for two approaches to store catalog information:
     - The default option uses an in-memory database and is suitable for test and development scenarios.
           This reads the catalog data from Git URLs that you specify in the `tap-values.yaml` file.
-          This data is temporary, and any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
+          This data is temporary. Any operations that cause the `server` pod in the `tap-gui` namespace to be re-created
           also cause this data to be rebuilt from the Git location.
-          This can cause issues when you manually register entities by using the UI because
+          This can cause issues when you manually register entities by using the UI, because
           they only exist in the database and are lost when that in-memory database gets rebuilt.
-    - For production use-cases, use a PostgreSQL database that exists outside the
+    - For production use cases, use a PostgreSQL database that exists outside the
           Tanzu Application Platform packaging.
           The PostgreSQL database stores all the catalog data persistently both from the Git locations
           and the UI manual entity registrations. For more information, see
@@ -78,21 +80,21 @@ The default host name consists of `tap-gui` and the `shared.ingress_domain` valu
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires Kubernetes cluster v1.22, or v1.23 on one of the following Kubernetes
+Installation requires Kubernetes cluster v1.22 or v1.23 on one of the following Kubernetes
 providers:
 
-- Azure Kubernetes Service
-- Amazon Elastic Kubernetes Service
-- Google Kubernetes Engine
-    - GKE Autopilot clusters do not have the required features enabled
+- Azure Kubernetes Service.
+- Amazon Elastic Kubernetes Service.
+- Google Kubernetes Engine.
+    - GKE Autopilot clusters do not have the required features enabled.
     - GKE clusters that are set up in zonal mode might detect Kubernetes API errors when the GKE
     control plane is resized after traffic increases. Users can mitigate this by creating a
     regional cluster with three control-plane nodes right from the start.
-- Minikube
-    - Reference the following [resource requirements](#resource-requirements)
+- Minikube.
+    - Reference the [resource requirements](#resource-requirements) in the following section.
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
-- Tanzu Kubernetes Grid multicloud
-- vSphere with Tanzu v7.0 U3a (not possible with Tanzu Application Platform v1.0.0 or earlier).<br>
+- Tanzu Kubernetes Grid multicloud.
+- vSphere with Tanzu v7.0 U3a (not compatible with Tanzu Application Platform v1.0.0 or earlier).<br>
 For vSphere with Tanzu, pod security policies must be configured so that Tanzu Application Platform controller pods can run as root.
 For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
 
@@ -102,21 +104,21 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
     kubectl create clusterrolebinding default-tkg-admin-privileged-binding --clusterrole=psp:vmware-system-privileged --group=system:authenticated
     ```
 
-    For more information about Pod Security Policies on Tanzu for vSphere, see
+    For more information about pod security policies on Tanzu for vSphere, see
     [Using Pod Security Policies with Tanzu Kubernetes Clusters in VMware vSphere Product Documentation](https://docs.vmware.com/en/VMware-vSphere/7.0/vmware-vsphere-with-tanzu/GUID-CD033D1D-BAD2-41C4-A46F-647A560BAEAB.html).
 
 ## <a id="resource-requirements"></a>Resource requirements
 
 - To deploy all Tanzu Application Platform packages, your cluster must have at least:
-    - 8&nbsp;CPUs for i9 (or equivalent) available to Tanzu Application Platform components
-    - 12&nbsp;CPUs for i7 (or equivalent) available to Tanzu Application Platform components
-    - 8&nbsp;GB of RAM across all nodes available to Tanzu Application Platform
+    - 8&nbsp;CPUs for i9 (or equivalent) available to Tanzu Application Platform components.
+    - 12&nbsp;CPUs for i7 (or equivalent) available to Tanzu Application Platform components.
+    - 8&nbsp;GB of RAM across all nodes available to Tanzu Application Platform.
     - 12&nbsp;GB of RAM is available to build and deploy applications, including Minikube. VMware recommends 16&nbsp;GB of RAM for an optimal experience.
-    - 70&nbsp;GB of disk space available per node
+    - 70&nbsp;GB of disk space available per node.
 
-- For the [`full` profile](install.html#full-profile), or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
+- For the [`full` profile](install.html#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
-- Pod Security Policies must be configured so that Tanzu Application Platform controller pods can run as root.
+- Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root.
 See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) for more information.
 
 
