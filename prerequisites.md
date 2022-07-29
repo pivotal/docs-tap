@@ -8,21 +8,22 @@ Installation requires:
 
 - Access to VMware Tanzu Network:
 
-  - A [Tanzu Network](https://network.tanzu.vmware.com/) account to download
-Tanzu Application Platform packages.
-  - Network access to https://registry.tanzu.vmware.com.
+    - A [Tanzu Network](https://network.tanzu.vmware.com/) account to download
+    Tanzu Application Platform packages.
+    - Network access to https://registry.tanzu.vmware.com.
 
 - Cluster-specific registry:
 
-  - A container image registry, such as [Harbor](https://goharbor.io/) or
-[Docker Hub](https://hub.docker.com/) for application images, base images, and runtime dependencies.
-When available, VMware recommends using a paid registry account to avoid potential rate-limiting
-associated with some free registry offerings.
+    - A container image registry, such as [Harbor](https://goharbor.io/) or
+    [Docker Hub](https://hub.docker.com/) for application images, base images, and runtime dependencies.
+    When available, VMware recommends using a paid registry account to avoid potential rate-limiting
+    associated with some free registry offerings.
+    
+    - Recommended storage space for container image registry: 
 
-    - If installing Tanzu Build Service with the `lite` set of dependencies, VMware recommends 1&nbsp;GB of available
-    storage.
-    - If installing Tanzu Build Service with the `full` set of dependencies, which are suitable for offline
-    environments, VMware recommends 10 GB of available storage.
+        - 1&nbsp;GB of available storage if installing Tanzu Build Service with the `lite` set of dependencies.
+        - 10 GB of available storage if installing Tanzu Build Service with the `full` set of dependencies, which are suitable for offline
+        environments.
 
         >**Note:** For production environments, `full` dependencies are recommended to
         >optimize security and performance. For more information about Tanzu Build Service
