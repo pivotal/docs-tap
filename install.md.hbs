@@ -297,7 +297,7 @@ you defined earlier.
 >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
 >it plans to install. The package only shows top-level keys.
 >You can view individual package configuration settings with the same `tanzu package available get` command.
->For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/1.0.3 --values-schema` for Cloud Native Runtimes.
+>For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/$TAP_VERSION --values-schema` for Cloud Native Runtimes.
 
 ```yaml
 profile: full
@@ -314,47 +314,7 @@ accelerator:
     service_type: "ClusterIP"
 ```
 
-### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
-
-When you install a profile that includes Tanzu Build Service,
-Tanzu Application Platform is installed with the `lite` set of dependencies.
-These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
-and [stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
-required for application builds.
-
-The `lite` set of dependencies do not contain all buildpacks and stacks.
-To use all buildpacks and stacks, you must install the `full` dependencies.
-For more information about the differences between `lite` and `full` dependencies, see
-[About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
-
-To configure `full` dependencies, add the key-value pair
-`exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
-For example:
-
-```yaml
-buildservice:
-  kp_default_repository: "KP-DEFAULT-REPO"
-  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
-  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
-  exclude_dependencies: true
-```
-
-After configuring `full` dependencies, you must install the dependencies after
-you have finished installing your Tanzu Application Platform package.
-
-### <a id="identify-values"></a>Identify the values for your package
-
-You can identify the values for your Tanzu package by running:
-
-```console
-tanzu package available get PACKAGE-NAME.tanzu.vmware.com/VERSION --values-schema -n tap-install
-```
-
-Where:
-
-- `VERSION` is the version number of the package. For example, `0.5.1` for Supply Chain Basic package.
-- `PACKAGE-NAME` is the value of `Top-level Key` for package-specific configuration within
-your `tap-values.yaml`, as summarized in the following table:
+The following table summarizes the top-level keys used for package-specific configuration within your `tap-values.yaml`.
 
 |Package|Top-level Key|
 |----|----|
@@ -388,36 +348,34 @@ Shared Keys define values that configure multiple packages. These keys are defin
 
 For information about package-specific configuration, see [Installing individual packages](install-components.md).
 
-For example, to identify the SSH secret keys for Supply Chain Basic, you can run:
+### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
 
-```console
-tanzu package available get ootb-supply-chain-basic.tanzu.vmware.com/0.5.1 --values-schema -n tap-install
+When you install a profile that includes Tanzu Build Service,
+Tanzu Application Platform is installed with the `lite` set of dependencies.
+These dependencies consist of [buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
+and [stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
+required for application builds.
+
+The `lite` set of dependencies do not contain all buildpacks and stacks.
+To use all buildpacks and stacks, you must install the `full` dependencies.
+For more information about the differences between `lite` and `full` dependencies, see
+[About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
+
+To configure `full` dependencies, add the key-value pair
+`exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
+For example:
+
+```yaml
+buildservice:
+  kp_default_repository: "KP-DEFAULT-REPO"
+  kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
+  kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
+  exclude_dependencies: true
 ```
 
-Expect to see the following outputs that list the all the SSH secret keys and the descriptions applicable to the package:
-
-```console
-KEY                       DEFAULT                    TYPE    DESCRIPTION
-cluster_builder           default                    string  Name of the Tanzu Build Service (TBS) ClusterBuilder to use by default on image objects managed by the supply chain.
-
-gitops.branch             main                       string  Default branch to use for pushing Kubernetes configuration files produced by the supply chain.
-
-gitops.commit_message     bump configuration         string  Default git commit message to write when publishing Kubernetes configuration files produces by the supply chain to git.
-
-gitops.email              supplychain@cluster.local  string  Default user email to be used for the commits produced by the supply chain.
-
-gitops.repository_prefix  <nil>                      string  Default prefix to be used for forming Git SSH URLs for pushing Kubernetes configuration produced by the supply chain.
-
-gitops.ssh_secret         git-ssh                    string  Name of the default Secret containing SSH credentials to lookup in the developer namespace for the supply chain to fetch source code from and push configuration to.
-
-gitops.username           supplychain                string  Default user name to be used for the commits produced by the supply chain.
-
-registry.repository       <nil>                      string  Name of the repository in the image registry server where the application images from the workloads should be pushed to (required).
-
-registry.server           index.docker.io            string  Name of the registry server where application images should be pushed to (required).
-
-service_account           default                    string  Name of the service account in the namespace where the Workload is submitted to utilize for providing registry credentials to Tanzu Build Service (TBS) Image objects as well as deploying the application.
-```
+After configuring `full` dependencies, you must install the dependencies after
+you have finished installing your Tanzu Application Platform package. 
+See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
