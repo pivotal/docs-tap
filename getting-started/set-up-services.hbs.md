@@ -58,7 +58,7 @@ To set up a service:
 1. Use `kapp` to install the RabbitMQ Cluster Kubernetes operator by running:
 
     ```console
-    kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/download/v1.9.0/cluster-operator.yml
+    kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml
     ```
 
     As a result, a new API Group (`rabbitmq.com`) and Kind (`RabbitmqCluster`) are
