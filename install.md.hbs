@@ -3,23 +3,20 @@
 This topic describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
 
-Before installing the packages, ensure that you have completed the prerequisites, configured
-and verified the cluster, accepted the EULA, and installed the Tanzu CLI with any required plug-ins.
-See [Prerequisites](prerequisites.html) and [Accepting Tanzu Application Platform EULA and installing Tanzu CLI](install-tanzu-cli.html) for more information.
+Before installing the packages, ensure you have:
 
+- Completed the [Prerequisites](prerequisites.html).
+- Configured and verified the cluster.
+- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](install-tanzu-cli.html) with any required plug-ins.
 
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
-VMware recommends relocating the images to your registry from VMware Tanzu Network registry before
-attempting installation.
-
-If you choose not to relocate images, Tanzu Application Platform depends directly on
-VMware Tanzu Network for continued operation.
-VMware recommends relocating images because there are no uptime guarantees for installations that
-depend directly on VMware Tanzu Network.
+VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
+attempting installation. If you don't relocate the images, Tanzu Application Platform will depend on
+VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no uptime guarantees.
 The option to skip relocation is documented for evaluation and proof-of-concept only.
 
-The supported container registries are Harbor, Azure Container Registry, Google Container Registry,
+The supported registries are Harbor, Azure Container Registry, Google Container Registry,
 and Quay.io.
 See the documentation for a registry to learn how to set it up.
 
@@ -61,8 +58,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages
     ```
 
-    Where `TARGET-REPOSITORY` is your target repository. 
-    `TARGET-REPOSITORY` is a folder/repository on `MY-REGISTRY` that serves as the location
+    Where `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
     for the installation files for Tanzu Application Platform.
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
@@ -174,19 +170,19 @@ To prepare to install a profile:
     ```
 
 1. Create a `tap-values.yaml` file by using the
-[Full Profile sample](#full-profile) as a guide.
+[Full Profile sample](#full-profile) in the following section as a guide.
 These samples have the minimum configuration required to deploy Tanzu Application Platform.
 The sample values file contains the necessary defaults for:
 
-    - The meta-package, or parent Tanzu Application Platform package
-    - Subordinate packages, or individual child packages
+    - The meta-package, or parent Tanzu Application Platform package.
+    - Subordinate packages, or individual child packages.
 
     >**Important:** Keep the values file for future configuration use.
 
 1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
 section.
 
-### <a id='full-profile'></a> Full Profile
+### <a id='full-profile'></a> Full profile
 
 The following is the YAML file sample for the full-profile:
 
@@ -241,7 +237,7 @@ grype:
     caSecret:
       name: "CA-SECRET-NAME" # (optional) Defaults to "app-tls-cert"
       importFromNamespace: "SECRET-NAMESPACE" # (optional) Defaults to "metadata-store"
-    authSecret: # (optional) Defaults all values to empty. Only for multi-cluster
+    authSecret: # (optional) Defaults all values to empty. Only for multicluster
       name: "TOKEN-SECRET-NAME"
       importFromNamespace: "SECRET-NAMESPACE"
 ```
@@ -249,22 +245,22 @@ grype:
 Where:
 
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
-    * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
-    * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
-    * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
-- `KP-DEFAULT-REPO-USERNAME` is the username that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
-    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
+    * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
+    * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
+    * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
+- `KP-DEFAULT-REPO-USERNAME` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
+    * For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. You can also configure this credential by using a secret reference. See [Install Tanzu Build Service](tanzu-build-service/install-tbs.html#install-secret-refs) for details.
     * For Google Cloud Registry, use the contents of the service account JSON file.
-- `SERVER-NAME` is the hostname of the registry server. Examples:
-    * Harbor has the form `server: "my-harbor.io"`
-    * Dockerhub has the form `server: "index.docker.io"`
-    * Google Cloud Registry has the form `server: "gcr.io"`
+- `SERVER-NAME` is the host name of the registry server. Examples:
+    * Harbor has the form `server: "my-harbor.io"`.
+    * Dockerhub has the form `server: "index.docker.io"`.
+    * Google Cloud Registry has the form `server: "gcr.io"`.
 - `REPO-NAME` is where workload images are stored in the registry.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
-    * Harbor has the form `repository: "my-project/supply-chain"`
-    * Dockerhub has the form `repository: "my-dockerhub-user"`
-    * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
+    * Harbor has the form `repository: "my-project/supply-chain"`.
+    * Dockerhub has the form `repository: "my-dockerhub-user"`.
+    * Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
@@ -273,15 +269,15 @@ service's External IP address.
 This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
-- `METADATA-STORE-URL` is the base URL where the Supply Chain Security Tools - Store deployment can be reached, e.g.: `https://metadata-store-app.metadata-store.svc.cluster.local:8443`
-- `CA-SECRET-NAME` is the name of the secret containing the ca.crt to connect to Supply Chain Security Tools - Store deployment.
-- `SECRET-NAMESPACE` is the namespace where Supply Chain Security Tools - Store is deployed, if you are using a single cluster. If you are using multi-cluster, it is where the connection secrets were created.
-- `TOKEN-SECRET-NAME` is the name of the secret containing the auth token to connect to Supply Chain Security Tools - Store deployment when installed in a different cluster, if you are using multi-cluster.
+- `METADATA-STORE-URL` is the base URL where the Supply Chain Security Tools (SCST) - Store deployment can be reached, for example, `https://metadata-store-app.metadata-store.svc.cluster.local:8443`.
+- `CA-SECRET-NAME` is the name of the secret containing the ca.crt to connect to the SCST - Store deployment.
+- `SECRET-NAMESPACE` is the namespace where SCST - Store is deployed, if you are using a single cluster. If you are using multicluster, it is where the connection secrets were created.
+- `TOKEN-SECRET-NAME` is the name of the secret containing the authentication token to connect to the SCST - Store deployment when installed in a different cluster, if you are using multicluster.
 If built images are pushed to the same registry as the Tanzu Application Platform images,
 this can reuse the `tap-registry` secret created in
-[Add the Tanzu Application Platform package repository](#add-tap-package-repo).
+[Add the Tanzu Application Platform package repository](#add-tap-package-repo) as described earlier.
 
-### <a id='light-profile'></a> Light Profile
+### <a id='light-profile'></a> Light profile
 
 The Light profile is deprecated. Although existing values files might still refer to the Light profile, VMware recommends to migrate to one of the new profiles described in [Install your Tanzu Application Platform profile](#install-profile) by following the procedures in [Migrate Tanzu Application Platform profiles](migrate-profile.md).
 
@@ -306,11 +302,11 @@ profile: full
 
 # ...
 
-# e.g. CNRs specific values go under its name
+# For example, CNRs specific values go under its name
 cnrs:
   provider: local
 
-# e.g. App Accelerator specific values go under its name
+# For example, App Accelerator specific values go under its name
 accelerator:
   server:
     service_type: "ClusterIP"
@@ -398,19 +394,19 @@ Follow these steps to install the Tanzu Application Platform package:
     tanzu package installed get tap -n tap-install
     ```
 
-    This may take 5-10 minutes because it installs several packages on your cluster.
+    This can take 5-10 minutes because it installs several packages on your cluster.
 
-1. Verify that all the necessary packages in the profile are installed by running:
+2. Verify that the necessary packages in the profile are installed by running:
 
     ```console
     tanzu package installed list -A
     ```
 
-1. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
+3. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
 by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
-After installing Full Profile on to your cluster, you can install the
-Tanzu Developer Tools for VSCode extension to help you develop against it.
+After installing the Full profile on your cluster, you can install the
+Tanzu Developer Tools for VS Code Extension to help you develop against it.
 For instructions, see [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md).
 
 ## <a id="tap-install-full-deps"></a> Install the full dependencies package
@@ -490,8 +486,8 @@ contour:
       type: LoadBalancer
 ```
 
-If you use AWS, the section above creates a classic LoadBalancer.
-If you want to use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
+If you use AWS, the preceding section creates a classic LoadBalancer.
+To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
 following to your `tap-values.yaml`:
 
 ```yaml
@@ -505,7 +501,7 @@ contour:
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
-To access Tanzu Application Platform GUI, you can use the hostname that you configured earlier. This hostname is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md.hbs).
+To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md.hbs).
 
 You're now ready to start using Tanzu Application Platform GUI.
 Proceed to the [Getting Started](getting-started.md) topic or the
@@ -530,9 +526,7 @@ To exclude packages from a Tanzu Application Platform profile:
       - service-bindings.lab.vmware.com
     ```
 
->**Important:** If you exclude a package after performing a profile installation including that package, you cannot see the accurate package states immediately after running `tap package installed list -n tap-install`.
-
->**Warning:** You can break package dependencies by removing a package. Allow 20 minutes to verify that all packages have reconciled correctly while troubleshooting.
+>**Important:** If you exclude a package after performing a profile installation including that package, you cannot see the accurate package states immediately after running `tap package installed list -n tap-install`. Also, you can break package dependencies by removing a package. Allow 20 minutes to verify that all packages have reconciled correctly while troubleshooting.
 
 ## <a id='next-steps'></a>Next steps
 
