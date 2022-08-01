@@ -4,38 +4,41 @@ The software catalog setup procedures in this topic make use of Backstage.
 For more information about Backstage, see the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/software-catalog-overview).
 
-
 ## <a id='add-cat-entities'></a> Adding catalog entities
 
 This section describes how you can format your own catalog.
-Creating catalogs consists of building meta data YAML files stored together with the code.
-This information is read from a Git-compatible repository consisting of these YAML catalog definition files.
+Creating catalogs consists of building metadata YAML files stored together with the code.
+This information is read from a Git-compatible repository consisting of these YAML catalog definition
+files.
 Changes made to the catalog definitions on your Git infrastructure are automatically reflected every
 200 seconds or when manually registered.
 
 For each catalog entity kind you create, there is a file format you must follow.
-Below is an overview of a few core entities, here are details about all types of
-[entities](https://backstage.io/docs/features/software-catalog/descriptor-format).
+For information about all types of entities, see the
+[Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format).
 
-You can use the example blank catalog described in [Prerequisites](../../prerequisites.html#tap-gui)
-as a foundation for creating user, group, system, and main component YAML files.
+You can use the example blank catalog described in the Tanzu Application Platform GUI
+[prerequisites](../../prerequisites.md#tap-gui) as a foundation for creating user, group, system,
+and main component YAML files.
 
 Relationship Diagram:
 ![Tanzu Application Platform GUI Relationships](../images/tap-gui-relationships.jpg)
 
-
 ### <a id='users-and-groups'></a> Users and groups
 
-A User entity describes a specific person and is used for identity purposes.
-A Group entity describes an organizational team or unit. Users are members of one or more Groups.
+A user entity describes a specific person and is used for identity purposes.
+Users are members of one or more groups.
+A group entity describes an organizational team or unit.
 
-The descriptor files for both require values for `apiVersion`, `kind`, `metadata.name`.
-Users also require `spec.memberOf`. Groups require `spec.type` and `spec.children`, where
-`spec.children` is another Group.
-To link a logged in user to a user entity, include the optional `spec.profile.email`
-field.
+Users and groups have different descriptor requirements in their descriptor files:
 
-Sample user entities:
+- User descriptor files require: `apiVersion`, `kind`, `metadata.name`, and `spec.memberOf`.
+- Group descriptor files require: `apiVersion`, `kind`, and `metadata.name`. They also require
+  `spec.type` and `spec.children` where `spec.children` is another group.
+
+To link a logged-in user to a user entity, include the optional `spec.profile.email` field.
+
+Sample user entity:
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -50,7 +53,7 @@ spec:
   memberOf: [default-team]
 ```
 
-Sample group entities:
+Sample group entity:
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -68,18 +71,19 @@ spec:
   children: []
 ```
 
-More information about user entities and group entities is available in
+More information about user entities and group entities is available in the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group).
-
 
 ### <a id='systems'></a> Systems
 
-A System entity is a collection of resources and components.
-System descriptor files require values for `apiVersion`, `kind`, `metadata.name`, and `spec.owner`,
-where `spec.owner` is a User or Group. A system has components belonging to it when that component
-specifies the System name in the field `spec.system`.
+A system entity is a collection of resources and components.
 
-Sample system entity
+System descriptor files require values for `apiVersion`, `kind`, `metadata.name`, and also `spec.owner`
+where `spec.owner` is a user or group.
+
+A system has components when components specify the system name in the field `spec.system`.
+
+Sample system entity:
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -91,16 +95,18 @@ spec:
   owner: default-team
 ```
 
-More information about system entities is available in
+More information about system entities is available in the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system).
-
 
 ### <a id='components'></a> Components
 
-A Component describes a software component, or a "unit of software".
+A component describes a software component, or what might be described as a unit of software.
+
 Component descriptor files require values for `apiVersion`, `kind`, `metadata.name`, `spec.type`,
-`spec.lifecycle`, and `spec.owner`. Some useful optional fields are `spec.system` and
-`spec.subcomponentOf`, both of which links a Component to an entity it is a part of.
+`spec.lifecycle`, and `spec.owner`.
+
+Some useful optional fields are `spec.system` and `spec.subcomponentOf`, both of which link a component
+to an entity that it is part of.
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -118,34 +124,30 @@ spec:
   system: backstage
 ```
 
-
-More information about component entities is available in
+More information about component entities is available in the
 [Backstage documentation](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component).
-
 
 ## <a id='update-catalogs'></a> Update software catalogs
 
-The following procedures cover updating software catalogs.
-
+The following procedures describe how to update software catalogs.
 
 ### <a id='register-comp'></a> Register components
 
-You can update your software catalog with new entities without re-deploying the entire `tap-gui`
-package. To do so:
+To update your software catalog with new entities without re-deploying the entire `tap-gui`
+package:
 ​
-1. Navigate to your **Software Catalog** page.
-1. Click the **Register Entity** on the top-right of the page.
-1. Link to an existing entity file to start tracking your entity by entering the full path.
-1. Import the entities and view them in your **Software Catalog** page.
-​
+1. Go to your **Software Catalog** page.
+2. Click **Register Entity** at the top-right of the page.
+3. Enter the full path to link to an existing entity file and start tracking your entity.
+4. Import the entities and view them in your **Software Catalog** page.
 
 ### <a id='deregister-comp'></a> Deregister components
 
-To deregister an entity, follow these steps:
+To deregister an entity:
 
-1. Navigate to your **Software Catalog** page.
-1. Select the entity to deregister, such as component, group, or user.
-1. Click the three dots at the top-right of the page and then click **Unregister...**.
+1. Go to your **Software Catalog** page.
+2. Select the entity to deregister, such as component, group, or user.
+3. Click the three dots at the top-right of the page and then click **Unregister...**.
 
 ### <a id='add-or-change'></a> Add or change organization catalog locations
 
@@ -153,7 +155,7 @@ To add or change organization catalog locations:
 
 1. Use static configuration to add or change catalog locations.
 
-    * To update components, change the catalog location in either the `app_config` section of
+    - Update components by changing the catalog location in either the `app_config` section of
     `tap-gui-values.yaml` or the custom values file you used when installing. For example:
 
         ```yaml
@@ -163,7 +165,7 @@ To add or change organization catalog locations:
               target: UPDATED-CATALOG-LOCATION
         ```
 
-    * To register components, add the new catalog's location in either the `app_config` section of
+    - Register components by adding the new catalog location in either the `app_config` section of
     `tap-gui-values.yaml` or the custom values file you used when installing. For example:
 
         ```yaml
@@ -176,28 +178,24 @@ To add or change organization catalog locations:
         ```
 
     When targeting GitHub, don't write the raw URL. Instead, use the URL that you see when you
-    navigate to the file in the browser, otherwise the catalog processor is unable to properly
-    set up the files.
+    navigate to the file in the browser. The catalog processor cannot set up the files properly if
+    you use the raw URL.
 
-    For example:
+    - Example raw URL: `https://raw.githubusercontent.com/user/repo/catalog.yaml`
+    - Example target URL: `https://github.com/user/repo/blob/main/catalog.yaml`
 
-    - Raw URL: `https://raw.githubusercontent.com/user/repo/catalog.yaml`
-    - Target URL: `https://github.com/user/repo/blob/main/catalog.yaml`
-
-    When targeting GitLab use a
+    When targeting GitLab, use a
     [scoped route](https://docs.gitlab.com/ee/development/routing.html#project-routes) to the
     catalog file. This is a route with the `/-/` separator after the project name.
     If you don't use a scoped route, your entity fails to appear in the catalog.
 
-    For example:
-
-    - Unscoped URL: `https://gitlab.com/group/project/blob/main/catalog.yaml`
-    - Target URL: `https://gitlab.com/group/project/-/blob/main/catalog.yaml`
+    - Example unscoped URL: `https://gitlab.com/group/project/blob/main/catalog.yaml`
+    - Example target URL: `https://gitlab.com/group/project/-/blob/main/catalog.yaml`
 
     For more information about static catalog configuration, see the
     [Backstage documentation](https://backstage.io/docs/features/software-catalog/configuration#static-location-configuration).
 
-1. Update the package to include the catalog by running:
+2. Update the package to include the catalog by running:
 
     ```console
     tanzu package installed update backstage \
@@ -205,17 +203,15 @@ To add or change organization catalog locations:
       -f VALUES-FILE
     ```
 
-1. Verify the status of this update by running:
+3. Verify the status of this update by running:
 
     ```console
     tanzu package installed list
     ```
 
+## <a id='install-demo'></a> Install demo apps and their catalogs
 
-## <a id='install-demo'></a> Installing demo apps and their catalogs
-
-To set up one of our demos, you can choose between a blank or a sample catalog.
-
+To set up one of the demos, you can choose a blank catalog or a sample catalog.
 
 ### <a id='yelb-system'></a> Yelb system
 
@@ -223,18 +219,16 @@ The [Yelb](https://github.com/mreferre/yelb/tree/master/deployments/platformdepl
 demo catalog in GitHub includes all the components that make up the Yelb system and the default
 Backstage components.
 
-
 #### <a id='install-yelb'></a> Install Yelb
 
 1. Download the appropriate file for running the Yelb application itself from
 [GitHub](https://github.com/mreferre/yelb/tree/master/deployments/platformdeployment/Kubernetes/yaml).
-1. Install the application on the Kubernetes cluster that you've used for Tanzu Application Platform.
-It's important to preserve the metadata labels on the Yelb application's objects.
+1. Install the application on the Kubernetes cluster that you used for Tanzu Application Platform.
+Preserve the metadata labels on the Yelb application objects.
 
+#### <a id='install-yelb-cat'></a> Install the Yelb catalog
 
-#### <a id='install-yelb-cat'></a> Install Yelb catalog
-
-1. Save the **Tanzu Application Platform GUI Yelb Catalog** from the Tanzu Network's
+1. From the
 [Tanzu Application Platform downloads](https://network.pivotal.io/products/tanzu-application-platform)
-under the **Tap-GUI-Catalogs** directory.
-1. Use the steps for [Adding catalog entities](#add-cat-entities) from earlier to add the `catalog-info.yaml`.
+page, click **tap-gui-catalogs-latest** > **Tanzu Application Platform GUI Yelb Catalog**.
+1. Follow the earlier steps for [Adding catalog entities](#add-cat-entities) to add `catalog-info.yaml`.
