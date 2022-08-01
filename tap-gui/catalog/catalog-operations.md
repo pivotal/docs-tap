@@ -32,8 +32,8 @@ A group entity describes an organizational team or unit.
 
 Users and groups have different descriptor requirements in their descriptor files:
 
-- User descriptor files require: `apiVersion`, `kind`, `metadata.name`, and `spec.memberOf`.
-- Group descriptor files require: `apiVersion`, `kind`, and `metadata.name`. They also require
+- User descriptor files require `apiVersion`, `kind`, `metadata.name`, and `spec.memberOf`.
+- Group descriptor files require `apiVersion`, `kind`, and `metadata.name`. They also require
   `spec.type` and `spec.children` where `spec.children` is another group.
 
 To link a logged-in user to a user entity, include the optional `spec.profile.email` field.
