@@ -7,7 +7,7 @@ See the following topics for information about Tanzu Application Platform GUI.
 - [Accessing Tanzu Application Platform GUI](accessing-tap-gui.md)
 - [Catalog operations](catalog/catalog-operations.md)
 - [Authentication](auth.md)
-- [Integrations](integrations.md)
+- [Adding integrations](integrations.md)
 - [Database configuration](database.md)
 - [TechDocs](techdocs/usage.md)
 - [Tanzu Application Platform GUI plug-ins](plugins/about.md)
