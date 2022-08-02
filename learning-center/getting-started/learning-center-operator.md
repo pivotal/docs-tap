@@ -25,7 +25,7 @@ handle loss of websocket connections so gracefully, and they might be impacted d
 ingress controller. This problem is not specific to Learning Center. It can impact any application when
 an nginx ingress controller is used frequently and ingresses are created or deleted frequently.
 
-You can use a hosted Kubernetes solution from an IaaS provider such as Google, AWS, or Azure. If you do, as needed, increase any HTTP request timeout specified on the inbound load balancer for the ingress controller so that you can use long-lived websocket connections. In some cases, load balancers of hosted Kubernetes solutions only have a 30-second timeout. If possible, configure the timeout applying to websockets to be 1 hour.
+You can use a hosted Kubernetes solution from an IaaS provider such as Google, AWS, or Azure. If you do, as needed increase any HTTP request timeout specified on the inbound load balancer for the ingress controller so that you can use long-lived websocket connections. In some cases, load balancers of hosted Kubernetes solutions only have a 30-second timeout. If possible, configure the timeout applying to websockets to be 1 hour.
 
 If you deploy the web-based training portal, the cluster must have available persistent volumes of type `ReadWriteOnce (RWO)`.
 A default storage class must be defined so that persistent volume claims do not need to specify a storage class.
