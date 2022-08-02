@@ -15,10 +15,10 @@ The installation order is flexible given the ability to update the installation 
   2. [Install Build profile cluster](#install-build-clusters)
   3. [Install Run profile cluster](#install-run-cluster)
   4. Add RBAC, cluster URL, and token from Build and Run clusters as documented in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.md)
-  5. Update the View cluster's installation values file with the previous information and run the `tanzu package installed update` command as the following shows to pass the updated config values to Tanzu Application Platform GUI:
+  5. Update the View cluster's installation values file with the previous information and run the following command to pass the updated config values to Tanzu Application Platform GUI:
 
     ```shell
-    tanzu package install tap -p tap.tanzu.vmware.com -v TAP-VERSION --values-file tap-values.yaml -n tap-install
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION --values-file tap-values.yaml -n tap-install
     ```
 
     Where `TAP-VERSION` is the Tanzu Application Platform version you've installed
