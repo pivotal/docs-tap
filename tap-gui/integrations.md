@@ -1,52 +1,73 @@
 # Tanzu Application Platform GUI Integrations
 
-Tanzu Application Platform GUI supports integrating with several Git providers. To leverage this integration, you must enable it and provide the necessary token or credentials in your `tap-values-file.yml`.
+You can integrate Tanzu Application Platform GUI with several Git providers.
+To use an integration, you must enable it and provide the necessary token or credentials in
+`tap-values.yaml`.
 
-Below is an example of this integration using the GitHub provider integration:
+## <a id="add-github-integration"></a> Add a GitHub provider integration
 
-```
+To add a GitHub provider integration, edit `tap-values.yaml` as in this example:
+
+```yaml
       app_config:
         app:
           baseUrl: http://EXTERNAL-IP:7000
-        # Existing tap-values-file.yml above  
+        # Existing tap-values-file.yml above
         integrations:
           github: # Other integrations available see NOTE below
             - host: github.com
               token: GITHUB-TOKEN
 ```
 
-Where `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice with the necessary read permissions for the catalog definition files you extracted from the Blank Software Catalog introduced in the prerequisites documentation.
+Where:
 
->**Note:** The `integrations` section earlier uses GitHub. For additional integrations, see the
->format in the [Backstage integration documentation](https://backstage.io/docs/integrations/).
+- `EXTERNAL-IP` is the external IP address.
+- `GITHUB-TOKEN` is a valid token generated from your Git infrastructure of choice.
+Ensure `GITHUB-TOKEN` has the necessary read permissions for the catalog definition files you
+extracted from the blank software catalog introduced in the
+[Tanzu Application Platform GUI prerequisites](../prerequisites.md#tap-gui).
 
-To allow Tanzu Application GUI to read non-GitHub repositories containing component information,
-add the following to the `tap-values-file.yml` file:
+## <a id="add-non-gh-integration"></a> Add a Git-based provider integration that isn't GitHub
 
-```
-      app_config:
-        # Existing tap-values-file.yml above  
-        backend:
-          reading:
-            allow:
-            - host: "GIT-CATALOG-URL-1"
-            - host: "GIT-CATALOG-URL-2" # Including more than one URL is optional
+To enable Tanzu Application Platform GUI to read Git-based non-GitHub repositories containing
+component information:
+
+Add the following YAML to `tap-values.yaml`:
+
+```yaml
+ app_config:
+   # Existing tap-values.yaml above
+   backend:
+     reading:
+       allow:
+         - host: "GIT-CATALOG-URL-1"
+         - host: "GIT-CATALOG-URL-2" # Including more than one URL is optional
 ```
 
 Where `GIT-CATALOG-URL-1` and `GIT-CATALOG-URL-2` are URLs in a list of URLs that
-Tanzu Application Platform GUI can read when registering new components. For example, `git.example.com.`
+Tanzu Application Platform GUI can read when registering new components.
+For example, `git.example.com.`
 For more information about registering new components, see
 [Adding catalog entities](catalog/catalog-operations.md#add-cat-entities).
 
-After making changes to the `tap-values-file.yml`, update the package profile by running:
+## <a id="add-non-git-integration"></a> Add a non-Git provider integration
 
+To add an integration for a provider that isn't associated with GitHub, see the
+[Backstage documentation](https://backstage.io/docs/integrations/).
+
+## <a id="update-package-profile"></a> Update the package profile
+
+After making changes to `tap-values.yaml`, update the package profile by running:
+
+```console
+tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
 ```
-tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.1 --values-file tap-values-file.yml -n tap-install
-```
+
+Where `VERSION-NUMBER` is the Tanzu Application Platform version. For example, `1.0.1`.
 
 For example:
 
-```
+```console
 $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version 1.0.1 --values-file tap-values-file.yml -n tap-install
 | Updating package 'tap'
 | Getting package install for 'tap'
