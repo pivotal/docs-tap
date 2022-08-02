@@ -8,7 +8,7 @@ See the following topics for information about Tanzu Application Platform GUI.
 - [Catalog operations](catalog/catalog-operations.md)
 - [Viewing resources on multiple clusters](cluster-view-setup.md)
 - [Authentication](auth.md)
-- [Integrations](integrations.md)
+- [Adding integrations](integrations.md)
 - [Database configuration](database.md)
 - [TechDocs](techdocs/usage.md)
 - [Tanzu Application Platform GUI plug-ins](plugins/about.md)
