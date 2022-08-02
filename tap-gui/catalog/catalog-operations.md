@@ -135,7 +135,7 @@ The following procedures describe how to update software catalogs.
 
 To update your software catalog with new entities without re-deploying the entire `tap-gui`
 package:
-​
+
 1. Go to your **Software Catalog** page.
 2. Click **Register Entity** at the top-right of the page.
 3. Enter the full path to link to an existing entity file and start tracking your entity.
