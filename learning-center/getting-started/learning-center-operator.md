@@ -136,7 +136,7 @@ If you already have a TLS secret, follow these steps **before deploying any work
 
   ```
   ingressSecret:
-    secretName: workshops.example.com-tls
+      secretName: workshops.example.com-tls
   ```
 
 ###<a id="tls"></a>Create the TLS secret manually
