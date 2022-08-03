@@ -15,7 +15,7 @@ The Training Portal custom resource (CR) has a status property. This is the comm
 kubectl get trainingportals.learningcenter.tanzu.vmware.com
 ```
 
-If the status stays in a pending state, the TLS secret `tls` is not available.
+If the status stays in a pending state, the TLS secret `tls` might not be available. There might also be other errors. So it is important to check the operator and portal logs.
 
 **Solution**
 
@@ -25,7 +25,7 @@ If the status stays in a pending state, the TLS secret `tls` is not available.
     kubectl logs deployment/learningcenter-operator -n learningcenter
     ```
 
-1. Observe that the TLS secret `tls` is not available. The TLS secret must be on the Learning
+2. Observe that the TLS secret `tls` is not available. The TLS secret must be on the Learning
     Center operator namespace. If the TLS secret is not on the Learning Center operator namespace,
     the operator logs contain the following error:
 
@@ -33,11 +33,11 @@ If the status stays in a pending state, the TLS secret `tls` is not available.
     ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
     ```
 
-1. Follow the steps in
+3. Follow the steps in
     [Enforcing Secure Connections](getting-started/learning-center-operator.html#enforce-secure-connect)
     in _Learning Center Operator_ to create the TLS secret.
 
-1. Redeploy the `trainingPortal` resource.
+4. Redeploy the `trainingPortal` resource.
 
 ## <a id="img-pol-wbhk-srvc-nt-fnd"></a>image-policy-webhook-service not found
 
