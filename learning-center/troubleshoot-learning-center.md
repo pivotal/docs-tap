@@ -5,11 +5,17 @@ for Learning Center.
 
 ## <a id="training-portal-pending"></a>Training portal stays in pending state
 
-The training portal stays in a "pending" state.
+The training portal stays in a "pending" state. 
 
 **Explanation**
 
-The TLS secret `tls` is not available.
+The Training Portal custom resource (CR) has a status property. This is the command to see the status:
+
+```console
+kubectl get trainingportals.learningcenter.tanzu.vmware.com
+```
+
+If the status stays in a pending state, the TLS secret `tls` is not available.
 
 **Solution**
 
