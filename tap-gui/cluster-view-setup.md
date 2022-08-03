@@ -185,7 +185,7 @@ To do so:
 1. Update the `tap-gui` package by running this command:
 
     ```console
-    tanzu package installed update tap-gui --values-file tap-gui-values.yaml
+    tanzu package installed update tap-gui -n tap-install --values-file tap-gui-values.yaml
     ```
 
 1. Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is
