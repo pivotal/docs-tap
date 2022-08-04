@@ -175,24 +175,27 @@ To view additional information about your running applications, see the
 ## <a id="viewing-pod-logs"></a>Viewing pod logs
 
 To view logs for a pod, click **View Pod Logs** from the **Pod Details** page.
-By default, you see all the logs for the pod since its creation for all the pod's containers.
-
-> **Note:** The logs displayed are not streamed in real time. To fetch new log entries, click
-> **Refresh** in the upper right corner of the page.
+By default, you'll be presented with logs for the pod since its creation, for all the pod's containers.
 
 ![Screenshot of Pod Logs page, which displays information for Tanzu Java Web App](images/runtime-resources-pod-logs.png)
+
+### <a id="viewing-pod-logs--pause-resume"></a>Pausing and resuming logs
+
+Log entries are streamed in real time, with new entries appearing at the bottom of the log content area. Scrolling up or to the right by any amount in the log content area will pause the log stream, allowing you to focus on specific entries. A **Follow Latest** button will appear at the bottom of the log content area to indicate that the log stream is paused. To resume receiving the latest entries, simply click this button.
 
 ### <a id="filter-by-container"></a>Filtering by container
 
 To display logs for a specific container only, select the desired container from the **Container**
-drop-down menu. Deselecting this drop-down menu causes logs for all containers within the pod to appear.
+drop-down menu. Clearing the selected container causes logs for all containers within the pod to appear.
 
 ### <a id="filter-by-date-and-time"></a>Filtering by date and time
 
 To see all logs since a specific date and time, select or type the UTC timestamp in the
 **Since date** field.
 If no logs are displayed, adjust the timestamp to an earlier time.
-Deselect this field to see all logs created since the pod was created.
+Clear this field to see all logs produced since the pod was created.
+
+> **Note:** For performance reasons, the pod logs page limits the total number of log entries displayed to the most recent 10,000.
 
 ### <a id="changing-log-levels"></a>Changing log levels
 
@@ -202,17 +205,29 @@ You then see a panel that allows you to select levels for each logger associated
 
 ![Screenshot of the log levels panel. Info is selected for each logger.](images/runtime-resources-pod-log-levels.png)
 
-To change the levels for your application, select the desired level for each logger presented and then
+To change the levels for your application, select the desired level for each logger presented, then
 close the panel by clicking **X** in the upper right corner of the panel or by pressing
 the Escape key on your keyboard.
 
-Because adjusting log levels makes a real-time configuration change to your application, log-level
+Because adjusting log levels makes a real-time configuration change to your application, log level
 adjustments are only reflected in log entries that your application produces after the change.
-Click **Refresh** in the upper right corner of the page to fetch new messages after changing log levels.
 
-After refreshing, if no log entries for the expected levels appear, ensure that:
+If no log entries for the expected levels appear, ensure that:
 
 1. You adjusted the correct application loggers
 1. You are viewing logs for the correct container and time frame
-1. Your application is producing logs at the expected levels. Your application might be idling or
-otherwise not running a code path that starts the desired logger.
+1. Your application is currently producing logs at the expected levels
+
+### <a id="viewing-pod-logs--line-wrapping"></a>Line wrapping
+
+By default, log lines will not be wrapped. To enable or disable line wrapping, click the **Wrap lines** toggle.
+
+### <a id="viewing-pod-logs--downloading"></a>Downloading logs
+
+To download current log content, click the **Download logs** button.
+
+> **Note:** For performance reasons, the pod logs page limits the total number of log entries downloaded to the most recent 10,000.
+
+### <a id="viewing-pod-logs--connection-interruptions"></a>Connection interruptions
+
+If the log stream connection is interrupted for any reason (for example, due to a network error), an error message will be displayed at the top of the page. Click the **Refresh** button in the upper right to attempt reconnection.
