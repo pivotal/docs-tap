@@ -2,92 +2,85 @@
 
 This topic describes Application Accelerator in Tanzu Application Platform GUI.
 
-
 ## <a id="overview"></a> Overview
 
 Application Accelerator for VMware Tanzu helps you bootstrap developing and deploying your
 applications in a discoverable and repeatable way.
 
-Enterprise Architects author and publish accelerator projects that provide developers and operators
-with ready-made, enterprise-conformant code and configurations.
+Enterprise architects author and publish accelerator projects that provide developers and operators
+with ready-made, enterprise-conforming code and configurations.
 You can then use Application Accelerator to create new projects based on those accelerator projects.
 
-The Application Accelerator user interface (UI) enables you to discover available accelerators,
-configure them, and generate new projects to download.
+The Application Accelerator UI enables you to discover available accelerators, configure them, and
+generate new projects to download.
 
+## <a id='entry-point'></a>Access Application Accelerator
 
-## <a id='entry-point'></a>Entry point to Application Accelerator
+To open the Application Accelerator UI plug-in and select an accelerator:
 
-The Application Accelerator UI plug-in is part of Tanzu Application Platform GUI.
-To access Application Accelerator, click **Create** in the left-hand navigation bar of
-Tanzu Application Platform. This opens the **Accelerators** page.
+1. Click **Create** in the left-hand navigation bar of Tanzu Application Platform to open the
+   **Accelerators** page.
 
-![Screenshot of Accelerators page](images/aa1-acc-page.png)
+    ![Screenshot of Accelerators page](images/aa1-acc-page.png)
 
-Here you can view accelerators already registered with the system.
-Developers can add new accelerators by registering them with Kubernetes.
+    Here you can view accelerators already registered with the system.
+    Developers can add new accelerators by registering them with Kubernetes.
 
-Every accelerator provides a title and short description. You can view an accelerator definition by
-clicking **View Repository**, which opens the accelerator's Git repository in a new browser tab.
+2. Every accelerator provides a title and short description.
+   Click **View Repository** to view an accelerator definition. This opens the accelerator's Git
+   repository in a new browser tab.
 
-This main page allows you to search and filter based on text and tags associated with the accelerators.
-When you find the accelerator representing the project you want to create, click **Choose**.
-This opens the **Generate Accelerators** page.
+3. Search and filter based on text and tags associated with the accelerators to find the accelerator
+   representing the project you want to create.
 
+4. Click **Choose** next to the accelerator you want. This opens the **Generate Accelerators** page.
 
-## <a id='configure-project'></a> Configuring project generation
+## <a id='configure-project'></a> Configure project generation
 
-On the **Generate Accelerators** page, supply any configuration options needed to generate the project.
-The Application Architect has defined these in the `accelerator.yaml` in the accelerator definition.
-Setting some options can cause others to appear that also must be specified.
+To configure how projects are generated:
 
-![Example configuration page for an accelerator.](./images/aa2-configuringAnAccelerator.png)
+1. On the **Generate Accelerators** page, add any configuration values needed to generate the
+   project. The application architect defined these values in `accelerator.yaml` in the accelerator
+   definition.
+   Filling some fields can cause other fields to appear that you must also fill in.
 
+    ![Example configuration page for an accelerator.](images/aa2-configuringAnAccelerator.png)
 
-## <a id='explore-project'></a> Exploring a project during configuration
+2. Click **Explore** on the **Generate Accelerators** page to view the project before it is generated.
+   This opens the **Explore Project** page.
 
-Click **Explore** on the **Generate Accelerators** page to view the project before it is generated.
-This opens the **Explore Project** page as shown in the following screenshot.
+    ![Screenshot of the Explore Project page.](images/aa3-exploringProject.png)
 
-![Screenshot of the Explore Project page.](images/aa3-exploringProject.png)
+3. After configuring your project, click **Next Step** to see the project summary page.
 
-When you've finished configuring your project, click **Next Step** to see the project summary page.
-You are now ready to create the project.
+4. Review the values you specified for the configurable options.
 
+5. Click **Back** to make more changes, if necessary. Otherwise, proceed to [create the project](#create-project).
 
-## <a id='project-summary'></a>Project summary
+    ![Screenshot showing the configured project summary.](images/aa4-configuredProjectSummary.png)
 
-This page shows the values you have specified for the configurable options.
+## <a id='create-project'></a> Create the project
 
-![Screenshot showing the configured project summary.](images/aa4-configuredProjectSummary.png)
+To create the project:
 
-You can return to customize options by clicking **Back** if needed.
-Otherwise, you're ready to generate your accelerator.
+1. Click **Create** to start generating your project. See the progress on the **Task Activity** page.
+   Detailed logs are displayed on the right.
 
+    ![Task activity during project creation](images/aa5-taskActivity.png)
 
-## <a id='create-project'></a>Creating the project
+2. After the project is generated, click **Explore Zip File** to open the **Explore Project**
+   page to verify configuration.
 
-To generate your project, click **Create**.
-The system starts generating your project and the Task Activity page shows the progress, with
-detailed logs on the right side.
-
-![Task activity during project creation](images/aa5-taskActivity.png)
-
-After the project is generated, you can:
-
-- Click **Explore Zip File**. This opens the Explore Project page to verify configuration.
-- Click **Download Zip File** to download the project in a ZIP file.
-
+3. Click **Download Zip File** to download the project in a ZIP file.
 
 ## <a id='develop-your-code'></a>Develop your code
 
-After you've downloaded the ZIP file, expand it, and open the project in your integrated development
-environment (IDE).
+1. Expand the ZIP file.
+2. Open the project in your integrated development environment (IDE).
 
-![Screenshot of working on a project in Visual Studio Code](images/aa6-ide.png)
-
+    ![Screenshot of working on a project in Visual Studio Code](images/aa6-ide.png)
 
 ## <a id='next-steps'></a>Next steps
 
 To learn more about Application Accelerator for VMware Tanzu, see the
-[Application Accelerator documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html).
+[Application Accelerator documentation](../../application-accelerator/about-application-accelerator.md).
