@@ -7,8 +7,6 @@ for Learning Center.
 
 The training portal stays in a "pending" state. 
 
-**Explanation**
-
 The Training Portal custom resource (CR) has a status property. To see the status, run:
 
 ```console
