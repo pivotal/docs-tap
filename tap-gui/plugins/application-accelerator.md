@@ -4,7 +4,8 @@ This topic describes how to use Application Accelerator in Tanzu Application Pla
 
 ## <a id="overview"></a> Overview
 
-Application Accelerator for VMware Tanzu helps you bootstrap developing and deploying your applications in a discoverable and repeatable way.
+Application Accelerator for VMware Tanzu helps you bootstrap developing and deploying your applications
+in a discoverable and repeatable way.
 
 Enterprise architects author and publish accelerator projects that provide developers and operators
 with ready-made, enterprise-conforming code and configurations.
@@ -43,11 +44,11 @@ To configure how projects are generated:
    definition.
    Filling some text boxes can cause other text boxes to appear. Fill them all in.
 
-    ![Screenshot of Generate Accelerators page. The example accelerator displayed is named Hello Fun.](images/aa2-configuringAnAccelerator.png)
+    ![Screenshot of Generate Accelerators page. The example accelerator displayed is named Hello Fun.](images/aa2_configuringAnAccelerator.png)
 
 2. Click **EXPLORE** to open the **Explore Project** page and view the project before it is generated.
 
-    ![Screenshot of the Explore Project page. The README file for the sample Hello Fun accelerator is displayed.](images/aa3-exploringProject.png)
+    ![Screenshot of the Explore Project page. The README file for the sample Hello Fun accelerator is displayed.](images/aa3_exploringProject.png)
 
 3. After configuring your project, click **NEXT STEP** to see the project summary page.
 
@@ -55,7 +56,7 @@ To configure how projects are generated:
 
 5. Click **BACK** to make more changes, if necessary. Otherwise, proceed to [create the project](#create-project).
 
-    ![Screenshot of the project summary for the sample hello-fun project. A red cross is adjacent to the text Enable App Live View.](images/aa4-configuredProjectSummary.png)
+    ![Screenshot of the project summary for the sample hello-fun project. A red cross is adjacent to the text Enable App Live View.](images/aa4_configuredProjectSummary.png)
 
 ## <a id='create-project'></a> Create the project
 
@@ -64,7 +65,7 @@ To create the project:
 1. Click **Create** to start generating your project. See the progress on the **Task Activity** page.
    A detailed log is displayed on the right.
 
-    ![Screenshot of task activity during project creation. The DOWNLOAD ZIP FILE button is highlighted.](images/aa5-taskActivity.png)
+    ![Screenshot of task activity during project creation. The DOWNLOAD ZIP FILE button is highlighted.](images/aa5_taskActivity.png)
 
 2. After the project is generated, click **EXPLORE ZIP FILE** to open the **Explore Project** page
    to verify configuration.
@@ -78,9 +79,9 @@ To develop your code:
 1. Expand the ZIP file.
 2. Open the project in your integrated development environment (IDE).
 
-    ![Screenshot of a file called HelloAppApplication.java in the text editor Visual Studio Code](images/aa6-ide.png)
+    ![Screenshot of a file called HelloAppApplication.java in the text editor Visual Studio Code](images/aa6_ide.png)
 
 ## <a id='next-steps'></a>Next steps
 
 To learn more about Application Accelerator for VMware Tanzu, see the
-[Application Accelerator documentation](../../application-accelerator/about-application-accelerator.md).
+[Application Accelerator documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/1.0/acc-docs/GUID-index.html).
