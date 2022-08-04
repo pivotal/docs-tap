@@ -13,7 +13,9 @@ The Training Portal custom resource (CR) has a status property. To see the statu
 kubectl get trainingportals.learningcenter.tanzu.vmware.com
 ```
 
-If the status stays in a pending state, the TLS secret `tls` might not be available. Other errors can also cause the status to stay in a pending state, so it is important to check the operator and portal logs.
+**Explanation**
+
+If the status stays in a pending state, the TLS secret `tls` might not be available. Other errors can also cause the status to stay in a pending state, so it is important to check the operator and portal logs to execute the right steps.
 
 **Solution**
 
@@ -29,7 +31,7 @@ If the status stays in a pending state, the TLS secret `tls` might not be availa
     kubectl logs deployment/learningcenter-portal -n {PORTAL_NAMESPACE}
     ```
 
-2. Check whether the TLS secret `tls` is available. The TLS secret must be on the Learning Center operator namespace (by default `learningcenter`). If the TLS secret is not on the Learning Center operator namespace, the operator logs contain the following error:
+1. Check whether the TLS secret `tls` is available. The TLS secret must be on the Learning Center operator namespace (by default `learningcenter`). If the TLS secret is not on the Learning Center operator namespace, the operator logs contain the following error:
 
     ```console
     ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
