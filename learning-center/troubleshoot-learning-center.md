@@ -9,7 +9,7 @@ The training portal stays in a "pending" state.
 
 **Explanation**
 
-The Training Portal custom resource (CR) has a status property. This is the command to see the status:
+The Training Portal custom resource (CR) has a status property. To see the status, run:
 
 ```console
 kubectl get trainingportals.learningcenter.tanzu.vmware.com
