@@ -84,4 +84,4 @@ To develop your code:
 ## <a id='next-steps'></a>Next steps
 
 To learn more about Application Accelerator for VMware Tanzu, see the
-[Application Accelerator documentation](../../application-accelerator/about-application-accelerator.md).
+[Application Accelerator documentation](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/1.1/acc-docs/GUID-index.html).
