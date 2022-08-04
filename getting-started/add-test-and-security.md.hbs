@@ -176,11 +176,14 @@ the workload must be updated to point at your Tekton pipeline.
 
 ## <a id="install-OOTB-test-scan"></a>Install OOTB Supply Chain with Testing and Scanning
 
-To install OOTB Supply Chain with Testing and Scanning:
+### <a id="prereqs-install-OOTB-test-scan"></a>Prerequisites
+
+- Before installing OOTB Supply Chain with Testing and Scanning, you must first install OOTB Supply Chain with Testing.
+- The Grype must be installed for scanning.
 
   > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies.
 
->**Important:** The Grype must be installed for scanning.
+To install OOTB Supply Chain with Testing and Scanning:
 
 1. Supply Chain Security Tools (SCST) - Scan is installed as part of the Tanzu Application Platform profiles.
 Verify that both Scan Link and Grype Scanner are installed by running:
