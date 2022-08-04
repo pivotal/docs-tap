@@ -13,6 +13,8 @@ The Training Portal custom resource (CR) has a status property. To see the statu
 kubectl get trainingportals.learningcenter.tanzu.vmware.com
 ```
 
+**Explanation**
+
 If the status stays in a pending state, the TLS secret `tls` might not be available. Other errors can also cause the status to stay in a pending state, so it is important to check the operator and portal logs.
 
 **Solution**
