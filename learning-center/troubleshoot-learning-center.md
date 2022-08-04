@@ -7,15 +7,14 @@ for Learning Center.
 
 The training portal stays in a "pending" state. 
 
-**Explanation**
-
 The Training Portal custom resource (CR) has a status property. To see the status, run:
 
 ```console
 kubectl get trainingportals.learningcenter.tanzu.vmware.com
 ```
+**Explanation**
 
-If the status stays in a pending state, the TLS secret `tls` might not be available. Other errors can also cause the status to stay in a pending state, so it is important to check the operator and portal logs.
+If the status stays in a pending state, the TLS secret `tls` might not be available. Other errors can also cause the status to stay in a pending state, so it is important to check the operator and portal logs to execute the right steps.
 
 **Solution**
 
@@ -24,10 +23,12 @@ If the status stays in a pending state, the TLS secret `tls` might not be availa
     ```console
     kubectl logs deployment/learningcenter-operator -n learningcenter
     ```
+    Access the portal logs by running:
+    ```console
+    kubectl logs deployment/learningcenter-portal -n {PORTAL_NAMESPACE}
+    ```
 
-2. Observe that the TLS secret `tls` is not available. The TLS secret must be on the Learning
-    Center operator namespace. If the TLS secret is not on the Learning Center operator namespace,
-    the operator logs contain the following error:
+2. Observe that the TLS secret `tls` is not available. The TLS secret must be on the Learning Center operator namespace (by default `learningcenter`). If the TLS secret is not on the Learning Center operator namespace, the operator logs contain the following error:
 
     ```console
     ERROR:kopf.objects:Handler 'learningcenter' failed temporarily: TLS secret tls is not available
@@ -49,7 +50,7 @@ Internal error occurred: failed calling webhook "image-policy-webhook.signing.ru
 
 **Explanation**
 
-This is a race condition error among some packages.
+This is a race condition error among some TAP packages.
 
 **Solution**
 
