@@ -104,6 +104,7 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
 
     Expect to see the following outputs or similar:
     
+    ```
     NAME                                     READY   STATUS    RESTARTS   AGE
     pod/source-controller-7684c85659-2zfxb   1/1     Running   0          40m
 
@@ -131,34 +132,34 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
 
 3. Follow these steps to consume a `GitRepository` object:
 
-      a. Create the following `gitrepository-sample.yaml` file:
+    a. Create the following `gitrepository-sample.yaml` file:
 
-          ```
-          apiVersion: source.toolkit.fluxcd.io/v1beta1
-          kind: GitRepository
-          metadata:
-            name: gitrepository-sample
-          spec:
-            interval: 1m
-            url: https://github.com/stefanprodan/podinfo
-            ref:
-              branch: master
-          ```
+        ```
+        apiVersion: source.toolkit.fluxcd.io/v1beta1
+        kind: GitRepository
+        metadata:
+          name: gitrepository-sample
+        spec:
+          interval: 1m
+          url: https://github.com/stefanprodan/podinfo
+          ref:
+            branch: master
+        ```
 
-      b. Apply the created conf:
+    b. Apply the created conf:
 
-          ```
-          kubectl apply -f gitrepository-sample.yaml
-          gitrepository.source.toolkit.fluxcd.io/gitrepository-sample created
-          ```
+        ```
+        kubectl apply -f gitrepository-sample.yaml
+        gitrepository.source.toolkit.fluxcd.io/gitrepository-sample created
+        ```
 
-      c. Verify the git-repository was fetched correctly:
+    c. Verify the git-repository was fetched correctly:
 
-          ```
-          kubectl get GitRepository
-          NAME                   URL                                       READY   STATUS                                                              AGE
-          gitrepository-sample   https://github.com/stefanprodan/podinfo   True    Fetched revision: master/132f4e719209eb10b9485302f8593fc0e680f4fc   4s
-          ```
+        ```
+        kubectl get GitRepository
+        NAME                   URL                                       READY   STATUS                                                              AGE
+        gitrepository-sample   https://github.com/stefanprodan/podinfo   True    Fetched revision: master/132f4e719209eb10b9485302f8593fc0e680f4fc   4s
+        ```
 
     For more examples, see the samples directory on [fluxcd/source-controller/samples](https://github.com/fluxcd/source-controller/tree/main/config/samples) in GitHub.
 
