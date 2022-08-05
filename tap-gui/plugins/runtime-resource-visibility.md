@@ -10,15 +10,15 @@ associated with their workloads.
 Do one of the following actions to access the Runtime Resources Visibility plug-in:
 
 - [Install the Tanzu Application Platform Full or View profile](../../install-intro.md)
-- [Install Tanzu Application Platform without using a profile](../../install-intro.md) and then install
-[Tanzu Application Platform GUI separately](../install-tap-gui.md).
+- [Install Tanzu Application Platform without using a profile](../../install-intro.md) and then
+  install [Tanzu Application Platform GUI separately](../install-tap-gui.md)
 
 ## <a id="Visualize-app"></a> Visualize Workloads on Tanzu Application Platform GUI
 
 In order to view your applications on Tanzu Application Platform GUI, use the following steps:
 
 1. [Deploy your first application on the Tanzu Application Platform](../../getting-started/deploy-first-app.md)
-1. [Add your application to Tanzu Application Platform GUI Software Catalog](../../getting-started/deploy-first-app.html#add-app-to-gui-cat)
+1. [Add your application to Tanzu Application Platform GUI Software Catalog](../../getting-started/deploy-first-app.md#add-app-to-gui-cat)
 
 ## <a id="nav-rr-vis-screen"></a> Navigate to the **Runtime Resources Visibility** screen
 
@@ -51,7 +51,7 @@ Supply Chain, including:
 - Knative Services, Configurations, Revisions, and Routes
 
 For more information, see
-[Supply Chain Choreographer in Tanzu Application Platform GUI](scc-tap-gui.html).
+[Supply Chain Choreographer in Tanzu Application Platform GUI](scc-tap-gui.md).
 
 CRDs from Supply Chain are associated with Knative Resources, further down the chain, and built-in
 resources even further down the chain.
@@ -90,7 +90,7 @@ The following are some attributes that are displayed in the overview card:
 - Namespace
 - Cluster
 
-![Screenshot of the Tanzu web app default URL](images/runtime-resources-overview.png)
+![Screenshot of an Overview card. The VIEW POD LOGS and VIEW .YAML buttons are at the top-right.](images/runtime-resources-overview.png)
 
 >**Note:** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
 applications supporting Application Live View.
@@ -113,7 +113,7 @@ specified in `metadata.ownerReferences`. You can use this section to navigate be
 For more information about owners and dependents, see the
 [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/).
 
-![Screenshot of the metadata owner references](images/runtime-resources-ownership.png)
+![Screenshot of an Ownership card that shows the metadata owner references. There are 11 layers in the ownership chain.](images/runtime-resources-ownership.png)
 
 ### <a id="annotations"></a>Annotations and Labels
 
@@ -139,9 +139,9 @@ Users can see the pod table in each resource details page.
 ### <a id="pod-details-metrics"></a> Overview of pod metrics
 
 The overview card displays the user-configured resource limits on the pod, defined in accordance with
-the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/).
+the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 These limits do not represent actual real-time resource use. To monitor actual real-time resource use,
-see [Application Live View for Spring Boot Applications in Tanzu Application Platform GUI](app-live-view-springboot.html).
+see [Application Live View for Spring Boot Applications in Tanzu Application Platform GUI](app-live-view-springboot.md).
 
 Each container displays its resource limits, if defined.
 
@@ -175,59 +175,67 @@ To view additional information about your running applications, see the
 ## <a id="viewing-pod-logs"></a>Viewing pod logs
 
 To view logs for a pod, click **View Pod Logs** from the **Pod Details** page.
-By default, you'll be presented with logs for the pod since its creation, for all the pod's containers.
+By default, logs for all the pod's containers are displayed, dating back to when the pod was created.
 
 ![Screenshot of Pod Logs page, which displays information for Tanzu Java Web App](images/runtime-resources-pod-logs.png)
 
-### <a id="viewing-pod-logs--pause-resume"></a>Pausing and resuming logs
+### <a id="pause-resume-logs"></a>Pausing and resuming logs
 
-Log entries are streamed in real time, with new entries appearing at the bottom of the log content area. Scrolling up or to the right by any amount in the log content area will pause the log stream, allowing you to focus on specific entries. A **Follow Latest** button will appear at the bottom of the log content area to indicate that the log stream is paused. To resume receiving the latest entries, simply click this button.
+Log entries are streamed in real time. New entries appear at the bottom of the log content area.
+Scroll up or to the right in the log content area to pause the log stream.
+Pausing the log stream enables you to focus on specific entries.
+
+To resume the stream, click the **Follow Latest** button that appears after pausing.
 
 ### <a id="filter-by-container"></a>Filtering by container
 
 To display logs for a specific container only, select the desired container from the **Container**
-drop-down menu. Clearing the selected container causes logs for all containers within the pod to appear.
+drop-down menu. If you do not select a container, logs for all containers within the pod are displayed.
 
 ### <a id="filter-by-date-and-time"></a>Filtering by date and time
 
 To see all logs since a specific date and time, select or type the UTC timestamp in the
 **Since date** field.
 If no logs are displayed, adjust the timestamp to an earlier time.
-Clear this field to see all logs produced since the pod was created.
+If you do not select a timestamp, all logs produced since the pod was created are displayed.
 
-> **Note:** For performance reasons, the pod logs page limits the total number of log entries displayed to the most recent 10,000.
+For optimal performance, the pod logs page limits the total log entries displayed to the most recent
+10,000.
 
 ### <a id="changing-log-levels"></a>Changing log levels
 
-If the pod is associated with an application that supports [Application Live View](app-live-view.html),
+If the pod is associated with an application that supports [Application Live View](app-live-view.md),
 you can change the application's log levels by clicking the **Change Log Levels** button.
-You then see a panel that allows you to select levels for each logger associated with your application.
+You then see a panel that enables you to select levels for each logger associated with your application.
 
 ![Screenshot of the log levels panel. Info is selected for each logger.](images/runtime-resources-pod-log-levels.png)
 
-To change the levels for your application, select the desired level for each logger presented, then
-close the panel by clicking **X** in the upper right corner of the panel or by pressing
-the Escape key on your keyboard.
+To change the levels for your application, select the desired level for each logger presented, and
+then click **X** in the upper-right corner of the panel, or press the Escape key, to close the
+panel.
 
-Because adjusting log levels makes a real-time configuration change to your application, log level
+Because adjusting log levels makes a real-time configuration change to your application, log-level
 adjustments are only reflected in log entries that your application produces after the change.
 
 If no log entries for the expected levels appear, ensure that:
 
 1. You adjusted the correct application loggers
-1. You are viewing logs for the correct container and time frame
-1. Your application is currently producing logs at the expected levels
+2. You are viewing logs for the correct container and time frame
+3. Your application is currently producing logs at the expected levels
 
-### <a id="viewing-pod-logs--line-wrapping"></a>Line wrapping
+### <a id="line-wrapping"></a>Line wrapping
 
-By default, log lines will not be wrapped. To enable or disable line wrapping, click the **Wrap lines** toggle.
+By default, log entries are not wrapped. To enable or disable line wrapping, click the **Wrap lines**
+toggle.
 
-### <a id="viewing-pod-logs--downloading"></a>Downloading logs
+### <a id="downloading"></a>Downloading logs
 
 To download current log content, click the **Download logs** button.
+For optimal performance, the pod logs page limits the total log entries downloaded to the most recent
+10,000.
 
-> **Note:** For performance reasons, the pod logs page limits the total number of log entries downloaded to the most recent 10,000.
+### <a id="connect-interrupt"></a>Connection interruptions
 
-### <a id="viewing-pod-logs--connection-interruptions"></a>Connection interruptions
-
-If the log stream connection is interrupted for any reason (for example, due to a network error), an error message will be displayed at the top of the page. Click the **Refresh** button in the upper right to attempt reconnection.
+If the log stream connection is interrupted for any reason, such as a network error, an error message
+is displayed at the top of the page.
+Click the **Refresh** button at the upper-right of the page to try to reconnect.
