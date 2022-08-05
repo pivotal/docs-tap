@@ -177,7 +177,7 @@ The following table and diagrams provide descriptions for each of the supply cha
 
 Apply what you have learned:
 
-- [Add testing and security scanning to your application](add-test-and-security.md.hbs)
+- [Add testing and security scanning to your application](add-test-and-security.md)
 
 Or learn about:
 

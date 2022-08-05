@@ -96,7 +96,7 @@ or as a standalone package installation, you don't know whether the configuratio
    > the pod might cause the loss of user preferences and manually registered entities.
    > If you have configured an external PostgreSQL database, `tap-gui` pods are not stateful.
    > In most cases, state is held in ConfigMaps, Secrets, or the database.
-   > For more information, see [Configuring the Tanzu Application Platform GUI database](database.md.hbs)
+   > For more information, see [Configuring the Tanzu Application Platform GUI database](database.md)
    > and [Register components](catalog/catalog-operations.md#register-comp).
 
    To delete and re-instantiate the pod, run:

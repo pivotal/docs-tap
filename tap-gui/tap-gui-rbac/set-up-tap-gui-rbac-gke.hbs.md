@@ -41,7 +41,7 @@ choice.
     ```
 
     Where `INGRESS-DOMAIN` is the domain you chose for your Tanzu Application Platform GUI in
-    [Installing the Tanzu Application Platform package and profiles](../../install.md.hbs).
+    [Installing the Tanzu Application Platform package and profiles](../../install.md).
 
 1. Click **Save Changes**.
 
