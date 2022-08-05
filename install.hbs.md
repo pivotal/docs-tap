@@ -378,7 +378,7 @@ buildservice:
 ```
 
 After configuring `full` dependencies, you must install the dependencies after
-you have finished installing your Tanzu Application Platform package. 
+you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
@@ -507,7 +507,7 @@ contour:
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
-To access Tanzu Application Platform GUI, you can use the hostname that you configured earlier. This hostname is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui..md).
+To access Tanzu Application Platform GUI, you can use the hostname that you configured earlier. This hostname is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
 You're now ready to start using Tanzu Application Platform GUI.
 Proceed to the [Getting Started](getting-started.md) topic or the
