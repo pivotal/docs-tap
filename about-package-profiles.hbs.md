@@ -641,7 +641,7 @@ The following table lists the packages contained in each profile:
 </table>
 
 <sup>\*</sup> Only one supply chain should be installed at any given time.
-For information on switching from one supply chain to another, see [Add testing and security scanning to your application](getting-started/add-test-and-security..md).
+For information on switching from one supply chain to another, see [Add testing and security scanning to your application](getting-started/add-test-and-security.md).
 
 ## <a id='language-support'></a> Language and framework support in Tanzu Application Platform
 
@@ -845,4 +845,4 @@ Ruby applications with Tanzu Build Service.
 
 ## <a id='install'></a> Installing the Tanzu Application Platform
 
-To install the Tanzu Application Platform profiles, see [Installing the Tanzu Application Platform package and profiles](install..md).
+To install the Tanzu Application Platform profiles, see [Installing the Tanzu Application Platform package and profiles](install.md).
