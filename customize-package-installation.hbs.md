@@ -13,7 +13,7 @@ See [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.38.0/packa
 
 ## <a id="profile-install"></a>Customizing packages installed by using a profile
 
-To add an overlay to a package installed by using a [Tanzu Application Platform profile](install.md.hbs), follow these steps:
+To add an overlay to a package installed by using a [Tanzu Application Platform profile](install..md), follow these steps:
 
 1. Create a `Secret` with your ytt overlay. See [Carvel documentation](https://carvel.dev/ytt/docs/v0.41.0/ytt-overlays/) for more information about ytt overlays.
 1. Update your values file to include a `package_overlays` field.

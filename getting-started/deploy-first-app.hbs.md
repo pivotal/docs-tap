@@ -18,7 +18,7 @@ Before you start, complete all [Getting started prerequisites](../getting-starte
 ## <a id="deploy-your-app"></a>Deploy your application through Tanzu Application Platform GUI
 
 To deploy your application, you must download an accelerator, upload it on your Git repository of choice, and run a CLI command. In this example, we use the `Tanzu-Java-Web-App` accelerator. We also use the Tanzu Application Platform GUI. For information about connecting to Tanzu Application Platform GUI, see
-   [Accessing Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md.hbs). 
+   [Accessing Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui..md). 
 
 1. From Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
    navigation bar to see the list of available accelerators.
@@ -29,7 +29,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 1. In the **Generate Accelerators** dialog box, replace the default value `dev.local` in the **prefix for container image registry** field
    with the registry in the form of `SERVER-NAME/REPO-NAME`.
-   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See the Full Profile section on [Installing Tanzu Application Platform package and profiles](../install.md.hbs#full-profile).
+   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See the Full Profile section on [Installing Tanzu Application Platform package and profiles](../install..md#full-profile).
    Click **NEXT**, verify the provided information, and click **GENERATE ACCELERATOR**.
 
 1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
@@ -97,7 +97,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     ![REGISTER button on the right side of the header](../images/getting-started-tap-gui-5.png)
 
-    Alternatively, you can add a link to the `catalog-info.yaml` to the `tap-values.yaml` configuration file in the `tap_gui.app_config.catalog.locations` section. See [Installing the Tanzu Application Platform Package and Profiles](../install.md.hbs#full-profile).
+    Alternatively, you can add a link to the `catalog-info.yaml` to the `tap-values.yaml` configuration file in the `tap_gui.app_config.catalog.locations` section. See [Installing the Tanzu Application Platform Package and Profiles](../install..md#full-profile).
 
 1. **Register an existing component** prompts you to type a repository URL.
 Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository field, for example,
@@ -113,7 +113,7 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
->**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md.hbs) database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
+>**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database..md) database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
 
 ## Next steps
 
