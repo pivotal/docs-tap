@@ -132,7 +132,7 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
 
 3. Follow these steps to consume a `GitRepository` object:
 
-    a. Create the following `gitrepository-sample.yaml` file:
+    1. Create the following `gitrepository-sample.yaml` file:
 
         ```
         apiVersion: source.toolkit.fluxcd.io/v1beta1
@@ -146,14 +146,14 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
             branch: master
         ```
 
-    b. Apply the created conf:
+    2. Apply the created conf:
 
         ```
         kubectl apply -f gitrepository-sample.yaml
         gitrepository.source.toolkit.fluxcd.io/gitrepository-sample created
         ```
 
-    c. Verify the git-repository was fetched correctly:
+    3. Verify the git-repository was fetched correctly:
 
         ```
         kubectl get GitRepository
