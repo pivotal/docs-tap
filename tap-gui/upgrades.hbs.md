@@ -10,7 +10,7 @@ If you installed Tanzu Application Platform through a profile, see
 As part of the upgrade, Tanzu Application Platform updates its container with the new version.
 
 As a result, if you installed Tanzu Application Platform GUI without the support of a backing
-[database](database.md.hbs), you lose your in-memory data for any manual component registrations
+[database](database.md), you lose your in-memory data for any manual component registrations
 when the container restarts.
 While the update is pulling the new pod from the registry, users might experience a short UI
 interruption and might need to re-authenticate because the in-memory session data is rebuilt.
