@@ -1826,7 +1826,7 @@ $INGRESS_PROTOCOL://$SESSION_NAMESPACE.$INGRESS_DOMAIN/webdav/
 In workshop content it can be constructed using:
 
 ```console
-{{ingress_protocol}}://{{session_namespace}}.{{ingress_domain}}/webdav/
+\{{ingress_protocol}}://\{{session_namespace}}.\{{ingress_domain}}/webdav/
 ```
 
 You can use WebDAV client support provided by your operating system or by using a

@@ -220,7 +220,7 @@ To install Pinniped Concierge:
 1. Get the CA certificate of the supervisor by running the following command against the cluster running `Pinniped Supervisor`:
 
     ```console
-    kubectl get secret pinniped-supervisor-tls-cert -n pinniped-supervisor -o 'go-template={{index .data "tls.crt"}}'
+    kubectl get secret pinniped-supervisor-tls-cert -n pinniped-supervisor -o 'go-template=\{{index .data "tls.crt"}}'
     ```
 
     **Note** the `tls.crt` contains the entire certificate chain including the CA certificate for letsencrypt generated certificates
