@@ -55,6 +55,8 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
 
       Added installed package 'fluxcd-source-controller'
     ```
+    
+    This package creates a new namespace called `flux-system`. This namespace hosts all the elements of fluxcd.
 
 3. Verify the package install by running:
 
@@ -75,7 +77,7 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
     USEFUL-ERROR-MESSAGE:
     ```
 
-    Verify that `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`.
 
     ```
     kubectl get pods -n flux-system
@@ -89,19 +91,19 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
     source-controller-69859f545d-ll8fj   1/1     Running   0          3m38s
     ```
 
-    Verify that `STATUS` is `Running`
+    Verify that `STATUS` is `Running`.
 
 
 ##  <a id="try-fluxcd-source-controller"></a> Try fluxcd-source-controller
 
-1. Verify all the objects are installed:
-
-    This package  creates a new namespace where all the elements of fluxcd is to be hosted called `flux-system`
-
-    you can verify the main components of `fluxcd-source-controller` were installed by running:
+1. Verify the main components of `fluxcd-source-controller` were installed by running:
 
     ```
     kubectl get all -n flux-system
+    ```
+
+    Expect to see the following outputs or similar:
+    
     NAME                                     READY   STATUS    RESTARTS   AGE
     pod/source-controller-7684c85659-2zfxb   1/1     Running   0          40m
 
@@ -115,13 +117,7 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
     replicaset.apps/source-controller-7684c85659   1         1         1       40m
     ```
 
-    you will get something really similar!
-
-2. Verify all the CRD were installed correctly:
-
-    The way you will communicate with `fluxcd-source-controller` would be through its CRDs, this will be your main action point.
-
-    In order to check all the CRDs were installed you can run:
+2. Verify all the CRD were installedby running:
 
     ```
     kubectl get crds -n flux-system | grep ".fluxcd.io"
@@ -130,14 +126,12 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
     helmcharts.source.toolkit.fluxcd.io                      2022-03-07T19:20:14Z
     helmrepositories.source.toolkit.fluxcd.io                2022-03-07T19:20:14Z
     ```
+    
+    >**Note:** You will communicate with `fluxcd-source-controller` through its CRDs.
 
-3. Try this quick example:
+3. Follow these steps to consume a `GitRepository` object:
 
-    Try this quick example yourself, so you can verify that everything is working as expected.
-
-    - Consume a `GitRepository` object,
-
-      - Create the following `gitrepository-sample.yaml` file:
+      a. Create the following `gitrepository-sample.yaml` file:
 
           ```
           apiVersion: source.toolkit.fluxcd.io/v1beta1
@@ -151,14 +145,14 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
               branch: master
           ```
 
-      - Apply the created conf
+      b. Apply the created conf:
 
           ```
           kubectl apply -f gitrepository-sample.yaml
           gitrepository.source.toolkit.fluxcd.io/gitrepository-sample created
           ```
 
-      - Check the git-repository was fetched correctly
+      c. Verify the git-repository was fetched correctly:
 
           ```
           kubectl get GitRepository
@@ -166,9 +160,9 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
           gitrepository-sample   https://github.com/stefanprodan/podinfo   True    Fetched revision: master/132f4e719209eb10b9485302f8593fc0e680f4fc   4s
           ```
 
-    You can find more examples checking out the samples directory on [fluxcd/source-controller/samples](https://github.com/fluxcd/source-controller/tree/main/config/samples) in GitHub.
+    For more examples, see the samples directory on [fluxcd/source-controller/samples](https://github.com/fluxcd/source-controller/tree/main/config/samples) in GitHub.
 
 ##  <a id="documentation"></a> Documentation
 
-For documentation specific to fluxcd-source-controller, check out the main repository
-[fluxcd/source-controller](https://github.com/fluxcd/source-controller). in GitHub.
+For documentation specific to fluxcd-source-controller, see the main repository
+[fluxcd/source-controller](https://github.com/fluxcd/source-controller) in GitHub.
