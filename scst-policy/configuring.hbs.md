@@ -8,7 +8,7 @@ container images.
 An image is admitted after it is validated against all policies with
 matching image patterns, and where at least one valid signature is obtained from
 the authorities provided in the matched
-[ClusterImagePolicy](#create-cip-resource) later in the topic. Within a single policy, every 
+[ClusterImagePolicy](#create-cip-resource) later in the topic. Within a single policy, every
 signature must be valid. When more than one policy has a matching image pattern,
 the image much match at least one signature from each ClusterImagePolicy.
 
@@ -21,6 +21,14 @@ that have chosen to opt-in. This is done by adding the label
 ```console
 kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
 ```
+
+**Caution:** Without a Policy Controller ClusterImagePolicy applied, there are
+fallback behaviors where images will be validated against the public Sigstore
+Rekor and Fulcio servers through a keyless authority flow. Therefore, if the
+deploying image has been signed publically by a third-party using the keyless
+authority flow, the image may be admitted as it can validate against the public
+Rekor and Fulcio. To avoid this behavior, develop and apply a ClusterImagePolicy
+that will apply to the images being deployed in the namespace.
 
 ## <a id="create-cip-resource"></a> Create a `ClusterImagePolicy` resource
 
@@ -91,7 +99,7 @@ spec:
           name: secretName
     - key:
         kms: KMSPATH
-``` 
+```
 
 Each keyless authority can contain a Fulcio URL, a Rekor URL, a certificate, or
 an array of identities.
@@ -174,7 +182,7 @@ spec:
         - oci: registry.example.com/project/signature-location
           signaturePullSecrets:
             - name: mysecret
-``` 
+```
 
 VMware recommends using a set of credentials with the least amount of
 privilege that allows reading the signature stored in your registry.
@@ -198,7 +206,7 @@ spec:
         MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgAEhyQCx0E9wQWSFI9ULGwy3BuRklnt
         IqozONbbdbqz11hlRJy9c7SG+hdcFl9jE9uE/dwtuwU2MqU9T/cN0YkWww==
         -----END PUBLIC KEY-----
-``` 
+```
 
 When using the sample policy, run these commands to verify your configuration:
 
