@@ -90,6 +90,7 @@ To do so:
     - apiGroups: ['source.apps.tanzu.vmware.com']
       resources:
       - imagerepositories
+      - mavenartifacts
       verbs: ['get', 'watch', 'list']
     - apiGroups: ['conventions.carto.run']
       resources:
