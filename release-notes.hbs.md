@@ -71,6 +71,16 @@ This release includes the following changes, listed by component and area.
 - Feature 2
 
 #### <a id="tap-gui-features"></a>Tanzu Application Platform GUI
+&nbsp; Plug-in improvements and additions include:
+
+- **Runtime Resources Visibility plug-in:**
+  - Added support for pod logs and the ability to change log levels (where application live view is supported).
+  - Added memory and CPU limit configuration. 
+  - Added quick links to access app memory and threads usage.
+  - Added additional current status information when viewing runtime resources. 
+  - Added Tanzu Workload integration with a workload detail page for all runtime resouces. 
+  - Added support for Supply Chain resources. 
+  - UX updates to the Runtime Resource landing page. 
 
 - Supply Chain plug-in:
   - Added ability to visualize CVE scan results in the Details pane for both Source and Image Scan stages, as well as scan policy information without using the CLI.
