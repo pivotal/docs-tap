@@ -91,10 +91,10 @@ echo "Text to copy and edit."
 ----
 ```
 
-For `copy` only, to mark an inline code section within a paragraph of text as copyable when clicked, you can append the special data variable reference `{{copy}}` immediately after the inline code block:
+For `copy` only, to mark an inline code section within a paragraph of text as copyable when clicked, you can append the special data variable reference `\{{copy}}` immediately after the inline code block:
 
 ```
-Text to `copy`{{copy}}.
+Text to `copy`\{{copy}}.
 ```
 
 ## <a id="extensible-click-actions"></a>Extensible clickable actions
@@ -232,7 +232,7 @@ command: echo "Execute command."
 
 ## <a id="supported-editor"></a>Supported workshop editor
 
-Learning Center currently **only** supports the code-server v4.4.0 of VS Code as an editor in workshops. 
+Learning Center currently **only** supports the code-server v4.4.0 of VS Code as an editor in workshops.
 
 ## <a id="click-actions-dashboard"></a>Clickable actions for the dashboard
 
@@ -268,8 +268,8 @@ To allow the user to click in the workshop content to display a specific view wi
 ```dashboard:reload-dashboard
 name: Console
 prefix: Console
-title: List pods in namespace {{session_namespace}}
-url: {{ingress_protocol}}://{{session_namespace}}-console.{{ingress_domain}}/#/pod?namespace={{session_namespace}}
+title: List pods in namespace \{{session_namespace}}
+url: \{{ingress_protocol}}://\{{session_namespace}}-console.\{{ingress_domain}}/#/pod?namespace=\{{session_namespace}}
 description: ""
 ```
 ~~~
@@ -717,13 +717,13 @@ The workshop environment provides the following built-in data variables:
 To use a data variable within the page content, surround it by matching pairs of brackets:
 
 ```text
-{{ session_namespace }}
+\{{ session_namespace }}
 ```
 
 Do this inside of code blocks, including clickable actions, as well as in URLs:
 
 ```text
-http://myapp-{{ session_namespace }}.{{ ingress_domain }}
+http://myapp-\{{ session_namespace }}.\{{ ingress_domain }}
 ```
 
 When the workshop environment is hosted in Kubernetes and provides access to the underlying cluster, the following data variables are also available.
@@ -794,7 +794,7 @@ You can pass environment variables, including remapping of variable names, by se
 For example, to display the value of the `KUBECTL_VERSION` environment variable in the workshop content, use `ENV_KUBECTL_VERSION`, as in:
 
 ```text
-{{ ENV_KUBECTL_VERSION }}
+\{{ ENV_KUBECTL_VERSION }}
 ```
 
 ## <a id="handling-embedded-url"></a>Handling embedded URL links
@@ -806,7 +806,7 @@ In the case of the URL being an external website, when the URL is clicked, the U
 You can define a URL where components of the URL are provided by data variables. Data variables useful for this are `session_namespace` and `ingress_domain`, because they can be used to create a URL to an application deployed from a workshop:
 
 ```text
-https://myapp-{{ session_namespace }}.{{ ingress_domain }}
+https://myapp-\{{ session_namespace }}.\{{ ingress_domain }}
 ```
 
 ## <a id="cond-rendering-content"></a>Conditional rendering of content
