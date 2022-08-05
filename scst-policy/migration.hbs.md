@@ -1,4 +1,4 @@
-# Migration From Supply Chain Security Tools - Sign 
+# Migration From Supply Chain Security Tools - Sign
 
 This section explains how to migrate the `ClusterImagePolicy` resource
 from Image Policy Webhook to Policy Controller. For more information about
@@ -114,7 +114,7 @@ spec:
         -----END PUBLIC KEY-----
 
     ...
-``` 
+```
 
 **Policy Controller:**
 ```yaml
@@ -135,7 +135,7 @@ spec:
         -----END PUBLIC KEY-----
 
   ...
-``` 
+```
 
 
 ## <a id="img-matching"></a> Specifying Image Matching
@@ -190,4 +190,4 @@ metadata:
 spec:
   images:
   - glob: gcr.io/projectsigstore/cosign*
-``` 
+```
