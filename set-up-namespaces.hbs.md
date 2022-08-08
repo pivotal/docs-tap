@@ -12,7 +12,7 @@ that you plan to create the `Workload` in:
 
     Where:
 
-    - `YOUR-NAMESPACE` is the name that you want to use for the developer namespace.
+    - `YOUR-NAMESPACE` is the name for the developer namespace.
     For example, use `default` for the default namespace.
     - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
@@ -22,7 +22,7 @@ that you plan to create the `Workload` in:
     - `REGISTRY-PASSWORD` is the password of the registry.
     For GCR or Google Artifact Registry, this must be the concatenated version of the JSON key. For example: `"$(cat ~/gcp-key.json)"`.
 
-    **Note:** If you observe the following issue with the above command:
+    If you observe the following issue with the above command:
 
     ```console
     panic: runtime error: invalid memory address or nil pointer dereference
@@ -102,7 +102,7 @@ that you plan to create the `Workload` in:
 
 3. Perform one of the following actions to give developers namespace-level access and view access to appropriate cluster-level resources:
 
-    * Use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity provider group by running:
+    - Use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity provider group by running:
 
         ```console
         tanzu rbac binding add -g GROUP-FOR-APP-VIEWER -n YOUR-NAMESPACE -r app-viewer
@@ -126,7 +126,7 @@ that you plan to create the `Workload` in:
         For an example of how to set up Azure Active Directory (AD) with your cluster, see
         [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
-    * Apply the RBAC policy by running:
+    - Apply the RBAC policy by running:
 
         ```console
         cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
@@ -186,9 +186,9 @@ that you plan to create the `Workload` in:
 
         Where:
 
-        - `YOUR-NAMESPACE` is the name that you want to use for the developer namespace
-        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace and cluster
-        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace and cluster
+        - `YOUR-NAMESPACE` is the name for the developer namespace.
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace and cluster.
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace and cluster.
 
         VMware recommends creating a user group in your identity provider's grouping system for each
         developer namespace, and then adding the users accordingly.
