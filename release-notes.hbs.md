@@ -29,7 +29,7 @@ This release includes the following changes, listed by component and area.
 #### <a id="alv-features"></a>Application Live View
 
 - Live Hover Integration with Spring Tools Suite:
-  - Users can hover over Spring Actuator endpoints to see live data. You can enable his feature from Preferences.
+  - Users can hover over Spring Actuator endpoints to see live data. You can enable this feature from Preferences.
 
 #### <a id="app-sso-features"></a>Application Single Sign-On
 
@@ -48,20 +48,20 @@ This release includes the following changes, listed by component and area.
 - Added [`--service-account`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-service-accounta---service-account) flag to specify ServiceAccount name used by the workload to create resources submitted by the supply chain.
 - Added shorthand `-s` for [`--source-image`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-source-imagea---source-image--s) flag.
 - Added support for [`--output`](cli-plugins/apps/command-reference/commands-details/workload_list.md#a-idlist-outputa---output--o) flag to `workloads list` command.
-- Added support for json/yaml params using new flag [`--param-yaml`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-param-yamla---param-yaml).
-- Added support for creating workloads from `jar/war/zip` files through the [`--local-path`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-local-patha---local-path) flag.
+- Added support for JSON or YAML params using new flag [`--param-yaml`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-param-yamla---param-yaml).
+- Added support for creating workloads from JAR, WAR, and ZIP files through the [`--local-path`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-local-patha---local-path) flag.
 - Added source information from workload  in the `workload get` command output.
-- Added New command [`tanzu apps cluster-supply-chain get`](cli-plugins/apps/command-reference/tanzu-apps-cluster-supply-chain-get.md).
+- Added new command [`tanzu apps cluster-supply-chain get`](cli-plugins/apps/command-reference/tanzu-apps-cluster-supply-chain-get.md).
 - Added support for excluding files on local path using `.tanzuignore` file.
 - Added supply chain step information in `workload get` command output.
-- Added support for short names for Cartographer workload (wld) & cluster-supply-chain commands (csc).
+- Added support for short names for Cartographer workload (wld) and cluster-supply-chain commands (csc).
 - Added support for providing ServiceAccount name in workload commands through file input.
 
 #### <a id="src-cont-features"></a>Source Controller
 
 - Added support for pulling Artifacts from a Maven repository using the `MavenArtifact` CR.
 
-  >**Note:** Fetching `RELEASE` version from GitHub packages is not currently supported. The metadata.xml in GitHub packages does not have the `release` tag that contains the released version number. For more information, see [Maven-metadata.xml is corrupted on upload to registry](https://github.community/t/maven-metadata-xml-is-corrupted-on-upload-to-registry/177725) on GitHub.
+  >**Note:** Fetching `RELEASE` version from GitHub packages is not currently supported. The `metadata.xml` in GitHub packages does not have the `release` tag that contains the released version number. For more information, see [Maven-metadata.xml is corrupted on upload to registry](https://github.community/t/maven-metadata-xml-is-corrupted-on-upload-to-registry/177725) on GitHub.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
@@ -73,16 +73,16 @@ This release includes the following changes, listed by component and area.
 - View resource status on a workload:
   - Added ability to indicate how Cartographer can read the state of the resource and reflect it on the owner status.
   - Surfaces information about the health of resources directly on the owner status.
-  - Adds a field in the spec `healthRule` where authors can specify how to determine the health of the underlying resource for that template. The resource can be in one of the following states: A stamped resource can be in one of three states: 'Healthy' (status True), 'Unhealthy' (status False), or 'Unknown' (status Unknown). If no healthRule is defined, Cartographer defaults to listing the resource as `Healthy` once it is successfully applied to the cluster and any outputs are read off the resource.
+  - Adds a field in the spec `healthRule` where authors can specify how to determine the health of the underlying resource for that template. The resource can be in one of the following states: A stamped resource can be in one of three states: `Healthy` (status True), `Unhealthy` (status False), or `Unknown` (status Unknown). If no healthRule is defined, Cartographer defaults to listing the resource as `Healthy` once it is successfully applied to the cluster and any outputs are read off the resource.
 - [Cartographer Conventions](./cartographer-conventions/about.md) v0.1.0 is now bundled with Supply Chain Choreographer.
-  - As of v0.07.0 release of [Convention Controller](./convention-service/about.md), it's APIs are deprecated in favor of continuing development on [Cartographer Conventions](./cartographer-conventions/about.md). Cartographer Conventions is now bundled with Supply Chain Choreographer.
+  - As of v0.07.0 release of [Convention Controller](./convention-service/about.md), its APIs are deprecated in favor of continuing development on [Cartographer Conventions](./cartographer-conventions/about.md). Cartographer Conventions is now bundled with Supply Chain Choreographer.
 
 #### <a id="scst-scan"></a> Supply Chain Security Tools - Scan
 
 - Scan-Link's controller abstraction from the scanners' output format allows more flexibility when you integrate new scanners.
 - Supply Chain Security Tools - Scan is decoupled from the Supply Chain Security Tools - Store to ease future integration with different storage methods.
 - Beta scanner support released in the [Snyk Scanner](#snyk-scanner) package.
-- [Documentation available](scst-scan/offline-airgap.md) on how to use Grype in offline and air-gapped environments.
+- Documentation is available on how to use [Grype in offline and air-gapped environments](scst-scan/offline-airgap.md).
 
 >**Note:** The Grype Scanner `ScanTemplate`s shipped with versions before Supply Chain Security Tools - Scan `v1.2.0` are now deprecated and are no longer supported in future releases. See [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 
@@ -107,7 +107,7 @@ for migration instructions.
 - Updated logging format to follow the Logging RFC recommendations.
 - Bumped PostgreSQL and paketo images to fix CVE-2022-1292.
 - Added support for insight plug-in to consume vulnerabilities through VEX in CycloneDX 1.4 reports.
-- Added support for insight plug-in to consume SPDX 2.2/3.0 reports and introduced new --spdxtype option to tanzu insight image/source add command.
+- Added support for insight plug-in to consume SPDX 2.2/3.0 reports and introduced the new `--spdxtype` option to the `tanzu insight image add` and `tanzu insight source add` commands.
 - Changed insight plug-in text response to return only highest CVE.
 - Added aliases for insight plug-in vulnerabilities command.
 
@@ -155,9 +155,9 @@ This feature is still supported until stated otherwise.
 - Services Toolkit now integrates with Amazon RDS using the ACK Operator or Crossplane.
 For more information, see the [Services Toolkit documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-use.html).
 - New `ClusterInstanceClass` supports service instance abstraction.
-It is available using `tanzu service classes list` in `v0.3.0` of the Services plug-in for Tanzu CLI.
+It is available using `tanzu service classes list` in v0.3.0 of the Services plug-in for Tanzu CLI.
 - Claimable resources are now discoverable through the `InstanceQuery` API.
-It is available using `tanzu service claimable list --class <class>` in `v0.3.0` of the Services plug-in for Tanzu CLI.
+It is available using `tanzu service claimable list --class CLASS-NAME` in `v0.3.0` of the Services plug-in for Tanzu CLI.
 - ResourceClaims now aggregate on ClusterRoles for service resources with the standard
 `servicebinding.io/controller: "true"` label from the [Service Binding specification for Kubernetes](https://github.com/servicebinding/spec).
 - Deprecation warning: `tanzu service types list` and `tanzu service instances list` commands are now
@@ -191,7 +191,7 @@ This release has the following breaking changes, listed by area and component.
 >**Note:** If your Tanzu Application Platform v1.1 installation is configured with
 `enable_automatic_updates: false`, you can ignore this breaking change.
 
-When upgrading Tanzu Application Platform to v1.2, Tanzu Build Service image
+- When upgrading Tanzu Application Platform to v1.2, Tanzu Build Service image
 resources automatically run a build that fails due to a missing dependency.
 This error does not persist and subsequent builds automatically resolve this error.
 Users can safely wait for the next build of their workloads, which is triggered
@@ -201,12 +201,11 @@ To manually re-run builds, follow the instructions in the troubleshooting item
 
 #### <a id="grype-scanner-changes"></a> Grype Scanner
 
-- Provide information to integrate with the Supply Chain Security Tools - Store in the `tap-values.yaml` file for the Grype Scanner `v1.2+`.
+- Provide information to integrate with the Supply Chain Security Tools - Store in the `tap-values.yaml` file for the Grype Scanner v1.2 and later.
 
 ### <a id='1-2-resolved-issues'></a> Resolved issues
 
 The following issues, listed by area and component, are resolved in this release.
-
 
 #### <a id="app-acc-resolved"></a> Application Accelerator
 
@@ -215,12 +214,12 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Scan
 
-- `Go` updated to version `v1.18.2`.
-- `Open Policy Agent` updated to version `v.0.40.0`.
+- `Go` updated to v1.18.2.
+- `Open Policy Agent` updated to v0.40.0.
 
 #### <a id="grype-scan-resolved"></a>Grype Scanner
 
-- `ncurses` updated to version `6.1-5.ph3`.
+- `ncurses` updated to v6.1-5.ph3.
 
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
@@ -228,7 +227,7 @@ The following issues, listed by area and component, are resolved in this release
 - Fixed error messaging for empty kubeconfig and invalid kube context.
 - Fixed incorrect error message for `workload create` when the user did not have enough permissions to create a workload.
 - Removing namespace from `--service-ref` is not ignored.
-- Issue for Windows error x509: certificate signed by unknown authority by upgrading imgpkg versions v0.29.0. The new version supports loading Windows root CA certificates.
+- Issue for Windows error x509: certificate signed by unknown authority by upgrading imgpkg v0.29.0. The new version supports loading Windows root CA certificates.
 
 #### <a id="srvc-toolkit-resolved"></a> Services Toolkit
 
@@ -267,7 +266,7 @@ When connecting to AWS EKS clusters, an error might appear with the text
 To prevent this, see
 [Failure to connect to AWS EKS clusters](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters).
 
-- **Failure to add Tanzu Application Platform repo:** 
+- **Failure to add Tanzu Application Platform repo:**
 Unable to add Tanzu Application Platform repo into clusters attached
 to Tanzu Mission Control with pre-installed Cluster Essentials v1.2.
 To prevent this issue, do not add a cluster with Cluster Essentials v1.2 predeployed to Tanzu Mission Control.
@@ -322,11 +321,12 @@ after the binaries are built and packaged as images.
 
 - Supply Chain plug-in:
     - Delivery section of the supply chain graph might show deliverables that do not pertain to the selected workload. This occurs if there are more than one `Build` cluster per namespace.
-    - For `Deliverables` to show up for a `Workload`, they must have the following labels in both resources:'carto.run/workload-name','app.kubernetes.io/part-of','carto.run/supply-chain-name'.
+    - For `Deliverables` to show up for a `Workload`, they must have the following labels in both resources: `carto.run/workload-name`,`app.kubernetes.io/part-of`,`carto.run/supply-chain-name`.
     - ConfigMap has no conditions and as a result its status is `Unknown`.
     - ConfigWriter shows an error but no error details are displayed.
-    - User may receive an error: 'TypeError: Cannot read properties of undefined (reading 'data') when viewing a workload in a supply chain. Please use the CLI tools instead to view the status of the workload in the supply chain.
-
+    - You might receive an error: `TypeError: Cannot read properties of undefined (reading 'data')`
+    when viewing a workload in a supply chain.
+    Use the CLI tools instead to view the status of the workload in the supply chain.
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
