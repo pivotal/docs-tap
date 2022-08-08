@@ -96,8 +96,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="tbs-features"></a> Tanzu Build Service
 
-- Feature 1
-- Feature 2
+- Improved error messaging
+- Remove noisy logging from AWS credential helper
 
 #### <a id="srvc-toolkit-features"></a> Services Toolkit
 
