@@ -6,10 +6,9 @@ In release notes, this condition hides content that describes an unreleased patc
 {{/unless}}
 This topic contains release notes for Tanzu Application Platform v1.2.1.
 
-
 ## <a id='1-2-1'></a> v1.2.1
 
-**Release Date**: MONTH DAY, 2022
+**Release Date**: August 9, 2022
 
 ### <a id='1-2-1-new-features'></a> New features
 
@@ -96,8 +95,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="tbs-features"></a> Tanzu Build Service
 
-- Improved error messaging
-- Remove noisy logging from AWS credential helper
+- Improved error messaging.
+- Removed noisy logging from AWS credential helper.
 
 #### <a id="srvc-toolkit-features"></a> Services Toolkit
 
