@@ -61,12 +61,6 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="tap-gui-features"></a>Tanzu Application Platform GUI
 
-- Supply Chain plug-in:
-  - Added ability to visualize CVE scan results in the Details pane for both Source and Image Scan stages, as well as scan policy information without using the CLI.
-  - Added ability to visualize the deployment of a workload as a deliverable in a multicluster environment in the supply chain graph.
-  - Added a deeplink to view approvals for PRs in a GitOps repository so that PRs can be reviewed and approved, resulting in the deployment of a workload to any cluster configured to accept a deployment.
-  - Added Reason column to the Workloads table to indicate causes for errors encountered during supply chain execution.
-  - Added links to a downloadable log output for each execution of the Test and Build stages of the out of the box supply chains to enable more enhanced troubleshooting methods for workloads
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
@@ -134,8 +128,12 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="tap-gui-resolved"></a>Tanzu Application Platform GUI
 
-- Resolved issue 1
-- Resolved issue 2
+- Supply Chain plug-in
+  - ConfigMap has no conditions and as a result its status is `Unknown`.
+  - ConfigWriter shows an error but no error details are displayed.
+  - Kaniko based image builds could not show data in the UI.
+  - Need to refresh browser to show successful or error messages.
+  
 
 ### <a id='1-2-1-known-issues'></a> Known issues
 
