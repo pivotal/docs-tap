@@ -183,6 +183,7 @@ VMware recommends using `tanzu service class` and `tanzu service claimable` comm
 This release has the following breaking changes, listed by area and component.
 
 #### <a id="app-accel-changes"></a> Application Accelerator
+
 - App Accelerator now ships with Open Rewrite 7.24.0 (up from 7.21.x in TAP 1.1). As a consequence, some configuration properties of the OpenRewriteRecipe transform may need to be revised. For example, when using the `ChangePackage` recipe.
 
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
