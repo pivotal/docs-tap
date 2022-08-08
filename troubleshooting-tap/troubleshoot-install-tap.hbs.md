@@ -279,3 +279,13 @@ VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
 Follow the steps in [Accept the End User License Agreements](../install-tanzu-cli.md#accept-eulas) in
 _Installing the Tanzu CLI_.
+
+## <a id='cant-add-tap-repo'></a> Unable to add Tanzu Application Platform repo into clusters attached to Tanzu Mission Control with pre-installed Cluster Essentials v1.2.
+
+**Explanation**
+
+You cannot add Tanzu Application Platform repo into clusters attached to Tanzu Mission Control with pre-installed Cluster Essentials v1.2. Cluster Essentials must be provisioned by Tanzu Mission Control only.
+
+**Solution**
+
+Do not add a cluster with Cluster Essentials v1.2 predeployed to Tanzu Mission Control. Provision Cluster Essentials through Tanzu Mission Control.
