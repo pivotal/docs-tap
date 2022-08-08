@@ -39,17 +39,7 @@ This release includes the following changes, listed by component and area.
 - Feature 1
 - Feature 2
 
-#### <a id="snyk-scanner"></a> Snyk Scanner (beta)
-
-- Feature 1
-- Feature 2
-
 #### <a id="scc-features"></a>Supply Chain Choreographer
-
-- Feature 1
-- Feature 2
-
-#### <a id="scst-scan"></a> Supply Chain Security Tools - Scan
 
 - Feature 1
 - Feature 2
@@ -107,17 +97,7 @@ This release includes the following changes, listed by component and area.
 
 This release has the following breaking changes, listed by area and component.
 
-#### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
-
-- Breaking change 1
-- Breaking change 2
-
 #### <a id="tbs-breaking-changes"></a> Tanzu Build Service
-
-- Breaking change 1
-- Breaking change 2
-
-#### <a id="grype-scanner-changes"></a> Grype Scanner
 
 - Breaking change 1
 - Breaking change 2
@@ -128,16 +108,6 @@ This release has the following breaking changes, listed by area and component.
 - Resolved issue 2
 
 #### <a id="app-acc-resolved"></a> Application Accelerator
-
-- Resolved issue 1
-- Resolved issue 2
-
-#### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Scan
-
-- Resolved issue 1
-- Resolved issue 2
-
-#### <a id="grype-scan-resolved"></a>Grype Scanner
 
 - Resolved issue 1
 - Resolved issue 2
@@ -203,8 +173,10 @@ Cluster Essentials must be provisioned by Tanzu Mission Control only.
 
 #### <a id="scst-scan-issues"></a>Supply Chain Security Tools - Scan
 
-- Known issue 1
-- Known issue 2
+**Blob Source Scan is reporting wrong source URL:**
+- When running a Source Scan of a blob compressed file, it looks for a `.git` directory present in the files to extract information that is usefull for the report sent to the Supply Chain Security Tools - Store deployment. This problem happens when you use Grype Scanner ScanTemplates earlier than version `v1.2.0` because the Scan Controller has a deprecated path to support previous ScanTemplates. This will be removed by Supply Chain Security Tools - Scan `v1.3.0`.
+
+- Workaround: Upgrade your Grype Scanner deployment to version `v1.2.0` or later. For more information, see [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md#upgrade-to-1-2-0).
 
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
