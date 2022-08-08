@@ -1,4 +1,4 @@
-# Migration From Supply Chain Security Tools - Sign 
+# Migration From Supply Chain Security Tools - Sign
 
 This section explains how to migrate the `ClusterImagePolicy` resource
 from Image Policy Webhook to Policy Controller. For more information about
@@ -29,6 +29,14 @@ to enable Policy Controller verification.
 ```console
 kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
 ```
+
+**Caution:** Without a Policy Controller ClusterImagePolicy applied, there are
+fallback behaviors where images will be validated against the public Sigstore
+Rekor and Fulcio servers through a keyless authority flow. Therefore, if the
+deploying image has been signed publically by a third-party using the keyless
+authority flow, the image may be admitted as it can validate against the public
+Rekor and Fulcio. To avoid this behavior, develop and apply a ClusterImagePolicy
+that will apply to the images being deployed in the namespace.
 
 ## <a id="cluster-image"></a> Policy Controller ClusterImagePolicy
 
@@ -106,7 +114,7 @@ spec:
         -----END PUBLIC KEY-----
 
     ...
-``` 
+```
 
 **Policy Controller:**
 ```yaml
@@ -127,7 +135,7 @@ spec:
         -----END PUBLIC KEY-----
 
   ...
-``` 
+```
 
 
 ## <a id="img-matching"></a> Specifying Image Matching
@@ -182,4 +190,4 @@ metadata:
 spec:
   images:
   - glob: gcr.io/projectsigstore/cosign*
-``` 
+```
