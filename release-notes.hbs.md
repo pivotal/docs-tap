@@ -198,7 +198,7 @@ for migration instructions.
   - Added ability to visualize the deployment of a workload as a deliverable in a multicluster environment in the supply chain graph.
   - Added a deeplink to view approvals for PRs in a GitOps repository so that PRs can be reviewed and approved, resulting in the deployment of a workload to any cluster configured to accept a deployment.
   - Added Reason column to the Workloads table to indicate causes for errors encountered during supply chain execution.
-  - Added links to a downloadable log output for each execution of the Test and Build stages of the out of the box supply chains to enable more enhanced troubleshooting methods for workloads
+  - Added links to a downloadable log output for each execution of the Test and Build stages of the out of the box supply chains to enable more enhanced troubleshooting methods for workloads.
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
@@ -226,7 +226,7 @@ For more information, see [VMware Tanzu Developer Tools for IntelliJ](intellij-e
 #### <a id="tbs-features"></a> Tanzu Build Service
 
 - Updates to dependencies are now provided as part of Tanzu Application Platform patches.
-- The automatic dependency update feature is being deprecated.
+- The automatic dependency update feature is deprecated.
 VMware discourages configuring Tanzu Application Platform with automatic dependency updates due to compatibility risks.
 This feature is still supported until stated otherwise.
 
@@ -352,9 +352,7 @@ To prevent this, see
 
 - **Failure to add Tanzu Application Platform repo:**
 Unable to add Tanzu Application Platform repo into clusters attached
-to Tanzu Mission Control with pre-installed Cluster Essentials v1.2.
-To prevent this issue, do not add a cluster with Cluster Essentials v1.2 predeployed to Tanzu Mission Control.
-Cluster Essentials must be provisioned by Tanzu Mission Control only.
+to Tanzu Mission Control with pre-installed Cluster Essentials v1.2. For the solution, see [Troubleshoot installing Tanzu Application Platform](troubleshooting-tap/troubleshoot-install-tap.hbs.md#cant-add-tap-repo).
 
 #### <a id="alv-known-issues"></a>Application Live View
 
@@ -367,11 +365,8 @@ Cluster Essentials must be provisioned by Tanzu Mission Control only.
 #### <a id="conv-svc-known-issues"></a>Convention Service
 
 - **Issue:**
-  If the self-signed certificate authority (CA) for a registry is provided through `convention-controller.ca_cert_data`, it is not successfully propagated to the convention service.
-
-  **Workaround:**
-  Define the CA using the available `.shared.ca_cert_data` top-level key to supply the CA to the convention service.
-
+  If the self-signed certificate authority (CA) for a registry is provided through `convention-controller.ca_cert_data`, it is not successfully propagated to the convention service. For the solution, see [Troubleshoot Convention Serviced](cartographer-conventions/troubleshooting.hbs.md#ca-not-propagated).
+  
 #### <a id="functions-issues"></a> Functions (beta)
 
 - When using Live Update, hot reload of your function on your cluster might not

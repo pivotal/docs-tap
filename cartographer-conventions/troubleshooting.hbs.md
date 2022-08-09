@@ -131,3 +131,17 @@ When a `convention server` is provided without using Transport Layer Security (T
 
 1. Deploy a `convention server` with TLS enabled.
 1. Create `ClusterPodConvention` resource for the convention server with annotation `conventions.carto.run/inject-ca-from` as a pointer to the deployed `Certificate` resource.
+
+## <a id="ca-not-propagated"></a>Self-signed certificate authority (CA) not propagated to the convention service
+
+### Symptoms
+
+The self-signed certificate authority (CA) for a registry is not propagated to the convention service.
+
+### Cause
+
+When you provide the self-signed certificate authority (CA) for a registry through `convention-controller.ca_cert_data`, it cannot be propagated to the convention service.
+
+### Solution
+
+Define the CA by using the available `.shared.ca_cert_data` top-level key to supply the CA to the convention service.
