@@ -33,7 +33,6 @@ YAML workload description to support this deployment type.
 > VMware discourages running beta features in production.
 > VMware cannot guarantee that you can upgrade any beta feature in the future.
 
-
 ## <a id="prereqs"></a> Prerequisites
 
 Before using `queue` workloads on Tanzu Application Platform, you must:
@@ -50,9 +49,11 @@ This section describes how to create a supply chain for the `queue` workload typ
 The `queue` supply chain replaces the `config-template` from the existing
 Out of the Box (OOTB) supply chain with two new templates:
 
-* The `deployment-template` defines Kubernetes Deployment and Service objects that represent the workload, instead of a Knative Service.
+* The `deployment-template` defines Kubernetes Deployment and Service objects that
+represent the workload, instead of a Knative Service.
 
-* The `apply-bindings` template extends the `deployment-and-service-template` with requested ServiceBindings and ResourceClaims.
+* The `apply-bindings` template extends the `deployment-and-service-template` with
+requested ServiceBindings and ResourceClaims.
 
 To create supply chain templates:
 
@@ -244,6 +245,7 @@ To create supply chain templates:
     ```console
     kubectl apply -f FILENAME
     ```
+
     Where `FILENAME` is the name of the file you created in the previous step.
 
 ### <a id="rbac"></a> Add RBAC permissions
@@ -276,6 +278,7 @@ To add the additional role to the cluster:
     ```console
     kubectl apply -f FILENAME
     ```
+
     Where `FILENAME` is the name of the file you created in the previous step.
 
 ### <a id="supplychain"></a> Define the ClusterSupplyChain
@@ -402,6 +405,7 @@ from your `tap-values.yaml` file:
     ```console
     kubectl apply -f FILENAME
     ```
+
     Where `FILENAME` is the name of the file you created in the previous step.
 
 

@@ -14,10 +14,10 @@ expose these applications outside the cluster.
 The `tcp` workload is a good match for traditional applications, including HTTP applications,
 that are implemented as follows:
 
-- Store state locally
-- Run background tasks outside of requests
-- Provide multiple network ports or non-HTTP protocols
-- Are not a good match for the `web` workload type
+* Store state locally
+* Run background tasks outside of requests
+* Provide multiple network ports or non-HTTP protocols
+* Are not a good match for the `web` workload type
 
 Applications using the `tcp` workload type have the following features:
 
@@ -32,14 +32,12 @@ For more information, see [Use the `tcp` Workload Type](#using) later in this to
 You can also use the `apps.tanzu.vmware.com/workload-type:tcp` annotation in the
 YAML workload description to support this deployment type.
 
-
->  **Important:** Beta features have been tested for functionality, but not performance.
+> **Important:** Beta features have been tested for functionality, but not performance.
 > Features enter the beta stage so that customers can gain early access, and give
 > feedback on the design and behavior.
 > Beta features might undergo changes based on this feedback before the end of the beta stage.
 > VMware discourages running beta features in production.
 > VMware cannot guarantee that you can upgrade any beta feature in the future.
-
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -57,9 +55,11 @@ This section describes how to create a supply chain for the `tcp` workload type.
 The `tcp` supply chain replaces the `config-template` from the existing
 out of the box (OOTB) supply chain with two new templates:
 
-* The `deployment-and-service-template` defines Kubernetes Deployment and Service objects that represent the workload, instead of a Knative Service.
+* The `deployment-and-service-template` defines Kubernetes Deployment and Service
+objects that represent the workload, instead of a Knative Service.
 
-* The `apply-bindings` template extends the `deployment-and-service-template` with requested ServiceBindings and ResourceClaims.
+* The `apply-bindings` template extends the `deployment-and-service-template` with
+requested ServiceBindings and ResourceClaims.
 
 To create supply chain templates:
 
@@ -285,6 +285,7 @@ To create supply chain templates:
     ```console
     kubectl apply -f FILENAME
     ```
+
     Where `FILENAME` is the name of the file you created in the previous step.
 
 ### <a id="rbac"></a> Add RBAC permissions
@@ -317,6 +318,7 @@ To add the additional role to the cluster:
     ```console
     kubectl apply -f FILENAME
     ```
+
     Where `FILENAME` is the name of the file you created in the previous step.
 
 ### <a id="supplychain"></a> Define the ClusterSupplyChain
@@ -448,15 +450,16 @@ from your `tap-values.yaml` file:
     ```console
     kubectl apply -f FILENAME
     ```
-    Where `FILENAME` is the name of the file you created in the previous step.
 
+    Where `FILENAME` is the name of the file you created in the previous step.
 
 ## <a id="using"></a> Use the `tcp` workload type
 
 The `spring-sensors-consumer-web` workload in the getting started example
 [using Service Toolkit claims](../getting-started/consume-services.md#stk-bind)
 is a good match for the `tcp` workload type.
-This is because it runs continuously to extract information from a RabbitMQ queue, and stores the resulting data locally in-memory and presents it through a web UI.
+This is because it runs continuously to extract information from a RabbitMQ queue,
+and stores the resulting data locally in-memory and presents it through a web UI.
 
 If you have followed the Services Toolkit example, you can update the `spring-sensors-consumer-web`
 to use the `tcp` supply chain by changing the workload type by running:
@@ -465,12 +468,18 @@ to use the `tcp` supply chain by changing the workload type by running:
 tanzu apps workload update spring-sensors-consumer-web --type=tcp
 ```
 
-This shows the change in the workload label, and prompts you to accept the change. After the workload completes the new deployment, you'll notice a few differences:
+This shows the change in the workload label, and prompts you to accept the change.
+After the workload completes the new deployment, you'll notice a few differences:
 
-* The workload no longer advertises a URL. It's available within the cluster as `spring-sensors-consumer-web` within the namespace, but you must use `kubectl port-forward service/spring-sensors-consumer-web 8080` to access the web service on port 8080.
+* The workload no longer advertises a URL. It's available within the cluster as
+`spring-sensors-consumer-web` within the namespace, but you must use
+`kubectl port-forward service/spring-sensors-consumer-web 8080` to access the web service on port 8080.
 
     You can also set up a Kubernetes ingress rule to direct traffic from outside the cluster to the workload.
     Using an ingress rule, you can specify that specific host names or paths must be routed to the application.
     For more information about ingress rules, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
-* The workload no longer autoscales based on request traffic. For the `spring-sensors-consumer-web` workload, this means that it never spawns a second instance that consumes part of the request queue. Also, it does not scale down to zero instances.
+* The workload no longer autoscales based on request traffic.
+For the `spring-sensors-consumer-web` workload, this means that it never spawns
+a second instance that consumes part of the request queue.
+Also, it does not scale down to zero instances.
