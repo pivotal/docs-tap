@@ -402,6 +402,9 @@ When running a Source Scan of a blob compressed file, it looks for a `.git` dire
     when viewing a workload in a supply chain.
     Use the CLI tools instead to view the status of the workload in the supply chain.
 
+- Runtime Resource Visibility plug-in
+    - When accessing the Runtime Resources tab from the Component view, the following warning is displayed: `Access error when querying cluster 'host' for resource '/apis/source.apps.tanzu.vmware.com/v1alpha1/mavenartifacts' (status: 403). Contact your administrator.` This issue is resolved in v1.2.1. In v1.2.0 the user may choose to override this issue by following the instruction [here](./tap-gui/troubleshooting.md#maven-artifact-error).
+
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
 - When debugging an application with service bindings, debug sessions might prematurely end on the
