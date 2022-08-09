@@ -27,7 +27,7 @@
   // MD004/ul-style - Unordered list style
   "MD004": {
     // List style
-    "style": "consistent"
+    "style": "dash"
   },
 
   // MD005/list-indent - Inconsistent indentation for list items at the same level
