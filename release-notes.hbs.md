@@ -6,26 +6,22 @@ This topic contains release notes for Tanzu Application Platform v1.2.
 
 **Release Date**: August 9, 2022
 
-### <a id='1-2-1-new-features'></a> New features
-
-This release includes the following changes, listed by component and area.
-
-#### <a id="1-2-1-tbs-features"></a> Tanzu Build Service
-
-- Improved error messaging.
-- Removed noisy logging from AWS credential helper.
-
 ### <a id='1-2-1-resolved'></a> Resolved issues
 
 The following issues, listed by area and component, are resolved in this release.
 
-#### <a id="1-2-1-tap-gui-resolved"></a>Tanzu Application Platform GUI
+#### <a id="1-2-1-tap-gui-resolved"></a> Tanzu Application Platform GUI
 
 - Supply Chain plug-in
   - ConfigMap has no conditions and as a result its status is `Unknown`.
   - ConfigWriter shows an error but no error details are displayed.
   - Kaniko-based image builds cannot show data in the UI.
   - Need to refresh browser to show successful or error messages.
+
+#### <a id="1-2-1-tbs-resolved"></a> Tanzu Build Service
+
+- Improved error messaging.
+- Removed noisy logging from AWS credential helper.
 
 ### <a id='1-2-1-known-issues'></a> Known issues
 
