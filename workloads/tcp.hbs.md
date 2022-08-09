@@ -364,7 +364,9 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
-	    # if you have ca_cert_data, add it here, too.
+            # Add this key if you have set ca_cert_data in tap-values.yaml
+            - name: ca_cert_data
+              value: CERT-AS-STRING
         templateRef:
           kind: ClusterTemplate
           name: deliverable-template
@@ -378,7 +380,9 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
-	    # if you have ca_cert_data, add it here, too.
+            # Add this key if you have set ca_cert_data in tap-values.yaml
+            - name: ca_cert_data
+              value: CERT-AS-STRING
         sources:
         - name: source
           resource: source-provider
@@ -420,7 +424,9 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
-	    # if you have ca_cert_data, add it here, too.
+            # Add this key if you have set ca_cert_data in tap-values.yaml
+            - name: ca_cert_data
+              value: CERT-AS-STRING
         templateRef:
           kind: ClusterTemplate
           name: config-writer-template
@@ -430,12 +436,12 @@ from your `tap-values.yaml` file:
 
     Where:
 
-    - `DEFAULT-GIT-SECRET` is the value from `gitops.ssh_secret` in your
+    * `DEFAULT-GIT-SECRET` is the value from `gitops.ssh_secret` in your
       `tap-values.yaml` file, or `""` to disable SSH authentication.
-    - `REGISTRY-SERVER` is the registry server from your `tap-values.yaml` file.
-    - `REGISTRY-REPO` is the registry repository from your `tap-values.yaml` file.
-    - If you set `ca_cert_data` in your `tap-values.yaml` file, add a
-      `ca_cert_data` key and that value to each `registry` section as well.
+    * `REGISTRY-SERVER` is the registry server from your `tap-values.yaml` file.
+    * `REGISTRY-REPO` is the registry repository from your `tap-values.yaml` file.
+    * `CERT-AS-STRING` is the value you added to `tap-values.yaml` file.
+      Only add this if you set `ca_cert_data` in your `tap-values.yaml` file.
 
 1. Apply the YAML file by running the command:
 
