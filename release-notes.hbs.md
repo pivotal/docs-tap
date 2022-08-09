@@ -2,6 +2,31 @@
 
 This topic contains release notes for Tanzu Application Platform v1.2.
 
+## <a id='1-2-2'></a> v1.2.2
+
+**Release Date**: September 13, 2022
+
+### <a id='1-2-2-new-features'></a> New features
+
+This release includes the following changes, listed by component and area.
+
+
+### <a id='1-2-2-breaking-changes'></a> Breaking changes
+
+This release has the following breaking changes, listed by area and component.
+
+
+### <a id='1-2-2-resolved-issues'></a> Resolved issues
+
+The following issues, listed by area and component, are resolved in this release.
+
+
+### <a id='1-2-2-known-issues'></a> Known issues
+
+This release has the following known issues, listed by area and component.
+
+
+
 ## <a id='1-2-1'></a> v1.2.1
 
 **Release Date**: August 9, 2022
