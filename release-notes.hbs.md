@@ -160,7 +160,7 @@ for migration instructions.
   - Added memory and CPU limit configuration.
   - Added quick links to access app memory and threads usage.
   - Added additional current status information when viewing runtime resources.
-  - Added Tanzu Workload integration with a workload detail page for all runtime resouces.
+  - Added Tanzu Workload integration with a workload detail page for all runtime resources.
   - Added support for Supply Chain resources.
   - UX updates to the Runtime Resource landing page.
 
