@@ -230,28 +230,30 @@ app_config:
       - host: acc-server.accelerator-system.svc.cluster.local
 ```
 
-## <a id='maven-artifact-error'></a> Maven artifacts access error
+## <a id='maven-artifacts-error'></a> Maven artifacts access error
 
 ### Symptom
 
-When accessing the Runtime Resources tab from the Component view, the following warning is displayed: 
+When accessing the **Runtime Resources** tab from the **Component** view, the following warning appears:
 
-``` 
+```console
 Access error when querying cluster 'host' for resource '/apis/source.apps.tanzu.vmware.com/v1alpha1/mavenartifacts' (status: 403). Contact your administrator.
-``` 
+```
 
-This issue should only affect `full` profile and if multi-cluster visibility is not set up for Tanzu Application Platform GUI. It only appears in v1.2.0 and is resolved in v1.2.1.
+In most cases, this issue only affects the `full` profile and only when multicluster visibility is
+not set up for Tanzu Application Platform GUI. It only appears in v1.2.0 and is resolved in v1.2.1.
 
 ![Screenshot warning of no Maven artifact access ](../images/../tap-gui/images/tap-gui-maven-artifact-1.png)
 
 ### Solution
 
-To make sure this issue is resolved, take the following steps to register Maven artifacts with the Service Account of Tanzu Application Platform GUI.
+Register Maven artifacts with the service account of Tanzu Application Platform GUI by using the
+`package_overlays` key in the Tanzu Application Platform values file.
 
-First, use the `package_overlays` key in the Tanzu Application Platform values file.
-For instructions, see [Customizing Package Installation](../customize-package-installation.md).
+For instructions, see [Customizing Package Installation](../customize-package-installation.hbs.md).
 
-The following is the overlay to add Maven artifacts to Tanzu Application Platform GUI's Service Account:
+The following is the overlay for adding Maven artifacts to the Tanzu Application Platform GUI service
+account:
 
 ```yaml
 #@ load("@ytt:overlay", "overlay")
