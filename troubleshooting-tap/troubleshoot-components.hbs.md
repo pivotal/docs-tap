@@ -9,7 +9,7 @@ For component-level troubleshooting, see these topics:
 - [Troubleshoot Source Controller](../source-controller/troubleshooting.md)
 - [Troubleshoot Spring Boot Conventions](../spring-boot-conventions/troubleshooting.md)
 - [Troubleshoot Supply Chain Security Tools - Scan](../scst-scan/observing.md)
-- [Troubleshoot Supply Chain Security Tools - Store](../scst-store/troubleshooting.md)
+- [Troubleshoot Supply Chain Security Tools - Store](../scst-store/troubleshooting.hbs.md)
 - [Troubleshoot Application Live View for VMware Tanzu](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/1.1/docs/GUID-troubleshooting.html)
 - [Troubleshoot Cloud Native Runtimes for Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.2/tanzu-cloud-native-runtimes/GUID-troubleshooting.html)
 - [Troubleshoot Tanzu Build Service (FAQ)](https://docs.vmware.com/en/Tanzu-Build-Service/1.5/vmware-tanzu-build-service/GUID-faq.html)
