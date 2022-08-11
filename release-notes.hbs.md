@@ -335,9 +335,8 @@ to Tanzu Mission Control with pre-installed Cluster Essentials v1.2. For the sol
 
 #### <a id="conv-svc-known-issues"></a>Convention Service
 
-- **Issue:**
-  If the self-signed certificate authority (CA) for a registry is provided through `convention-controller.ca_cert_data`, it is not successfully propagated to the convention service. For the solution, see [Troubleshoot Convention Serviced](cartographer-conventions/troubleshooting.hbs.md#ca-not-propagated).
-  
+- If the self-signed certificate authority (CA) for a registry is provided through `convention-controller.ca_cert_data`, it is not successfully propagated to the convention service. For the solution, see [Troubleshoot Convention Service](cartographer-conventions/troubleshooting.hbs.md#ca-not-propagated).
+
 #### <a id="functions-issues"></a> Functions (beta)
 
 - When using Live Update, hot reload of your function on your cluster might not
