@@ -12,9 +12,9 @@ Before installing multicluster Tanzu Application Platform profiles, you must mee
 
 The installation order is flexible given the ability to update the installation with a modified values file using the `tanzu package installed update` command. The preceding is an example of the order of operations to be used:
 
-  1. [Install View profile cluster](#install-view-cluster)
-  2. [Install Build profile cluster](#install-build-clusters)
-  3. [Install Run profile cluster](#install-run-cluster)
+  1. [Install View profile cluster](#install-view)
+  2. [Install Build profile cluster](#install-build)
+  3. [Install Run profile cluster](#install-run)
   4. Add RBAC, cluster URL, and token from Build and Run clusters as documented in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.md)
   5. Update the View cluster's installation values file with the previous information and run the following command to pass the updated config values to Tanzu Application Platform GUI:
 
