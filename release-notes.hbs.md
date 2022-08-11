@@ -46,11 +46,14 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-2-1-tap-gui-resolved"></a>Tanzu Application Platform GUI
 
-- Supply Chain plug-in
+- Supply Chain plug-in:
   - ConfigMap has no conditions and as a result its status is `Unknown`.
   - ConfigWriter shows an error but no error details are displayed.
   - Kaniko-based image builds cannot show data in the UI.
   - Need to refresh browser to show successful or error messages.
+
+- Runtime Resource Visibility plug-in:
+The [Maven artifacts access error](tap-gui/troubleshooting.hbs.md#maven-artifacts-error) is fixed.
 
 ### <a id='1-2-1-known-issues'></a> Known issues
 
@@ -364,7 +367,8 @@ to Tanzu Mission Control with pre-installed Cluster Essentials v1.2. For the sol
 
 #### <a id="conv-svc-known-issues"></a>Convention Service
 
-- If the self-signed certificate authority (CA) for a registry is provided through `convention-controller.ca_cert_data`, it is not successfully propagated to the convention service. For the solution, see [Troubleshoot Convention Service](cartographer-conventions/troubleshooting.hbs.md#ca-not-propagated).
+- **Issue:**
+  If the self-signed certificate authority (CA) for a registry is provided through `convention-controller.ca_cert_data`, it is not successfully propagated to the convention service. For the solution, see [Troubleshoot Convention Service](cartographer-conventions/troubleshooting.hbs.md#ca-not-propagated).
 
 #### <a id="functions-issues"></a> Functions (beta)
 
@@ -402,8 +406,11 @@ When running a Source Scan of a blob compressed file, it looks for a `.git` dire
     when viewing a workload in a supply chain.
     Use the CLI tools instead to view the status of the workload in the supply chain.
 
-- Runtime Resource Visibility plug-in
-    - When accessing the Runtime Resources tab from the Component view, the following warning is displayed: `Access error when querying cluster 'host' for resource '/apis/source.apps.tanzu.vmware.com/v1alpha1/mavenartifacts' (status: 403). Contact your administrator.` This issue is resolved in v1.2.1. In v1.2.0 the user may choose to override this issue by following the instruction [here](./tap-gui/troubleshooting.md#maven-artifact-error).
+- Runtime Resource Visibility plug-in:
+When accessing the **Runtime Resources** tab from the **Component** view, the following warning appears:
+`Access error when querying cluster 'host' for resource '/apis/source.apps.tanzu.vmware.com/v1alpha1/mavenartifacts' (status: 403). Contact your administrator.`
+This issue is resolved in v1.2.1. In v1.2.0, the user can fix this issue by troubleshooting the
+[Maven artifacts access error](tap-gui/troubleshooting.hbs.md#maven-artifacts-error).
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
@@ -422,4 +429,4 @@ first run only. This is because of services being late-bound.
 - Querying by insight source returns zero CVEs even though there are CVEs in the source scan:
 When attempting to look up CVE and affected packages, querying `insight source get` (or other
 `insight source` commands) may return zero results due to supply chain configuration and repo URL.
-See [Troubleshoot Supply Chain Security Tools - Store](scst-store/troubleshooting.md)
+See [Troubleshoot Supply Chain Security Tools - Store](scst-store/troubleshooting.hbs.md)
