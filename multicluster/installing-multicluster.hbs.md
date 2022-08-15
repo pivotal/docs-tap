@@ -12,17 +12,18 @@ Before installing multicluster Tanzu Application Platform profiles, you must mee
 
 The installation order is flexible given the ability to update the installation with a modified values file using the `tanzu package installed update` command. The preceding is an example of the order of operations to be used:
 
-  1. [Install View profile cluster](#install-view)
-  2. [Install Build profile cluster](#install-build)
-  3. [Install Run profile cluster](#install-run)
-  4. Add RBAC, cluster URL, and token from Build and Run clusters as documented in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.md)
-  5. Update the View cluster's installation values file with the previous information and run the following command to pass the updated config values to Tanzu Application Platform GUI:
+  1. [Install View profile cluster](#install-view).
+  2. [Install Build profile cluster](#install-build).
+  3. [Install Run profile cluster](#install-run).
+  4. [Install Iterate profile cluster](#install-iterate).
+  5. Add RBAC, cluster URL, and token from Build and Run clusters as documented in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.md)
+  6. Update the View cluster's installation values file with the previous information and run the following command to pass the updated config values to Tanzu Application Platform GUI:
 
     ```shell
     tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION --values-file tap-values.yaml -n tap-install
     ```
 
-    Where `TAP-VERSION` is the Tanzu Application Platform version you've installed
+    Where `TAP-VERSION` is the Tanzu Application Platform version you've installed.
 
 ## <a id='install-view'></a> Install View cluster
 
@@ -54,6 +55,12 @@ To install the Run profile cluster:
 1. After installing the Build and Run clusters, create the `Service Accounts` that Tanzu Application Platform GUI uses to read objects from the clusters.
 2. Follow the steps in [Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.md) to add a remote cluster. These steps create the necessary RBAC elements allowing you to pull the URL and token from the Build and Run clusters that allows them come back and add to the View cluster's values file. You must add both the Build and Run clusters to the View cluster for all plug-ins to function as expected.
 
+## <a id='install-iterate'></a> Install Iterate clusters
+
+To install the Iterate profile cluster:
+
+-  Follow the steps for installing the Full profile in [Installing the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the Iterate profile, as shown in [Iterate profile](reference/tap-values-iterate-sample.md).
+
 ## Next steps
 
-After setting up the 3 profiles, you're ready to run a workload by using the supply chain. See [Getting started with multicluster Tanzu Application Platform](getting-started.md).
+After setting up the four profiles, you're ready to run a workload by using the supply chain. See [Getting started with multicluster Tanzu Application Platform](getting-started.md).

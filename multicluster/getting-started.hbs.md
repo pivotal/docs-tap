@@ -8,7 +8,7 @@ By following the steps in this topic, you will build an application on the Build
 
 Before implementing a multicluster topology, complete the following:
 
-1. Complete all [installation steps for the 3 profiles](installing-multicluster.md): Build, Run, and View.
+1. Complete all [installation steps for the four profiles](installing-multicluster.md): Build, Run, View and Iterate.
 
 1. For the sample workload, VMware uses the same Application Accelerator - Tanzu Java Web App in the non-multicluster [Getting Started](../getting-started.md) guide. You can download this accelerator to your own Git infrastructure of choice. You might need to configure additional permissions. Alternatively, you can also use the [sample-accelerators GitHub repository](https://github.com/sample-accelerators/tanzu-java-web-app).
 
