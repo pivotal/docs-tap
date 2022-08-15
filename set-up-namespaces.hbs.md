@@ -1,10 +1,10 @@
 # Set up developer namespaces to use installed packages
 
-To create a `Workload` for your application using the registry credentials specified,
-run these commands to add credentials and Role-Based Access Control (RBAC) rules to the namespace
+To create a `Workload` for your application by using the registry credentials specified,
+run these commands, which also add credentials and Role-Based Access Control (RBAC) rules to the namespace
 that you plan to create the `Workload` in:
 
-1. Add read/write registry credentials to the developer namespace by running:
+1. To add read/write registry credentials to the developer namespace, run:
 
     ```console
     tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
@@ -12,12 +12,12 @@ that you plan to create the `Workload` in:
 
     Where:
 
-    - `YOUR-NAMESPACE` is the name for the developer namespace.
+    - `YOUR-NAMESPACE` is the name you give to the developer namespace.
     For example, use `default` for the default namespace.
     - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
-    and the trailing `/`. For GCR, this is `gcr.io`.
-    Based on the information used in [Installing the Tanzu Application Platform Package and Profiles](install.md), you can use the
+    and the trailing `/`. For Google Container Registry (GCR), this is `gcr.io`.
+    Based on the information used in [Installing the Tanzu Application Platform Package and Profiles](install.hbs.md), you can use the
     same registry server as in `ootb_supply_chain_basic` - `registry` - `server`.
     - `REGISTRY-PASSWORD` is the password of the registry.
     For GCR or Google Artifact Registry, this must be the concatenated version of the JSON key. For example: `"$(cat ~/gcp-key.json)"`.
@@ -35,9 +35,9 @@ that you plan to create the `Workload` in:
     kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
     ```
 
-    >**Note:** If you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) instead of secrets, this step is not required. You can specify the Role ARN in the next step.
+    >**Note:** This step is not required if you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) instead of secrets. You can specify the Role Amazon Resource Name (ARN) in the next step.
 
-2. Add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace by running:
+2. To add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace, run:
 
     ```console
     cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
@@ -87,7 +87,7 @@ that you plan to create the `Workload` in:
     EOF
     ```
 
-    >**Note:** If you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html), you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret. Your service account entry will look like the following:
+    >**Note:** If you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html), you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret. Your service account entry then looks like the following:
 
     ```
     apiVersion: v1
@@ -102,7 +102,7 @@ that you plan to create the `Workload` in:
 
 3. Perform one of the following actions to give developers namespace-level access and view access to appropriate cluster-level resources:
 
-    - Use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity provider group by running:
+    - To use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity provider group, run:
 
         ```console
         tanzu rbac binding add -g GROUP-FOR-APP-VIEWER -n YOUR-NAMESPACE -r app-viewer
@@ -111,22 +111,22 @@ that you plan to create the `Workload` in:
 
         Where:
 
-        - `YOUR-NAMESPACE` is the name that you want to use for the developer namespace
-        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace and cluster
-        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace and cluster
+        - `YOUR-NAMESPACE` is the name you give to the developer namespace.
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace and cluster.
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace and cluster.
 
         For more information about `tanzu rbac`, see
         [Bind a user or group to a default role](authn-authz/binding.html).
 
         VMware recommends creating a user group in your identity provider's grouping system for each
-        developer namespace, and then adding the users accordingly.
+        developer namespace and then adding the users accordingly.
 
         Depending on your identity provider, you might need to take further action to
         federate user groups appropriately with your cluster.
         For an example of how to set up Azure Active Directory (AD) with your cluster, see
         [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
-    - Apply the RBAC policy by running:
+    - To apply the RBAC policy, run:
 
         ```console
         cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
@@ -186,20 +186,19 @@ that you plan to create the `Workload` in:
 
         Where:
 
-        - `YOUR-NAMESPACE` is the name for the developer namespace.
+        - `YOUR-NAMESPACE` is the name you give to the developer namespace.
         - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace and cluster.
         - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace and cluster.
 
         VMware recommends creating a user group in your identity provider's grouping system for each
-        developer namespace, and then adding the users accordingly.
+        developer namespace and then adding the users accordingly.
 
         Depending on your identity provider, you might need to take further action to
         federate user groups appropriately with your cluster.
-        For an example of how to set up Azure AD with your cluster, see
+        For an example of how to set up Azure Active Directory (AD) with your cluster, see
         [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
-        VMware recommends using your identity provider's user groups system to grant access to a
-        group of developers, rather than granting roles directly to individuals.
+        Rather than granting roles directly to individuals, VMware recommends using your identity provider's user groups system to grant access to a group of developers.
         For an example of how to set up Azure AD with your cluster, see
         [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
