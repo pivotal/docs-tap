@@ -44,7 +44,7 @@ Where:
 - `TAP-REGISTRY-SERVER` is the URI of your image registry.
 - `TAP-REGISTRY-USER` is the user with write access to your image registry.
 - `TAP-REGISTRY-PASSWORD` is the password for your image registry.
-- `TANZUNET-REGISTRY-USERNAME` is your username of the VMware Tanzu Network.
+- `TANZUNET-REGISTRY-USERNAME` is your user name of the VMware Tanzu Network.
 - `TANZUNET-REGISTRY-PASSWORD` is your password of the VMware Tanzu Network.
 - `TAP-GITHUB-TOKEN` is your GitHub personal access token.
 - `TAP-ITERATE-CNRS-DOMAIN` is the iterate cluster CNRS domain.
