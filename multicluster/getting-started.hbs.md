@@ -12,7 +12,7 @@ Before implementing a multicluster topology, complete the following:
 
 1. For the sample workload, VMware uses the same Application Accelerator - Tanzu Java Web App in the non-multicluster [Getting Started](../getting-started.md) guide. You can download this accelerator to your own Git infrastructure of choice. You might need to configure additional permissions. Alternatively, you can also use the [sample-accelerators GitHub repository](https://github.com/sample-accelerators/tanzu-java-web-app).
 
-1. The two supply chains are `ootb-supply-chain-basic` on the Build profile and `ootb-delivery-basic` on the Run profile. For both the Build and Run profiled clusters, perform the steps described in [Setup Developer Namespace](../set-up-namespaces.md). This guide assumes that you use the `default` namespace.
+1. The two supply chains are `ootb-supply-chain-basic` on the Build/Iterate profile and `ootb-delivery-basic` on the Run profile. For the Build/Iterate and Run profiled clusters, perform the steps described in [Setup Developer Namespace](../set-up-namespaces.md). This guide assumes that you use the `default` namespace.
 
 1. To set the value of `DEVELOPER_NAMESPACE` to the namespace you setup in the previous step, run:
 
