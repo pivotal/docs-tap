@@ -94,8 +94,10 @@ Configure port forwarding for the service so the CLI can access Supply Chain Sec
 ```console
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
 ```
+
 To use `Port Forward`, you must obtain the CA certificate by using the following instructions:
-- [Without `Ingress`](#no-ingress),
+
+- [Without `Ingress`](#no-ingress)
 - [Configure port forwarding](#config-pf)
 - [Modify your `/etc/hosts` file for Port Forwarding](#mod-etchost-port-forward)
 
@@ -112,9 +114,12 @@ sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts
 
 echo "127.0.0.1 $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
 ```
->**Note:** You must run this command in a separate terminal window. Or run the command in the background: `kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store &`
->
+
+> **Note:** You must run this command in a separate terminal window. Or run the command in the background:
+> `kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store &`
+
 Set the target by running:
+
 ```bash
 tanzu insight config set-target https://$METADATA_STORE_DOMAIN:$METADATA_STORE_PORT --ca-cert insight-ca.crt
 ```
@@ -125,13 +130,11 @@ tanzu insight config set-target https://$METADATA_STORE_DOMAIN:$METADATA_STORE_P
 
 >**Note:** NodePort is only recommended when: the cluster does not support ingress or the cluster does not support `LoadBalancer` type to services.  `NodePort` is not supported for a multi-cluster set up, as certificates cannot be modified. For example, the Metadata Store does not currently support a BYO-certificate.
 
-
 To use `NodePort`, you must obtain the CA certificate by using the following instructions:
-- [Without `Ingress`](#no-ingress),
+
+- [Without `Ingress`](#no-ingress)
 - [Configure port forwarding](#config-pf)
 - [Modify your `/etc/hosts` file for Node Port](#mod-etchost-node-port)
-
-#### <a id='mod-et
 
 #### <a id='mod-etchost-node-port'></a>Edit your `/etc/hosts` file for Node Port
 
