@@ -1,7 +1,5 @@
 # Enable Authorization on Remote GKE Clusters
 
-<!-- This topic is for TAP v1.3 and onwards only -->
-
 This section describes two supported options to add access-controlled visibility for a remote GKE cluster:
 
 - [Leverage an external OIDC provider](#external-oidc-provider)

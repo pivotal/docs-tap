@@ -1,7 +1,5 @@
 # Enable authorization on remote EKS clusters
 
-<!-- This topic is for TAP v1.3 and onwards only -->
-
 To add access-controlled visibility for a remote EKS cluster:
 
 1. Set up the OIDC provider
