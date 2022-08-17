@@ -55,7 +55,7 @@ docs.vmware.com is built.
   - [Troubleshoot components](troubleshooting-tap/troubleshoot-components.md)
 - [Uninstalling Tanzu Application Platform](uninstall.md)
 - [Security and Compliance](security-and-compliance/tap-nist-matrix.hbs.md)
-  - [Tanzu Application Platform NIST matrix](troubleshooting-tap/troubleshoot-components.md)
+  - [Tanzu Application Platform NIST matrix](ecurity-and-compliance/tap-nist-matrix.hbs.md)
 - [Component documentation](components.md)
     - [Overview of Tanzu Application Platform components](components.md)
     - [Tanzu CLI](cli-plugins/tanzu-cli.md)
