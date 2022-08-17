@@ -62,7 +62,7 @@ This is because the cluster where Store is deployed does not have `storageclass`
 
 ### Symptom
 
-The [Store Ingress and multicluster support](scst-store/ingress-multicluster.md)
+The [Store Ingress and multicluster support](scst-store/ingress-multicluster.hbs.md)
 document instructs you on how to create `SecretExports` to share secrets for
 communicating with the Store.
 During installation, Supply Chain Security Tools - Scan (Scan) creates the
