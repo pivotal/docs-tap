@@ -199,8 +199,8 @@ To see logs since a specific date and time, select or type the UTC timestamp in 
 If no logs are displayed, adjust the timestamp to an earlier time.
 If you do not select a timestamp, all logs produced since the pod was created are displayed.
 
-For optimal performance, the pod logs page limits the total log entries displayed to the most recent
-10,000 (approximately).
+For optimal performance, the pod logs page limits the total log entries displayed to the last
+10,000, at most.
 
 ### <a id="changing-log-levels"></a>Changing log levels
 
@@ -232,8 +232,8 @@ toggle.
 
 To download current log content, click the **Download logs** button.
 
-For optimal performance, the pod logs page limits the total log entries downloaded to the most recent
-10,000 (approximately).
+For optimal performance, the pod logs page limits the total log entries downloaded to the last
+10,000, at most.
 
 ### <a id="connect-interrupt"></a>Connection interruptions
 
