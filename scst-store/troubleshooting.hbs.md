@@ -1,4 +1,4 @@
-# Troubleshooting
+# Troubleshooting 
 
 This topic contains troubleshooting and known issues for **Supply Chain Security Tools - Store**.
 
@@ -57,3 +57,39 @@ This is because the cluster where Store is deployed does not have `storageclass`
     # set the storage class as default
     kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
     ```
+
+## <a id='multicluster-store'></a> Multicluster Support: Error sending results to SCST - Store running in a different cluster
+
+### Symptom
+
+The [Store Ingress and multicluster support](scst-store/ingress-multicluster.md)
+document instructs you on how to create `SecretExports` to share secrets for
+communicating with the Store.
+During installation, Supply Chain Security Tools - Scan (Scan) creates the
+`SecretImport` for ingesting the TLS CA certificate secret,
+but misses the `SecretImport` for the RBAC Auth token.
+
+### Solution
+
+As a workaround, apply the following YAML to the cluster running Scan and then
+perform a rolling restart:
+
+>**Note:** In some cases, you must update the namespaces before performing the rolling start.
+
+```yaml
+---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretImport
+metadata:
+  name: store-auth-token
+  namespace: scan-link-system
+spec:
+  fromNamespace: metadata-store-secrets
+```
+
+The `Secret` for the RBAC Auth token is created and the scan can be re-run.
+A rolling restart includes running the following:
+
+```console
+kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system
+```

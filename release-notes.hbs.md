@@ -493,35 +493,10 @@ This error does not necessarily mean that the workload failed its execution thro
 occurs during scanning, the `Scan Phase` field is not updated to `Error` and remains in the
 `Scanning` phase. Read the scan pod logs to verify the existence of an error.
 
-- **Multicluster Support: Error sending results to SCST - Store (Store) running in a different cluster:**
-The [Store Ingress and multicluster support](scst-store/ingress-multicluster.md)
-document instructs you on how to create `SecretExports` to share secrets for
-communicating with the Store.
+- **Multicluster Support: Error sending results to SCST - Store running in a different cluster:**
 During installation, Supply Chain Security Tools - Scan (Scan) creates the
 `SecretImport` for ingesting the TLS CA certificate secret,
-but misses the `SecretImport` for the RBAC Auth token.
-As a workaround, apply the following YAML to the cluster running Scan and then
-perform a rolling restart:
-
-    >**Note:** In some cases, you must update the namespaces before performing the rolling start.
-
-    ```yaml
-    ---
-    apiVersion: secretgen.carvel.dev/v1alpha1
-    kind: SecretImport
-    metadata:
-      name: store-auth-token
-      namespace: scan-link-system
-    spec:
-      fromNamespace: metadata-store-secrets
-    ```
-
-    The `Secret` for the RBAC Auth token is created and the scan can be re-run.
-    A rolling restart includes running the following:
-
-    ```console
-    kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system
-    ```
+but misses the `SecretImport` for the RBAC Auth token. See, [Troubleshooting Supply Chain Security Tools - Store](scst-store/troubleshooting.hbs.md#multicluster-store).
 
 - **User sees error message indicating Supply Chain Security Tools - Store (Store)
 is not configured even though configuration values were supplied:**
