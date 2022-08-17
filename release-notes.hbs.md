@@ -31,6 +31,7 @@ This release has the following known issues, listed by area and component.
 #### <a id="1-2-2-grype-scan-issues"></a>Grype scanner
 
 - **Scanning Java source code that uses Gradle package manager may not reveal vulnerabilities:**
+
   - For most languages, source code scanning only scans files present in the source code repository.
     Except for support added for Java projects using Maven, no network calls are made to fetch dependencies.
     For languages using dependency lock files, such as Golang and Node.js,
