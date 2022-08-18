@@ -93,7 +93,7 @@ To install a new scanner, please follow these steps:
 
     Where:
     
-    * TODO: Reword this sentence. `<REFERENCE_NAME>` will be how you choose to name the installed package to distinguish from others. e.g.: `grype-scanner`, `snyk-scanner-my-apps`
+    * `<REFERENCE_NAME>` is the name you choose the installed package to be referenced by. e.g.: `grype-scanner`, `snyk-scanner-my-apps`
     * `<SCANNER_NAME>` is the name of the scanner package you retrieved in step 1. e.g.: `snyk.scanning.apps.tanzu.vmware.com`
     * `<VERSION>` is your package version number. For example, `1.0.0-beta.2`.
     * `<PATH_TO_VALUES_YAML>` is the path that points to the `values.yaml` file created in setp 4.
@@ -122,7 +122,7 @@ To install a new scanner, please follow these steps:
 
 To verify the installation create an `ImageScan` or `SourceScan` referencing one of the newly added `ScanTemplates` for the scanner.
 
->**Note**: An `ScanPolicy` can also be referenced in the `ImageScan` or `SourceScan`. Since every scanner can have its output in a different format, the `ScanPolicies` can vary from scanner to scanner. Please refer [Enforce compliance policy using Open Policy Agent ](policies.hbs.md) for more information around this topic.
+>**Note**: A `ScanPolicy` can also be referenced in the `ImageScan` or `SourceScan`. Since every scanner can have its output in a different format, the `ScanPolicies` can vary from scanner to scanner. Please refer [Enforce compliance policy using Open Policy Agent ](policies.hbs.md) for more information around this topic.
 
 
 1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed in:
@@ -147,7 +147,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 2. Create the following ImageScan YAML:
 
-    >**Note**: Some scanners do not support both `ImageScan` and `SourceScan`. Please refer to the [Available Scanners Docs](available-scanners.hbs.md) to look at the specifics for your choosen scanner.
+    >**Note**: Some scanners do not support both `ImageScan` and `SourceScan`. Please refer to the [Available Scanners Docs](available-scanners.hbs.md) to look at the specifics for your chosen scanner.
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -161,7 +161,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
       scanPolicy: <SCAN_POLICY> # Optional
     ```
 
-    Where `<SCAN_TEMPLATE>` would be the name of the installed `ScanTemplate` in the `DEV_NAMESPACE` you retrieved in step 1, and `<SCAN_POLICY>` it's an optional reference to an existing `ScanPolicy` in the same `DEV_NAMESPACE`.
+    Where `<SCAN_TEMPLATE>` would be the name of the installed `ScanTemplate` in the `<DEV_NAMESPACE>` you retrieved in step 1, and `<SCAN_POLICY>` it's an optional reference to an existing `ScanPolicy` in the same `<DEV_NAMESPACE>`.
 
     For example:
 
@@ -214,6 +214,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 4. Apply the ImageScan and SourceScan YAMLs:
 
     To run the scans please apply them to the cluster running the following commands:
+
     For `ImageScan`:
     ```console
     kubectl apply -f <PATH_TO_IMAGE_SCAN_YAML> -n <DEV_NAMESPACE>
@@ -261,7 +262,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     sourcescan.scanning.apps.tanzu.vmware.com/grypesourcescan-sample-public   Completed   5805c650          https://github.com/houndci/hound.git   8m34s   21         121    112      9     0         263
     ```
 
-    >**Note**: If you define a `ScanPolicy` for the scans and the evaluation finds a violation, then the `Phase` would be `Failed` instead of `Completed`. In both cases the scan finnished successfully.
+    >**Note**: If you define a `ScanPolicy` for the scans and the evaluation finds a violation, then the `Phase` would be `Failed` instead of `Completed`. In both cases the scan finished successfully.
 
 6. Clean-up:
 
@@ -307,7 +308,7 @@ ootb_supply_chain_testing_scanning:
 
 ## Uninstall Scanner
 
-To replace the scanner in the Supply Chain just follow the steps mentioned in [Configure TAP Supply Chain to Use New Scanner](#configure-supply-chain). After the scanner is not longer required by the Supply Chain, you can remove the package by running: 
+To replace the scanner in the Supply Chain just follow the steps mentioned in [Configure TAP Supply Chain to Use New Scanner](#configure-supply-chain). After the scanner is no longer required by the Supply Chain, you can remove the package by running:
 
 ```console
 tanzu package installed delete <REFERENCE_NAME> \
