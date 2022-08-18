@@ -227,7 +227,7 @@ ootb_supply_chain_basic:
     ssh_secret: "SSH-SECRET-KEY"
 
 learningcenter:
-  ingressDomain: "DOMAIN-NAME"
+  ingressDomain: "INGRESS-DOMAIN"
 
 tap_gui:
   service_type: ClusterIP
@@ -277,7 +277,6 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
-- `DOMAIN-NAME` has a value such as `learningcenter.example.com`.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
