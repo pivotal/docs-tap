@@ -255,11 +255,30 @@ Any property or value within the PodTemplateSpec or OCI image metadata associate
 
 ### <a id='match-crit-labels-annot'></a> Matching criteria by labels or annotations
 
-When you use labels or annotations to define whether a convention must be applied, the server checks the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads.
+The `conventions.carto.run/v1alpha1` API allows convention authors to use the `selectorTarget` field to explicitly define which labels matchers ought to consider. The `selectorTarget` field has only two possible options
++ `PodTemplateSpec` - directs matchers to consider labels specified on the `PodTemplateSpec`. 
++ `PodIntent` - directs matchers to consider labels specified on the `PodIntent`
 
-+ PodTemplateSpec
+```yaml
+...
+spec:
+  selectorTarget: PodIntent # optional, defaults to PodTemplateSpec
+  selectors: # optional, defaults to match all workloads
+  - <metav1.LabelSelector>
+  webhook:
+    certificate:
+      name: sample-cert
+      namespace: sample-conventions
+    clientConfig: 
+      <admissionregistrationv1.WebhookClientConfig>
+```
+If a value is not provided for this optional field while using the `conventions.carto.run/v1alpha1` API, the default value is set to `PodTemplateSpec` without the conventions author having to explicitly do so. The `selectorTarget` field is not available in the `conventions.apps.tanzu.vmware.com/v1alpha1` API and labels specified in the `PodTemplateSpec` will be considered if a matcher is defined in a `ClusterPodConvention`.
 
-    ```yaml
+As explained in above, depending on which API in use, the source of the labels determines if the server will check the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of the workloads or labels on the workloads themselves.
+
++ Option 1: `PodTemplateSpec` 
+  ```yaml
+      # available in conventions.apps.tanzu.vmware.com/v1alpha1 and conventions.carto.run/v1alpha1
     ...
     template:
       metadata:
@@ -268,40 +287,51 @@ When you use labels or annotations to define whether a convention must be applie
         annotations:
           awesome-annotation: awesome-value
     ...
-    ```
+  ```
 
 + Handler
 
-    ```go
-    package convention
-    ...
-    func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
-        c:= []string{}
-        // This convention is applied if a specific label is present.
-        if lv, le := template.Labels["awesome-label"]; le && lv == "awesome-value" {
-            // DO COOL STUFF
-            c = append(c, "awesome-label-convention")
-        }
-        // This convention is applied if a specific annotation is present.
-        if av, ae := template.Annotations["awesome-annotation"]; ae && av == "awesome-value" {
-            // DO COOL STUFF
-            c = append(c, "awesome-annotation-convention")
-        }
+  ```go
+  package convention
+  ...
+  func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
+      c:= []string{}
+      // This convention is applied if a specific label is present.
+      if lv, le := template.Labels["awesome-label"]; le && lv == "awesome-value" {
+          // DO COOL STUFF
+          c = append(c, "awesome-label-convention")
+      }
+      // This convention is applied if a specific annotation is present.
+      if av, ae := template.Annotations["awesome-annotation"]; ae && av == "awesome-value" {
+          // DO COOL STUFF
+          c = append(c, "awesome-annotation-convention")
+      }
 
-        return c, nil
-    }
-    ...
-    ```
+      return c, nil
+  }
+  ...
+  ```
 
  Where:
 
 + `conventionHandler` is the *handler*.
-
 + `awesome-label` is the **label** that you want to validate.
-
 + `awesome-annotation` is the **annotation** that you want to validate.
-
 + `awesome-value` is the value that must have the **label**/**annotation**.
+
+
+Option 2: `PodIntent` 
+  ```yaml
+  # only available in conventions.carto.run/v1alpha1
+  ...
+  apiVersion: conventions.carto.run/v1alpha1
+  kind: PodIntent
+  metadata:
+    name: sample
+    labels:
+      environment: production
+  ...
+  ```
 
 ### <a id='match-criteria-env-var'></a> Matching criteria by environment variables
 
