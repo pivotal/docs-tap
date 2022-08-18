@@ -45,7 +45,7 @@ To install a new scanner, please follow these steps:
 
 3. (Optional) Create the secrets the scanner package will rely on:
 
-    Take a look at the [Available Scanners Docs](#) to look at the specifics for your choosen scanner.
+    Take a look at the [Available Scanners Docs](available-scanners.hbs.md) to look at the specifics for your choosen scanner.
 
 4. Create a `values.yaml` to apply custom configurations to the scanner:
 
@@ -147,7 +147,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 2. Create the following ImageScan YAML:
 
-    >**Note**: Some scanners do not support both `ImageScan` and `SourceScan`. Please refer to the [Available Scanners Docs](#) to look at the specifics for your choosen scanner.
+    >**Note**: Some scanners do not support both `ImageScan` and `SourceScan`. Please refer to the [Available Scanners Docs](available-scanners.hbs.md) to look at the specifics for your choosen scanner.
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -179,7 +179,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 3. Create the following SourceScan YAML:
 
-    >**Note**: Some scanners do not support both `ImageScan` and `SourceScan`. Please refer to the [Available Scanners Docs](#) to look at the specifics for your choosen scanner.
+    >**Note**: Some scanners do not support both `ImageScan` and `SourceScan`. Please refer to the [Available Scanners Docs](available-scanners.hbs.md) to look at the specifics for your choosen scanner.
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
