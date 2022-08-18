@@ -175,7 +175,7 @@ To view additional information about your running applications, see the
 ## <a id="viewing-pod-logs"></a>Viewing pod logs
 
 To view logs for a pod, click **View Pod Logs** from the **Pod Details** page.
-By default, logs for all the pod's containers are displayed, dating back to when the pod was created.
+By default, logs for the pod's first container are displayed, dating back to when the pod was created.
 
 ![Screenshot of Pod Logs page, which displays information for Tanzu Java Web App](images/runtime-resources-pod-logs.png)
 
@@ -189,18 +189,18 @@ To resume the stream, click the **Follow Latest** button that appears after paus
 
 ### <a id="filter-by-container"></a>Filtering by container
 
-To display logs for a specific container only, select the desired container from the **Container**
-drop-down menu. If you do not select a container, logs for all containers within the pod are displayed.
+To display logs for a different container, select the desired container from the **Container**
+drop-down menu.
 
 ### <a id="filter-by-date-and-time"></a>Filtering by date and time
 
-To see all logs since a specific date and time, select or type the UTC timestamp in the
+To see logs since a specific date and time, select or type the UTC timestamp in the
 **Since date** field.
 If no logs are displayed, adjust the timestamp to an earlier time.
 If you do not select a timestamp, all logs produced since the pod was created are displayed.
 
-For optimal performance, the pod logs page limits the total log entries displayed to the most recent
-10,000.
+For optimal performance, the pod logs page limits the total log entries displayed to the last
+10,000, at most.
 
 ### <a id="changing-log-levels"></a>Changing log levels
 
@@ -231,11 +231,11 @@ toggle.
 ### <a id="downloading"></a>Downloading logs
 
 To download current log content, click the **Download logs** button.
-For optimal performance, the pod logs page limits the total log entries downloaded to the most recent
-10,000.
+
+For optimal performance, the pod logs page limits the total log entries downloaded to the last
+10,000, at most.
 
 ### <a id="connect-interrupt"></a>Connection interruptions
 
-If the log stream connection is interrupted for any reason, such as a network error, an error message
-is displayed at the top of the page.
-Click the **Refresh** button at the upper-right of the page to try to reconnect.
+If the log stream connection is interrupted for any reason, such as a network error, a notification will appear after the most recent log message, and the page will attempt to reconnect to the log stream. If reconnection fails, an error message
+is displayed at the top of the page, and you can click the **Refresh** button at the upper-right of the page to try to reconnect manually.
