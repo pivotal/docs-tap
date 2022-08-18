@@ -12,8 +12,18 @@ Do one of the following actions to access the Runtime Resources Visibility plug-
 - [Install the Tanzu Application Platform Full or View profile](../../install-intro.md)
 - [Install Tanzu Application Platform without using a profile](../../install-intro.md) and then
   install [Tanzu Application Platform GUI separately](../install-tap-gui.md)
-- Disable realtime metrics for clusters without a metrics server by setting
-`skipMetricsLookup` to `true` for that cluster in `app.config.yaml`
+- Make sure to review the section [If you have a metrics server](#a-idmetrics-servera-if-you-have-a-metrics-server)
+
+## <a id="metrics-server"></a> If you have a metrics server
+
+By default, the Kubernetes API will be ignoring the metrics server on your cluster, if you want to access
+this information, you will need to go to your cluster section on the `app-config.yaml` and make sure
+the `skipMetricsLookup` attribute is set to `false`. 
+
+> *Caution*
+>If you set this value to `false` but do you not possess a metrics server running, you will get an error
+>as the follow:
+>![Screenshot of the RRV plugin error message due to metrics](images/metrics-server-error.png)
 
 ## <a id="Visualize-app"></a> Visualize Workloads on Tanzu Application Platform GUI
 
