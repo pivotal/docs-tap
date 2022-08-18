@@ -13,11 +13,12 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
 2. Create a `values.yaml` file, and install the Supply Chain Security Tools - Policy Controller. For instructions, see [Install Supply Chain Security Tools - Policy Controller](../scst-policy/install-scst-policy.md).
 
-3. Configure at least one `ClusterImagePolicy` resource to verify image signatures when deploying resources. For instructions, see [Create a `ClusterImagePolicy` resource](../scst-policy/configuring.md#create-cip-resource).
+3. Configure and apply at least one `ClusterImagePolicy` resource to the cluster to verify image signatures when deploying resources. For instructions, see [Create a `ClusterImagePolicy` resource](../scst-policy/configuring.md#create-cip-resource).
 
     For example:
 
-    ```yaml
+    ```console
+    kubectl apply -f - -o yaml << EOF
     ---
     apiVersion: policy.sigstore.dev/v1beta1
     kind: ClusterImagePolicy
@@ -32,6 +33,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
             -----BEGIN PUBLIC KEY-----
             <content ...>
             -----END PUBLIC KEY-----
+    EOF
     ```
 
 4. Enable the policy controller verification in your namespace by adding the label
@@ -39,7 +41,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
     For example:
     ```console
-    kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
+    kubectl label namespace <YOUR-NAMESPACE> policy.sigstore.dev/include=true
     ```
 
 >**Note:** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
