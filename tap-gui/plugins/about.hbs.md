@@ -12,4 +12,5 @@ Tanzu Application Platform includes the following GUI plug-ins:
 - [Application Live View](app-live-view.md)
 - [Application Accelerator](application-accelerator.md)
 - [API Documentation](api-docs.md)
+- [Security Analysis](sa-tap-gui.md)
 - [Supply Chain Choreographer](scc-tap-gui.md)

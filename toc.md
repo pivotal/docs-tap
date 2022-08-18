@@ -420,6 +420,7 @@ docs.vmware.com is built.
          - [API documentation](tap-gui/plugins/api-docs.md)
              - [Overview of API documentation](tap-gui/plugins/api-docs.md)
              - [Getting started with API documentation plug-in](tap-gui/plugins/api-docs-getting-started.md)
+         - [Security Analysis](tap-gui/plugins/sa-tap-gui.md)
          - [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.md)
       - [Upgrading Tanzu Application Platform GUI](tap-gui/upgrades.md)
       - [Troubleshoot Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
