@@ -16,9 +16,9 @@ Before you upgrade Tanzu Application Platform:
 
 ## <a id="add-new-package-repo"></a> Add new package repository
 
-Follow these steps to add the new package repository:
+Follow these steps to update to the new package repository:
 
-1. Add the target version of the Tanzu Application Platform package repository by running:
+1. Relocate the latest version of TAP images which you want to update with the Carvel tool imgpkg by following the steps provided in [document](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-install.html#relocate-images-to-a-registry-0) from Step 1 - Step 4.
 
     ```console
     tanzu package repository update tanzu-tap-repository \
@@ -26,6 +26,31 @@ Follow these steps to add the new package repository:
         --namespace tap-install
     ```
    Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
+```Note: Make sure to Update the export TAP_VERSION=VERSION-NUMBER which you want to update to```
+
+2. Add the target version of the Tanzu Application Platform package repository by running:
+
+    - If Cluster Essentials 1.2 and above installed:
+
+        ```console
+        tanzu package repository add tanzu-tap-repository \
+        --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:$TAP_VERSION \
+        --namespace tap-install
+        ```
+
+        Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
+
+    - If Cluster Essentials 1.1 and 1.0 installed:
+
+        ```console
+       tanzu package repository update tanzu-tap-repository \
+        --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:$TAP_VERSION \
+        --namespace tap-install
+        ```
+
+       Where $TAP_VERSION is the target revision of Tanzu Application Platform you are updating to.For example, 1.3.0
+
+        >**Note:** If you are using Cluster Essentials 1.0 or 1.1, expect to see the installed Tanzu Application Platform packages in a temporary “Reconcile Failed” state, following a “Package not found” warning. These warnings will disappear after you upgrade the installed Tanzu Application Platform packages to version 1.2.0.
 
 2. Verify you have added the new package repository by running:
 
