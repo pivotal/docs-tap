@@ -189,7 +189,7 @@ To resume the stream, click the **Follow Latest** button that appears after paus
 
 ### <a id="filter-by-container"></a>Filtering by container
 
-To display logs for a different container, select the desired container from the **Container**
+To display logs for a different container, select the container that you want from the **Container**
 drop-down menu.
 
 ### <a id="filter-by-date-and-time"></a>Filtering by date and time
@@ -237,5 +237,7 @@ For optimal performance, the pod logs page limits the total log entries download
 
 ### <a id="connect-interrupt"></a>Connection interruptions
 
-If the log stream connection is interrupted for any reason, such as a network error, a notification will appear after the most recent log message, and the page will attempt to reconnect to the log stream. If reconnection fails, an error message
-is displayed at the top of the page, and you can click the **Refresh** button at the upper-right of the page to try to reconnect manually.
+If the log stream connection is interrupted for any reason, such as a network error, a notification
+appears after the most recent log entry, and the page attempts to reconnect to the log stream.
+If reconnection fails, an error message displays at the top of the page, and you can click the
+**Refresh** button at the upper-right of the page to attempt to reconnect.
