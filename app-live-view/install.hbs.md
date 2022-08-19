@@ -46,7 +46,7 @@ To install Application Live View back end:
     $ tanzu package available list backend.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for backend.appliveview.tanzu.vmware.com...
       NAME                                  VERSION        RELEASED-AT           
-      backend.appliveview.tanzu.vmware.com  1.2.0-build.2  2022-06-01T00:00:10Z
+      backend.appliveview.tanzu.vmware.com  1.3.0-build.1  2022-08-17T00:00:00Z
     ```
 
 1. (Optional) Change the default installation settings by running:
@@ -55,29 +55,44 @@ To install Application Live View back end:
     tanzu package available get backend.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.2.0-build.2`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.3.0-build.1`.
 
     For example:
 
     ```console
-    $ tanzu package available get backend.appliveview.tanzu.vmware.com/1.2.0-build.2 --values-schema --namespace tap-install
+    $ tanzu package available get backend.appliveview.tanzu.vmware.com/1.3.0-build.1 --values-schema --namespace tap-install
+      KEY             DEFAULT          TYPE     DESCRIPTION
+      tls.namespace   <nil>            string   The targeted namespace for secret consumption by the HTTPProxy.
+
+      tls.secretName  <nil>            string   The name of secret for consumption by the HTTPProxy.
+
+      ingressDomain   tap.example.com  string   Domain to be used by the HTTPProxy ingress object. The "appliveview"
+                                                subdomain will be prepended to the value provided. For example:
+                                                "example.com" would become "appliveview.example.com".
+      ingressEnabled  false            boolean  Flag for whether or not to create an HTTPProxy for ingress.
     ```
 
     For more information about values schema options, see the properties listed earlier.
 
 1. Create `app-live-view-backend-values.yaml` with the following details:
 
-    For a SINGLE-CLUSTER environment, the Application Live View back end is exposed through the Kubernetes cluster service.
-
-    >**Note:** If it is a Tanzu Application Platform profile installation and top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the back end is automatically exposed through the ingress. The following configurations are applied by default:
+    For a SINGLE-CLUSTER environment, the Application Live View back end is exposed through the Kubernetes cluster service. 
+    By default, ingress is disabled for back end.
 
     ```yaml
-    ingressEnabled: true
-    ingress_domain: ${shared.ingress_domain}
+    ingressEnabled: false
     ```
 
-    For a MULTI-CLUSTER environment, Tanzu Application Platform uses the `shared.ingress_domain` by default.
-    You can override this setting with the following values:
+    For a MULTI-CLUSTER environment, set the flag `ingressEnabled` to true for the Application Live View back end to be exposed on the ingress domain.
+
+     ```yaml
+    backend:
+        ingressEnabled: true
+    ```
+
+    >**Note:** If it is a Tanzu Application Platform profile installation and top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the back end is automatically exposed through the shared ingress.
+
+    If you want to override the shared ingress for appliveview in a MULTI-CLUSTER environment, use the following values below
 
     ```yaml
     ingressEnabled: true
@@ -115,7 +130,7 @@ To install Application Live View back end:
     For example:
 
     ```console
-    $ tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v 1.2.0-build.2 -n tap-install -f app-live-view-backend-values.yaml
+    $ tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v 1.3.0-build.1 -n tap-install -f app-live-view-backend-values.yaml
     - Installing package 'backend.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'backend.appliveview.tanzu.vmware.com'
@@ -143,7 +158,7 @@ To install Application Live View back end:
     \ Retrieving installation details for appliveview...
     NAME:                    appliveview
     PACKAGE-NAME:            backend.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.2.0-build.2
+    PACKAGE-VERSION:         1.3.0-build.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -167,7 +182,7 @@ To install Application Live View connector:
     $ tanzu package available list connector.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for connector.appliveview.tanzu.vmware.com...
       NAME                                    VERSION        RELEASED-AT           
-      connector.appliveview.tanzu.vmware.com  1.2.0-build.2  2022-06-01T00:00:10Z
+      connector.appliveview.tanzu.vmware.com  1.3.0-build.1  2022-08-17T00:00:00Z
     ```
 
 1. (Optional) Change the default installation settings by running:
@@ -176,12 +191,21 @@ To install Application Live View connector:
     tanzu package available get connector.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.2.0-build.2`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.3.0-build.1`.
 
     For example:
 
     ```console
-    $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.2.0-build.2 --values-schema --namespace tap-install
+    $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.3.0-build.1 --values-schema --namespace tap-install
+      KEY                     DEFAULT             TYPE     DESCRIPTION
+      backend.caCertData      cert-in-pem-format  string   CA Cert Data for ingress domain
+      backend.host            <nil>               string   Domain to be used to reach the application live view backend. Prepend "appliveview"
+                                                           subdomain to the value if you are using shared ingress. For example: "example.com"
+                                                           would become "appliveview.example.com".
+      backend.ingressEnabled  false               boolean  Flag for the connector to connect to ingress on backend
+
+      backend.port            <nil>               number   Port to reach the application live view backend
+      backend.sslDisabled     false               boolean  Flag for whether or not to disable ssl
     ```
 
     For more information about values schema options, see the properties listed earlier.
@@ -190,29 +214,45 @@ To install Application Live View connector:
 
     For SINGLE-CLUSTER environment, the Application Live View connector connects to the `cluster-local` Application Live View back end to register the applications.
 
-    >**Note:** If it is a Tanzu Application Platform profile installation and top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the Application Live View connector and Application Live View back end are configured to communicate through ingress. The the Application Live View connector uses the `shared.ingress_domain` to reach the back end.
+    >**Note:** By default, ingress is disabled for connector. 
 
-    When using `shared.ingress_domain`, unless you enable TLS in the appliveview (Application Live View back end), set:
+    
 
-    ```yaml
+    For a MULTI-CLUSTER environment, set the flag `ingressEnabled` to true for the Application Live View connector to connect to the Application Live View back end using the ingress domain.
+     ```yaml
     backend:
-        sslDisabled: false
+        ingressEnabled: true
     ```
 
-    For a MULTI-CLUSTER environment, use the following values:
+    >**Note:** If it is a Tanzu Application Platform profile installation and top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the Application Live View connector and Application Live View back end are configured to communicate through ingress. Then the Application Live View connector uses the `shared.ingress_domain` to reach the back end.
+   
+
+    If you want to override the shared ingress for appliveview in a MULTI-CLUSTER environment, use the following values below
 
     ```yaml
     backend:
-        sslDisabled: false
         host: appliveview.INGRESS-DOMAIN
     ```
 
     Where `INGRESS-DOMAIN` is the top level domain the Application Live View back end exposes by using `tanzu-shared-ingress` for the connectors in other clusters to reach the Application Live View back end. Prepend the `appliveview` subdomain to the provided value.
 
-    >**Note:** The `backend.sslDisabled` is set to `false` by default. If TLS is not enabled for the `INGRESS-DOMAIN` in the Application Live View back end, set the `backend.sslDisabled` to `true`.
+    The `backend.sslDisabled` is set to `false` by default. The CA Cert for the ingress domain can be set in the `backend.caCertData` key for ssl validation. Below is a sample yaml:
 
-    >**Note:** If it is a Tanzu Application Platform profile installation and top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the Application Live View connector is automatically configured to use the `shared.ingress_domain` to reach the Application Live View back end.    
+    ```yaml
+    backend:
+      caCertData: |-
+        -----BEGIN CERTIFICATE-----
+        MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
+        BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
+        -----END CERTIFICATE-----  
+    ```
+    
+    If TLS is not enabled for the `INGRESS-DOMAIN` in the Application Live View back end, set the `backend.sslDisabled` to `true`.
 
+     ```yaml
+    backend:
+        sslDisabled: true
+    ```  
 
     You can edit the values to suit your project needs or leave the default values as is.
 
@@ -225,12 +265,12 @@ To install Application Live View connector:
     tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-connector-values.yaml
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.2.0-build.2`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.3.0-build.1`.
 
     For example:
 
     ```console
-    $ tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v 1.2.0-build.2 -n tap-install -f app-live-view-connector-values.yaml
+    $ tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v 1.3.0-build.1 -n tap-install -f app-live-view-connector-values.yaml
     | Installing package 'connector.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'connector.appliveview.tanzu.vmware.com'
@@ -258,7 +298,7 @@ To install Application Live View connector:
     | Retrieving installation details for appliveview-connector...
     NAME:                    appliveview-connector
     PACKAGE-NAME:            connector.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.2.0-build.2
+    PACKAGE-VERSION:         1.3.0-build.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -282,7 +322,7 @@ To install Application Live View Conventions:
     $ tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for conventions.appliveview.tanzu.vmware.com...
       NAME                                      VERSION        RELEASED-AT           
-      conventions.appliveview.tanzu.vmware.com  1.2.0-build.2  2022-06-01T00:00:00Z
+      conventions.appliveview.tanzu.vmware.com  1.3.0-build.1  2022-08-17T00:00:00Z
     ```
 
 1. Install the Application Live View Conventions package by running:
@@ -291,12 +331,12 @@ To install Application Live View Conventions:
     tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.2.0-build.2`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.3.0-build.1`.
 
     For example:
 
     ```console
-    $ tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v 1.2.0-build.2 -n tap-install
+    $ tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v 1.3.0-build.1 -n tap-install
     - Installing package 'conventions.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'conventions.appliveview.tanzu.vmware.com'
@@ -322,7 +362,7 @@ To install Application Live View Conventions:
     | Retrieving installation details for appliveview-conventions...
     NAME:                    appliveview-conventions
     PACKAGE-NAME:            conventions.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.2.0-build.2
+    PACKAGE-VERSION:         1.3.0-build.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
