@@ -1401,7 +1401,7 @@ spec:
 In this case `environment.objects` of the workshop `spec` must include resources to deploy the
 application hosting the instructions and expose it through an appropriate ingress.
 
-## <a id="disable-ws-instructions"></a> Disabling workshop instructions
+## <a id="deactivate-ws-instructions"></a> Deactivating workshop instructions
 
 The aim of the workshop environment is to provide instructions for a workshop that users can follow.
 If you want instead to use the workshop environment as a development environment or as an

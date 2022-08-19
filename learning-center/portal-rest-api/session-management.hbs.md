@@ -3,9 +3,9 @@
 
 The REST API endpoints for session management allow you to request that a workshop session be allocated.
 
-## <a id="disable-portal-user-reg"></a>Disabling portal user registration
+## <a id="deactivate-portal-user-reg"></a>Deactivating portal user registration
 
-When you use the REST API to trigger creation of workshop sessions, VMware recommends that you disable user registration through the training portal web interface. This means that only the admin user is able to directly access the web interface for the training portal.
+When you use the REST API to trigger creation of workshop sessions, VMware recommends that you deactivate user registration through the training portal web interface. This means that only the admin user is able to directly access the web interface for the training portal.
 
 ```console
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1

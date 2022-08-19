@@ -488,7 +488,7 @@ spec:
 
 ## <a id="control-reg-type"></a>Control registration type
 
-By default the training portal web interface presents a registration page for users to create an account before selecting a workshop. If you only want to allow the administrator to log in, you can disable the registration page. Do this if you are using the REST API to create and allocate workshop sessions from a separate application:
+By default the training portal web interface presents a registration page for users to create an account before selecting a workshop. If you want to allow only the administrator to log in, you can deactivate the registration page. Do this if you are using the REST API to create and allocate workshop sessions from a separate application:
 
 ```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
@@ -573,7 +573,7 @@ This also makes it possible to access the list of available workshops from the c
 
 ## <a id="use-external-list-of-ws"></a>Use an external list of workshops
 
-If you are using the training portal with registration disabled, and you are using the REST API from a separate website to control creation of sessions, you can specify an alternate URL for providing the list of workshops.
+If you are using the training portal with registration deactivated, and you are using the REST API from a separate website to control creation of sessions, you can specify an alternate URL for providing the list of workshops.
 
 This helps when the REST API creates a session and cookies are deleted or a session URL is shared with a different user. This means the value for the `index_url` supplied with the REST API request is lost.
 
