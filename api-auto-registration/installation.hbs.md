@@ -10,7 +10,7 @@ For more information about profiles, see [About Tanzu Application Platform compo
 API Auto Registration uses the following parameters in `tap-values.yaml`
 
 ```yaml
-api_autoregistration:
+api_auto_registration:
   tap_gui_url: <URL TO TAP GUI>
   cluster_name: <CLUSTER NAME AS SHOWN IN LIFECYCLE>
 ```
