@@ -39,10 +39,7 @@ metadata:
     apis.apps.tanzu.vmware.com/register-api: "true" 
 spec:
   source:
-    git:
-      url: https://github.com/sample-accelerators/tanzu-java-web-app.git
-      ref:
-        branch: accelerator
+    ...
   params:
     - name: api_descriptor
       value:
