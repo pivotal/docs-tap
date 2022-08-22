@@ -27,7 +27,7 @@ api_auto_registration:
 
 When using a mutli-cluster installtion using the run cluster profile or without a profile you will need to set the `api_auto_registration.tap_gui_url` parameters correctly for successful entity registration with TAP GUI, and you are strongly recommended to set `cluster_name` to a unique value for each run cluster.
 
-You can locate the `tap_gui_url` by going to the cluster that is running TAP GUI and executing the following commands
+You can locate the `tap_gui_url` by going to the view cluster with the TAP GUI you want to register the entity with and executing the following commands
 
 ```console
 kubectl get secret tap-values -n tap-install -o jsonpath="{.data['tap-values\.yaml']}" | base64 -d | yq '.tap_gui.app_config.backend.baseUrl'  
