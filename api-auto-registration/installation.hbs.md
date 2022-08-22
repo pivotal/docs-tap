@@ -17,7 +17,7 @@ api_auto_registration:
 
 >**Note:** The value of `cluster_name` is what you will see in the `lifecycle` property of your API Entitites 
 
-If you are installing with full profile you will get the following default values, but keep in mind you can override them if need be.
+If you are installing TAP with run or full profile you will get the following default values, but keep in mind you can override them if need be.
 
 ```yaml
 api_autoregistration:
