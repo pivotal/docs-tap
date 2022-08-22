@@ -30,7 +30,7 @@ Example workload that exposes a knative service:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: petclinic-knative-02
+  name: petclinic-knative
   labels:
     apps.tanzu.vmware.com/workload-type: web
     apps.kubernetes.io/name: spring-petclinic
