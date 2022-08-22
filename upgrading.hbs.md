@@ -15,39 +15,35 @@ Before you upgrade Tanzu Application Platform:
 - Verify all packages are reconciled by running `tanzu package installed list -A`.
 - It is strongly recommended to [upgrade](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html#upgrade-7) the Cluster Essentials to version 1.2 to avoid the temporary warning state as described in the following section.
 
-## <a id="add-new-package-repo"></a> Add the new package repository
+## <a id="add-new-package-repo"></a> Update the new package repository
 
-Follow these steps to update to the new package repository:
+Follow these steps to update the new package repository:
 
-1. Relocate the latest version of TAP images which you want to update with the Carvel tool imgpkg by following the steps provided in [document](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-install.html#relocate-images-to-a-registry-0) from Step 1 - Step 4.
+1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 4 in [Relocate images to a registry](install.html#add-tap-package-repo).
 
-```Note: Make sure to Update the export TAP_VERSION=VERSION-NUMBER which you want to update to```
+    >**Note:** Make sure to update the `export TAP_VERSION=VERSION-NUMBER` to the target revision of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`. 
 
-2. Add the target version of the Tanzu Application Platform package repository by running:
+1. Add the target version of the Tanzu Application Platform package repository by running:
 
-    - If Cluster Essentials 1.2 and above installed:
+    - If you installed Cluster Essentials 1.2 or above, run:
 
         ```console
         tanzu package repository add tanzu-tap-repository \
-        --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:$TAP_VERSION \
+        --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:${TAP_VERSION} \
         --namespace tap-install
         ```
-        
-        Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
 
-    - If Cluster Essentials 1.1 and 1.0 installed:
+    - If you installed Cluster Essentials 1.1 or 1.0, run:
 
         ```console
        tanzu package repository update tanzu-tap-repository \
-        --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:$TAP_VERSION \
+        --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:${TAP_VERSION} \
         --namespace tap-install
         ```
-        
-       Where $TAP_VERSION is the target revision of Tanzu Application Platform you are updating to.For example, 1.3.0
 
         >**Note:** If you are using Cluster Essentials 1.0 or 1.1, expect to see the installed Tanzu Application Platform packages in a temporary “Reconcile Failed” state, following a “Package not found” warning. These warnings will disappear after you upgrade the installed Tanzu Application Platform packages to version 1.2.0. 
 
-2. Verify you have added the new package repository by running:
+1. Verify you have added the new package repository by running:
 
     ```console
     tanzu package repository get tanzu-tap-repository --namespace tap-install
