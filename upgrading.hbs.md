@@ -21,11 +21,11 @@ Follow these steps to update the new package repository:
 
 1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 4 in [Relocate images to a registry](install.html#add-tap-package-repo).
 
-    >**Note:** Make sure to update the `export TAP_VERSION=VERSION-NUMBER` to the target revision of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`. 
+    >**Note:** Make sure to update the `VERSION-NUMBER` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`. 
 
-1. Add the target version of the Tanzu Application Platform package repository by running:
+1. Add the target version of the Tanzu Application Platform package repository:
 
-    - If you installed Cluster Essentials 1.2 or above, run:
+    - If you are using Cluster Essentials 1.2 or above, run:
 
         ```console
         tanzu package repository add tanzu-tap-repository \
@@ -33,7 +33,7 @@ Follow these steps to update the new package repository:
         --namespace tap-install
         ```
 
-    - If you installed Cluster Essentials 1.1 or 1.0, run:
+    - If you are using Cluster Essentials 1.1 or 1.0, run:
 
         ```console
        tanzu package repository update tanzu-tap-repository \
