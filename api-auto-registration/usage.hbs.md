@@ -24,7 +24,7 @@ The default supply chains use knative to deploy your applications. In this event
 
 Another option is you can hard code the url using the baseURL property.  The controller will use a combination of this baseURL and your path to retrieve the yaml
 
-Example workload:
+Example workload that exposes a knative service:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
