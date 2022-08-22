@@ -76,7 +76,7 @@ spec:
         description: "A set of API endpoints to manage the resources within the petclinic app."
 ```
 
-## <a id='without-supply-chain'></a>Without Supply Chains
+## <a id='without-supply-chain'></a>Without the OOTB Supply Chains
 You can also utilize API Auto Registration if you are not using supply chains. You can do this by directly creating an APIDescriptor custom resource.
 
 ### <a id='prereqs'></a>With an Absolute URL
