@@ -2,10 +2,4 @@
 
 ## <a id='overview'></a> Overview
 
-API Autoregistration is a feature that allows API providers a mechanism to automatically register their API documentation with TAP. Once registered you will then be able to view the api documentation in the API Explorer tab.  Currently the following types of api's are supported 
-- openapi
-- async
-- graphql   
-- gRPC
-
-By supplying a little bit of inormation in your workload specification you inform TAP that you want your workload to be auto registered. This results in the creation of a CR of type APIDescriptor being added to your cluster. There is a controller that watches for resources of this type and when one is discovered it will retrieve the documentation for your API and send that information to TAP. You will then be able to view the api documentation in the API Explorer tab of TAP GUI.
+When users deploy a workload into a run cluster that exposes an API, they want that API to automatically show in TAP GUI without needing any other manual steps. API Auto Registration is an automated workflow that will can use a supply chain to create and manage a k8s Custom Resource (CR) of type APIDescriptor, a controller to reconcile the CR and update the API entity in TAP GUI to achieve automated API registration from workloads. You can also use API Auto Registration without supply chains by directly applying an APIDescriptor to the cluster.
