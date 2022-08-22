@@ -182,7 +182,7 @@ By default, logs for the pod's first container are displayed, dating back to whe
 ### <a id="pause-resume-logs"></a>Pausing and resuming logs
 
 Log entries are streamed in real time. New entries appear at the bottom of the log content area.
-Scroll up or to the right in the log content area to pause the log stream.
+Click or scroll the log content area to pause the log stream.
 Pausing the log stream enables you to focus on specific entries.
 
 To resume the stream, click the **Follow Latest** button that appears after pausing.
