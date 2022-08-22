@@ -20,7 +20,7 @@ api_auto_registration:
 If you are installing TAP with run or full profile you will get the following default values, but keep in mind you can override them if need be.
 
 ```yaml
-api_autoregistration:
+api_auto_registration:
   tap_gui_url: http://server.tap-gui.svc.cluster.local:7000 
   cluster_name: <Value from shared.ingressDomain or 'dev' if not found>
 ```
