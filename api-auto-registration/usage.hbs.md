@@ -11,7 +11,7 @@ In order to auto register your api with tap gui you just need to make a couple o
   params:
     - name: api_descriptor
       value:
-        type: openapi   # One of openapi, aysnc, graphql, gRPC
+        type: openapi   # We currently support any of openapi, aysncapi, graphql, grpc
         location: 
           path: "/v3/api-docs"  # The path to the api documentation
         owner: team-petclinic   # The team that owns this
