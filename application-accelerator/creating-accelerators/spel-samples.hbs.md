@@ -44,11 +44,13 @@ You can use Boolean options for conditionals in your transformations.
 ```yaml
 options:
   - name: numbers
-      inputType: select
-      choices:
-        first: First Option
-        second: Second Option      
-      defaultValue: first
+    inputType: select
+    choices:
+    - text: First Option
+      value: first
+    - text: Seconf Option
+      value: second
+    defaultValue: first
 ...
 engine:
   - include: ["some/file.txt"]
@@ -91,7 +93,7 @@ options:
 ...
 engine:
   - include: ["some/file.txt"]
-    condition: "#foo matches '[a-z]+Z\\d+'"
+    condition: "#foo.matches('[a-z]+Z\\d+')"
     chain:
     - type: ReplaceText
       substitutions:
@@ -100,3 +102,27 @@ engine:
 ```
 
 This example uses RegEx to match a string of letters that ends with a capital Z and any number of digits. If this condition is fulfilled, the text is replaced in the file, `file.txt`.
+
+## <a id="dealing-with-string-array"></a>Dealing with string arrays
+Options with a `dataType` of `[string]` come out as an array of strings.
+
+To use them and for example format the result as a bulleted list,
+it is possible to use the Java `static String.join()` method, like so:
+
+```yaml
+accelerator:
+  options:
+    - name: meals
+      dataType: [string]
+      inputType: checkbox
+      choices:
+        - value: fish
+        - value: chips
+        - value: BLT
+...
+engine:
+  type: ReplaceText
+  substitutions:
+  - text: recipe
+    with: "' * ' + T(java.lang.String).join('\n * ', #meals)"
+```
