@@ -69,7 +69,7 @@ To install API Auto Registration:
 3. Install the package using the Tanzu CLI
    
    ```console
-   tanzu package install api-autoregistration 
+   tanzu package install api-auto-registration 
    --package-name apis.apps.tanzu.vmware.com
    --namespace $(TAP_NAMESPACE)
    --version $(VERSION)
