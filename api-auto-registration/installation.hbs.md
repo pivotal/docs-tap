@@ -3,7 +3,7 @@
 This document describes how to install API Auto Registration from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use the full or run profile to install packages.
-Only the full and run profiles includes API Auto Registsration.
+The "full" and "run" profiles includes API Auto Registsration by default.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 ## <a id='parameters'></a>Parameters
