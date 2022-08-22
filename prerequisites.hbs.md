@@ -128,29 +128,6 @@ Installation requires:
 
 - The Kubernetes CLI, kubectl, v1.22 or v1.23, installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
-## <a id='telemetry-notice'></a> Notice of telemetry collection for Tanzu Application Platform
-
-[//]: # (This following text came from legal. Do not edit it.)
-
-Tanzu Application Platform participates in the VMware Customer Experience Improvement Program (CEIP).
-As part of CEIP, VMware collects technical information about your organization’s use of VMware
-products and services in association with your organization’s VMware license keys.
-For information about CEIP, see the [Trust & Assurance Center](http://www.vmware.com/trustvmware/ceip.html).
-You may join or leave CEIP at any time.
-The CEIP Standard Participation Level provides VMware with information to improve its products and
-services, identify and fix problems, and advise you on how to best deploy and use VMware products.
-For example, this information can enable a proactive product deployment discussion with your VMware
-account team or VMware support team to help resolve your issues.
-This information cannot directly identify any individual.
-
-[//]: # (The text above came from legal. Do not edit it.)
-
-You must acknowledge that you have read the VMware CEIP policy before you can proceed with the
-installation.
-For more information, see [Install your Tanzu Application Platform profile](install.md#install-profile).
-To opt out of telemetry participation after installation, see
-[Opting out of telemetry collection](opting-out-telemetry.md).
-
 ## <a id='next-steps'></a>Next steps
 
 - [Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)
