@@ -15,7 +15,7 @@ api_auto_registration:
   cluster_name: <CLUSTER NAME AS SHOWN IN LIFECYCLE>
 ```
 
->**Note:** The value of `cluster_name` is what you will see in the `lifecycle` property of your API Entitites 
+>**Note:** The value of `cluster_name` is what you will see in the `lifecycle` property of your API Entities within TAP GUI 
 
 If you are installing TAP with run or full profile you will get the following default values, but keep in mind you can override them if need be.
 
