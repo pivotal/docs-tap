@@ -63,7 +63,7 @@ To install API Auto Registration:
     Add the following entry into your `api-auto-registration-config.yaml` file.
     ```yaml
     tap_gui_url: YOUR-TAP-GUI-URL
-    cluster_name: API-LIFECYCLE
+    cluster_name: YOUR-CLUSTER-NAME
     ```
 
 3. Install the package using the Tanzu CLI
