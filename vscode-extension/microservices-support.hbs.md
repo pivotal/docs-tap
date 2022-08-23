@@ -2,7 +2,7 @@
 
 In order to support microservice projects, we leverage VS Code's [multi-root workspace capability](https://code.visualstudio.com/docs/editor/multi-root-workspaces).
 
-Add each Tanzu Project (ie. the directory containing the Tiltfile) as a workspace project. See these [instructions](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_adding-folders) for adding new workspace folders.
+Add each Tanzu Project (ie. the directory containing the Tiltfile) to the workspace. See these [instructions](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_adding-folders) for adding new workspace folders.
 
 ## Debug
 
