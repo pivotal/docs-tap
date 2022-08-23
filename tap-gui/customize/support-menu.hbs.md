@@ -2,7 +2,6 @@
 
 This topic describes how to customize the support menu.
 
-
 ## <a id="overview"></a> Overview
 
 Many important pages of Tanzu Application Platform GUI have a **Support** button that displays a
@@ -14,11 +13,10 @@ item groupings. For example, the default menu on the Catalog page looks similar 
 
 As standard, there are two support item groupings:
 
-* Contact Support, which is marked with an **email** icon and contains a link to
+- Contact Support, which is marked with an **email** icon and contains a link to
   VMware Tanzu's support portal.
-* Documentation, which is marked with a **docs** icon and contains a link to the
+- Documentation, which is marked with a **docs** icon and contains a link to the
   Tanzu Application Platform documentation that you are currently reading.
-
 
 ## <a id="customizing"></a> Customizing
 
@@ -47,9 +45,7 @@ tap_gui:
                 title: Tanzu Application Platform Documentation
 ```
 
-
 ## <a id="support-config-struct"></a> Structure of the support configuration
-
 
 ### <a id="url"></a> URL
 
@@ -65,13 +61,11 @@ pages such as this one:
 
 ![Error Page](../images/error-page.png)
 
-
 ### <a id="items"></a> Items
 
 The `items` field under the `support` section, for example,
 
 provides the set of support item groupings to display when the support menu is expanded.
-
 
 #### <a id="title"></a> Title
 
@@ -84,7 +78,6 @@ The `title` field on a support item grouping, for example,
 
 provides the label for the grouping.
 
-
 #### <a id="icon"></a> Icon
 
 The `icon` field on a support item grouping, for example,
@@ -96,18 +89,17 @@ The `icon` field on a support item grouping, for example,
 
 provides the icon to use for that grouping. The valid choices are:
 
-* `brokenImage`
-* `catalog`
-* `chat`
-* `dashboard`
-* `docs`
-* `email`
-* `github`
-* `group`
-* `help`
-* `user`
-* `warning`
-
+- `brokenImage`
+- `catalog`
+- `chat`
+- `dashboard`
+- `docs`
+- `email`
+- `github`
+- `group`
+- `help`
+- `user`
+- `warning`
 
 #### <a id="links"></a> Links
 
