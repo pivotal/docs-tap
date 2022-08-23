@@ -60,7 +60,7 @@ To install API Auto Registration:
 
 2. Create a config file named `api-auto-registration-config.yaml`.
 
-    Add the following intry into your `api-auto-registration-config.yaml` file.
+    Add the following entry into your `api-auto-registration-config.yaml` file.
     ```yaml
     tap_gui_url: YOUR-TAP-GUI-URL
     cluster_name: API-LIFECYCLE
