@@ -24,7 +24,7 @@ file:
     - `PORTAL-NAME` is the name of your portal, such as `Our Custom Developer Experience Portal`.
 
 1. Reinstall your Tanzu Application Platform GUI package by following steps in
-[Upgrading Tanzu Application Platform](../../upgrading.html).
+[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.
@@ -38,12 +38,11 @@ the original branding template.
 
 You can customize the name of your organization on the Software Catalog page of
 Tanzu Application Platform GUI portal.
-By default, the portal displays **Your Organization** in next to **Catalog** and in the
-selection box.
+By default, the portal displays **Your Organization** next to **Catalog** and in the selection box.
 
 ![Screenshot displaying the default Software Catalog naming in the Tanzu Application Platform GUI portal. The words Your Organization are framed.](../images/standard-catalog.png)
 
-## <a id="catalog-name-customize"></a> Customize the name of the organization
+### <a id="catalog-name-customize"></a> Customize the name of the organization
 
 To customize the name of the organization for the software catalog in your portal:
 
@@ -61,7 +60,7 @@ file:
     `Our Organization Name`. You don't need to add `Catalog` to the `ORG-NAME`.
 
 1. Reinstall your Tanzu Application Platform GUI package by following the steps in
-[Upgrading Tanzu Application Platform](../../upgrading.html).
+[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI, you see
 the customized version of your portal.
@@ -70,6 +69,17 @@ If there is an error in the provided configuration parameters, Tanzu Application
 reverts to the original organization name.
 
 ![Screenshot displaying the custom Software Catalog naming within the Tanzu Application Platform GUI portal](../images/customized-catalog-name.png)
+
+### <a id="prevent-changes"></a> Prevent changes to the software catalog
+
+You can deactivate the **Register Entity** button to prevent a user from making changes to the
+software catalog, including registering and deregistering locations.
+To do so, add `readonly: true` to the `catalog` section in `tap-values.yaml`, as in this example:
+
+```yaml
+catalog:
+  readonly: true
+```
 
 ## <a id="customize-auth-page"></a> Customize the Authentication page
 
@@ -90,18 +100,10 @@ file:
     portal, such as `Our Organization Full Name`.
 
 1. Reinstall your Tanzu Application Platform GUI package by following the steps in
-[Upgrading Tanzu Application Platform](../../upgrading.html).
+[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.
-
-## <a id="customize-logo-name"></a> Customize the logo and portal name on the top banner
-
-You can customize the logo and the name displayed in the top banner in the
-Tanzu Application Platform GUI portal.
-By default, the portal displays the VMware Tanzu logo and **Tanzu Application Platform** as the name.
-
-![Screenshot displaying the default VMware Tanzu branding within the Tanzu Application Platform GUI portal](../images/standard-branding.png)
 
 ## <a id="customize-default-view"></a> Customize the default view
 
@@ -130,7 +132,7 @@ file:
     > even if there is an error in `YOUR-PREFERRED-ROUTE`.
 
 1. Reinstall your Tanzu Application Platform GUI package by following the steps in
-[Upgrading Tanzu Application Platform](../../upgrading.md).
+[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.
