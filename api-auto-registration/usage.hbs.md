@@ -32,10 +32,7 @@ kind: Workload
 metadata:
   name: petclinic-knative
   labels:
-    apps.tanzu.vmware.com/workload-type: web
-    apps.kubernetes.io/name: spring-petclinic
-    apps.tanzu.vmware.com/has-tests: "true"
-    app.kubernetes.io/part-of: spring-petclinic
+    ...
     apis.apps.tanzu.vmware.com/register-api: "true" 
 spec:
   source:
