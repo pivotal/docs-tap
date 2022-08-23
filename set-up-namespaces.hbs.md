@@ -4,6 +4,8 @@ To create a `Workload` for your application by using the registry credentials sp
 run these commands, which also add credentials and Role-Based Access Control (RBAC) rules to the namespace
 that you plan to create the `Workload` in:
 
+> **Note:** By following step 1 and step 2, you will enable your current user to submit jobs to the Supply Chain. By continuing with step 3 and step 4, you will enable additional users by using Kubernetes RBAC to submit jobs to the Supply Chain.
+
 1. To add read/write registry credentials to the developer namespace, run:
 
     ```console
@@ -100,9 +102,11 @@ that you plan to create the `Workload` in:
       - name: tap-registry
     ```
 
-3. Perform one of the following actions to give developers namespace-level access and view access to appropriate cluster-level resources:
+3. Choose either of the following options to give developers namespace-level access and view access to appropriate cluster-level resources:
 
-    - To use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity provider group, run:
+    - **Option 1:** Use the [Tanzu Application Platform RBAC CLI plug-in (beta)](authn-authz/binding.hbs.md#install).
+    
+    To use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity provider group, run:
 
         ```console
         tanzu rbac binding add -g GROUP-FOR-APP-VIEWER -n YOUR-NAMESPACE -r app-viewer
@@ -115,18 +119,20 @@ that you plan to create the `Workload` in:
         - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that requires access to `app-viewer` resources on the current namespace and cluster.
         - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace and cluster.
 
-        For more information about `tanzu rbac`, see
-        [Bind a user or group to a default role](authn-authz/binding.html).
+    For more information about `tanzu rbac`, see
+    [Bind a user or group to a default role](authn-authz/binding.html).
 
-        VMware recommends creating a user group in your identity provider's grouping system for each
-        developer namespace and then adding the users accordingly.
+    VMware recommends creating a user group in your identity provider's grouping system for each
+    developer namespace and then adding the users accordingly.
 
-        Depending on your identity provider, you might need to take further action to
-        federate user groups appropriately with your cluster.
-        For an example of how to set up Azure Active Directory (AD) with your cluster, see
-        [Integrating Azure Active Directory](authn-authz/azure-ad.html).
+    Depending on your identity provider, you might need to take further action to
+    federate user groups appropriately with your cluster.
+    For an example of how to set up Azure Active Directory (AD) with your cluster, see
+    [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
-    - To apply the RBAC policy, run:
+    - **Option 2:** Use the native Kubernetes YAML.
+
+    To apply the RBAC policy, run:
 
         ```console
         cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
