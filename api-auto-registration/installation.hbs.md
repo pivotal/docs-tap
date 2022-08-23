@@ -6,6 +6,12 @@ This document describes how to install API Auto Registration from the Tanzu Appl
 The "full" and "run" profiles includes API Auto Registsration by default.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
+## <a id='prereqs'></a>Prerequisites
+
+Before installing API Auto Registration:
+
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+
 ## <a id='parameters'></a>Parameters
 API Auto Registration uses the following parameters in `tap-values.yaml`
 
@@ -15,7 +21,7 @@ api_auto_registration:
   cluster_name: <CLUSTER NAME AS SHOWN IN LIFECYCLE>
 ```
 
->**Note:** The value of `cluster_name` is what you will see in the `lifecycle` property of your API Entities within TAP GUI 
+>**Note:** The value of `cluster_name` is what you will see in the `lifecycle` property of your API Entities within TAP GUI. The value should be unique for each cluster. 
 
 If you are installing TAP with run or full profile you will get the following default values, but keep in mind you can override them if need be.
 
@@ -65,6 +71,8 @@ To install API Auto Registration:
     tap_gui_url: YOUR-TAP-GUI-URL
     cluster_name: YOUR-CLUSTER-NAME
     ```
+
+>**Note:** The value of `cluster_name` is what you will see in the `lifecycle` property of your API Entities within TAP GUI 
 
 3. Install the package using the Tanzu CLI
    

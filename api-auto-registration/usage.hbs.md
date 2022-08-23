@@ -1,6 +1,6 @@
 # API Auto Registration Usage
 
-## <a id='prereqs'></a>Using Supply Chains
+## <a id='usage'></a>Using Supply Chains
 
 In order to auto register your api with tap gui you just need to make a couple of modifications to your workload yaml.
 
@@ -74,9 +74,9 @@ spec:
 ```
 
 ## <a id='without-supply-chain'></a>Without the OOTB Supply Chains
-You can also utilize API Auto Registration if you are not using supply chains. You can do this by directly creating an APIDescriptor custom resource.
+ If you are not using supply chains, or are creating custom supply chanins you can still utilize API Auto Registration. You will need to directly create an APIDescriptor custom resource.  See the examples below for further details.
 
-### <a id='prereqs'></a>With an Absolute URL
+### <a id='absolute-url'></a>With an Absolute URL
 
 ```yaml
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
@@ -94,7 +94,7 @@ spec:
       url: https://myservice.com
 ```
 
-### <a id='prereqs'></a>With a Ref
+### <a id='with-ref'></a>With a Ref
 
 ```yaml
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
