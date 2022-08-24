@@ -328,6 +328,7 @@ docs.vmware.com is built.
         - [Install](scst-scan/install-scst-scan.md)
         - [Install New Scanner](scst-scan/install-scanners.hbs.md)
         - [Install Snyk scanner (Beta)](scst-scan/install-snyk-integration.md)
+        - [Install Carbon Black Scanner (Beta)](scst-scan/install-carbonblack-intigration.hbs.md)
         - [Spec reference](scst-scan/explanation.md)
         - [Scan samples](scst-scan/samples/overview.md)
             - [Overview](scst-scan/samples/overview.md)
