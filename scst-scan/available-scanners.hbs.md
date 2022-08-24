@@ -4,4 +4,4 @@ This is a list of all the scanners that are currently available to integrate wit
 
 * [Grype Scanner](install-scst-scan.hbs.md#install-grype)
 * [Snyk Scanner](install-snyk-integration.hbs.md)
-* [Carbon Black](install-carbonblack-integration.hbs.md)
+* [Carbon Black Scanner](install-carbonblack-integration.hbs.md)
