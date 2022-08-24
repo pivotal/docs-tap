@@ -127,9 +127,12 @@ spec:
 
 ```
 
-## <a id='cors'></a>CORS
+## <a id='cors'></a>Setting up CORS for OpenAPI Specs
 
-The [CORS](https://fetch.spec.whatwg.org/#http-cors-protocol) protocol is used by the agent (usually a browser) to verify whether an API is used by the current origin. Your API must be configured to allow CORS Requests from TAP GUI. How you accomplish this varies based on the programming language and framework you are using. If you are using Spring you can get more information [here](https://spring.io/blog/2015/06/08/cors-support-in-spring-framework). If you are using something else please refer to it's documentation.
+The [CORS](https://fetch.spec.whatwg.org/#http-cors-protocol) protocol is used by the agent (usually a browser) to verify whether an API is used by the current origin. 
+If you want to use the "Try it out" feature for OpenAPI specs from the API Docs plugin, you will need to setup CORS to allow successful requests. 
+Your API must be configured to allow CORS Requests from TAP GUI. How you accomplish this varies based on the programming language and framework you are using. 
+If you are using Spring you can get more information [here](https://spring.io/blog/2015/06/08/cors-support-in-spring-framework). If you are using something else please refer to it's documentation.
 
 At a high level, the TAP GUI domain must be accepted as valid cross-origin by your API. Verify the following:
 
