@@ -62,16 +62,10 @@ To install Tanzu Application Platform GUI on a compliant Kubernetes cluster:
     ingressEnabled: "true"
     ingressDomain: "INGRESS-DOMAIN"
     app_config:
-      app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
       catalog:
         locations:
           - type: url
             target: https://GIT-CATALOG-URL/catalog-info.yaml
-      backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-          origin: http://tap-gui.INGRESS-DOMAIN
     ```
 
     Where:
