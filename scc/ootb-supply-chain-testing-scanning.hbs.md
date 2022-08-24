@@ -326,7 +326,7 @@ Create workload:
      16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
 ## <a id="cve-triage-workflow"></a> CVE Triage Workflow
-The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement via the [ScanPolicy](policies.md) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities.
+The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement via the [ScanPolicy](../scst-scan/policies.hbs.md) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities.
 
 This may be the case if the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan.
 ```console
@@ -339,7 +339,7 @@ kubectl describe sourcescan <NAME> -n <DEVELOPER_NAMESPACE>
 kubectl describe imagescan <NAME> -n <DEVELOPER_NAMESPACE>
 ```
 
-After reviewing the output of the workload and corresponding scan, the deveoper can then decide which of the two following paths to take:
+After reviewing the output of the workload and corresponding scan, the developer can then decide which of the two following paths to take:
 - Update the component
 - Amend the scan policy
 Note: For additional information on vulnerability scanners, please see [A Note on Vulnerability Scanners](../scst-scan/overview.hbs.md).
@@ -347,7 +347,7 @@ Note: For additional information on vulnerability scanners, please see [A Note o
 ### Updating the component
 Determine which package introduces the CVE. If the vulnerability occurs in older versions but is resolved in newer versions, update the package.
 
-Information on CVEs can be found on NVD/Mitre or on the release page of a package.
+Information pertaining to CVEs can be found on (but is not limited to) the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
 
 ### Amending the scan policy
 If after analyzing the CVE(s) a developer decides to proceed without remediating the CVE, the ScanPolicy can be amended to suppress CVE(s). See [Writing Policy Templates](../scst-scan/policies.md) for more details.
