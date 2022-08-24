@@ -2,7 +2,7 @@
 
 This topic describes how to create a Tanzu Build Service
 [Image](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html)
-resource that builds a container image from source that is signed with
+resource that builds a container image from source code signed with
 [Cosign](https://github.com/sigstore/cosign).
 
 This topic builds upon the steps in the
@@ -29,9 +29,9 @@ resource configured.
 To configure Tanzu Build Service to sign your image builds:
 
 1. Ensure you are in a Kubernetes context where you are authenticated and authorized to
-create and edit Secret and Service Account resources.
+create and edit Secret and ServiceAccount resources.
 
-1. Generate a cosign keypair and store it as a Kubernetes Secret by running:
+1. Generate a Cosign key pair and store it as a Kubernetes Secret by running:
 
     ```bash
     cosign generate-key-pair k8s://NAMESPACE/COSIGN-KEYPAIR-NAME
@@ -77,11 +77,11 @@ media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the
       cosign.pub: PUBLIC-KEY-DATA
     ```
 
-    >**Note:** For more information about configuring Cosign keypairs, see the
+    >**Note:** For more information about configuring Cosign key pairs, see the
     >[Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-images.html#image-signing-with-cosign).
 
-1. To enable Cosign signing, create or modify the Service Account that is referenced in the Image resource
-so that it includes the Cosign keypair Secret created earlier.
+1. To enable Cosign signing, create or modify the ServiceAccount resource that is
+referenced in the Image resource so that it includes the Cosign key pair Secret created earlier.
 
     ```yaml
     apiVersion: v1
@@ -100,12 +100,12 @@ so that it includes the Cosign keypair Secret created earlier.
 
     - `SERVICE-ACCOUNT-NAME` is the name of your service account resource.
     For example, `tutorial-cosign-service-account`.
-    - `COSIGN-KEYPAIR-NAME` is the name of the Cosign keypair secret generated earlier.
+    - `COSIGN-KEYPAIR-NAME` is the name of the Cosign key pair secret generated earlier.
     For example, `tutorial-cosign-key-pair`.
     - `REGISTRY-CREDENTIALS` is the secret that provides credentials for the
     container registry where application container images are pushed to.
 
-1. Apply the Service Account to the cluster by running:
+1. Apply the ServiceAccount resource to the cluster by running:
 
     ```bash
     kubectl apply -f cosign-service-account.yaml
@@ -143,8 +143,8 @@ so that it includes the Cosign keypair Secret created earlier.
     >**Note:** If you are using Out of the Box Supply Chains, modify the respective `ClusterImageTemplate`
     >to enable signing in your supply chain. For more information, see [Authoring supply chains](../scc/authoring-supply-chains.md).
     >
-    >Referencing the Service Account using the `service_account` value when installing the
-    >Out of the Box Supply Chain is not recommended.
+    >VMware discourages referencing the ServiceAccount using the `service_account` value when installing the
+    >Out of the Box Supply Chain.
     >This is because it gives your run cluster access to the private signing key.
 
 1. Apply the Image resource to the cluster by running:
@@ -173,9 +173,9 @@ so that it includes the Cosign keypair Secret created earlier.
     ```
 
     Where `LATEST-IMAGE-WITH-DIGEST` is the value of `LATESTIMAGE` you retrieved in
-    the previous step. For example `index.docker.io/your-project/app@sha256:6744b...`
+    the previous step. For example: `index.docker.io/your-project/app@sha256:6744b...`
 
-    The image built will have been signed. Example output:
+    The expected output is similar to the following:
 
     ```bash
     Verification for index.docker.io/your-project/app@sha256:6744b... --
