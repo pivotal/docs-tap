@@ -1,8 +1,8 @@
 # API Auto Registration Usage
 
-## <a id='usage'></a>Using Supply Chains
+## <a id='usage'></a>Using Out Of The Box Supply Chains
 
-In order to auto register your api with tap gui you just need to make a couple of modifications to your workload yaml.
+All of the Out-Of-The-Box supply chains have been modified so that they can utilize API Auto Registration. If want your Workload to be auto registered all you need to do is make a couple of modifications to your workload yaml as described below
 
 1. Add the label `apis.apps.tanzu.vmware.com/register-api: "true"`
 1. Add a param of `type api_descriptor`
@@ -50,6 +50,7 @@ spec:
 ```
 
 Example of a workload with a hard coded url to the api documentation
+
 ```yaml
 apiVersion: carto.run/v1alpha1
 kind: Workload
@@ -73,10 +74,19 @@ spec:
         description: "A set of API endpoints to manage the resources within the petclinic app."
 ```
 
+Once the supply chain runs it will create an `APIDescriptor` custom resource. This resource is what TAP uses to auto register your API. See below
+for more details.
+
 ## <a id='without-supply-chain'></a>Without the OOTB Supply Chains
- If you are not using supply chains, or are creating custom supply chanins you can still utilize API Auto Registration. You will need to directly create an APIDescriptor custom resource.  See the examples below for further details.
+ If you are not using supply chains, or are creating custom supply chains you can still utilize API Auto Registration. You will need to directly create an APIDescriptor custom resource.  See the examples below for further details.
+
+## <a id='api-descriptor'>APIDescriptor Explained</a>
+
+For API Auto Registration to take place a custom resource of type `APIDescriptor` needs to be created. If you use the out OOTB supply chains and have set the required fields on your workload one will automatically be created for you, otherwise you will need to make one yourself.
+Below are the details of this custom resource.
 
 ### <a id='absolute-url'></a>With an Absolute URL
+If your API Docs are located at a known static path you can directly include that url in the API Descriptor as described below.
 
 ```yaml
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
@@ -95,6 +105,8 @@ spec:
 ```
 
 ### <a id='with-ref'></a>With a Ref
+
+You can also use an object reference instead of hard coding the url. See the example below for more details.
 
 ```yaml
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
