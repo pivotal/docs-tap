@@ -376,7 +376,7 @@ Where `DIGEST` is the component version or image digest printed in the `KUBECTL 
 For additional information and examples, see [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md).
 <br>
 
-Congratulations! You have successfully added testing and security scanning to your application on the Tanzu Application Platform.
+Congratulations! You have successfully added testing and security scanning to your application on the Tanzu Application Platform. See component documentation for [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow) on the CVE triage workflow.
 
 Take the next steps to learn about recommended supply chain security best practices and gain a powerful services journey experience on the Tanzu Application Platform by enabling several advanced use cases.
 

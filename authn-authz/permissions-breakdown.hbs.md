@@ -322,7 +322,7 @@
   verbs: ["get","list","watch"]
 ```
 
-## Supply Chain Security Tools — Store
+## Supply Chain Security Tools — Scan
 
 ### `apps.tanzu.vmware.com/aggregate-to-app-viewer: "true"`
 

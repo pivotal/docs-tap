@@ -65,6 +65,9 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
           msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
         }
     ```
+    Relevant parts of the Rego file that may be modified as part of the CVE triage workflow:
+    - `notAllowedSeverities` contains the category of CVEs that, if detected, would result in the SourceScan or ImageScan to fail policy enforcement. For example, an `app-operator` may decide that only "Critical" CVEs are not allowed.
+    - `ignoreCves` contains individual CVEs that will be ignored when determining policy enforcement. For example, CVEs that have been determined to be false positives may be listed here. See [A Note on Vulnerability Scanners](overview.hbs.md#a-idscst-scan-noteaa-note-on-vulnerability-scanners) for more detail.
 
 2. Deploy the scan policy to the cluster by running:
 
