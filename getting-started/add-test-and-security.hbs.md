@@ -356,7 +356,7 @@ pipeline:
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
 
-    If the source or image scan has a "Failed" phase, the scan has failed compliance and the supply chain stops.
+    If the source or image scan has a "Failed" phase, the scan has failed compliance and the supply chain stops.  See component documentation for [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflowa-cve-triage-workflow) on the CVE triage workflow.
 
 ### <a id="query-for-vuln"></a> Query for vulnerabilities
 
@@ -376,7 +376,7 @@ Where `DIGEST` is the component version or image digest printed in the `KUBECTL 
 For additional information and examples, see [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md).
 <br>
 
-Congratulations! You have successfully added testing and security scanning to your application on the Tanzu Application Platform. See component documentation for [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow) on the CVE triage workflow.
+Congratulations! You have successfully added testing and security scanning to your application on the Tanzu Application Platform.
 
 Take the next steps to learn about recommended supply chain security best practices and gain a powerful services journey experience on the Tanzu Application Platform by enabling several advanced use cases.
 
