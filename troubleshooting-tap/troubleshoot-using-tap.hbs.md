@@ -214,7 +214,7 @@ Delete the MutatingWebhookConfiguration resource to resolve the deadlock and ena
 restart. After the system is stable, restore the MutatingWebhookConfiguration resource to re-enable
 image signing enforcement.
 
->**Important:** These steps temporarily disable signature verification in your cluster.
+>**Important:** These steps temporarily deactivate signature verification in your cluster.
 
 1. Back up `MutatingWebhookConfiguration` to a file by running:
 

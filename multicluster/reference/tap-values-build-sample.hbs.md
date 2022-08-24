@@ -29,7 +29,7 @@ grype:
         importFromNamespace: metadata-store-secrets
 scanning:
   metadataStore:
-    url: "" # Disable embedded integration since it's deprecated
+    url: "" # Deactivate embedded integration since it's deprecated
 ```
 
 Where:
@@ -67,4 +67,4 @@ credentials to pull an image from the registry for scanning.
 > to the latest patch, or
 > by using an [automatic update process (deprecated)](../../tanzu-build-service/install-tbs.md#auto-updates-config).
 
-> **Note:** The `scanning.metadatastore.url` must be set to an empty string if you're installing Grype Scanner v1.2.0 or later or Snyk Scanner to disable the embedded Supply Chain Security Tools - Store integration.
+> **Note:** The `scanning.metadatastore.url` must be set to an empty string if you're installing Grype Scanner v1.2.0 or later or Snyk Scanner to deactivate the embedded Supply Chain Security Tools - Store integration.

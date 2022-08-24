@@ -231,7 +231,7 @@ metadata_store:
 
 scanning:
   metadataStore:
-    url: "" # Disable embedded integration since it's deprecated
+    url: "" # Deactivate embedded integration since it's deprecated
 
 grype:
   namespace: "MY-DEV-NAMESPACE" # (optional) Defaults to default namespace.
