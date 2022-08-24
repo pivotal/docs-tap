@@ -86,7 +86,6 @@ For API Auto Registration to take place a custom resource of type `APIDescriptor
 Below are the details of this custom resource.
 
 ### <a id='absolute-url'></a>With an Absolute URL
-If your API Docs are located at a known static path you can directly include that url in the API Descriptor as described below.
 
 ```yaml
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
@@ -127,3 +126,13 @@ spec:
         name: my-httpproxy
 
 ```
+
+## <a id='cors'></a>CORS
+
+The [CORS](https://fetch.spec.whatwg.org/#http-cors-protocol) protocol is used by the agent (usually a browser) to verify whether an API is used by the current origin. Your API must be configured to allow CORS Requests from TAP GUI. How you accomplish this varies based on the programming language and framework you are using. If you are using Spring you can get more information [here](https://spring.io/blog/2015/06/08/cors-support-in-spring-framework). If you are using something else please refer to it's documentation.
+
+At a high level, the TAP GUI domain must be accepted as valid cross-origin by your API. Verify the following:
+
+- **Origins allowed** (header: `Access-Control-Allow-Origin`): a list of comma-separated values. This list must include your TAP GUI host.
+- **Methods allowed** (header: `Access-Control-Allow-Method`): must allow the method used by your API. Also confirm that your API supports preflight requests (a valid response to the OPTIONS HTTP method).
+- **Headers allowed** (header: `Access-Control-Allow-Headers`): if the API requires any header, you must include it in the API configuration or your authorization server.
