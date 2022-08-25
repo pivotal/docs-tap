@@ -262,7 +262,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-- `INGRESS-ENABLED` is a boolean flag, it can be "true" or "false". This property enable or disable the above INGRESS-DOMAIN value to be applied in the Tanzu Application Platform installation.
+- `INGRESS-ENABLED` is a boolean flag, it can be true or false. This property enable or disable the above INGRESS-DOMAIN value to be applied in the Tanzu Application Platform installation.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
 This is the namespace where the scanning feature runs.
