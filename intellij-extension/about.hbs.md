@@ -28,6 +28,9 @@ This extension gives the following features.
     An environment’s similarity to production relies on keeping dependencies updated, among other
     variables.
 
+- **See workloads running on the cluster**
+
+    From the workload panel you can see any workload found within the cluster and namespace specified in the current kubectl context.
 ## <a id="next-steps"></a> Next steps
 
 [Follow the steps to install the extension](install.md).

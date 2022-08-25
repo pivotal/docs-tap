@@ -68,3 +68,24 @@ To stop Live Update, use the native controls to stop the currently running Tanzu
 Configuration.
 
 ![Stop Live Update](../images/intellij-stopliveupdate.png)
+
+## <a id="workload-panel"></a> Tanzu Workloads panel
+
+The current state of the workloads is visible on the Tanzu Panel in the bottom of the IDE window. The panel shows the current status of each workload, namespace, and cluster.
+It also shows whether Live Update and Debug are running, stopped, or disabled.
+
+The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context.
+
+1. View the current context and namespace by running:
+
+    ```console
+    kubectl config get-contexts
+    ```
+
+1. Set a namespace for the current context by running:
+
+    ```console
+    kubectl config set-context --current --namespace=YOUR-NAMESPACE
+    ```
+
+    ![Workload Panel](../images/intellij-panel-debug-running.png)
