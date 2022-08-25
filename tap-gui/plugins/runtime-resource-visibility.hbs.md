@@ -112,7 +112,7 @@ Here is an example of the expanded index table showing one of the owner resource
 
 ## <a id="detail-pages"></a>Detail pages
 
-The Runtime Runtime Resources visibility plug-in provides detail pages with the most relevant characteristics of many resources, including direct links to other ones.
+The Runtime Resources visibility plug-in provides detail pages with the most relevant characteristics of many resources, including direct links to other ones.
 
 These following sections explain the boxes included on all detail pages:
 
