@@ -180,7 +180,7 @@ You can configure your developer namespace to include more than one pipeline usi
                   make test
     ```
 
-  - Update the template to include labels that differentiate the pipelines. The configure the labels to differentiate between pipelines, as shown in the following example:
+  - Update the template to include labels that differentiate the pipelines. Then configure the labels to differentiate between pipelines, as shown in the following example:
 
     ```
       selector:
@@ -192,7 +192,7 @@ You can configure your developer namespace to include more than one pipeline usi
     +         apps.tanzu.vmware.com/language: #@ data.values.workload.metadata.labels["apps.tanzu.vmware.com/language"]
 
     ```
-    
+
     The following example shows one namespace per-language pipeline:
 
     ```
