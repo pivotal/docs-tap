@@ -372,7 +372,7 @@ tanzu insight image get --digest <DIGEST>
 ```
 See [Query using the Tanzu Insight CLI plug-in](../cli-plugins/insight/query-data.hbs.md) for more details.
 
-Next determine if updating the component will resolve the vulnerability. Vulnerabilities that occur in older versions of a package could be resolved newer versions
+Next determine if updating the component will resolve the vulnerability. Vulnerabilities that occur in older versions of a package could be resolved in newer versions
 - Information pertaining to CVEs can be found on (but is not limited to) the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
 
 Note: You can also use your project's package manager tools to identify transitive/ indirect dependencies. (e.g. `go mod graph` for projects in Go)
