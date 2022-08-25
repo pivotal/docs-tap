@@ -12,6 +12,8 @@ Do one of the following actions to access the Runtime Resources Visibility plug-
 - [Install the Tanzu Application Platform Full or View profile](../../install-intro.md)
 - [Install Tanzu Application Platform without using a profile](../../install-intro.md) and then
   install [Tanzu Application Platform GUI separately](../install-tap-gui.md)
+- Disable realtime metrics for clusters without a metrics server by setting
+`skipMetricsLookup` to `true` for that cluster in `app.config.yaml`
 
 ## <a id="Visualize-app"></a> Visualize Workloads on Tanzu Application Platform GUI
 
@@ -43,6 +45,10 @@ Built-in Kubernetes resources in this view are:
 - Deployments
 - ReplicaSets
 - Pods
+- Jobs
+- Cronjobs
+- DaemonSets
+- ReplicaSets
 
 The Runtime Resource Visibility plug-in also displays CRDs created with the
 Supply Chain, including:
@@ -58,23 +64,13 @@ resources even further down the chain.
 
 ![Ownership card. CRDs from Supply Chain have yellow arrows. Knative Resources have orange arrows. Built-in resources have red arrows.](images/runtime-resources-crd-hierarchy.png)
 
-## <a id="knative-service-details"></a> Knative service details page
+## <a id="resource-details"></a> Resources details page
 
-To view details about your Knative services, select any resource that has a Knative Service type.
-In this page, additional information is available for Knative resources, including:
-
-- status
-- an ownership hierarchy
-- incoming routes
-- revisions
-- pod details
+To get more information about a particular workload, select it from the table on
+the main Runtime Resources page. You will then be taken to a page that provides
+details on the workload, including its status, ownership, and resource-specific information.
 
 ![Screenshot of the Java web app deployment page](images/runtime-resources-knative-service-details.png)
-
-## <a id="detail-pages"></a> Detail pages
-
-The Runtime Resources Visibility plug-in provides additional details of the Kubernetes resources in
-the Detail pages.
 
 ### <a id="overview-card"></a> Overview card
 
@@ -138,12 +134,21 @@ Users can see the pod table in each resource details page.
 
 ### <a id="pod-details-metrics"></a> Overview of pod metrics
 
-The overview card displays the user-configured resource limits on the pod, defined in accordance with
-the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
-These limits do not represent actual real-time resource use. To monitor actual real-time resource use,
-see [Application Live View for Spring Boot Applications in Tanzu Application Platform GUI](app-live-view-springboot.md).
+If you have a metrics server running on your cluster, the overview card displays
+realtime metrics for pods. 
 
-Each container displays its resource limits, if defined.
+If you do not have a metrics server, the overview card displays the
+user-configured resource limits on the pod, defined in accordance with the
+[Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
+
+For applications built using Spring Boot, you can also monitor the actual
+real-time resource usage using 
+[Application Live View for Spring Boot Applications in Tanzu Application Platform GUI](app-live-view-springboot.md).
+
+Metrics and limits will also be displayed for each container on a pod details
+page. If a particular container's current limit conflicts with a namespace-level
+LimitRange (typically due to creating a container prior to applying a
+LimitRange), a small warning indicator will be displayed next to the container limit.
 
 ![Screenshot of container limits. The CPU and Memory column headers are framed.](images/runtime-resources-container-metrics-pod-page.png)
 
