@@ -53,6 +53,8 @@ To use Grype in offline and air-gapped environments:
                     value: <INTERNAL-VULN-DB-URL> #! url points to the internal file server
                   - name: GRYPE_DB_CA_CERT
                     value: "/etc/ssl/certs/custom-ca.crt"
+                  - name: GRYPE_DB_MAX_ALLOWED_BUILT_AGE #! see note on best practices
+                    value: "120h"
                 volumeMounts:
                   #@overlay/append
                   - name: ca-cert
@@ -64,6 +66,7 @@ To use Grype in offline and air-gapped environments:
               configMap:
                 name: <CONFIGMAP-NAME> #! name of the configmap created
     ``` 
+    Note: Stale databases weaken your security posture. For Grype the default is 5 days which means that scanning with a 6 day old database will result in the scan failing. Best practice is to update the database daily however, `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` can be used to override the default in accordance with your security posture.
 
     You can also add more certificates to the ConfigMap created earlier, to handle connections to a private registry for example, and mount them in the `volumeMounts` section if needed.
 
