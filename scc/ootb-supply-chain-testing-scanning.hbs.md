@@ -114,8 +114,25 @@ must exist in the same namespace as the workload. These define:
   for example allowing one to be either very strict, or restrictive about particular
 vulnerabilities found.
 
-Note that the names of the objects **must** match the ones in the example.
-
+Note that the names of the objects **must** match the ones in the example with default installation configurations. This can be overriden either via the the `ootb_supply_chain_testing_scanning` package configuration in the `tap-values.yaml` file or via workload params.
+- To override via the the `ootb_supply_chain_testing_scanning` package configuration, make the following modification to your `tap-values.yaml` file and perform a [Tanzu Application Platform update](../upgrading.hbs.md#upgrading-tanzu-application-platform)
+  ```yaml
+  ootb_supply_chain_testing_scanning:
+  scanning:
+    source:
+      policy: <SCAN_POLICY>
+      template: <SCAN_TEMPLATE>
+    image:
+      policy: <SCAN_POLICY>
+      template: <SCAN_TEMPLATE>
+  ```
+  Where `<SCAN_POLICY>` and `<SCAN_TEMPLATE>` are the names of the `ScanPolicy` and `ScanTemplate` that you would like to use.
+- To override via workload params, you can use the following commands. For more detail see [Tanzu apps workload commands](../cli-plugins/apps/command-reference/tanzu-apps-workload-update.hbs.md)
+  ```
+  tanzu apps workload update <WORKLOAD> --param "scanning_source_policy=<SCAN_POLICY>" -n <DEV_NAMESPACE>
+  tanzu apps workload update <WORKLOAD> --param "scanning_source_template=<SCAN_TEMPLATE>" -n <DEV_NAMESPACE>
+  ```
+  Where `<WORKLOAD>` is the name of the workload, `<SCAN_POLICY>` and `<SCAN_TEMPLATE>` are the names of the `ScanPolicy` and `ScanTemplate` that you would like to use, and `<DEV_NAMESPACE>` is the developer namespace.
 
 #### <a id="scan-policy"></a> ScanPolicy
 
