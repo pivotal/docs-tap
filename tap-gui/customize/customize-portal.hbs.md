@@ -13,7 +13,7 @@ file:
     tap_gui:
       app_config:
         customize:
-          custom_logo: 'BASE-64-IMAGE'
+          custom_logo: 'BASE-64-IMAGE-512'
           custom_name: 'PORTAL-NAME'
     ```
 
