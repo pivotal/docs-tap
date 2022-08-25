@@ -30,6 +30,8 @@ SourceScan:
     kind: ScanPolicy
     metadata:
       name: sample-scan-policy
+      labels:
+        'app.kubernetes.io/part-of': 'component-a'
     spec:
       regoFile: |
         package main
