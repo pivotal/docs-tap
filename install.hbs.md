@@ -186,12 +186,48 @@ The sample values file contains the necessary defaults for:
 1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
 section.
 
+### <a id="configure-envoy-lb"></a> Configure LoadBalancer for Contour ingress
+
+Before defining other parameters for your Tanzu Application Platform installation, we recommend defining your ingress as several components, including Tanzu Application Platform GUI, rely on it.
+
+This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use your existing ingress.
+
+You can share this ingress across Cloud Native Runtimes (`cnrs`), Tanzu Application Platform GUI (`tap_gui`), and Learning Center (`learningcenter`).
+
+By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yaml`:
+
+```yaml
+contour:
+  envoy:
+    service:
+      type: LoadBalancer
+```
+
+If you use AWS, the preceding section creates a classic LoadBalancer.
+To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
+following to your `tap-values.yaml`:
+
+```yaml
+contour:
+  infrastructure_provider: aws
+  envoy:
+    service:
+      aws:
+        LBType: nlb
+```
+
+
 ### <a id='full-profile'></a> Full profile
 
 The following is the YAML file sample for the full-profile:
 
 ```yaml
 profile: full
+
+contour:
+  envoy:
+    service:
+      type: LoadBalancer
 
 shared:
   ingress_domain: INGRESS-DOMAIN
@@ -474,34 +510,6 @@ To install the `full` dependencies package:
     ```
 
     Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
-
-## <a id="configure-envoy-lb"></a> Configure LoadBalancer for Contour ingress
-
-This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use your existing ingress.
-
-You can share this ingress across Cloud Native Runtimes (`cnrs`), Tanzu Application Platform GUI (`tap_gui`), and Learning Center (`learningcenter`).
-
-By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yaml`:
-
-```yaml
-contour:
-  envoy:
-    service:
-      type: LoadBalancer
-```
-
-If you use AWS, the preceding section creates a classic LoadBalancer.
-To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
-following to your `tap-values.yaml`:
-
-```yaml
-contour:
-  infrastructure_provider: aws
-  envoy:
-    service:
-      aws:
-        LBType: nlb
-```
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
