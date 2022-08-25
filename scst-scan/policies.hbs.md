@@ -65,12 +65,17 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
           msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
         }
     ```
+    Relevant parts of the Rego file that may be modified as part of the CVE triage workflow:
+    - `notAllowedSeverities` contains the category of CVEs that, if detected, would result in the SourceScan or ImageScan to fail policy enforcement. For example (but not recommended), an `app-operator` may decide that only "Low" CVEs are not allowed as shown in the above example.
+    - `ignoreCves` contains individual CVEs that will be ignored when determining policy enforcement. For example, CVEs that have been determined to be false positives may be listed here. See [A Note on Vulnerability Scanners](overview.hbs.md#a-idscst-scan-noteaa-note-on-vulnerability-scanners) for more details.
 
 2. Deploy the scan policy to the cluster by running:
 
     ```console
     kubectl apply -f <path_to_scan_policy>/<scan_policy_filename>.yaml -n <desired_namespace>
     ```
+
+See how scan policies are used in the CVE triage workflow in the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow)
 
 ## <a id="gui-view-scan-policy"></a>Enable Tanzu Application Platform GUI to view ScanPolicy Resource
 

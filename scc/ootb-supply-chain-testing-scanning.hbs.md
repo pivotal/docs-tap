@@ -114,8 +114,25 @@ must exist in the same namespace as the workload. These define:
   for example allowing one to be either very strict, or restrictive about particular
 vulnerabilities found.
 
-Note that the names of the objects **must** match the ones in the example.
-
+Note that the names of the objects **must** match the ones in the example with default installation configurations. This can be overriden either via the the `ootb_supply_chain_testing_scanning` package configuration in the `tap-values.yaml` file or via workload params.
+- To override via the the `ootb_supply_chain_testing_scanning` package configuration, make the following modification to your `tap-values.yaml` file and perform a [Tanzu Application Platform update](../upgrading.hbs.md#upgrading-tanzu-application-platform)
+  ```yaml
+  ootb_supply_chain_testing_scanning:
+  scanning:
+    source:
+      policy: <SCAN_POLICY>
+      template: <SCAN_TEMPLATE>
+    image:
+      policy: <SCAN_POLICY>
+      template: <SCAN_TEMPLATE>
+  ```
+  Where `<SCAN_POLICY>` and `<SCAN_TEMPLATE>` are the names of the `ScanPolicy` and `ScanTemplate` that you would like to use.
+- To override via workload params, you can use the following commands. For more detail see [Tanzu apps workload commands](../cli-plugins/apps/command-reference/tanzu-apps-workload-update.hbs.md)
+  ```
+  tanzu apps workload update <WORKLOAD> --param "scanning_source_policy=<SCAN_POLICY>" -n <DEV_NAMESPACE>
+  tanzu apps workload update <WORKLOAD> --param "scanning_source_template=<SCAN_TEMPLATE>" -n <DEV_NAMESPACE>
+  ```
+  Where `<WORKLOAD>` is the name of the workload, `<SCAN_POLICY>` and `<SCAN_TEMPLATE>` are the names of the `ScanPolicy` and `ScanTemplate` that you would like to use, and `<DEV_NAMESPACE>` is the developer namespace.
 
 #### <a id="scan-policy"></a> ScanPolicy
 
@@ -123,7 +140,7 @@ The ScanPolicy defines a set of rules to evaluate for a particular scan to
 consider the artifacts (image or source code) either compliant or not.
 
 When a ImageScan or SourceScan is created to run a scan, those reference a
-policy whose name **must** match the one below (`scan-policy`):
+policy whose name **must** match the sample (`scan-policy`) below:
 
 ```console
 ---
@@ -325,6 +342,45 @@ Create workload:
      15 + |        branch: main
      16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
+## <a id="cve-triage-workflow"></a> CVE Triage Workflow
+The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement via the [ScanPolicy](../scst-scan/policies.hbs.md) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities.
+
+### Confirming Supply Chain stopped due failed policy enforcement
+Check to see if the status of the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan.
+```console
+kubectl describe workload <WORKLOAD_NAME> -n <DEVLOPER_NAMESPACE>
+```
+
+Describe the SourceScan or ImageScan to determine what CVE(s) violated the ScanPolicy.
+```
+kubectl describe sourcescan <NAME> -n <DEVELOPER_NAMESPACE>
+kubectl describe imagescan <NAME> -n <DEVELOPER_NAMESPACE>
+```
+
+### Remediation
+After reviewing the output of the workload and corresponding scan, the developer can then decide which of the two following paths to take:
+- Update the component
+- Amend the scan policy
+Note: For additional information on vulnerability scanners, please see [A Note on Vulnerability Scanners](../scst-scan/overview.hbs.md).
+
+#### Updating the component
+Determine which package introduces the CVE. If the [Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-overview.hbs.md) is configured, you can query the database for the packages and CVEs that your source code or image contains.
+
+```console
+tanzu insight source get --repo <REPO> --org <ORG>
+tanzu insight image get --digest <DIGEST>
+```
+See [Query using the Tanzu Insight CLI plug-in](../cli-plugins/insight/query-data.hbs.md) for more details.
+
+Next determine if updating the component will resolve the vulnerability. Vulnerabilities that occur in older versions of a package could be resolved in newer versions
+- Information pertaining to CVEs can be found on (but is not limited to) the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
+
+Note: You can also use your project's package manager tools to identify transitive/ indirect dependencies. (e.g. `go mod graph` for projects in Go)
+
+#### Amending the scan policy
+If after analyzing the CVE(s) a developer decides to proceed without remediating the CVE, the ScanPolicy can be amended to suppress CVE(s). See [Writing Policy Templates](../scst-scan/policies.md) for more details.
+
+Under [rbac](../authn-authz/permissions-breakdown.hbs.md), users with the `app-operator-scanning` role (part of `app-operator` aggregate role), have permission to modify the ScanPolicy.
 
 ## <a id="scan-image-using-snyk"></a> Scan Image using Snyk
 

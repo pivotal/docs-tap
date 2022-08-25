@@ -199,7 +199,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
     During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is deployed into another namespace, these sample ScanTemplates must also be present in the other namespace. One way to accomplish this is to install Grype Scanner again and provide the namespace in the values file.
 
-    A ScanPolicy is required and the following code must be in the required namespace. You can either add the namespace flag to the kubectl command or add the namespace field to the template itself. Run:
+    A ScanPolicy is required and must be in the required namespace. A sample ScanPolicy is provided below but you can also supply your own. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idupdates-to-developer-namespacea-updates-to-the-developer-namespace) for more detail. To apply the sample ScanPolicy, you can either add the namespace flag to the kubectl command or add the namespace field to the template itself. Run:
 
     ```console
     kubectl apply -f - -o yaml << EOF
@@ -356,7 +356,7 @@ pipeline:
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
 
-    If the source or image scan has a "Failed" phase, the scan has failed compliance and the supply chain stops.
+    If the source or image scan has a "Failed" phase, the scan has failed compliance and the supply chain stops.  See component documentation for [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow) on the CVE triage workflow.
 
 ### <a id="query-for-vuln"></a> Query for vulnerabilities
 
