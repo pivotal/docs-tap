@@ -224,7 +224,8 @@ To verify the integration with Carbon Black, apply the following `ImageScan` and
       regoFile: |
         package main
 
-        notAllowedSeverities := ["Low"]
+        # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+        notAllowedSeverities := ["Critical","High","UnknownSeverity"]
         ignoreCves := []
 
         contains(array, elem) = true {
@@ -232,7 +233,9 @@ To verify the integration with Carbon Black, apply the following `ImageScan` and
         } else = false { true }
 
         isSafe(match) {
-          fails := contains(notAllowedSeverities, match.relationships[_].ratedBy.rating[_].severity)
+          severities := { e | e := match.ratings.rating.severity } | { e | e := match.ratings.rating[_].severity }
+          some i
+          fails := contains(notAllowedSeverities, severities[i])
           not fails
         }
 
@@ -242,11 +245,15 @@ To verify the integration with Carbon Black, apply the following `ImageScan` and
         }
 
         deny[msg] {
-          vuln := input.vulnerabilities[_]
-          ratings := vuln.relationships[_].ratedBy.rating[_].severity
-          comp := vuln.relationships[_].affect.to[_]
+          comps := { e | e := input.bom.components.component } | { e | e := input.bom.components.component[_] }
+          some i
+          comp := comps[i]
+          vulns := { e | e := comp.vulnerabilities.vulnerability } | { e | e := comp.vulnerabilities.vulnerability[_] }
+          some j
+          vuln := vulns[j]
+          ratings := { e | e := vuln.ratings.rating.severity } | { e | e := vuln.ratings.rating[_].severity }
           not isSafe(vuln)
-          msg = sprintf("%s %s %s", [comp, vuln.id, ratings])
+          msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
         }
     ```
 
