@@ -182,7 +182,7 @@ By default, logs for the pod's first container are displayed, dating back to whe
 ### <a id="pause-resume-logs"></a>Pausing and resuming logs
 
 Log entries are streamed in real time. New entries appear at the bottom of the log content area.
-Scroll up or to the right in the log content area to pause the log stream.
+Click or scroll the log content area to pause the log stream.
 Pausing the log stream enables you to focus on specific entries.
 
 To resume the stream, click the **Follow Latest** button that appears after pausing.
@@ -241,3 +241,5 @@ If the log stream connection is interrupted for any reason, such as a network er
 appears after the most recent log entry, and the page attempts to reconnect to the log stream.
 If reconnection fails, an error message displays at the top of the page, and you can click the
 **Refresh** button at the upper-right of the page to attempt to reconnect.
+
+If you notice frequent disconnections at regular intervals, contact your administrator. Your administrator may need to update the backend configuration for your installation to allow long-lived HTTP connections to log endpoints (endpoints starting with `<backend host>/api/k8s-logging/`).
