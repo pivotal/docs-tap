@@ -140,7 +140,7 @@ The ScanPolicy defines a set of rules to evaluate for a particular scan to
 consider the artifacts (image or source code) either compliant or not.
 
 When a ImageScan or SourceScan is created to run a scan, those reference a
-policy whose name **must** match the one below (`scan-policy`):
+policy whose name **must** match the sample (`scan-policy`) below:
 
 ```console
 ---
