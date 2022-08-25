@@ -7,6 +7,26 @@ Application Accelerator pulls content from accelerator source repositories using
 
 If the repository used is accessible anonymously from a public server, then you do not have to configure anything additional. Accelerators are created either using the Tanzu CLI or by applying a YAML manifest using `kubectl`.
 
+## <a id="using-git-ops"></a> Using a Git-Ops style configuration for deploying a set of managed accelerators
+
+In order to enable a Git-Ops style of managing resources used for deploying accelerators there is a new set of properties for the App Accelerator configuration. The resources will be managed using a Carvel kapp-controller App that watches a Git repository containing the mainifests for the accelerators. This means that you can make changes to the manifests, or to the accelerators they point to, and the changes will be reconciled and reflected in the deployed resources.
+
+You can specify the following accelerator configuration properties when installing the Application Accelerator. The same properties can be provided in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+managed_resources:
+  enable: true
+  git:
+    url: GIT-REPO-URL
+    ref: origin/main
+    sub_path: null
+    secret_ref: git-credentials
+```
+
+Where:
+
+- `GIT-REPO-URL` is the URL of a Git repository that contains manifest YAML files for the accelerators that you want to have managed (see below for manifest examples). You can specify a `sub_path` if necessary and also a `secret_ref` if the repository requires authentication. If not needed, then leave these additional properties out. See below for configuration of a [Git credentials secret](#creating-git-credentials).
+
 ## <a id="examples-creating-acc"></a> Examples for creating accelerators
 
 ### <a id="examples-minimal"></a> A minimal example for creating an accelerator
@@ -102,6 +122,64 @@ tanzu accelerator create my-hello-fun --git-repo https://github.com/sample-accel
 ```
 
 >**Note:** It is not currently possible to provide the `git.ignore` option with the Tanzu CLI.
+
+## <a id="creating-git-credentials"></a> Configuring a Git credentials secret to be used with non-public repositories and custom CA certificates
+
+When deploying accelerators using Git repositories that need authentication and/or are installed with custom CA certificates then you need to provide some additional authentication values in a Secret. The examples in the next section provide more details about this. In this section we describe how to conventiently configure a Git credentials secret that can be used for some of the Git based examples below.
+
+You can specify the following accelerator configuration properties when installing the Application Accelerator. The same properties can be provided in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+git_credentials:
+  secret_name: git-credentials
+  username: GIT-USER-NAME
+  password: GIT-PASSWORD-OR-ACCESS-TOKEN
+  ca_file: CUSTOM-CA-CERT
+```
+
+Where:
+
+- `GIT-USER-NAME` is the user name for authenticating with the Git repository.
+- `GIT-PASSWORD-OR-ACCESS-TOKEN` is the password or access token used for authenticating with the Git repository. We recommend using an access token for this.
+- `CUSTOM-CA-CERT` is the certificate data needed when accessing the Git repository.
+
+This is an example of a part of a `tap-values.yaml` configuration:
+
+```yaml
+accelerator:
+  git_credentials:
+    secret_name: git-credentials
+    username: testuser
+    password: s3cret
+    ca_file: |
+      -----BEGIN CERTIFICATE-----
+      .
+      .
+      .  < certificate data >
+      .
+      .
+      -----END CERTIFICATE-----
+```
+
+You can specify the Custom CA certificate data using the shared config value `shared.ca_cert_data` and it will be propagated to all components that can make use of it, including the App Accelerator configuration. The example above would look like this using the shared value:
+
+```yaml
+shared:
+  ca_cert_data: |
+    -----BEGIN CERTIFICATE-----
+    .
+    .
+    .  < certificate data >
+    .
+    .
+    -----END CERTIFICATE-----
+
+accelerator:
+  git_credentials:
+    secret_name: git-credentials
+    username: testuser
+    password: s3cret
+```
 
 ## <a id="non-public-repos"></a> Using non-public repositories
 
@@ -278,7 +356,7 @@ spec:
 
 If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
-### <a id="private-suorce-image-example"></a> Examples for a private source-image repository
+### <a id="private-source-image-example"></a> Examples for a private source-image repository
 
 If your registry uses a self-signed certificate then you must add the CA certificate data to the configuration for the "Tanzu Application Platform Source Controller" component. The easiest way to do that is to add it under `source_controller.ca_cert_data` in your `tap-values.yaml` file that is used during installation.
 
