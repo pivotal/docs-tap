@@ -66,7 +66,7 @@ with your relevant values. The meanings of some placeholders are explained in th
 
     ```
     service_type: ClusterIP
-    ingressEnabled: "true"
+    ingressEnabled: true
     ingressDomain: "INGRESS-DOMAIN"
     app_config:
       app:
