@@ -127,6 +127,12 @@ To stop debugging on the cluster, do one of the following:
 
     ![The VS Code interface close-up on the tasks panel showing the delete trash can icon](../images/vscode-stopdebug2.png)
 
+### <a id="microservices-debug"></a> Microservices
+To debug multiple apps in a microservice repo, add each app folder as a workspace folder, see [instructions](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_adding-folders).
+
+
+Then update the `tanzu.debugPort` setting so that it does not conflict with other debug sessions. See these [instructions](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_settings) on updating individual workspace folder settings.
+
 ## <a id="live-update"></a> Live Update
 
 With the use of Live Update facilitated by [Tilt](https://docs.tilt.dev/), the extension enables you
@@ -200,6 +206,20 @@ To hide the Live Update status bar entry, right-click it and select
 **Hide 'Tanzu Developer Tools (Extension)'**.
 
 ![The VS Code interface showing the Tanzu Live Update Status section of the Status bar with the right-click menu open and the "Hide 'Tanzu Developer Tools (Extension)'" option highlighted](../images/vscode-liveupdatestatus2.png)
+
+### <a id="microservices-live-update"></a> Microservices
+To Live Update multiple apps in a microservice repo, add each app folder as a workspace folder, see [instructions](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_adding-folders).
+
+Then ensure that a port is available to port-forward the knative service.
+
+For example, you might have this in your Tiltfile:
+
+```
+k8s_resource('tanzu-java-web-app', port_forwards=["8080:8080"],
+            extra_pod_selectors=[{'serving.knative.dev/service': 'tanzu-java-web-app'}])
+```
+
+Update the first port in `port_forwards=["8080:8080"]` (eg. `port_forwards=["9999:8080"]`)
 
 ## <a id="delete-workload"></a> Delete a workload
 
