@@ -59,7 +59,7 @@ To install Tanzu Application Platform GUI on a compliant Kubernetes cluster:
 
     ```yaml
     service_type: ClusterIP
-    ingressEnabled: "true"
+    ingressEnabled: true
     ingressDomain: "INGRESS-DOMAIN"
     app_config:
       app:
