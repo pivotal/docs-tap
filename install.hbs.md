@@ -183,14 +183,16 @@ The sample values file contains the necessary defaults for:
 
     >**Important:** Keep the values file for future configuration use.
 
+1. [(Optional) Configure LoadBalancer for Contour ingress](#configure-envoy-lb)
+
 1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
 section.
 
-### <a id="configure-envoy-lb"></a> Configure LoadBalancer for Contour ingress
+### <a id="configure-envoy-lb"></a> (Optional) Configure LoadBalancer for Contour ingress
 
-Before defining other parameters for your Tanzu Application Platform installation, we recommend defining your ingress as several components, including Tanzu Application Platform GUI, rely on it.
+>**Important:** This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use your existing ingress.
 
-This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use your existing ingress.
+Before defining other parameters for your Tanzu Application Platform installation, VMware recommends defining your ingress because several components, including Tanzu Application Platform GUI, rely on it.
 
 You can share this ingress across Cloud Native Runtimes (`cnrs`), Tanzu Application Platform GUI (`tap_gui`), and Learning Center (`learningcenter`).
 
@@ -215,7 +217,6 @@ contour:
       aws:
         LBType: nlb
 ```
-
 
 ### <a id='full-profile'></a> Full profile
 
