@@ -193,8 +193,8 @@ The following is the YAML file sample for the full-profile:
 ```yaml
 profile: full
 
-shared:
-  ingress_domain: INGRESS-DOMAIN
+ingressDomain: INGRESS-DOMAIN
+ingressEnabled: true
 
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 buildservice:
@@ -214,16 +214,10 @@ ootb_supply_chain_basic:
 tap_gui:
   service_type: ClusterIP
   app_config:
-    app:
-      baseUrl: http://tap-gui.INGRESS-DOMAIN
     catalog:
       locations:
         - type: url
           target: https://GIT-CATALOG-URL/catalog-info.yaml
-    backend:
-      baseUrl: http://tap-gui.INGRESS-DOMAIN
-      cors:
-        origin: http://tap-gui.INGRESS-DOMAIN
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
@@ -280,6 +274,9 @@ credentials to pull an image from the registry for scanning.
 If built images are pushed to the same registry as the Tanzu Application Platform images,
 this can reuse the `tap-registry` secret created in
 [Add the Tanzu Application Platform package repository](#add-tap-package-repo) as described earlier.
+
+>**Note:** If you need to use more specific URLs in place of `INGRESS-DOMAIN` please take a look at the `tap-gui-values` in the [Installing the Tanzu Application Platform GUI](./tap-gui/install-tap-gui.hbs.md#tap-gui-values),
+> where you can copy specific values for your use case.
 
 ### <a id='light-profile'></a> Light profile
 
