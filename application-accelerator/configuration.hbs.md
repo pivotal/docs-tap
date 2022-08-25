@@ -25,7 +25,7 @@ managed_resources:
 
 Where:
 
-- `GIT-REPO-URL` is the URL of a Git repository that contains manifest YAML files for the accelerators that you want to have managed (see below for manifest examples). You can specify a `sub_path` if necessary and also a `secret_ref` if the repository requires authentication. If not needed, then leave these additional properties out.
+- `GIT-REPO-URL` is the URL of a Git repository that contains manifest YAML files for the accelerators that you want to have managed (see below for manifest examples). You can specify a `sub_path` if necessary and also a `secret_ref` if the repository requires authentication. If not needed, then leave these additional properties out. See below for configuration of a [Git credentials secret](#creating-git-credentials).
 
 ## <a id="examples-creating-acc"></a> Examples for creating accelerators
 
@@ -125,7 +125,7 @@ tanzu accelerator create my-hello-fun --git-repo https://github.com/sample-accel
 
 ## <a id="creating-git-credentials"></a> Configuring a Git credentials secret to be used with non-public repositories and custom CA certificates
 
-When deploying accelerators using Git repositories that need authentication and/or are installed with custom CA certificates then you need to provide some additional autentication values in a Secret. The examples in the next section provide more details about this. In this section we describe how to conventiently configure a Git credentials secret that can be used for some of the Git based examples below.
+When deploying accelerators using Git repositories that need authentication and/or are installed with custom CA certificates then you need to provide some additional authentication values in a Secret. The examples in the next section provide more details about this. In this section we describe how to conventiently configure a Git credentials secret that can be used for some of the Git based examples below.
 
 You can specify the following accelerator configuration properties when installing the Application Accelerator. The same properties can be provided in the `accelerator` section of the `tap-values.yaml` file:
 
@@ -140,7 +140,7 @@ git_credentials:
 Where:
 
 - `GIT-USER-NAME` is the user name for authenticating with the Git repository.
-- `GIT-PASSWORD-OR-ACCESS-TOKEN` is the password or access token used for authenticating with the Git repository.
+- `GIT-PASSWORD-OR-ACCESS-TOKEN` is the password or access token used for authenticating with the Git repository. We recommend using an access token for this.
 - `CUSTOM-CA-CERT` is the certificate data needed when accessing the Git repository.
 
 This is an example of a part of a `tap-values.yaml` configuration:
