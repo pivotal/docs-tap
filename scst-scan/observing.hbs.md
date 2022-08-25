@@ -205,3 +205,14 @@ configurations to deactivate the Store:
   #### <a id="supply-chain-stops"></a> Supply Chain not progressing
 
   If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see the CVE triage workflow in [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow).
+
+  #### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
+
+  If you encounter `No policy has been defined`, it could be because the TAP GUI is unable to view the Scan Policy resource.
+  - Confirm that the Scan Policy associated with a SourceScan or ImageScan exists (i.e. the `scanPolicy` in the scan matches the name of the Scan Policy)
+    ```
+    kubectl describe sourcescan <NAME> -n <DEV_NAMESPACE>
+    kubectl describe imagescan <NAME> -n <DEV_NAMESPACE>
+    kubectl get scanpolicy <NAME> -n <DEV_NAMESPACE>
+    ```
+  - Add the `app.kubernetes.io/part-of` label to the Scan Policy. See [Enable Tanzu Application Platform GUI to view ScanPolicy Resource](policies.hbs.md#a-idgui-view-scan-policyaenable-tanzu-application-platform-gui-to-view-scanpolicy-resource) for more detail.

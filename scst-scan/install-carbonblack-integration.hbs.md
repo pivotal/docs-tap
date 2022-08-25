@@ -220,6 +220,8 @@ To verify the integration with Carbon Black, apply the following `ImageScan` and
     kind: ScanPolicy
     metadata:
       name: carbonblack-scan-policy
+      labels:
+        'app.kubernetes.io/part-of': 'component-a'
     spec:
       regoFile: |
         package main
