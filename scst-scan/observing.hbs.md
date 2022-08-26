@@ -202,17 +202,20 @@ configurations to deactivate the Store:
 
   **Workaround:** This problem happens in Supply Chain Security Tools - Scan `v1.2.0` when you use a Grype Scanner ScanTemplates earlier than  `v1.2.0` because this is a deprecated path. The solution to fix this problem is to upgrade your Grype Scanner deployment to `v1.2.0` or later. You can take a look at [Upgrading Supply Chain Security Tools - Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 
-  #### <a id="supply-chain-stops"></a> Supply Chain not progressing
+#### <a id="supply-chain-stops"></a> Supply Chain not progressing
 
-  If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see the CVE triage workflow in [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow).
+If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see the CVE triage workflow in [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow).
 
-  #### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
+#### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
 
-  If you encounter `No policy has been defined`, it could be because the TAP GUI is unable to view the Scan Policy resource.
-  - Confirm that the Scan Policy associated with a SourceScan or ImageScan exists (i.e. the `scanPolicy` in the scan matches the name of the Scan Policy)
-    ```
-    kubectl describe sourcescan <NAME> -n <DEV_NAMESPACE>
-    kubectl describe imagescan <NAME> -n <DEV_NAMESPACE>
-    kubectl get scanpolicy <NAME> -n <DEV_NAMESPACE>
-    ```
-  - Add the `app.kubernetes.io/part-of` label to the Scan Policy. See [Enable Tanzu Application Platform GUI to view ScanPolicy Resource](policies.hbs.md#a-idgui-view-scan-policyaenable-tanzu-application-platform-gui-to-view-scanpolicy-resource) for more detail.
+If you encounter `No policy has been defined`, it might be because the Tanzu Application Platform GUI is unable to view the Scan Policy resource.
+
+Confirm that the Scan Policy associated with a SourceScan or ImageScan exists. For example, the `scanPolicy` in the scan matches the name of the Scan Policy.
+
+```
+kubectl describe sourcescan NAME -n DEV-NAMESPACE
+kubectl describe imagescan NAME -n DEV-NAMESPACE
+kubectl get scanpolicy NAME -n DEV-NAMESPACE
+```
+
+Add the `app.kubernetes.io/part-of` label to the Scan Policy. See [Enable Tanzu Application Platform GUI to view ScanPolicy Resource](policies.hbs.md#a-idgui-view-scan-policyaenable-tanzu-application-platform-gui-to-view-scanpolicy-resource) for more details.
