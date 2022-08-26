@@ -12,7 +12,7 @@ Do one of the following actions to access the Runtime Resources Visibility plug-
 - [Install the Tanzu Application Platform Full or View profile](../../install-intro.md)
 - [Install Tanzu Application Platform without using a profile](../../install-intro.md) and then
   install [Tanzu Application Platform GUI separately](../install-tap-gui.md)
-- Review the section [If you have a metrics server](#a-idmetrics-servera-if-you-have-a-metrics-server)
+- Review the section [If you have a metrics server](#metrics-server)
 
 ## <a id="metrics-server"></a> If you have a metrics server
 
@@ -76,10 +76,10 @@ resources even further down the chain.
 ## <a id="resource-details"></a> Resources details page
 
 To get more information about a particular workload, select it from the table on
-the main Runtime Resources page. You will then be taken to a page that provides
-details on the workload, including its status, ownership, and resource-specific information.
+the main **Runtime Resources** page to visit a page that provides details about the workload.
+These details include the workload status, ownership, and resource-specific information.
 
-![Screenshot of the Java web app deployment page](images/runtime-resources-knative-service-details.png)
+![Screenshot of the Java web app deployment page.](images/runtime-resources-knative-service-details.png)
 
 ### <a id="overview-card"></a> Overview card
 
@@ -139,25 +139,25 @@ This drop-down menu is only visible if the resources include Build or ConfigWrit
 
 Users can see the pod table in each resource details page.
 
-![Screenshot of object detail table listing pod](images/runtime-resources-pods.png)
+![Screenshot of a resource details page. A table lists one pod.](images/runtime-resources-pods.png)
 
 ### <a id="pod-details-metrics"></a> Overview of pod metrics
 
-If you have a metrics server running on your cluster, the overview card displays
-realtime metrics for pods.
+If you have a metrics server running on your cluster, the overview card displays realtime metrics
+for pods.
 
 If you do not have a metrics server, the overview card displays the
 user-configured resource limits on the pod, defined in accordance with the
 [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 
 For applications built using Spring Boot, you can also monitor the actual
-real-time resource usage using
-[Application Live View for Spring Boot Applications in Tanzu Application Platform GUI](app-live-view-springboot.md).
+real-time resource use using
+[Screenshot of Application Live View for Spring Boot Applications in Tanzu Application Platform GUI.](app-live-view-springboot.md).
 
-Metrics and limits will also be displayed for each container on a pod details
-page. If a particular container's current limit conflicts with a namespace-level
-LimitRange (typically due to creating a container prior to applying a
-LimitRange), a small warning indicator will be displayed next to the container limit.
+Metrics and limits are also displayed for each container on a pod details page.
+If a particular container's current limit conflicts with a namespace-level
+LimitRange, a small warning indicator is displayed next to the container limit.
+Most conflicts are due to creating a container before applying a LimitRange.
 
 ![Screenshot of container limits. The CPU and Memory column headers are framed.](images/runtime-resources-container-metrics-pod-page.png)
 
