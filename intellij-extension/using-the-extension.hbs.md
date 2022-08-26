@@ -71,7 +71,8 @@ Configuration.
 
 ## <a id="workload-panel"></a> Tanzu Workloads panel
 
-The current state of the workloads is visible on the Tanzu Panel in the bottom of the IDE window. The panel shows the current status of each workload, namespace, and cluster.
+The current state of the workloads is visible on the Tanzu Panel in the bottom of the IDE window.
+The panel shows the current status of each workload, namespace, and cluster.
 It also shows whether Live Update and Debug are running, stopped, or disabled.
 
 The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context.
