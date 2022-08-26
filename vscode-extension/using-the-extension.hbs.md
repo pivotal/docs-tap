@@ -127,11 +127,16 @@ To stop debugging on the cluster, do one of the following:
 
     ![The VS Code interface close-up on the tasks panel showing the delete trash can icon](../images/vscode-stopdebug2.png)
 
-### <a id="microservices-debug"></a> Microservices
-To debug multiple apps in a microservice repo, add each app folder as a workspace folder, see [instructions](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_adding-folders).
+### <a id="microservices-debug"></a> Debug apps in a microservice repository
 
+To debug multiple apps in a microservice repository:
 
-Then update the `tanzu.debugPort` setting so that it does not conflict with other debug sessions. See these [instructions](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_settings) on updating individual workspace folder settings.
+1. Add each app folder as a workspace folder. For instructions, see the
+   [Visual Studio Code documentation](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_adding-folders).
+
+2. Update the `tanzu.debugPort` setting so that it does not conflict with other debugging sessions.
+   For how to update individual workspace folder settings, see the
+   [Visual Studio Code documentation](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_settings).
 
 ## <a id="live-update"></a> Live Update
 
@@ -207,19 +212,22 @@ To hide the Live Update status bar entry, right-click it and select
 
 ![The VS Code interface showing the Tanzu Live Update Status section of the Status bar with the right-click menu open and the "Hide 'Tanzu Developer Tools (Extension)'" option highlighted](../images/vscode-liveupdatestatus2.png)
 
-### <a id="microservices-live-update"></a> Microservices
-To Live Update multiple apps in a microservice repo, add each app folder as a workspace folder, see [instructions](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_adding-folders).
+### <a id="microservices-live-update"></a> Live Update apps in a microservices repository
 
-Then ensure that a port is available to port-forward the knative service.
+To Live Update multiple apps in a microservice repository:
 
-For example, you might have this in your Tiltfile:
+1. Add each app folder as a workspace folder. For instructions, see the
+   [Visual Studio Code documentation](https://code.visualstudio.com/docs/editor/multi-root-workspaces#_adding-folders).
 
-```
-k8s_resource('tanzu-java-web-app', port_forwards=["8080:8080"],
-            extra_pod_selectors=[{'serving.knative.dev/service': 'tanzu-java-web-app'}])
-```
+2. Ensure that a port is available to port-forward the Knative service.
+   For example, you might have this in your Tiltfile:
 
-Update the first port in `port_forwards=["8080:8080"]` (eg. `port_forwards=["9999:8080"]`)
+   ```bazel
+   k8s_resource('tanzu-java-web-app', port_forwards=["NUMBER:8080"],
+               extra_pod_selectors=[{'serving.knative.dev/service': 'tanzu-java-web-app'}])
+   ```
+
+   Where `NUMBER` is the port you choose. For example, `port_forwards=["9999:8080"]`.
 
 ## <a id="delete-workload"></a> Delete a workload
 
