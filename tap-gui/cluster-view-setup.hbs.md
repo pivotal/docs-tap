@@ -45,10 +45,13 @@ To do so:
       name: k8s-reader
     rules:
     - apiGroups: ['']
-      resources: ['pods', 'pods/log', 'services', 'configmaps']
+      resources: ['pods', 'pods/log', 'services', 'configmaps', 'limitranges']
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['metrics.k8s.io']
+      resources: ['pods']
       verbs: ['get', 'watch', 'list']
     - apiGroups: ['apps']
-      resources: ['deployments', 'replicasets']
+      resources: ['deployments', 'replicasets', 'statefulsets', 'daemonsets']
       verbs: ['get', 'watch', 'list']
     - apiGroups: ['autoscaling']
       resources: ['horizontalpodautoscalers']
@@ -92,7 +95,7 @@ To do so:
       - imagerepositories
       - mavenartifacts
       verbs: ['get', 'watch', 'list']
-    - apiGroups: ['conventions.carto.run']
+    - apiGroups: ['conventions.apps.tanzu.vmware.com']
       resources:
       - podintents
       verbs: ['get', 'watch', 'list']
@@ -116,6 +119,9 @@ To do so:
       resources:
       - apps
       verbs: ['get', 'watch', 'list']
+    - apiGroups: [ 'batch' ]
+      resources: [ 'jobs', 'cronjobs' ]
+      verbs: [ 'get', 'watch', 'list' ]
     ```
 
     This YAML content creates `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
