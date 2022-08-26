@@ -9,11 +9,12 @@ You do this by using overlays with PackageInstalls. There are two ways to implem
 
 ## <a id='add-custom-ca'></a> Add a custom CA
 
-note: The overlay previously available in this section is no longer necessary.
+> **Note:** The overlay previously available in this section is no longer necessary.
 
-As of TAP 1.3 the TAP GUI team supports the value `ca_cert_data` at the top
-level of its values file. Which takes any number of newline delimited certs in
-PEM format.
+As of Tanzu Application Platform {{ vars.tap_version }}, the value `ca_cert_data` is supported at the
+top level of its values file. Any number of newline-delimited certificates in PEM format are accepted.
+For example:
+
 ```yaml
 # tap-gui-values.yaml
 ca_cert_data: |
@@ -28,9 +29,9 @@ app_config:
   # ...
 ```
 
-TAP GUI will also inherit `shared.ca_cert_data` from your TAP values file.
-`shared.ca_cert_data` will be newline concatenated with ca_certs given directly
-to TAP GUI.
+Tanzu Application Platform GUI also inherits `shared.ca_cert_data` from your TAP values file.
+`shared.ca_cert_data` is newline-concatenated with `ca_certs` given directly to
+Tanzu Application Platform GUI.
 
 ```yaml
 shared:
