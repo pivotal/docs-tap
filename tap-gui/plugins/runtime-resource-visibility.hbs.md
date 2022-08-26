@@ -18,7 +18,7 @@ Do one of the following actions to access the Runtime Resources Visibility plug-
 
 By default, the Kubernetes API will be ignoring the metrics server on your cluster, if you want to access
 this information, you will need to go to your cluster section on the `app-config.yaml` and make sure
-the `skipMetricsLookup` attribute is set to `false`. 
+the `skipMetricsLookup` attribute is set to `false`.
 
 > *Caution*
 >If you set this value to `false` but do you not possess a metrics server running, you will get an error
@@ -145,14 +145,14 @@ Users can see the pod table in each resource details page.
 ### <a id="pod-details-metrics"></a> Overview of pod metrics
 
 If you have a metrics server running on your cluster, the overview card displays
-realtime metrics for pods. 
+realtime metrics for pods.
 
 If you do not have a metrics server, the overview card displays the
 user-configured resource limits on the pod, defined in accordance with the
 [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 
 For applications built using Spring Boot, you can also monitor the actual
-real-time resource usage using 
+real-time resource usage using
 [Application Live View for Spring Boot Applications in Tanzu Application Platform GUI](app-live-view-springboot.md).
 
 Metrics and limits will also be displayed for each container on a pod details
@@ -257,4 +257,6 @@ appears after the most recent log entry, and the page attempts to reconnect to t
 If reconnection fails, an error message displays at the top of the page, and you can click the
 **Refresh** button at the upper-right of the page to attempt to reconnect.
 
-If you notice frequent disconnections at regular intervals, contact your administrator. Your administrator may need to update the backend configuration for your installation to allow long-lived HTTP connections to log endpoints (endpoints starting with `<backend host>/api/k8s-logging/`).
+If you notice frequent disconnections at regular intervals, contact your administrator.
+Your administrator might need to update the back-end configuration for your installation to allow
+long-lived HTTP connections to log endpoints (endpoints starting with `BACKEND-HOST/api/k8s-logging/`).
