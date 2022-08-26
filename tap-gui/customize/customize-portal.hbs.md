@@ -88,8 +88,10 @@ software catalog, including registering and deregistering locations.
 To do so, add `readonly: true` to the `catalog` section in `tap-values.yaml`, as in this example:
 
 ```yaml
-catalog:
-  readonly: true
+tap_gui:
+  app_config:
+    catalog:
+      readonly: true
 ```
 
 ## <a id="customize-auth-page"></a> Customize the Authentication page
