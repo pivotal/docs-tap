@@ -395,7 +395,7 @@ See [Query using the Tanzu Insight CLI plug-in](../cli-plugins/insight/query-dat
 
 Determine if updating the component will resolve the vulnerability. Vulnerabilities that occur in older versions of a package could be resolved in newer versions. Information pertaining to CVEs can be found in, but is not limited to, the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
 
-> **Note:(()) You can also use your project's package manager tools to identify transitive or indirect dependencies. For example, `go mod graph` for projects in Go.
+> **Note:** You can also use your project's package manager tools to identify transitive or indirect dependencies. For example, `go mod graph` for projects in Go.
 
 #### <a id="amend-scan-policy"></a>Amending the scan policy
 
