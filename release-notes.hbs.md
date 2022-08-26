@@ -101,14 +101,14 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="srvc-toolkit-features"></a> Services Toolkit
 
-- Added support for Openshift
-- Added support for Kubernetes 1.24
+- Added support for Openshift.
+- Added support for Kubernetes 1.24.
 - Created documentation and reference Service Instance Packages for new Cloud Service Provider integrations:
-  - [Azure Flexible Server (Postgres) using the Azure Service Operator](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_flexibleserver_psql_with_azure_operator.html)
-  - [Azure Flexible Server (Postgres) using Crossplane](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_database_with_crossplane.html)
-  - [Google Cloud SQL (Postgres) using Config Connector](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_config_connector.html)
-  - [Google Cloud SQL (Postgres) using Crossplane](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html)
-- `tanzu services` CLI plug-in - improved info messages for deprecated commands
+  - [Azure Flexible Server (Postgres) by using the Azure Service Operator](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_flexibleserver_psql_with_azure_operator.html).
+  - [Azure Flexible Server (Postgres) by using Crossplane](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_database_with_crossplane.html).
+  - [Google Cloud SQL (Postgres) by using Config Connector](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_config_connector.html).
+  - [Google Cloud SQL (Postgres) by using Crossplane](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html).
+- **`tanzu services` CLI plug-in:** improved info messages for deprecated commands.
 
 ### <a id='1-3-breaking-changes'></a> Breaking changes
 
