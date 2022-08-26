@@ -29,7 +29,7 @@ app_config:
   # ...
 ```
 
-Tanzu Application Platform GUI also inherits `shared.ca_cert_data` from your TAP values file.
+Tanzu Application Platform GUI also inherits `shared.ca_cert_data` from your `tap-values.yaml` file.
 `shared.ca_cert_data` is newline-concatenated with `ca_certs` given directly to
 Tanzu Application Platform GUI.
 
