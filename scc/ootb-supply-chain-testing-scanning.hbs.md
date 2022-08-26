@@ -116,7 +116,7 @@ vulnerabilities found.
 
 The names of the objects **must** match the ones in the example with default installation configurations. This can be overriden either by using the `ootb_supply_chain_testing_scanning` package configuration in the `tap-values.yaml` file or by using workload parameters:
 
-- To override by using the the `ootb_supply_chain_testing_scanning` package configuration, make the following modification to your `tap-values.yaml` file and perform a [Tanzu Application Platform update](../upgrading.hbs.md#upgrading-tanzu-application-platform)
+- To override by using the the `ootb_supply_chain_testing_scanning` package configuration, make the following modification to your `tap-values.yaml` file and perform a [Tanzu Application Platform update](../upgrading.hbs.md#upgrading-tanzu-application-platform).
 
     ```yaml
     ootb_supply_chain_testing_scanning:
@@ -131,7 +131,7 @@ The names of the objects **must** match the ones in the example with default ins
     
     Where `SCAN-POLICY` and `SCAN-TEMPLATE` are the names of the `ScanPolicy` and `ScanTemplate`.
   
-- To override via workload parameters, you can use the following commands. For more details, see [Tanzu apps workload commands](../cli-plugins/apps/command-reference/tanzu-apps-workload-update.hbs.md)
+- To override via workload parameters, you can use the following commands. For more details, see [Tanzu apps workload commands](../cli-plugins/apps/command-reference/tanzu-apps-workload-update.hbs.md).
 
     ```
     tanzu apps workload update WORKLOAD --param "scanning_source_policy=SCAN-POLICY" -n DEV-NAMESPACE
