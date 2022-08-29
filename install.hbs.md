@@ -264,16 +264,7 @@ scanning:
     url: "" # Deactivate embedded integration since it's deprecated
 
 grype:
-  namespace: "MY-DEV-NAMESPACE" # (optional) Defaults to default namespace.
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
-  metadataStore:
-    url: "METADATA-STORE-URL" # (optional) Defaults to "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
-    caSecret:
-      name: "CA-SECRET-NAME" # (optional) Defaults to "app-tls-cert"
-      importFromNamespace: "SECRET-NAMESPACE" # (optional) Defaults to "metadata-store"
-    authSecret: # (optional) Defaults all values to empty. Only for multicluster
-      name: "TOKEN-SECRET-NAME"
-      importFromNamespace: "SECRET-NAMESPACE"
 ```
 
 Where:
@@ -304,13 +295,6 @@ This field is only required if you use a private repository, otherwise, leave it
 This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
-- `METADATA-STORE-URL` is the base URL where the Supply Chain Security Tools (SCST) - Store deployment can be reached, for example, `https://metadata-store-app.metadata-store.svc.cluster.local:8443`.
-- `CA-SECRET-NAME` is the name of the secret containing the ca.crt to connect to the SCST - Store deployment.
-- `SECRET-NAMESPACE` is the namespace where SCST - Store is deployed, if you are using a single cluster. If you are using multicluster, it is where the connection secrets were created.
-- `TOKEN-SECRET-NAME` is the name of the secret containing the authentication token to connect to the SCST - Store deployment when installed in a different cluster, if you are using multicluster.
-If built images are pushed to the same registry as the Tanzu Application Platform images,
-this can reuse the `tap-registry` secret created in
-[Add the Tanzu Application Platform package repository](#add-tap-package-repo) as described earlier.
 
 >**Note:** If you need to use more specific URLs in place of `INGRESS-DOMAIN` please take a look at the `tap-gui-values` in the [Installing the Tanzu Application Platform GUI](./tap-gui/install-tap-gui.hbs.md#tap-gui-values),
 > where you can copy specific values for your use case.
