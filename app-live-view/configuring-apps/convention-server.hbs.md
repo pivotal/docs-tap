@@ -57,7 +57,7 @@ One option is to uninstall the Application Live View convention.
 This results in no convention being applied automatically.
 You can still use Application Live View, but you must add the labels and environment settings yourself.
 
-### <a id="disable-convention"></a> Disable the convention for specific workloads
+### <a id="deactivate-convention"></a> Deactivate the convention for specific workloads
 
 Another option is to deactivate Application Live View for specific workloads.
 You can add the label `tanzu.app.live.view: "false"` manually, for example, by adding the label to the `workload.yml`.

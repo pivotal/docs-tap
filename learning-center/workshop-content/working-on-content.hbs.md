@@ -5,7 +5,7 @@ a Git repository or web server when the workshop session is created.
 There are several best practices for speeding up the iterative loop of editing
 and testing a workshop when developing workshop content.
 
-## <a id="disable-reserved-sessions"></a> Deactivating reserved sessions
+## <a id="deactivate-reserved-sessions"></a> Deactivating reserved sessions
 
 Deactivate the reserved sessions by setting the `reserved` field to `0` in your
 training portal instance:
