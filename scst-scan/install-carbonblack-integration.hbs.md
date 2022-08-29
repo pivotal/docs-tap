@@ -71,18 +71,18 @@ To install Supply Chain Security Tools - Scan (Carbon Black Scanner):
 
 **NOTE:** All values can be obtained from your CBC console.
 
-    ```yaml
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: CARBONBLACK-CONFIG-SECRET
-      namespace: my-apps
-    stringData:
-      cbc_api_id: <CBC_API_ID>
-      cbc_api_key: <CBC_API_KEY>
-      cbc_org_key: <CBC_ORG_KEY>
-      cbc_saas_url: <CBC_SAAS_URL>
-    ```
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: CARBONBLACK-CONFIG-SECRET
+  namespace: my-apps
+stringData:
+  cbc_api_id: <CBC_API_ID>
+  cbc_api_key: <CBC_API_KEY>
+  cbc_org_key: <CBC_ORG_KEY>
+  cbc_saas_url: <CBC_SAAS_URL>
+```
 
 1. Apply the Carbon Black secret YAML file by running:
 
