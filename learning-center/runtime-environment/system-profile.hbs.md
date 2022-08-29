@@ -243,7 +243,7 @@ spec:
 Use of `docker` can be made even more secure by avoiding the use of a privileged container for the
 `docker` daemon. This requires that you set up a specific configuration for nodes in the Kubernetes
 cluster.
-With this configuration, you can disable the use of a privileged container by setting
+With this configuration, you can disallow the use of a privileged container by setting
 `dockerd.privileged` to `false`:
 
 ```yaml
