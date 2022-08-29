@@ -104,17 +104,29 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
     ```yaml
     ---
-    namespace: "<DEV-NAMESPACE>" # The developer namespace where the ScanTemplates are gonna be deployed
+    namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are gonna be deployed
     metadataStore:
-      url: "<METADATA-STORE-URL>" # The base URL where the Store deployment can be reached
+      url: "METADATA-STORE-URL" # The base URL where the Store deployment can be reached
       caSecret:
-        name: "<CA-SECRET-NAME>" # The name of the secret containing the ca.crt
-        importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where Store is deployed (if single cluster) or where the connection secrets were created (if multi-cluster)
+        name: "CA-SECRET-NAME" # The name of the secret containing the ca.crt
+        importFromNamespace: "SECRET-NAMESPACE" # The namespace where Store is deployed (if single cluster) or where the connection secrets were created (if multi-cluster)
       authSecret:
-        name: "<TOKEN-SECRET-NAME>" # The name of the secret containing the auth token to connect to Store
-        importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where the connection secrets were created (if multi-cluster)
+        name: "TOKEN-SECRET-NAME" # The name of the secret containing the auth token to connect to Store
+        importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
     >**Note:** You must either define both the METADATA-STORE-URL and caSecret, or not define them as they depend on each other.
+
+    Where:
+
+    - `DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
+    This is the namespace where the scanning feature runs.
+    - `METADATA-STORE-URL` is the base URL where the Supply Chain Security Tools (SCST) - Store deployment can be reached, for example, `https://metadata-store-app.metadata-store.svc.cluster.local:8443`.
+    - `CA-SECRET-NAME` is the name of the secret containing the ca.crt to connect to the SCST - Store deployment.
+    - `SECRET-NAMESPACE` is the namespace where SCST - Store is deployed, if you are using a single cluster. If you are using multicluster, it is where the connection secrets were created.
+    - `TOKEN-SECRET-NAME` is the name of the secret containing the authentication token to connect to the SCST - Store deployment when installed in a different cluster, if you are using multicluster.
+    If built images are pushed to the same registry as the Tanzu Application Platform images,
+    this can reuse the `tap-registry` secret created in
+    [Add the Tanzu Application Platform package repository](../install.html/#add-tap-package-repo) as described earlier.
 
     You can retrieve any other configurable setting using the following command, and appending the key-value pair to the previous `grype-values.yaml` file:
 
