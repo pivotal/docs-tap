@@ -325,6 +325,7 @@ docs.vmware.com is built.
     - [Supply Chain Security Tools for Tanzu – Scan](scst-scan/overview.md)
         - [Overview of Supply Chain Security Tools for Tanzu – Scan](scst-scan/overview.md)
         - [Install](scst-scan/install-scst-scan.md)
+        - [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md)
         - [Install Snyk scanner (Beta)](scst-scan/install-snyk-integration.md)
         - [Spec reference](scst-scan/explanation.md)
         - [Scan samples](scst-scan/samples/overview.md)
