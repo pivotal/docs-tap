@@ -26,6 +26,8 @@ See the following documentation for a registry to learn how to set it up:
 
 To relocate images from the VMware Tanzu Network registry to your registry:
 
+1. Install Docker if it is not already installed.
+
 1. Log in to your image registry by running:
 
     ```console
@@ -47,6 +49,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
     export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
     export TAP_VERSION=VERSION-NUMBER
+    export INSTALL_REPO=TARGET-REPOSITORY
     ```
 
     Where:
@@ -55,15 +58,16 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `MY-REGISTRY` is your own container registry.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+    - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
+    for the installation files for Tanzu Application Platform.
 
-1. Relocate the images with the Carvel tool imgpkg by running:
+1. [Install the Carvel tool `imgpk` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6). 
+
+1. Relocate the images with the `imgpkg` CLI by running:
 
     ```console
-    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
-
-    Where `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
-    for the installation files for Tanzu Application Platform.
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
@@ -86,14 +90,9 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
     ```console
     tanzu package repository add tanzu-tap-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:$TAP_VERSION \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages:$TAP_VERSION \
       --namespace tap-install
     ```
-
-    Where:
-
-    - `$TAP_VERSION` is the Tanzu Application Platform version environment variable you defined earlier.
-    - `TARGET-REPOSITORY` is the necessary repository.
 
 1. Get the status of the Tanzu Application Platform package repository, and ensure the status updates to `Reconcile succeeded` by running:
 
@@ -109,7 +108,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     NAME:          tanzu-tap-repository
     VERSION:       16253001
     REPOSITORY:    tapmdc.azurecr.io/mdc/1.0.2/tap-packages
-    TAG:           1.0.2
+    TAG:           {{ vars.tap_version }}
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -285,6 +284,8 @@ grype:
 
 Where:
 
+- `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
+service's External IP address.
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
     * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
     * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
@@ -302,9 +303,8 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Harbor has the form `repository: "my-project/supply-chain"`.
     * Dockerhub has the form `repository: "my-dockerhub-user"`.
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
-- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
-- `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
-service's External IP address.
+- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to. 
+This field is only required if you use a private repository, otherwise, leave it empty.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
 This is the namespace where the scanning feature runs.
@@ -329,9 +329,6 @@ To view possible configuration settings for a package, run:
 ```console
 tanzu package available get tap.tanzu.vmware.com/$TAP_VERSION --values-schema --namespace tap-install
 ```
-
-Where `$TAP_VERSION` is the Tanzu Application Platform version environment variable
-you defined earlier.
 
 >**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
 >it plans to install. The package only shows top-level keys.
@@ -426,9 +423,6 @@ Follow these steps to install the Tanzu Application Platform package:
     tanzu package install tap -p tap.tanzu.vmware.com -v $TAP_VERSION --values-file tap-values.yaml -n tap-install
     ```
 
-    Where `$TAP_VERSION` is the Tanzu Application Platform version environment variable
-    you defined earlier.
-
 1. Verify the package install by running:
 
     ```console
@@ -449,6 +443,12 @@ by following the procedure in [Install full dependencies](#tap-install-full-deps
 After installing the Full profile on your cluster, you can install the
 Tanzu Developer Tools for VS Code Extension to help you develop against it.
 For instructions, see [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md).
+
+>**Note:** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
+
+```
+tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --values-file tap-values.yaml -n tap-install
+``` 
 
 ## <a id="tap-install-full-deps"></a> Install the full dependencies package
 
@@ -483,26 +483,20 @@ To install the `full` dependencies package:
 
     ```console
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
-      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps
+      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps
     ```
 
-    Where:
-
-    - `VERSION` is the version of the `buildservice` package you retrieved in the previous step.
-    - `TARGET-REPOSITORY` is your target repository.
+    Where `VERSION` is the version of the `buildservice` package you retrieved in the previous step.
 
 1. Add the Tanzu Build Service full dependencies package repository by running:
 
     ```console
     tanzu package repository add tbs-full-deps-repository \
-      --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tbs-full-deps:VERSION \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps:VERSION \
       --namespace tap-install
     ```
 
-    Where:
-
-    - `VERSION` is the version of the `buildservice` package you retrieved earlier.
-    - `TARGET-REPOSITORY` is your target repository.
+    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
 
 1. Install the full dependencies package by running:
 
