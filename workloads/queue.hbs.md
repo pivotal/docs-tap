@@ -321,7 +321,7 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
-            # Add this key if you have set ca_cert_data in tap-values.yaml
+            # Add the following key if you have set ca_cert_data in tap-values.yaml
             - name: ca_cert_data
               value: CERT-AS-STRING
         templateRef:
@@ -337,7 +337,7 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
-            # Add this key if you have set ca_cert_data in tap-values.yaml
+            # Add the following key if you have set ca_cert_data in tap-values.yaml
             - name: ca_cert_data
               value: CERT-AS-STRING
         sources:
@@ -381,7 +381,7 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
-            # Add this key if you have set ca_cert_data in tap-values.yaml
+            # Add the following key if you have set ca_cert_data in tap-values.yaml
             - name: ca_cert_data
               value: CERT-AS-STRING
         templateRef:
