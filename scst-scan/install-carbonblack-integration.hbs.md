@@ -123,11 +123,11 @@ To install SCST - Scan (Carbon Black Scanner):
 
 To persist the results found by the Carbon Black Scanner, you can enable the SCST - Store integration by appending the text boxes to the `values.yaml` file. 
 
-    The Grype and Carbon Black Scanner Integrations both enable the Metadata Store.
-    To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not.
-    If Tanzu Application Platform was installed using the Full Profile, the Grype Scanner Integration was installed, unless it was explicitly excluded.
+The Grype and Carbon Black Scanner Integrations both enable the Metadata Store.
+To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not.
+If Tanzu Application Platform was installed using the Full Profile, the Grype Scanner Integration was installed, unless it was explicitly excluded.
 
-     * If the Grype Scanner Integration is installed in the same `dev-namespace` Carbon Black Scanner is installed:
+  * If the Grype Scanner Integration is installed in the same `dev-namespace` Carbon Black Scanner is installed:
 
        ```yaml
        #! ...
@@ -147,7 +147,7 @@ To persist the results found by the Carbon Black Scanner, you can enable the SCS
            importFromNamespace: "" #! since both Carbon Black and Grype both enable store, one must leave importFromNamespace blank
        ```
 
-     * If the Grype Scanner Integration is not installed in the same `dev-namespace` Carbon Black Scanner is installed:
+  * If the Grype Scanner Integration is not installed in the same `dev-namespace` Carbon Black Scanner is installed:
 
        ```yaml
        #! ...
@@ -174,11 +174,11 @@ To persist the results found by the Carbon Black Scanner, you can enable the SCS
 
 If you don't want to enable the SCST - Store integration, explicitly deactivate the integration by appending the next text box to the `values.yaml` file, because it's enabled by default: 
 
-    ```yaml
-    # ... 
-    metadataStore:
-      url: "" # Disable Supply Chain Security Tools - Store integration
-    ```
+  ```yaml
+  # ... 
+  metadataStore:
+    url: "" # Disable Supply Chain Security Tools - Store integration
+  ```
 
 1. Install the package by running:
 
