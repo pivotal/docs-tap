@@ -164,7 +164,7 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 
 1. Refresh Tanzu Application Platform GUI to reveal functions accelerator(s).
 
-    ![Screenshot of Application Accelerator showing function accelerators](images/function-accelerators.png)
+    ![Screenshot showing function accelerators in the Application Accelerator home page in Tanzu Application Platform GUI.](images/function-accelerators.png)
 
     It might take time for Tanzu Application Platform GUI to refresh the catalog to see your added functions accelerators.
 
@@ -172,12 +172,12 @@ The accelerator ZIP file contains a file called k8s-resource.yaml. This file con
 
 1. From the Tanzu Application Platform GUI portal, click **Create** on the left navigation bar to see the list of available accelerators.
 
-    ![Screenshot of Application Accelerator Home page](images/create-accelerator.png)
+    ![Screenshot of Application Accelerator home page in Tanzu Application Platform GUI. The create button in the left navigation menu has been highlighted.](images/create-accelerator.png)
 
 1. Locate the Function Buildpacks accelerator and click **CHOOSE**.
 1. Provide a name for your function project and function. If creating a Java function, select a project type\*. Select HTTP for your event type. Provide a Git repository to store this accelerator's files. Click **NEXT STEP**, verify the provided information, and click **CREATE**.
 
-    ![Screenshot of Application Accelerator](images/generate-accelerators.png)
+    ![Screenshot of the Generate Accelerators page in Tanzu Application Platform GUI. It shows a Python function buildpacks accelerator with App accelerator input fields including Name, Default function name, Event type, Git repository URL, and Git repository branch.](images/generate-accelerators.png)
 
 1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
 
