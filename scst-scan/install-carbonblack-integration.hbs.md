@@ -1,23 +1,22 @@
 # Install Carbon Black Scanner (Beta)
 
-This document describes how to install Supply Chain Security Tools - Scan 
+This topic describes how to install Supply Chain Security Tools - Scan 
 (Carbon Black Scanner) from the Tanzu Application Platform package repository.
 
->**Note:** Carbon Black's image scanning capability is in beta.
-Carbon Black might only return a partial list of CVEs when scanning Buildpack images.
+>**Note:** Carbon Black's image scanning capability is in beta. Carbon Black might only return a partial list of CVEs when scanning Buildpack images.
 
 ## <a id="prerecs"></a> Prerequisites
 
-Before installing Supply Chain Security Tools - Scan (Carbon Black Scanner):
+Before installing SCST - Scan (Carbon Black Scanner):
 
-- Install [Supply Chain Security Tools - Scan](install-scst-scan.md).
+- Install SCST - Scan. See [Install Supply Chain Security Tools - Scan](install-scst-scan.md).
 It must be present on the same cluster.
-The prerequisites for Scan are also required.
+The prerequisites for SCST - Scan are also required.
 - Obtain a Carbon Black API Token from Carbon Black Cloud.
 
 ## <a id="install-carbonblack"></a> Install
 
-To install Supply Chain Security Tools - Scan (Carbon Black Scanner):
+To install SCST - Scan (Carbon Black Scanner):
 
 1. List version information for the package by running:
 
@@ -62,27 +61,27 @@ To install Supply Chain Security Tools - Scan (Carbon Black Scanner):
     metadataStore.url                             https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store
     ```
 
-3. Create a Carbon Black secret YAML file and insert the Carbon Black API configuration key as follows:
+3. Create a Carbon Black secret YAML file and insert the Carbon Black API configuration key where:
 
-- `cbc_api_id` - The API ID obtained from CBC
-- `cbc_api_key` - The API Key obtained from CBC
-- `cbc_org_key` - The Org Key of your CBC organization
-- `cbc_saas_url` - The CBC Backend URL
+   - `cbc_api_id` - The API ID obtained from CBC
+   - `cbc_api_key` - The API Key obtained from CBC
+   - `cbc_org_key` - The Org Key of your CBC organization
+   - `cbc_saas_url` - The CBC Backend URL
 
-**NOTE:** All values can be obtained from your CBC console.
+  > **Note:** All values are obtained from your CBC console.
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: CARBONBLACK-CONFIG-SECRET
-  namespace: my-apps
-stringData:
-  cbc_api_id: <CBC_API_ID>
-  cbc_api_key: <CBC_API_KEY>
-  cbc_org_key: <CBC_ORG_KEY>
-  cbc_saas_url: <CBC_SAAS_URL>
-```
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: CARBONBLACK-CONFIG-SECRET
+      namespace: my-apps
+    stringData:
+      cbc_api_id: <CBC_API_ID>
+      cbc_api_key: <CBC_API_KEY>
+      cbc_org_key: <CBC_ORG_KEY>
+      cbc_saas_url: <CBC_SAAS_URL>
+    ```
 
 1. Apply the Carbon Black secret YAML file by running:
 
@@ -94,9 +93,9 @@ stringData:
 
 2. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
 
-    You must define the following fields in the `values.yaml` file for the Carbon Black Scanner configuration.
-    You can add fields as needed to enable or disable behaviors.
-    You can append the values to this file as shown later in this document. 
+    You must define the following text boxes in the `values.yaml` file for the Carbon Black Scanner configuration.
+    You can add text boxes as needed to enable or deactivate behaviors.
+    You can append the values to this file as shown later in this topic. 
 
     ```yaml
     ---
@@ -109,18 +108,20 @@ stringData:
 
      - `DEV-NAMESPACE` is your developer namespace.
 
-       >**Note:** To use a namespace other than the default namespace, ensure the namespace exists before you install.
+       >**Note:** To use a namespace other than the default namespace, ensure that the namespace exists before you install.
        If the namespace does not exist, the scanner installation fails.
 
      - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning.
 
      - `CARBONBLACK-CONFIG-SECRET` is the name of the secret you created that contains the Carbon Black configuration to connect to CBC.
-       This field is required.
+       This text box is required.
 
-    The Carbon Black Scanner integration can work with or without the Supply Chain Security Tools - Store integration.
+    The Carbon Black Scanner integration can work with or without the SCST - Store integration.
     The `values.yaml` file is slightly different for each configuration.
 
-    **Using Supply Chain Security Tools - Store Integration:** To persist the results found by the Carbon Black Scanner, you can enable the Supply Chain Security Tools - Store integration by appending the fields to the `values.yaml` file. 
+### <a id="using-integration"></a> Using SCST - Store Integration 
+
+To persist the results found by the Carbon Black Scanner, you can enable the SCST - Store integration by appending the text boxes to the `values.yaml` file. 
 
     The Grype and Carbon Black Scanner Integrations both enable the Metadata Store.
     To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not.
@@ -169,7 +170,9 @@ stringData:
            importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
        ```
 
-    **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, explicitly disable the integration by appending the next fields to the `values.yaml` file, since it's enabled by default: 
+### <a id="without-scst"></a> Without SCST - Store Integration
+
+If you don't want to enable the SCST - Store integration, explicitly deactivate the integration by appending the next text box to the `values.yaml` file, because it's enabled by default: 
 
     ```yaml
     # ... 
@@ -177,7 +180,7 @@ stringData:
       url: "" # Disable Supply Chain Security Tools - Store integration
     ```
 
-3. Install the package by running:
+1. Install the package by running:
 
     ```console
     tanzu package install carbonblack-scanner \
@@ -349,4 +352,5 @@ To opt-out of Carbon Black for all of Tanzu Application Platform:
   tanzu package installed delete carbonblack-scanner \
     --namespace tap-install
   ```
+
 2. Follow the [Opt-out of Carbon Black for a specific Supply Chain](#-opt-out-of-carbonblack-for-a-supply-chain) for all Supply Chains in the environment to not use Carbon Black and use another scanner such as Grype.
