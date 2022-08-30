@@ -110,8 +110,8 @@ For more information, see [Stop Live Update](#stop-live-update).
 To start debugging on the cluster:
 
 1. Add a [breakpoint](https://code.visualstudio.com/docs/editor/debugging#_breakpoints) in your code.
-1. Right-click the `workload.yaml` file in your project.
-1. Select **Debug 'Tanzu Debug Workload...'** in the pop-up menu.
+2. Right-click anywhere in the VS Code project explorer.
+3. Select **Tanzu: Java Debug Workload** in the pop-up menu.
 
     ![The VS Code interface showing the Explorer tab with the workload.yaml file pop-up menu open and the Tanzu: Java Debug Start option highlighted](../images/vscode-startdebug1.png)
 
@@ -155,7 +155,8 @@ If you are currently debugging on the cluster, stop debugging before attempting 
 
 There are two ways to start live update:
 
-- Right-click your project’s `Tiltfile` and select `Tanzu: Live Update Start`.
+1. Right-click anywhere in the VS Code project explorer.
+2. Select **Tanzu: Live Update Start** in the pop-up menu.
 
     ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the "Tanzu: Live Update Start" option highlighted](../images/vscode-startliveupdate1.png)
 
@@ -169,15 +170,11 @@ When Live Update stops, your application continues to run on the cluster, but th
 and saved in your editor are not present in your running application unless you redeploy your
 application to the cluster.
 
-There are two ways to stop live update:
+To stop live update:
 
-- Right-click your project’s Tiltfile and select `Tanzu: Live Update Stop`.
+- Press the trash can button in the terminal window to kill the live update process.
 
-    ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the "Tanzu: Live Update Stop" option highlighted](../images/vscode-stopliveupdate1.png)
-
-- Press ⇧⌘P to start the Command Palette and then run `Tanzu: Live Update Stop`.
-
-    ![Command palette open showing text Tanzu: Live Update Stop](../images/vscode-stopliveupdate2.png)
+    ![The VS Code interface showing the terminal window with the pointer on the trash can button](../images/vscode-stopliveupdate.png)
 
 ### <a id="disable-live-update"></a> Deactivate Live Update
 
