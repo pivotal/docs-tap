@@ -660,7 +660,7 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Application Live View for VMware Tanzu</strong>
    </td>
-   <td><strong>Functions (beta)</strong>
+   <td><strong>Functions </strong>
    </td>
    <td><strong>Extended Scanning Coverage using Anchore Grype \*\*\*</strong>
    </td>
