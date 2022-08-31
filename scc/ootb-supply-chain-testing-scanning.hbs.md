@@ -363,7 +363,7 @@ The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning
 Verify if the status of the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan:
 
 ```console
-kubectl describe workload WORKLOAD-NAME -n DEVLOPER-NAMESPACE
+kubectl describe workload WORKLOAD-NAME -n DEVELOPER-NAMESPACE
 ```
 
 Describe the SourceScan or ImageScan to determine what CVE(s) violated the ScanPolicy:
@@ -402,7 +402,7 @@ Determine if updating the component will resolve the vulnerability. Vulnerabilit
 After analyzing the CVE(s), if a developer decides to proceed without remediating the CVE, the ScanPolicy can be amended to suppress CVE(s). 
 See [Writing Policy Templates](../scst-scan/policies.md) for more details.
 
-Under RBAC, users with the `app-operator-scanning` role (part of `app-operator` aggregate role), have permission to modify the ScanPolicy. See [Detailed role permissions breakdown](../authn-authz/permissions-breakdown.hbs.md) for more information.
+Under RBAC, users with the `app-operator-scanning` role (part of the `app-operator` aggregate role), have permission to modify the ScanPolicy. See [Detailed role permissions breakdown](../authn-authz/permissions-breakdown.hbs.md) for more information.
 
 ## <a id="scan-image-using-snyk"></a> Scan Image using Snyk
 
