@@ -131,6 +131,8 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
     kind: ScanPolicy
     metadata:
       name: scanpolicy-sample
+      labels:
+        'app.kubernetes.io/part-of': 'component-a'
     spec:
       regoFile: |
         package main

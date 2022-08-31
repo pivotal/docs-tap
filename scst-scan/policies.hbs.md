@@ -29,6 +29,8 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
     kind: ScanPolicy
     metadata:
       name: scanpolicy-sample
+      labels:
+        'app.kubernetes.io/part-of': 'component-a'
     spec:
       regoFile: |
         package main
@@ -108,6 +110,8 @@ apiVersion: scanning.apps.tanzu.vmware.com/v1alpha1
 kind: ScanPolicy
 metadata:
   name: v1alpha1-scan-policy
+  labels:
+    'app.kubernetes.io/part-of': 'component-a'
 spec:
   regoFile: |
     package policies

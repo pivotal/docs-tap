@@ -208,6 +208,8 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     kind: ScanPolicy
     metadata:
       name: scan-policy
+      labels:
+        'app.kubernetes.io/part-of': 'component-a'
     spec:
       regoFile: |
         package main
