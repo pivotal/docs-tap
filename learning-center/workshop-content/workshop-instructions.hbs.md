@@ -525,7 +525,7 @@ fi
 exit 0
 ```
 
-By default the program for a test is killed after a timeout of 15 seconds, and the test deemed as failed. To adjust the timeout, you can set the `timeout` value. The value is in seconds. A value of 0 causes the default timeout to be applied. It is not possible to deactivate the killing of the test program if it runs too long.
+By default, the program for a test is stopped after a timeout of 15 seconds, and the test is deemed to have failed. To adjust the timeout, you can set the `timeout` value, which is in seconds. A value of 0 causes the default 15 seconds timeout to be applied. It is not possible to deactivate stopping the test program after running for the default or a specified `timeout` value.
 
 ~~~
 ```examiner:execute-test
