@@ -200,6 +200,8 @@ To verify the integration with Snyk, apply the following `ImageScan` and its `Sc
     kind: ScanPolicy
     metadata:
       name: snyk-scan-policy
+      labels:
+        'app.kubernetes.io/part-of': 'component-a'
     spec:
       regoFile: |
         package main
