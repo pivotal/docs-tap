@@ -58,6 +58,7 @@ To install a new scanner, follow these steps:
     ```
 
     Where:
+
     - `SCANNER-NAME` is the name of the scanner package you retrieved earlier.
     - `VERSION` is your package version number. For example, `snyk.scanning.apps.tanzu.vmware.com/1.0.0-beta.2`.
 
@@ -124,15 +125,15 @@ To install a new scanner, follow these steps:
 
 To verify the installation create an `ImageScan` or `SourceScan` referencing one of the newly added `ScanTemplates` for the scanner.
 
-> **Note:** A `ScanPolicy` can also be referenced in the `ImageScan` or `SourceScan`. Because every scanner can have its output in a different format, the `ScanPolicies` can vary from scanner to scanner. See [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
+> **Note:** A `ScanPolicy` can be referenced in the `ImageScan` or `SourceScan`. Because every scanner can have its output in a different format, the `ScanPolicies` can vary. See [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
 
-1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed in:
+1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed:
 
     ```console
     kubectl get scantemplates -n DEV-NAMESPACE
     ```
 
-    Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed in.
+    Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
     For example:
     ```console
@@ -163,6 +164,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     ```
 
     Where: 
+
     - `SCAN-TEMPLATE` is the name of the installed `ScanTemplate` in the `<DEV_NAMESPACE>` you retrieved earlier.
     - `SCAN-POLICY` it's an optional reference to an existing `ScanPolicy` in the same `<DEV_NAMESPACE>`.
 
@@ -198,6 +200,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     ```
 
     Where: 
+
     - `SCAN-TEMPLATE` is the name of the installed `ScanTemplate` in the `DEV_NAMESPACE` you retrieved earlier. 
     - `SCAN-POLICY` is an optional reference to an existing `ScanPolicy` in the same `DEV_NAMESPACE`.
 
@@ -218,7 +221,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 4. Apply the ImageScan and SourceScan YAMLs:
 
-    To run the scans, apply them to the cluster running these commands:
+    To run the scans, apply them to the cluster by running these commands:
 
     `ImageScan`:
     ```console
@@ -271,7 +274,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     sourcescan.scanning.apps.tanzu.vmware.com/grypesourcescan-sample-public   Completed   5805c650          https://github.com/houndci/hound.git   8m34s   21         121    112      9     0         263
     ```
 
-    > **Note:** If you define a `ScanPolicy` for the scans and the evaluation finds a violation, then the `Phase` is `Failed` instead of `Completed`. In both cases the scan finished successfully.
+    > **Note:** If you define a `ScanPolicy` for the scans and the evaluation finds a violation, the `Phase` is `Failed` instead of `Completed`. In both cases the scan finished successfully.
 
 6. Clean up:
 
