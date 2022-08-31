@@ -6,6 +6,8 @@ You must install the `full` dependencies.
 
 To install `full` dependencies:
 
+{{ find_tbs_version }}
+
 1. Relocate the Tanzu Build Service `full` dependencies package repository by running:
 
     ```console
