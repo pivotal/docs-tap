@@ -354,9 +354,7 @@ spec:
 
 ## <a id="mount-persistent-volume"></a> Mounting a persistent volume
 
-In circumstances where a workshop needs persistent storage to ensure no loss of work, you can request
-a persistent volume be mounted into the workshop container after the workshop environment container was
-killed and restarted:
+In circumstances where a workshop needs persistent storage to ensure no loss of work, you can request a persistent volume be mounted into the workshop container after the workshop environment container is stopped and restarted:
 
 ```yaml
 apiVersion: learningcenter.tanzu.vmware.com/v1beta1
