@@ -216,7 +216,7 @@ If you don't want to enable the SCST - Store integration, explicitly deactivate 
 
 To verify the integration with Carbon Black, apply the following `ImageScan` and its `ScanPolicy` in the developer namespace and review the result.
 
-1. Create a ScanPolicy YAML with a Rego file for scanner output in the SPDX JSON format. Here is a sample scan policy resource:
+1. Create a ScanPolicy YAML with a Rego file for scanner output in the CycloneDX format. Here is a sample scan policy resource:
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -262,13 +262,13 @@ To verify the integration with Carbon Black, apply the following `ImageScan` and
         }
     ```
 
-1. Apply the earlier created YAML:
+2. Apply the earlier created YAML:
 
     ```console
     kubectl apply -n $DEV_NAMESPACE -f <SCAN-POLICY-YAML>
     ```
 
-1. Create the following ImageScan YAML:
+3. Create the following ImageScan YAML:
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -282,13 +282,13 @@ To verify the integration with Carbon Black, apply the following `ImageScan` and
       scanPolicy: carbonblack-scan-policy
     ```
 
-1. Apply the earlier created YAML:
+4. Apply the earlier created YAML:
 
     ```console
     kubectl apply -n $DEV_NAMESPACE -f <IMAGE-SCAN-YAML>
     ``` 
 
-1. To verify the integration, run:
+5. To verify the integration, run:
 
     ```bash
     kubectl get imagescan sample-carbonblack-public-image-scan -n $DEV_NAMESPACE
@@ -302,7 +302,7 @@ To verify the integration with Carbon Black, apply the following `ImageScan` and
     sample-carbonblack-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
     ```
 
-1. Cleanup:
+6. Cleanup:
 
     ```bash
     kubectl delete imagescan sample-carbonblack-public-image-scan -n $DEV_NAMESPACE
