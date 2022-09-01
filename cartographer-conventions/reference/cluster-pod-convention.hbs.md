@@ -12,7 +12,7 @@ metadata:
   annotations:
     conventions.carto.run/inject-ca-from: "convention-template/webhook-cert"
 spec:
-  selectorTarget: PodTemplateSpec # optional, defaults to PodTemplateSpec; options PodTemplateSpec or PodIntent  
+  selectorTarget: PodTemplateSpec # optional, defaults to PodTemplateSpec; field options include PodTemplateSpec|PodIntent  
   webhook:
     clientConfig:
       service:
