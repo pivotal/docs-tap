@@ -25,7 +25,7 @@ There are several out of the box conventions provided with a full profile instal
 
 The webhook configuration for each convention is as follows:
 
-+ Conventions for [AppLiveView](/app-live-view/about-app-live-view.hbs.md)
++ Conventions for [AppLiveView](../app-live-view/about-app-live-view.hbs.md)
 
   ```yaml
   ...
@@ -48,7 +48,7 @@ The webhook configuration for each convention is as follows:
     appliveview-webhook   1/1     1            1           8m45s
   ```
   
-+ [Developer conventions](/developer-conventions/about.hbs.md)
++ [Developer conventions](../developer-conventions/about.hbs.md)
 
   ```yaml
   ...
@@ -67,7 +67,7 @@ The webhook configuration for each convention is as follows:
     webhook   1/1     1            1           10m
   ```
 
-+ [Spring boot conventions](/spring-boot-conventions/reference/CONVENTIONS.hbs.md)
++ [Spring boot conventions](../spring-boot-conventions/reference/CONVENTIONS.hbs.md)
 
   ``` yaml
     ...
@@ -85,4 +85,3 @@ The webhook configuration for each convention is as follows:
       NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
       spring-boot-webhook   1/1     1            1           12m
     ```
-    
