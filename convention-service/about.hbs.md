@@ -22,8 +22,11 @@ There are several out of the box conventions provided with a full profile instal
       developer-conventions    True    InSync   4m50s
       spring-boot-convention   True    InSync   4m51s
   ```
-The webhook configuration for each convention is as follows 
+
+The webhook configuration for each convention is as follows:
+
 + Conventions for [AppLiveView](/app-live-view/about-app-live-view.hbs.md)
+
   ```yaml
   ...
   # webhook configuration
@@ -38,6 +41,7 @@ The webhook configuration for each convention is as follows
           name: appliveview-webhook
           namespace: app-live-view-conventions
   ```
+  
   ```shell
   ❯ kubectl get deployment.apps/appliveview-webhook -n app-live-view-conventions                                                     ⏎
     NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
@@ -56,12 +60,15 @@ The webhook configuration for each convention is as follows
           name: webhook
           namespace: developer-conventions
   ```
+  
   ```shell
   ❯ kubectl get deployment.apps/webhook -n developer-conventions                                                                     ⏎
     NAME      READY   UP-TO-DATE   AVAILABLE   AGE
     webhook   1/1     1            1           10m
   ```
+
 + [Spring boot conventions](/spring-boot-conventions/reference/CONVENTIONS.hbs.md)
+
   ``` yaml
     ...
    # webhook configuration
@@ -72,8 +79,10 @@ The webhook configuration for each convention is as follows
             name: spring-boot-webhook
             namespace: spring-boot-convention
     ```
+
     ```shell
     ❯ kubectl get deployment.apps/spring-boot-webhook -n spring-boot-convention
       NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
       spring-boot-webhook   1/1     1            1           12m
     ```
+    
