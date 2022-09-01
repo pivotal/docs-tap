@@ -6,17 +6,20 @@ The [Cartographer Conventions](../cartographer-conventions/about.md) component m
 The v0.7.x version of the convention controller is a passive system that translates the CRDs to the [new group](../cartographer-conventions/reference/pod-intent.md).
 
 There are several out of the box conventions provided with every TAP installation and these include the following three conventions 
-+ [AppLiveView](/app-live-view/about-app-live-view.hbs.md)
++ Conventions for [AppLiveView](/app-live-view/about-app-live-view.hbs.md)
   ```yaml
   ...
   # webhook configuration
+  spec:
+    priority: Late
     webhook:
-    clientConfig:
-      service:
-        name: appliveview-webhook
-        namespace: app-live-view-conventions
+      clientConfig:
+        service:
+          name: appliveview-webhook
+          namespace: app-live-view-conventions
   ```
 + [Developer conventions](/developer-conventions/about.hbs.md)
+
   ```yaml
   ...
   # webhook configuration
@@ -27,8 +30,7 @@ There are several out of the box conventions provided with every TAP installatio
           name: webhook
           namespace: developer-conventions
   ```
-
-+ [Spring Boot conventions](/spring-boot-conventions/about.hbs.md)
++ [Spring boot conventions](/spring-boot-conventions/reference/CONVENTIONS.hbs.md)
   ``` yaml
     ...
    # webhook configuration
@@ -39,7 +41,6 @@ There are several out of the box conventions provided with every TAP installatio
             name: spring-boot-webhook
             namespace: spring-boot-convention
     ```
-
 
   ```shell
   $ kubectl get clusterpodconventions
