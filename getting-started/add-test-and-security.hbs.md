@@ -358,7 +358,7 @@ pipeline:
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
 
-    If the source or image scan has a "Failed" phase, the scan has failed compliance and the supply chain stops. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow) on the CVE triage workflow.
+    If the source or image scan has a "Failed" phase this means that the scan has failed due to a scan policy violation and the supply chain will stop. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow) on the CVE triage workflow.
 
 ### <a id="query-for-vuln"></a> Query for vulnerabilities
 
