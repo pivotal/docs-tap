@@ -421,6 +421,80 @@ spec:
 
 If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
+## <a id="enabling-tls"></a> Enabling TLS for Accelerators Server
+
+In order to enable TLS for Accelerators Server, following properties should be provided in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+server:
+  tls:
+    enabled: true
+    key: <SERVER-PRIVATE-KEY>
+    crt: <SERVER-CERTIFICATE>
+```
+
+Where:
+
+- `SERVER-PRIVATE-KEY` is the pem encoded server private key.
+- `SERVER-CERTIFICATE` is the pem encoded server certificate.
+
+Here is a sample `tap-values.yaml` configuration with TLS enabled for Accelerators Server:
+
+```yaml
+server:
+  tls:
+    enabled: true
+    key: |
+      -----BEGIN PRIVATE KEY-----
+      .
+      .  < private key data >
+      .
+      -----END PRIVATE KEY-----
+    crt: |
+      -----BEGIN CERTIFICATE-----
+      .
+      .  < certificate data >
+      .
+      -----END CERTIFICATE-----
+```
+
+## <a id="enabling-tls"></a> Enabling TLS for Accelerators Engine
+
+In order to enable TLS for Accelerators Engine, following properties should be provided in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+engine:
+  tls:
+    enabled: true
+    key: <ENGINE-PRIVATE-KEY>
+    crt: <ENGINE-CERTIFICATE>
+```
+
+Where:
+
+- `ENGINE-PRIVATE-KEY` is the pem encoded acc-engine private key.
+- `ENGINE-CERTIFICATE` is the pem encoded acc-engine certificate.
+
+Here is a sample `tap-values.yaml` configuration with TLS enabled for Accelerators Engine:
+
+```yaml
+engine:
+  tls:
+    enabled: true
+    key: |
+      -----BEGIN PRIVATE KEY-----
+      .
+      .  < private key data >
+      .
+      -----END PRIVATE KEY-----
+    crt: |
+      -----BEGIN CERTIFICATE-----
+      .
+      .  < certificate data >
+      .
+      -----END CERTIFICATE-----
+```
+
 ## <a id='next-steps'></a>Next steps
 
 - [Using Grype in offline and air-gapped environments](../scst-scan/offline-airgap.html)
