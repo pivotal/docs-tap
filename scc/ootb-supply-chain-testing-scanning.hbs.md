@@ -356,7 +356,7 @@ Create workload:
 ```
 ## <a id="cve-triage-workflow"></a> CVE Triage Workflow
 
-The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md#define-a-rego-file-for-policy-enforcement) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities that are in violation of the user-defined scan policy. If you have triaged these vulnerabilities and identified any false positives, refer to this section on how to unblock your deployment from these CVEs
+The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md#define-a-rego-file-for-policy-enforcement) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities that are in violation of the user-defined scan policy. If you have triaged these vulnerabilities and identified any false positives, refer to this section on how to unblock your deployment from these CVEs.
 
 ### <a id="sc-stop"></a>Confirming Supply Chain stopped due failed policy enforcement
 
