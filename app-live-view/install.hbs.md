@@ -63,9 +63,9 @@ To install Application Live View back end:
     $ tanzu package available get backend.appliveview.tanzu.vmware.com/1.3.0-build.2 --values-schema --namespace tap-install
       KEY                DEFAULT          TYPE     DESCRIPTION                                                           
       ingressDomain      tap.example.com  string   Domain to be used by the HTTPProxy ingress object. The "appliveview"  
-                                                   subdomain will be prepended to the value provided. For example:       
+                                                   subdomain is prepended to the value provided. For example:       
                                                    "example.com" would become "appliveview.example.com".                 
-      ingressEnabled     false            boolean  Flag for whether or not to create an HTTPProxy for ingress.           
+      ingressEnabled     false            boolean  Flag for whether to create an HTTPProxy for ingress.           
                                                                                                                         
       kubernetes_flavor                   string   Kubernetes flavor                                                     
                                                                                                                         
@@ -76,7 +76,7 @@ To install Application Live View back end:
 
     For more information about values schema options, see the properties listed earlier.
 
-1. Create `app-live-view-backend-values.yaml` with the following details:
+2. Create `app-live-view-backend-values.yaml` with the following details:
 
     For a SINGLE-CLUSTER environment, the Application Live View back end is exposed through the Kubernetes cluster service. 
     By default, ingress is disabled for back end.
@@ -120,13 +120,13 @@ To install Application Live View back end:
 
     You can edit the values to suit your project needs or leave the default values as is. 
 
-    >**Note:** The app-live-view namespace and the TLS secret for the domain should be created before installing the TAP packages in the cluster so that the HTTPProxy gets updated with the TLS secret. To create a TLS secret, run the command below
+    >**Note:** The app-live-view namespace and the TLS secret for the domain should be created before installing the Tanzu Application Platform packages in the cluster so that the HTTPProxy gets updated with the TLS secret. To create a TLS secret, run:
     
     ```console
     kubectl create -n app-live-view secret tls alv-cert --cert=<.crt file> --key=<.key file>
     ```
 
-    To verify HTTPProxy object with the TLS secret, run the command below
+    To verify HTTPProxy object with the TLS secret, run:
 
     ```console
     kubectl get httpproxy -A 
@@ -135,7 +135,7 @@ To install Application Live View back end:
     ```
 
 
-1. Install the Application Live View back-end package by running:
+3. Install the Application Live View back-end package by running:
 
     ```console
     tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-backend-values.yaml
@@ -161,7 +161,7 @@ To install Application Live View back end:
 
     >**Note:** The Application Live View back-end component is deployed in `app-live-view` namespace by default.
 
-1. Verify the Application Live View back-end package installation by running:
+4. Verify the Application Live View back-end package installation by running:
 
     ```console
     tanzu package installed get appliveview -n tap-install
