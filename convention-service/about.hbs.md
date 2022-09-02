@@ -6,8 +6,8 @@ The [Cartographer Conventions](../cartographer-conventions/about.md) component m
 The v0.7.x version of the convention controller is a passive system that translates the CRDs to the [new group](../cartographer-conventions/reference/pod-intent.md).
 
 
-#### <a id="ootb-conventions"></a> Sample Conventions  
-There are several out of the box conventions provided with a full profile installation of Tanzu Application Platform or individual component installation of the following packages.
+#### <a id="ootb-conventions"></a> Sample conventions  
+There are several out-of-the-box conventions provided with a full profile installation of Tanzu Application Platform or individual component installation of the following packages.
   
   ```shell 
     ❯ kubectl get pkgi -n tap-install | grep conventions
