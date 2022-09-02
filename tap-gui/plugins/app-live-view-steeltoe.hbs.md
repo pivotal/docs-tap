@@ -69,20 +69,23 @@ top of the page.
 
 ## <a id="log-levels-page"></a> Log Levels page
 
-To navigate to the **Log Levels** page, the user can select the **Log Levels** option from the
-**Information Category** drop-down menu.
-The log levels page provides access to the application’s loggers and the configuration of their levels.
+To go to the **Log Levels** page, select the **Log Levels** option from the **Information Category**
+drop-down menu.
+The **Log Levels** page provides access to the application’s loggers and the configuration of the
+levels.
 
-The user can configure the log levels such as INFO, DEBUG, and TRACE in real time from the UI.
-The user can search for a package and edit its respective log level.
-The user can configure the log levels at a specific class and package.
-They can deactivate all the log levels by modifying the log level of root logger to OFF.
+You can:
 
-The toggle **Changes Only** displays the changed log levels.
-The search feature enables the user to search by logger name.
-The **Reset All** resets all the loggers to default state.
+- Configure log levels, such as **INFO**, **DEBUG**, and **TRACE**, in real time from the UI
+- Search for a package and edit its respective log level
+- Configure the log levels at a specific class and package
+- Deactivate all the log levels by changing the log level of root logger to **OFF**
 
-![Log Levels Page in UI](images/log-levels-steeltoe.png)
+Use the **Changes Only** toggle to display the changed log levels.
+Use the search feature to search by logger name.
+Click **Reset All** to reset all the loggers to the default state.
+
+![Screenshot of the Log Levels page. The log level WARN is selected for every logger except Default.](images/log-levels-steeltoe.png)
 
 ## <a id="threads-page"></a> Threads page
 
