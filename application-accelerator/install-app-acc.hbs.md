@@ -23,30 +23,22 @@ See [Install Source Controller](../source-controller/install-source-controller.m
 
 When you install the Application Accelerator, you can configure the following optional properties:
 
-| Property                                       | Default                                                            | Description                                                                                   |
-|------------------------------------------------|--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| registry.secret_ref                            | registry.tanzu.vmware.com                                          | The secret used for accessing the registry where the App-Accelerator images are located       |
-| server.service_type                            | ClusterIP                                                          | The service type for the acc-ui-server service including LoadBalancer, NodePort, or ClusterIP |
-| server.watched_namespace                       | accelerator-system                                                 | The namespace the server watches for accelerator resources                                    |
-| server.tls.enabled                             | false                                                              | Should enable TLS for server?                                                                 |
-| server.tls.key                                 | N/A                                                                | PEM encoded server private key to be used when TLS is enabled                                 |
-| server.tls.cert                                | N/A                                                                | PEM encode server certificate to be used when TLS is enabled                                  |
-| server.engine_invocation_url                   | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine                                            |
-| engine.service_type                            | ClusterIP                                                          | The service type for the acc-engine service including LoadBalancer, NodePort, or ClusterIP    |
-| engine.max_direct_memory_size                  | 32M                                                                | The maximum size for the Java -XX:MaxDirectMemorySize setting                                 |
-| engine.tls.enabled                             | false                                                              | Should enable TLS for acc-engine?                                                             |
-| engine.tls.key_store                           | N/A                                                                | Base64 encoded acc-engine keystore to be used when TLS enabled                                |
-| engine.tls.key_store_password                  | N/A                                                                | The password of the acc-engine the keystore                                                   |
-| engine.tls.key_alias                           | N/A                                                                | The alias of the acc-engine private key in the keystore                                       |
-| engine.tls.key_password                        | N/A                                                                | The password of the acc-engine private key in the keystore                                    |
-| samples.include                                | True                                                               | Option to include the bundled sample Accelerators in the installation                         |
-| ingress.include                                | False                                                              | Option to include the ingress configuration in the installation                               |
-| ingress.enable_tls                             | False                                                              | Option to include TLS for the ingress configuration                                           |
-| domain                                         | tap.example.com                                                    | Top-level domain to use for ingress configuration, defaults to `shared.ingress_domain`        |
-| tls.secret_n_ame                               | tls                                                                | The name of the secret                                                                        |
-| tls.namespace                                  | tanzu-system-ingress                                               | The namespace for the secret                                                                  |
-| telemetry.retain_invocation_events_for_no_days | 30                                                                 | The number of days to retain recorded invocation events resourcess.                           |
-| telemetry.record_invocation_events             | true                                                               | Should the system record each engine invocation when generating files for an accelerator?     |
+| Property | Default | Description |
+| --- | --- | --- |
+| registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located |
+| server.service_type | ClusterIP | The service type for the acc-ui-server service including LoadBalancer, NodePort, or ClusterIP |
+| server.watched_namespace | accelerator-system | The namespace the server watches for accelerator resources |
+| server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine |
+| engine.service_type | ClusterIP | The service type for the acc-engine service including LoadBalancer, NodePort, or ClusterIP |
+| engine.max_direct_memory_size | 32M | The maximum size for the Java -XX:MaxDirectMemorySize setting |
+| samples.include | True | Option to include the bundled sample Accelerators in the installation |
+| ingress.include | False | Option to include the ingress configuration in the installation |
+| ingress.enable_tls | False | Option to include TLS for the ingress configuration |
+| domain | tap.example.com | Top-level domain to use for ingress configuration, defaults to `shared.ingress_domain` |
+| tls.secret_n_ame | tls | The name of the secret |
+| tls.namespace | tanzu-system-ingress | The namespace for the secret |
+| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.                         
+| telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?  
 
 VMware recommends that you do not override the defaults for `registry.secret_ref`,
 `server.engine_invocation_url`, or `engine.service_type`.
