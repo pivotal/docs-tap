@@ -356,7 +356,7 @@ Create workload:
 ```
 ## <a id="cve-triage-workflow"></a> CVE Triage Workflow
 
-The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities.
+The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md#define-a-rego-file-for-policy-enforcement) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities that are in violation of the user-defined scan policy. If you have triaged these vulnerabilities and identified any false positives, refer to this section on how to unblock your deployment from these CVEs.
 
 ### <a id="sc-stop"></a>Confirming Supply Chain stopped due failed policy enforcement
 
@@ -380,7 +380,7 @@ After reviewing the outputs of the workload and corresponding scan, the develope
 - Update the component
 - Amend the scan policy
 
->**Note:** For additional information on vulnerability scanners, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md).
+>**Note:** For additional information on common vulnerability scanner limitations, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md#a-note-on-vulnerability-scanners).
 
 #### <a id="update-component"></a>Updating the component
 
@@ -399,11 +399,11 @@ Determine if updating the component will resolve the vulnerability. Vulnerabilit
 
 #### <a id="amend-scan-policy"></a>Amending the scan policy
 
-After analyzing the CVE(s), if a developer decides to proceed without remediating the CVE, the ScanPolicy can be amended to suppress CVE(s). 
+After analyzing the CVE(s), if a developer decides to proceed without remediating the CVE (e.g. **when a CVE has been triaged and evaluated to be a false positive**), the ScanPolicy can be amended to ignore CVE(s). 
 See [Writing Policy Templates](../scst-scan/policies.md) for more details.
 
 Under RBAC, users with the `app-operator-scanning` role (part of the `app-operator` aggregate role), have permission to modify the ScanPolicy. See [Detailed role permissions breakdown](../authn-authz/permissions-breakdown.hbs.md) for more information.
 
 ## <a id="scan-image-using-snyk"></a> Scan Image using Snyk
 
-[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes an additional integration for running an image scan using Snyk. For information on how to install this integration and how to modify the supply chain template, see [Install Snyk scanner](../scst-scan/install-snyk-integration.md).
+[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integration for running an image scan using Snyk and VMware Carbon Black. For information on how to install this integration and how to modify the supply chain template, see [Available Scanners for Supply Chain Security Tools - Scan](../scst-scan/available-scanners.hbs.md).
