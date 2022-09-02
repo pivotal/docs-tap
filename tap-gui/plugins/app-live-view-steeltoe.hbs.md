@@ -67,6 +67,23 @@ top of the page.
 
 ![Environment Page in UI](images/environment-steeltoe.png)
 
+## <a id="log-levels-page"></a> Log Levels page
+
+To navigate to the **Log Levels** page, the user can select the **Log Levels** option from the
+**Information Category** drop-down menu.
+The log levels page provides access to the application’s loggers and the configuration of their levels.
+
+The user can configure the log levels such as INFO, DEBUG, and TRACE in real time from the UI.
+The user can search for a package and edit its respective log level.
+The user can configure the log levels at a specific class and package.
+They can deactivate all the log levels by modifying the log level of root logger to OFF.
+
+The toggle **Changes Only** displays the changed log levels.
+The search feature enables the user to search by logger name.
+The **Reset All** resets all the loggers to default state.
+
+![Log Levels Page in UI](images/log-levels-steeltoe.png)
+
 ## <a id="threads-page"></a> Threads page
 
 To access the **Threads** page, select the **Threads** option from the
