@@ -304,7 +304,7 @@ There are more service use cases not covered in this getting started guide. See 
       <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html">Consuming Google Cloud SQL on Tanzu Application Platform with Crossplane</a>
     </td>
     <td>
-      Using <a href="https://crossplane.io/">Crossplane</a> to provision a Cloud SQL instance instance and consume it from a Tanzu Application Platform workload.<br>
+      Using <a href="https://crossplane.io/">Crossplane</a> to provision a Cloud SQL instance and consume it from a Tanzu Application Platform workload.<br>
       Involves making a third-party API consumable from Tanzu Application Platform.
     </td>
   </tr><tr>
