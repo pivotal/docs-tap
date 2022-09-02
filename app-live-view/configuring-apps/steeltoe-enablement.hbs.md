@@ -42,7 +42,7 @@ The thread metrics is available in SteeltoeVersion `3.2.0-rc1`. Therefore, to en
 
 ```xml
 <PropertyGroup>
-    <SteeltoeVersion>3.2.0-rc1</SteeltoeVersion>
+    <SteeltoeVersion>3.2.*</SteeltoeVersion>
 </PropertyGroup>
 ```
 
