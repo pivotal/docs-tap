@@ -11,6 +11,7 @@ docs.vmware.com is built.
   - [Prerequisites](prerequisites.md)
   - [Accepting the EULAs and installing the Tanzu CLI and plug-ins](install-tanzu-cli.md)
   - [Installing Tanzu Application Platform package and profiles](install.md)
+      - [Viewing possible configuration settings for your package](view-package-config.md)
   - [Installing Tanzu Application Platform in an air-gapped environment (beta)](install-air-gap.md)
       - [Installing Tanzu Application Platform](install-air-gap.md)
       - [Installing the Tanzu Build Service dependencies](tbs-offline-install-deps.md)
