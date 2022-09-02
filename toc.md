@@ -208,6 +208,7 @@ docs.vmware.com is built.
             - [Custom configuration for the connector](app-live-view/configuring-apps/configuring-app-for-connector.md)
             - [Custom configuration for application actuator endpoints](app-live-view/configuring-apps/configuring-actuator.md)
             - [Scaling Knative apps in Tanzu Application Platform](app-live-view/configuring-apps/scaling-applications.md)
+            - [Application Live View on Openshift](app-live-view/configuring-apps/openshift.md)
         - [Supporting polyglot apps](app-live-view/polyglot.md)
         - [Internal architecture](app-live-view/architecture.md)
         - [Troubleshooting](app-live-view/troubleshooting.md)
