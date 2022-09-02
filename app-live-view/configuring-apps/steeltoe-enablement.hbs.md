@@ -38,7 +38,22 @@ To enable logging, add the following configuration to your `appsettings.json` fi
 }
 ```
 
-The thread metrics is available in SteeltoeVersion `3.2.0-rc1`. Therefore, to enable Threads page in Application Live View UI, add the following configuration to your `.csproj` file:
+To enable heapdump, add the following configuration to your `appsettings.json` file:
+
+```json
+{
+  "Management": {
+    "Endpoints": {
+      "HeapDump": {
+        "HeapDumpType": "Normal"
+      }
+    }
+  }
+}
+```
+
+
+The thread metrics is available in SteeltoeVersion `3.2.*`. Therefore, to enable Threads page in Application Live View UI, add the following configuration to your `.csproj` file:
 
 ```xml
 <PropertyGroup>
@@ -46,13 +61,7 @@ The thread metrics is available in SteeltoeVersion `3.2.0-rc1`. Therefore, to en
 </PropertyGroup>
 ```
 
-To enable Application Live View on the Steeltoe TAP workload, you must manually add the label `tanzu.app.live.view.application.flavours: steeltoe` on your workload yaml:
-
-```
-metadata:
-    labels:
-        tanzu.app.live.view.application.flavours: steeltoe
-```
+To enable Application Live View on the Steeltoe TAP workload, the Application Live View convention service automatically applies labels on the workload such as `tanzu.app.live.view.application.flavours: steeltoe` and `tanzu.app.live.view: true` based on the Steeltoe image metadata.
 
 >**Note:** If your application image is not built with Tanzu Build Service, to enable Application Live View on Steeltoe Tanzu Application Platform workload, use the following command. For example:
 
