@@ -421,6 +421,76 @@ spec:
 
 If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
+## <a id="enabling-tls"></a> Enabling TLS for Accelerators Server
+
+In order to enable TLS for Accelerators Server, following properties should be provided in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+server:
+  tls:
+    enabled: true
+    key: <SERVER-PRIVATE-KEY>
+    cert: <SERVER-CERTIFICATE>
+```
+
+Where:
+
+- `SERVER-PRIVATE-KEY` is the pem encoded server private key.
+- `SERVER-CERTIFICATE` is the pem encoded server certificate.
+
+This is an example of a part of a `tap-values.yaml` configuration:
+
+```yaml
+server:
+  tls:
+    enabled: true
+    key: |
+      -----BEGIN PRIVATE KEY-----
+      .
+      .  < private key data >
+      .
+      -----END PRIVATE KEY-----
+    crt: |
+      -----BEGIN CERTIFICATE-----
+      .
+      .  < certificate data >
+      .
+      -----END CERTIFICATE-----
+```
+
+## <a id="enabling-tls"></a> Enabling TLS for Accelerators Engine
+
+In order to enable TLS for Accelerators Engine, following properties should be provided in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+engine:
+  tls:
+    enabled: true
+    key_store: <BASE64-KEY-STORE>
+    key_store_password: <KEY-STORE-PASSWORD>
+    key_alias: <KEY-ALIAS>
+    key_password: <KEY-PASSWORD>
+```
+
+Where:
+
+- `BASE64-KEY-STORE` is the base64 encoded keystore.
+- `KEY-STORE-PASSWORD` is the keystore password in plain text.
+- `KEY-ALIAS` is the alias of the key in the keystore in plain text.
+- `KEY-PASSWORD` is the password of the key in the keystore in plain text.
+
+This is an example of a part of a `tap-values.yaml` configuration:
+
+```yaml
+engine:
+  tls:
+    enabled: true
+    key_store: MIIMgwIBAzCCDE8GCSqGSIb...
+    key_store_password: "secret"
+    key_alias: "foo"
+    key_password: "secret"
+```
+
 ## <a id='next-steps'></a>Next steps
 
 - [Using Grype in offline and air-gapped environments](../scst-scan/offline-airgap.html)
