@@ -38,7 +38,7 @@ To enable logging, add the following configuration to your `appsettings.json` fi
 }
 ```
 
-To enable heapdump in App Live View page, add the following configuration to your `appsettings.json` file:
+To enable heapdump, add the following configuration to your `appsettings.json` file:
 
 ```json
 {
