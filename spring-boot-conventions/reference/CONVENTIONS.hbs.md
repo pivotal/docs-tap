@@ -69,9 +69,8 @@ Do one of the following actions to set `JAVA_TOOL_OPTIONS` property and values:
 
 ## <a id="spring-boot-convention"></a> Spring Boot convention
 
-If any of the following dependancies are in the metadata within the `SBOM` file
-under `dependencies`, the Spring Boot convention is applied to the `PodTemplateSpec` object
-`spring-boot`.
+If the `spring-boot` dependency is in the metadata within the `SBOM` file under `dependencies`,
+the Spring Boot convention is applied to the `PodTemplateSpec` object.
 
 The Spring Boot convention adds a label (`conventions.carto.run/framework: spring-boot`) to the
 `PodTemplateSpec` that describes the framework associated with the workload, and adds an annotation
@@ -229,9 +228,8 @@ status:
 
 ## <a id="spring-boot-actuator-convention"></a> Spring Boot Actuator convention
 
-If any of the following dependencies are in the metadata within the `SBOM` file
-under `dependencies`, the Spring Boot actuator convention is applied to the `PodTemplateSpec` object
-`spring-boot-actuator`.
+If the `spring-boot-actuator` dependency is in the metadata within the `SBOM` file
+under `dependencies`, the Spring Boot actuator convention is applied to the `PodTemplateSpec` object.
 
 The Spring Boot Actuator convention does the following actions:
 
