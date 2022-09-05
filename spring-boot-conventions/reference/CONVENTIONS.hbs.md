@@ -69,7 +69,7 @@ Do one of the following actions to set `JAVA_TOOL_OPTIONS` property and values:
 
 ## <a id="spring-boot-convention"></a> Spring Boot convention
 
-If any of the following dependancies are in the metadata within the `SBOM` file
+If any of the following dependencies are in the metadata within the `SBOM` file
 under `dependencies`, the Spring Boot convention is applied to the `PodTemplateSpec` object
 `spring-boot`.
 
@@ -117,7 +117,7 @@ status:
 
 ## <a id="spring-boot-graceful-shutdown-convention"></a> Spring boot graceful shut down convention
 
-If any of the following dependancies are in the metadata within the `SBOM` file under `dependencies`,
+If any of the following dependencies are in the metadata within the `SBOM` file under `dependencies`,
 the Spring Boot graceful shut down convention is applied to the `PodTemplateSpec` object:
 
 - `spring-boot-starter-tomcat`
