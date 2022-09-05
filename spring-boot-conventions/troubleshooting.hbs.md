@@ -8,6 +8,12 @@ If you have trouble, you can retrieve and examine logs from the Spring Boot conv
    By default the namespace is `spring-boot-convention`. To inspect the logs, run:
 
    ```console
+   kubectl logs -l app=spring-boot-webhook -n spring-boot-convention
+   ```
+
+   For example:
+
+   ```console
    $ kubectl logs -l app=spring-boot-webhook -n spring-boot-convention
 
    {"level":"info","timestamp":"2021-11-11T16:00:26.597Z","caller":"spring-boot-conventions/server.go:83","msg":"Successfully applied convention: spring-boot","component":"spring-boot-conventions"}
