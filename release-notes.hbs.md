@@ -24,6 +24,10 @@ The following issues, listed by area and component, are resolved in this release
 
 * Resolved blob source scan reporting wrong source URL to the metadata store when the .git file does not exist.
 
+#### <a id="1-2-2-tap-gui-resolved"></a>Tanzu Application Platform GUI
+
+* Bumped supply-chain package version to 0.1.26 to fix the severity in the Image Scanner Stage.
+
 ### <a id='1-2-2-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
