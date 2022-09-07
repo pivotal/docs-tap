@@ -85,7 +85,7 @@ kubectl apply -f store_ca.yaml
 To get the Supply Chain Security Tools - Store's Auth token, run:
 
 ```bash
-AUTH_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
+AUTH_TOKEN=$(kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-write-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d)
 ```
 
 Create the corresponding secret on the second cluster. Run:
