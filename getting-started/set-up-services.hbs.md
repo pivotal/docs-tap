@@ -1,6 +1,6 @@
 # Set up services for consumption by developers
 
-This how-to guide walks service and application operators through setting up services for consumption by Tanzu Application Platform developers. For the sake of example, you'll set up the RabbitMQ Cluster Kubernetes operator.
+This how-to guide walks service and application operators through setting up services for consumption by Tanzu Application Platform developers. For the sake of example, you'll set up the RabbitMQ Cluster Kubernetes operator, but the process is the same for any other services you wish to setup.
 You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
 
 ## <a id="you-will"></a>What you will do
@@ -37,21 +37,24 @@ Before following this walkthrough, you must:
 
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
-1. Ensure your Tanzu Application Platform cluster can pull the images required by the RabbitMQ Cluster Kubernetes operator. For more information, see the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
+1. Ensure your Tanzu Application Platform cluster can pull the images required by the service operator. For more information, see the following documentation:
+   * [RabbitMQ Cluster Kubernetes operator](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
+   * [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html).
+   * [VMware Tanzu SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html).
 
 ## <a id="stk-set-up"></a> Set up a service
 
+> **Note:** Although this walkthrough uses the RabbitMQ Cluster Kubernetes operator
+> as an example, the set up steps remain mostly the same for any compatible operator.
+
 This section covers the following:
 
-* Installing the RabbitMQ Cluster Kubernetes operator.
+* Installing the selected service Kubernetes operator.
 * Creating the role-based access control (RBAC) rules to grant Tanzu Application Platform permission to interact
-with the newly-installed APIs provided by the RabbitMQ Cluster Kubernetes operator.
+with the newly-installed APIs provided by the operator.
 * Creating the additional supporting resources to aid with discovery of services.
 
 For this part of the walkthrough, you assume the role of the **service operator**.
-
-> **Note:** Although this walkthrough uses the RabbitMQ Cluster Kubernetes operator
-> as an example, the set up steps remain mostly the same for any compatible operator.
 
 To set up a service:
 
@@ -63,6 +66,10 @@ To set up a service:
 
     As a result, a new API Group (`rabbitmq.com`) and Kind (`RabbitmqCluster`) are
     now available in the cluster.
+
+    > Postgres: [Installing a Tanzu Postgres Operator](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-install-operator.html)
+    >
+    > MySQL: [Installing the Tanzu SQL for Kubernetes Operator](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-install-operator.html)
 
 1. Apply RBAC rules to grant Tanzu Application Platform permission to interact with the new API.
 
@@ -88,6 +95,9 @@ To set up a service:
         ```console
         kubectl apply -f resource-claims-rmq.yaml
         ```
+    > Postgres: [Creating Service Bindings](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-creating-service-bindings.html)
+    >
+    > MySQL: [Connecting an Application to a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-creating-service-bindings.html)
 
 1. Make the new API seen as claimable to application operators.
 
@@ -107,6 +117,12 @@ To set up a service:
           pool:
             group: rabbitmq.com
             kind: RabbitmqCluster
+        # for Postgres
+        #   group: sql.tanzu.vmware.com
+        #   kind: Postgres
+        # for MySql
+        #   group: with.sql.tanzu.vmware.com
+        #   kind: MySQL
         ```
 
     1. Apply `rabbitmqcluster-clusterinstanceclass.yaml` by running:
@@ -179,6 +195,10 @@ To create a service instance:
         kubectl apply -f rmq-1-service-instance.yaml
         ```
 
+    > Postgres: [Deploying a Postgres Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-create-delete-postgres.html#deploying-a-postgres-instance)
+    >
+    > MySQL: [Creating a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-create-delete-mysql.html#create-a-mysql-instance)
+
 3. Create a resource claim policy to define the namespaces the instance can be claimed and bound from.
 
     > **Note:** By default, you can only claim and bind to service instances that
@@ -202,6 +222,12 @@ To create a service instance:
           subject:
             group: rabbitmq.com
             kind: RabbitmqCluster
+        # for Postgres
+        #   group: sql.tanzu.vmware.com
+        #   kind: Postgres
+        # for MySql
+        #   group: with.sql.tanzu.vmware.com
+        #   kind: MySQL
         ```
 
     1. Apply `rmq-claim-policy.yaml` by running:
