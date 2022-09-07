@@ -10,6 +10,9 @@ This topic contains release notes for Tanzu Application Platform v1.2.
 
 This release includes the following changes, listed by component and area.
 
+#### <a id="1-2-2-scst-store-new-features"></a>Supply Chain Security Tools - Store
+
+* Modified vulnerability response in the `tanzu insight` CLI plugin to only return the highest severity rating for a given CVE.
 
 ### <a id='1-2-2-breaking-changes'></a> Breaking changes
 
@@ -23,6 +26,12 @@ The following issues, listed by area and component, are resolved in this release
 #### <a id="1-2-2-scst-scan-issues"></a>Supply Chain Security Tools - Scan
 
 * Resolved blob source scan reporting wrong source URL to the metadata store when the .git file does not exist.
+
+#### <a id="1-2-2-scst-store-issues"></a>Supply Chain Security Tools - Store
+
+* Added secret for metadata-store-read-write-client to support K8s 1.24.
+* Resolved an issue where Store could not handle new method types.
+* Resolved an issue where Store could not handle blob URLS in component names.
 
 #### <a id="1-2-2-tap-gui-resolved"></a>Tanzu Application Platform GUI
 
