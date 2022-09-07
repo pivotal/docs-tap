@@ -18,21 +18,27 @@ on a per-project basis by using the drop-down menu in **Settings**.
 The extension enables you to apply workloads on your Kubernetes cluster that has
 Tanzu Application Platform.
 
-To apply a workload from the Command Palette:
+To apply a workload:
 
-1. Pressing ⇧⌘P on macOS or Ctrl+Shift+P on Windows to open the Command Palette.
+1. Right-click anywhere in the VS Code project explorer or open the Command Palette by pressing ⇧⌘P on macOS or Ctrl+Shift+P on Windows.
 
 1. Run `Tanzu: Apply Workload`.
 
-    ![Command palette open showing text Tanzu: Apply Workload](../images/vscode-applyworkload1.png)
+    Context Menu
+
+    ![Context menu open showing text Tanzu: Apply Workload](../images/vscode-applyworkload1.png)
+
+    Command Palette
+
+    ![Command palette open showing text Tanzu: Apply Workload](../images/vscode-applyworkload2.png)
 
 1. If there are multiple projects with workloads, select the workload to apply.
 
-    ![Apply Workload menu open showing workloads available to apply](../images/vscode-applyworkload2.png)
+    ![Apply Workload menu open showing workloads available to apply](../images/vscode-applyworkload3.png)
 
     A notification appears showing that the workload was applied.
 
-    ![Apply Workload notification showing workload has been applied](../images/vscode-applyworkload3.png)
+    ![Apply Workload notification showing workload has been applied](../images/vscode-applyworkload4.png)
 
     A new workload appears on the Tanzu Workloads panel.
 
@@ -57,39 +63,6 @@ To apply a workload from the Command Palette:
 
     ![Workload ready on Tanzu Workloads](../images/vscode-panel-workload-ready.png)
 
-To apply a workload from the context menu:
-
-1. Apply a workload from the context menu by right-clicking on your workload file and selecting
-**Tanzu: Apply Workload**.
-
-    ![Context menu open showing text Tanzu: Apply Workload](../images/vscode-applyworkload4.png)
-
-    A notification appears showing that the workload was applied.
-
-    ![Apply Workload notification showing workload has been applied](../images/vscode-applyworkload3.png)
-
-    A new workload appears on the Tanzu Workloads panel.
-
-    ![Workload on the Tanzu Workloads panel](../images/vscode-panel-workload-unknown.png)
-
-    The workload panel shows the workloads running in the namespace that is defined in the current
-    Kubernetes context.
-
-1. (Optional) See the context and namespace currently configured by running:
-
-    ```console
-    kubectl config get-contexts
-    ```
-
-1. (Optional) Set a namespace for the current context by running:
-
-    ```console
-    kubectl config set-context --current --namespace=YOUR-NAMESPACE
-    ```
-
-    After the workload is deployed, the status on the Tanzu Workloads panel changes to **Ready**.
-
-    ![Workload ready on Tanzu Workloads](../images/vscode-panel-workload-ready.png)
 
 ## <a id="debugging-on-clust"></a> Debugging on the cluster
 
