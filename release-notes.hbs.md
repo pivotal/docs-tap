@@ -6,10 +6,6 @@ This topic contains release notes for Tanzu Application Platform v1.0.
 
 **Release Date**: September 13, 2022
 
-### <a id='1-0-4-sec-issues'></a> Security issue
-
-Tanzu Application Platform GUI is vulnerable to [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the `json-schema` package.
-
 ### <a id='1-0-4-known-issues'></a> Known issues
 
 This release has the following known issues:
