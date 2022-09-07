@@ -181,7 +181,7 @@ the workload must be updated to point at your Tekton pipeline.
 - Before installing OOTB Supply Chain with Testing and Scanning, you must first install OOTB Supply Chain with Testing.
 - Both the Scan Controller and the default Grype scanner must be installed for scanning. Refer to step 1 below to verify installation.
 
-  > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies.
+  > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for the languages/frameworks with check marks in the column "Extended Scanning Coverage using Anchore Grype" on the [Language and Framework Support Table](../about-package-profiles.hbs.md#language-and-framework-support-in-tanzu-application-platform).
 
 - [Enable CVE scan results within the TAP GUI](../tap-gui/plugins/scc-tap-gui.md#scan).
 
