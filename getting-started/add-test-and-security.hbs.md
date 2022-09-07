@@ -179,16 +179,16 @@ the workload must be updated to point at your Tekton pipeline.
 ### <a id="prereqs-install-OOTB-test-scan"></a>Prerequisites
 
 - Before installing OOTB Supply Chain with Testing and Scanning, you must first install OOTB Supply Chain with Testing.
-- The Grype must be installed for scanning.
+- Both the Scan Controller and the default Grype scanner must be installed for scanning. Refer to step 1 below to verify installation.
 
   > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies.
 
-- [Enable CVE scan results](../tap-gui/plugins/scc-tap-gui.md#scan).
+- [Enable CVE scan results within the TAP GUI](../tap-gui/plugins/scc-tap-gui.md#scan).
 
 To install OOTB Supply Chain with Testing and Scanning:
 
 1. Supply Chain Security Tools (SCST) - Scan is installed as part of the Tanzu Application Platform profiles.
-Verify that both Scan Link and Grype Scanner are installed by running:
+Verify that both Scan Controller and Grype Scanner are installed by running:
 
     ```console
     tanzu package installed get scanning -n tap-install
@@ -199,7 +199,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
     During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is deployed into another namespace, these sample ScanTemplates must also be present in the other namespace. One way to accomplish this is to install Grype Scanner again and provide the namespace in the values file.
 
-    A ScanPolicy is required and must be in the required namespace. A sample ScanPolicy is provided as follows, but you can also supply your own. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idupdates-to-developer-namespacea-updates-to-the-developer-namespace) for more details. To apply the sample ScanPolicy, you can either add the namespace flag to the kubectl command or add the namespace field to the template by running:
+    A ScanPolicy is required and must be in the required namespace. A sample ScanPolicy is provided as follows to block a supply chain when CVEs with critical, high, and unknown ratings are found using `notAllowedSeverities := ["Critical","High","UnknownSeverity"]`. You can also configure the supply chain to use your own custom policies and/or apply exceptions when you want to ignore certain CVEs. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#updates-to-developer-namespace) for more details. To apply the sample ScanPolicy, you can either add the namespace flag to the kubectl command or add the namespace field to the template by running:
 
     ```console
     kubectl apply -f - -o yaml << EOF
@@ -358,7 +358,7 @@ pipeline:
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
 
-    If the source or image scan has a "Failed" phase this means that the scan has failed due to a scan policy violation and the supply chain will stop. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow) on the CVE triage workflow.
+    **Important**: If the source or image scan has a "Failed" phase this means that the scan has failed due to a scan policy violation and the supply chain will stop. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow) for the CVE triage workflow.
 
 ### <a id="query-for-vuln"></a> Query for vulnerabilities
 
