@@ -111,9 +111,13 @@ To start debugging on the cluster:
 
 1. Add a [breakpoint](https://code.visualstudio.com/docs/editor/debugging#_breakpoints) in your code.
 2. Right-click anywhere in the VS Code project explorer or open the Command Palette by pressing ⇧⌘P on macOS or Ctrl+Shift+P on Windows.
-3. Select **Tanzu: Java Debug Workload**.
+3. Select **Tanzu: Java Debug Workload** from either menu.
+
+    Context Menu
 
     ![The VS Code interface showing the Explorer tab with the workload.yaml file pop-up menu open and the Tanzu: Java Debug Start option highlighted](../images/vscode-startdebug1.png)
+
+    Command Palette
 
     ![Command palette open showing text Tanzu: Java Debug Start](../images/vscode-startdebug2.png)
 
