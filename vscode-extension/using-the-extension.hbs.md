@@ -233,24 +233,31 @@ Tanzu Application Platform.
 
 To delete a workload:
 
-1. Open the Command Palette by pressing ⇧⌘P on macOS or Ctrl+Shift+P on Windows.
+1. Right-click anywhere in the VS Code project explorer or open the Command Palette by pressing ⇧⌘P on macOS or Ctrl+Shift+P on Windows.
 
 1. Run `Tanzu: Delete Workload`.
 
-    ![Command palette open showing text Tanzu: Delete Workload](../images/vscode-deleteworkload1.png)
+    Context Menu
+
+    ![Context menu open showing text Tanzu: Delete Workload](../images/vscode-deleteworkload1.png)
+
+
+    Command Palette
+
+    ![Command palette open showing text Tanzu: Delete Workload](../images/vscode-deleteworkload2.png)
 
 1. Select the workload to delete.
 
-    ![Delete Workload menu open showing workloads available to delete](../images/vscode-deleteworkload2.png)
+    ![Delete Workload menu open showing workloads available to delete](../images/vscode-deleteworkload3.png)
 
     If the **Tanzu: Confirm Delete** setting is enabled, a message appears that prompts you to delete
     the workload and not warn again, delete the workload, or cancel.
 
-    ![Delete Confirmation Notification showing delete options](../images/vscode-deleteworkload3.png)
+    ![Delete Confirmation Notification showing delete options](../images/vscode-deleteworkload4.png)
 
     A notification appears showing that the workload was deleted.
 
-    ![Delete Workload Notification showing workload has been deleted](../images/vscode-deleteworkload4.png)
+    ![Delete Workload Notification showing workload has been deleted](../images/vscode-deleteworkload5.png)
 
 ## <a id="switch-namespace"></a> Switch namespaces
 
