@@ -366,21 +366,21 @@ Verify if the status of the workload is `MissingValueAtPath` due to waiting on a
 kubectl describe workload WORKLOAD-NAME -n DEVELOPER-NAMESPACE
 ```
 
-Describe the SourceScan or ImageScan to determine what CVE(s) violated the ScanPolicy:
+Next describe the SourceScan or ImageScan to determine what CVE(s) violated the ScanPolicy:
 
 ```
 kubectl describe sourcescan NAME -n DEVELOPER-NAMESPACE
 kubectl describe imagescan NAME -n DEVELOPER-NAMESPACE
 ```
 
-### <a id="remediation"></a>Remediation
+### <a id="triage-cve"></a>Triage
 
-After reviewing the outputs of the workload and corresponding scan, the developer can then decide which of the following paths to take:
+Review the CVEs reported in the previous step to determine next steps to remediate. To possible paths from here are:
 
-- Update the component
-- Amend the scan policy
+- Update the component to remove the CVE
+- Amend the scan policy with an exception if you decide to accept the CVE and unblock your supply chain
 
->**Note:** For additional information on common vulnerability scanner limitations, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md#a-note-on-vulnerability-scanners).
+>**Relevant Context:** For additional information on common vulnerability scanner limitations, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md#scst-scan-note).
 
 #### <a id="update-component"></a>Updating the component
 
