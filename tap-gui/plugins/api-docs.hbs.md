@@ -90,7 +90,9 @@ The API documentation plug-in supports the following API formats:
 
 ## <a id='create-project'></a> Create a new API entry
 
-To create a new API entity, you must follow the same steps as if you were registering any other
+### <a id='create-project'></a> Manually
+
+To manually create a new API entity, you must follow the same steps as if you were registering any other
 software catalog entity:
 
 1. Click the **Home** icon located on the left-side navigation bar to access the home page of Tanzu Application Platform GUI.
@@ -155,3 +157,8 @@ repository of your choice.
 1. Click **IMPORT**.
 
 1. Click **APIs** on the left-hand side navigation panel to view entries on the **API** page.
+
+### <a id='create-project'></a> Automatically
+
+TAP 1.3 Introduced a feature called **API Auto Registration** that can automatically register 
+your API's. See [API Auto Registration](../../api-auto-registration/about.md) for more details.
