@@ -406,4 +406,4 @@ Under RBAC, users with the `app-operator-scanning` role (part of the `app-operat
 
 ## <a id="scan-image-using-snyk"></a> Scan Image using Snyk
 
-[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integration for running an image scan using Snyk and VMware Carbon Black. For information on how to install this integration and how to modify the supply chain template, see [Available Scanners for Supply Chain Security Tools - Scan](../scst-scan/available-scanners.hbs.md).
+[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integration for running an image scan using Snyk and VMware Carbon Black. For information on how to install this integration and how to modify the supply chain template, see [Install Snyk Scanner (Beta)](../scst-scan/install-snyk-integration.hbs.md).
