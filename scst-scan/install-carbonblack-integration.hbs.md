@@ -230,7 +230,7 @@ To verify the integration with Carbon Black, apply the following `ImageScan` and
         package main
 
         # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-        notAllowedSeverities := ["Critical","High","UnknownSeverity"]
+        notAllowedSeverities := ["Critical","High"]
         ignoreCves := []
 
         contains(array, elem) = true {
