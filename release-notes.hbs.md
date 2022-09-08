@@ -2,6 +2,7 @@
 
 This topic contains release notes for Tanzu Application Platform v1.0.
 
+{{#unless vars.hide_content}}
 ## <a id='1-0-4'></a> v1.0.4
 
 **Release Date**: September 13, 2022
@@ -33,7 +34,7 @@ occurs during scanning, the Scan Phase field is not updated to `Error` and remai
 **Blob Source Scan is reporting wrong source URL:**
 - When running a Source Scan of a blob compressed file, Supply Chain Security Tools - Scan looks for a `.git` directory present in the files to extract information that is useful for the report sent to the Supply Chain Security Tools - Store deployment.
 
-- Workaround - The following workarounds fix this issue: 
+- Workaround - The following workarounds fix this issue:
 
   1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
   1. Configure your SourceScan or Workload to connect to the repository by using HTTPS instead of using SSH.
@@ -46,6 +47,7 @@ This release has the following fixes:
 #### <a id='1-0-4-resolved-issues-stk'></a> Services Toolkit
 
 * Bump the services toolkit package to v0.5.2 in order to resolve CVE-2022-21698.
+{{/unless}}
 
 ## <a id='1-0-3'></a> v1.0.3
 
@@ -82,7 +84,7 @@ occurs during scanning, the Scan Phase field is not updated to `Error` and remai
 **Blob Source Scan is reporting wrong source URL:**
 - When running a Source Scan of a blob compressed file, Supply Chain Security Tools - Scan looks for a `.git` directory present in the files to extract information that is useful for the report sent to the Supply Chain Security Tools - Store deployment.
 
-- Workaround - The following workarounds fix this issue: 
+- Workaround - The following workarounds fix this issue:
 
   1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
   1. Configure your SourceScan or Workload to connect to the repository by using HTTPS instead of using SSH.
