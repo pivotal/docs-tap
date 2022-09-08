@@ -12,12 +12,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="1-2-2-scst-store-new-features"></a>Supply Chain Security Tools - Store
 
-* Modified vulnerability response in the `tanzu insight` CLI plugin to only return the highest severity rating for a given CVE.
-
-### <a id='1-2-2-breaking-changes'></a> Breaking changes
-
-This release has the following breaking changes, listed by area and component.
-
+* Modified the vulnerability response in the `tanzu insight` CLI plug-in to only return the highest severity rating for a given CVE.
 
 ### <a id='1-2-2-resolved-issues'></a> Resolved issues
 
@@ -35,7 +30,7 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-2-2-tap-gui-resolved"></a>Tanzu Application Platform GUI
 
-* Bumped supply-chain package version to 0.1.26 to fix the severity in the Image Scanner Stage.
+* Updated supply-chain package version to 0.1.26 to fix an issue in the Image Scanner Stage.
 
 ### <a id='1-2-2-known-issues'></a> Known issues
 
