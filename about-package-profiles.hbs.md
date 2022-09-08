@@ -832,11 +832,11 @@ Tanzu Application Platform components.
 </table>
 
 <sup>\**</sup> Tanzu Developer Tooling refers to the developer conventions that enable debugging
-and Live Update functionality in inner loop.
+and Live Update functionality in the inner loop.
 
 <sup>\***</sup> Extended Scanning Coverage: Supply Chain Security Tools - Scan and Store using Anchore Grype. Out of the Box Tanzu Application Platform scanning leverages a tool by Anchore called Grype.
 Grype provides standard CVE scanning support for a wide variety of languages.
-However, if you use Tanzu Build Service to build application images using a buildpack
+However, if you use Tanzu Build Service to build application images by using a buildpack
 that produces a Bill of Materials in the Syft format,
 Tanzu Application Platform scanning can provide a more comprehensive scan of the application image.
 
