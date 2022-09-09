@@ -222,7 +222,9 @@ The following is the YAML file sample for the full-profile:
 
 ```yaml
 profile: full
-
+shared:
+  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
+  
 contour:
   envoy:
     service:
