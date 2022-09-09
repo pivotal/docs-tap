@@ -12,8 +12,8 @@ Before starting the tutorial, please ensure that the following items are address
     - Please ensure that you are using one of the following TAP Profiles: `run`, `iterate`, or `full`.
 - AppSSO package `v{{ vars.app-sso.version }}` or above is available and reconciled successfully on your cluster.
 - AppSSO has at least one [identity provider configured](../../service-operators/identity-providers.md).
-- Access to [AppSSO Starter Java](https://github.com/sample-accelerators/appsso-starter-java) accelerator
-  used in this tutorial.
+- Access to [AppSSO Starter Java](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java)
+accelerator used in this tutorial.
 
 ## Getting started
 
@@ -29,7 +29,7 @@ uses [Spring Security OAuth2 Client library](https://docs.spring.io/spring-secur
 .
 
 You can find
-the [source code for the application here](https://github.com/sample-accelerators/appsso-starter-java).
+the [source code for the application here](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java).
 To follow along, be sure to Git clone the repository onto your local environment.
 
 The application, once launched, has two pages:
@@ -211,7 +211,7 @@ tanzu apps workload create appsso-starter-java \
     --type web \
     --label app.kubernetes.io/part-of=appsso-starter-java \
     --service-ref "appsso-starter-java=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:appsso-starter-java" \
-    --git-repo ssh://git@github.com/sample-accelerators/appsso-starter-java.git \
+    --git-repo ssh://git@github.com:vmware-tanzu/application-accelerator-samples.git/appsso-starter-java \
     --git-branch main \
     --live-update \
     --yes
