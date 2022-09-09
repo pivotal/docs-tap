@@ -105,6 +105,24 @@ with the following changes:
     # ...
   ```
 
+New versions of AppSSO are available from the Tanzu Application Platform package repository, and can be upgraded to as
+part of upgrading [Tanzu Application Platform as a whole](./upgrading.hbs.md).
+
+- To upgrade `AppSSO` specifically, run either
+  - `tanzu package installed update APP_NAME -p sso.apps.tanzu.vmware.com -v 2.0.0 --values-file PATH_TO_YOUR_VALUES_YAML -n YOUR_INSTALL_NAMESPACE`
+  or, if you're using `Carvel`, you can also run
+  - ```bash
+    ytt \
+      --file PATH_TO_YOUR_VALUES_YAML \
+      --data-value selected_version=YOUR_VERSION |
+    kapp deploy \
+      --app APP_NAME \
+      --namespace YOUR_INSTALL_NAMESPACE \
+      --file - \
+      --diff-changes \
+      --yes
+  ```
+
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
 - Feature 1
