@@ -109,11 +109,11 @@ uses symbolic reference and is not a URL.
 The format of the reference to a GitHub or GitLab repository is similar to what you use with Kustomize
 when referencing remote repositories. For example:
 
-- `github.com/organisation/project?ref=master` or `github.com/organisation/project?ref=main`: Use the workshop content you host at the root of the GitHub repository. Use the `master` or `main` branch. Be sure to specify the ref branch, because not specifying the branch may lead to content download errors.
+- `github.com/organisation/project?ref=main` or `github.com/organisation/project?ref=main`: Use the workshop content you host at the root of the GitHub repository. Use the `main` branch. Be sure to specify the ref branch, because not specifying the branch may lead to content download errors.
 - `github.com/organisation/project/subdir?ref=develop`: Use the workshop content you host at `subdir`
 of the GitHub repository. Use the `develop` branch.
 - `gitlab.com/organisation/project`: Use the workshop content you host at the root of the GitLab
-repository. Use the `master` branch.
+repository. Use the `main` branch.
 - `gitlab.com/organisation/project/subdir?ref=develop`: Use the workshop content you host at `subdir`
 of the GitLab repository. Use the `develop` branch.
 
@@ -220,7 +220,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    image: quay.io/eduk8s/lab-markdown-sample:master
+    image: quay.io/eduk8s/lab-markdown-sample:main
 ```
 
 Even though you can download workshop content when the workshop environment starts,
@@ -244,8 +244,8 @@ spec:
 ```
 
 If you want to use the latest version of an image, always include the `:latest` tag.
-This is important because the Learning Center Operator looks for version tags `:main`, `:master`,
-`:develop` and `:latest`. When using these tags, the Operator sets the image pull policy to `Always` to ensure
+This is important because the Learning Center Operator looks for version tags `:main`,
+`:develop`, and `:latest`. When using these tags, the Operator sets the image pull policy to `Always` to ensure
 that a newer version is always pulled if available.
 Otherwise, the image is cached on the Kubernetes nodes and only pulled when it is initially absent. Any other version tags are always assumed to be unique and are never updated.
 Be aware of image registries that use a content delivery network (CDN) as front end. When using these image tags, the CDN can
@@ -346,7 +346,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    image: quay.io/eduk8s/lab-markdown-sample:master
+    image: quay.io/eduk8s/lab-markdown-sample:main
   session:
     resources:
       memory: 2Gi
@@ -365,7 +365,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    image: quay.io/eduk8s/lab-markdown-sample:master
+    image: quay.io/eduk8s/lab-markdown-sample:main
   session:
     resources:
       storage: 5Gi
@@ -398,7 +398,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    image: quay.io/eduk8s/lab-markdown-sample:master
+    image: quay.io/eduk8s/lab-markdown-sample:main
   session:
     namespaces:
       budget: small
@@ -465,7 +465,7 @@ spec:
   title: Markdown Sample
   description: A sample workshop using Markdown
   content:
-    image: quay.io/eduk8s/lab-markdown-sample:master
+    image: quay.io/eduk8s/lab-markdown-sample:main
   session:
     namespaces:
       budget: medium
@@ -1231,7 +1231,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     ingresses:
     - name: application
@@ -1261,7 +1261,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     ingresses:
     - name: application
@@ -1282,7 +1282,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     ingresses:
     - name: application
@@ -1316,7 +1316,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     ingresses:
     - name: application
@@ -1352,7 +1352,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       workshop:
@@ -1386,7 +1386,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       workshop:
@@ -1417,7 +1417,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       workshop:
@@ -1439,7 +1439,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       console:
@@ -1458,7 +1458,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       console:
@@ -1483,7 +1483,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       editor:
@@ -1523,7 +1523,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       files:
@@ -1546,7 +1546,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       files:
@@ -1573,7 +1573,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       examiner:
@@ -1610,7 +1610,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       registry:
@@ -1630,7 +1630,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       registry:
@@ -1650,7 +1650,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       registry:
@@ -1715,7 +1715,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       docker:
@@ -1735,7 +1735,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       docker:
@@ -1755,7 +1755,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       docker:
@@ -1789,7 +1789,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       webdav:
@@ -1847,7 +1847,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     applications:
       terminal:
@@ -1883,7 +1883,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     ingresses:
     - name: application
@@ -1925,7 +1925,7 @@ spec:
   title: Application Testing
   description: Play area for testing my application
   content:
-    image: quay.io/eduk8s-tests/lab-application-testing:master
+    image: quay.io/eduk8s-tests/lab-application-testing:main
   session:
     dashboards:
     - name: Example

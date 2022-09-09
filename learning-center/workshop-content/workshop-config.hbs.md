@@ -76,7 +76,7 @@ You can deploy workshop images directly to a container runtime. The Learning Cen
     description: A sample workshop using Markdown
     url: YOUR-GITHUB-URL-FOR-LAB-MARKDOWN-SAMPLE
     content:
-      image: quay.io/eduk8s/lab-markdown-sample:master
+      image: quay.io/eduk8s/lab-markdown-sample:main
     duration: 15m
     session:
       namespaces:

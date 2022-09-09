@@ -50,7 +50,7 @@ spec:
 To load the definition of the workshop, run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/master/resources/workshop.yaml
+kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/main/resources/workshop.yaml
 ```
 
 The custom resource created is cluster-scoped. The command must be run as a cluster admin or other appropriate
@@ -72,7 +72,7 @@ For this workshop, this outputs:
 
 ```console
 NAME                  IMAGE                                            FILES  URL
-lab-k8s-fundamentals  quay.io/eduk8s-labs/lab-k8s-fundamentals:master         https://github.com/eduk8s-labs/lab-k8s-fundamentals
+lab-k8s-fundamentals  quay.io/eduk8s-labs/lab-k8s-fundamentals:main         https://github.com/eduk8s-labs/lab-k8s-fundamentals
 ```
 
 The added fields in this case give:
@@ -108,7 +108,7 @@ spec:
 To create the custom resource, run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/master/resources/training-portal.yaml
+kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/main/resources/training-portal.yaml
 ```
 
 The custom resource created is cluster-scoped. The command must be run as a cluster admin or other appropriate

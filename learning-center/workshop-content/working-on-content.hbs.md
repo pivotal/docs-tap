@@ -76,7 +76,7 @@ Updating workshop content in a live session in this way does not undo any deploy
 
 ## <a id="custom-wrkshp-img-changes"></a> Custom workshop image changes
 
-If your workshop uses a custom workshop image to provide additional tools and you have included the workshop instructions as part of the workshop image, you must use an image tag of `main`, `master`, `develop`, or `latest` during the development of workshop content. Do not use a version image reference.
+If your workshop uses a custom workshop image to provide additional tools and you have included the workshop instructions as part of the workshop image, you must use an image tag of `main`, `develop`, or `latest` during the development of workshop content. Do not use a version image reference.
 
 For example:
 
@@ -89,10 +89,10 @@ spec:
   title: Sample Workshop
   description: A sample workshop
   content:
-    image: <YOUR-GIT-REPO>/lab-sample-workshop:master
+    image: <YOUR-GIT-REPO>/lab-sample-workshop:main
 ```
 
-When you use an image tag of `main`, `master`, `develop` or, `latest`, the image pull policy is set to `Always` to ensure that the custom workshop image is pulled down again for a new workshop session if the remote image changes. If the image tag is for a specific version, you must change the workshop definition every time when the workshop image changes.
+When you use an image tag of `main`, `develop`, or `latest`, the image pull policy is set to `Always` to ensure that the custom workshop image is pulled down again for a new workshop session if the remote image changes. If the image tag is for a specific version, you must change the workshop definition every time when the workshop image changes.
 
 ## <a id="custom-wrkshp-img-overlay"></a> Custom workshop image overlay
 
@@ -107,7 +107,7 @@ spec:
   title: Sample Workshop
   description: A sample workshop
   content:
-    image: ghcr.io/eduk8s-labs/lab-sample-workshop:master
+    image: ghcr.io/eduk8s-labs/lab-sample-workshop:main
     files: <YOUR-GIT-REPO>/lab-sample-workshop
 ```
 
@@ -126,7 +126,7 @@ spec:
   title: Sample Workshop
   description: A sample workshop
   content:
-    image: ghcr.io/eduk8s-labs/custom-environment:master
+    image: ghcr.io/eduk8s-labs/custom-environment:main
     files: github.com/eduk8s-labs/lab-sample-workshop
 ```
 
