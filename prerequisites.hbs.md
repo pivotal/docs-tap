@@ -96,6 +96,9 @@ providers:
 - Minikube.
     - Reference the [resource requirements](#resource-requirements) in the following section.
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
+- Openshift 4.10
+    - Vsphere
+    - Baremetal
 - Tanzu Kubernetes Grid multicloud.
 - vSphere with Tanzu v7.0 U3a (not compatible with Tanzu Application Platform v1.0.0 or earlier).<br>
 For vSphere with Tanzu, pod security policies must be configured so that Tanzu Application Platform controller pods can run as root.
