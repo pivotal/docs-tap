@@ -51,6 +51,6 @@ This section introduces more information about the image configuration in `PodCo
 The convention-controller passes this information for each image in good faith.
 The controller is not the source of the metadata, and there is no guarantee that the information is correct.
 
-The `config` field in the image configuration passes through the [OCI Image metadata in GitHub](https://github.com/opencontainers/image-spec/blob/master/config.md) loaded from the registry for the image.
+The `config` field in the image configuration passes through the [OCI Image metadata in GitHub](https://github.com/opencontainers/image-spec/blob/main/config.md) loaded from the registry for the image.
 
 The `boms` field in the image configuration passes through the [`BOM`](bom.md)s of the image. Conventions might parse the BOMs they want to inspect. There is no guarantee that an image contains a BOM or that the BOM is in a certain format.

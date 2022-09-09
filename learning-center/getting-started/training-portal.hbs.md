@@ -72,7 +72,7 @@ For this workshop, this outputs:
 
 ```
 NAME                  IMAGE                                            FILES  URL
-lab-k8s-fundamentals  quay.io/eduk8s-labs/lab-k8s-fundamentals:master         https://github.com/eduk8s-labs/lab-k8s-fundamentals
+lab-k8s-fundamentals  quay.io/eduk8s-labs/lab-k8s-fundamentals:main         https://github.com/eduk8s-labs/lab-k8s-fundamentals
 ```
 
 The added fields in this case give:

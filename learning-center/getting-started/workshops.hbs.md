@@ -41,7 +41,7 @@ This results in the output:
 
 ```
 NAME                   NAMESPACE              WORKSHOP               IMAGE                                             URL
-lab-k8s-fundamentals   lab-k8s-fundamentals   lab-k8s-fundamentals   quay.io/eduk8s-labs/lab-k8s-fundamentals:master   https://github.com/eduk8s-labs/lab-k8s-fundamentals
+lab-k8s-fundamentals   lab-k8s-fundamentals   lab-k8s-fundamentals   quay.io/eduk8s-labs/lab-k8s-fundamentals:main   https://github.com/eduk8s-labs/lab-k8s-fundamentals
 ```
 
 Additional fields give the name of the workshop environment, the namespace created for the workshop environment, and
