@@ -7,6 +7,9 @@ profile: iterate
 
 ceip_policy_disclosed: true
 
+shared:
+  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
+
 buildservice:
   kp_default_repository: "TAP-REGISTRY-SERVER/build-service"
   kp_default_repository_username: "TAP-REGISTRY-USER"
