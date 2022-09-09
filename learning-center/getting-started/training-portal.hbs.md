@@ -50,7 +50,7 @@ spec:
 To load the definition of the workshop, run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/main/resources/workshop.yaml
+kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/master/resources/workshop.yaml
 ```
 
 The custom resource created is cluster-scoped. The command must be run as a cluster admin or other appropriate
@@ -108,7 +108,7 @@ spec:
 To create the custom resource, run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/main/resources/training-portal.yaml
+kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/master/resources/training-portal.yaml
 ```
 
 The custom resource created is cluster-scoped. The command must be run as a cluster admin or other appropriate

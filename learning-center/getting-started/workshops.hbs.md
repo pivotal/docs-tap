@@ -12,7 +12,7 @@ create the workshop environment.
 To create the workshop environment run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/main/resources/workshop-environment.yaml
+kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/master/resources/workshop-environment.yaml
 ```
 
 This results in a custom resource being created called `WorkshopEnvironment`:
@@ -59,7 +59,7 @@ environment can also be constrained to a specific set of namespaces on top of an
 In the context of an appropriate namespace, run:
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/main/resources/workshop-request.yaml
+kubectl apply -f https://raw.githubusercontent.com/eduk8s-labs/lab-k8s-fundamentals/master/resources/workshop-request.yaml
 ```
 
 This should result in the output:
