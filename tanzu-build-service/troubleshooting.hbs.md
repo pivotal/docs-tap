@@ -42,13 +42,13 @@ If you do not want to wait for subsequent builds to run automatically, you can u
     - `IMAGE-NAME` is the name of the failing image.
     - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
 
-## <a id="eks-1-23-volume"></a> Builds fail due to volume errors on EKS running Kubernetes version 1.23
+## <a id="eks-1-23-volume"></a> Builds fail due to volume errors on EKS running Kubernetes v1.23
 
 ### Symptom
 
-Installing TAP on or upgrading an existing EKS cluster to Kubernetes version 1.23
+After installing Tanzu Application Platform on or upgrading an existing
+Amazon Elastic Kubernetes Service (EKS) cluster to Kubernetes v1.23, build pods show:
 
-Build pods are showing:
 ```console
 'running PreBind plugin "VolumeBinding": binding volumes: timed out waiting
  for the condition'
@@ -56,10 +56,15 @@ Build pods are showing:
 
 ### Explanation
 
-This is due to the [CSIMigrationAWS in this K8s version version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to use EBS volumes.
+This is due to the CSIMigrationAWS in this Kubernetes version, which requires users
+to install the [Amazon EBS CSI driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html)
+to use AWS Elastic Block Store (EBS) volumes.
+For more information about EKS support for Kubernetes v1.23, see the
+[Amazon blog post](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/).
 
-TAP uses the default storage class which uses EBS volumes by default on EKS.
+Tanzu Application Platform uses the default storage class which uses EBS volumes by default on EKS.
 
 ### Solution
 
-Follow the AWS documentation to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) before installing TAP or before upgrading to K8s 1.23.
+Follow the AWS documentation to install the [Amazon EBS CSI driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html)
+before installing Tanzu Application Platform, or before upgrading to Kubernetes v1.23.
