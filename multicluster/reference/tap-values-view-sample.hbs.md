@@ -8,6 +8,7 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 
 shared:
   ingress_domain: "INGRESS-DOMAIN"
+  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
 
 contour:
   envoy:
