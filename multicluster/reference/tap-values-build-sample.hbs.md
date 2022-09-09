@@ -5,6 +5,8 @@ The following is the YAML file sample for the build-profile:
 ```yaml
 profile: build
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
+shared:
+  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
