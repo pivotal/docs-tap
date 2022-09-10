@@ -15,6 +15,18 @@ This repo contains the content for Tanzu Application Platform docs, v1.0–v1.3
 | 1-1 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html |
 | 1-0 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html |
 
+## Components with their own repositories
+
+Some components have docs that introduce them in this repository, but the rest of their docs are stored in dedicated repositories.
+
+| Component | Repo |
+|-----------|------|
+| API portal | https://github.com/pivotal-cf/docs-api-portal |
+| Carvel | https://github.com/vmware-tanzu/carvel/tree/develop/site/content |
+| Cloud Native Runtimes | https://gitlab.eng.vmware.com/daisy/cloud-native-runtimes-for-vmware-tanzu |
+| Services Toolkit | https://gitlab.eng.vmware.com/services-control-plane/documentation |
+| Tanzu Build Service | https://github.com/pivotal-cf/docs-build-service/tree/v1.5 |
+
 ## Product Names
 
 Use the complete product name at first use:
