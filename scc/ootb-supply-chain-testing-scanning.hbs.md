@@ -61,7 +61,7 @@ have the _source-test-to-url_ installed** at the same time as
 _source-test-scan-to-url_.
 
 
-## <a id="developer-namespace"></a> Developer Namespace
+## <a id="developer-namespace"></a> Developer namespace
 
 As mentioned in the prerequisites section, this example builds on the previous
 Out of the Box Supply Chain examples, so only additions are included here.
@@ -102,7 +102,7 @@ Below you will find details about the new objects (compared to Out of the Box
 Supply Chain With Testing).
 
 
-### <a id="updates-to-developer-namespace"></a> Updates to the developer Namespace
+### <a id="updates-to-developer-namespace"></a> Updates to the developer namespace
 
 For source and image scans, scan templates and scan policies
 must exist in the same namespace as the workload. These define:
@@ -354,30 +354,30 @@ Create workload:
      15 + |        branch: main
      16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
-## <a id="cve-triage-workflow"></a> CVE Triage Workflow
+## <a id="cve-triage-workflow"></a> CVE triage workflow
 
 The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md#define-a-rego-file-for-policy-enforcement) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities that are in violation of the user-defined scan policy. If you triaged these vulnerabilities and identified any false positives, refer to this section to unblock your deployment from these CVEs.
 
 ### <a id="sc-stop"></a>Confirming Supply Chain stopped due failed policy enforcement
 
-Verify if the status of the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan:
+1. Verify if the status of the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan:
 
-```console
-kubectl describe workload WORKLOAD-NAME -n DEVELOPER-NAMESPACE
-```
+  ```console
+  kubectl describe workload WORKLOAD-NAME -n DEVELOPER-NAMESPACE
+  ```
 
-Next describe the SourceScan or ImageScan to determine what CVE(s) violated the ScanPolicy:
+1. Describe the SourceScan or ImageScan to determine what CVE(s) violated the ScanPolicy:
 
-```
-kubectl describe sourcescan NAME -n DEVELOPER-NAMESPACE
-kubectl describe imagescan NAME -n DEVELOPER-NAMESPACE
-```
+  ```
+  kubectl describe sourcescan NAME -n DEVELOPER-NAMESPACE
+  kubectl describe imagescan NAME -n DEVELOPER-NAMESPACE
+  ```
 
 ### <a id="triage-cve"></a>Triage
 
-The goal of Triage is to analyze and prioritize the reported vulnerability data in order to determine the appropriate course of action to take at the Remediation step. To Remediate efficiently and appropriately, you need context on both the vulnerabilities that are blocking your supply chain as well as the packages that are affected, followed by the impact they may have.
+The goal of triage is to analyze and prioritize the reported vulnerability data to discover the appropriate course of action to take at the remediation step. To remediate efficiently and appropriately, you need context on the vulnerabilities that are blocking your supply chain, the packages that are affected, and the impact they can have.
 
-During Triage, review which packages are impacted by the CVEs that violated your scanpolicy. If the [Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-overview.hbs.md) is configured, you can query the database for the packages and their corresponding CVEs in your source code or image using the following commands:
+During triage, review which packages are impacted by the CVEs that violated your scanpolicy. If the [Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-overview.hbs.md) is configured, you can query the database for the packages and their corresponding CVEs in your source code or image using these commands:
 
 ```console
 tanzu insight source get --repo REPO --org ORG
@@ -386,15 +386,15 @@ tanzu insight image get --digest DIGEST
 
 See [Query using the Tanzu Insight CLI plug-in](../cli-plugins/insight/query-data.hbs.md) for more details.
 
-During this stage, we also recommend reviewing information pertaining to the CVEs from sources such as the [National Vulnerability Database](https://nvd.nist.gov/vuln), the release page of a package, etc.
+During this stage, VMware recommends reviewing information pertaining to the CVEs from sources such as the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
 
 #### <a id="remediation"></a>Remediation
-Once Triage is complete, the next step is to Remediate the blocking vulnerabilities in a timely manner. Some common methods for CVE Remediation are as follows:
+Once triage is complete, the next step is to remediate the blocking vulnerabilities in a timely manner. Some common methods for CVE remediation are as follows:
 
 - Updating the affected component to remove the CVE
 - Amending the scan policy with an exception if you decide to accept the CVE and unblock your supply chain
 
->**Relevant Context:** For additional information on common vulnerability scanner limitations, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md#scst-scan-note).
+For more information on common vulnerability scanner limitations, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md#scst-scan-note).
 
 #### <a id="update-component"></a>Updating the affected component
 
