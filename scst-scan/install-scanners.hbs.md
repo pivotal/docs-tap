@@ -7,7 +7,7 @@ This topic describes how to install scanners to work with Supply Chain Security 
 Before installing a new scanner:
 
 - Install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan are also required.
-- The prerequisites for the scanner you're trying to install must be completed. For example, creating an API token to connect to the scanner.
+- Complete [scanner specific prerequisites](available-scanners.hbs.md) for the scanner you're trying to install. For example, creating an API token to connect to the scanner.
 
 ## <a id="installation"></a> Install
 
@@ -125,7 +125,11 @@ To install a new scanner, follow these steps:
 
 To verify the installation create an `ImageScan` or `SourceScan` referencing one of the newly added `ScanTemplates` for the scanner.
 
-> **Note:** A `ScanPolicy` can be referenced in the `ImageScan` or `SourceScan`. Because every scanner can have its output in a different format, the `ScanPolicies` can vary. See [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
+1. (Optional) Create a `ScanPolicy`, formatted for the output specific to the scanner you are installing, to be referenced in the `ImageScan` or `SourceScan`.
+   ```console
+    kubectl apply -n $DEV_NAMESPACE -f <SCAN-POLICY-YAML>
+  ```
+> **Note:** As vulnerability scanners can each output in different formats, the `ScanPolicies` can vary. See [Enforce compliance policy using Open Policy Agent](policies.hbs.md) for more detail and [Available Scanners Docs](available-scanners.hbs.md) for samples.
 
 1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed:
 
