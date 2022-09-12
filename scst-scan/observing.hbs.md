@@ -150,14 +150,14 @@ configurations to deactivate the Store:
 
 #### <a id="ca-not-found-in-secret"></a> Could not find CA in Secret
 
-  If you encounter the following issue, it might be due to not exporting  "app-tls-cert" to the correct namespace:
+  If you encounter the following issue, it might be due to not exporting  `app-tls-cert` to the correct namespace:
 
   ```console
   {"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
   ```
 
-  Include the following in your tap-values.yaml:
-  
+  Include the following in your `tap-values.yaml`:
+
   ```yaml
   metadata_store:
     ns_for_export_app_cert: "<DEV-NAMESPACE>"
