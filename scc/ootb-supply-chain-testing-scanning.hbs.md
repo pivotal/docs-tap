@@ -400,7 +400,7 @@ Once Triage is complete, the next step is to Remediate the blocking vulnerabilit
 
 Vulnerabilities that occur in older versions of a package could be resolved in newer versions. Apply a patch by upgrading to a newer version of the package containing the fix.
 
-> **Note:** You can also use your project's package manager tools to identify transitive or indirect dependencies. For example, `go mod graph` for projects in Go.
+In addition to the above, you can further adopt security best practices by using your project's package manager tools (e.g. `go mod graph` for projects in Go) to identify transitive or indirect dependencies that may also be affected by CVEs.
 
 #### <a id="amend-scan-policy"></a>Amending the scan policy
 
