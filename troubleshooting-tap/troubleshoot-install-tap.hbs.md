@@ -54,7 +54,7 @@ A package fails to reconcile and you must access the details in `.status.usefulE
 Access the details in `.status.usefulErrorMessage` by running:
 
 ```console
-kubectl get PACKAGE-NAME grype -n tap-install -o yaml
+kubectl get packageinstall PACKAGE-NAME -n tap-install -o yaml
 ```
 
 Where `PACKAGE-NAME` is the name of the package to target.
