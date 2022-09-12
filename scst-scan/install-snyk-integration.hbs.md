@@ -1,12 +1,12 @@
 # Install Snyk Scanner (Beta)
 
-This document describes  prerequisites to installing Supply Chain Security Tools - Scan (Snyk Scanner) from the Tanzu Application Platform package repository.
+This document describes  requisites to installing Supply Chain Security Tools - Scan (Snyk Scanner) from the Tanzu Application Platform package repository.
 
 >**Note:** Snyk's image scanning capability is in beta. Snyk might only return a partial list of CVEs when scanning Buildpack images.
 
-## <a id="prerecs"></a> Prerequisites
+## <a id="recs"></a> Requisites
 
-Before following the steps for [Installing Scannings for Supply Chain Tools - Scan](install-scanners.hbs.md) to install the Snyk Scanner:
+Before following the steps for [Installing Scanners for Supply Chain Security Tools - Scan](install-scanners.hbs.md) to install the Snyk Scanner:
 
 1. Obtain a Snyk API Token from the [Snyk Docs](https://docs.snyk.io/snyk-cli/authenticate-the-cli-with-your-account).
 
@@ -21,6 +21,8 @@ Before following the steps for [Installing Scannings for Supply Chain Tools - Sc
     data:
       snyk_token: BASE64-SNYK-API-TOKEN
     ```
+
+    Where `BASE64-SNYK-API-TOKEN` is the Snyk API Token obtained from step 1.
 
 3. Apply the Snyk secret YAML file by running:
 
@@ -157,7 +159,3 @@ Before following the steps for [Installing Scannings for Supply Chain Tools - Sc
     ```
 
 >**Note:** The Snyk Scanner integration is only available for an image scan, not a source scan.
-
-## <a id="opt-out-of-snyk"></a> Opt-out of using Snyk
-
-You can opt out of using Snyk for either a specific supply chain or for all of Tanzu Application Platform.
