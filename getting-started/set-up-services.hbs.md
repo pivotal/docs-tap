@@ -37,7 +37,7 @@ Before following this walkthrough, you must:
 
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
-1. Ensure your Tanzu Application Platform cluster can pull the images required by the service operator. For more information, see the following documentation:
+1. Ensure your Tanzu Application Platform cluster can pull the container images required by the Kubernetes operator providing the service. For more information, see the following documentation:
    * [RabbitMQ Cluster Kubernetes operator](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
    * [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html).
    * [VMware Tanzu SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html).
@@ -51,7 +51,7 @@ This section covers the following:
 
 * Installing the selected service Kubernetes operator.
 * Creating the role-based access control (RBAC) rules to grant Tanzu Application Platform permission to interact
-with the newly-installed APIs provided by the operator.
+with the APIs provided by the newly-installed Kubernetes operator.
 * Creating the additional supporting resources to aid with discovery of services.
 
 For this part of the walkthrough, you assume the role of the **service operator**.
