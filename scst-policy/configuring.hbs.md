@@ -10,7 +10,7 @@ matching image patterns, and where at least one valid signature is obtained from
 the authorities provided in the matched
 [ClusterImagePolicy](#create-cip-resource) later in the topic. Within a single policy, every
 signature must be valid. When more than one policy has a matching image pattern,
-the image much match at least one signature from each ClusterImagePolicy.
+the image must match at least one signature from each ClusterImagePolicy.
 
 ## <a id="including-namespaces"></a> Including Namespaces
 
