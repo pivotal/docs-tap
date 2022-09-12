@@ -130,7 +130,7 @@ This drop-down menu is only visible if the resources include Build or ConfigWrit
 
 ![Screenshot of completed supply chain pods information. The Show Additional Resources dropdown menu is expanded.](images/runtime-resources-supply-chain-pods.png)
 
-## <a id="navigating-to-pods"></a>Navigating to the Pod Details page
+## <a id="navigating-to-pods"></a>Navigating to the pod Details page
 
 Users can see the pod table in each resource details page.
 
