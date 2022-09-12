@@ -27,12 +27,12 @@ To install a new scanner, follow these steps:
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
       grype.scanning.apps.tanzu.vmware.com                 Grype Scanner for Supply Chain Security Tools - Scan                      Default scan templates using Anchore Grype
       snyk.scanning.apps.tanzu.vmware.com                  Snyk for Supply Chain Security Tools - Scan                               Default scan templates using Snyk
-      carbonblack.scanning.apps.tanzu.vmware.com           <CARBON_BLACK_PLACEHOLDER>                                                <CARBON_BLACK_PLACEHOLDER>
+      carbonblack.scanning.apps.tanzu.vmware.com           CARBON-BLACK-PLACEHOLDER                                                  CARBON-BLACK-PLACEHOLDER
     ```
 
 2. List version information for the scanner package by running:
     ```console
-    tanzu package available list <SCANNER_NAME> --namespace tap-install
+    tanzu package available list SCANNER-NAME --namespace tap-install
     ```
 
     For example:
@@ -54,7 +54,7 @@ To install a new scanner, follow these steps:
     To list the values you can configure for any scanner, run:
 
     ```console
-    tanzu package available get <SCANNER-NAME>/<VERSION> --values-schema -n tap-install
+    tanzu package available get SCANNER-NAME/VERSION --values-schema -n tap-install
     ```
 
     Where:
@@ -127,7 +127,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 1. (Optional) Create a `ScanPolicy`, formatted for the output specific to the scanner you are installing, to be referenced in the `ImageScan` or `SourceScan`.
    ```console
-    kubectl apply -n $DEV_NAMESPACE -f <SCAN-POLICY-YAML>
+    kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
   ```
 > **Note:** As vulnerability scanners can each output in different formats, the `ScanPolicies` can vary. See [Enforce compliance policy using Open Policy Agent](policies.hbs.md) for more detail and [Available Scanners Docs](available-scanners.hbs.md) for samples.
 
@@ -169,8 +169,8 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
     Where: 
 
-    - `SCAN-TEMPLATE` is the name of the installed `ScanTemplate` in the `<DEV_NAMESPACE>` you retrieved earlier.
-    - `SCAN-POLICY` it's an optional reference to an existing `ScanPolicy` in the same `<DEV_NAMESPACE>`.
+    - `SCAN-TEMPLATE` is the name of the installed `ScanTemplate` in the `DEV-NAMESPACE` you retrieved earlier.
+    - `SCAN-POLICY` it's an optional reference to an existing `ScanPolicy` in the same `DEV-NAMESPACE`.
 
     For example:
 
@@ -205,8 +205,8 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
     Where: 
 
-    - `SCAN-TEMPLATE` is the name of the installed `ScanTemplate` in the `DEV_NAMESPACE` you retrieved earlier. 
-    - `SCAN-POLICY` is an optional reference to an existing `ScanPolicy` in the same `DEV_NAMESPACE`.
+    - `SCAN-TEMPLATE` is the name of the installed `ScanTemplate` in the `DEV-NAMESPACE` you retrieved earlier. 
+    - `SCAN-POLICY` is an optional reference to an existing `ScanPolicy` in the same `DEV-NAMESPACE`.
 
     For example:
 
@@ -229,14 +229,14 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
     `ImageScan`:
     ```console
-    kubectl apply -f PATH-TO-IMAGE-SCAN-YAML -n <DEV_NAMESPACE>
+    kubectl apply -f PATH-TO-IMAGE-SCAN-YAML -n DEV-NAMESPACE
     ```
 
     Where `PATH-TO-IMAGE-SCAN-YAML>` is the path to the YAML file created earlier.
 
     `SourceScan`:
     ```console
-    kubectl apply -f PATH-TO-SOURCE-SCAN-YAML -n <DEV_NAMESPACE>
+    kubectl apply -f PATH-TO-SOURCE-SCAN-YAML -n DEV-NAMESPACE
     ```
 
     Where `PATH-TO-SOURCE-SCAN-YAML` is the path to the YAML file created earlier.
@@ -254,14 +254,14 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
     For `ImageScan`:
     ```console
-    kubectl get imagescan IMAGE-SCAN-NAME -n <DEV_NAMESPACE>
+    kubectl get imagescan IMAGE-SCAN-NAME -n DEV-NAMESPACE
     ```
    
     Where `IMAGE-SCAN-NAME` is the name of the `ImageScan` as defined in the YAML file created earlier.
 
     For `SourceScan`:
     ```console
-    kubectl get sourcescan SOURCE-SCAN-NAME -n <DEV_NAMESPACE>
+    kubectl get sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
     ```
 
     Where `SOURCE-SCAN-NAME` is the name of the `SourceScan` as defined in the YAML file created earlier.
@@ -283,7 +283,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 6. Clean up:
 
     ```console
-    kubectl delete -f PATH-TO-SCAN-YAML -n <DEV_NAMESPACE>
+    kubectl delete -f PATH-TO-SCAN-YAML -n DEV-NAMESPACE
     ```
 
     Where `PATH-TO-SCAN-YAML` is the path to the YAML file created earlier.
@@ -294,20 +294,20 @@ In order to scan your images with the new scanner installed in the [Out of the B
 
 Add the `ootb_supply_chain_testing_scanning.scanning` section to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
 
-In this file you can define which `ScanTemplates` is used for both `SourceScan` and `ImageScan`. The default values are the Grype Scanner `ScanTemplates`, but it can be overwritten by any other `ScanTemplate` present in your `DEV_NAMESPACE`. The same applies to the `ScanPolicies` applied to each kind of scan.
+In this file you can define which `ScanTemplates` is used for both `SourceScan` and `ImageScan`. The default values are the Grype Scanner `ScanTemplates`, but it can be overwritten by any other `ScanTemplate` present in your `DEV-NAMESPACE`. The same applies to the `ScanPolicies` applied to each kind of scan.
 
 ```yaml
 ootb_supply_chain_testing_scanning:
   scanning:
     image:
-      template: <IMAGE_SCAN_TEMPLATE>
-      policy: <IMAGE_SCAN_POLICY>
+      template: IMAGE-SCAN-TEMPLATE
+      policy: IMAGE-SCAN-POLICY
     source:
-      template: <SOURCE_SCAN_TEMPLATE>
-      policy: <SOURCE_SCAN_POLICY>
+      template: SOURCE-SCAN-TEMPLATE
+      policy: SOURCE-SCAN-POLICY
 ```
 
-> **Note:** For the Supply Chain to work properly, the `<SOURCE_SCAN_TEMPLATE>` must support blob files and the `<IMAGE_SCAN_TEMPLATE>` must support private images.
+> **Note:** For the Supply Chain to work properly, the `SOURCE-SCAN-TEMPLATE` must support blob files and the `IMAGE-SCAN-TEMPLATE` must support private images.
 
 For example:
 
