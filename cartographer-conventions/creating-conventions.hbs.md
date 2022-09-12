@@ -295,17 +295,17 @@ When you use labels or annotations to define whether a convention must be applie
 
  Where:
 
-+ `conventionHandler` is the *handler*.
+  + `conventionHandler` is the *handler*.
 
-+ `awesome-label` is the **label** that you want to validate.
+  + `awesome-label` is the **label** that you want to validate.
 
-+ `awesome-annotation` is the **annotation** that you want to validate.
+  + `awesome-annotation` is the **annotation** that you want to validate.
 
-+ `awesome-value` is the value that must have the **label**/**annotation**.
+  + `awesome-value` is the value that must have the **label**/**annotation**.
 
 ### <a id='match-criteria-env-var'></a> Matching criteria by environment variables
 
-When using environment variables to define whether the convention is applicable, it must be present in the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).[spec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec).[containers][https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container](*).[env](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables). and you can validate the value.
+When using environment variables to define whether the convention is applicable, it must be present in the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec), [spec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#PodSpec), [containers][https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#Container], and [env](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-v1/#environment-variables) to validate the value.
 
 + PodTemplateSpec
 
