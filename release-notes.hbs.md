@@ -24,7 +24,6 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-2-2-scst-store-issues"></a>Supply Chain Security Tools - Store
 
-* Added secret for metadata-store-read-write-client to support K8s 1.24.
 * Resolved an issue where Store could not handle new method types.
 * Resolved an issue where Store could not handle blob URLS in component names.
 
