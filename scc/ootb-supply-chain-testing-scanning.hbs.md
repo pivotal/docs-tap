@@ -375,16 +375,9 @@ kubectl describe imagescan NAME -n DEVELOPER-NAMESPACE
 
 ### <a id="triage-cve"></a>Triage
 
-Review the CVEs reported in the previous step to determine next steps to remediate. To possible paths from here are:
+The goal of Triage is to analyze and prioritize the reported vulnerability data in order to determine the appropriate course of action to take at the Remediation step. To Remediate efficiently and appropriately, you need context on both the vulnerabilities that are blocking your supply chain as well as the packages that are affected, followed by the impact they may have.
 
-- Update the component to remove the CVE
-- Amend the scan policy with an exception if you decide to accept the CVE and unblock your supply chain
-
->**Relevant Context:** For additional information on common vulnerability scanner limitations, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md#scst-scan-note).
-
-#### <a id="update-component"></a>Updating the component
-
-Determine which package introduces the CVE. If the [Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-overview.hbs.md) is configured, you can query the database for the packages and CVEs that your source code or image contains:
+During Triage, review which packages are impacted by the CVEs that violated your scanpolicy. If the [Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-overview.hbs.md) is configured, you can query the database for the packages and their corresponding CVEs in your source code or image using the following commands:
 
 ```console
 tanzu insight source get --repo REPO --org ORG
@@ -393,14 +386,25 @@ tanzu insight image get --digest DIGEST
 
 See [Query using the Tanzu Insight CLI plug-in](../cli-plugins/insight/query-data.hbs.md) for more details.
 
-Determine if updating the component will resolve the vulnerability. Vulnerabilities that occur in older versions of a package could be resolved in newer versions. Information pertaining to CVEs can be found in, but is not limited to, the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
+During this stage, we also recommend reviewing information pertaining to the CVEs from sources such as the [National Vulnerability Database](https://nvd.nist.gov/vuln), the release page of a package, etc.
 
-> **Note:** You can also use your project's package manager tools to identify transitive or indirect dependencies. For example, `go mod graph` for projects in Go.
+#### <a id="remediation"></a>Remediation
+Once Triage is complete, the next step is to Remediate the blocking vulnerabilities in a timely manner. Some common methods for CVE Remediation are as follows:
+
+- Updating the affected component to remove the CVE
+- Amending the scan policy with an exception if you decide to accept the CVE and unblock your supply chain
+
+>**Relevant Context:** For additional information on common vulnerability scanner limitations, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md#scst-scan-note).
+
+#### <a id="update-component"></a>Updating the affected component
+
+Vulnerabilities that occur in older versions of a package could be resolved in newer versions. Apply a patch by upgrading to a newer version of the package containing the fix.
+
+In addition to the above, you can further adopt security best practices by using your project's package manager tools (e.g. `go mod graph` for projects in Go) to identify transitive or indirect dependencies that may also be affected by CVEs.
 
 #### <a id="amend-scan-policy"></a>Amending the scan policy
 
-After analyzing the CVE(s), if a developer decides to proceed without remediating the CVE, the ScanPolicy can be amended to ignore CVE(s). For example, when a CVE is triaged and evaluated as a false positive.
-See [Writing Policy Templates](../scst-scan/policies.md) for more details.
+If you decide to proceed without remediating the CVE (e.g. when a CVE has been evaluated to be a false positive / when a fix is not yet available), the ScanPolicy can be amended to ignore CVE(s). See [Writing Policy Templates](../scst-scan/policies.md) for more details.
 
 Under RBAC, users with the `app-operator-scanning` role (part of the `app-operator` aggregate role), have permission to modify the ScanPolicy. See [Detailed role permissions breakdown](../authn-authz/permissions-breakdown.hbs.md) for more information.
 
