@@ -40,6 +40,12 @@ contour:
 
 cnrs:
   domain_name: "TAP-ITERATE-CNRS-DOMAIN"
+
+appliveview_connector:
+  backend:
+    sslDisabled: TRUE-OR-FALSE-VALUE
+    ingressEnabled: TRUE-OR-FALSE-VALUE
+    host: appliveview.VIEW-CLUSTER-INGRESS-DOMAIN
 ```
 
 Where:
@@ -51,3 +57,4 @@ Where:
 - `TANZUNET-REGISTRY-PASSWORD` is your password of the VMware Tanzu Network.
 - `TAP-GITHUB-TOKEN` is your GitHub personal access token.
 - `TAP-ITERATE-CNRS-DOMAIN` is the iterate cluster CNRS domain.
+- `VIEW-CLUSTER-INGRESS-DOMAIN` is the subdomain you setup on the View profile cluster. This matches the value key `appliveview.ingressDomain` or `shared.ingress_domain` on the view cluster. Include the default host name `appliveview.` ahead of the domain.
