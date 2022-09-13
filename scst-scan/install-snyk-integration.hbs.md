@@ -103,7 +103,7 @@ Before following the steps for [Installing Scanners for Supply Chain Security To
           importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
       ```
 
-  **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, explicitly disable the integration by appending the next fields to the `values.yaml` file, since it's enabled by default:
+  **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, explicitly deactivate the integration by appending the next fields to the `values.yaml` file, since it's enabled by default:
 
   ```yaml
   # ...
