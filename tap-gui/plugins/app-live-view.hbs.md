@@ -48,7 +48,7 @@ This is the default page loaded in the `Live View` section. This page gives a ta
 
 The user can navigate between `Information Categories` by selecting from the drop-down menu on the top right corner of the page.
 
-![Details Page in UI](./images/details.png)
+![Screenshot of the Details Page with the Information Category drop-down menu.](images/details.png)
 
 
 ### <a id="health-page"></a> Health page
@@ -58,7 +58,7 @@ The health page provides detailed information about the health of the applicatio
 It lists all the components that make up the health of the application such as readiness, liveness and disk space.
 It displays the status, details associated with each of the components.
 
-![Health Page in UI](./images/health.png)
+![Screenshot of the Health Page showing the application components and their status.](images/health.png)
 
 
 ### <a id="environment-page"></a> Environment page
@@ -79,9 +79,9 @@ The page includes the following features:
 
 >**Note:** The `management.endpoint.env.post.enabled=true` has to be set in the application config properties of the application and a corresponding, editable Environment has to be present in the (here Spring Boot) application.
 
-![Environment Page in UI](./images/environment-1.png)
+![Screenshot of the Environment Page showing the various properties.](images/environment-1.png)
 
-![Environment Page Editable in UI](./images/environment-2.png)
+![Screenshot of the Environment Page showing the properties and the option to edit each in the UI.](images/environment-2.png)
 
 
 ### <a id="log-levels-page"></a> Log Levels page
@@ -93,8 +93,7 @@ The search feature enables the user to search by logger name.
 The **Reset** resets the log levels to the original state.
 The **Reset All** on top right corner of the page resets all the loggers to default state.
 
-![Log Levels Page in UI](./images/log-levels.png)
-
+![Screenshot of the Log Levels Page with buttons to configure and reset various log levels.](images/log-levels.png)
 
 ### <a id="threads-page"></a> Threads page
 
@@ -107,10 +106,9 @@ The refresh icon refreshes to the latest state of the threads.
 The user can view more thread details by clicking on the Thread ID.
 The page also has a feature to download thread dump for analysis purposes.
 
-![Threads Page in UI](./images/threads-1.png)
+![Screenshot of the Threads Page showing the details of live and daemon threads.](images/threads-1.png)
 
-![Thread Details Page in UI](./images/threads-2.png)
-
+![Screenshot of the Threads Details Page showing the details of a Thread ID.](images/threads-2.png)
 
 ### <a id="memory-page"></a> Memory page
 
@@ -119,7 +117,7 @@ To navigate to the **Memory** page, the user can select the `Memory` option from
 * The memory page highlights the memory usage inside of the JVM. It displays a graphical representation of the different memory regions within heap and non-heap memory. This visualizes data from inside of the JVM (in case of Spring Boot apps running on a JVM) and therefore provides memory insights into the application in contrast to "outside" information about the Kubernetes Pod level.
 * The real-time graphs displays a stacked overview of the different spaces in memory with the total memory used and total memory size. The page contains graphs to display the GC pauses and GC events. The **Heap Dump** on top right corner allows the user to download heap dump data.
 
-![Memory Page in UI](./images/memory.png)
+![Screenshot of the Memory Page graphically showing the memory usage inside the JVM.](images/memory.png)
 
 >**Note:** This graphical visualization happens in real time and shows real-time data only. As mentioned at the top, the Application Live View features do not store any information. That means the graphs visualize the data over time only for as long as you stay on that page.
 
@@ -129,11 +127,13 @@ To navigate to the **Memory** page, the user can select the `Memory` option from
 To navigate to the Request Mappings page, the user should select the `Request Mappings` option from the `Information Category` drop-down menu.
 This page provides information about the application’s request mappings. For each of the mapping, it displays the request handler method. The user can view more details of the request mapping such as header metadata of the application, i.e produces, consumes and HTTP method by clicking on the mapping. The search feature enables the user to search on the request mapping or the method. The toggle `/actuator/** Request Mappings` displays the actuator related mappings of the application.
 
->**Note:** When application actuator endpoint is exposed on management.server.port, the application does not return any actuator request mappings data in the context. The application displays a message when the actuator toggle is enabled.
+>**Note:** When application actuator endpoint is exposed on management.server.port, the application
+does not return any actuator request mappings data in the context.
+The application displays a message when the actuator toggle is enabled.
 
-![Request Mappings Page in UI](./images/request-mappings-1.png)
+![Screenshot of the Request Mappings Page showing the application's request mappings.](images/request-mappings-1.png)
 
-![Request Mappings Details Page in UI](./images/request-mappings-2.png)
+![Screenshot of the Request Mappings Details Page showing the details of a mapping.](images/request-mappings-2.png)
 
 
 ### <a id="http-requests-page"></a> HTTP Requests page
@@ -150,57 +150,95 @@ The toggle '/actuator/**' on the top right corner of the page displays the actua
 
 >**Note:** When application actuator endpoint is exposed on management.server.port, no actuator HTTP Traces data is returned for the application. In this case, a message is displayed when the actuator toggle is enabled.
 
-![Http Requests Page in UI](./images/http-requests-1.png)
+![Screenshot of the HTTP Requests Page showing the response status of request-response exchanges to the app.](images/http-requests-1.png)
 
-![Http Request Details Page in UI](./images/http-requests-2.png)
+![Screenshot of the HTTP Requests Details Page showing the details of a request.](images/http-requests-2.png)
 
 
 ### <a id="caches-page"></a> Caches page
 
 To navigate to the **Caches** page, the user can select the `Caches` option from the `Information Category` drop-down menu.
-The Caches page provides access to the application’s caches. It gives the details of the cache managers associated with the application including the fully qualified name of the native cache. The search feature in the Caches Page enables the user to search for a specific cache/cache manager. The user can clear individual caches by clicking **Evict**. The user can clear all the caches completely by clicking **Evict All**.
-If there are no cache managers for the application, a message is displayed `No cache managers available for the application`.
 
-![Caches Page in UI](./images/caches.png)
+The Caches page provides access to the application’s caches.
+It gives the details of the cache managers associated with the application including the fully
+qualified name of the native cache.
 
+The search feature in the Caches Page enables the user to search for a specific cache/cache manager.
+The user can clear individual caches by clicking **Evict**.
+The user can clear all the caches completely by clicking **Evict All**.
+If there are no cache managers for the application, the message
+`No cache managers available for the application` is displayed.
+
+![Screenshot of the Caches Page showing the app's caches and the option to Evict.](images/caches.png)
 
 ### <a id="config-props-page"></a> Configuration Properties page
 
 To navigate to the **Configuration Properties** page, the user can select the `Configuration Properties` option from the `Information Category` drop-down menu.
-The configuration properties page provides information about the configuration properties of the application. In case of Spring Boot, it displays application's @ConfigurationProperties beans. It gives a snapshot of all the beans and their associated configuration properties. The search feature allows the user to look up for property's key/value or the bean name.
 
-![Configuration Properties Page in UI](./images/config-props.png)
+The configuration properties page provides information about the configuration properties of the application.
+In case of Spring Boot, it displays application's @ConfigurationProperties beans.
+It gives a snapshot of all the beans and their associated configuration properties.
+The search feature allows the user to look up for property's key/value or the bean name.
+
+![Screenshot of the Configuration Properties Page showing information about the app's configuration properties.](images/config-props.png)
 
 
 ### <a id="conditions-page"></a> Conditions page
 
 To navigate to the **Conditions** page, the user can select the `Conditions` option from the `Information Category` drop-down menu.
-The conditions evaluation report provides information about the evaluation of conditions on configuration and auto-configuration classes. In case of Spring Boot, this gives the user a clear view of all the beans configured in the application. When the user clicks on the bean name, the conditions and the reason for the conditional match is displayed. In case of not configured beans, it shows both the matched and unmatched conditions of the bean if any. In addition to this, it also displays names of unconditional auto configuration classes if any. The user can filter out on the beans and the conditions using the search feature.
+The conditions evaluation report provides information about the evaluation of conditions on configuration and auto-configuration classes. 
 
-![Conditions Page in UI](./images/conditions.png)
+In case of Spring Boot, this gives the user a view of all the beans configured in the application.
+When the user clicks on the bean name, the conditions and the reason for the conditional match is
+displayed.
+
+In case of not configured beans, it shows both the matched and unmatched conditions of the bean if any.
+In addition to this, it also displays names of unconditional auto configuration classes if any.
+The user can filter out on the beans and the conditions using the search feature.
+
+![Screenshot of the Conditions Page showing a list of app conditions.](images/conditions.png)
 
 
 ### <a id="scheduled-tasks-page"></a> Scheduled Tasks page
 
-To navigate to the **Scheduled Tasks** page, the user can select the `Scheduled Tasks` option from the `Information Category` drop-down menu.
-The scheduled tasks page provides information about the application's scheduled tasks. It includes cron tasks, fixed delay tasks and fixed rate tasks, custom tasks and the properties associated with them. The user can search for a particular property or a task in the search bar to retrieve the task or property details.
+To navigate to the **Scheduled Tasks** page, the user can select the **Scheduled Tasks** option from
+the **Information Category** drop-down menu.
 
-![Scheduled Tasks Page in UI](./images/scheduled-tasks.png)
+The scheduled tasks page provides information about the application's scheduled tasks.
+It includes cron tasks, fixed delay tasks and fixed rate tasks, custom tasks and the properties
+associated with them.
+
+The user can search for a particular property or a task in the search bar to retrieve the task or
+property details.
+
+![Screenshot of Scheduled Tasks Page with list of scheduled tasks and option to search.](images/scheduled-tasks.png)
 
 ### <a id="beans-page"></a> Beans page
 
 To navigate to the **Beans** page, the user can select the `Beans` option from the `Information Category` drop-down menu.
 The beans page provides information about a list of all application beans and its dependencies. It displays the information about the bean type, dependencies, and its resource. The user can search by the bean name or its corresponding fields.
 
-![Beans Page in UI](./images/beans.png)
+![Screenshot of Beans Page showing a list of application beans and dependencies.](images/beans.png)
 
 
 ### <a id="metrics-page"></a> Metrics page
 
 To navigate to the **Metrics** page, the user can select the `Metrics` option from the `Information Category` drop-down menu.
-The metrics page provides access to application metrics information. The user can choose from the list of various metrics available for the application such as jvm.memory.used, jvm.memory.max, http.server.request, and so on.After the metric is chosen, the user can view the associated tags. The user can choose the value of each of the tags based on filtering criteria. Clicking **Add Metric** adds the metric to the page which is refreshed every 5 seconds by default. The user can pause the auto refresh feature by disabling the `Auto Refresh` toggle. The user can also refresh the metrics manually by clicking **Refresh All**. The format of the metric value can be changed according to the user's needs. They can delete a particular metric by clicking the minus symbol in the same row.
 
-![Metrics Page in UI](./images/metrics.png)
+The metrics page provides access to application metrics information.
+The user can choose from the list of various metrics available for the application such as
+`jvm.memory.used`, `jvm.memory.max`, `http.server.request`, and so on.
+
+After the metric is chosen, the user can view the associated tags.
+The user can choose the value of each of the tags based on filtering criteria.
+Clicking **Add Metric** adds the metric to the page which is refreshed every 5 seconds by default.
+
+The user can pause the auto refresh feature by disabling the **Auto Refresh** toggle.
+The user can also refresh the metrics manually by clicking **Refresh All**.
+The format of the metric value can be changed according to the user's needs.
+They can delete a particular metric by clicking the minus symbol in the same row.
+
+![Screenshot of Metrics Page showing drop-down menus for selecting metrics and tag values.](images/metrics.png)
 
 
 ### <a id="actuator-page"></a> Actuator page
@@ -208,8 +246,7 @@ The metrics page provides access to application metrics information. The user ca
 To navigate to the **Actuator** page, the user can select the `Actuator` option from the `Information Category` drop-down menu.
 The actuator page provides a tree view of the actuator data. The user can choose from a list of actuator endpoints and parse through the raw actuator data.
 
-![Actuator Page in UI](./images/actuator.png)
-
+![Screenshot of the Actuator Page showing actuator data for a selected endpoint.](images/actuator.png)
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
