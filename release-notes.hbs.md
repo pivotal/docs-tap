@@ -328,13 +328,13 @@ after the binaries are built and packaged as images.
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
-- Known issue 1
-- Known issue 2
+- **Unable to view workloads on the panel when connected to GKE cluster:** 
+When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke) 
 
 #### <a id="intelj-ext-known-issues"></a>Intellij Extension
 
-- Known issue 1
-- Known issue 2
+- **Unable to view workloads on the panel when connected to GKE cluster:** 
+When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke) 
 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
