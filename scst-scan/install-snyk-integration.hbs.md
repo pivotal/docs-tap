@@ -154,7 +154,7 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
     ```yaml
     # ... 
     metadataStore:
-      url: "" # Disable Supply Chain Security Tools - Store integration
+      url: "" # Deactivate Supply Chain Security Tools - Store integration
     ```
 
 6. Install the package by running:
