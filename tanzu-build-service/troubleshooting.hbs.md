@@ -93,16 +93,20 @@ If you see the words, "max depth exceeded", you have likely encountered dockerd'
 
 ### Solution
 
-To work around this issue, configure your cluster to use containerd as its default container runtime. Please refer to 
+To work around this issue, configure your cluster to use containerd or CRI-O as its default container runtime. Please refer to 
 your Kubernetes cluster provider's documentation for specific instructions.
 
-### AWS
+#### AWS
 * https://aws.amazon.com/blogs/containers/amazon-eks-1-21-released/
 * https://eksctl.io/usage/container-runtime/
 
-### AKS
+#### AKS
 * https://docs.microsoft.com/en-us/azure/aks/cluster-configuration#container-runtime-configuration
 * https://techcommunity.microsoft.com/t5/apps-on-azure-blog/dockershim-deprecation-and-aks/ba-p/3055902
 
-### GKE
+#### GKE
 * https://cloud.google.com/kubernetes-engine/docs/concepts/using-containerd
+
+#### OpenShift
+* https://cloud.redhat.com/blog/containerd-support-for-windows-containers-in-openshift
+* https://docs.openshift.com/container-platform/3.11/crio/crio_runtime.html
