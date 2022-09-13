@@ -27,7 +27,7 @@ To install a new scanner, follow these steps:
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
       grype.scanning.apps.tanzu.vmware.com                 Grype Scanner for Supply Chain Security Tools - Scan                      Default scan templates using Anchore Grype
       snyk.scanning.apps.tanzu.vmware.com                  Snyk for Supply Chain Security Tools - Scan                               Default scan templates using Snyk
-      carbonblack.scanning.apps.tanzu.vmware.com           CARBON-BLACK-PLACEHOLDER                                                  CARBON-BLACK-PLACEHOLDER
+      carbonblack.scanning.apps.tanzu.vmware.com           Carbon Black Scanner for Supply Chain Security Tools - Scan               Default scan templates using Carbon Black
     ```
 
 2. List version information for the scanner package by running:
