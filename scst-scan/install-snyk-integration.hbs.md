@@ -105,11 +105,11 @@ Before following the steps for [Installing Scanners for Supply Chain Security To
 
   **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, explicitly deactivate the integration by appending the next fields to the `values.yaml` file, since it's enabled by default:
 
-  ```yaml
-  # ...
-  metadataStore:
-    url: "" # Disable Supply Chain Security Tools - Store integration
-  ```
+    ```yaml
+    # ... 
+    metadataStore:
+      url: "" # Deactivate Supply Chain Security Tools - Store integration
+    ```
 
 ## <a id="snyk-scan-policy"></a> Sample ScanPolicy for in SPDX JSON format
 
