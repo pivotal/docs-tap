@@ -7,6 +7,10 @@ This topic describes how to enable and use Git repository creation in the applic
 The application accelerator plugin uses backstage git providers integration and the authentication mechanism
 to retrieve an access token and interact with the provider API to create git repositories.
 
+## <a id="supported-providers"></a> Supported Providers
+
+In TAP version 1.3 the supported git providers are Github, Gitlab and BitBucket
+
 ## <a id="configuration"></a> Configuration
 
 There are two ways to enable the git repository creation:
