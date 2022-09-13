@@ -15,7 +15,7 @@ Before installing Supply Chain Security Tools - Scan:
 - Install [Supply Chain Security Tools - Store](../scst-store/install-scst-store.md) for scan results to persist. The integration with Supply Chain Security Tools - Store can be handled in:
   - **Single Cluster:** The Supply Chain Security Tools - Store is present in the same cluster where Supply Chain Security Tools - Scan and the `ScanTemplates` will be present.
   - **Multi-Cluster:** The Supply Chain Security Tools - Store is present in a different cluster (e.g.: view cluster) where the Supply Chain Security Tools - Scan and `ScanTemplates` will be present.
-  - **Integration Disabled:** The Supply Chain Security Tools - Scan deployment doesn't need to communicate with Supply Chain Security Tools - Store. 
+  - **Integration Deactivated:** The Supply Chain Security Tools - Scan deployment doesn't need to communicate with Supply Chain Security Tools - Store. 
 
     For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
@@ -50,7 +50,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. (Optional) Make changes to the default installation settings:
 
-    If you're using the Grype Scanner `≥v1.2.0`, or the Snyk Scanner, the following scanning configuration can disable the embedded Supply Chain Security Tools - Store integration with a `scan-values.yaml` file like this:
+    If you're using the Grype Scanner `≥v1.2.0`, or the Snyk Scanner, the following scanning configuration can deactivate the embedded Supply Chain Security Tools - Store integration with a `scan-values.yaml` file like this:
 
     ```yaml
     ---
