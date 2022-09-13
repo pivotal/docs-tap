@@ -55,6 +55,6 @@ For example:
 + [PodConventionContextSpec](pod-convention-context-spec.md)
 + [PodConventionContextStatus](pod-convention-context-status.md)
 + [PodConventionContext](pod-convention-context.md)
-+ [Cluster Pod Convention](cluster-pod-convention.md)
++ [ClusterPodConvention](cluster-pod-convention.md)
 + [PodIntent](pod-intent.md)
 + [BOM](bom.md)
