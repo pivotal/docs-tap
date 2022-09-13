@@ -191,13 +191,11 @@ Attendees can access workshops through the web portal by following two steps:
 
 1. The attendee visits the web-based portal for the training session and is presented with a login page. However, before logging in, the attendee must register for an account. The attendee clicks the link to the registration page and fills it in.
 
-    ![Screenshot of the portal registration form](images/portal-registration.png)
+    ![Screenshot of the Learning Center Create an account page, with fields to fill in and a Register button.](images/portal-registration.png)
 
     Registration is required so if the attendee's web browser exits or the attendee needs to switch web browsers, the attendee can log in again and access the same workshop instance.
 
 2. Upon registering, the attendee is presented with a list of workshops available for the training session.
-
-    ![Screenshot of a workshop listing on the portal catalog](images/portal-catalog.png)
 
     - An orange dot beside a workshop means that no instance for that workshop has been allocated
     to the user as yet, but that some are available.
@@ -209,7 +207,7 @@ Attendees can access workshops through the web portal by following two steps:
     The attendee clicks the "Start workshop" button. This allocates a workshop instance if one hasn't yet been reserved and redirects
     the attendee to that workshop instance.
 
-    ![Screenshot of a workshop overview and dashboard terminal](../about-learning-center/images/dashboard-terminal.png)
+    ![Screenshot of Learning Center dashboard with Terminal tab selected showing terminals 1 and 2.](../about-learning-center/images/dashboard-terminal.png)
 
 ## <a id="delete-ws-training-portal"></a>Deleting the workshop training portal
 
