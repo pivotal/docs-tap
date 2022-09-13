@@ -50,6 +50,19 @@ This release has the following known issues, listed by area and component.
     The vulnerabilities are still found during the image scan
     after the binaries are built and packaged as images.
 
+#### <a id="1-2-2-upgrade-issues"></a>tap-upgrade
+
+- **Adding 1.2.2 repo bundle in addition to another repository might fail:**
+
+  - While upgrading to v1.2.2 from any previous versions, adding the 1.2.2 repo bundle in addition to the existing repo bundle will fail. As a               workaround use 
+  
+    ```
+    tanzu package repository update <existing-repo-bunlde-name> --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.2.2 -n <namespace>
+    ```
+   
+      to add the TAP 1.2.2 repo bundle. 
+  - You may observe an error with package installs `ReconcileFailed True Expected to find at least one version` till tap is upgraded to 1.2.2 but           this will not affect functionality of any components.
+
 ## <a id='1-2-1'></a> v1.2.1
 
 **Release Date**: August 9, 2022
