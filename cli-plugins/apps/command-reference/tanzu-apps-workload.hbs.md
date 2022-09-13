@@ -17,6 +17,17 @@ Workload configuration includes:
   -h, --help   help for workload
 ```
 
+## <a id="envvars"></a>Environment variables with default values
+
+There are some environment variables that can be specify to have default values so users can execute their commands with the minimum required flags. 
+These flags and its naming convention are listed below:
+
+- `--type`: TANZU_APPS_TYPE
+- `--registry-ca-cert`: TANZU_APPS_REGISTRY_CA_CERT
+- `--registry-password`: TANZU_APPS_REGISTRY_PASSWORD
+- `--registry-username`: TANZU_APPS_REGISTRY_USERNAME
+- `--registry-token`: TANZU_APPS_REGISTRY_TOKEN
+
 ## <a id="parent-commands-options"></a>Options inherited from parent commands
 
 ```console

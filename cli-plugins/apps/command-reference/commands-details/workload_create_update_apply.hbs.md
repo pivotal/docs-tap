@@ -646,6 +646,45 @@ Sets the path to a source in the local machine from where the workload creates a
 When working with local source code, you can exclude files from the source code to be uploaded within the image by creating a file `.tanzuignore` at the root of the source code.
 The `.tanzuignore` file contains a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`). If the file contains directories that are not in the source code, they are ignored and lines starting with `#` character.
 
+### <a id="apply-maven-artifact"></a> `--maven-artifact`
+
+Output of a Maven project build. This flag must be used with `--maven-version` and `--maven-group`
+
+<details><summary>Example</summary>
+
+```bash
+tanzu apps workload apply petc-mvn --maven-artifact petc --maven-version 2.6.1 --maven-group demo.com
+Create workload:
+      1 + |---
+      2 + |apiVersion: carto.run/v1alpha1
+      3 + |kind: Workload
+      4 + |metadata:
+      5 + |  name: petc-mvn
+      6 + |  namespace: default
+      7 + |spec:
+      8 + |  params:
+      9 + |  - name: maven
+     10 + |    value:
+     11 + |      artifactId: petc
+     12 + |      groupId: demo.com
+     13 + |      version: 2.6.1
+
+? Do you want to create this workload? (y/N)
+```
+</details>
+
+### <a id="apply-maven-group"></a> `--maven-group`
+
+Identifies the project across all other Maven projects. 
+
+### <a id="apply-maven-type"></a> `--maven-type`
+
+Specifies the type of the artifact that the Maven project produces. This flag is optional, will be defaulted as `jar` by supply chain.
+
+### <a id="apply-maven-version"></a> `--maven-version`
+
+Defines the current version of the Maven project.
+
 ### <a id="apply-source-image"></a> `--source-image`, `-s`
 
 Registry path where the local source code will be uploaded as an image.
@@ -819,6 +858,48 @@ Update workload:
 ? Really update the workload "spring-pet-clinic"? (y/N)
 ```
 </details>
+
+### <a id="apply-registry-ca-cert"></a> `--registry-ca-cert`
+
+Refers to the path to the self-signed certificate needed for custom/private registry. This flag can be also populated with a default value through environment variables. In this way, if the envvar `TANZU_APPS_REGISTRY_CA_CERT` is set, then there won't be necessary to use it in the command.
+
+Check [tanzu apps workload envvars](../tanzu-apps-workload.hbs.md#a-idenvvarsaenvironment-variables-with-default-values) to know the currently supported environment variables.
+
+<details><summary>Example</summary>
+
+```bash
+tanzu apps workload apply my-workload --local-path . -s registry.url.nip.io/my-package/my-image --type web --registry-ca-cert path/to/cacert/mycert.nip.io.crt --registry-username my-username --registry-password my-password
+? Publish source in "." to "registry.url.nip.io/my-package/my-image"? It may be visible to others who can pull images from that repository Yes
+Publishing source in "." to "registry.url.nip.io/my-package/my-image"...
+Published source
+Create workload:
+      1 + |---
+      2 + |apiVersion: carto.run/v1alpha1
+      3 + |kind: Workload
+      4 + |metadata:
+      5 + |  labels:
+      6 + |    apps.tanzu.vmware.com/workload-type: web
+      7 + |  name: my-workload
+      8 + |  namespace: default
+      9 + |spec:
+     10 + |  source:
+     11 + |    image: registry.url.nip.io/my-package/my-image:latest@sha256:caeb7e3a0e3ae0659f74d01095b6fdfe0d3c4a12856a15ac67ad6cd3b9e43648
+
+? Do you want to create this workload? (y/N)
+```
+</details>
+
+### <a id="apply-registry-password"></a> `--registry-password`
+
+To access a registry, credentials are often needed. If that's the case, then username and password are required and these values are set through this flag and `--registry-username`. The value of this flag can also be specified through `TANZU_APPS_REGISTRY_PASSWORD`.
+
+### <a id="apply-registry-token"></a> `--registry-token`
+
+Used for token authentication in the private registry. This flag, as the others related to private registry opts, can be set as `TANZU_APPS_REGISTRY_TOKEN` envvar.
+
+### <a id="apply-registry-username"></a> `--registry-username`
+
+Often used with `--registry-password` to set private registry credentials. Can be provided using `TANZU_APPS_REGISTRY_USERNAME` envvar to avoid setting it everytime in the command.
 
 ### <a id="apply-request-cpu"></a> `--request-cpu`
 
@@ -1148,7 +1229,7 @@ spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.365372427-05:00
 
 ### <a id="apply-type"></a> `--type`
 
-Sets the type of the workload by adding the label `apps.tanzu.vmware.com/workload-type`, which is very common to be used as a matcher by supply chains.
+Sets the type of the workload by adding the label `apps.tanzu.vmware.com/workload-type`, which is very common to be used as a matcher by supply chains. Use `TANZU_APPS_TYPE` envvar to have a default value for this flag.
 
 <details><summary>Example</summary>
 
