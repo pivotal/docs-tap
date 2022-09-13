@@ -27,7 +27,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="app-sso-features"></a>Application Single Sign-On
 
-- _OpenShift_ is supported. The controller and `AuthServer` run under restricted _Security Context Constraints_.
+- AppSSO uses a custom _Security Context Constraint_ to provide _OpenShift_ support.
 - Kubernetes 1.24 is supported.
 - Comply with the restricted _Pod Security Standard_ and give least privileges to the controller.
 - `AuthServer` gets TLS-enabled `Ingress` autoconfigured. This can be controlled via `AuthServer.spec.tls`.

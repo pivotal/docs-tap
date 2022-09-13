@@ -70,7 +70,8 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
 
     You can modify the following fields of the Rego file as part of the [CVE triage workflow](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow):
     
-    - `notAllowedSeverities` contains the categories of CVEs that, if detected, result in the SourceScan or ImageScan to fail policy enforcement. Below is an example of how an `app-operator` might decide to only block "Critical" and "High" CVEs.
+    - `notAllowedSeverities` contains the categories of CVEs that result in the SourceScan or ImageScan failing policy enforcement. Below is an example of how an `app-operator` might decide to only block "Critical" and "High" CVEs.
+
       ```yaml
       ...
       spec:
@@ -82,7 +83,9 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
           ignoreCves := []
       ...
       ```
-    - `ignoreCves` contains individual ignored CVEs when determining policy enforcement. Below is an example of how an `app-operator` might decide to ignore `CVE-2018-14643` and `GHSA-f2jv-r9rf-7988` if they were determined to be false positives. See [A Note on Vulnerability Scanners](overview.hbs.md#scst-scan-note) for more details.
+
+    - `ignoreCves` contains individual ignored CVEs when determining policy enforcement. Below is an example of how an `app-operator` might decide to ignore `CVE-2018-14643` and `GHSA-f2jv-r9rf-7988` if they are false positives. See [A Note on Vulnerability Scanners](overview.hbs.md#scst-scan-note) for more details.
+
       ```yaml
       ...
       spec:
