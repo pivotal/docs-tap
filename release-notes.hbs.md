@@ -3,11 +3,9 @@
 This topic contains release notes for Tanzu Application Platform v1.0.
 
 {{#unless vars.hide_content}}
-## <a id='1-0-4'></a> v1.0.4
+## <a id='1-0-5'></a> v1.0.5
 
-**Release Date**: September 13, 2022
-
-### <a id='1-0-4-known-issues'></a> Known issues
+### <a id='1-0-5-known-issues'></a> Known issues
 
 This release has the following known issues:
 
@@ -29,24 +27,37 @@ Image Scan, after the binaries are built and packaged as images.
 occurs during scanning, the Scan Phase field is not updated to `Error` and remains in the
 `Scanning` phase. Read the scan pod logs to verify that there was an error.
 
-#### <a id="1-0-4-known-issues-scst-scan"></a>Supply Chain Security Tools - Scan
+#### <a id="1-0-5-known-issues-scst-scan"></a>Supply Chain Security Tools - Scan
 
 **Blob Source Scan is reporting wrong source URL:**
-- When running a Source Scan of a blob compressed file, Supply Chain Security Tools - Scan looks for a `.git` directory present in the files to extract information that is useful for the report sent to the Supply Chain Security Tools - Store deployment.
 
-- Workaround - The following workarounds fix this issue:
+- When running a Source Scan of a blob compressed file, Supply Chain Security Tools - Scan looks for
+  a `.git` directory present in the files to extract information that is useful for the report sent
+  to the Supply Chain Security Tools - Store deployment.
 
-  1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
-  1. Configure your SourceScan or Workload to connect to the repository by using HTTPS instead of using SSH.
-  1. Edit the FluxCD GitRepository resource to not include the `.git` directory.
+  The following workaround fixes this issue:
 
-### <a id='1-0-4-resolved-issues'></a> Resolved issues
+  1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`.
+     Upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0`
+     or later.
+  2. Configure your SourceScan or Workload to connect to the repository by using HTTPS instead of
+     using SSH.
+  3. Edit the FluxCD GitRepository resource to not include the `.git` directory.
+
+### <a id='1-0-5-resolved-issues'></a> Resolved issues
 
 This release has the following fixes:
 
-#### <a id='1-0-4-resolved-issues-stk'></a> Services Toolkit
+#### <a id='1-0-5-resolved-issues-stk'></a> Services Toolkit
 
 * Bump the services toolkit package to v0.5.2 in order to resolve CVE-2022-21698.
+
+{{/unless}}
+
+{{#unless vars.hide_content}}
+## <a id='1-0-4'></a> v1.0.4
+
+**Release Date**: September 13, 2022
 {{/unless}}
 
 ## <a id='1-0-3'></a> v1.0.3
