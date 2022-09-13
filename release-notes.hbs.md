@@ -63,6 +63,14 @@ This release has the following known issues, listed by area and component.
       to add the TAP 1.2.2 repo bundle. 
   - You may observe an error with package installs `ReconcileFailed True Expected to find at least one version` till tap is upgraded to 1.2.2 but           this will not affect functionality of any components.
 
+#### <a id="1-2-2-scst-sign-issues"></a>Supply Chain Security Tools - Policy Controller
+
+This issue is also present in previous releases of Supply Chain Security Tools - Policy Controller.
+
+- **`kubectl run` pods fail to validate in non-default namespaces:**
+
+  - When policy verification occurs on an image deployed through `kubectl run` on a non-default namespace, the verification will fail to create the keychain required if the image requires credentials.
+
 ## <a id='1-2-1'></a> v1.2.1
 
 **Release Date**: August 9, 2022
