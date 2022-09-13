@@ -44,7 +44,7 @@ cnrs:
 appliveview_connector:
   backend:
     sslDisabled: TRUE-OR-FALSE-VALUE
-    ingressEnabled: TRUE-OR-FALSE-VALUE
+    ingressEnabled: true
     host: appliveview.VIEW-CLUSTER-INGRESS-DOMAIN
 ```
 
