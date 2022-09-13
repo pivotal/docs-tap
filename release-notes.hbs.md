@@ -50,6 +50,11 @@ This release includes the following changes, listed by component and area.
 - Emit the audit `TOKEN_REQUEST_REJECTED` event when the `refresh_token` grant fails.
 - The service binding `Secret` is updated when a `ClientRegistration` changes significantly.
 
+
+#### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
+
+- Added new default role `service-operator` 
+
 ### Breaking changes
 
 - `AuthServer.spec.identityProviders.internalUser.users.password` now be provided as plain-text instead of _bcrypt_
