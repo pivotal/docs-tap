@@ -25,7 +25,12 @@ However, as described in the [Kubernetes documentation](https://kubernetes.io/do
 about RBAC, you can create customized roles and permissions that better meet your needs.
 Aggregated cluster roles are used to build VMware Tanzu Application Platform default roles.
 
-The default roles are installed with every Tanzu Application Platform profile.
+
+> Cluster administrators should be careful when creating Roles or ClusterRoles themselves.
+When changing roles or adding new roles that carry one of the labels used by the default roles, the roles are automatically updated (their aggregation state) and changed. This can lead to unintentional changes in functionality and permissions to all users.
+
+
+The default roles are installed with every Tanzu Application Platform profile except for `view`.
 For an overview of the different roles and their permissions, see [Role Descriptions](role-descriptions.md).
 
 ## <a id="work-with-roles"></a> Working with roles using the RBAC CLI plug-in
