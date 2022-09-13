@@ -34,7 +34,7 @@ Before following the steps for [Installing Scanners for Supply Chain Security To
 
 4. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
 
-    You must define the following fields in the `values.yaml` file for the Snyk Scanner configuration. You can add fields as needed to enable or disable behaviors. You can append the values to this file as shown later in this document. 
+    You must define the following fields in the `values.yaml` file for the Snyk Scanner configuration. You can add fields as needed to enable or deactivate behaviors. You can append the values to this file as shown later in this document. 
 
     ```yaml
     ---
@@ -108,7 +108,7 @@ Before following the steps for [Installing Scanners for Supply Chain Security To
   ```yaml
   # ...
   metadataStore:
-    url: "" # Disable Supply Chain Security Tools - Store integration
+    url: "" # Deactivate Supply Chain Security Tools - Store integration
   ```
 
 ## <a id="snyk-scan-policy"></a> Sample ScanPolicy for in SPDX JSON format
