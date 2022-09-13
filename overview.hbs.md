@@ -24,7 +24,7 @@ or dependency patch. And connecting to other applications and data, regardless o
 or what kind of infrastructure they run on, has never been easier, thanks to an internal API
 management portal.
 
-![Illustration of TAP conceptual value.](images/tap-conceptual-value.png)
+![Illustration of TAP conceptual value, starting with components that serve the developer and finishing with components that serve operations and security staff.](images/tap-conceptual-value.png)
 
 Customers can simplify workflows in both the inner loop and outer loop of Kubernetes-based app
 development with Tanzu Application Platform while creating supply chains.
@@ -65,7 +65,7 @@ staging and production on Kubernetes, removing the pain points for both inner an
 In addition, it allows the operators to customize the platform by replacing
 Tanzu Application Platform components with other products.
 
-![Diagram depicting the layered structure of TAP](images/tap-layered-capabilities.png)
+![Diagram depicting the layered structure of TAP including various TAP components.](images/tap-layered-capabilities.png)
 
 The following packages are part of the Tanzu Application Platform:
 
