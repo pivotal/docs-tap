@@ -63,6 +63,12 @@ Thread metrics is available in SteeltoeVersion `3.2.*`. To enable the Threads pa
 
 To enable Application Live View on the Steeltoe TAP workload, the Application Live View convention service automatically applies labels on the workload, such as `tanzu.app.live.view.application.flavours: steeltoe` and `tanzu.app.live.view: true`, based on the Steeltoe image metadata.
 
+Creating workload for sample Steeltoe Application below:
+
+```console
+tanzu apps workload create steeltoe-app --type web --git-repo https://github.com/sample-accelerators/steeltoe-weatherforecast --git-branch main --annotation autoscaling.knative.dev/min-scale=1 --yes --label app.kubernetes.io/part-of=sample-app
+```
+
 >**Note:** If your application image is not built with Tanzu Build Service, to enable Application Live View on Steeltoe Tanzu Application Platform workload, use the following command. For example:
 
 ```
