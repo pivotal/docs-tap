@@ -185,24 +185,12 @@ The sample values file contains the necessary defaults for:
 
 1. [View possible configuration settings for your package](view-package-config.hbs.md)
 
-
-
-If you use AWS, the default settings creates a classic LoadBalancer.
-To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
-following to your `tap-values.yaml`:
-
-```yaml
-contour:
-  infrastructure_provider: aws
-  envoy:
-    service:
-      aws:
-        LBType: nlb
-```
-
 ### <a id='full-profile'></a> Full profile
 
 The following is the YAML file sample for the full-profile:
+
+>**Note:** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`. 
+Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
 
 ```yaml
 shared:
@@ -214,27 +202,27 @@ shared:
 
 ceip_policy_disclosed: true 
 
-#Above keys are minimum numbers of entries needed in tap-values.yaml to get a functioning TAP Full profile installation.
+#The above keys are minimum numbers of entries needed in tap-values.yaml to get a functioning TAP Full profile installation.
 
-#Below are the keys which may have default values set, but can be overridden
+#Below are the keys which may have default values set, but can be overridden.
 
-profile: full # can take iterate, build, run, view. Refer to [Multi Cluster Installation procedure](multicluster/installing-multicluster.hbs.md).
-supply_chain: basic # can take testing, testing_scanning.
+profile: full # Can take iterate, build, run, view. 
+supply_chain: basic # Can take testing, testing_scanning.
 
-ootb_supply_chain_basic: # based on supply_chain set above, can change this to ootb_supply_chain_testing, ootb_supply_chain_testing_scaning
+ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scaning.
   registry:
-    server: "SERVER-NAME" # takes the value from shared section above by default; but can be overridden by setting a value here.
-    repository: "REPO-NAME" # takes the value from shared section above by default; but can be overridden by setting a value here.
+    server: "SERVER-NAME" # Takes the value from shared section above by default, but can be overridden by setting a different value.
+    repository: "REPO-NAME" # Takes the value from shared section above by default, but can be overridden by setting a different value.
   gitops:
-    ssh_secret: "SSH-SECRET-KEY" # takes "" as value by default; but can be overridden by setting a value here.
+    ssh_secret: "SSH-SECRET-KEY" # Takes "" as value by default; but can be overridden by setting a different value.
   
 contour:
   envoy:
     service:
-      type: LoadBalancer # This is set by default. But can be overridden by setting a different value here.
+      type: LoadBalancer # This is set by default, but can be overridden by setting a different value.
 
 shared:
-  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
+  kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
 
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 buildservice:
@@ -243,7 +231,7 @@ buildservice:
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
 
 tap_gui:
-  service_type: ClusterIP # if the shared.ingress_domain is set as above, this will be already set to ClusterIP.
+  service_type: ClusterIP # If the shared.ingress_domain is set as above, this must be set to ClusterIP.
     catalog:
       locations:
         - type: url
@@ -256,7 +244,7 @@ metadata_store:
 
 scanning:
   metadataStore:
-    url: "" # Deactivate embedded integration since it's deprecated
+    url: "" # Deactivate embedded integration since it's deprecated.
 
 grype:
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
@@ -278,7 +266,7 @@ service's External IP address.
     * Harbor has the form `server: "my-harbor.io"`.
     * Dockerhub has the form `server: "index.docker.io"`.
     * Google Cloud Registry has the form `server: "gcr.io"`.
-- `REPO-NAME` is where workload images are stored in the registry. If this key is being passed through shared section above and AWS ECR registry is being used, then ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
+- `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the shared section earlier and AWS ECR registry is used, you must ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Harbor has the form `repository: "my-project/supply-chain"`.
     * Dockerhub has the form `repository: "my-dockerhub-user"`.
@@ -290,6 +278,19 @@ This field is only required if you use a private repository, otherwise, leave it
 This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
+
+If you use AWS, the default settings creates a classic LoadBalancer.
+To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
+following to your `tap-values.yaml`:
+
+```yaml
+contour:
+  infrastructure_provider: aws
+  envoy:
+    service:
+      aws:
+        LBType: nlb
+```
 
 ### <a id='light-profile'></a> Light profile
 
