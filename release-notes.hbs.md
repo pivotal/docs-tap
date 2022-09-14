@@ -35,6 +35,22 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
+#### <a id="1-2-2-upgrade-issues"></a> Upgrading Tanzu Application Platform
+
+- **Adding the 1.2.2 repository bundle in addition to another repository might cause a failure:**
+
+  - While upgrading to v1.2.2 from any previous versions, adding the 1.2.2 repository bundle in
+    addition to the existing repository bundle might cause failure. As a workaround to add the
+    Tanzu Application Platform 1.2.2 repository bundle, run:
+
+    ```console
+    tanzu package repository update EXISTING-REPO-BUNDLE-NAME --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.2.2 -n NAMESPACE
+    ```
+
+    With package installation, you might see the error
+    `ReconcileFailed True Expected to find at least one version` until Tanzu Application Platform is
+    upgraded to v1.2.2, but this error does not affect the functionality of any components.
+
 #### <a id="1-2-2-grype-scan-issues"></a>Grype scanner
 
 - **Scanning Java source code that uses Gradle package manager may not reveal vulnerabilities:**
