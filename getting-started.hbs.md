@@ -257,9 +257,9 @@ To create a new application accelerator, follow the following steps:
       -  **Git Branch**: The branch for the Git repository
     * **Tags** (Optional): Associated tags that are used for searches in the UI
 
-    ![Generate Accelerators first prompt](images/getting-started-section2-2.png)
+    ![Screenshot of Generate Accelerators page with fields to fill in.](images/getting-started-section2-2.png)
 
-    ![Explore project dialog box](images/getting-started-section2-3.png)
+    ![Screenshot of Explore Project page with new-accelerator.yaml file open.](images/getting-started-section2-3.png)
 
   (Optional) To navigate through the accelerator files, click **EXPLORE**.
         When finished, click **NEXT STEP**.
@@ -267,17 +267,10 @@ To create a new application accelerator, follow the following steps:
 
 3. Verify the provided information and click **CREATE**.
 
-    ![Verify information for creating an accelerator](images/getting-started-section2-4.png)
-
-
 4. Download and expand the ZIP file by clicking **DOWNLOAD ZIP FILE** and expand it.
 
     * The output contains a YAML file for an Accelerator resource, pointing to the Git repository.
     * The output contains a file named `new-accelerator.yaml` which defines the metadata for your new accelerator.
-
-
-    ![Download ZIP file with the accelerator](images/getting-started-section2-5.png)
-
 
 5. To apply the k8s-resource.yml, run the following command in your terminal in the folder where you expanded the zip file:
 
