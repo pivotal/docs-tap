@@ -182,28 +182,12 @@ The sample values file contains the necessary defaults for:
 
     >**Important:** Keep the values file for future configuration use.
 
-1. [(Optional) Configure LoadBalancer for Contour ingress](#configure-envoy-lb)
 
 1. [View possible configuration settings for your package](view-package-config.hbs.md)
 
-### <a id="configure-envoy-lb"></a> (Optional) Configure LoadBalancer for Contour ingress
 
->**Important:** This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use your existing ingress.
 
-Before defining other parameters for your Tanzu Application Platform installation, VMware recommends defining your ingress because several components, including Tanzu Application Platform GUI, rely on it.
-
-You can share this ingress across Cloud Native Runtimes (`cnrs`), Tanzu Application Platform GUI (`tap_gui`), and Learning Center (`learningcenter`).
-
-By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yaml`:
-
-```yaml
-contour:
-  envoy:
-    service:
-      type: LoadBalancer
-```
-
-If you use AWS, the preceding section creates a classic LoadBalancer.
+If you use AWS, the default settings creates a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
 following to your `tap-values.yaml`:
 
@@ -221,17 +205,36 @@ contour:
 The following is the YAML file sample for the full-profile:
 
 ```yaml
-profile: full
 shared:
-  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
+  ingress_domain: "INGRESS-DOMAIN"
+  image_registry:
+    project_path: "SERVER-NAME/REPO-NAME"
+    username: "KP-DEFAULT-REPO-USERNAME"
+    password: "KP-DEFAULT-REPO-PASSWORD"
+
+ceip_policy_disclosed: true 
+
+#Above keys are minimum numbers of entries needed in tap-values.yaml to get a functioning TAP Full profile installation.
+
+#Below are the keys which may have default values set, but can be overridden
+
+profile: full # can take iterate, build, run, view. Refer to [Multi Cluster Installation procedure](multicluster/installing-multicluster.hbs.md).
+supply_chain: basic # can take testing, testing_scanning.
+
+ootb_supply_chain_basic: # based on supply_chain set above, can change this to ootb_supply_chain_testing, ootb_supply_chain_testing_scaning
+  registry:
+    server: "SERVER-NAME" # takes the value from shared section above by default; but can be overridden by setting a value here.
+    repository: "REPO-NAME" # takes the value from shared section above by default; but can be overridden by setting a value here.
+  gitops:
+    ssh_secret: "SSH-SECRET-KEY" # takes "" as value by default; but can be overridden by setting a value here.
   
 contour:
   envoy:
     service:
-      type: LoadBalancer
+      type: LoadBalancer # This is set by default. But can be overridden by setting a different value here.
 
 shared:
-  ingress_domain: INGRESS-DOMAIN
+  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
 
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 buildservice:
@@ -239,28 +242,13 @@ buildservice:
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
 
-supply_chain: basic
-
-ootb_supply_chain_basic:
-  registry:
-    server: "SERVER-NAME"
-    repository: "REPO-NAME"
-  gitops:
-    ssh_secret: "SSH-SECRET-KEY"
-
 tap_gui:
-  service_type: ClusterIP
-  app_config:
-    app:
-      baseUrl: http://tap-gui.INGRESS-DOMAIN
+  service_type: ClusterIP # if the shared.ingress_domain is set as above, this will be already set to ClusterIP.
     catalog:
       locations:
         - type: url
           target: https://GIT-CATALOG-URL/catalog-info.yaml
-    backend:
-      baseUrl: http://tap-gui.INGRESS-DOMAIN
-      cors:
-        origin: http://tap-gui.INGRESS-DOMAIN
+
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
@@ -290,7 +278,7 @@ service's External IP address.
     * Harbor has the form `server: "my-harbor.io"`.
     * Dockerhub has the form `server: "index.docker.io"`.
     * Google Cloud Registry has the form `server: "gcr.io"`.
-- `REPO-NAME` is where workload images are stored in the registry.
+- `REPO-NAME` is where workload images are stored in the registry. If this key is being passed through shared section above and AWS ECR registry is being used, then ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Harbor has the form `repository: "my-project/supply-chain"`.
     * Dockerhub has the form `repository: "my-dockerhub-user"`.
