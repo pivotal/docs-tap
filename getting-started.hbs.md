@@ -77,22 +77,16 @@ To deploy your application, you must download an accelerator, upload it on your 
    For information about connecting to Tanzu Application Platform GUI, see
    [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
-    ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
+    ![Screenshot of Accelerators page showing available accelerators in Tanzu Application Platform GUI.](images/getting-started-tap-gui-1.png)
 
 2. Locate the Tanzu Java Web App accelerator, which is a Spring Boot web app, and click **CHOOSE**.
-
-    ![Tile for Tanzu Java Web App Getting Started GUI](images/getting-started-tap-gui-2.png)
 
 3. In the **Generate Accelerators** dialog box, replace the default value `dev.local` in the **prefix for container image registry** field
    with the registry in the form of `SERVER-NAME/REPO-NAME`.
    The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`.
    Click **NEXT STEP**, verify the provided information, and click **CREATE**.
 
-    ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png)
-
 4. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
-
-    ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
 5. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
@@ -148,7 +142,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured in step 6.
 
-    ![Tanzu-java-web-app default screen](images/getting-started-tap-gui-8.png)
+    ![Screenshot of Tanzu Java Web app in a browser.](images/getting-started-tap-gui-8.png)
 
 
 ### <a id="add-app-to-gui-cat"></a>Add your application to Tanzu Application Platform GUI Software Catalog
@@ -156,7 +150,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 1. Navigate to the home page of Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
    Click **REGISTER ENTITY**.
 
-    ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
+    ![Screenshot of Your Organization Catalog page, with REGISTER Entity button highlighted.](images/getting-started-tap-gui-5.png)
 
     Alternatively, you can add a link to the `catalog-info.yaml` to the `tap-values.yaml` configuration file in the `tap_gui.app_config.catalog.locations` section. See [Installing the Tanzu Application Platform Package and Profiles](install.md#a-idfull-profilea-full-profile).
 
@@ -166,13 +160,11 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 1. Click **ANALYZE**.
 
-    ![Select URL](images/getting-started-tap-gui-6.png)
+2. Review the catalog entities to be added and click **IMPORT**.
 
-1. Review the catalog entities to be added and click **IMPORT**.
+    ![Screenshot showing entities to be added to the catalog, with Import button.](images/getting-started-tap-gui-7.png)
 
-    ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
-
-1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
+3. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
 >**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](tap-gui/database.md) database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
 
@@ -310,7 +302,7 @@ To publish the new application accelerator that is created in your Git repositor
 
 2. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
 
-    ![Another accelerator appears in Tanzu Application Platform GUI](images/new-accelerator-deployed-v1-1.png)
+    ![Screenshot of Accelerators page in Tanzu Application Platform GUI showing the new accelerator.](images/new-accelerator-deployed-v1-1.png)
 
     >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for new accelerator.
 
@@ -1107,7 +1099,7 @@ You will learn about the `tanzu services` CLI plug-in and the most
 important APIs for working with services on Tanzu Application Platform.
 The following diagram depicts a summary of what this section covers.
 
-![Diagram shows the default namespace and service instances namespace. The default namespace has two application workloads, each connected to a service binding. The service bindings connect to the service instance in the service instances namespace through a resource claim.](images/getting-started-stk-1.png)
+![Diagram shows the default namespace and service instances namespace. The default namespace has two application workloads each connected to a service binding. The service bindings connect to the service instance in the service instances namespace through a resource claim.](images/getting-started-stk-1.png)
 
 Bear the following observations in mind as you work through this section.
 
@@ -1116,9 +1108,9 @@ Bear the following observations in mind as you work through this section.
     * The life cycle of resource claims is determined by application operators.
     * The life cycle of service instances is determined by service operators.
     * The life cycle of service bindings is implicitly tied to lifecycle of workloads.
-1. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding.
-1. [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload.
-1. Exclusivity of resource claims:
+2. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding.
+3. [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload.
+4. Exclusivity of resource claims:
     * Resource claims are considered to be mutually exclusive, meaning that service instances can be claimed by at most one resource claim.
 
 #### <a id="stk-prereqs>"></a> Prerequisites
