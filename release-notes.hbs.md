@@ -70,11 +70,7 @@ This release has the following known issues, listed by area and component.
 
 - **Adding 1.2.2 repo bundle in addition to another repository might fail:**
 
-  - While upgrading to v1.2.2 from any previous version, adding the 1.2.2 repo bundle in addition to the existing repo bundle fails. As a workaround, to add the TAP 1.2.2 repo bundle, use:
-  
-    ```
-    tanzu package repository update <existing-repo-bunlde-name> --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.2.2 -n <namespace>
-    ```
+  - While upgrading to v1.2.2 from any previous version, adding the 1.2.2 repo bundle in addition to the existing repo bundle fails. For the workaround, see [Troubleshoot installing Tanzu Application Platform](troubleshooting-tap/troubleshoot-install-tap.hbs.md#tap-upgrade-fails).
 
   - You may observe an error with package installs `ReconcileFailed True Expected to find at least one version` until tap is upgraded to 1.2.2, but this does not affect the functionality of any components.
 
