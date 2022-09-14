@@ -140,7 +140,7 @@ part of upgrading [Tanzu Application Platform as a whole](./upgrading.hbs.md).
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
-- Snyk CLI has been updated to v1.994.0
+- Snyk CLI is updated to v1.994.0.
 
 #### <a id="scc-features"></a>Supply Chain Choreographer
 
