@@ -125,11 +125,11 @@ To install a new scanner, follow these steps:
 
 To verify the installation create an `ImageScan` or `SourceScan` referencing one of the newly added `ScanTemplates` for the scanner.
 
-1. (Optional) Create a `ScanPolicy`, formatted for the output specific to the scanner you are installing, to be referenced in the `ImageScan` or `SourceScan`.
+1. (Optional) Create a `ScanPolicy` formatted for the output specific to the scanner you are installing, to reference in the `ImageScan` or `SourceScan`.
    ```console
     kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
   ```
-> **Note:** As vulnerability scanners can each output in different formats, the `ScanPolicies` can vary. See [Enforce compliance policy using Open Policy Agent](policies.hbs.md) for more detail and [Available Scanners Docs](available-scanners.hbs.md) for samples.
+> **Note:** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For more information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md) and [Available Scanners Docs](available-scanners.hbs.md).
 
 1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed:
 

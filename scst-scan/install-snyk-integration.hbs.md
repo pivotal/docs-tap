@@ -1,16 +1,16 @@
 # Install Snyk Scanner (Beta)
 
-This document describes  requisites to installing Supply Chain Security Tools - Scan (Snyk Scanner) from the Tanzu Application Platform package repository.
+This document describes prerequisites how to install Supply Chain Security Tools - Scan (Snyk Scanner) from the Tanzu Application Platform package repository.
 
 >**Note:** Snyk's image scanning capability is in beta. Snyk might only return a partial list of CVEs when scanning Buildpack images.
 
-## <a id="recs"></a> Requisites
+## <a id="prerecs"></a> Prerequisites
 
-Before following the steps for [Installing Scanners for Supply Chain Security Tools - Scan](install-scanners.hbs.md) to install the Snyk Scanner:
+Before following the steps in [Installing Scanners for Supply Chain Security Tools - Scan](install-scanners.hbs.md), install the Snyk Scanner:
 
 1. Obtain a Snyk API Token from the [Snyk Docs](https://docs.snyk.io/snyk-cli/authenticate-the-cli-with-your-account).
 
-2. Create a Snyk secret YAML file and insert the Snyk API token (base64 encoded) into the `snyk_token` key as follows:
+2. Create a Snyk secret YAML file and insert the base64 encoded Snyk API token into the `snyk_token`:
 
     ```yaml
     apiVersion: v1
@@ -22,7 +22,7 @@ Before following the steps for [Installing Scanners for Supply Chain Security To
       snyk_token: BASE64-SNYK-API-TOKEN
     ```
 
-    Where `BASE64-SNYK-API-TOKEN` is the Snyk API Token obtained from step 1.
+    Where `BASE64-SNYK-API-TOKEN` is the Snyk API Token obtained earlier.
 
 3. Apply the Snyk secret YAML file by running:
 
@@ -32,9 +32,7 @@ Before following the steps for [Installing Scanners for Supply Chain Security To
 
     Where `YAML-FILE` is the name of the Snyk secret YAML file you created.
 
-4. Define the `--values-file` flag to customize the default configuration. Create a `values.yaml` file by using the following configuration:
-
-    You must define the following fields in the `values.yaml` file for the Snyk Scanner configuration. You can add fields as needed to enable or deactivate behaviors. You can append the values to this file as shown later in this document. 
+4. Define the `--values-file` flag to customize the default configuration. You must define the following fields in the `values.yaml` file for the Snyk Scanner configuration. You can add fields as needed to enable or deactivate behaviors. You can append the values to this file as shown later in this document. Create a `values.yaml` file by using the following configuration:
 
     ```yaml
     ---
@@ -56,9 +54,10 @@ Before following the steps for [Installing Scanners for Supply Chain Security To
     The Snyk Scanner integration can work with or without the Supply Chain Security Tools - Store integration. The `values.yaml` file is slightly different for each configuration.
 
 ## <a id="store-integration"></a> Supply Chain Security Tools - Store integration
+
   **Using Supply Chain Security Tools - Store Integration:** To persist the results found by the Snyk Scanner, you can enable the Supply Chain Security Tools - Store integration by appending the fields to the `values.yaml` file.
 
-  The Grype and Snyk Scanner Integrations both enable the Metadata Store. To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform was installed using the Full Profile, the Grype Scanner Integration was installed, unless it was explicitly excluded.
+  The Grype and Snyk Scanner Integrations both enable the Metadata Store. To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform is installed using the Full Profile, the Grype Scanner Integration is installed, unless it is explicitly excluded.
 
     * If the Grype Scanner Integration is installed in the same `dev-namespace` Snyk Scanner is installed:
 
@@ -103,7 +102,7 @@ Before following the steps for [Installing Scanners for Supply Chain Security To
           importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
       ```
 
-  **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, explicitly deactivate the integration by appending the next fields to the `values.yaml` file, since it's enabled by default:
+  **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, explicitly deactivate the integration by appending the following fields to the `values.yaml` file that is enabled by default:
 
   ```yaml
   # ...
