@@ -32,6 +32,12 @@ Assign this role to a user who defines the activities within a supply chain or t
 
 If this person must create Tanzu workloads, you can bind the user with the app-editor role as well.
 
+## <a id="service-operator"></a>service-operator
+
+The service-operator role can create, edit, and delete service instances, service instance classes, and resource claim policies to permit the claimability of service instances across one or more namespaces.
+
+Assign this role to a user who is responsible for the life cycle (create, edit and delete) of service instances. This role can also view resource claims across all namespaces as well as query for the list of claimable service instances in a given namespace.
+
 ## <a id="workload"></a>workload
 
 This role provides the service account associated with the Tanzu workload the permissions needed to execute the activities in the supply chain. This role is for a "robot” versus a user.  
