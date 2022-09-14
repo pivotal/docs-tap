@@ -301,9 +301,15 @@ To install Contour from the Tanzu Application Platform package repository:
             infrastructure_provider: aws
         ```
 
-        The LoadBalancer type is appropriate for most installations, but local clusters
-        such as `kind` or `minikube` can fail to complete the package install if LoadBalancer
-        services are not supported.
+        The LoadBalancer type is appropriate for most installations, but local
+        clusters such as `kind` or `minikube` can fail to complete the package
+        install if LoadBalancer services are not supported.
+        
+        For local clusters, you can configure `contour.evnoy.service.type` to be
+        `NodePort`.  Depending on your cluster set up, you may also need
+        configure `envoy.service.nodePorts.http` and
+        `envoy.service.nodePorts.https` to match the port mappings from your
+        local machine into one of the nodes of your local cluster.
 
         Contour provides an Ingress implementation by default. If you have another Ingress
         implementation in your cluster, you must explicitly specify an

@@ -59,6 +59,8 @@ If you have created a contour ingress controller, verify all pods have a running
 kubectl get pods -n projectcontour -o wide
 ```
 
+For information on installing the Contour that comes with TAP, see [here](../../cert-mgr-contour-fcd/install-cert-mgr.hbs.md#a-idinstall-contourainstall-contour).
+
 ## <a id="install-carvel-tools"></a> Install carvel tools
 
 You must install the kapp controller and secret-gen controller carvel tools in order to properly install VMware tanzu packages.
