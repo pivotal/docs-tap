@@ -190,12 +190,12 @@ To set up the Azure AD app:
       issuer: ISSUER-URL
 
       authorizationConfig:
-        additionalScopes: ["openid", "email"]
+        additionalScopes: ["openid", "email", "profile"]
         allowPasswordGrant: false
 
       # Specify how claims are mapped to Kubernetes identities.
       claims:
-        username: email
+        username: preferred_username
         groups: groups
 
       # Specify the name of the Kubernetes Secret that contains your
