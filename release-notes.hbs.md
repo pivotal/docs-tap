@@ -130,8 +130,26 @@ part of upgrading [Tanzu Application Platform as a whole](./upgrading.hbs.md).
 
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
-- Feature 1
-- Feature 2
+- Updated Go to its latest version (1.19)
+- First warning that `workload update` command will be deprecated.
+- New flags have been added to override default registry options. This means, if there's a private registry to push images to, options can be set either through apps plugin flags or environment variables. Refer to [workload apply registry opts flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#a-idapply-registry-ca-certa---registry-ca-cert) explanation for more info about these flags usage.
+- Workload get improvements:
+  - Added `Healthy` column to supply chain resources listed in `workload get` output. This column is also using colors to surface the resource healthy status.
+  - Added an Overview section to show workload name and type.
+  - Each section is now indented under its corresponding header.
+  - Emojis are printed to distinguish each section.
+  - A new column to show the resource stamped out by the supply chain was also added.
+  - Deliverable information is being surfaced whenever it's available.
+  - Pods status is now same as Kubectl so, for example, if there are init containers, when `workload get` is used, the `Init` status of these will be printed in the output. 
+- Local source changes will be updated/uploaded only if there is an actual change to the code.
+- Maven artifact is also supported via flags. It can be set through complex params or the new flags. Check [workload apply maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#a-idapply-maven-artifacta---maven-artifact) for more info about their usage. 
+- There are some environment flags that can be set as default values for apps plugin. These are:
+  * `--type`: TANZU_APPS_TYPE
+  * `--registry-ca-cert`: TANZU_APPS_REGISTRY_CA_CERT
+  * `--registry-password`: TANZU_APPS_REGISTRY_PASSWORD
+  * `--registry-username`: TANZU_APPS_REGISTRY_USERNAME
+  * `--registry-token`: TANZU_APPS_REGISTRY_TOKEN
+  * `--source-image`: TANZU_APPS_SOURCE_IMAGE
 
 #### <a id="src-cont-features"></a>Source Controller
 
@@ -248,8 +266,11 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
-- Resolved issue 1
-- Resolved issue 2
+- Flag `azure-container-registry-config` that was shown in help output but was not part of apps plugin flags, is not shown anymore. 
+- `workload list --output` was not showing all workloads in namespace. This was fixed and now all workloads are listed.
+- When creating a workload from local source in Windows, the image would be created with unstructured directories and would flatten all file names. This was fixed with an `imgpkg` upgrade.
+- When uploading a source image, if the namespace provided is not valid or doesn't exist, the image won't be uploaded and the workload won't be created.
+- Due to a Cobra upgrade, the autocompletion for flag names in all commands is now working.
 
 #### <a id="srvc-toolkit-resolved"></a> Services Toolkit
 
@@ -339,3 +360,8 @@ When connecting to Google's GKE clusters, an error might appear with the text `W
 
 - Known issue 1
 - Known issue 2
+
+#### <a id="apps-plugin-known-issues"></a> Tanzu CLI - Apps plug-in
+
+- When `workload get` is used alongside `--no-color`, emojis are not removed from output.
+- For supply chain resources, output column is filled with `kind/name`, which is not useful to troubleshoot any problems or follow the workload flow in general since this is not reachable by Kubernetes. Output will be updated to provide the fully qualified resource name rather than `Kind`.
