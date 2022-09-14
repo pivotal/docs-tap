@@ -210,13 +210,13 @@ Verify that both Scan Controller and Grype Scanner are installed by running:
     metadata:
       name: scan-policy
       labels:
-        'app.kubernetes.io/part-of': 'component-a'
+        'app.kubernetes.io/part-of': 'enable-in-gui'
     spec:
       regoFile: |
         package main
 
         # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-        notAllowedSeverities := ["Critical","High","UnknownSeverity"]
+        notAllowedSeverities := ["Critical", "High", "UnknownSeverity"]
         ignoreCves := []
 
         contains(array, elem) = true {

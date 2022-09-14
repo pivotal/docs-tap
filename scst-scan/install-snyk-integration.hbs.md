@@ -121,12 +121,13 @@ Before following the steps for [Installing Scanners for Supply Chain Security To
     metadata:
       name: snyk-scan-policy
       labels:
-        'app.kubernetes.io/part-of': 'component-a'
+        'app.kubernetes.io/part-of': 'enable-in-gui'
     spec:
       regoFile: |
         package main
 
-        notAllowedSeverities := ["Low"]
+        # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+        notAllowedSeverities := ["Critical", "High", "UnknownSeverity"]
         ignoreCves := []
 
         contains(array, elem) = true {
@@ -148,7 +149,7 @@ Before following the steps for [Installing Scanners for Supply Chain Security To
           ratings := vuln.relationships[_].ratedBy.rating[_].severity
           comp := vuln.relationships[_].affect.to[_]
           not isSafe(vuln)
-          msg = sprintf("%s %s %s", [comp, vuln.id, ratings])
+          msg = sprintf("CVE %s %s %s", [comp, vuln.id, ratings])
         }
     ```
 
