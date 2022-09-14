@@ -118,6 +118,7 @@ the workload must be updated to point at your Tekton pipeline.
       --git-branch main \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
+      --label app.kubernetes.io/part-of=tanzu-java-web-app \
       --yes
     ```
 
@@ -294,6 +295,7 @@ pipeline:
       --git-branch main \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
+      --label app.kubernetes.io/part-of=tanzu-java-web-app \
       --yes
     ```
 
