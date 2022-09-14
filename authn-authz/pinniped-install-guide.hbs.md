@@ -205,12 +205,12 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
 
 ### <a id="update-certs"></a>Switch to production issuer (letsencrypt/cert-manager)
 
-Once you have tested that everything is working correctly, you can switch to
+Once everything works as expected, you can switch to
 a `letsencrypt` production issuer so the generated TLS certificate is recognized
 as valid by web browsers and clients.
 
-1. Modify a ClusterIssuer for `letsencrypt` the add TLS certificate resource for Pinniped Supervisor
-by creating/updating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`.
+1. Modify the ClusterIssuer for `letsencrypt`, add TLS certificate resource for Pinniped Supervisor
+by creating or updating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`:
 
     ```yaml
     ---
@@ -246,6 +246,7 @@ by creating/updating the following resources and save them into `workspace/pinni
     ```
 
 2. Create or update the `pinniped-supervisor` kapp application:
+
     ```console
     kapp deploy -y --app pinniped-supervisor --into-ns pinniped-supervisor -f pinniped-supervisor -f https://get.pinniped.dev/v0.12.0/install-pinniped-supervisor.yaml
     ```
@@ -285,7 +286,9 @@ To install Pinniped Concierge:
       tls:
         certificateAuthorityData: # insert the CA certificate data here
     ```
-    If you are using the `letsencrypt` production issuer, you can omit the `tls` section:
+
+    If you use the `letsencrypt` production issuer, you can omit the `tls` section:
+
     ```yaml
     ---
     apiVersion: authentication.concierge.pinniped.dev/v1alpha1
@@ -306,5 +309,3 @@ To install Pinniped Concierge:
 ## <a id="log-in-cluster"></a>Log in to the cluster
 
 See [Login using Pinniped](pinniped-login.md).
-
-
