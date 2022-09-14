@@ -11,8 +11,13 @@ annotation `sso.apps.tanzu.vmware.com/allow-client-namespaces` must be set. Its 
 allowed Namespaces, e.g. `"app-team-red,app-team-green"`, or `"*"` if it should allow clients from all namespaces. If
 the annotation is missing, no clients are allowed.
 
-An `AuthServer` has a `spec.issuerURI` which is the entry point for clients and end-users. A form of Ingress needs to be
-configured for this issuer URI.
+The issuer URI, which is the point of entry for clients and end-users, gets constructed via the package's `domain_template`.
+You can view what the issuer URI is by running
+`kubectl get authserver -n authservers`
+
+See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more context.
+
+__Note:__ This used to be configured via `spec.issuerURI`, but this is deprecated. Please use `spec.tls` instead.
 
 Token signature keys are configured through `spec.tokenSignature`. If no keys are configured, no tokens can be minted.
 
