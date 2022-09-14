@@ -28,15 +28,15 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ScanPolicy
     metadata:
-      name: scanpolicy-sample
+      name: scan-policy
       labels:
-        'app.kubernetes.io/part-of': 'component-a'
+        'app.kubernetes.io/part-of': 'enable-in-gui'
     spec:
       regoFile: |
         package main
 
         # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-        notAllowedSeverities := ["Low"]
+        notAllowedSeverities := ["Critical", "High", "UnknownSeverity"]
         ignoreCves := []
 
         contains(array, elem) = true {
@@ -70,7 +70,7 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
 
     You can modify the following fields of the Rego file as part of the [CVE triage workflow](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow):
     
-    - `notAllowedSeverities` contains the categories of CVEs that result in the SourceScan or ImageScan failing policy enforcement. Below is an example of how an `app-operator` might decide to only block "Critical" and "High" CVEs.
+    - `notAllowedSeverities` contains the categories of CVEs that result in the SourceScan or ImageScan failing policy enforcement. Below is an example of how an `app-operator` might decide to only block "Critical", "High" and "UnknownSeverity" CVEs.
 
       ```yaml
       ...
@@ -79,7 +79,7 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
           package main
 
           # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-          notAllowedSeverities := ["Critical", "High"]
+          notAllowedSeverities := ["Critical", "High", "UnknownSeverity"]
           ignoreCves := []
       ...
       ```
@@ -114,9 +114,9 @@ Here is an example of a ScanPolicy that is viewable by the TAP GUI:
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
-  name: scanpolicy-sample
+  name: scan-policy
   labels:
-    'app.kubernetes.io/part-of': 'component-a'
+    'app.kubernetes.io/part-of': 'enable-in-gui'
 spec:
   regoFile: |
     ...
@@ -137,7 +137,7 @@ kind: ScanPolicy
 metadata:
   name: v1alpha1-scan-policy
   labels:
-    'app.kubernetes.io/part-of': 'component-a'
+    'app.kubernetes.io/part-of': 'enable-in-gui'
 spec:
   regoFile: |
     package policies

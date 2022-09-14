@@ -159,13 +159,13 @@ kind: ScanPolicy
 metadata:
   name: scan-policy
   labels:
-    'app.kubernetes.io/part-of': 'component-a'
+    'app.kubernetes.io/part-of': 'enable-in-gui'
 spec:
   regoFile: |
     package main
 
     # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-    notAllowedSeverities := ["Critical","High","UnknownSeverity"]
+    notAllowedSeverities := ["Critical", "High", "UnknownSeverity"]
     ignoreCves := []
 
     contains(array, elem) = true {
@@ -377,7 +377,7 @@ The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning
 
 The goal of triage is to analyze and prioritize the reported vulnerability data to discover the appropriate course of action to take at the remediation step. To remediate efficiently and appropriately, you need context on the vulnerabilities that are blocking your supply chain, the packages that are affected, and the impact they can have.
 
-During triage, review which packages are impacted by the CVEs that violated your scanpolicy. If the [Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-overview.hbs.md) is configured, you can query the database for the packages and their corresponding CVEs in your source code or image using these commands:
+During triage, review which packages are impacted by the CVEs that violated your scan policy. If the [Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-overview.hbs.md) is configured, you can query the database for the packages and their corresponding CVEs in your source code or image using these commands:
 
 ```console
 tanzu insight source get --repo REPO --org ORG

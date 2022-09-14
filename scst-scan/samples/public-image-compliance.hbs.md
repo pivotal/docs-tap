@@ -25,7 +25,7 @@ kind: ScanPolicy
 metadata:
   name: sample-scan-policy
   labels:
-    'app.kubernetes.io/part-of': 'component-a'
+    'app.kubernetes.io/part-of': 'enable-in-gui'
 spec:
   regoFile: |
     package main
