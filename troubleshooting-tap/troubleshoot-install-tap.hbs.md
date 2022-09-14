@@ -303,3 +303,5 @@ As a workaround, to add the TAP 1.2.2 repo bundle, use:
     ```
     tanzu package repository update <existing-repo-bunlde-name> --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.2.2 -n <namespace>
     ```
+
+You may observe an error with package installs `ReconcileFailed True Expected to find at least one version` until tap is upgraded to 1.2.2, but this does not affect the functionality of any components.
