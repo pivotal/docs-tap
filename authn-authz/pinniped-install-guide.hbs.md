@@ -203,6 +203,52 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
     *.example.com A 35.222.xxx.yyy
     ```
 
+### <a id="update-certs"></a>Switch to production issuer (letsencrypt/cert-manager)
+
+Once you have tested that everything is working correctly, you can switch to
+a `letsencrypt` production issuer so the generated TLS certificate is recognized
+as valid by web browsers and clients.
+
+1. Modify a ClusterIssuer for `letsencrypt` the add TLS certificate resource for Pinniped Supervisor
+by creating/updating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`.
+
+    ```yaml
+    ---
+    apiVersion: cert-manager.io/v1
+    kind: ClusterIssuer
+    metadata:
+      name: letsencrypt-prod
+      namespace: cert-manager
+    spec:
+      acme:
+        server: https://acme-v02.api.letsencrypt.org/directory
+        email: your-mail@example.com
+        privateKeySecretRef:
+          name: letsencrypt-prod
+        solvers:
+        - http01:
+            ingress:
+              class: contour
+
+    ---
+    apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: pinniped-supervisor-cert
+      namespace: pinniped-supervisor
+    spec:
+      secretName: pinniped-supervisor-tls-cert
+      dnsNames:
+      - pinniped-supervisor.example.com
+      issuerRef:
+        name: letsencrypt-prod
+        kind: ClusterIssuer
+    ```
+
+2. Create or update the `pinniped-supervisor` kapp application:
+    ```console
+    kapp deploy -y --app pinniped-supervisor --into-ns pinniped-supervisor -f pinniped-supervisor -f https://get.pinniped.dev/v0.12.0/install-pinniped-supervisor.yaml
+    ```
 
 ## <a id="install-pinniped-concierge"></a>Install Pinniped Concierge
 
@@ -239,6 +285,17 @@ To install Pinniped Concierge:
       tls:
         certificateAuthorityData: # insert the CA certificate data here
     ```
+    If you are using the `letsencrypt` production issuer, you can omit the `tls` section:
+    ```yaml
+    ---
+    apiVersion: authentication.concierge.pinniped.dev/v1alpha1
+    kind: JWTAuthenticator
+    metadata:
+      name: pinniped-jwt-authenticator
+    spec:
+      issuer: https://pinniped-supervisor.example.com
+      audience: concierge
+    ```
 
 1. Deploy the resource by running:
 
@@ -249,3 +306,5 @@ To install Pinniped Concierge:
 ## <a id="log-in-cluster"></a>Log in to the cluster
 
 See [Login using Pinniped](pinniped-login.md).
+
+
