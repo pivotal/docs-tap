@@ -71,22 +71,16 @@ To deploy your application, you must download an accelerator, upload it on your 
    For information about connecting to Tanzu Application Platform GUI, see
    [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
-    ![List of accelerators in Tanzu Application Platform GUI](images/getting-started-tap-gui-1.png)
+    ![Screenshot of Accelerators page showing available accelerators in Tanzu Application Platform GUI.](images/getting-started-tap-gui-1.png)
 
 2. Locate the Tanzu Java Web App accelerator, which is a Spring Boot web app, and click **CHOOSE**.
-
-    ![Tile for Tanzu Java Web App Getting Started GUI](images/getting-started-tap-gui-2.png)
 
 3. In the **Generate Accelerators** dialog box, replace the default value `dev.local` in the **prefix for container image registry** field
    with the registry in the form of `SERVER-NAME/REPO-NAME`.
    The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`.
    Click **NEXT STEP**, verify the provided information, and click **CREATE**.
 
-    ![Generate Accelerators prompt](images/getting-started-tap-gui-3.png)
-
 4. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
-
-    ![Task Activity progress bar](images/getting-started-tap-gui-4.png)
 
 5. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
@@ -134,7 +128,7 @@ To deploy your application, you must download an accelerator, upload it on your 
     tanzu apps workload get tanzu-java-web-app
     ```
 
-    ![Tanzu-java-web-app default screen](images/getting-started-tap-gui-8.png)
+    ![Screenshot of Tanzu Java Web app in a browser.](images/getting-started-tap-gui-8.png)
 
 
 ### <a id="add-app-to-gui-cat"></a>Add your application to Tanzu Application Platform GUI Software Catalog
@@ -142,7 +136,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 1. Navigate to the home page of Tanzu Application Platform GUI and click **Home**, located on the left-side navigation bar.
    Click **REGISTER ENTITY**.
 
-    ![REGISTER button on the right side of the header](images/getting-started-tap-gui-5.png)
+    ![Screenshot of Your Organization Catalog page, with REGISTER Entity button highlighted.](images/getting-started-tap-gui-5.png)
 
 2. **Register an existing component** prompts you to type a repository URL.
 Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the Git repository field, for example,
@@ -150,13 +144,11 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 1. Click **ANALYZE**.
 
-    ![Select URL](images/getting-started-tap-gui-6.png)
+2. Review the catalog entities to be added and click **IMPORT**.
 
-1. Review the catalog entities to be added and click **IMPORT**.
+    ![Screenshot showing entities to be added to the catalog, with Import button.](images/getting-started-tap-gui-7.png)
 
-    ![Review the entities to be added to the catalog](images/getting-started-tap-gui-7.png)
-
-1. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
+3. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
 ### <a id="iterate"></a>Iterate on your application
 
