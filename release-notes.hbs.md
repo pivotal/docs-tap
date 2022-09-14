@@ -39,17 +39,9 @@ This release has the following known issues, listed by area and component.
 
 - **Adding the 1.2.2 repository bundle in addition to another repository might cause a failure:**
 
-  - While upgrading to v1.2.2 from any previous versions, adding the 1.2.2 repository bundle in
-    addition to the existing repository bundle might cause failure. As a workaround to add the
-    Tanzu Application Platform 1.2.2 repository bundle, run:
+   - While upgrading to v1.2.2 from any previous version, adding the 1.2.2 repo bundle in addition to the existing repo bundle can fail. For the workaround, see [Troubleshoot installing Tanzu Application Platform](troubleshooting-tap/troubleshoot-install-tap.hbs.md#tap-upgrade-fails).
 
-    ```console
-    tanzu package repository update EXISTING-REPO-BUNDLE-NAME --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.2.2 -n NAMESPACE
-    ```
-
-    With package installation, you might see the error
-    `ReconcileFailed True Expected to find at least one version` until Tanzu Application Platform is
-    upgraded to v1.2.2, but this error does not affect the functionality of any components.
+  - You may observe an error with package installs `ReconcileFailed True Expected to find at least one version` until tap is upgraded to 1.2.2, but this does not affect the functionality of any components.
 
 #### <a id="1-2-2-grype-scan-issues"></a>Grype scanner
 
@@ -65,14 +57,6 @@ This release has the following known issues, listed by area and component.
     Grype fails to find vulnerabilities during a source scan.
     The vulnerabilities are still found during the image scan
     after the binaries are built and packaged as images.
-
-#### <a id="1-2-2-upgrade-issues"></a>tap-upgrade
-
-- **Adding 1.2.2 repo bundle in addition to another repository might fail:**
-
-  - While upgrading to v1.2.2 from any previous version, adding the 1.2.2 repo bundle in addition to the existing repo bundle fails. For the workaround, see [Troubleshoot installing Tanzu Application Platform](troubleshooting-tap/troubleshoot-install-tap.hbs.md#tap-upgrade-fails).
-
-  - You may observe an error with package installs `ReconcileFailed True Expected to find at least one version` until tap is upgraded to 1.2.2, but this does not affect the functionality of any components.
 
 #### <a id="1-2-2-scst-sign-issues"></a>Supply Chain Security Tools - Policy Controller
 
