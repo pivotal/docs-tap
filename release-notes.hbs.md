@@ -53,11 +53,11 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
 
-- Added new default role `service-operator` 
+- Added new default role `service-operator`. 
 
 ### Breaking changes
 
-- `AuthServer.spec.identityProviders.internalUser.users.password` now be provided as plain-text instead of _bcrypt_
+- `AuthServer.spec.identityProviders.internalUser.users.password` is now provided as plain text instead of _bcrypt_
   -hashed.
 - When an authorization server fails to obtain a token from an OpenID identity provider, it will record
   an `INVALID_IDENTITY_PROVIDER_CONFIGURATION` audit event instead of `INVALID_UPSTREAM_PROVIDER_CONFIGURATION`.
