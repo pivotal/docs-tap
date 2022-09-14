@@ -2,18 +2,11 @@
 
 ## <a id="define-resources"></a>Define the resources
 
-Create `sample-private-source-scan.yaml` and ensure you enter a valid private SSH key value in the secret:
+1. Create a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/#use-case-pod-with-ssh-keys) named `secret-ssh-auth` with an SSH key for cloning a git repository.
+
+2. Create `sample-private-source-scan.yaml`:
 
 ```yaml
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: secret-ssh-auth
-type: kubernetes.io/ssh-auth
-stringData:
-  ssh-privatekey: <insert your PEM-encoded ssh private key>
-
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: SourceScan
@@ -21,11 +14,32 @@ metadata:
   name: sample-private-source-scan
 spec:
   git:
-    url: <git clone via ssh>
-    revision: <branch, tag or commit digest>
+    url: URL
+    revision: REVISION
     knownHosts: |
-      <known host>
-      <another host etc>
+      KNOWN_HOSTS
+  scanTemplate: private-source-scan-template
+```
+
+Where:
+* `URL` is the git clone repository via ssh
+* `REVISION` is the commit hash
+* `KNOWN_HOSTS` are the [SSH client stored host keys](https://www.ssh.com/academy/ssh/host-key#known-host-keys)
+
+For example:
+```yaml
+---
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+kind: SourceScan
+metadata:
+  name: sample-private-source-scan
+spec:
+  git:
+    url: git@github.com:acme/website.git
+    revision: 25as5e7df56c6401111be514a2f3666179ba04d0
+    knownHosts: |
+      10.254.171.53 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItb
+POVVQF/CzuAeQNv4fZVf2pLxpGHle15zkpxOosckequUDxoq
   scanTemplate: private-source-scan-template
 ```
 
