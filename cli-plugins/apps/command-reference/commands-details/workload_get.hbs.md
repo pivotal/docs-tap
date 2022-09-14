@@ -4,11 +4,10 @@
 
 You can view workload details at whenever. Some details are:
 
- - Workload name and type.
+ - The status of the workload.
  - The source of the workload application.
  - The supply chain which took care of the workload.
- - The supply chain resources which interact with the workload. It also has the output of the resource stamped out by the supply chain  
- - The delivery workflow that the application follows.
+ - The supply chain resources which interact with the workload.
  - If there is any issue while deploying the workload and finally which *pods* the workload generates and the knative services related to the workload.
  - if the supply chain is using knative.
 
@@ -20,62 +19,52 @@ There are multiple sections in workload get command output. Following data is di
 - Display source information of workload.
 - If the workload was matched with a supply chain, the information of its name and the status is displayed.
 - Information and status of the individual steps that's defined in the supply chain for workload.
-- Any issue with the workload: the name and corresponding message.
+- Any issue with the workload, the name and corresponding message.
 - Workload related resource information and status like services claims, related pods, knative services.
 
 At the very end of the command output, a hint to follow up commands is also displayed.
 
 ```bash
 tanzu apps workload get rmq-sample-app
-📡 Overview
-   name:   rmq-sample-app
-   type:   web
+---
+# rmq-sample-app: Ready
+---
+Source
+type:     git
+url:      https://github.com/jhvhs/rabbitmq-sample
+branch:   main
 
-💾 Source
-   type:     git
-   url:      https://github.com/jhvhs/rabbitmq-sample
-   branch:   main
+Supply Chain
+name:          source-to-url
+last update:   94s
+ready:         True
 
-📦 Supply Chain
-   name:   source-to-url
+RESOURCE          READY   TIME
+source-provider   True    3m51s
+deliverable       True    3m55s
+image-builder     True    101s
+config-provider   True    94s
+app-config        True    94s
+config-writer     True    94s
 
-   RESOURCE          READY   HEALTHY   TIME   OUTPUT
-   source-provider   True    True      27h    GitRepository/rmq-sample-app
-   image-builder     True    True      22h    Image/rmq-sample-app
-   config-provider   True    True      56d    PodIntent/rmq-sample-app
-   app-config        True    True      56d    ConfigMap/rmq-sample-app
-   config-writer     True    True      22h    Runnable/rmq-sample-app-config-writer
+Issues
+No issues reported.
 
-🚚 Delivery
-   name:   delivery-basic
+Services
+CLAIM   NAME                         KIND              API VERSION
+rmq     example-rabbitmq-cluster-1   RabbitmqCluster   rabbitmq.com/v1beta1
 
-   RESOURCE          READY   HEALTHY   TIME   OUTPUT
-   source-provider   True    True      56d    ImageRepository/rmq-sample-app-delivery
-   deployer          True    True      22h    App/rmq-sample-app
+Pods
+NAME                                               STATUS      RESTARTS   AGE
+rmq-sample-app-00001-deployment-78fc86b47c-r5jws   Running     0          45s
+rmq-sample-app-build-1-build-pod                   Succeeded   0          3m50s
+rmq-sample-app-config-writer-pbshl-pod             Succeeded   0          94s
 
-💬 Messages
-   No messages found.
-
-🔁 Services
-   CLAIM   NAME                         KIND              API VERSION
-   rmq     example-rabbitmq-cluster-1   RabbitmqCluster   rabbitmq.com/v1beta1
-
-🛶 Pods
-   NAME                                     READY   STATUS      RESTARTS   AGE
-   rmq-sample-app-build-1-build-pod         0/1     Completed   0          56d
-   rmq-sample-app-build-2-build-pod         0/1     Completed   0          46d
-   rmq-sample-app-build-3-build-pod         0/1     Completed   0          45d
-   rmq-sample-app-config-writer-54mwk-pod   0/1     Completed   0          6d12h
-   rmq-sample-app-config-writer-74qvp-pod   0/1     Completed   0          6d16h
-   rmq-sample-app-config-writer-78r5w-pod   0/1     Completed   0          45d
-   rmq-sample-app-config-writer-9xs5f-pod   0/1     Completed   0          46d
-
-🚢 Knative Services
-   NAME             READY   URL
-   rmq-sample-app   Ready   http://rmq-sample-app.default.127.0.0.1.nip.io
+Knative Services
+NAME             READY   URL
+rmq-sample-app   Ready   http://rmq-sample-app.default.example.com
 
 To see logs: "tanzu apps workload tail rmq-sample-app"
-
 ```
 
 ### <a id="get-export"></a> `--export`
@@ -231,51 +220,40 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
 Specifies the namespace where the workload is deployed.
 
 ```bash
-tanzu apps workload get spring-pet-clinic -n development
+tanzu apps workload get pet-clinic -n development
 
-📡 Overview
-   name:   spring-pet-clinic
-   type:   web
+---
+# pet-clinic: Ready
+---
+Source
+type:   git
+url:    https://github.com/sample-accelerators/spring-petclinic
+tag:    tap-1.2
 
-💾 Source
-   type:     git
-   url:      https://github.com/sample-accelerators/spring-petclinic
-   branch:   accelerator
+Supply Chain
+name:          source-to-url
+last update:   10d
+ready:         True
 
-📦 Supply Chain
-   name:   source-to-url
+RESOURCE          READY   TIME
+source-provider
+deliverable
+image-builder
+config-provider
+app-config
+config-writer
 
-   RESOURCE          READY   HEALTHY   TIME   OUTPUT
-   source-provider   True    True      27h    GitRepository/spring-pet-clinic
-   image-builder     True    True      22h    Image/spring-pet-clinic
-   config-provider   True    True      60d    PodIntent/spring-pet-clinic
-   app-config        True    True      60d    ConfigMap/spring-pet-clinic
-   config-writer     True    True      22h    Runnable/spring-pet-clinic-config-writer
+Issues
+No issues reported.
 
-🚚 Delivery
-   name:   delivery-basic
+Pods
+NAME                                           STATUS      RESTARTS   AGE
+pet-clinic-00001-deployment-6445565f7b-ts8l5   Running     0          102s
+pet-clinic-build-1-build-pod                   Succeeded   0          102s
+pet-clinic-config-writer-8c9zv-pod             Succeeded   0          2m7s
+Knative Services
+NAME         READY   URL
+pet-clinic   Ready   http://pet-clinic.default.apps.34.133.168.14.nip.io
 
-   RESOURCE          READY   HEALTHY   TIME   OUTPUT
-   source-provider   True    True      60d    ImageRepository/spring-pet-clinic-delivery
-   deployer          True    True      22h    App/spring-pet-clinic
-
-💬 Messages
-   No messages found.
-
-🛶 Pods
-   NAME                                        READY   STATUS      RESTARTS   AGE
-   spring-pet-clinic-build-11-build-pod        0/1     Completed   0          6d12h
-   spring-pet-clinic-build-12-build-pod        0/1     Completed   0          22h
-   spring-pet-clinic-build-3-build-pod         0/1     Completed   0          60d
-   spring-pet-clinic-config-writer-655rb-pod   0/1     Completed   0          21d
-   spring-pet-clinic-config-writer-7h8bn-pod   0/1     Completed   0          6d12h
-   spring-pet-clinic-config-writer-7xr6m-pod   0/1     Completed   0          60d
-   spring-pet-clinic-config-writer-g9gp8-pod   0/1     Completed   0          45d
-
-🚢 Knative Services
-   NAME                READY   URL
-   spring-pet-clinic   Ready   http://spring-pet-clinic.default.127.0.0.1.nip.io
-
-To see logs: "tanzu apps workload tail spring-pet-clinic"
-
+To see logs: "tanzu apps workload tail pet-clinic"
 ```
