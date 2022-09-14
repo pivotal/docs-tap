@@ -70,14 +70,13 @@ This release has the following known issues, listed by area and component.
 
 - **Adding 1.2.2 repo bundle in addition to another repository might fail:**
 
-  - While upgrading to v1.2.2 from any previous versions, adding the 1.2.2 repo bundle in addition to the existing repo bundle will fail. As a               workaround use 
+  - While upgrading to v1.2.2 from any previous version, adding the 1.2.2 repo bundle in addition to the existing repo bundle fails. As a workaround, to add the TAP 1.2.2 repo bundle, use:
   
     ```
     tanzu package repository update <existing-repo-bunlde-name> --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.2.2 -n <namespace>
     ```
-   
-      to add the TAP 1.2.2 repo bundle. 
-  - You may observe an error with package installs `ReconcileFailed True Expected to find at least one version` till tap is upgraded to 1.2.2 but           this will not affect functionality of any components.
+
+  - You may observe an error with package installs `ReconcileFailed True Expected to find at least one version` until tap is upgraded to 1.2.2, but this does not affect the functionality of any components.
 
 #### <a id="1-2-2-scst-sign-issues"></a>Supply Chain Security Tools - Policy Controller
 
