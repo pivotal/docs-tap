@@ -1,18 +1,19 @@
 # Overview
 
-Tanzu Application Platform v1.2 includes:
+Tanzu Application Platform v1.3 includes:
 
-- Five new default roles to help you set up permissions for users and [service accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) within a namespace on a cluster that runs one of the Tanzu Application Platform profiles.
+- Six default roles to help you set up permissions for users and [service accounts](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/) within a namespace on a cluster that runs one of the Tanzu Application Platform profiles.
 - A Tanzu CLI RBAC (role-based access control) plug-in for role binding. For more information, see [Bind a user or group to a default role](binding.md).
 - Documentation for [integrating with your existing identity management solution](integrating-identity.md).
 
 ## <a id="default-roles"></a> Default roles
 
-Three roles are for users:
+Four roles are for users:
 
 - app-editor
 - app-viewer
 - app-operator
+- service-operator
 
 Two roles are for service accounts associated with the Tanzu Supply Chain:
 
