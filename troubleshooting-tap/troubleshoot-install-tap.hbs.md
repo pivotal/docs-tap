@@ -290,18 +290,18 @@ You cannot add Tanzu Application Platform repo into clusters attached to Tanzu M
 
 Do not add a cluster with Cluster Essentials v1.2 predeployed to Tanzu Mission Control. Provision Cluster Essentials through Tanzu Mission Control.
 
-## <a id='tap-upgrade-fails'></a> Upgrading Tanzu Application Platform to 1.2.2 may fail
+## <a id='tap-upgrade-fails'></a> Upgrading Tanzu Application Platform to v1.2.2 might fail
 
 **Explanation**
 
- While upgrading Tanzu Application Platform to v1.2.2 from any previous version, adding the 1.2.2 repo bundle in addition to the existing repo bundle fails.
+While upgrading Tanzu Application Platform to v1.2.2 from any previous version, adding the v1.2.2 repo bundle in addition to the existing repo bundle fails.
 
 **Solution**
 
-As a workaround, to add the TAP 1.2.2 repo bundle, use:
-  
+As a workaround, to add the Tanzu Application Platform v1.2.2 repo bundle, use:
+
     ```
     tanzu package repository update <existing-repo-bunlde-name> --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.2.2 -n <namespace>
     ```
 
-You may observe an error with package installs `ReconcileFailed True Expected to find at least one version` until tap is upgraded to 1.2.2, but this does not affect the functionality of any components.
+You might observe an error with package installs `ReconcileFailed True Expected to find at least one version` until Tanzu Application Platform is upgraded to v1.2.2, but this does not affect the functionality of any components.

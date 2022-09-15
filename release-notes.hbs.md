@@ -29,7 +29,7 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-2-2-tap-gui-resolved"></a>Tanzu Application Platform GUI
 
-* Updated supply-chain package version to 0.1.26 to fix an issue in the Image Scanner Stage.
+* Updated supply-chain package version to v0.1.26 to fix an issue in the Image Scanner Stage.
 
 ### <a id='1-2-2-known-issues'></a> Known issues
 
@@ -37,11 +37,11 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="1-2-2-upgrade-issues"></a> Upgrading Tanzu Application Platform
 
-- **Adding the 1.2.2 repository bundle in addition to another repository might cause a failure:**
+- **Adding the v1.2.2 repository bundle in addition to another repository might cause a failure:**
 
-   - While upgrading to v1.2.2 from any previous version, adding the 1.2.2 repo bundle in addition to the existing repo bundle can fail. For the workaround, see [Troubleshoot installing Tanzu Application Platform](troubleshooting-tap/troubleshoot-install-tap.hbs.md#tap-upgrade-fails).
+   - While upgrading to Tanzu Application Platform v1.2.2 from any previous version, adding the v1.2.2 repo bundle in addition to the existing repo bundle can fail. For the workaround, see [Troubleshoot installing Tanzu Application Platform](troubleshooting-tap/troubleshoot-install-tap.hbs.md#tap-upgrade-fails).
 
-  - You may observe an error with package installs `ReconcileFailed True Expected to find at least one version` until tap is upgraded to 1.2.2, but this does not affect the functionality of any components.
+  - You might observe an error with package installs `ReconcileFailed True Expected to find at least one version` until Tanzu Application Platform is upgraded to v1.2.2, but this does not affect the functionality of any components.
 
 #### <a id="1-2-2-grype-scan-issues"></a>Grype scanner
 
