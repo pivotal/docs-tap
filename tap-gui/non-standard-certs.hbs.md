@@ -16,22 +16,28 @@ When the value equals `0`, certificate validation is deactivated for TLS connect
 To do this, use the `package_overlays` key in the Tanzu Application Platform values file.
 For instructions, see [Customizing Package Installation](../customize-package-installation.md).
 
-The following is an example overlay to deactivate TLS:
+The following is an example `Secret` containing an overlay to deactivate TLS:
 
 ```yaml
-#@ load("@ytt:overlay", "overlay")
-
-#@overlay/match by=overlay.subset({"kind":"Deployment", "metadata": {"name": "server", "namespace": "NAMESPACE"}}),expects="1+"
----
-spec:
-  template:
+apiVersion: v1
+kind: Secret
+metadata:
+  name: deactivate-tls-overlay
+  namespace: tap-install
+stringData:
+  deactivate-tls-overlay.yml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata": {"name": "server", "namespace": "NAMESPACE"}}),expects="1+"
+    ---
     spec:
-      containers:
-        #@overlay/match by=overlay.all,expects="1+"
-        #@overlay/match-child-defaults missing_ok=True
-        - env:
-          - name: NODE_TLS_REJECT_UNAUTHORIZED
-            value: "0"
+      template:
+        spec:
+          containers:
+            #@overlay/match by=overlay.all,expects="1+"
+            #@overlay/match-child-defaults missing_ok=True
+            - env:
+              - name: NODE_TLS_REJECT_UNAUTHORIZED
+                value: "0"
 ```
 
 Where `NAMESPACE` is the namespace in which your Tanzu Application Platform GUI instance is deployed.
