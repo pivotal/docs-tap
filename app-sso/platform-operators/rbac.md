@@ -13,6 +13,19 @@ The AppSSO package aggregates the following permissions into TAP's well-known ro
       - "*"
   ```
 
+* app-editor
+
+  ```yaml
+  - apiGroups:
+      - sso.apps.tanzu.vmware.com
+    resources:
+      - clientregistrations
+    verbs:
+      - get
+      - list
+      - watch
+  ```
+
 * app-viewer
 
   ```yaml
@@ -24,6 +37,17 @@ The AppSSO package aggregates the following permissions into TAP's well-known ro
       - get
       - list
       - watch
+  ```
+
+* service-operator
+
+  ```yaml
+  - apiGroups:
+      - sso.apps.tanzu.vmware.com
+    resources:
+      - authserver
+    verbs:
+      - "*"
   ```
 
 For the purpose of managing the lifecycle of AppSSO's [APIs](../crds/index.md) the AppSSO operator's `ServiceAccount`
