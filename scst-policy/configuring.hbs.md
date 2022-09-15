@@ -51,6 +51,53 @@ When a policy is selected to be evaluated against the matched image, the
 authorities are used to validate signatures. If at least one authority is
 satisfied and a signature is validated, the policy is validated.
 
+### <a id="cip-mode"></a> `mode`
+
+In a ClusterImagePolicy, `spec.mode` specifies the action of a policy.
+- `enforce`: The default behavior. When validation occurs, if the policy fails to validate the image, the policy will fail.
+- `warn`: When validation occurs, if the policy fails to validate the image, validation error messages are converted to Warnings and the policy will pass.
+
+A sample of a ClusterImagePolicy which has `warn` mode configured.
+
+```yaml
+---
+apiVersion: policy.sigstore.dev/v1beta1
+kind: ClusterImagePolicy
+metadata:
+  name: warn-tap-packages
+spec:
+  mode: warn
+```
+
+When an image is rejected during `enforce` mode, the image is not admitted.
+
+Sample output message:
+```
+error: failed to patch: admission webhook "policy.sigstore.dev" denied the request: validation failed: failed policy: <POLICY_NAME>: spec.template.spec.containers[0].image
+<IMAGE_REFERENCE> signature key validation failed for authority authority-0 for <IMAGE_REFERENCE>: GET <IMAGE_SIGNATURE_REFERENCE>: DENIED: denied; denied
+failed policy: <POLICY_NAME>: spec.template.spec.containers[1].image
+<IMAGE_REFERENCE> signature key validation failed for authority authority-0 for <IMAGE_REFERENCE>: GET <IMAGE_SIGNATURE_REFERENCE>: DENIED: denied; denied
+```
+
+When an image is rejected during `warn` mode, the image is admitted.
+
+Sample output message:
+```
+Warning: failed policy: <POLICY_NAME>: spec.template.spec.containers[0].image
+Warning: <IMAGE_REFERENCE> signature key validation failed for authority authority-0 for <IMAGE_REFERENCE>: GET <IMAGE_SIGNATURE_REFERENCE>: DENIED: denied; denied
+Warning: failed policy: <POLICY_NAME>: spec.template.spec.containers[1].image
+Warning: <IMAGE_REFERENCE> signature key validation failed for authority authority-0 for <IMAGE_REFERENCE>: GET <IMAGE_SIGNATURE_REFERENCE>: DENIED: denied; denied
+```
+
+If a namespace contains both signed and unsigned images, the utilization of two ClusterImagePolicies can be used to address this.
+One policy can be configured with `enforce` for images that are signed and the other policy can be configured with `warn` to allow expected unsigned images.
+
+An example of this would be allowing unsigned `tap-packages` images required for the platform through a `warn` policy.
+However, the signed images produced from Tanzu Build Service can be verified with an `enforce` policy.
+
+If `Warning` is undesirable, it is possible to configure a `static.action` `pass` authority to allow expected unsigned images.
+For information on static action authorities, see the [Static Action](#cip-static-action) documentation.
+
 ### <a id="cip-images"></a> `images`
 
 In a ClusterImagePolicy, `spec.images` specifies a list of glob matching patterns.
