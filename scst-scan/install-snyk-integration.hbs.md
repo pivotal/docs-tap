@@ -61,48 +61,48 @@ Before following the steps in [Installing Scanners for Supply Chain Security Too
 
 The Grype and Snyk Scanner Integrations both enable the Metadata Store. To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform is installed using the Full Profile, the Grype Scanner Integration is installed, unless it is explicitly excluded.
 
-    * If the Grype Scanner Integration is installed in the same `dev-namespace` Snyk Scanner is installed:
+* If the Grype Scanner Integration is installed in the same `dev-namespace` Snyk Scanner is installed:
 
-        ```yaml
-        #! ...
-        metadataStore:
-          #! The url where the Store deployment is accesible.
-          #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
-          url: "<STORE-URL>"
-          caSecret:
-            #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
-            #! Default value is: "app-tls-cert"
-            name: "<CA-SECRET-NAME>"
-            importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
-          #! authSecret is for multicluster configurations.
-          authSecret:
-            #! The name of the secret that contains the auth token to authenticate to the Store Deployment.
-            name: "<AUTH-SECRET-NAME>"
-            importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
-        ```
+    ```yaml
+    #! ...
+    metadataStore:
+      #! The url where the Store deployment is accesible.
+      #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
+      url: "<STORE-URL>"
+      caSecret:
+        #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
+        #! Default value is: "app-tls-cert"
+        name: "<CA-SECRET-NAME>"
+        importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
+      #! authSecret is for multicluster configurations.
+      authSecret:
+        #! The name of the secret that contains the auth token to authenticate to the Store Deployment.
+        name: "<AUTH-SECRET-NAME>"
+        importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
+    ```
 
-    * If the Grype Scanner Integration is not installed in the same `dev-namespace` Snyk Scanner is installed:
+* If the Grype Scanner Integration is not installed in the same `dev-namespace` Snyk Scanner is installed:
 
-        ```yaml
-        #! ...
-        metadataStore:
-          #! The url where the Store deployment is accesible.
-          #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
-          url: "<STORE-URL>"
-          caSecret:
-            #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
-            #! Default value is: "app-tls-cert"
-            name: "<CA-SECRET-NAME>"
-            #! The namespace where the secrets for the Store Deployment live.
-            #! Default value is: "metadata-store"
-            importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
-          #! authSecret is for multicluster configurations.
-          authSecret:
-            #! The name of the secret that contains the auth token to authenticate to the Store Deployment.
-            name: "<AUTH-SECRET-NAME>"
-            #! The namespace where the secrets for the Store Deployment live.
-            importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
-        ```
+    ```yaml
+    #! ...
+    metadataStore:
+      #! The url where the Store deployment is accesible.
+      #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
+      url: "<STORE-URL>"
+      caSecret:
+        #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
+        #! Default value is: "app-tls-cert"
+        name: "<CA-SECRET-NAME>"
+        #! The namespace where the secrets for the Store Deployment live.
+        #! Default value is: "metadata-store"
+        importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
+      #! authSecret is for multicluster configurations.
+      authSecret:
+        #! The name of the secret that contains the auth token to authenticate to the Store Deployment.
+        name: "<AUTH-SECRET-NAME>"
+        #! The namespace where the secrets for the Store Deployment live.
+        importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
+    ```
 
 **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, explicitly deactivate the integration by appending the following fields to the `values.yaml` file that is enabled by default:
 
