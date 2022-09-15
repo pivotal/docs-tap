@@ -27,6 +27,31 @@ distinct components of Cartographer Conventions:
 - [Convention Controller](#convention-controller)
 - [Convention Server](#convention-server)
 
+### <a id="controller-resources"></a> Controller resources 
++  [ClusterPodConvention](/cartographer-conventions/reference/cluster-pod-convention.hbs.md) 
+`ClusterPodConvention`is a `conventions.carto.run/v1aplha1` resource type that allows the convention author to register a webhook server with the controller using the webhook field.
+    ```yaml
+    ...
+    spec:
+      selectorTarget: PodTemplateSpec # optional field with options, defaults to PodTemplateSpec
+      selectors: # optional, defaults to match all workloads
+      - <metav1.LabelSelector>
+      webhook:
+        certificate:
+          name: sample-cert
+          namespace: sample-conventions
+        clientConfig: 
+          <admissionregistrationv1.WebhookClientConfig>
+    ```
++  [PodIntent](/cartographer-conventions/reference/pod-intent.hbs.md)
+The `PodIntent`is a `conventions.carto.run/v1alpha1)` resource type that is continuously reconciled and it applies decorations to a workload `PodTemplateSpec` exposing the enriched `PodTemplateSpec` on it's status. Whenever the status of the `PodIntent` is updated no side effects are caused on the cluster other than update to the `PodIntent` status.
+
+The ClusterPodConvention and PodIntent resources are both present on the present on the Kubernetes API Server and can be queried using `conventions.clsuter`.
+
+### <a id="controller-resources"></a> Convention server resources 
++ [PodConventionContext](/cartographer-conventions/reference/pod-convention-context.hbs.md) 
+The PodConventionContext defines the structure used to communicate internally between the webhook convention server and controller and  key to note is that it does not exist on the Kubernetes API Server. This is essentially a wrapper for the PodConventionContextSpec and the PodConventionContextStatus which is the structure used for both requests and responses from the convention server.  The `PodConventionContextSpec` is a wrapper of the `PodTemplateSpec` and list of `ImageConfigs` provided in the request body of the server. The status type used to represent the current status of the context retrieved by the request. Here is a [sample PodConventionContext](https://github.com/vmware-tanzu/cartographer-conventions/blob/main/docs/podconventioncontext-sample.yaml) and the [OpenAPI spec](https://github.com/vmware-tanzu/cartographer-conventions/blob/main/api/openapi-spec/conventions-server.yaml) with the structure of the PodConventionContext. 
+
 ### <a id='convention-server'></a>Convention server
 
 The convention server is the component that applies a convention already defined on the server.
