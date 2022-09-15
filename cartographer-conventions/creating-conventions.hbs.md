@@ -29,24 +29,25 @@ distinct components of Cartographer Conventions:
 
 ### <a id="controller-resources"></a> Controller resources 
 +  [ClusterPodConvention](/cartographer-conventions/reference/cluster-pod-convention.hbs.md) 
-`ClusterPodConvention`is a `conventions.carto.run/v1aplha1` resource type that allows the convention author to register a webhook server with the controller using the webhook field.
-    ```yaml
-    ...
-    spec:
-      selectorTarget: PodTemplateSpec # optional field with options, defaults to PodTemplateSpec
-      selectors: # optional, defaults to match all workloads
-      - <metav1.LabelSelector>
-      webhook:
-        certificate:
-          name: sample-cert
-          namespace: sample-conventions
-        clientConfig: 
-          <admissionregistrationv1.WebhookClientConfig>
-    ```
-+  [PodIntent](/cartographer-conventions/reference/pod-intent.hbs.md)
-The `PodIntent`is a `conventions.carto.run/v1alpha1)` resource type that is continuously reconciled and it applies decorations to a workload `PodTemplateSpec` exposing the enriched `PodTemplateSpec` on it's status. Whenever the status of the `PodIntent` is updated no side effects are caused on the cluster other than update to the `PodIntent` status.
+    - `ClusterPodConvention` is a `conventions.carto.run/v1aplha1` resource type that allows the conventions author to register a webhook server with the controller using it's`spec.webhook` field.
+        ```yaml
+        ...
+        spec:
+          selectorTarget: PodTemplateSpec # optional field with options, defaults to PodTemplateSpec
+          selectors: # optional, defaults to match all workloads
+          - <metav1.LabelSelector>
+          webhook:
+            certificate:
+              name: sample-cert
+              namespace: sample-conventions
+            clientConfig: 
+              <admissionregistrationv1.WebhookClientConfig>
+        ```
++ [PodIntent](/cartographer-conventions/reference/pod-intent.hbs.md)
 
-The ClusterPodConvention and PodIntent resources are both present on the present on the Kubernetes API Server and can be queried using `conventions.clsuter`.
+  - The `PodIntent`is a `conventions.carto.run/v1alpha1)` resource type that is continuously reconciled and it applies decorations to a workload `PodTemplateSpec` exposing the enriched `PodTemplateSpec` on it's status. Whenever the status of the `PodIntent` is updated no side effects are caused on the cluster other than update to the `PodIntent` status.
+
+As key types defined on the `conventions.carto.run` API, the `ClusterPodConvention` and `PodIntent` resources will both present on the present on the Kubernetes API Server and can be queried using `clusterpodconventions.conventions.carto.run` for the former and `podintents.conventions.carto.run` for the later.
 
 ### <a id="controller-resources"></a> Convention server resources 
 + [PodConventionContext](/cartographer-conventions/reference/pod-convention-context.hbs.md) 
