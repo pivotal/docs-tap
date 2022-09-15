@@ -13,6 +13,19 @@ The AppSSO package aggregates the following permissions into TAP's well-known ro
       - "*"
   ```
 
+* app-editor
+
+  ```yaml
+  - apiGroups:
+      - sso.apps.tanzu.vmware.com
+    resources:
+      - clientregistrations
+    verbs:
+      - get
+      - list
+      - watch
+  ```
+
 * app-viewer
 
   ```yaml
