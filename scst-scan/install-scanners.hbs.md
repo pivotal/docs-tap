@@ -14,7 +14,7 @@ Before installing a new scanner:
 To install a new scanner, follow these steps:
 
 1. List the available packages to discover what scanners you can use by running:
-   
+
     ```console
     tanzu package available list --namespace tap-install
     ```
@@ -84,7 +84,7 @@ To install a new scanner, follow these steps:
 
 5. Define the `--values-file` flag to customize the default configuration:
 
-    The `values.yaml` file you created earlier is referenced with the `--values-file` flag when running your Tanzu install command: 
+    The `values.yaml` file you created earlier is referenced with the `--values-file` flag when running your Tanzu install command:
 
     ```console
     tanzu package install REFERENCE-NAME \
@@ -95,7 +95,7 @@ To install a new scanner, follow these steps:
     ```
 
     Where:
-    
+
     * `REFERENCE-NAME` is the name referenced by the installed package. For example, `grype-scanner`, `snyk-scanner-my-apps`.
     * `SCANNER-NAME` is the name of the scanner package you retrieved earlier. For example, `snyk.scanning.apps.tanzu.vmware.com`.
     * `VERSION` is your package version number. For example, `1.0.0-beta.2`.
@@ -167,7 +167,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
       scanPolicy: SCAN-POLICY # Optional
     ```
 
-    Where: 
+    Where:
 
     - `SCAN-TEMPLATE` is the name of the installed `ScanTemplate` in the `DEV-NAMESPACE` you retrieved earlier.
     - `SCAN-POLICY` it's an optional reference to an existing `ScanPolicy` in the same `DEV-NAMESPACE`.
@@ -203,9 +203,9 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
       scanPolicy: SCAN-POLICY # Optional
     ```
 
-    Where: 
+    Where:
 
-    - `SCAN-TEMPLATE` is the name of the installed `ScanTemplate` in the `DEV-NAMESPACE` you retrieved earlier. 
+    - `SCAN-TEMPLATE` is the name of the installed `ScanTemplate` in the `DEV-NAMESPACE` you retrieved earlier.
     - `SCAN-POLICY` is an optional reference to an existing `ScanPolicy` in the same `DEV-NAMESPACE`.
 
     For example:
@@ -232,7 +232,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     kubectl apply -f PATH-TO-IMAGE-SCAN-YAML -n DEV-NAMESPACE
     ```
 
-    Where `PATH-TO-IMAGE-SCAN-YAML>` is the path to the YAML file created earlier.
+    Where `PATH-TO-IMAGE-SCAN-YAML` is the path to the YAML file created earlier.
 
     `SourceScan`:
     ```console
@@ -256,7 +256,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     ```console
     kubectl get imagescan IMAGE-SCAN-NAME -n DEV-NAMESPACE
     ```
-   
+
     Where `IMAGE-SCAN-NAME` is the name of the `ImageScan` as defined in the YAML file created earlier.
 
     For `SourceScan`:
