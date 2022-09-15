@@ -26,6 +26,17 @@ The AppSSO package aggregates the following permissions into TAP's well-known ro
       - watch
   ```
 
+* service-operator
+
+  ```yaml
+  - apiGroups:
+      - sso.apps.tanzu.vmware.com
+    resources:
+      - authserver
+    verbs:
+      - "*"
+  ```
+
 For the purpose of managing the lifecycle of AppSSO's [APIs](../crds/index.md) the AppSSO operator's `ServiceAccount`
 has a `ClusterRole` with the following permissions:
 
