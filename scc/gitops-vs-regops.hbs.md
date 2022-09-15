@@ -288,6 +288,10 @@ to a cluster by any deliverable watching the repository. Operators might want to
 applying configuration to the cluster. In this case, operators must specify a `pull_request` commit strategy. 
 
 >**Note:** If you want to use the pull request approach, you must use HTTP(S) authentication with a token.
+- On Github, the token should have
+  [Repo scope](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+- On Gitlab, the token should have
+  [API scope](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#personal-access-token-scopes)
 
 To use the `pull_request` commit strategy, set the following parameters:
 
@@ -368,6 +372,9 @@ provide the credentials for that repository as follows:
 set. `GIT-SERVER` must be prefixed with the appropriate URL scheme and the Git
 server. For example, for https://github.com/vmware-tanzu/cartographer,
 https://github.com must be provided as the GIT-SERVER.
+
+>**Note:** If you want to use the pull request approach, the password field must be filled with a token.
+See the [Pull Requests section](#pull-requests) for more information.
 
 After the `Secret` is created, attach it to the `ServiceAccount` used by the
 workload. For example:
