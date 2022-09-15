@@ -292,10 +292,11 @@ applying configuration to the cluster. In this case, operators must specify a `p
 If you want to use the pull request approach, you must use HTTP(S) authentication with a token.
 </p>
 
-- On Github, the token should have
-  [Repo scope](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
-- On Gitlab, the token should have
-  [API scope](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#personal-access-token-scopes)
+For HTTP(S) authentication, use one of the following tokens:
+- On GitHub, the token must have a
+  [Repo scope](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
+- On GitLab, the token must have an
+  [API scope](https://docs.gitlab.com/ee/user/profile/personal_access_tokens.html#personal-access-token-scopes).
 
 To use the `pull_request` commit strategy, set the following parameters:
 
@@ -379,8 +380,8 @@ https://github.com must be provided as the GIT-SERVER.
 
 <p class="note important">
 <strong>Note:</strong>
-If you want to use the pull request approach, the password field must be filled with a token.
-See the [Pull Requests section](#pull-requests) for more information.
+To use the pull request approach, the password field must contain a token.
+See [Pull Requests](#pull-requests).
 </p>
 
 After the `Secret` is created, attach it to the `ServiceAccount` used by the
