@@ -395,6 +395,9 @@ To use the pull request approach, the password text box must contain a token.
 See [Pull Requests](#pull-requests).
 </p>
 
+>**Note:** If you want to use the pull request approach, the password field must be filled with a token.
+See the [Pull Requests section](#pull-requests) for more information.
+
 After the `Secret` is created, attach it to the `ServiceAccount` used by the
 workload. For example:
 
