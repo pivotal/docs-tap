@@ -45,6 +45,8 @@ This release includes the following changes, listed by component and area.
 - `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. Please, migrate
   to `AuthServer.spec.tls`.
 
+- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
+
 ##### Bug fixes
 
 - Emit the audit `TOKEN_REQUEST_REJECTED` event when the `refresh_token` grant fails.
@@ -153,15 +155,10 @@ part of upgrading [Tanzu Application Platform as a whole](./upgrading.hbs.md).
 - Feature 1
 - Feature 2
 
-#### <a id="scst-sign-features"></a>Supply Chain Security Tools - Sign
-
-- Feature 1
-- Feature 2
-
 #### <a id="scst-policy-features"></a>Supply Chain Security Tools - Policy Controller
 
-- Feature 1
-- Feature 2
+- Added ClusterImagePolicy [`warn` and `enforce` mode](./scst-policy/configuring.hbs.md#cip-mode)
+- Added ClusterImagePolicy [authority static actions](./scst-policy/configuring.hbs.md#cip-static-action)
 
 #### <a id="scst-store-features"></a>Supply Chain Security Tools - Store
 
