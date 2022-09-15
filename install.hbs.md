@@ -209,7 +209,7 @@ ceip_policy_disclosed: true
 profile: full # Can take iterate, build, run, view. 
 supply_chain: basic # Can take testing, testing_scanning.
 
-ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scaning.
+ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scanning.
   registry:
     server: "SERVER-NAME" # Takes the value from shared section above by default, but can be overridden by setting a different value.
     repository: "REPO-NAME" # Takes the value from shared section above by default, but can be overridden by setting a different value.
