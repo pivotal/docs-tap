@@ -18,8 +18,8 @@ Installation requires:
     [Docker Hub](https://hub.docker.com/) for application images, base images, and runtime dependencies.
     When available, VMware recommends using a paid registry account to avoid potential rate-limiting
     associated with some free registry offerings.
-    
-    - Recommended storage space for container image registry: 
+
+    - Recommended storage space for container image registry:
 
         - 1&nbsp;GB of available storage if installing Tanzu Build Service with the `lite` set of dependencies.
         - 10 GB of available storage if installing Tanzu Build Service with the `full` set of dependencies, which are suitable for offline
@@ -96,8 +96,8 @@ providers:
 - Minikube.
     - Reference the [resource requirements](#resource-requirements) in the following section.
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
-- Redhat Openshift Container Platform 4.10
-    - Vsphere
+- Redhat Openshift Container Platform v4.10
+    - vSphere
     - Baremetal
 - Tanzu Kubernetes Grid multicloud.
 - vSphere with Tanzu v7.0 U3a (not compatible with Tanzu Application Platform v1.0.0 or earlier).<br>
