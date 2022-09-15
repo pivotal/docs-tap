@@ -180,6 +180,39 @@ each have at least one valid signature obtained using the authorities specified.
 If an image does not match any policy, the Policy Controller
 does not admit the image.
 
+#### <a id="cip-static-action"></a> `static.action`
+
+ClusterImagePolicy authorities can be configured to always `pass` or `fail` with `static.action`.
+
+Sample `ClusterImagePolicy` with static action `fail`.
+
+```yaml
+apiVersion: policy.sigstore.dev/v1beta1
+kind: ClusterImagePolicy
+metadata:
+  name: <POLICY_NAME>
+spec:
+  authorities:
+  - static:
+      action: fail
+```
+
+A sample output of static action `fail`:
+
+```
+error: failed to patch: admission webhook "policy.sigstore.dev" denied the request: validation failed: failed policy: <POLICY_NAME>: spec.template.spec.containers[0].image
+<IMAGE_REFERENCE> disallowed by static policy
+failed policy: <POLICY_NAME>: spec.template.spec.containers[1].image
+<IMAGE_REFERENCE> disallowed by static policy
+```
+
+Images that are unsigned in a namespace with validation enabled can be admitted with an authority with static action `pass`.
+
+A scenario where this is desirable would be configuring a policy with `static.action` `pass` for `tap-packages` images while another policy is configured to validate signed images produced by Tanzu Build Service. This will allow images from `tap-packages`, which are currently unsigned and required by the platform, while validating signed built images.
+
+If `Warning` messages are desirable for admitted images where validation failed, it is possible to configure a policy with `warn` mode and valid authorities.
+For information on ClusterImagePolicy modes, see the [Mode](#cip-mode) documentation.
+
 ## <a id='provide-creds-for-package'></a> Provide credentials for the package
 
 There are three ways the package reads credentials to authenticate to registries
