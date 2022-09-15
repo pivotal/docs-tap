@@ -36,3 +36,13 @@ annotation `kapp.k14s.io/disable-default-label-scoping-rules: ""` to avoid that 
 ## Redirect URIs are redirecting to http instead of https with a non-internal identity provider
 
 Follow [this workaround](../known-issues/cidr-ranges.md), adding IP ranges for the `AuthServer` to trust.
+
+## Common issues
+
+### Misconfigured `clientSecret`
+#### Problem:
+- When attempting to sign in you see `This commonly happens due to an incorrect [client_secret].`, the client secret of
+an identity provider is misconfigured.
+
+#### Solution:
+Validate the `spec.OpenId.clientSecretRef`.
