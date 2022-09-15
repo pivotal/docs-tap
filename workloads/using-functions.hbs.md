@@ -36,6 +36,8 @@ For more information, see the [kp CLI help text](https://github.com/vmware-tanzu
 
 ## <a id="add-buildpacks"></a> Adding function buildpacks
 
+>**Note:** This section does not apply to air-gapped environments.
+
 To use the function `buildpacks`, you must upload their buildpackages to Build Service stores.
 
 1. Add the function's buildpackages to the default [ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-stores.html) by running:
