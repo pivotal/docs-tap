@@ -25,6 +25,14 @@ Approximately 10&nbsp;GB of registry space is required when using the `full` dep
 
 - Your Docker registry must be accessible with user name and password credentials.
 
+## <a id='DeprecatedFeatures'></a> Deprecated Features
+
+* Users are encouraged to use the SBOM format published in
+  [Buildpacks API 0.7.0](https://buildpacks.io/docs/reference/spec/migration/buildpack-api-0.6-0.7/#new-standardized-sbom-format).
+  Older (legacy) SBOM formats are deprecated and are disabled by default in TBS. Support for legacy SBOM formats be
+  enabled by either adding `include_legacy_bom: true` to the `tbs-values.yml` file or by passing
+  `--data-value-yaml include_legacy_bom=true` to `ytt` when processing the TBS bundle.
+
 ## <a id='tbs-offline-install-package'></a> Install the Tanzu Build Service package
 
 These steps assume that you have installed the Tanzu Application Platform packages
