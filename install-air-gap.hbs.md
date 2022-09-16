@@ -216,8 +216,7 @@ ootb_supply_chain_basic:
   maven:
       repository:
          url: https://MAVEN-URL
-         credentials_secret_name: "MAVEN-CREDENTIALS"
-         ca_cert_secret_name: "CUSTOM-CA"
+         secret_name: "MAVEN-CREDENTIALS"
 
 accelerator:
       samples:
@@ -288,8 +287,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication.
-- `MAVEN-CREDENTIALS` is the secret name with maven creds in developer namespace. You can create it after the fact.
-- `CUSTOM-CA` is the secret name with maven certificate authority in developer namespace. You can create it after the fact.
+- `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#a-idmaven-repository-secreta-maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
