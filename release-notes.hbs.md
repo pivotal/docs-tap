@@ -237,7 +237,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Policy Controller
 
-- Pods deployed through `kubectl run` in non-default namespace now are able to build the neccessary keychain for validation.
+- Pods deployed through `kubectl run` in non-default namespace now are able to build the neccessary keychain for registry access during validation.
 
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Scan
 
