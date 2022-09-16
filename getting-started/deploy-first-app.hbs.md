@@ -36,22 +36,29 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 1. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
-1. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
+1. Set up environment variables by running:
 
     ```console
-    tanzu apps workload create tanzu-java-web-app \
-    --git-repo GIT-URL-TO-PROJECT-REPO \
-    --git-branch main \
-    --type web \
-    --label app.kubernetes.io/part-of=tanzu-java-web-app \
-    --yes \
-    --namespace YOUR-DEVELOPER-NAMESPACE
+    export GIT_URL_TO_REPO=GIT-URL-TO-PROJECT-REPO
+    export YOUR_NAMESPACE=YOUR-DEVELOPER-NAMESPACE
     ```
 
     Where:
     
     - `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to earlier.
     - `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
+
+2. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
+
+    ```console
+    tanzu apps workload create tanzu-java-web-app \
+    --git-repo ${GIT_URL_TO_REPO} \
+    --git-branch main \
+    --type web \
+    --label app.kubernetes.io/part-of=tanzu-java-web-app \
+    --yes \
+    --namespace ${YOUR_NAMESPACE}
+    ```
 
     If you bypassed step 5 or were unable to upload your accelerator to a Git repository, use the following public version to test:
 
@@ -72,7 +79,7 @@ To deploy your application, you must download an accelerator, upload it on your 
     > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VS Code extension
     to debug and live-update this application.
 
-1. View the build and runtime logs for your app by running the `tail` command:
+3. View the build and runtime logs for your app by running the `tail` command:
 
     ```console
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
@@ -80,7 +87,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
-1. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the following command, and then press **ctrl-click** on the Workload Knative Services URL at the bottom of the command output.
+4. After the workload is built and running, you can view the Web App in your browser. View the URL of the Web App by running the following command, and then press **ctrl-click** on the Workload Knative Services URL at the bottom of the command output.
 
     ```console
     tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE

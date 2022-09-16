@@ -46,10 +46,11 @@ To create a new application accelerator by using your Git repository, follow the
 
 To publish the new application accelerator that is created in your Git repository, follow these steps:
 
-1. To publish the new application accelerator, run:
+1. Set up environment variables by running:
 
     ```console
-    tanzu accelerator create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
+    export GIT_REPOSITORY_URL=YOUR-GIT-REPOSITORY-URL
+    export GIT_BRANCH=YOUR-GIT-BRANCH
     ```
 
     Where:
@@ -57,7 +58,13 @@ To publish the new application accelerator that is created in your Git repositor
     - `YOUR-GIT-REPOSITORY-URL` is the URL of your Git repository.
     - `YOUR-GIT-BRANCH` is the name of the branch where you pushed the new `accelerator.yaml` file.
 
-2. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
+2. To publish the new application accelerator, run:
+
+    ```console
+    tanzu accelerator create simple --git-repository ${GIT_REPOSITORY_URL} --git-branch ${GIT_BRANCH}
+    ```
+
+3. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
 
     ![Another accelerator appears in Tanzu Application Platform GUI](../images/new-accelerator-deployed-v1-1.png)
 
