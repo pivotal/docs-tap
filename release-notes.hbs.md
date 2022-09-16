@@ -157,6 +157,7 @@ part of upgrading [Tanzu Application Platform as a whole](./upgrading.hbs.md).
 
 #### <a id="scst-policy-features"></a>Supply Chain Security Tools - Policy Controller
 
+- Update Policy Controller version from v0.2.0 to v0.3.0
 - Added ClusterImagePolicy [`warn` and `enforce` mode](./scst-policy/configuring.hbs.md#cip-mode)
 - Added ClusterImagePolicy [authority static actions](./scst-policy/configuring.hbs.md#cip-static-action)
 
@@ -233,6 +234,10 @@ This release has the following breaking changes, listed by area and component.
 
 - Resolved issue 1
 - Resolved issue 2
+
+#### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Policy Controller
+
+- Pods deployed through `kubectl run` in non-default namespace now are able to build the neccessary keychain for validation.
 
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Scan
 
