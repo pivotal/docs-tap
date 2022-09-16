@@ -66,7 +66,7 @@ To use Grype in offline and air-gapped environments:
               configMap:
                 name: <CONFIGMAP-NAME> #! name of the configmap created
     ``` 
-    Note: The default maximum allowed built age of Grype's vulnerability database is 5 days. This means that scanning with a 6 day old database will result in the scan failing. Stale databases weaken your security posture so the best practice is to update the database daily. You can however use the `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in accordance with your security posture.
+    > **Note:** The default maximum allowed built age of Grype's vulnerability database is 5 days. This means that scanning with a 6 day old database causes the scan to fail. Stale databases weaken your security posture. VMware reccomends updating the database daily. You can use the `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in accordance with your security posture.
 
     You can also add more certificates to the ConfigMap created earlier, to handle connections to a private registry for example, and mount them in the `volumeMounts` section if needed.
 

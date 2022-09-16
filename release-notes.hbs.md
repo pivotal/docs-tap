@@ -27,7 +27,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="app-sso-features"></a>Application Single Sign-On
 
-- _OpenShift_ is supported. The controller and `AuthServer` run under restricted _Security Context Constraints_.
+- AppSSO uses a custom Security Context Constraint to provide OpenShift support.
 - Kubernetes 1.24 is supported.
 - Comply with the restricted _Pod Security Standard_ and give least privileges to the controller.
 - `AuthServer` gets TLS-enabled `Ingress` autoconfigured. This can be controlled via `AuthServer.spec.tls`.
@@ -50,9 +50,14 @@ This release includes the following changes, listed by component and area.
 - Emit the audit `TOKEN_REQUEST_REJECTED` event when the `refresh_token` grant fails.
 - The service binding `Secret` is updated when a `ClientRegistration` changes significantly.
 
+
+#### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
+
+- Added new default role `service-operator`. 
+
 ### Breaking changes
 
-- `AuthServer.spec.identityProviders.internalUser.users.password` now be provided as plain-text instead of _bcrypt_
+- `AuthServer.spec.identityProviders.internalUser.users.password` is now provided as plain text instead of _bcrypt_
   -hashed.
 - When an authorization server fails to obtain a token from an OpenID identity provider, it will record
   an `INVALID_IDENTITY_PROVIDER_CONFIGURATION` audit event instead of `INVALID_UPSTREAM_PROVIDER_CONFIGURATION`.
@@ -105,23 +110,8 @@ with the following changes:
     # ...
   ```
 
-New versions of AppSSO are available from the Tanzu Application Platform package repository, and can be upgraded to as
-part of upgrading [Tanzu Application Platform as a whole](./upgrading.hbs.md).
-
-- To upgrade `AppSSO` specifically, run either
-  - `tanzu package installed update APP_NAME -p sso.apps.tanzu.vmware.com -v 2.0.0 --values-file PATH_TO_YOUR_VALUES_YAML -n YOUR_INSTALL_NAMESPACE`
-  or, if you're using `Carvel`, you can also run
-  - ```bash
-    ytt \
-      --file PATH_TO_YOUR_VALUES_YAML \
-      --data-value selected_version=YOUR_VERSION |
-    kapp deploy \
-      --app APP_NAME \
-      --namespace YOUR_INSTALL_NAMESPACE \
-      --file - \
-      --diff-changes \
-      --yes
-  ```
+New versions of AppSSO are available from the Tanzu Application Platform package repository. See [AppSSO documentation](app-sso/platform-operators/upgrades.md) for detailed upgrade steps. 
+You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](upgrading.hbs.md) for more information.
 
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
@@ -135,8 +125,7 @@ part of upgrading [Tanzu Application Platform as a whole](./upgrading.hbs.md).
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
-- Feature 1
-- Feature 2
+- Snyk CLI is updated to v1.994.0.
 
 #### <a id="scc-features"></a>Supply Chain Choreographer
 
@@ -201,6 +190,7 @@ part of upgrading [Tanzu Application Platform as a whole](./upgrading.hbs.md).
   - [Azure Flexible Server (Postgres) by using Crossplane](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_database_with_crossplane.html).
   - [Google Cloud SQL (Postgres) by using Config Connector](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_config_connector.html).
   - [Google Cloud SQL (Postgres) by using Crossplane](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html).
+- Formally defined the Service Operator user role (see [Role descriptions](./authn-authz/role-descriptions.hbs.md))
 - **`tanzu services` CLI plug-in:** Improved information messages for deprecated commands.
 
 ### <a id='1-3-breaking-changes'></a> Breaking changes
@@ -323,13 +313,13 @@ after the binaries are built and packaged as images.
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
-- Known issue 1
-- Known issue 2
+- **Unable to view workloads on the panel when connected to GKE cluster:** 
+When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke) 
 
 #### <a id="intelj-ext-known-issues"></a>Intellij Extension
 
-- Known issue 1
-- Known issue 2
+- **Unable to view workloads on the panel when connected to GKE cluster:** 
+When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke) 
 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 

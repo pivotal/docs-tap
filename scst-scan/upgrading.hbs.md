@@ -130,15 +130,15 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ScanPolicy
     metadata:
-      name: scanpolicy-sample
+      name: scan-policy
       labels:
-        'app.kubernetes.io/part-of': 'component-a'
+        'app.kubernetes.io/part-of': 'enable-in-gui'
     spec:
       regoFile: |
         package main
 
         # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-        notAllowedSeverities := ["Critical", "High"]
+        notAllowedSeverities := ["Critical", "High", "UnknownSeverity"]
         ignoreCves := []
 
         contains(array, elem) = true {
@@ -177,7 +177,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
       registry:
         image: "nginx:1.16"
       scanTemplate: public-image-scan-template
-      scanPolicy: scanpolicy-sample
+      scanPolicy: scan-policy
     ```
 
   Deploy the resources

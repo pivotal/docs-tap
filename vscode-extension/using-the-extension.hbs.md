@@ -149,7 +149,7 @@ When Live Update stops, your application continues to run on the cluster, but th
 and saved in your editor are not present in your running application unless you redeploy your
 application to the cluster.
 
-To stop Live Update, press the trash can button in the terminal pane to stop the Live Update process.
+To stop Live Update, click the trash can button in the terminal pane to stop the Live Update process.
 
 ![The VS Code interface showing the terminal window with the pointer on the trash can button](../images/vscode-stopliveupdate.png)
 

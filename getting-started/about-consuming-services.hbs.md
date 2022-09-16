@@ -72,13 +72,13 @@ each user role.
   <th><strong>Responsibilities</strong></th>
   <tr>
     <td>Service operator</td>
-    <td>No (might be introduced in a future release)</td>
+    <td>Yes - <a href="../authn-authz/role-descriptions.md#service-operator">service-operator</a></td>
     <td>
       <ul>
-        <li>Namespace and cluster topology design</li>
-        <li>Life cycle management (CRUD) of Kubernetes operators</li>
         <li>Life cycle management (CRUD) of service instances</li>
+        <li>Life cycle management (CRUD) of service instance classes</li>
         <li>Life cycle management (CRUD) of resource claim policies</li>
+        <li>View and query for resource claims across namespaces</li>
       </ul>
     </td>
   </tr>

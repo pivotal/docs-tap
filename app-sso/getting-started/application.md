@@ -7,12 +7,12 @@ guide. If not, please refer to instructions in [Provision a client registration]
 
 ---
 
-In this tutorial, you are going to:
+In this tutorial, you are going to deploy a minimal Kubernetes application that uses the credentials created through 
+the [ClientRegistration](client-registration.md) and be protected through SSO.
 
-1. Deploy a minimal Kubernetes application that uses the credentials created through
-   the [ClientRegistration](client-registration.md) and be protected through SSO.
+![Diagram of AppSSO's components and how they interact with End-Users and Client applications](../../images/app-sso/appsso-concepts.png)
 
-![Diagram of AppSSO's components](../../images/app-sso/appsso-concepts.png)
+For more information about how a Client application uses an AuthServer to authenticate an End-User, see [AppSSO Overview](appsso-overview.md).
 
 ## Deploy a minimal application
 

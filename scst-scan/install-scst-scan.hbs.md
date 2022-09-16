@@ -28,36 +28,36 @@ When you install the Supply Chain Security Tools - Scan (Scan controller), you c
 
 | Key | Default | Type | Description | ScanTemplate Version |
 | --- | --- | --- | --- | --- |
-| resources.limits.cpu | 250m | integer/string | Limits describes the maximum amount of cpu resources allowed. |  |
-| resources.limits.memory | 256Mi | integer/string | Limits describes the maximum amount of memory resources allowed. | |
-| resources.requests.cpu | 100m | integer/string | Requests describes the minimum amount of cpu resources required. | |
-| resources.requests.memory | 128Mi | integer/string | Requests describes the minimum amount of memory resources required. | |
-| namespace | scan-link-system | string | Deployment namespace for the Scan Controller | |
-| metadataStore.caSecret.importFromNamespace | metadata-store | string | Namespace from which to import the Insight Metadata Store CA Cert | <1.2.0 |
-| metadataStore.caSecret.name | app-tls-cert | string | Name of deployed Secret with key ca.crt holding the CA Cert of the Insight Metadata Store | <1.2.0 |
+| resources.limits.cpu | 250m | integer/string | Limits describes the maximum amount of CPU resources allowed. | n/a |
+| resources.limits.memory | 256Mi | integer/string | Limits describes the maximum amount of memory resources allowed. | n/a |
+| resources.requests.cpu | 100m | integer/string | Requests describes the minimum amount of CPU resources required. | n/a |
+| resources.requests.memory | 128Mi | integer/string | Requests describes the minimum amount of memory resources required. | n/a |
+| namespace | scan-link-system | string | Deployment namespace for the Scan Controller | n/a |
+| metadataStore.caSecret.importFromNamespace | metadata-store | string | Namespace from which you import the Insight Metadata Store CA Cert | <1.2.0 |
+| metadataStore.caSecret.name | app-tls-cert | string | Name of deployed secret with key ca.crt holding the CA Cert of the Insight Metadata Store | <1.2.0 |
 | metadataStore.clusterRole | metadata-store-read-write | string | Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster | <1.2.0 |
-| metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | Url of the Insight Metadata Store | <1.2.0 |
+| metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | URL of the Insight Metadata Store | <1.2.0 |
 | metadataStore.authSecret.importFromNamespace | | string | Namespace from which to import the Insight Metadata Store auth_token | <1.2.0 |
-| metadataStore.authSecret.name | | string | Name of deployed Secret with key auth_token | <1.2.0 |
+| metadataStore.authSecret.name | n/a | string | Name of deployed secret with key auth_token | <1.2.0 |
 
 
 When you install the Supply Chain Security Tools - Scan (Grype scanner), you can configure the following optional properties:
 
 | Key | Default | Type | Description | ScanTemplate Version |
 | --- | --- | --- | --- | --- |
-| resources.requests.cpu | 250m | integer/string | Requests describes the minimum amount of cpu resources required. |
+| resources.requests.cpu | 250m | integer/string | Requests describes the minimum amount of CPU resources required. |
 | resources.requests.memory | 128Mi | integer/string | Requests describes the minimum amount of memory resources required. |
-| resources.limits.cpu | 1000m | integer/string | Limits describes the maximum amount of cpu resources allowed. |
+| resources.limits.cpu | 1000m | integer/string | Limits describes the maximum amount of CPU resources allowed. |
 | scanner.serviceAccount | grype-scanner | string | Name of scan pod's service ServiceAccount |
 | scanner.serviceAccountAnnotations | nil | object | Annotations added to ServiceAccount |
-| targetImagePullSecret | | string | Reference to the secret used for pulling images from private registry. |
-| targetSourceSshSecret | | string | Reference to the secret containing SSH credentials for cloning private repositories. |
-| namespace | default | string | Deployment namespace for the Scan Templates | |
-| metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | Url of the Insight Metadata Store | ≥1.2.0 |
-| metadataStore.authSecret.name | | string | Name of deployed Secret with key auth_token | ≥1.2.0 |
-| metadataStore.authSecret.importFromNamespace | | string | Namespace from which to import the Insight Metadata Store auth_token | ≥1.2.0 |
+| targetImagePullSecret | n/a | string | Reference to the secret used for pulling images from private registry |
+| targetSourceSshSecret | n/a | string | Reference to the secret containing SSH credentials for cloning private repositories |
+| namespace | default | string | Deployment namespace for the Scan Templates | n/a |
+| metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | URL of the Insight Metadata Store | ≥1.2.0 |
+| metadataStore.authSecret.name | n/a | string | Name of deployed secret with key auth_token | ≥1.2.0 |
+| metadataStore.authSecret.importFromNamespace | n/a | string | Namespace from which to import the Insight Metadata Store auth_token | ≥1.2.0 |
 | metadataStore.caSecret.importFromNamespace | metadata-store | string | Namespace from which to import the Insight Metadata Store CA Cert | ≥1.2.0 |
-| metadataStore.caSecret.name | app-tls-cert | string | Name of deployed Secret with key ca.crt holding the CA Cert of the Insight Metadata Store | ≥1.2.0 |
+| metadataStore.caSecret.name | app-tls-cert | string | Name of deployed secret with key ca.crt holding the CA Cert of the Insight Metadata Store | ≥1.2.0 |
 | metadataStore.clusterRole | metadata-store-read-write | string | Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster | ≥1.2.0 |
 
 

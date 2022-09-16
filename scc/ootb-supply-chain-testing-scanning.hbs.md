@@ -61,7 +61,7 @@ have the _source-test-to-url_ installed** at the same time as
 _source-test-scan-to-url_.
 
 
-## <a id="developer-namespace"></a> Developer Namespace
+## <a id="developer-namespace"></a> Developer namespace
 
 As mentioned in the prerequisites section, this example builds on the previous
 Out of the Box Supply Chain examples, so only additions are included here.
@@ -102,7 +102,7 @@ Below you will find details about the new objects (compared to Out of the Box
 Supply Chain With Testing).
 
 
-### <a id="updates-to-developer-namespace"></a> Updates to the developer Namespace
+### <a id="updates-to-developer-namespace"></a> Updates to the developer namespace
 
 For source and image scans, scan templates and scan policies
 must exist in the same namespace as the workload. These define:
@@ -159,13 +159,13 @@ kind: ScanPolicy
 metadata:
   name: scan-policy
   labels:
-    'app.kubernetes.io/part-of': 'component-a'
+    'app.kubernetes.io/part-of': 'enable-in-gui'
 spec:
   regoFile: |
     package main
 
     # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-    notAllowedSeverities := ["Critical","High","UnknownSeverity"]
+    notAllowedSeverities := ["Critical", "High", "UnknownSeverity"]
     ignoreCves := []
 
     contains(array, elem) = true {
@@ -354,37 +354,30 @@ Create workload:
      15 + |        branch: main
      16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
-## <a id="cve-triage-workflow"></a> CVE Triage Workflow
+## <a id="cve-triage-workflow"></a> CVE triage workflow
 
 The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md#define-a-rego-file-for-policy-enforcement) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities that are in violation of the user-defined scan policy. If you triaged these vulnerabilities and identified any false positives, refer to this section to unblock your deployment from these CVEs.
 
 ### <a id="sc-stop"></a>Confirming Supply Chain stopped due failed policy enforcement
 
-Verify if the status of the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan:
+1. Verify if the status of the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan:
 
-```console
-kubectl describe workload WORKLOAD-NAME -n DEVELOPER-NAMESPACE
-```
+  ```console
+  kubectl describe workload WORKLOAD-NAME -n DEVELOPER-NAMESPACE
+  ```
 
-Next describe the SourceScan or ImageScan to determine what CVE(s) violated the ScanPolicy:
+1. Describe the SourceScan or ImageScan to determine what CVE(s) violated the ScanPolicy:
 
-```
-kubectl describe sourcescan NAME -n DEVELOPER-NAMESPACE
-kubectl describe imagescan NAME -n DEVELOPER-NAMESPACE
-```
+  ```
+  kubectl describe sourcescan NAME -n DEVELOPER-NAMESPACE
+  kubectl describe imagescan NAME -n DEVELOPER-NAMESPACE
+  ```
 
 ### <a id="triage-cve"></a>Triage
 
-Review the CVEs reported in the previous step to determine next steps to remediate. To possible paths from here are:
+The goal of triage is to analyze and prioritize the reported vulnerability data to discover the appropriate course of action to take at the remediation step. To remediate efficiently and appropriately, you need context on the vulnerabilities that are blocking your supply chain, the packages that are affected, and the impact they can have.
 
-- Update the component to remove the CVE
-- Amend the scan policy with an exception if you decide to accept the CVE and unblock your supply chain
-
->**Relevant Context:** For additional information on common vulnerability scanner limitations, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md#scst-scan-note).
-
-#### <a id="update-component"></a>Updating the component
-
-Determine which package introduces the CVE. If the [Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-overview.hbs.md) is configured, you can query the database for the packages and CVEs that your source code or image contains:
+During triage, review which packages are impacted by the CVEs that violated your scan policy. If the [Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-overview.hbs.md) is configured, you can query the database for the packages and their corresponding CVEs in your source code or image using these commands:
 
 ```console
 tanzu insight source get --repo REPO --org ORG
@@ -393,14 +386,25 @@ tanzu insight image get --digest DIGEST
 
 See [Query using the Tanzu Insight CLI plug-in](../cli-plugins/insight/query-data.hbs.md) for more details.
 
-Determine if updating the component will resolve the vulnerability. Vulnerabilities that occur in older versions of a package could be resolved in newer versions. Information pertaining to CVEs can be found in, but is not limited to, the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
+During this stage, VMware recommends reviewing information pertaining to the CVEs from sources such as the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
 
-> **Note:** You can also use your project's package manager tools to identify transitive or indirect dependencies. For example, `go mod graph` for projects in Go.
+#### <a id="remediation"></a>Remediation
+Once triage is complete, the next step is to remediate the blocking vulnerabilities in a timely manner. Some common methods for CVE remediation are as follows:
+
+- Updating the affected component to remove the CVE
+- Amending the scan policy with an exception if you decide to accept the CVE and unblock your supply chain
+
+For more information on common vulnerability scanner limitations, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md#scst-scan-note).
+
+#### <a id="update-component"></a>Updating the affected component
+
+Vulnerabilities that occur in older versions of a package could be resolved in newer versions. Apply a patch by upgrading to a newer version of the package containing the fix.
+
+In addition to the above, you can further adopt security best practices by using your project's package manager tools (e.g. `go mod graph` for projects in Go) to identify transitive or indirect dependencies that may also be affected by CVEs.
 
 #### <a id="amend-scan-policy"></a>Amending the scan policy
 
-After analyzing the CVE(s), if a developer decides to proceed without remediating the CVE, the ScanPolicy can be amended to ignore CVE(s). For example, when a CVE is triaged and evaluated as a false positive.
-See [Writing Policy Templates](../scst-scan/policies.md) for more details.
+If you decide to proceed without remediating the CVE (e.g. when a CVE has been evaluated to be a false positive / when a fix is not yet available), the ScanPolicy can be amended to ignore CVE(s). See [Writing Policy Templates](../scst-scan/policies.md) for more details.
 
 Under RBAC, users with the `app-operator-scanning` role (part of the `app-operator` aggregate role), have permission to modify the ScanPolicy. See [Detailed role permissions breakdown](../authn-authz/permissions-breakdown.hbs.md) for more information.
 
