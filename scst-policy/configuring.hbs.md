@@ -64,7 +64,7 @@ A sample of a ClusterImagePolicy which has `warn` mode configured.
 apiVersion: policy.sigstore.dev/v1beta1
 kind: ClusterImagePolicy
 metadata:
-  name: warn-tap-packages
+  name: <POLICY_NAME>
 spec:
   mode: warn
 ```
@@ -208,7 +208,7 @@ failed policy: <POLICY_NAME>: spec.template.spec.containers[1].image
 
 Images that are unsigned in a namespace with validation enabled can be admitted with an authority with static action `pass`.
 
-A scenario where this is desirable would be configuring a policy with `static.action` `pass` for `tap-packages` images while another policy is configured to validate signed images produced by Tanzu Build Service. This will allow images from `tap-packages`, which are currently unsigned and required by the platform, while validating signed built images.
+A scenario where this is desirable would be configuring a policy with `static.action` `pass` for `tap-packages` images. Another policy is then configured to validate signed images produced by Tanzu Build Service. This will allow images from `tap-packages`, which are currently unsigned and required by the platform, to be admitted while still validating signed built images from Tanzu Build Service.
 
 If `Warning` messages are desirable for admitted images where validation failed, it is possible to configure a policy with `warn` mode and valid authorities.
 For information on ClusterImagePolicy modes, see the [Mode](#cip-mode) documentation.
