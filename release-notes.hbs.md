@@ -45,6 +45,8 @@ This release includes the following changes, listed by component and area.
 - `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. Please, migrate
   to `AuthServer.spec.tls`.
 
+- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
+
 ##### Bug fixes
 
 - Emit the audit `TOKEN_REQUEST_REJECTED` event when the `refresh_token` grant fails.
@@ -137,15 +139,11 @@ You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a
 - Feature 1
 - Feature 2
 
-#### <a id="scst-sign-features"></a>Supply Chain Security Tools - Sign
-
-- Feature 1
-- Feature 2
-
 #### <a id="scst-policy-features"></a>Supply Chain Security Tools - Policy Controller
 
-- Feature 1
-- Feature 2
+- Update Policy Controller version from v0.2.0 to v0.3.0
+- Added ClusterImagePolicy [`warn` and `enforce` mode](./scst-policy/configuring.hbs.md#cip-mode)
+- Added ClusterImagePolicy [authority static actions](./scst-policy/configuring.hbs.md#cip-static-action)
 
 #### <a id="scst-store-features"></a>Supply Chain Security Tools - Store
 
@@ -221,6 +219,10 @@ This release has the following breaking changes, listed by area and component.
 
 - Resolved issue 1
 - Resolved issue 2
+
+#### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Policy Controller
+
+- Pods deployed through `kubectl run` in non-default namespace now are able to build the neccessary keychain for registry access during validation.
 
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Scan
 
