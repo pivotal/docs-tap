@@ -10,7 +10,7 @@ matching image patterns, and where at least one valid signature is obtained from
 the authorities provided in the matched
 [ClusterImagePolicy](#create-cip-resource) later in the topic. Within a single policy, every
 signature must be valid. When more than one policy has a matching image pattern,
-the image much match at least one signature from each ClusterImagePolicy.
+the image must match at least one signature from each ClusterImagePolicy.
 
 ## <a id="including-namespaces"></a> Including Namespaces
 
@@ -41,7 +41,7 @@ The cluster image policy is a custom resource containing the following propertie
   Policy Controller has defaults defined if the following globs are specified:
 
   - If `*` is specified, the `glob` matching behavior is `index.docker.io/library/*`.
-  - If `*/*` is specified, he `glob` matching behavior is `index.docker.io/*/*`.
+  - If `*/*` is specified, the `glob` matching behavior is `index.docker.io/*/*`.
   With these defaults, you require the `glob` pattern `**` to match against all images.
   If your image is hosted on DockerHub, it is important to include `index.docker.io` as the host for the glob.
 
@@ -59,7 +59,7 @@ attempting deployment.
 
 Policy Controller has defaults defined if the following globs are specified:
 - If `*` is specified, the `glob` matching behavior is `index.docker.io/library/*`.
-- If `*/*` is specified, he `glob` matching behavior is `index.docker.io/*/*`.
+- If `*/*` is specified, the `glob` matching behavior is `index.docker.io/*/*`.
 
 With these defaults, you require the `glob` pattern `**` to match against all images.
 If your image is hosted on DockerHub, it is important to include `index.docker.io` as the host for the glob.

@@ -366,7 +366,7 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
-            # Add this key if you have set ca_cert_data in tap-values.yaml
+            # Add the following key if you have set ca_cert_data in tap-values.yaml
             - name: ca_cert_data
               value: CERT-AS-STRING
         templateRef:
@@ -382,7 +382,7 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
-            # Add this key if you have set ca_cert_data in tap-values.yaml
+            # Add the following key if you have set ca_cert_data in tap-values.yaml
             - name: ca_cert_data
               value: CERT-AS-STRING
         sources:
@@ -426,7 +426,7 @@ from your `tap-values.yaml` file:
           value:
             repository: REGISTRY-REPO
             server: REGISTRY-SERVER
-            # Add this key if you have set ca_cert_data in tap-values.yaml
+            # Add the following key if you have set ca_cert_data in tap-values.yaml
             - name: ca_cert_data
               value: CERT-AS-STRING
         templateRef:
@@ -439,7 +439,7 @@ from your `tap-values.yaml` file:
     Where:
 
     * `DEFAULT-GIT-SECRET` is the value from `gitops.ssh_secret` in your
-      `tap-values.yaml` file, or `""` to disable SSH authentication.
+      `tap-values.yaml` file, or `""` to deactivate SSH authentication.
     * `REGISTRY-SERVER` is the registry server from your `tap-values.yaml` file.
     * `REGISTRY-REPO` is the registry repository from your `tap-values.yaml` file.
     * `CERT-AS-STRING` is the value you added to `tap-values.yaml` file.

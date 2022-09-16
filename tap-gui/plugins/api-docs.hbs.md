@@ -1,9 +1,8 @@
 # API documentation plug-in in Tanzu Application Platform GUI
 
-This section provides a general overview of the API documentation plug-in of the
-Tanzu Application Platform GUI.
-For more information, see [Getting started with API documentation plug-in](api-docs-getting-started.html).
-
+This topic gives an overview of the API documentation plug-in of Tanzu Application Platform GUI.
+For more information, see
+[Getting started with API documentation plug-in](api-docs-getting-started.hbs.md).
 
 ## <a id="overview"></a> Overview
 
@@ -42,13 +41,12 @@ For more information about the API documentation plug-in, see the
 [Backstage API documentation](https://github.com/backstage/backstage/blob/master/plugins/api-docs/README.md)
 in GitHub.
 
-
 ## <a id='use-api-docs-plug-in'></a> Use the API documentation plug-in
 
 The API documentation plug-in is part of Tanzu Application Platform GUI.
 
 The first way to use the API documentation plug-in is API-first.
-Click **APIs** in the left-hand navigation sidebar of Tanzu Application Platform GUI.
+Click **APIs** in the left navigation pane of Tanzu Application Platform GUI.
 This opens the **API catalog page**.
 
 ![Screenshot of API catalog page](../images/api-plugin-1.png)
@@ -87,71 +85,81 @@ The API documentation plug-in supports the following API formats:
 - GraphQL
 - Plain (to support any other format)
 
-
 ## <a id='create-project'></a> Create a new API entry
 
-To create a new API entity, you must follow the same steps as if you were registering any other
-software catalog entity:
+You can create a new API entry manually or automatically.
 
-1. Click the **Home** icon located on the left-side navigation bar to access the home page of Tanzu Application Platform GUI.
+### <a id='manually-create'></a> Manually create a new API entry
 
-1. Click **REGISTER ENTITY**.
+Manually creating a new API entity is similar to registering any other software catalog entity.
+To manually create a new API entity:
+
+1. Click the **Home** button on the left navigation pane to access the home page of
+   Tanzu Application Platform GUI.
+
+2. Click **REGISTER ENTITY**.
 
     ![REGISTER button on the right side of the header](../../images/getting-started-tap-gui-5.png)
 
-1. **Register an existing component** prompts you to type a repository URL.
-Paste the link to the `catalog-info.yaml` file of your choice that contains the definition of your
-API entity.
-For example, you can copy the following YAML content and save it as `catalog-info.yaml` on a Git
-repository of your choice.
+3. **Register an existing component** prompts you to type a repository URL.
+   Paste the link to the `catalog-info.yaml` file of your choice that contains the definition of your
+   API entity.
+   For example, you can copy the following YAML content and save it as `catalog-info.yaml` on a Git
+   repository of your choice.
 
-    ```yaml
-    apiVersion: backstage.io/v1alpha1
-    kind: API
-    metadata:
-      name: demo-api
-      description: The demo API for Tanzu Application Platform GUI
-      links:
-        - url: https://api.agify.io
-          title: API Definition
-          icon: docs
-    spec:
-      type: openapi
-      lifecycle: experimental
-      owner: demo-team
-      system: demo-app # Or specify system name of your choice
-      definition: |
-        openapi: 3.0.1
-        info:
-          title: defaultTitle
-          description: defaultDescription
-          version: '0.1'
-        servers:
-          - url: https://api.agify.io
-        paths:
-          /:
-            get:
-              description: Auto generated using Swagger Inspector
-              parameters:
-                - name: name
-                  in: query
-                  schema:
-                    type: string
-                  example: type_any_name
-              responses:
-                '200':
-                  description: Auto generated using Swagger Inspector
-                  content:
-                    application/json; charset=utf-8:
-                      schema:
-                        type: string
-                      examples: {}        
-    ```
+   ```yaml
+   apiVersion: backstage.io/v1alpha1
+   kind: API
+   metadata:
+   name: demo-api
+   description: The demo API for Tanzu Application Platform GUI
+   links:
+     - url: https://api.agify.io
+       title: API Definition
+       icon: docs
+   spec:
+   type: openapi
+   lifecycle: experimental
+   owner: demo-team
+   system: demo-app # Or specify system name of your choice
+   definition: |
+     openapi: 3.0.1
+     info:
+       title: defaultTitle
+       description: defaultDescription
+       version: '0.1'
+     servers:
+       - url: https://api.agify.io
+     paths:
+       /:
+         get:
+           description: Auto generated using Swagger Inspector
+           parameters:
+             - name: name
+               in: query
+               schema:
+                 type: string
+               example: type_any_name
+           responses:
+             '200':
+               description: Auto generated using Swagger Inspector
+               content:
+                 application/json; charset=utf-8:
+                   schema:
+                     type: string
+                   examples: {}
+   ```
 
-1. Click **ANALYZE** and then review the catalog entities to be added.
+4. Click **ANALYZE** and then review the catalog entities to be added.
 
-    ![Review the entities to be added to the catalog](../images/api-plugin-6.png)
+   ![Review the entities to be added to the catalog](../images/api-plugin-6.png)
 
-1. Click **IMPORT**.
+5. Click **IMPORT**.
 
-1. Click **APIs** on the left-hand side navigation panel to view entries on the **API** page.
+6. Click **APIs** on the left navigation pane to view entries on the **API** page.
+
+### <a id='auto-create'></a> Automatically create a new API entry
+
+Tanzu Application Platform v1.3 introduces a feature called **API Auto Registration** that can
+automatically register your APIs.
+For more information, see [API Auto Registration](../../api-auto-registration/about.hbs.md).

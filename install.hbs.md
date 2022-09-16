@@ -182,55 +182,47 @@ The sample values file contains the necessary defaults for:
 
     >**Important:** Keep the values file for future configuration use.
 
-1. [(Optional) Configure LoadBalancer for Contour ingress](#configure-envoy-lb)
 
-1. Proceed to the [View possible configuration settings for your package](#view-pkge-config-settings)
-section.
-
-### <a id="configure-envoy-lb"></a> (Optional) Configure LoadBalancer for Contour ingress
-
->**Important:** This section only applies when you use Tanzu Application Platform to deploy its own shared Contour ingress controller in `tanzu-system-ingress`. It is not applicable when you use your existing ingress.
-
-Before defining other parameters for your Tanzu Application Platform installation, VMware recommends defining your ingress because several components, including Tanzu Application Platform GUI, rely on it.
-
-You can share this ingress across Cloud Native Runtimes (`cnrs`), Tanzu Application Platform GUI (`tap_gui`), and Learning Center (`learningcenter`).
-
-By default, Contour uses `NodePort` as the service type. To set the service type to `LoadBalancer`, add the following to your `tap-values.yaml`:
-
-```yaml
-contour:
-  envoy:
-    service:
-      type: LoadBalancer
-```
-
-If you use AWS, the preceding section creates a classic LoadBalancer.
-To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
-following to your `tap-values.yaml`:
-
-```yaml
-contour:
-  infrastructure_provider: aws
-  envoy:
-    service:
-      aws:
-        LBType: nlb
-```
+1. [View possible configuration settings for your package](view-package-config.hbs.md)
 
 ### <a id='full-profile'></a> Full profile
 
 The following is the YAML file sample for the full-profile:
 
-```yaml
-profile: full
+>**Note:** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`. 
+Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
 
+```yaml
+shared:
+  ingress_domain: "INGRESS-DOMAIN"
+  image_registry:
+    project_path: "SERVER-NAME/REPO-NAME"
+    username: "KP-DEFAULT-REPO-USERNAME"
+    password: "KP-DEFAULT-REPO-PASSWORD"
+
+ceip_policy_disclosed: true 
+
+#The above keys are minimum numbers of entries needed in tap-values.yaml to get a functioning TAP Full profile installation.
+
+#Below are the keys which may have default values set, but can be overridden.
+
+profile: full # Can take iterate, build, run, view. 
+supply_chain: basic # Can take testing, testing_scanning.
+
+ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scanning.
+  registry:
+    server: "SERVER-NAME" # Takes the value from shared section above by default, but can be overridden by setting a different value.
+    repository: "REPO-NAME" # Takes the value from shared section above by default, but can be overridden by setting a different value.
+  gitops:
+    ssh_secret: "SSH-SECRET-KEY" # Takes "" as value by default; but can be overridden by setting a different value.
+  
 contour:
   envoy:
     service:
-      type: LoadBalancer
+      type: LoadBalancer # This is set by default, but can be overridden by setting a different value.
 
 shared:
-  ingress_domain: INGRESS-DOMAIN
+  kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
 
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 buildservice:
@@ -238,28 +230,13 @@ buildservice:
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
 
-supply_chain: basic
-
-ootb_supply_chain_basic:
-  registry:
-    server: "SERVER-NAME"
-    repository: "REPO-NAME"
-  gitops:
-    ssh_secret: "SSH-SECRET-KEY"
-
 tap_gui:
-  service_type: ClusterIP
-  app_config:
-    app:
-      baseUrl: http://tap-gui.INGRESS-DOMAIN
+  service_type: ClusterIP # If the shared.ingress_domain is set as above, this must be set to ClusterIP.
     catalog:
       locations:
         - type: url
           target: https://GIT-CATALOG-URL/catalog-info.yaml
-    backend:
-      baseUrl: http://tap-gui.INGRESS-DOMAIN
-      cors:
-        origin: http://tap-gui.INGRESS-DOMAIN
+
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
@@ -267,7 +244,7 @@ metadata_store:
 
 scanning:
   metadataStore:
-    url: "" # Deactivate embedded integration since it's deprecated
+    url: "" # Deactivate embedded integration since it's deprecated.
 
 grype:
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
@@ -289,7 +266,7 @@ service's External IP address.
     * Harbor has the form `server: "my-harbor.io"`.
     * Dockerhub has the form `server: "index.docker.io"`.
     * Google Cloud Registry has the form `server: "gcr.io"`.
-- `REPO-NAME` is where workload images are stored in the registry.
+- `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the shared section earlier and AWS ECR registry is used, you must ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Harbor has the form `repository: "my-project/supply-chain"`.
     * Dockerhub has the form `repository: "my-dockerhub-user"`.
@@ -302,71 +279,22 @@ This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 
+If you use AWS, the default settings creates a classic LoadBalancer.
+To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
+following to your `tap-values.yaml`:
+
+```yaml
+contour:
+  infrastructure_provider: aws
+  envoy:
+    service:
+      aws:
+        LBType: nlb
+```
+
 ### <a id='light-profile'></a> Light profile
 
 The Light profile is deprecated. Although existing values files might still refer to the Light profile, VMware recommends to migrate to one of the new profiles described in [Install your Tanzu Application Platform profile](#install-profile) by following the procedures in [Migrate Tanzu Application Platform profiles](migrate-profile.md).
-
-### <a id="view-pkge-config-settings"></a>View possible configuration settings for your package
-
-To view possible configuration settings for a package, run:
-
-```console
-tanzu package available get tap.tanzu.vmware.com/$TAP_VERSION --values-schema --namespace tap-install
-```
-
->**Note:** The `tap.tanzu.vmware.com` package does not show all configuration settings for packages
->it plans to install. The package only shows top-level keys.
->You can view individual package configuration settings with the same `tanzu package available get` command.
->For example, use `tanzu package available get -n tap-install cnrs.tanzu.vmware.com/$TAP_VERSION --values-schema` for Cloud Native Runtimes.
-
-```yaml
-profile: full
-
-# ...
-
-# For example, CNRs specific values go under its name
-cnrs:
-  provider: local
-
-# For example, App Accelerator specific values go under its name
-accelerator:
-  server:
-    service_type: "ClusterIP"
-```
-
-The following table summarizes the top-level keys used for package-specific configuration within your `tap-values.yaml`.
-
-|Package|Top-level Key|
-|----|----|
-|_see table below_|`shared`|
-|API portal|`api_portal`|
-|Application Accelerator|`accelerator`|
-|Application Live View|`appliveview`|
-|Application Live View Connector|`appliveview_connector`|
-|Application Live View Conventions|`appliveview-conventions`|
-|Cartographer|`cartographer`|
-|Cloud Native Runtimes|`cnrs`|
-|Convention Controller|`convention_controller`|
-|Source Controller|`source_controller`|
-|Supply Chain|`supply_chain`|
-|Supply Chain Basic|`ootb_supply_chain_basic`|
-|Supply Chain Testing|`ootb_supply_chain_testing`|
-|Supply Chain Testing Scanning|`ootb_supply_chain_testing_scanning`|
-|Supply Chain Security Tools - Scan|`scanning`|
-|Supply Chain Security Tools - Scan (Grype Scanner)|`grype`|
-|Supply Chain Security Tools - Store|`metadata_store`|
-|Image Policy Webhook|`image_policy_webhook`|
-|Build Service|`buildservice`|
-|Tanzu Application Platform GUI|`tap_gui`|
-|Learning Center|`learningcenter`|
-
-Shared Keys define values that configure multiple packages. These keys are defined under the `shared` Top-level Key, as summarized in the following table:
-
-|Shared Key|Used By|Description|
-|----|----|----|
-|`ca_cert_data`|`convention_controller`, `source_controller`|Optional: PEM Encoded certificate data to trust TLS connections with a private CA.|
-
-For information about package-specific configuration, see [Installing individual packages](install-components.md).
 
 ### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
 
@@ -396,6 +324,32 @@ buildservice:
 After configuring `full` dependencies, you must install the dependencies after
 you have finished installing your Tanzu Application Platform package. 
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
+
+### <a id='custom-scc'></a> Custom SCC
+
+>**Important:** This section only applies when you install Tanzu Application Platform on Red Hat OpenShift Container Platform.
+
+In Red Hat OpenShift, Security Context Constraints (SCC) are used to restrict privileges for pods. 
+SCCs define a set of rules that a pod must satisfy to be created. 
+SCCs are more restrictive by default and can prevent applications from running as root in pods and escalating privileges `allowPrivilegeEscalation`.
+
+Some Tanzu Application Platform components run on Pod Security Standards (PSS) with Restricted policy. The OpenShift implementation assumes that these components need privileged SCC. Seccomp stands for secure computing mode and is a security feature in the Linux kernel. It can be used to restrict the privileges of a process, restricting the calls it can make from userspace into the kernel. Kubernetes allows you to apply seccomp profiles loaded onto a node to your pods and containers. This restricts installation of certain components to complete and blocks Tanzu Application Platform installation in OpenShift.
+
+OpenShift v4.11 includes restricted-v2 or nonroot-v2 with which Tanzu Application Platform packages reconcile without any issues. The components in Tanzu Application Platform v1.3.0 use custom SCC that is a mirror of [restricted-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-restricted-v2.yaml) or [nonroot-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-nonroot-v2.yaml) and are built by using restricted-v1 or nonroot-v1. The custom SCCs used in Tanzu Application Platform v1.3.0 to support OpenShift v4.10 are similar to the nonroot-v2 and restricted-v2 in OpenShift v4.11.
+
+#### <a id='exclude-custom-scc'></a> (Optional) Exclude components that require RedHat OpenShift privileged SCC
+
+Learning Center package uses privileged SCC. To exclude this package, update your `tap-values` file with a section listing the exclusions:
+
+```yaml
+...
+excluded_packages:
+  - learningcenter.tanzu.vmware.com
+  - workshops.learningcenter.tanzu.vmware.com
+...
+```
+
+See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 

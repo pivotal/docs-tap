@@ -150,13 +150,13 @@ configurations to deactivate the Store:
 
 #### <a id="ca-not-found-in-secret"></a> Could not find CA in Secret
 
-  If you encounter the following issue, it might be due to not exporting  "app-tls-cert" to the correct namespace:
+  If you encounter the following issue, it might be due to not exporting  `app-tls-cert` to the correct namespace:
 
   ```console
   {"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
   ```
 
-  Include the following in your tap-values.yaml:
+  Include the following in your `tap-values.yaml`:
 
   ```yaml
   metadata_store:
@@ -202,7 +202,7 @@ status:
 
 **Workaround:** This problem happens in Supply Chain Security Tools - Scan `v1.2.0` when you use a Grype Scanner ScanTemplates earlier than `v1.2.0`, because this is a deprecated path. To fix this problem, upgrade your Grype Scanner deployment to `v1.2.0` or later. See [Upgrading Supply Chain Security Tools - Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 
-#### <a id="supply-chain-stops"></a> Supply Chain not progressing
+#### <a id="supply-chain-stops"></a> Resolving a Supply Chain that is blocked by failing scans
 
 If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see the CVE triage workflow in [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow).
 

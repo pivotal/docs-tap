@@ -1,20 +1,20 @@
 # Installing Scanners for Supply Chain Security Tools - Scan
 
-This document describes how to install scanners to work with Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
+This topic describes how to install scanners to work with Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
 
 ## <a id="prerecs"></a> Prerequisites
 
 Before installing a new scanner:
 
 - Install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan are also required.
-- The prerequisites for the scanner you're trying to install must be completed. e.g.: Creating an API token to connect to the scanner.
+- Complete [scanner specific prerequisites](available-scanners.hbs.md) for the scanner you're trying to install. For example, creating an API token to connect to the scanner.
 
 ## <a id="installation"></a> Install
 
-To install a new scanner, please follow these steps:
+To install a new scanner, follow these steps:
 
 1. List the available packages to discover what scanners you can use by running:
-   
+
     ```console
     tanzu package available list --namespace tap-install
     ```
@@ -27,12 +27,12 @@ To install a new scanner, please follow these steps:
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
       grype.scanning.apps.tanzu.vmware.com                 Grype Scanner for Supply Chain Security Tools - Scan                      Default scan templates using Anchore Grype
       snyk.scanning.apps.tanzu.vmware.com                  Snyk for Supply Chain Security Tools - Scan                               Default scan templates using Snyk
-      carbonblack.scanning.apps.tanzu.vmware.com           <CARBON_BLACK_PLACEHOLDER>                                                <CARBON_BLACK_PLACEHOLDER>
+      carbonblack.scanning.apps.tanzu.vmware.com           Carbon Black Scanner for Supply Chain Security Tools - Scan               Default scan templates using Carbon Black
     ```
 
 2. List version information for the scanner package by running:
     ```console
-    tanzu package available list <SCANNER_NAME> --namespace tap-install
+    tanzu package available list SCANNER-NAME --namespace tap-install
     ```
 
     For example:
@@ -43,21 +43,24 @@ To install a new scanner, please follow these steps:
       snyk.scanning.apps.tanzu.vmware.com   1.0.0-beta.2
     ```
 
-3. (Optional) Create the secrets the scanner package will rely on:
+3. (Optional) Create the secrets the scanner package relies on:
 
-    Take a look at the [Available Scanners Docs](available-scanners.hbs.md) to look at the specifics for your choosen scanner.
+    Take a look at the [Available Scanners Docs](available-scanners.hbs.md) to look at the specifics for your chosen scanner.
 
 4. Create a `values.yaml` to apply custom configurations to the scanner:
 
-    > **Note**: This step could be required for some scanners but optional for others.
+    > **Note:** This step might be required for some scanners but optional for others.
 
-    To list the values you can configure for any scanner, run the following command:
+    To list the values you can configure for any scanner, run:
 
     ```console
-    tanzu package available get <SCANNER_NAME>/<VERSION> --values-schema -n tap-install
+    tanzu package available get SCANNER-NAME/VERSION --values-schema -n tap-install
     ```
 
-    Where `SCANNER_NAME` is the name of the scanner package you retrieved in step 1 and `VERSION` is your package version number. For example, `snyk.scanning.apps.tanzu.vmware.com/1.0.0-beta.2`.
+    Where:
+
+    - `SCANNER-NAME` is the name of the scanner package you retrieved earlier.
+    - `VERSION` is your package version number. For example, `snyk.scanning.apps.tanzu.vmware.com/1.0.0-beta.2`.
 
     For example:
 
@@ -81,22 +84,22 @@ To install a new scanner, please follow these steps:
 
 5. Define the `--values-file` flag to customize the default configuration:
 
-    The `values.yaml` file you created in step 4 should be referenced with the `--values-file` flag when running your tanzu install command: 
+    The `values.yaml` file you created earlier is referenced with the `--values-file` flag when running your Tanzu install command:
 
     ```console
-    tanzu package install <REFERENCE_NAME> \
-      --package-name <SCANNER_NAME> \
-      --version <VERSION> \
+    tanzu package install REFERENCE-NAME \
+      --package-name SCANNER-NAME \
+      --version VERSION \
       --namespace tap-install \
-      --values-file <PATH_TO_VALUES_YAML>
+      --values-file PATH-TO-VALUES-YAML
     ```
 
     Where:
-    
-    * `<REFERENCE_NAME>` is the name you choose the installed package to be referenced by. e.g.: `grype-scanner`, `snyk-scanner-my-apps`
-    * `<SCANNER_NAME>` is the name of the scanner package you retrieved in step 1. e.g.: `snyk.scanning.apps.tanzu.vmware.com`
-    * `<VERSION>` is your package version number. For example, `1.0.0-beta.2`.
-    * `<PATH_TO_VALUES_YAML>` is the path that points to the `values.yaml` file created in setp 4.
+
+    * `REFERENCE-NAME` is the name referenced by the installed package. For example, `grype-scanner`, `snyk-scanner-my-apps`.
+    * `SCANNER-NAME` is the name of the scanner package you retrieved earlier. For example, `snyk.scanning.apps.tanzu.vmware.com`.
+    * `VERSION` is your package version number. For example, `1.0.0-beta.2`.
+    * `PATH-TO-VALUES-YAML` is the path that points to the `values.yaml` file created earlier.
 
     For example:
 
@@ -122,16 +125,19 @@ To install a new scanner, please follow these steps:
 
 To verify the installation create an `ImageScan` or `SourceScan` referencing one of the newly added `ScanTemplates` for the scanner.
 
->**Note**: A `ScanPolicy` can also be referenced in the `ImageScan` or `SourceScan`. Since every scanner can have its output in a different format, the `ScanPolicies` can vary from scanner to scanner. Please refer [Enforce compliance policy using Open Policy Agent ](policies.hbs.md) for more information around this topic.
+1. (Optional) Create a `ScanPolicy` formatted for the output specific to the scanner you are installing, to reference in the `ImageScan` or `SourceScan`.
+   ```console
+    kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
+  ```
+> **Note:** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For more information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md) and [Available Scanners Docs](available-scanners.hbs.md).
 
-
-1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed in:
+1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed:
 
     ```console
-    kubectl get scantemplates -n <DEV_NAMESPACE>
+    kubectl get scantemplates -n DEV-NAMESPACE
     ```
 
-    Where `<DEV_NAMESPACE>` is the developer namespace where the scanner is installed in.
+    Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
     For example:
     ```console
@@ -147,7 +153,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 2. Create the following ImageScan YAML:
 
-    >**Note**: Some scanners do not support both `ImageScan` and `SourceScan`. Please refer to the [Available Scanners Docs](available-scanners.hbs.md) to look at the specifics for your chosen scanner.
+    > **Note:** Some scanners do not support both `ImageScan` and `SourceScan`. See the [Available Scanners Docs](available-scanners.hbs.md).
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -157,11 +163,14 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     spec:
       registry:
         image: "nginx:1.16"
-      scanTemplate: <SCAN_TEMPLATE>
-      scanPolicy: <SCAN_POLICY> # Optional
+      scanTemplate: SCAN-TEMPLATE
+      scanPolicy: SCAN-POLICY # Optional
     ```
 
-    Where `<SCAN_TEMPLATE>` would be the name of the installed `ScanTemplate` in the `<DEV_NAMESPACE>` you retrieved in step 1, and `<SCAN_POLICY>` it's an optional reference to an existing `ScanPolicy` in the same `<DEV_NAMESPACE>`.
+    Where:
+
+    - `SCAN-TEMPLATE` is the name of the installed `ScanTemplate` in the `DEV-NAMESPACE` you retrieved earlier.
+    - `SCAN-POLICY` it's an optional reference to an existing `ScanPolicy` in the same `DEV-NAMESPACE`.
 
     For example:
 
@@ -179,7 +188,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 3. Create the following SourceScan YAML:
 
-    >**Note**: Some scanners do not support both `ImageScan` and `SourceScan`. Please refer to the [Available Scanners Docs](available-scanners.hbs.md) to look at the specifics for your choosen scanner.
+    > **Note:** Some scanners do not support both `ImageScan` and `SourceScan`. See the [Available Scanners Docs](available-scanners.hbs.md).
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -190,11 +199,14 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
       git:
         url: "https://github.com/houndci/hound.git"
         revision: "5805c650"
-      scanTemplate: <SCAN_TEMPLATE>
-      scanPolicy: <SCAN_POLICY> # Optional
+      scanTemplate: SCAN-TEMPLATE
+      scanPolicy: SCAN-POLICY # Optional
     ```
 
-    Where `<SCAN_TEMPLATE>` would be the name of the installed `ScanTemplate` in the `DEV_NAMESPACE` you retrieved in step 1, and `<SCAN_POLICY>` it's an optional reference to an existing `ScanPolicy` in the same `DEV_NAMESPACE`.
+    Where:
+
+    - `SCAN-TEMPLATE` is the name of the installed `ScanTemplate` in the `DEV-NAMESPACE` you retrieved earlier.
+    - `SCAN-POLICY` is an optional reference to an existing `ScanPolicy` in the same `DEV-NAMESPACE`.
 
     For example:
 
@@ -213,19 +225,21 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 4. Apply the ImageScan and SourceScan YAMLs:
 
-    To run the scans please apply them to the cluster running the following commands:
+    To run the scans, apply them to the cluster by running these commands:
 
-    For `ImageScan`:
+    `ImageScan`:
     ```console
-    kubectl apply -f <PATH_TO_IMAGE_SCAN_YAML> -n <DEV_NAMESPACE>
+    kubectl apply -f PATH-TO-IMAGE-SCAN-YAML -n DEV-NAMESPACE
     ```
-    Where `<PATH_TO_IMAGE_SCAN_YAML>` is the path to the YAML file created in step 2.
 
-    For `SourceScan`:
+    Where `PATH-TO-IMAGE-SCAN-YAML` is the path to the YAML file created earlier.
+
+    `SourceScan`:
     ```console
-    kubectl apply -f <PATH_TO_SOURCE_SCAN_YAML> -n <DEV_NAMESPACE>
+    kubectl apply -f PATH-TO-SOURCE-SCAN-YAML -n DEV-NAMESPACE
     ```
-    Where `<PATH_TO_SOURCE_SCAN_YAML>` is the path to the YAML file created in step 3.
+
+    Where `PATH-TO-SOURCE-SCAN-YAML` is the path to the YAML file created earlier.
 
     For example:
     ```console
@@ -236,19 +250,21 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     sourcescan.scanning.apps.tanzu.vmware.com/sample-grype-public-source-scan created
     ```
 
-5. To verify the integration, get the scan to see if it completed successfully by running:
+5. To verify the integration, get the scan to see if it completed by running:
 
     For `ImageScan`:
     ```console
-    kubectl get imagescan <IMAGE_SCAN_NAME> -n <DEV_NAMESPACE>
+    kubectl get imagescan IMAGE-SCAN-NAME -n DEV-NAMESPACE
     ```
-    Where `<IMAGE_SCAN_NAME>` is the name of the `ImageScan` as defined in the YAML file created in step 2.
+
+    Where `IMAGE-SCAN-NAME` is the name of the `ImageScan` as defined in the YAML file created earlier.
 
     For `SourceScan`:
     ```console
-    kubectl get sourcescan <SOURCE_SCAN_NAME> -n <DEV_NAMESPACE>
+    kubectl get sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
     ```
-    Where `<SOURCE_SCAN_NAME>` is the name of the `SourceScan` as defined in the YAML file created in step 3.
+
+    Where `SOURCE-SCAN-NAME` is the name of the `SourceScan` as defined in the YAML file created earlier.
 
     For example:
 
@@ -262,36 +278,36 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     sourcescan.scanning.apps.tanzu.vmware.com/grypesourcescan-sample-public   Completed   5805c650          https://github.com/houndci/hound.git   8m34s   21         121    112      9     0         263
     ```
 
-    >**Note**: If you define a `ScanPolicy` for the scans and the evaluation finds a violation, then the `Phase` would be `Failed` instead of `Completed`. In both cases the scan finished successfully.
+    > **Note:** If you define a `ScanPolicy` for the scans and the evaluation finds a violation, the `Phase` is `Failed` instead of `Completed`. In both cases the scan finished successfully.
 
-6. Clean-up:
+6. Clean up:
 
     ```console
-    kubectl delete -f <PATH_TO_SCAN_YAML> -n <DEV_NAMESPACE>
+    kubectl delete -f PATH-TO-SCAN-YAML -n DEV-NAMESPACE
     ```
 
-    Where `<PATH_TO_SCAN_YAML>` is the path to the YAML file created in step 3.
+    Where `PATH-TO-SCAN-YAML` is the path to the YAML file created earlier.
 
-## <a if="configure-supply-chain"></a> Configure TAP Supply Chain to Use New Scanner
+## <a id="configure-supply-chain"></a> Configure Tanzu Application Platform Supply Chain to use new scanner
 
 In order to scan your images with the new scanner installed in the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.md), you must update your Tanzu Application Platform installation.
 
 Add the `ootb_supply_chain_testing_scanning.scanning` section to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
 
-In this file you can define which `ScanTemplates` will be used for both `SourceScan` and `ImageScan`. The default values are the Grype Scanner `ScanTemplates`, but it can be overwritten by any other `ScanTemplate` present in your `DEV_NAMESPACE`. The same applies to the `ScanPolicies` applied to each kind of scan.
+In this file you can define which `ScanTemplates` is used for both `SourceScan` and `ImageScan`. The default values are the Grype Scanner `ScanTemplates`, but it can be overwritten by any other `ScanTemplate` present in your `DEV-NAMESPACE`. The same applies to the `ScanPolicies` applied to each kind of scan.
 
 ```yaml
 ootb_supply_chain_testing_scanning:
   scanning:
     image:
-      template: <IMAGE_SCAN_TEMPLATE>
-      policy: <IMAGE_SCAN_POLICY>
+      template: IMAGE-SCAN-TEMPLATE
+      policy: IMAGE-SCAN-POLICY
     source:
-      template: <SOURCE_SCAN_TEMPLATE>
-      policy: <SOURCE_SCAN_POLICY>
+      template: SOURCE-SCAN-TEMPLATE
+      policy: SOURCE-SCAN-POLICY
 ```
 
-Please note that for the Supply Chain to work properly, the `<SOURCE_SCAN_TEMPLATE>` must support blob files and the `<IMAGE_SCAN_TEMPLATE>` must support private images.
+> **Note:** For the Supply Chain to work properly, the `SOURCE-SCAN-TEMPLATE` must support blob files and the `IMAGE-SCAN-TEMPLATE` must support private images.
 
 For example:
 
@@ -308,14 +324,14 @@ ootb_supply_chain_testing_scanning:
 
 ## Uninstall Scanner
 
-To replace the scanner in the Supply Chain just follow the steps mentioned in [Configure TAP Supply Chain to Use New Scanner](#configure-supply-chain). After the scanner is no longer required by the Supply Chain, you can remove the package by running:
+To replace the scanner in the Supply Chain, follow the steps mentioned in [Configure TAP Supply Chain to Use New Scanner](#configure-supply-chain). After the scanner is no longer required by the Supply Chain, you can remove the package by running:
 
 ```console
-tanzu package installed delete <REFERENCE_NAME> \
+tanzu package installed delete REFERENCE-NAME \
     --namespace tap-install
 ```
 
-Where `<REFERENCE_NAME>` is the name you identified the package with, when installing in the [Install](#installation) section. e.g.: `grype-scanner`, `snyk-scanner`.
+Where `REFERENCE-NAME` is the name you identified the package with, when installing in the [Install](#installation) section. For example, `grype-scanner`, `snyk-scanner`.
 
 For example:
 

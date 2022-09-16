@@ -8,6 +8,7 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 
 shared:
   ingress_domain: INGRESS-DOMAIN
+  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".  
 
 supply_chain: basic
 
@@ -19,6 +20,7 @@ contour:
 appliveview_connector:
   backend:
     sslDisabled: TRUE-OR-FALSE-VALUE
+    ingressEnabled: true
     host: appliveview.VIEW-CLUSTER-INGRESS-DOMAIN
 ```
 

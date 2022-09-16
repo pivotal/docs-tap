@@ -74,14 +74,14 @@ For example, using the `workload.yml`:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: hello-boot
+  name: tanzu-java-web-app
   namespace: default
   labels:
     tanzu.app.live.view: "true"
     tanzu.app.live.view.application.actuator.port: "7777"
     tanzu.app.live.view.application.flavours: spring-boot
-    tanzu.app.live.view.application.name: hello-boot
-    app.kubernetes.io/part-of: tanzu-java-demo-apps
+    tanzu.app.live.view.application.name: tanzu-java-web-app
+    app.kubernetes.io/part-of: tanzu-java-web-app
     apps.tanzu.vmware.com/workload-type: web
 spec:
   env:
@@ -93,8 +93,8 @@ spec:
   source:
     git:
       ref:
-        branch: master
-      url: https://github.com/kdvolder/hello-boot
+        branch: main
+      url: https://github.com/sample-accelerators/tanzu-java-web-app
 ```
 
 ## <a id="desc-metadata"></a> Description of metadata labels

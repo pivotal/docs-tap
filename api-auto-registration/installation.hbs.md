@@ -2,8 +2,9 @@
 
 This document describes how to install API Auto Registration from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use the full or run profile to install packages.
-The "full" and "run" profiles both include API Auto Registration by default.
+>**Note:** Use the instructions on this page if you do not want to use the iterate, run, or full profile to install packages.
+The "iterate", "run", and "full" profiles include API Auto Registration by default.
+
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 ## <a id='prereqs'></a>Prerequisites
@@ -151,4 +152,4 @@ To install API Auto Registration:
     kubectl get apidescriptor sample-api-descriptor-with-absolute-url -o jsonpath='{.status.conditions[?(@.type=="Ready")].message}'
     ```
 
-   Verify that the entity is created successfully in your TAP GUI with the TAP GUI entity URL you get from above `<url-to-the-entity>`
+    Verify that the entity is created successfully in your TAP GUI: `<TAP_GUI_URL>/catalog/default/api/sample-api-descriptor-with-absolute-url`

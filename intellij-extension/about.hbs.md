@@ -5,7 +5,7 @@ you develop with the Tanzu Application Platform.
 This extension enables you to rapidly iterate on your workloads on supported Kubernetes clusters that
 have Tanzu Application Platform installed.
 
-The extension currently only supports Java apps.
+Tanzu Developer Tools for IntelliJ currently supports Java application on macOS and Windows.
 
 ## <a id="extension-features"></a> Extension features
 

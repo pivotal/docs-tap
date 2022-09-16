@@ -15,7 +15,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install API portal](api-portal/install-api-portal.md)
 - [Install Application Accelerator](application-accelerator/install-app-acc.md)
 - [Install Application Live View](app-live-view/install.md)
-- [Install Application Single Sign-On](app-sso/install-appsso.md)
+- [Install Application Single Sign-On](app-sso/platform-operators/installation.md)
 - [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
 - [Install default roles for Tanzu Application Platform](authn-authz/install.md)  
@@ -68,7 +68,7 @@ Use the following procedure to verify that the packages are installed.
     ootb-templates           ootb-templates.tanzu.vmware.com                    0.5.1            Reconcile succeeded
     scan-controller          scanning.apps.tanzu.vmware.com                     1.0.0            Reconcile succeeded
     service-bindings         service-bindings.labs.vmware.com                   0.5.0            Reconcile succeeded
-    services-toolkit         services-toolkit.tanzu.vmware.com                  0.7.1            Reconcile succeeded
+    services-toolkit         services-toolkit.tanzu.vmware.com                  0.8.0            Reconcile succeeded
     source-controller        controller.source.apps.tanzu.vmware.com            0.2.0            Reconcile succeeded
     sso4k8s-install          sso.apps.tanzu.vmware.com                          1.0.0-beta.2-31  Reconcile succeeded
     tap-gui                  tap-gui.tanzu.vmware.com                           0.3.0-rc.4       Reconcile succeeded
