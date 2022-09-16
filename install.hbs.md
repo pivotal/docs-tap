@@ -327,15 +327,15 @@ See [Install the full dependencies package](#tap-install-full-deps) for more inf
 
 ### <a id='custom-scc'></a> Custom SCC
 
->**Important:** This section only applies when you install Tanzu Application Platform on Redhat OpenShift Container Platform.
+>**Important:** This section only applies when you install Tanzu Application Platform on Red Hat OpenShift Container Platform.
 
-In RedHat OpenShift, Security Context Constraints (SCC) are used to restrict privileges for pods. 
+In Red Hat OpenShift, Security Context Constraints (SCC) are used to restrict privileges for pods. 
 SCCs define a set of rules that a pod must satisfy to be created. 
 SCCs are more restrictive by default and can prevent applications from running as root in pods and escalating privileges `allowPrivilegeEscalation`.
 
 Some Tanzu Application Platform components run on Pod Security Standards (PSS) with Restricted policy. The OpenShift implementation assumes that these components need privileged SCC. Seccomp stands for secure computing mode and is a security feature in the Linux kernel. It can be used to restrict the privileges of a process, restricting the calls it can make from userspace into the kernel. Kubernetes allows you to apply seccomp profiles loaded onto a node to your pods and containers. This restricts installation of certain components to complete and blocks Tanzu Application Platform installation in OpenShift.
 
-Openshift 4.11 includes restricted-v2 or nonroot-v2 with which Tanzu Application Platform packages reconcile without any issues. The components in Tanzu Application Platform v1.3.0 use custom SCC that is a mirror of [restricted-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-restricted-v2.yaml) or [nonroot-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-nonroot-v2.yaml) and are built by using restricted-v1 or nonroot-v1. The custom SCCs used in Tanzu Application Platform v1.3.0 to support OpenShift 4.10 are similar to the nonroot-v2 and restricted-v2 in OpenShift 4.11.
+OpenShift v4.11 includes restricted-v2 or nonroot-v2 with which Tanzu Application Platform packages reconcile without any issues. The components in Tanzu Application Platform v1.3.0 use custom SCC that is a mirror of [restricted-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-restricted-v2.yaml) or [nonroot-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-nonroot-v2.yaml) and are built by using restricted-v1 or nonroot-v1. The custom SCCs used in Tanzu Application Platform v1.3.0 to support OpenShift v4.10 are similar to the nonroot-v2 and restricted-v2 in OpenShift v4.11.
 
 #### <a id='exclude-custom-scc'></a> (Optional) Exclude components that require RedHat OpenShift privileged SCC
 
