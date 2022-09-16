@@ -16,7 +16,7 @@ To customize a manually installed package, follow these steps:
       namespace: tap-install
     stringData:
       custom-package-overlay.yml: |
-        <custom-overlay>
+        CUSTOM-OVERLAY
     ```
     
 1. Apply the `Secret` to your cluster:
@@ -31,7 +31,7 @@ To customize a manually installed package, follow these steps:
     apiVersion: packaging.carvel.dev/v1alpha1
     kind: PackageInstall
     metadata:
-      name: <package-name>
+      name: PACKAGE-NAME
       namespace: tap-install
       annotations:
         ext.packaging.carvel.dev/ytt-paths-from-secret-name: tap-overlay
@@ -50,9 +50,9 @@ Follow these steps to add an overlay to a package installed by using a [Tanzu Ap
 
     ```yaml
     package_overlays:
-    - name: <package-name>
+    - name: PACKAGE-NAME
       secrets:
-      - name: <secret-name>
+      - name: SECRET-NAME
     ```
 
 1. Update Tanzu Application Platform by running:
