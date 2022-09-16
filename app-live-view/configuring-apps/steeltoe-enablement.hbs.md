@@ -3,6 +3,8 @@
 This topic describes how developers configure a Steeltoe app to be observed by
 Application Live View within Tanzu Application Platform.
 
+Application Live View supports Steeltoe .NET apps with .NET core runtime version `v6.0.8`.
+
 ## Enable Steeltoe apps
 
 You can enable Application Live View to interact with a Steeltoe app within Tanzu Application Platform.
