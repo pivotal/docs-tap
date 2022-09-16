@@ -4,6 +4,7 @@ This document describes how to install API Auto Registration from the Tanzu Appl
 
 >**Note:** Use the instructions on this page if you do not want to use the iterate, run, or full profile to install packages.
 The "iterate", "run", and "full" profiles include API Auto Registration by default.
+
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 ## <a id='prereqs'></a>Prerequisites
@@ -68,7 +69,7 @@ To install API Auto Registration:
 
 1. Locate the TAP GUI url
 
-    When running on a full profile tap cluster, the default value of TAP GUI url should be sufficient.
+    When running on a full profile tap cluster, the default value of TAP GUI url should be sufficient. But you may still want to modify this to match the externally available FQDN of TAP GUI to make the entity url displayed within in APIDescriptor status to be externally accessible.
 
     When installed in a run cluster or without a profile where TAP GUI is not installed in the same cluster, you will need to set the `tap_gui_url` parameters correctly for successful entity registration with TAP GUI.
 
@@ -115,9 +116,7 @@ To install API Auto Registration:
     kubectl get pods -n api-auto-registration
     ```
 
-    Verify that `STATUS` is `Running`.
-
-    Apply a simple APIDescriptor resource to your cluster:
+1. Verify that applying a simple APIDescriptor resource to your cluster results in the `STATUS` to `Ready`:
 
     ```console
     kubectl apply -f - <<EOF
@@ -137,10 +136,20 @@ To install API Auto Registration:
     EOF
     ```
 
-    Verify that all status conditions are resolved to `TRUE` when describing the resource:
-
+    Verify that the APIDescriptor status shows `Ready`
     ```console
-    kubectl describe apidescriptor sample-api-descriptor-with-absolute-url
+    kubectl get apidescriptors
+    NAME                                       STATUS
+    sample-api-descriptor-with-absolute-url    Ready
+
+    kubectl get apidescriptors -owide
+    NAME                                       STATUS    TAP GUI ENTITY URL     API SPEC URL
+    sample-api-descriptor-with-absolute-url    Ready     <url-to-the-entity>    <url-to-the-api-spec>
+    ```
+
+    If the status does not show `Ready`, you can inspect the reason with the detailed message shown by running
+    ```console
+    kubectl get apidescriptor sample-api-descriptor-with-absolute-url -o jsonpath='{.status.conditions[?(@.type=="Ready")].message}'
     ```
 
     Verify that the entity is created successfully in your TAP GUI: `<TAP_GUI_URL>/catalog/default/api/sample-api-descriptor-with-absolute-url`
