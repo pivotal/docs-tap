@@ -29,7 +29,7 @@ distinct components of Cartographer Conventions:
 
 ### <a id='convention-server'></a>Convention server
 
-The convention server is the component that applies a convention already defined on the server ( here is a golang based [example](../prerequisites.md) of how to create a convention). The key resource that facilitates structuring out the request body of the request and response from the server is the [PodConventionContext](/cartographer-conventions/reference/pod-convention-context.hbs.md).
+The convention server is the component that applies a convention already defined on the server ( here is a golang based [example](https://github.com/vmware-tanzu/cartographer-conventions/tree/main/samples/spring-convention-server) of how to create a convention server to add springboot conventions). The key resource that facilitates structuring out the request body of the request and response from the server is the [PodConventionContext](/cartographer-conventions/reference/pod-convention-context.hbs.md).
 
 The `PodConventionContext` is a [webhooks.conventions.carto.run/v1alpha1](https://github.com/vmware-tanzu/cartographer-conventions/blob/main/webhook/api/v1alpha1/podconventioncontext_types.go) type that defines the structure used to communicate internally by the webhook convention server. It is key to note is that it ***does not exist*** on the Kubernetes API Server. 
 It is  a wrapper for two types namely  
