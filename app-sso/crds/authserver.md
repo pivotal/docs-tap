@@ -19,7 +19,8 @@ See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more cont
 
 __Note:__ This used to be configured via `spec.issuerURI`, but this is deprecated. Please use `spec.tls` instead.
 
-Token signature keys are configured through `spec.tokenSignature`. If no keys are configured, no tokens can be minted.
+Token signature keys are configured through `spec.tokenSignature`. This is a required field. See
+[token signature](../service-operators/token-signature.md) for more context.
 
 Identity providers are configured under `spec.identityProviders`. If there are none, end-users won't be able to log in.
 
@@ -75,7 +76,7 @@ spec:
       name: ""
     disabled: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`
   issuerURI: "" # DEPRECATED and marked for removal. Use .tls instead.
-  tokenSignature: # optional
+  tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""
     extraVerifyKeyRefs:
