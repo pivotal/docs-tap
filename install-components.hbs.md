@@ -12,6 +12,7 @@ For more information, see [Prerequisites](prerequisites.md).
 
 ## <a id='individual-package-toc'></a> Install pages for individual Tanzu Application Platform packages
 
+- [Install API Auto Registration](api-auto-registration/installation.md)
 - [Install API portal](api-portal/install-api-portal.md)
 - [Install Application Accelerator](application-accelerator/install-app-acc.md)
 - [Install Application Live View](app-live-view/install.md)

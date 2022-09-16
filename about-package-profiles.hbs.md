@@ -4,8 +4,16 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 ## <a id='TAP-packages'></a> Tanzu Application Platform components
 
-- **[API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)**
+- **[API Auto Registration](api-auto-registration/about.md)**
+  When users deploy a workload that exposes an API, they want that API to automatically show in TAP GUI
+  without needing any other manual steps.
 
+  API Auto Registration is an automated workflow that will can use a supply chain to create and manage a
+  k8s Custom Resource (CR) of type APIDescriptor, a controller to reconcile the CR and update the API entity
+  in TAP GUI to achieve automated API registration from workloads. You can also use API Auto Registration
+  without supply chains by directly applying an APIDescriptor to the cluster.
+
+- **[API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)**
   API portal for VMware Tanzu enables API consumers to find APIs they can use in their own
   applications.
 
@@ -203,6 +211,21 @@ The following table lists the packages contained in each profile:
    <td><strong>View</strong>
    </td>
   </tr>
+  <tr>
+   <td>API Auto Registration
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
   <tr>
    <td>API Portal
    </td>

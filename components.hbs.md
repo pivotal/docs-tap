@@ -6,6 +6,8 @@ available as follows.
 Some of the documentation is hosted on separate sites and some is incorporated
 into this Tanzu Application Platform documentation site.
 
+- [API Auto Registration](api-auto-registration/about.md)
+
 - [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)
 
 - [Application Accelerator for VMware Tanzu](application-accelerator/about-application-accelerator.md)
