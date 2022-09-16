@@ -47,7 +47,7 @@ This release includes the following changes, listed by component and area.
 
 - [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
 
-- The (legacy) CNB BOM format is deprecated, but enabled by default in TBS. In TAP 1.4, support will be disabled by 
+- The (legacy) CNB BOM format is deprecated, but is enabled by default in TBS. In TAP 1.4, support will be disabled by 
 default. And in TAP 1.5, support will be removed. To manually disabled legacy CNB BOM support add 
 `include_legacy_bom=false` to the `tbs-values.yml` file or to the `tap-values.yml` file under the `buildservice:`
 stanza.

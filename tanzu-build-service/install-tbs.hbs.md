@@ -26,8 +26,8 @@ Approximately 10&nbsp;GB of registry space is required when using the `full` dep
 
 ## <a id='DeprecatedFeatures'></a> Deprecated Features
 
-* The (legacy) CNB BOM format is deprecated, but enabled by default in TBS. Support can be disabled manually by adding
-  `include_legacy_bom=false` to your `tbs-values.yml` file.
+* The (legacy) CNB BOM format is deprecated, but is enabled by default in TBS. Support can be disabled manually by 
+adding `include_legacy_bom=false` to your `tbs-values.yml` file.
 
 ## <a id='tbs-tcli-install'></a> Install the Tanzu Build Service package
 
