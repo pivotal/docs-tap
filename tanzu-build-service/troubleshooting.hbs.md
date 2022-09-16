@@ -41,3 +41,72 @@ If you do not want to wait for subsequent builds to run automatically, you can u
 
     - `IMAGE-NAME` is the name of the failing image.
     - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
+
+## <a id="eks-1-23-volume"></a> Builds fail due to volume errors on EKS running Kubernetes v1.23
+
+### Symptom
+
+After installing Tanzu Application Platform on or upgrading an existing
+Amazon Elastic Kubernetes Service (EKS) cluster to Kubernetes v1.23, build pods show:
+
+```console
+'running PreBind plugin "VolumeBinding": binding volumes: timed out waiting
+ for the condition'
+```
+
+### Explanation
+
+This is due to the CSIMigrationAWS in this Kubernetes version, which requires users
+to install the [Amazon EBS CSI driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html)
+to use AWS Elastic Block Store (EBS) volumes.
+For more information about EKS support for Kubernetes v1.23, see the
+[Amazon blog post](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/).
+
+Tanzu Application Platform uses the default storage class which uses EBS volumes by default on EKS.
+
+### Solution
+
+Follow the AWS documentation to install the [Amazon EBS CSI driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html)
+before installing Tanzu Application Platform, or before upgrading to Kubernetes v1.23.
+
+## Smart-warmer-image-fetcher reports ErrImagePull due to dockerd's layer depth limitation
+
+### Symptom
+
+When using dockerd as the cluster's container runtime, you might see the smart-warmer-image-fetcher pods 
+report a status of `ErrImagePull`. The cause of this error could be due to dockerd's layer depth limitation, 
+in which the maximum supported image layer depth is 125.
+
+### Explanation
+
+To verify that the `ErrImagePull` status is due to dockerd's maximum supported image layer depth, check for event 
+messages containing the words "max depth exceeded":
+
+   ```console
+   $ kubectl get events -A | grep "max depth exceeded"
+     build-service        73s         Warning     Failed         pod/smart-warmer-image-fetcher-wxtr8     Failed to pull image 
+     "harbor.somewhere.com/aws-repo/build-service:clusterbuilder-full@sha256:065bb361fd914a3970ad3dd93c603241e69cca214707feaa6
+     d8617019e20b65e":  rpc error: code = Unknown desc = failed to register layer: max depth exceeded
+   ```
+
+If you see the words, "max depth exceeded", you have likely encountered dockerd's maximum image layer depth limitation.
+
+### Solution
+
+To work around this issue, configure your cluster to use containerd or CRI-O as its default container runtime. Please refer to 
+your Kubernetes cluster provider's documentation for specific instructions.
+
+#### AWS
+* https://aws.amazon.com/blogs/containers/amazon-eks-1-21-released/
+* https://eksctl.io/usage/container-runtime/
+
+#### AKS
+* https://docs.microsoft.com/en-us/azure/aks/cluster-configuration#container-runtime-configuration
+* https://techcommunity.microsoft.com/t5/apps-on-azure-blog/dockershim-deprecation-and-aks/ba-p/3055902
+
+#### GKE
+* https://cloud.google.com/kubernetes-engine/docs/concepts/using-containerd
+
+#### OpenShift
+* https://cloud.redhat.com/blog/containerd-support-for-windows-containers-in-openshift
+* https://docs.openshift.com/container-platform/3.11/crio/crio_runtime.html

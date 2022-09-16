@@ -10,7 +10,7 @@ matching image patterns, and where at least one valid signature is obtained from
 the authorities provided in the matched
 [ClusterImagePolicy](#create-cip-resource) later in the topic. Within a single policy, every
 signature must be valid. When more than one policy has a matching image pattern,
-the image much match at least one signature from each ClusterImagePolicy.
+the image must match at least one signature from each ClusterImagePolicy.
 
 ## <a id="including-namespaces"></a> Including Namespaces
 
@@ -37,10 +37,12 @@ The cluster image policy is a custom resource containing the following propertie
 * `images`: The images block defines the patterns of images that must be
   subject to the `ClusterImagePolicy`. If multiple policies match a particular
   image, _ALL_ of those policies must be satisfied for the image to be admitted.
-  Policy Controller also has defaults defined if the following globs are specified:
+
+  Policy Controller has defaults defined if the following globs are specified:
+
   - If `*` is specified, the `glob` matching behavior is `index.docker.io/library/*`.
-  - If `*/*` is specified, he `glob` matching behavior is `index.docker.io/*/*`.
-  With these defaults, you would require the `glob` pattern `**` to match against all images.
+  - If `*/*` is specified, the `glob` matching behavior is `index.docker.io/*/*`.
+  With these defaults, you require the `glob` pattern `**` to match against all images.
   If your image is hosted on DockerHub, it is important to include `index.docker.io` as the host for the glob.
 
 * `authorities`: The authorities block defines the rules for discovering and validating signatures. Discovery is done by using the `sources` field, and is specified on any entry. Signatures are cryptographically verified using one of the `key` or `keyless` fields.
@@ -55,11 +57,11 @@ In a ClusterImagePolicy, `spec.images` specifies a list of glob matching pattern
 These patterns are matched against the image digest in `PodSpec` for resources
 attempting deployment.
 
-Policy Controller also has defaults defined if the following globs are specified:
+Policy Controller has defaults defined if the following globs are specified:
 - If `*` is specified, the `glob` matching behavior is `index.docker.io/library/*`.
-- If `*/*` is specified, he `glob` matching behavior is `index.docker.io/*/*`.
+- If `*/*` is specified, the `glob` matching behavior is `index.docker.io/*/*`.
 
-With these defaults, you would require the `glob` pattern `**` to match against all images.
+With these defaults, you require the `glob` pattern `**` to match against all images.
 If your image is hosted on DockerHub, it is important to include `index.docker.io` as the host for the glob.
 
 A sample of a ClusterImagePolicy which matches against all images using glob:

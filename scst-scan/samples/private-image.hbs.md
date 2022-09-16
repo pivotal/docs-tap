@@ -4,28 +4,24 @@ This example performs a scan against an image located in a private registry.
 
 ## <a id="define-resources"></a>Define the resources
 
-Create `sample-private-image-scan.yaml` and ensure you enter a valid docker config.json value in the secret:
+Create `sample-private-image-scan.yaml`:
 
 ```yaml
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: image-secret
-type: kubernetes.io/dockerconfigjson
-data:
-  .dockerconfigjson: <~/.docker/config.json base64 data>
-
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ImageScan
 metadata:
-  name: sample-image-source-scan
+  name: sample-private-image-scan
 spec:
   registry:
-    image: <url of an image in a private registry>
+    image: IMAGE_URL
   scanTemplate: private-image-scan-template
 ```
+
+Where:
+* `IMAGE_URL` is the url of an image in a private registry
+
+*NOTE:* The private image scan assumes that the target image secret was configured as part of installing TAP.
 
 ## <a id="set-up-watch"></a>(Optional) Set up a watch
 
@@ -48,7 +44,7 @@ kubectl apply -f sample-private-image-scan.yaml
 When the scan completes, run:
 
 ```console
-kubectl describe imagescan sample-image-source-scan
+kubectl describe imagescan sample-private-image-scan
 ```
 
 Notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.

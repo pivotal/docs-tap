@@ -150,13 +150,13 @@ configurations to deactivate the Store:
 
 #### <a id="ca-not-found-in-secret"></a> Could not find CA in Secret
 
-  If you encounter the following issue, it might be due to not exporting  "app-tls-cert" to the correct namespace:
+  If you encounter the following issue, it might be due to not exporting  `app-tls-cert` to the correct namespace:
 
   ```console
   {"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
   ```
 
-  Include the following in your tap-values.yaml:
+  Include the following in your `tap-values.yaml`:
 
   ```yaml
   metadata_store:
@@ -172,47 +172,50 @@ configurations to deactivate the Store:
 
 #### <a id="reporting-wrong-blob-url"></a> Blob Source Scan is reporting wrong source URL
 
-  A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote SSH URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message.
+A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote SSH URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message.
 
-  You can confirm you're having this problem by running a `kubectl describe` in the affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url` and see if they are different URLs. For example:
+You can confirm you're having this problem by running a `kubectl describe` in the affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url` and see if they are different URLs. For example:
 
-  ```console
-  kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE>
-  ```
+```console
+kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE>
+```
 
-  And compare the output:
+And compare the output:
 
-  ```console
-  ...
-  spec:
+```console
+...
+spec:
+  blob:
+    ...
+    url: http://source-controller.flux-system.svc.cluster.local./gitrepository/sample/repo/8d4cea98b0fa9e0112d58414099d0229f190f7f1.tar.gz
+    ...
+status:
+  artifact:
     blob:
       ...
-      url: http://source-controller.flux-system.svc.cluster.local./gitrepository/sample/repo/8d4cea98b0fa9e0112d58414099d0229f190f7f1.tar.gz
+      url: ssh://git@github.com:sample/repo.git
+  compliantArtifact:
+    blob:
       ...
-  status:
-    artifact:
-      blob:
-        ...
-        url: ssh://git@github.com:sample/repo.git
-    compliantArtifact:
-      blob:
-        ...
-        url: ssh://git@github.com:sample/repo.git
-  ```
+      url: ssh://git@github.com:sample/repo.git
+```
 
-  **Workaround:** This problem happens in Supply Chain Security Tools - Scan `v1.2.0` when you use a Grype Scanner ScanTemplates earlier than  `v1.2.0` because this is a deprecated path. The solution to fix this problem is to upgrade your Grype Scanner deployment to `v1.2.0` or later. You can take a look at [Upgrading Supply Chain Security Tools - Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
+**Workaround:** This problem happens in Supply Chain Security Tools - Scan `v1.2.0` when you use a Grype Scanner ScanTemplates earlier than `v1.2.0`, because this is a deprecated path. To fix this problem, upgrade your Grype Scanner deployment to `v1.2.0` or later. See [Upgrading Supply Chain Security Tools - Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 
-  #### <a id="supply-chain-stops"></a> Supply Chain not progressing
+#### <a id="supply-chain-stops"></a> Resolving a Supply Chain that is blocked by failing scans
 
-  If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see the CVE triage workflow in [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow).
+If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see the CVE triage workflow in [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow).
 
-  #### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
+#### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
 
-  If you encounter `No policy has been defined`, it could be because the TAP GUI is unable to view the Scan Policy resource.
-  - Confirm that the Scan Policy associated with a SourceScan or ImageScan exists (i.e. the `scanPolicy` in the scan matches the name of the Scan Policy)
-    ```
-    kubectl describe sourcescan <NAME> -n <DEV_NAMESPACE>
-    kubectl describe imagescan <NAME> -n <DEV_NAMESPACE>
-    kubectl get scanpolicy <NAME> -n <DEV_NAMESPACE>
-    ```
-  - Add the `app.kubernetes.io/part-of` label to the Scan Policy. See [Enable Tanzu Application Platform GUI to view ScanPolicy Resource](policies.hbs.md#a-idgui-view-scan-policyaenable-tanzu-application-platform-gui-to-view-scanpolicy-resource) for more detail.
+If you encounter `No policy has been defined`, it might be because the Tanzu Application Platform GUI is unable to view the Scan Policy resource.
+
+Confirm that the Scan Policy associated with a SourceScan or ImageScan exists. For example, the `scanPolicy` in the scan matches the name of the Scan Policy.
+
+```
+kubectl describe sourcescan NAME -n DEV-NAMESPACE
+kubectl describe imagescan NAME -n DEV-NAMESPACE
+kubectl get scanpolicy NAME -n DEV-NAMESPACE
+```
+
+Add the `app.kubernetes.io/part-of` label to the Scan Policy. See [Enable Tanzu Application Platform GUI to view ScanPolicy Resource](policies.hbs.md#a-idgui-view-scan-policyaenable-tanzu-application-platform-gui-to-view-scanpolicy-resource) for more details.

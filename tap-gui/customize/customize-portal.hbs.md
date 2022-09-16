@@ -4,11 +4,11 @@ This section describes how to customize the Tanzu Application Platform GUI porta
 
 ## <a id="brand-customizing"></a> Customize branding
 
-To customize the branding in your portal, you can choose the name of the portal and the logo for it. You can also customize your portal's favicon that appears on the tab of the browser. To make these customizations, follow the steps below: 
+To customize the branding in your portal, you can choose the name of the portal and the logo for it.
+You can also customize your portal favicon, which appears on the tab of the browser.
+To make these customizations:
 
-
-1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
-file:
+1. Provide additional configuration parameters to the `app_config` section of `tap-values.yaml`:
 
     ```yaml
     tap_gui:
@@ -25,23 +25,23 @@ file:
 
     Where:
 
-    - `BASE-64-IMAGE` is the image encoded in base64. VMware recommends a 512-pixel by 512-pixel PNG
-    image with a transparent background.
+    - `BASE-64-IMAGE` is the image encoded in base64. A 512-pixel by 512-pixel PNG
+    image with a transparent background is optimal.
     - `PORTAL-NAME` is the name of your portal, such as `Our Custom Developer Experience Portal`.
     - `BASE-64-IMAGE-ICO` is the favicon ICO encoded in base64.
-    - `BASE-64-IMAGE-180` is the favicon PNG image encoded in base64. VMware recommends a 180-pixel by 180-pixel PNG
-    - `BASE-64-IMAGE-32` is the favicon PNG image encoded in base64. VMware recommends a favicon 32-pixel by 32-pixel PNG
-    - `BASE-64-IMAGE-16` is the favicon PNG image encoded in base64. VMware recommends a 16-pixel by 16-pixel PNG
+    - `BASE-64-IMAGE-180` is the favicon PNG image encoded in base64. A 180-pixel by 180-pixel PNG is optimal.
+    - `BASE-64-IMAGE-32` is the favicon PNG image encoded in base64. A 32-pixel by 32-pixel PNG is optimal.
+    - `BASE-64-IMAGE-16` is the favicon PNG image encoded in base64. A 16-pixel by 16-pixel PNG is optimal.
     - `BASE-64-IMAGE-SVG` is the favicon SVG image encoded in base64.
 
-1. Reinstall your Tanzu Application Platform GUI package by following steps in
+2. Reinstall your Tanzu Application Platform GUI package by following steps in
 [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.
 
-If there is an error in any of the used images encoded in base64 or `PORTAL-NAME`, Tanzu Application Platform GUI reverts to
-the original branding template.
+If there is an error in any of the supplied images encoded in base64 or in your choice of portal name,
+Tanzu Application Platform GUI reverts to the original branding template.
 
 ![Screenshot displaying the custom branding within the Tanzu Application Platform GUI portal](../images/customized-branding.png)
 
@@ -88,8 +88,10 @@ software catalog, including registering and deregistering locations.
 To do so, add `readonly: true` to the `catalog` section in `tap-values.yaml`, as in this example:
 
 ```yaml
-catalog:
-  readonly: true
+tap_gui:
+  app_config:
+    catalog:
+      readonly: true
 ```
 
 ## <a id="customize-auth-page"></a> Customize the Authentication page

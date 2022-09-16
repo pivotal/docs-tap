@@ -12,8 +12,17 @@ Do one of the following actions to access the Runtime Resources Visibility plug-
 - [Install the Tanzu Application Platform Full or View profile](../../install-intro.md)
 - [Install Tanzu Application Platform without using a profile](../../install-intro.md) and then
   install [Tanzu Application Platform GUI separately](../install-tap-gui.md)
-- Disable realtime metrics for clusters without a metrics server by setting
-`skipMetricsLookup` to `true` for that cluster in `app.config.yaml`
+- Review the section [If you have a metrics server](#metrics-server)
+
+## <a id="metrics-server"></a> If you have a metrics server
+
+By default, the Kubernetes API does not attempt to use any metrics servers on your clusters.
+To access metrics information for a cluster, set `skipMetricsLookup` to `false` for that
+cluster in the `kubernetes` section of `app-config.yaml`.
+
+> **Caution:** If you enable metrics for a cluster but do not have a metrics server running on it,
+> Tanzu Application Platform web interface users see an error notifying them that there is a
+> problem connecting to the back end.
 
 ## <a id="Visualize-app"></a> Visualize Workloads on Tanzu Application Platform GUI
 
@@ -67,10 +76,10 @@ resources even further down the chain.
 ## <a id="resource-details"></a> Resources details page
 
 To get more information about a particular workload, select it from the table on
-the main Runtime Resources page. You will then be taken to a page that provides
-details on the workload, including its status, ownership, and resource-specific information.
+the main **Runtime Resources** page to visit a page that provides details about the workload.
+These details include the workload status, ownership, and resource-specific information.
 
-![Screenshot of the Java web app deployment page](images/runtime-resources-knative-service-details.png)
+![Screenshot of the Java web app deployment page.](images/runtime-resources-knative-service-details.png)
 
 ### <a id="overview-card"></a> Overview card
 
@@ -126,29 +135,29 @@ This drop-down menu is only visible if the resources include Build or ConfigWrit
 
 ![Screenshot of completed supply chain pods information. The Show Additional Resources dropdown menu is expanded.](images/runtime-resources-supply-chain-pods.png)
 
-## <a id="navigating-to-pods"></a>Navigating to the Pod Details page
+## <a id="navigating-to-pods"></a>Navigating to the pod Details page
 
 Users can see the pod table in each resource details page.
 
-![Screenshot of object detail table listing pod](images/runtime-resources-pods.png)
+![Screenshot of a resource details page. A table lists one pod.](images/runtime-resources-pods.png)
 
 ### <a id="pod-details-metrics"></a> Overview of pod metrics
 
-If you have a metrics server running on your cluster, the overview card displays
-realtime metrics for pods. 
+If you have a metrics server running on your cluster, the overview card displays realtime metrics
+for pods.
 
 If you do not have a metrics server, the overview card displays the
 user-configured resource limits on the pod, defined in accordance with the
 [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/).
 
 For applications built using Spring Boot, you can also monitor the actual
-real-time resource usage using 
-[Application Live View for Spring Boot Applications in Tanzu Application Platform GUI](app-live-view-springboot.md).
+real-time resource use using
+[Screenshot of Application Live View for Spring Boot Applications in Tanzu Application Platform GUI.](app-live-view-springboot.md).
 
-Metrics and limits will also be displayed for each container on a pod details
-page. If a particular container's current limit conflicts with a namespace-level
-LimitRange (typically due to creating a container prior to applying a
-LimitRange), a small warning indicator will be displayed next to the container limit.
+Metrics and limits are also displayed for each container on a pod details page.
+If a particular container's current limit conflicts with a namespace-level
+LimitRange, a small warning indicator is displayed next to the container limit.
+Most conflicts are due to creating a container before applying a LimitRange.
 
 ![Screenshot of container limits. The CPU and Memory column headers are framed.](images/runtime-resources-container-metrics-pod-page.png)
 
@@ -247,4 +256,6 @@ appears after the most recent log entry, and the page attempts to reconnect to t
 If reconnection fails, an error message displays at the top of the page, and you can click the
 **Refresh** button at the upper-right of the page to attempt to reconnect.
 
-If you notice frequent disconnections at regular intervals, contact your administrator. Your administrator may need to update the backend configuration for your installation to allow long-lived HTTP connections to log endpoints (endpoints starting with `<backend host>/api/k8s-logging/`).
+If you notice frequent disconnections at regular intervals, contact your administrator.
+Your administrator might need to update the back-end configuration for your installation to allow
+long-lived HTTP connections to log endpoints (endpoints starting with `BACKEND-HOST/api/k8s-logging/`).

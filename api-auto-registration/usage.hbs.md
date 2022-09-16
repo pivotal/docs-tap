@@ -1,8 +1,14 @@
 # API Auto Registration Usage
 
-## <a id='usage'></a>Using Out Of The Box Supply Chains
+## <a id='usage'></a>Using App Accelerator Template
 
-All of the Out-Of-The-Box supply chains have been modified so that they can utilize API Auto Registration. If want your Workload to be auto registered all you need to do is make a couple of modifications to your workload yaml as described below
+If you are creating a new application exposing an API, you may use the ["java-rest-service"](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
+App Accelerator template to get an out-of-the-box app that comes with already written workload.yaml along with a basic REST API.
+From your TAP GUI's Accelerators tab, you can search for the accelerator and scaffold it according to your needs.
+
+## <a id='with-ootb-supply-chain'></a>Using Out Of The Box Supply Chains
+
+All the Out-Of-The-Box supply chains have been modified so that they can utilize API Auto Registration. If you want your Workload to be auto registered, you need to make a couple of modifications to your workload yaml as described below
 
 1. Add the label `apis.apps.tanzu.vmware.com/register-api: "true"`
 1. Add a param of `type api_descriptor`
@@ -22,7 +28,7 @@ There are 2 different options for the location.
 
 The default supply chains use knative to deploy your applications. In this event the only location information you need to send is the path to the api documentation. The controller can figure out the base url for you.
 
-Another option is you can hard code the url using the baseURL property.  The controller will use a combination of this baseURL and your path to retrieve the yaml
+Another option is you can hardcode the url using the baseURL property.  The controller will use a combination of this baseURL and your path to retrieve the yaml
 
 Example workload that exposes a knative service:
 
@@ -49,7 +55,7 @@ spec:
 
 ```
 
-Example of a workload with a hard coded url to the api documentation
+Example of a workload with a hardcoded url to the api documentation
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -80,7 +86,7 @@ for more details.
 ## <a id='without-supply-chain'></a>Without the OOTB Supply Chains
  If you are not using supply chains, or are creating custom supply chains you can still utilize API Auto Registration. You will need to directly create an APIDescriptor custom resource.  See the examples below for further details.
 
-## <a id='api-descriptor'>APIDescriptor Explained</a>
+## <a id='api-descriptor'></a>APIDescriptor Explained
 
 For API Auto Registration to take place a custom resource of type `APIDescriptor` needs to be created. If you use the out OOTB supply chains and have set the required fields on your workload one will automatically be created for you, otherwise you will need to make one yourself.
 Below are the details of this custom resource.
@@ -126,6 +132,26 @@ spec:
         name: my-httpproxy
 
 ```
+
+### <a id='troubleshooting'></a>Troubleshooting
+
+Here are some handy commands for debugging or troubleshooting the APIDescriptor CR.
+
+1. Find the status of the APIDescriptor CR.
+    ```console
+    kubectl get apidescriptor <api-apidescriptor-name> -o jsonpath='{.status.conditions}'
+    ```
+2. Read logs from the `api-auto-registration` controller.
+    ```console
+    kubectl -n api-auo-registration logs deployment.apps/api-auto-registration-controller
+    ```
+3. Patch a APIDescriptor that is stuck in Deleting mode.
+   This might happen if the controller package is uninstalled before you clean up the APIDescriptor resources. 
+   You could reinstall the package and delete all the APIDescriptor resources first, or run the following command for each stuck APIDescriptor resource.
+    ```console
+    kubectl patch apidescriptor <api-apidescriptor-name> -p '{"metadata":{"finalizers":null}}' --type=merge
+    ```
+   Please note that if you manually remove the finalizers from the APIDescriptor resources, you may end up with stale API entities within TAP GUI that you will need to manually unregister.
 
 ## <a id='cors'></a>Setting up CORS for OpenAPI Specs
 

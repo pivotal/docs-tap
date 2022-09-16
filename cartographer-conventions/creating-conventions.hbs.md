@@ -22,10 +22,10 @@ Convention supports the creation of custom conventions to meet the unique operat
 and requirements of an organization.
 
 Before jumping into the details of creating a custom convention, you can view two
-distinct components of Cartographer Conventions: 
+distinct components of Cartographer Conventions:
 
 - [Convention Controller](#convention-controller)
-- [Convention Server](#convention-server) 
+- [Convention Server](#convention-server)
 
 ### <a id='convention-server'></a>Convention server
 
@@ -251,57 +251,52 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
 
 ## <a id='define-conv-behavior'></a> Define the convention behavior
 
-Any property or value within the PodTemplateSpec or OCI image metadata associated with a workload is used to define the criteria for applying conventions. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation. The following are a few examples. 
+Any property or value within the PodTemplateSpec or OCI image metadata associated with a workload is used to define the criteria for applying conventions. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation. The following are a few examples.
 
 ### <a id='match-crit-labels-annot'></a> Matching criteria by labels or annotations
 
-When you use labels or annotations to define whether a convention must be applied, the server checks the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads.
+The `conventions.carto.run/v1alpha1` API allows convention authors to use the `selectorTarget` field which complements the `ClusterPodConvention` matchers to specify whether to consider labels on either one of the following available options:
 
 + PodTemplateSpec
 
     ```yaml
-    ...
-    template:
-      metadata:
-        labels:
-          awesome-label: awesome-value
-        annotations:
-          awesome-annotation: awesome-value
-    ...
+      ...
+      template:
+        metadata:
+          labels:
+            awesome-label: awesome-value
+          annotations:
+            awesome-annotation: awesome-value
+      ...
     ```
++ PodIntent
 
-+ Handler
-
-    ```go
-    package convention
-    ...
-    func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
-        c:= []string{}
-        // This convention is applied if a specific label is present.
-        if lv, le := template.Labels["awesome-label"]; le && lv == "awesome-value" {
-            // DO COOL STUFF
-            c = append(c, "awesome-label-convention")
-        }
-        // This convention is applied if a specific annotation is present.
-        if av, ae := template.Annotations["awesome-annotation"]; ae && av == "awesome-value" {
-            // DO COOL STUFF
-            c = append(c, "awesome-annotation-convention")
-        }
-
-        return c, nil
-    }
-    ...
+    ```yaml
+        ...
+        kind: PodIntent
+        metadata:
+          name: test-pod
+          labels:
+            environment: production
+            ...
     ```
+The `selectorTarget` field can be configured on the ClusterPodConvention as follows:
 
- Where:
+```yaml
+...
+spec:
+  selectorTarget: PodIntent # optional, defaults to PodTemplateSpec
+  selectors: # optional, defaults to match all workloads
+  - <metav1.LabelSelector>
+  webhook:
+    certificate:
+      name: sample-cert
+      namespace: sample-conventions
+    clientConfig:
+      <admissionregistrationv1.WebhookClientConfig>
+```
+If you do not provide a value for this optional field while using the `conventions.carto.run/v1alpha1` API, the default value is set to `PodTemplateSpec` without the conventions author explicitly doing so. The `selectorTarget` field is not available in the `conventions.apps.tanzu.vmware.com/v1alpha1` API and labels specified in the `PodTemplateSpec` are considered if a matcher is defined in a `ClusterPodConvention` while referencing this deprecated API.
 
-+ `conventionHandler` is the *handler*.
-
-+ `awesome-label` is the **label** that you want to validate.
-
-+ `awesome-annotation` is the **annotation** that you want to validate.
-
-+ `awesome-value` is the value that must have the **label**/**annotation**.
 
 ### <a id='match-criteria-env-var'></a> Matching criteria by environment variables
 

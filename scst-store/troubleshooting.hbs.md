@@ -10,7 +10,7 @@ When attempting to look up CVE and affected packages, querying `insight source g
 
 ### <a id='source-scan-no-cves-solution'></a>Solution
 
-You might have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM). For more information see [Query vulnerabilities, images, and packages](https://github.com/pivotal/docs-tap/blob/main/cli-plugins/insight/query-data.md#example-2-what-packages--cves-does-my-source-code-contain).
+You might have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM). For more information see [Query vulnerabilities, images, and packages](https://github.com/pivotal/docs-tap/blob/main/cli-plugins/insight/query-data.md#example-2-what-packages--cves-does-my-source-code-contain) in Github.
 
 ## Persistent volume retains data
 
@@ -62,3 +62,25 @@ This is because the cluster where Store is deployed does not have `storageclass`
     # set the storage class as default
     kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
     ```
+
+## <a id="eks-1-23-volume"></a> Builds fail due to volume errors on EKS running Kubernetes version 1.23
+
+### Symptom
+
+Installing Store on or upgrading an existing EKS cluster to Kubernetes version 1.23
+
+Database pod is showing:
+
+```console
+running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for PVC "postgres-db-pv-claim"
+```
+
+### Explanation
+
+This is due to the [CSIMigrationAWS in this K8s version version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to use EBS volumes.
+
+Store uses the default storage class which uses EBS volumes by default on EKS.
+
+### Solution
+
+Follow the AWS documentation to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) before installing Store or before upgrading to K8s 1.23.
