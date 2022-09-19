@@ -150,5 +150,5 @@ There are two ways to configure runtime CA certificates for Tanzu Build Service.
 (Recommended) Use the [Paketo CA Certificates Buildpack](https://github.com/paketo-buildpacks/ca-certificates) and service bindings to add CA certificates to the system truststore at build or run time.
 For more information about using the buildpack, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-config-config-buildpack-kp.html#ca-certificates).
 
-Use a CustomStack to pre-bake the CA certificates to one or both of the stack images.
+Use a CustomStack to embed the CA certificates into one or both of the stack images.
 For more information about using CustomStacks, see the [VMware Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-custom-stacks.html)

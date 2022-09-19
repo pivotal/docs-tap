@@ -78,6 +78,10 @@ CA certificate under the `ca_cert_data` key to your `tbs-values.yaml` file. For 
     kp_default_repository_password: "REPO-PASSWORD"
     ca_cert_data: "CA-CERT-CONTENTS"
     ```
+
+>**note:** If `shared.ca_cert_data` is configured in `tap-values`, Tanzu Build Service will inherit the
+> value.
+
 >**Note:** This only adds the CA certificates to the build time, if you want to add CA certificates to
 > the built image, see [Adding custom CA certificates to the workload image](tbs-workload-config.md#workload-custom-certs)
 
