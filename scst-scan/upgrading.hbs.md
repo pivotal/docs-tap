@@ -87,7 +87,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
   The installation of the Supply Chain Security Tools - Scan and the Grype scanner have some changes. The connection to the Supply Chain Security Tools - Store component have moved to the Grype scanner package. To deactivate the connection from the Supply Chain Security Tools - Scan, which is still present for backwards compatibility, but is deprecated and is removed in `v1.3.0`.
 
       ```yaml
-      # Disable scan controller embedded Supply Chain Security Tools - Store integration
+      # Deactivate scan controller embedded Supply Chain Security Tools - Store integration
       scanning:
         metadataStore:
           url: ""
