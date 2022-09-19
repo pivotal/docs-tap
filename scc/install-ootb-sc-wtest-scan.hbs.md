@@ -153,8 +153,8 @@ To install Out of the Box Supply Chain with Testing and Scanning:
       server_address: https://github.com/
       repository_owner: vmware-tanzu
       branch: main
-      user_name: supplychain
-      user_email: supplychain
+      username: supplychain
+      email: supplychain
       commit_message: supplychain@cluster.local
       ssh_secret: git-ssh
       commit_strategy: direct
