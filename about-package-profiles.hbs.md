@@ -173,6 +173,15 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
 
+- **[TAP Telemetry](telemetry/overview.hbs.md)** 
+
+  TAP Telemetry is a set of objects that collect and emit data about usage of TAP back to VMware.  
+  This data is gathered and used to improve the product.  Customers can opt out of telemetry collection 
+  by following these [instructions](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-opting-out-telemetry.html)
+  A benefit of remaining enrolled in telemetry and identifying your company during TAP installation is that 
+  VMware can provide your organization with usage reports about TAP.  Access the component documentation to
+  learn more about enrolling in telemetry reports.
+
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.3
 
 You can deploy Tanzu Application Platform through predefined profiles, each containing various packages, or you can install  packages individually. The profiles are designed to allow the Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customer use cases, but serve as a starting point to allow for further customization.

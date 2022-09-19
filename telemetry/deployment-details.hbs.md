@@ -20,7 +20,6 @@ If you're deploying with Tanzu Application Platform profiles, in `tap-values.yam
 ```yaml
 tap_telemetry:
   customer_entitlement_account_number: "12345"
-  installed_for_vmware_internal_use: "true"
 ```
 
 Repeat these steps for the Build, Run, and View Cluster documentation
@@ -37,17 +36,4 @@ customer_entitlement_account_number: "12345"
 ```
 
 This will create a config map named `vmware-telemetry-identifiers` in the `vmware-system-telemetry` namespace which will be used internally to properly log your information.
-
-### <a id='cluster-usage'></a>Cluster Usage
-
-This value helps VMware identify TAP deployments that are being used for internal VMware use. To configure this value, use the `installed_for_vmware_internal_use` property in the `tap-telemetry-values.yaml`. Supported values include `true` or `false`.
-If you do not set this or set it to a different value, the usage value will most like show in the data as `Unknown`
-
-```yaml
-installed_for_vmware_internal_use: "true"
-```
-
-This will create a config map named `telemetry-config` in the `tap-telemetry` namespace which will be used internally to properly log your information.
-
-
 

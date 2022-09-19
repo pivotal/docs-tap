@@ -32,6 +32,8 @@ grype:
 scanning:
   metadataStore:
     url: "" # Deactivate embedded integration since it's deprecated
+tap_telemetry:
+  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (optional) identify data for creation of TAP usage reports
 ```
 
 Where:
@@ -59,6 +61,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
 credentials to pull an image from the registry for scanning.
+- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) The Entitlement Account Number (EAN) is a unique identifier VMware assigns to its customers.  TAP telemetry can use this number to identify data that belongs to a particular customers so that we can prepare usage reports that summarize usage.  Documentation to locate the number can be found [here](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2)
 
 > **Note:** When you install Tanzu Application Platform, it is bootstrapped with the `lite`
 > set of dependencies, including buildpacks and stacks, for application builds.
