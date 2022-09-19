@@ -369,13 +369,11 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
 Query the tanzu-java-web-app image dependencies and vulnerabilities by running:
 
   ```console
-    insight image get --digest DIGEST
-    insight image vulnerabilities --digest  DIGEST
+    tanzu insight image get --digest DIGEST
+    tanzu insight image vulnerabilities --digest  DIGEST
   ```
 
 Where `DIGEST` is the component version or image digest printed in the `KUBECTL GET` command.
-
-> **Important:** The `Insight CLI` is separate from the Tanzu CLI.
 
 For additional information and examples, see [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md).
 <br>
