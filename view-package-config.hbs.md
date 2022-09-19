@@ -31,6 +31,7 @@ The following table summarizes the top-level keys used for package-specific conf
 |Package|Top-level Key|
 |----|----|
 |_see table below_|`shared`|
+|API Auto Registration|`api_auto_registration`|
 |API portal|`api_portal`|
 |Application Accelerator|`accelerator`|
 |Application Live View|`appliveview`|
