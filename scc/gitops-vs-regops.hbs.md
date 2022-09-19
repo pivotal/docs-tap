@@ -284,15 +284,18 @@ deprecated value repository_prefix is ignored because suggested values are prese
 ### Pull Requests
 
 In the standard git-ops approach, configuration is pushed to a repository and is immediately applied 
-to a cluster by any deliverable watching the repository. Operators might want to have a manual review step before 
-applying configuration to the cluster. In this case, operators must specify a `pull_request` commit strategy. 
+to a cluster by any deliverable watching that repository. Operators might want to have a manual review step before 
+applying configuration to the cluster. In this case, operators must specify a `pull_request` commit strategy. This
+strategy can be used with the following git providers:
 
-<p class="note important">
-<strong>Note:</strong>
-If you want to use the pull request approach, you must use HTTP(S) authentication with a token.
-</p>
+- Github
+- Gitlab
 
-For HTTP(S) authentication, use one of the following tokens:
+#### Authentication
+The Pull Request approach requires HTTP(S) authentication with a token. In the
+[kuberenetes secret](#a-idhttp-authahttps-basic-auth--token-based-authentication) that holds the git credentials, the
+password field must be filled with a token. When generating a token, ensure that it is given proper scope:
+
 - On GitHub, the token must have a
   [Repo scope](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 - On GitLab, the token must have an
@@ -304,6 +307,7 @@ To use the `pull_request` commit strategy, set the following parameters:
   Chains package installation.
 - `gitops.pull_request.server_kind` configured during the Out of the Box Supply
   Chains package installation or `gitops_server_kind` configured as a workload parameter.
+  Supported values are `github` and `gitlab`.
 - `gitops.pull_request.commit_branch` configured during the Out of the Box Supply
   Chains package installation or `gitops_commit_branch` configured as a workload parameter.
 - `gitops.pull_request.pull_request_title` configured during the Out of the Box Supply
