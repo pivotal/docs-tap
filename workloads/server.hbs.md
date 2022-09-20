@@ -4,14 +4,14 @@ This topic describes how to use the `server` workload type.
 
 ## <a id="overview"></a>Overview
 
-The `tcp` workload type allows you to deploy traditional network applications on
+The `server` workload type allows you to deploy traditional network applications on
 Tanzu Application Platform.
 Using an application workload specification, you can build and deploy application
 source code to a manually-scaled Kubernetes deployment which exposes an in-cluster Service endpoint.
 If required, you can use environment-specific LoadBalancer Services or Ingress resources to
 expose these applications outside the cluster.
 
-The `tcp` workload is a good match for traditional applications, including HTTP applications,
+The `server` workload is a good match for traditional applications, including HTTP applications,
 which have the following implementation:
 
 * Store state locally
@@ -19,7 +19,7 @@ which have the following implementation:
 * Provide multiple network ports or non-HTTP protocols
 * Are not a good match for the `web` workload type
 
-An application using the `tcp` workload type has the following features:
+An application using the `server` workload type has the following features:
 
 * Does not natively autoscale, but you can use these applications with the Kubernetes Horizontal Pod Autoscaler.
 * By default, is exposed only within the cluster using a `ClusterIP` service
