@@ -81,7 +81,7 @@ CA certificate under the `ca_cert_data` key to your `tbs-values.yaml` file. For 
     ```
 
     Configuring this setting adds the CA certificates at build time. To add CA certificates to
-    the built image, see [Adding custom CA certificates to the workload image](tbs-workload-config.md#workload-custom-certs).
+    the built image, see [Add custom CA certificates to the workload image](tbs-workload-config.md#workload-custom-certs).
 
     > **Note:** If `shared.ca_cert_data` is configured in the `tap-values.yaml` file,
     > Tanzu Build Service inherits that value.
