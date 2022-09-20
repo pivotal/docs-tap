@@ -9,18 +9,18 @@ scanning, but also the container image produced.
 This package includes all the capabilities of the Out of the Box Supply Chain With
 Testing, but adds source and image scanning using Grype.
 
-For workloads that use source code or prebuilt images,
-it performs the following:
+Workloads that use source code or prebuilt images
+perform the following:
 
 - Building from source code:
 
   1. Watching a Git Repository or local directory for changes
-  1. Running tests from a developer-provided Tekton pipeline
-  1. Scanning the source code for known vulnerabilities using Grype
-  1. Building a container image out of the source code with Buildpacks
-  1. Scanning the image for known vulnerabilities
-  1. Applying operator-defined conventions to the container definition
-  1. Deploying the application to the same cluster
+  2. Running tests from a developer-provided Tekton pipeline
+  3. Scanning the source code for known vulnerabilities using Grype
+  4. Building a container image out of the source code with Buildpacks
+  5. Scanning the image for known vulnerabilities
+  6. Applying operator-defined conventions to the container definition
+  7. Deploying the application to the same cluster
 
 - Using a prebuilt application image:
 
@@ -31,13 +31,13 @@ it performs the following:
 
 ## <a id="prerequisites"></a> Prerequisites
 
-To make use this supply chain, ensure:
+To make use this supply chain, verify that:
 
 - [CVE scan results appear in Tanzu Application Platform GUI](../tap-gui/plugins/scc-tap-gui.md#scan)
 - Out of the Box Templates is installed.
 - Out of the Box Supply Chain With Testing **is NOT installed**.
 - Out of the Box Supply Chain With Testing and Scanning **is installed**.
-- Developer namespace is configured with the objects per Out of the Box Supply
+- Developer namespace is configured with the objects per Out<!--฿ Only use |per| to mean |for each|, not to mean |in accordance with|. ฿--> of the Box Supply
   Chain With Testing guidance. This supply chain is in addition to the Supply Chain with testing.
 - (Optionally) install [Out of the Box Delivery
   Basic](ootb-delivery-basic.html), if you are willing to deploy the application to the
@@ -66,7 +66,7 @@ _source-test-scan-to-url_.
 As mentioned in the prerequisites section, this example builds on the previous
 Out of the Box Supply Chain examples, so only additions are included here.
 
-To ensure that you have configured the namespace correctly, it is important that
+To ensure that you configured the namespace correctly, it is important that
 the namespace has the objects that you configured in the other supply chain setups:
 
 - **registries secrets**: Kubernetes secrets of type
@@ -80,7 +80,7 @@ the namespace has the objects that you configured in the other supply chain setu
 - **rolebinding**: Grant to the identity the necessary roles
   for creating the resources prescribed by the supply chain.
 
-  For more information on the preceding objects, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
+  For more information about the preceding objects, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
 - **Tekton pipeline**: A pipeline runs whenever the supply chain hits the stage
   of testing the source code.
@@ -98,8 +98,8 @@ code. For more information, see [ScanTemplate section](#scan-template).
 - **image scan template**: A template of how jobs are created for scanning the image
 produced by the supply chain. For more information, see [ScanTemplate section](#scan-template).
 
-Below you will find details about the new objects (compared to Out of the Box
-Supply Chain With Testing).
+In the following section includes details about the new objects, compared to Out of the Box
+Supply Chain With Testing.
 
 
 ### <a id="updates-to-developer-namespace"></a> Updates to the developer namespace
@@ -110,11 +110,11 @@ must exist in the same namespace as the workload. These define:
 - `ScanTemplate`: how to run a scan, allowing one to change details about the
   execution of the scan (either for images or source code)
 
-- `ScanPolicy`: how to evaluate whether the artifacts scanned are compliant,
-  for example allowing one to be either very strict, or restrictive about particular
+- `ScanPolicy`: how to evaluate whether the artifacts scanned are compliant.
+  For example, allowing one to be either very strict, or restrictive about particular
 vulnerabilities found.
 
-The names of the objects **must** match the ones in the example with default installation configurations. This can be overriden either by using the `ootb_supply_chain_testing_scanning` package configuration in the `tap-values.yaml` file or by using workload parameters:
+The names of the objects **must** match the ones in the example with default installation configurations. This is overriden either by using the `ootb_supply_chain_testing_scanning` package configuration in the `tap-values.yaml` file or by using workload parameters:
 
 - To override by using the the `ootb_supply_chain_testing_scanning` package configuration, make the following modification to your `tap-values.yaml` file and perform a [Tanzu Application Platform update](../upgrading.hbs.md#upgrading-tanzu-application-platform).
 
@@ -202,17 +202,15 @@ See [Writing Policy Templates](../scst-scan/policies.md) for more details.
 
 #### <a id="scan-template"></a> ScanTemplate
 
-A ScanTemplate defines the PodTemplateSpec to be used by a Job to run a
-particular scan (image or source). When an ImageScan or SourceScan is
-instantiated by the supply chain, they reference these templates which must
-live in the same namespace as the workload with the names matching the ones
-below:
+A ScanTemplate defines the PodTemplateSpec used by a Job to run a
+particular scan (image or source). When the supply chain initiates an ImageScan or SourceScan, they reference these templates which must
+live in the same namespace as the workload with the names matching the following:
 
 - source scanning (`blob-source-scan-template`)
 - image scanning (`private-image-scan-template`)
 
 If you are targeting a namespace that does not match the one configured in the
-Tanzu Application Platform profiles, for example if `grype.namespace` is not the same as the one
+Tanzu Application Platform profiles, for example, if `grype.namespace` is not the same as the one
 you are writing the workload to, you can install these in such namespace by making use of the
 `tanzu package install` command as described in [Install Supply Chain Security
 Tools - Scan](../scst-scan/install-scst-scan.md):
@@ -235,8 +233,8 @@ to the properties you want to change. For example:
       --namespace YOUR-DEV-NAMESPACE
     ```
 
->**Note:** Although you can customize the templates, if you are just following the Getting Started
->guide then it is recommended you stick with what is provided in the installation of
+>**Note:** Although you can customize the templates, if you are following the Getting Started
+>guide, VMware reccomends that you follow what is provided in the installation of
 >`grype.scanning.apps.tanzu.vmware.com`. This is created in the same namespace as configured by
 >using `grype.namespace` in either Tanzu Application Platform profiles or individual component
 >installation as in the earlier example. For more information, see
@@ -254,8 +252,8 @@ You can configure your developer namespace to include more than one pipeline usi
     metadata:
       name: developer-defined-tekton-pipeline
       labels:
-        apps.tanzu.vmware.com/pipeline: test
-    spec:
+        apps.tanzu<!--฿ The brand is |Tanzu|. ฿-->.vmware<!--฿ |VMware| is preferred. ฿-->.com/pipeline: test
+    spec<!--฿ |specifications| is preferred. ฿-->:
       #...
             steps:
               - name: test
@@ -356,11 +354,11 @@ Create workload:
 ```
 ## <a id="cve-triage-workflow"></a> CVE triage workflow
 
-The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md#define-a-rego-file-for-policy-enforcement) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities that are in violation of the user-defined scan policy. If you triaged these vulnerabilities and identified any false positives, refer to this section to unblock your deployment from these CVEs.
+The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md#define-a-rego-file-for-policy-enforcement) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities that are in violation of the user-defined scan policy. If you triaged these vulnerabilities and identified any false positives, see this section to unblock your deployment from these CVEs.
 
 ### <a id="sc-stop"></a>Confirming Supply Chain stopped due failed policy enforcement
 
-1. Verify if the status of the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan:
+1. Verify if<!--฿ |Verify that| is better. ฿--> the status of the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan:
 
   ```console
   kubectl describe workload WORKLOAD-NAME -n DEVELOPER-NAMESPACE
@@ -389,23 +387,22 @@ See [Query using the Tanzu Insight CLI plug-in](../cli-plugins/insight/query-dat
 During this stage, VMware recommends reviewing information pertaining to the CVEs from sources such as the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
 
 ### <a id="remediation"></a>Remediation
-Once triage is complete, the next step is to remediate the blocking vulnerabilities in a timely manner. Some common methods for CVE remediation are as follows:
+After triage is complete, the next step is to remediate the blocking vulnerabilities quickly. Some common methods for CVE remediation are as follows:
 
 - Updating the affected component to remove the CVE
 - Amending the scan policy with an exception if you decide to accept the CVE and unblock your supply chain
 
 #### <a id="update-component"></a>Updating the affected component
 
-Vulnerabilities that occur in older versions of a package could be resolved in newer versions. Apply a patch by upgrading to a newer version of the package containing the fix.
-
-In addition to the above, you can further adopt security best practices by using your project's package manager tools (e.g. `go mod graph` for projects in Go) to identify transitive or indirect dependencies that may also be affected by CVEs.
+Vulnerabilities that occur in older versions of a package might be resolved in newer versions. Apply a patch by upgrading to a later
+In addition to the earlier, you can further adopt security best practices by using your project's package manager tools (e.g. `go mod graph` for projects in Go) to identify transitive or indirect dependencies that can also be affect CVEs.
 
 #### <a id="amend-scan-policy"></a>Amending the scan policy
 
-If you decide to proceed without remediating the CVE (e.g. when a CVE has been evaluated to be a false positive / when a fix is not yet available; see our [Note on Vulnerability Scanners](../scst-scan/overview.hbs.md#a-idscst-scan-noteaa-note-on-vulnerability-scanners) to learn more about common scanner limitations), the ScanPolicy can be amended to ignore CVE(s). See [Writing Policy Templates](../scst-scan/policies.md) for more details.
+If you decide to proceed without remediating the CVE, for example, when a CVE is evaluated to be a false positive or when a fix is not currently available, you can amend the ScanPolicy to ignore one or more CVEs. For information about common scanner limitations, see [Note on Vulnerability Scanners](../scst-scan/overview.hbs.md#a-idscst-scan-noteaa-note-on-vulnerability-scanners). For information about templates, see [Writing Policy Templates](../scst-scan/policies.md).
 
-Under RBAC, users with the `app-operator-scanning` role (part of the `app-operator` aggregate role), have permission to modify the ScanPolicy. See [Detailed role permissions breakdown](../authn-authz/permissions-breakdown.hbs.md) for more information.
+Under RBAC, users with the `app-operator-scanning` role that is part of the `app-operator` aggregate role, have permission to edit the ScanPolicy. See [Detailed role permissions breakdown](../authn-authz/permissions-breakdown.hbs.md).
 
 ## <a id="scan-images-using-different-scanner"></a> Scan Images using a different scanner
 
-[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integrations for running an image scan using Snyk and VMware Carbon Black. For information on how to install these integrations and how to modify the supply chain template, see [Available Scanners for Supply Chain Security Tools - Scan](../scst-scan/available-scanners.hbs.md).
+[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integrations for running an image scan using Snyk and VMware Carbon Black. For information about how to install these integrations and how to edit the supply chain template, see [Available Scanners for Supply Chain Security Tools - Scan](../scst-scan/available-scanners.hbs.md).
