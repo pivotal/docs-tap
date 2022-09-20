@@ -24,6 +24,11 @@ in development, staging, and production environments.
 It is also intended to help app operators to deploy and administer
 containerized apps in a Kubernetes environment.
 
+## <a id="supported-app-platforms"></a>Supported application platforms
+
+You can extend Application Live View to support multiple app platforms, including,
+but not limited to, Spring Boot, Spring Cloud Gateway, and Steeltoe.
+
 ##<a id="multicloud-compatibility"></a> Multi-cloud compatibility
 
 Using Tanzu platform, you can integrate Application Live View to monitor apps
