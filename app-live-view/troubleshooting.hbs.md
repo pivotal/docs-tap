@@ -268,10 +268,3 @@ Configure the connector as follows:
 tanzu.app.live.view.application.actuator.path=/manage   (manage is the custom actuator path set on the application)
 tanzu.app.live.view.application.actuator.port=8085   (8085 is the custom management server port set on the application)
 ```
-
-Configure the sidecar as follows:
-
-```yaml
-app.live.view.sidecar.application-actuator-path=/manage  (manage is the custom actuator path set on the application)
-app.live.view.sidecar.application-actuator-port=8085  (8085 is the custom management server port set on the application)
-```

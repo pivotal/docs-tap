@@ -28,9 +28,8 @@ containerized apps in a Kubernetes environment.
 
 You can extend Application Live View to support multiple app platforms, including,
 but not limited to, Spring Boot, Spring Cloud Gateway, and Steeltoe.
-Developers can use plug-ins to integrate their existing polyglot apps.
 
-##<a id="multicloud-compatibility"></a> Multi-cloud compatibility
+## <a id="multicloud-compatibility"></a> Multi-cloud compatibility
 
 Using Tanzu platform, you can integrate Application Live View to monitor apps
 running across on-premises, public clouds, and edge.
@@ -39,10 +38,8 @@ which accelerates developer productivity and reduces time-to-market.
 
 ## <a id="deployment"></a> Deployment
 
-There are two modes of deployment for registering apps with the Application Live View
+Below is the mode of deployment for registering apps with the Application Live View
 running on a Kubernetes cluster:
 
 - **Connector**: A component responsible for discovering multiple apps running on
-a Kubernetes cluster.
-- **Sidecar**: A proxy component that is started alongside a single app inside
-the same pod, running on a Kubernetes cluster.
+a Kubernetes cluster. The connector is installed as a DaemonSet by default.
