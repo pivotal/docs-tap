@@ -73,40 +73,44 @@ before installing Tanzu Application Platform, or before upgrading to Kubernetes 
 
 ### Symptom
 
-When using dockerd as the cluster's container runtime, you might see the smart-warmer-image-fetcher pods 
-report a status of `ErrImagePull`. The cause of this error could be due to dockerd's layer depth limitation, 
-in which the maximum supported image layer depth is 125.
+When using dockerd as the cluster's container runtime, you might see the `smart-warmer-image-fetcher` pods
+report a status of `ErrImagePull`.
 
 ### Explanation
 
-To verify that the `ErrImagePull` status is due to dockerd's maximum supported image layer depth, check for event 
-messages containing the words "max depth exceeded":
+This error might be due to dockerd's layer depth limitation, in which the maximum
+supported image layer depth is 125.
 
-   ```console
-   $ kubectl get events -A | grep "max depth exceeded"
-     build-service        73s         Warning     Failed         pod/smart-warmer-image-fetcher-wxtr8     Failed to pull image 
-     "harbor.somewhere.com/aws-repo/build-service:clusterbuilder-full@sha256:065bb361fd914a3970ad3dd93c603241e69cca214707feaa6
-     d8617019e20b65e":  rpc error: code = Unknown desc = failed to register layer: max depth exceeded
-   ```
+To verify that the `ErrImagePull` status is due to dockerd's maximum supported image layer depth,
+check for event messages containing the words `max depth exceeded`. For example:
 
-If you see the words, "max depth exceeded", you have likely encountered dockerd's maximum image layer depth limitation.
+```console
+$ kubectl get events -A | grep "max depth exceeded"
+  build-service        73s         Warning     Failed         pod/smart-warmer-image-fetcher-wxtr8     Failed to pull image
+  "harbor.somewhere.com/aws-repo/build-service:clusterbuilder-full@sha256:065bb361fd914a3970ad3dd93c603241e69cca214707feaa6
+  d8617019e20b65e":  rpc error: code = Unknown desc = failed to register layer: max depth exceeded
+```
 
 ### Solution
 
-To work around this issue, configure your cluster to use containerd or CRI-O as its default container runtime. Please refer to 
-your Kubernetes cluster provider's documentation for specific instructions.
+To work around this issue, configure your cluster to use containerd or CRI-O as its default container runtime.
+For instructions, refer to the following documentation for your Kubernetes cluster provider.
 
-#### AWS
-* https://aws.amazon.com/blogs/containers/amazon-eks-1-21-released/
-* https://eksctl.io/usage/container-runtime/
+For AWS, see:
 
-#### AKS
-* https://docs.microsoft.com/en-us/azure/aks/cluster-configuration#container-runtime-configuration
-* https://techcommunity.microsoft.com/t5/apps-on-azure-blog/dockershim-deprecation-and-aks/ba-p/3055902
+* The [Amazon blog](https://aws.amazon.com/blogs/containers/amazon-eks-1-21-released/)
+* The [eksctl CLI documentation](https://eksctl.io/usage/container-runtime/)
 
-#### GKE
-* https://cloud.google.com/kubernetes-engine/docs/concepts/using-containerd
+For AKS, see:
 
-#### OpenShift
-* https://cloud.redhat.com/blog/containerd-support-for-windows-containers-in-openshift
-* https://docs.openshift.com/container-platform/3.11/crio/crio_runtime.html
+* The [Microsoft Azure documentation](https://docs.microsoft.com/en-us/azure/aks/cluster-configuration#container-runtime-configuration)
+* The [Microsoft Azure blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/dockershim-deprecation-and-aks/ba-p/3055902)
+
+For GKE, see:
+
+* The [GKE documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/using-containerd)
+
+For OpenShift, see:
+
+* The [Red Hat Hybrid Cloud blog](https://cloud.redhat.com/blog/containerd-support-for-windows-containers-in-openshift)
+* The [Red Hat Openshift documentation](https://docs.openshift.com/container-platform/3.11/crio/crio_runtime.html)
