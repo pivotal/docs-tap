@@ -10,7 +10,7 @@ repository location, environment variables, service binding, and so on.
 For more information about workload creation and management, see
 [Command Reference](../cli-plugins/apps/command-reference.md).
 
-The out of the box supply chains supports a range of workload types,
+The Out of the Box Supply Chains support a range of workload types,
 including scalable web applications (`web`), traditional application
 servers (`server`), background applications (`worker`), and serverless
 functions.  You can use a collection of workloads of different types
@@ -18,14 +18,13 @@ to deploy microservices that function as a logical application, or
 deploy your entire application as a single monolith.
 
 If you build your own supply chains, you can define additional
-deployment methods beyond those included in the out of the box
+deployment methods beyond those included in the Out of the Box Supply Chain
 templates.
 
-## Workload types
+## <a id="types"></a> Available Workload types
 
-When using the out of the box supply chain, the
-`apps.tanzu.vmware.com/workload-type` annotation selects which style
-of deployment is suitable for your application. The valid values are:
+When using the Out of the Box Supply Chain, the `apps.tanzu.vmware.com/workload-type` annotation
+selects which style of deployment is suitable for your application. The valid values are:
 
 <table>
 <tr>
@@ -38,9 +37,9 @@ of deployment is suitable for your application. The valid values are:
   <td>Scalable Web Applications</td>
   <td>
     <ul>
-      <li>Scale based on request load
-      <li>Automatically exposed via HTTP Ingress
-      <li>Does not peform background work
+      <li>Scales based on request load
+      <li>Automatically exposed by means of HTTP Ingress
+      <li>Does not perform background work
       <li>Works with Service Bindings
       <li>Stateless
       <li>Quick startup time
@@ -52,9 +51,9 @@ of deployment is suitable for your application. The valid values are:
   <td>Traditional Applications</td>
   <td>
     <ul>
-      <li>Provide HTTP or TCP services on the network
-      <li>Exposed via external Ingress or LoadBalancer settings
-      <li>May perform background work from a queue
+      <li>Provides HTTP or TCP services on the network
+      <li>Exposed by means of external Ingress or LoadBalancer settings
+      <li>Might perform background work from a queue
       <li>Works with Service Bindings
       <li>Fixed scaling, no disk persistence
       <li>Startup time not an issue
@@ -66,7 +65,7 @@ of deployment is suitable for your application. The valid values are:
   <td>Background Applications</td>
   <td>
     <ul>
-      <li>Do not provide network services
+      <li>Does not provide network services
       <li>Not exposed externally as a network service
       <li>Performs background work from a queue
       <li>Works with Service Bindings

@@ -13,12 +13,12 @@ The `worker` workload is a good match for applications that manage their own wor
 by reading from a worker or a background scheduled time source, and don't expose
 any network interfaces.
 
-Applications using the `worker` workload type have the following features:
+An application using the `worker` workload type has the following features:
 
-* Do not natively autoscale, but can be used with the Kubernetes Horizontal Pod Autoscaler
-* Do not expose any network services
-* Use health checks if defined by a convention
-* Use a rolling update pattern by default
+* Does not natively autoscale, but you can use these applications with the Kubernetes Horizontal Pod Autoscaler.
+* Does not expose any network services.
+* Uses health checks if defined by a convention.
+* Uses a rolling update pattern by default.
 
 When creating a workload with `tanzu apps workload create`, you can use the
 `--type=worker` argument to select the `worker` workload type.
@@ -41,7 +41,7 @@ tanzu apps workload update spring-sensors-producer --type=worker
 ```
 
 This shows a diff in the workload label, and prompts you to accept the change.
-After the workload completes the new deployment, you'll notice a few differences:
+After the workload completes the new deployment, there will be a few differences:
 
 * The workload no longer has a URL. Because the workload does not present a web UI,
 this more closely matches the original application intent.

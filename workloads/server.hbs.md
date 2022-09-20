@@ -1,5 +1,7 @@
 # Using Server workloads
 
+This topic describes how to use the `server` workload type.
+
 ## <a id="overview"></a>Overview
 
 The `tcp` workload type allows you to deploy traditional network applications on
@@ -10,19 +12,19 @@ If required, you can use environment-specific LoadBalancer Services or Ingress r
 expose these applications outside the cluster.
 
 The `tcp` workload is a good match for traditional applications, including HTTP applications,
-that are implemented as follows:
+which have the following implementation:
 
 * Store state locally
 * Run background tasks outside of requests
 * Provide multiple network ports or non-HTTP protocols
 * Are not a good match for the `web` workload type
 
-Applications using the `tcp` workload type have the following features:
+An application using the `tcp` workload type has the following features:
 
-* Do not natively autoscale, but can be used with the Kubernetes Horizontal Pod Autoscaler
-* By default are exposed only within the cluster using a `ClusterIP` Service
-* Use health checks if defined by a convention
-* Use a rolling update pattern by default
+* Does not natively autoscale, but you can use these applications with the Kubernetes Horizontal Pod Autoscaler.
+* By default, is exposed only within the cluster using a `ClusterIP` service
+* Uses health checks if defined by a convention
+* Uses a rolling update pattern by default
 
 When creating a workload with `tanzu apps workload create`, you can use the
 `--type=server` argument to select the `server` workload type.
@@ -46,7 +48,7 @@ tanzu apps workload update spring-sensors-consumer-web --type=server
 ```
 
 This shows the change in the workload label, and prompts you to accept the change.
-After the workload completes the new deployment, you'll notice a few differences:
+After the workload completes the new deployment, there will be a few differences:
 
 * The workload no longer advertises a URL. It's available within the cluster as
 `spring-sensors-consumer-web` within the namespace, but you must use
@@ -57,17 +59,18 @@ After the workload completes the new deployment, you'll notice a few differences
     For more information about ingress rules, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
 * The workload no longer autoscales based on request traffic.
-  For the `spring-sensors-consumer-web` workload, this means that it never spawns
+For the `spring-sensors-consumer-web` workload, this means that it never spawns
 a second instance that consumes part of the request queue.
-  Also, it does not scale down to zero instances.
+Also, it does not scale down to zero instances.
 
-## `server`-specific Workload Parameters
+## <a id="params"></a> `server`-specific workload parameters
 
-In addition to the common supply chain parameters, `server` workloads provide the ability to expose one or more network ports from the application to the Kubernetes cluster using the `ports` parameter. This parameter is a list of port objects, similar to a Kubernetes Service specification. If not set, the set of exposed ports will be determined by the applied container conventions in the cluster.
+In addition to the common supply chain parameters, `server` workloads can expose one or more network
+ports from the application to the Kubernetes cluster using the `ports` parameter.
+This parameter is a list of port objects, similar to a Kubernetes service specification.
+If not set, the applied container conventions in the cluster establishes the set of exposed ports.
 
-The following configuration would expose two ports on the Kubernetes cluster under the `my-app` hostname:
-  * One service on port 25, which is redirected to port 2025 on the application
-  * One service on port 8080, which is routed to port 8080 on the application
+The following configuration exposes two ports on the Kubernetes cluster under the `my-app` host name:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -87,12 +90,17 @@ spec:
   ...
 ```
 
-The `ports` parameter can be set from the `tanzu apps workload create` command line as `--param-yaml 'ports=[{"port": 8080}]'`.
+This snippet configures:
+
+* One service on port 25, which is redirected to port 2025 on the application.
+* One service on port 8080, which is routed to port 8080 on the application.
+
+You can set the `ports` parameter from the `tanzu apps workload create` command line as `--param-yaml 'ports=[{"port": 8080}]'`.
 
 The following values are valid within the `ports` argument:
 
 | field | value |
 |-------|-------|
-| `port` | The port on which the application should be exposed to the rest of the cluster |
+| `port` | The port on which the application is exposed to the rest of the cluster |
 | `containerPort` | The port on which the application listens for requests. Defaults to `port` if not set. |
 | `name` | A human-readable name for the port. Defaults to `port` if not set. |
