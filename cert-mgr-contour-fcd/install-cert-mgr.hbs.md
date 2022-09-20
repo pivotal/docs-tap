@@ -209,7 +209,7 @@ To install Contour from the Tanzu Application Platform package repository:
       name: contour
       namespace: tap-install
     spec:
-      serviceAccountName: tap-install-sa
+      serviceAccountName: contour-tap-install-sa
       packageRef:
         refName: contour.tanzu.vmware.com
         versionSelection:
