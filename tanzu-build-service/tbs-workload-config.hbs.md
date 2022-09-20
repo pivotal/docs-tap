@@ -142,3 +142,13 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
   - Harbor has the form `"my-project/supply-chain"`.
   - Docker Hub has the form `"my-dockerhub-user"`.
   - Google Cloud Registry has the form `"my-project/supply-chain"`.
+
+## <a id="workload-custom-certs"></a> Adding custom CA certificates to the workload image
+
+There are two ways to configure runtime CA certificates for Tanzu Build Service.
+
+(Recommended) Use the [Paketo CA Certificates Buildpack](https://github.com/paketo-buildpacks/ca-certificates) and service bindings to add CA certificates to the system truststore at build or run time.
+For more information about using the buildpack, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-config-config-buildpack-kp.html#ca-certificates).
+
+Use a CustomStack to embed the CA certificates into one or both of the stack images.
+For more information about using CustomStacks, see the [VMware Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.6/vmware-tanzu-build-service/GUID-managing-custom-stacks.html)
