@@ -388,13 +388,11 @@ See [Query using the Tanzu Insight CLI plug-in](../cli-plugins/insight/query-dat
 
 During this stage, VMware recommends reviewing information pertaining to the CVEs from sources such as the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
 
-#### <a id="remediation"></a>Remediation
+### <a id="remediation"></a>Remediation
 Once triage is complete, the next step is to remediate the blocking vulnerabilities in a timely manner. Some common methods for CVE remediation are as follows:
 
 - Updating the affected component to remove the CVE
 - Amending the scan policy with an exception if you decide to accept the CVE and unblock your supply chain
-
-For more information on common vulnerability scanner limitations, see [Supply Chain Security Tools - Scan](../scst-scan/overview.hbs.md#scst-scan-note).
 
 #### <a id="update-component"></a>Updating the affected component
 
@@ -404,10 +402,10 @@ In addition to the above, you can further adopt security best practices by using
 
 #### <a id="amend-scan-policy"></a>Amending the scan policy
 
-If you decide to proceed without remediating the CVE (e.g. when a CVE has been evaluated to be a false positive / when a fix is not yet available), the ScanPolicy can be amended to ignore CVE(s). See [Writing Policy Templates](../scst-scan/policies.md) for more details.
+If you decide to proceed without remediating the CVE (e.g. when a CVE has been evaluated to be a false positive / when a fix is not yet available), see our [Note on Vulnerability Scanners](../scst-scan/overview.hbs.md#a-idscst-scan-noteaa-note-on-vulnerability-scanners) to learn more about common scanner limitations), the ScanPolicy can be amended to ignore CVE(s). See [Writing Policy Templates](../scst-scan/policies.md) for more details.
 
 Under RBAC, users with the `app-operator-scanning` role (part of the `app-operator` aggregate role), have permission to modify the ScanPolicy. See [Detailed role permissions breakdown](../authn-authz/permissions-breakdown.hbs.md) for more information.
 
-## <a id="scan-image-using-snyk"></a> Scan Image using Snyk
+## <a id="scan-images-using-different-scanner"></a> Scan Images using a different scanner
 
-[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integration for running an image scan using Snyk and VMware Carbon Black. For information on how to install this integration and how to modify the supply chain template, see [Available Scanners for Supply Chain Security Tools - Scan](../scst-scan/available-scanners.hbs.md).
+[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integrations for running an image scan using Snyk and VMware Carbon Black. For information on how to install these integrations and how to modify the supply chain template, see [Available Scanners for Supply Chain Security Tools - Scan](../scst-scan/available-scanners.hbs.md).
