@@ -28,7 +28,7 @@ selects which style of deployment is suitable for your application. The valid va
 
 <table>
 <tr>
-  <th></th>
+  <th>Type</th>
   <th>Description</th>
   <th>Indicators</th>
 </tr>

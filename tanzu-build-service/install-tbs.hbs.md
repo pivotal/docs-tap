@@ -68,9 +68,10 @@ To install Tanzu Build Service by using the Tanzu CLI:
         >For more information, see [Use Secret References for registry credentials](#install-secret-refs)
         >or [Use AWS IAM authentication for registry credentials](#tbs-tcli-install-ecr).
 
-1. (Optional) Tanzu Build Service will use the default system certificates to access your registry.
+1. (Optional) Tanzu Build Service uses the default system certificates to access your registry.
 To configure additional CA certificates when connecting to your registry, add the your PEM-encoded
 CA certificate under the `ca_cert_data` key to your `tbs-values.yaml` file. For example:
+
     ```yaml
     ---
     kp_default_repository: "REPO-NAME"
@@ -79,11 +80,11 @@ CA certificate under the `ca_cert_data` key to your `tbs-values.yaml` file. For 
     ca_cert_data: "CA-CERT-CONTENTS"
     ```
 
->**note:** If `shared.ca_cert_data` is configured in `tap-values`, Tanzu Build Service will inherit the
-> value.
+    Configuring this setting adds the CA certificates at build time. To add CA certificates to
+    the built image, see [Adding custom CA certificates to the workload image](tbs-workload-config.md#workload-custom-certs).
 
->**Note:** This only adds the CA certificates to the build time, if you want to add CA certificates to
-> the built image, see [Adding custom CA certificates to the workload image](tbs-workload-config.md#workload-custom-certs)
+    > **Note:** If `shared.ca_cert_data` is configured in the `tap-values.yaml` file,
+    > Tanzu Build Service inherits that value.
 
 1. (Optional) Tanzu Build Service is bootstrapped with the `lite` set of dependencies.
 To configure `full` dependencies, add the key-value pair `exclude_dependencies: true`
