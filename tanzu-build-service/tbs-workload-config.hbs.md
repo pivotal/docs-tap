@@ -147,7 +147,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 
 There are two ways to configure runtime CA certificates for Tanzu Build Service.
 
-- **(Recommended) Use the [Paketo CA Certificates Buildpack](https://github.com/paketo-buildpacks/cacertificates) and service bindings.**
+- **(Recommended) Use the [Paketo CA Certificates Buildpack](https://github.com/paketo-buildpacks/ca-certificates) and service bindings.**
 This adds CA certificates to the system truststore at build or run time.
 For more information about using the buildpack, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-config-config-buildpack-kp.html#ca-certificates).
 
