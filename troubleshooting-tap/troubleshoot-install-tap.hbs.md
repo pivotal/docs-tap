@@ -282,13 +282,13 @@ _Installing the Tanzu CLI_.
 
 ## <a id='contour-error-kind'></a> Ingress is broken on Kind cluster
 
-Your the Contour installation cannot provide ingress to workloads when installed on a Kind cluster without a loadbalancer solution.
+Your Contour installation cannot provide ingress to workloads when installed on a Kind cluster without a loadbalancer solution.
 Your Kind cluster was created with port mappings, as described in the [Kind install guide](../learning-center/local-install-guides/deploying-to-kind.hbs.md).
 
 **Explanation**
 
 In TAP 1.3.0, the default configuration for `contour.envoy.service.type` now
-defaults to `LoadBalancer`. However, in order to for the Envoy pods to be
+defaults to `LoadBalancer`. However, in order for the Envoy pods to be
 accessed through the port mappings on your Kind cluster, the service must be of
 type `NodePort`.
 
