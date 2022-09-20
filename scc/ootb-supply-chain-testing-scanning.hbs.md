@@ -402,7 +402,7 @@ In addition to the above, you can further adopt security best practices by using
 
 #### <a id="amend-scan-policy"></a>Amending the scan policy
 
-If you decide to proceed without remediating the CVE (e.g. when a CVE has been evaluated to be a false positive / when a fix is not yet available), see our [Note on Vulnerability Scanners](../scst-scan/overview.hbs.md#a-idscst-scan-noteaa-note-on-vulnerability-scanners) to learn more about common scanner limitations), the ScanPolicy can be amended to ignore CVE(s). See [Writing Policy Templates](../scst-scan/policies.md) for more details.
+If you decide to proceed without remediating the CVE (e.g. when a CVE has been evaluated to be a false positive / when a fix is not yet available; see our [Note on Vulnerability Scanners](../scst-scan/overview.hbs.md#a-idscst-scan-noteaa-note-on-vulnerability-scanners) to learn more about common scanner limitations), the ScanPolicy can be amended to ignore CVE(s). See [Writing Policy Templates](../scst-scan/policies.md) for more details.
 
 Under RBAC, users with the `app-operator-scanning` role (part of the `app-operator` aggregate role), have permission to modify the ScanPolicy. See [Detailed role permissions breakdown](../authn-authz/permissions-breakdown.hbs.md) for more information.
 
