@@ -1,4 +1,4 @@
-# Known Issues
+# Known Issues with Tanzu Dev Tools for IntelliJ
 
 This topic describes known issues with VMware Tanzu Developer Tools for IntelliJ.
 
