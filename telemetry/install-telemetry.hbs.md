@@ -1,9 +1,9 @@
-# Install Tap Telemetry independent from Tanzu Application Platform profiles
+# Installing Tanzu Application Platform Telemetry
 
-This document describes how to install Tap Telemetry
+This topic describes how to install Tanzu Application Platform Telemetry
 from the Tanzu Application Platform package repository.
 
->**Note:** VMware recommends installing Tap Telemetry by using Tanzu Application Platform Profiles.  See [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md) and [Installing the Tanzu Application Platform Package and Profiles](../install.hbs.md).  Use the following instructions if you do not want to use a profile to install the Tap Telemetry package.
+>**Note:** VMware recommends installing Tanzu Application Platform Telemetry by using Tanzu Application Platform Profiles.  See [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md) and [Installing the Tanzu Application Platform Package and Profiles](../install.hbs.md) for more information.  Use the following instructions if you do not want to use a profile to install the Tap Telemetry package.
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -15,7 +15,7 @@ Before installing Tap Telemetry:
 
 ## <a id='install'></a>Install
 
-To install Tap Telemetry:
+To install Tanzu Application Platform Telemetry:
 
 1. List version information for the package by running:
 
@@ -23,7 +23,7 @@ To install Tap Telemetry:
     tanzu package available list tap-telemetry.tanzu.vmware.com --namespace tap-install
     ```
 
-   For example:
+    For example:
 
     ```console
     $ tanzu package available list tap-telemetry.tanzu.vmware.com --namespace tap-install
@@ -32,15 +32,15 @@ To install Tap Telemetry:
       tap-telemetry.tanzu.vmware.com  0.3.1
     ```
 
-1. (Optional) List out all the available deployment configuration options:
+1. (Optional) List all the available deployment configuration options:
 
     ```console
     tanzu package available get tap-telemetry.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
 
-   Where `VERSION` is the your package version number. For example, `0.3.1`.
+    Where `VERSION` is the your package version number. For example, `0.3.1`.
 
-   For example:
+    For example:
 
     ```console
     $ tanzu package available get tap-telemetry.tanzu.vmware.com/0.3.1 --values-schema -n tap-install
@@ -51,17 +51,15 @@ To install Tap Telemetry:
    installed_for_vmware_internal_use             string  Indication of if the deployment is for vmware internal user. Accepted values are ['true', 'false']
     ```
 
-1. (Optional) Modify one of the deployment configurations by creating a configuration YAML with the
-   custom configuration values you want. For example, if you want to provide your Customer Entitlement Number, then create a `tap-telemetry-values.yaml` and configure the
-   `customer_entitlement_account_number` property.
+1. (Optional) Modify the deployment configurations by creating a configuration YAML with the desired custom configuration values. 
+For example, if you want to provide your Customer Entitlement Number, create a `tap-telemetry-values.yaml` and configure the `customer_entitlement_account_number` property:
 
     ```yaml
     ---
     customer_entitlement_account_number: "12345"
     ```
 
-   See [Deployment details and configuration](deployment-details.hbs.md) for
-   more information about configuration options.
+    See [Deployment details and configuration](deployment-details.hbs.md) for more information about the configuration options.
 
 1. Install the package by running:
 
@@ -73,13 +71,13 @@ To install Tap Telemetry:
       --values-file tap-telemetry-values.yaml
     ```
 
-   Where:
+    Where:
 
-    * `--values-file` is an optional flag. Only use it to customize the deployment
+    - `--values-file` is an optional flag. Only use it to customize the deployment
       configuration.
-    * `VERSION` is the package version number. For example, `0.3.1`.
+    - `VERSION` is the package version number. For example, `0.3.1`.
 
-   For example:
+    For example:
 
     ```console
     $ tanzu package install tap-telmetry \

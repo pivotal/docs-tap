@@ -1,39 +1,34 @@
-# Deployment details and configuration
+# Deployment details and configurations of Tanzu Application Platform Telemetry
 
 ## <a id='what-deploy'></a>What is deployed
 
 The installation creates the following in your Kubernetes cluster:
 
-* A deployment
-* A Pod
-* A namespace called `tap-telemetry`.
-* A service account with read-write privileges named `informer`, and a corresponding secret for the service account. It's bound to a ClusterRole named `tap-telemetry-admin`.
-* A Role named `tap-telemetry-informer` that is used to get the deployment id to send it as sender id in heartbeat metrics
-* A RoleBinding named `tap-telemetry-informer-admin` that binds the `informer` serviceaccount to the `tap-telemetry-informer` role
-* A ClusterRole named `tap-telemetry-admin` that has access to each Tap component to gather information from.
-* A ClusterRoleBinding named `tap-telemetry-informer-admin` that binds the `informer` servicceaccount to the `tap-telemetry-informer` cluster role
+- A deployment.
+- A pod.
+- A namespace `tap-telemetry`.
+- A service account with read-write privileges named `informer`, and a corresponding secret for the service account. This secret is bound to a ClusterRole named `tap-telemetry-admin`.
+* A Role `tap-telemetry-informer` to retrieve the deployment id, which is sent as sender id in heartbeat metrics.
+* A RoleBinding `tap-telemetry-informer-admin` that binds the `informer` serviceaccount to the `tap-telemetry-informer` role.
+* A ClusterRole `tap-telemetry-admin` that has access to each Tanzu Application Platform component to gather information from.
+* A ClusterRoleBinding `tap-telemetry-informer-admin` that binds the `informer` servicceaccount to the `tap-telemetry-informer` cluster role.
 
 ## <a id='configuration'></a> Deployment configuration
 
-If you're deploying with Tanzu Application Platform profiles, in `tap-values.yaml`, put:
+If you deploy Telemetry with Tanzu Application Platform profiles, append the following in `tap-values.yaml`:
 
 ```yaml
 tap_telemetry:
   customer_entitlement_account_number: "12345"
 ```
 
-Repeat these steps for the Build, Run, and View Cluster documentation
-* https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-multicluster-installing-multicluster.html
-
-See more information about these values below.
-
-### <a id='user-ean'></a>Customer Entitlement Number
-
-The `customer_entitlement_account_number` is set to differentiate the data from your cluster and everyone else. Configure this property in your `tap-telemetry-values.yaml`:
+Where `customer_entitlement_account_number` is the unique identifer to differentiate the data from your cluster and the data from other clusters. 
+You can configure this property in your `tap-telemetry-values.yaml`:
 
 ```yaml
 customer_entitlement_account_number: "12345"
 ```
 
-This will create a config map named `vmware-telemetry-identifiers` in the `vmware-system-telemetry` namespace which will be used internally to properly log your information.
+It creates a config map named `vmware-telemetry-identifiers` in the `vmware-system-telemetry` namespace, which is used internally to log your information.
 
+Repeat these steps for the Build, Run, and View Cluster. See [Install multicluster Tanzu Application Platform profiles](../multicluster/installing-multicluster.hbs.md) for more information.
