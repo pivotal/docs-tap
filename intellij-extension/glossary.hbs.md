@@ -1,4 +1,4 @@
-# Glossary of terms
+# Glossary of Terms
 
 This page lists some common terms that are used throughout the Tanzu Developer Tools on IntelliJ
 documentation, and within the extension itself.
