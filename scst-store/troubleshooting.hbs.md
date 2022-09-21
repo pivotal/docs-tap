@@ -71,25 +71,45 @@ but misses the `SecretImport` for the RBAC Auth token.
 
 ### Solution
 
-As a workaround, apply the following YAML to the cluster running Scan and then
-perform a rolling restart:
+Follow the AWS documentation to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) before installing Store or before upgrading to K8s 1.23.
 
->**Note:** In some cases, you must update the namespaces before performing the rolling start.
+## <a id="certificate-expiries"></a> Certificate Expiries
 
-```yaml
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretImport
-metadata:
-  name: store-auth-token
-  namespace: scan-link-system
-spec:
-  fromNamespace: metadata-store-secrets
+### Symptom
+
+The Insight CLI or the Scan Controller fails to connect to the Store
+
+The logs of the metadata-store-app pod shows the following error:
+```console
+$ kubectl logs deployment/metadata-store-app -c metadata-store-app -n metadata-store
+...
+2022/09/12 21:22:07 http: TLS handshake error from 127.0.0.1:35678: write tcp 127.0.0.1:9443->127.0.0.1:35678: write: broken pipe
+...
 ```
 
-The `Secret` for the RBAC Auth token is created and the scan can be re-run.
-A rolling restart includes running the following:
+or
 
-```console
-kubectl rollout restart deployment.apps/scan-link-controller-manager -n scan-link-system
+The logs of metadata-store-db shows the following error:
+```
+$ kubectl logs statefulset/metadata-store-db -n metadata-store
+...
+2022-07-20 20:02:51.206 UTC [1] LOG:  database system is ready to accept connections
+2022-09-19 18:05:26.576 UTC [13097] LOG:  could not accept SSL connection: sslv3 alert bad certificate
+...
+```
+
+### Explanation
+
+Cert Manager rotates the certificates, but the metadata-store and the postgres db are unaware of the change and are using the old certificates.
+
+### Solution
+
+If you are seeing `TLS handshake error` in the metadata-store-app logs, delete the metadata-store-app pod and wait for it to come back up.
+```
+kubectl delete pod metadata-store-app-xxxx -n metadata-store
+```
+
+If you are seeing `could not accept SSL connection` in the metadata-store-db logs, delete the metadata-store-db pod and wait for it to come back up.
+```
+kubectl delete pod metadata-store-db-0 -n metadata-store
 ```
