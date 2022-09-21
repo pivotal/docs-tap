@@ -284,6 +284,8 @@ The `ServiceAccount` of the authorization server has a `Role` with the following
 
 This example requests an authorization server with two token signature keys and two identity providers.
 
+*Note:* The label used for matching to ClientRegistrations has to be unique across namespaces.
+
 ```yaml
 ---
 apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
@@ -292,7 +294,7 @@ metadata:
   name: authserver-sample
   namespace: default
   labels:
-    name: authserver-sample
+    identifier: authserver-identifier
     sample: "true"
   annotations:
     sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
