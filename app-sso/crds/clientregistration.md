@@ -85,7 +85,7 @@ status:
     apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
     issuerURI: http://authserver-sample.default
     kind: AuthServer
-    name: authserver-sample
+    identifier: authserver-identifier
     namespace: default
   binding:
     name: clientregistration-sample

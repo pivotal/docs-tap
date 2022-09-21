@@ -76,7 +76,7 @@ the impact of the limitations:
     - scanning running software in test, stage, and production environments at a regular cadence.
     - generating accurate provenance at any level so that scanners have a complete picture of the dependencies to scan. 
     This is where a software bill of materials (SBoM) comes into play. To help you automate this process, VMware Tanzu Build Service, 
-    leveraging Cloud Native Buildpacks, generates an SBoM for Java and Node.js based projects. 
+    leveraging Cloud Native Buildpacks, generates an SBoM for buildpack-based projects. 
     Since this SBoM is generated during the image building stage, it is more accurate and complete than one generated earlier or later in the release life cycle. 
     This is because it can highlight dependencies introduced at the time of build that might introduce potential for compromise.
 - Scan by using multiple scanners to maximize CVE coverage.

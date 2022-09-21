@@ -36,6 +36,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md)
 - [Install Tanzu Build Service](tanzu-build-service/install-tbs.md)
 - [Install Tekton](tekton/install-tekton.md)
+- [Install Telemetry](telemetry/install-telemetry.hbs.md)
 
 
 ## <a id='verify'></a> Verify the installed packages

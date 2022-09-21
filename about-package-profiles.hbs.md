@@ -173,6 +173,14 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
 
+- **[Tanzu Application Platform Telemetry](telemetry/overview.hbs.md)** 
+
+  Tanzu Application Platform Telemetry is a set of objects that collect data about the usage of Tanzu Application Platform and send it back to VMware for product improvements. A benefit of remaining enrolled in telemetry and identifying your company during Tanzu Application Platform installation is that VMware can provide your 
+  organization with usage reports about Tanzu Application Platform. See [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports) for more information about enrolling in telemetry reports.
+
+  >**Note:** You can opt out of telemetry collection by following the 
+  instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).
+
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.3
 
 You can deploy Tanzu Application Platform through predefined profiles, each containing various packages, or you can install  packages individually. The profiles are designed to allow the Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customer use cases, but serve as a starting point to allow for further customization.
@@ -862,9 +870,6 @@ Grype provides standard CVE scanning support for a wide variety of languages.
 However, if you use Tanzu Build Service to build application images by using a buildpack
 that produces a Bill of Materials in the Syft format,
 Tanzu Application Platform scanning can provide a more comprehensive scan of the application image.
-
-<sup>\****</sup> Users can leverage the open source Paketo Ruby buildpack for building
-Ruby applications with Tanzu Build Service.
 
 ## <a id='install'></a> Installing the Tanzu Application Platform
 

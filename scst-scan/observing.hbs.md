@@ -103,7 +103,7 @@ If a private image scan is triggered and the secret is not configured, the scan 
 Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
 ```
 
-#### <a id="disable-scst-store"></a> Deactivate Supply Chain Security Tools - Store
+#### <a id="deactivate-scst-store"></a> Deactivate Supply Chain Security Tools - Store
 
 Supply Chain Security Tools - Store is a prerequisite for installing Supply Chain Security Tools - Scan.
 If you install without the Supply Chain Security Tools - Store, you must edit the

@@ -1,4 +1,4 @@
-# Pinniped compatibility
+# Pinniped Compatibility
 
 This topic covers the compatibility details of [Pinniped](https://github.com/vmware-tanzu/pinniped)
 in GitHub.
