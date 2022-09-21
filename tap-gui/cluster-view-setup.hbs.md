@@ -153,7 +153,7 @@ To do so:
 API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
 
     ```console
-    CLUSTER_CA_CERTIFICATES=$(kubectl config view --raw -o jsonpath='{.clusters[0].cluster.certificate-authority-data}')
+    CLUSTER_CA_CERTIFICATES=$(kubectl config view --raw -o jsonpath='{.clusters[?(@.name=="**PROVIDE CLUSTER NAME**")].cluster.certificate-authority-data}')
 
     echo CLUSTER_CA_CERTIFICATES: $CLUSTER_CA_CERTIFICATES
     ```
