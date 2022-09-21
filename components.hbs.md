@@ -42,6 +42,8 @@ into this Tanzu Application Platform documentation site.
 
 - [Tanzu Application Platform GUI](tap-gui/about.md)
 
+- [Telemetry](telemetry/overview.hbs.md)
+
 - [VMware Tanzu Build Service](tanzu-build-service/tbs-about.md)
   - [VMware Tanzu Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html)
 

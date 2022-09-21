@@ -249,6 +249,9 @@ scanning:
 
 grype:
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+
+tap_telemetry:
+  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (optional) identify data for creation of TAP usage reports
 ```
 
 Where:
@@ -279,6 +282,7 @@ This field is only required if you use a private repository, otherwise, leave it
 This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
+- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) The Entitlement Account Number (EAN) is a unique identifier VMware assigns to its customers.  TAP telemetry can use this number to identify data that belongs to a particular customers so that we can prepare usage reports that summarize usage.  Documentation to locate the number can be found [here](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2)
 
 If you use AWS, the default settings creates a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
