@@ -2,20 +2,18 @@
 
 This document describes how to install API Auto Registration from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use the iterate, run, or full profile to install packages.
-The "iterate", "run", and "full" profiles include API Auto Registration by default.
+>**Note:** The "iterate", "run", and "full" profiles include API Auto Registration by default. 
+> If your cluster is one of these profiles, skip the install and proceed to the [Usage section](usage.md).
+> For more information about profiles, see [About TAP profiles](../about-package-profiles.md#profiles-and-packages).
 
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+## <a id='prereqs'></a>TAP Prerequisites
 
-## <a id='prereqs'></a>Prerequisites
-
-Before installing API Auto Registration:
-
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+Before installing API Auto Registration, complete all prerequisites to install Tanzu Application Platform. 
+For more information, see [TAP Prerequisites](../prerequisites.md).
 
 ## <a id='install'></a>Install
 
-To install API Auto Registration:
+To install the API Auto Registration package:
 
 1. List version information for the package by running:
 
@@ -35,12 +33,6 @@ To install API Auto Registration:
 
 1. (Optional) Gather values schema:
 
-    List version information for the package by running:
-
-    ```console
-    tanzu package available list apis.apps.tanzu.vmware.com --namespace tap-install
-    ```
-
     Display values schema of the package:
 
     ```console
@@ -56,14 +48,14 @@ To install API Auto Registration:
 
     Retrieving package details for apis.apps.tanzu.vmware.com/0.1.0... 
     KEY                        DEFAULT                                       TYPE     DESCRIPTION
+    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS connections with a custom CA
+    cluster_name               dev                                           string   Name of the cluster that will be used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
+    tap_gui_url                http://server.tap-gui.svc.cluster.local:7000  string   FQDN URL for TAP GUI
     replicas                   1                                             integer  Number of controller replicas to deploy
     resources.limits.cpu       500m                                          string   CPU limit of the controller
     resources.limits.memory    500Mi                                         string   Memory limit of the controller
     resources.requests.cpu     20m                                           string   CPU request of the controller
     resources.requests.memory  100Mi                                         string   Memory request of the controller
-    tap_gui_url                http://server.tap-gui.svc.cluster.local:7000  string   FQDN URL for TAP GUI
-    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS connections with a custom CA
-    cluster_name               dev                                           string   Name of the cluster that will be used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
     logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging
     ```
 
@@ -79,9 +71,11 @@ To install API Auto Registration:
     kubectl get secret tap-values -n tap-install -o jsonpath="{.data['tap-values\.yaml']}" | base64 -d | yq '.tap_gui.app_config.app.baseUrl'
     ``` 
 
-1. (Optional) Create `api-auto-registration-values.yaml`
+1. (Optional but recommended) Create `api-auto-registration-values.yaml`
 
     If you'd like to overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file that looks like this:
+
+    This `cluster_name` field will be used as the lifecycle attribute for API entities created by the controller in TAP GUI.
 
     ```yaml
     tap_gui_url: https://tap-gui.view-cluster.com
