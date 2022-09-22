@@ -40,9 +40,9 @@ Follow [this workaround](../known-issues/cidr-ranges.md), adding IP ranges for t
 ## Common issues
 
 ### Misconfigured `clientSecret`
+
 #### Problem:
-- When attempting to sign in you see `This commonly happens due to an incorrect [client_secret].`, the client secret of
-an identity provider is misconfigured.
+- When attempting to sign in, you see `This commonly happens due to an incorrect [client_secret].` It might be because the client secret of an identity provider is misconfigured.
 
 #### Solution:
 Validate the `spec.OpenId.clientSecretRef`.
