@@ -284,7 +284,7 @@ The `ServiceAccount` of the authorization server has a `Role` with the following
 
 This example requests an authorization server with two token signature keys and two identity providers.
 
-*Note:* The label used for matching to ClientRegistrations has to be unique across namespaces.
+>**Note:** The label used for matching to ClientRegistrations must be unique across namespaces.
 
 ```yaml
 ---
