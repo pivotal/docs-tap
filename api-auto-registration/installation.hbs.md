@@ -75,7 +75,6 @@ To install the API Auto Registration package:
 
     If you'd like to overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file that looks like this:
 
-    This `cluster_name` field will be used as the lifecycle attribute for API entities created by the controller in TAP GUI.
 
     ```yaml
     tap_gui_url: https://tap-gui.view-cluster.com

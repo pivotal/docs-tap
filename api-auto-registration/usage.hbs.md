@@ -1,7 +1,18 @@
 # API Auto Registration Usage
 
-On a high level, API Auto Registration requires users to perform two steps: 1. generate API spec 2. create APIDescriptor CR.
+This document describes how to use API Auto Registration.
+
+>**Note:** The "run" profiles requires you to [first update the install values](#update-values) before proceeding with the next steps.
+> For "iterate" and "full" profiles, the default values work but you may prefer to update them anyway.
+> For more information about profiles, see [About TAP profiles](../about-package-profiles.md#profiles-and-packages).
+
+On a high level, API Auto Registration requires the following to be present: 1. a location exposing a dynamic or static API 
+spec 2. an APIDescriptor CR with that location created in the cluster.
 You may additionally need to setup different install values for api-auto-registration package or CORS for OpenAPI spec.
+
+How to configure
+   - [different cluster name, TAP GUI url or CA Cert values for api-auto-registration](#update-values)
+   - [CORS for viewing OpenAPI Spec in TAP GUI](#cors)
 
 How to generate OpenAPI Spec
    - [by skaffolding a new project using App Accelerator Template](#using-app-accelerator-template)
@@ -12,9 +23,30 @@ How to create APIDescriptor CR
    - [using Custom Supply Chains](#using-custom-supply-chain)
    - [using other GitOps processes or Manually](#using-gitops-manually)
 
-How to configure
-   - [different cluster name, TAP GUI url or CA Cert values for api-auto-registration](#update-values)
-   - [CORS for OpenAPI Spec](#cors)
+## <a id='update-values'></a>Update install values for api-auto-registration package
+1. Create `api-auto-registration-values.yaml`
+
+   If you'd like to overwrite the default values, create or update your `api-auto-registration-values.yaml` file that has the following fields:
+
+    ```yaml
+    tap_gui_url: https://tap-gui.view-cluster.com
+    cluster_name: staging-us-east
+    ca_cert_data:  |
+        -----BEGIN CERTIFICATE-----
+        MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
+        ...
+        9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
+        -----END CERTIFICATE-----
+    ```
+
+2. Update the package using the Tanzu CLI
+
+    ```console
+    tanzu package installed update api-auto-registration
+    --package-name apis.apps.tanzu.vmware.com
+    --namespace tap-install
+    --version $VERSION
+    --values-file api-auto-registration-values.yaml
 
 ## <a id='using-app-accelerator-template'></a>Using App Accelerator Template
 
@@ -112,31 +144,6 @@ Using your GitOps process (or manually), you will need to stamp out an APIDescri
 The APIDescriptor will need all the required fields to successfully reconcile.
 
 For more info on APIDescriptors, check out the [Key Concepts section](key-concepts.md)
-
-## <a id='update-values'></a>Update install values for api-auto-registration package
-1. Create `api-auto-registration-values.yaml`
-
-    If you'd like to overwrite the default values, create or update your `api-auto-registration-values.yaml` file that has the following fields:
-
-    ```yaml
-    tap_gui_url: https://tap-gui.view-cluster.com
-    cluster_name: staging-us-east
-    ca_cert_data:  |
-        -----BEGIN CERTIFICATE-----
-        MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA
-        ...
-        9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
-        -----END CERTIFICATE-----
-    ```
-
-2. Update the package using the Tanzu CLI
-
-    ```console
-    tanzu package installed update api-auto-registration 
-    --package-name apis.apps.tanzu.vmware.com
-    --namespace tap-install
-    --version $VERSION
-    --values-file api-auto-registration-values.yaml
 
 ## <a id='cors'></a>Setting up CORS for OpenAPI Specs
 

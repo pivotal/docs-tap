@@ -165,7 +165,7 @@ docs.vmware.com is built.
         - [Additional resources](authn-authz/additional.md)
             - [Additional resources](authn-authz/additional.md)
             - [Install default roles independently](authn-authz/install.md)
-    - [API Auto Registration](api-auto-registration/about.md)
+    - [API Auto Registration for VMware Tanzu](api-auto-registration/about.md)
         - [Overview of API Auto Registration](api-auto-registration/about.md)
         - [Key Concepts](api-auto-registration/key-concepts.md)
         - [Install API Auto Registration](api-auto-registration/installation.md)

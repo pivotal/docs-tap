@@ -31,7 +31,8 @@ spec:
 Many of the above fields will result in specific behavior within TAP GUI.
 - The system and owner are copied to the API entity created. You may have to separately create and add to the catalog the [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) and [Group](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group) kind. 
 - The namespace where the APIDescriptor CR is applied gets used as the namespace for API entity in TAP GUI. This results in the API entity's name, system and owner to all be under that namespace.
-- To explicitly use a system or owner in a different namespace, you can specify that in the respective field `system my-namespace/my-other system` or `owner: my-namespace/my-other-team`.
+- To explicitly use a system or owner in a different namespace, you can specify that in the respective field `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team`.
+- If the system or owner you are trying to link doesn't have explicit namespace specified, you can qualify them with `default` namespace, e.g.: `system: default/my-default-system`
 
 ### <a id='absolute-url'></a>With an Absolute URL
 
@@ -57,6 +58,8 @@ spec:
 
 You can also use an object reference instead of hard coding the url. This can point to a HTTPProxy, Knative Service, or Ingress.
 
+#### <a id='with-httpproxy-ref'></a>With an HTTPPRoxy Object Ref
+
 Below is an example yaml that points to an HTTPProxy from which our controller extracts the `.spec.virtualhost.fqdn` as the baseURL.
 
 ```yaml
@@ -79,6 +82,8 @@ spec:
         namespace: my-namespace # optional
 ```
 
+#### <a id='with-knative-ref'></a>With a Knative Service Object Ref
+
 If you want to use a Knative Service instead, here is an example from which our controller reads the `status.url` as the baseURL
 
 ```yaml
@@ -91,7 +96,9 @@ If you want to use a Knative Service instead, here is an example from which our 
         namespace: my-namespace # optional
 ```
 
-Lastly, if you want to use an Ingress instead, here is an example from which our controller reads the URL from the jsonPath specified. When jsonPath is left empty, our controller will read the `"{.spec.rules[0].host}"` as the URL
+#### <a id='with-ingress-ref'></a>With an Ingress Object Ref
+
+If you want to use an Ingress instead, here is an example from which our controller reads the URL from the jsonPath specified. When jsonPath is left empty, our controller will read the `"{.spec.rules[0].host}"` as the URL
 
 ```yaml
 # all other fields similar to the above example
