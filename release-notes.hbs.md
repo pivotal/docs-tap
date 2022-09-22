@@ -6,6 +6,18 @@ In release notes, this condition hides content that describes an unreleased patc
 {{/unless}}
 This topic contains release notes for Tanzu Application Platform v1.3
 
+{{#unless vars.hide_content}}
+## <a id='1-3-1'></a> v1.3.1
+
+**Release Date**: MONTH DAY, 2022
+
+### <a id='1-3-1-security-fixes'></a> Security fixes
+
+### <a id='1-3-1-new-features'></a> Resolved issues
+
+### <a id='1-3-1-known-issues'></a> Known issues
+
+{{/unless}}
 
 ## <a id='1-3-0'></a> v1.3.0
 
@@ -55,7 +67,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
 
-- Added new default role `service-operator`. 
+- Added new default role `service-operator`.
 
 ### Breaking changes
 
@@ -112,7 +124,7 @@ with the following changes:
     # ...
   ```
 
-New versions of AppSSO are available from the Tanzu Application Platform package repository. See [AppSSO documentation](app-sso/platform-operators/upgrades.md) for detailed upgrade steps. 
+New versions of AppSSO are available from the Tanzu Application Platform package repository. See [AppSSO documentation](app-sso/platform-operators/upgrades.md) for detailed upgrade steps.
 You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](upgrading.hbs.md) for more information.
 
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
@@ -126,9 +138,9 @@ You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a
   - Emojis are printed to distinguish each section.
   - A new column to show the resource stamped out by the supply chain was also added.
   - Deliverable information is being surfaced whenever it's available.
-  - Pods status is now same as Kubectl so, for example, if there are init containers, when `workload get` is used, the `Init` status of these will be printed in the output. 
+  - Pods status is now same as Kubectl so, for example, if there are init containers, when `workload get` is used, the `Init` status of these will be printed in the output.
 - Local source changes will be updated/uploaded only if there is an actual change to the code.
-- Maven artifact is also supported via flags. It can be set through complex params or the new flags. Check [workload apply maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#a-idapply-maven-artifacta---maven-artifact) for more info about their usage. 
+- Maven artifact is also supported via flags. It can be set through complex params or the new flags. Check [workload apply maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#a-idapply-maven-artifacta---maven-artifact) for more info about their usage.
 - There are some environment variable that can be set as default values for apps plugin flags. These are:
   * `--type`: TANZU_APPS_TYPE
   * `--registry-ca-cert`: TANZU_APPS_REGISTRY_CA_CERT
@@ -256,7 +268,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
-- Flag `azure-container-registry-config` that was shown in help output but was not part of apps plugin flags, is not shown anymore. 
+- Flag `azure-container-registry-config` that was shown in help output but was not part of apps plugin flags, is not shown anymore.
 - `workload list --output` was not showing all workloads in namespace. This was fixed and now all workloads are listed.
 - When creating a workload from local source in Windows, the image would be created with unstructured directories and would flatten all file names. This was fixed with an `imgpkg` upgrade.
 - When uploading a source image, if the namespace provided is not valid or doesn't exist, the image won't be uploaded and the workload won't be created.
@@ -338,16 +350,16 @@ after the binaries are built and packaged as images.
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
-- **Unable to view workloads on the panel when connected to GKE cluster:** 
-When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke) 
+- **Unable to view workloads on the panel when connected to GKE cluster:**
+When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke)
 
 - **Warning Notification when cancelling action:**
 When executing `Tanzu: Debug Start`, `Tanzu: Live Update Start`, or `Tanzu: Apply` the user is presented with a quick pick list when there are multiple options. If the user cancels, by either the `ESC` key or clicking outside the list, the user will be presented with a warning notification indicating that no workloads or tiltfiles could be found. This message can be ignored.
 
 #### <a id="intelj-ext-known-issues"></a>Intellij Extension
 
-- **Unable to view workloads on the panel when connected to GKE cluster:** 
-When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke) 
+- **Unable to view workloads on the panel when connected to GKE cluster:**
+When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke)
 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
