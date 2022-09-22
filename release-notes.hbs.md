@@ -6,6 +6,19 @@ In release notes, this condition hides content that describes an unreleased patc
 {{/unless}}
 This topic contains release notes for Tanzu Application Platform v1.1
 
+{{#unless vars.hide_content}}
+## <a id='1-1-3'></a> v1.1.3
+
+**Release Date**: MONTH DAY, 2022
+
+### <a id='1-1-3-security-fixes'></a> Security fixes
+
+### <a id='1-1-3-new-features'></a> Resolved issues
+
+### <a id='1-1-3-known-issues'></a> Known issues
+
+{{/unless}}
+
 ## <a id='1-1-2'></a> v1.1.2
 
 **Release Date**: June 14, 2022
@@ -69,7 +82,7 @@ after the binaries are built and packaged as images.
 **Blob Source Scan is reporting wrong source URL:**
 - When running a Source Scan of a blob compressed file, Supply Chain Security Tools - Scan looks for a `.git` directory present in the files to extract information that is useful for the report sent to the Supply Chain Security Tools - Store deployment.
 
-- Workaround - The following workarounds fix this issue: 
+- Workaround - The following workarounds fix this issue:
 
   1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
   1. Configure your SourceScan or Workload to connect by using HTTPS to the repository instead of using SSH.
