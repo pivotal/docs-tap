@@ -10,14 +10,14 @@ For example, in the default namespace
 ```bash
 tanzu apps workload list
 
-NAME                APP                READY                   AGE
-nginx4              <empty>            Ready                   7d9h
-petclinic2          <empty>            Ready                   29h
-rmq-sample-app      <empty>            Ready                   164m
-rmq-sample-app4     <empty>            WorkloadLabelsMissing   29d
-spring-pet-clinic   <empty>            Unknown                 166m
-spring-petclinic2   spring-petclinic   Unknown                 29d
-spring-petclinic3   spring-petclinic   Ready                   29d
+NAME                TYPE      APP                READY                   AGE
+nginx4              web       <empty>            Ready                   7d9h
+petclinic2          web       <empty>            Ready                   29h
+rmq-sample-app      web       <empty>            Ready                   164m
+rmq-sample-app4     web       <empty>            WorkloadLabelsMissing   29d
+spring-pet-clinic   web       <empty>            Unknown                 166m
+spring-petclinic2   web       spring-petclinic   Unknown                 29d
+spring-petclinic3   <empty>   spring-petclinic   Ready                   29d
 ```
 
 ## >Workload List flags
@@ -29,16 +29,16 @@ Shows workloads in all namespaces in cluster.
 ```bash
 tanzu apps workload list -A
 
-NAMESPACE   NAME                APP                READY                         AGE
-default     nginx4              <empty>            Ready                         7d9h
-default     petclinic2          <empty>            Ready                         30h
-default     rmq-sample-app      <empty>            Ready                         179m
-default     rmq-sample-app4     <empty>            WorkloadLabelsMissing         29d
-default     spring-pet-clinic   <empty>            Unknown                       3h1m
-default     spring-petclinic2   spring-petclinic   Unknown                       29d
-default     spring-petclinic3   spring-petclinic   Ready                         29d
-nginx-ns    nginx2              <empty>            TemplateRejectedByAPIServer   8d
-nginx-ns    nginx4              <empty>            TemplateRejectedByAPIServer   8d
+NAMESPACE   TYPE   NAME                APP                READY                         AGE
+default     web    nginx4              <empty>            Ready                         7d9h
+default     web    petclinic2          <empty>            Ready                         30h
+default     web    rmq-sample-app      <empty>            Ready                         179m
+default     web    rmq-sample-app4     <empty>            WorkloadLabelsMissing         29d
+default     web    spring-pet-clinic   <empty>            Unknown                       3h1m
+default     web    spring-petclinic2   spring-petclinic   Unknown                       29d
+default     web    spring-petclinic3   spring-petclinic   Ready                         29d
+nginx-ns    web    nginx2              <empty>            TemplateRejectedByAPIServer   8d
+nginx-ns    web    nginx4              <empty>            TemplateRejectedByAPIServer   8d
 ```
 
 ### <a id="list-app"></a> `--app`
@@ -48,9 +48,9 @@ Shows workloads which app is the one specified in the command.
 ```bash
 tanzu apps workload list --app spring-petclinic
 
-NAME                READY     AGE
-spring-petclinic2   Unknown   29d
-spring-petclinic3   Ready     29d
+NAME                TYPE   READY     AGE
+spring-petclinic2   web    Unknown   29d
+spring-petclinic3   web    Ready     29d
 ```
 
 ### <a id="list-namespace"></a> `--namespace`, `-n`
@@ -60,10 +60,10 @@ Lists all the workloads present in the specified namespace.
 ```bash
 tanzu apps workload list -n my-namespace
 
-NAME     APP       READY                         AGE
-app1     <empty>   TemplateRejectedByAPIServer   8d
-app2     <empty>   Ready                         8d
-app3     <empty>   Unknown                       8d
+NAME   TYPE   APP       READY                         AGE
+app1   web    <empty>   TemplateRejectedByAPIServer   8d
+app2   web    <empty>   Ready                         8d
+app3   web    <empty>   Unknown                       8d
 ```
 
 ### <a id="list-output"></a> `--output`, `-o`

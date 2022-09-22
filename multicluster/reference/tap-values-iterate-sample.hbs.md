@@ -7,6 +7,9 @@ profile: iterate
 
 ceip_policy_disclosed: true
 
+shared:
+  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
+
 buildservice:
   kp_default_repository: "TAP-REGISTRY-SERVER/build-service"
   kp_default_repository_username: "TAP-REGISTRY-USER"
@@ -37,6 +40,14 @@ contour:
 
 cnrs:
   domain_name: "TAP-ITERATE-CNRS-DOMAIN"
+
+appliveview_connector:
+  backend:
+    sslDisabled: TRUE-OR-FALSE-VALUE
+    ingressEnabled: true
+    host: appliveview.VIEW-CLUSTER-INGRESS-DOMAIN
+tap_telemetry:
+  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (optional) identify data for creation of TAP usage reports
 ```
 
 Where:
@@ -48,3 +59,5 @@ Where:
 - `TANZUNET-REGISTRY-PASSWORD` is your password of the VMware Tanzu Network.
 - `TAP-GITHUB-TOKEN` is your GitHub personal access token.
 - `TAP-ITERATE-CNRS-DOMAIN` is the iterate cluster CNRS domain.
+- `VIEW-CLUSTER-INGRESS-DOMAIN` is the subdomain you setup on the View profile cluster. This matches the value key `appliveview.ingressDomain` or `shared.ingress_domain` on the view cluster. Include the default host name `appliveview.` ahead of the domain.
+- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See [Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.

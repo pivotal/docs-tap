@@ -1,4 +1,4 @@
-# Integrating Live Hover by using Spring Boot Tools (Experimental)
+# Integrating Live Hover Using Spring Boot Tools (Experimental)
 
 For more information about this feature, see the **Live application information hovers** section of
 [VS Code documentation for Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot).

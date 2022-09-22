@@ -5,7 +5,7 @@ This topic describes how to configure your workload with Tanzu Build Service pro
 Tanzu Build Service builds registry images from source code for Tanzu Application Platform.
 You can configure these build configurations by using a workload.
 
->**Note:** Tanzu Build Service is only applicable to the build process.
+>**Note:** Tanzu Build Service is only applicable to the build process<!--฿ Avoid nominalization: |while deleting| is better than |during the deletion process|. ฿-->.
 >Configurations, such as environment variables and service bindings, might require
 >a different process for runtime.
 
@@ -14,16 +14,16 @@ You can configure these build configurations by using a workload.
 You can configure build-time service bindings for Tanzu Build Service.
 
 Tanzu Build Service supports using the Service Binding Specification for Kubernetes for application builds.
-For more information, see the [service binding specification for Kubernetes](https://github.com/k8s-service-bindings/spec)
+For more information, see the [service binding specification for Kubernetes](https://github.com/k8s-service-bindings/spec)<!--฿ The link should likely be a title or |THIRD-PARTY-NAME documentation|. ฿-->
 in GitHub.
 
-Service binding configuration is specific to the buildpack that is used to build the app.
+Service binding configuration is specific to the buildpack that is used to<!--฿ Redundant? ฿--> build the app.
 For more information about configuring buildpack service bindings for the buildpack you are using,
 see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
 
 To configure a service binding for a Tanzu Application Platform workload, follow these steps:
 
-1. Create a YAML file named `service-binding-secret.yaml` for a Secret as follows:
+1. Create a YAML file named `service-binding-secret.yaml` for a Secret<!--฿ |secret| is the preferred casing. ฿--> as follows:
 
     ```yaml
     apiVersion: v1
@@ -142,3 +142,14 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
   - Harbor has the form `"my-project/supply-chain"`.
   - Docker Hub has the form `"my-dockerhub-user"`.
   - Google Cloud Registry has the form `"my-project/supply-chain"`.
+
+## <a id="workload-custom-certs"></a> Add custom CA certificates to the workload image
+
+There are two ways to configure runtime CA certificates for Tanzu Build Service.
+
+- **(Recommended) Use the [Paketo CA Certificates Buildpack](https://github.com/paketo-buildpacks/ca-certificates) and service bindings.**
+This adds CA certificates to the system truststore at build or run time.
+For more information about using the buildpack, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-config-config-buildpack-kp.html#ca-certificates).
+
+- **Use a CustomStack to embed the CA certificates into one or both of the stack images.**
+For more information about using CustomStacks, see the [VMware Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-custom-stacks.html)

@@ -22,10 +22,10 @@ Convention supports the creation of custom conventions to meet the unique operat
 and requirements of an organization.
 
 Before jumping into the details of creating a custom convention, you can view two
-distinct components of Cartographer Conventions: 
+distinct components of Cartographer Conventions:
 
 - [Convention Controller](#convention-controller)
-- [Convention Server](#convention-server) 
+- [Convention Server](#convention-server)
 
 ### <a id='convention-server'></a>Convention server
 
@@ -251,33 +251,37 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
 
 ## <a id='define-conv-behavior'></a> Define the convention behavior
 
-Any property or value within the PodTemplateSpec or OCI image metadata associated with a workload is used to define the criteria for applying conventions. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation. The following are a few examples. 
+Any property or value within the PodTemplateSpec or OCI image metadata associated with a workload is used to define the criteria for applying conventions. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation. The following are a few examples.
 
 ### <a id='match-crit-labels-annot'></a> Matching criteria by labels or annotations
 
-The `conventions.carto.run/v1alpha1` API allows convention authors to make use of the `selectorTarget` field which complements the `ClusterPodConvention` matchers to specify whether to consider labels on either one of the following available options 
+The `conventions.carto.run/v1alpha1` API allows convention authors to use the `selectorTarget` field which complements the `ClusterPodConvention` matchers to specify whether to consider labels on either one of the following available options:
+
 + PodTemplateSpec
-  ```yaml
-    ...
-    template:
-      metadata:
-        labels:
-          awesome-label: awesome-value
-        annotations:
-          awesome-annotation: awesome-value
-    ...
-  ```
+
+    ```yaml
+      ...
+      template:
+        metadata:
+          labels:
+            awesome-label: awesome-value
+          annotations:
+            awesome-annotation: awesome-value
+      ...
+    ```
 + PodIntent
-```yaml
-    ...
-    kind: PodIntent
-    metadata:
-      name: test-pod
-      labels:
-        environment: production
+
+    ```yaml
         ...
-```
-The `selectorTarget` field can be configured on the ClusterPodConvention as follows
+        kind: PodIntent
+        metadata:
+          name: test-pod
+          labels:
+            environment: production
+            ...
+    ```
+The `selectorTarget` field can be configured on the ClusterPodConvention as follows:
+
 ```yaml
 ...
 spec:
@@ -288,11 +292,11 @@ spec:
     certificate:
       name: sample-cert
       namespace: sample-conventions
-    clientConfig: 
+    clientConfig:
       <admissionregistrationv1.WebhookClientConfig>
 ```
-If a value is not provided for this optional field while using the `conventions.carto.run/v1alpha1` API, the default value is set to `PodTemplateSpec` without the conventions author having to explicitly do so. The `selectorTarget` field is not available in the `conventions.apps.tanzu.vmware.com/v1alpha1` API and labels specified in the `PodTemplateSpec` will be considered if a matcher is defined in a `ClusterPodConvention` while referencing this deprecated API.
- 
+If you do not provide a value for this optional field while using the `conventions.carto.run/v1alpha1` API, the default value is set to `PodTemplateSpec` without the conventions author explicitly doing so. The `selectorTarget` field is not available in the `conventions.apps.tanzu.vmware.com/v1alpha1` API and labels specified in the `PodTemplateSpec` are considered if a matcher is defined in a `ClusterPodConvention` while referencing this deprecated API.
+
 
 ### <a id='match-criteria-env-var'></a> Matching criteria by environment variables
 

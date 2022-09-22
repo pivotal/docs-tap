@@ -1,6 +1,7 @@
 # Set up services for consumption by developers
 
-This how-to guide walks service and application operators through setting up services for consumption by Tanzu Application Platform developers. For the sake of example, you'll set up the RabbitMQ Cluster Kubernetes operator, but the process is the same for any other services you wish to setup.
+This how-to guide walks service operators and application operators through setting up services for consumption by application developers. For the sake of example, you'll set up the RabbitMQ Cluster Kubernetes operator, but the process is the same for any other services you wish to setup.
+
 You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
 
 ## <a id="you-will"></a>What you will do
@@ -99,7 +100,7 @@ To set up a service:
     >
     > MySQL: [Connecting an Application to a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-creating-service-bindings.html)
 
-1. Make the new API seen as claimable to application operators.
+1. Make the new API discoverable to application operators.
 
     1. In a file named `rabbitmqcluster-clusterinstanceclass.yaml`, create a `ClusterInstanceClass`
     that refers to the new service, and set any additional metadata. For example:
@@ -156,28 +157,9 @@ To create a service instance:
     > over who has access to what. However, this is not a strict requirement.
     > You can create both service instances and application workloads in the same namespace.
 
-2.  Find the list of service instance classes available on your cluster by running:
-
-    ```console
-    tanzu service classes list
-    ```
-
-    Expected output:
-
-    ```console
-    tanzu service classes list
-
-     NAME      DESCRIPTION
-     rabbitmq  It's a RabbitMQ cluster!
-    ```
-
-    > **Note:** If you see `No service types found.`, ensure you have completed the
-    > steps in [Set up a service](#stk-set-up) earlier in this walkthrough.
-
 1. Create a `RabbitmqCluster` service instance.
 
-    1. Create a file named `rmq-1-service-instance.yaml` by using the `APIVERSION` and
-    `KIND` from the output of the `tanzu service types list` command:
+    1. Create a file named `rmq-1-service-instance.yaml`:
 
         ```yaml
         # rmq-1-service-instance.yaml
@@ -251,7 +233,7 @@ For this part of the walkthrough, you assume the role of the **application opera
 Resource claims in Tanzu Application Platform are a powerful concept that serve many purposes.
 Arguably their most important role is to enable application operators to request
 services that they can use with their application workloads without having
-to create and manage the services themselves. For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-service_resource_claims-terminology_and_apis.html).
+to create and manage the services themselves. For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-resource_claims-api_docs.html).
 
 In cases where service instances are running in the same namespace as
 application workloads, you do not have to create a claim. You can bind to the service instance directly.
@@ -303,7 +285,7 @@ There are more service use cases not covered in this getting started guide. See 
   <th><strong>Short Description</strong></th>
   <tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html">Consuming AWS RDS on Tanzu Application Platform</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html">Consuming AWS RDS on Tanzu Application Platform</a>
     </td>
     <td>
       Using the Controllers for Kubernetes (ACK) to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
@@ -311,7 +293,7 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html">Consuming AWS RDS on Tanzu Application Platform with Crossplane</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html">Consuming AWS RDS on Tanzu Application Platform with Crossplane</a>
     </td>
     <td>
       Using <a href="https://crossplane.io/">Crossplane</a> to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
@@ -319,7 +301,7 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_gcp_sql_with_config_connector.html">Consuming Google Cloud SQL on Tanzu Application Platform with Config Connector</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_config_connector.html">Consuming Google Cloud SQL on Tanzu Application Platform with Config Connector</a>
     </td>
     <td>
       Using GCP Config Connector to provision a Cloud SQL instance and consume it from a Tanzu Application Platform workload.<br>
@@ -327,7 +309,7 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html">Consuming Google Cloud SQL on Tanzu Application Platform with Crossplane</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html">Consuming Google Cloud SQL on Tanzu Application Platform with Crossplane</a>
     </td>
     <td>
       Using <a href="https://crossplane.io/">Crossplane</a> to provision a Cloud SQL instance and consume it from a Tanzu Application Platform workload.<br>
@@ -335,7 +317,7 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-direct_secret_references.html">Direct Secret References</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-direct_secret_references.html">Direct Secret References</a>
     </td>
     <td>
       Binding to services running external to the cluster, for example, an in-house oracle database.<br>
@@ -344,14 +326,14 @@ There are more service use cases not covered in this getting started guide. See 
   </tr>
   <tr>
     <td>
-      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a> (Experimental)
+      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a> (Experimental)
     </td>
     <td>Separates application workloads from service instances across dedicated clusters.</td>
   </tr>
 </table>
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
-[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-overview.html)
+[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-overview.html)
 
 ## Next steps
 

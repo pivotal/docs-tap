@@ -10,9 +10,68 @@ repository location, environment variables, service binding, and so on.
 For more information about workload creation and management, see
 [Command Reference](../cli-plugins/apps/command-reference.md).
 
-Tanzu Application Platform supports a range of workload types,
+The Out of the Box Supply Chains support a range of workload types,
 including scalable web applications (`web`), traditional application
-servers (`tcp`), background applications (`queue`), and serverless functions.
-You can use a collection of workloads of different types to deploy
-microservices that function as a logical application, or deploy your
-entire application as a single monolith.
+servers (`server`), background applications (`worker`), and serverless
+functions.  You can use a collection of workloads of different types
+to deploy microservices that function as a logical application, or
+deploy your entire application as a single monolith.
+
+If you build your own supply chains, you can define additional
+deployment methods beyond those included in the Out of the Box Supply Chain
+templates.
+
+## <a id="types"></a> Available Workload types
+
+When using the Out of the Box Supply Chain, the `apps.tanzu.vmware.com/workload-type` annotation
+selects which style of deployment is suitable for your application. The valid values are:
+
+<table>
+<tr>
+  <th>Type</th>
+  <th>Description</th>
+  <th>Indicators</th>
+</tr>
+<tr>
+  <td><code>web<code></td>
+  <td>Scalable Web Applications</td>
+  <td>
+    <ul>
+      <li>Scales based on request load
+      <li>Automatically exposed by means of HTTP Ingress
+      <li>Does not perform background work
+      <li>Works with Service Bindings
+      <li>Stateless
+      <li>Quick startup time
+    </ul>
+  </td>
+</tr>
+<tr>
+  <td><code>server<code></td>
+  <td>Traditional Applications</td>
+  <td>
+    <ul>
+      <li>Provides HTTP or TCP services on the network
+      <li>Exposed by means of external Ingress or LoadBalancer settings
+      <li>Might perform background work from a queue
+      <li>Works with Service Bindings
+      <li>Fixed scaling, no disk persistence
+      <li>Startup time not an issue
+    </ul>
+  </td>
+</tr>
+<tr>
+  <td><code>worker<code></td>
+  <td>Background Applications</td>
+  <td>
+    <ul>
+      <li>Does not provide network services
+      <li>Not exposed externally as a network service
+      <li>Performs background work from a queue
+      <li>Works with Service Bindings
+      <li>Fixed scaling, no disk persistence
+      <li>Startup time not an issue
+    </ul>
+  </td>
+</tr>
+</table>

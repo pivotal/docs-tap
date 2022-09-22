@@ -5,6 +5,8 @@ The following is the YAML file sample for the build-profile:
 ```yaml
 profile: build
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
+shared:
+  kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
@@ -30,6 +32,8 @@ grype:
 scanning:
   metadataStore:
     url: "" # Deactivate embedded integration since it's deprecated
+tap_telemetry:
+  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (optional) identify data for creation of TAP usage reports
 ```
 
 Where:
@@ -57,6 +61,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
 credentials to pull an image from the registry for scanning.
+- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See [Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.
 
 > **Note:** When you install Tanzu Application Platform, it is bootstrapped with the `lite`
 > set of dependencies, including buildpacks and stacks, for application builds.

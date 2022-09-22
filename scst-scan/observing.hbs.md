@@ -103,7 +103,7 @@ If a private image scan is triggered and the secret is not configured, the scan 
 Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
 ```
 
-#### <a id="disable-scst-store"></a> Deactivate Supply Chain Security Tools - Store
+#### <a id="deactivate-scst-store"></a> Deactivate Supply Chain Security Tools - Store
 
 Supply Chain Security Tools - Store is a prerequisite for installing Supply Chain Security Tools - Scan.
 If you install without the Supply Chain Security Tools - Store, you must edit the
@@ -150,13 +150,13 @@ configurations to deactivate the Store:
 
 #### <a id="ca-not-found-in-secret"></a> Could not find CA in Secret
 
-  If you encounter the following issue, it might be due to not exporting  "app-tls-cert" to the correct namespace:
+  If you encounter the following issue, it might be due to not exporting  `app-tls-cert` to the correct namespace:
 
   ```console
   {"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
   ```
 
-  Include the following in your tap-values.yaml:
+  Include the following in your `tap-values.yaml`:
 
   ```yaml
   metadata_store:

@@ -4,8 +4,16 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 ## <a id='TAP-packages'></a> Tanzu Application Platform components
 
-- **[API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)**
+- **[API Auto Registration](api-auto-registration/about.md)**
+  When users deploy a workload that exposes an API, they want that API to automatically show in TAP GUI
+  without needing any other manual steps.
 
+  API Auto Registration is an automated workflow that will can use a supply chain to create and manage a
+  k8s Custom Resource (CR) of type APIDescriptor, a controller to reconcile the CR and update the API entity
+  in TAP GUI to achieve automated API registration from workloads. You can also use API Auto Registration
+  without supply chains by directly applying an APIDescriptor to the cluster.
+
+- **[API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)**
   API portal for VMware Tanzu enables API consumers to find APIs they can use in their own
   applications.
 
@@ -165,6 +173,14 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
 
+- **[Tanzu Application Platform Telemetry](telemetry/overview.hbs.md)** 
+
+  Tanzu Application Platform Telemetry is a set of objects that collect data about the usage of Tanzu Application Platform and send it back to VMware for product improvements. A benefit of remaining enrolled in telemetry and identifying your company during Tanzu Application Platform installation is that VMware can provide your 
+  organization with usage reports about Tanzu Application Platform. See [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports) for more information about enrolling in telemetry reports.
+
+  >**Note:** You can opt out of telemetry collection by following the 
+  instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).
+
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.3
 
 You can deploy Tanzu Application Platform through predefined profiles, each containing various packages, or you can install  packages individually. The profiles are designed to allow the Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customer use cases, but serve as a starting point to allow for further customization.
@@ -203,6 +219,21 @@ The following table lists the packages contained in each profile:
    <td><strong>View</strong>
    </td>
   </tr>
+  <tr>
+   <td>API Auto Registration
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
   <tr>
    <td>API Portal
    </td>
@@ -716,7 +747,7 @@ Tanzu Application Platform components.
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -814,7 +845,7 @@ Tanzu Application Platform components.
   <tr>
    <td>Ruby
    </td>
-   <td><sup>\*\*\*\*</sup>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -824,7 +855,7 @@ Tanzu Application Platform components.
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -832,16 +863,13 @@ Tanzu Application Platform components.
 </table>
 
 <sup>\**</sup> Tanzu Developer Tooling refers to the developer conventions that enable debugging
-and Live Update functionality in inner loop.
+and Live Update functionality in the inner loop.
 
 <sup>\***</sup> Extended Scanning Coverage: Supply Chain Security Tools - Scan and Store using Anchore Grype. Out of the Box Tanzu Application Platform scanning leverages a tool by Anchore called Grype.
 Grype provides standard CVE scanning support for a wide variety of languages.
-However, if you use Tanzu Build Service to build application images using a buildpack
+However, if you use Tanzu Build Service to build application images by using a buildpack
 that produces a Bill of Materials in the Syft format,
 Tanzu Application Platform scanning can provide a more comprehensive scan of the application image.
-
-<sup>\****</sup> Users can leverage the open source Paketo Ruby buildpack for building
-Ruby applications with Tanzu Build Service.
 
 ## <a id='install'></a> Installing the Tanzu Application Platform
 

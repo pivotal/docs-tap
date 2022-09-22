@@ -62,3 +62,66 @@ This is because the cluster where Store is deployed does not have `storageclass`
     # set the storage class as default
     kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
     ```
+
+## <a id="eks-1-23-volume"></a> Builds fail due to volume errors on EKS running Kubernetes version 1.23
+
+### Symptom
+
+Installing Store on or upgrading an existing EKS cluster to Kubernetes version 1.23
+
+Database pod is showing:
+
+```console
+running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for PVC "postgres-db-pv-claim"
+```
+
+### Explanation
+
+This is due to the [CSIMigrationAWS in this K8s version version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to use EBS volumes.
+
+Store uses the default storage class which uses EBS volumes by default on EKS.
+
+### Solution
+
+Follow the AWS documentation to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) before installing Store or before upgrading to K8s 1.23.
+
+## <a id="certificate-expiries"></a> Certificate Expiries
+
+### Symptom
+
+The Insight CLI or the Scan Controller fails to connect to the Store
+
+The logs of the metadata-store-app pod shows the following error:
+```console
+$ kubectl logs deployment/metadata-store-app -c metadata-store-app -n metadata-store
+...
+2022/09/12 21:22:07 http: TLS handshake error from 127.0.0.1:35678: write tcp 127.0.0.1:9443->127.0.0.1:35678: write: broken pipe
+...
+```
+
+or
+
+The logs of metadata-store-db shows the following error:
+```
+$ kubectl logs statefulset/metadata-store-db -n metadata-store
+...
+2022-07-20 20:02:51.206 UTC [1] LOG:  database system is ready to accept connections
+2022-09-19 18:05:26.576 UTC [13097] LOG:  could not accept SSL connection: sslv3 alert bad certificate
+...
+```
+
+### Explanation
+
+Cert Manager rotates the certificates, but the metadata-store and the postgres db are unaware of the change and are using the old certificates.
+
+### Solution
+
+If you are seeing `TLS handshake error` in the metadata-store-app logs, delete the metadata-store-app pod and wait for it to come back up.
+```
+kubectl delete pod metadata-store-app-xxxx -n metadata-store
+```
+
+If you are seeing `could not accept SSL connection` in the metadata-store-db logs, delete the metadata-store-db pod and wait for it to come back up.
+```
+kubectl delete pod metadata-store-db-0 -n metadata-store
+```

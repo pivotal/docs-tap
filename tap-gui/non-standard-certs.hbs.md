@@ -11,8 +11,9 @@ You do this by using overlays with PackageInstalls. There are two ways to implem
 
 > **Note:** The overlay previously available in this section is no longer necessary.
 
-As of Tanzu Application Platform {{ vars.tap_version }}, the value `ca_cert_data` is supported at the
-top level of its values file. Any number of newline-delimited certificates in PEM format are accepted.
+As of Tanzu Application Platform {{ vars.tap_version }}, the value `ca_cert_data` is supported
+at the top level of its values file. Any number of newline-delimited certificates in PEM format are accepted.
+
 For example:
 
 ```yaml
@@ -56,28 +57,35 @@ Tanzu Application Platform GUI pod's environment variable as `NODE_TLS_REJECT_UN
 When the value equals `0`, certificate validation is deactivated for TLS connections.
 
 To do this, use the `package_overlays` key in the Tanzu Application Platform values file.
-For instructions, see [Customizing Package Installation](../customize-package-installation.md).
+For instructions, see [Customizing Package Installation](../customize-package-installation.hbs.md).
 
-The following is an example overlay to deactivate TLS:
+The following YAML is an example `Secret` containing an overlay to deactivate TLS:
 
 ```yaml
-#@ load("@ytt:overlay", "overlay")
-#@overlay/match by=overlay.subset({"kind":"Deployment", "metadata": {"name": "server", "namespace": "NAMESPACE"}}),expects="1+"
----
-spec:
-  template:
+apiVersion: v1
+kind: Secret
+metadata:
+  name: deactivate-tls-overlay
+  namespace: tap-install
+stringData:
+  deactivate-tls-overlay.yml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind":"Deployment", "metadata": {"name": "server", "namespace": "NAMESPACE"}}),expects="1+"
+    ---
     spec:
-      containers:
-        #@overlay/match by=overlay.all,expects="1+"
-        #@overlay/match-child-defaults missing_ok=True
-        - env:
-          - name: NODE_TLS_REJECT_UNAUTHORIZED
-            value: "0"
+      template:
+        spec:
+          containers:
+            #@overlay/match by=overlay.all,expects="1+"
+            #@overlay/match-child-defaults missing_ok=True
+            - env:
+              - name: NODE_TLS_REJECT_UNAUTHORIZED
+                value: "0"
 ```
 
-Where `NAMESPACE` is the namespace in which your Tanzu Application Platform GUI instance is deployed.
-For example, `tap-gui`.
+Where `NAMESPACE` is the namespace in which your Tanzu Application Platform GUI instance is
+deployed. For example, `tap-gui`.
 
 ## <a id='next-steps'></a>Next steps
 
-- [Configuring Application Accelerator](../application-accelerator/configuration.html)
+- [Configuring Application Accelerator](../application-accelerator/configuration.hbs.md)
