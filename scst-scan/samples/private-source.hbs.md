@@ -22,9 +22,10 @@ spec:
 ```
 
 Where:
-* `URL` is the git clone repository via ssh
-* `REVISION` is the commit hash
-* `KNOWN_HOSTS` are the [SSH client stored host keys](https://www.ssh.com/academy/ssh/host-key#known-host-keys)
+
+- `URL` is the git clone repository using ssh.
+- `REVISION` is the commit hash.
+- `KNOWN_HOSTS` are the [SSH client stored host keys](https://www.ssh.com/academy/ssh/host-key#known-host-keys).
 
 For example:
 ```yaml

@@ -37,3 +37,35 @@ spec:
 ```
 
 > 👉 Learn more about [secretgen-controller and its APIs](https://github.com/vmware-tanzu/carvel-secretgen-controller).
+
+## Common issues
+
+### Misconfigured redirect URI
+
+#### Problem:
+You see `Error: [invalid_request] OAuth 2.0 Parameter: redirect_uri` when signing in. 
+
+#### Solution:
+The `redirectUri` of this `ClientRegistration` must refer to the URI of the registered Workload.
+It does not refer to the URI of the AuthServer.
+
+### Misconfigured identity provider clientSecret
+
+#### Problem:
+- When attempting to sign in, you see `client.samples.localhost.identity.team redirected you too many times.` It might be because the client secret of an identity provider is misconfigured.
+- If you have access to the authserver logs, verify if there is an entry with the text
+`"error":"[invalid_client] Client authentication failed: client_secret"`.
+
+#### Solution:
+- Validate the secret referenced by the `clientSecretRef` for this particular identity provider in your `authserver.spec`.
+
+### Missing scopes
+
+#### Problem:
+When attempting to fetch data after signing in to your application by using AppSSO, you see `[invalid_scope] OAuth 2.0 Parameter: scope`.
+
+#### Solution:
+Add the required scopes into your `ClientRegistration` yaml under `spec.scopes`.
+
+>**Note:** Changes to the secret do not propagate to the `ClientRegistration`. If you recreated the `Secret` that contains the
+`clientSecret`, re-deploy the `ClientRegistration`.

@@ -19,9 +19,10 @@ spec:
 ```
 
 Where:
-* `IMAGE_URL` is the url of an image in a private registry
 
-*NOTE:* The private image scan assumes that the target image secret was configured as part of installing TAP.
+- `IMAGE_URL` is the url of an image in a private registry.
+
+> **NOTE:** The private image scan assumes that the target image secret was configured during Tanzu Application Platform installation.
 
 ## <a id="set-up-watch"></a>(Optional) Set up a watch
 

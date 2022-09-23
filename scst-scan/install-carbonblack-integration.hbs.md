@@ -1,15 +1,13 @@
 # Install Carbon Black Scanner (Beta)
 
-This document describes requisites to installing Supply Chain Security Tools - Scan
-(Carbon Black Scanner) from the Tanzu Application Platform package repository.
+This document describes prerequisites to [Installing Scanners for Supply Chain Security Tools - Scan](install-scanners.hbs.md) from the Tanzu Application Platform package repository.
 
 >**Note:** Carbon Black's image scanning capability is in beta. Carbon Black might only return
 a partial list of CVEs when scanning Buildpack images.
 
-## <a id="recs"></a> Requisites
+## <a id="prerecs"></a> Prepare the Carbon Black Scanner configuration
 
-Before following the steps for [Installing Scanners for Supply Chain Security Tools - Scan](install-scanners.hbs.md)
-to install the Carbon Black Scanner:
+To prepare the Carbon Black Scanner configuration before you install any scanners: 
 
 1. Obtain a Carbon Black API Token from Carbon Black Cloud.
 
@@ -74,7 +72,17 @@ Create a `values.yaml` file by using the following configuration:
 
 ## <a id="store-integration"></a> Supply Chain Security Tools - Store integration
 
-  **Using Supply Chain Security Tools - Store Integration:** To persist the results found by the Carbon Black Scanner,
+To Integrate:
+1. Do one of the following procedures:
+   
+  - [Use the Supply Chain Security Tools - Store](#with-store)
+  - [Without using the Supply Chain Security Tools - Store](#without-store)
+  
+2. Apply the YAML.
+
+### <a id="with-store"></a> Using Supply Chain Security Tools - Store Integration 
+
+To persist the results found by the Carbon Black Scanner,
   you can enable the Supply Chain Security Tools - Store integration
   by appending the fields to the `values.yaml` file.
 
@@ -125,7 +133,9 @@ Create a `values.yaml` file by using the following configuration:
            importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
        ```
 
-  **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the
+### <a id="without-store"></a> Without Supply Chain Security Tools - Store Integration 
+
+If you don't want to enable the
   Supply Chain Security Tools - Store integration, explicitly disable the integration by appending
   the next fields to the `values.yaml` file, since it's enabled by default:
 
@@ -138,7 +148,7 @@ Create a `values.yaml` file by using the following configuration:
 ## <a id="carbonblack-scan-policy"></a> Sample ScanPolicy in CycloneDX format
 
 1. Create a ScanPolicy YAML with a Rego file for scanner output in the CycloneDX format.
-Here is a sample scan policy resource:
+    For example:
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -184,7 +194,7 @@ Here is a sample scan policy resource:
         }
     ```
 
-1. Apply the earlier created YAML:
+1. Apply the YAML:
 
     ```console
     kubectl apply -n $DEV_NAMESPACE -f <SCAN-POLICY-YAML>
