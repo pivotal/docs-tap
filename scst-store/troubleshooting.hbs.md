@@ -1,6 +1,6 @@
 # Troubleshooting 
 
-This topic contains troubleshooting and known issues for **Supply Chain Security Tools - Store**.
+This topic contains troubleshooting and known issues for Supply Chain Security Tools - Store.
 
 ## Persistent volume retains data
 
@@ -13,7 +13,7 @@ policy is set to `DELETE`.
 
 ### <a id='persistent-volume-retains-data-solution'></a>Solution
 
->**Warning:** Changing the database password deletes your **Supply Chain Security Tools - Store** data.
+>**Caution:** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
 To redeploy the app, either use the same database password or follow the steps below to erase the
 data on the volume:
@@ -71,15 +71,16 @@ but misses the `SecretImport` for the RBAC Auth token.
 
 ### Solution
 
-Follow the AWS documentation to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) before installing Store or before upgrading to K8s 1.23.
+Follow the AWS documentation to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) before installing Store or before upgrading to Kubernetes v1.23.
 
 ## <a id="certificate-expiries"></a> Certificate Expiries
 
 ### Symptom
 
-The Insight CLI or the Scan Controller fails to connect to the Store
+The Insight CLI or the Scan Controller fails to connect to the Store.
 
-The logs of the metadata-store-app pod shows the following error:
+The logs of the metadata-store-app pod show the following error:
+
 ```console
 $ kubectl logs deployment/metadata-store-app -c metadata-store-app -n metadata-store
 ...
@@ -89,7 +90,8 @@ $ kubectl logs deployment/metadata-store-app -c metadata-store-app -n metadata-s
 
 or
 
-The logs of metadata-store-db shows the following error:
+The logs of metadata-store-db show the following error:
+
 ```
 $ kubectl logs statefulset/metadata-store-db -n metadata-store
 ...
@@ -100,16 +102,18 @@ $ kubectl logs statefulset/metadata-store-db -n metadata-store
 
 ### Explanation
 
-Cert Manager rotates the certificates, but the metadata-store and the postgres db are unaware of the change and are using the old certificates.
+cert-manager rotates the certificates, but the metadata-store and the PostgreSQL db are unaware of the change, and are using the old certificates.
 
 ### Solution
 
-If you are seeing `TLS handshake error` in the metadata-store-app logs, delete the metadata-store-app pod and wait for it to come back up.
+If you see `TLS handshake error` in the metadata-store-app logs, delete the metadata-store-app pod and wait for it to come back up.
+
 ```
 kubectl delete pod metadata-store-app-xxxx -n metadata-store
 ```
 
-If you are seeing `could not accept SSL connection` in the metadata-store-db logs, delete the metadata-store-db pod and wait for it to come back up.
+If you see `could not accept SSL connection` in the metadata-store-db logs, delete the metadata-store-db pod and wait for it to come back up.
+
 ```
 kubectl delete pod metadata-store-db-0 -n metadata-store
 ```
