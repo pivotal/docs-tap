@@ -1,1 +1,9 @@
+# Reference guides for Supply Chain Choreographer for Tanzu
 
+This topic describes the reference guides available for Supply Chain Choreographer for Tanzu.
+
+## <a id='how-to'></a> Reference guides
+
+The following reference guides apply to Supply Chain Choreographer for Tanzu:
+
+- [Tanzu Build Service (TBS) Integration](tbs.hbs.md)
