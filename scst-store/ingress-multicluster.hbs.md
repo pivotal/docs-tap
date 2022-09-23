@@ -3,6 +3,8 @@
 Supply Chain Security Tools - Store has ingress support by using Contour's HTTPProxy resources. To enable ingress support, a Contour installation must be available in the cluster.
 
 Supply Chain Security Tools - Store's configuration includes two options to configure the proxy: `ingress_enabled` and `ingress_domain`. If needed, you can override the `shared.ingress_domain` Tanzu Application Platform level setting with the `ingress_domain` parameter.
+The store also supports the option to provide a custom certificate under the `tls` option, which needs two options to specify the certificate to use: `secretName` and `namespace`.
+Otherwise, by default, a self-signed certificate will be used.
 
 For example:
 
@@ -10,9 +12,12 @@ For example:
 ingress_enabled: "true"
 ingress_domain: "example.com"
 app_service_type: "ClusterIP"  # recommended if ingress is enabled
+tls:  # this section is only needed if a custom certificate is being provided
+  secretName: custom-cert   # name of the custom certificate to use
+  namespace: default        # namespace in which the certificate exists
 ```
 
-Supply Chain Security Tools - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>` (`metadata-store.example.com`). The create route supports HTTPS communication by using a self-signed certificate with the same subject Alternative Name.
+Supply Chain Security Tools - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>` (`metadata-store.example.com`). The create route supports HTTPS communication either using the custom cert if the tls section is provide, or self-signed certificate with the same subject Alternative Name if the tls section is not provided.
 
 Contour and DNS setup are not part of Supply Chain Security Tools - Store installation. Access to Supply Chain Security Tools - Store using Contour depends on the correct configuration of these two components.
 
@@ -56,6 +61,32 @@ Set up the cluster containing Supply Chain Security Tools - Store first and enab
 
 To get Supply Chain Security Tools - Store's TLS CA certificate, run:
 
+```bash
+# On the Supply Chain Security Tools - Store's cluster
+CA_CERT=$(kubectl get secret -n metadata-store <cert-name> -o json | jq -r ".data.\"ca.crt\"")
+cat <<EOF > store_ca.yaml
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: store-ca-cert
+  namespace: metadata-store-secrets
+data:
+  ca.crt: $CA_CERT
+EOF
+
+# On the second cluster 
+
+# Create secrets namespace
+kubectl create ns metadata-store-secrets
+
+# Create the CA Certificate secret
+kubectl apply -f store_ca.yaml
+```
+where `<cert-name>` is the name of the certificate, this should be `ingress-cert` if no custom certificate is being used.
+
+Example:
 ```bash
 # On the Supply Chain Security Tools - Store's cluster
 CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"")
