@@ -10,26 +10,30 @@ Tanzu Application Platform GUI is built from the
 
 Tanzu Application Platform GUI is comprised of the following components:
 
-* **Your Organization Catalog:**
-  The catalog serves as the primary visual representation of your running services (Components) and
-  Applications (Systems).
+- **Your organization catalog:**
+  The catalog serves as the primary visual representation of your running services (components) and
+  applications (systems).
 
-* **Tanzu Application Platform GUI plug-ins:**
+- **Tanzu Application Platform GUI plug-ins:**
   These plug-ins expose capabilities regarding specific Tanzu Application Platform tools.
   Initially the included plug-ins are:
-  * Runtime Resources Visibility
-  * Application Live View
-  * Application Accelerator
 
-* **TechDocs:**
+  - Runtime Resources Visibility
+  - Application Live View
+  - Application Accelerator
+
+- **TechDocs:**
   This plug-in enables you to store your technical documentation in Markdown format in a source-code
   repository and display it alongside the relevant catalog entries.
 
-  ![Tanzu Application Platform Catalog](./images/tap-gui-catalog.png)
+  ![Screenshot of a Tanzu Application Platform catalog displayed within Tanzu Application Platform GUI.](images/tap-gui-catalog.png)
 
-* **A Git Repository:**
-The Tanzu Application Platform GUI stores the following in a Git repository:
-  * The structure for your application catalog.
-  * Your technical documentation about the catalog items, if you enable the Tanzu Application Platform GUI TechDocs capabilities.
+- **A Git repository:**
+  Tanzu Application Platform GUI stores the following in a Git repository:
 
-You can host the structure for your application catalog and your technical documentation in the same repository as your source code.
+  - The structure for your application catalog.
+  - Your technical documentation about the catalog items, if you enable Tanzu Application Platform GUI
+    TechDocs capabilities.
+
+You can host the structure for your application catalog and your technical documentation in the same
+repository as your source code.
