@@ -197,8 +197,8 @@ To deregister an entity:
 
    ```console
    tanzu package installed update backstage \
-   --version PACKAGE-VERSION \
-   -f VALUES-FILE
+     --version PACKAGE-VERSION \
+     -f VALUES-FILE
    ```
 
 3. Verify the status of this update by running:
