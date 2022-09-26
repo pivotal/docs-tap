@@ -22,8 +22,9 @@ Run these commands to get more logs and details about the errors around scanning
 Run the following to get error logs from a pod when scan pods are in a failing state:
 
 ```console
-kubectl logs <scan-pod-name> -n <DEV-NAMESPACE>
+kubectl logs scan-pod-name -n DEV-NAMESPACE
 ```
+
 See [here](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/) for more details about debugging Kubernetes pods.
 
 The following is an example of a successful scan run output:
@@ -48,13 +49,15 @@ store:
   locations:
   - https://metadata-store-app.metadata-store.svc.cluster.local:8443/api/sources?repo=hound&sha=5805c6502976c10f5529e7f7aeb0af0c370c0354&org=houndci
 ```
+
 A scan run that has an error means that one of the init containers: `scan-plugin`, `metadata-store-plugin`, `compliance-plugin`, `summary`, or any other additional containers had a failure.
 
 To inspect for a specific init container in a pod:
 
 ```console
-kubectl logs <scan-pod-name> -n <DEV-NAMESPACE> -c <init-container-name>
+kubectl logs scan-pod-name -n DEV-NAMESPACE -c init-container-name
 ```
+
 See [Debug Init Containers](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/) in the Kubernetes documentation for debug init container tips.
 
 ####  <a id="debug-source-image-scan"></a> Debugging SourceScan and ImageScan
@@ -62,11 +65,11 @@ See [Debug Init Containers](https://kubernetes.io/docs/tasks/debug/debug-applica
 To retrieve status conditions of an SourceScan and ImageScan, run:
 
 ```console
-kubectl describe sourcescan <sourcescan> -n <DEV-NAMESPACE>
+kubectl describe sourcescan <sourcescan> -n DEV-NAMESPACE
 ```
 
 ```console
-kubectl describe imagescan <imagescan> -n <DEV-NAMESPACE>
+kubectl describe imagescan <imagescan> -n DEV-NAMESPACE
 ```
 
 Under `Status.Conditions`, for a condition look at the "Reason", "Type", "Message" values that use the keyword "Error" to investigate issues.
@@ -95,9 +98,9 @@ kubectl rollout restart deployment scan-link-controller-manager -n scan-link-sys
 
 #### <a id="miss-src-ps"></a> Missing target SSH secret
 
-Scanning source code from a private source repository requires an SSH secret to be present in the namespace and referenced as `grype.targetSourceSshSecret` in `tap-values.yaml`. See [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+Scanning source code from a private source repository requires an SSH secret present in the namespace and referenced as `grype.targetSourceSshSecret` in `tap-values.yaml`. See [Installing the Tanzu Application Platform Package and Profiles](../install.md).
 
-If a private source scan is triggered and the secret cannot be found, the scan pod will include a `FailedMount` Warning in Events with the message `MountVolume.SetUp failed for volume "ssh-secret" : secret "secret-ssh-auth" not found`, where `secret-ssh-auth` will be the value specified in `grype.targetSourceSshSecret`.
+If a private source scan is triggered and the secret cannot be found, the scan pod includes a `FailedMount` warning in Events with the message `MountVolume.SetUp failed for volume "ssh-secret" : secret "secret-ssh-auth" not found`, where `secret-ssh-auth` is the value specified in `grype.targetSourceSshSecret`.
 
 #### <a id="miss-img-ps"></a> Missing target image pull secret
 
@@ -109,10 +112,10 @@ If a private image scan is triggered and the secret is not configured, the scan 
 Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
 ```
 
-#### <a id="deactivate-scst-store"></a> Deactivate Supply Chain Security Tools - Store
+#### <a id="deactivate-scst-store"></a> Deactivate Supply Chain Security Tools (SCST) - Store
 
-Supply Chain Security Tools - Store is a prerequisite for installing Supply Chain Security Tools - Scan.
-If you install without the Supply Chain Security Tools - Store, you must edit the
+SCST - Store is a prerequisite for installing SCST - Scan.
+If you install without the SCST - Store, you must edit the
 configurations to deactivate the Store:
 
   ```yaml
@@ -149,12 +152,12 @@ configurations to deactivate the Store:
       failOnSchemaErrors: false
     ```
 
-#### <a id="incompatible-scan-policy"></a> Resolving Incompatible Scan Policy
+#### <a id="incompatible-scan-policy"></a> Resolving incompatible scan policy
   If your scan policy appears to not be enforced, it might be because the Rego file defined in the scan policy is incompatible with the scanner that is being used. For example, the Grype Scanner outputs in the CycloneDX XML format while the Snyk Scanner outputs SPDX JSON.
 
   See [Install Snyk Scanner](install-snyk-integration.md#a-idverifya-verify-integration-with-snyk) for an example of a ScanPolicy formatted for SPDX JSON.
 
-#### <a id="ca-not-found-in-secret"></a> Could not find CA in Secret
+#### <a id="ca-not-found-in-secret"></a> Could not find CA in secret
 
   If you encounter the following issue, it might be due to not exporting  `app-tls-cert` to the correct namespace:
 
@@ -166,7 +169,7 @@ configurations to deactivate the Store:
 
   ```yaml
   metadata_store:
-    ns_for_export_app_cert: "<DEV-NAMESPACE>"
+    ns_for_export_app_cert: "DEV-NAMESPACE"
   ```
 
   However, if the earlier tap-values.yaml doesn't work, include:
@@ -178,7 +181,7 @@ configurations to deactivate the Store:
 
 #### <a id="reporting-wrong-blob-url"></a> Blob Source Scan is reporting wrong source URL
 
-A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote SSH URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message.
+A Source Scan for a blob artifact can cause reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote SSH URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message.
 
 You can confirm you're having this problem by running a `kubectl describe` in the affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url` and see if they are different URLs. For example:
 
@@ -206,9 +209,9 @@ status:
       url: ssh://git@github.com:sample/repo.git
 ```
 
-**Workaround:** This problem happens in Supply Chain Security Tools - Scan `v1.2.0` when you use a Grype Scanner ScanTemplates earlier than `v1.2.0`, because this is a deprecated path. To fix this problem, upgrade your Grype Scanner deployment to `v1.2.0` or later. See [Upgrading Supply Chain Security Tools - Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
+**Workaround:** This problem happens in SCST - Scan `v1.2.0` when you use a Grype Scanner ScanTemplates earlier than `v1.2.0`, because this is a deprecated path. To fix this problem, upgrade your Grype Scanner deployment to `v1.2.0` or later. See [Upgrading Supply Chain Security Tools - Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 
-#### <a id="supply-chain-stops"></a> Resolving a Supply Chain that is blocked by failing scans
+#### <a id="supply-chain-stops"></a> Resolving failing scans that block a Supply Chain 
 
 If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see the CVE triage workflow in [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow).
 
