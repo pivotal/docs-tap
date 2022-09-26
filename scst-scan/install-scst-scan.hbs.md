@@ -189,6 +189,8 @@ To install Supply Chain Security Tools - Scan (Scan controller):
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
 
+**NOTE:** If `targetSourceSshSecret` is not set, then the private source scan template will not be installed.
+
 1. Install the package by running:
 
     ```console
