@@ -105,10 +105,62 @@ The following option properties are for UI purposes only.
 - **dependsOn**:
   This is a way to control visibility by specifying the `name` and optional `value` of another input
   option.
-  When the other option has a matching value, or any value if no `value` is specified,
+  When the other option has a value exactly equal to `value`, or `true` if no `value` is specified,
   then the option with `dependsOn` is visible. Otherwise, it is hidden.
   Ensure the value matches the dataType of the `dependsOn` option.
-  For example, a multivalue option such as a `checkbox` uses `[matched-value]`.
+  For example, a multi-value option (`dataType = [string]`) such as a `checkbox` uses `[matched-value]`
+  to trigger another option when `matched-value` (and only `matched-value`) is selected. See the section
+  below for more clarifications about `dependsOn`.
+
+#### <a id="depends-on-multi-value"></a> DependsOn and multi-value dataType
+`dependsOn` tests for strict equality, even for multi-valued options. This
+means that a multi-valued option should not be used to trigger several other
+options unfolding, one for each value. Instead, use several single-valued options:
+
+Instead of
+```yaml
+options:
+  - name: toppings
+    dataType: [string]
+    inputType: checkbox
+    choices:
+      - value: vegetables
+        text: Vegetables
+      - value: meat
+        text: Meat
+        ...
+  - name: vegType
+    dependsOn:
+      name: toppings
+      value: [vegetables] # or vegetables, this won't do what you want either
+  - name: meatType
+    dependsOn:
+      name: toppings
+      value: [meat]
+  ...
+```
+do this:
+```yaml
+options:
+  - name: useVeggies
+    dataType: boolean
+    inputType: checkbox
+    label: Vegetables
+  - name: useMeat
+    dataType: boolean
+    inputType: checkbox
+    label: Meat
+  - name: vegType
+    dependsOn:
+      name: useVeggies
+      value: true
+  - name: meatType
+    dependsOn:
+      name: useMeat
+      value: true
+  ...
+
+```
 
 ### <a id="examples"></a> Examples
 
@@ -166,7 +218,7 @@ accelerator:
 
   - name: dependsOnCheckbox
     label: 'depends on checkbox'
-    description: Visibility depends on the checkbox option containing a checked value value-2.
+    description: Visibility depends on the checkbox option containing exactly value value-2.
     dependsOn:
       name: checkbox
       value: [value-2]
