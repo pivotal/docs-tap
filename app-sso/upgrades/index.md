@@ -10,6 +10,8 @@ If you installed the `AppSSO` package on its own, and not as part of `TAP`, you 
 tanzu package installed update PACKAGE_INSTALLATION_NAME -p sso.apps.tanzu.vmware.com -v 2.0.0 --values-file PATH_TO_YOUR_VALUES_YAML -n YOUR_INSTALL_NAMESPACE
 ```
 
+>**Note:** You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](../../upgrading.hbs.md) for more information.
+
 ## Migration guides
 
 ### `v1.0.0` → `v2.0.0`
@@ -53,6 +55,3 @@ with the following changes:
               password: "password" # plain text
     # ...
   ```
-
-New versions of AppSSO are available from the Tanzu Application Platform package repository. See [AppSSO documentation](../platform-operators/upgrades.md) for detailed upgrade steps.
-You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](../../upgrading.hbs.md) for more information.
