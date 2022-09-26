@@ -20,7 +20,7 @@ with the following changes:
 - Migrate from `.spec.issuerURI` to `.spec.tls`. AppSSO will template your issuer URI for you and provide TLS-enabled. A
   custom `Service` and ingress resource are no longer required.
     1. Configure one of `.spec.tls.{issuerRef, certificateRef, secretRef}`(
-       see [Issuer URI & TLS](app-sso/service-operators/issuer-uri-and-tls.md)). Optionally, disable TLS
+       see [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md)). Optionally, disable TLS
        with `.spec.tls.disabled`.
     2. Remove `.spec.issuerURI`.
     3. Delete your `AuthServer`-specific `Service` and ingress resources.
@@ -54,5 +54,5 @@ with the following changes:
     # ...
   ```
 
-New versions of AppSSO are available from the Tanzu Application Platform package repository. See [AppSSO documentation](app-sso/platform-operators/upgrades.md) for detailed upgrade steps.
-You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](upgrading.hbs.md) for more information.
+New versions of AppSSO are available from the Tanzu Application Platform package repository. See [AppSSO documentation](../platform-operators/upgrades.md) for detailed upgrade steps.
+You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](../../upgrading.hbs.md) for more information.
