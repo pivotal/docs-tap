@@ -42,17 +42,21 @@ Follow [this workaround](../known-issues/cidr-ranges.md), adding IP ranges for t
 ### Misconfigured `clientSecret`
 
 #### Problem:
-- When attempting to sign in, you see `This commonly happens due to an incorrect [client_secret].` It might be because the client secret of an identity provider is misconfigured.
+
+When attempting to sign in, you see `This commonly happens due to an incorrect [client_secret].` It might be because the client secret of an identity provider is misconfigured.
 
 #### Solution:
+
 Validate the `spec.OpenId.clientSecretRef`.
 
 ### <a id="sub-claim"></a>Misconfigured `sub` claim
 
 #### Problem:
-- The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern. 
+
+The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern. 
 The previous `<providerId>/<userId>` pattern might cause bugs in URLs without proper URL-encoding in client applications. 
 
 #### Solution:
-- If your client application has stored `sub` claims,
+
+If your client application has stored `sub` claims,
 you must update them to match the new pattern `<providerId>_<userId>`.
