@@ -108,7 +108,7 @@ Chain Basic section, you need to include one more:
 
 #### <a id="tekton-pipeline"></a> Tekton/Pipeline
 
-By default, the workload will be matched to the corresponding pipeline to run using labels.  Pipelines **must** be labeled with `apps.tanzu.vmware.com/pipeline: test` at a minimum, but you can add additional labels for granularity.  This will provide a default match in the even that no other labels are provided. Additionaly, the pipeline expects two parameters:
+By default, the workload is matched to the corresponding pipeline to run using labels.  Pipelines must have the label `apps.tanzu.vmware.com/pipeline: test` at a minimum, but you can add additional labels for granularity.  This provides a default match in the event that no other labels are provided. The pipeline expects two parameters:
 
 - `source-url`, an HTTP address where a `.tar.gz` file containing all the
   source code to be tested can be found
@@ -214,7 +214,7 @@ You can configure your developer namespace to include more than one pipeline usi
                   go test -v ./...
     ```
 
-  Then, to match the correct pipeline, we add a `testing_pipeline_matching_labels` parameter to our workload.  For example, if we wanted to match to the Java pipeline, we would have the following workload.yaml:
+  To match the correct pipeline, you add a `testing_pipeline_matching_labels` parameter to the workload. For example, if you want to match to the Java pipeline, you have the following workload.yaml:
 
   ```
   apiVersion: carto.run/v1alpha1
