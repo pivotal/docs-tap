@@ -108,9 +108,7 @@ Chain Basic section, you need to include one more:
 
 #### <a id="tekton-pipeline"></a> Tekton/Pipeline
 
-Despite the full liberty around tasks to run, the Tekton or pipeline object
-**must** be labelled with `apps.tanzu.vmware.com/pipeline: test`, and define
-that it expects to take two parameters:
+By default, the workload will be matched to the corresponding pipeline to run using labels.  Pipelines **must** be labeled with `apps.tanzu.vmware.com/pipeline: test` at a minimum, but you can add additional labels for granularity.  This will provide a default match in the even that no other labels are provided. Additionaly, the pipeline expects two parameters:
 
 - `source-url`, an HTTP address where a `.tar.gz` file containing all the
   source code to be tested can be found
@@ -180,7 +178,7 @@ You can configure your developer namespace to include more than one pipeline usi
                   make test
     ```
 
-  - Update the pipeline resources to include labels that differentiate between the pipelines. For example, we can add pipelines for Java and Go:
+  - Update the pipeline resources to include labels that differentiate between the pipelines. For example, differentiate between Java and Go pipelines by adding labels for Java and Go:
 
     ```
     apiVersion: tekton.dev/v1beta1
@@ -216,6 +214,28 @@ You can configure your developer namespace to include more than one pipeline usi
                   go test -v ./...
     ```
 
+  Then, to match the correct pipeline, we add a `testing_pipeline_matching_labels` parameter to our workload.  For example, if we wanted to match to the Java pipeline, we would have the following workload.yaml:
+
+  ```
+  apiVersion: carto.run/v1alpha1
+  kind: Workload
+  metadata:
+    name: sample-java-app
+    labels:
+      apps.tanzu.vmware.com/has-tests: true
+      apps.tanzu.vmware.com/workload-type: web
+      app.kubernetes.io/part-of: sample-java-app
+  spec:
+    params:
+      - name: testing_pipeline_matching_labels 
+        value:
+          apps.tanzu.vmware.com/pipeline: test
+          apps.tanzu.vmware.com/language: java
+    ...
+  ```
+
+  This will match the workload to the pipeline with the `apps.tanzu.vmware.com/language: java` label.
+  
 ## <a id="developer-workload"></a> Developer Workload
 
 With the Tekton Pipeline object
