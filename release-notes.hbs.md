@@ -276,19 +276,19 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
-**Scanning Java source code that uses Gradle package manager may not reveal vulnerabilities:**
-- For most languages, Source Code Scanning only scans files present in the source code repository.
-Except for support added for Java projects using Maven, no network calls are made to fetch dependencies.
-For languages using dependency lock files, such as Golang and Node.js,
-Grype uses the lock files to check the dependencies for vulnerabilities.
+- **Scanning Java source code that uses Gradle package manager may not reveal vulnerabilities:**
+  For most languages, Source Code Scanning only scans files present in the source code repository.
+  Except for support added for Java projects using Maven, no network calls are made to fetch
+  dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+  lock files to check the dependencies for vulnerabilities.
 
-- For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
-the dependencies present in the built binaries (`.jar` or `.war` files) instead.
+  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
+  present in the built binaries (`.jar` or `.war` files) instead.
 
-- Because VMware does not encourage committing binaries to source code repositories,
-Grype fails to find vulnerabilities during a Source Scan.
-The vulnerabilities are still found during the Image Scan
-after the binaries are built and packaged as images.
+  Because VMware does not encourage committing binaries to source code repositories, Grype fails to
+  find vulnerabilities during a Source Scan.
+  The vulnerabilities are still found during the Image Scan after the binaries are built and packaged
+  as images.
 
 #### <a id="tap-gui-known-issues"></a>Tanzu Application Platform GUI
 
@@ -298,15 +298,21 @@ after the binaries are built and packaged as images.
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
 - **Unable to view workloads on the panel when connected to GKE cluster:**
-When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke)
+  When connecting to Google's GKE clusters, an error might appear with the text
+  `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
+  To fix this, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
-- **Warning Notification when cancelling action:**
-When executing `Tanzu: Debug Start`, `Tanzu: Live Update Start`, or `Tanzu: Apply` the user is presented with a quick pick list when there are multiple options. If the user cancels, by either the `ESC` key or clicking outside the list, the user will be presented with a warning notification indicating that no workloads or tiltfiles could be found. This message can be ignored.
+- **Warning notification when canceling an action:**
+  A warning notification can appear when running `Tanzu: Debug Start`, `Tanzu: Live Update Start`,
+  or `Tanzu: Apply`, which says that no workloads or Tiltfiles were found.
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cancel-action-warning).
 
 #### <a id="intelj-ext-known-issues"></a>Intellij Extension
 
 - **Unable to view workloads on the panel when connected to GKE cluster:**
-When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke)
+  When connecting to Google's GKE clusters, an error might appear with the text
+  `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
+  To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
