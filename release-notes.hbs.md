@@ -41,9 +41,9 @@ This release includes the following changes, listed by component and area.
 
 - AppSSO uses a custom Security Context Constraint to provide OpenShift support.
 - Comply with the restricted _Pod Security Standard_ and give the least privilege to the controller.
-- `AuthServer` gets TLS-enabled `Ingress` autoconfigured. This can be controlled via `AuthServer.spec.tls`.
+- `AuthServer` gets TLS-enabled `Ingress` autoconfigured. This can be controlled by using `AuthServer.spec.tls`.
 - Custom CAs are supported.
-- More and better audit logs for authorization server events; `TOKEN_REQUEST_REJECTED`
+- More and better audit logs for authorization server events; `TOKEN_REQUEST_REJECTED`.
 - Enable the `/userinfo` endpoint.
 - Rename all Kubernetes resources in the _AppSSO_ package from _operator_ to _appsso-controller_.
 - The controller restarts when its configuration is updated.
@@ -171,18 +171,16 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="app-sso-changes"></a> Application Single Sign-On
 
-- **Deprecation notice:** `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. Please, migrate
-  to `AuthServer.spec.tls`. Consult AppSSO's migration guide for detailed instructions.
-- `AuthServer.spec.identityProviders.internalUser.users.password` is now provided as plain text instead of _bcrypt_
+- **Deprecation notice:** `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
+  to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
+- `AuthServer.spec.identityProviders.internalUser.users.password` is in plain text instead of _bcrypt_
   -hashed.
-- When an authorization server fails to obtain a token from an OpenID identity provider, it will record
+- When an authorization server fails to obtain a token from an OpenID identity provider, it records
   an `INVALID_IDENTITY_PROVIDER_CONFIGURATION` audit event instead of `INVALID_UPSTREAM_PROVIDER_CONFIGURATION`.
-- Package configuration `webhooks_disabled` has been removed and `extra` is renamed to `internal`.
-- The `KEYS COUNT` print column has been replaced with the more insightful `STATUS` for `AuthServer`.
-- The `sub` claim in `id_token`s and `access_token`s now follow the `<providerId>_<userId>` pattern,
-  instead of `<providerId>/<userId>`. The previous pattern could cause bugs if used in URLs without
-  proper URL-encoding in client applications. If your client application has stored `sub` claims,
-  you may have to update them to match the new pattern.
+- Package configuration `webhooks_disabled` is removed and `extra` is renamed to `internal`.
+- The `KEYS COUNT` print column is replaced with the more insightful `STATUS` for `AuthServer`.
+- The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern,
+  instead of `<providerId>/<userId>`. See [Misconfigured `sub` claim](app-sso/service-operators/troubleshooting.md#sub-claim) for more information.
 
 ### <a id='1-3-resolved-issues'></a> Resolved issues
 
