@@ -453,8 +453,8 @@ When adding Tanzu Application Platform clusters with pre-installed Tanzu Cluster
 Tanzu Mission Control instance, the `tanzunet-secret` export shows `Feature Disabled`.
 
 - **--export-all-namespaces not properly observed:**
-When deploying Tanzu Application Platform on Google Kubernetes Engine (GKE) v1.23.5-gke.200,
-when running `tanzu secret registry add tanzunet-creds` the `--export-all-namespaces` is not
+When deploying Tanzu Application Platform on Google Kubernetes Engine (GKE) v1.23.5-gke.200 
+and running `tanzu secret registry add tanzunet-creds`, the `--export-all-namespaces` is not
 properly observed.
 
 #### Application Live View
