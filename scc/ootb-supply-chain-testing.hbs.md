@@ -180,20 +180,7 @@ You can configure your developer namespace to include more than one pipeline usi
                   make test
     ```
 
-  - Update the template to include labels that differentiate the pipelines. Then configure the labels to differentiate between pipelines, as shown in the following example:
-
-    ```
-      selector:
-         resource:
-           apiVersion: tekton.dev/v1beta1
-           kind: Pipeline
-         matchingLabels:
-           apps.tanzu.vmware.com/pipeline: test
-    +         apps.tanzu.vmware.com/language: #@ data.values.workload.metadata.labels["apps.tanzu.vmware.com/language"]
-
-    ```
-
-    The following example shows one namespace per-language pipeline:
+  - Update the pipeline resources to include labels that differentiate between the pipelines. For example, we can add pipelines for Java and Go:
 
     ```
     apiVersion: tekton.dev/v1beta1
