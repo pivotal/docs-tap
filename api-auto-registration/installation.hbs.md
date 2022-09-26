@@ -1,6 +1,6 @@
 # Install API Auto Registration
 
-This document describes how to install API Auto Registration from the Tanzu Application Platform package repository.
+This topic describes how to install API Auto Registration from the Tanzu Application Platform package repository.
 
 >**Note:** The "iterate", "run", and "full" profiles include API Auto Registration by default. 
 > If your cluster is one of these profiles, skip the install and proceed to the [Usage section](usage.md).
@@ -39,7 +39,7 @@ To install the API Auto Registration package:
     tanzu package available get apis.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed in step 1.
+    Where `VERSION-NUMBER` is the version of the package listed in earlier.
 
     For example:
 
@@ -59,13 +59,13 @@ To install the API Auto Registration package:
     logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging
     ```
 
-1. Locate the TAP GUI url
+2. Locate the Tanzu Application Platform GUI URL.
 
-    When running on a full profile tap cluster, the default value of TAP GUI url should be sufficient. But you may still want to modify this to match the externally available FQDN of TAP GUI to make the entity url displayed within in APIDescriptor status to be externally accessible.
+    When running on a full profile Tanzu Application Platform cluster, the default value of Tanzu Application Platform GUI URL is sufficient. You might want to edit this to match the externally available FQDN of Tanzu Application Platform GUI to display the entity URL in the externally accessible APIDescriptor status.
 
-    When installed in a run cluster or without a profile where TAP GUI is not installed in the same cluster, you will need to set the `tap_gui_url` parameters correctly for successful entity registration with TAP GUI.
+    When installed in a run cluster or without a profile where Tanzu Application Platform GUI is not installed in the same cluster, you must set the `tap_gui_url` parameters correctly for successful entity registration with Tanzu Application Platform GUI.
 
-    You can locate the `tap_gui_url` by going to the view cluster with the TAP GUI you want to register the entity with and executing the following commands
+    You can locate the `tap_gui_url` by going to the view cluster with the Tanzu Application Platform GUI you want to register the entity with:
 
     ```console
     kubectl get secret tap-values -n tap-install -o jsonpath="{.data['tap-values\.yaml']}" | base64 -d | yq '.tap_gui.app_config.app.baseUrl'
@@ -73,7 +73,7 @@ To install the API Auto Registration package:
 
 1. (Optional but recommended) Create `api-auto-registration-values.yaml`
 
-    If you'd like to overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file that looks like this:
+    If you'd like to overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file as follows:
 
 
     ```yaml
@@ -87,7 +87,7 @@ To install the API Auto Registration package:
         -----END CERTIFICATE-----
     ```
 
-1. Install the package using the Tanzu CLI
+4. Install the package using the Tanzu CLI:
     
     ```console
     tanzu package install api-auto-registration 
@@ -97,7 +97,7 @@ To install the API Auto Registration package:
     --values-file api-auto-registration-values.yaml
     ``` 
 
-1. Verify the package installation by running:
+5. Verify the package installation by running:
 
     ```console
     tanzu package installed get api-auto-registration -n tap-install
@@ -109,7 +109,7 @@ To install the API Auto Registration package:
     kubectl get pods -n api-auto-registration
     ```
 
-1. Verify that applying a simple APIDescriptor resource to your cluster results in the `STATUS` to `Ready`:
+6. Verify that applying an APIDescriptor resource to your cluster results in the `STATUS` showing `Ready`:
 
     ```console
     kubectl apply -f - <<EOF
@@ -129,7 +129,8 @@ To install the API Auto Registration package:
     EOF
     ```
 
-    Verify that the APIDescriptor status shows `Ready`
+    Verify that the APIDescriptor status shows `Ready`:
+
     ```console
     kubectl get apidescriptors
     NAME                                       STATUS
@@ -140,9 +141,11 @@ To install the API Auto Registration package:
     sample-api-descriptor-with-absolute-url    Ready     <url-to-the-entity>    <url-to-the-api-spec>
     ```
 
-    If the status does not show `Ready`, you can inspect the reason with the detailed message shown by running
+    If the status does not show `Ready`, you can inspect the reason with the detailed message shown by running:
+
     ```console
     kubectl get apidescriptor sample-api-descriptor-with-absolute-url -o jsonpath='{.status.conditions[?(@.type=="Ready")].message}'
     ```
 
-    Verify that the entity is created successfully in your TAP GUI: `<TAP_GUI_URL>/catalog/default/api/sample-api-descriptor-with-absolute-url`
+    Verify that the entity is created successfully in your Tanzu Application Platform GUI: 
+    `<TAP_GUI_URL>/catalog/default/api/sample-api-descriptor-with-absolute-url`

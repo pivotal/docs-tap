@@ -1,27 +1,27 @@
-# Application Accelerator Git Repository Creation in Tanzu Application Platform GUI
+# Creating an Application Accelerator Git repository in Tanzu Application Platform GUI
 
 This topic describes how to enable and use Git repository creation in the Application Accelerator
 plug-in.
 
 ## <a id="overview"></a> Overview
 
-The Application Accelerator plug-in uses Backstage git providers integration and the authentication
-mechanism to retrieve an access token and interact with the provider API to create git repositories.
+The Application Accelerator plug-in uses Backstage Git providers integration and the authentication
+mechanism to retrieve an access token and interact with the provider API to create Git repositories.
 
 ## <a id="supported-providers"></a> Supported Providers
 
-In TAP version 1.3 the supported git providers are Github and Gitlab
+In Tanzu Application Platform v1.3 the supported Git providers are GitHub and GitLab.
 
-## <a id="configuration"></a> Configuration
+## <a id="configuration"></a> Configure
 
-Up next, an example configuration using GitHub will be explained:
+These steps describe an example configuration that uses GitHub:
 
 1. Create an OAuth App in GitHub based on the configuration described in this
    [Backstage documentation](https://backstage.io/docs/auth/github/provider).
    For more information about creating an OAuth app, see the
    [GitHub documentation](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app).
 
-   these values appear in your `app-config.yaml` or `app-config.local.yaml` for local development.
+   These values appear in your `app-config.yaml` or `app-config.local.yaml` for local development.
    For example:
 
    ```yaml
@@ -45,29 +45,28 @@ Up next, an example configuration using GitHub will be explained:
    For more information, see the
    [Backstage documentation](https://backstage.io/docs/integrations/github/locations).
 
-## <a id="creating-project"></a> Creating a Project
+## <a id="creating-project"></a> Create a Project
+
+To create a project:
 
 1. Go to Tanzu Application Platform GUI, access the Accelerators section, and then select an
-   accelerator.
-   You should see in the accelerator form a second step called `Git repository`
+   accelerator. The accelerator form now has a second step named **Git repository**.
 
+2. Fill in the accelerator options and click **Next**.
 
-2. Fill the accelerator options and click **Next**.
+3. Select the **create git repo?** check box.
 
-3. In the next step select the **create git repo?** checkbox, it should display the owner, repository
-   name, and branch fields. Fill these inputs.
+4. Fill in the **Owner**, **Repository**, and **Default Branch** text boxes.
 
-   ![Git Repo Creation fields](images/git-repo-fields.png)
+   ![Screenshot of the Git repository creation text boxes.](images/git-repo-fields.png)
 
-4. After filling the repository name a modal should pop up requesting the GitHub credentials, log in,
-   and then click **Next**.
+5. After entering the repository name, a dialog box appears that requests GitHub credentials.
+   Log in and then click **Next**.
 
-   ![OAuth modal](images/application-accelerator-git-repo-oauth-modal.png)
+   ![Dialog box that prompts you to log in to GitHub.](images/application-accelerator-git-repo-oauth-modal.png)
 
-   ![Github login](images/github-login.png)
+   ![Screenshot of GitHub log-in credential text boxes.](images/github-login.png)
 
-5. Click **GENERATE ACCELERATOR**.
+6. Click **GENERATE ACCELERATOR**. Eventually a link to the repository location appears.
 
-6. At the end of the execution it should display a link with the repository location.
-
-   ![Task Output](images/application-accelerator-task-output.png)
+   ![Screenshot of the output status, which includes a Download ZIP File button.](images/application-accelerator-task-output.png)
