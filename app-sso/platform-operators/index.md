@@ -7,4 +7,3 @@ Learn how to manage the AppSSO package installation and what it installs.
 - [RBAC](rbac.md)
 - [OpenShift](openshift.md)
 - [Uninstallation](uninstallation.md)
-- [Upgrades](upgrades.md)
