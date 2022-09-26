@@ -40,7 +40,7 @@ This release includes the following changes, listed by component and area.
 #### <a id="app-sso-features"></a>Application Single Sign-On
 
 - AppSSO uses a custom Security Context Constraint to provide OpenShift support.
-- Comply with the restricted _Pod Security Standard_ and give least privileges to the controller.
+- Comply with the restricted _Pod Security Standard_ and give the least privilege to the controller.
 - `AuthServer` gets TLS-enabled `Ingress` autoconfigured. This can be controlled via `AuthServer.spec.tls`.
 - Custom CAs are supported.
 - More and better audit logs for authorization server events; `TOKEN_REQUEST_REJECTED`
@@ -49,81 +49,11 @@ This release includes the following changes, listed by component and area.
 - The controller restarts when its configuration is updated.
 - The controller configuration is kept in a `Secret`.
 - All existing `AuthServer` are updated and roll out when the controller's configuration changes significantly.
-
-##### Deprecations
-
-- `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. Please, migrate
-  to `AuthServer.spec.tls`.
-
-- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
-
-##### Bug fixes
-
-- Emit the audit `TOKEN_REQUEST_REJECTED` event when the `refresh_token` grant fails.
-- The service binding `Secret` is updated when a `ClientRegistration` changes significantly.
-
+- Aggregate RBAC for managing `AuthServer` into the _Service-Operator_ cluster role.
 
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
 
 - Added new default role `service-operator`.
-
-### Breaking changes
-
-- `AuthServer.spec.identityProviders.internalUser.users.password` is now provided as plain text instead of _bcrypt_
-  -hashed.
-- When an authorization server fails to obtain a token from an OpenID identity provider, it will record
-  an `INVALID_IDENTITY_PROVIDER_CONFIGURATION` audit event instead of `INVALID_UPSTREAM_PROVIDER_CONFIGURATION`.
-- Package configuration `webhooks_disabled` has been removed and `extra` is renamed to `internal`.
-- The `KEYS COUNT` print column has been replaced with the more insightful `STATUS` for `AuthServer`.
-- The `sub` claim in `id_token`s and `access_token`s now follow the `<providerId>_<userId>` pattern,
-  instead of `<providerId>/<userId>`. The previous pattern could cause bugs if used in URLs without
-  proper URL-encoding in client applications. If your client application has stored `sub` claims,
-  you may have to update them to match the new pattern.
-
-##### Migration guide `v1.0.0` → `v2.0.0`
-
-We strongly recommended that you recreate your `AuthServers` after upgrading your AppSSO package installation to `2.0.0`
-with the following changes:
-
-- Migrate from `.spec.issuerURI` to `.spec.tls`. AppSSO will template your issuer URI for you and provide TLS-enabled. A
-  custom `Service` and ingress resource are no longer required.
-  1. Configure one of `.spec.tls.{issuerRef, certificateRef, secretRef}`(
-     see [Issuer URI & TLS](app-sso/service-operators/issuer-uri-and-tls.md)). Optionally, disable TLS
-     with `.spec.tls.disabled`.
-  2. Remove `.spec.issuerURI`.
-  3. Delete your `AuthServer`-specific `Service` and ingress resources.
-  4. Apply your `AuthServer`. You will find its issuer URI in `.status.issuerURI`.
-  5. You can now update the redirect URIs in your upstream identity providers.
-
-- If you are using the `internalUnsafe` identity provider migrate existing users by replacing the bcrypt hash by the
-  plain-text equivalent. You can still use existing
-  bcrypt passwords by prefixing them with `{bcrypt}`:
-
-  ```yaml
-  ---
-  apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
-  kind: AuthServer
-  metadata:
-    # ...
-  spec:
-    identityProviders:
-      - name: internal
-        internalUnsafe:
-          users:
-            # v1.0
-            - username: test-user-1
-              password: $2a$10$201z9o/tHlocFsHFTo0plukh03ApBYe4dRiXcqeyRQH6CNNtS8jWK # bcrypt-encoded "password"
-              # ...
-            # v2.0
-            - username: "test-user-1"
-              password: "{bcrypt}$2a$10$201z9o/tHlocFsHFTo0plukh03ApBYe4dRiXcqeyRQH6CNNtS8jWK" # same bcrypt hash, with {bcrypt} prefix
-            - username: "test-user-2"
-              password: "password" # plain text
-    # ...
-  ```
-
-New versions of AppSSO are available from the Tanzu Application Platform package repository. See [AppSSO documentation](app-sso/platform-operators/upgrades.md) for detailed upgrade steps.
-You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](upgrading.hbs.md) for more information.
 
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
@@ -227,8 +157,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
-- Breaking change 1
-- Breaking change 2
+- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
 
 #### <a id="tbs-breaking-changes"></a> Tanzu Build Service
 
@@ -240,6 +169,21 @@ This release has the following breaking changes, listed by area and component.
 - Breaking change 1
 - Breaking change 2
 
+#### <a id="app-sso-changes"></a> Application Single Sign-On
+
+- **Deprecation notice:** `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. Please, migrate
+  to `AuthServer.spec.tls`. Consult AppSSO's migration guide for detailed instructions.
+- `AuthServer.spec.identityProviders.internalUser.users.password` is now provided as plain text instead of _bcrypt_
+  -hashed.
+- When an authorization server fails to obtain a token from an OpenID identity provider, it will record
+  an `INVALID_IDENTITY_PROVIDER_CONFIGURATION` audit event instead of `INVALID_UPSTREAM_PROVIDER_CONFIGURATION`.
+- Package configuration `webhooks_disabled` has been removed and `extra` is renamed to `internal`.
+- The `KEYS COUNT` print column has been replaced with the more insightful `STATUS` for `AuthServer`.
+- The `sub` claim in `id_token`s and `access_token`s now follow the `<providerId>_<userId>` pattern,
+  instead of `<providerId>/<userId>`. The previous pattern could cause bugs if used in URLs without
+  proper URL-encoding in client applications. If your client application has stored `sub` claims,
+  you may have to update them to match the new pattern.
+
 ### <a id='1-3-resolved-issues'></a> Resolved issues
 
 - Resolved issue 1
@@ -249,6 +193,11 @@ This release has the following breaking changes, listed by area and component.
 
 - Resolved issue 1
 - Resolved issue 2
+
+#### <a id="app-sso-resolved"></a> Application Single Sign-On
+
+- Emit the audit `TOKEN_REQUEST_REJECTED` event when the `refresh_token` grant fails.
+- The service binding `Secret` is updated when a `ClientRegistration` changes significantly.
 
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Policy Controller
 
