@@ -355,6 +355,19 @@ excluded_packages:
 
 See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
 
+### <a id='exclude-ipw'></a> (Optional) Exclude Image Policy Webhook
+
+Image Policy Webhook has been deprecated and will be removed in TAP v1.4.0. To exclude this package, update your `tap-values` file with a section listing the exclusion:
+
+```yaml
+...
+excluded_packages:
+  - image-policy-webhook.signing.apps.tanzu.vmware.com
+...
+```
+
+See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
+
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
 Follow these steps to install the Tanzu Application Platform package:
