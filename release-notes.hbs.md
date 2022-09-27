@@ -57,33 +57,48 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
-- Updated Go to its latest version (1.19)
-- New flags have been added to override default registry options. This means, if there's a private registry to push images to, options can be set either through apps plugin flags or environment variables. Refer to [workload apply registry opts flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#a-idapply-registry-ca-certa---registry-ca-cert) explanation for more info about these flags usage.
-- Workload get improvements:
-  - Added `Healthy` column to supply chain resources listed in `workload get` output. This column is also using colors to surface the resource healthy status.
+
+- `tanzu apps workload create/apply` improvements:
+  - Apps plugin users can now pass in registry flags to override the default registry options configured on the platform.
+    - These flags can leveraged when an application developer iterating on their code on their filesystem needs to push their code to a private registry (for example, this may be required when developing an application in an airgapped environment).
+    - To mitigate the risk of exposing sensitive information in the terminal, each registry flag/value can specified via environment variables.
+    - Refer to [workload apply > registry flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---registry-ca-cert) for a more detailed explanation about these flags and how to use them.
+  - Provided first-class support for creating workloads from Maven artifacts via Maven flags (previously this could only be achieved by passing the desired values via the `--complex-param` flag. 
+    - Refer to [workload apply > maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---maven-artifact) for a more detailed explanation about these flags and how to use them.
+- `tanzu apps workload get` improvements:
+  - Optimized the routines triggered when engaged in iterative development on the local filesystem.
+    - running `tanzu apps workload apply my-app --local-path . ... will only upload the contents of the project directory when source code changes are detected.
+  - Added a OUTPUT column to the resource table in the Supply Chain section to provide visibility to the resource that's stamped out by each supply chain step.
+    - the stamped out resource may be helpful when troubleshooting supply chain issues for a workload (e.g. the OUTPUT value can be copied and pasted into a `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail) 
+  - Added a Delivery section which provides visiblity to the delivery steps,  and the health, status, and stamped out resource associated with each delivery step.
+    - Note that the Delivery section content will be conditionally displayed depending on whether the targetted environment includes the Deliverable object (Delivery will be present on environments created using the Iterate and Build installation profiles)
+  - Added a `Healthy` column to the Supply Chain resources table.
+    - The column values are color coded to indicate the health of each resource at-a-glance. 
   - Added an Overview section to show workload name and type.
-  - Each section is now indented under its corresponding header.
-  - Emojis are printed to distinguish each section.
-  - A new column to show the resource stamped out by the supply chain was also added.
-  - Deliverable information is being surfaced whenever it's available.
-  - Pods status is now same as Kubectl so, for example, if there are init containers, when `workload get` is used, the `Init` status of these will be printed in the output.
-- Local source changes will be updated/uploaded only if there is an actual change to the code.
-- Maven artifact is also supported via flags. It can be set through complex params or the new flags. Check [workload apply maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#a-idapply-maven-artifacta---maven-artifact) for more info about their usage.
-- There are some environment variable that can be set as default values for apps plugin flags. These are:
-  * `--type`: TANZU_APPS_TYPE
-  * `--registry-ca-cert`: TANZU_APPS_REGISTRY_CA_CERT
-  * `--registry-password`: TANZU_APPS_REGISTRY_PASSWORD
-  * `--registry-username`: TANZU_APPS_REGISTRY_USERNAME
-  * `--registry-token`: TANZU_APPS_REGISTRY_TOKEN
+  - Added Emojis to, and indentation under, each section header in the command output to better distinguish each section.
+  - Updated the STATUS column in the table within the Pods section so that it displays the `Init` status when there are init containers (instead of displaying a less helpful/accurate `pending` value).
+    - In fact, all column values in the Pods table have been updated so the output will be equivalent to the output from `kubectl get pod/pod-name`
+- Updated Go to its latest version (1.19)
 
 ##### <a id="apps-plugin-deprecations"> Deprecations
 
-- First warning that `workload update` command will be deprecated.
+- The `tanzu apps workload update` command will be deprecated in the `apps` CLI plugin. Please use `tanzu apps workload apply` instead.
+  - `update` will be deprecated in two TAP releases (in TAP v1.5.0) or in one year (on Oct 11, 2023), whichever is longer.
 
 #### <a id="src-cont-features"></a>Source Controller
 
-- Feature 1
-- Feature 2
+- Added support for `SNAPSHOT` versions in `MavenArtifacts`
+- Added support for  Maven Artifact version LATEST
+- Optimized `MavenArtifact` artifact download during interval sync.
+- Reduced Informer memory footprint
+- Added routine to reset `ImageRepository` condition status between reconciles
+- Updated base image to paketobuildpacks/run-jammy-tiny:latest
+- Updated to go 1.18.
+  
+#####<a id="src-cont-bugfixes"></a>Bug Fixes
+
+- Added checks to ensure SNAPSHOT has versioning enabled.
+- Fixed resource status conditions when metadata or metadata element is not found.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
