@@ -57,7 +57,7 @@ To customize a package that was installed manually:
 To add an overlay to a package that was installed by using a Tanzu Application Platform profile:
 
 1. Create a `Secret` with your ytt overlay. For more information about ytt overlays, see the
-   [Carvel documentation](https://carvel.dev/ytt/docs/v0.43.0/ytt-overlays/) .
+   [Carvel documentation](https://carvel.dev/ytt/docs/v0.43.0/ytt-overlays/).
 
 2. Update your values file to include a `package_overlays` field:
 
@@ -67,6 +67,7 @@ To add an overlay to a package that was installed by using a Tanzu Application P
    secrets:
    - name: SECRET-NAME
    ```
+   Where `PACKAGE-NAME` is the short name of the target package for the overlay, e.g `tap-gui`
 
 3. Update Tanzu Application Platform by running:
 
