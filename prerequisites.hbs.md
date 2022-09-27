@@ -115,10 +115,10 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
 
 ## <a id="resource-requirements"></a>Resource requirements
 
-- To deploy Tanzu Application Platform packages iterate profile on local Minikube cluster Tanzu Application Platform packages, your cluster must have at least:
+- To deploy Tanzu Application Platform packages iterate profile on local Minikube cluster, your cluster must have at least:
     - 8&nbsp;vCPUs for i9 (or equivalent) available to Tanzu Application Platform components on Mac OS.
     - 12&nbsp;vCPUs for i7 (or equivalent) available to Tanzu Application Platform components on Mac OS. 
-    - 8&nbsp;vCPUs for available to Tanzu Application Platform components on Linux and Windows.
+    - 8&nbsp;vCPUs available to Tanzu Application Platform components on Linux and Windows.
     - 12&nbsp;GB of RAM available to Tanzu Application Platform components on Mac OS, Linux and Windows. 
     - 70&nbsp;GB of disk space available per node.
 - To deploy Tanzu Application Platform packages full profile, your cluster must have at least:    
