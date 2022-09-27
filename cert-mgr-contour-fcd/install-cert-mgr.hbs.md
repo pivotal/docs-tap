@@ -307,11 +307,11 @@ To install Contour from the Tanzu Application Platform package repository:
         
         For local clusters, you can configure `contour.evnoy.service.type` to be
         `NodePort`. If your local cluster is set up with extra port mappings on
-        the nodes, you may also need configure `envoy.service.nodePorts.http`
+        the nodes, you might also need configure `envoy.service.nodePorts.http`
         and `envoy.service.nodePorts.https` to match the port mappings from your
         local machine into one of the nodes of your local cluster. This pattern
         is seen when using the [Learning Center on
-        Kind](../learning-center/local-install-guides/deploying-to-kind.hbs.md).
+        Kind](../learning-center/local-install-guides/deploying-to-kind.html).
 
         Contour provides an Ingress implementation by default. If you have another Ingress
         implementation in your cluster, you must explicitly specify an
