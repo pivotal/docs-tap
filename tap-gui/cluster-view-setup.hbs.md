@@ -166,10 +166,12 @@ To do so:
 API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
 
     ```console
-    CLUSTER_CA_CERTIFICATES=$(kubectl config view --raw -o jsonpath='{.clusters[?(@.name=="**PROVIDE CLUSTER NAME**")].cluster.certificate-authority-data}')
+    CLUSTER_CA_CERTIFICATES=$(kubectl config view --raw -o jsonpath='{.clusters[?(@.name=="CLUSTER-NAME")].cluster.certificate-authority-data}')
 
     echo CLUSTER_CA_CERTIFICATES: $CLUSTER_CA_CERTIFICATES
     ```
+
+    Where `CLUSTER-NAME` is your cluster name.
 
 1. Record the `CLUSTER_URL` and `CLUSTER_TOKEN` values for when you
    [Update Tanzu Application Platform GUI to view resources on multiple clusters](#update-tap-gui)
