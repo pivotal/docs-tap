@@ -440,12 +440,12 @@ When you apply the `Pod Intent` and the image contains a dependency, for example
 output of the convention is:
 
 ```yaml
-  apiVersion: conventions.apps.tanzu.vmware.com/v1alpha1
+  apiVersion: conventions.carto.run/v1alpha1
   kind: PodIntent
   metadata:
     annotations:
       kubectl.kubernetes.io/last-applied-configuration: |
-        {"apiVersion":"conventions.apps.tanzu.vmware.com/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
+        {"apiVersion":"conventions.carto.run/v1alpha1","kind":"PodIntent","metadata":{"annotations":{},"name":"spring-sample","namespace":"default"},"spec":{"template":{"spec":{"containers":[{"image":"springio/petclinic","name":"workload"}]}}}}
     creationTimestamp: "..."
     generation: 1
     name: spring-sample
@@ -475,7 +475,7 @@ output of the convention is:
         annotations:
           boot.spring.io/actuator: http://:8080/actuator
           boot.spring.io/version: 2.3.3.RELEASE
-          conventions.apps.tanzu.vmware.com/applied-conventions: |-
+          conventions.carto.run/applied-conventions: |-
             spring-boot-convention/spring-boot
             spring-boot-convention/spring-boot-web
             spring-boot-convention/spring-boot-actuator
