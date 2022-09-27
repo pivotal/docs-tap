@@ -291,17 +291,6 @@ strategy with the following Git providers:
 - GitHub
 - GitLab
 
-The following drivers are available with the Jenkins X go-scm package:
-
-- bitbucket
-- gitea
-- github
-- gitlab
-- gogs
-- stash
-
-See the [Jenkins X go-scm](https://github.com/jenkins-x/go-scm/tree/main/scm/driver) repository in GitHub.
-
 #### Authentication
 
 The pull request approach requires HTTP(S) authentication with a token. In the
