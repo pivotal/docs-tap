@@ -1,5 +1,8 @@
 # Application Live View for VMware Tanzu
 
+>**Note:** To view our documentation for v1.0 and v1.1, see our previous
+[Application Live View site](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/index.html).
+
 Application Live View is a lightweight insights and troubleshooting tool that
 helps app developers and app operators to look inside running applications.
 It is based on the concept of Spring Boot Actuators.
@@ -18,7 +21,7 @@ their apps in a Kubernetes environment more effectively.
 ## <a id="intended-audience"></a>Intended audience
 
 This documentation is intended for developers and operators to visualize the actuator
-information of their running apps on Application Live View for VMware Tanzu.  
+information of their running apps on Application Live View for VMware Tanzu.
 This documentation helps developers to monitor and troubleshoot apps
 in development, staging, and production environments.
 It is also intended to help app operators to deploy and administer
