@@ -201,7 +201,7 @@ shared:
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
 
-ceip_policy_disclosed: true 
+ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 
 #The above keys are minimum numbers of entries needed in tap-values.yaml to get a functioning TAP Full profile installation.
 
@@ -225,7 +225,6 @@ contour:
 shared:
   kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
 
-ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
