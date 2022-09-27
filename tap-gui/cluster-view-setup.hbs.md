@@ -149,6 +149,17 @@ To do so:
     echo CLUSTER_TOKEN: $CLUSTER_TOKEN
     ```
 
+   Note : If you are watching a Kubernetes cluster version >= 1.24 please use this command instead:
+    ```console
+    CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+
+    CLUSTER_TOKEN=$(kubectl create token tap-gui-viewer --namespace tap-gui)
+
+    echo CLUSTER_URL: $CLUSTER_URL
+    echo CLUSTER_TOKEN: $CLUSTER_TOKEN
+    ```
+    
+
 1. (Optional) Configure the Kubernetes client to verify the TLS certificates presented by a cluster's
 API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
 
