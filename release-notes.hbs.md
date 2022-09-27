@@ -466,15 +466,33 @@ This issue is resolved in v1.2.1. In v1.2.0, the user can fix this issue by trou
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
-- When debugging an application with service bindings, debug sessions might prematurely end on the
-first run only. This is because of services being late-bound.
+- **Debugging ending prematurely:**
+  When debugging an application with service bindings, debugging sessions might prematurely end on
+  the first run only. This is because of services being late-bound.
 
-- The workload panel only supports the default `kubeconfig` file usually located at `~/.kube/config`.
+- **Workload panel only supports `kubeconfig`:**
+  The workload panel only supports the default `kubeconfig` file, which is usually in `~/.kube/config`.
+
+- **Unable to view workloads on the panel when connected to GKE cluster:**
+  When connecting to Google's GKE clusters, an error might appear with the text
+  `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
+  To fix this, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cannot-view-workloads).
+
+- **Warning notification when canceling an action:**
+  A warning notification can appear when running `Tanzu: Debug Start`, `Tanzu: Live Update Start`,
+  or `Tanzu: Apply`, which says that no workloads or Tiltfiles were found.
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cancel-action-warning).
 
 #### <a id="intelj-ext-known-issues"></a>Intellij Extension
 
-- When debugging an application with service bindings, debug sessions might prematurely end on the
-first run only. This is because of services being late-bound.
+- **Debugging ending prematurely:**
+  When debugging an application with service bindings, debugging sessions might prematurely end on
+  the first run only. This is because of services being late-bound.
+
+- **Unable to view workloads on the panel when connected to GKE cluster:**
+  When connecting to Google's GKE clusters, an error might appear with the text
+  `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
+  To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
