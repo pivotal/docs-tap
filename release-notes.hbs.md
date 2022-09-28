@@ -259,9 +259,18 @@ This release has the following breaking changes, listed by area and component.
 This release has the following known issues, listed by area and component.
 
 #### <a id="tap-known-issues"></a>Tanzu Application Platform
+  
+  - New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
 
-- New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
+#### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plugins
 
+- **Failure to connect to AWS EKS clusters:**
+When connecting to AWS EKS clusters, an error might appear with the text
+`Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
+`invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
+To resolve this issue, see
+[Failure to connect to AWS EKS clusters](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters).
+  
 #### <a id="alv-known-issues"></a>Application Live View
 
 - Known issue 1
