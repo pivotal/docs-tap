@@ -58,6 +58,8 @@ This release includes the following changes, listed by component and area.
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
 
+- `tanzu apps *` improvements:
+  - auto-complete now works for all sub-command names and their positional argument values, flag names and flag values
 - `tanzu apps workload create/apply` improvements:
   - Apps plugin users can now pass in registry flags to override the default registry options configured on the platform.
     - These flags can leveraged when an application developer iterating on their code on their filesystem needs to push their code to a private registry (for example, this may be required when developing an application in an airgapped environment).
