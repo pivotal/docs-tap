@@ -80,8 +80,6 @@ To install Cloud Native Runtimes:
         If you are running on a multinode cluster, do not set `provider`.
 
         Cloud Native Runtimes uses the existing Contour installation in the  `tanzu-system-ingress` namespace by default for external and internal access.
-        If you want to use a separate Contour installation for system-internal traffic, set
-        `cnrs.ingress.internal.namespace` to the empty string (`""`).
 
         If your environment has Contour installed already, and it is not the TAP provided Contour, you can configure CNR to use it. See [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-contour.html) in the Cloud Native Runtimes documentation for more information.
 
