@@ -430,9 +430,10 @@ defined. The provisioner of `storageclass` is responsible for creating the persi
 
 ## <a id='connect-aws-eks-clusters'></a> Failure to connect to AWS EKS clusters
 
-When connecting to AWS EKS clusters an error might appear with the text
-`Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
-`invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
+When using the Tanzu CLI to connect to AWS EKS clusters, you might see one of the following errors:
+
+- `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again`
+- `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`
 
 **Explanation**
 
@@ -449,3 +450,10 @@ GitHub.
     ```console
     aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
     ```
+1. In a new terminal window, run a Tanzu CLI command to verify the connection issue is resolved. For example:
+
+    ```console
+    tanzu apps workload list
+    ```
+
+    Expect the command to execute without error.
