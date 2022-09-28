@@ -449,20 +449,23 @@ When running a Source Scan of a blob compressed file, it looks for a `.git` dire
 
 #### <a id="tap-gui-known-issues"></a>Tanzu Application Platform GUI
 
-- Supply Chain plug-in:
-    - Delivery section of the supply chain graph might show deliverables that do not pertain to the selected workload. This occurs if there are more than one `Build` cluster per namespace.
-    - For `Deliverables` to show up for a `Workload`, they must have the following labels in both resources: `carto.run/workload-name`,`app.kubernetes.io/part-of`,`carto.run/supply-chain-name`.
+- **Supply Chain plug-in:**
+
+    - The delivery section of the supply chain graph might show deliverables that do not pertain to
+      the selected workload. This occurs if there is more than one `Build` cluster per namespace.
+    - For `Deliverables` to show up for a `Workload`, they must have the following labels in both
+      resources: `carto.run/workload-name`, `app.kubernetes.io/part-of`, and `carto.run/supply-chain-name`.
     - ConfigMap has no conditions and as a result its status is `Unknown`.
     - ConfigWriter shows an error but no error details are displayed.
-    - You might receive an error: `TypeError: Cannot read properties of undefined (reading 'data')`
-    when viewing a workload in a supply chain.
-    Use the CLI tools instead to view the status of the workload in the supply chain.
+    - You might receive the error `TypeError: Cannot read properties of undefined (reading 'data')`
+      when viewing a workload in a supply chain.
+      Use the CLI tools instead to view the status of the workload in the supply chain.
 
-- Runtime Resource Visibility plug-in:
-When accessing the **Runtime Resources** tab from the **Component** view, the following warning appears:
-`Access error when querying cluster 'host' for resource '/apis/source.apps.tanzu.vmware.com/v1alpha1/mavenartifacts' (status: 403). Contact your administrator.`
-This issue is resolved in v1.2.1. In v1.2.0, the user can fix this issue by troubleshooting the
-[Maven artifacts access error](tap-gui/troubleshooting.hbs.md#maven-artifacts-error).
+- **Runtime Resource Visibility plug-in:**
+  When accessing the **Runtime Resources** tab from the **Component** view, the following warning appears:
+  `Access error when querying cluster 'host' for resource '/apis/source.apps.tanzu.vmware.com/v1alpha1/mavenartifacts' (status: 403). Contact your administrator.`
+  This issue is resolved in v1.2.1. In v1.2.0, the user can fix this issue by troubleshooting the
+  [Maven artifacts access error](tap-gui/troubleshooting.hbs.md#maven-artifacts-error).
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 

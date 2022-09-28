@@ -2,6 +2,10 @@
 
 This topic describes what to do when encountering issues with Tanzu Developer Tools for IntelliJ.
 
+## <a id="debug-ends-early"></a> First debugging session ends prematurely
+
+{{> 'partials/ext-tshoot/debug-ends-early' }}
+
 ## <a id='no-support-multi-windows'></a> No support for multiple IntelliJ windows
 
 **Symptom:** A notification appears saying that the Tanzu Language Server has failed to start.
