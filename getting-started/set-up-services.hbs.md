@@ -153,6 +153,8 @@ To create a service instance:
           name: rmq-1
           namespace: service-instances
         ```
+        
+    > **Note:** If using Openshift, you may have to provide additional configuration for the `RabbitmqCluster`. See [these instructions](https://www.rabbitmq.com/kubernetes/operator/using-on-openshift.html) for more details.
 
     1. Apply `rmq-1-service-instance.yaml` by running:
 
