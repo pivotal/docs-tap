@@ -159,6 +159,16 @@ Grype fails to find vulnerabilities during a Source Scan.
 The vulnerabilities are still found during the Image Scan,
 after the binaries are built and packaged as images.
 
+#### <a id="1-1-1-known-issues-scc"></a> Supply Chain Choreographer for Tanzu
+
+- **`SourceScan` error when deploying Java functions workloads:**
+  Using Out of the Box Supply Chain with Testing and Scanning to deploy Java functions workloads
+  causes a `SourceScan` error.
+  The workload deployed shows an error for `SourceScan` because it cannot find the scan template.
+  You can receive enhanced scanning coverage for Java and Node.js workloads, including application
+  runtime layer dependencies, by using both Tanzu Build Service and Grype in your
+  Tanzu Application Platform supply chain. Python workloads are not supported.
+
 #### <a id="1-1-1-known-issues-scst-scan"></a>Supply Chain Security Tools - Scan
 
 The Supply Change Security Tools - Scan has the following CVEs at high severity
@@ -175,11 +185,6 @@ at high severity from `brancz/kube-rbac-proxy:0.12.0` image.
   If the `app_config.backend.reading.allow` section is configured during the `tap-gui` package
   installation, no accelerators show on the accelerator page.
   For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#no-accelerators).
-
-- **`SourceScan` error when deploying Java functions workloads:**
-  Using Out of the Box Supply Chain with Testing and Scanning to deploy Java functions workloads
-  causes a `SourceScan` error.
-  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#src-scn-err).
 
 ## <a id='1-1'></a> v1.1
 
