@@ -288,11 +288,11 @@ their pods preempted or evicted instead.
 Supply Chain Security Tools - Store does not start. You see the following error in the
 `metadata-store-app` Pod logs:
 
-    ```console
-    $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
-    ...
-    [error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
-    ```
+```console
+$ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
+...
+[error] failed to initialize database, got error failed to connect to `host=metadata-store-db user=metadata-store-user database=metadata-store`: server error (FATAL: password authentication failed for user "metadata-store-user" (SQLSTATE 28P01))
+```
 
 **Explanation**
 
