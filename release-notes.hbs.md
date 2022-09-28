@@ -59,27 +59,27 @@ This release includes the following changes, listed by component and area.
 
 
 - `tanzu apps *` improvements:
-  - auto-complete now works for all sub-command names and their positional argument values, flag names and flag values.
+  - auto-complete now works for all sub-command names and their positional argument values, flag names, and flag values.
 - `tanzu apps workload create/apply` improvements:
-  - Apps plugin users can now pass in registry flags to override the default registry options configured on the platform.
-    - These flags can leveraged when an application developer iterating on their code on their filesystem needs to push their code to a private registry (for example, this may be required when developing an application in an airgapped environment).
-    - To mitigate the risk of exposing sensitive information in the terminal, each registry flag/value can specified via environment variables.
+  - Apps plug-in users can now pass in registry flags to override the default registry options configured on the platform.
+    - These flags can leveraged when an application developer iterating on their code on their filesystem needs to push their code to a private registry. For example, this may be required when developing an application in an air-gapped environment.
+    - To mitigate the risk of exposing sensitive information in the terminal, each registry flag/value can specified by environment variables.
     - Refer to [workload apply > registry flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---registry-ca-cert) for a more detailed explanation about these flags and how to use them.
-  - Provided first-class support for creating workloads from Maven artifacts via Maven flags (previously this could only be achieved by passing the desired values via the `--complex-param` flag.
+  - Provided first-class support for creating workloads from Maven artifacts through Maven flags. Previously this could only be achieved by passing the desired values through the `--complex-param` flag.
     - Refer to [workload apply > maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---maven-artifact) for a more detailed explanation about these flags and how to use them.
 - `tanzu apps workload get` improvements:
   - Optimized the routines triggered when engaged in iterative development on the local filesystem.
     - running `tanzu apps workload apply my-app --local-path . ... will only upload the contents of the project directory when source code changes are detected.
   - Added a OUTPUT column to the resource table in the Supply Chain section to provide visibility to the resource that's stamped out by each supply chain step.
-    - the stamped out resource may be helpful when troubleshooting supply chain issues for a workload (e.g. the OUTPUT value can be copied and pasted into a `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail).
+    - The stamped out resource may be helpful when troubleshooting supply chain issues for a workload. For example, the OUTPUT value can be copied and pasted into a `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail).
   - Added a Delivery section which provides visiblity to the delivery steps,  and the health, status, and stamped out resource associated with each delivery step.
-    - Note that the Delivery section content will be conditionally displayed depending on whether the targetted environment includes the Deliverable object (Delivery will be present on environments created using the Iterate and Build installation profiles).
+    - The Delivery section content might be conditionally displayed depending on whether the targetted environment includes the Deliverable object. Delivery will be present on environments created using the Iterate and Build installation profiles.
   - Added a `Healthy` column to the Supply Chain resources table.
     - The column values are color coded to indicate the health of each resource at-a-glance.
   - Added an Overview section to show workload name and type.
   - Added Emojis to, and indentation under, each section header in the command output to better distinguish each section.
   - Updated the STATUS column in the table within the Pods section so that it displays the `Init` status when there are init containers (instead of displaying a less helpful/accurate `pending` value).
-    - In fact, all column values in the Pods table have been updated so the output will be equivalent to the output from `kubectl get pod/pod-name`.
+    - In fact, all column values in the Pods table have been updated so the output is equivalent to the output from `kubectl get pod/pod-name`.
 - Updated Go to its latest version (1.19).
 
 ##### <a id="apps-plugin-deprecations"> Deprecations
@@ -90,8 +90,8 @@ This release includes the following changes, listed by component and area.
 #### <a id="src-cont-features"></a>Source Controller
 
 - Added support for pulling artifacts with `LATEST` and `SNAPSHOT` versions.
-- 'MavenArtifact' artifact download during interval sync has been optimized. 
-  - Only after the SHA on the Maven Repository has changed will the source controller download the artifact. Otherwise, the download is skipped.
+- Optimized 'MavenArtifact' artifact download during interval sync.
+  - Only after the SHA on the Maven Repository has changed can the source controller download the artifact. Otherwise, the download is skipped.
 - Added routine to reset `ImageRepository` condition status between reconciles.
 - Added support for OpenShift.
 - Added support for Kubernetes 1.24.
@@ -260,7 +260,7 @@ This release has the following breaking changes, listed by area and component.
 This release has the following known issues, listed by area and component.
 
 #### <a id="tap-known-issues"></a>Tanzu Application Platform
-  
+
   - New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
 
 #### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plugins
@@ -271,7 +271,7 @@ When connecting to AWS EKS clusters, an error might appear with the text
 `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
 To resolve this issue, see
 [Failure to connect to AWS EKS clusters](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters).
-  
+
 #### <a id="alv-known-issues"></a>Application Live View
 
 - Known issue 1
