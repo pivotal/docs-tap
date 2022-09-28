@@ -45,7 +45,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
     kubectl label namespace YOUR-NAMESPACE policy.sigstore.dev/include=true
     ```
 
-    Where YOUR-NAMESPACE is the name of your secure namespace.
+    Where `YOUR-NAMESPACE` is the name of your secure namespace.
 
 >**Note:** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
 that have chosen to opt in.
