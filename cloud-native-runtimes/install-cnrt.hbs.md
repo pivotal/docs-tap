@@ -5,13 +5,13 @@ from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 The `full`, `iterate`, and `run` profiles include Cloud Native Runtimes.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='cnr-prereqs'></a>Prerequisites
 
 Before installing Cloud Native Runtimes:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 - Ensure Contour v1.22.0 or greater is installed. Tanzu Application Platform comes with a correctly versioned package of Contour if you do not have it installed already.
 
 ## <a id='cnr-install'></a> Install
@@ -135,7 +135,7 @@ To install Cloud Native Runtimes:
    >**Note:** This step covers configuring a namespace to run Knative services.
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >skip this step because namespace configuration is covered in
-   >[Set up developer namespaces to use installed packages](../set-up-namespaces.md).
+   >[Set up developer namespaces to use installed packages](../set-up-namespaces.hbs.md).
    >Otherwise, you must complete the following steps for each namespace where you create Knative services.
 
    Service accounts that run workloads using Cloud Native Runtimes need access to the image pull secrets for the Tanzu package.
@@ -143,7 +143,7 @@ To install Cloud Native Runtimes:
    Without these credentials, attempts to start a service fail with a timeout and the pods report that they are unable to pull the `queue-proxy` image.
 
     1. Create an image pull secret in the current namespace and fill it from the `tap-registry`
-    secret mentioned in [Add the Tanzu Application Platform package repository](../install.md#add-tap-package-repo).
+    secret mentioned in [Add the Tanzu Application Platform package repository](../install.hbs.md#add-tap-package-repo).
        Run the following commands to create an empty secret and annotate it as a target of the secretgen
        controller:
 
