@@ -63,17 +63,17 @@ This release includes the following changes, listed by component and area.
     - These flags can leveraged when an application developer iterating on their code on their filesystem needs to push their code to a private registry (for example, this may be required when developing an application in an airgapped environment).
     - To mitigate the risk of exposing sensitive information in the terminal, each registry flag/value can specified via environment variables.
     - Refer to [workload apply > registry flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---registry-ca-cert) for a more detailed explanation about these flags and how to use them.
-  - Provided first-class support for creating workloads from Maven artifacts via Maven flags (previously this could only be achieved by passing the desired values via the `--complex-param` flag. 
+  - Provided first-class support for creating workloads from Maven artifacts via Maven flags (previously this could only be achieved by passing the desired values via the `--complex-param` flag.
     - Refer to [workload apply > maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---maven-artifact) for a more detailed explanation about these flags and how to use them.
 - `tanzu apps workload get` improvements:
   - Optimized the routines triggered when engaged in iterative development on the local filesystem.
     - running `tanzu apps workload apply my-app --local-path . ... will only upload the contents of the project directory when source code changes are detected.
   - Added a OUTPUT column to the resource table in the Supply Chain section to provide visibility to the resource that's stamped out by each supply chain step.
-    - the stamped out resource may be helpful when troubleshooting supply chain issues for a workload (e.g. the OUTPUT value can be copied and pasted into a `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail) 
+    - the stamped out resource may be helpful when troubleshooting supply chain issues for a workload (e.g. the OUTPUT value can be copied and pasted into a `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail)
   - Added a Delivery section which provides visiblity to the delivery steps,  and the health, status, and stamped out resource associated with each delivery step.
     - Note that the Delivery section content will be conditionally displayed depending on whether the targetted environment includes the Deliverable object (Delivery will be present on environments created using the Iterate and Build installation profiles)
   - Added a `Healthy` column to the Supply Chain resources table.
-    - The column values are color coded to indicate the health of each resource at-a-glance. 
+    - The column values are color coded to indicate the health of each resource at-a-glance.
   - Added an Overview section to show workload name and type.
   - Added Emojis to, and indentation under, each section header in the command output to better distinguish each section.
   - Updated the STATUS column in the table within the Pods section so that it displays the `Init` status when there are init containers (instead of displaying a less helpful/accurate `pending` value).
@@ -94,7 +94,7 @@ This release includes the following changes, listed by component and area.
 - Added routine to reset `ImageRepository` condition status between reconciles
 - Updated base image to paketobuildpacks/run-jammy-tiny:latest
 - Updated to go 1.18.
-  
+
 #####<a id="src-cont-bugfixes"></a>Bug Fixes
 
 - Added checks to ensure SNAPSHOT has versioning enabled.
@@ -304,8 +304,8 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="tap-gui-known-issues"></a>Tanzu Application Platform GUI
 
-- Known issue 1
-- Known issue 2
+- **Tanzu Application Platform GUI doesn't work in Safari:**
+  Tanzu Application Platform GUI does not work in the Safari web browser.
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
