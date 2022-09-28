@@ -1,4 +1,4 @@
-# Getting started
+# Getting started with Tanzu Developer Tools for VS Code
 
 This topic guides you through getting started with VMware Tanzu Developer Tools for Visual Studio Code
 (VS Code).

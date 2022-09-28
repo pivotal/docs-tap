@@ -1,4 +1,4 @@
-# Setting up your project
+# Getting Started with Tanzu Developer Tools for IntelliJ
 
 This topic describes how to set up the Tanzu Developer Tools for IntelliJ extension for your project.
 

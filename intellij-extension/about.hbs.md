@@ -1,4 +1,4 @@
-# VMware Tanzu Developer Tools for IntelliJ
+# Overview of Tanzu Developer Tools for IntelliJ
 
 Tanzu Developer Tools for IntelliJ is VMware Tanzu's official IDE extension for IntelliJ IDEA to help
 you develop with the Tanzu Application Platform.
