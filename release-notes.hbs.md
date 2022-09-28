@@ -449,6 +449,9 @@ When running a Source Scan of a blob compressed file, it looks for a `.git` dire
 
 #### <a id="tap-gui-known-issues"></a>Tanzu Application Platform GUI
 
+- **Tanzu Application Platform GUI doesn't work in Safari:**
+  Tanzu Application Platform GUI does not work in the Safari web browser.
+
 - **Supply Chain plug-in:**
 
     - The delivery section of the supply chain graph might show deliverables that do not pertain to
