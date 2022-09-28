@@ -6,6 +6,6 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 
 {{> 'partials/ext-tshoot/cannot-view-workloads' }}
 
-## <a id='cancel-action-note'></a> Warning notification when canceling an action:**
+## <a id='cancel-action-note'></a> Warning notification when canceling an action
 
 {{> 'partials/ext-tshoot/cancel-action-warning' }}
