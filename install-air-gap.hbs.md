@@ -316,7 +316,7 @@ credentials to pull an image from the registry for scanning.
 
 >**Note:** Create the app-live-view namespace and the TLS secret for the domain before installing the Tanzu Application Platform packages in the cluster. This ensures the HTTPProxy is updated with the TLS secret.
 
-To create a TLS secret for app live view, run:
+To create a TLS secret for app-live-view, run:
 
 ```console
 kubectl create -n app-live-view secret tls alv-cert --cert=<.crt file> --key=<.key file>
