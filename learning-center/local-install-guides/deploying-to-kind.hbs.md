@@ -12,9 +12,9 @@ Requirements and setup instructions specific to Kind are detailed in this docume
 
 You must complete the following installation prerequisites as a user prior to installation:
 
-  - Create a tanzunet account and have access to your tanzunet credentials.  
-  - Install Kind on your local machine.  
-  - Install tanzuCLI on your local machine.  
+  - Create a tanzunet account and have access to your tanzunet credentials.
+  - Install Kind on your local machine.
+  - Install tanzuCLI on your local machine.
   - Install kubectlCLI on your local machine.
 
 ## <a id="kind-cluster-creation"></a> Kind cluster creation
@@ -59,7 +59,7 @@ If you have created a contour ingress controller, verify all pods have a running
 kubectl get pods -n projectcontour -o wide
 ```
 
-For information on installing the Contour that comes with TAP, see [here](../../cert-mgr-contour-fcd/install-cert-mgr.hbs.md#a-idinstall-contourainstall-contour).
+For information on installing Contour, which comes with Tanzu Application Platform, see [Install cert-manager, Contour](../../cert-mgr-contour-fcd/install-cert-mgr.hbs.md#a-idinstall-contourainstall-contour).
 
 ## <a id="install-carvel-tools"></a> Install carvel tools
 
