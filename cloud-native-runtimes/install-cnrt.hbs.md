@@ -75,12 +75,11 @@ To install Cloud Native Runtimes:
 
         >**Note:** For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
 
-        If you are running on a single-node cluster, such as kind or minikube, set the `provider: local`
+        If you are running on a single-node cluster, such as kind or minikube, set the `lite.enable: true`
         option. This option reduces resources requests for CNR deployments.
         If you are running on a multinode cluster, do not set `provider`.
 
-        Cloud Native Runtimes reuses the existing `tanzu-system-ingress` Contour installation for
-        external and internal access.
+        Cloud Native Runtimes uses the existing Contour installation in the  `tanzu-system-ingress` namespace by default for external and internal access.
         If you want to use a separate Contour installation for system-internal traffic, set
         `cnrs.ingress.internal.namespace` to the empty string (`""`).
 
