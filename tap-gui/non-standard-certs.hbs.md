@@ -2,8 +2,10 @@
 
 This topic describes how to configure Tanzu Application Platform GUI to trust unusual certificate
 authorities (CA) when making outbound connections.
-Tanzu Application Platform GUI may require custom certificates when connecting to persistent databases or custom catalog locations requiring SSL.
-You do this by using overlays with PackageInstalls. There are two ways to implement this workaround:
+Tanzu Application Platform GUI might require custom certificates when connecting to persistent
+databases or custom catalog locations that require SSL.
+You use overlays with PackageInstalls to make this possible. There are two ways to implement this
+workaround:
 
 - [Add a custom CA](#add-custom-ca)
 - [Deactivate all SSL verification](#deactivate-ssl)
@@ -13,7 +15,8 @@ You do this by using overlays with PackageInstalls. There are two ways to implem
 > **Note:** The overlay previously available in this section is no longer necessary.
 
 As of Tanzu Application Platform {{ vars.tap_version }}, the value `ca_cert_data` is supported
-at the top level of its values file. Any number of newline-delimited CA certificates in PEM format are accepted.
+at the top level of its values file. Any number of newline-delimited CA certificates in PEM format
+are accepted.
 
 For example:
 
@@ -51,8 +54,9 @@ tap_gui:
     # ...
 ```
 
-To verify that the custom CA certificates have been correctly ingested by Tanzu Application Platform GUI Application, check that the `ca-certs-data` volume with mount path `/etc/custom-ca-certs-data` is mounted in the Tanzu Application Platform GUI server pod.
-
+To verify that Tanzu Application Platform GUI has processed the custom CA certificates, check that
+the `ca-certs-data` volume with mount path `/etc/custom-ca-certs-data` is mounted in the
+Tanzu Application Platform GUI server pod.
 
 ## <a id='deactivate-ssl'></a> Deactivate all SSL verification
 
