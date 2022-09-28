@@ -542,6 +542,9 @@ restart your Supply Chain Security Tools - Scan deployment by running:
 
 #### Tanzu Application Platform GUI
 
+- **Tanzu Application Platform GUI doesn't work in Safari:**
+  Tanzu Application Platform GUI does not work in the Safari web browser.
+
 - **Runtime Resources errors:**
   The **Runtime Resources** tab shows cluster query errors when attempting to retrieve Kubernetes
   object details from clusters that are not on the Full profile.
