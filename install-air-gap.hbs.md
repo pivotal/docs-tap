@@ -86,7 +86,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --password $IMGPKG_REGISTRY_PASSWORD \
         --namespace tap-install \
         --export-to-all-namespaces \
-        --yes 
+        --yes
     ```
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
@@ -180,9 +180,9 @@ The sample values file contains the necessary defaults for:
 
 ### <a id='full-profile'></a> Full Profile
 
-To install Tanzu Application Platform with Supply Chain Basic, 
-you must retrieve your cluster’s base64 encoded ca certificate from `$HOME/.kube/config`. 
-Retrieve the `certificate-authority-data` from the respective cluster section 
+To install Tanzu Application Platform with Supply Chain Basic,
+you must retrieve your cluster’s base64 encoded ca certificate from `$HOME/.kube/config`.
+Retrieve the `certificate-authority-data` from the respective cluster section
 and input it as `B64_ENCODED_CA` in the `tap-values.yaml`.
 
 The following is the YAML file sample for the full-profile:
@@ -311,19 +311,21 @@ service's External IP address.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`. This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
-- `SECRET-NAME` is the name of the TLS secret for the domain consumed by HTTPProxy
-- `APP-LIVE-VIEW-NAMESPACE` is the targeted namespace for TLS secret for the domain 
+- `SECRET-NAME` is the name of the TLS secret for the domain consumed by HTTPProxy.
+- `APP-LIVE-VIEW-NAMESPACE` is the targeted namespace for the TLS secret for the domain.
 
->**Note:** The app-live-view namespace and the TLS secret for the domain should be created before installing the Tanzu Application Platform packages in the cluster so that the HTTPProxy is updated with the TLS secret. 
+>**Note:** Create the app-live-view namespace and the TLS secret for the domain before installing the Tanzu Application Platform packages in the cluster. This ensures the HTTPProxy is updated with the TLS secret.
 
-To create a TLS secret for app live view, run:    
+To create a TLS secret for app live view, run:
+
 ```console
 kubectl create -n app-live-view secret tls alv-cert --cert=<.crt file> --key=<.key file>
 ```
 
 To verify the HTTPProxy object with the TLS secret, run:
+
 ```console
-kubectl get httpproxy -A 
+kubectl get httpproxy -A
 NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
 app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
 ```
