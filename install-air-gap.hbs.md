@@ -223,6 +223,22 @@ accelerator:
       samples:
         # Prevent repeated polling of github to pull accelerators
         include: false
+
+appliveview:
+  ingressEnabled: true
+  tls:
+    secretName: "SECRET-NAME"
+    namespace: "APP-LIVE-VIEW-NAMESPACE"
+
+appliveview_connector:
+  backend:
+    ingressEnabled: true
+    sslDisabled: false
+    caCertData: |
+      -----BEGIN CERTIFICATE-----
+      MIIGAzCCA+ugAwIBAgIUQDKQs5V0xUt/PY4M/EEGUIcRfg4wDQYJKoZIhvcNAQEN...
+      -----END CERTIFICATE-----
+
 tap_gui:
   service_type: ClusterIP
   ingressEnabled: "true"
@@ -295,6 +311,22 @@ service's External IP address.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`. This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
+- `SECRET-NAME` is the name of the TLS secret for the domain consumed by HTTPProxy
+- `APP-LIVE-VIEW-NAMESPACE` is the targeted namespace for TLS secret for the domain 
+
+>**Note:** The app-live-view namespace and the TLS secret for the domain should be created before installing the Tanzu Application Platform packages in the cluster so that the HTTPProxy is updated with the TLS secret. 
+
+To create a TLS secret for app live view, run:    
+```console
+kubectl create -n app-live-view secret tls alv-cert --cert=<.crt file> --key=<.key file>
+```
+
+To verify the HTTPProxy object with the TLS secret, run:
+```console
+kubectl get httpproxy -A 
+NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
+app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
+```
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
