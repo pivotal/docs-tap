@@ -171,40 +171,15 @@ at high severity from `brancz/kube-rbac-proxy:0.12.0` image.
 
 #### <a id="1-1-1-known-issues-gui"></a>Tanzu Application Platform GUI
 
-**If the `app_config.backend.reading.allow` section is configured during the
-tap-gui package install, no accelerators shows on the accelerator page:**
-This is because `app_config.backend.reading.allow` overrides the default
-configuration, which allows Tanzu Application Platform GUI access to the accelerators.
-There are two use cases for the `app_config.backend.reading.allow` field:
+- **Accelerators not appearing on Accelerator page:**
+  If the `app_config.backend.reading.allow` section is configured during the `tap-gui` package
+  installation, no accelerators show on the accelerator page.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#no-accelerators).
 
-- Read catalog locations from a non-standard Git server with no built-in integration.
-- Read specifications for API Entities from openAPI endpoints.
-
-As a workaround, when modifying the `app_config.backend.reading.allow` section,
-you must provide a value for Application Accelerator:
-
-```yaml
-app_config:
-  # Existing tap-values.yaml above
-  backend:
-    reading:
-      allow:
-      - host: acc-server.accelerator-system.svc.cluster.local
-```
-
-#### <a id="1-1-1-known-issues-gui"></a>Functions (Beta Feature)
-
-Deploying Java functions workloads by using the Out of the Box Supply Chain
-with Testing and Scanning causes an error.
-The workload deployed shows an error for `SourceScan` as it can not find
-the scan template. A fix is planned for Tanzu Application Platform v1.2.1.
-
->**Note:** When using both Tanzu Build Service and Grype in your
-Tanzu Application Platform supply chain,
-you can receive enhanced scanning coverage for Java and Node.js workloads that
-includes application runtime layer dependencies.
-Python workloads are not supported.
-
+- **`SourceScan` error when deploying Java functions workloads:**
+  Using Out of the Box Supply Chain with Testing and Scanning to deploy Java functions workloads
+  causes a `SourceScan` error.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#src-scn-err).
 
 ## <a id='1-1'></a> v1.1
 
@@ -453,7 +428,7 @@ When adding Tanzu Application Platform clusters with pre-installed Tanzu Cluster
 Tanzu Mission Control instance, the `tanzunet-secret` export shows `Feature Disabled`.
 
 - **--export-all-namespaces not properly observed:**
-When deploying Tanzu Application Platform on Google Kubernetes Engine (GKE) v1.23.5-gke.200 
+When deploying Tanzu Application Platform on Google Kubernetes Engine (GKE) v1.23.5-gke.200
 and running `tanzu secret registry add tanzunet-creds`, the `--export-all-namespaces` is not
 properly observed.
 
@@ -563,9 +538,11 @@ restart your Supply Chain Security Tools - Scan deployment by running:
 #### Tanzu Application Platform GUI
 
 - **Runtime Resources errors:**
-
-    The Runtime Resources tab shows cluster query errors when attempting to retrieve Kubernetes object details from clusters that are not on the Full profile.
+  The **Runtime Resources** tab shows cluster query errors when attempting to retrieve Kubernetes
+  object details from clusters that are not on the Full profile.
+  For more information, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#runtime-resource-visibility)
 
 - **Supply Chain displays incorrect data if there are workloads with same name and namespace:**
-
-    When there are two workloads that have the same name and namespace, but exist on different clusters, clicking either of them in the supply chain page always shows the details for the first one. There is no way to access details for the second.
+  When there are two workloads that have the same name and namespace, but exist on different clusters,
+  clicking either of them in the supply chain page always shows the details for the first one.
+  There is no way to access details for the second.

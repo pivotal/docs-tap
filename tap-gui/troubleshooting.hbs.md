@@ -3,6 +3,23 @@
 This topic describes troubleshooting information for problems with installing
 Tanzu Application Platform GUI.
 
+## <a id='src-scn-err'></a> `SourceScan` error when deploying Java functions workloads
+
+### Symptom
+
+Using Out of the Box Supply Chain with Testing and Scanning to deploy Java functions workloads causes
+a `SourceScan` error.
+
+### Cause
+
+The workload deployed shows an error for `SourceScan` because it cannot find the scan template.
+
+### Solution
+
+You can receive enhanced scanning coverage for Java and Node.js workloads, including application
+runtime layer dependencies, by using both Tanzu Build Service and Grype in your
+Tanzu Application Platform supply chain. Python workloads are not supported.
+
 ## <a id='catalog-not-found'></a> Catalog not found
 
 ### Symptom
