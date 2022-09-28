@@ -464,6 +464,10 @@ Supply Chain Security Tools - Store API, resulting in this error message.
 All of our testing uses the `metadata-store` namespace. Using a different namespace breaks
 authentication and certificate validation for the `metadata-store` API.
 
+#### Tanzu Application Platform GUI
+
+- **Tanzu Application Platform GUI doesn't work in Safari:**
+  Tanzu Application Platform GUI does not work in the Safari web browser.
 
 #### Tanzu CLI
 
