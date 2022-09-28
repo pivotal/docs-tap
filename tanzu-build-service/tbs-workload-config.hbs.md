@@ -143,13 +143,46 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
   - Docker Hub has the form `"my-dockerhub-user"`.
   - Google Cloud Registry has the form `"my-project/supply-chain"`.
 
-## <a id="workload-custom-certs"></a> Add custom CA certificates to the workload image
+## <a id='custom-cert-single-workload'></a> Configuring custom CA certificates for a single workload using service bindings
 
-There are two ways to configure runtime CA certificates for Tanzu Build Service.
+If the [language family buildpack](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
+you are using includes the Paketo CA Certificates Buildpack, you can provide custom certificates
+as service bindings during the build and/or the run process.
 
-- **(Recommended) Use the [Paketo CA Certificates Buildpack](https://github.com/paketo-buildpacks/ca-certificates) and service bindings.**
-This adds CA certificates to the system truststore at build or run time.
-For more information about using the buildpack, see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-config-config-buildpack-kp.html#ca-certificates).
+1. Create a YAML file named `service-binding-ca-cert.yaml` for a Secret as follows:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: my-ca-certs
+data:
+  type: ca-certificates
+  provider: sample
+  <my-ca.pem>: <insert PEM encoded cert>
+```
 
-- **Use a CustomStack to embed the CA certificates into one or both of the stack images.**
-For more information about using CustomStacks, see the [VMware Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-custom-stacks.html)
+2. Apply the YAML file by running:
+
+    ```console
+    kubectl apply -f service-binding-ca-cert.yaml
+    ```
+
+3. To build with the custom certificate, create the workload with `--param-yaml buildServiceBindings` flag:
+
+  ```console
+  tanzu apps workload create WORKLOAD-NAME \
+    --param-yaml buildServiceBindings='[{"apiVersion": "v1", "kind": "Secret", "name": "custom-ca-cert"}]' \
+    ...
+  ```
+
+4. To deploy with the custom certificate, create the workload with the `--service-ref` flag:
+
+  ```console
+  tanzu apps workload create WORKLOAD-NAME \
+    --service-ref my-ca-certs=v1:Secret:my-ca-certs \
+    ...
+  ```
+
+## <a id="custom-certs-all-workloads"></a> Using custom CA certificates for all Workloads at build time
+
+To provide custom CA certificates to the build process of all Workloads, see the section on `ca_cert_data` in the [installing Tanzu build Service](install-tbs.md#tbs-tcli-install).

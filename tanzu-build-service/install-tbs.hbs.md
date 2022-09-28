@@ -68,9 +68,9 @@ To install Tanzu Build Service by using the Tanzu CLI:
         >For more information, see [Use Secret References for registry credentials](#install-secret-refs)
         >or [Use AWS IAM authentication for registry credentials](#tbs-tcli-install-ecr).
 
-1. (Optional) Tanzu Build Service uses the default system certificates to access your registry.
-To configure additional CA certificates when connecting to your registry, add the your PEM-encoded
-CA certificate under the `ca_cert_data` key to your `tbs-values.yaml` file. For example:
+1. (Optional) Tanzu Build Service can be provided a PEM-encoded CA certificate under the
+`ca_cert_data` key in the `tbs-values.yaml` file. This certificate will be used to access
+the image registry as well as be provided to the build process. For example:
 
     ```yaml
     ---
