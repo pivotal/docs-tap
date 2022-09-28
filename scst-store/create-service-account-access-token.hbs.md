@@ -65,7 +65,7 @@ As a part of the Store installation, the `metadata-store-read-only` cluster role
     metadata:
       name: metadata-store-read-client
       namespace: metadata-store
-    annotations:
+      annotations:
         kapp.k14s.io/change-group: "metadata-store.apps.tanzu.vmware.com/service-account"
     automountServiceAccountToken: false
     ---
@@ -73,9 +73,9 @@ As a part of the Store installation, the `metadata-store-read-only` cluster role
     kind: Secret
     type: kubernetes.io/service-account-token
     metadata:
-        name: metadata-store-read-client
-        namespace: metadata-store
-    annotations:
+      name: metadata-store-read-client
+      namespace: metadata-store
+      annotations:
         kapp.k14s.io/change-rule: "upsert after upserting metadata-store.apps.tanzu.vmware.com/service-account"
         kubernetes.io/service-account.name: "metadata-store-read-client"
     EOF
@@ -151,7 +151,7 @@ If you do not want to bind to a cluster role, create a read-only role in the `me
     metadata:
       name: metadata-store-read-client
       namespace: metadata-store
-    annotations:
+      annotations:
         kapp.k14s.io/change-group: "metadata-store.apps.tanzu.vmware.com/service-account"
     automountServiceAccountToken: false
     ---
@@ -159,9 +159,9 @@ If you do not want to bind to a cluster role, create a read-only role in the `me
     kind: Secret
     type: kubernetes.io/service-account-token
     metadata:
-        name: metadata-store-read-client
-        namespace: metadata-store
-    annotations:
+      name: metadata-store-read-client
+      namespace: metadata-store
+      annotations:
         kapp.k14s.io/change-rule: "upsert after upserting metadata-store.apps.tanzu.vmware.com/service-account"
         kubernetes.io/service-account.name: "metadata-store-read-client"
     EOF
@@ -238,7 +238,7 @@ To create a read-write service account, run the following command. The command c
     metadata:
       name: metadata-store-read-write-client
       namespace: metadata-store
-    annotations:
+      annotations:
         kapp.k14s.io/change-group: "metadata-store.apps.tanzu.vmware.com/service-account"
     automountServiceAccountToken: false
     ---
@@ -246,9 +246,9 @@ To create a read-write service account, run the following command. The command c
     kind: Secret
     type: kubernetes.io/service-account-token
     metadata:
-        name: metadata-store-read-write-client
-        namespace: metadata-store
-    annotations:
+      name: metadata-store-read-write-client
+      namespace: metadata-store
+      annotations:
         kapp.k14s.io/change-rule: "upsert after upserting metadata-store.apps.tanzu.vmware.com/service-account"
         kubernetes.io/service-account.name: "metadata-store-read-write-client"
     EOF
