@@ -198,12 +198,6 @@ Because best practices do not include committing binaries to source code reposit
 fails to find vulnerabilities during a Source Scan. The vulnerabilities are still found
 during the Image Scan, after the binaries are built and packaged as images.
 
-#### Services Toolkit
-
-- Resolved an issue with the `tanzu services` CLI plug-in which meant it was not compatible with Kubernetes clusters running on GKE.
-- Fixed a potential race condition during reconciliation of ResourceClaims which might cause the Services Toolkit manager to stop responding.
-- Updated configuration of the Services Toolkit carvel Package to prevent an unwanted build up of ConfigMap resources.
-
 #### Application Accelerator
 
 - Build scripts are provided as part of an accelerator now have the execute bit set when a
@@ -233,11 +227,23 @@ invalid accelerator.
 
 This release has the following fixes:
 
-#### Tanzu Dev Tools for VSCode
+#### Tanzu Developer Tools for VS Code
 
-- v0.5.0 release does not install the extensions in the dependency "Extension Pack for Java". v0.5.2 installs "Debugger for Java" and "Language Support for Java(TM) by Red Hat" extensions directly instead of installing the extension pack.
-- Users can run "Configure Tasks", "Configure the Default Build Task", or "Launch Extension Host" when using the Tanzu Dev Tools extension in a workspace without a `workload.yaml` file.
+- v0.5.0 does not install the extensions in the dependency `Extension Pack for Java`.
+  v0.5.2 installs `Debugger for Java` and `Language Support for Java(TM) by Red Hat` extensions
+  directly instead of installing the extension pack.
+- Users can run `Configure Tasks`, `Configure the Default Build Task`, or `Launch Extension Host`
+  when using the Tanzu Developer Tools extension in a workspace without a `workload.yaml` file.
 - Fixes [CVE 2022-0144](https://www.cvedetails.com/cve/CVE-2022-0144/)
+
+#### Services Toolkit
+
+- Resolved an issue with the `tanzu services` CLI plug-in which meant it was not compatible with
+  Kubernetes clusters running on GKE.
+- Fixed a potential race condition during reconciliation of ResourceClaims which might cause the
+  Services Toolkit manager to stop responding.
+- Updated configuration of the Services Toolkit carvel Package to prevent an unwanted build up of
+  ConfigMap resources.
 
 ## <a id='1-0'></a> v1.0
 
@@ -471,28 +477,27 @@ prematurely on subsequent updates when passed with `workload update/apply` for e
 When the `--wait` flag is included and you decline the "Do you want to create this workload?"
 prompt, the command continues to wait and must be cancelled manually.
 
-#### Tanzu Dev Tools for VSCode
+#### Tanzu Developer Tools for VS Code
 
-**Unable to configure task:** Launching the `Extension Host`, and configuring `tasks` in a workspace
-that does not contain workload YAML files might not work.
-To solve this issue, uninstall the Tanzu Dev Tools extension.
+- **Unable to configure task:**
+  After launching `Extension Host`, you might not be able to configure `tasks` in a workspace that
+  does not contain workload YAML files.
+  For more information, see
+  [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cannot-config-task).
 
-**Extension Pack for Java:** In some cases, the Extension Pack for Java (`vscjava.vscode-java-pack`)
-does not automatically install. In these cases debugging does not work after Tanzu Dev Tools
-installs `live-update`.
-To solve this issue, manually install `vscjava.vscode-java-pack` from the extension marketplace.
+- **Extension Pack for Java has not automatically installed:**
+  In some cases, the Extension Pack for Java (`vscjava.vscode-java-pack`) does not automatically install.
+  For more information, see
+  [Troubleshooting](vscode-extension/troubleshooting.hbs.md#no-auto-install-ext-pack).
 
 #### Services Toolkit
 
-* It is not possible for more than one application workload to consume the same service instance.
-Attempting to create two or more application workloads while specifying the same `--service-ref`
-value causes only one of the workloads to bind to the service instance and reconcile successfully.
-This limitation is planned to be relaxed in an upcoming release.
-* The `tanzu services` CLI plug-in is not compatible with Kubernetes clusters running on GKE.
+- It is not possible for more than one application workload to consume the same service instance.
+  Attempting to create two or more application workloads while specifying the same `--service-ref`
+  value causes only one of the workloads to bind to the service instance and reconcile successfully.
+  This limitation is planned to be relaxed in an upcoming release.
 
-#### Tanzu Application Platform GUI
-
-- This release is vulnerable to [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the json-schema package
+- The `tanzu services` CLI plug-in is not compatible with Kubernetes clusters running on GKE.
 
 ### <a id='1-0-security-issues'></a> Security issue
 
@@ -504,7 +509,8 @@ exclusively.
 - Using [Carvel tool's imgpkg](https://carvel.dev/imgpkg/) customers can create a dedicated OCI
 registry on their own infrastructure that can comply with any required security policies that might
 exist.
-
+- Tanzu Application Platform GUI is vulnerable to
+  [CVE-2021-3918](https://nvd.nist.gov/vuln/detail/CVE-2021-3918) from the `json-schema` package
 
 ### <a id='1-0-breaking-changes'></a> Breaking changes
 
@@ -516,10 +522,10 @@ This release has the following breaking change:
 
 This release has the following fixes:
 
-#### Tanzu Dev Tools for VSCode
+#### Tanzu Developer Tools for VS Code
 
-- Fixed issue where the Tanzu Dev Tools extension might not support projects with multi-document
-YAML files
+- Fixed issue where the Tanzu Developer Tools extension might not support projects with multi-document
+  YAML files
 - Modified debug to remove any leftover port-forwards from past runs
 
 #### Supply Chain Security Tools - Store

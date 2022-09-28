@@ -4,6 +4,7 @@ This topic describes troubleshooting information for problems with installing
 Tanzu Application Platform GUI.
 
 ## <a id='catalog-not-found'></a> Catalog not found
+
 ### Symptom
 
 When you pull up the Tanzu Application Platform UI, you get the error `Catalog Not Found`.
