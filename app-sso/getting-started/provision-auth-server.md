@@ -230,3 +230,11 @@ consider using OpenID Connect IDPs instead.
 
 The `email` and `roles` fields are optional for internal users. However, they will be useful when we want to use SSO
 with a client application later in this guide.
+
+### Configuring storage
+
+An `AuthServer` issues a Redis instance by default, and may be used for testing, prototyping, and other non-production
+purposes -- no additional configuration is needed.
+
+To configure your own storage that is ready for production, follow the steps outlined
+in [configuring Storage documentation](../service-operators/storage.hbs.md).
