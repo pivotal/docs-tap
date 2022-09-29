@@ -34,8 +34,9 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="alv-features"></a>Application Live View
 
-- Feature 1
-- Feature 2
+- Application Live View uses a custom Security Context Constraint to provide Openshift Support.
+- Custom CAs are supported.
+
 
 #### <a id="app-sso-features"></a>Application Single Sign-On
 
