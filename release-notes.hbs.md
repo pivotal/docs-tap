@@ -58,7 +58,6 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
-
 - `tanzu apps *` improvements:
   - auto-complete now works for all sub-command names and their positional argument values, flag names, and flag values.
 - `tanzu apps workload create/apply` improvements:
@@ -96,11 +95,6 @@ This release includes the following changes, listed by component and area.
 - Added routine to reset `ImageRepository` condition status between reconciles.
 - Added support for OpenShift.
 - Added support for Kubernetes 1.24.
-
-#####<a id="src-cont-bugfixes"></a>Bug Fixes
-
-- Added checks to ensure SNAPSHOT has versioning enabled.
-- Fixed resource status conditions when metadata or metadata element is not found.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
@@ -240,6 +234,11 @@ This release has the following breaking changes, listed by area and component.
 - When creating a workload from local source in Windows, the image was created with unstructured directories and flattened all file names. This is now fixed with an `imgpkg` upgrade.
 - When uploading a source image, if the namespace provided is not valid or doesn't exist, the image isn't uploaded and the workload isn't created.
 - Due to a Tanzu Framework upgrade, the autocompletion for flag names in all commands is now working.
+
+#### <a id="source-controller-resolved"></a> Source Controller
+
+- Added checks to ensure SNAPSHOT has versioning enabled.
+- Fixed resource status conditions when metadata or metadata element is not found.
 
 #### <a id="srvc-toolkit-resolved"></a> Services Toolkit
 
