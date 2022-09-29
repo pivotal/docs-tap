@@ -2,13 +2,16 @@
 
 This topic describes how to install Application Live View from the Tanzu Application Platform package repository.
 
-Application Live View installs three packages for `full`, `light`, and `iterate` profiles:
+Application Live View installs three packages for `view`, `run`, and `build` profiles:
 
 - For the `view` profile, Application Live View installs Application Live View back-end package (`backend.appliveview.tanzu.vmware.com`). This installs the Application Live View back-end component with Tanzu Application Platform GUI in `app-live-view` namespace.
 
 - For the `run` profile, Application Live View installs Application Live View connector package (`connector.appliveview.tanzu.vmware.com`). This installs the Application Live View connector component as DaemonSet in `app-live-view-connector` namespace.
 
 - For the `build` profile, Application Live View installs Application Live View Conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View Convention Service in `app-live-view-conventions` namespace.
+
+The `iterate` profile includes the Application Live View connector package and Application Live View Conventions package. The `full` profile includes the Application Live View back-end package, Application Live View connector package and Application Live View Conventions package.
+
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
@@ -19,7 +22,7 @@ For more information about profiles, see [About Tanzu Application Platform compo
 Before installing Application Live View, complete all prerequisites to install Tanzu Application Platform.
 For more information, see [Prerequisites](../prerequisites.md).
 
-In addition, install Cartographer Conventions which is bundled with Supply Chain Choreographer as of the v0.4.0 release. To install, see [Installing Supply Chain Choreographer](../scc/install-scc.md). For more information, see [Cartographer Conventions](../cartographer-conventions/about.md). 
+In addition, install Cartographer Conventions which is bundled with Supply Chain Choreographer as of the v0.5.3 release. To install, see [Installing Supply Chain Choreographer](../scc/install-scc.md). For more information, see [Cartographer Conventions](../cartographer-conventions/about.md). 
 
 ## <a id='install-app-live-view'></a> Install Application Live View
 
