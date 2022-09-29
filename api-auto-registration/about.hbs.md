@@ -9,6 +9,8 @@ A Kubernetes controller will reconcile the CR and update the API entity in TAP G
 registration from origin workloads. You may also use API Auto Registration without supply chain automation with other GitOps 
 processes or by directly applying an `APIDescriptor` CR to the cluster.
 
+![API Auto Registration](./images/autoregistering-api-entities-stages.png)
+
 ## <a id='getting-started'></a> Getting Started
 
 Learn more about APIDescriptor CR and API entities in TAP GUI in the [Key Concepts section](key-concepts.md)
