@@ -280,13 +280,13 @@ To enable the supply chain to run Jenkins tasks the `Workload` must include the
 following parameters:
 
 ```yaml
-params<!--฿ |parameters| is preferred. ฿-->:
+params:
 
   #! Required: picks the pipeline
   - name: testing_pipeline_matching_labels
     value:
       #! This label must match the label on the pipeline created earlier
-      apps.tanzu<!--฿ The brand is |Tanzu|. ฿-->.vmware<!--฿ |VMware| is preferred. ฿-->.com/pipeline: jenkins-pipeline
+      apps.tanzu.com/pipeline: jenkins-pipeline
 
   #! Required: Passes parameters to pipeline
   - name: testing_pipeline_params
@@ -327,10 +327,10 @@ that is sent to the Jenkins job.  The parameter are entered into the
 [{"name":"GIT_URL", "value":"https://github.com/spring-projects/spring-petclinic"}, {"name":"GIT_BRANCH", "value":"main"}]
 ```
 
-*Important:* None of the fields in the `Workload` resource are implicitly passed to the
+**Important:** None of the fields in the `Workload` resource are implicitly passed to the
 Jenkins job. You have to set them in the `job-params` explicitly.
 
-*Exception:* The `SOURCE_URL` and `SOURCE_REVISION` parameters are sent to the
+**Exception:** The `SOURCE_URL` and `SOURCE_REVISION` parameters are sent to the
 Jenkins job implicitly by the Jenkins Adapter trigger program.  You can use the
 `SOURCE_REVISION` to verify which commit SHA to test, for example.  See [Making
 a Jenkins Test Job](#making-a-jenkins-test-job) earlier for details about how to use
