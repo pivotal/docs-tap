@@ -34,7 +34,7 @@ Many of the above fields will result in specific behavior within TAP GUI.
 - To explicitly use a system or owner in a different namespace, you can specify that in the respective field `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team`.
 - If the system or owner you are trying to link doesn't have explicit namespace specified, you can qualify them with `default` namespace, e.g.: `system: default/my-default-system`
 
-### <a id='absolute-url'></a>With an Absolute URL
+## <a id='absolute-url'></a>With an Absolute URL
 
 To create an APIDescriptor with a static `baseURL.url`, you need to apply the following yaml to your cluster.
 
@@ -54,11 +54,11 @@ spec:
       url: https://myservice.com
 ```
 
-### <a id='with-ref'></a>With an Object Ref
+## <a id='with-ref'></a>With an Object Ref
 
 You can also use an object reference instead of hard coding the url. This can point to a HTTPProxy, Knative Service, or Ingress.
 
-#### <a id='with-httpproxy-ref'></a>With an HTTPPRoxy Object Ref
+### <a id='with-httpproxy-ref'></a>With an HTTPPRoxy Object Ref
 
 Below is an example yaml that points to an HTTPProxy from which our controller extracts the `.spec.virtualhost.fqdn` as the baseURL.
 
@@ -82,7 +82,7 @@ spec:
         namespace: my-namespace # optional
 ```
 
-#### <a id='with-knative-ref'></a>With a Knative Service Object Ref
+### <a id='with-knative-ref'></a>With a Knative Service Object Ref
 
 If you want to use a Knative Service instead, here is an example from which our controller reads the `status.url` as the baseURL
 
@@ -96,7 +96,7 @@ If you want to use a Knative Service instead, here is an example from which our 
         namespace: my-namespace # optional
 ```
 
-#### <a id='with-ingress-ref'></a>With an Ingress Object Ref
+### <a id='with-ingress-ref'></a>With an Ingress Object Ref
 
 If you want to use an Ingress instead, here is an example from which our controller reads the URL from the jsonPath specified. When jsonPath is left empty, our controller will read the `"{.spec.rules[0].host}"` as the URL
 
