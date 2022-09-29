@@ -209,7 +209,7 @@ IMAGE-REFERENCE disallowed by static policy
 
 Images that are unsigned in a namespace with validation enabled are admitted with an authority with static action `pass`.
 
-A scenario where this is desirable is configuring a policy with `static.action` `pass` for `tap-packages` images. Another policy is then configured to validate signed images produced by Tanzu Build Service. This allows images from `tap-packages`, which are unsigned and required by the platform, to be admitted while still validating signed built images from Tanzu Build Service.
+A scenario where this is desirable is configuring a policy with `static.action` `pass` for `tap-packages` images. Another policy is then configured to validate signed images produced by Tanzu Build Service. This allows images from `tap-packages`, which are unsigned and required by the platform, to be admitted while still validating signed built images from Tanzu Build Service. See [Configure your supply chain to sign and verify your image builds](../getting-started/config-supply-chain.md#config-sc-to-img-builds) for an example.
 
 If `Warning` messages are desirable for admitted images where validation failed, you can configure a policy with `warn` mode and valid authorities.
 For information about ClusterImagePolicy modes, see the [Mode](#cip-mode) documentation.

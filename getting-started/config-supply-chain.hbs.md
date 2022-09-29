@@ -13,7 +13,41 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
 2. Create a `values.yaml` file, and install the Supply Chain Security Tools - Policy Controller. For instructions, see [Install Supply Chain Security Tools - Policy Controller](../scst-policy/install-scst-policy.md).
 
-3. Configure and apply at least one `ClusterImagePolicy` resource to the cluster to verify image signatures when deploying resources. For instructions, see [Create a `ClusterImagePolicy` resource](../scst-policy/configuring.md#create-cip-resource).
+3. Create a `ClusterImagePolicy` that will pass on Tanzu Application Platform images. In the future, these will be signed and verifiable, but for now we recommend creating a policy to pass them:
+
+    For example:
+
+    ```console
+    kubectl apply -f - -o yaml << EOF
+    ---
+    apiVersion: policy.sigstore.dev/v1beta1
+    kind: ClusterImagePolicy
+    metadata:
+      name: image-policy-exceptions
+    spec:
+      images:
+      - glob: registry.tanzu.vmware.com/tanzu-application-platform/tap-packages*
+      - glob: REPO-NAME*
+      authorities:
+      - static:
+          action: pass
+    EOF
+    ```
+    Where:
+
+    - `REPO-NAME` is the repository in your registry where Tanzu Build Service dependencies are stored. This is the exact same value conigured in the `kp_default_repository` inside your `tap-values.yaml` or `tbs-values.yaml` files. Examples:
+      - Harbor has the form `"my-harbor.io/my-project/build-service"`.
+      - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
+      - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
+
+    >**Note:** Add any unsigned image that must run in your namespace to the previous policy.
+    For example, if you add a Tekton pipeline that runs a gradle image for testing, you need
+    to add `glob: index.docker.io/library/gradle*` to `spec.images.glob` above. If you relocated
+    the Tanzu Application Platform images to your own registry,
+    replace `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages`
+    with the new target repository.
+
+4. Configure and apply at least one `ClusterImagePolicy` resource to the cluster to verify image signatures when deploying resources. For instructions, see [Create a `ClusterImagePolicy` resource](../scst-policy/configuring.md#create-cip-resource).
 
     For example:
 
@@ -36,7 +70,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
     EOF
     ```
 
-4. Enable the policy controller verification in your namespace by adding the label
+5. Enable the policy controller verification in your namespace by adding the label
 `policy.sigstore.dev/include: "true"` to the namespace resource.
 
     For example:
