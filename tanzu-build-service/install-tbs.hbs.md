@@ -42,7 +42,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
 
     Where `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
 
-1. Create a `tbs-values.yaml` file using the following template:
+2. Create a `tbs-values.yaml` file using the following template:
 
     ```yaml
     ---
@@ -64,13 +64,22 @@ To install Tanzu Build Service by using the Tanzu CLI:
     of the service account JSON file for the password.
 
         >**Note:** If you do not want to use plaintext for these credentials, you can configure them
-        by using a Secret reference or by using AWS IAM authentication.
+        by using a Secret<!--฿ |secret| is the preferred casing. ฿--> reference or by using AWS IAM authentication.
         >For more information, see [Use Secret References for registry credentials](#install-secret-refs)
         >or [Use AWS IAM authentication for registry credentials](#tbs-tcli-install-ecr).
 
-1. (Optional) Tanzu Build Service can be provided a PEM-encoded CA certificate under the
-`ca_cert_data` key in the `tbs-values.yaml` file. This certificate will be used to access
-the image registry as well as be provided to the build process. For example:
+3. (Optional) Under the `ca_cert_data` key in the `tbs-values.yaml` file,
+provide a PEM-encoded CA certificate for Tanzu Build Service.
+This certificate is used for accessing the container image registry and is also provided to the build process.
+
+    > **Note:** If `shared.ca_cert_data` is configured in the `tap-values.yaml` file,
+    > Tanzu Build Service inherits that value.
+    >
+    > Configuring `ca_cert_data` key in the `tbs-values.yaml` file adds the CA certificates at build time.
+    > To add CA certificates to the built image, see
+    > [Configure custom CA certificates for a single workload using service bindings](tbs-workload-config.md#custom-cert-single-workload).
+
+    For example:
 
     ```yaml
     ---
@@ -79,12 +88,6 @@ the image registry as well as be provided to the build process. For example:
     kp_default_repository_password: "REPO-PASSWORD"
     ca_cert_data: "CA-CERT-CONTENTS"
     ```
-
-    Configuring this setting adds the CA certificates at build time. To add CA certificates to
-    the built image, see [Add custom CA certificates to the workload image](tbs-workload-config.md#workload-custom-certs).
-
-    > **Note:** If `shared.ca_cert_data` is configured in the `tap-values.yaml` file,
-    > Tanzu Build Service inherits that value.
 
 1. (Optional) Tanzu Build Service is bootstrapped with the `lite` set of dependencies.
 To configure `full` dependencies, add the key-value pair `exclude_dependencies: true`
@@ -144,15 +147,15 @@ You can apply them directly in-line in plaintext in the `tbs-values.yaml` or `ta
 configuration by using the `kp_default_repository_username`, `kp_default_repository_password`, `tanzunet_username`,
 and `tanzunet_password` fields.
 
-If you do not want credentials saved in plaintext, you can use existing Secrets or IAM roles by using
+If you do not want credentials saved in plaintext, you can use existing secrets or IAM roles by using
 [Secret references](#install-secret-refs) or [AWS IAM authentication](#tbs-tcli-install-ecr)
 in your `tbs-values.yaml` or `tap-values.yaml`.
 
 ### <a id='install-secret-refs'></a> Use Secret references for registry credentials
 
-To use Secret references:
+To use secret references:
 
-1. Create a Secret of type `kubernetes.io/dockerconfigjson` containing
+1. Create a secret of type `kubernetes.io/dockerconfigjson` containing
 credentials for the writable repository in your registry (`kp_default_repository`)
 and the VMware Tanzu Network registry.
 
@@ -197,7 +200,7 @@ Amazon Elastic Container Registry (ECR) on Amazon Elastic Kubernetes Service (EK
 
 To use AWS IAM authentication:
 
-1. Configure an AWS IAM role that has read and write access to the repository in the container
+1. Configure an AWS IAM role that has read and write access to the repository in the container image
 registry used when installing Tanzu Application Platform.
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
@@ -218,7 +221,7 @@ registry used when installing Tanzu Application Platform.
     - `IAM-ROLE-ARN` is the AWS IAM role Amazon Resource Name (ARN) for the role configured in the previous step.
     For example, `arn:aws:iam::xyz:role/my-install-role`.
 
-1. The developer namespace requires configuration for Tanzu Application Platform
+2. The developer namespace requires configuration for Tanzu Application Platform
 to use AWS IAM authentication for ECR.
 Configure an AWS IAM role that has read and write access to the registry location
 where workload images will be stored.
@@ -279,10 +282,10 @@ To install `full` Tanzu Build Service dependencies:
     Where:
 
     - `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
-    - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
+    - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
-1. Add the TBS `full` dependencies package repository by running:
+2. Add the TBS `full` dependencies package repository by running:
 
     ```console
     tanzu package repository add tbs-full-deps-repository \
@@ -293,10 +296,10 @@ To install `full` Tanzu Build Service dependencies:
     Where:
 
     - `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
-    - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
+    - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
-1. Install the `full` dependencies package by running:
+3. Install the `full` dependencies package by running:
 
     ```console
     tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
