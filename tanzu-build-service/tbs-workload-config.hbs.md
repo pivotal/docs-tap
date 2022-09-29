@@ -170,13 +170,13 @@ To create a service binding to provide custom CA certificates for a workload:
 
     - `CA-CERT-CONTENTS` is the PEM encoded CA certificate
 
-2. Apply the YAML file by running:
+1. Apply the YAML file by running:
 
     ```console
     kubectl apply -f service-binding-ca-cert.yaml
     ```
 
-3. To build with the custom certificate, create the workload with `--param-yaml buildServiceBindings` flag:
+1. To build with the custom certificate, create the workload with `--param-yaml buildServiceBindings` flag:
 
     ```console
     tanzu apps workload create WORKLOAD-NAME \
@@ -186,7 +186,7 @@ To create a service binding to provide custom CA certificates for a workload:
 
     <!-- In step 3, should the name key in buildServiceBindings be the same as in the service-binding-ca-cert.yaml in step 1 (i.e. my-ca-certs) -->
 
-4. To deploy with the custom certificate, create the workload with the `--service-ref` flag:
+1. To deploy with the custom certificate, create the workload with the `--service-ref` flag:
 
     ```console
     tanzu apps workload create WORKLOAD-NAME \

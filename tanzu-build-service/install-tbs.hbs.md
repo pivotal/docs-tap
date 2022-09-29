@@ -148,7 +148,7 @@ configuration by using the `kp_default_repository_username`, `kp_default_reposit
 and `tanzunet_password` fields.
 
 If you do not want credentials saved in plaintext, you can use existing secrets or IAM roles by using
-[Secret references](#install-secret-refs) or [AWS IAM authentication](#tbs-tcli-install-ecr)
+[secret references](#install-secret-refs) or [AWS IAM authentication](#tbs-tcli-install-ecr)
 in your `tbs-values.yaml` or `tap-values.yaml`.
 
 ### <a id='install-secret-refs'></a> Use Secret references for registry credentials
