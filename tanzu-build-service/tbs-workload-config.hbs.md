@@ -43,13 +43,13 @@ To configure a service binding for a Tanzu Application Platform workload, follow
     - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
     - `MY-SETTINGS` is the contents of your service bindings file.
 
-2. Apply the YAML file by running:
+1. Apply the YAML file by running:
 
     ```console
     kubectl apply -f service-binding-secret.yaml
     ```
 
-3. Create the workload with `buildServiceBindings` configured by running:
+1. Create the workload with `buildServiceBindings` configured by running:
 
     ```console
     tanzu apps workload create WORKLOAD-NAME \
