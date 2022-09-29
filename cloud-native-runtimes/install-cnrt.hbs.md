@@ -4,17 +4,15 @@ This document describes how to install Cloud Native Runtimes
 from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-Both the full and light profiles include Cloud Native Runtimes.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+The `full`, `iterate`, and `run` profiles include Cloud Native Runtimes.
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='cnr-prereqs'></a>Prerequisites
 
 Before installing Cloud Native Runtimes:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Ensure you have an internal or external Contour namespace on a cluster with v1.19.1 of Contour installed when you configure `reuse_crds:true`.
-
->**Note:** Cloud Native Runtimes fails to install when configured with `reuse_crds:true` and no internal or external Contour namespace provided on a cluster with Contour installed at a version other than v1.19.1.
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
+- Ensure Contour v1.22.0 or greater is installed. Tanzu Application Platform comes with a correctly versioned package of Contour if you do not have it installed already.
 
 ## <a id='cnr-install'></a> Install
 
@@ -32,7 +30,7 @@ To install Cloud Native Runtimes:
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  1.0.3    2021-10-20T00:00:00Z
+      cnrs.tanzu.vmware.com  2.0.1    2022-10-11T00:00:00Z
     ```
 
 1. (Optional) Make changes to the default installation settings:
@@ -40,22 +38,24 @@ To install Cloud Native Runtimes:
     1. Gather values schema.
 
         ```console
-        tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
+        tanzu package available get cnrs.tanzu.vmware.com/2.0.1 --values-schema -n tap-install
         ```
 
         For example:
 
         ```console
-        $ tanzu package available get cnrs.tanzu.vmware.com/1.0.3 --values-schema -n tap-install
-        | Retrieving package details for cnrs.tanzu.vmware.com/1.0.3...
-          KEY                         DEFAULT  TYPE             DESCRIPTION
-          ingress.external.namespace  <nil>    string   Optional: Only valid if a Contour instance is already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for external services) if you want CNR to use your Contour instance.
-          ingress.internal.namespace  <nil>    string   Optional: Only valid if a Contour instance is already present in the cluster. Specify a namespace where an existing Contour is installed on your cluster (for internal services) if you want CNR to use your Contour instance.
-          ingress.reuse_crds          false    boolean  Optional: Only valid if a Contour instance is already present in the cluster. Set to "true" if you want CNR to re-use the cluster's existing Contour CRDs.
-          local_dns.domain            <nil>    string   Optional: Set a custom domain for CoreDNS. Only applicable when "local_dns.enable" is set to "true" and "provider" is set to "local" and running on Kind.
-          local_dns.enable            false    boolean  Optional: Only for when "provider" is set to "local" and running on Kind. Set to true to enable local DNS.
-          pdb.enable                  true     boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
-          provider                    <nil>    string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on a local Kubernetes cluster provider.
+        $ tanzu package available get cnrs.tanzu.vmware.com/2.0.1 --values-schema -n tap-install
+        | Retrieving package details for cnrs.tanzu.vmware.com/2.0.1...
+          KEY                         DEFAULT                               TYPE     DESCRIPTION
+          provider                    <nil>                                 string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on a local Kubernetes cluster provider.
+          default_tls_secret          <nil>                                 string   Optional: Overrides the config-contour configmap in namespace knative-serving.
+          domain_config               <nil>                                 object   Optional: Overrides the config-domain configmap in namespace knative-serving. Must be valid YAML.
+          domain_name                 <nil>                                 string   Optional: Default domain name for Knative Services.
+          domain_template             {{.Name}}.{{.Namespace}}.{{.Domain}}  string   Optional: specifies the golang text template string to use when constructing the Knative service's DNS name.
+          ingress.external.namespace  tanzu-system-ingress                  string   Required: Specify a namespace where an existing Contour is installed on your cluster. CNR will use this Contour instance for external services.
+          ingress.internal.namespace  tanzu-system-ingress                  string   Required: Specify a namespace where an existing Contour is installed on your cluster. CNR will use this Contour instance for internal services.
+          lite.enable                 false                                 boolean  Optional: Not recommended for production. Set to "true" to reduce CPU and Memory resource requests for all CNR Deployments, Daemonsets, and Statefulsets by half. On by default when "provider" is set to "local".
+          pdb.enable                  true                                  boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
         ```
 
     1. Create a `cnr-values.yaml` by using the following sample as a guide:
@@ -65,41 +65,33 @@ To install Cloud Native Runtimes:
 
         ```console
         ---
-        # if deploying on a local cluster such as Kind. Otherwise, you can remove this field
-        provider: local
+        domain_name: example.com
+        ingress:
+        external:
+            namespace: tanzu-system-ingress
+        internal:
+            namespace: tanzu-system-ingress
         ```
 
         >**Note:** For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
 
-        If you are running on a single-node cluster, such as kind or minikube, set the `provider: local`
-        option. This option reduces resource requirements by using a HostPort service instead of a
-        LoadBalancer and reduces the number of replicas.
+        If you are running on a single-node cluster, such as kind or minikube, set the `lite.enable: true`
+        option. This option reduces resources requests for CNR deployments.
 
-        Cloud Native Runtimes reuses the existing `tanzu-system-ingress` Contour installation for
-        external and internal access when installed in the `light` or `full` profile.
-        If you want to use a separate Contour installation for system-internal traffic, set
-        `cnrs.ingress.internal.namespace` to the empty string (`""`).
+        Cloud Native Runtimes uses the existing Contour installation in the  `tanzu-system-ingress` namespace by default for external and internal access.
 
-        For more information about using Cloud Native Runtimes with kind, see the
-        [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.2/tanzu-cloud-native-runtimes/GUID-local-dns.html#config-cluster).
-        If you are running on a multinode cluster, do not set `provider`.
-
-        If your environment has Contour packages, Contour might conflict with the Cloud Native Runtimes installation.
-
-        For information about how to prevent conflicts, see [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/1.2/tanzu-cloud-native-runtimes/GUID-contour.html) in the Cloud Native Runtimes documentation.
-        Specify values for `ingress.reuse_crds`,
-        `ingress.external.namespace`, and `ingress.internal.namespace` in the `cnr-values.yaml` file.
+        If your environment has Contour installed already, and it is not the TAP provided Contour, you can configure CNR to use it. See [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-contour.html) in the Cloud Native Runtimes documentation for more information.
 
 1. Install the package by running:
 
     ```console
-    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.3 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.0.1 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
     ```console
-    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 1.0.3 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.0.1 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
     | Creating service account 'cloud-native-runtimes-tap-install-sa'
@@ -126,7 +118,7 @@ To install Cloud Native Runtimes:
     | Retrieving installation details for cc...
     NAME:                    cloud-native-runtimes
     PACKAGE-NAME:            cnrs.tanzu.vmware.com
-    PACKAGE-VERSION:         1.0.3
+    PACKAGE-VERSION:         2.0.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -139,7 +131,7 @@ To install Cloud Native Runtimes:
    >**Note:** This step covers configuring a namespace to run Knative services.
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >skip this step because namespace configuration is covered in
-   >[Set up developer namespaces to use installed packages](../set-up-namespaces.md).
+   >[Set up developer namespaces to use installed packages](../set-up-namespaces.hbs.md).
    >Otherwise, you must complete the following steps for each namespace where you create Knative services.
 
    Service accounts that run workloads using Cloud Native Runtimes need access to the image pull secrets for the Tanzu package.
@@ -147,8 +139,7 @@ To install Cloud Native Runtimes:
    Without these credentials, attempts to start a service fail with a timeout and the pods report that they are unable to pull the `queue-proxy` image.
 
     1. Create an image pull secret in the current namespace and fill it from the `tap-registry`
-    secret mentioned in
-       [Add the Tanzu Application Platform package repository](../install.md#add-tap-package-repo).
+    secret mentioned in [Add the Tanzu Application Platform package repository](../install.hbs.md#add-tap-package-repo).
        Run the following commands to create an empty secret and annotate it as a target of the secretgen
        controller:
 
