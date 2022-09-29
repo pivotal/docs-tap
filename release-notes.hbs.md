@@ -262,6 +262,7 @@ This release has the following known issues, listed by area and component.
 #### <a id="tap-known-issues"></a>Tanzu Application Platform
 
   - New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
+  - The key shared.image_registry.project_path which takes input as "SERVER-NAME/REPO-NAME" cannot take "/" at the end. As a workaround, avoid appending "/" to the end of string.
 
 #### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plugins
 
