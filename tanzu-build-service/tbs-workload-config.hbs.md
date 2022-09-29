@@ -23,7 +23,7 @@ see the [VMware Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMwar
 
 To configure a service binding for a Tanzu Application Platform workload, follow these steps:
 
-1. Create a YAML file named `service-binding-secret.yaml` for a Secret as follows:
+1. Create a YAML file named `service-binding-secret.yaml` for a secret as follows:
 
     ```yaml
     apiVersion: v1
@@ -43,13 +43,13 @@ To configure a service binding for a Tanzu Application Platform workload, follow
     - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
     - `MY-SETTINGS` is the contents of your service bindings file.
 
-2. Apply the YAML file by running:
+1. Apply the YAML file by running:
 
     ```console
     kubectl apply -f service-binding-secret.yaml
     ```
 
-3. Create the workload with `buildServiceBindings` configured by running:
+1. Create the workload with `buildServiceBindings` configured by running:
 
     ```console
     tanzu apps workload create WORKLOAD-NAME \
@@ -119,7 +119,7 @@ To configure the ClusterBuilder used during builds:
     - `WORKLOAD-NAME` is the name of the workload you want to configure.
     - `CLUSTER-BUILDER-NAME` is the ClusterBuilder you want to use.
 
-## <a id="registry"></a> Configure the workload image registry
+## <a id="registry"></a> Configure the workload container image registry
 
 Using the Tanzu CLI, you can configure the registry where workload images are saved.
 The service account used for this workload must have read and write access to this registry location.

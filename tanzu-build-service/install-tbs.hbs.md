@@ -64,7 +64,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
     of the service account JSON file for the password.
 
         >**Note:** If you do not want to use plaintext for these credentials, you can configure them
-        by using a Secret reference or by using AWS IAM authentication.
+        by using a secret reference or by using AWS IAM authentication.
         >For more information, see [Use Secret References for registry credentials](#install-secret-refs)
         >or [Use AWS IAM authentication for registry credentials](#tbs-tcli-install-ecr).
 
@@ -126,15 +126,15 @@ You can apply them directly in-line in plaintext in the `tbs-values.yaml` or `ta
 configuration by using the `kp_default_repository_username`, `kp_default_repository_password`, `tanzunet_username`,
 and `tanzunet_password` fields.
 
-If you do not want credentials saved in plaintext, you can use existing Secrets or IAM roles by using
-[Secret references](#install-secret-refs) or [AWS IAM authentication](#tbs-tcli-install-ecr)
+If you do not want credentials saved in plaintext, you can use existing secrets or IAM roles by using
+[secret references](#install-secret-refs) or [AWS IAM authentication](#tbs-tcli-install-ecr)
 in your `tbs-values.yaml` or `tap-values.yaml`.
 
 ### <a id='install-secret-refs'></a> Use Secret references for registry credentials
 
-To use Secret references:
+To use secret references:
 
-1. Create a Secret of type `kubernetes.io/dockerconfigjson` containing
+1. Create a secret of type `kubernetes.io/dockerconfigjson` containing
 credentials for the writable repository in your registry (`kp_default_repository`)
 and the VMware Tanzu Network registry.
 
@@ -179,7 +179,7 @@ Amazon Elastic Container Registry (ECR) on Amazon Elastic Kubernetes Service (EK
 
 To use AWS IAM authentication:
 
-1. Configure an AWS IAM role that has read and write access to the repository in the container
+1. Configure an AWS IAM role that has read and write access to the repository in the container image
 registry used when installing Tanzu Application Platform.
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
@@ -261,7 +261,7 @@ To install `full` Tanzu Build Service dependencies:
     Where:
 
     - `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
-    - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
+    - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
 1. Add the TBS `full` dependencies package repository by running:
@@ -275,7 +275,7 @@ To install `full` Tanzu Build Service dependencies:
     Where:
 
     - `VERSION` is the version of the Tanzu Build Service package you retrieved earlier.
-    - `INSTALL-REGISTRY-HOSTNAME` is your container registry.
+    - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
 1. Install the `full` dependencies package by running:
@@ -315,7 +315,7 @@ to log in to VMware Tanzu Network.
 You can also configure these credentials by using a secret reference.
 For more information, see [Use Secret references for registry credentials](#install-secret-refs).
 - `DESCRIPTOR-NAME` is the name of the descriptor to import.
-For more information, see [Descriptors](#descriptors).
+For more information, see [Descriptors](dependencies.md#descriptors).
 Available options are:
   - `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
   - `full` is optimized to speed up builds and includes dependencies for all supported workload types.
