@@ -166,7 +166,7 @@ For more information, see the Kubernetes documenation on [Service Account Issuer
 ## <a id='sigstore-install-trillian'></a> Install Trillian
 
 To install Trillian:
-- kubectl apply` the `release-trillian.yaml`
+- `kubectl apply` the `release-trillian.yaml`
 - Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
@@ -181,7 +181,7 @@ kubectl wait --timeout 2m -n trillian-system --for=condition=Ready ksvc log-sign
 ## <a id='sigstore-install-rekor'></a> Install Rekor
 
 To install Rekor:
-- kubectl apply` the `release-rekor.yaml`
+- `kubectl apply` the `release-rekor.yaml`
 - Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
