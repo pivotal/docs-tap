@@ -234,10 +234,6 @@ appliveview_connector:
   backend:
     ingressEnabled: true
     sslDisabled: false
-    caCertData: |
-      -----BEGIN CERTIFICATE-----
-      MIIGAzCCA+ugAwIBAgIUQDKQs5V0xUt/PY4M/EEGUIcRfg4wDQYJKoZIhvcNAQEN...
-      -----END CERTIFICATE-----
 
 tap_gui:
   service_type: ClusterIP
