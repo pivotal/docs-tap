@@ -42,7 +42,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
 
     Where `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
 
-2. Create a `tbs-values.yaml` file using the following template:
+1. Create a `tbs-values.yaml` file using the following template:
 
     ```yaml
     ---
@@ -68,7 +68,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
         >For more information, see [Use Secret References for registry credentials](#install-secret-refs)
         >or [Use AWS IAM authentication for registry credentials](#tbs-tcli-install-ecr).
 
-3. (Optional) Under the `ca_cert_data` key in the `tbs-values.yaml` file,
+1. (Optional) Under the `ca_cert_data` key in the `tbs-values.yaml` file,
 provide a PEM-encoded CA certificate for Tanzu Build Service.
 This certificate is used for accessing the container image registry and is also provided to the build process.
 
@@ -221,7 +221,7 @@ registry used when installing Tanzu Application Platform.
     - `IAM-ROLE-ARN` is the AWS IAM role Amazon Resource Name (ARN) for the role configured in the previous step.
     For example, `arn:aws:iam::xyz:role/my-install-role`.
 
-2. The developer namespace requires configuration for Tanzu Application Platform
+1. The developer namespace requires configuration for Tanzu Application Platform
 to use AWS IAM authentication for ECR.
 Configure an AWS IAM role that has read and write access to the registry location
 where workload images will be stored.
@@ -285,7 +285,7 @@ To install `full` Tanzu Build Service dependencies:
     - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
-2. Add the TBS `full` dependencies package repository by running:
+1. Add the TBS `full` dependencies package repository by running:
 
     ```console
     tanzu package repository add tbs-full-deps-repository \
@@ -299,7 +299,7 @@ To install `full` Tanzu Build Service dependencies:
     - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
-3. Install the `full` dependencies package by running:
+1. Install the `full` dependencies package by running:
 
     ```console
     tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
@@ -336,7 +336,7 @@ to log in to VMware Tanzu Network.
 You can also configure these credentials by using a secret reference.
 For more information, see [Use Secret references for registry credentials](#install-secret-refs).
 - `DESCRIPTOR-NAME` is the name of the descriptor to import.
-For more information, see [Descriptors](#descriptors).
+For more information, see [Descriptors](dependencies.md#descriptors).
 Available options are:
   - `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
   - `full` is optimized to speed up builds and includes dependencies for all supported workload types.
