@@ -51,10 +51,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
 
-  Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based
-  on Knative and runs on a single Kubernetes cluster. For information about Knative, see the
-  [Knative documentation](https://knative.dev/docs/). Cloud Native Runtimes capabilities are included
-  in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
+  Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based on Knative and runs on a single Kubernetes cluster. For information about Knative, see the [Knative documentation](https://knative.dev/docs/). Cloud Native Runtimes capabilities are included in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
 
 - **[Convention Service for VMware Tanzu](convention-service/about.md)**
 
@@ -78,6 +75,11 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Developers instead interact with the Tanzu Developer Tools for VSCode IDE Extension or
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to modify the workload to enable
   inner loop capabilities.
+
+- **[Eventing for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
+
+  Eventing for VMware Tanzu focuses on providing tooling and patterns for Kubernetes applications to manage event-triggered systems via Knative Eventing.
+  For information about Knative, see the [Knative documentation](https://knative.dev/docs/).
 
 - **[Flux Source Controller](https://fluxcd.io/docs/components/source/)**
 
@@ -370,6 +372,19 @@ The following table lists the packages contained in each profile:
    <td>
    </td>
    <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <td>Eventing
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
    <td>
    </td>
