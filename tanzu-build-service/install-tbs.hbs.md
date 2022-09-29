@@ -64,7 +64,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
     of the service account JSON file for the password.
 
         >**Note:** If you do not want to use plaintext for these credentials, you can configure them
-        by using a Secret<!--฿ |secret| is the preferred casing. ฿--> reference or by using AWS IAM authentication.
+        by using a secret reference or by using AWS IAM authentication.
         >For more information, see [Use Secret References for registry credentials](#install-secret-refs)
         >or [Use AWS IAM authentication for registry credentials](#tbs-tcli-install-ecr).
 
