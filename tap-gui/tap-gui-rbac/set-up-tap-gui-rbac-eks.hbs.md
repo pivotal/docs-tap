@@ -39,9 +39,9 @@ choice.
 After creating an application with your OIDC provider, you receive the following credentials for setting
 up RBAC for your remote cluster:
 
-- **Domain**, which is used as `issuerURL` in the following sections
+- **Domain**, which is used as `ISSUER-URL` in the following sections 
 - **Client ID**, which is used as `CLIENT-ID` in the following sections
-- **Client Secret**, which is used as `CLIENT-SECRET` in the following sections
+- **Client Secret**, which is used as `CLIENT-SECRET` in the following sections (`AUTH0_DOMAIN` for Auth0)
 
 For more information, see [Auth0 Setup Walkthrough](https://backstage.io/docs/auth/auth0/provider) in
 the Backstage documentation.
@@ -56,7 +56,7 @@ To configure the cluster with the OIDC provider's credentials:
 This content applies to EKS clusters.
 
     ```yaml
-    apiVersion: eksctl.10/vialpha5
+    apiVersion: eksctl.io/v1alpha5
     kind: ClusterConfig
     metadata:
       name: "CLUSTER-NAME"
@@ -127,7 +127,7 @@ uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
 
     - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider
     - `CLIENT-SECRET` is the Client Secret you obtained while setting up the OIDC provider
-    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider
+    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider. For Auth0, it is only AUTH0_DOMAIN.
 
 1. Add a `kubernetes` section to the `app_config` section that Tanzu Application Platform GUI
 uses. This section must have an entry for each cluster that has resources to view.
