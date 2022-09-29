@@ -13,7 +13,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
 2. Create a `values.yaml` file, and install the Supply Chain Security Tools - Policy Controller. For instructions, see [Install Supply Chain Security Tools - Policy Controller](../scst-policy/install-scst-policy.md).
 
-3. Create a `ClusterImagePolicy` that does not validate the images needed to run your workload:
+3. Create a `ClusterImagePolicy` that will pass on Tanzu Application Platform images. In the future, these will be signed and verifiable, but for now we recommend creating a policy to pass them:
 
     For example:
 
