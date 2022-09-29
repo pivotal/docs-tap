@@ -13,5 +13,5 @@ The out of the box (OOTB) supply chains include definitions for the `web` worklo
 
 When creating a workload with `tanzu apps workload create`, you can use the
 `--type=web` argument to select the `web` workload type.
-You can also use the `apps.tanzu.vmware.com/workload-type:web` annotation in the
+You can also use the `apps.tanzu.vmware.com/workload-type:web` label in the
 YAML workload description to support this deployment type.
