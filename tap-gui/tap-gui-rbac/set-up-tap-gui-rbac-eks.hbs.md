@@ -39,9 +39,9 @@ choice.
 After creating an application with your OIDC provider, you receive the following credentials for setting
 up RBAC for your remote cluster:
 
-- **Domain**, which is used as `ISSUER-URL` in the following sections 
+- **Domain**, which is used as `ISSUER-URL` in the following sections (`AUTH0_DOMAIN` for Auth0)
 - **Client ID**, which is used as `CLIENT-ID` in the following sections
-- **Client Secret**, which is used as `CLIENT-SECRET` in the following sections (`AUTH0_DOMAIN` for Auth0)
+- **Client Secret**, which is used as `CLIENT-SECRET` in the following sections
 
 For more information, see [Auth0 Setup Walkthrough](https://backstage.io/docs/auth/auth0/provider) in
 the Backstage documentation.
