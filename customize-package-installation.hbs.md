@@ -57,22 +57,24 @@ To customize a package that was installed manually:
 To add an overlay to a package that was installed by using a Tanzu Application Platform profile:
 
 1. Create a `Secret` with your ytt overlay. For more information about ytt overlays, see the
-   [Carvel documentation](https://carvel.dev/ytt/docs/v0.43.0/ytt-overlays/) .
+   [Carvel documentation](https://carvel.dev/ytt/docs/v0.43.0/ytt-overlays/).
 
 2. Update your values file to include a `package_overlays` field:
 
-   ```yaml
-   package_overlays:
-   - name: PACKAGE-NAME
-   secrets:
-   - name: SECRET-NAME
-   ```
+    ```yaml
+    package_overlays:
+    - name: PACKAGE-NAME
+    secrets:
+    - name: SECRET-NAME
+    ```
+
+    Where `PACKAGE-NAME` is the target package for the overlay. For example, `tap-gui`.
 
 3. Update Tanzu Application Platform by running:
 
-   ```console
-   tanzu package installed update tap -p tap.tanzu.vmware.com -v {{ vars.tap_version }}  --values-file tap-values.yaml -n tap-install
-   ```
+    ```console
+    tanzu package installed update tap -p tap.tanzu.vmware.com -v {{ vars.tap_version }}  --values-file tap-values.yaml -n tap-install
+    ```
 
 For information about Tanzu Application Platform profiles, see
 [Installing Tanzu Application Platform package and profiles](install.hbs.md).

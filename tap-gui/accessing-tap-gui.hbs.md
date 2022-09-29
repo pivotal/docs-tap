@@ -2,8 +2,8 @@
 
 Use one of the following methods to access Tanzu Application Platform GUI:
 
-* Access with the LoadBalancer method (default)
-* Access with the shared Ingress method
+- Access with the LoadBalancer method (default)
+- Access with the shared Ingress method
 
 ## <a id="lb-method"></a> Access with the LoadBalancer method (default)
 
@@ -93,11 +93,6 @@ name. For example:
             origin: http://tap-gui.example.com # No port needed with Ingress
     ```
 
-    This snippet is from a values file in the
-    [Configure Tanzu Application Platform GUI section](../install.html#configure-tap-gui) of the
-    Profiles installation topic. The new host names are populated based on the example host name
-    `tap-gui.example.com`.
-
 1. Update your package installation with your changed `tap-values.yaml` file by running:
 
     ```console
@@ -107,4 +102,4 @@ name. For example:
 
     Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
 
-1. Use a web browser to access Tanzu Application Platform GUI at the host name that you provided.
+2. Use a web browser to access Tanzu Application Platform GUI at the host name that you provided.

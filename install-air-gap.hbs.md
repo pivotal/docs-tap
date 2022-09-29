@@ -86,7 +86,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --password $IMGPKG_REGISTRY_PASSWORD \
         --namespace tap-install \
         --export-to-all-namespaces \
-        --yes 
+        --yes
     ```
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
@@ -153,6 +153,22 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
+## <a id='air-gap-policy'></a> Prepare Sigstore TUF Stack for Air-Gapped Policy Controller
+
+Supply Chain Security Tools - Policy Controller currently requires access to a TUF server.
+In a normal environment with public internet access, the public official Sigstore TUF server is used.
+
+However, for an air-gapped environment, an internally accessible Sigstore stack is currently required.
+
+The Sigstore Stack consists of:
+- [Trillian](https://github.com/google/trillian)
+- [Rekor](https://github.com/sigstore/rekor)
+- [Fulcio](https://github.com/sigstore/fulcio)
+- [Certificate Transparency Log (CTLog)](https://github.com/google/certificate-transparency-go)
+- [TheUpdateFramework (TUF)](https://theupdateframework.io/)
+
+For more information on how to setup the Sigstore Stack, see [Sigstore Stack Install](./scst-policy/install-sigstore-stack.hbs.md).
+
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
@@ -180,9 +196,9 @@ The sample values file contains the necessary defaults for:
 
 ### <a id='full-profile'></a> Full Profile
 
-To install Tanzu Application Platform with Supply Chain Basic, 
-you must retrieve your cluster’s base64 encoded ca certificate from `$HOME/.kube/config`. 
-Retrieve the `certificate-authority-data` from the respective cluster section 
+To install Tanzu Application Platform with Supply Chain Basic,
+you must retrieve your cluster’s base64 encoded ca certificate from `$HOME/.kube/config`.
+Retrieve the `certificate-authority-data` from the respective cluster section
 and input it as `B64_ENCODED_CA` in the `tap-values.yaml`.
 
 The following is the YAML file sample for the full-profile:
@@ -223,6 +239,18 @@ accelerator:
       samples:
         # Prevent repeated polling of github to pull accelerators
         include: false
+
+appliveview:
+  ingressEnabled: true
+  tls:
+    secretName: "SECRET-NAME"
+    namespace: "APP-LIVE-VIEW-NAMESPACE"
+
+appliveview_connector:
+  backend:
+    ingressEnabled: true
+    sslDisabled: false
+
 tap_gui:
   service_type: ClusterIP
   ingressEnabled: "true"
@@ -295,6 +323,24 @@ service's External IP address.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`. This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
+- `SECRET-NAME` is the name of the TLS secret for the domain consumed by HTTPProxy.
+- `APP-LIVE-VIEW-NAMESPACE` is the targeted namespace for the TLS secret for the domain.
+
+>**Note:** Create the app-live-view namespace and the TLS secret for the domain before installing the Tanzu Application Platform packages in the cluster. This ensures the HTTPProxy is updated with the TLS secret.
+
+To create a TLS secret for app-live-view, run:
+
+```console
+kubectl create -n app-live-view secret tls alv-cert --cert=<.crt file> --key=<.key file>
+```
+
+To verify the HTTPProxy object with the TLS secret, run:
+
+```console
+kubectl get httpproxy -A
+NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
+app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
+```
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 

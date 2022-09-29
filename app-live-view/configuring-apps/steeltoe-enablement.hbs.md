@@ -1,15 +1,31 @@
 # Enabling Steeltoe apps for Application Live View
 
-This topic describes how developers configure a Steeltoe app to be observed by
-Application Live View within Tanzu Application Platform.
+This topic describes how developers can extend .NET Core Apps to Steeltoe apps and enable
+Application Live View on Steeltoe workloads within Tanzu Application Platform.
 
 Application Live View supports Steeltoe .NET apps with .NET core runtime version `v6.0.8`.
 
-## Enable Steeltoe apps
+## Extend .NET Core Apps to Steeltoe Apps
 
-You can enable Application Live View to interact with a Steeltoe app within Tanzu Application Platform.
+A .NET Core application can be extended to a Steeltoe application by adding independent NuGet packages. 
 
-To expose management actuator endpoints, add following configuration to your `appsettings.json` file:
+To enable the Actuators on a .NET Core App:
+
+Add a PackageReference to your `.csproj` file:
+```
+<PackageReference Include="Steeltoe.Management.EndpointCore" Version="$(SteeltoeVersion)" />
+```
+
+>**Note:** The PackageReference is expected to change to `Steeltoe.Management.Endpoint` from version Steeltoe 4.0 onwards. 
+
+In addition, call the extension `AddAllActuators` in your `Program.cs` file as below:
+```
+builder.WebHost.AddAllActuators();
+```
+
+Optionally, you can add app-specific configurations as mentioned below:
+
+To expose all management actuator endpoints except `env` endpoint, add following configuration to your `appsettings.json` file:
 
 ```json
 {
@@ -17,7 +33,8 @@ To expose management actuator endpoints, add following configuration to your `ap
     "Endpoints": {
       "Actuator":{
         "Exposure": {
-          "Include": [ "*" ]
+          "Include": [ "*" ],
+          "Exclude": [ "env" ]
         }
       }
     }
@@ -54,14 +71,9 @@ To enable heapdump, add the following configuration to your `appsettings.json` f
 }
 ```
 
+## Enable Application Live View on Steeltoe TAP workload
 
-Thread metrics is available in SteeltoeVersion `3.2.*`. To enable the Threads page in the Application Live View UI, add the following configuration to your `.csproj` file:
-
-```xml
-<PropertyGroup>
-    <SteeltoeVersion>3.2.*</SteeltoeVersion>
-</PropertyGroup>
-```
+You can enable Application Live View to interact with a Steeltoe app within Tanzu Application Platform.
 
 To enable Application Live View on the Steeltoe TAP workload, the Application Live View convention service automatically applies labels on the workload, such as `tanzu.app.live.view.application.flavours: steeltoe` and `tanzu.app.live.view: true`, based on the Steeltoe image metadata.
 
@@ -75,4 +87,12 @@ If your application image is NOT built with Tanzu Build Service, to enable Appli
 
 ```
 tanzu apps workload create steeltoe-app --type web --app steeltoe-app --image <IMAGE NAME> --annotation autoscaling.knative.dev/min-scale=1 --yes --label tanzu.app.live.view=true --label tanzu.app.live.view.application.name=steeltoe-app --label tanzu.app.live.view.application.flavours=steeltoe
+```
+
+>**Note:** Thread metrics is available in SteeltoeVersion `3.2.*`. To enable the Threads page in the Application Live View UI, add the following configuration to your `.csproj` file:
+
+```xml
+<PropertyGroup>
+    <SteeltoeVersion>3.2.*</SteeltoeVersion>
+</PropertyGroup>
 ```

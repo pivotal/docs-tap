@@ -395,43 +395,43 @@ The list of the supported intents are:
 **MySQL**
 
 - **Name**: `service-intent-mysql`
-- **Label**: `services.conventions.carto.run/mysql`
+- **Label**: `services.conventions.apps.tanzu.vmware.com/mysql`
 - **Dependencies**: `mysql-connector-java`, `r2dbc-mysql`
 
 **PostgreSQL**
 
 - **Name**: `service-intent-postgres`
-- **Label**: `services.conventions.carto.run/postgres`
+- **Label**: `services.conventions.apps.tanzu.vmware.com/postgres`
 - **Dependencies**: `postgresql`, `r2dbc-postgresql`
 
 **MongoDB**
 
 - **Name**: `service-intent-mongodb`
-- **Label**: `services.conventions.carto.run/mongodb`
+- **Label**: `services.conventions.apps.tanzu.vmware.com/mongodb`
 - **Dependencies**: `mongodb-driver-core`
 
 **RabbitMQ**
 
 - **Name**: `service-intent-rabbitmq`
-- **Label**: `services.conventions.carto.run/rabbitmq`
+- **Label**: `services.conventions.apps.tanzu.vmware.com/rabbitmq`
 - **Dependencies**: `amqp-client`
 
 **Redis**
 
 - **Name**: `service-intent-redis`
-- **Label**: `services.conventions.carto.run/redis`
+- **Label**: `services.conventions.apps.tanzu.vmware.com/redis`
 - **Dependencies**: `jedis`
 
 **Kafka**
 
 - **Name**: `service-intent-kafka`
-- **Label**: `services.conventions.carto.run/kafka`
+- **Label**: `services.conventions.apps.tanzu.vmware.com/kafka`
 - **Dependencies**: `kafka-clients`
 
 **Kafka-streams**
 
 - **Name**: `service-intent-kafka-streams`
-- **Label**: `services.conventions.carto.run/kafka-streams`
+- **Label**: `services.conventions.apps.tanzu.vmware.com/kafka-streams`
 - **Dependencies**: `kafka-streams`
 
 ### <a id="example"></a>Example
@@ -480,10 +480,10 @@ output of the convention is:
             spring-boot-convention/spring-boot-web
             spring-boot-convention/spring-boot-actuator
             spring-boot-convention/service-intent-mysql
-          services.conventions.carto.run/mysql: mysql-connector-java/8.0.21
+          services.conventions.apps.tanzu.vmware.com/mysql: mysql-connector-java/8.0.21
         labels:
-          conventions.carto.run/framework: spring-boot
-          services.conventions.carto.run/mysql: workload
+          conventions.apps.tanzu.vmware.com/framework: spring-boot
+          services.conventions.apps.tanzu.vmware.com/mysql: workload
       spec:
         containers:
         - env:

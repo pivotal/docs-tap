@@ -1,4 +1,4 @@
-# Using Tanzu Dev Tools for VS Code
+# Using Tanzu Developer Tools for VS Code
 
 Ensure that the project you want to use the extension with has the required files specified in
 [Getting started with Tanzu Developer Tools for Visual Studio Code](../vscode-extension/getting-started.hbs.md).

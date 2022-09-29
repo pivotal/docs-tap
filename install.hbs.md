@@ -61,7 +61,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
     for the installation files for Tanzu Application Platform.
 
-1. [Install the Carvel tool `imgpk` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6). 
+1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6). 
 
 1. Relocate the images with the `imgpkg` CLI by running:
 
@@ -201,7 +201,7 @@ shared:
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
 
-ceip_policy_disclosed: true 
+ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 
 #The above keys are minimum numbers of entries needed in tap-values.yaml to get a functioning TAP Full profile installation.
 
@@ -225,7 +225,6 @@ contour:
 shared:
   kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
 
-ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
@@ -351,6 +350,19 @@ Learning Center package uses privileged SCC. To exclude this package, update you
 excluded_packages:
   - learningcenter.tanzu.vmware.com
   - workshops.learningcenter.tanzu.vmware.com
+...
+```
+
+See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
+
+### <a id='exclude-ipw'></a> (Optional) Exclude Image Policy Webhook
+
+Image Policy Webhook has been deprecated and will be removed in TAP v1.4.0. To exclude this package, update your `tap-values` file with a section listing the exclusion:
+
+```yaml
+...
+excluded_packages:
+  - image-policy-webhook.signing.apps.tanzu.vmware.com
 ...
 ```
 

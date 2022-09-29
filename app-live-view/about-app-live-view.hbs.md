@@ -1,5 +1,8 @@
 # Application Live View for VMware Tanzu
 
+>**Note:** To view our documentation for v1.0 and v1.1, see our previous
+[Application Live View site](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/index.html).
+
 Application Live View is a lightweight insights and troubleshooting tool that
 helps app developers and app operators to look inside running applications.
 It is based on the concept of Spring Boot Actuators.
@@ -18,7 +21,7 @@ their apps in a Kubernetes environment more effectively.
 ## <a id="intended-audience"></a>Intended audience
 
 This documentation is intended for developers and operators to visualize the actuator
-information of their running apps on Application Live View for VMware Tanzu.  
+information of their running apps on Application Live View for VMware Tanzu.
 This documentation helps developers to monitor and troubleshoot apps
 in development, staging, and production environments.
 It is also intended to help app operators to deploy and administer
@@ -29,7 +32,7 @@ containerized apps in a Kubernetes environment.
 You can extend Application Live View to support multiple app platforms, including,
 but not limited to, Spring Boot, Spring Cloud Gateway, and Steeltoe.
 
-## <a id="multicloud-compatibility"></a> Multi-cloud compatibility
+## <a id="multicloud-compatibility"></a> Multicloud compatibility
 
 Using Tanzu platform, you can integrate Application Live View to monitor apps
 running across on-premises, public clouds, and edge.
@@ -38,7 +41,7 @@ which accelerates developer productivity and reduces time-to-market.
 
 ## <a id="deployment"></a> Deployment
 
-Below is the mode of deployment for registering apps with the Application Live View
+Here is the mode of deployment for registering apps with the Application Live View
 running on a Kubernetes cluster:
 
 - **Connector**: A component responsible for discovering multiple apps running on

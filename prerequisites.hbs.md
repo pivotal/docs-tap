@@ -115,12 +115,20 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
 
 ## <a id="resource-requirements"></a>Resource requirements
 
-- To deploy all Tanzu Application Platform packages, your cluster must have at least:
-    - 8&nbsp;CPUs for i9 (or equivalent) available to Tanzu Application Platform components.
-    - 12&nbsp;CPUs for i7 (or equivalent) available to Tanzu Application Platform components.
-    - 8&nbsp;GB of RAM across all nodes available to Tanzu Application Platform.
-    - 12&nbsp;GB of RAM is available to build and deploy applications, including Minikube. VMware recommends 16&nbsp;GB of RAM for an optimal experience.
+- To deploy Tanzu Application Platform packages iterate profile on local Minikube cluster, your cluster must have at least:
+    - 8&nbsp;vCPUs for i9 (or equivalent) available to Tanzu Application Platform components on Mac OS.
+    - 12&nbsp;vCPUs for i7 (or equivalent) available to Tanzu Application Platform components on Mac OS. 
+    - 8&nbsp;vCPUs available to Tanzu Application Platform components on Linux and Windows.
+    - 12&nbsp;GB of RAM available to Tanzu Application Platform components on Mac OS, Linux and Windows. 
     - 70&nbsp;GB of disk space available per node.
+- To deploy Tanzu Application Platform packages full profile, your cluster must have at least:    
+    - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
+    - 16&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
+    - 100&nbsp;GB of disk space available per node.
+- To deploy Tanzu Application Platform packages build, run and iterate (shared) profile, your cluster must have at least:    
+    - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
+    - 12&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
+    - 100&nbsp;GB of disk space available per node.
 
 - For the [`full` profile](install.html#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 

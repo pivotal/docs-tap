@@ -171,6 +171,8 @@ To create a service instance:
           namespace: service-instances
         ```
 
+    >**Note:** If using Openshift, you may have to provide additional configuration for the `RabbitmqCluster`. For more details, see [Using the RabbitMQ Kubernetes Operators on Openshift](https://www.rabbitmq.com/kubernetes/operator/using-on-openshift.html).
+
     1. Apply `rmq-1-service-instance.yaml` by running:
 
         ```console
@@ -181,7 +183,7 @@ To create a service instance:
     >
     > MySQL: [Creating a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-create-delete-mysql.html#create-a-mysql-instance)
 
-3. Create a resource claim policy to define the namespaces the instance can be claimed and bound from.
+2. Create a resource claim policy to define the namespaces the instance can be claimed and bound from.
 
     > **Note:** By default, you can only claim and bind to service instances that
     > are running in the _same_ namespace as the application workloads.
@@ -212,7 +214,7 @@ To create a service instance:
         #   kind: MySQL
         ```
 
-    1. Apply `rmq-claim-policy.yaml` by running:
+    2. Apply `rmq-claim-policy.yaml` by running:
 
         ```console
         kubectl apply -f rmq-claim-policy.yaml

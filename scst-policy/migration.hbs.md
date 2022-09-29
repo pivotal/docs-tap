@@ -191,3 +191,27 @@ spec:
   images:
   - glob: gcr.io/projectsigstore/cosign*
 ```
+
+## <a id="uninstall-ipw"></a> Uninstall Image Policy Webhook
+
+After Policy Controller has been correctly configured and you have verified that
+is working as expected, you can proceed to uninstall the Image Policy Webhook:
+
+
+```console
+tanzu package installed delete image-policy-webhook --namespace tap-install
+```
+
+If you installed Image Policy Webhook using a profile, exclude it using your
+`tap-values.yaml` file:
+
+```yaml
+excluded_packages:
+  - image-policy-webhook.signing.apps.tanzu.vmware.com
+```
+
+Then update your TAP installation:
+
+```console
+tanzu package installed update tap -n tap-install --values-file tap-values.yaml
+```

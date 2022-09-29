@@ -6,6 +6,18 @@ In release notes, this condition hides content that describes an unreleased patc
 {{/unless}}
 This topic contains release notes for Tanzu Application Platform v1.3
 
+{{#unless vars.hide_content}}
+## <a id='1-3-1'></a> v1.3.1
+
+**Release Date**: MONTH DAY, 2022
+
+### <a id='1-3-1-security-fixes'></a> Security fixes
+
+### <a id='1-3-1-new-features'></a> Resolved issues
+
+### <a id='1-3-1-known-issues'></a> Known issues
+
+{{/unless}}
 
 ## <a id='1-3-0'></a> v1.3.0
 
@@ -22,128 +34,73 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="alv-features"></a>Application Live View
 
-- Feature 1
-- Feature 2
+- Application Live View uses a custom Security Context Constraint to provide Openshift Support.
+- Custom CAs are supported.
+
 
 #### <a id="app-sso-features"></a>Application Single Sign-On
 
 - AppSSO uses a custom Security Context Constraint to provide OpenShift support.
-- Kubernetes 1.24 is supported.
-- Comply with the restricted _Pod Security Standard_ and give least privileges to the controller.
-- `AuthServer` gets TLS-enabled `Ingress` autoconfigured. This can be controlled via `AuthServer.spec.tls`.
+- Comply with the restricted _Pod Security Standard_ and give the least privilege to the controller.
+- `AuthServer` gets TLS-enabled `Ingress` autoconfigured. This can be controlled by using `AuthServer.spec.tls`.
 - Custom CAs are supported.
-- More and better audit logs for authorization server events; `TOKEN_REQUEST_REJECTED`
+- More and better audit logs for authorization server events; `TOKEN_REQUEST_REJECTED`.
 - Enable the `/userinfo` endpoint.
-- Increase the controller's default memory request and limits.
 - Rename all Kubernetes resources in the _AppSSO_ package from _operator_ to _appsso-controller_.
 - The controller restarts when its configuration is updated.
 - The controller configuration is kept in a `Secret`.
 - All existing `AuthServer` are updated and roll out when the controller's configuration changes significantly.
-
-##### Deprecations
-
-- `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. Please, migrate
-  to `AuthServer.spec.tls`.
-
-- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
-
-##### Bug fixes
-
-- Emit the audit `TOKEN_REQUEST_REJECTED` event when the `refresh_token` grant fails.
-- The service binding `Secret` is updated when a `ClientRegistration` changes significantly.
-
+- Aggregate RBAC for managing `AuthServer` into the _Service-Operator_ cluster role.
 
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
 
-- Added new default role `service-operator`. 
-
-### Breaking changes
-
-- `AuthServer.spec.identityProviders.internalUser.users.password` is now provided as plain text instead of _bcrypt_
-  -hashed.
-- When an authorization server fails to obtain a token from an OpenID identity provider, it will record
-  an `INVALID_IDENTITY_PROVIDER_CONFIGURATION` audit event instead of `INVALID_UPSTREAM_PROVIDER_CONFIGURATION`.
-- Package configuration `webhooks_disabled` has been removed and `extra` is renamed to `internal`.
-- The `KEYS COUNT` print column has been replaced with the more insightful `STATUS` for `AuthServer`.
-- The `sub` claim in `id_token`s and `access_token`s now follow the `<providerId>_<userId>` pattern,
-  instead of `<providerId>/<userId>`. The previous pattern could cause bugs if used in URLs without
-  proper URL-encoding in client applications. If your client application has stored `sub` claims,
-  you may have to update them to match the new pattern.
-
-##### Migration guide `v1.0.0` → `v2.0.0`
-
-We strongly recommended that you recreate your `AuthServers` after upgrading your AppSSO package installation to `2.0.0`
-with the following changes:
-
-- Migrate from `.spec.issuerURI` to `.spec.tls`. AppSSO will template your issuer URI for you and provide TLS-enabled. A
-  custom `Service` and ingress resource are no longer required.
-  1. Configure one of `.spec.tls.{issuerRef, certificateRef, secretRef}`(
-     see [Issuer URI & TLS](app-sso/service-operators/issuer-uri-and-tls.md)). Optionally, disable TLS
-     with `.spec.tls.disabled`.
-  2. Remove `.spec.issuerURI`.
-  3. Delete your `AuthServer`-specific `Service` and ingress resources.
-  4. Apply your `AuthServer`. You will find its issuer URI in `.status.issuerURI`.
-  5. You can now update the redirect URIs in your upstream identity providers.
-
-- If you are using the `internalUnsafe` identity provider migrate existing users by replacing the bcrypt hash by the
-  plain-text equivalent. You can still use existing
-  bcrypt passwords by prefixing them with `{bcrypt}`:
-
-  ```yaml
-  ---
-  apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
-  kind: AuthServer
-  metadata:
-    # ...
-  spec:
-    identityProviders:
-      - name: internal
-        internalUnsafe:
-          users:
-            # v1.0
-            - username: test-user-1
-              password: $2a$10$201z9o/tHlocFsHFTo0plukh03ApBYe4dRiXcqeyRQH6CNNtS8jWK # bcrypt-encoded "password"
-              # ...
-            # v2.0
-            - username: "test-user-1"
-              password: "{bcrypt}$2a$10$201z9o/tHlocFsHFTo0plukh03ApBYe4dRiXcqeyRQH6CNNtS8jWK" # same bcrypt hash, with {bcrypt} prefix
-            - username: "test-user-2"
-              password: "password" # plain text
-    # ...
-  ```
-
-New versions of AppSSO are available from the Tanzu Application Platform package repository. See [AppSSO documentation](app-sso/platform-operators/upgrades.md) for detailed upgrade steps. 
-You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](upgrading.hbs.md) for more information.
+- Added new default role `service-operator`.
 
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
-- Updated Go to its latest version (1.19)
-- New flags have been added to override default registry options. This means, if there's a private registry to push images to, options can be set either through apps plugin flags or environment variables. Refer to [workload apply registry opts flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#a-idapply-registry-ca-certa---registry-ca-cert) explanation for more info about these flags usage.
-- Workload get improvements:
-  - Added `Healthy` column to supply chain resources listed in `workload get` output. This column is also using colors to surface the resource healthy status.
+
+- `tanzu apps *` improvements:
+  - auto-complete now works for all sub-command names and their positional argument values, flag names, and flag values.
+- `tanzu apps workload create/apply` improvements:
+  - Apps plug-in users can now pass in registry flags to override the default registry options configured on the platform.
+    - These flags can leveraged when an application developer iterating on their code on their filesystem needs to push their code to a private registry. For example, this may be required when developing an application in an air-gapped environment.
+    - To mitigate the risk of exposing sensitive information in the terminal, each registry flag/value can specified by environment variables.
+    - Refer to [workload apply > registry flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---registry-ca-cert) for a more detailed explanation about these flags and how to use them.
+  - Provided first-class support for creating workloads from Maven artifacts through Maven flags. Previously this could only be achieved by passing the desired values through the `--complex-param` flag.
+    - Refer to [workload apply > maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---maven-artifact) for a more detailed explanation about these flags and how to use them.
+- `tanzu apps workload get` improvements:
+  - Optimized the routines triggered when engaged in iterative development on the local filesystem.
+    - running `tanzu apps workload apply my-app --local-path . ... will only upload the contents of the project directory when source code changes are detected.
+  - Added a OUTPUT column to the resource table in the Supply Chain section to provide visibility to the resource that's stamped out by each supply chain step.
+    - The stamped out resource may be helpful when troubleshooting supply chain issues for a workload. For example, the OUTPUT value can be copied and pasted into a `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail).
+  - Added a Delivery section which provides visiblity to the delivery steps,  and the health, status, and stamped out resource associated with each delivery step.
+    - The Delivery section content might be conditionally displayed depending on whether the targetted environment includes the Deliverable object. Delivery will be present on environments created using the Iterate and Build installation profiles.
+  - Added a `Healthy` column to the Supply Chain resources table.
+    - The column values are color coded to indicate the health of each resource at-a-glance.
   - Added an Overview section to show workload name and type.
-  - Each section is now indented under its corresponding header.
-  - Emojis are printed to distinguish each section.
-  - A new column to show the resource stamped out by the supply chain was also added.
-  - Deliverable information is being surfaced whenever it's available.
-  - Pods status is now same as Kubectl so, for example, if there are init containers, when `workload get` is used, the `Init` status of these will be printed in the output. 
-- Local source changes will be updated/uploaded only if there is an actual change to the code.
-- Maven artifact is also supported via flags. It can be set through complex params or the new flags. Check [workload apply maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#a-idapply-maven-artifacta---maven-artifact) for more info about their usage. 
-- There are some environment variable that can be set as default values for apps plugin flags. These are:
-  * `--type`: TANZU_APPS_TYPE
-  * `--registry-ca-cert`: TANZU_APPS_REGISTRY_CA_CERT
-  * `--registry-password`: TANZU_APPS_REGISTRY_PASSWORD
-  * `--registry-username`: TANZU_APPS_REGISTRY_USERNAME
-  * `--registry-token`: TANZU_APPS_REGISTRY_TOKEN
+  - Added Emojis to, and indentation under, each section header in the command output to better distinguish each section.
+  - Updated the STATUS column in the table within the Pods section so that it displays the `Init` status when there are init containers (instead of displaying a less helpful/accurate `pending` value).
+    - In fact, all column values in the Pods table have been updated so the output is equivalent to the output from `kubectl get pod/pod-name`.
+- Updated Go to its latest version (1.19).
 
 ##### <a id="apps-plugin-deprecations"> Deprecations
 
-- First warning that `workload update` command will be deprecated.
+- The `tanzu apps workload update` command will be deprecated in the `apps` CLI plugin. Please use `tanzu apps workload apply` instead.
+  - `update` will be deprecated in two TAP releases (in TAP v1.5.0) or in one year (on Oct 11, 2023), whichever is longer.
 
 #### <a id="src-cont-features"></a>Source Controller
 
-- Feature 1
-- Feature 2
+- Added support for pulling artifacts with `LATEST` and `SNAPSHOT` versions.
+- Optimized 'MavenArtifact' artifact download during interval sync.
+  - Only after the SHA on the Maven Repository has changed can the source controller download the artifact. Otherwise, the download is skipped.
+- Added routine to reset `ImageRepository` condition status between reconciles.
+- Added support for OpenShift.
+- Added support for Kubernetes 1.24.
+
+#####<a id="src-cont-bugfixes"></a>Bug Fixes
+
+- Added checks to ensure SNAPSHOT has versioning enabled.
+- Fixed resource status conditions when metadata or metadata element is not found.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
@@ -217,8 +174,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
-- Breaking change 1
-- Breaking change 2
+- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
 
 #### <a id="tbs-breaking-changes"></a> Tanzu Build Service
 
@@ -230,6 +186,19 @@ This release has the following breaking changes, listed by area and component.
 - Breaking change 1
 - Breaking change 2
 
+#### <a id="app-sso-changes"></a> Application Single Sign-On
+
+- **Deprecation notice:** `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
+  to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
+- `AuthServer.spec.identityProviders.internalUser.users.password` is in plain text instead of _bcrypt_
+  -hashed.
+- When an authorization server fails to obtain a token from an OpenID identity provider, it records
+  an `INVALID_IDENTITY_PROVIDER_CONFIGURATION` audit event instead of `INVALID_UPSTREAM_PROVIDER_CONFIGURATION`.
+- Package configuration `webhooks_disabled` is removed and `extra` is renamed to `internal`.
+- The `KEYS COUNT` print column is replaced with the more insightful `STATUS` for `AuthServer`.
+- The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern,
+  instead of `<providerId>/<userId>`. See [Misconfigured `sub` claim](app-sso/service-operators/troubleshooting.md#sub-claim) for more information.
+
 ### <a id='1-3-resolved-issues'></a> Resolved issues
 
 - Resolved issue 1
@@ -239,6 +208,11 @@ This release has the following breaking changes, listed by area and component.
 
 - Resolved issue 1
 - Resolved issue 2
+
+#### <a id="app-sso-resolved"></a> Application Single Sign-On
+
+- Emit the audit `TOKEN_REQUEST_REJECTED` event when the `refresh_token` grant fails.
+- The service binding `Secret` is updated when a `ClientRegistration` changes significantly.
 
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Policy Controller
 
@@ -256,7 +230,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
-- Flag `azure-container-registry-config` that was shown in help output but was not part of apps plugin flags, is not shown anymore. 
+- Flag `azure-container-registry-config` that was shown in help output but was not part of apps plugin flags, is not shown anymore.
 - `workload list --output` was not showing all workloads in namespace. This was fixed and now all workloads are listed.
 - When creating a workload from local source in Windows, the image would be created with unstructured directories and would flatten all file names. This was fixed with an `imgpkg` upgrade.
 - When uploading a source image, if the namespace provided is not valid or doesn't exist, the image won't be uploaded and the workload won't be created.
@@ -288,8 +262,17 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="tap-known-issues"></a>Tanzu Application Platform
 
-- Known issue 1
-- Known issue 2
+  - New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
+  - The key shared.image_registry.project_path which takes input as "SERVER-NAME/REPO-NAME" cannot take "/" at the end. As a workaround, avoid appending "/" to the end of string.
+
+#### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plugins
+
+- **Failure to connect to AWS EKS clusters:**
+When connecting to AWS EKS clusters, an error might appear with the text
+`Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
+`invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
+To resolve this issue, see
+[Failure to connect to AWS EKS clusters](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters).
 
 #### <a id="alv-known-issues"></a>Application Live View
 
@@ -317,37 +300,43 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
-**Scanning Java source code that uses Gradle package manager may not reveal vulnerabilities:**
-- For most languages, Source Code Scanning only scans files present in the source code repository.
-Except for support added for Java projects using Maven, no network calls are made to fetch dependencies.
-For languages using dependency lock files, such as Golang and Node.js,
-Grype uses the lock files to check the dependencies for vulnerabilities.
+- **Scanning Java source code that uses Gradle package manager may not reveal vulnerabilities:**
+  For most languages, Source Code Scanning only scans files present in the source code repository.
+  Except for support added for Java projects using Maven, no network calls are made to fetch
+  dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+  lock files to check the dependencies for vulnerabilities.
 
-- For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
-the dependencies present in the built binaries (`.jar` or `.war` files) instead.
+  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
+  present in the built binaries (`.jar` or `.war` files) instead.
 
-- Because VMware does not encourage committing binaries to source code repositories,
-Grype fails to find vulnerabilities during a Source Scan.
-The vulnerabilities are still found during the Image Scan
-after the binaries are built and packaged as images.
+  Because VMware does not encourage committing binaries to source code repositories, Grype fails to
+  find vulnerabilities during a Source Scan.
+  The vulnerabilities are still found during the Image Scan after the binaries are built and packaged
+  as images.
 
 #### <a id="tap-gui-known-issues"></a>Tanzu Application Platform GUI
 
-- Known issue 1
-- Known issue 2
+- **Tanzu Application Platform GUI doesn't work in Safari:**
+  Tanzu Application Platform GUI does not work in the Safari web browser.
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
-- **Unable to view workloads on the panel when connected to GKE cluster:** 
-When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke) 
+- **Unable to view workloads on the panel when connected to GKE cluster:**
+  When connecting to Google's GKE clusters, an error might appear with the text
+  `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
+  To fix this, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
-- **Warning Notification when cancelling action:**
-When executing `Tanzu: Debug Start`, `Tanzu: Live Update Start`, or `Tanzu: Apply` the user is presented with a quick pick list when there are multiple options. If the user cancels, by either the `ESC` key or clicking outside the list, the user will be presented with a warning notification indicating that no workloads or tiltfiles could be found. This message can be ignored.
+- **Warning notification when canceling an action:**
+  A warning notification can appear when running `Tanzu: Debug Start`, `Tanzu: Live Update Start`,
+  or `Tanzu: Apply`, which says that no workloads or Tiltfiles were found.
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cancel-action-warning).
 
 #### <a id="intelj-ext-known-issues"></a>Intellij Extension
 
-- **Unable to view workloads on the panel when connected to GKE cluster:** 
-When connecting to Google's GKE clusters, an error might appear with the text `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.` the cause is that GKE authentication was extracted into a separate plugin and is no longer inside kubernetes client or libraries. To fix this follow the instructions to [download and configure the GKE authentication plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke) 
+- **Unable to view workloads on the panel when connected to GKE cluster:**
+  When connecting to Google's GKE clusters, an error might appear with the text
+  `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
+  To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 

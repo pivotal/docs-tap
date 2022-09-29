@@ -7,7 +7,7 @@ This topic describes how to:
   - [Install or update the Tanzu CLI and plug-ins](#cli-and-plugin)
 
 
-## <a id='accept-eulas'></a> Accept the End User License Agreements  
+## <a id='accept-eulas'></a> Accept the End User License Agreements
 
 Before downloading and installing Tanzu Application Platform packages, you must accept the
 End User License Agreements (EULAs) as follows:
@@ -86,7 +86,7 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
 ### <a id='linux-mac-tanzu-cli'></a> Install Tanzu CLI: Linux or macOS
 
 1. Create a `$HOME/tanzu` directory on your local machine.
-2. Unpack the downloaded TAR file into the `$HOME/tanzu` directory by running:  
+2. Unpack the downloaded TAR file into the `$HOME/tanzu` directory by running:
 
    - **For Linux:**
 
@@ -108,6 +108,8 @@ the CLI core and plug-ins are installed by running:
     ```
 
 4. Install or update the CLI core by running:
+
+>**Note:** Replace v0.11.6 with the version you've downloaded.
 
    - **For Linux:**
 

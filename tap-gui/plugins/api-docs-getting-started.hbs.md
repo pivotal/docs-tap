@@ -2,7 +2,6 @@
 
 This topic describes how to get started with the API documentation plug-in.
 
-
 ## <a id="dev-first-app"></a> Add your API entry to the Tanzu Application Platform GUI software catalog
 
 In this section, you will:
@@ -10,7 +9,6 @@ In this section, you will:
 - [Learn about API entities of the Software Catalog](#about-app-accs)
 - [Add a demo API entity and its related Catalog objects to Tanzu Application Platform GUI](#deploy-your-app)
 - [Update your demo API entry](#deploy-your-app)
-
 
 ### <a id="about-app-accs"></a> About API entities
 
@@ -22,21 +20,24 @@ APIs are a definition of the interface between components.
 Their definition is provided in machine-readable ("raw") and human-readable formats.
 For more information, see [API plugin documentation](api-docs.html).
 
-
 ### <a id="deploy-your-app"></a> Add a demo API entity to Tanzu Application Platform GUI software catalog
 
-To add a demo API entity and its related Catalog objects, follow the same steps as registering any other software catalog entity:
+To add a demo API entity and its related Catalog objects, follow the same steps as registering any
+other software catalog entity:
 
-1. Navigate to the home page of Tanzu Application Platform GUI. Click **Home** on the left-side navigation bar.
-   Click **REGISTER ENTITY**.
+1. Navigate to the home page of Tanzu Application Platform GUI. Click **Home** on the left-side
+   navigation bar. Click **REGISTER ENTITY**.
 
     ![REGISTER button on the right side of the header](../images/../../images/getting-started-tap-gui-5.png)
 
-1. **Register an existing component** prompts you to type a repository URL. Type the link to the `catalog-info.yaml` file of your choice or use the following sample definition. Save this code block as `catalog-info.yaml`, upload it to the Git repository of your choice, and copy the link to `catalog-info.yaml`.
+2. **Register an existing component** prompts you to type a repository URL.
+   Type the link to the `catalog-info.yaml` file of your choice or use the following sample
+   definition. Save this code block as `catalog-info.yaml`, upload it to the Git repository of your
+   choice, and copy the link to `catalog-info.yaml`.
 
-    This demo setup includes a domain called `demo-domain` with a single system called `demo-system`.
-    This systems consists of two microservices - `demo-app-ms-1` and `demo-app-ms-1` - and one API
-    called `demo-api` that `demo-app-ms-1` provides and `demo-app-ms-2` consumes.
+   This demo setup includes a domain called `demo-domain` with a single system called `demo-system`.
+   This systems consists of two microservices - `demo-app-ms-1` and `demo-app-ms-1` - and one API
+   called `demo-api` that `demo-app-ms-1` provides and `demo-app-ms-2` consumes.
 
     ```yaml
     apiVersion: backstage.io/v1alpha1
@@ -146,23 +147,27 @@ To add a demo API entity and its related Catalog objects, follow the same steps 
                       examples: {}
     ```
 
-1. Paste the link to the `catalog-info.yaml` and click **ANALYZE**. Review the catalog entities and click **IMPORT**.
+3. Paste the link to the `catalog-info.yaml` and click **ANALYZE**. Review the catalog entities and
+   click **IMPORT**.
 
     ![Review the entities to be added to the catalog](./tap-gui/images/../../../images/api-plugin-7.png)
 
-1. Navigate to the **API** page by clicking **APIs** on the left-hand side navigation panel. The catalog changes and entries are visible for further inspection. If you select the system **demo-app**, the diagram appears as follows:
+4. Navigate to the **API** page by clicking **APIs** on the left-hand side navigation panel.
+   The catalog changes and entries are visible for further inspection.
+   If you select the system **demo-app**, the diagram appears as follows:
 
     ![Review the entities to be added to the catalog](./tap-gui/images/../../../images/api-plugin-8.png)
-
 
 ### <a id="deploy-your-app"></a> Update your demo API entry
 
 To update your demo API entry:
 
-1. To update your demo API entity, select **demo-api** from the list of available APIs in your software catalog and click the **Edit** icon on the **Overview** page.
+1. To update your demo API entity, select **demo-api** from the list of available APIs in your
+   software catalog and click the **Edit** icon on the **Overview** page.
 
     ![Review the entities to be added to the catalog](./tap-gui/images/../../../images/api-plugin-9.png)
 
-    It opens the source `catalog-info.yaml` file that you can edit. For example, change the `spec.paths.parameters.example` from `type_any_name` to `Tanzu` and save your changes.
+    It opens the source `catalog-info.yaml` file that you can edit. For example, change the
+    `spec.paths.parameters.example` from `type_any_name` to `Tanzu` and save your changes.
 
 2. After you made the edits, Tanzu Application Platform GUI re-renders the API entry with the next refresh cycle.

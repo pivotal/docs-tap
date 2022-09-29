@@ -51,10 +51,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
 
-  Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based
-  on Knative and runs on a single Kubernetes cluster. For information about Knative, see the
-  [Knative documentation](https://knative.dev/docs/). Cloud Native Runtimes capabilities are included
-  in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
+  Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based on Knative and runs on a single Kubernetes cluster. For information about Knative, see the [Knative documentation](https://knative.dev/docs/). Cloud Native Runtimes capabilities are included in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
 
 - **[Convention Service for VMware Tanzu](convention-service/about.md)**
 
@@ -78,6 +75,11 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Developers instead interact with the Tanzu Developer Tools for VSCode IDE Extension or
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to modify the workload to enable
   inner loop capabilities.
+
+- **[Eventing for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
+
+  Eventing for VMware Tanzu focuses on providing tooling and patterns for Kubernetes applications to manage event-triggered systems via Knative Eventing.
+  For information about Knative, see the [Knative documentation](https://knative.dev/docs/).
 
 - **[Flux Source Controller](https://fluxcd.io/docs/components/source/)**
 
@@ -114,6 +116,13 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   This is an established industry best practice for reducing security risk and ensuring more
   efficient remediation.
 
+- **[Supply Chain Security Tools - Sign (Deprecated)](scst-sign/overview.md)**
+
+  Supply Chain Security Tools - Sign provides an admission controller that allows a cluster operator
+  to specify a policy that allows or denies images from running based on signature verification
+  against public keys. It works with
+  [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for fine-tuned
+  configuration based on image source patterns.
 
 - **[Supply Chain Security Tools - Policy Controller](scst-policy/overview.md)**
 
@@ -173,12 +182,12 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
 
-- **[Tanzu Application Platform Telemetry](telemetry/overview.hbs.md)** 
+- **[Tanzu Application Platform Telemetry](telemetry/overview.hbs.md)**
 
-  Tanzu Application Platform Telemetry is a set of objects that collect data about the usage of Tanzu Application Platform and send it back to VMware for product improvements. A benefit of remaining enrolled in telemetry and identifying your company during Tanzu Application Platform installation is that VMware can provide your 
+  Tanzu Application Platform Telemetry is a set of objects that collect data about the usage of Tanzu Application Platform and send it back to VMware for product improvements. A benefit of remaining enrolled in telemetry and identifying your company during Tanzu Application Platform installation is that VMware can provide your
   organization with usage reports about Tanzu Application Platform. See [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports) for more information about enrolling in telemetry reports.
 
-  >**Note:** You can opt out of telemetry collection by following the 
+  >**Note:** You can opt out of telemetry collection by following the
   instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).
 
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.3
@@ -374,6 +383,19 @@ The following table lists the packages contained in each profile:
    <td>
    </td>
   </tr>
+  <td>Eventing
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
   <tr>
    <td>Flux Source Controller
   </td>
@@ -487,20 +509,6 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Policy Controller
-   </td>
-   <td>&check;
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-   <td>&check;
-   </td>
-   <td>
-   </td>
-  </tr>
-  <tr>
    <td>Service Bindings
    </td>
    <td>&check;
@@ -594,6 +602,20 @@ The following table lists the packages contained in each profile:
    <td>&check;
    </td>
    <td>
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
+   <td>Supply Chain Security Tools - Sign (deprecated)
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -761,7 +783,7 @@ Tanzu Application Platform components.
    </td>
    <td>
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>

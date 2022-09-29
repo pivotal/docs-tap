@@ -33,21 +33,17 @@ Application Live View includes the following components as shown in the architec
 
 ## <a id="design-flow"></a> Design flow
 
-As illustrated in the architecture diagram, the **App Live View** namespace contains
-all the Application Live View components and the **Apps** namespace contains all the
-apps to be registered with Application Live View Server.
+As illustrated in the diagram, the applications run by the user are registered with Application Live View Server by using
+Application Live View Connector. After the application is registered, the Application Live View Server offers the ability
+to serve actuator data from that registered application through its REST API. Application Live View server proxies the call
+to the connector for querying actuator endpoint information.
 
-The apps run by the user are registered with Application Live View Server using
-Application Live View Connector.
-
-Application Live View Connector, which is a lean model, uses specific labels to
-discover apps across cluster or namespace.
-Application Live View Connector communicates with the Kubernetes API server
-requesting events for pod creation and termination, and then filters out the events
-to find the pod of interest using labels. Then Application Live View Connector
+Application Live View Connector, which is a lean model, uses specific labels to discover apps across cluster or namespace.
+Application Live View Connector serves as the connection between running applications and Application Live View Server.
+Application Live View Connector communicates with the Kubernetes API server requesting events for pod creation and termination, and then filters out the events to find the pod of interest by using labels. Then Application Live View Connector
 registers the filtered app instances with Application Live View server.
-Application Live View server proxies the call to the connector for querying
-actuator endpoint information.
 
-The Application Live View Server fetches the actuator data of the app by proxying
-the request to Application Live View Connector by using an RSocket connection.
+Application Live View Server and Application Live View Connector communicate through a bidirectional RSocket channel. Application Live View Connector is implemented as a
+Java/Spring Boot application and runs as a native executable file (Spring Native using GraalVM). Application Live View Connector runs as a DaemonSet by default on every node in the cluster.
+
+Application Live View Convention identifies PodIntents for pods that can serve actuator data and annotates the PodSpec with application-specific labels. Those labels are used by the Application Live View Connector to identify running pods that can serve actuator data. Application Live View Convention reads the image metadata to determine the application-specific labels applied on the PodSpec.

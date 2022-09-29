@@ -1,10 +1,8 @@
 # Service Bindings for Kubernetes
 
 Service Bindings for Kubernetes implements the
-[Service Binding Specification for Kubernetes](https://github.com/k8s-service-bindings/spec). VMware is
-tracking changes to the specifications as it approaches a stable release, currently targeting
-[pre-RC3](https://github.com/k8s-service-bindings/spec/tree/12a9f2e376c50f051cc9aa913443bdecb0a24a01) in
-GitHub. Backwards and forwards compatibility are not be expected for alpha versioned resources.
+[Service Binding Specification for Kubernetes](https://github.com/k8s-service-bindings/spec).
+Service Bindings for Kubernetes implements the Service Binding Specification for Kubernetes v1.0
 
 This implementation provides support for:
 
