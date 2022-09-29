@@ -14,6 +14,8 @@ Platform's Full, Iterate and Run profiles. Use the instructions in this topic to
 Image Policy Webhook `ClusterImagePolicy`, see
 [Migration From Supply Chain Security Tools - Sign](migration.md).
 
+- If the installation is occuring in an air-gapped environment, a Sigstore Stack is required on the cluster or accessible from the air-gapped environment. For more information, see [Install Sigstore Stack](./install-sigstore-stack.hbs.md)
+
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. The Policy Controller only supports ECDSA public keys.
 An example cosign public key is provided that can validate an image from the

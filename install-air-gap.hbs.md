@@ -153,6 +153,22 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
+## <a id='air-gap-policy'></a> Prepare Sigstore TUF Stack for Air-Gapped Policy Controller
+
+Supply Chain Security Tools - Policy Controller currently requires access to a TUF server.
+In a normal environment with public internet access, the public official Sigstore TUF server is used.
+
+However, for an air-gapped environment, an internally accessible Sigstore stack is currently required.
+
+The Sigstore Stack consists of:
+- [Trillian](https://github.com/google/trillian)
+- [Rekor](https://github.com/sigstore/rekor)
+- [Fulcio](https://github.com/sigstore/fulcio)
+- [Certificate Transparency Log (CTLog)](https://github.com/google/certificate-transparency-go)
+- [TheUpdateFramework (TUF)](https://theupdateframework.io/)
+
+For more information on how to setup the Sigstore Stack, see [Sigstore Stack Install](./scst-policy/install-sigstore-stack.hbs.md).
+
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
