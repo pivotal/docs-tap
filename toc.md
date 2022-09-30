@@ -428,7 +428,7 @@ docs.vmware.com is built.
       - [Getting Started with Tanzu Developer Tools for VS Code](vscode-extension/getting-started.md)
       - [Using Tanzu Developer Tools for VS Code](vscode-extension/using-the-extension.md)
       - [Pinniped Compatibility](vscode-extension/pinniped-auth.md)
-      - [Integrating Live Hover Using Spring Boot Tools (Experimental)](vscode-extension/live-hover.md)
+      - [Integrating Live Hover by using Spring Boot Tools](vscode-extension/live-hover.md)
       - [Troubleshooting Tanzu Developer Tools for VS Code](vscode-extension/troubleshooting.md)
     - [Tanzu Developer Tools for IntelliJ](intellij-extension/about.md)
       - [Overview of Tanzu Developer Tools for IntelliJ](intellij-extension/about.md)

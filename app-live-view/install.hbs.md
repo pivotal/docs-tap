@@ -10,7 +10,7 @@ Application Live View installs three packages for `view`, `run`, and `build` pro
 
 - For the `build` profile, Application Live View installs Application Live View Conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View Convention Service in `app-live-view-conventions` namespace.
 
-The `iterate` profile includes the Application Live View connector package and Application Live View Conventions package. The `full` profile includes the Application Live View back-end package, Application Live View connector package and Application Live View Conventions package.
+The `iterate` profile includes the Application Live View connector package and Application Live View Conventions package. The `full` profile includes the Application Live View back-end package, Application Live View connector package, and Application Live View Conventions package.
 
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
@@ -22,7 +22,7 @@ For more information about profiles, see [About Tanzu Application Platform compo
 Before installing Application Live View, complete all prerequisites to install Tanzu Application Platform.
 For more information, see [Prerequisites](../prerequisites.md).
 
-In addition, install Cartographer Conventions which is bundled with Supply Chain Choreographer as of the v0.5.3 release. To install, see [Installing Supply Chain Choreographer](../scc/install-scc.md). For more information, see [Cartographer Conventions](../cartographer-conventions/about.md). 
+In addition, install Cartographer Conventions, which is bundled with Supply Chain Choreographer as of the v0.5.3 release. To install, see [Installing Supply Chain Choreographer](../scc/install-scc.md). For more information, see [Cartographer Conventions](../cartographer-conventions/about.md).
 
 ## <a id='install-app-live-view'></a> Install Application Live View
 
@@ -48,7 +48,7 @@ To install Application Live View back end:
     ```console
     $ tanzu package available list backend.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for backend.appliveview.tanzu.vmware.com...
-      NAME                                  VERSION        RELEASED-AT           
+      NAME                                  VERSION        RELEASED-AT
       backend.appliveview.tanzu.vmware.com  1.3.0          2022-09-07T00:00:00Z
     ```
 
@@ -64,16 +64,16 @@ To install Application Live View back end:
 
     ```console
     $ tanzu package available get backend.appliveview.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
-      KEY                DEFAULT          TYPE     DESCRIPTION                                                           
-      ingressDomain      tap.example.com  string   Domain to be used by the HTTPProxy ingress object. The "appliveview"  
-                                                   subdomain is prepended to the value provided. For example:       
-                                                   "example.com" becomes "appliveview.example.com".                 
-      ingressEnabled     false            boolean  Flag for whether to create an HTTPProxy for ingress.           
-                                                                                                                        
-      kubernetes_flavor                   string   Kubernetes flavor                                                     
-                                                                                                                        
-      tls.namespace      <nil>            string   The targeted namespace for secret consumption by the HTTPProxy.       
-                                                                                                                        
+      KEY                DEFAULT          TYPE     DESCRIPTION
+      ingressDomain      tap.example.com  string   Domain to be used by the HTTPProxy ingress object. The "appliveview"
+                                                   subdomain is prepended to the value provided. For example:
+                                                   "example.com" becomes "appliveview.example.com".
+      ingressEnabled     false            boolean  Flag for whether to create an HTTPProxy for ingress.
+
+      kubernetes_flavor                   string   Kubernetes flavor
+
+      tls.namespace      <nil>            string   The targeted namespace for secret consumption by the HTTPProxy.
+
       tls.secretName     <nil>            string   The name of secret for consumption by the HTTPProxy.
     ```
 
@@ -81,7 +81,7 @@ To install Application Live View back end:
 
 2. Create `app-live-view-backend-values.yaml` with the following details:
 
-    For a SINGLE-CLUSTER environment, the Application Live View back end is exposed through the Kubernetes cluster service. 
+    For a SINGLE-CLUSTER environment, the Application Live View back end is exposed through the Kubernetes cluster service.
     By default, ingress is disabled for back end.
 
     ```yaml
@@ -121,10 +121,10 @@ To install Application Live View back end:
     - `NAMESPACE` is the targeted namespace of TLS secret for the domain.
     - `SECRET NAME` is the name of TLS secret for the domain.
 
-    You can edit the values to suit your project needs or leave the default values as is. 
+    You can edit the values to suit your project needs or leave the default values as is.
 
     >**Note:** The app-live-view namespace and the TLS secret for the domain should be created before installing the Tanzu Application Platform packages in the cluster so that the HTTPProxy is updated with the TLS secret. To create a TLS secret, run:
-    
+
     ```console
     kubectl create -n app-live-view secret tls alv-cert --cert=<.crt file> --key=<.key file>
     ```
@@ -132,7 +132,7 @@ To install Application Live View back end:
     To verify the HTTPProxy object with the TLS secret, run:
 
     ```console
-    kubectl get httpproxy -A 
+    kubectl get httpproxy -A
     NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
     app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
     ```
@@ -173,7 +173,7 @@ To install Application Live View back end:
     For example:
 
     ```console
-    tanzu package installed get appliveview -n tap-install            
+    tanzu package installed get appliveview -n tap-install
     \ Retrieving installation details for appliveview...
     NAME:                    appliveview
     PACKAGE-NAME:            backend.appliveview.tanzu.vmware.com
@@ -200,7 +200,7 @@ To install Application Live View connector:
     ```console
     $ tanzu package available list connector.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for connector.appliveview.tanzu.vmware.com...
-      NAME                                    VERSION        RELEASED-AT           
+      NAME                                    VERSION        RELEASED-AT
       connector.appliveview.tanzu.vmware.com  1.3.0          2022-09-07T00:00:00Z
     ```
 
@@ -217,14 +217,14 @@ To install Application Live View connector:
     ```console
     $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
       KEY                     DEFAULT             TYPE     DESCRIPTION
-      backend.host            <nil>               string   Domain to be used to reach the Application Live View backend. Prepend "appliveview"  
-                                                           subdomain to the value if you are using shared ingress. For example: "example.com"   
-                                                           becomes "appliveview.example.com".                                              
-      backend.ingressEnabled  false               boolean  Flag for the connector to connect to ingress on backend.                              
-                                                                                                                                                
-      backend.port            <nil>               number   Port to reach the Application Live View backend.                                      
-      backend.sslDisabled     false               boolean  Flag for whether to disable SSL.                                               
-      backend.caCertData      cert-in-pem-format  string   CA Cert Data for ingress domain.                                                      
+      backend.host            <nil>               string   Domain to be used to reach the Application Live View backend. Prepend "appliveview"
+                                                           subdomain to the value if you are using shared ingress. For example: "example.com"
+                                                           becomes "appliveview.example.com".
+      backend.ingressEnabled  false               boolean  Flag for the connector to connect to ingress on backend.
+
+      backend.port            <nil>               number   Port to reach the Application Live View backend.
+      backend.sslDisabled     false               boolean  Flag for whether to disable SSL.
+      backend.caCertData      cert-in-pem-format  string   CA Cert Data for ingress domain.
       kubernetes_flavor                           string   Kubernetes flavor.
     ```
 
@@ -234,9 +234,9 @@ To install Application Live View connector:
 
     For SINGLE-CLUSTER environment, the Application Live View connector connects to the `cluster-local` Application Live View back end to register the applications.
 
-    >**Note:** By default, ingress is disabled for connector. 
+    >**Note:** By default, ingress is disabled for connector.
 
-    
+
 
     For a multicluster environment, set the flag `ingressEnabled` to true for the Application Live View connector to connect to the Application Live View back end by using the ingress domain.
 
@@ -246,7 +246,7 @@ To install Application Live View connector:
     ```
 
     >**Note:** If it is a Tanzu Application Platform profile installation and top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the Application Live View connector and Application Live View back end are configured to communicate through ingress. Then the Application Live View connector uses the `shared.ingress_domain` to reach the back end.
-   
+
 
     If you want to override the shared ingress for Application Live View in a multicluster environment, use the following values:
 
@@ -265,15 +265,15 @@ To install Application Live View connector:
         -----BEGIN CERTIFICATE-----
         MIIGMzCCBBugAwIBAgIJALHHzQjxM6wMMA0GCSqGSIb3DQEBDQUAMGcxCzAJBgNV
         BAgMAk1OMRQwEgYDVQQHDAtNaW5uZWFwb2xpczEPMA0GA1UECgwGVk13YXJlMRMw
-        -----END CERTIFICATE-----  
+        -----END CERTIFICATE-----
     ```
-    
+
     If TLS is not enabled for the `INGRESS-DOMAIN` in the Application Live View back end, set the `backend.sslDisabled` to `true`.
 
      ```yaml
     backend:
         sslDisabled: true
-    ```  
+    ```
 
     You can edit the values to suit your project needs or leave the default values as is.
 
@@ -342,7 +342,7 @@ To install Application Live View Conventions:
     ```console
     $ tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for conventions.appliveview.tanzu.vmware.com...
-      NAME                                      VERSION        RELEASED-AT           
+      NAME                                      VERSION        RELEASED-AT
       conventions.appliveview.tanzu.vmware.com  1.3.0          2022-09-07T00:00:00Z
     ```
 
