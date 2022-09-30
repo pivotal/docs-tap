@@ -24,6 +24,7 @@ How to create APIDescriptor CR
    - [using other GitOps processes or Manually](#using-gitops-manually)
 
 ## <a id='update-values'></a>Update install values for api-auto-registration package
+
 1. Create `api-auto-registration-values.yaml`
 
    If you'd like to overwrite the default values, create or update your `api-auto-registration-values.yaml` file that has the following fields:
@@ -48,13 +49,14 @@ How to create APIDescriptor CR
     --version $VERSION
     --values-file api-auto-registration-values.yaml
 
-## <a id='using-app-accelerator-template'></a>Using App Accelerator Template
+### <a id='using-app-accelerator-template'></a>Using App Accelerator Template
 
 If you are creating a new application exposing an API, you might use the ["java-rest-service"](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
 App Accelerator template to get an out-of-the-box app that includes an already written workload.yaml with a basic REST API.
 From your Tanzu Application Platform GUIs Accelerators tab, you can search for the accelerator and scaffold it according to your needs.
 
 ## <a id='using-ootb-supply-chain'></a>Using Out Of The Box (OOTB) Supply Chains
+
 All the Out-Of-The-Box (OOTB) supply chains have been modified so that they can utilize API Auto Registration. If you want your Workload to be auto registered, you need to make a couple of modifications to your workload yaml as described below
 
 1. Add the label `apis.apps.tanzu.vmware.com/register-api: "true"`.
@@ -130,6 +132,7 @@ spec:
 After the supply chain runs it creates an `APIDescriptor` custom resource. This resource is what Tanzu Application Platform uses to auto register your API. See [APIDescriptor explained](#api-descriptor)
 
 ## <a id='using-custom-supply-chain'></a>Using Custom Supply Chains
+
 If you are creating custom supply chains, you can still utilize API Auto Registration. To write your own Supply Chain pipeline, 
 you can use `ClusterConfigTemplate` by the name of `config-template` in your pipeline. To write your own custom task, 
 you can check how the template is written to read params, interpret baseURL from Knative Services and construct APIDescriptor CRs.
@@ -138,6 +141,7 @@ In the Delivery pipeline, you will need to directly create an APIDescriptor cust
 For more info on APIDescriptors, check out the [Key Concepts section](key-concepts.md)
 
 ## <a id='using-gitops-manually'></a>Using other GitOps processes or Manually
+
 Using your GitOps process (or manually), you will need to stamp out an APIDescriptor CR and apply it in the desired cluster. 
 The APIDescriptor will need all the required fields to successfully reconcile.
 
@@ -145,6 +149,7 @@ The APIDescriptor will need all the required fields to successfully reconcile.
 For more info on APIDescriptors, check out the [Key Concepts section](key-concepts.md).
 
 ## <a id='cors'></a>Setting up CORS for OpenAPI specs
+
 The agent, usually a browser, uses the [CORS](https://fetch.spec.whatwg.org/#http-cors-protocol) protocol to verify whether the current origin uses an API. 
 To use the Try it out feature for OpenAPI specifications from the API Docs plug-in<, you must configure CORS to allow successful requests. 
 Your API must be configured to allow CORS Requests from Tanzu Application Platform GUI. How you accomplish this varies based on the programming language and framework you are using. 
