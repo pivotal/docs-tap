@@ -35,7 +35,7 @@ When you install the Application Accelerator, you can configure the following op
 | ingress.include | False | Option to include the ingress configuration in the installation |
 | ingress.enable_tls | False | Option to include TLS for the ingress configuration |
 | domain | tap.example.com | Top-level domain to use for ingress configuration, defaults to `shared.ingress_domain` |
-| tls.secret_n_ame | tls | The name of the secret |
+| tls.secret_name | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
 | telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.                         
 | telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?  
