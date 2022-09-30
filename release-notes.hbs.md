@@ -34,8 +34,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="alv-features"></a>Application Live View
 
-- Application Live View uses a custom Security Context Constraint to provide Openshift Support.
-- Custom CAs are supported.
+- Application Live View uses a custom security context constraint to provide Openshift support.
+- Custom Certificate Authority (CA) certificates are supported.
 
 
 #### <a id="app-sso-features"></a>Application Single Sign-On
@@ -263,7 +263,7 @@ This release has the following known issues, listed by area and component.
 #### <a id="tap-known-issues"></a>Tanzu Application Platform
 
   - New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
-  - The key shared.image_registry.project_path which takes input as "SERVER-NAME/REPO-NAME" cannot take "/" at the end. As a workaround, avoid appending "/" to the end of string.
+  - The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end. Do not append "/" to the end of the string.
 
 #### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plugins
 

@@ -1,8 +1,8 @@
 # Consume services on Tanzu Application Platform
 
-This how-to guide walks the application developer through deploying two application workloads and configuring them to communicate over RabbitMQ. You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
+This how-to guide walks the application developer through deploying two application workloads and configuring them to communicate with a service. It will be using RabbitMQ as an example, but the process is the same regardless of the service you wish to setup. You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
 
->**Important:** This walkthrough assumes that the service operator and application operator has already:
+>**Important:** This walkthrough assumes that the service operator and application operator have already:
 
 >- Set up a service.
 >- Created a service instance.
