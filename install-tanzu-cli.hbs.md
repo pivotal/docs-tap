@@ -77,7 +77,7 @@ To install the Tanzu CLI and plug-ins:
 
 1. Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com).
 2. Go to the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform).
-3. Select `Release 1.2.0` from the release dropdown menu.
+3. Select `Release 1.3.0` from the release dropdown menu.
 4. Click and download the Tanzu framework bundle for your operating system.
 5. (Optional) If an earlier upgrade attempt failed, you can uninstall the previous version of the Tanzu CLI and associated plug-ins and files. See [Remove Tanzu CLI, plug-ins, and associated files](uninstall.html#remove-tanzu-cli) for more information.
 
@@ -115,7 +115,7 @@ the CLI core and plug-ins are installed by running:
 
      ```console
      cd $HOME/tanzu
-     export VERSION=v0.11.6
+     export VERSION=v0.25.0
      sudo install cli/core/$VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
      ```
 
@@ -123,7 +123,7 @@ the CLI core and plug-ins are installed by running:
 
      ```console
      cd $HOME/tanzu
-     export VERSION=v0.11.6
+     export VERSION=v0.25.0
      install cli/core/$VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
      ```
 
@@ -136,7 +136,7 @@ the CLI core and plug-ins are installed by running:
     Expected outcome:
 
     ```console
-    version: v0.11.6
+    version: v0.25.0
     ...
     ```
 
@@ -153,7 +153,7 @@ the CLI core and plug-ins are installed by running:
 4. From the `Program Files\tanzu` directory, move and rename; the executable file from
 
     ```console
-    Program Files\tanzu\cli\core\v0.11.6\tanzu-core-windows_amd64.exe
+    Program Files\tanzu\cli\core\v0.25.0\tanzu-core-windows_amd64.exe
     ```
 
     to
@@ -187,7 +187,7 @@ the CLI core and plug-ins are installed by running:
     Expected outcome:
 
     ```console
-    version: v0.11.6
+    version: v0.25.0
     ...
     ```
 
@@ -213,16 +213,18 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
     Expected outcome:
 
     ```console
-    NAME                DESCRIPTION                                                                   SCOPE       DISCOVERY             VERSION      STATUS
-    login               Login to the platform                                                         Standalone  default               v0.11.6      not installed
-    management-cluster  Kubernetes management-cluster operations                                      Standalone  default               v0.11.6      not installed
-    package             Tanzu package management                                                      Standalone  default               v0.11.6      installed
-    pinniped-auth       Pinniped authentication operations (usually not directly invoked)             Standalone  default               v0.11.6      not installed
-    secret              Tanzu secret management                                                       Standalone  default               v0.11.6      installed
-    services            Discover Service Types, Service Instances and manage Resource Claims (ALPHA)  Standalone                        v0.3.0-rc.2  installed
-    accelerator         Manage accelerators in a Kubernetes cluster                                   Standalone                        v1.2.0-build.1       installed
-    apps                Applications on Kubernetes                                                    Standalone                        v0.7.0-build.1       installed
-    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.2.1       installed
+      NAME                DESCRIPTION                                                                       SCOPE       DISCOVERY  VERSION  STATUS         
+  login               Login to the platform                                                             Standalone  default    v0.25.0  not installed  
+  management-cluster  Kubernetes management-cluster operations                                          Standalone  default    v0.25.0  not installed  
+  package             Tanzu package management                                                          Standalone  default    v0.25.0  installed      
+  pinniped-auth       Pinniped authentication operations (usually not directly invoked)                 Standalone  default    v0.25.0  not installed  
+  secret              Tanzu secret management                                                           Standalone  default    v0.25.0  installed      
+  telemetry           Configure cluster-wide telemetry settings                                         Standalone  default    v0.25.0  not installed  
+  services            Explore Service Instance Classes, discover claimable Service Instances and        Standalone             v0.4.0   installed      
+                      manage Resource Claims                                                                                                           
+  accelerator         Manage accelerators in a Kubernetes cluster                                       Standalone             v1.3.0   installed      
+  apps                Applications on Kubernetes                                                        Standalone             v0.9.0   installed      
+  insight             post & query image, package, source, and vulnerability data                       Standalone             v1.3.3   installed 
     ```
 
 ## <a id='next-steps'></a>Next steps
