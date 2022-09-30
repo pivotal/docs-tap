@@ -52,4 +52,4 @@ To complete the Tanzu Application Platform profile migration, do the following:
 tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
 ```
 
-Where `TAP-VERSION` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+Where `TAP-VERSION` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}` .
