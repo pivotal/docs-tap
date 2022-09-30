@@ -49,7 +49,7 @@ How to create APIDescriptor CR
     --version $VERSION
     --values-file api-auto-registration-values.yaml
 
-### <a id='using-app-accelerator-template'></a>Using App Accelerator Template
+## <a id='using-app-accelerator-template'></a>Using App Accelerator Template
 
 If you are creating a new application exposing an API, you might use the ["java-rest-service"](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
 App Accelerator template to get an out-of-the-box app that includes an already written workload.yaml with a basic REST API.
