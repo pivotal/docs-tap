@@ -67,6 +67,7 @@ cannot be used to build PHP workloads.
 The `lite` dependencies contain the following stacks:
 
 - `base`
+- `base-jammy`
 - `default` (identical to `base`)
 
 For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
@@ -76,17 +77,19 @@ in the VMware Tanzu Buildpacks documentation.
 
 The `lite` dependencies contain the following buildpacks:
 
-| Buildpack | Version included in Tanzu Application Platform v1.2 |
+| Buildpack | Version included in Tanzu Application Platform v1.3 |
 |-----------|-----------|
-| Java Buildpack for VMware Tanzu (Lite) | 6.27.0 |
-| Java Native Image Buildpack for Tanzu (Lite) | 6.18.1 |
-| .NET Core Buildpack for VMware Tanzu (Lite) | 1.14.3 |
-| Node.js Buildpack for VMware Tanzu (Lite) | 1.14.2 |
-| Python Buildpack for VMware Tanzu (Lite) | 2.0.0  |
-| Go Buildpack for VMware Tanzu (Lite) | 1.12.0 |
-| NGINX Buildpack for VMware Tanzu (Lite) | 0.6.0  |
-| Procfile Buildpack for VMware Tanzu (Lite) | 5.2.1  |
-| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.3.54 |
+| Java Buildpack for VMware Tanzu (Lite) | 7.2.0 |
+| Java Native Image Buildpack for Tanzu (Lite) | 6.28.0 |
+| .NET Core Buildpack for VMware Tanzu (Lite) | 1.18.1 |
+| Node.js Buildpack for VMware Tanzu (Lite) | 1.16.0 |
+| Python Buildpack for VMware Tanzu (Lite) | 2.1.2  |
+| Go Buildpack for VMware Tanzu (Lite) | 2.0.2 |
+| Web Servers Buildpack for VMware Tanzu (Lite) | 0.3.0  |
+| Ruby Buildpack for VMware Tanzu (Lite) | 1.1.0  |
+| Procfile Buildpack for VMware Tanzu (Lite) | 5.4.0  |
+| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.17 |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.1 |
 
 ### <a id="full-dependencies"></a> Full dependencies
 
@@ -109,6 +112,9 @@ The `full` dependencies contain the following stacks, which support different us
 - `default` (identical to `base`)
 - `full`
 - `tiny`
+- `base-jammy`
+- `full-jammy`
+- `tiny-jammy`
 
 For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
 in the VMware Tanzu Buildpacks documentation.
@@ -117,21 +123,24 @@ in the VMware Tanzu Buildpacks documentation.
 
 The `full` dependencies contain the following buildpacks:
 
-| Buildpack | Version included in Tanzu Application Platform v1.2 |
+| Buildpack | Version included in Tanzu Application Platform v1.3 |
 |-----------|------------|
-| Java Buildpack for VMware Tanzu | 6.27.0 |
-| Java Native Image Buildpack for Tanzu | 6.18.1 |
-| .NET Core Buildpack for VMware Tanzu | 1.14.3 |
-| Node.js Buildpack for VMware Tanzu | 1.14.2 |
-| Python Buildpack for VMware Tanzu | 2.0.0 |
-| Go Buildpack for VMware Tanzu | 1.12.0 |
+| Java Buildpack for VMware Tanzu | 7.2.0 |
+| Java Native Image Buildpack for Tanzu | 6.28.0 |
+| .NET Core Buildpack for VMware Tanzu | 1.18.1 |
+| Node.js Buildpack for VMware Tanzu | 1.16.0 |
+| Python Buildpack for VMware Tanzu | 2.1.2 |
+| Go Buildpack for VMware Tanzu | 2.0.2 |
 | PHP Buildpack for VMware Tanzu | 0.1.0 |
-| Web Servers Buildpack for VMware Tanzu | 1.0.1 |
-| NGINX Buildpack for VMware Tanzu | 0.6.0 |
-| Procfile Buildpack for VMware Tanzu | 5.2.1 |
+| Web Servers Buildpack for VMware Tanzu | 0.3.0 |
+| Ruby Buildpack for VMware Tanzu (Lite) | 1.1.0  |
+| Procfile Buildpack for VMware Tanzu | 5.3.0 |
 | Tiny Stack of Ubuntu Bionic for VMware Tanzu | 1.1.72 |
-| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.3.54 |
-| Full Stack of Ubuntu Bionic for VMware Tanzu | 1.3.62 |
+| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.3.72 |
+| Full Stack of Ubuntu Bionic for VMware Tanzu | 1.3.88 |
+| Tiny Stack of Ubuntu Jammy for VMware Tanzu | 0.1.1 |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.1 |
+| Full Stack of Ubuntu Jammy for VMware Tanzu | 0.1.1 |
 
 ### <a id="lite-vs-full-table"></a> Dependency comparison
 
@@ -153,7 +162,7 @@ The following table compares the contents of the `lite` and `full` dependencies.
 | Supports PHP workloads | No | Yes |
 | Supports static workloads | Yes | Yes |
 | Supports binary workloads | Yes | Yes |
-| Supports web servers buildpack | No | Yes |
+| Supports web servers buildpack | Yes | Yes |
 
 ## <a id="deprecated-auto-updates"></a> About automatic dependency updates (deprecated)
 
