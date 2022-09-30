@@ -20,10 +20,10 @@ The following are not supported:
 
 ## How to use Service Bindings
 
-Service Bindings is open source and very amourophus in how it works. For these reasons there is no
-quick explination on how to use Service Binding. However there are many resouces that are
+Service Bindings is open source and very amorphous in how it works. For these reasons there is no
+quick explanation on how to use Service Binding. However there are many resources that are
 available to assist in the understanding of the many ways that Service Bindings can be used. See [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec)
-to understand the specifications that Service Bindings uses for Kubernetes and a comunity section
-to understand it's use. For a full indebth dive of Service Binder see
-[Servicebindings.io](https://servicebinding.io/) which is the offical open source page for Service
+to understand the specifications that Service Bindings uses for Kubernetes and a community section
+to understand it's use. For a full in-depth dive of Service Binder see
+[Servicebindings.io](https://servicebinding.io/) which is the official open source page for Service
 Bindings that have the most detailed up to date information about how to use Service Bindings and any upcoming new features.
