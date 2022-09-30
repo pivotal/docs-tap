@@ -1,10 +1,10 @@
 # tanzu apps workload apply
 
-`tanzu apps workload apply` is a command used to create/update workloads that will be deployed in a cluster through a supply chain.
+`tanzu apps workload apply` is a command used to create/update workloads that are deployed in a cluster through a supply chain.
 
 ## Default view
 
-In the output of workload apply command, the specification for the workload is shown as if they were in a YAML file.
+In the output of the `workload apply command`, the specification for the workload is shown as if they were in a YAML file.
 
 <details><summary>Example</summary>
 
@@ -36,13 +36,13 @@ To get status: "tanzu apps workload get pet-clinic"
 ```
 </details>
 
-In the first section, the definition of workload is displayed. It's followed by a dialog box asking whether the workload should be created or updated. In the last section, if workload is created or updated, a couple of hints/suggestions are displayed about the next set of commands that may be used for a follow up. Each flag used in this example is explained in detail in the following section.
+In the first section, the definition of workload is displayed. It's followed by a dialog box asking `whether the workload should be created or updated`. In the last section, if workload is created or updated, a couple of hints are displayed about the next set of commands that are used for a follow up. Each flag used in this example is explained in detail in the following section.
 
-## <a id='workload_apply_flags'></a> Workload Apply flags
+## <a id='workload-apply-flags'></a> Workload Apply flags
 
 ### <a id="apply-annotation"></a> `--annotation`
 
-Set the annotations to be applied to the workload, to specify more than one annotation set the flag multiple times. These annotations will be passed as parameters to be processed in the supply chain.
+Set the annotations to be applied to the workload, to specify more than one annotation set the flag multiple times. These annotations are passed as parameters to be processed in the supply chain.
 <details><summary>Example</summary>
 
 ```bash
@@ -95,7 +95,7 @@ Update workload:
 
 ### <a id="apply-app"></a> `--app`
 
-The app of which the workload is part of. This will be part of the workload metadata section.
+The app of which the workload is part of. This is part of the workload metadata section.
 
 <details><summary>Example</summary>
 
@@ -130,7 +130,7 @@ To get status: "tanzu apps workload get pet-clinic"
 
 ### <a id="apply-build-env"></a> `--build-env`
 
-Sets environment variables to be used in the **build** phase by the build resources in the supply chain where some *build* specific behavior can be set or changed
+Sets environment variables to be used in the **build** phase by the build resources in the supply chain where some *build* specific behavior is set or changed
 
 <details><summary>Example</summary>
 
@@ -188,7 +188,7 @@ Update workload:
 
 ### <a id="apply-debug"></a> `--debug`
 
-Sets the param variable debug to true  in workload.
+Sets the parameter variable debug to true in the workload.
 
 <details><summary>Example</summary>
 
@@ -309,7 +309,7 @@ Update workload:
 
 ### <a id="apply-file"></a> `--file`, `-f`
 
-Set a workload specification file to create the workload from, any other workload specification passed by flags to the command will set or override whatever is in the file. Another way to use this flag is using `-` in the command, to receive workload definition through standard input. Refer to [Working with Yaml Files](../../usage.md#a-idyaml-filesaworking-with-yaml-files) section to see an example.
+Sets the workload specification file to create the workload, from any other workload specification passed by flags to the command is set or override whatever is in the file. Another way to use this flag is using `-` in the command, to receive workload definition through standard input. See [Working with Yaml Files](../../usage.md#a-idyaml-filesaworking-with-yaml-files) section to see an example.
 
 <details><summary>Example</summary>
 
@@ -346,11 +346,11 @@ Create workload:
 
 ### <a id="apply-git-repo"></a> `--git-repo`
 
-Git repository from which the workload is going to be created. With this, `--git-tag`, `--git-commit` or `--git-branch` can be specified.
+Git repository from which the workload is created. With this, `--git-tag`, `--git-commit` or `--git-branch` is specified.
 
 ### <a id="apply-git-branch"></a> `--git-branch`
 
-Branch in a Git repository from where the workload is going to be created. This may be specified along with a commit or a tag.
+Branch in a Git repository from where the workload is created. This is specified with a commit or a tag.
 
 <details><summary>Example</summary>
 
@@ -378,11 +378,11 @@ Create workload:
 
 ### <a id="apply-git-tag"></a> `--git-tag`
 
-Tag in a Git repository from which the workload is going to be created. Can be used with `--git-commit` or `--git-branch`
+Tag in a Git repository from which the workload is created. Can be used with `--git-commit` or `--git-branch`
 
 ### <a id="apply-git-commit"></a> `--git-commit`
 
-Commit in Git repo from where the workload is going to be resolved. Can be used with `--git-branch` or `git-tag`.
+Commit in Git repository| from where the workload is resolved. Can be used with `--git-branch` or `git-tag`.
 
 <details><summary>Example</summary>
 
@@ -562,21 +562,21 @@ Create workload:
 
 ### <a id="apply-live-update"></a> `--live-update`
 
-Enable to deploy a workload once, save changes to the code, and see those changes reflected within seconds in the workload running on the cluster.
+Enable to deploy the workload once, save changes to the code, and see those changes reflected within seconds in the workload running on the cluster.
 
 <details><summary>Example</summary>
 
-  - A usage example with a spring boot application.
-    - Clone repo in https://github.com/sample-accelerators/tanzu-java-web-app
+  - A uuse example with a spring boot application.
+    - Clone repository in https://github.com/sample-accelerators/tanzu-java-web-app
     - In `Tiltfile`, first change the `SOURCE_IMAGE` variable to use your registry and project. After that, at the very end of the file add
     ```bash
     allow_k8s_contexts('your-cluster-name')
     ```
-    - Then, inside folder, run:
+    - Then, inside the directory, run:
     ```bash
     tanzu apps workload apply tanzu-java-web-app --live-update --local-path . -s gcr.io/my-project/tanzu-java-web-app-live-update -y
 
-    The files and/or directories listed in the .tanzuignore file are being excluded from the uploaded source code.
+    The files and directories listed in the .tanzuignore file are being excluded from the uploaded source code.
     Publishing source in "." to "gcr.io/my-project/tanzu-java-web-app-live-update"...
     Published source
     Create workload:
@@ -619,7 +619,7 @@ Enable to deploy a workload once, save changes to the code, and see those change
     tanzu-java-w… │
     tanzu-java-w… │ Initial Build • tanzu-java-web-app
     tanzu-java-w… │ WARNING: Live Update failed with unexpected error:
-    tanzu-java-w… │ 	Cannot extract live updates on this build graph structure
+    tanzu-java-w… │   Cannot extract live updates on this build graph structure
     tanzu-java-w… │ Falling back to a full image build + deploy
     tanzu-java-w… │ STEP 1/1 — Deploying
     tanzu-java-w… │      Objects applied to cluster:
@@ -639,12 +639,12 @@ Enable to deploy a workload once, save changes to the code, and see those change
 
 ### <a id="apply-local-path"></a> `--local-path`
 
-Sets the path to a source in the local machine from where the workload creates an image to use as an application source. The local path may be a directory, a JAR, a ZIP, or a WAR file. Java/Spring Boot compiled binaries are also supported. This flag must be used with `--source-image` flag.
+Sets the path to a source in the local machine from where the workload creates an image to use as an application source. The local path can be a directory, a JAR, a ZIP, or a WAR file. Java/Spring Boot compiled binaries are also supported. This flag must be used with `--source-image` flag.
 
 |>**Note:**| If Java/Spring compiled binary is passed instead of source code, the command will take less time to apply the workload since buildpack will skip the compiling steps and will simply start uploading the image.
 
 When working with local source code, you can exclude files from the source code to be uploaded within the image by creating a file `.tanzuignore` at the root of the source code.
-The `.tanzuignore` file contains a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`). If the file contains directories that are not in the source code, they are ignored and lines starting with `#` character.
+The `.tanzuignore` file contains a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`). If the file contains directories that are not in the source code, they are ignored and lines starting with `#` pound.
 
 ### <a id="apply-maven-artifact"></a> `--maven-artifact`
 
@@ -675,11 +675,11 @@ Create workload:
 
 ### <a id="apply-maven-group"></a> `--maven-group`
 
-Identifies the project across all other Maven projects. 
+Identifies the project across all other Maven projects.
 
 ### <a id="apply-maven-type"></a> `--maven-type`
 
-Specifies the type of the artifact that the Maven project produces. This flag is optional, will be defaulted as `jar` by supply chain.
+Specifies the type of the artifact that the Maven project produces. This flag is optional, is defaulted as `jar` by supply chain.
 
 ### <a id="apply-maven-version"></a> `--maven-version`
 
@@ -687,7 +687,7 @@ Defines the current version of the Maven project.
 
 ### <a id="apply-source-image"></a> `--source-image`, `-s`
 
-Registry path where the local source code will be uploaded as an image.
+Registry path where the local source code is uploaded as an image.
 
 <details><summary>Example</summary>
 
@@ -744,7 +744,7 @@ Create workload:
 
 ### <a id="apply-param"></a> `--param`
 
-Additional parameters to be sent to the supply chain, the value is sent as a string, for complex yaml/json objects use `--param-yaml`
+Additional parameters to be sent to the supply chain, the value is sent as a string, for complex YAML/JSON objects use `--param-yaml`
 
 <details><summary>Example</summary>
 
@@ -861,9 +861,9 @@ Update workload:
 
 ### <a id="apply-registry-ca-cert"></a> `--registry-ca-cert`
 
-Refers to the path to the self-signed certificate needed for custom/private registry. This flag can be also populated with a default value through environment variables. In this way, if the envvar `TANZU_APPS_REGISTRY_CA_CERT` is set, then there won't be necessary to use it in the command.
+Refers to the path to the self-signed certificate needed for custom/private registry. This flag is also populated with a default value through environment variables. In this way, if the envvar `TANZU_APPS_REGISTRY_CA_CERT` is set, then it's not necessary to use it in the command.
 
-Check [tanzu apps workload envvars](../tanzu-apps-workload.hbs.md#a-idenvvarsaenvironment-variables-with-default-values) to know the currently supported environment variables.
+See [tanzu apps workload envvars](../tanzu-apps-workload.hbs.md#a-idenvvarsaenvironment-variables-with-default-values) to know the currently supported environment variables.
 
 <details><summary>Example</summary>
 
@@ -891,11 +891,11 @@ Create workload:
 
 ### <a id="apply-registry-password"></a> `--registry-password`
 
-To access a registry, credentials are often needed. If that's the case, then username and password are required and these values are set through this flag and `--registry-username`. The value of this flag can also be specified through `TANZU_APPS_REGISTRY_PASSWORD`.
+To access a registry, credentials are often needed. If that is the case, then user name and password are required and these values are set through this flag and `--registry-username`. The value of this flag can also be specified through `TANZU_APPS_REGISTRY_PASSWORD`.
 
 ### <a id="apply-registry-token"></a> `--registry-token`
 
-Used for token authentication in the private registry. This flag, as the others related to private registry opts, can be set as `TANZU_APPS_REGISTRY_TOKEN` envvar.
+Used for token authentication in the private registry. This flag, as the others related to private registry opts, is set as `TANZU_APPS_REGISTRY_TOKEN` envvar.
 
 ### <a id="apply-registry-username"></a> `--registry-username`
 
@@ -1017,7 +1017,7 @@ Update workload:
 
 ### <a id="apply-service-ref"></a> `--service-ref`
 
-Binds a service to a workload to provide the info from a service resource to an application.
+Binds a service to a workload to provide the information from a service resource to an application.
 
 |>**Note:**| For more information see [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-getting-started-consume-services.html#stk-bind).
 
@@ -1079,11 +1079,11 @@ Update workload:
 
 ### <a id="apply-subpath"></a> `--sub-path`
 
-It's used to define which path is going to be used as root to create and update the workload.
+It's used to define which path is used as root to create and update the workload.
 
 <details><summary>Example</summary>
 
-  - Git repo
+  - Git repository
     ```bash
     tanzu apps workload apply subpathtester --git-repo https://github.com/path-to-repo/my-repo --git-branch main --type web --sub-path my-subpath
 
@@ -1108,7 +1108,7 @@ It's used to define which path is going to be used as root to create and update 
     ```
 
   - Local path
-      - In the folder of the project you want to create the workload from
+      - In the directory of the project you want to create the workload from
       ```bash
       tanzu apps workload apply my-workload --local-path . -s gcr.io/my-registry/my-workload-image --sub-path subpath_folder
       ? Publish source in "." to "gcr.io/my-registry/my-workload-image"? It may be visible to others who can pull images from that repository Yes
@@ -1165,14 +1165,14 @@ Waiting for workload "spring-pet-clinic" to become ready...
 + spring-pet-clinic-build-1-build-pod › prepare
 spring-pet-clinic-build-1-build-pod[prepare] Build reason(s): CONFIG
 spring-pet-clinic-build-1-build-pod[prepare] CONFIG:
-spring-pet-clinic-build-1-build-pod[prepare] 	+ env:
-spring-pet-clinic-build-1-build-pod[prepare] 	+ - name: BP_OCI_SOURCE
-spring-pet-clinic-build-1-build-pod[prepare] 	+   value: main/d381fb658cb435a04e2271ca85bd3e8627a5e7e4
-spring-pet-clinic-build-1-build-pod[prepare] 	resources: {}
-spring-pet-clinic-build-1-build-pod[prepare] 	- source: {}
-spring-pet-clinic-build-1-build-pod[prepare] 	+ source:
-spring-pet-clinic-build-1-build-pod[prepare] 	+   blob:
-spring-pet-clinic-build-1-build-pod[prepare] 	+     url: http://source-controller.flux-system.svc.cluster.local./gitrepository/default/spring-pet-clinic/d381fb658cb435a04e2271ca85bd3e8627a5e7e4.tar.gz
+spring-pet-clinic-build-1-build-pod[prepare]   + env:
+spring-pet-clinic-build-1-build-pod[prepare]   + - name: BP_OCI_SOURCE
+spring-pet-clinic-build-1-build-pod[prepare]   +   value: main/d381fb658cb435a04e2271ca85bd3e8627a5e7e4
+spring-pet-clinic-build-1-build-pod[prepare]   resources: {}
+spring-pet-clinic-build-1-build-pod[prepare]   - source: {}
+spring-pet-clinic-build-1-build-pod[prepare]   + source:
+spring-pet-clinic-build-1-build-pod[prepare]   +   blob:
+spring-pet-clinic-build-1-build-pod[prepare]   +     url: http://source-controller.flux-system.svc.cluster.local./gitrepository/default/spring-pet-clinic/d381fb658cb435a04e2271ca85bd3e8627a5e7e4.tar.gz
 ...
 ...
 ...
@@ -1213,14 +1213,14 @@ Waiting for workload "spring-pet-clinic" to become ready...
 + spring-pet-clinic-build-1-build-pod › prepare
 spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.348418803-05:00 Build reason(s): CONFIG
 spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364719405-05:00 CONFIG:
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364761781-05:00 	+ env:
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364771861-05:00 	+ - name: BP_OCI_SOURCE
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364781718-05:00 	+   value: main/d381fb658cb435a04e2271ca85bd3e8627a5e7e4
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364788374-05:00 	resources: {}
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364795451-05:00 	- source: {}
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.365344965-05:00 	+ source:
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.365364101-05:00 	+   blob:
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.365372427-05:00 	+     url: http://source-controller.flux-system.svc.cluster.local./gitrepository/default/spring-pet-clinic/d381fb658cb435a04e2271ca85bd3e8627a5e7e4.tar.gz
+spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364761781-05:00   + env:
+spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364771861-05:00   + - name: BP_OCI_SOURCE
+spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364781718-05:00   +   value: main/d381fb658cb435a04e2271ca85bd3e8627a5e7e4
+spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364788374-05:00   resources: {}
+spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364795451-05:00   - source: {}
+spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.365344965-05:00   + source:
+spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.365364101-05:00   +   blob:
+spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.365372427-05:00   +     url: http://source-controller.flux-system.svc.cluster.local./gitrepository/default/spring-pet-clinic/d381fb658cb435a04e2271ca85bd3e8627a5e7e4.tar.gz
 ...
 ...
 ...
