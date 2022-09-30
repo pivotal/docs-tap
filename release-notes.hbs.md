@@ -230,10 +230,10 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
-- Flag `azure-container-registry-config` that was shown in help output but was not part of apps plugin flags, is not shown anymore.
-- `workload list --output` was not showing all workloads in namespace. This was fixed and now all workloads are listed.
-- When creating a workload from local source in Windows, the image would be created with unstructured directories and would flatten all file names. This was fixed with an `imgpkg` upgrade.
-- When uploading a source image, if the namespace provided is not valid or doesn't exist, the image won't be uploaded and the workload won't be created.
+- Flag `azure-container-registry-config` that was shown in help output but was not part of apps plug-in flags, is not shown anymore.
+- `workload list --output` was not showing all workloads in namespace. This was fixed, and now all workloads are listed.
+- When creating a workload from local source in Windows, the image was created with unstructured directories and flattened all file names. This is now fixed with an `imgpkg` upgrade.
+- When uploading a source image, if the namespace provided is not valid or doesn't exist, the image isn't uploaded and the workload isn't created.
 - Due to a Tanzu Framework upgrade, the autocompletion for flag names in all commands is now working.
 
 #### <a id="srvc-toolkit-resolved"></a> Services Toolkit
@@ -265,7 +265,7 @@ This release has the following known issues, listed by area and component.
   - New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
   - The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end. Do not append "/" to the end of the string.
 
-#### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plugins
+#### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plug-ins
 
 - **Failure to connect to AWS EKS clusters:**
 When connecting to AWS EKS clusters, an error might appear with the text
@@ -300,7 +300,7 @@ To resolve this issue, see
 
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
-- **Scanning Java source code that uses Gradle package manager may not reveal vulnerabilities:**
+- **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
   For most languages, Source Code Scanning only scans files present in the source code repository.
   Except for support added for Java projects using Maven, no network calls are made to fetch
   dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
@@ -310,8 +310,8 @@ To resolve this issue, see
   present in the built binaries (`.jar` or `.war` files) instead.
 
   Because VMware does not encourage committing binaries to source code repositories, Grype fails to
-  find vulnerabilities during a Source Scan.
-  The vulnerabilities are still found during the Image Scan after the binaries are built and packaged
+  find vulnerabilities during a source scan.
+  The vulnerabilities are still found during the image scan after the binaries are built and packaged
   as images.
 
 #### <a id="tap-gui-known-issues"></a>Tanzu Application Platform GUI
