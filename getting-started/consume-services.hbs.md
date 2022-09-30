@@ -1,21 +1,21 @@
 # Consume services on Tanzu Application Platform
 
-This how-to guide walks the application developer through deploying two application workloads and configuring them to communicate with a service. It will be using RabbitMQ as an example, but the process is the same regardless of the service you wish to setup. You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
+This how-to guide walks the application developer through deploying two application workloads and configuring them to communicate with a service. It uses RabbitMQ as an example, but the process is the same regardless of the service you want to set up. You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
 
->**Important:** This walkthrough assumes that the service operator and application operator have already:
+## <a id="prereqs"></a>Prerequisites
 
->- Set up a service.
->- Created a service instance.
->- Claimed the service instance.
+Before starting this procedure, be sure that the service operator and application operator have already:
 
->This is described in [Set up services for consumption by developers](set-up-services.md).
+- Set up a service.
+- Created a service instance.
+- Claimed the service instance.
+
+For more information about these prerequisites, see [Set up services for consumption by developers](set-up-services.md). Also, for important background, see [About consuming services on Tanzu Application Platform](about-consuming-services.md).
 
 ## <a id="you-will"></a>What you will do
 
 - Inspect the resource claim created for the service instance by the application operator.
 - Bind the application workload to the ResourceClaim so the workload utilizes the service instance.
-
-Before you begin, for important background, see [About consuming services on Tanzu Application Platform](about-consuming-services.md).
 
 ## <a id="overview"></a>Overview
 
@@ -27,12 +27,12 @@ Bear the following observations in mind as you work through this guide:
 
 1. There is a clear separation of concerns across the various user roles.
 
-    * The life cycle of workloads is determined by application developers.
-    * The life cycle of resource claims is determined by application operators.
-    * The life cycle of service instances is determined by service operators.
+    * Application developers set the life cycle of workloads.
+    * Application operators set the life cycle of resource claims.
+    * Service operators set the life cycle of service instances.
     * The life cycle of service bindings is implicitly tied to the life cycle of workloads.
 
-1. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
+2. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
 
 ## <a id="stk-prereqs"></a> Prerequisites
 
@@ -42,8 +42,8 @@ Before following this walkthrough, you must:
 1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
 1. Have set up the `default` namespace to use installed packages and use it as your developer namespace.
 For more information, see [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
-1. Ensure your Tanzu Application Platform cluster can pull source code from GitHub.
-1. Ensure the service operator and application operator has completed the work of setting up the service, creating the service instance, and claiming the service instance, as described in [Set up services for consumption by developers](set-up-services.md).
+1. Ensure that your Tanzu Application Platform cluster can pull source code from GitHub.
+1. Ensure that the service operator and application operator has completed the work of setting up the service, creating the service instance, and claiming the service instance, as described in [Set up services for consumption by developers](set-up-services.md).
 
 As application developer, you are now ready to inspect the resource claim created for the service instance by the application operator in [Set up services for consumption by developers](set-up-services.md) and use it to bind to application workloads.
 
@@ -129,7 +129,7 @@ This is the value to pass to `--service-ref` to create the application workload.
     > but rather to the resource claim that has claimed the `RabbitmqCluster` service instance.
     > See the [consuming services diagram](#overview) at the beginning of this walkthrough.
 
-1. After the workloads are ready, visit the URL of the `spring-sensors-consumer-web` app.
+2. After the workloads are ready, visit the URL of the `spring-sensors-consumer-web` app.
 Confirm that sensor data, passing from the `spring-sensors-producer` workload to
 the `create spring-sensors-consumer-web` workload using the `RabbitmqCluster` service instance, is displayed.
 
@@ -194,6 +194,6 @@ For more information about the APIs and concepts underpinning Services on Tanzu 
 
 ## Next steps
 
-Now that you've completed the Getting started guides, learn about:
+Now that you completed the Getting started guides, learn about:
 
 - [Multicluster Tanzu Application Platform](../multicluster/about.md)
