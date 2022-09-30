@@ -350,7 +350,7 @@ docs.vmware.com is built.
           - [Overview](scc/ootb-supply-chain-basic.md)
       - [Out of the Box Supply Chain with Testing](scc/ootb-supply-chain-testing.md)
           - [Overview](scc/ootb-supply-chain-testing.md)
-          - [Out of the Box Supply Chain with Testing on Jenkins](scc/ootb-supply-chain-testing-with-jenkins.hbs.md.)
+          - [Out of the Box Supply Chain with Testing on Jenkins](scc/ootb-supply-chain-testing-with-jenkins.hbs.md)
       - [Out of the Box Supply Chain with Testing and Scanning](scc/ootb-supply-chain-testing-scanning.md)
           - [Overview](scc/ootb-supply-chain-testing-scanning.md)
       - [Out of the Box Templates](scc/ootb-templates.md)
