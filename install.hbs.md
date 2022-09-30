@@ -127,7 +127,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     ```console
     $ tanzu package available list --namespace tap-install
     / Retrieving available packages...
-      NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION                                                                 LATEST-VERSION  
+      NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION                                                                 
   accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.                                            
   api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface for API discovery and exploration at scale.                        
   apis.apps.tanzu.vmware.com                           API Auto Registration for VMware Tanzu                                    A TAP component to automatically register API exposing workloads as API entities            
