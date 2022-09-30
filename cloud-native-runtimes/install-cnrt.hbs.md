@@ -51,7 +51,7 @@ To install Cloud Native Runtimes:
           default_tls_secret          <nil>                                 string   Optional: Overrides the config-contour configmap in namespace knative-serving.
           domain_config               <nil>                                 object   Optional: Overrides the config-domain configmap in namespace knative-serving. Must be valid YAML.
           domain_name                 <nil>                                 string   Optional: Default domain name for Knative Services.
-          domain_template             {{.Name}}.{{.Namespace}}.{{.Domain}}  string   Optional: specifies the golang text template string to use when constructing the Knative service's DNS name.
+          domain_template             \{{.Name}}.\{{.Namespace}}.\{{.Domain}}  string   Optional: specifies the golang text template string to use when constructing the Knative service's DNS name.
           ingress.external.namespace  tanzu-system-ingress                  string   Required: Specify a namespace where an existing Contour is installed on your cluster. CNR will use this Contour instance for external services.
           ingress.internal.namespace  tanzu-system-ingress                  string   Required: Specify a namespace where an existing Contour is installed on your cluster. CNR will use this Contour instance for internal services.
           lite.enable                 false                                 boolean  Optional: Not recommended for production. Set to "true" to reduce CPU and Memory resource requests for all CNR Deployments, Daemonsets, and Statefulsets by half. On by default when "provider" is set to "local".
