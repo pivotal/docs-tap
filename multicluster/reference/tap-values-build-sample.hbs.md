@@ -5,19 +5,30 @@ The following is the YAML file sample for the build-profile:
 ```yaml
 profile: build
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
+  
 shared:
+  ingress_domain: "INGRESS-DOMAIN"
   kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
-buildservice:
+  image_registry:
+    project_path: "SERVER-NAME/REPO-NAME" # Will be used by Build Service by appending "/buildservice" and used by Supply chain by appending "/workloads"
+    username: "KP-DEFAULT-REPO-USERNAME"
+    password: "KP-DEFAULT-REPO-PASSWORD"
+
+ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
+
+#The above shared keys may be overridden in the below sesion.
+
+buildservice: #optional if the corresponding shared keys are provided
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
 supply_chain: testing_scanning
-ootb_supply_chain_testing_scanning:
+ootb_supply_chain_testing_scanning: #Optional if the shared above mentioned shared keys are provided.
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
   gitops:
-    ssh_secret: "SSH-SECRET-KEY"
+    ssh_secret: "SSH-SECRET-KEY" # (optional) Defaults to "".
 grype:
   namespace: "MY-DEV-NAMESPACE" # (optional) Defaults to default namespace.
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
