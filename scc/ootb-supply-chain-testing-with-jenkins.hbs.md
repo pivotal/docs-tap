@@ -13,8 +13,8 @@ can be run from a Tekton `Pipeline`.
 
 Follow the instructions from [Out of the Box Supply Chain With
 Testing](ootb-supply-chain-testing.html) or [Out of the Box Supply Chain With
-Testing and Scanning](ootb-supply-chain-testing-scanning.html) to successfully install the
-required packages.  You now need to set up one, but not both, of those
+Testing and Scanning](ootb-supply-chain-testing-scanning.html) to successfully
+install the required packages.  You need to set up one, but not both, of those
 packages.
 
 These supply chains can use the Jenkins service during the `source-tester`
@@ -29,17 +29,17 @@ integrate with the modern application deployment pipeline that Tanzu Application
 This section of the guide instructs you on how to configure a Jenkins job triggered by the Tanzu Application Platform Jenkins task.
 
 It is assumed that the Jenkins job is being used to run test suites on some
-code.  For the Jenkins job to know which source code to test, the
+code.  For the Jenkins job to know which source code to test the
 Jenkins task calls the Jenkins job with the following two parameters, even
 if they are not declared in the `Workload` `job-params`.  The Jenkins task
 only passes these parameters, however, if they are defined in the Jenkins job
-itself. this URL
+itself.
 
 - `SOURCE_URL` **string** The URL of source code to be tested.  Note that it
   is served by the `source-provider` resource in the supply chain and is only
   resolvable inside the Kubernetes cluster.  This URL is only useful if your
   Jenkins service is running inside the cluster or there is some kind of ingress
-  set up with the Jenkins service can make requests to services inside the
+  set up and the Jenkins service can make requests to services inside the
   cluster.
 
 - `SOURCE_REVISION` **string** The revision of the source code to be tested.
@@ -248,18 +248,20 @@ kubectl apply -f pipeline.yaml
 #### <a id="patch-the-service-account"></a> Patch the Service Account
 
 The `jenkins-task` `ClusterTask` resource uses a container image with the
-Jenkins Adapter program to trigger the Jenkins job and wait for it to
-complete. This container image is distributed with Tanzu Application Platform on VMware Tanzu Network but is
-not installed at the same time as all the other packages. It is pulled at the
-time that supply chain executes the job. As a result, it does not implicitly have
-access to the `imagePullSecrets` with the required credentials.
+Jenkins Adapter program to trigger the Jenkins job and wait for it to complete.
+This container image is distributed with Tanzu Application Platform on VMware
+Tanzu Network but is not installed at the same time as all the other packages.
+It is pulled at the time that supply chain executes the job. As a result, it
+does not implicitly have access to the `imagePullSecrets` with the required
+credentials.
 
-*Important:* The `ServiceAccount` that a developer can configure with their
+**Important:** The `ServiceAccount` that a developer can configure with their
 `Workload`s is *not* passed to the task and is not used to pull the Jenkins
-Adapter container image.  If you have followed the Tanzu Application Platform Install Guide then you
-have a `Secret` named `tap-registry` in each of your cluster's namespaces.
-You can patch the default Service Account in your workload's namespace so that
-your supply chain can pull the Jenkins Adapter image successfully.  e.g.:
+Adapter container image.  If you have followed the Tanzu Application Platform
+Install Guide then you have a `Secret` named `tap-registry` in each of your
+cluster's namespaces. You can patch the default Service Account in your
+workload's namespace so that your supply chain can pull the Jenkins Adapter
+image successfully.  e.g.:
 
 ```console
 kubectl patch serviceaccount default \
@@ -334,13 +336,13 @@ Jenkins job. You have to set them in the `job-params` explicitly.
 Jenkins job implicitly by the Jenkins Adapter trigger program.  You can use the
 `SOURCE_REVISION` to verify which commit SHA to test, for example.  See [Making
 a Jenkins Test Job](#making-a-jenkins-test-job) earlier for details about how to use
-the Git URL and source revision in a Jenkins test job.
+the git URL and source revision in a Jenkins test job.
 
-Watch the quoting of the `job-params` value closely.  In the earlier tanzu apps
-workload create example the `job-params` value is a string with a JSON
+Watch the quoting of the `job-params` value closely.  In the earlier `tanzu apps
+workload create` example the `job-params` value is a string with a JSON
 structure in it.  The value of the `--param-yaml testing_pipeline_params`
-parameter itself is a JSON string, so the backslash escape characters before
-the double quote characters (`"`) in the `job-params` value.
+parameter itself is a JSON string, so make sure to add backslash (`\`) escape
+characters before the double quote characters (`"`) in the `job-params` value.
 
 Example output form the `tanzu apps workload create` command:
 
