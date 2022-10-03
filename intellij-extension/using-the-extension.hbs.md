@@ -48,7 +48,6 @@ Click the stop button in the Debug overlay to stop debugging on the cluster.
 
 ### <a id="start-live-update"></a> Start Live Update
 
-1. Stop any running sessions. Only one Live Update session can be active at a time.
 1. Right-click your project’s Tiltfile and select **Run 'Tanzu Live Update - ...'**.
 ![The IntelliJ interface showing the project tab with the Tiltfile file pop-up menu open](../images/intellij-startLiveUpdate.png)
 1. Ensure the configuration parameters are set:
