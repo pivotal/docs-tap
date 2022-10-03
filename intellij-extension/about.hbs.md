@@ -29,6 +29,11 @@ This extension gives the following features.
   From the workload panel you can see any workload found within the cluster and namespace specified
   in the current kubectl context.
 
+- **Work with Microservices in a Java Monorepo**
+  Since version 1.3 we support working with Monorepo containing multiple 'modules' representing 
+  different 'microservices'. This means it is possible to Deploy, Debug and Live update multiple
+  workloads simultaneously from the same [InteliJ multimodule project](https://www.jetbrains.com/help/idea/creating-and-managing-modules.html#modules-idea-java).
+
 ## <a id="next-steps"></a> Next steps
 
 [Follow the steps to install the extension](install.md).
