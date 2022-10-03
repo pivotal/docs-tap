@@ -1,45 +1,35 @@
 # Creating AWS Resources for Tanzu Application Platform
 
-To install the Tanzu Application Platform within the AWS Ecosystem, several AWS resources need to be created.  This guide will walk you through creating the following resources:
+To install Tanzu Application Platform within the Amazon Web Services (AWS) Ecosystem, several AWS resources need to be created. This guide walks you through creating the following resources:
 
-- An EKS Cluster to install Tanzu Application Platform
-- IAM Roles to allow authentication and authorization to read and write from ECR
-- ECR Repositories for the Tanzu Application Platform container images
+- An Amazon Elastic Kubernetes Service (EKS) cluster to install Tanzu Application Platform.
+- Identity and Access Management (IAM) roles to allow authentication and authorization to read and write from Amazon Elastic Container Registry (ECR).
+- ECR Repositories for the Tanzu Application Platform container images.
 
-Creating these resources will enable the Tanzu Application Platform to use an [IAM role bound to a Kubernetes service account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) for authentication rather than the typical username and password stored in a kubernetes secret strategy.  This is important when using the Elastic Container Registry (ECR) because authenticating to ECR is a two step process:  
+Creating these resources enables Tanzu Application Platform to use an IAM role bound to a Kubernetes service account for authentication, rather than the typical username and password stored in a Kubernetes secret strategy. For more information, see this [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html).
 
-1. Retrieve a token using your AWS credentials
-1. Use the token to authenticate to the registry  
+This is important when using ECR because authenticating to ECR is a two-step process:
 
-To increase security posture, the token has a lifetime of 12 hours.  This makes storing it as a secret for a service impracticle, as it would have to be refereshed every 12 hours.
+1. Retrieve a token using your AWS credentials.
+2. Use the token to authenticate to the registry.
 
-Leveraging an IAM role on a service account mitigates the need to retrieve the token at all, as it is handled by credential helpers within the services.
+To increase security, the token has a lifetime of 12 hours.  This makes storing it as a secret for a service impractical because it has to be refereshed every 12 hours.
 
-# Prerequisites
+Using an IAM role on a service account mitigates the need to retrieve the token at all because it is handled by credential helpers within the services.
 
-## AWS Account
+## Prerequisites
 
-We will be creating all of our resources within Amazon Web Services, so therefore we will need an Amazon account.
+Before installing Tanzu Application Platform on AWS, you need:
 
-To create an Amazon account, use the [following guide](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/).
+1. An AWS Account. You need to create all of your resources within Amazon Web Services, so you need an Amazon account. For more information, see [How do I create and activate a new AWS account?](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/). You need your account ID for this walkthrough.
 
-Note that you will need your account ID during the guide.
+2. AWS CLI. This walkthrough uses the AWS CLI to both query and configure resources in AWS, such as IAM roles. For more information, see this [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 
-## AWS CLI
+3. EKSCTL command line. The EKSCTL command line helps you manage the life cycle of EKS clusters. This guide uses it to create clusters. To install the EKSCTL CLI, see [Installation](https://eksctl.io/introduction/#installation).
 
-This walkthrough will use the AWS CLI to both query and configure resources in AWS such as IAM roles.
+## Export Environment Variables
 
-To install the AWS CLI, use the [following guide](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
-
-## EKSCTL
-
-The EKSCTL command line makes managing the lifecycle of EKS clusters very simple.  This guide will use it to create clusters.
-
-To install the eksctl cli, use the [following guide](https://eksctl.io/introduction/#installation).
-
-# Export Environment Variables
-
-Some variables are used throughout the guide, to simplify the process and minimize the opportunity for errors, let's export these variables.
+Variables are used throughout this guide. To simplify the process and minimize the opportunity for errors, export these variables:
 
 ```
 export AWS_ACCOUNT_ID=012345678901
@@ -56,55 +46,57 @@ Where:
 | EKS_CLUSTER_NAME | The name of your EKS Cluster |
 
 
-# Create an EKS Cluster
+## Create an EKS cluster
 
-Create an EKS cluster in the specified region using the following command.  Creating the control plane and node group can take  take anywhere from 30-60 minutes. 
+To create an EKS cluster in the specified region, run:
 
 ```
 eksctl create cluster --name $EKS_CLUSTER_NAME --managed --region $AWS_REGION --instance-types t3.large --version 1.22 --with-oidc -N 5
 ```
 
-Note: This step is optional if you already have an existing EKS Cluster.  Note, however that it has to be at least version 1.22 and have the OIDC authentication enabled.  To enable the OIDC provider, use the [following guide](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html).
+Creating the control plane and node group can take anywhere from 30-60 minutes.
 
-# Create the Container Repositories
+>**Note:** This step is optional if you already have an existing EKS Cluster of at least v1.22 with OpenID Connect (OIDC) authentication enabled. To enable the OIDC provider, see this [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html).
 
-ECR requires the container repositories to be precreated.
+## Create the container repositories
 
-For the Tanzu Application Platform, we need to create two repositories.
+ECR requires that the container repositories are already created. For Tanzu Application Platform, you need to create two repositories:
 
-- A repository to store the Tanzu Application Platform service container images
-- A repository to store Tanzu Build Service Base OS and Buildpack container images
+- A repository to store the Tanzu Application Platform service container images.
+- A repository to store Tanzu Build Service Base OS and Buildpack container images.
 
-To create these repositories, run the following commands:
+To create these repositories, run:
 
 ```
 aws ecr create-repository --repository-name tap-images --region $AWS_REGION
 aws ecr create-repository --repository-name tap-build-service --region $AWS_REGION
 ```
 
-You can name the repositories any name you would like, just note them for when we build the configuration later.
+Name the repositories any name you want, but remember the names for when you later build the configuration.
 
-# Create IAM Roles
+## Create IAM roles
 
-By default, the EKS cluster will be provisioned with an [EC2 instance profile](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html) that provides read-only access for the entire EKS cluster to the ECR registery within your AWS account.
+By default, the EKS cluster is provisioned with an EC2 instance profile that provides read-only access for the entire EKS cluster to the ECR registery within your AWS account. For more information, see this [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html).
 
-However, some of the services within the Tanzu Application Platform require write access to the container repositories. In order to provide that access, we will create IAM roles and add the ARN to the K8S service accounts that those services use.  This will ensure that only the required services have access to write container images to ECR, rather than a blanket policy that applies to the entire cluster.
+However, some of the services within Tanzu Application Platform require write access to the container repositories. To provide that access, create IAM roles and add the ARN to the Kubernetes service accounts that those services use.  This ensures that only the required services have access to write container images to ECR, rather than a blanket policy that applies to the entire cluster.
 
-We'll create two IAM Roles.
+You must create two IAM Roles:
 
-1.  Tanzu Build Service: Gives write access to the repository to allow the service to automatically upload new images.  This is limited in scope to the service account for kpack and the dependency updater.
-2.  Workload:  Gives write access to the entire ECR registry with a prepended path.  This prevents you from having to update the policy for each new workload created.  
+- Tanzu Build Service: Gives write access to the repository to allow the service to automatically upload new images.  This is limited in scope to the service account for kpack and the dependency updater.
 
-In order to create the roles, we need to establish two policys:
+- Workload: Gives write access to the entire ECR registry with a prepended path.  This prevents you from having to update the policy for each new workload created.
 
-1. Trust Policy: Limits the scope to the OIDC endpoint for the Kubernetes Cluster and the Kubernetes service account we'll attach the role to
-1. Permission Policy:  Limits the scope of what actions can be taken on what resources by the role.  
+To create the roles, you must establish two policies:
 
-**Note** Both of these policies are best effort at a least privledge model, but be sure to review to ensure if they adhere to your organizations policies.
+- Trust Policy: Limits the scope to the OIDC endpoint for the Kubernetes cluster and the Kubernetes service account you attach the role to.
 
-In order to simplify this guide, we'll use a script to create these policy documents and create the roles.  This script will output the files, then create the IAM roles using the policy documents.  
+- Permission Policy: Limits the scope of actions the role can take on resources.
 
-To run the script, do the following:
+>**Note:** These policies attempt to achieve a least privilege model. Review them to confirm they adhere to your organization's policies.
+
+To simplify this walkthrough, use a script to create these policy documents and the roles. This script outputs the files and then creates the IAM roles by using the policy documents.
+
+Run:
 
 ```console
 oidcProvider=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
