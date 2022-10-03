@@ -3,7 +3,7 @@
 ---
 
 👉 This article assumes that you have completed the previous step in this Getting Started
-guide. If not, please refer to instructions in [Exposing the AuthServer through HTTPProxy](expose-httpproxy.md).
+guide.
 
 ---
 

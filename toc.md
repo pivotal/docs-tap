@@ -227,7 +227,6 @@ docs.vmware.com is built.
         - [Getting started](app-sso/getting-started/index.md)
             - [Overview](app-sso/getting-started/appsso-overview.md)
             - [Provision an AuthServer](app-sso/getting-started/provision-auth-server.md)
-            - [Expose the AuthServer](app-sso/getting-started/expose-httpproxy.md)
             - [Provision a ClientRegistration](app-sso/getting-started/client-registration.md)
             - [Deploy an application with SSO](app-sso/getting-started/application.md)
         - [AppSSO for Platform Operators](app-sso/platform-operators/index.md)
