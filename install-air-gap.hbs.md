@@ -1,6 +1,4 @@
-# Install Tanzu Application Platform in an air-gapped environment (beta)
-
->**Caution:** Tanzu Application Platform in an air-gapped environment is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+# Install Tanzu Application Platform in an air-gapped environment
 
 This topic describes how to install Tanzu Application Platform on your Kubernetes cluster and registry that are air-gapped from external traffic.
 
