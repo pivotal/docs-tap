@@ -272,11 +272,14 @@ This release has the following known issues, listed by area and component.
 #### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plug-ins
 
 - **Failure to connect to AWS EKS clusters:**
-When connecting to AWS EKS clusters, an error might appear with the text
-`Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
-`invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
-To resolve this issue, see
-[Failure to connect to AWS EKS clusters](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters).
+  
+  When connecting to AWS EKS clusters, an error might appear with the text
+  - `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
+  - `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
+    
+  This occurs if the version of the `aws-cli` is less than the supported version `2.7.35`.
+    
+  See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
 
 #### <a id="alv-known-issues"></a>Application Live View
 
