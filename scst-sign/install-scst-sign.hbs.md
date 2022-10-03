@@ -1,7 +1,7 @@
 # Install Supply Chain Security Tools - Sign
 
 >**Caution:** This component is being deprecated in favor of [Supply Chain Security Tools - Policy Controller](../scst-policy/overview.md).
->To migrate from Supply Chain Security Tools - Sign to Supply Chain Security Tools - Policy Controller, please follow these [steps](./migrate.md)
+>To migrate from Supply Chain Security Tools - Sign to Supply Chain Security Tools - Policy Controller, please follow these [steps](../scst-policy/migration.hbs.md)
 
 Supply Chain Security Tools - Sign is released as part of Tanzu Application
 Platform's full, iterate and run profiles. Follow the instructions below to manually install this component.

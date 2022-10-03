@@ -1,7 +1,7 @@
 # Supply Chain Security Tools for VMware Tanzu - Sign
 
 >**Caution:** This component is being deprecated in favor of [Supply Chain Security Tools - Policy Controller](../scst-policy/overview.md).
->To migrate from Supply Chain Security Tools - Sign to Supply Chain Security Tools - Policy Controller, please follow these [steps](./migrate.md)
+>To migrate from Supply Chain Security Tools - Sign to Supply Chain Security Tools - Policy Controller, please follow these [steps](../scst-policy/migration.hbs.md)
 
 Supply Chain Security Tools - Sign provides an admission WebHook that:
 
