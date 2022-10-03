@@ -745,7 +745,7 @@ Tanzu Application Platform components.
    </td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>&check;
    </td>
