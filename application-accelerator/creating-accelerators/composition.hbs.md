@@ -166,7 +166,8 @@ The semantics of the `expose` block are as follows:
   to override some names AND expose the others unchanged, the `*` must
   be explicitly re-added)
 
-### <a id="using-dependsOn-in-imports"></a>| Using `dependsOn` in the `imports` section<
+### <a id="using-dependsOn-in-imports"></a> Using `dependsOn` in the `imports` section
+
 Lastly, as a convenience for conditional use of fragments, you can make an exposed imported option _depend on_ another option, as in the following example:
 
 ```yaml
@@ -195,3 +196,190 @@ engine:
     condition: "#deploymentType == 'workload'"
     reference: tap-initialize```
 ```
+
+## <a id="cli-fragments"></a> Discovering fragments using Tanzu CLI accelerator plug-in
+
+Using the accelerator plug-in for Tanzu CLI, it is possible to list fragments that are available. Running the following command:
+
+```sh
+tanzu accelerator fragment list
+```
+
+should result in a list of available accelerator fragments:
+
+```sh
+NAME                                 READY   REPOSITORY
+app-sso-client                       true    source-image: dev.registry.tanzu.vmware.com/app-accelerator/fragments/app-sso-client@sha256:ed5cf5544477d52d4c7baf3a76f71a112987856e77558697112e46947ada9241
+java-version                         true    source-image: dev.registry.tanzu.vmware.com/app-accelerator/fragments/java-version@sha256:df99a5ace9513dc8d083fb5547e2a24770dfb08ec111b6591e98497a329b969d
+live-update                          true    source-image: dev.registry.tanzu.vmware.com/app-accelerator/fragments/live-update@sha256:c2eda015b0f811b0eeaa587b6f2c5410ac87d40701906a357cca0decb3f226a4
+spring-boot-app-sso-auth-code-flow   true    source-image: dev.registry.tanzu.vmware.com/app-accelerator/fragments/spring-boot-app-sso-auth-code-flow@sha256:78604c96dd52697ea0397d3933b42f5f5c3659cbcdc0616ff2f57be558650499
+tap-initialize                       true    source-image: dev.registry.tanzu.vmware.com/app-accelerator/fragments/tap-initialize@sha256:7a3ae8f9277ef633200622dbf9d0f5a07dea25351ac3dbf803ea2fa759e3baac
+tap-workload                         true    source-image: dev.registry.tanzu.vmware.com/app-accelerator/fragments/tap-workload@sha256:8056ad9f05388883327d9bbe457e6a0122dc452709d179f683eceb6d848338d0
+```
+
+The `tanzu accelerator fragment get <fragment-name>` command will show all the options defined for the fragment and also any accelerators or other fragments that import this fragment. Run this command:
+
+```sh
+tanzu accelerator fragment get java-version
+```
+
+and the following output should be displayed:
+
+```sh
+name: java-version
+namespace: accelerator-system
+displayName: Select Java Version
+ready: true
+options:
+- choices:
+  - text: Java 8
+    value: "1.8"
+  - text: Java 11
+    value: "11"
+  - text: Java 17
+    value: "17"
+  defaultValue: "11"
+  inputType: select
+  label: Java version to use
+  name: javaVersion
+  required: true
+artifact:
+  message: Resolved revision: dev.registry.tanzu.vmware.com/app-accelerator/fragments/java-version@sha256:df99a5ace9513dc8d083fb5547e2a24770dfb08ec111b6591e98497a329b969d
+  ready: true
+  url: http://source-controller-manager-artifact-service.source-system.svc.cluster.local./imagerepository/accelerator-system/java-version-frag-97nwp/df99a5ace9513dc8d083fb5547e2a24770dfb08ec111b6591e98497a329b969d.tar.gz
+imports:
+  None
+importedBy:
+  accelerator/java-rest-service
+  accelerator/java-server-side-ui
+  accelerator/spring-cloud-serverless
+```
+
+This shows the `options` as well as `importedBy` with a list of three accelerators that import this fragment.
+
+Correspondingly, the `tanzu accelerator get <accelerator-name>` show the fragments that an accelerator imports. Run this command:
+
+```sh
+tanzu accelerator get java-rest-service
+```
+
+and the following ouput should be shown:
+
+```sh
+name: java-rest-service
+namespace: accelerator-system
+description: A Spring Boot Restful web application including OpenAPI v3 document generation and database persistence, based on a three-layer architecture.
+displayName: Tanzu Java Restful Web App
+iconUrl: data:image/png;base64,...abbreviated...
+source:
+  image: dev.registry.tanzu.vmware.com/app-accelerator/samples/java-rest-service@sha256:c098bb38b50d8bbead0a1b1e9be5118c4fdce3e260758533c38487b39ae0922d
+  secret-ref: [{reg-creds}]
+tags:
+- java
+- spring
+- web
+- jpa
+- postgresql
+- tanzu
+ready: true
+options:
+- defaultValue: customer-profile
+  inputType: text
+  label: Module artifact name
+  name: artifactId
+  required: true
+- defaultValue: com.example
+  inputType: text
+  label: Module group name
+  name: groupId
+  required: true
+- defaultValue: com.example.customerprofile
+  inputType: text
+  label: Module root package
+  name: packageName
+  required: true
+- defaultValue: customer-profile-database
+  inputType: text
+  label: Database Instance Name this Application will use (can be existing one in
+    the cluster)
+  name: databaseName
+  required: true
+- choices:
+  - text: Maven (https://maven.apache.org/)
+    value: maven
+  - text: Gradle (https://gradle.org/)
+    value: gradle
+  defaultValue: maven
+  inputType: select
+  name: buildTool
+  required: true
+- choices:
+  - text: Flyway (https://flywaydb.org/)
+    value: flyway
+  - text: Liquibase (https://docs.liquibase.com/)
+    value: liquibase
+  defaultValue: flyway
+  inputType: select
+  name: databaseMigrationTool
+  required: true
+- dataType: boolean
+  defaultValue: false
+  label: Expose OpenAPI endpoint?
+  name: exposeOpenAPIEndpoint
+- defaultValue: ""
+  dependsOn:
+    name: exposeOpenAPIEndpoint
+  inputType: text
+  label: System API Belongs To
+  name: apiSystem
+- defaultValue: ""
+  dependsOn:
+    name: exposeOpenAPIEndpoint
+  inputType: text
+  label: Owner of API
+  name: apiOwner
+- defaultValue: ""
+  dependsOn:
+    name: exposeOpenAPIEndpoint
+  inputType: text
+  label: API Description
+  name: apiDescription
+- choices:
+  - text: Java 8
+    value: "1.8"
+  - text: Java 11
+    value: "11"
+  - text: Java 17
+    value: "17"
+  defaultValue: "11"
+  inputType: select
+  label: Java version to use
+  name: javaVersion
+  required: true
+- dataType: boolean
+  defaultValue: true
+  dependsOn:
+    name: buildTool
+    value: maven
+  inputType: checkbox
+  label: Include TAP IDE Support for Java Workloads
+  name: liveUpdateIDESupport
+- defaultValue: dev.local
+  dependsOn:
+    name: liveUpdateIDESupport
+  description: The prefix for the source image repository where source can be stored
+    during development
+  inputType: text
+  label: The source image repository prefix to use when pushing the source
+  name: sourceRepositoryPrefix
+artifact:
+  message: Resolved revision: dev.registry.tanzu.vmware.com/app-accelerator/samples/java-rest-service@sha256:c098bb38b50d8bbead0a1b1e9be5118c4fdce3e260758533c38487b39ae0922d
+  ready: true
+  url: http://source-controller-manager-artifact-service.source-system.svc.cluster.local./imagerepository/accelerator-system/java-rest-service-acc-wcn8x/c098bb38b50d8bbead0a1b1e9be5118c4fdce3e260758533c38487b39ae0922d.tar.gz
+imports:
+  java-version
+  live-update
+  tap-workload
+```
+
+Note the `imports` section at the end that shows the fragments that this accelerator imports. The `options` section shows all options that are defined for this accelerator. This includes all options that are defined in the imported fragments, e.g. the options for Java version that are imported from the `java-version` fragment.
