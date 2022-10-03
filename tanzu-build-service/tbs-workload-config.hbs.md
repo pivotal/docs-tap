@@ -145,10 +145,10 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 
 ## <a id='custom-cert-single-workload'></a> Configure custom CA certificates for a single workload using service bindings
 
-If the [language family buildpack](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
-you are using includes the Paketo CA certificates buildpack, you can use a service
-binding to provide custom certificates during the build and run process.
-<!-- How do I know if my language family BP incl Paketo CA certs Buildpack? What to do if it doesn’t? -->
+If the language family buildpack you are using includes the Paketo CA certificates buildpack,
+you can use a service binding to provide custom certificates during the build and run process.
+For more information about language family buildpacks, see the
+[Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
 
 To create a service binding to provide custom CA certificates for a workload:
 
@@ -162,13 +162,13 @@ To create a service binding to provide custom CA certificates for a workload:
     data:
       type: ca-certificates
       provider: sample
-      <my-ca.pem>: CA-CERT-CONTENTS
+      CA-CERT-FILENAME: |
+        -----BEGIN CERTIFICATE-----
+        ...
+        -----END CERTIFICATE-----
     ```
-    <!-- what should be placeholders here? is <my-ca.pem> a placeholder? -->
 
-    Where:
-
-    - `CA-CERT-CONTENTS` is the PEM encoded CA certificate
+    Where `CA-CERT-FILENAME` is the name of your PEM encoded CA certificate file, for example, `arbitrary-file-name.pem`.
 
 1. Apply the YAML file by running:
 
@@ -180,11 +180,11 @@ To create a service binding to provide custom CA certificates for a workload:
 
     ```console
     tanzu apps workload create WORKLOAD-NAME \
-      --param-yaml buildServiceBindings='[{"apiVersion": "v1", "kind": "Secret", "name": "custom-ca-cert"}]' \
+      --param-yaml buildServiceBindings='[{"apiVersion": "v1", "kind": "Secret", "name": "my-ca-certs"}]' \
       ...
     ```
 
-    <!-- In step 3, should the name key in buildServiceBindings be the same as in the service-binding-ca-cert.yaml in step 1 (i.e. my-ca-certs) -->
+    Where `WORKLOAD-NAME` is the name of the workload you want to create.
 
 1. To deploy with the custom certificate, create the workload with the `--service-ref` flag:
 
@@ -193,6 +193,8 @@ To create a service binding to provide custom CA certificates for a workload:
       --service-ref my-ca-certs=v1:Secret:my-ca-certs \
       ...
     ```
+
+    Where `WORKLOAD-NAME` is the name of the workload you want to create.
 
 ## <a id="custom-certs-all-workloads"></a> Using custom CA certificates for all workloads
 

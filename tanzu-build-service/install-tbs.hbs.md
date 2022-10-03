@@ -86,7 +86,10 @@ This certificate is used for accessing the container image registry and is also 
     kp_default_repository: "REPO-NAME"
     kp_default_repository_username: "REPO-USERNAME"
     kp_default_repository_password: "REPO-PASSWORD"
-    ca_cert_data: "CA-CERT-CONTENTS"
+    ca_cert_data: |
+      -----BEGIN CERTIFICATE-----
+      ...
+      -----END CERTIFICATE-----
     ```
 
 1. (Optional) Tanzu Build Service is bootstrapped with the `lite` set of dependencies.
