@@ -251,35 +251,33 @@ appliveview_connector:
 
 tap_gui:
   service_type: ClusterIP
-  ingressEnabled: "true"
   app_config:
-      kubernetes:
-        serviceLocatorMethod:
-          type: multiTenant
-        clusterLocatorMethods:
+    kubernetes:
+      serviceLocatorMethod:
+        type: multiTenant
+      clusterLocatorMethods:
         - type: config
           clusters:
-          - url: https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}
-            name: host
-            authProvider: serviceAccount
-            serviceAccountToken: ${KUBERNETES_SERVICE_ACCOUNT_TOKEN}
-            skipTLSVerify: false
-            caData: B64_ENCODED_CA
-      app:
-       baseUrl: http://tap-gui.INGRESS-DOMAIN
-       catalog:
-        locations:
-          - type: url
-            target: https://GIT-CATALOG-URL/catalog-info.yaml
-      #Example Integration for custom gitlab
-      integrations:
-        gitlab:
-           - host: GITLABURL
-             apiBaseUrl: https://GITLABURL/api/v4/
-      backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-          origin: http://tap-gui.INGRESS-DOMAIN
+            - url: https://${KUBERNETES_SERVICE_HOST}:${KUBERNETES_SERVICE_PORT}
+              name: host
+              authProvider: serviceAccount
+              serviceAccountToken: ${KUBERNETES_SERVICE_ACCOUNT_TOKEN}
+              skipTLSVerify: false
+              caData: B64_ENCODED_CA
+    catalog:
+      locations:
+        - type: url
+          target: https://GIT-CATALOG-URL/catalog-info.yaml
+    #Example Integration for custom gitlab
+    integrations:
+      gitlab:
+        - host: GITLABURL
+          token: <GITLAB-TOKEN>
+          apiBaseUrl: https://GITLABURL/api/v4/
+    backend:
+      reading:
+        allow:
+          - host: https://GIT-CATALOG-URL/catalog-info.yaml
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
@@ -318,6 +316,8 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
+- `GITLABURL` is the hostname of your gitlab instance
+- `GITLAB-TOKEN` is the API token for your gitlab instance
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`. This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
