@@ -443,10 +443,10 @@ For more information, see [aws/aws-cli/issues/6920](https://github.com/aws/aws-c
 GitHub.
 
 **Solution**
+Updating your `aws-cli` to a supported `v2.7.35` or greater and updating the kubeconfig entry for your EKS cluster(s) should resolve the issue.
 
-1. Update `aws-cli` to the latest version.
+1. [Update `aws-cli`](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) to the latest version.
 1. Run:
-
     ```console
     aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
     ```
