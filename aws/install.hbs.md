@@ -140,7 +140,7 @@ To relocate images from the VMware Tanzu Network registry to the ECR Registry re
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials.
 
-For more information about profiles, see [About Tanzu Application Platform components and profiles](about-package-profiles.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 To prepare to install a profile:
 
@@ -162,14 +162,14 @@ The sample values file contains the necessary defaults for:
     >**Important:** Keep the values file for future configuration use.
 
 
-1. [View possible configuration settings for your package](view-package-config.hbs.md)
+1. [View possible configuration settings for your package](../view-package-config.hbs.md)
 
 ### <a id='full-profile'></a> Full profile
 
 The follow command will generate the YAML file sample for the full-profile on AWS using the ECR repositories we created:
 
 >**Note:** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`. 
-Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
+Refer to [Install multicluster Tanzu Application Platform profiles](../multicluster/installing-multicluster.html) for more information.
 
 ```console
 cat << EOF > tap-values.yaml
@@ -257,7 +257,7 @@ contour:
 
 ### <a id='light-profile'></a> Light profile
 
-The Light profile is deprecated. Although existing values files might still refer to the Light profile, VMware recommends to migrate to one of the new profiles described in [Install your Tanzu Application Platform profile](#install-profile) by following the procedures in [Migrate Tanzu Application Platform profiles](migrate-profile.md).
+The Light profile is deprecated. Although existing values files might still refer to the Light profile, VMware recommends to migrate to one of the new profiles described in [Install your Tanzu Application Platform profile](#install-profile) by following the procedures in [Migrate Tanzu Application Platform profiles](../migrate-profile.md).
 
 ### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
 
@@ -270,7 +270,7 @@ required for application builds.
 The `lite` set of dependencies do not contain all buildpacks and stacks.
 To use all buildpacks and stacks, you must install the `full` dependencies.
 For more information about the differences between `lite` and `full` dependencies, see
-[About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
+[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
 
 To configure `full` dependencies, add the key-value pair
 `exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
@@ -315,7 +315,7 @@ by following the procedure in [Install full dependencies](#tap-install-full-deps
 
 After installing the Full profile on your cluster, you can install the
 Tanzu Developer Tools for VS Code Extension to help you develop against it.
-For instructions, see [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md).
+For instructions, see [Installing Tanzu Developer Tools for VS Code](../vscode-extension/install.md).
 
 >**Note:** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
@@ -330,7 +330,7 @@ If you configured `full` dependencies in your `tap-values.yaml` file in
 you must install the `full` dependencies package.
 
 For more information about the differences between `lite` and `full` dependencies, see
-[About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
+[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
 
 To install the `full` dependencies package:
 

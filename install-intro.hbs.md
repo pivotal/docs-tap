@@ -61,6 +61,6 @@ This will produce a deployment similar to the outcome of the [VMware Tanzu Appli
 |5.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Installing the Tanzu Application Platform package and profiles](aws/install.hbs.md)|
 |6.| (Optional) Install any additional packages that were not in the profile |[Installing Individual Packages](install-components.html)|
 |7.| Set up developer namespaces to use installed packages |[Setting up developer namespaces to use installed packages](aws/set-up-namespaces.hbs.md)|
-|8.| Install developer tools into your integrated development environment (IDE) |[Installing Tanzu Developer Tools for VSCode](vscode-extension/installation.html)|
+|8.| Install developer tools into your integrated development environment (IDE) |[Installing Tanzu Developer Tools for VSCode](vscode-extension/install.html)|
 
 After installing Tanzu Application Platform on to your Kubernetes clusters, proceed with [Getting started with the Tanzu Application Platform](getting-started.html).
