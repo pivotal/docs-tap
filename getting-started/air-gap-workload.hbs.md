@@ -1,15 +1,13 @@
-# Deploy your first air-gapped workload (beta)
+# Deploy your first air-gapped workload
 
 This how-to guide walks developers through deploying your first workload on Tanzu Application Platform in an air-gapped environment.
 
-For information about installing Tanzu Application Platform in an air-gapped environment, see [Install Tanzu Application Platform in an air-gapped environment (beta)](../install-air-gap.md).
+For information about installing Tanzu Application Platform in an air-gapped environment, see [Install Tanzu Application Platform in an air-gapped environment](../install-air-gap.md).
 
 ## <a id="you-will"></a>What you will do
 
 - Create a workload from Git.
 - Create a basic supply chain workload.
-
->**Caution:** Tanzu Application Platform in an air-gapped environment is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
 ## Create a workload from Git
 

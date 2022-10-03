@@ -35,7 +35,7 @@ docs.vmware.com is built.
       - [Deploy your first app on Tanzu Application Platform](getting-started/deploy-first-app.md)
       - [Iterate on your new application](getting-started/iterate-new-app.md)
       - [Consume services on Tanzu Application Platform](getting-started/consume-services.md)
-      - [Deploy your first air-gapped workload (beta)](getting-started/air-gap-workload.md)
+      - [Deploy your first air-gapped workload](getting-started/air-gap-workload.md)
   - [Learn more about Tanzu Application Platform](getting-started/concepts.md)
       - [Application Accelerator](getting-started/about-application-accelerator.md)
       - [Supply chains on Tanzu Application Platform](getting-started/about-supply-chains.md)

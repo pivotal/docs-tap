@@ -220,7 +220,7 @@ contour:
       type: LoadBalancer
       annotations:
       # This annotation is for air-gapped AWS only
-          service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+          service.kubernetes.io/aws-load-balancer-internal: "true"
 
 ootb_supply_chain_basic:
   registry:

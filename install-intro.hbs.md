@@ -43,4 +43,4 @@ To install Tanzu Application Platform on your Kubernetes clusters in an air-gapp
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._
 
 After installing Tanzu Application Platform on to your air-gapped cluster, you can start creating workloads that run in your air-gapped containers.
-For instructions, see [Deploy your first air-gapped workload (beta)](getting-started/air-gap-workload.html).
+For instructions, see [Deploy your first air-gapped workload](getting-started/air-gap-workload.html).
