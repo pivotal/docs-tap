@@ -118,7 +118,6 @@ An unmanaged error occurs in the `convention server` when processing a request.
     Normal   Started    13m (x2 over 14m)     kubelet            Started container webhook
     Warning  Unhealthy  13m (x9 over 14m)     kubelet            Readiness probe failed: Get "https://10.52.2.74:8443/healthz": http: server gave HTTP response to HTTPS client
     Warning  Unhealthy  13m (x6 over 14m)     kubelet            Liveness probe failed: Get "https://10.52.2.74:8443/healthz": http: server gave HTTP response to HTTPS client
-    Normal   Killing    13m (x2 over 13m)     kubelet            Container webhook failed liveness probe, will be restarted
     Normal   Pulled     9m13s (x6 over 13m)   kubelet            Container image "awesome-repo/awesome-user/awesome-convention" already present on machine
     Warning  BackOff    4m22s (x32 over 11m)  kubelet            Back-off restarting failed container
     ```

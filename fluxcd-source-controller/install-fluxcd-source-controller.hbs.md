@@ -141,9 +141,9 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
           name: gitrepository-sample
         spec:
           interval: 1m
-          url: https://github.com/stefanprodan/podinfo
+          url: https://github.com/sample-accelerators/tanzu-java-web-app
           ref:
-            branch: master
+            branch: main
         ```
 
     2. Apply the created conf:
@@ -157,8 +157,8 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
 
         ```
         kubectl get GitRepository
-        NAME                   URL                                       READY   STATUS                                                              AGE
-        gitrepository-sample   https://github.com/stefanprodan/podinfo   True    Fetched revision: master/132f4e719209eb10b9485302f8593fc0e680f4fc   4s
+        NAME                   URL                                                         READY   STATUS                                                              AGE
+        gitrepository-sample   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/132f4e719209eb10b9485302f8593fc0e680f4fc   4s
         ```
 
     For more examples, see the samples directory on [fluxcd/source-controller/samples](https://github.com/fluxcd/source-controller/tree/main/config/samples) in GitHub.
