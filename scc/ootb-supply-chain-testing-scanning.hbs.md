@@ -37,7 +37,7 @@ To make use this supply chain, verify that:
 - Out of the Box Templates is installed.
 - Out of the Box Supply Chain With Testing **is NOT installed**.
 - Out of the Box Supply Chain With Testing and Scanning **is installed**.
-- Developer namespace is configured with the objects per Out<!--฿ Only use |per| to mean |for each|, not to mean |in accordance with|. ฿--> of the Box Supply
+- Developer namespace is configured with the objects according to Out of the Box Supply
   Chain With Testing guidance. This supply chain is in addition to the Supply Chain with testing.
 - (Optionally) install [Out of the Box Delivery
   Basic](ootb-delivery-basic.html), if you are willing to deploy the application to the
@@ -98,7 +98,7 @@ code. For more information, see [ScanTemplate section](#scan-template).
 - **image scan template**: A template of how jobs are created for scanning the image
 produced by the supply chain. For more information, see [ScanTemplate section](#scan-template).
 
-In the following section includes details about the new objects, compared to Out of the Box
+The following section includes details about the new objects, compared to Out of the Box
 Supply Chain With Testing.
 
 
@@ -128,9 +128,9 @@ The names of the objects **must** match the ones in the example with default ins
         policy: SCAN-POLICY
         template: SCAN-TEMPLATE
     ```
-    
+
     Where `SCAN-POLICY` and `SCAN-TEMPLATE` are the names of the `ScanPolicy` and `ScanTemplate`.
-  
+
 - To override via workload parameters, you can use the following commands. For more details, see [Tanzu apps workload commands](../cli-plugins/apps/command-reference/tanzu-apps-workload-update.hbs.md).
 
     ```
@@ -138,7 +138,7 @@ The names of the objects **must** match the ones in the example with default ins
     tanzu apps workload update WORKLOAD --param "scanning_source_template=SCAN-TEMPLATE" -n DEV-NAMESPACE
     ```
 
-    Where: 
+    Where:
 
     - `WORKLOAD` is the name of the workload.
     - `SCAN-POLICY` and `SCAN-TEMPLATE` are the names of the `ScanPolicy` and `ScanTemplate`.
@@ -252,8 +252,8 @@ You can configure your developer namespace to include more than one pipeline usi
     metadata:
       name: developer-defined-tekton-pipeline
       labels:
-        apps.tanzu<!--฿ The brand is |Tanzu|. ฿-->.vmware<!--฿ |VMware| is preferred. ฿-->.com/pipeline: test
-    spec<!--฿ |specifications| is preferred. ฿-->:
+        apps.tanzu.vmware.com/pipeline: test
+    spec:
       #...
             steps:
               - name: test
@@ -358,7 +358,7 @@ The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning
 
 ### <a id="sc-stop"></a>Confirming Supply Chain stopped due failed policy enforcement
 
-1. Verify if<!--฿ |Verify that| is better. ฿--> the status of the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan:
+1. Verify if the status of the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan:
 
   ```console
   kubectl describe workload WORKLOAD-NAME -n DEVELOPER-NAMESPACE
