@@ -443,6 +443,7 @@ For more information, see [aws/aws-cli/issues/6920](https://github.com/aws/aws-c
 GitHub.
 
 **Solution**
+Upgrade `aws-cli` to supported `v2.7.35` or greater.
 
 1. Update `aws-cli` to the latest version.
 1. Run:
