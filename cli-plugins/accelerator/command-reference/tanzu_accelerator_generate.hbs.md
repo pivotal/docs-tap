@@ -10,7 +10,7 @@ Generation options are provided as a JSON string and should match the metadata o
 accelerator used for the generation. The options can include "projectName" which defaults to the name of the accelerator.
 This "projectName" will be used as the name of the generated ZIP file.
 
-You can see the available options by using the "tanzu accelerator list <accelerator-name>" command.
+You can see the available options by using the "tanzu accelerator get <accelerator-name>" command.
 
 Here is an example of an options JSON string that specifies the "projectName" and an "includeKubernetes" boolean flag:
 
@@ -20,7 +20,7 @@ You can also provide a file that specifies the JSON string using the --options-f
 
 The generate command needs access to the Application Accelerator server. You can specify the --server-url flag or set
 an ACC_SERVER_URL environment variable. If you specify the --server-url flag it will override the ACC_SERVER_URL
-environmnet variable if it is set.
+environment variable if it is set.
 
 
 ```

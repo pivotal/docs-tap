@@ -29,6 +29,7 @@ tanzu accelerator list
   -h, --help                help for list
   -n, --namespace string    namespace for accelerator system (default "accelerator-system")
       --server-url string   the URL for the Application Accelerator server
+  -t, --tags strings        accelerator tags to match against
 ```
 
 ### Options inherited from parent commands
