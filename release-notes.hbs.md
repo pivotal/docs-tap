@@ -204,9 +204,9 @@ This release has the following breaking changes, listed by area and component.
 - Resolved issue 1
 - Resolved issue 2
   
-#### <a id="1-2-2-upgrade-issues"></a>Upgrading Tanzu Application Platform
+#### <a id="1-3-upgrade-issues"></a>Upgrading Tanzu Application Platform
   
-- Adding new tap repository bundle in addition to another repository bundle causing a failure, now works
+- Adding new Tanzu Application Platform repository bundle in addition to another repository bundle does not cause a failure anymore.
 
 #### <a id="app-acc-resolved"></a> Application Accelerator
 
