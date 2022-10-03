@@ -5,7 +5,6 @@ This section describes how to customize the Tanzu Application Platform GUI porta
 ## <a id="brand-customizing"></a> Customize branding
 
 To customize the branding in your portal, you can choose the name of the portal and the logo for it.
-You can also customize your portal favicon, which appears on the tab of the browser.
 To make these customizations:
 
 1. Provide additional configuration parameters to the `app_config` section of `tap-values.yaml`:
@@ -16,11 +15,6 @@ To make these customizations:
         customize:
           custom_logo: 'BASE-64-IMAGE'
           custom_name: 'PORTAL-NAME'
-          custom_favicon: 'BASE-64-IMAGE-ICO'
-          custom_appleTouch: 'BASE-64-IMAGE-180'
-          custom_favicon32: 'BASE-64-IMAGE-32'
-          custom_favicon16: 'BASE-64-IMAGE-16'
-          custom_safariPinnedTab: 'BASE-64-SVG'
     ```
 
     Where:
@@ -28,11 +22,6 @@ To make these customizations:
     - `BASE-64-IMAGE` is the image encoded in base64. A 512-pixel by 512-pixel PNG
     image with a transparent background is optimal.
     - `PORTAL-NAME` is the name of your portal, such as `Our Custom Developer Experience Portal`.
-    - `BASE-64-IMAGE-ICO` is the favicon ICO encoded in base64.
-    - `BASE-64-IMAGE-180` is the favicon PNG image encoded in base64. A 180-pixel by 180-pixel PNG is optimal.
-    - `BASE-64-IMAGE-32` is the favicon PNG image encoded in base64. A 32-pixel by 32-pixel PNG is optimal.
-    - `BASE-64-IMAGE-16` is the favicon PNG image encoded in base64. A 16-pixel by 16-pixel PNG is optimal.
-    - `BASE-64-IMAGE-SVG` is the favicon SVG image encoded in base64.
 
 2. Reinstall your Tanzu Application Platform GUI package by following steps in
 [Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
