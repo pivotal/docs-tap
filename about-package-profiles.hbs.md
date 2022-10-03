@@ -22,7 +22,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   documentation from the source URLs. An API portal operator can add any number of OpenAPI source
   URLs to be displayed in a single instance.
 
-- **[Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)**
+- **[Application Accelerator for VMware Tanzu](application-accelerator/about-application-accelerator.md)**
 
   The Application Accelerator component helps app developers and app operators through the creation
   and generation of application accelerators.
