@@ -4,6 +4,7 @@ You can install Tanzu Application Platform by using one of the following methods
 
 - [Installing Tanzu Application Platform online](#install-online). For Tanzu Application Platform on a Kubernetes cluster with internet access.
 - [Installing Tanzu Application Platform in an air-gapped environment](#install-air-gap). For Tanzu Application Platform on a Kubernetes cluster air-gapped from external traffic.
+- [Installing Tanzu Application Platform in AWS](#install-on-aws). For installing Tanzu Application platform using AWS Cloud Services.
 - [Deploying Tanzu Application Platform through AWS Quick Start on Amazon EKS](https://aws.amazon.com/quickstart/architecture/vmware-tanzu-application-platform/). For a reference deployment of Tanzu Application Platform on Amazon Elastic Kubernetes Service (Amazon EKS) using AWS CloudFormation.
 
 ## <a id='install-online'></a>Installing Tanzu Application Platform online
@@ -44,3 +45,22 @@ To install Tanzu Application Platform on your Kubernetes clusters in an air-gapp
 
 After installing Tanzu Application Platform on to your air-gapped cluster, you can start creating workloads that run in your air-gapped containers.
 For instructions, see [Deploy your first air-gapped workload](getting-started/air-gap-workload.html).
+
+## <a id='install-on-aws'></a>Installing Tanzu Application Platform on AWS Cloud
+
+The process of installing Tanzu Application Platform on [Amazon Elastic Kubernetes Services (EKS)](https://aws.amazon.com/eks/) [using Amazon Elastic Container Registry (ECR)](https://aws.amazon.com/ecr/).
+
+This will produce a deployment similar to the outcome of the [VMware Tanzu Application Platform on AWS Cloud Quick Start](https://aws.amazon.com/quickstart/architecture/vmware-tanzu-application-platform/) but gives the user the flexibility to customize the deployment.
+
+|Step|Task|Link|
+|----|----|----|
+|1.| Review the prerequisites to ensure that you have set up everything required before beginning the installation |[Prerequisites](prerequisites.html)|
+|2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI |[Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)|
+|3.| Create AWS Resources (EKS Cluster, roles, etc)|[Create AWS Resources](aws/aws-resources.hbs.md)|
+|4.| Install Cluster Essentials for Tanzu |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)|
+|5.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Installing the Tanzu Application Platform package and profiles](aws/install.hbs.md)|
+|6.| (Optional) Install any additional packages that were not in the profile |[Installing Individual Packages](install-components.html)|
+|7.| Set up developer namespaces to use installed packages |[Setting up developer namespaces to use installed packages](aws/set-up-namespaces.hbs.md)|
+|8.| Install developer tools into your integrated development environment (IDE) |[Installing Tanzu Developer Tools for VSCode](vscode-extension/installation.html)|
+
+After installing Tanzu Application Platform on to your Kubernetes clusters, proceed with [Getting started with the Tanzu Application Platform](getting-started.html).
