@@ -72,7 +72,8 @@ For example:
 ```console
 kubectl describe sourcescan tanzu-java-web-app -n my-apps
 ```
-In the resource look for the `Spec.Blob` field. Within, there's `Revision` and `URL`. 
+
+In the resource look for the `Spec.Blob` field. Within, there's `Revision` and `URL`.
 
 For example:
 

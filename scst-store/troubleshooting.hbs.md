@@ -16,13 +16,13 @@ You might have to include different combinations of `--repo`, `--org`, `--commit
 
 ### Symptom
 
-If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the `metadata-store-db` pod fails to start. The persistent volume used by PostgreSQL retaining old data, even though the retention policy is set to `DELETE`,  causes this.
+If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the `metadata-store-db` pod fails to start. This is caused by the persistent volume used by postgres retaining old data, even though the retention policy is set to `DELETE`.
 
 ### <a id='persistent-volume-retains-data-solution'></a>Solution
 
 >**Caution:** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
-To redeploy the app, either use the same database password or follow the following steps to erase the data on the volume:
+To redeploy the app, either use the same database password or follow these steps to erase the data on the volume:
 
 1. Deploy metadata-store app by using `kapp`.
 2. Verify that the `metadata-store-db-*` pod fails.
@@ -46,7 +46,7 @@ To redeploy the app, either use the same database password or follow the followi
 ### Symptom
 
 After Store is deployed, `metadata-store-db` pod might fail for missing volume while
-`postgres-db-pv-claim` pvc is in `PENDING` state. 
+`postgres-db-pv-claim` pvc is in `PENDING` state.
 
 This is because the cluster where Store is deployed does not have `storageclass` defined. `storageclass`'s provisioner is responsible for creating the persistent volume after `metadata-store-db` attaches `postgres-db-pv-claim`.
 
