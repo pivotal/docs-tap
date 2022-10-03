@@ -342,6 +342,12 @@ To resolve this issue, see
   `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
   To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
+- **Starting debug and live update sessions is synchronous:**
+  When a User `Run`s (or `Debug`s) a launch configuration intellij diables the launch controls preventing other 
+  launch configs from being launched at the same time.  Re-activating these controls only when the launch config is started.  
+  As such, starting mulitple Tanzu debug and live update sessions is a synchronous activity.  We are looking into 
+  how we might improve this expereince for our Users.
+
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
 - Known issue 1
