@@ -140,7 +140,7 @@ fi
 
 ## <a id='sigstore-patch-knative-serving'></a> Patch Knative-Serving
 
-Knative Serving should be deployed already during the first attempt of installing TAP. This component needs to be present for continuation of deploying Sigstore Stack.
+Knative Serving should be deployed already during the first attempt of installing TAP. This component needs to be present for continuation of deploying the Sigstore Stack.
 
 With the Sigstore Stack deployment, Knative Serving's `configmap/config-features` needs to be updated to enable some required features.
 
