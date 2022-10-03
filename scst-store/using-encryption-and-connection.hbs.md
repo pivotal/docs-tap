@@ -128,7 +128,7 @@ tanzu insight config set-target https://$METADATA_STORE_DOMAIN:$METADATA_STORE_P
 
 `NodePort` is used to connect the CLI and Metadata Store as an alternative to port forwarding.  This is useful when the user does not have port forward access to the cluster.
 
->**Note:** NodePort is only recommended when: the cluster does not support ingress or the cluster does not support `LoadBalancer` type to services.  `NodePort` is not supported for a multi-cluster set up, as certificates cannot be modified. For example, the Metadata Store does not currently support a BYO-certificate.
+>**Note:** NodePort is only recommended when: the cluster does not support ingress or the cluster does not support `LoadBalancer` type to services.  `NodePort` is not supported for a multi-cluster setup, as certificates cannot be modified. For example, the Metadata Store does not currently support a BYO-certificate.
 
 To use `NodePort`, you must obtain the CA certificate by using the following instructions:
 

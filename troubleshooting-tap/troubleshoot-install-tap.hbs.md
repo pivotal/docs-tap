@@ -54,7 +54,7 @@ A package fails to reconcile and you must access the details in `.status.usefulE
 Access the details in `.status.usefulErrorMessage` by running:
 
 ```console
-kubectl get PACKAGE-NAME grype -n tap-install -o yaml
+kubectl get packageinstall PACKAGE-NAME -n tap-install -o yaml
 ```
 
 Where `PACKAGE-NAME` is the name of the package to target.
@@ -279,3 +279,21 @@ VMware Tanzu Network before accepting the relevant EULA in VMware Tanzu Network.
 
 Follow the steps in [Accept the End User License Agreements](../install-tanzu-cli.md#accept-eulas) in
 _Installing the Tanzu CLI_.
+
+## <a id='contour-error-kind'></a> Ingress is broken on Kind cluster
+
+Your Contour installation cannot provide ingress to workloads when installed on a Kind cluster without a LoadBalancer solution.
+Your Kind cluster was created with port mappings, as described in the [Kind install guide](../learning-center/local-install-guides/deploying-to-kind.html).
+
+**Explanation**
+
+In Tanzu Application Platform v1.3.0, the default configuration for `contour.envoy.service.type` 
+is `LoadBalancer`. However, for the Envoy pods to be accessed by using the port mappings on your Kind cluster, 
+the service must be of type `NodePort`.
+
+**Solution**
+
+Configure `contour.evnoy.service.type` to be `NodePort`. Then, configure
+`envoy.service.nodePorts.http` and `envoy.service.nodePorts.https` to the
+corresponding port mappings on your Kind node. Otherwise, the NodePort service
+is assigned random ports, which is not accessible through your Kind cluster.

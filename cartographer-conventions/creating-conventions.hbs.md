@@ -22,14 +22,24 @@ Convention supports the creation of custom conventions to meet the unique operat
 and requirements of an organization.
 
 Before jumping into the details of creating a custom convention, you can view two
-distinct components of Cartographer Conventions: 
+distinct components of Cartographer Conventions:
 
 - [Convention Controller](#convention-controller)
-- [Convention Server](#convention-server) 
+- [Convention Server](#convention-server)
 
 ### <a id='convention-server'></a>Convention server
 
-The convention server is the component that applies a convention already defined on the server.
+The convention server is the component that applies a convention already defined on the server ( here is a golang based [example](https://github.com/vmware-tanzu/cartographer-conventions/tree/main/samples/spring-convention-server) of how to create a convention server to add springboot conventions). The key resource that facilitates structuring out the request body of the request and response from the server is the [PodConventionContext](./reference/pod-convention-context.hbs.md).
+
+The `PodConventionContext` is a [webhooks.conventions.carto.run/v1alpha1](https://github.com/vmware-tanzu/cartographer-conventions/blob/main/webhook/api/v1alpha1/podconventioncontext_types.go) type that defines the structure used to communicate internally by the webhook convention server. It is key to note is that it ***does not exist*** on the Kubernetes API Server.
+It is  a wrapper for two types namely
+
++ `PodConventionContextSpec` which acts as a wrapper for a `PodTemplateSpec` and a list of `ImageConfigs` provided in the request body of the server
++ `PodConventionContextStatus` which is a status type used to represent the current status of the context retrieved by the request
+
+Here is a sample [PodConventionContext](https://github.com/vmware-tanzu/cartographer-conventions/blob/main/docs/podconventioncontext-sample.yaml) and a Convention server [OpenAPI Spec](https://github.com/vmware-tanzu/cartographer-conventions/blob/main/api/openapi-spec/conventions-server.yaml) detailing the structure of these types.
+
+#### <a id='role-of-the-convention-server'></a>How the convention server works
 Each convention server can host one or more conventions.
 The application of each convention by a convention server are controlled conditionally.
 The conditional criteria governing the application of a convention is customizable and are based
@@ -54,8 +64,29 @@ Convention servers deployed to the cluster does not take action unless triggered
 do so by the second component of Cartographer Conventions, the [Convention Controller](#convention-controller).
 
 ### <a id='convention-controller'></a>Convention controller
+The convention controller is the orchestrator of one or many convention servers deployed to the cluster and there are a few resources that are available on the `conventions.carto.run/v1aplha1` API that allow the controller to carry out it's functions. These resources include
+  +  [ClusterPodConvention](./reference/cluster-pod-convention.hbs.md)
+      - `ClusterPodConvention` is a  resource type that allows the conventions author to register a webhook server with the controller using it's`spec.webhook` field.
+          ```yaml
+          ...
+          spec:
+            selectorTarget: PodTemplateSpec # optional field with options, defaults to PodTemplateSpec
+            selectors: # optional, defaults to match all workloads
+            - <metav1.LabelSelector>
+            webhook:
+              certificate:
+                name: sample-cert
+                namespace: sample-conventions
+              clientConfig:
+                <admissionregistrationv1.WebhookClientConfig>
+          ```
+  + [PodIntent](./reference/pod-intent.hbs.md)
 
-The convention controller is the orchestrator of one or many convention servers deployed to the cluster.
+    - The `PodIntent`is a `conventions.carto.run/v1alpha1)` resource type that is continuously reconciled and it applies decorations to a workload `PodTemplateSpec` exposing the enriched `PodTemplateSpec` on it's status. Whenever the status of the `PodIntent` is updated no side effects are caused on the cluster.
+
+  As key types defined on the `conventions.carto.run` API, the `ClusterPodConvention` and `PodIntent` resources will both be present on the Kubernetes API Server and can be queried using `clusterpodconventions.conventions.carto.run` for the former and `podintents.conventions.carto.run` for the later.
+
+#### <a id='role-of-the-controller'></a>How the convention controller works
 When the Supply Chain Choreographer creates or updates a PodIntent for a workload, the convention
 controller retrieves the OCI image metadata from the repository
 containing the workload's images and sets it in the PodIntent.
@@ -96,7 +127,7 @@ The following prerequisites must be met before a convention is developed and dep
 ## <a id='define-conv-criteria'></a> Define convention criteria
 
 The `server.go` file contains the configuration for the server and the logic the server applies when a workload matches the defined criteria.
-For example, adding a Prometheus sidecar to web applications, or adding a `workload-type=spring-boot` label to any workload that has metadata, indicating it is a Spring Boot app.  
+For example, adding a Prometheus sidecar to web applications, or adding a `workload-type=spring-boot` label to any workload that has metadata, indicating it is a Spring Boot app.
 
 >**Note:** For this example, the package `model` defines [resource types](./reference/convention-resources.md).
 
@@ -251,57 +282,52 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
 
 ## <a id='define-conv-behavior'></a> Define the convention behavior
 
-Any property or value within the PodTemplateSpec or OCI image metadata associated with a workload is used to define the criteria for applying conventions. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation. The following are a few examples. 
+Any property or value within the PodTemplateSpec or OCI image metadata associated with a workload is used to define the criteria for applying conventions. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation. The following are a few examples.
 
 ### <a id='match-crit-labels-annot'></a> Matching criteria by labels or annotations
 
-When you use labels or annotations to define whether a convention must be applied, the server checks the [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) of workloads.
+The `conventions.carto.run/v1alpha1` API allows convention authors to use the `selectorTarget` field which complements the `ClusterPodConvention` matchers to specify whether to consider labels on either one of the following available options:
 
 + PodTemplateSpec
 
     ```yaml
-    ...
-    template:
-      metadata:
-        labels:
-          awesome-label: awesome-value
-        annotations:
-          awesome-annotation: awesome-value
-    ...
+      ...
+      template:
+        metadata:
+          labels:
+            awesome-label: awesome-value
+          annotations:
+            awesome-annotation: awesome-value
+      ...
     ```
++ PodIntent
 
-+ Handler
-
-    ```go
-    package convention
-    ...
-    func conventionHandler(template *corev1.PodTemplateSpec, images []model.ImageConfig) ([]string, error) {
-        c:= []string{}
-        // This convention is applied if a specific label is present.
-        if lv, le := template.Labels["awesome-label"]; le && lv == "awesome-value" {
-            // DO COOL STUFF
-            c = append(c, "awesome-label-convention")
-        }
-        // This convention is applied if a specific annotation is present.
-        if av, ae := template.Annotations["awesome-annotation"]; ae && av == "awesome-value" {
-            // DO COOL STUFF
-            c = append(c, "awesome-annotation-convention")
-        }
-
-        return c, nil
-    }
-    ...
+    ```yaml
+        ...
+        kind: PodIntent
+        metadata:
+          name: test-pod
+          labels:
+            environment: production
+            ...
     ```
+The `selectorTarget` field can be configured on the ClusterPodConvention as follows:
 
- Where:
+```yaml
+...
+spec:
+  selectorTarget: PodIntent # optional, defaults to PodTemplateSpec
+  selectors: # optional, defaults to match all workloads
+  - <metav1.LabelSelector>
+  webhook:
+    certificate:
+      name: sample-cert
+      namespace: sample-conventions
+    clientConfig:
+      <admissionregistrationv1.WebhookClientConfig>
+```
+If you do not provide a value for this optional field while using the `conventions.carto.run/v1alpha1` API, the default value is set to `PodTemplateSpec` without the conventions author explicitly doing so. The `selectorTarget` field is not available in the `conventions.apps.tanzu.vmware.com/v1alpha1` API and labels specified in the `PodTemplateSpec` are considered if a matcher is defined in a `ClusterPodConvention` while referencing this deprecated API.
 
-+ `conventionHandler` is the *handler*.
-
-+ `awesome-label` is the **label** that you want to validate.
-
-+ `awesome-annotation` is the **annotation** that you want to validate.
-
-+ `awesome-value` is the value that must have the **label**/**annotation**.
 
 ### <a id='match-criteria-env-var'></a> Matching criteria by environment variables
 
@@ -556,7 +582,7 @@ To verify the status of the convention server, check for the running convention 
         replicaset.apps/awesome-webhook-9b6957476        0         0         0       24h
         ```
 
-    + To verify that the conventions are applied, check the `PodIntent` of a workload that matches the convention criteria:  
+    + To verify that the conventions are applied, check the `PodIntent` of a workload that matches the convention criteria:
 
         ```bash
         kubectl -o yaml get podintents.conventions.apps.tanzu.vmware.co awesome-app

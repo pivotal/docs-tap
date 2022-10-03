@@ -45,9 +45,9 @@ The `status.phase` field is populated with the current phase of the scan. The ph
 
 * `Pending`: initial phase of the scan.
 * `Scanning`: execution of the scan job is running.
-* `Completed`: scan completed and no CVEs were found that violated the scanpolicy.
+* `Completed`: scan completed and no CVEs were found that violated the scan policy.
 * `Failed`: scan completed but CVEs were found that violated the scan policy.
-* `Error`: indication of an error (e.g., an invalid scantemplate or scanpolicy).
+* `Error`: indication of an error (e.g., an invalid scantemplate or scan policy).
 
 >**Note:** The PHASE print column also shows this with `kubectl get` on a `SourceScan` or `ImageScan`.
 

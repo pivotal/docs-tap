@@ -1,7 +1,6 @@
 # Set up services for consumption by developers
 
-This how-to guide walks service and application operators through setting up services for consumption by Tanzu Application Platform developers. For the sake of example, you'll set up the RabbitMQ Cluster Kubernetes operator.
-You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
+This how-to guide walks service operators and application operators through setting up services for consumption by application developers. In this example, you set up the RabbitMQ Cluster Kubernetes operator, but the process is the same for any other services you want to set up. You will learn about the `tanzu services` CLI plug-in and the most important APIs for working with services on Tanzu Application Platform.
 
 ## <a id="you-will"></a>What you will do
 
@@ -23,13 +22,13 @@ Bear the following observations in mind as you work through this guide:
 
 1. There is a clear separation of concerns across the various user roles.
 
-    * The life cycle of workloads is determined by application developers.
-    * The life cycle of resource claims is determined by application operators.
-    * The life cycle of service instances is determined by service operators.
+    * Application developers set the life cycle of workloads.
+    * Application operators set the life cycle of resource claims.
+    * Service operators set the life cycle of service instances.
     * The life cycle of service bindings is implicitly tied to the life cycle of workloads.
-1. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding.
-1. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
-1. Exclusivity of resource claims: Resource claims are considered to be mutually exclusive, meaning that service instances can be claimed by at most one resource claim.
+2. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding.
+3. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
+4. Exclusivity of resource claims: Resource claims are considered to be mutually exclusive, meaning that only one resource claim can claim a service instance.
 
 ## <a id="stk-prereqs"></a> Prerequisites
 
@@ -37,21 +36,23 @@ Before following this walkthrough, you must:
 
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
-1. Ensure your Tanzu Application Platform cluster can pull the images required by the RabbitMQ Cluster Kubernetes operator. For more information, see the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
+1. Ensure that your Tanzu Application Platform cluster can pull the container images required by the Kubernetes operator providing the service. For more information, see:
+   * RabbitMQ Cluster Kubernetes operator in the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
+   * [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html).
+   * [VMware Tanzu SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html).
 
 ## <a id="stk-set-up"></a> Set up a service
 
-This section covers the following:
+> **Note:** Although this walkthrough uses the example of RabbitMQ Cluster Kubernetes operator, the setup steps remain mostly the same for any compatible operator.
 
-* Installing the RabbitMQ Cluster Kubernetes operator.
+This section covers:
+
+* Installing the selected service Kubernetes operator.
 * Creating the role-based access control (RBAC) rules to grant Tanzu Application Platform permission to interact
-with the newly-installed APIs provided by the RabbitMQ Cluster Kubernetes operator.
+with the APIs provided by the newly installed Kubernetes operator.
 * Creating the additional supporting resources to aid with discovery of services.
 
 For this part of the walkthrough, you assume the role of the **service operator**.
-
-> **Note:** Although this walkthrough uses the RabbitMQ Cluster Kubernetes operator
-> as an example, the set up steps remain mostly the same for any compatible operator.
 
 To set up a service:
 
@@ -64,7 +65,11 @@ To set up a service:
     As a result, a new API Group (`rabbitmq.com`) and Kind (`RabbitmqCluster`) are
     now available in the cluster.
 
-1. Apply RBAC rules to grant Tanzu Application Platform permission to interact with the new API.
+    > PostgreSQL: [Installing a Tanzu Postgres Operator](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-install-operator.html)
+    >
+    > MySQL: [Installing the Tanzu SQL for Kubernetes Operator](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-install-operator.html)
+
+2. Apply RBAC rules to grant Tanzu Application Platform permission to interact with the new API.
 
     1. In a file named `resource-claims-rmq.yaml`, create a `ClusterRole` that defines the rules and label it so that the rules are aggregated to the appropriate controller:
 
@@ -83,13 +88,17 @@ To set up a service:
           verbs: ["get", "list", "watch"]
         ```
 
-    1. Apply `resource-claims-rmq.yaml` by running:
+    2. Apply `resource-claims-rmq.yaml` by running:
 
         ```console
         kubectl apply -f resource-claims-rmq.yaml
         ```
 
-1. Make the new API seen as claimable to application operators.
+    > PostgreSQL: [Creating Service Bindings](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-creating-service-bindings.html)
+    >
+    > MySQL: [Connecting an Application to a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-creating-service-bindings.html)
+
+3. Make the new API discoverable to application operators.
 
     1. In a file named `rabbitmqcluster-clusterinstanceclass.yaml`, create a `ClusterInstanceClass`
     that refers to the new service, and set any additional metadata. For example:
@@ -107,6 +116,12 @@ To set up a service:
           pool:
             group: rabbitmq.com
             kind: RabbitmqCluster
+        # for Postgres
+        #   group: sql.tanzu.vmware.com
+        #   kind: Postgres
+        # for MySql
+        #   group: with.sql.tanzu.vmware.com
+        #   kind: MySQL
         ```
 
     1. Apply `rabbitmqcluster-clusterinstanceclass.yaml` by running:
@@ -120,7 +135,7 @@ To set up a service:
 
 ## <a id="create-svc-instances"></a> Create a service instance
 
-This section covers the following:
+This section covers:
 
 * Using kubectl to create a `RabbitmqCluster` service instance.
 * Creating a resource claim policy that permits the service instance to be claimed.
@@ -140,28 +155,9 @@ To create a service instance:
     > over who has access to what. However, this is not a strict requirement.
     > You can create both service instances and application workloads in the same namespace.
 
-2.  Find the list of service instance classes available on your cluster by running:
+2. Create a `RabbitmqCluster` service instance.
 
-    ```console
-    tanzu service classes list
-    ```
-
-    Expected output:
-
-    ```console
-    tanzu service classes list
-
-     NAME      DESCRIPTION
-     rabbitmq  It's a RabbitMQ cluster!
-    ```
-
-    > **Note:** If you see `No service types found.`, ensure you have completed the
-    > steps in [Set up a service](#stk-set-up) earlier in this walkthrough.
-
-1. Create a `RabbitmqCluster` service instance.
-
-    1. Create a file named `rmq-1-service-instance.yaml` by using the `APIVERSION` and
-    `KIND` from the output of the `tanzu service types list` command:
+    1. Create a file named `rmq-1-service-instance.yaml`:
 
         ```yaml
         # rmq-1-service-instance.yaml
@@ -173,11 +169,17 @@ To create a service instance:
           namespace: service-instances
         ```
 
+    >**Note:** If using Openshift, you might have to provide additional configuration for the `RabbitmqCluster`. For more details, see Using the RabbitMQ Kubernetes Operators on Openshift in the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/using-on-openshift.html).
+
     1. Apply `rmq-1-service-instance.yaml` by running:
 
         ```console
         kubectl apply -f rmq-1-service-instance.yaml
         ```
+
+    > PostgreSQL: [Deploying a Postgres Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-create-delete-postgres.html#deploying-a-postgres-instance)
+    >
+    > MySQL: [Creating a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-create-delete-mysql.html#create-a-mysql-instance)
 
 3. Create a resource claim policy to define the namespaces the instance can be claimed and bound from.
 
@@ -202,9 +204,15 @@ To create a service instance:
           subject:
             group: rabbitmq.com
             kind: RabbitmqCluster
+        # for Postgres
+        #   group: sql.tanzu.vmware.com
+        #   kind: Postgres
+        # for MySql
+        #   group: with.sql.tanzu.vmware.com
+        #   kind: MySQL
         ```
 
-    1. Apply `rmq-claim-policy.yaml` by running:
+    2. Apply `rmq-claim-policy.yaml` by running:
 
         ```console
         kubectl apply -f rmq-claim-policy.yaml
@@ -215,7 +223,7 @@ To create a service instance:
 
 ## <a id="stk-claim"></a> Claim a service instance
 
-This section covers the following:
+This section covers:
 
 * Using `tanzu service claimable list --class` to view details about service instances claimable from a namespace.
 * Using `tanzu service claim create` to create a claim for the service instance.
@@ -225,14 +233,14 @@ For this part of the walkthrough, you assume the role of the **application opera
 Resource claims in Tanzu Application Platform are a powerful concept that serve many purposes.
 Arguably their most important role is to enable application operators to request
 services that they can use with their application workloads without having
-to create and manage the services themselves. For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.6/svc-tlk/GUID-service_resource_claims-terminology_and_apis.html).
+to create and manage the services themselves. For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-resource_claims-api_docs.html).
 
 In cases where service instances are running in the same namespace as
 application workloads, you do not have to create a claim. You can bind to the service instance directly.
 
 In this section you use the `tanzu service claims create` command to create
 a claim that the `RabbitmqCluster` service instance you created earlier can fulfill.
-This command requires the following information to create a claim successfully:
+This command requires the following information to create a claim:
 
 - `--resource-name`
 - `--resource-kind`
@@ -256,7 +264,7 @@ To claim a service instance:
       rmq-1   service-instances    RabbitmqCluster  rabbitmq.com/v1beta1
     ```
 
-1. Using the information from the previous command, create a claim for the service instance by running:
+2. Using the information from the previous command, create a claim for the service instance by running:
 
     ```console
     tanzu service claim create rmq-1 \
@@ -266,7 +274,7 @@ To claim a service instance:
       --resource-api-version rabbitmq.com/v1beta1
     ```
 
-You have successfully set the scene for the application developer to inspect the claim and to use it to bind to application workloads, as described in [Consume services on Tanzu Application Platform](consume-services.md).
+You have set the scene for the application developer to inspect the claim and to use it to bind to application workloads, as described in [Consume services on Tanzu Application Platform](consume-services.md).
 
 ## <a id="stk-use-cases"></a> Further use cases and reading
 
@@ -277,7 +285,7 @@ There are more service use cases not covered in this getting started guide. See 
   <th><strong>Short Description</strong></th>
   <tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html">Consuming AWS RDS on Tanzu Application Platform</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html">Consuming AWS RDS on Tanzu Application Platform</a>
     </td>
     <td>
       Using the Controllers for Kubernetes (ACK) to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
@@ -285,7 +293,7 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html">Consuming AWS RDS on Tanzu Application Platform with Crossplane</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html">Consuming AWS RDS on Tanzu Application Platform with Crossplane</a>
     </td>
     <td>
       Using <a href="https://crossplane.io/">Crossplane</a> to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
@@ -293,7 +301,7 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_gcp_sql_with_config_connector.html">Consuming Google Cloud SQL on Tanzu Application Platform with Config Connector</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_config_connector.html">Consuming Google Cloud SQL on Tanzu Application Platform with Config Connector</a>
     </td>
     <td>
       Using GCP Config Connector to provision a Cloud SQL instance and consume it from a Tanzu Application Platform workload.<br>
@@ -301,15 +309,15 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html">Consuming Google Cloud SQL on Tanzu Application Platform with Crossplane</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html">Consuming Google Cloud SQL on Tanzu Application Platform with Crossplane</a>
     </td>
     <td>
-      Using <a href="https://crossplane.io/">Crossplane</a> to provision a Cloud SQL instance instance and consume it from a Tanzu Application Platform workload.<br>
+      Using <a href="https://crossplane.io/">Crossplane</a> to provision a Cloud SQL instance and consume it from a Tanzu Application Platform workload.<br>
       Involves making a third-party API consumable from Tanzu Application Platform.
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-direct_secret_references.html">Direct Secret References</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-direct_secret_references.html">Direct Secret References</a>
     </td>
     <td>
       Binding to services running external to the cluster, for example, an in-house oracle database.<br>
@@ -318,17 +326,17 @@ There are more service use cases not covered in this getting started guide. See 
   </tr>
   <tr>
     <td>
-      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a> (Experimental)
+      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a> (Experimental)
     </td>
     <td>Separates application workloads from service instances across dedicated clusters.</td>
   </tr>
 </table>
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
-[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-overview.html)
+[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-overview.html)
 
 ## Next steps
 
-Now that you've completed the Getting started guides, learn about:
+Now that you completed the Getting started guides, learn about:
 
 - [Multicluster Tanzu Application Platform](../multicluster/about.md)

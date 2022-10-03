@@ -50,7 +50,7 @@ spec:
 To load the definition of the workshop, run:
 
 ```console
-kubectl apply -f {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals/master/resources/workshop.yaml
+kubectl apply -f {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals/main/resources/workshop.yaml
 ```
 
 The custom resource created is cluster-scoped. The command must be run as a cluster admin or other appropriate
@@ -72,7 +72,7 @@ For this workshop, this outputs:
 
 ```console
 NAME                  IMAGE                                            FILES  URL
-lab-k8s-fundamentals  {YOUR-REGISTRY-URL}/lab-k8s-fundamentals:master         {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals
+lab-k8s-fundamentals  {YOUR-REGISTRY-URL}/lab-k8s-fundamentals:main         {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals
 ```
 
 The added fields in this case give:
@@ -108,7 +108,7 @@ spec:
 To create the custom resource, run:
 
 ```console
-kubectl apply -f {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals/master/resources/training-portal.yaml
+kubectl apply -f {YOUR-GIT-REPO-URL}/lab-k8s-fundamentals/main/resources/training-portal.yaml
 ```
 
 The custom resource created is cluster-scoped. The command must be run as a cluster admin or other appropriate
@@ -191,13 +191,11 @@ Attendees can access workshops through the web portal by following two steps:
 
 1. The attendee visits the web-based portal for the training session and is presented with a login page. However, before logging in, the attendee must register for an account. The attendee clicks the link to the registration page and fills it in.
 
-    ![Screenshot of the portal registration form](images/portal-registration.png)
+    ![Screenshot of the Learning Center Create an account page, with fields to fill in and a Register button.](images/portal-registration.png)
 
     Registration is required so if the attendee's web browser exits or the attendee needs to switch web browsers, the attendee can log in again and access the same workshop instance.
 
 2. Upon registering, the attendee is presented with a list of workshops available for the training session.
-
-    ![Screenshot of a workshop listing on the portal catalog](images/portal-catalog.png)
 
     - An orange dot beside a workshop means that no instance for that workshop has been allocated
     to the user as yet, but that some are available.
@@ -209,7 +207,7 @@ Attendees can access workshops through the web portal by following two steps:
     The attendee clicks the "Start workshop" button. This allocates a workshop instance if one hasn't yet been reserved and redirects
     the attendee to that workshop instance.
 
-    ![Screenshot of a workshop overview and dashboard terminal](../about-learning-center/images/dashboard-terminal.png)
+    ![Screenshot of Learning Center dashboard with Terminal tab selected showing terminals 1 and 2.](../about-learning-center/images/dashboard-terminal.png)
 
 ## <a id="delete-ws-training-portal"></a>Deleting the workshop training portal
 

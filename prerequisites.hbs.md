@@ -18,8 +18,8 @@ Installation requires:
     [Docker Hub](https://hub.docker.com/) for application images, base images, and runtime dependencies.
     When available, VMware recommends using a paid registry account to avoid potential rate-limiting
     associated with some free registry offerings.
-    
-    - Recommended storage space for container image registry: 
+
+    - Recommended storage space for container image registry:
 
         - 1&nbsp;GB of available storage if installing Tanzu Build Service with the `lite` set of dependencies.
         - 10 GB of available storage if installing Tanzu Build Service with the `full` set of dependencies, which are suitable for offline
@@ -85,6 +85,9 @@ providers:
 
 - Azure Kubernetes Service.
 - Amazon Elastic Kubernetes Service.
+    - containerd must be used as the Container Runtime Interface (CRI). Some versions of EKS default to Docker as the container runtime and must be changed to containerd.
+    - EKS clusters on Kubernetes version 1.23 require the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) due to the [CSIMigrationAWS](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) is enabled by default in Kubernetes 1.23.
+        - Users currently on EKS Kubernetes version 1.22 must install the Amazon EBS CSI Driver before upgrading to Kubernetes version 1.23. See [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi-migration-faq.html) for more information.
 - Google Kubernetes Engine.
     - GKE Autopilot clusters do not have the required features enabled.
     - GKE clusters that are set up in zonal mode might detect Kubernetes API errors when the GKE
@@ -93,6 +96,9 @@ providers:
 - Minikube.
     - Reference the [resource requirements](#resource-requirements) in the following section.
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
+- Red Hat OpenShift Container Platform v4.10
+    - vSphere
+    - Baremetal
 - Tanzu Kubernetes Grid multicloud.
 - vSphere with Tanzu v7.0 U3a (not compatible with Tanzu Application Platform v1.0.0 or earlier).<br>
 For vSphere with Tanzu, pod security policies must be configured so that Tanzu Application Platform controller pods can run as root.
@@ -109,12 +115,20 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
 
 ## <a id="resource-requirements"></a>Resource requirements
 
-- To deploy all Tanzu Application Platform packages, your cluster must have at least:
-    - 8&nbsp;CPUs for i9 (or equivalent) available to Tanzu Application Platform components.
-    - 12&nbsp;CPUs for i7 (or equivalent) available to Tanzu Application Platform components.
-    - 8&nbsp;GB of RAM across all nodes available to Tanzu Application Platform.
-    - 12&nbsp;GB of RAM is available to build and deploy applications, including Minikube. VMware recommends 16&nbsp;GB of RAM for an optimal experience.
+- To deploy Tanzu Application Platform packages iterate profile on local Minikube cluster, your cluster must have at least:
+    - 8&nbsp;vCPUs for i9 (or equivalent) available to Tanzu Application Platform components on Mac OS.
+    - 12&nbsp;vCPUs for i7 (or equivalent) available to Tanzu Application Platform components on Mac OS. 
+    - 8&nbsp;vCPUs available to Tanzu Application Platform components on Linux and Windows.
+    - 12&nbsp;GB of RAM available to Tanzu Application Platform components on Mac OS, Linux and Windows. 
     - 70&nbsp;GB of disk space available per node.
+- To deploy Tanzu Application Platform packages full profile, your cluster must have at least:    
+    - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
+    - 16&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
+    - 100&nbsp;GB of disk space available per node.
+- To deploy Tanzu Application Platform packages build, run and iterate (shared) profile, your cluster must have at least:    
+    - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
+    - 12&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
+    - 100&nbsp;GB of disk space available per node.
 
 - For the [`full` profile](install.html#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 

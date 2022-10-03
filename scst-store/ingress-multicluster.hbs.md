@@ -2,7 +2,9 @@
 
 Supply Chain Security Tools - Store has ingress support by using Contour's HTTPProxy resources. To enable ingress support, a Contour installation must be available in the cluster.
 
-Supply Chain Security Tools - Store's configuration includes two options to configure the proxy: `ingress_enabled` and `ingress_domain`. If needed, you can override the `shared.ingress_domain` Tanzu Application Platform level setting with the `ingress_domain` parameter.
+SCST - Store's configuration includes two options to configure the proxy: `ingress_enabled` and `ingress_domain`. If needed, you can override the `shared.ingress_domain` Tanzu Application Platform level setting with the `ingress_domain` parameter.
+The store also supports the option to provide a custom certificate under the `tls` option, which needs two options to specify the certificate to use `secretName` and `namespace`.
+Otherwise, by default, a self-signed certificate is used.
 
 For example:
 
@@ -10,11 +12,14 @@ For example:
 ingress_enabled: "true"
 ingress_domain: "example.com"
 app_service_type: "ClusterIP"  # recommended if ingress is enabled
+tls:  # this section is only needed if a custom certificate is being provided
+  secretName: custom-cert   # name of the custom certificate to use
+  namespace: default        # namespace in which the certificate exists
 ```
 
-Supply Chain Security Tools - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>` (`metadata-store.example.com`). The create route supports HTTPS communication by using a self-signed certificate with the same subject Alternative Name.
+SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`, such as `metadata-store.example.com`. The create route supports HTTPS communication either using the custom certificate if the TLS section is provided, or self-signed certificate with the same subject Alternative Name if the TLS section is not provided.
 
-Contour and DNS setup are not part of Supply Chain Security Tools - Store installation. Access to Supply Chain Security Tools - Store using Contour depends on the correct configuration of these two components.
+Contour and DNS setup are not part of SCST - Store installation. Access to SCST - Store using Contour depends on the correct configuration of these two components.
 
 Make the proper DNS record available to clients to resolve `metadata-store.<ingress_domain>` to Envoy service's external IP address.
 
@@ -48,14 +53,41 @@ $ curl https://metadata-store.example.com/api/health -k -v
 
 ## <a id="multicluster-setup"></a>Multicluster setup
 
-To support multicluster setup of Supply Chain Security Tools - Store, some communication secrets must be shared across the cluster.
+To support multicluster setup of SCST - Store, some communication secrets must be shared across the cluster.
 
-Set up the cluster containing Supply Chain Security Tools - Store first and enable Supply Chain Security Tools - Store ingress for ease of installation. When configuring a second Tanzu Application Platform cluster, components such as Supply Chain Security Tools - Scan need access to the Store's API. This requires access to the TLS CA certificate for HTTPS support and the Authorization access token.
+Set up the cluster containing SCST - Store first and enable SCST - Store ingress for ease of installation. When configuring a second Tanzu Application Platform cluster, components such as Supply Chain Security Tools - Scan need access to the Store's API. This requires access to the TLS CA certificate for HTTPS support and the Authorization access token.
 
 ## <a id="tls"></a>TLS CA certificate
 
-To get Supply Chain Security Tools - Store's TLS CA certificate, run:
+To get SCST - Store's TLS CA certificate, run:
 
+```bash
+# On the Supply Chain Security Tools - Store's cluster
+CA_CERT=$(kubectl get secret -n metadata-store CERT-NAME -o json | jq -r ".data.\"ca.crt\"")
+cat <<EOF > store_ca.yaml
+---
+apiVersion: v1
+kind: Secret
+type: Opaque
+metadata:
+  name: store-ca-cert
+  namespace: metadata-store-secrets
+data:
+  ca.crt: $CA_CERT
+EOF
+
+# On the second cluster 
+
+# Create secrets namespace
+kubectl create ns metadata-store-secrets
+
+# Create the CA Certificate secret
+kubectl apply -f store_ca.yaml
+```
+
+Where `CERT-NAME` is the name of the certificate, this must be `ingress-cert` if no custom certificate is used.
+
+Example:
 ```bash
 # On the Supply Chain Security Tools - Store's cluster
 CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"")
@@ -82,10 +114,10 @@ kubectl apply -f store_ca.yaml
 
 ## <a id="rbac-auth-token"></a>RBAC Authentication token
 
-To get the Supply Chain Security Tools - Store's Auth token, run:
+To get the SCST - Store's Auth token, run:
 
 ```bash
-AUTH_TOKEN=$(kubectl get secrets -n metadata-store -o jsonpath="{.items[?(@.metadata.annotations['kubernetes\.io/service-account\.name']=='metadata-store-read-write-client')].data.token}" | base64 -d)
+AUTH_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
 ```
 
 Create the corresponding secret on the second cluster. Run:
@@ -94,15 +126,15 @@ Create the corresponding secret on the second cluster. Run:
 kubectl create secret generic store-auth-token --from-literal=auth_token=$AUTH_TOKEN -n metadata-store-secrets
 ```
 
-This secret is created in the `metadata-store-secrets` namespace and imported by the Supply Chain Security Tools - Scan.
+This secret is created in the `metadata-store-secrets` namespace and imported by the SCST - Scan.
 
 ## <a id="scst-scan-install"></a>Supply Chain Security Tools - Scan installation
 
-To allow Supply Chain Security Tools - Scan to access the created secrets, `SecretExport` resources must be created.
+To allow SCST - Scan to access the created secrets, `SecretExport` resources must be created.
 
->**Note:** Corresponding `SecretImport` resources that receive the exported secrets are installed with the Supply Chain Security Tools - Scan package.
+>**Note:** Corresponding `SecretImport` resources that receive the exported secrets are installed with the SCST - Scan package.
 
-These secrets must be exported to each developer namespace. The following is an example for supporting Supply Chain Security Tools - Scan installation on the developer namespace:
+These secrets must be exported to each developer namespace. The following is an example for supporting SCST - Scan installation on the developer namespace:
 
 ```bash
 cat <<EOF | kubectl apply -f -
@@ -125,4 +157,4 @@ spec:
 EOF
 ```
 
-Install Supply Chain Security Tools - Scan with the YAML file sample configuration for the build-profile specified in [Build profile](../multicluster/reference/tap-values-build-sample.md).
+Install SCST - Scan with the YAML file sample configuration for the build-profile specified in [Build profile](../multicluster/reference/tap-values-build-sample.md).

@@ -1,6 +1,4 @@
-# Install Tanzu Application Platform in an air-gapped environment (beta)
-
->**Caution:** Tanzu Application Platform in an air-gapped environment is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+# Install Tanzu Application Platform in an air-gapped environment
 
 This topic describes how to install Tanzu Application Platform on your Kubernetes cluster and registry that are air-gapped from external traffic.
 
@@ -86,7 +84,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --password $IMGPKG_REGISTRY_PASSWORD \
         --namespace tap-install \
         --export-to-all-namespaces \
-        --yes 
+        --yes
     ```
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
@@ -124,6 +122,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     / Retrieving available packages...
       NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
       accelerator.apps.tanzu.vmware.com                    Application Accelerator for VMware Tanzu                                  Used to create new projects and configurations.
+      apis.apps.tanzu.vmware.com                           API Auto Registration for VMware Tanzu                                    A TAP component to automatically register API exposing workloads as API entities in TAP GUI.
       api-portal.tanzu.vmware.com                          API portal                                                                A unified user interface to enable search, discovery and try-out of API endpoints at ease.
       backend.appliveview.tanzu.vmware.com                 Application Live View for VMware Tanzu                                    App for monitoring and troubleshooting running apps
       connector.appliveview.tanzu.vmware.com               Application Live View Connector for VMware Tanzu                          App for discovering and registering running apps
@@ -152,6 +151,22 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
+## <a id='air-gap-policy'></a> Prepare Sigstore TUF Stack for Air-Gapped Policy Controller
+
+Supply Chain Security Tools - Policy Controller currently requires access to a TUF server.
+In a normal environment with public internet access, the public official Sigstore TUF server is used.
+
+However, for an air-gapped environment, an internally accessible Sigstore stack is currently required.
+
+The Sigstore Stack consists of:
+- [Trillian](https://github.com/google/trillian)
+- [Rekor](https://github.com/sigstore/rekor)
+- [Fulcio](https://github.com/sigstore/fulcio)
+- [Certificate Transparency Log (CTLog)](https://github.com/google/certificate-transparency-go)
+- [TheUpdateFramework (TUF)](https://theupdateframework.io/)
+
+For more information on how to setup the Sigstore Stack, see [Sigstore Stack Install](./scst-policy/install-sigstore-stack.hbs.md).
+
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
@@ -179,9 +194,9 @@ The sample values file contains the necessary defaults for:
 
 ### <a id='full-profile'></a> Full Profile
 
-To install Tanzu Application Platform with Supply Chain Basic, 
-you must retrieve your cluster’s base64 encoded ca certificate from `$HOME/.kube/config`. 
-Retrieve the `certificate-authority-data` from the respective cluster section 
+To install Tanzu Application Platform with Supply Chain Basic,
+you must retrieve your cluster’s base64 encoded ca certificate from `$HOME/.kube/config`.
+Retrieve the `certificate-authority-data` from the respective cluster section
 and input it as `B64_ENCODED_CA` in the `tap-values.yaml`.
 
 The following is the YAML file sample for the full-profile:
@@ -205,7 +220,7 @@ contour:
       type: LoadBalancer
       annotations:
       # This annotation is for air-gapped AWS only
-          service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+          service.kubernetes.io/aws-load-balancer-internal: "true"
 
 ootb_supply_chain_basic:
   registry:
@@ -216,13 +231,24 @@ ootb_supply_chain_basic:
   maven:
       repository:
          url: https://MAVEN-URL
-         credentials_secret_name: "MAVEN-CREDENTIALS"
-         ca_cert_secret_name: "CUSTOM-CA"
+         secret_name: "MAVEN-CREDENTIALS"
 
 accelerator:
       samples:
         # Prevent repeated polling of github to pull accelerators
         include: false
+
+appliveview:
+  ingressEnabled: true
+  tls:
+    secretName: "SECRET-NAME"
+    namespace: "APP-LIVE-VIEW-NAMESPACE"
+
+appliveview_connector:
+  backend:
+    ingressEnabled: true
+    sslDisabled: false
+
 tap_gui:
   service_type: ClusterIP
   ingressEnabled: "true"
@@ -288,14 +314,31 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Dockerhub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication.
-- `MAVEN-CREDENTIALS` is the secret name with maven creds in developer namespace. You can create it after the fact.
-- `CUSTOM-CA` is the secret name with maven certificate authority in developer namespace. You can create it after the fact.
+- `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#a-idmaven-repository-secreta-maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`. This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
+- `SECRET-NAME` is the name of the TLS secret for the domain consumed by HTTPProxy.
+- `APP-LIVE-VIEW-NAMESPACE` is the targeted namespace for the TLS secret for the domain.
+
+>**Note:** Create the app-live-view namespace and the TLS secret for the domain before installing the Tanzu Application Platform packages in the cluster. This ensures the HTTPProxy is updated with the TLS secret.
+
+To create a TLS secret for app-live-view, run:
+
+```console
+kubectl create -n app-live-view secret tls alv-cert --cert=<.crt file> --key=<.key file>
+```
+
+To verify the HTTPProxy object with the TLS secret, run:
+
+```console
+kubectl get httpproxy -A
+NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
+app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
+```
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 

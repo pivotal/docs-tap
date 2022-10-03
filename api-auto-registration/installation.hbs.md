@@ -1,20 +1,19 @@
 # Install API Auto Registration
 
-This document describes how to install API Auto Registration from the Tanzu Application Platform package repository.
+This topic describes how to install API Auto Registration from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use the full or run profile to install packages.
-The "full" and "run" profiles includes API Auto Registsration by default.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+>**Note:** The "iterate", "run", and "full" profiles include API Auto Registration by default. 
+> If your cluster is one of these profiles, skip the install and proceed to the [Usage section](usage.md).
+> For more information about profiles, see [About TAP profiles](../about-package-profiles.md#profiles-and-packages).
 
-## <a id='prereqs'></a>Prerequisites
+## <a id='prereqs'></a>TAP Prerequisites
 
-Before installing API Auto Registration:
-
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+Before installing API Auto Registration, complete all prerequisites to install Tanzu Application Platform. 
+For more information, see [TAP Prerequisites](../prerequisites.md).
 
 ## <a id='install'></a>Install
 
-To install API Auto Registration:
+To install the API Auto Registration package:
 
 1. List version information for the package by running:
 
@@ -34,19 +33,13 @@ To install API Auto Registration:
 
 1. (Optional) Gather values schema:
 
-    List version information for the package by running:
-
-    ```console
-    tanzu package available list apis.apps.tanzu.vmware.com --namespace tap-install
-    ```
-
     Display values schema of the package:
 
     ```console
     tanzu package available get apis.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed in step 1.
+    Where `VERSION-NUMBER` is the version of the package listed in earlier.
 
     For example:
 
@@ -55,32 +48,33 @@ To install API Auto Registration:
 
     Retrieving package details for apis.apps.tanzu.vmware.com/0.1.0... 
     KEY                        DEFAULT                                       TYPE     DESCRIPTION
+    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS connections with a custom CA
+    cluster_name               dev                                           string   Name of the cluster that will be used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
+    tap_gui_url                http://server.tap-gui.svc.cluster.local:7000  string   FQDN URL for TAP GUI
     replicas                   1                                             integer  Number of controller replicas to deploy
     resources.limits.cpu       500m                                          string   CPU limit of the controller
     resources.limits.memory    500Mi                                         string   Memory limit of the controller
     resources.requests.cpu     20m                                           string   CPU request of the controller
     resources.requests.memory  100Mi                                         string   Memory request of the controller
-    tap_gui_url                http://server.tap-gui.svc.cluster.local:7000  string   FQDN URL for TAP GUI
-    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS connections with a custom CA
-    cluster_name               dev                                           string   Name of the cluster that will be used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
     logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging
     ```
 
-1. Locate the TAP GUI url
+2. Locate the Tanzu Application Platform GUI URL.
 
-    When running on a full profile tap cluster, the default value of TAP GUI url should be sufficient.
+    When running on a full profile Tanzu Application Platform cluster, the default value of Tanzu Application Platform GUI URL is sufficient. You might want to edit this to match the externally available FQDN of Tanzu Application Platform GUI to display the entity URL in the externally accessible APIDescriptor status.
 
-    When installed in a run cluster or without a profile where TAP GUI is not installed in the same cluster, you will need to set the `tap_gui_url` parameters correctly for successful entity registration with TAP GUI.
+    When installed in a run cluster or without a profile where Tanzu Application Platform GUI is not installed in the same cluster, you must set the `tap_gui_url` parameters correctly for successful entity registration with Tanzu Application Platform GUI.
 
-    You can locate the `tap_gui_url` by going to the view cluster with the TAP GUI you want to register the entity with and executing the following commands
+    You can locate the `tap_gui_url` by going to the view cluster with the Tanzu Application Platform GUI you want to register the entity with:
 
     ```console
     kubectl get secret tap-values -n tap-install -o jsonpath="{.data['tap-values\.yaml']}" | base64 -d | yq '.tap_gui.app_config.app.baseUrl'
     ``` 
 
-1. (Optional) Create `api-auto-registration-values.yaml`
+1. (Optional but recommended) Create `api-auto-registration-values.yaml`
 
-    If you'd like to overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file that looks like this:
+    If you'd like to overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file as follows:
+
 
     ```yaml
     tap_gui_url: https://tap-gui.view-cluster.com
@@ -93,7 +87,7 @@ To install API Auto Registration:
         -----END CERTIFICATE-----
     ```
 
-1. Install the package using the Tanzu CLI
+4. Install the package using the Tanzu CLI:
     
     ```console
     tanzu package install api-auto-registration 
@@ -103,7 +97,7 @@ To install API Auto Registration:
     --values-file api-auto-registration-values.yaml
     ``` 
 
-1. Verify the package installation by running:
+5. Verify the package installation by running:
 
     ```console
     tanzu package installed get api-auto-registration -n tap-install
@@ -115,9 +109,7 @@ To install API Auto Registration:
     kubectl get pods -n api-auto-registration
     ```
 
-    Verify that `STATUS` is `Running`.
-
-    Apply a simple APIDescriptor resource to your cluster:
+6. Verify that applying an APIDescriptor resource to your cluster results in the `STATUS` showing `Ready`:
 
     ```console
     kubectl apply -f - <<EOF
@@ -137,10 +129,23 @@ To install API Auto Registration:
     EOF
     ```
 
-    Verify that all status conditions are resolved to `TRUE` when describing the resource:
+    Verify that the APIDescriptor status shows `Ready`:
 
     ```console
-    kubectl describe apidescriptor sample-api-descriptor-with-absolute-url
+    kubectl get apidescriptors
+    NAME                                       STATUS
+    sample-api-descriptor-with-absolute-url    Ready
+
+    kubectl get apidescriptors -owide
+    NAME                                       STATUS    TAP GUI ENTITY URL     API SPEC URL
+    sample-api-descriptor-with-absolute-url    Ready     <url-to-the-entity>    <url-to-the-api-spec>
     ```
 
-    Verify that the entity is created successfully in your TAP GUI: `<TAP_GUI_URL>/catalog/default/api/sample-api-descriptor-with-absolute-url`
+    If the status does not show `Ready`, you can inspect the reason with the detailed message shown by running:
+
+    ```console
+    kubectl get apidescriptor sample-api-descriptor-with-absolute-url -o jsonpath='{.status.conditions[?(@.type=="Ready")].message}'
+    ```
+
+    Verify that the entity is created successfully in your Tanzu Application Platform GUI: 
+    `<TAP_GUI_URL>/catalog/default/api/sample-api-descriptor-with-absolute-url`

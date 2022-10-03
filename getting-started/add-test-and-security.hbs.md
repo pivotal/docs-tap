@@ -118,6 +118,7 @@ the workload must be updated to point at your Tekton pipeline.
       --git-branch main \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
+      --label app.kubernetes.io/part-of=tanzu-java-web-app \
       --yes
     ```
 
@@ -179,16 +180,16 @@ the workload must be updated to point at your Tekton pipeline.
 ### <a id="prereqs-install-OOTB-test-scan"></a>Prerequisites
 
 - Before installing OOTB Supply Chain with Testing and Scanning, you must first install OOTB Supply Chain with Testing.
-- The Grype must be installed for scanning.
+- Both the Scan Controller and the default Grype scanner must be installed for scanning. Refer to the verify installation steps later in the topic.
 
-  > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies.
+  > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for the languages and frameworks with check marks in the column "Extended Scanning Coverage using Anchore Grype" on the [Language and Framework Support Table](../about-package-profiles.hbs.md#language-support).
 
-- [Enable CVE scan results](../tap-gui/plugins/scc-tap-gui.md#scan).
+- [Enable CVE scan results in the Tanzu Application Platform GUI](../tap-gui/plugins/scc-tap-gui.md#scan).
 
 To install OOTB Supply Chain with Testing and Scanning:
 
 1. Supply Chain Security Tools (SCST) - Scan is installed as part of the Tanzu Application Platform profiles.
-Verify that both Scan Link and Grype Scanner are installed by running:
+Verify that both Scan Controller and Grype Scanner are installed by running:
 
     ```console
     tanzu package installed get scanning -n tap-install
@@ -199,7 +200,7 @@ Verify that both Scan Link and Grype Scanner are installed by running:
 
     During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is deployed into another namespace, these sample ScanTemplates must also be present in the other namespace. One way to accomplish this is to install Grype Scanner again and provide the namespace in the values file.
 
-    A ScanPolicy is required and must be in the required namespace. A sample ScanPolicy is provided below but you can also supply your own. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idupdates-to-developer-namespacea-updates-to-the-developer-namespace) for more detail. To apply the sample ScanPolicy, you can either add the namespace flag to the kubectl command or add the namespace field to the template itself. Run:
+    A ScanPolicy is required and must be in the required namespace. A sample ScanPolicy is provided as follows to block a supply chain when CVEs with critical, high, and unknown ratings are found using `notAllowedSeverities := ["Critical","High","UnknownSeverity"]`. You can also configure the supply chain to use your own custom policies and apply exceptions when you want to ignore certain CVEs. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#updates-to-developer-namespace). To apply the sample ScanPolicy, you can either add the namespace flag to the kubectl<!--฿ Missing code tags? ฿--> command or add the namespace text box to the template by running:
 
     ```console
     kubectl apply -f - -o yaml << EOF
@@ -208,12 +209,14 @@ Verify that both Scan Link and Grype Scanner are installed by running:
     kind: ScanPolicy
     metadata:
       name: scan-policy
+      labels:
+        'app.kubernetes.io/part-of': 'enable-in-gui'
     spec:
       regoFile: |
         package main
 
         # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
-        notAllowedSeverities := ["Critical","High","UnknownSeverity"]
+        notAllowedSeverities := ["Critical", "High", "UnknownSeverity"]
         ignoreCves := []
 
         contains(array, elem) = true {
@@ -292,6 +295,7 @@ pipeline:
       --git-branch main \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
+      --label app.kubernetes.io/part-of=tanzu-java-web-app \
       --yes
     ```
 
@@ -356,7 +360,7 @@ pipeline:
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
 
-    If the source or image scan has a "Failed" phase, the scan has failed compliance and the supply chain stops.  See component documentation for [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow) on the CVE triage workflow.
+    > **Important**: If the source or image scan has a "Failed" phase this means that the scan failed due to a scan policy violation and the supply chain stops. For information about the CVE triage workflow, see [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow).
 
 ### <a id="query-for-vuln"></a> Query for vulnerabilities
 
@@ -365,13 +369,11 @@ Scan reports are automatically saved to the [Supply Chain Security Tools - Store
 Query the tanzu-java-web-app image dependencies and vulnerabilities by running:
 
   ```console
-    insight image get --digest DIGEST
-    insight image vulnerabilities --digest  DIGEST
+    tanzu insight image get --digest DIGEST
+    tanzu insight image vulnerabilities --digest  DIGEST
   ```
 
 Where `DIGEST` is the component version or image digest printed in the `KUBECTL GET` command.
-
-> **Important:** The `Insight CLI` is separate from the Tanzu CLI.
 
 For additional information and examples, see [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md).
 <br>

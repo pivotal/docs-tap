@@ -9,6 +9,10 @@ that Application and DevSecOps teams can incorporate early in their path to
 production as it is a known industry best practice for reducing security risk 
 and ensuring more efficient remediation.
 
+## <a id="use-cases"></a>Language support
+
+For information about the languages and frameworks that are supported by Tanzu Application Platform components, see the [Language and framework support in Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-about-package-profiles.html#language-and-framework-support-in-tanzu-application-platform-2) table.
+
 ## <a id="use-cases"></a>Use cases
 
 The following use cases apply to Supply Chain Security Tools - Scan:
@@ -76,7 +80,7 @@ the impact of the limitations:
     - scanning running software in test, stage, and production environments at a regular cadence.
     - generating accurate provenance at any level so that scanners have a complete picture of the dependencies to scan. 
     This is where a software bill of materials (SBoM) comes into play. To help you automate this process, VMware Tanzu Build Service, 
-    leveraging Cloud Native Buildpacks, generates an SBoM for Java and Node.js based projects. 
+    leveraging Cloud Native Buildpacks, generates an SBoM for buildpack-based projects. 
     Since this SBoM is generated during the image building stage, it is more accurate and complete than one generated earlier or later in the release life cycle. 
     This is because it can highlight dependencies introduced at the time of build that might introduce potential for compromise.
 - Scan by using multiple scanners to maximize CVE coverage.

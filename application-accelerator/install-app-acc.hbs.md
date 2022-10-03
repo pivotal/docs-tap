@@ -35,10 +35,20 @@ When you install the Application Accelerator, you can configure the following op
 | ingress.include | False | Option to include the ingress configuration in the installation |
 | ingress.enable_tls | False | Option to include TLS for the ingress configuration |
 | domain | tap.example.com | Top-level domain to use for ingress configuration, defaults to `shared.ingress_domain` |
-| tls.secret_n_ame | tls | The name of the secret |
+| tls.secret_name | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
 | telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.                         
 | telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?  
+| git_credentials.secret_name | git-credentials | The name to use for the secret storing Git credentials for accelerators |
+| git_credentials.username | null | The username to use in secret storing Git credentials for accelerators |
+| git_credentials.password | null | The password to use in secret storing Git credentials for accelerators |
+| git_credentials.ca_file | null | The CA certificate data to use in secret storing Git credentials for accelerators |
+| managed_resources.enabled | false | Whether to enable the App used to control managed accelerator resources |
+| managed_resources.git.url | none | Required if managed_resources are enabled; Git repo URL containing manifests for managed accelerator resources |
+| managed_resources.git.ref | origin/main | Required if managed_resources are enabled; Git ref to use for repo containing manifests for managed accelerator resources |
+| managed_resources.git.sub_path | null | Git subPath to use for repo containing manifests for managed accelerator resources |
+| managed_resources.git.secret_ref | git-credentials | Secret name to use for repo containing manifests for managed accelerator resources |
+
 
 VMware recommends that you do not override the defaults for `registry.secret_ref`,
 `server.engine_invocation_url`, or `engine.service_type`.
@@ -69,7 +79,7 @@ To install Application Accelerator:
     $ tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for accelerator.apps.tanzu.vmware.com...
       NAME                               VERSION  RELEASED-AT
-      accelerator.apps.tanzu.vmware.com  1.2.1    2022-06-22 13:00:00 -0400 EDT
+      accelerator.apps.tanzu.vmware.com  1.3.1    2022-09-30 13:00:00 -0400 EDT
     ```
 
 2. (Optional) To make changes to the default installation settings, run:

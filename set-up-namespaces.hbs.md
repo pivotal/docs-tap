@@ -1,10 +1,16 @@
 # Set up developer namespaces to use installed packages
 
-To create a `Workload` for your application by using the registry credentials specified,
-run these commands, which also add credentials and Role-Based Access Control (RBAC) rules to the namespace
+You can choose either one of the following two approaches to create a `Workload` 
+for your application by using the registry credentials specified, 
+add credentials and Role-Based Access Control (RBAC) rules to the namespace
 that you plan to create the `Workload` in:
 
-> **Note:** By following step 1 and step 2, you will enable your current user to submit jobs to the Supply Chain. By continuing with step 3 and step 4, you will enable additional users by using Kubernetes RBAC to submit jobs to the Supply Chain.
+- [Enable single user access](#single-user-access).
+- [Enable additional users access with Kubernetes RBAC](#additional-user-access).
+
+## <a id='single-user-access'></a>Enable single user access
+
+Follow these steps to enable your current user to submit jobs to the Supply Chain:
 
 1. To add read/write registry credentials to the developer namespace, run:
 
@@ -39,7 +45,7 @@ that you plan to create the `Workload` in:
 
     >**Note:** This step is not required if you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) instead of secrets. You can specify the Role Amazon Resource Name (ARN) in the next step.
 
-2. To add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace, run:
+1. To add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace, run:
 
     ```console
     cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
@@ -102,7 +108,13 @@ that you plan to create the `Workload` in:
       - name: tap-registry
     ```
 
-3. Choose either of the following options to give developers namespace-level access and view access to appropriate cluster-level resources:
+## <a id='additional-user-access'></a>Enable additional users access with Kubernetes RBAC
+
+Follow these steps to enable additional users by using Kubernetes RBAC to submit jobs to the Supply Chain:
+
+1. [Enable single user access](#single-user-access).
+
+1. Choose either of the following options to give developers namespace-level access and view access to appropriate cluster-level resources:
 
     - **Option 1:** Use the [Tanzu Application Platform RBAC CLI plug-in (beta)](authn-authz/binding.hbs.md#install).
 
@@ -208,7 +220,7 @@ that you plan to create the `Workload` in:
         For an example of how to set up Azure AD with your cluster, see
         [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
-4. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the bindings are applied.
+1. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the bindings are applied.
 
 ## <a id='next-steps'></a>Next steps
 

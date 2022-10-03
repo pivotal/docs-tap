@@ -45,10 +45,13 @@ To do so:
       name: k8s-reader
     rules:
     - apiGroups: ['']
-      resources: ['pods', 'pods/log', 'services', 'configmaps']
+      resources: ['pods', 'pods/log', 'services', 'configmaps', 'limitranges']
+      verbs: ['get', 'watch', 'list']
+    - apiGroups: ['metrics.k8s.io']
+      resources: ['pods']
       verbs: ['get', 'watch', 'list']
     - apiGroups: ['apps']
-      resources: ['deployments', 'replicasets']
+      resources: ['deployments', 'replicasets', 'statefulsets', 'daemonsets']
       verbs: ['get', 'watch', 'list']
     - apiGroups: ['autoscaling']
       resources: ['horizontalpodautoscalers']
@@ -92,7 +95,7 @@ To do so:
       - imagerepositories
       - mavenartifacts
       verbs: ['get', 'watch', 'list']
-    - apiGroups: ['conventions.carto.run']
+    - apiGroups: ['conventions.apps.tanzu.vmware.com']
       resources:
       - podintents
       verbs: ['get', 'watch', 'list']
@@ -116,6 +119,9 @@ To do so:
       resources:
       - apps
       verbs: ['get', 'watch', 'list']
+    - apiGroups: [ 'batch' ]
+      resources: [ 'jobs', 'cronjobs' ]
+      verbs: [ 'get', 'watch', 'list' ]
     ```
 
     This YAML content creates `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
@@ -129,31 +135,47 @@ To do so:
     This ensures the `kubeconfig` context is set to the cluster with resources to be viewed in
     Tanzu Application Platform GUI.
 
-1. Discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values by running:
+1. Discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values:
 
-    ```console
-    CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+   - If you're watching a v1.23 or earlier Kubernetes cluster, run:
 
-    CLUSTER_TOKEN=$(kubectl -n tap-gui get secret $(kubectl -n tap-gui get sa tap-gui-viewer -o=json \
-    | jq -r '.secrets[0].name') -o=json \
-    | jq -r '.data["token"]' \
-    | base64 --decode)
+     ```console
+     CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
-    echo CLUSTER_URL: $CLUSTER_URL
-    echo CLUSTER_TOKEN: $CLUSTER_TOKEN
-    ```
+     CLUSTER_TOKEN=$(kubectl -n tap-gui get secret $(kubectl -n tap-gui get sa tap-gui-viewer -o=json \
+     | jq -r '.secrets[0].name') -o=json \
+     | jq -r '.data["token"]' \
+     | base64 --decode)
+
+     echo CLUSTER_URL: $CLUSTER_URL
+     echo CLUSTER_TOKEN: $CLUSTER_TOKEN
+     ```
+
+   - If you're watching a v1.24 or later Kubernetes cluster, run:
+
+     ```console
+     CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+
+     CLUSTER_TOKEN=$(kubectl create token tap-gui-viewer --namespace tap-gui)
+
+     echo CLUSTER_URL: $CLUSTER_URL
+     echo CLUSTER_TOKEN: $CLUSTER_TOKEN
+     ```
 
 1. (Optional) Configure the Kubernetes client to verify the TLS certificates presented by a cluster's
 API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
 
     ```console
-    CLUSTER_CA_CERTIFICATES=$(kubectl config view --raw -o jsonpath='{.clusters[0].cluster.certificate-authority-data}')
+    CLUSTER_CA_CERTIFICATES=$(kubectl config view --raw -o jsonpath='{.clusters[?(@.name=="CLUSTER-NAME")].cluster.certificate-authority-data}')
 
     echo CLUSTER_CA_CERTIFICATES: $CLUSTER_CA_CERTIFICATES
     ```
 
+    Where `CLUSTER-NAME` is your cluster name.
+
 1. Record the `CLUSTER_URL` and `CLUSTER_TOKEN` values for when you
-[Update Tanzu Application Platform GUI to view resources on multiple clusters](#update-tap-gui) later.
+   [Update Tanzu Application Platform GUI to view resources on multiple clusters](#update-tap-gui)
+   later.
 
 ## <a id="update-tap-gui"></a> Update Tanzu Application Platform GUI to view resources on multiple clusters
 
