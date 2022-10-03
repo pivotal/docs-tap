@@ -195,12 +195,23 @@ To add or change organization catalog locations:
    For more information about static catalog configuration, see the
    [Backstage documentation](https://backstage.io/docs/features/software-catalog/configuration#static-location-configuration).
 
-2. Update the package to include the catalog by running:
+2. Update the package to include the catalog:
 
+   - Run this command if you installed TAP GUI via a profile:
    ```console
-   tanzu package installed update backstage \
+   tanzu package installed update tap \
+     --package-name tap.tanzu.vmware.com \
      --version PACKAGE-VERSION \
-     -f VALUES-FILE
+     --values-file tap-values.yaml \
+     --namespace tap-install
+   ```
+   - Run this command if you installed TAP GUI as an individual package:
+   ```console
+   tanzu package installed update tap-gui \
+     --package-name tap-gui.tanzu.vmware.com \
+     --version PACKAGE-VERSION \
+     --values-file tap-gui-values.yaml \
+     --namespace tap-install
    ```
 
 3. Verify the status of this update by running:
