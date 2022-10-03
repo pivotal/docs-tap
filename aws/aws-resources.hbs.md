@@ -1,6 +1,6 @@
 # Creating AWS Resources for Tanzu Application Platform
 
-To install Tanzu Application Platform within the Amazon Web Services (AWS) Ecosystem, several AWS resources need to be created. This guide walks you through creating the following resources:
+To install Tanzu Application Platform within the Amazon Web Services (AWS) Ecosystem, you must create several AWS resources. This guide walks you through creating:
 
 - An Amazon Elastic Kubernetes Service (EKS) cluster to install Tanzu Application Platform.
 - Identity and Access Management (IAM) roles to allow authentication and authorization to read and write from Amazon Elastic Container Registry (ECR).
