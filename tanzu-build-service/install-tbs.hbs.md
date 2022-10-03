@@ -68,6 +68,8 @@ To install Tanzu Build Service by using the Tanzu CLI:
         >For more information, see [Use Secret References for registry credentials](#install-secret-refs)
         >or [Use AWS IAM authentication for registry credentials](#tbs-tcli-install-ecr).
 
+        >**Note:** If you are running on Openshift add `kubernetes_distribution: openshift`
+
 1. (Optional) Under the `ca_cert_data` key in the `tbs-values.yaml` file,
 provide a PEM-encoded CA certificate for Tanzu Build Service.
 This certificate is used for accessing the container image registry and is also provided to the build process.
