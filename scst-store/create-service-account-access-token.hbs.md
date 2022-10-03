@@ -258,15 +258,27 @@ To create a read-write service account, run the following command. The command c
 ## <a id='get-access-token'></a>Getting the Access Token
 To retrieve the read-only access token, run:
 
-```console
-kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
-```
+* Kubernetes version before 1.24
+  ```console
+  kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
+  ```
+
+* Kubernetes v1.24 or later
+  ```console
+  kubectl get secrets metadata-store-read-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d
+  ```
 
 To retrieve the read-write access token run:
 
-```console
-kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-write-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
-```
+* Kubernetes version before 1.24
+  ```console
+  kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-write-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
+  ```
+
+* Kubernetes v1.24 or later
+  ```console
+  kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d
+  ```
 
 The access token is a "Bearer" token used in the http request header "Authorization." (ex. `Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
 
