@@ -153,8 +153,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="tbs-features"></a> Tanzu Build Service
 
-- Feature 1
-- Feature 2
+- TAP/TBS now ships with support for Jammy Stacks
+  - Users can [opt-in](tanzu-build-service/dependencies.md#bionic-vs-jammy) to building workloads with the jammy stacks
 
 #### <a id="srvc-toolkit-features"></a> Services Toolkit
 
