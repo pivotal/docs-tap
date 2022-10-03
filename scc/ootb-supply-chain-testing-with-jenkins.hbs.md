@@ -5,7 +5,7 @@ resource which triggers a build for a specified Jenkins job.
 
 The Jenkins task in both the [Out of the Box Supply Chain With
 Testing](ootb-supply-chain-testing.html) and [Out of the Box Supply Chain With
-Testing and Scanning](ootb-supply-chain-testing-scanning.html) may be configured
+Testing and Scanning](ootb-supply-chain-testing-scanning.html) can be configured
 to trigger a Jenkins job.  The task is implemented as a Tekton `ClusterTask` and
 can be run from a Tekton `Pipeline`.
 
@@ -14,7 +14,7 @@ can be run from a Tekton `Pipeline`.
 Follow the instructions from [Out of the Box Supply Chain With
 Testing](ootb-supply-chain-testing.html) or [Out of the Box Supply Chain With
 Testing and Scanning](ootb-supply-chain-testing-scanning.html) to successfully
-install the required packages.  You need to set up one, but not both, of those
+install the required packages. To set up one, but not both, of those
 packages.
 
 These supply chains can use the Jenkins service during the `source-tester`
@@ -35,14 +35,14 @@ if they are not declared in the `Workload` `job-params`.  The Jenkins task
 only passes these parameters, however, if they are defined in the Jenkins job
 itself.
 
-- `SOURCE_URL` **string** The URL of source code to be tested.  Note that it
+- `SOURCE_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->URL` **string** The URL of source code to be tested. |Note: | This
   is served by the `source-provider` resource in the supply chain and is only
   resolvable inside the Kubernetes cluster.  This URL is only useful if your
   Jenkins service is running inside the cluster or there is some kind of ingress
   set up and the Jenkins service can make requests to services inside the
   cluster.
 
-- `SOURCE_REVISION` **string** The revision of the source code to be tested.
+- `SOURCE_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->REVISION` **string** The revision of the source code to be tested.
   The format of this value can vary depending on the implementation of the
   `source-provider` resource.  If the "source-provider" is the FluxCD
   `GitRepository` resource then the value of the `SOURCE_REVISION` is  the
@@ -61,8 +61,8 @@ example.
 
 Add the following parameters to your Jenkins job:
 
-- `SOURCE_REVISION`  **string**
-- `GIT_URL`          **string**
+- `SOURCE_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->REVISION`  **string**
+- `GIT_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->URL`          **string**
 
 Use the following script in your pipeline:
 
@@ -105,8 +105,7 @@ pipeline {
 }
 ```
 
-You need to configure your `Workload` to pass the `GIT_URL` parameter into
-the Jenkins task:
+To configure your `Workload` to pass the `GIT_URL` parameter into the Jenkins task:
 
 ```console
 tanzu apps workload create workload \
@@ -153,7 +152,7 @@ stringData:
 ```
 
 You cannot use the Tanzu CLI to create secrets such as this, but you can use
-the Kubectl CLI instead.
+the Kubernetes command line tool (kubectl) CLI instead.
 
 If you have saved the password to a file and you have saved the
 optional PEM-encoded CA certificate in a file, here is an example command to
@@ -183,7 +182,7 @@ parameters:
 - `job-params`, **required** A list of key-value pairs, encoded as a JSON
   string, that passes in parameters needed for the Jenkins job.
 
-Tasks:
+tasks:
 
 - `jenkins-task`, **required** This `ClusterTask` is one of the tasks that the
   pipeline runs to successfully trigger the Jenkins job.  It is
@@ -238,8 +237,7 @@ spec:
         value: $(params.job-params)
 ```
 
-Save the earlier YAML definition to a file (e.g.: `pipeline.yaml`), then run the
-following command to add the pipeline to your cluster.
+Save the earlier YAML definition to a file (e.g.: `pipeline.yaml`), run:
 
 ```console
 kubectl apply -f pipeline.yaml
@@ -255,13 +253,13 @@ It is pulled at the time that supply chain executes the job. As a result, it
 does not implicitly have access to the `imagePullSecrets` with the required
 credentials.
 
-**Important:** The `ServiceAccount` that a developer can configure with their
+> **Important:** The `ServiceAccount` that a developer can configure with their
 `Workload`s is *not* passed to the task and is not used to pull the Jenkins
 Adapter container image.  If you have followed the Tanzu Application Platform
 Install Guide then you have a `Secret` named `tap-registry` in each of your
 cluster's namespaces. You can patch the default Service Account in your
 workload's namespace so that your supply chain can pull the Jenkins Adapter
-image successfully.  e.g.:
+image successfully.  For example:
 
 ```console
 kubectl patch serviceaccount default \
@@ -282,13 +280,13 @@ To enable the supply chain to run Jenkins tasks the `Workload` must include the
 following parameters:
 
 ```yaml
-params:
+params<!--฿ |parameters| is preferred. ฿-->:
 
   #! Required: picks the pipeline
   - name: testing_pipeline_matching_labels
     value:
       #! This label must match the label on the pipeline created earlier
-      apps.tanzu.com/pipeline: jenkins-pipeline
+      apps.tanzu<!--฿ The brand is |Tanzu|. ฿-->.com/pipeline: jenkins-pipeline
 
   #! Required: Passes parameters to pipeline
   - name: testing_pipeline_params
@@ -301,7 +299,7 @@ params:
       secret-name: my-secret
 
       #! Required: The `job-params` element is required, but the parameter string
-      #! may be empty. If empty, then set this value to `[]`.  If non-empty then the
+      #! might be empty. If empty, then set this value to `[]`.  If non-empty then the
       #! value contains a JSON-encoded list of parameters to pass to the Jenkins job.
       #! Ensure that the quotation marks inside the JSON-encoded string are escaped.
       job-params: "[{\"name\":\"A\",\"value\":\"x\"},{\"name\":\"B\",\"value\":\"y\"},...]"
@@ -329,19 +327,19 @@ that is sent to the Jenkins job.  The parameter are entered into the
 [{"name":"GIT_URL", "value":"https://github.com/spring-projects/spring-petclinic"}, {"name":"GIT_BRANCH", "value":"main"}]
 ```
 
-**Important:** None of the fields in the `Workload` resource are implicitly passed to the
+> **Important:** None of the fields in the `Workload` resource are implicitly passed to the
 Jenkins job. You have to set them in the `job-params` explicitly.
 
-**Exception:** The `SOURCE_URL` and `SOURCE_REVISION` parameters are sent to the
+>**Exception:** The `SOURCE_URL` and `SOURCE_REVISION` parameters are sent to the
 Jenkins job implicitly by the Jenkins Adapter trigger program.  You can use the
 `SOURCE_REVISION` to verify which commit SHA to test, for example.  See [Making
 a Jenkins Test Job](#making-a-jenkins-test-job) earlier for details about how to use
-the git URL and source revision in a Jenkins test job.
+the Git URL and source revision in a Jenkins test job.
 
 Watch the quoting of the `job-params` value closely.  In the earlier `tanzu apps
 workload create` example the `job-params` value is a string with a JSON
 structure in it.  The value of the `--param-yaml testing_pipeline_params`
-parameter itself is a JSON string, so make sure to add backslash (`\`) escape
+parameter itself is a JSON string, add backslash (`\`) escape
 characters before the double quote characters (`"`) in the `job-params` value.
 
 Example output form the `tanzu apps workload create` command:
