@@ -138,8 +138,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
-- Feature 1
-- Feature 2
+- Added Tanzu Problems panel to show workload status errors inside the IDE
 
 #### <a id="dev-tls-intelj-features"></a>Tanzu Developer Tools for IntelliJ
 
