@@ -16,52 +16,40 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
 
 1. To add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace, update the namespace and role arn and run:
 
-    ```console
-    cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: tap-registry
-      annotations:
-        secretgen.carvel.dev/image-pull-secret: ""
-    type: kubernetes.io/dockerconfigjson
-    data:
-      .dockerconfigjson: e30K
-    ---
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
+  ```console
+  cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
+  apiVersion: v1
+  kind: ServiceAccount
+  metadata:
+    name: default
+    annotations:
+      eks.amazonaws.com/role-arn: <Role ARN>
+  ---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    name: default-permit-deliverable
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: deliverable
+  subjects:
+    - kind: ServiceAccount
       name: default
-      annotations:
-        eks.amazonaws.com/role-arn: <Role ARN>
-    imagePullSecrets:
-      - name: tap-registry
-    ---
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: RoleBinding
-    metadata:
-      name: default-permit-deliverable
-    roleRef:
-      apiGroup: rbac.authorization.k8s.io
-      kind: ClusterRole
-      name: deliverable
-    subjects:
-      - kind: ServiceAccount
-        name: default
-    ---
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: RoleBinding
-    metadata:
-      name: default-permit-workload
-    roleRef:
-      apiGroup: rbac.authorization.k8s.io
-      kind: ClusterRole
-      name: workload
-    subjects:
-      - kind: ServiceAccount
-        name: default
-    EOF
-    ```
+  ---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: RoleBinding
+  metadata:
+    name: default-permit-workload
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: workload
+  subjects:
+    - kind: ServiceAccount
+      name: default
+  EOF
+  ```
 
 ## <a id='additional-user-access'></a>Enable additional users access with Kubernetes RBAC
 
