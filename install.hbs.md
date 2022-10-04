@@ -316,7 +316,10 @@ contour:
         LBType: nlb
 ```
 
-### <a id='additional-build-service-config'></a> Additional Optional Build Service Configuration
+### <a id='additional-build-service-config'></a> (Optional) Additional Build Service Configurations
+
+- [(Optional) Configure your profile with full dependencies](#full-dependencies)
+- [(Optional) Configure your profile with the Jammy stack only](#jammy-only)
 
 #### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
 
@@ -347,13 +350,13 @@ After configuring `full` dependencies, you must install the dependencies after
 you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
-#### <a id='jammy-only'></a> (Optional) Configure your profile with the jammy stack only
+#### <a id='jammy-only'></a> (Optional) Configure your profile with the Jammy stack only
 
-TAP 1.3 supports building applications with the [Ubuntu 22.04 (Jammy) stack](tanzu-build-service/dependencies.html#bionic-vs-jammy).
+Tanzu Application Platform v1.3.0 supports building applications with the [Ubuntu 22.04 (Jammy) stack](tanzu-build-service/dependencies.html#bionic-vs-jammy).
 By default, workloads are built with Ubuntu 18.04 (Bionic) stack. However, if you do not need access to the Bionic stack,
-you can install TAP with the Bionic stack removed and all workloads will default to the Jammy stack.
+you can install Tanzu Application Platform without the Bionic stack and all workloads are built with the Jammy stack by default.
 
-To install TAP with Jammy as the only available stack, use `stack_configuration: jammy-only` in the `tap-values.yaml`.
+To install Tanzu Application Platform with Jammy as the only available stack, use `stack_configuration: jammy-only` in the `tap-values.yaml`.
 
 ### <a id='custom-scc'></a> Custom SCC
 
