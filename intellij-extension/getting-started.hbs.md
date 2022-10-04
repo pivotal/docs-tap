@@ -4,12 +4,13 @@ This topic describes how to set up the Tanzu Developer Tools for IntelliJ extens
 
 ## <a id="overview"></a> Overview
 
-To use the Tanzu Developer Tools for IntelliJ extension with your project, the project
-requires three files:
+The Tanzu Developer Tools for IntelliJ extension makes use of the following files
+within your project. 
 
-- `workload.yaml`
-- `catalog-info.yaml`
-- `Tiltfile`
+- `workload.yaml`: Required.
+- `catalog-info.yaml`: Required for TAP-gui integration.
+- `Tiltfile`: Required for live update.
+- `.tanzuignore`: Optional, but highly recommended.
 
 You can create these files manually using the instructions in this topic,
 or use the files in the [View an example project](#example-project) section.
@@ -150,6 +151,19 @@ For more information about this line, see the [Tilt documentation](https://docs.
 >**Note:** If you want to compile the source image from a local directory other than the
 >project directory, change the value of `local path`.
 >For more information, see [local path](glossary.md#local-path) in the glossary.
+
+## <a id="create-tanzuignore"></a> Create the `.tanzuignore` file
+
+In your project, you can include a file named `.tanzuignore` with no extension (no filetype),
+for example, `my-project/.tanzuignore`.
+
+When working with local source code, the `.tanzuignore` excludes files from the source code to be uploaded within the image. 
+It has a syntax similar to the `.gitignore` file. 
+
+### <a id="example-tanzuignore"></a> Example `.tanzuignore`
+
+See the [Tanzu Java Web App Sample](https://github.com/sample-accelerators/tanzu-java-web-app) for a
+[typical `.tanzuignore`](https://github.com/sample-accelerators/tanzu-java-web-app/blob/main/.tanzuignore) file that you can use as is, or as a starting point for your own.
 
 ## <a id="example-project"></a> View an example project
 
