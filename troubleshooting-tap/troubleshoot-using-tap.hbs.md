@@ -444,12 +444,16 @@ GitHub.
 
 **Solution**
 
-1. Update `aws-cli` to the latest version.
-1. Run:
+Follow these steps to update your `aws-cli` to a supported `v2.7.35` or greater and update the kubeconfig entry for your EKS cluster(s):
+
+1. Update `aws-cli` to the latest version. See [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) for more information.
+
+1. Update the kubeconfig entry for your EKS cluster(s):
 
     ```console
     aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
     ```
+
 1. In a new terminal window, run a Tanzu CLI command to verify the connection issue is resolved. For example:
 
     ```console
