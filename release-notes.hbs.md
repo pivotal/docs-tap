@@ -339,6 +339,9 @@ This release has the following known issues, listed by area and component.
   or `Tanzu: Apply`, which says that no workloads or Tiltfiles were found.
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cancel-action-warning).
 
+- **Live update not working when using server or worker Workload types:**
+  When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`
+
 - **Tiltfile snippet does not work on files named `Tiltfile` when Tilt extension is installed:** For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#tiltfile-snippet).
 
 #### <a id="intelj-ext-known-issues"></a>Intellij Extension
@@ -354,6 +357,8 @@ This release has the following known issues, listed by area and component.
   As such, starting mulitple Tanzu debug and live update sessions is a synchronous activity.  We are looking into
   how we might improve this expereince for our Users.
 
+- **Live update not working when using server or worker Workload types:**
+  When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
 - Known issue 1
