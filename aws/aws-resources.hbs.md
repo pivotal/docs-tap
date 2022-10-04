@@ -21,11 +21,11 @@ Using an IAM role on a service account mitigates the need to retrieve the token 
 
 Before installing Tanzu Application Platform on AWS, you need:
 
-1. An AWS Account. You need to create all of your resources within Amazon Web Services, so you need an Amazon account. For more information, see [How do I create and activate a new AWS account?](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/). You need your account ID for this walkthrough.
+- An AWS Account. You need to create all of your resources within Amazon Web Services, so you need an Amazon account. For more information, see [How do I create and activate a new AWS account?](https://aws.amazon.com/premiumsupport/knowledge-center/create-and-activate-aws-account/). You need your account ID for this walkthrough.
 
-2. AWS CLI. This walkthrough uses the AWS CLI to both query and configure resources in AWS, such as IAM roles. For more information, see this [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
+- AWS CLI. This walkthrough uses the AWS CLI to both query and configure resources in AWS, such as IAM roles. For more information, see this [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 
-3. EKSCTL command line. The EKSCTL command line helps you manage the life cycle of EKS clusters. This guide uses it to create clusters. To install the EKSCTL CLI, see [Installation](https://eksctl.io/introduction/#installation).
+- EKSCTL command line. The EKSCTL command line helps you manage the life cycle of EKS clusters. This guide uses it to create clusters. To install the EKSCTL CLI, see [Installation](https://eksctl.io/introduction/#installation).
 
 ## Export Environment Variables
 
