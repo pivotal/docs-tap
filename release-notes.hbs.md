@@ -296,6 +296,19 @@ This release has the following known issues, listed by area and component.
 - Known issue 1
 - Known issue 2
 
+#### <a id="cnrs-issues"></a> Cloud Native Runtimes
+
+- **Failure to successfully deploy workloads on Openshift**
+  When creating a workload from a Deliverable resource, it may not create successfully, and an error might be seen with the text
+  ```
+  pods "<pod name>" is forbidden: unable to validate against any security context constraint: 
+  [provider "anyuid": Forbidden: not usable by user or serviceaccount, spec.containers[0].securityContext.runAsUser:
+  Invalid value: 1000: must be in the ranges: [1000740000, 1000749999]
+  ```
+  This may be due to ServiceAccounts or Users bound to overly restrictive SecurityContextConstraints.
+
+  See the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html) for how to resolve this issue.
+
 #### <a id="functions-issues"></a> Functions (beta)
 
 - Known issue 1
