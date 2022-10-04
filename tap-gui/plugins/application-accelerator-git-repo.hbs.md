@@ -45,30 +45,29 @@ These steps describe an example configuration that uses GitHub:
    For more information, see the
    [Backstage documentation](https://backstage.io/docs/integrations/github/locations).
 
-### Using kubernetes secrets
+### <a id="k8s-secrets"></a> Using Kubernetes secrets
 
-There's the option to use kubernetes secrets to set the values for `clientId` and `clientSecret`
-to use this option follow the next steps:
+To use Kubernetes secrets to set the values for `clientId` and `clientSecret`:
 
-1. Create the kubernetes secret with the desired values
+1. Create the Kubernetes secret with the values that you want by running:
 
-```bash
-kubectl create secret githubOauthApp \
---from-literal=clientSecret=GITHUB-CLIENT-SECRET \
---from-literal=clientId=GITHUB-CLIENT-ID
-```
+   ```console
+   kubectl create secret githubOauthApp \
+   --from-literal=clientSecret=GITHUB-CLIENT-SECRET \
+   --from-literal=clientId=GITHUB-CLIENT-ID
+   ```
 
-2. Edit the `app-config.yaml` using the envitonment variables
+2. Edit the `app-config.yaml` by using the environment variables, as in the following example:
 
-```yaml
-auth:
-     environment: development
-     providers:
-       github:
-         development:
-           clientId: ${clientId}
-           clientSecret: ${clientSecret}
-```
+   ```yaml
+   auth:
+        environment: development
+        providers:
+          github:
+            development:
+              clientId: ${clientId}
+              clientSecret: ${clientSecret}
+   ```
 
 ## <a id="creating-project"></a> Create a Project
 
