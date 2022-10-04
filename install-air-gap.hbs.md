@@ -304,13 +304,13 @@ Where:
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
 - `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
-    * Harbor: `harbor.io/my-project/build-service`
-    * Artifactory: `artifactory.com/my-project/build-service`
+    * Harbor: `harbor.io/my-project/build-service`.
+    * Artifactory: `artifactory.com/my-project/build-service`.
 - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
-    * Harbor has the form `server: "my-harbor.io"`
-    * Docker Hub has the form `server: "index.docker.io"`
-    * Google Cloud Registry has the form `server: "gcr.io"`
+    * Harbor has the form `server: "my-harbor.io"`.
+    * Docker Hub has the form `server: "index.docker.io"`.
+    * Google Cloud Registry has the form `server: "gcr.io"`.
 - `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the shared section earlier and AWS ECR registry is used, you must ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Harbor has the form `repository: "my-project/supply-chain"`.
@@ -319,8 +319,8 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication.
 - `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#a-idmaven-repository-secreta-maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
-- `GITLABURL` is the hostname of your gitlab instance
-- `GITLAB-TOKEN` is the API token for your gitlab instance
+- `GITLABURL` is the host name of your GitLab instance.
+- `GITLAB-TOKEN` is the API token for your GitLab instance.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`. This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
