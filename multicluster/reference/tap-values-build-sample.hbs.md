@@ -35,7 +35,7 @@ Where:
 
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
   * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
-  * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+  * Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
   * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
 - `KP-DEFAULT-REPO-USERNAME` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
   * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
@@ -47,12 +47,12 @@ Where:
   * `full` is optimized to speed up builds and includes dependencies for all supported workload types.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
-    * Dockerhub has the form `server: "index.docker.io"`.
+    * Docker Hub has the form `server: "index.docker.io"`.
     * Google Cloud Registry has the form `server: "gcr.io"`.
 - `REPO-NAME` is where workload images are stored in the registry.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Harbor has the form `repository: "my-project/supply-chain"`.
-    * Dockerhub has the form `repository: "my-dockerhub-user"`.
+    * Docker Hub has the form `repository: "my-dockerhub-user"`.
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
 - `METADATA-STORE-URL-ON-VIEW-CLUSTER` references the URL of the Supply Chain Security Tools (SCST) - Store deployed on the View cluster. For more information, see SCST - Store's [Ingress and multicluster support](../../scst-store/ingress-multicluster.html#scst-scan-install) for additional details.

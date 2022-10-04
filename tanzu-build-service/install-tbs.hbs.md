@@ -75,7 +75,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
 
    - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
      * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
-     * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+     * Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
      * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
    - `KP-DEFAULT-REPO-USERNAME` is the name of the user who can write to `KP-DEFAULT-REPO`. You can write to this location with this credential.
      * For Google Cloud Registry, use `kp_default_repository_username: _json_key`
@@ -222,7 +222,7 @@ Where:
 
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
     * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
-    * Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
+    * Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
     * Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`
 - `KP-DEFAULT-REPO-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson` Secret containing credentials for `KP-DEFAULT-REPO`. You can write to this location with this credential.
 - `KP-DEFAULT-REPO-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson` Secret containing credentials for `KP-DEFAULT-REPO`. You can write to this location with this credential.

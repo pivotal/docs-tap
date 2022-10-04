@@ -18,7 +18,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
 - [Install Convention Service](convention-service/install-conv-service.md)
-- [Install default roles for Tanzu Application Platform](authn-authz/install.md)  
+- [Install default roles for Tanzu Application Platform](authn-authz/install.md)
 - [Install Developer Conventions](developer-conventions/install-dev-conventions.md)
 - [Install Learning Center for Tanzu Application Platform](learning-center/install-learning-center.md)
 - [Install Out of the Box Templates](scc/install-ootb-templates.md)
@@ -77,8 +77,8 @@ Use the following procedure to verify that the packages are installed.
 
 ## <a id='setup'></a> Set up developer namespaces to use installed packages
 
-You can choose either one of the following two approaches to create a `Workload` 
-for your application by using the registry credentials specified, 
+You can choose either one of the following two approaches to create a `Workload`
+for your application by using the registry credentials specified,
 add credentials and Role-Based Access Control (RBAC) rules to the namespace
 that you plan to create the `Workload` in:
 
@@ -99,7 +99,7 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
 
     - `YOUR-NAMESPACE` is the name you give to the developer namespace.
     For example, use `default` for the default namespace.
-    - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
+    - `REGISTRY-SERVER` is the URL of the registry. For Docker Hub, this must be
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
     and the trailing `/`. For Google Container Registry (GCR), this is `gcr.io`.
     Based on the information used in [Installing the Tanzu Application Platform Package and Profiles](install.hbs.md), you can use the
