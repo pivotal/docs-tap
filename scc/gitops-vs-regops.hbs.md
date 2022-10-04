@@ -23,7 +23,7 @@ image registry.
 
 >**Note:** For more information about providing source code either from a
 local directory or Git repository,
-see [Building from Source](building-from-source.md).  
+see [Building from Source](building-from-source.md).
 
 ## <a id="gitops"></a>GitOps
 
@@ -35,15 +35,15 @@ environments by using GitOps principles.
 Typically associated with an outerloop workflow, the GitOps approach is only activated if a
 collection of parameters are set:
 
-- `gitops.server_address` during the Out of the Box Supply Chains package installation or `gitops_server_address` 
+- `gitops.server_address` during the Out of the Box Supply Chains package installation or `gitops_server_address`
   configured as a workload parameter.
-- `gitops.repository_owner` during the Out of the Box Supply Chains package installation or `gitops_repository_owner` 
+- `gitops.repository_owner` during the Out of the Box Supply Chains package installation or `gitops_repository_owner`
   configured as a workload parameter.
-- `gitops.repository_name` during the Out of the Box Supply Chains package installation or `gitops_repository_name` 
+- `gitops.repository_name` during the Out of the Box Supply Chains package installation or `gitops_repository_name`
   configured as a workload parameter.
 
-With all three values set, Kubernetes configuration is written to the specified repository. If a 
-value is set at installation and the corresponding workload parameter is also set, the value of the workload parameter is 
+With all three values set, Kubernetes configuration is written to the specified repository. If a
+value is set at installation and the corresponding workload parameter is also set, the value of the workload parameter is
 respected.
 
 In the repository, files are located in the `./config/{workload-namespace}/{workload-name}` directory. This allows multiple workloads to commit configuration to the same repository.
@@ -54,9 +54,9 @@ In the repository, files are located in the `./config/{workload-namespace}/{work
 `tap-values.yaml`
 ```yaml
 gitops:
-  server_address: 
-  repository_owner: 
-  repository_name: 
+  server_address:
+  repository_owner:
+  repository_name:
 ```
 
 `workload`
@@ -125,7 +125,7 @@ Directory containing configuration: `./config/awesomeTeam/superApp`
 gitops:
   server_address:
   repository_owner:
-  repository_name: 
+  repository_name:
 ```
 
 `workload`
@@ -208,11 +208,11 @@ In this case, at the end of the supply chain, the configuration for this
 workload is published to the repository provided under the `gitops_repository`
 parameter.
 
-If you use deprecated parameters, kubernetes configuration is committed to the `./config` directory in the 
-repository. This can lead to collisions if two workloads specify the same repository, or two workloads in different 
+If you use deprecated parameters, Kubernetes configuration is committed to the `./config` directory in the
+repository. This can lead to collisions if two workloads specify the same repository, or two workloads in different
 namespaces have the same name and the `gitops.repository_prefix` is set in `tap-values.yaml`.
 
-If the deprecated values are set and any of the suggested gitops values are set, the deprecated values are 
+If the deprecated values are set and any of the suggested gitops values are set, the deprecated values are
 ignored.
 
 #### Examples
@@ -253,7 +253,7 @@ gitops:
       value: https://github.com/pivotal/kpack
 ```
 
-Resulting gitops repository: `https://github.com/vmware-tanzu/cartographer` (The deprecated param 
+Resulting gitops repository: `https://github.com/vmware-tanzu/cartographer` (The deprecated param
 `gitops_repository` is ignored.)
 
 Directory containing configuration: `./config/awesomeTeam/superApp`
@@ -276,15 +276,15 @@ gitops:
       value: kpack
 ```
 
-Resulting gitops repository: Fails to resolve as some, but not all, of the three gitops values are provided. (The 
+Resulting gitops repository: Fails to resolve as some, but not all, of the three gitops values are provided. (The
 deprecated value repository_prefix is ignored because suggested values are present)
 
 ---
 
 ### Pull Requests
 
-In the standard git-ops approach, configuration is pushed to a repository and is immediately applied 
-to a cluster by any deliverable watching that repository. Operators might want to manually review configuration before 
+In the standard git-ops approach, configuration is pushed to a repository and is immediately applied
+to a cluster by any deliverable watching that repository. Operators might want to manually review configuration before
 applying it to the cluster. To do this, operators must specify a `pull_request` commit strategy. You can use this
 strategy with the following Git providers:
 
@@ -293,9 +293,10 @@ strategy with the following Git providers:
 
 #### Authentication
 
-The pull request approach requires HTTP(S) authentication with a token. In the
-[kuberenetes secret](#a-idhttp-authahttps-basic-auth--token-based-authentication) that holds the Git credentials, the
-password text box must be filled with a token. When generating a token, ensure that it is given proper scope:
+The pull request approach requires HTTP(S) authentication with a token.
+In the [Kubernetes secret](#a-idhttp-authahttps-basic-auth--token-based-authentication)
+that holds the Git credentials, the password text box must be filled with a token.
+When generating a token, ensure that it is given proper scope:
 
 For HTTP(S) authentication, use one of the following tokens:
 - On GitHub, the token must have a
@@ -318,7 +319,7 @@ To use the `pull_request` commit strategy, set the following parameters:
 
 If a value is set at both installation and in a workload parameter, the workload parameter is respected.
 
-The recommended value for commit_branch is an empty string. This generates a new branch for each commit based 
+The recommended value for commit_branch is an empty string. This generates a new branch for each commit based
 on a hash of the time when the commit is created. This prevents collisions between multiple workloads using a single
 Git repository.
 
@@ -341,8 +342,9 @@ ootb_supply_chain_basic:
 
 And a workload with the name `app` in the `dev` namespace, you find:
 
-A commit to the `https://github.com/vmware-tanzu/cartographer` repository on a branch with a random name (e.g. 
-`MTY1MTYxMzE0NQo=`). There is a pull request open to merge this branch into the base branch `main`.
+A commit to the `https://github.com/vmware-tanzu/cartographer` repository on a branch
+with a random name, for example, `MTY1MTYxMzE0NQo=`.
+There is a pull request open to merge this branch into the base branch `main`.
 
 ### <a id="auth"></a>Authentication
 
