@@ -68,7 +68,7 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
         }
     ```
 
-    You can modify the following fields of the Rego file as part of the [CVE triage workflow](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow):
+    You can modify the following fields of the Rego file as part of the [CVE triage workflow](../scst-scan/triaging-and-remediating-cves.hbs.md#amend-scan-policy):
     
     - `notAllowedSeverities` contains the categories of CVEs that result in the SourceScan or ImageScan failing policy enforcement. Below is an example of how an `app-operator` might decide to only block "Critical" and "High" CVEs.
 
@@ -102,6 +102,8 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
     ```console
     kubectl apply -f <path_to_scan_policy>/<scan_policy_filename>.yaml -n <desired_namespace>
     ```
+
+See how scan policies are used in the CVE triage workflow in the [Triaging and Remediating CVEs](../scst-scan/triaging-and-remediating-cves.hbs.md#amend-scan-policy)
 
 ## <a id="gui-view-scan-policy"></a>Enable Tanzu Application Platform GUI to view ScanPolicy Resource
 

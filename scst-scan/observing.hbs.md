@@ -204,7 +204,7 @@ status:
 
 #### <a id="supply-chain-stops"></a> Resolving a Supply Chain that is blocked by failing scans
 
-If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see the CVE triage workflow in [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow).
+If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md).
 
 #### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
 
