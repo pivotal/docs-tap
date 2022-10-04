@@ -216,8 +216,8 @@ profile: full
 ceip_policy_disclosed: true
 buildservice:
   kp_default_repository: "REPOSITORY"
-  kp_default_repository_username: "REGISTRY-USERNAME" # Takes the value from shared section above by default, but can be overridden.
-  kp_default_repository_password: "REGISTRY-PASSWORD" # Takes the value from shared section above by default, but can be overridden.
+  kp_default_repository_username: "REGISTRY-USERNAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+  kp_default_repository_password: "REGISTRY-PASSWORD" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
   exclude_dependencies: true
 supply_chain: basic
 scanning:
@@ -229,13 +229,13 @@ contour:
     service:
       type: LoadBalancer
       annotations:
-      # This annotation is for air-gapped AWS only
+      # This annotation is for air-gapped AWS only.
           service.kubernetes.io/aws-load-balancer-internal: "true"
 
 ootb_supply_chain_basic:
   registry:
-      server: "SERVER-NAME" # Takes the value from shared section above by default, but can be overridden by setting a different value.
-      repository: "REPO-NAME" # Takes the value from shared section above by default, but can be overridden by setting a different value.
+      server: "SERVER-NAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+      repository: "REPO-NAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
   gitops:
       ssh_secret: "SSH-SECRET"
   maven:
@@ -245,7 +245,7 @@ ootb_supply_chain_basic:
 
 accelerator:
       samples:
-        # Prevent repeated polling of github to pull accelerators
+        # Prevent repeated polling of github to pull accelerators.
         include: false
 
 appliveview:
@@ -278,7 +278,7 @@ tap_gui:
       locations:
         - type: url
           target: https://GIT-CATALOG-URL/catalog-info.yaml
-    #Example Integration for custom gitlab
+    #Example Integration for custom GitLab:
     integrations:
       gitlab:
         - host: GITLABURL
