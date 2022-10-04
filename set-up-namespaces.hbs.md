@@ -230,4 +230,4 @@ For online installation:
 
 For air-gapped installation:
 
-- [Deploy your first air-gapped workload (beta)](getting-started/air-gap-workload.html)
+- [Deploy your first air-gapped workload](getting-started/air-gap-workload.html)
