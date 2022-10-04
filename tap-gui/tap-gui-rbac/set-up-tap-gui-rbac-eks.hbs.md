@@ -77,13 +77,13 @@ This content applies to EKS clusters.
     - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider. For Auth0, this
     is `https://${AUTH0_DOMAIN}/`.
 
-1. Using `eksctl`, run:
+2. Using `eksctl`, run:
 
     ```console
     eksctl associate identityprovider -f rbac-setup.yaml
     ```
 
-2. Verify that the association of the OIDC provider with the EKS cluster was successful by running:
+3. Verify that the association of the OIDC provider with the EKS cluster was successful by running:
 
     ```console
     eksctl get identityprovider --cluster CLUSTER-NAME
@@ -109,8 +109,8 @@ Configure visibility of the remote cluster in Tanzu Application Platform GUI:
     To view other clusters one by one, edit the number in `.clusters[0].cluster.server` or edit the
     command to view all the configured clusters.
 
-1. Ensure you have an `auth` section in the `app_config` section that Tanzu Application Platform GUI
-uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
+2. Ensure you have an `auth` section in the `app_config` section that Tanzu Application Platform GUI
+   uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
 
     ```yaml
     auth:
@@ -125,13 +125,14 @@ uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
 
     Where:
 
-    - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider
-    - `CLIENT-SECRET` is the Client Secret you obtained while setting up the OIDC provider
-    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider. For Auth0, it is only AUTH0_DOMAIN.
+    - `CLIENT-ID` is the Client ID you obtained while setting up the OIDC provider.
+    - `CLIENT-SECRET` is the Client Secret you obtained while setting up the OIDC provider.
+    - `ISSUER-URL` is the Issuer URL you obtained while setting up the OIDC provider.
+      For Auth0, it is only `AUTH0_DOMAIN`.
 
-1. Add a `kubernetes` section to the `app_config` section that Tanzu Application Platform GUI
-uses. This section must have an entry for each cluster that has resources to view.
-To do so, copy this YAML content into `tap-values.yaml`:
+3. Add a `kubernetes` section to the `app_config` section that Tanzu Application Platform GUI
+   uses. This section must have an entry for each cluster that has resources to view.
+   To do so, copy this YAML content into `tap-values.yaml`:
 
     ```yaml
     kubernetes:
@@ -167,7 +168,7 @@ After the new configuration file is ready, update the `tap` package:
     tanzu package installed update tap --values-file tap-values.yaml
     ```
 
-1. Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is
+2. Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is
 `Reconcile succeeded` by running:
 
     ```console
