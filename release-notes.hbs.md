@@ -174,7 +174,8 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
 - [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
-- `ScanTemplates` shipped with versions before Supply Chain Security Tools - Scan `v1.2.0` have been removed. If the deprecated path is invoked, a log message directs users to update the scanner integration to the latest version. The migration path is to `ScanTemplates` shipped with Supply Chain Security Tools - Scan `v1.3.0`.
+- Alpha version scan CRDs have been removed.
+- Deprecated path, invoked when `ScanTemplates` shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are used, now log a message directing users to update the scanner integration to the latest version. The migration path is to use `ScanTemplates` shipped with Supply Chain Security Tools - Scan `v1.3.0`.
 
 #### <a id="tbs-breaking-changes"></a> Tanzu Build Service
 
