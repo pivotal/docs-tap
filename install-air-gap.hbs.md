@@ -300,6 +300,7 @@ grype:
 ```
 
 Where:
+
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
 - `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
