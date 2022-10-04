@@ -244,9 +244,13 @@ ootb_supply_chain_basic:
          secret_name: "MAVEN-CREDENTIALS"
 
 accelerator:
-      samples:
-        # Prevent repeated polling of github to pull accelerators.
-        include: false
+  ingress:
+    include: true
+    enable_tls: false
+  git_credentials:
+    secret_name: git-credentials
+    username: GITLAB-USER
+    password: GITLAB-PASSWORD
 
 appliveview:
   ingressEnabled: true
@@ -320,6 +324,8 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#a-idmaven-repository-secreta-maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `GITLABURL` is the host name of your GitLab instance.
+- `GITLAB-USER` is the username to use for your GitLab instance.
+- `GITLAB-PASSWORD` is the password for the `GITLAB-USER` for your GitLab instance. This can also be the `GITLAB-TOKEN`.
 - `GITLAB-TOKEN` is the API token for your GitLab instance.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`. This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
