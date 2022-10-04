@@ -216,8 +216,8 @@ profile: full
 ceip_policy_disclosed: true
 buildservice:
   kp_default_repository: "REPOSITORY"
-  kp_default_repository_username: "REGISTRY-USERNAME"
-  kp_default_repository_password: "REGISTRY-PASSWORD"
+  kp_default_repository_username: "REGISTRY-USERNAME" # Takes the value from shared section above by default, but can be overridden.
+  kp_default_repository_password: "REGISTRY-PASSWORD" # Takes the value from shared section above by default, but can be overridden.
   exclude_dependencies: true
 supply_chain: basic
 scanning:
