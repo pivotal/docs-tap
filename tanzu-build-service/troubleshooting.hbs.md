@@ -88,7 +88,7 @@ Warning ContainerGCFailed 119s (x2523 over 42h) kubelet rpc error: code = Resour
 
 ### Explanation
 
-This is due to the way that CRI handles garbage collection for unused images and containers.
+This is due to the way that the CRI handles garbage collection for unused images and containers.
 
 ### Solution
 
