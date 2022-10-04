@@ -382,8 +382,8 @@ provide the credentials for that repository as follows:
 
 >**Note:** Both the Tekton annotation and the `basic-auth` secret type must be
 set. `GIT-SERVER` must be prefixed with the appropriate URL scheme and the Git
-server. For example, for https://github.com/vmware-tanzu/cartographer,
-https://github.com must be provided as the GIT-SERVER.
+server. For example, for `https://github.com/vmware-tanzu/cartographer`,
+`https://github.com` must be provided as the `GIT-SERVER`.
 
 <p class="note important">
 <strong>Note:</strong>
