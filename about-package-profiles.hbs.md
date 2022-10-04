@@ -16,16 +16,15 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[Application Accelerator for VMware Tanzu](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html)**
 
-  The Application Accelerator component helps app developers and app operators through the creation
-  and generation of application accelerators.
+  The Application Accelerator component helps app developers and app operators create application accelerators.
 
   Accelerators are templates that codify best practices and ensure important configurations and
   structures are in place from the start. Developers can bootstrap their applications and get
   started with feature development right away.
 
   Application operators can create custom accelerators that reflect their desired architectures and
-  configurations and enable fleets of developers to use them, decreasing operator concerns about
-  whether developers are implementing their desired best practices.
+  configurations and enable fleets of developers to use them. This helps ease operator concerns about
+  whether developers are implementing their best practices.
 
 - **[Application Live View for VMware Tanzu](app-live-view/about-app-live-view.md)**
 
@@ -33,13 +32,13 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   developers and application operators look inside running applications.
 
   It is based on the concept of Spring Boot Actuators.
-  Fundamentally, the application provides information from inside the running processes by using
+  The application provides information from inside the running processes by using
   endpoints (in our case, HTTP endpoints). Application Live View uses those endpoints to get the
   data from the application and to interact with it.
 
 - **[Application Single Sign-On for VMware Tanzu](app-sso/about.md)**
 
-  Application Single Sign-On enables application users to sign into their identity provider once and be authorized and identified to access any Kubernetes-deployed workload. It is a secure, straightforward, and delightful approach for developers and operators to manage access across all workloads in the enterprise.
+  Application Single Sign-On enables application users to sign in to their identity provider once and be authorized and identified to access any Kubernetes-deployed workload. It is a secure and straightforward approach for developers and operators to manage access across all workloads in the enterprise.
 
 - **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
 
@@ -53,13 +52,13 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   The convention service provides a means for people in operational roles to express their hard-won
   knowledge and opinions about how apps should run on Kubernetes as a convention. The convention
   service applies these opinions to fleets of developer workloads as they are deployed to the
-  platform, saving operator and developer time.
+  platform, saving time for operators and developers.
 
 - **[Default roles for Tanzu Application Platform](authn-authz/overview.md)**
 
-  This package includes five default roles for users including app-editor, app-viewer, app-operator, and service accounts including workload and deliverable. These roles are available to help operators limit the permissions that a user or service account requires on a cluster that runs Tanzu Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based access control (RBAC).
+  This package includes five default roles for users, including app-editor, app-viewer, app-operator, and service accounts including workload and deliverable. These roles are available to help operators limit permissions a user or service account requires on a cluster that runs Tanzu Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based access control (RBAC).
 
-  Default roles only apply to a user interacting with the cluster using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release.
+  Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release.
 
 - **[Developer Conventions](convention-service/about.md)**
 
@@ -93,8 +92,8 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
   Each preapproved supply chain creates a paved road to production. It orchestrates supply chain
   resources, namely test, build, scan, and deploy, enabling developers to focus on delivering
-  value to their users. Preapproved supply chains also give application operators the peace of mind that all code in
-  production has passed through all the steps of an approved workflow.
+  value to their users. Preapproved supply chains also assure application operators that all code in
+  production has passed through the steps of an approved workflow.
 
 - **[Supply Chain Security tools for Tanzu - Scan](scst-scan/overview.md)**
 
@@ -141,11 +140,11 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   The kpack CLI tool, kp, can aid in managing kpack resources. Build Service helps you
   develop and automate containerized software workflows securely and at scale.
 
-- **[Tanzu Developer Tools for VSCode](vscode-extension/about.md)**
+- **[Tanzu Developer Tools for VS Code](vscode-extension/about.md)**
 
-  Tanzu Developer Tools for Visual Studio Code is the official VMware Tanzu IDE extension for VSCode
-  to help you develop code using the Tanzu Application Platform.
-  The VSCode extension enables live updates of your application while it runs on the cluster and
+  Tanzu Developer Tools for Visual Studio Code is the official VMware Tanzu IDE extension for VS Code
+  to help you develop code by using Tanzu Application Platform.
+  The VS Code extension enables live updates of your application while it runs on the cluster and
   lets you debug your application directly on the cluster.
 
 - **[Tanzu Learning Center](learning-center/about.md)**
@@ -167,7 +166,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.2
 
-You can deploy Tanzu Application Platform through predefined profiles, each containing various packages, or you can install  packages individually. The profiles are designed to allow the Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customer use cases, but serve as a starting point to allow for further customization.
+You can deploy Tanzu Application Platform through predefined profiles, each containing various packages, or you can install  packages individually. The profiles are designed to allow Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customer use cases, but serve as a starting point to allow for further customization.
 
 The following profiles are available in Tanzu Application Platform:
 
@@ -640,12 +639,11 @@ The following table lists the packages contained in each profile:
   <tr>
 </table>
 
-<sup>\*</sup> Only one supply chain should be installed at any given time.
-For information on switching from one supply chain to another, see [Add testing and security scanning to your application](getting-started/add-test-and-security.md).
+>**Note:** Only one supply chain should be installed at any given time. For information on switching from one supply chain to another, see [Add testing and security scanning to your application](getting-started/add-test-and-security.md).
 
 ## <a id='language-support'></a> Language and framework support in Tanzu Application Platform
 
-The following table shows the languages and frameworks that are supported by
+The following table shows the languages and frameworks supported by
 Tanzu Application Platform components.
 
 <table>
@@ -843,6 +841,6 @@ Tanzu Application Platform scanning can provide a more comprehensive scan of the
 <sup>\****</sup> Users can leverage the open source Paketo Ruby buildpack for building
 Ruby applications with Tanzu Build Service.
 
-## <a id='install'></a> Installing the Tanzu Application Platform
+## <a id='install'></a> Installing Tanzu Application Platform
 
-To install the Tanzu Application Platform profiles, see [Installing the Tanzu Application Platform package and profiles](install.md).
+For more information on installing Tanzu Application Platform, see [Installing Tanzu Application Platform](install-intro.hbs.md).
