@@ -7,8 +7,7 @@ appears that says no workloads or Tiltfiles were found.
 
 ### Cause
 
-GKE authentication was extracted into a separate plug-in and is no longer inside the Kubernetes client
-or libraries.
+Extension bug.
 
 ### Solution
 
