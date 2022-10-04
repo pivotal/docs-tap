@@ -91,7 +91,7 @@ tanzu accelerator create simple --local-path PATH-TO-THE-ACCELERATOR --source-im
 Where:
 
 - `PATH-TO-THE-ACCELERATOR` is the path to the accelerator source, it can be fully qualified or a relative path. If your current directory is already the directory where your source is,than simply use ".".
-- `YOUR-SOURCE-IMAGE-REPO` is the name of the OCI image repository where you want to push the new accelerator source. If using DockerHub you could use something like `docker.io/YOUR-DOCKER_ID/simple-accelerator-source` where `YOUR-DOCKER_ID` is of course the Docker ID you want to use.
+- `YOUR-SOURCE-IMAGE-REPO` is the name of the OCI image repository where you want to push the new accelerator source. If using Docker Hub you could use something like `docker.io/YOUR-DOCKER_ID/simple-accelerator-source` where `YOUR-DOCKER_ID` is of course the Docker ID you want to use.
 
 Once you have made some additional changes you can push the latest to the same OCI image repository using:
 
