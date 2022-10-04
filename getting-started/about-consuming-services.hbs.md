@@ -29,7 +29,7 @@ on a cluster, while also decoupling the life cycle of application workloads and 
 
 The following list of Kubernetes operators expose APIs that integrate well with Tanzu Application Platform:
 
-1. RabbitMQ Cluster Operator for Kubernetes. For more information, see the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html).
+1. RabbitMQ Cluster Operator for Kubernetes. For more information, see the [RabbitMQ documentation](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
 1. [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html).
 1. [VMware Tanzu SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html).
 
