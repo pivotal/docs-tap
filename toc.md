@@ -25,7 +25,6 @@ docs.vmware.com is built.
       - [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.md) 
       - [Setting up developer namespaces to use installed packages](set-up-namespaces.md)
   - [Customizing package installation](customize-package-installation.md)
-  - [Migrating Profiles in Tanzu Application Platform](migrate-profile.md)
   - [Upgrading Tanzu Application Platform](upgrading.md)
   - [Opting out of telemetry collection](opting-out-telemetry.md)
 - [Getting started with Tanzu Application Platform](getting-started.md)

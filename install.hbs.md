@@ -301,10 +301,6 @@ This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 
-### <a id='light-profile'></a> Light profile
-
-The Light profile is deprecated. Although existing values files might still refer to the Light profile, VMware recommends to migrate to one of the new profiles described in [Install your Tanzu Application Platform profile](#install-profile) by following the procedures in [Migrate Tanzu Application Platform profiles](migrate-profile.md).
-
 ### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
 
 When you install a profile that includes Tanzu Build Service,
