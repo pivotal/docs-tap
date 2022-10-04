@@ -44,10 +44,10 @@ To relocate images from the VMware Tanzu Network registry to the ECR Registry re
     Where:
 
     - `MY-AWS-ACCOUNT-ID` is the account ID you are depoloying Tanzu Application Platform in.  No Dashes.  Should be in the format 012345678901.
-    - `TARGET-AWS-REGION` is the region you are deploying the Tanzu Application Platform to. 
+    - `TARGET-AWS-REGION` is the region you are deploying the Tanzu Application Platform to.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
 
-1. [Install the Carvel tool `imgpk` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6). 
+1. [Install the Carvel tool `imgpk` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
 
 1. Relocate the images with the `imgpkg` CLI by running:
 
@@ -168,7 +168,7 @@ The sample values file contains the necessary defaults for:
 
 The follow command will generate the YAML file sample for the full-profile on AWS using the ECR repositories we created:
 
->**Note:** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`. 
+>**Note:** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`.
 Refer to [Install multicluster Tanzu Application Platform profiles](../multicluster/installing-multicluster.html) for more information.
 
 ```console
@@ -176,25 +176,25 @@ cat << EOF > tap-values.yaml
 shared:
   ingress_domain: "INGRESS-DOMAIN"
 
-ceip_policy_disclosed: true 
+ceip_policy_disclosed: true
 
 #The above keys are minimum numbers of entries needed in tap-values.yaml to get a functioning TAP Full profile installation.
 
 #Below are the keys which may have default values set, but can be overridden.
 
-profile: full # Can take iterate, build, run, view. 
+profile: full # Can take iterate, build, run, view.
 supply_chain: basic # Can take testing, testing_scanning.
 
 ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scanning.
   registry:
     server: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
-    # The prefix of the ECR repository.  Workloads will need 
+    # The prefix of the ECR repository.  Workloads will need
     # two repositories created:
     #
-    # tanzu-application-platform/<workloadname>-<namespace> 
+    # tanzu-application-platform/<workloadname>-<namespace>
     # tanzu-application-platform/<workloadname>-<namespace>-bundle
     repository: tanzu-application-platform
-  
+
 contour:
   envoy:
     service:
@@ -240,7 +240,7 @@ service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
 This is the namespace where the scanning feature runs.
-- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See [Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.
+- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.
 
 For AWS, the default settings creates a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
@@ -283,7 +283,7 @@ buildservice:
 ```
 
 After configuring `full` dependencies, you must install the dependencies after
-you have finished installing your Tanzu Application Platform package. 
+you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
@@ -321,7 +321,7 @@ For instructions, see [Installing Tanzu Developer Tools for VS Code](../vscode-e
 
 ```
 tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --values-file tap-values.yaml -n tap-install
-``` 
+```
 
 ## <a id="tap-install-full-deps"></a> Install the full dependencies package
 
