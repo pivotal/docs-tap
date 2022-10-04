@@ -37,8 +37,8 @@ When you install the Application Accelerator, you can configure the following op
 | domain | tap.example.com | Top-level domain to use for ingress configuration, defaults to `shared.ingress_domain` |
 | tls.secret_name | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
-| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.                         
-| telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?  
+| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.
+| telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?
 | git_credentials.secret_name | git-credentials | The name to use for the secret storing Git credentials for accelerators |
 | git_credentials.username | null | The username to use in secret storing Git credentials for accelerators |
 | git_credentials.password | null | The password to use in secret storing Git credentials for accelerators |
@@ -112,7 +112,14 @@ To install Application Accelerator:
     Edit the values if needed or leave the default values.
 
     >**Note:** For clusters that do not support the `LoadBalancer` service type, override the default
-    >value for `server.service_type`.
+    >value for `server.service_type`, for example:
+      >```yaml
+      > server:
+      >   service_type: "ClusterIP"
+      >   watched_namespace: "accelerator-system"
+      > samples:
+      >   include: true
+      >```.
 
 3. Install the package by running:
 
@@ -166,3 +173,50 @@ To install Application Accelerator:
     ```
 
     This lists an external IP address for use with the `--server-url` Tanzu CLI flag for the Accelerator plug-in `generate` command.
+
+## <a id='troubleshooting'></a> Troobleshooting
+
+Depending on the error output, there are some actions that can be taken
+
+### Check installed packages
+
+the package might be already installed, it can be verified by running the command:
+
+`tanzu package installed list -n tap-install`
+
+and look for any package called `accelerator.apps.tanzu.vmware.com`
+
+### Look resources events
+
+Sometimes the error lies within the custom resources (accelerator, gitrepository, fragment, etc.),
+these errors can be checked using `kubectl`.
+
+Up next there will be an example using the custom resource `accelerator`
+
+`kubectl get acc -n accelerator-system`
+
+it should output
+
+```
+NAME                       READY   REASON     AGE
+appsso-starter-java        True    Ready      5h2m
+hungryman                  True    Ready      5h2m
+java-function              True    Ready      5h2m
+java-rest-service          True    Ready      5h2m
+java-server-side-ui        True    Ready      5h2m
+node-express               True    Ready      5h2m
+node-function              False   Not-Ready  5h2m
+python-function            True    Ready      5h2m
+spring-cloud-serverless    True    Ready      5h2m
+spring-smtp-gateway        True    Ready      5h2m
+tanzu-java-web-app         True    Ready      5h2m
+tap-initialize             True    Ready      5h2m
+weatherforecast-csharp     True    Ready      5h2m
+weatherforecast-steeltoe   True    Ready      5h2m
+```
+
+to check the error event use the following command
+
+`kubectl get acc node-function -n accelerator-system -o yaml`
+
+Then the event section can be checked for more info about the error
