@@ -138,7 +138,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
-- Added Tanzu Problems panel to show workload status errors inside the IDE
+- Added **Tanzu Problems** panel to show workload status errors inside the IDE
 
 #### <a id="dev-tls-intelj-features"></a>Tanzu Developer Tools for IntelliJ
 
@@ -202,9 +202,9 @@ This release has the following breaking changes, listed by area and component.
 
 - Resolved issue 1
 - Resolved issue 2
-  
+
 #### <a id="1-3-upgrade-issues"></a>Upgrading Tanzu Application Platform
-  
+
 - Adding new Tanzu Application Platform repository bundle in addition to another repository bundle does not cause a failure anymore.
 
 #### <a id="app-acc-resolved"></a> Application Accelerator
@@ -271,13 +271,13 @@ This release has the following known issues, listed by area and component.
 #### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plug-ins
 
 - **Failure to connect to AWS EKS clusters:**
-  
+
   When connecting to AWS EKS clusters, an error might appear with the text
   - `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
   - `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
-    
+
   This occurs if the version of the `aws-cli` is less than the supported version `2.7.35`.
-    
+
   See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
 
 #### <a id="alv-known-issues"></a>Application Live View
@@ -347,9 +347,9 @@ This release has the following known issues, listed by area and component.
   To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 - **Starting debug and live update sessions is synchronous:**
-  When a User `Run`s (or `Debug`s) a launch configuration intellij diables the launch controls preventing other 
-  launch configs from being launched at the same time.  Re-activating these controls only when the launch config is started.  
-  As such, starting mulitple Tanzu debug and live update sessions is a synchronous activity.  We are looking into 
+  When a User `Run`s (or `Debug`s) a launch configuration intellij diables the launch controls preventing other
+  launch configs from being launched at the same time.  Re-activating these controls only when the launch config is started.
+  As such, starting mulitple Tanzu debug and live update sessions is a synchronous activity.  We are looking into
   how we might improve this expereince for our Users.
 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
