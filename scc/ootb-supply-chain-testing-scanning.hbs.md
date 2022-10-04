@@ -354,54 +354,7 @@ Create workload:
 ```
 ## <a id="cve-triage-workflow"></a> CVE triage workflow
 
-The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md#define-a-rego-file-for-policy-enforcement) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities that are in violation of the user-defined scan policy. If you triaged these vulnerabilities and identified any false positives, see this section to unblock your deployment from these CVEs.
-
-### <a id="sc-stop"></a>Confirming Supply Chain stopped due failed policy enforcement
-
-1. Verify if the status of the workload is `MissingValueAtPath` due to waiting on a `.status.compliantArtifact` from either the SourceScan or ImageScan:
-
-  ```console
-  kubectl describe workload WORKLOAD-NAME -n DEVELOPER-NAMESPACE
-  ```
-
-1. Describe the SourceScan or ImageScan to determine what CVE(s) violated the ScanPolicy:
-
-  ```
-  kubectl describe sourcescan NAME -n DEVELOPER-NAMESPACE
-  kubectl describe imagescan NAME -n DEVELOPER-NAMESPACE
-  ```
-
-### <a id="triage-cve"></a>Triage
-
-The goal of triage is to analyze and prioritize the reported vulnerability data to discover the appropriate course of action to take at the remediation step. To remediate efficiently and appropriately, you need context on the vulnerabilities that are blocking your supply chain, the packages that are affected, and the impact they can have.
-
-During triage, review which packages are impacted by the CVEs that violated your scan policy. If the [Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-overview.hbs.md) is configured, you can query the database for the packages and their corresponding CVEs in your source code or image using these commands:
-
-```console
-tanzu insight source get --repo REPO --org ORG
-tanzu insight image get --digest DIGEST
-```
-
-See [Query using the Tanzu Insight CLI plug-in](../cli-plugins/insight/query-data.hbs.md) for more details.
-
-During this stage, VMware recommends reviewing information pertaining to the CVEs from sources such as the [National Vulnerability Database](https://nvd.nist.gov/vuln) or the release page of a package.
-
-### <a id="remediation"></a>Remediation
-After triage is complete, the next step is to remediate the blocking vulnerabilities quickly. Some common methods for CVE remediation are as follows:
-
-- Updating the affected component to remove the CVE
-- Amending the scan policy with an exception if you decide to accept the CVE and unblock your supply chain
-
-#### <a id="update-component"></a>Updating the affected component
-
-Vulnerabilities that occur in older versions of a package might be resolved in newer versions. Apply a patch by upgrading to a later
-In addition to the earlier, you can further adopt security best practices by using your project's package manager tools (e.g. `go mod graph` for projects in Go) to identify transitive or indirect dependencies that can also be affect CVEs.
-
-#### <a id="amend-scan-policy"></a>Amending the scan policy
-
-If you decide to proceed without remediating the CVE, for example, when a CVE is evaluated to be a false positive or when a fix is not currently available, you can amend the ScanPolicy to ignore one or more CVEs. For information about common scanner limitations, see [Note on Vulnerability Scanners](../scst-scan/overview.hbs.md#a-idscst-scan-noteaa-note-on-vulnerability-scanners). For information about templates, see [Writing Policy Templates](../scst-scan/policies.md).
-
-Under RBAC, users with the `app-operator-scanning` role that is part of the `app-operator` aggregate role, have permission to edit the ScanPolicy. See [Detailed role permissions breakdown](../authn-authz/permissions-breakdown.hbs.md).
+The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md#define-a-rego-file-for-policy-enforcement) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from being built or images from being deployed that contain vulnerabilities that are in violation of the user-defined scan policy. Refer to the guidelines provided in [Triaging and Remediating CVEs](../scst-scan/triaging-and-remediating-cves.hbs.md) to learn how to handle these vulnerabilities and unblock your Supply Chain.
 
 ## <a id="scan-images-using-different-scanner"></a> Scan Images using a different scanner
 
