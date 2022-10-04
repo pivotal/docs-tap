@@ -316,10 +316,6 @@ contour:
         LBType: nlb
 ```
 
-### <a id='light-profile'></a> Light profile
-
-The Light profile is deprecated. Although existing values files might still refer to the Light profile, VMware recommends to migrate to one of the new profiles described in [Install your Tanzu Application Platform profile](#install-profile) by following the procedures in [Migrate Tanzu Application Platform profiles](migrate-profile.md).
-
 ### <a id='additional-build-service-config'></a> Additional Optional Build Service Configuration
 
 #### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
