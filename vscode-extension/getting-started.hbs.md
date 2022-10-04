@@ -20,20 +20,21 @@ For more information about the snippets, see the [VS Code documentation](https:/
 The required files are:
 
 - `workload.yaml`: A file named `workload` with the extension `.yaml` must be in the project.
-For example, `my project/config/workload.yaml`. `workload.yaml` provides instructions to the
+For example, `my-project/config/workload.yaml`. The `workload.yaml` file provides instructions to the
 [Supply Chain Choreographer](../scc/about.md) for how a workload must be built and managed.
 The extension requires only one `workload.yaml` per project. `workload.yaml` must be a single-document
 YAML file, not a multidocument YAML file.
 
 - `catalog-info.yaml`: A file named `catalog-info` with the extension `.yaml` must be in the project.
-For example, `my project/catalog/catalog-info.yaml`.
-The `catalog-info.yaml` file enables the workloads created with the Tanzu Developer Tools extension
-to appear in [Tanzu Application Platform GUI](../tap-gui/about.md).
+For example, `my-project/catalog/catalog-info.yaml`. The `catalog-info.yaml` file enables the workloads created with the Tanzu Developer Tools extension to appear in [Tanzu Application Platform GUI](../tap-gui/about.md).
 
-- Tiltfile: A file named Tiltfile with no extension (no filetype) must be in the project.
-For example, `My project/Tiltfile`. The Tiltfile provides the [Tilt](https://docs.tilt.dev/)
+- `Tiltfile`: A file named `Tiltfile` with no extension (no filetype) must be in the project.
+For example, `my-project/Tiltfile`. The Tiltfile provides the [Tilt](https://docs.tilt.dev/)
 configuration for to enable your project to Live Update on the Tanzu Application Platform.
 The Tanzu Developer Tools extension requires only one Tiltfile per project.
+
+- `.tanzuignore`: A file named `.tanzuignore` with no extension (no filetype) must be in the project.
+For example `my-project/.tanzuignore`. The `.tanzuignore` file specifies filepaths to be excluded from the source code image. When working with local source code, you can exclude files from the source code to be uploaded within the image.
 
 ## <a id="catalog-information"></a> Set up using code snippets
 
@@ -218,9 +219,9 @@ Where:
 - `APP-NAME` is the name of your application.
 - `APP-DESCRIPTION` is the description of your application.
 
-### <a id="create-tiltfile-file"></a> Create a Tiltfile file
+### <a id="create-tiltfile-file"></a> Create a `Tiltfile` file
 
-The Tiltfile file provides the [Tilt](https://docs.tilt.dev/) configuration for enabling your project
+The `Tiltfile` file provides the [Tilt](https://docs.tilt.dev/) configuration for enabling your project
 to Live Update on your Kubernetes cluster that has Tanzu Application Platform.
 The extension requires only one Tiltfile per project.
 
@@ -236,7 +237,7 @@ or otherwise leave the `local path` value unchanged. For more information, see l
 if the targeting Kubernetes cluster enabled by Tanzu Application Platform is not running on your local
 machine.
 
-The following is an example Tiltfile file:
+The following is an example `Tiltfile` file:
 
 ```text
 SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='SOURCE-IMAGE')
@@ -274,6 +275,47 @@ Where:
 If your Kubernetes cluster enabled by Tanzu Application Platform is running locally on your local machine,
 you can remove the entire `allow_k8s_contexts` line. For more information, see the
 [Tilt documentation](https://docs.tilt.dev/api.html#api.allow_k8s_contexts).
+
+### <a id="create-tanzuignore-file"></a> Create a `.tanzuignore` file
+
+The .tanzuignore file specifies the filepaths to exclude from the source code image. When working with local source code, you can exclude files from the source code to be uploaded within the image. Directories must not end with the system path separator (`/` or `\`). 
+
+The following is an example `.tanzuignore` file:
+
+```text
+### Git ###
+.git/
+.github/
+.gitmodules
+**/.gitattributes
+**/.gitignore
+
+### Maven ###
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Gradle ###
+.gradle
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### IntelliJ IDEA ###
+.idea/
+out/
+*.iws
+*.iml
+*.ipr
+
+### Tilt ###
+Tiltfile
+
+### Accelerator ###
+accelerator-log.md
+```
 
 ### <a id="example-project"></a> Example project
 
