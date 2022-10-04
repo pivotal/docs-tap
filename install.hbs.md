@@ -320,7 +320,9 @@ contour:
 
 The Light profile is deprecated. Although existing values files might still refer to the Light profile, VMware recommends to migrate to one of the new profiles described in [Install your Tanzu Application Platform profile](#install-profile) by following the procedures in [Migrate Tanzu Application Platform profiles](migrate-profile.md).
 
-### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
+### <a id='additional-build-service-config'></a> Additional Optional Build Service Configuration
+
+#### <a id='full-dependencies'></a> (Optional) Configure your profile with full dependencies
 
 When you install a profile that includes Tanzu Build Service,
 Tanzu Application Platform is installed with the `lite` set of dependencies.
@@ -348,6 +350,14 @@ buildservice:
 After configuring `full` dependencies, you must install the dependencies after
 you have finished installing your Tanzu Application Platform package.
 See [Install the full dependencies package](#tap-install-full-deps) for more information.
+
+#### <a id='jammy-only'></a> (Optional) Configure your profile with the jammy stack only
+
+TAP 1.3 supports building applications with the [Ubuntu 22.04 (Jammy) stack](tanzu-build-service/dependencies.html#bionic-vs-jammy).
+By default, workloads are built with Ubuntu 18.04 (Bionic) stack. However, if you do not need access to the Bionic stack,
+you can install TAP with the Bionic stack removed and all workloads will default to the Jammy stack.
+
+To install TAP with Jammy as the only available stack, use `stack_configuration: jammy-only` in the `tap-values.yaml`.
 
 ### <a id='custom-scc'></a> Custom SCC
 
