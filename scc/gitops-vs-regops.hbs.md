@@ -299,6 +299,7 @@ that holds the Git credentials, the password text box must be filled with a toke
 When generating a token, ensure that it is given proper scope:
 
 For HTTP(S) authentication, use one of the following tokens:
+
 - On GitHub, the token must have a
   [Repo scope](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
 - On GitLab, the token must have an
@@ -382,8 +383,8 @@ provide the credentials for that repository as follows:
 
 >**Note:** Both the Tekton annotation and the `basic-auth` secret type must be
 set. `GIT-SERVER` must be prefixed with the appropriate URL scheme and the Git
-server. For example, for https://github.com/vmware-tanzu/cartographer,
-https://github.com must be provided as the GIT-SERVER.
+server. For example, for `https://github.com/vmware-tanzu/cartographer`,
+`https://github.com` must be provided as the `GIT-SERVER`.
 
 <p class="note important">
 <strong>Note:</strong>
