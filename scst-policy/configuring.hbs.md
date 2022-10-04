@@ -43,7 +43,7 @@ The cluster image policy is a custom resource containing the following propertie
   - If `*` is specified, the `glob` matching behavior is `index.docker.io/library/*`.
   - If `*/*` is specified, the `glob` matching behavior is `index.docker.io/*/*`.
   With these defaults, you require the `glob` pattern `**` to match against all images.
-  If your image is hosted on DockerHub, it is important to include `index.docker.io` as the host for the glob.
+  If your image is hosted on Docker Hub, it is important to include `index.docker.io` as the host for the glob.
 
 * `authorities`: The authorities block defines the rules for discovering and validating signatures. Discovery is done by using the `sources` field, and is specified on any entry. Signatures are cryptographically verified using one of the `key` or `keyless` fields.
 
@@ -62,7 +62,7 @@ Policy Controller has defaults defined if the following globs are specified:
 - If `*/*` is specified, the `glob` matching behavior is `index.docker.io/*/*`.
 
 With these defaults, you require the `glob` pattern `**` to match against all images.
-If your image is hosted on DockerHub, it is important to include `index.docker.io` as the host for the glob.
+If your image is hosted on Docker Hub, it is important to include `index.docker.io` as the host for the glob.
 
 A sample of a ClusterImagePolicy which matches against all images using glob:
 

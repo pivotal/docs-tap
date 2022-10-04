@@ -275,7 +275,7 @@ preferred procedure for uploading the generated project files to a Git repositor
 
     Harbor has the form: "my-harbor.io/my-project/functions-accelerator-python".
 
-    Dockerhub has the form: "my-dockerhub-user/functions-accelerator-python".
+    Docker Hub has the form: "my-dockerhub-user/functions-accelerator-python".
 
     Google Cloud Registry has the form: "gcr.io/my-project/functions-accelerator-python".
 

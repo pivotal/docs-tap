@@ -86,7 +86,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
         --password $IMGPKG_REGISTRY_PASSWORD \
         --namespace tap-install \
         --export-to-all-namespaces \
-        --yes 
+        --yes
     ```
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
@@ -179,9 +179,9 @@ The sample values file contains the necessary defaults for:
 
 ### <a id='full-profile'></a> Full Profile
 
-To install Tanzu Application Platform with Supply Chain Basic, 
-you must retrieve your cluster’s base64 encoded ca certificate from `$HOME/.kube/config`. 
-Retrieve the `certificate-authority-data` from the respective cluster section 
+To install Tanzu Application Platform with Supply Chain Basic,
+you must retrieve your cluster’s base64 encoded ca certificate from `$HOME/.kube/config`.
+Retrieve the `certificate-authority-data` from the respective cluster section
 and input it as `B64_ENCODED_CA` in the `tap-values.yaml`.
 
 The following is the YAML file sample for the full-profile:
@@ -279,12 +279,12 @@ Where:
 - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
 - `SERVER-NAME` is the hostname of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`
-    * Dockerhub has the form `server: "index.docker.io"`
+    * Docker Hub has the form `server: "index.docker.io"`
     * Google Cloud Registry has the form `server: "gcr.io"`
 - `REPO-NAME` is where workload images are stored in the registry.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Harbor has the form `repository: "my-project/supply-chain"`
-    * Dockerhub has the form `repository: "my-dockerhub-user"`
+    * Docker Hub has the form `repository: "my-dockerhub-user"`
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
 - `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication.
 - `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#a-idmaven-repository-secreta-maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
