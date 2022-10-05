@@ -430,4 +430,4 @@ If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu 
 
 ## <a id='next-steps'></a>Next steps
 
-- [Creating accelerators](creating-accelerators.html)
+- [Creating accelerators](creating-accelerators/creating-accelerators.html)
