@@ -22,9 +22,9 @@ cluster in the `kubernetes` section of `app-config.yaml`. Below is an
 
 ```
 tap_gui:
-  ... // Existing configuration
+  # ... existing configuration
   app_config:
-    ... //Existing configuration
+    # ... existing configuration
     kubernetes:
       clusterLocatorMethods:
         - type: 'config'
