@@ -12,7 +12,7 @@ docs.vmware.com is built.
   - [Installing Tanzu Application Platform online](install.md)
       - [Installing Tanzu Application Platform](install.md)
           - [Installing Tanzu Application Platform packages and profiles](install.md)
-          - [Viewing possible configuration settings for your package](view-package-config-online.md)
+          - [Viewing possible configuration settings for your package](view-package-config.md)
       - [Installing Individual Packages](install-components.md)
       - [Setting up developer namespaces to use installed packages](set-up-namespaces-online.md)
       - [Installing Tanzu Developer Tools for VS Code](vscode-extension-install-online.md)
