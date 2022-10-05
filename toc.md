@@ -24,6 +24,8 @@ docs.vmware.com is built.
       - [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.md)
       - [Setting up developer namespaces to use installed packages](set-up-namespaces.md)
   - [Installing Tanzu Application Platform on AWS Cloud](aws/install.md)
+      - [Prerequisites](prerequisites.md)
+      - [Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.md)
       - [Creating AWS Resources](aws/aws-resources.md)
       - [Installing Tanzu Application Platform packages and profiles](aws/install.md)
           - [Viewing possible configuration settings for your package](view-package-config.md)
