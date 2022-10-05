@@ -5,9 +5,9 @@ from the Tanzu Application Platform package repository on to AWS.
 
 Before installing the packages, ensure you have:
 
-- Completed the [Prerequisites](../prerequisites.hbs.md).
+- Completed the [Prerequisites](prerequisites.hbs.md).
 - Created [AWS Resources](aws-resources.hbs.md)
-- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
+- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](install-tanzu-cli.hbs.md) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/)
 
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
@@ -140,7 +140,7 @@ To relocate images from the VMware Tanzu Network registry to the ECR Registry re
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials.
 
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](about-package-profiles.md).
 
 To prepare to install a profile:
 
@@ -162,14 +162,14 @@ The sample values file contains the necessary defaults for:
     >**Important:** Keep the values file for future configuration use.
 
 
-1. [View possible configuration settings for your package](../view-package-config.hbs.md)
+1. [View possible configuration settings for your package](view-package-config.hbs.md)
 
 ### <a id='full-profile'></a> Full profile
 
 The follow command will generate the YAML file sample for the full-profile on AWS using the ECR repositories we created:
 
 >**Note:** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`. 
-Refer to [Install multicluster Tanzu Application Platform profiles](../multicluster/installing-multicluster.html) for more information.
+Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
 
 ```console
 cat << EOF > tap-values.yaml
@@ -266,7 +266,7 @@ required for application builds.
 The `lite` set of dependencies do not contain all buildpacks and stacks.
 To use all buildpacks and stacks, you must install the `full` dependencies.
 For more information about the differences between `lite` and `full` dependencies, see
-[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
+[About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
 
 To configure `full` dependencies, add the key-value pair
 `exclude_dependencies: true` to your `tap-values.yaml` file under the `buildservice` section.
@@ -311,7 +311,7 @@ by following the procedure in [Install full dependencies](#tap-install-full-deps
 
 After installing the Full profile on your cluster, you can install the
 Tanzu Developer Tools for VS Code Extension to help you develop against it.
-For instructions, see [Installing Tanzu Developer Tools for VS Code](../vscode-extension/install.md).
+For instructions, see [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md).
 
 >**Note:** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
@@ -326,7 +326,7 @@ If you configured `full` dependencies in your `tap-values.yaml` file in
 you must install the `full` dependencies package.
 
 For more information about the differences between `lite` and `full` dependencies, see
-[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
+[About lite and full dependencies](tanzu-build-service/dependencies.html#lite-vs-full).
 
 To install the `full` dependencies package:
 
@@ -375,11 +375,11 @@ To install the `full` dependencies package:
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
+To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
 You're now ready to start using Tanzu Application Platform GUI.
-Proceed to the [Getting Started](../getting-started.md) topic or the
-[Tanzu Application Platform GUI - Catalog Operations](../tap-gui/catalog/catalog-operations.md) topic.
+Proceed to the [Getting Started](getting-started.md) topic or the
+[Tanzu Application Platform GUI - Catalog Operations](tap-gui/catalog/catalog-operations.md) topic.
 
 ## <a id='exclude-packages'></a> Exclude packages from a Tanzu Application Platform profile
 
@@ -404,5 +404,5 @@ To exclude packages from a Tanzu Application Platform profile:
 
 ## <a id='next-steps'></a>Next steps
 
-- (Optional) [Installing Individual Packages](../install-components.html)
+- (Optional) [Installing Individual Packages](install-components.html)
 - [Setting up developer namespaces to use installed packages](set-up-namespaces.html)
