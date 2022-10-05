@@ -151,21 +151,22 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
-## <a id='air-gap-policy'></a> Prepare Sigstore TUF Stack for Air-Gapped Policy Controller
+## <a id='air-gap-policy'></a> Prepare Sigstore TUF Stack for Air-gapped Policy Controller
 
-Supply Chain Security Tools - Policy Controller currently requires access to a TUF server.
-In a normal environment with public internet access, the public official Sigstore TUF server is used.
+Supply Chain Security Tools - Policy Controller requires access to a The Update Framework (TUF) server.
+In an environment with public Internet access, the public official Sigstore TUF server is used.
 
 The Sigstore Stack consists of:
+
 - [Trillian](https://github.com/google/trillian)
 - [Rekor](https://github.com/sigstore/rekor)
 - [Fulcio](https://github.com/sigstore/fulcio)
 - [Certificate Transparency Log (CTLog)](https://github.com/google/certificate-transparency-go)
-- [TheUpdateFramework (TUF)](https://theupdateframework.io/)
+- [The Update Framework (TUF)](https://theupdateframework.io/)
 
-However, for an air-gapped environment, an internally accessible Sigstore stack is currently required. During the installation process, Policy Controller will fail to reconcile and deploy. This is expected behaviour and the Policy Controller needs to be configured with a TUF mirror and TUF root.
+For an air-gapped environment, an internally accessible Sigstore stack is required. While installing, Policy Controller fails to reconcile and deploy in most cases. The Policy Controller must be configured with a TUF mirror and TUF root.
 
-For more information on how to setup the Sigstore Stack, see [Sigstore Stack Install](./scst-policy/install-sigstore-stack.hbs.md).
+For more information about how to set up the Sigstore Stack, see [Install Sigstore Stack](scst-policy/install-sigstore-stack.html).
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
