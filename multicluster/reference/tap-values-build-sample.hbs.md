@@ -10,27 +10,25 @@ shared:
   ingress_domain: "INGRESS-DOMAIN"
   kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
   image_registry:
-    project_path: "SERVER-NAME/REPO-NAME" # Will be used by Build Service by appending "/buildservice" and used by Supply chain by appending "/workloads"
+    project_path: "SERVER-NAME/REPO-NAME" # To used by Build Service by appending "/buildservice" and used by Supply chain by appending "/workloads".
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
 
-ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
+# The above shared keys can be overridden in the below section.
 
-#The above shared keys may be overridden in the below sesion.
-
-buildservice: #optional if the corresponding shared keys are provided
+buildservice: # Optional if the corresponding shared keys are provided.
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
 supply_chain: testing_scanning
-ootb_supply_chain_testing_scanning: #Optional if the shared above mentioned shared keys are provided.
+ootb_supply_chain_testing_scanning: # Optional if the corresponding shared keys are provided.
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
   gitops:
-    ssh_secret: "SSH-SECRET-KEY" # (optional) Defaults to "".
+    ssh_secret: "SSH-SECRET-KEY" # (Optional) Defaults to "".
 grype:
-  namespace: "MY-DEV-NAMESPACE" # (optional) Defaults to default namespace.
+  namespace: "MY-DEV-NAMESPACE" # (Optional) Defaults to default namespace.
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
   metadataStore:
     url: METADATA-STORE-URL-ON-VIEW-CLUSTER
@@ -42,9 +40,9 @@ grype:
         importFromNamespace: metadata-store-secrets
 scanning:
   metadataStore:
-    url: "" # Deactivate embedded integration since it's deprecated
+    url: "" # Deactivate embedded integration since it's deprecated.
 tap_telemetry:
-  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (optional) identify data for creation of TAP usage reports
+  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for the creation of Tanzu Application Platform usage reports.
 ```
 
 Where:
