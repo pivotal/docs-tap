@@ -359,7 +359,7 @@ spec:
       name: ssh-credentials
 ```
 
-> **Note:**  For ssh credentials the `repository-URL` must use `git@host` as part of the URL
+> **Note:**  When using ssh credentials, the `repository-URL` must include the username as part of the URL like `ssh://user@example.com:22/repository.git`. See the [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for more detail.
 
 If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
