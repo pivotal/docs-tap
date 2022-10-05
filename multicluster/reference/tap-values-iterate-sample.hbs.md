@@ -15,15 +15,15 @@ shared:
 
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 
-#The above shared keys may be overridden in the below section.
+# The above shared keys may be overridden in the below section.
 
-buildservice: #optional if the corresponding shared keys are provided.
+buildservice: # Optional if the corresponding shared keys are provided.
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
 
 supply_chain: basic
-ootb_supply_chain_basic: #Optional if the shared above mentioned shared keys are provided.
+ootb_supply_chain_basic: # Optional if the shared above mentioned shared keys are provided.
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
