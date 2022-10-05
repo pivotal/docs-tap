@@ -1,5 +1,7 @@
 # Service Bindings for Kubernetes
 
+Service Bindings is a Kubernetes-wide specification for communicating service secrets to workloads in an automated way.
+
 Service Bindings for Kubernetes implements the
 [Service Binding Specification for Kubernetes](https://github.com/k8s-service-bindings/spec).
 Service Bindings for Kubernetes implements the Service Binding Specification for Kubernetes v1.0
@@ -18,12 +20,11 @@ The following are not supported:
 - Extensions including:
   - [Binding Secret Generation Strategies](https://github.com/k8s-service-bindings/spec/tree/12a9f2e376c50f051cc9aa913443bdecb0a24a01#binding-secret-generation-strategies)
 
-## How to use Service Bindings
+## Using Service Bindings
 
-Service Bindings is open source and very amorphous in how it works. For these reasons there is no
-quick explanation on how to use Service Binding. However there are many resources that are
+Service Bindings is open source and there are many resources that are
 available to assist in the understanding of the many ways that Service Bindings can be used. See [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec)
 to understand the specifications that Service Bindings uses for Kubernetes and a community section
-to understand it's use. For a full in-depth dive of Service Binder see
-[Servicebindings.io](https://servicebinding.io/) which is the official open source page for Service
-Bindings that have the most detailed up to date information about how to use Service Bindings and any upcoming new features.
+to understand it's use. For an in-depth dive of Service Bindings see
+[Servicebindings.io](https://servicebinding.io/), which is the official open source page for Service
+Bindings that has the most detailed up-to-date information about how to use Service Bindings and any upcoming new features.
