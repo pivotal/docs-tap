@@ -28,7 +28,7 @@ docs.vmware.com is built.
       - [Installing Tanzu Application Platform](aws/install.md)
           - [Installing Tanzu Application Platform packages and profiles](aws/install.md)
           - [Viewing possible configuration settings for your package](aws/view-package-config.md)
-      - [Installing Individual Packages](aws/install-components.md)
+      - [Installing Individual Packages](install-components.md)
       - [Setting up developer namespaces to use installed packages](aws/set-up-namespaces.md)
       - [Installing Tanzu Developer Tools for VS Code](aws/vscode-extension-install.md)
   - [Customizing package installation](customize-package-installation.md)
