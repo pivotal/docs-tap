@@ -14,7 +14,7 @@ docs.vmware.com is built.
           - [Installing Tanzu Application Platform packages and profiles](install.md)
           - [Viewing possible configuration settings for your package](view-package-config.md)
       - [Installing Individual Packages](install-components.md)
-      - [Setting up developer namespaces to use installed packages](set-up-namespaces.md)
+      - [Setting up developer namespaces to use installed packages](set-up-namespaces-online.md)
       - [Installing Tanzu Developer Tools for VS Code](vscode-extension-install-online.md)
   - [Installing Tanzu Application Platform in an air-gapped environment (beta)](install-air-gap.md)
       - [Installing Tanzu Application Platform packages and profiles (air-gapped)](install-air-gap.md)
