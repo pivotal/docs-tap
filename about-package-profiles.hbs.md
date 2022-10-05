@@ -6,7 +6,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[API Auto Registration](api-auto-registration/about.md)**
 
-  When users deploy a workload that exposes an API, they want that API to automatically show in Tanzu Application Platform GUI without needing any other manual steps.
+  When users deploy a workload that exposes an API, they want that API to automatically show in Tanzu Application Platform GUI without requiring any added manual steps.
 
   API Auto Registration is an automated workflow that can use a supply chain to create and manage a
   Kubernetes Custom Resource (CR) of type `APIDescriptor`. A Kubernetes controller reconciles the CR and updates the API entity in Tanzu Application Platform GUI to achieve automated API registration from workloads. You can also use API Auto Registration without supply chains by directly applying an `APIDescriptor` CR to the cluster.
