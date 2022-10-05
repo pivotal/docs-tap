@@ -10,7 +10,7 @@ shared:
   ingress_domain: "INGRESS-DOMAIN"
   kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
   image_registry:
-    project_path: "SERVER-NAME/REPO-NAME" # To used by Build Service by appending "/buildservice" and used by Supply chain by appending "/workloads".
+    project_path: "SERVER-NAME/REPO-NAME" # To be used by Build Service by appending "/buildservice" and used by Supply chain by appending "/workloads".
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
 
