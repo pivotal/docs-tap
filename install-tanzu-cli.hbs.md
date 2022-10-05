@@ -8,7 +8,7 @@ This topic describes how to:
   - [Install or update the Tanzu CLI and plug-ins](#cli-and-plugin)
 
 
-## <a id='accept-eulas'></a> Accept the End User License Agreements  
+## <a id='accept-eulas'></a> Accept the End User License Agreements
 
 Before downloading and installing Tanzu Application Platform packages, you must accept the
 End User License Agreements (EULAs) as follows:
@@ -108,7 +108,7 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
 ### <a id='linux-mac-tanzu-cli'></a> Install Tanzu CLI: Linux or macOS
 
 1. Create a `$HOME/tanzu` directory on your local machine.
-2. Unpack the downloaded TAR file into the `$HOME/tanzu` directory by running:  
+2. Unpack the downloaded TAR file into the `$HOME/tanzu` directory by running:
 
    - **For Linux:**
 
@@ -122,8 +122,8 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
      tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
      ```
 
-3. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure the local downloaded versions of
-the CLI core and plug-ins are installed by running:
+3. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure the local downloaded
+versions of the CLI core and plug-ins are installed by running:
 
     ```console
     export TANZU_CLI_NO_INIT=true
@@ -131,11 +131,14 @@ the CLI core and plug-ins are installed by running:
 
 4. Install or update the CLI core by running:
 
+   >**Note:** Replace v0.11.6 with the version you've downloaded which can be found by running one
+   the following code examples.
+
    - **For Linux:**
 
      ```console
      cd $HOME/tanzu
-     export VERSION=v0.11.2 
+     export VERSION=v0.11.2
      sudo install cli/core/$VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
      ```
 
@@ -143,7 +146,7 @@ the CLI core and plug-ins are installed by running:
 
      ```console
      cd $HOME/tanzu
-     export VERSION=v0.11.2 
+     export VERSION=v0.11.2
      install cli/core/$VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
      ```
 
@@ -233,16 +236,18 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
     Expected outcome:
 
     ```console
-    NAME                DESCRIPTION                                                                   SCOPE       DISCOVERY             VERSION      STATUS
-    login               Login to the platform                                                         Standalone  default               v0.11.1      not installed
-    management-cluster  Kubernetes management-cluster operations                                      Standalone  default               v0.11.1      not installed
-    package             Tanzu package management                                                      Standalone  default               v0.11.1      installed
-    pinniped-auth       Pinniped authentication operations (usually not directly invoked)             Standalone  default               v0.11.1      not installed
-    secret              Tanzu secret management                                                       Standalone  default               v0.11.1      installed
-    services            Discover Service Types, Service Instances and manage Resource Claims (ALPHA)  Standalone                        v0.2.0-rc.1  installed
-    accelerator         Manage accelerators in a Kubernetes cluster                                   Standalone                        v1.1.0       installed
-    apps                Applications on Kubernetes                                                    Standalone                        v0.5.0       installed
-    insight             post & query image, package, source, and vulnerability data                   Standalone                        v1.1.0       installed
+      NAME                DESCRIPTION                                                                       SCOPE       DISCOVERY  VERSION  STATUS
+  login               Login to the platform                                                             Standalone  default    v0.25.0  not installed
+  management-cluster  Kubernetes management-cluster operations                                          Standalone  default    v0.25.0  not installed
+  package             Tanzu package management                                                          Standalone  default    v0.25.0  installed
+  pinniped-auth       Pinniped authentication operations (usually not directly invoked)                 Standalone  default    v0.25.0  not installed
+  secret              Tanzu secret management                                                           Standalone  default    v0.25.0  installed
+  telemetry           Configure cluster-wide telemetry settings                                         Standalone  default    v0.25.0  not installed
+  services            Explore Service Instance Classes, discover claimable Service Instances and        Standalone             v0.4.0   installed
+                      manage Resource Claims
+  accelerator         Manage accelerators in a Kubernetes cluster                                       Standalone             v1.3.0   installed
+  apps                Applications on Kubernetes                                                        Standalone             v0.9.0   installed
+  insight             post & query image, package, source, and vulnerability data                       Standalone             v1.3.3   installed
     ```
 
 > **Note:** Currently, `insight` plug-in only supports macOS and Linux.
