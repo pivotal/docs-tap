@@ -1,11 +1,11 @@
 # Configure Application Accelerator
 
-This topic describes how to configure Application Accelerator for use in air-gapped environments or other
-customized installations.
+This topic describes advanced configuration options available for Application Accelerator. This includes configuring Git-Ops style deployments of accelerators as well as configurations for use with non-public repositories and in air-gapped environments.
+
+Accelerators can be created either using the Tanzu CLI or by applying a YAML manifest using `kubectl`. Another option is [Using a Git-Ops style configuration for deploying a set of managed accelerators](#using-git-ops).
 
 Application Accelerator pulls content from accelerator source repositories using either the "Flux SourceController" or the "Tanzu Application Platform Source Controller" components.
-
-If the repository used is accessible anonymously from a public server, then you do not have to configure anything additional. Accelerators are created either using the Tanzu CLI or by applying a YAML manifest using `kubectl`.
+If the repository used is accessible anonymously from a public server, then you do not have to configure anything additional. In any other case you need to provide authenication as explained in [Using non-public repositories](#non-public-repos). There are also options for making these configurations easier explained in [Configuring `tap-values.yaml` with Git credentials secret](#creating-git-credentials)
 
 ## <a id="using-git-ops"></a> Using a Git-Ops style configuration for deploying a set of managed accelerators
 
@@ -123,18 +123,19 @@ tanzu accelerator create my-hello-fun --git-repo https://github.com/sample-accel
 
 >**Note:** It is not currently possible to provide the `git.ignore` option with the Tanzu CLI.
 
-## <a id="creating-git-credentials"></a> Configuring a Git credentials secret to be used with non-public repositories and custom CA certificates
+## <a id="creating-git-credentials"></a> Configuring `tap-values.yaml` with Git credentials secret
 
 When deploying accelerators using Git repositories that need authentication and/or are installed with custom CA certificates then you need to provide some additional authentication values in a Secret. The examples in the next section provide more details about this. In this section we describe how to conventiently configure a Git credentials secret that can be used for some of the Git based examples below.
 
 You can specify the following accelerator configuration properties when installing the Application Accelerator. The same properties can be provided in the `accelerator` section of the `tap-values.yaml` file:
 
 ```yaml
-git_credentials:
-  secret_name: git-credentials
-  username: GIT-USER-NAME
-  password: GIT-PASSWORD-OR-ACCESS-TOKEN
-  ca_file: CUSTOM-CA-CERT
+accelerator:
+  git_credentials:
+    secret_name: git-credentials
+    username: GIT-USER-NAME
+    password: GIT-PASSWORD-OR-ACCESS-TOKEN
+    ca_file: CUSTOM-CA-CERT
 ```
 
 Where:
@@ -143,7 +144,7 @@ Where:
 - `GIT-PASSWORD-OR-ACCESS-TOKEN` is the password or access token used for authenticating with the Git repository. We recommend using an access token for this.
 - `CUSTOM-CA-CERT` is the certificate data needed when accessing the Git repository.
 
-This is an example of a part of a `tap-values.yaml` configuration:
+This is an example of this part of a `tap-values.yaml` configuration:
 
 ```yaml
 accelerator:
@@ -242,6 +243,8 @@ spec:
       name: https-credentials
 ```
 
+> **Note:**  For https credentials the `repository-URL` must use `https://` as the URL scheme
+
 If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
 #### <a id="http-ca-cred-example"></a> Example using http credentials with self-signed certificate
@@ -294,6 +297,8 @@ spec:
     secretRef:
       name: https-ca-credentials
 ```
+
+> **Note:**  For https credentials the `repository-URL` must use `https://` as the URL scheme
 
 If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
@@ -353,6 +358,8 @@ spec:
     secretRef:
       name: ssh-credentials
 ```
+
+> **Note:**  For ssh credentials the `repository-URL` must use `git@host` as part of the URL
 
 If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
@@ -423,4 +430,4 @@ If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu 
 
 ## <a id='next-steps'></a>Next steps
 
-- [Using Grype in offline and air-gapped environments](../scst-scan/offline-airgap.html)
+- [Creating accelerators](creating-accelerators.html)
