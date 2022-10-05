@@ -46,7 +46,7 @@ metadata:
   name: spring-petclinic
   labels:
     app.kubernetes.io/part-of: spring-petclinic
-    apps.tanzu.vmware.com/workload-type: java
+    apps.tanzu.vmware.com/workload-type: web
 spec:
   source:
     git:
