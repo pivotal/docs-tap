@@ -296,9 +296,7 @@ tap_gui:
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
-  ingress_domain: INGRESS-DOMAIN
   app_service_type: ClusterIP
-  ingress_enabled: "true"
 grype:
   namespace: "MY-DEV-NAMESPACE"
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
