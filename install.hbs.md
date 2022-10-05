@@ -252,6 +252,7 @@ buildservice:
 
 tap_gui:
   service_type: ClusterIP # If the shared.ingress_domain is set as above, this must be set to ClusterIP.
+  app_config:
     catalog:
       locations:
         - type: url
