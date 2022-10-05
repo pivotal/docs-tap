@@ -364,13 +364,19 @@ This release has the following known issues, listed by area and component.
   To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 - **Starting debug and live update sessions is synchronous:**
-  When a User `Run`s (or `Debug`s) a launch configuration intellij diables the launch controls preventing other
+  When a User `Run`s (or `Debug`s) a launch configuration intellij disables the launch controls preventing other
   launch configs from being launched at the same time.  Re-activating these controls only when the launch config is started.
   As such, starting mulitple Tanzu debug and live update sessions is a synchronous activity.  We are looking into
   how we might improve this expereince for our Users.
 
 - **Live update not working when using server or worker Workload types:**
   When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`
+
+- **Stoping one debug session stops them all:**
+  When starting multiple simultaneous workload debud sessions, terminating one of those sessions will inadvertently also terminate
+  the others. (Note that is only disconnects the debugger, it doesn't terminate the workload process itself, so it is possible
+  reatach/restart debug sessions). A fix for this bug will be included in TAP 1.3.1.
+ 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
 - Known issue 1
