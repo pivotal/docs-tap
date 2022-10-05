@@ -14,11 +14,34 @@ Do one of the following actions to access the Runtime Resources Visibility plug-
   install [Tanzu Application Platform GUI separately](../install-tap-gui.md)
 - Review the section [If you have a metrics server](#metrics-server)
 
-## <a id="metrics-server"></a> If you have a metrics server
+## <a id="metrics-server"></a> If You Have a Metrics Server
 
 By default, the Kubernetes API does not attempt to use any metrics servers on your clusters.
 To access metrics information for a cluster, set `skipMetricsLookup` to `false` for that
-cluster in the `kubernetes` section of `app-config.yaml`.
+cluster in the `kubernetes` section of `app-config.yaml`. Below is an 
+
+```
+tap_gui:
+  # ... existing configuration
+  app_config:
+    # ... existing configuration
+    kubernetes:
+      clusterLocatorMethods:
+        - type: 'config'
+          clusters:
+            - url: https://KUBERNETES_SERVICE_HOST:KUBERNETES_SERVICE_PORT
+              name: host
+              authProvider: serviceAccount
+              serviceAccountToken: KUBERNETES_SERVICE_ACCOUNT_TOKEN
+              skipTLSVerify: true
+              skipMetricsLookup: false
+```
+
+Where:
+
+- `KUBERNETES_SERVICE_HOST` and `KUBERNETES_SERVICE_PORT` are the URL and ports of your Kubernetes cluster. These can be gathered via `kubectl cluster-info`.
+- `KUBERNETES_SERVICE_ACCOUNT_TOKEN` is the token from your tap-gui-token-id. You can retrieve this secret's ID  from `kubectl get secrets -n tap-gui` and then `kubectl describe secret tap-gui-token-ID` where ID is the secret name from the first step.
+
 
 > **Caution:** If you enable metrics for a cluster but do not have a metrics server running on it,
 > Tanzu Application Platform web interface users see an error notifying them that there is a
