@@ -140,7 +140,7 @@ spec:
 ```
 
 Setting up a mono repo so that each microservice can be built completely independently
-is the recommend way to setup your own monorepos. 
+is the recommended way to setup your own monorepos. 
 
 You can work with these monorepos by:
 
