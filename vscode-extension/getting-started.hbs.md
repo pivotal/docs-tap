@@ -9,15 +9,7 @@ This topic guides you through getting started with VMware Tanzu Developer Tools 
 
 ## <a id="set-up-tanzu-dev-tools"></a> Set up Tanzu Developer Tools
 
-To use the extension with a project, the project must have three required files.
-There are two ways to create these files:
-
-- Use the [VS Code Snippets](#catalog-information) that Tanzu Developer Tools provides.
-For more information about the snippets, see the [VS Code documentation](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
-
-- Write the three files by [setting up manually](#set-up-manually).
-
-The required files are:
+To use the extension with a project, the project must have these required files:
 
 - `workload.yaml`: A file named `workload` with the extension `.yaml` must be in the project.
 For example, `my-project/config/workload.yaml`. The `workload.yaml` file provides instructions to the
@@ -36,13 +28,20 @@ The Tanzu Developer Tools extension requires only one Tiltfile per project.
 - `.tanzuignore`: A file named `.tanzuignore` with no extension (no filetype) must be in the project.
 For example `my-project/.tanzuignore`. The `.tanzuignore` file specifies filepaths to be excluded from the source code image. When working with local source code, you can exclude files from the source code to be uploaded within the image.
 
+There are two ways to create these files:
+
+- Use the [VS Code Snippets](#catalog-information) that Tanzu Developer Tools provides.
+For more information about the snippets, see the [VS Code documentation](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
+
+- Write the files by [setting up manually](#set-up-manually).
+
 ## <a id="catalog-information"></a> Set up using code snippets
 
 [Code snippets](https://code.visualstudio.com/docs/editor/userdefinedsnippets) enable you to quickly
 add the files necessary to develop against the Tanzu Application Platform to existing projects.
 This is done by creating a template in an empty file that you then fill in with the required information.
 
-You must create the three files described in the [Set up Tanzu Developer Tools](#set-up-tanzu-dev-tools)
+You must create the files described in the [Set up Tanzu Developer Tools](#set-up-tanzu-dev-tools)
 section. After generating the file contents by using the code snippet, press the Tab key to fill in
 the required values.
 
@@ -278,44 +277,7 @@ you can remove the entire `allow_k8s_contexts` line. For more information, see t
 
 ### <a id="create-tanzuignore-file"></a> Create a `.tanzuignore` file
 
-The .tanzuignore file specifies the filepaths to exclude from the source code image. When working with local source code, you can exclude files from the source code to be uploaded within the image. Directories must not end with the system path separator (`/` or `\`). 
-
-The following is an example `.tanzuignore` file:
-
-```text
-### Git ###
-.git/
-.github/
-.gitmodules
-**/.gitattributes
-**/.gitignore
-
-### Maven ###
-target/
-!.mvn/wrapper/maven-wrapper.jar
-!**/src/main/**/target/
-!**/src/test/**/target/
-
-### Gradle ###
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
-!**/src/main/**/build/
-!**/src/test/**/build/
-
-### IntelliJ IDEA ###
-.idea/
-out/
-*.iws
-*.iml
-*.ipr
-
-### Tilt ###
-Tiltfile
-
-### Accelerator ###
-accelerator-log.md
-```
+The `.tanzuignore` file specifies the filepaths to exclude from the source code image. When working with local source code, you can exclude files from the source code to be uploaded within the image. Directories must not end with the system path separator (`/` or `\`). See [example](https://github.com/sample-accelerators/tanzu-java-web-app/blob/main/.tanzuignore).
 
 ### <a id="example-project"></a> Example project
 
