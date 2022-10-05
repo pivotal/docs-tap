@@ -96,7 +96,7 @@ A *Mono Repo* is single git repository that contains multiple workloads, each
 individual workload is placed in a sub-folder of the main repository.
 
 You can find an example of this in [../application-accelerator/about-application-accelerator.md][Application Accelerator].
-The relevant Accelerator is called *Spring Smtp Gateway* and its source-code can be obtained either an am Accelerator or
+The relevant Accelerator is called *Spring Smtp Gateway* and its source-code can be obtained either as an Accelerator or
 [directly from github](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.3.x/spring-smtp-gateway).
 
 This project exemplifies a typical layout:
@@ -108,7 +108,7 @@ This project exemplifies a typical layout:
      - `mvnw` (and other mvn related files for building the workload)
      - `Tiltfile` (supports liveupdate)
      - `config`
-       - `workload.yaml` (suports deployin and debugging from IntelliJ)
+       - `workload.yaml` (suports deploying and debugging from IntelliJ)
      - `src/` (contains source code for this microservice)
   - `microservice-app-2/`
      - ...similar layout
