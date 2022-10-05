@@ -126,7 +126,6 @@ config_json="${config_json}" \
     ($other, $config)' -i release-fulcio.yaml
 ```
 
-
 Another update to the `release-fulcio.yaml` that may be required is that the `OIDCIssuer` for `Kuberenetes API Token`.
 The host URL is different for versions older than Kubernetes `1.23.x`. In Kubernetes versions less than `1.23.x`, the URL is `https://kubernetes.default.svc`.
 
@@ -140,6 +139,8 @@ fi
 ```
 
 ## <a id='sigstore-patch-knative-serving'></a> Patch Knative-Serving
+
+Knative Serving should be deployed already during the first attempt of installing TAP. This component needs to be present for continuation of deploying the Sigstore Stack.
 
 With the Sigstore Stack deployment, Knative Serving's `configmap/config-features` needs to be updated to enable some required features.
 
@@ -198,6 +199,12 @@ kubectl wait --timeout 2m -n rekor-system --for=condition=Ready ksvc rekor
 To install Fulcio:
 - `kubectl apply` the `release-fulcio.yaml`
 - Wait for the jobs and services to be `Complete` or be `Ready`.
+
+The Sigstore Scaffolding `release-fulcio.yaml` downloaded may have an empty YAML document at the end of the file separated by `---` and following by no elements. This will result in:
+```
+error: error validating "release-fulcio.yaml": error validating data: [apiVersion not set, kind not set]; if you choose to ignore these errors, turn validation off with --validate=false
+```
+This is a known issue and can be ignored.
 
 ```bash
 echo 'Install Fulcio'
@@ -259,18 +266,58 @@ If the mirror is hosted elsewhere, provide the correct mirror URL. The default p
 
 The `tuf_root` is the contents of the obtained `root.json` from the `tuf-root` secret in the `tuf-system` namspace. The public TUF instance's [`root.json`](https://sigstore-tuf-root.storage.googleapis.com/root.json).
 
-If installing Policy Controller through Tanzu Application Profiles, use:
+If Policy Controller was installed through Tanzu Application Profiles, update the values file with:
 ```yaml
 policy:
   tuf_mirror: http://tuf.tuf-system.svc
-  tuf_root: <contents of root.json>
+  tuf_root: |
+    <Multi-line string content of root.json>
 ```
 
-If installing Policy Controller standalone, use:
+When updating the current Tanzu Application Platform installed through profiles with the updated values file, it is possible that the previously failing TAP `PackageInstall` will error with the following:
+
+```bash
+tanzu package installed update --install tap --values-file tap-values-updated.yaml -n tap-install
+ Updating installed package 'tap'
+ Getting package install for 'tap'
+ Getting package metadata for 'tap.tanzu.vmware.com'
+ Updating secret 'tap-tap-install-values'
+ Updating package install for 'tap'
+ Waiting for 'PackageInstall' reconciliation for 'tap'
+
+
+Error: resource reconciliation failed: kapp: Error: waiting on reconcile packageinstall/policy-controller (packaging.carvel.dev/v1alpha1) namespace: tap-install:
+  Finished unsuccessfully (Reconcile failed:  (message: Error (see .status.usefulErrorMessage for details))). Reconcile failed: Error (see .status.usefulErrorMessage for details)
+Error: exit status 1
+```
+
+Although the command fails, the values file is still updated in the installation secrets. During the next reconciliation cycle, the package will attempt to reconcile and sync with the expected configuration. At that point, Policy Controller will update and reconcile with the latest values.
+
+If Policy Controller was installed standalone or being updated manually, update the values file with:
+
 ```yaml
 tuf_mirror: http://tuf.tuf-system.svc
-tuf_root: <contents of root.json>
+tuf_root: |
+  <Multi-line string content of root.json>
 ```
+
+Run the following command with the values file configured for Policy Controller only:
+
+```bash
+tanzu package installed update policy-controller --values-file tap-values-standalone.yaml -n tap-install
+ Updating installed package 'policy-controller'
+ Getting package install for 'policy-controller'
+ Getting package metadata for 'policy.apps.tanzu.vmware.com'
+ Creating secret 'policy-controller-tap-install-values'
+ Updating package install for 'policy-controller'
+ Waiting for 'PackageInstall' reconciliation for 'policy-controller'
+ 'PackageInstall' resource install status: Reconciling
+ 'PackageInstall' resource install status: ReconcileSucceeded
+ 'PackageInstall' resource successfully reconciled
+Updated installed package 'policy-controller' in namespace 'tap-install'
+```
+
+This will update the policy-controller only. It is important that if Policy Controller was installed through the TAP package with profiles, the update command to update the TAP installation is still required as it updated the values file. If only the Policy Controller package is updated with new values and not the TAP package's values, the TAP package's values will overwrite the Policy Controller's values.
 
 For more information on profiles, see [Package Profiles](../about-package-profiles.hbs.md).
 For more information on Policy Controller, see [Install Supply Chain Security Tools - Policy Controller](./install-scst-policy.hbs.md) documentation.

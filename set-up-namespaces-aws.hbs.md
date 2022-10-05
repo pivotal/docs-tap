@@ -59,7 +59,7 @@ Follow these steps to enable additional users by using Kubernetes RBAC to submit
 
 1. Choose either of the following options to give developers namespace-level access and view access to appropriate cluster-level resources:
 
-    - **Option 1:** Use the [Tanzu Application Platform RBAC CLI plug-in (beta)](../authn-authz/binding.hbs.md#install).
+    - **Option 1:** Use the [Tanzu Application Platform RBAC CLI plug-in (beta)](authn-authz/binding.hbs.md#install).
 
         To use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity provider group, run:
 
@@ -75,7 +75,7 @@ Follow these steps to enable additional users by using Kubernetes RBAC to submit
         - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that requires access to `app-editor` resources on the current namespace and cluster.
 
         For more information about `tanzu rbac`, see
-        [Bind a user or group to a default role](../authn-authz/binding.html).
+        [Bind a user or group to a default role](authn-authz/binding.html).
 
         VMware recommends creating a user group in your identity provider's grouping system for each
         developer namespace and then adding the users accordingly.
@@ -83,7 +83,7 @@ Follow these steps to enable additional users by using Kubernetes RBAC to submit
         Depending on your identity provider, you might need to take further action to
         federate user groups appropriately with your cluster.
         For an example of how to set up Azure Active Directory (AD) with your cluster, see
-        [Integrating Azure Active Directory](../authn-authz/azure-ad.html).
+        [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
     - **Option 2:** Use the native Kubernetes YAML.
 
@@ -157,11 +157,11 @@ Follow these steps to enable additional users by using Kubernetes RBAC to submit
         Depending on your identity provider, you might need to take further action to
         federate user groups appropriately with your cluster.
         For an example of how to set up Azure Active Directory (AD) with your cluster, see
-        [Integrating Azure Active Directory](../authn-authz/azure-ad.html).
+        [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
         Rather than granting roles directly to individuals, VMware recommends using your identity provider's user groups system to grant access to a group of developers.
         For an example of how to set up Azure AD with your cluster, see
-        [Integrating Azure Active Directory](../authn-authz/azure-ad.html).
+        [Integrating Azure Active Directory](authn-authz/azure-ad.html).
 
 1. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the bindings are applied.
 
@@ -169,8 +169,8 @@ Follow these steps to enable additional users by using Kubernetes RBAC to submit
 
 For online installation:
 
-- [Installing Tanzu Developer Tools for VS Code](../vscode-extension/install.html)
+- [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.html)
 
 For air-gapped installation:
 
-- [Deploy your first air-gapped workload (beta)](../getting-started/air-gap-workload.html)
+- [Deploy your first air-gapped workload](getting-started/air-gap-workload.html)

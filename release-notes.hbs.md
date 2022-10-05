@@ -58,7 +58,6 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
-
 - `tanzu apps *` improvements:
   - auto-complete now works for all sub-command names and their positional argument values, flag names, and flag values.
 - `tanzu apps workload create/apply` improvements:
@@ -97,11 +96,6 @@ This release includes the following changes, listed by component and area.
 - Added support for OpenShift.
 - Added support for Kubernetes 1.24.
 
-#####<a id="src-cont-bugfixes"></a>Bug Fixes
-
-- Added checks to ensure SNAPSHOT has versioning enabled.
-- Fixed resource status conditions when metadata or metadata element is not found.
-
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
 - Snyk CLI is updated to v1.994.0.
@@ -138,7 +132,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
-- Added Tanzu Problems panel to show workload status errors inside the IDE
+- Added **Tanzu Problems** panel to show workload status errors inside the IDE
 
 #### <a id="dev-tls-intelj-features"></a>Tanzu Developer Tools for IntelliJ
 
@@ -174,6 +168,8 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
 - [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
+- Alpha version scan CRDs have been removed.
+- Deprecated path, invoked when `ScanTemplates` shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are used, now logs a message directing users to update the scanner integration to the latest version. The migration path is to use `ScanTemplates` shipped with Supply Chain Security Tools - Scan `v1.3.0`.
 
 #### <a id="tbs-breaking-changes"></a> Tanzu Build Service
 
@@ -202,9 +198,9 @@ This release has the following breaking changes, listed by area and component.
 
 - Resolved issue 1
 - Resolved issue 2
-  
+
 #### <a id="1-3-upgrade-issues"></a>Upgrading Tanzu Application Platform
-  
+
 - Adding new Tanzu Application Platform repository bundle in addition to another repository bundle does not cause a failure anymore.
 
 #### <a id="app-acc-resolved"></a> Application Accelerator
@@ -239,6 +235,11 @@ This release has the following breaking changes, listed by area and component.
 - When uploading a source image, if the namespace provided is not valid or doesn't exist, the image isn't uploaded and the workload isn't created.
 - Due to a Tanzu Framework upgrade, the autocompletion for flag names in all commands is now working.
 
+#### <a id="source-controller-resolved"></a> Source Controller
+
+- Added checks to ensure SNAPSHOT has versioning enabled.
+- Fixed resource status conditions when metadata or metadata element is not found.
+
 #### <a id="srvc-toolkit-resolved"></a> Services Toolkit
 
 - Resolved issue 1
@@ -266,18 +267,18 @@ This release has the following known issues, listed by area and component.
 #### <a id="tap-known-issues"></a>Tanzu Application Platform
 
   - New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
-  - The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end. Do not append "/" to the end of the string.
+  - The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end. For more information, see [Troubleshoot using Tanzu Application Platform](troubleshooting-tap/troubleshoot-using-tap.hbs.md#invalid-repo-paths).
 
 #### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plug-ins
 
 - **Failure to connect to AWS EKS clusters:**
-  
+
   When connecting to AWS EKS clusters, an error might appear with the text
   - `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
   - `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
-    
+
   This occurs if the version of the `aws-cli` is less than the supported version `2.7.35`.
-    
+
   See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
 
 #### <a id="alv-known-issues"></a>Application Live View
@@ -293,6 +294,19 @@ This release has the following known issues, listed by area and component.
 
 - Known issue 1
 - Known issue 2
+
+#### <a id="cnrs-issues"></a> Cloud Native Runtimes
+
+- **Failure to successfully deploy workloads on Openshift**
+  When creating a workload from a Deliverable resource, it may not create successfully, and an error might be seen with the text
+  ```
+  pods "<pod name>" is forbidden: unable to validate against any security context constraint: 
+  [provider "anyuid": Forbidden: not usable by user or serviceaccount, spec.containers[0].securityContext.runAsUser:
+  Invalid value: 1000: must be in the ranges: [1000740000, 1000749999]
+  ```
+  This may be due to ServiceAccounts or Users bound to overly restrictive SecurityContextConstraints.
+
+  See the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html) for how to resolve this issue.
 
 #### <a id="functions-issues"></a> Functions (beta)
 
@@ -337,6 +351,11 @@ This release has the following known issues, listed by area and component.
   or `Tanzu: Apply`, which says that no workloads or Tiltfiles were found.
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cancel-action-warning).
 
+- **Live update not working when using server or worker Workload types:**
+  When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`
+
+- **Tiltfile snippet does not work on files named `Tiltfile` when Tilt extension is installed:** For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#tiltfile-snippet).
+
 #### <a id="intelj-ext-known-issues"></a>Intellij Extension
 
 - **Unable to view workloads on the panel when connected to GKE cluster:**
@@ -345,11 +364,19 @@ This release has the following known issues, listed by area and component.
   To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 - **Starting debug and live update sessions is synchronous:**
-  When a User `Run`s (or `Debug`s) a launch configuration intellij diables the launch controls preventing other 
-  launch configs from being launched at the same time.  Re-activating these controls only when the launch config is started.  
-  As such, starting mulitple Tanzu debug and live update sessions is a synchronous activity.  We are looking into 
+  When a User `Run`s (or `Debug`s) a launch configuration intellij disables the launch controls preventing other
+  launch configs from being launched at the same time.  Re-activating these controls only when the launch config is started.
+  As such, starting mulitple Tanzu debug and live update sessions is a synchronous activity.  We are looking into
   how we might improve this expereince for our Users.
 
+- **Live update not working when using server or worker Workload types:**
+  When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`
+
+- **Stoping one debug session stops them all:**
+  When starting multiple simultaneous workload debud sessions, terminating one of those sessions will inadvertently also terminate
+  the others. (Note that is only disconnects the debugger, it doesn't terminate the workload process itself, so it is possible
+  reatach/restart debug sessions). A fix for this bug will be included in TAP 1.3.1.
+ 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
 - Known issue 1

@@ -11,67 +11,67 @@ A .NET Core application can be extended to a Steeltoe application by adding inde
 
 To enable the Actuators on a .NET Core App:
 
-Add a PackageReference to your `.csproj` file:
+1. Add a PackageReference to your `.csproj` file:
 
-```
-<PackageReference Include="Steeltoe.Management.EndpointCore" Version="$(SteeltoeVersion)" />
-```
+    ```
+    <PackageReference Include="Steeltoe.Management.EndpointCore" Version="$(SteeltoeVersion)" />
+    ```
 
->**Note:** The PackageReference is expected to change to `Steeltoe.Management.Endpoint` from version Steeltoe 4.0 onwards.
+    >**Note:** The PackageReference is expected to change to `Steeltoe.Management.Endpoint` from version Steeltoe 4.0 onwards.
 
-In addition, call the extension `AddAllActuators` in your `Program.cs` file:
+2. Call the extension `AddAllActuators` in your `Program.cs` file:
 
-```
-builder.WebHost.AddAllActuators();
-```
+    ```
+    builder.WebHost.AddAllActuators();
+    ```
 
-(Optional) You can add app-specific configurations, such as the following.
+3. (Optional) You can add app-specific configurations, such as the following.
 
-To expose all management actuator endpoints except `env` endpoint, add the following configuration to your `appsettings.json` file:
+    To expose all management actuator endpoints except `env` endpoint, add the following configuration to your `appsettings.json` file:
 
-```json
-{
-  "Management": {
-    "Endpoints": {
-      "Actuator":{
-        "Exposure": {
-          "Include": [ "*" ],
-          "Exclude": [ "env" ]
+    ```json
+    {
+      "Management": {
+        "Endpoints": {
+          "Actuator":{
+            "Exposure": {
+              "Include": [ "*" ],
+              "Exclude": [ "env" ]
+            }
+          }
         }
       }
     }
-  }
-}
-```
+    ```
 
-To enable logging, add the following configuration to your `appsettings.json` file:
+    To enable logging, add the following configuration to your `appsettings.json` file:
 
-```json
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft": "Warning",
-      "Steeltoe": "Warning",
-      "Sample": "Information"
-    }
-  }
-}
-```
-
-To enable heapdump, add the following configuration to your `appsettings.json` file:
-
-```json
-{
-  "Management": {
-    "Endpoints": {
-      "HeapDump": {
-        "HeapDumpType": "Normal"
+    ```json
+    {
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft": "Warning",
+          "Steeltoe": "Warning",
+          "Sample": "Information"
+        }
       }
     }
-  }
-}
-```
+    ```
+
+    To enable heapdump, add the following configuration to your `appsettings.json` file:
+
+    ```json
+    {
+      "Management": {
+        "Endpoints": {
+          "HeapDump": {
+            "HeapDumpType": "Normal"
+          }
+        }
+      }
+    }
+    ```
 
 ## <a id="enable-app-live-view-steeltoe"></a>Enable Application Live View on Steeltoe Tanzu Application Platform workload
 

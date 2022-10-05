@@ -43,7 +43,7 @@ The cluster image policy is a custom resource containing the following propertie
   - If `*` is specified, the `glob` matching behavior is `index.docker.io/library/*`.
   - If `*/*` is specified, the `glob` matching behavior is `index.docker.io/*/*`.
   With these defaults, you require the `glob` pattern `**` to match against all images.
-  If your image is hosted on DockerHub, include `index.docker.io` as the host for the glob.
+  If your image is hosted on Docker Hub, include `index.docker.io` as the host for the glob.
 
 * `authorities`: The authorities block defines the rules for discovering and validating signatures. Discovery is done by using the `sources` text box, and is specified on any entry. Signatures are cryptographically verified using one of the `key` or `keyless` text boxes.
 
@@ -110,7 +110,7 @@ Policy Controller defines the following globs by default:
 - If `*/*` is specified, the `glob` matching behavior is `index.docker.io/*/*`.
 
 With these defaults, you require the `glob` pattern `**` to match against all images.
-If your image is hosted on DockerHub, include `index.docker.io` as the host for the glob.
+If your image is hosted on Docker Hub, include `index.docker.io` as the host for the glob.
 
 A sample of a ClusterImagePolicy which matches against all images using glob:
 
@@ -209,7 +209,7 @@ IMAGE-REFERENCE disallowed by static policy
 
 Images that are unsigned in a namespace with validation enabled are admitted with an authority with static action `pass`.
 
-A scenario where this is desirable is configuring a policy with `static.action` `pass` for `tap-packages` images. Another policy is then configured to validate signed images produced by Tanzu Build Service. This allows images from `tap-packages`, which are unsigned and required by the platform, to be admitted while still validating signed built images from Tanzu Build Service. See [Configure your supply chain to sign and verify your image builds](../getting-started/config-supply-chain.md#config-sc-to-img-builds) for an example.
+A scenario where this applies is configuring a policy with `static.action` `pass` for `tap-packages` images. Another policy is then configured to validate signed images produced by Tanzu Build Service. This allows images from `tap-packages`, which are unsigned and required by the platform, to be admitted while still validating signed built images from Tanzu Build Service. See [Configure your supply chain to sign and verify your image builds](../getting-started/config-supply-chain.md#config-sc-to-img-builds) for an example.
 
 If `Warning` messages are desirable for admitted images where validation failed, you can configure a policy with `warn` mode and valid authorities.
 For information about ClusterImagePolicy modes, see the [Mode](#cip-mode) documentation.

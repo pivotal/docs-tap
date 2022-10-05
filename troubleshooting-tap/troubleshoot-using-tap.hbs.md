@@ -443,13 +443,17 @@ For more information, see [aws/aws-cli/issues/6920](https://github.com/aws/aws-c
 GitHub.
 
 **Solution**
-Updating your `aws-cli` to a supported `v2.7.35` or greater and updating the kubeconfig entry for your EKS cluster(s) should resolve the issue.
 
-1. [Update `aws-cli`](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) to the latest version.
-1. Run:
+Follow these steps to update your `aws-cli` to a supported `v2.7.35` or greater and update the kubeconfig entry for your EKS cluster(s):
+
+1. Update `aws-cli` to the latest version. See [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) for more information.
+
+1. Update the kubeconfig entry for your EKS cluster(s):
+
     ```console
     aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
     ```
+
 1. In a new terminal window, run a Tanzu CLI command to verify the connection issue is resolved. For example:
 
     ```console
@@ -457,3 +461,15 @@ Updating your `aws-cli` to a supported `v2.7.35` or greater and updating the kub
     ```
 
     Expect the command to execute without error.
+
+## <a id='invalid-repo-paths'></a> Invalid repository paths are propagated
+
+When inputting shared.image_registry.project_path, invalid repository paths are propagated.
+
+**Explanation**
+
+The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end of the string.
+
+**Solution**
+
+Do not append "/" to the end of the string.

@@ -202,6 +202,7 @@ To do so:
                 authProvider: serviceAccount
                 serviceAccountToken: "CLUSTER-TOKEN"
                 skipTLSVerify: true
+                skipMetricsLookup: true
     ```
 
     Where:

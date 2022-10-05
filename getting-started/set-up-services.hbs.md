@@ -37,13 +37,14 @@ Before following this walkthrough, you must:
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
 1. Ensure that your Tanzu Application Platform cluster can pull the container images required by the Kubernetes operator providing the service. For more information, see:
-   * RabbitMQ Cluster Kubernetes operator in the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/using-operator.html).
+   * [VMware Tanzu RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
    * [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html).
    * [VMware Tanzu SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html).
 
 ## <a id="stk-set-up"></a> Set up a service
 
-> **Note:** Although this walkthrough uses the example of RabbitMQ Cluster Kubernetes operator, the setup steps remain mostly the same for any compatible operator.
+> **Note:** This walkthrough uses an example of the RabbitMQ Cluster Kubernetes operator, however it should be noted that the setup steps listed here remain largely the same for any compatible operator.
+> **Note:** This walkthrough uses the open source RabbitMQ Cluster Operator for Kubernetes. However for most real world deployments it is recommended to use the official, supported version provided by VMware - [VMware Tanzu RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
 
 This section covers:
 
@@ -56,7 +57,7 @@ For this part of the walkthrough, you assume the role of the **service operator*
 
 To set up a service:
 
-1. Use `kapp` to install the RabbitMQ Cluster Kubernetes operator by running:
+1. Use `kapp` to install the open source RabbitMQ Cluster Kubernetes operator by running:
 
     ```console
     kapp -y deploy --app rmq-operator --file https://github.com/rabbitmq/cluster-operator/releases/latest/download/cluster-operator.yml

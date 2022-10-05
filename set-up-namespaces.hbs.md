@@ -1,7 +1,7 @@
 # Set up developer namespaces to use installed packages
 
-You can choose either one of the following two approaches to create a `Workload` 
-for your application by using the registry credentials specified, 
+You can choose either one of the following two approaches to create a `Workload`
+for your application by using the registry credentials specified,
 add credentials and Role-Based Access Control (RBAC) rules to the namespace
 that you plan to create the `Workload` in:
 
@@ -22,7 +22,7 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
 
     - `YOUR-NAMESPACE` is the name you give to the developer namespace.
     For example, use `default` for the default namespace.
-    - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
+    - `REGISTRY-SERVER` is the URL of the registry. For Docker Hub, this must be
     `https://index.docker.io/v1/`. Specifically, it must have the leading `https://`, the `v1` path,
     and the trailing `/`. For Google Container Registry (GCR), this is `gcr.io`.
     Based on the information used in [Installing the Tanzu Application Platform Package and Profiles](install.hbs.md), you can use the
@@ -230,4 +230,4 @@ For online installation:
 
 For air-gapped installation:
 
-- [Deploy your first air-gapped workload (beta)](getting-started/air-gap-workload.html)
+- [Deploy your first air-gapped workload](getting-started/air-gap-workload.html)

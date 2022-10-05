@@ -151,21 +151,22 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
-## <a id='air-gap-policy'></a> Prepare Sigstore TUF Stack for Air-Gapped Policy Controller
+## <a id='air-gap-policy'></a> Prepare Sigstore TUF Stack for Air-gapped Policy Controller
 
-Supply Chain Security Tools - Policy Controller currently requires access to a TUF server.
-In a normal environment with public internet access, the public official Sigstore TUF server is used.
-
-However, for an air-gapped environment, an internally accessible Sigstore stack is currently required.
+Supply Chain Security Tools - Policy Controller requires access to a The Update Framework (TUF) server.
+In an environment with public Internet access, the public official Sigstore TUF server is used.
 
 The Sigstore Stack consists of:
+
 - [Trillian](https://github.com/google/trillian)
 - [Rekor](https://github.com/sigstore/rekor)
 - [Fulcio](https://github.com/sigstore/fulcio)
 - [Certificate Transparency Log (CTLog)](https://github.com/google/certificate-transparency-go)
-- [TheUpdateFramework (TUF)](https://theupdateframework.io/)
+- [The Update Framework (TUF)](https://theupdateframework.io/)
 
-For more information on how to setup the Sigstore Stack, see [Sigstore Stack Install](./scst-policy/install-sigstore-stack.hbs.md).
+For an air-gapped environment, an internally accessible Sigstore stack is required. While installing, Policy Controller fails to reconcile and deploy in most cases. The Policy Controller must be configured with a TUF mirror and TUF root.
+
+For more information about how to set up the Sigstore Stack, see [Install Sigstore Stack](scst-policy/install-sigstore-stack.html).
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
@@ -202,12 +203,22 @@ and input it as `B64_ENCODED_CA` in the `tap-values.yaml`.
 The following is the YAML file sample for the full-profile:
 
 ```yaml
+shared:
+  ingress_domain: "INGRESS-DOMAIN"
+  image_registry:
+    project_path: "SERVER-NAME/REPO-NAME"
+    username: "REGISTRY-USERNAME"
+    password: "REGISTRY-PASSWORD"
+    ca_cert_data: |
+      -----BEGIN CERTIFICATE-----
+      MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+      -----END CERTIFICATE-----
 profile: full
 ceip_policy_disclosed: true
 buildservice:
   kp_default_repository: "REPOSITORY"
-  kp_default_repository_username: "REGISTRY-USERNAME"
-  kp_default_repository_password: "REGISTRY-PASSWORD"
+  kp_default_repository_username: "REGISTRY-USERNAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+  kp_default_repository_password: "REGISTRY-PASSWORD" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
   exclude_dependencies: true
 supply_chain: basic
 scanning:
@@ -219,13 +230,13 @@ contour:
     service:
       type: LoadBalancer
       annotations:
-      # This annotation is for air-gapped AWS only
+      # This annotation is for air-gapped AWS only.
           service.kubernetes.io/aws-load-balancer-internal: "true"
 
 ootb_supply_chain_basic:
   registry:
-      server: "SERVER-NAME"
-      repository: "REPO-NAME"
+      server: "SERVER-NAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
+      repository: "REPO-NAME" # Takes the value from the shared section above by default, but can be overridden by setting a different value.
   gitops:
       ssh_secret: "SSH-SECRET"
   maven:
@@ -234,9 +245,13 @@ ootb_supply_chain_basic:
          secret_name: "MAVEN-CREDENTIALS"
 
 accelerator:
-      samples:
-        # Prevent repeated polling of github to pull accelerators
-        include: false
+  ingress:
+    include: true
+    enable_tls: false
+  git_credentials:
+    secret_name: git-credentials
+    username: GITLAB-USER
+    password: GITLAB-PASSWORD
 
 appliveview:
   ingressEnabled: true
@@ -268,7 +283,7 @@ tap_gui:
       locations:
         - type: url
           target: https://GIT-CATALOG-URL/catalog-info.yaml
-    #Example Integration for custom gitlab
+    #Example Integration for custom GitLab:
     integrations:
       gitlab:
         - host: GITLABURL
@@ -287,37 +302,32 @@ metadata_store:
 grype:
   namespace: "MY-DEV-NAMESPACE"
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
-
-shared:
-      ingress_domain: INGRESS-DOMAIN
-      ca_cert_data: |
-              -----BEGIN CERTIFICATE-----
-              MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
-              -----END CERTIFICATE-----
 ```
 
 Where:
 
-- `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
-    * Harbor: `harbor.io/my-project/build-service`
-    * Artifactory: `artifactory.com/my-project/build-service`
-- `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
-- `SERVER-NAME` is the hostname of the registry server. Examples:
-    * Harbor has the form `server: "my-harbor.io"`
-    * Dockerhub has the form `server: "index.docker.io"`
-    * Google Cloud Registry has the form `server: "gcr.io"`
-- `REPO-NAME` is where workload images are stored in the registry.
-Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
-    * Harbor has the form `repository: "my-project/supply-chain"`
-    * Dockerhub has the form `repository: "my-dockerhub-user"`
-    * Google Cloud Registry has the form `repository: "my-project/supply-chain"`
-- `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication.
-- `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#a-idmaven-repository-secreta-maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
+- `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
+    * Harbor: `harbor.io/my-project/build-service`.
+    * Artifactory: `artifactory.com/my-project/build-service`.
+- `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
+- `SERVER-NAME` is the hostname of the registry server. Examples:
+    * Harbor has the form `server: "my-harbor.io"`.
+    * Docker Hub has the form `server: "index.docker.io"`.
+    * Google Cloud Registry has the form `server: "gcr.io"`.
+- `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the shared section earlier and AWS ECR registry is used, you must ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
+Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
+    * Harbor has the form `repository: "my-project/supply-chain"`.
+    * Docker Hub has the form `repository: "my-dockerhub-user"`.
+    * Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
+- `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication.
+- `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#a-idmaven-repository-secreta-maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
-- `GITLABURL` is the hostname of your gitlab instance
-- `GITLAB-TOKEN` is the API token for your gitlab instance
+- `GITLABURL` is the host name of your GitLab instance.
+- `GITLAB-USER` is the user name of your GitLab instance.
+- `GITLAB-PASSWORD` is the password for the `GITLAB-USER` of your GitLab instance. This can also be the `GITLAB-TOKEN`.
+- `GITLAB-TOKEN` is the API token for your GitLab instance.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`. This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.

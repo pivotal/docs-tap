@@ -482,9 +482,21 @@ spec:
       classifier: sources   # optional
 ```
 
-The `tanzu` CLI is used for creating workloads that define Maven artifacts as source.
+There are two ways to create a workload that defines a specific version of a maven artifact as source in the `tanzu` CLI.
 
-To create a workload that defines a specific version of a maven artifact as source, run:
+The first way would be defining the source through CLI flags, such as this:
+
+```bash
+tanzu apps workload apply my-workload \
+      --maven-artifact springboot-initial \
+      --maven-version 2.6.0 \
+      --maven-group com.example \
+      --type web --app spring-boot-initial -y
+```
+
+Another flag that can be used alongside the others in this type of command is `--maven-type`, which refers to the maven packaging type and defaults to `jar` if not specified.
+
+The second one is through complex params (in JSON or YAML format). To specify the maven info with this method, run:
 
 ```bash
 tanzu apps workload apply my-workload \
@@ -501,8 +513,7 @@ tanzu apps workload apply my-workload \
 ```
 
 The Maven repository URL and required credentials are defined in the supply
-chain, not the workload. For more information, see [Installing OOTB
-Basic](install-ootb-sc-basic.md).
+chain, not the workload. For more information, see [Installing OOTB Basic](./install-ootb-sc-basic.hbs.md).
 
 ### <a id="maven-repository-secret"></a> Maven Repository Secret
 

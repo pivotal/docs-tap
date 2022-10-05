@@ -5,11 +5,6 @@ from Image Policy Webhook to Policy Controller. For more information about
 additional features introduced in Policy Controller, see
 [Configuring Supply Chain Security Tools - Policy](configuring.md).
 
->**Note:** There is currently no equivalent of "AllowUnmatchedImages"
-VMware recommends that users sign public images and have the signature
-stored in their own repository that is referenced by specifying a source
-in the `ClusterImagePolicy` authorities.
-
 ## <a id="img-policy-webhook"></a> Add Policy Controller Namespace to Image Policy Webhook
 
 If there is an active Image Policy Webhook `ClusterImagePolicy`, it prevents
@@ -190,6 +185,24 @@ metadata:
 spec:
   images:
   - glob: gcr.io/projectsigstore/cosign*
+```
+
+## <a id="img-matching"></a> Specifying policy mode
+If `AllowUnmatchedImages` is set to `true` in the Image Policy Webhook deployment
+create the following policy in the cluster
+
+```yaml
+---
+apiVersion: policy.sigstore.dev/v1beta1
+kind: ClusterImagePolicy
+metadata:
+  name: allow-unmatched-image-policy
+spec:
+  images:
+  - glob: "**"
+    authorities:
+    - static:
+        action: pass
 ```
 
 ## <a id="uninstall-ipw"></a> Uninstall Image Policy Webhook

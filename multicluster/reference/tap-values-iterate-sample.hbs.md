@@ -15,15 +15,15 @@ shared:
 
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 
-#The above shared keys may be overridden in the below section.
+# The above shared keys may be overridden in the below section.
 
-buildservice: #optional if the corresponding shared keys are provided.
+buildservice: # Optional if the corresponding shared keys are provided.
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
 
 supply_chain: basic
-ootb_supply_chain_basic: #Optional if the shared above mentioned shared keys are provided.
+ootb_supply_chain_basic: # Optional if the shared above mentioned shared keys are provided.
   registry:
     server: "SERVER-NAME"
     repository: "REPO-NAME"
@@ -57,7 +57,7 @@ Where:
 
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
     - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
-    - Dockerhub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
+    - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
     - Google Cloud Registry has the form `kp_default_repository: "gcr.io/my-project/build-service"`.
 - `KP-DEFAULT-REPO-USERNAME` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     - For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
@@ -65,14 +65,14 @@ Where:
     - For Google Cloud Registry, use the contents of the service account JSON file.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     - Harbor has the form `server: "my-harbor.io"`.
-    - Dockerhub has the form `server: "index.docker.io"`.
+    - Docker Hub has the form `server: "index.docker.io"`.
     - Google Cloud Registry has the form `server: "gcr.io"`.
 - `REPO-NAME` is where workload images are stored in the registry.
 Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Harbor has the form `repository: "my-project/supply-chain"`.
-    - Dockerhub has the form `repository: "my-dockerhub-user"`.
+    - Docker Hub has the form `repository: "my-dockerhub-user"`.
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
-- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to..
+- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
 - `TAP-ITERATE-CNRS-DOMAIN` is the iterate cluster CNRS domain.
 - `VIEW-CLUSTER-INGRESS-DOMAIN` is the subdomain you setup on the View profile cluster. This matches the value key `appliveview.ingressDomain` or `shared.ingress_domain` on the view cluster. Include the default host name `appliveview.` ahead of the domain.
-- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See [Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.
+- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.

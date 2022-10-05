@@ -17,7 +17,7 @@ To increase security, the token has a lifetime of 12 hours.  This makes storing 
 
 Using an IAM role on a service account mitigates the need to retrieve the token at all because it is handled by credential helpers within the services.
 
-## Prerequisites
+## <a id='prereqs'></a>Prerequisites
 
 Before installing Tanzu Application Platform on AWS, you need:
 
@@ -27,7 +27,7 @@ Before installing Tanzu Application Platform on AWS, you need:
 
 - EKSCTL command line. The EKSCTL command line helps you manage the life cycle of EKS clusters. This guide uses it to create clusters. To install the EKSCTL CLI, see [Installation](https://eksctl.io/introduction/#installation).
 
-## Export Environment Variables
+## <a id='export-env-variables'></a>Export environment variables
 
 Variables are used throughout this guide. To simplify the process and minimize the opportunity for errors, export these variables:
 
@@ -46,7 +46,7 @@ Where:
 | EKS_CLUSTER_NAME | The name of your EKS Cluster |
 
 
-## Create an EKS cluster
+## <a id='create-eks-cluster'></a>Create an EKS cluster
 
 To create an EKS cluster in the specified region, run:
 
@@ -58,7 +58,7 @@ Creating the control plane and node group can take anywhere from 30-60 minutes.
 
 >**Note:** This step is optional if you already have an existing EKS Cluster of at least v1.22 with OpenID Connect (OIDC) authentication enabled. To enable the OIDC provider, see this [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html).
 
-## Create the container repositories
+## <a id='create-container-repos'></a>Create the container repositories
 
 ECR requires that the container repositories are already created. For Tanzu Application Platform, you need to create two repositories:
 
@@ -74,7 +74,7 @@ aws ecr create-repository --repository-name tap-build-service --region $AWS_REGI
 
 Name the repositories any name you want, but remember the names for when you later build the configuration.
 
-## Create IAM roles
+## <a id='create-iam-roles'></a>Create IAM roles
 
 By default, the EKS cluster is provisioned with an EC2 instance profile that provides read-only access for the entire EKS cluster to the ECR registery within your AWS account. For more information, see this [AWS documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use_switch-role-ec2_instance-profiles.html).
 

@@ -82,7 +82,7 @@ run pods using images from the installation of Tanzu Application Platform.
     - `YOUR-NAMESPACE` is the name you want to use for the developer
       namespace. For example, use `default` for the default namespace.
 
-    - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
+    - `REGISTRY-SERVER` is the URL of the registry. For Docker Hub, this must be
       `https://index.docker.io/v1/`. Specifically, it must have the leading
       `https://`, the `v1` path, and the trailing `/`. For GCR, this is
       `gcr.io`.  Based on the information used in [Installing the Tanzu

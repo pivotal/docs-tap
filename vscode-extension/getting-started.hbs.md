@@ -9,31 +9,31 @@ This topic guides you through getting started with VMware Tanzu Developer Tools 
 
 ## <a id="set-up-tanzu-dev-tools"></a> Set up Tanzu Developer Tools
 
-To use the extension with a project, the project must have three required files.
-There are two ways to create these files:
-
-- Use the [VS Code Snippets](#catalog-information) that Tanzu Developer Tools provides.
-For more information about the snippets, see the [VS Code documentation](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
-
-- Write the three files by [setting up manually](#set-up-manually).
-
-The required files are:
+To use the extension with a project, the project must have these required files:
 
 - `workload.yaml`: A file named `workload` with the extension `.yaml` must be in the project.
-For example, `my project/config/workload.yaml`. `workload.yaml` provides instructions to the
+For example, `my-project/config/workload.yaml`. The `workload.yaml` file provides instructions to the
 [Supply Chain Choreographer](../scc/about.md) for how a workload must be built and managed.
 The extension requires only one `workload.yaml` per project. `workload.yaml` must be a single-document
 YAML file, not a multidocument YAML file.
 
 - `catalog-info.yaml`: A file named `catalog-info` with the extension `.yaml` must be in the project.
-For example, `my project/catalog/catalog-info.yaml`.
-The `catalog-info.yaml` file enables the workloads created with the Tanzu Developer Tools extension
-to appear in [Tanzu Application Platform GUI](../tap-gui/about.md).
+For example, `my-project/catalog/catalog-info.yaml`. The `catalog-info.yaml` file enables the workloads created with the Tanzu Developer Tools extension to appear in [Tanzu Application Platform GUI](../tap-gui/about.md).
 
-- Tiltfile: A file named Tiltfile with no extension (no filetype) must be in the project.
-For example, `My project/Tiltfile`. The Tiltfile provides the [Tilt](https://docs.tilt.dev/)
+- `Tiltfile`: A file named `Tiltfile` with no extension (no filetype) must be in the project.
+For example, `my-project/Tiltfile`. The Tiltfile provides the [Tilt](https://docs.tilt.dev/)
 configuration for to enable your project to Live Update on the Tanzu Application Platform.
 The Tanzu Developer Tools extension requires only one Tiltfile per project.
+
+- `.tanzuignore`: A file named `.tanzuignore` with no extension (no filetype) must be in the project.
+For example `my-project/.tanzuignore`. The `.tanzuignore` file specifies filepaths to be excluded from the source code image. When working with local source code, you can exclude files from the source code to be uploaded within the image.
+
+There are two ways to create these files:
+
+- Use the [VS Code Snippets](#catalog-information) that Tanzu Developer Tools provides.
+For more information about the snippets, see the [VS Code documentation](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
+
+- Write the files by [setting up manually](#set-up-manually).
 
 ## <a id="catalog-information"></a> Set up using code snippets
 
@@ -41,7 +41,7 @@ The Tanzu Developer Tools extension requires only one Tiltfile per project.
 add the files necessary to develop against the Tanzu Application Platform to existing projects.
 This is done by creating a template in an empty file that you then fill in with the required information.
 
-You must create the three files described in the [Set up Tanzu Developer Tools](#set-up-tanzu-dev-tools)
+You must create the files described in the [Set up Tanzu Developer Tools](#set-up-tanzu-dev-tools)
 section. After generating the file contents by using the code snippet, press the Tab key to fill in
 the required values.
 
@@ -218,9 +218,9 @@ Where:
 - `APP-NAME` is the name of your application.
 - `APP-DESCRIPTION` is the description of your application.
 
-### <a id="create-tiltfile-file"></a> Create a Tiltfile file
+### <a id="create-tiltfile-file"></a> Create a `Tiltfile` file
 
-The Tiltfile file provides the [Tilt](https://docs.tilt.dev/) configuration for enabling your project
+The `Tiltfile` file provides the [Tilt](https://docs.tilt.dev/) configuration for enabling your project
 to Live Update on your Kubernetes cluster that has Tanzu Application Platform.
 The extension requires only one Tiltfile per project.
 
@@ -236,7 +236,7 @@ or otherwise leave the `local path` value unchanged. For more information, see l
 if the targeting Kubernetes cluster enabled by Tanzu Application Platform is not running on your local
 machine.
 
-The following is an example Tiltfile file:
+The following is an example `Tiltfile` file:
 
 ```text
 SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='SOURCE-IMAGE')
@@ -274,6 +274,10 @@ Where:
 If your Kubernetes cluster enabled by Tanzu Application Platform is running locally on your local machine,
 you can remove the entire `allow_k8s_contexts` line. For more information, see the
 [Tilt documentation](https://docs.tilt.dev/api.html#api.allow_k8s_contexts).
+
+### <a id="create-tanzuignore-file"></a> Create a `.tanzuignore` file
+
+The `.tanzuignore` file specifies the filepaths to exclude from the source code image. When working with local source code, you can exclude files from the source code to be uploaded within the image. Directories must not end with the system path separator (`/` or `\`). See [example](https://github.com/sample-accelerators/tanzu-java-web-app/blob/main/.tanzuignore).
 
 ### <a id="example-project"></a> Example project
 
