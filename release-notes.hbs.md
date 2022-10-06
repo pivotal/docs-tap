@@ -110,16 +110,16 @@ This release includes the following changes, listed by component and area.
 - Added support for OpenShift.
 - Added support for Kubernetes 1.24.
 
+#### <a id="grype-scan-"></a>Grype scanner
+
+- Grype Scanner can run in an EKS cluster with ECR as the configured registry using IAM policy for credentials without having to create a Kubernetes Secret with temporary credentials.
+
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
 - Snyk CLI is updated to v1.994.0.
+- Snyk Scanner can run in an EKS cluster with ECR as the configured registry using IAM policy for credentials without having to create a Kubernetes Secret with temporary credentials.
 
 #### <a id="scc-features"></a>Supply Chain Choreographer
-
-- Feature 1
-- Feature 2
-
-#### <a id="scst-scan"></a> Supply Chain Security Tools - Scan
 
 - Feature 1
 - Feature 2
@@ -194,11 +194,6 @@ This release has the following breaking changes, listed by area and component.
 - Breaking change 1
 - Breaking change 2
 
-#### <a id="grype-scanner-changes"></a> Grype Scanner
-
-- Breaking change 1
-- Breaking change 2
-
 #### <a id="app-sso-changes"></a> Application Single Sign-On
 
 - **Deprecation notice:**
@@ -240,16 +235,6 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Policy Controller
 
 - Pods deployed through `kubectl run` in non-default namespace now are able to build the neccessary keychain for registry access during validation.
-
-#### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Scan
-
-- Resolved issue 1
-- Resolved issue 2
-
-#### <a id="grype-scan-resolved"></a>Grype Scanner
-
-- Resolved issue 1
-- Resolved issue 2
 
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
@@ -343,11 +328,6 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   See the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html) for how to resolve this issue.
 
 #### <a id="functions-issues"></a> Functions (beta)
-
-- Known issue 1
-- Known issue 2
-
-#### <a id="scst-scan-issues"></a>Supply Chain Security Tools - Scan
 
 - Known issue 1
 - Known issue 2
