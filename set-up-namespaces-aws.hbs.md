@@ -12,9 +12,9 @@ that you plan to create the `Workload` in:
 
 Follow these steps to enable your current user to submit jobs to the Supply Chain:
 
-1. Gather the ARN created for workloads in the [Create AWS Resources](aws-resources.hbs.md)
+1. Gather the ARN created for workloads in the [Create AWS Resources](aws-resources.html).
 
-1. To add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace, update the namespace and role arn and run:
+1. Update the `YOUR-NAMESPACE` and `ROLE-ARN` and run the following command to add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace.
 
   ```console
   cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
@@ -23,7 +23,7 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
   metadata:
     name: default
     annotations:
-      eks.amazonaws.com/role-arn: <Role ARN>
+      eks.amazonaws.com/role-arn: ROLE-ARN
   ---
   apiVersion: rbac.authorization.k8s.io/v1
   kind: RoleBinding
@@ -167,10 +167,4 @@ Follow these steps to enable additional users by using Kubernetes RBAC to submit
 
 ## <a id='next-steps'></a>Next steps
 
-For online installation:
-
 - [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.html)
-
-For air-gapped installation:
-
-- [Deploy your first air-gapped workload](getting-started/air-gap-workload.html)
