@@ -30,9 +30,10 @@ This extension gives the following features.
   in the current kubectl context.
 
 - **Work with Microservices in a Java Monorepo**
-  Since version 1.3 we support working with Monorepo containing multiple 'modules' representing 
+  Since version 1.3 we support working with a monorepo containing multiple 'modules' representing 
   different 'microservices'. This means it is possible to Deploy, Debug and Live update multiple
-  workloads simultaneously from the same [InteliJ multimodule project](https://www.jetbrains.com/help/idea/creating-and-managing-modules.html#modules-idea-java).
+  workloads simultaneously from the same [InteliJ multimodule project](https://www.jetbrains.com/help/idea/creating-and-managing-modules.html#modules-idea-java). For some detailed information on a typical monorepo setup refer
+  to [using-the-extension.hbs.md#mono-repo](Working with a Monorepo).
 
 ## <a id="next-steps"></a> Next steps
 
