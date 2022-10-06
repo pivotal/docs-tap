@@ -43,16 +43,16 @@ For example, a valid file looks similar to the following example:
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: spring-petclinic
+  name: tanzu-java-web-app
   labels:
-    app.kubernetes.io/part-of: spring-petclinic
+    app.kubernetes.io/part-of: tanzu-java-web-app
     apps.tanzu.vmware.com/workload-type: web
 spec:
   source:
     git:
-      url: https://github.com/sample-accelerators/spring-petclinic
+      url: https://github.com/vmware-tanzu/application-accelerator-samples/tanzu-java-web-app)
       ref:
-        tag: tap-1.1
+        tag: tap-1.3
 ```
 
 To create a workload from a file like the one just shown, run:
@@ -72,6 +72,8 @@ The console remains waiting for some input, and the content with a valid `yaml` 
 **Note**: to pass workload through `stdin`, `--yes` flag is needed. If not used, command will fail.
 
 ## <a id='autocompletion'></a> Autocompletion
+
+The apps plugin supports autocompletion for command names, positional arguments, flag names, and flag values.
 
 To enable command autocompletion, the Tanzu CLI offers the `tanzu completion` command.
 
