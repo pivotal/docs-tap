@@ -185,9 +185,12 @@ This release includes the following changes, listed by component and area.
 
 This release has the following breaking changes, listed by area and component.
 
-#### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
+#### <a id="scst-sign-changes"></a> Supply Chain Security Tools - Sign
 
 - [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
+
+#### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
+
 - Alpha version scan CRDs have been removed.
 - Deprecated path, invoked when `ScanTemplates` shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are used, now logs a message directing users to update the scanner integration to the latest version. The migration path is to use `ScanTemplates` shipped with Supply Chain Security Tools - Scan `v1.3.0`.
 
