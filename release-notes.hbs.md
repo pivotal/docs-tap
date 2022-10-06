@@ -66,6 +66,11 @@ This release includes the following changes, listed by component and area.
 - All existing `AuthServer` are updated and roll out when the controller's configuration changes significantly.
 - Aggregate RBAC for managing `AuthServer` into the _Service-Operator_ cluster role.
 
+#### <a id="carbon-black-scanner-features"></a> Carbon Black Cloud Scanner integration (beta)
+
+- Carbon Black Cloud Scanner image scanning integration (Beta) is available for [Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md).
+  - See Carbon Black Cloud Scanner [Installation and Configuration Guide](scst-scan/install-carbonblack-integration.hbs.md) for instructions on how to use Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains.
+
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
 
 - Added new default role `service-operator`.
