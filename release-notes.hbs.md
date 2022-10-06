@@ -110,14 +110,9 @@ This release includes the following changes, listed by component and area.
 - Added support for OpenShift.
 - Added support for Kubernetes 1.24.
 
-#### <a id="grype-scanner"></a>Grype Scanner
-
-- Grype Scanner can run in an EKS cluster with ECR as the configured registry using IAM policy for credentials without having to create a Kubernetes Secret with temporary credentials.
-
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
 - Snyk CLI is updated to v1.994.0.
-- Snyk Scanner can run in an EKS cluster with ECR as the configured registry using IAM policy for credentials without having to create a Kubernetes Secret with temporary credentials.
 
 #### <a id="scc-features"></a>Supply Chain Choreographer
 
