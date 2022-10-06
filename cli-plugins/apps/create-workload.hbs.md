@@ -22,7 +22,7 @@ Tanzu Application Platform supports creating a workload from an existing git rep
 To create a named workload and specify a git source code location, run:
 
  ```bash
-tanzu apps workload create pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web
+tanzu apps workload create pet-clinic --git-repo https://github.com/vmware-tanzu/application-accelerator-samples/tanzu-java-web-app --git-tag tap-1.3 --type web
 ```
 
 Respond `Y` to prompts to complete process.
@@ -43,7 +43,7 @@ Tanzu Application Platform supports creating a workload from an existing local p
 - To create a named workload and specify where the local source code is, run:
 
     ```bash
-    tanzu apps workload create pet-clinic --local-path /path/to/my/project --source-image springio/petclinic
+    tanzu apps workload create pet-clinic --local-path /path/to/my/project --source-image my-registry.com/my-project
     ```
 
     Respond `Y` to the prompt about publishing local source code if the image needs to be updated.
