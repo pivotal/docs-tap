@@ -59,28 +59,28 @@ For instructions, refer to the following documentation for your Kubernetes clust
 
 For AWS, see:
 
-* The [Amazon blog](https://aws.amazon.com/blogs/containers/amazon-eks-1-21-released/)
-* The [eksctl CLI documentation](https://eksctl.io/usage/container-runtime/)
+- The [Amazon blog](https://aws.amazon.com/blogs/containers/amazon-eks-1-21-released/)
+- The [eksctl CLI documentation](https://eksctl.io/usage/container-runtime/)
 
 For AKS, see:
 
-* The [Microsoft Azure documentation](https://docs.microsoft.com/en-us/azure/aks/cluster-configuration#container-runtime-configuration)
-* The [Microsoft Azure blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/dockershim-deprecation-and-aks/ba-p/3055902)
+- The [Microsoft Azure documentation](https://docs.microsoft.com/en-us/azure/aks/cluster-configuration#container-runtime-configuration)
+- The [Microsoft Azure blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/dockershim-deprecation-and-aks/ba-p/3055902)
 
 For GKE, see:
 
-* The [GKE documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/using-containerd)
+- The [GKE documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/using-containerd)
 
 For OpenShift, see:
 
-* The [Red Hat Hybrid Cloud blog](https://cloud.redhat.com/blog/containerd-support-for-windows-containers-in-openshift)
-* The [Red Hat Openshift documentation](https://docs.openshift.com/container-platform/3.11/crio/crio_runtime.html)
+- The [Red Hat Hybrid Cloud blog](https://cloud.redhat.com/blog/containerd-support-for-windows-containers-in-openshift)
+- The [Red Hat Openshift documentation](https://docs.openshift.com/container-platform/3.11/crio/crio_runtime.html)
 
 ## <a id="max-message-size"></a> Nodes fail due to "trying to send message larger than max" error
 
 ### Symptom
 
-You are seeing the following or similar error in a node status:
+You see the following error or similar in a node status:
 
 ```console
 Warning ContainerGCFailed 119s (x2523 over 42h) kubelet rpc error: code = ResourceExhausted desc = grpc: trying to send message larger than max (16779959 vs. 16777216)
@@ -88,8 +88,10 @@ Warning ContainerGCFailed 119s (x2523 over 42h) kubelet rpc error: code = Resour
 
 ### Explanation
 
-This is due to the way that the CRI handles garbage collection for unused images and containers.
+This is due to the way that the container runtime interface (CRI) handles garbage
+collection for unused images and containers.
 
 ### Solution
 
-Ensure you are not using docker as the CRI, as it is not supported. Some versions of EKS default to docker as the runtime.
+Do not use Docker as the CRI because it is not supported. Some versions of EKS
+default to Docker as the runtime.
