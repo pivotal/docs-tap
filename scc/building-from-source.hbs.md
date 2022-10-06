@@ -35,7 +35,7 @@ you must fill `workload.spec.source.git`. With the `tanzu` CLI, you can do so by
 
 For example, after installing `ootb-supply-chain-basic`, to create a
 `Workload` the source code for which comes from the `main` branch of the
-`github.com/vmware-tanzu/application-accelerator-samples` Git repository, 
+`github.com/vmware-tanzu/application-accelerator-samples` Git repository,
 and the subdirectory `tanzu-java-web-app` run:
 
   ```bash
@@ -76,18 +76,18 @@ Expect to see the following output:
 ### <a id="private-git-repo"></a>Private `GitRepository`
 
 To fetch source code from a repository that requires credentials, you must
-provide those by using a Kubernetes secret object that the `GitRepository` object created for that workload references. 
+provide those by using a Kubernetes secret object that the `GitRepository` object created for that workload references.
 See [How It Works](#how-it-works)
 to learn more about detecting changes to the repository.
 
 ```scala
 Workload/tanzu-java-web-app
-└─GitRepository/tanzu-java-web-app  
+└─GitRepository/tanzu-java-web-app
                    └───────> secretRef: {name: GIT-SECRET-NAME}
                                                    |
                                       either a default from TAP installation or
                                            gitops_ssh_secret Workload parameter
-``` 
+```
 
 Platform operators who install the Out of the Box Supply Chain packages
 by using Tanzu Application Platform profiles can customize the default name of
@@ -487,9 +487,9 @@ spec:
       classifier: sources   # optional
 ```
 
-There are two ways to create a workload that defines a specific version of a maven artifact as source in the `tanzu` CLI.
+There are two ways to create a workload that defines a specific version of a Maven artifact as source in the `tanzu` CLI.
 
-The first way would be defining the source through CLI flags, such as this:
+The first way is to define the source through CLI flags. For example:
 
 ```bash
 tanzu apps workload apply my-workload \
@@ -499,9 +499,9 @@ tanzu apps workload apply my-workload \
       --type web --app spring-boot-initial -y
 ```
 
-Another flag that can be used alongside the others in this type of command is `--maven-type`, which refers to the maven packaging type and defaults to `jar` if not specified.
+Another flag that can be used alongside the others in this type of command is `--maven-type`, which refers to the Maven packaging type and defaults to `jar` if not specified.
 
-The second one is through complex params (in JSON or YAML format). To specify the maven info with this method, run:
+The second one is through complex params (in JSON or YAML format). To specify the Maven info with this method, run:
 
 ```bash
 tanzu apps workload apply my-workload \
@@ -540,11 +540,11 @@ type: Opaque
 data:
   username: <BASE64>  # basic auth user name
   password: <BASE64>  # basic auth password
-  caFile: <BASE64>    # PEM Encoded certificate data for custom CA 
+  caFile: <BASE64>    # PEM Encoded certificate data for custom CA
 ```
 
 You cannot use the `tanzu` CLI to create secrets such as this, but
-you can use the kubectl CLI instead.  
+you can use the kubectl CLI instead.
 
 For example:
 
