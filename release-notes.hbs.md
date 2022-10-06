@@ -138,11 +138,12 @@ This release includes the following changes, listed by component and area.
 #### <a id="tap-gui-features"></a>Tanzu Application Platform GUI
 
 - Supply Chain plug-in:
-  - Added ability to visualize CVE scan results in the Details pane for both Source and Image Scan stages, as well as scan policy information without using the CLI.
-  - Added ability to visualize the deployment of a workload as a deliverable in a multicluster environment in the supply chain graph.
-  - Added a deeplink to view approvals for PRs in a GitOps repository so that PRs can be reviewed and approved, resulting in the deployment of a workload to any cluster configured to accept a deployment.
-  - Added Reason column to the Workloads table to indicate causes for errors encountered during supply chain execution.
-  - Added links to a downloadable log output for each execution of the Test and Build stages of the out of the box supply chains to enable more enhanced troubleshooting methods for workloads
+  - Improved error handling when a scan policy is misconfigured; now includes links to documentation to properly configure scan policies, replacing the "No policy has been configured" messaging
+  - Added cluster validation to avoid data collisions in the supply chain visualization when a workload with the same name and namespace exist on different clusters
+  - Beta: VMware Carbon Black scanning is now supported 
+  - Keyboard navigation improvements
+  - Updated headers on the Supply Chain graph to clearly indicate the name of the supply chain being used as well as the workload in the supply chain
+  - Added direct links to "Package Details" and "CVE Details" pages from within scan results to support a new Security Analysis Plug-in
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
@@ -281,8 +282,10 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="tap-gui-resolved"></a>Tanzu Application Platform GUI
 
-- Resolved issue 1
-- Resolved issue 2
+- Supply Chain Plug-in
+  - Deliverable link in Runtime Resources would take a user to a blank page instead of the supply chain delivery.
+  - Results for the wrong workload were being shown if the same `part-of label` was being used across workloads with the same name
+
 
 ### <a id='1-3-known-issues'></a> Known issues
 
@@ -372,6 +375,13 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 
 - **Tanzu Application Platform GUI doesn't work in Safari:**
   Tanzu Application Platform GUI does not work in the Safari web browser.
+  
+#### <a id="tap-gui-plug-in-known-issues"></a>Tanzu Application Platform GUI Plug-ins
+  
+- **Supply Chain Plug-in**
+  - Target Cluster column in workloads table shows incorrect cluster when two workloads of the same name, `part-of label`, namespace and same supply chain name are used on different clusters
+  - Updating a supply chain will result in an error (`Can not create edge...`) when an existing workload is clicked on in the workloads table and that supply chain is no longer present. **Workaround: Currently, you will have to recreate the same workload again to execute through the new\updated supply chain**
+  - API Descriptors\Service Bindings stages show an `Unknown` status (grey question mark in the graph) even if successful.
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
