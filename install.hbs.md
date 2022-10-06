@@ -220,6 +220,7 @@ shared:
     project_path: "SERVER-NAME/REPO-NAME"
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
+  kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
 
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 
@@ -242,9 +243,6 @@ contour:
     service:
       type: LoadBalancer # This is set by default, but can be overridden by setting a different value.
 
-shared:
-  kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
-
 buildservice:
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
@@ -256,7 +254,6 @@ tap_gui:
       locations:
         - type: url
           target: https://GIT-CATALOG-URL/catalog-info.yaml
-
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
