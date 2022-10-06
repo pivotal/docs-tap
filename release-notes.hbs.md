@@ -36,8 +36,8 @@ This release includes the following changes, listed by component and area.
   - Add source-image support for fragments and Fragment CRD
 - Engine
   - OpenRewriteRecipe: More recipes are now supported in addition to Java: Xml, Properties, Maven, Json
-  - New ConflictResolution Strategy : `NWayDiff` will merge files that were modified in different places, as long as they don't conflict. Similar to git diff3 algorithm
-  - Enforce the validity of `inputType`: Only valid values `text`, `textarea`, `checkbox`, `select` and `radio` will be accepted
+  - New ConflictResolution Strategy : `NWayDiff` merges files that are modified in different places, as long as they don't conflict. Similar to git diff3 algorithm
+  - Enforce the validity of `inputType`: Only valid values `text`, `textarea`, `checkbox`, `select` and `radio` are accepted
 - Server
   - Add configmap to store accelerator invocation counts
   - Add separate downloaded endpoint for downloads telemetry
@@ -49,7 +49,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="alv-features"></a>Application Live View
 
-- Application Live View supports Steeltoe/.NET applications 
+- Application Live View supports Steeltoe/.NET applications
 - Custom Certificate Authority (CA) certificates are supported.
 
 #### <a id="app-sso-features"></a>Application Single Sign-On
@@ -201,7 +201,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="app-sso-changes"></a> Application Single Sign-On
 
-- **Deprecation notice:** 
+- **Deprecation notice:**
   - `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
     to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
   - `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
@@ -228,7 +228,7 @@ This release has the following breaking changes, listed by area and component.
 
 - Controller
   - Importing a non-ready fragment should propagate non-readyness
-  - DependsOn from fragments are no longer "lost" when imported 
+  - DependsOn from fragments are no longer "lost" when imported
 - Engine
   - OpenRewriteRecipe updates: Unrecognized Recipe properties now trigger an explicit error
 
@@ -334,7 +334,7 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 - **Failure to successfully deploy workloads on Openshift**
   When creating a workload from a Deliverable resource, it may not create successfully, and an error might be seen with the text
   ```
-  pods "<pod name>" is forbidden: unable to validate against any security context constraint: 
+  pods "<pod name>" is forbidden: unable to validate against any security context constraint:
   [provider "anyuid": Forbidden: not usable by user or serviceaccount, spec.containers[0].securityContext.runAsUser:
   Invalid value: 1000: must be in the ranges: [1000740000, 1000749999]
   ```
@@ -410,7 +410,7 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   When starting multiple simultaneous workload debud sessions, terminating one of those sessions will inadvertently also terminate
   the others. (Note that is only disconnects the debugger, it doesn't terminate the workload process itself, so it is possible
   reatach/restart debug sessions). A fix for this bug will be included in TAP 1.3.1.
- 
+
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
 - Known issue 1
