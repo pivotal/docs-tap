@@ -1,5 +1,9 @@
 # Dependencies
 
+    > **Deprecation Notice:** Ubuntu Bionic will stop receiving support in April 2023. The Bionic stack for TAP/TBS is in the process
+    > of being deprecated and it will be removed in future releases. Users should begin building applications
+    > with the Jammy stack.
+
 This topic describes how Tanzu Build Service uses and installs dependencies.
 
 Tanzu Build Service requires dependencies in the form of Cloud Native
