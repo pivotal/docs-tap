@@ -24,6 +24,8 @@ into this Tanzu Application Platform documentation site.
 
 - [Convention Service for VMware Tanzu](convention-service/about.md)
 
+- [Eventing for VMware Tanzu](eventing/about.md)
+
 - [Learning Center for Tanzu Application Platform](learning-center/about.md)
 
 - [Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html)

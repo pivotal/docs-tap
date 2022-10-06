@@ -21,6 +21,7 @@ For more information, see [Prerequisites](prerequisites.md).
 - [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
 - [Install default roles for Tanzu Application Platform](authn-authz/install.md)  
 - [Install Developer Conventions](developer-conventions/install-dev-conventions.md)
+- [Install Eventing](eventing/install-eventing.md)
 - [Install Learning Center for Tanzu Application Platform](learning-center/install-learning-center.md)
 - [Install Out of the Box Templates](scc/install-ootb-templates.md)
 - [Install Out of the Box Supply Chain with Testing](scc/install-ootb-sc-wtest.md)
