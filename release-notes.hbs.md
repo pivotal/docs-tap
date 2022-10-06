@@ -203,6 +203,8 @@ This release has the following breaking changes, listed by area and component.
 
 - **Deprecation notice:** `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
   to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
+- **Deprecation notice:** `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
+ for removal in the next release.
 - `AuthServer.spec.identityProviders.internalUser.users.password` is in plain text instead of _bcrypt_
   -hashed.
 - When an authorization server fails to obtain a token from an OpenID identity provider, it records
