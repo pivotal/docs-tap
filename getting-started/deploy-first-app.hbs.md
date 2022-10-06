@@ -34,7 +34,7 @@ In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanz
 
     ![Screenshot of the Tanzu Java Web App accelerator form in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1-1.png)
 
-4. If your instance has optional Git repository support enabled, continue with the following sub-steps. If your instance _does not_ support this, skip to step 5, "Verify the provided information".
+4. If your instance has optional Git repository support enabled, continue with the following sub-steps. If your instance _does not_ support this, skip to step 5, "Verify the provided information."
     1. Select `Create Git repo?`
     2. Select the `Host` Git repository provider from the drop-down menu. In this example, select `github.com`.
     3. Populate the `Owner` and `Repository` properties.
