@@ -139,9 +139,9 @@ spec:
 Setting up a mono repo so that each microservice can be built completely independently
 is the recommended way to setup your own monorepos. 
 
-You can work with these monorepos by:
+To work with these monorepos:
 
-- Importing the monorepo as a project into Intellij. 
+- Import the monorepo as a project into Intellij. 
 - Interact with each of the subfolders in the same way you would a project containing a single workload.
 
 ### Alternate structure: Services with build-time inter-dependencies
