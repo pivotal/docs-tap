@@ -2,7 +2,7 @@
 
 This is the first in a series of Getting started how-to guides for operators. It walks you through creating an application accelerator by using Tanzu Application Platform GUI and CLI.
 
-For background information about application accelerators, see [Application Accelerator](about-application-accelerator.md).
+For background information about application accelerators and for more advanced features like composition using fragments, see [Application Accelerator](about-application-accelerator.md).
 
 ## <a id="you-will"></a>What you will do
 
@@ -13,7 +13,7 @@ For background information about application accelerators, see [Application Acce
 
 ## <a id="create-an-app-acc"></a>Create an application accelerator
 
-For this example, we will be assuming that you are using a publically accessible Git repository. 
+For this example, we will be assuming that you are using a publically accessible Git repository and that you include a README file in the repository. 
 
 You can configure these options when you create a repository on GitHub. You will need the repository URL to create an accelerator.
 
