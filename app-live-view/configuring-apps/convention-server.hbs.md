@@ -94,7 +94,8 @@ spec:
     git:
       ref:
         branch: main
-      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+    subPath: tanzu-java-web-app
 ```
 
 ## <a id="desc-metadata"></a> Description of metadata labels

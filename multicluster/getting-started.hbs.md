@@ -10,7 +10,7 @@ Before implementing a multicluster topology, complete the following:
 
 1. Complete all [installation steps for the four profiles](installing-multicluster.md): Build, Run, View and Iterate.
 
-1. For the sample workload, VMware uses the same Application Accelerator - Tanzu Java Web App in the non-multicluster [Getting Started](../getting-started.md) guide. You can download this accelerator to your own Git infrastructure of choice. You might need to configure additional permissions. Alternatively, you can also use the [sample-accelerators GitHub repository](https://github.com/sample-accelerators/tanzu-java-web-app).
+1. For the sample workload, VMware uses the same Application Accelerator - Tanzu Java Web App in the non-multicluster [Getting Started](../getting-started.md) guide. You can download this accelerator to your own Git infrastructure of choice. You might need to configure additional permissions. Alternatively, you can also use the [application-accelerator-samples GitHub repository](https://github.com/vmware-tanzu/application-accelerator-samples).
 
 1. The two supply chains are `ootb-supply-chain-basic` on the Build/Iterate profile and `ootb-delivery-basic` on the Run profile. For the Build/Iterate and Run profiled clusters, perform the steps described in [Setup Developer Namespace](../set-up-namespaces.md). This guide assumes that you use the `default` namespace.
 
@@ -33,7 +33,8 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
     ```bash
     tanzu apps workload create tanzu-java-web-app \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
     --git-branch main \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
@@ -140,4 +141,4 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
     Select the URL that corresponds to the domain you specified in your Run cluster's profile and enter it into a browser. Expect to see the message "Greetings from Spring Boot + Tanzu!".
 
-1. View the component in Tanzu Application Platform GUI, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/sample-accelerators/tanzu-java-web-app/blob/main/catalog/catalog-info.yaml) from the sample accelerator in GitHub.
+1. View the component in Tanzu Application Platform GUI, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/catalog/catalog-info.yaml) from the sample accelerator in GitHub.

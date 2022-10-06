@@ -35,13 +35,15 @@ you must fill `workload.spec.source.git`. With the `tanzu` CLI, you can do so by
 
 For example, after installing `ootb-supply-chain-basic`, to create a
 `Workload` the source code for which comes from the `main` branch of the
-`github.com/sample-accelerators/tanzu-java-web-app` Git repository, run:
+`github.com/vmware-tanzu/application-accelerator-samples` Git repository, 
+and the subdirectory `tanzu-java-web-app` run:
 
   ```bash
   tanzu apps workload create tanzu-java-web-app \
     --app tanzu-java-web-app \
     --type web \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
     --git-branch main
   ```
 
@@ -63,7 +65,8 @@ Expect to see the following output:
       12 + |    git:
       13 + |      ref:
       14 + |        branch: main
-      15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+      16 + |    subPath: tanzu-java-web-app
   ```
 
 >**Note:** The Git repository URL must include the scheme: `http://`,
@@ -115,7 +118,8 @@ is installed. You can use the `--param` flag in Tanzu CLI. For example:
   tanzu apps workload create tanzu-java-web-app \
     --app tanzu-java-web-app \
     --type web \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
     --git-branch main \
     --param gitops_ssh_secret=SECRET-NAME
   ```
@@ -141,7 +145,8 @@ Expect to see the following output:
       15 + |    git:
       16 + |      ref:
       17 + |        branch: main
-      18 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      18 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+      19 + |    subPath: tanzu-java-web-app
   ```
 
 >**Note:** A secret reference is only provided to `GitRepository` if
@@ -268,7 +273,7 @@ The digest of the latest commit:
     interval: 1m0s
     ref: {branch: main}
     timeout: 20s
-    url: https://github.com/sample-accelerators/tanzu-java-web-app
+    url: https://github.com/vmware-tanzu/application-accelerator-samples
   status:
     artifact:
       checksum: 375c2daee5fc8657c5c5b49711a8e94d400994d7

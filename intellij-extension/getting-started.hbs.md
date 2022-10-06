@@ -162,8 +162,8 @@ It has a syntax similar to the `.gitignore` file.
 
 ### <a id="example-tanzuignore"></a> Example `.tanzuignore`
 
-See the [Tanzu Java Web App Sample](https://github.com/sample-accelerators/tanzu-java-web-app) for a
-[typical `.tanzuignore`](https://github.com/sample-accelerators/tanzu-java-web-app/blob/main/.tanzuignore) file that you can use as is, or as a starting point for your own.
+See the [Tanzu Java Web App Sample](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) for a
+[typical `.tanzuignore`](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/.tanzuignore) file that you can use as is, or as a starting point for your own.
 
 ## <a id="example-project"></a> View an example project
 
@@ -192,8 +192,10 @@ where your company placed it. Contact the appropriate team to determine its loca
 
 To clone the example from GitHub:
 
-1. Use `git clone` to clone the [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app)
+1. Use `git clone` to clone the [application-accelerator-samples](https://github.com/vmware-tanzu/application-accelerator-samples)
 repository from GitHub.
+
+1. Change into the `tanzu-java-web-app` directory.
 
 1. Open the `Tiltfile` and replace `your-registry.io/project` with your registry.
 

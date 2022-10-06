@@ -114,7 +114,8 @@ the workload must be updated to point at your Tekton pipeline.
 
     ```console
     tanzu apps workload create tanzu-java-web-app \
-      --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+      --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+      --sub-path tanzu-java-web-app \
       --git-branch main \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
@@ -138,7 +139,8 @@ the workload must be updated to point at your Tekton pipeline.
        12 + |    git:
        13 + |      ref:
        14 + |        branch: main
-       15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+       15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+       16 + |    subPath: tanzu-java-web-app
 
     ? Do you want to create this workload? Yes
     Created workload "tanzu-java-web-app"
@@ -156,8 +158,8 @@ the workload must be updated to point at your Tekton pipeline.
     NAME                                    AGE
     workload.carto.run/tanzu-java-web-app   109s
 
-    NAME                                                        URL                                                         READY   STATUS                                                            AGE
-    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+    NAME                                                        URL                                                               READY   STATUS                                                            AGE
+    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/vmware-tanzu/application-accelerator-samples   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
 
     NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
     pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
@@ -291,7 +293,8 @@ pipeline:
 
     ```console
     tanzu apps workload create tanzu-java-web-app \
-      --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+      --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+      --sub-path tanzu-java-web-app \
       --git-branch main \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
@@ -317,7 +320,8 @@ pipeline:
         12 + |    git:
         13 + |      ref:
         14 + |        branch: main
-        15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+        15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+        16 + |    subPath: tanzu-java-web-app
 
     ? Do you want to create this workload? Yes
     Created workload "tanzu-java-web-app"
@@ -335,11 +339,11 @@ pipeline:
     NAME                                    AGE
     workload.carto.run/tanzu-java-web-app   109s
 
-    NAME                                                        URL                                                         READY   STATUS                                                            AGE
-    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+    NAME                                                        URL                                                               READY   STATUS                                                            AGE
+    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/vmware-tanzu/application-accelerator-samples   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
 
-    NAME                                                           PHASE       SCANNEDREVISION                            SCANNEDREPOSITORY                                           AGE    CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
-    sourcescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   187850b39b754e425621340787932759a0838795   https://github.com/sample-accelerators/tanzu-java-web-app   90s
+    NAME                                                           PHASE       SCANNEDREVISION                            SCANNEDREPOSITORY                                                 AGE    CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+    sourcescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   187850b39b754e425621340787932759a0838795   https://github.com/vmware-tanzu/application-accelerator-samples   90s
 
     NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
     pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s

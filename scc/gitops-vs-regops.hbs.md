@@ -198,7 +198,8 @@ to the workload:
   tanzu apps workload create tanzu-java-web-app \
     --app tanzu-java-web-app \
     --type web \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
     --git-branch main \
     --param gitops_ssh_secret=GIT-SECRET-NAME \
     --param gitops_repository=https://github.com/my-org/config-repo
@@ -475,7 +476,8 @@ create a workload as follows:
   ```console
   tanzu apps workload create tanzu-java-web-app \
     --git-branch main \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
     --type web
   ```
@@ -498,7 +500,8 @@ Expect to see the following output:
       12 + |    git:
       13 + |      ref:
       14 + |        branch: main
-      15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+      16 + |    subPath: tanzu-java-web-app
   ```
 
 As a result, the Kubernetes configuration is pushed to

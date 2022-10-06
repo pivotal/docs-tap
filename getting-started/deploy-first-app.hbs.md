@@ -77,7 +77,8 @@ In this example, we use the `Tanzu-Java-Web-App` accelerator. We also use the Ta
 
     ```console
     tanzu apps workload create tanzu-java-web-app \
-    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app \
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
     --git-branch main \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \

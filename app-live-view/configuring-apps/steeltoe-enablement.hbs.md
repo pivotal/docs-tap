@@ -82,7 +82,7 @@ To enable Application Live View on the Steeltoe Tanzu Application Platform workl
 Here's an example of creating a workload for a Steeltoe Application:
 
 ```console
-tanzu apps workload create steeltoe-app --type web --git-repo https://github.com/sample-accelerators/steeltoe-weatherforecast --git-branch main --annotation autoscaling.knative.dev/min-scale=1 --yes --label app.kubernetes.io/part-of=sample-app
+tanzu apps workload create steeltoe-app --type web --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path weatherforecast-steeltoe --git-branch main --annotation autoscaling.knative.dev/min-scale=1 --yes --label app.kubernetes.io/part-of=sample-app
 ```
 
 If your application image is NOT built with Tanzu Build Service, to enable Application Live View on Steeltoe Tanzu Application Platform workload, use the following command. For example:

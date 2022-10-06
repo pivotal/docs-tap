@@ -166,7 +166,7 @@ options:
 
 The screenshot and `accelerator.yaml` file snippet that follows demonstrates each `inputType`.
 You can also see the sample
-[demo-input-types](https://github.com/sample-accelerators/demo-input-types) on GitHub.
+[demo-input-types](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/demo-input-types) on GitHub.
 
 ![Screenshot of option inputs for sample accelerator demo-input-types](../images/demo-input-types-2.png)
 
@@ -174,7 +174,7 @@ You can also see the sample
 accelerator:
   displayName: Demo Input Types
   description: "Accelerator with options for each inputType"
-  iconUrl: https://raw.githubusercontent.com/sample-accelerators/icons/master/icon-tanzu-light.png
+  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
   tags: ["demo", "options"]
 
   options:

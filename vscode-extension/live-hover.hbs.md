@@ -8,7 +8,7 @@ For more information about this feature, see the **Live application information 
 To integrate Live Hover by using Spring Boot Tools you need:
 
 - A Tanzu Spring Boot application, such as
-[tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app)
+[tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app)
 - Spring Boot Extension Pack (includes Spring Boot Dashboard)
 [extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack) 
 
@@ -21,7 +21,7 @@ Activate the Live Hover feature by enabling it in
 
 Follow these steps to deploy the workload for an app to a cluster, making live hovers appear.
 The examples in some steps reference the sample
-[tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app).
+[tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app).
 
 1. Clone the repository by running:
 
@@ -30,7 +30,7 @@ The examples in some steps reference the sample
     ```
 
     Where `REPOSITORY-ADDRESS` is your repository address.
-    For example, `https://github.com/sample-accelerators/tanzu-java-web-app`.
+    For example, `https://github.com/vmware-tanzu/application-accelerator-samples`.
 
 1. Open the project in VS Code, with the Live Hover feature enabled, by running:
 
@@ -39,7 +39,7 @@ The examples in some steps reference the sample
     ```
 
     Where `PROJECT-DIRECTORY` is your project directory.
-    For example, `./tanzu-java-web-app`.
+    For example, `./application-accelerator-samples/tanzu-java-web-app`.
 
 1. Verify that you are targeting the cluster on which you want to run the workload by running:
 

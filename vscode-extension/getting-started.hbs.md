@@ -277,7 +277,7 @@ you can remove the entire `allow_k8s_contexts` line. For more information, see t
 
 ### <a id="create-tanzuignore-file"></a> Create a `.tanzuignore` file
 
-The `.tanzuignore` file specifies the filepaths to exclude from the source code image. When working with local source code, you can exclude files from the source code to be uploaded within the image. Directories must not end with the system path separator (`/` or `\`). See [example](https://github.com/sample-accelerators/tanzu-java-web-app/blob/main/.tanzuignore).
+The `.tanzuignore` file specifies the filepaths to exclude from the source code image. When working with local source code, you can exclude files from the source code to be uploaded within the image. Directories must not end with the system path separator (`/` or `\`). See [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/.tanzuignore).
 
 ### <a id="example-project"></a> Example project
 
@@ -300,7 +300,8 @@ you can obtain the sample application there if it was not removed.
 **Option 2: Clone from GitHub**
 
 1. Run `git clone` to clone the
-[tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) repository from GitHub.
+[tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples) repository from GitHub.
+1. Change into the `tanzu-java-web-app` directory.
 1. Open the Tiltfile and replace `your-registry.io/project` with your container registry.
 
 ## <a id="next-steps"></a> Next steps
