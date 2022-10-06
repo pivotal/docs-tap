@@ -151,7 +151,7 @@ spec:
 
 >**Note:** The secret referenced in `key.secretRef.name` must be created
 in the `cosign-system` namespace or the namespace where the Policy Controller
-is installed. Such secret should only contain one `data` entry with the public key.
+is installed. Such secret must only contain one `data` entry with the public key.
 
 Each keyless authority can contain a Fulcio URL, a Rekor URL, a certificate, or
 an array of identities.
@@ -241,7 +241,7 @@ Authentication can fail for the following scenarios:
 You can provide secrets for authentication as part of the policy
 configuration. The `oci` location is the image location or a remote location
 where signatures are configured to be stored during signing.
-The `signaturePullSecrets` must be found in in the `cosign-system` namespace
+The `signaturePullSecrets` is available in the `cosign-system` namespace
 or the namespace where the Policy Controller is installed.
 
 By default, `imagePullSecrets` from the resource or service account is used
