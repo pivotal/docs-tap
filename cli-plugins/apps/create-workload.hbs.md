@@ -22,15 +22,17 @@ Tanzu Application Platform supports creating a workload from an existing git rep
 To create a named workload and specify a git source code location, run:
 
  ```bash
-tanzu apps workload create pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web
+tanzu apps workload create tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web
 ```
 
 Respond `Y` to prompts to complete process.
 
 Where:
 
-- `pet-clinic` is the name of the workload.
+- `tanzu-java-web-app` is the name of the workload.
 - `--git-repo` is the location of the code to build the workload from.
+- `--sub-path` is the relative path inside the repository to treat as application root.
+- `--git-tag` (optional) specifies which tag in the repository to pull the code from.
 - `--git-branch` (optional) specifies which branch in the repository to pull the code from.
 - `--type` is used to distinguish the workload type.
 

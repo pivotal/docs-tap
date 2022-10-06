@@ -204,7 +204,7 @@ You can use Spring Boot's `build-image` target to build a container image that r
 The `build-image` target must use a Dockerfile.
 
 For example, using the same sample repository as mentioned before
-(https://github.com/sample-accelerators/tanzu-java-web-app):
+(https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app):
 
 1. Build the image by running the following command from the root of the repository:
 

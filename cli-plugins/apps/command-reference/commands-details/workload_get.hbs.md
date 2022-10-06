@@ -83,7 +83,7 @@ To see logs: "tanzu apps workload tail rmq-sample-app"
 Exports the submitted workload in `yaml` format. This flag can also be used with `--output` flag. With export, the output is shortened because some fields are removed.
 
 ```bash
-tanzu apps workload get pet-clinic --export
+tanzu apps workload get tanzu-java-web-app --export
 
 ---
 apiVersion: carto.run/v1alpha1
@@ -92,14 +92,15 @@ metadata:
 labels:
     apps.tanzu.vmware.com/workload-type: web
     autoscaling.knative.dev/min-scale: "1"
-name: pet-clinic
+name: tanzu-java-web-app
 namespace: default
 spec:
 source:
     git:
     ref:
-        tag: tap-1.2
-    url: https://github.com/sample-accelerators/spring-petclinic
+        tag: tap-1.3
+      url: https://github.com/vmware-tanzu/application-accelerator-samples
+    subPath: tanzu-java-web-app
 ```
 
 ### <a id="get-output"></a> `--output`/`-o`
@@ -108,7 +109,7 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
 
 + `yaml/yml`
     ```yaml
-    tanzu apps workload get pet-clinic -o yaml]
+    tanzu apps workload get tanzu-java-web-app -o yaml]
     ---
     apiVersion: carto.run/v1alpha1
     kind: Workload
@@ -122,9 +123,10 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
     spec:
     source:
         git:
-        ref:
-            tag: tap-1.1
-        url: https://github.com/sample-accelerators/spring-petclinic
+            ref:
+                tag: tap-1.1
+            url: https://github.com/vmware-tanzu/application-accelerator-samples
+        subPath: tanzu-java-web-app
     status:
         conditions:
         - lastTransitionTime: "2022-06-03T18:10:59Z"
@@ -153,12 +155,12 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
 
 + `json`
     ```json
-    tanzu apps workload get pet-clinic -o json
+    tanzu apps workload get tanzu-java-web-app -o json
     {
         "kind": "Workload",
         "apiVersion": "carto.run/v1alpha1",
         "metadata": {
-            "name": "pet-clinic",
+            "name": "tanzu-java-web-app",
             "namespace": "default",
             "uid": "937679ca-9c72-4e23-bfef-6334e6c003a7",
             "resourceVersion": "111637840",
@@ -173,11 +175,12 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
     "spec": {
             "source": {
                 "git": {
-                    "url": "https://github.com/sample-accelerators/spring-petclinic",
+                    "url": "https://github.com/vmware-tanzu/application-accelerator-samples",
                     "ref": {
-                        "tag": "tap-1.1"
+                        "tag": "tap-1.3"
                     }
-                }
+                },
+                "subPath": "tanzu-java-web-app"
             }
         },
         "status": {
@@ -215,7 +218,7 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
                     "stampedRef": {
                         "kind": "GitRepository",
                         "namespace": "default",
-                        "name": "pet-clinic",
+                        "name": "tanzu-java-web-app",
                         ...
                     }
                 }
@@ -231,51 +234,52 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
 Specifies the namespace where the workload is deployed.
 
 ```bash
-tanzu apps workload get spring-pet-clinic -n development
+tanzu apps workload get tanzu-java-web-app -n development
 
 📡 Overview
-   name:   spring-pet-clinic
+   name:   tanzu-java-web-app
    type:   web
 
 💾 Source
    type:     git
-   url:      https://github.com/sample-accelerators/spring-petclinic
-   branch:   accelerator
+   url:      https://github.com/vmware-tanzu/application-accelerator-samples
+   sub-path: tanzu-java-web-app
+   tag:      tap-1.3
 
 📦 Supply Chain
    name:   source-to-url
 
    RESOURCE          READY   HEALTHY   TIME   OUTPUT
-   source-provider   True    True      27h    GitRepository/spring-pet-clinic
-   image-builder     True    True      22h    Image/spring-pet-clinic
-   config-provider   True    True      60d    PodIntent/spring-pet-clinic
-   app-config        True    True      60d    ConfigMap/spring-pet-clinic
-   config-writer     True    True      22h    Runnable/spring-pet-clinic-config-writer
+   source-provider   True    True      27h    GitRepository/tanzu-java-web-app
+   image-builder     True    True      22h    Image/tanzu-java-web-app
+   config-provider   True    True      60d    PodIntent/tanzu-java-web-app
+   app-config        True    True      60d    ConfigMap/tanzu-java-web-app
+   config-writer     True    True      22h    Runnable/tanzu-java-web-app-config-writer
 
 🚚 Delivery
    name:   delivery-basic
 
    RESOURCE          READY   HEALTHY   TIME   OUTPUT
-   source-provider   True    True      60d    ImageRepository/spring-pet-clinic-delivery
-   deployer          True    True      22h    App/spring-pet-clinic
+   source-provider   True    True      60d    ImageRepository/tanzu-java-web-app-delivery
+   deployer          True    True      22h    App/tanzu-java-web-app
 
 💬 Messages
    No messages found.
 
 🛶 Pods
    NAME                                        READY   STATUS      RESTARTS   AGE
-   spring-pet-clinic-build-11-build-pod        0/1     Completed   0          6d12h
-   spring-pet-clinic-build-12-build-pod        0/1     Completed   0          22h
-   spring-pet-clinic-build-3-build-pod         0/1     Completed   0          60d
-   spring-pet-clinic-config-writer-655rb-pod   0/1     Completed   0          21d
-   spring-pet-clinic-config-writer-7h8bn-pod   0/1     Completed   0          6d12h
-   spring-pet-clinic-config-writer-7xr6m-pod   0/1     Completed   0          60d
-   spring-pet-clinic-config-writer-g9gp8-pod   0/1     Completed   0          45d
+   tanzu-java-web-app-build-11-build-pod       0/1     Completed   0          6d12h
+   tanzu-java-web-app-build-12-build-pod       0/1     Completed   0          22h
+   tanzu-java-web-app-build-3-build-pod        0/1     Completed   0          60d
+   tanzu-java-web-app-config-writer-655rb-pod  0/1     Completed   0          21d
+   tanzu-java-web-app-config-writer-7h8bn-pod  0/1     Completed   0          6d12h
+   tanzu-java-web-app-config-writer-7xr6m-pod  0/1     Completed   0          60d
+   tanzu-java-web-app-config-writer-g9gp8-pod  0/1     Completed   0          45d
 
 🚢 Knative Services
    NAME                READY   URL
-   spring-pet-clinic   Ready   http://spring-pet-clinic.default.127.0.0.1.nip.io
+   tanzu-java-web-app  Ready   http://tanzu-java-web-app.default.127.0.0.1.nip.io
 
-To see logs: "tanzu apps workload tail spring-pet-clinic"
+To see logs: "tanzu apps workload tail tanzu-java-web-app"
 
 ```

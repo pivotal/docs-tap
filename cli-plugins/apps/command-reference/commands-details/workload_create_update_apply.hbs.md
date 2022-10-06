@@ -9,7 +9,7 @@ In the output of the `workload apply command`, the specification for the workloa
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web
 
 Create workload:
     1 + |---
@@ -18,20 +18,21 @@ Create workload:
     4 + |metadata:
     5 + |  labels:
     6 + |    apps.tanzu.vmware.com/workload-type: web
-    7 + |  name: pet-clinic
+    7 + |  name: tanzu-java-web-app
     8 + |  namespace: default
     9 + |spec:
    10 + |  source:
    11 + |    git:
    12 + |      ref:
-   13 + |        tag: tap-1.1
-   14 + |      url: https://github.com/sample-accelerators/spring-petclinic
+   13 + |        tag: tap-1.3
+   14 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+   15 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? Yes
-Created workload "pet-clinic"
+Created workload "tanzu-java-web-app"
 
-To see logs:   "tanzu apps workload tail pet-clinic"
-To get status: "tanzu apps workload get pet-clinic"
+To see logs:   "tanzu apps workload tail tanzu-java-web-app"
+To get status: "tanzu apps workload get tanzu-java-web-app"
 
 ```
 </details>
@@ -46,7 +47,7 @@ Set the annotations to be applied to the workload, to specify more than one anno
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web --annotation tag=tap-1.1 --annotation name="Spring pet clinic"
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --annotation tag=tap-1.3 --annotation name="Tanzu Java Web"
 Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
@@ -54,19 +55,20 @@ Create workload:
     4 + |metadata:
     5 + |  labels:
     6 + |    apps.tanzu.vmware.com/workload-type: web
-    7 + |  name: spring-pet-clinic
+    7 + |  name: tanzu-java-web-app
     8 + |  namespace: default
     9 + |spec:
    10 + |  params:
    11 + |  - name: annotations
    12 + |    value:
-   13 + |      name: Spring pet clinic
-   14 + |      tag: tap-1.1
+   13 + |      name: Tanzu Java Web
+   14 + |      tag: tap-1.3
    15 + |  source:
    16 + |    git:
    17 + |      ref:
-   18 + |        tag: tap-1.1
-   19 + |      url: https://github.com/sample-accelerators/spring-petclinic
+   18 + |        tag: tap-1.3
+   19 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+   20 + |    subPath: tanzu-java-web-app
 ```
 </details>
 
@@ -75,21 +77,21 @@ To delete an annotation, use `-` after it's name.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --annotation tag-
+tanzu apps workload apply tanzu-java-web-app --annotation tag-
 Update workload:
 ...
 10, 10   |  params:
 11, 11   |  - name: annotations
 12, 12   |    value:
-13, 13   |      name: Spring pet clinic
-14     - |      tag: tap-1.1
+13, 13   |      name: Tanzu Java Web
+14     - |      tag: tap-1.3
 15, 14   |  source:
 16, 15   |    git:
 17, 16   |      ref:
-18, 17   |        tag: tap-1.1
+18, 17   |        tag: tap-1.3
 ...
 
-? Really update the workload "spring-pet-clinic"? (y/N)
+? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
 </details>
 
@@ -100,7 +102,7 @@ The app of which the workload is part of. This is part of the workload metadata 
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web --app spring-petclinic
+tanzu apps workload apply tanzu-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --app tanzu-java-web-app
 
 Create workload:
     1 + |---
@@ -108,22 +110,23 @@ Create workload:
     3 + |kind: Workload
     4 + |metadata:
     5 + |  labels:
-    6 + |    app.kubernetes.io/part-of: spring-petclinic
+    6 + |    app.kubernetes.io/part-of: tanzu-java-web-app
     7 + |    apps.tanzu.vmware.com/workload-type: web
-    8 + |  name: pet-clinic
+    8 + |  name: tanzu-app
     9 + |  namespace: default
    10 + |spec:
    11 + |  source:
    12 + |    git:
    13 + |      ref:
-   14 + |        tag: tap-1.1
-   15 + |      url: https://github.com/sample-accelerators/spring-petclinic
+   14 + |        tag: tap-1.3
+   15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+   16 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? Yes
-Created workload "pet-clinic"
+Created workload "tanzu-app"
 
-To see logs:   "tanzu apps workload tail pet-clinic"
-To get status: "tanzu apps workload get pet-clinic"
+To see logs:   "tanzu apps workload tail tanzu-app"
+To get status: "tanzu apps workload get tanzu-app"
 
 ```
 </details>
@@ -135,7 +138,7 @@ Sets environment variables to be used in the **build** phase by the build resour
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web --build-env JAVA_VERSION=1.8
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --build-env JAVA_VERSION=1.8
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -143,7 +146,7 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: spring-pet-clinic
+      7 + |  name: tanzu-java-web-app
       8 + |  namespace: default
       9 + |spec:
      10 + |  build:
@@ -153,8 +156,9 @@ Create workload:
      14 + |  source:
      15 + |    git:
      16 + |      ref:
-     17 + |        tag: tap-1.1
-     18 + |      url: https://github.com/sample-accelerators/spring-petclinic
+     17 + |        tag: tap-1.3
+     18 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     19 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload?
 ```
@@ -165,11 +169,11 @@ To delete a build environment variable, use `-` after its name.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --build-env JAVA_VERSION-
+tanzu apps workload apply tanzu-java-web-app --build-env JAVA_VERSION-
 Update workload:
 ...
    6,  6   |    apps.tanzu.vmware.com/workload-type: web
-   7,  7   |  name: spring-pet-clinic
+   7,  7   |  name: tanzu-java-web-app
    8,  8   |  namespace: default
    9,  9   |spec:
   10     - |  build:
@@ -179,10 +183,10 @@ Update workload:
   14, 10   |  source:
   15, 11   |    git:
   16, 12   |      ref:
-  17, 13   |        tag: tap-1.1
+  17, 13   |        tag: tap-1.3
 ...
 
-? Really update the workload "spring-pet-clinic"? (y/N)
+? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
 </details>
 
@@ -193,7 +197,7 @@ Sets the parameter variable debug to true in the workload.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --debug
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --debug
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -201,7 +205,7 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: spring-pet-clinic
+      7 + |  name: tanzu-java-web-app
       8 + |  namespace: default
       9 + |spec:
      10 + |  params:
@@ -211,7 +215,8 @@ Create workload:
      14 + |    git:
      15 + |      ref:
      16 + |        branch: main
-     17 + |      url: https://github.com/sample-accelerators/spring-petclinic
+     17 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     18 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -224,7 +229,7 @@ Prepares all the steps to submit the workload to the cluster and stops before se
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web --build-env JAVA_VERSION=1.8 --param-yaml server=$'port: 8080\nmanagement-port: 8181' --dry-run
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --build-env JAVA_VERSION=1.8 --param-yaml server=$'port: 8080\nmanagement-port: 8181' --dry-run
 ---
 apiVersion: carto.run/v1alpha1
 kind: Workload
@@ -232,7 +237,7 @@ metadata:
   creationTimestamp: null
   labels:
     apps.tanzu.vmware.com/workload-type: web
-  name: spring-pet-clinic
+  name: tanzu-java-web-app
   namespace: default
 spec:
   build:
@@ -247,8 +252,9 @@ spec:
   source:
     git:
       ref:
-        tag: tap-1.1
-      url: https://github.com/sample-accelerators/spring-petclinic
+        tag: tap-1.3
+      url: https://github.com/vmware-tanzu/application-accelerator-samples
+    subPath: tanzu-java-web-app
 status:
   supplyChainRef: {}
 ```
@@ -261,7 +267,7 @@ status:
  <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web --env NAME="Spring Pet Clinic"
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --env NAME="Tanzu Java App"
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -269,17 +275,18 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: spring-pet-clinic
+      7 + |  name: tanzu-java-web-app
       8 + |  namespace: default
       9 + |spec:
      10 + |  env:
      11 + |  - name: NAME
-     12 + |    value: Spring Pet Clinic
+     12 + |    value: Tanzu Java App
      13 + |  source:
      14 + |    git:
      15 + |      ref:
-     16 + |        tag: tap-1.1
-     17 + |      url: https://github.com/sample-accelerators/spring-petclinic
+     16 + |        tag: tap-1.3
+     17 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     18 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload?
 ```
@@ -287,23 +294,23 @@ Create workload:
 To unset an environment variable, use `-` after its name.
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --env NAME-
+tanzu apps workload apply tanzu-java-web-app --env NAME-
 Update workload:
 ...
    6,  6   |    apps.tanzu.vmware.com/workload-type: web
-   7,  7   |  name: spring-pet-clinic
+   7,  7   |  name: tanzu-java-web-app
    8,  8   |  namespace: default
    9,  9   |spec:
   10     - |  env:
   11     - |  - name: NAME
-  12     - |    value: Spring Pet Clinic
+  12     - |    value: Tanzu Java App
   13, 10   |  source:
   14, 11   |    git:
   15, 12   |      ref:
-  16, 13   |        tag: tap-1.1
+  16, 13   |        tag: tap-1.3
 ...
 
-? Really update the workload "spring-pet-clinic"? (y/N)
+? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
 </details>
 
@@ -314,7 +321,7 @@ Sets the workload specification file to create the workload, from any other work
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic -f pet-clinic.yaml --param-yaml server=$'port: 9090\nmanagement-port: 9190'
+tanzu apps workload apply tanzu-java-web-app -f java-app-workload.yaml --param-yaml server=$'port: 9090\nmanagement-port: 9190'
 Create workload:
        1 + |---
        2 + |apiVersion: carto.run/v1alpha1
@@ -322,7 +329,7 @@ Create workload:
        4 + |metadata:
        5 + |  labels:
        6 + |    apps.tanzu.vmware.com/workload-type: web
-       7 + |  name: spring-pet-clinic
+       7 + |  name: tanzu-java-web-app
        8 + |  namespace: default
        9 + |spec:
       10 + |  build:
@@ -337,8 +344,9 @@ Create workload:
       19 + |  source:
       20 + |    git:
       21 + |      ref:
-      22 + |        tag: tap-1.1
-      23 + |      url: https://github.com/sample-accelerators/spring-petclinic
+      22 + |        tag: tap-1.3
+      23 + |      url: url: https://github.com/vmware-tanzu/application-accelerator-samples
+      24 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -355,7 +363,7 @@ Branch in a Git repository from where the workload is created. This is specified
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web
 Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
@@ -363,14 +371,15 @@ Create workload:
     4 + |metadata:
     5 + |  labels:
     6 + |    apps.tanzu.vmware.com/workload-type: web
-    7 + |  name: spring-pet-clinic
+    7 + |  name: tanzu-java-web-app
     8 + |  namespace: default
     9 + |spec:
    10 + |  source:
    11 + |    git:
    12 + |      ref:
    13 + |        branch: main
-   14 + |      url: https://github.com/sample-accelerators/spring-petclinic
+   14 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+   15 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload?
 ```
@@ -387,7 +396,7 @@ Commit in Git repository| from where the workload is resolved. Can be used with 
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.2 --git-commit 207852f1e8ed239b6ec51a559c6e0f93a5cf54d1 --type web
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --git-commit 1c4cf82e499f7e46da182922d4097908d4817320 --type web
 Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
@@ -395,15 +404,16 @@ Create workload:
     4 + |metadata:
     5 + |  labels:
     6 + |    apps.tanzu.vmware.com/workload-type: web
-    7 + |  name: spring-pet-clinic
+    7 + |  name: tanzu-java-web-app
     8 + |  namespace: default
     9 + |spec:
    10 + |  source:
    11 + |    git:
    12 + |      ref:
-   13 + |        commit: 207852f1e8ed239b6ec51a559c6e0f93a5cf54d1
-   14 + |        tag: tap-1.2
-   15 + |      url: https://github.com/sample-accelerators/spring-petclinic
+   13 + |        commit: 1c4cf82e499f7e46da182922d4097908d4817320
+   14 + |        tag: tap-1.3
+   15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+   16 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload?
 ```
@@ -416,7 +426,7 @@ Sets the OSI image to be used as the workload application source instead of a Gi
  <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --image private.repo.domain.com/spring-pet-clinic --type web
+tanzu apps workload apply tanzu-java-web-app --image private.repo.domain.com/tanzu-java-web-app --type web
 Create workload:
        1 + |---
        2 + |apiVersion: carto.run/v1alpha1
@@ -424,7 +434,7 @@ Create workload:
        4 + |metadata:
        5 + |  labels:
        6 + |    apps.tanzu.vmware.com/workload-type: web
-       7 + |  name: spring-pet-clinic
+       7 + |  name: tanzu-java-web-app
        8 + |  namespace: default
        9 + |spec:
       10 + |  build:
@@ -439,8 +449,9 @@ Create workload:
       19 + |  source:
       20 + |    git:
       21 + |      ref:
-      22 + |        tag: tap-1.1
-      23 + |      url: https://github.com/sample-accelerators/spring-petclinic
+      22 + |        tag: tap-1.3
+      23 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+      24 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -453,7 +464,7 @@ Set the label to be applied to the workload, to specify more than one label set 
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --label stage=production
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --label stage=production
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -462,14 +473,15 @@ Create workload:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
       7 + |    stage: production
-      8 + |  name: spring-pet-clinic
+      8 + |  name: tanzu-java-web-app
       9 + |  namespace: default
      10 + |spec:
      11 + |  source:
      12 + |    git:
      13 + |      ref:
      14 + |        branch: main
-     15 + |      url: https://github.com/sample-accelerators/spring-petclinic
+     15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     16 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -480,7 +492,7 @@ Create workload:
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --label stage-
+tanzu apps workload apply tanzu-java-web-app --label stage-
 Update workload:
 ...
    3,  3   |kind: Workload
@@ -488,13 +500,13 @@ Update workload:
    5,  5   |  labels:
    6,  6   |    apps.tanzu.vmware.com/workload-type: web
    7     - |    stage: production
-   8,  7   |  name: spring-pet-clinic
+   8,  7   |  name: tanzu-java-web-app
    9,  8   |  namespace: default
   10,  9   |spec:
   11, 10   |  source:
 ...
 
-? Really update the workload "spring-pet-clinic"? (y/N)
+? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
 </details>
 
@@ -505,7 +517,7 @@ Update workload:
  <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --limit-cpu .2
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --limit-cpu .2
 Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
@@ -513,7 +525,7 @@ Create workload:
     4 + |metadata:
     5 + |  labels:
     6 + |    apps.tanzu.vmware.com/workload-type: web
-    7 + |  name: spring-pet-clinic
+    7 + |  name: tanzu-java-web-app
     8 + |  namespace: default
     9 + |spec:
    10 + |  resources:
@@ -523,7 +535,8 @@ Create workload:
    14 + |    git:
    15 + |      ref:
    16 + |        branch: main
-   17 + |      url: https://github.com/sample-accelerators/spring-petclinic
+   17 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+   18 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -536,7 +549,7 @@ Refers to the maximum memory the workload pods are allowed to use.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --limit-memory 200Mi
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --limit-memory 200Mi
 Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
@@ -544,7 +557,7 @@ Create workload:
     4 + |metadata:
     5 + |  labels:
     6 + |    apps.tanzu.vmware.com/workload-type: web
-    7 + |  name: spring-pet-clinic
+    7 + |  name: tanzu-java-web-app
     8 + |  namespace: default
     9 + |spec:
    10 + |  resources:
@@ -554,7 +567,8 @@ Create workload:
    14 + |    git:
    15 + |      ref:
    16 + |        branch: main
-   17 + |      url: https://github.com/sample-accelerators/spring-petclinic
+   17 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+   18 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -566,8 +580,9 @@ Enable to deploy the workload once, save changes to the code, and see those chan
 
 <details><summary>Example</summary>
 
-  - A uuse example with a spring boot application.
-    - Clone repository in https://github.com/sample-accelerators/tanzu-java-web-app
+  - A usage example with a spring boot application.
+    - Clone repository in https://github.com/vmware-tanzu/application-accelerator-samples
+    - Change into the `tanzu-java-web-app` directory
     - In `Tiltfile`, first change the `SOURCE_IMAGE` variable to use your registry and project. After that, at the very end of the file add
     ```bash
     allow_k8s_contexts('your-cluster-name')
@@ -721,7 +736,7 @@ Specifies the namespace in which the workload is to be created or updated.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --namespace my-namespace
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --namespace my-namespace
 Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
@@ -729,14 +744,15 @@ Create workload:
     4 + |metadata:
     5 + |  labels:
     6 + |    apps.tanzu.vmware.com/workload-type: web
-    7 + |  name: spring-pet-clinic
+    7 + |  name: tanzu-java-web-app
     8 + |  namespace: my-namespace
     9 + |spec:
    10 + |  source:
    11 + |    git:
    12 + |      ref:
    13 + |        branch: main
-   14 + |      url: https://github.com/sample-accelerators/spring-petclinic
+   14 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+  15 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -749,7 +765,7 @@ Additional parameters to be sent to the supply chain, the value is sent as a str
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --param port=9090 --param management-port=9190
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --param port=9090 --param management-port=9190
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -757,7 +773,7 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: spring-pet-clinic
+      7 + |  name: tanzu-java-web-app
       8 + |  namespace: default
       9 + |spec:
      10 + |  params:
@@ -769,7 +785,8 @@ Create workload:
      16 + |    git:
      17 + |      ref:
      18 + |        branch: main
-     19 + |      url: https://github.com/sample-accelerators/spring-petclinic
+     19 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     20 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -780,10 +797,10 @@ To unset parameters, use `-` after their name.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --param port-
+tanzu apps workload apply tanzu-java-web-app --param port-
 Update workload:
 ...
-   7,  7   |  name: spring-pet-clinic
+   7,  7   |  name: tanzu-java-web-app
    8,  8   |  namespace: default
    9,  9   |spec:
   10, 10   |  params:
@@ -795,7 +812,7 @@ Update workload:
   16, 14   |    git:
 ...
 
-? Really update the workload "spring-pet-clinic"? (y/N)
+? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
 </details>
 
@@ -806,7 +823,7 @@ Additional parameters to be sent to the supply chain, the value is sent as a com
  <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --param-yaml server=$'port: 9090\nmanagement-port: 9190'
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --param-yaml server=$'port: 9090\nmanagement-port: 9190'
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -814,7 +831,7 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: spring-pet-clinic
+      7 + |  name: tanzu-java-web-app
       8 + |  namespace: default
       9 + |spec:
      10 + |  params:
@@ -826,7 +843,8 @@ Create workload:
      16 + |    git:
      17 + |      ref:
      18 + |        branch: main
-     19 + |      url: https://github.com/sample-accelerators/spring-petclinic
+     19 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     20 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -837,11 +855,11 @@ To unset parameters, use `-` after their name.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --param-yaml server-
+tanzu apps workload apply tanzu-java-web-app --param-yaml server-
 Update workload:
 ...
    6,  6   |    apps.tanzu.vmware.com/workload-type: web
-   7,  7   |  name: spring-pet-clinic
+   7,  7   |  name: tanzu-java-web-app
    8,  8   |  namespace: default
    9,  9   |spec:
   10     - |  params:
@@ -855,7 +873,7 @@ Update workload:
   18, 13   |        branch: main
 ...
 
-? Really update the workload "spring-pet-clinic"? (y/N)
+? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
 </details>
 
@@ -908,7 +926,7 @@ Refers to the minimum CPU the workload pods are requesting to use.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --request-cpu .3
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --request-cpu .3
 Create workload:
     1 + |---
     2 + |apiVersion: carto.run/v1alpha1
@@ -916,7 +934,7 @@ Create workload:
     4 + |metadata:
     5 + |  labels:
     6 + |    apps.tanzu.vmware.com/workload-type: web
-    7 + |  name: spring-pet-clinic
+    7 + |  name: tanzu-java-web-app
     8 + |  namespace: default
     9 + |spec:
    10 + |  resources:
@@ -926,7 +944,8 @@ Create workload:
    14 + |    git:
    15 + |      ref:
    16 + |        branch: main
-   17 + |      url: https://github.com/sample-accelerators/spring-petclinic
+   17 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+   18 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -939,7 +958,7 @@ Refers to the minimum memory the workload pods are requesting to use.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --request-memory 300Mi
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --request-memory 300Mi
 Create workload:
      1 + |---
      2 + |apiVersion: carto.run/v1alpha1
@@ -947,7 +966,7 @@ Create workload:
      4 + |metadata:
      5 + |  labels:
      6 + |    apps.tanzu.vmware.com/workload-type: web
-     7 + |  name: spring-pet-clinic
+     7 + |  name: tanzu-java-web-app
      8 + |  namespace: default
      9 + |spec:
     10 + |  resources:
@@ -957,7 +976,8 @@ Create workload:
     14 + |    git:
     15 + |      ref:
     16 + |        branch: main
-    17 + |      url: https://github.com/sample-accelerators/spring-petclinic
+    17 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+    18 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -970,7 +990,7 @@ Refers to the service account to be associated with the workload. A service acco
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --service-account petc-serviceaccount
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --service-account petc-serviceaccount
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -978,7 +998,7 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: spring-pet-clinic
+      7 + |  name: tanzu-java-web-app
       8 + |  namespace: default
       9 + |spec:
      10 + |  serviceAccountName: petc-serviceaccount
@@ -986,7 +1006,8 @@ Create workload:
      12 + |    git:
      13 + |      ref:
      14 + |        branch: main
-     15 + |      url: https://github.com/sample-accelerators/spring-petclinic
+     15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     16 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? (y/N)
 ```
@@ -997,11 +1018,11 @@ To unset a service account, pass empty string.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --service-account ""
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --service-account ""
 Update workload:
 ...
   6,  6   |    apps.tanzu.vmware.com/workload-type: web
-  7,  7   |  name: spring-pet-clinic
+  7,  7   |  name: tanzu-java-web-app
   8,  8   |  namespace: default
   9,  9   |spec:
  10     - |  serviceAccountName: petc-serviceaccount
@@ -1011,7 +1032,7 @@ Update workload:
  14, 13   |        branch: main
 ...
 
-? Really update the workload "spring-pet-clinic"? (y/N)
+? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
 </details>
 
@@ -1138,7 +1159,7 @@ Prints the logs of the workload creation in every step.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --tail
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --tail
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -1146,33 +1167,34 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: spring-pet-clinic
+      7 + |  name: tanzu-java-web-app
       8 + |  namespace: default
       9 + |spec:
      10 + |  source:
      11 + |    git:
      12 + |      ref:
      13 + |        branch: main
-     14 + |      url: https://github.com/sample-accelerators/spring-petclinic
+     14 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     15 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? Yes
-Created workload "spring-pet-clinic"
+Created workload "tanzu-java-web-app"
 
-To see logs:   "tanzu apps workload tail spring-pet-clinic"
-To get status: "tanzu apps workload get spring-pet-clinic"
+To see logs:   "tanzu apps workload tail tanzu-java-web-app"
+To get status: "tanzu apps workload get tanzu-java-web-app"
 
-Waiting for workload "spring-pet-clinic" to become ready...
-+ spring-pet-clinic-build-1-build-pod › prepare
-spring-pet-clinic-build-1-build-pod[prepare] Build reason(s): CONFIG
-spring-pet-clinic-build-1-build-pod[prepare] CONFIG:
-spring-pet-clinic-build-1-build-pod[prepare]   + env:
-spring-pet-clinic-build-1-build-pod[prepare]   + - name: BP_OCI_SOURCE
-spring-pet-clinic-build-1-build-pod[prepare]   +   value: main/d381fb658cb435a04e2271ca85bd3e8627a5e7e4
-spring-pet-clinic-build-1-build-pod[prepare]   resources: {}
-spring-pet-clinic-build-1-build-pod[prepare]   - source: {}
-spring-pet-clinic-build-1-build-pod[prepare]   + source:
-spring-pet-clinic-build-1-build-pod[prepare]   +   blob:
-spring-pet-clinic-build-1-build-pod[prepare]   +     url: http://source-controller.flux-system.svc.cluster.local./gitrepository/default/spring-pet-clinic/d381fb658cb435a04e2271ca85bd3e8627a5e7e4.tar.gz
+Waiting for workload "tanzu-java-web-app" to become ready...
++ tanzu-java-web-app-build-1-build-pod › prepare
+tanzu-java-web-app-build-1-build-pod[prepare] Build reason(s): CONFIG
+tanzu-java-web-app-build-1-build-pod[prepare] CONFIG:
+tanzu-java-web-app-build-1-build-pod[prepare]   + env:
+tanzu-java-web-app-build-1-build-pod[prepare]   + - name: BP_OCI_SOURCE
+tanzu-java-web-app-build-1-build-pod[prepare]   +   value: main/d381fb658cb435a04e2271ca85bd3e8627a5e7e4
+tanzu-java-web-app-build-1-build-pod[prepare]   resources: {}
+tanzu-java-web-app-build-1-build-pod[prepare]   - source: {}
+tanzu-java-web-app-build-1-build-pod[prepare]   + source:
+tanzu-java-web-app-build-1-build-pod[prepare]   +   blob:
+tanzu-java-web-app-build-1-build-pod[prepare]   +     url: http://source-controller.flux-system.svc.cluster.local./gitrepository/default/tanzu-java-web-app/1c4cf82e499f7e46da182922d4097908d4817320.tar.gz
 ...
 ...
 ...
@@ -1186,7 +1208,7 @@ Prints the logs of the workload creation in every step adding the time in which 
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web --tail-timestamp
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --tail-timestamp
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -1194,33 +1216,34 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: spring-pet-clinic
+      7 + |  name: tanzu-java-web-app
       8 + |  namespace: default
       9 + |spec:
      10 + |  source:
      11 + |    git:
      12 + |      ref:
      13 + |        branch: main
-     14 + |      url: https://github.com/sample-accelerators/spring-petclinic
+     14 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     15 + |    subPath: tanzu-java-web-app
 
 ? Do you want to create this workload? Yes
-Created workload "spring-pet-clinic"
+Created workload "tanzu-java-web-app"
 
-To see logs:   "tanzu apps workload tail spring-pet-clinic"
-To get status: "tanzu apps workload get spring-pet-clinic"
+To see logs:   "tanzu apps workload tail tanzu-java-web-app"
+To get status: "tanzu apps workload get tanzu-java-web-app"
 
-Waiting for workload "spring-pet-clinic" to become ready...
-+ spring-pet-clinic-build-1-build-pod › prepare
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.348418803-05:00 Build reason(s): CONFIG
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364719405-05:00 CONFIG:
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364761781-05:00   + env:
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364771861-05:00   + - name: BP_OCI_SOURCE
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364781718-05:00   +   value: main/d381fb658cb435a04e2271ca85bd3e8627a5e7e4
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364788374-05:00   resources: {}
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.364795451-05:00   - source: {}
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.365344965-05:00   + source:
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.365364101-05:00   +   blob:
-spring-pet-clinic-build-1-build-pod[prepare] 2022-06-15T11:28:01.365372427-05:00   +     url: http://source-controller.flux-system.svc.cluster.local./gitrepository/default/spring-pet-clinic/d381fb658cb435a04e2271ca85bd3e8627a5e7e4.tar.gz
+Waiting for workload "tanzu-java-web-app" to become ready...
++ tanzu-java-web-app-build-1-build-pod › prepare
+tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.348418803-05:00 Build reason(s): CONFIG
+tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.364719405-05:00 CONFIG:
+tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.364761781-05:00   + env:
+tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.364771861-05:00   + - name: BP_OCI_SOURCE
+tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.364781718-05:00   +   value: main/d381fb658cb435a04e2271ca85bd3e8627a5e7e4
+tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.364788374-05:00   resources: {}
+tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.364795451-05:00   - source: {}
+tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.365344965-05:00   + source:
+tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.365364101-05:00   +   blob:
+tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.365372427-05:00   +     url: http://source-controller.flux-system.svc.cluster.local./gitrepository/default/tanzu-java-web-app/1c4cf82e499f7e46da182922d4097908d4817320.tar.gz
 ...
 ...
 ...
@@ -1234,7 +1257,7 @@ Sets the type of the workload by adding the label `apps.tanzu.vmware.com/workloa
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-branch main --type web
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web
 Create workload:
       1 + |---
       2 + |apiVersion: carto.run/v1alpha1
@@ -1242,14 +1265,15 @@ Create workload:
       4 + |metadata:
       5 + |  labels:
       6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: spring-pet-clinic
+      7 + |  name: tanzu-java-web-app
       8 + |  namespace: default
       9 + |spec:
      10 + |  source:
      11 + |    git:
      12 + |      ref:
      13 + |        branch: main
-     14 + |      url: https://github.com/sample-accelerators/spring-petclinic
+     14 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     15 + |    subPath: tanzu-java-web-app
 ```
 </details>
 
@@ -1260,24 +1284,25 @@ Holds until workload is ready.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web --wait
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --wait
 Update workload:
 ...
 10, 10   |  source:
 11, 11   |    git:
 12, 12   |      ref:
 13, 13   |        branch: main
-    14 + |        tag: tap-1.1
-14, 15   |      url: https://github.com/sample-accelerators/spring-petclinic
+    14 + |        tag: tap-1.3
+14, 15   |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+15, 16   |    subPath: tanzu-java-web-app
 
-? Really update the workload "spring-pet-clinic"? Yes
-Updated workload "spring-pet-clinic"
+? Really update the workload "tanzu-java-web-app"? Yes
+Updated workload "tanzu-java-web-app"
 
-To see logs:   "tanzu apps workload tail spring-pet-clinic"
-To get status: "tanzu apps workload get spring-pet-clinic"
+To see logs:   "tanzu apps workload tail tanzu-java-web-app"
+To get status: "tanzu apps workload get tanzu-java-web-app"
 
-Waiting for workload "spring-pet-clinic" to become ready...
-Workload "spring-pet-clinic" is ready
+Waiting for workload "tanzu-java-web-app" to become ready...
+Workload "tanzu-java-web-app" is ready
 ```
 </details>
 
@@ -1288,25 +1313,26 @@ Sets a timeout to wait for workload to become ready.
 <details><summary>Example</summary>
 
 ```bash
-tanzu apps workload apply spring-pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web --wait --wait-timeout 1m
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3-take1 --type web --wait --wait-timeout 1m
 Update workload:
 ...
 10, 10   |  source:
 11, 11   |    git:
 12, 12   |      ref:
 13, 13   |        branch: main
-14     - |        tag: tap-1.2
-    14 + |        tag: tap-1.1
-15, 15   |      url: https://github.com/sample-accelerators/spring-petclinic
+14     - |        tag: tap-1.3
+    14 + |        tag: tap-1.3-take1
+15, 15   |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+16, 16   |    subPath: tanzu-java-web-app
 
-? Really update the workload "spring-pet-clinic"? Yes
-Updated workload "spring-pet-clinic"
+? Really update the workload "tanzu-java-web-app"? Yes
+Updated workload "tanzu-java-web-app"
 
-To see logs:   "tanzu apps workload tail spring-pet-clinic"
-To get status: "tanzu apps workload get spring-pet-clinic"
+To see logs:   "tanzu apps workload tail tanzu-java-web-app"
+To get status: "tanzu apps workload get tanzu-java-web-app"
 
-Waiting for workload "spring-pet-clinic" to become ready...
-Workload "spring-pet-clinic" is ready
+Waiting for workload "tanzu-java-web-app" to become ready...
+Workload "tanzu-java-web-app" is ready
 ```
 </details>
 

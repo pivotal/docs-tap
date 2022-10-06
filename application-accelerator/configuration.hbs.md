@@ -33,27 +33,28 @@ Where:
 
 A minimal example could look like the following manifest:
 
-> hello-fun.yaml
+> spring-cloud-serverless.yaml
 
 ```yaml
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Accelerator
 metadata:
-  name: hello-fun
+  name: spring-cloud-serverless
 spec:
   git:
-    url: https://github.com/sample-accelerators/hello-fun
+    url: https://github.com/vmware-tanzu/application-accelerator-samples
+    subPath: spring-cloud-serverless
     ref:
       branch: main
 ```
 
-This minimal example creates an accelerator named `hello-fun`. The `displayName`, `description`, `iconUrl`, and `tags` fields are populated based on the content under the `accelerator` key in the `accelerator.yaml` file found in the `main` branch of the Git repository at https://github.com/sample-accelerators/hello-fun. For example:
+This minimal example creates an accelerator named `spring-cloud-serverless`. The `displayName`, `description`, `iconUrl`, and `tags` fields are populated based on the content under the `accelerator` key in the `accelerator.yaml` file found in the `main` branch of the Git repository at https://github.com/vmware-tanzu/application-accelerator-samples under the sub-path `spring-cloud-serverless`. For example:
 
 > accelerator.yaml
 
 ```yaml
 accelerator:
-  displayName: Hello Fun
+  displayName: Spring Cloud Serverless
   description: A simple Spring Cloud Function serverless app
   iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
   tags:
@@ -69,30 +70,30 @@ accelerator:
 To create this accelerator with `kubectl` run:
 
 ```sh
-kubectl apply --namespace --accelerator-system --filename hello-fun.yaml
+kubectl apply --namespace --accelerator-system --filename spring-cloud-serverless.yaml
 ```
 
 Or, you could use the Tanzu CLI and run:
 
 ```sh
-tanzu accelerator create hello-fun --git-repo https://github.com/sample-accelerators/hello-fun --git-branch main
+tanzu accelerator create spring-cloud-serverless --git-repo https://github.com/vmware-tanzu/application-accelerator-samples.git --git-branch main --git-sub-path spring-cloud-serverless
 ```
 
 ### <a id="examples-custom"></a> An example for creating an accelerator with customized properties
 
 You can also explicitly specify the `displayName`, `description`, `iconUrl`, and `tags` fields and this overrides any values provided in the accelerator's Git repository. The following example explicitly sets those fields and the `ignore` field:
 
-> my-hello-fun.yaml
+> my-spring-cloud-serverless.yaml
 
 ```yaml
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Accelerator
 metadata:
-  name: my-hello-fun
+  name: my-spring-cloud-serverless
 spec:
-  displayName: My Hello Fun
+  displayName: My Spring Cloud Serverless
   description: My own Spring Cloud Function serverless app
-  iconUrl: https://raw.githubusercontent.com/sample-accelerators/icons/master/icon-tanzu-light.png
+  iconUrl: https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png
   tags:
     - spring
     - cloud
@@ -100,7 +101,8 @@ spec:
     - serverless
   git:
     ignore: ".git/, bin/"
-    url: https://github.com/sample-accelerators/hello-fun
+    url: https://github.com/vmware-tanzu/application-accelerator-samples
+    subPath: spring-cloud-serverless
     ref:
       branch: test
 ```
@@ -108,16 +110,16 @@ spec:
 To create this accelerator with `kubectl` you could run:
 
 ```sh
-kubectl apply --namespace --accelerator-system --filename my-hello-fun.yaml
+kubectl apply --namespace --accelerator-system --filename my-spring-cloud-serverless.yaml
 ```
 
 Or, you could use the Tanzu CLI and run:
 
 ```sh
-tanzu accelerator create my-hello-fun --git-repo https://github.com/sample-accelerators/hello-fun --git-branch main \
+tanzu accelerator create my-spring-cloud-serverless --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --git-branch main --git-sub-path spring-cloud-serverless \
   --description "My own Spring Cloud Function serverless app" \
-  --display-name "My Hello Fun" \
-  --icon-url https://raw.githubusercontent.com/sample-accelerators/icons/master/icon-tanzu-light.png \
+  --display-name "My Spring Cloud Serverless" \
+  --icon-url https://raw.githubusercontent.com/simple-starters/icons/master/icon-cloud.png \
   --tags "spring,cloud,function,serverless"
 ```
 

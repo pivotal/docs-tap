@@ -252,7 +252,8 @@ For example:
 ```console
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+  --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+  --sub-path tanzu-java-web-app \
   --label apps.tanzu.vmware.com/has-tests=true \
   --label app.kubernetes.io/part-of=tanzu-java-web-app \
   --type web
@@ -275,5 +276,6 @@ Create workload:
      13 + |    git:
      14 + |      ref:
      15 + |        branch: main
-     16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+     16 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     17 + |    subPath: tanzu-java-web-app
 ```

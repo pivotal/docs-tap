@@ -105,7 +105,7 @@ The accelerator should now reflect the new content after ~10s wait since we spec
 
 Accelerator fragments are reusable accelerator components that can provide options, files or transforms. They may be imported to accelerators using an `import` entry and the transforms from the fragment may be referenced in an `InvokeFragment` transform in the accelerator that is declaring the import. For additional details see [InvokeFragment transform](transforms/invoke-fragment.md).
 
-The accelerator samples include three fragments - `java-version`, `tap-initialize`, and `live-update`. See the [sample-accelerators/fragments](https://github.com/sample-accelerators/fragments/tree/tap-1.2) Git repository for the content of these fragments.
+The accelerator samples include three fragments - `java-version`, `tap-initialize`, and `live-update`. See the [vmware-tanzu/application-accelerator-samples/fragments](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.3/fragments) Git repository for the content of these fragments.
 
 To discover what fragments are available to use, you can run the following command:
 
@@ -178,9 +178,9 @@ spec:
   displayName: Select Java Version
   git:
     ref:
-      branch: tap-1.2
-    url: https://github.com/sample-accelerators/fragments.git
-    subPath: java-version
+      tag: tap-1.3
+    url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+    subPath: fragments/java-version
 ```
 
 To create the fragment (we can save the above manifest in a `java-version.yaml` file) and use:
@@ -195,10 +195,9 @@ To avoid having to create a separate manifest file, you can use the following co
 
 ```
 tanzu accelerator fragment create java-version \
-  --git-repo https://github.com/sample-accelerators/fragments.git \
-  --git-branch main \
-  --git-tag tap-1.2 \
-  --git-sub-path java-version
+  --git-repo https://github.com/vmware-tanzu/application-accelerator-samples.git \
+  --git-tag tap-1.3 \
+  --git-sub-path fragments/java-version
 ```
 
 Now you can use this `java-version` fragment in an accelerator:
