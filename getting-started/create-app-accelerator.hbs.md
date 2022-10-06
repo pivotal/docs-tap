@@ -13,13 +13,12 @@ For background information about application accelerators and for more advanced 
 
 ## <a id="create-an-app-acc"></a>Create an application accelerator
 
-For this example, we will be assuming that you are using a publically accessible Git repository and that you include a README file in the repository. 
 
-You can configure these options when you create a repository on GitHub. You will need the repository URL to create an accelerator.
+For this example, use a publicly accessible Git repository and include a README file in the repository. You can configure these options when you create a repository on GitHub. You need the repository URL to create an accelerator.
 
 To create a new application accelerator by using your Git repository, follow these steps:
 
-1. Clone your Git repository.
+1. Clone your Git repository:
 
     ```sh
     git clone https://github.com/path/to/repo
@@ -39,14 +38,16 @@ To create a new application accelerator by using your Git repository, follow the
       - getting-started
     ```
 
-    >**Note:** You can use any icon assuming it has a reachable URL.
+    >**Note:** You can use any icon that has a reachable URL.
 
 4. Add the new `accelerator.yaml` file, commit this change, and push it to your Git repository.
+
     ```sh
     git add accelerator.yaml
     git commit -m "Creating accelerator.yaml"
     git push
     ```
+
 ## <a id="publish-accelerator"></a>Publish the new accelerator
 
 To publish the new application accelerator that is created in your Git repository, follow these steps:
@@ -68,6 +69,7 @@ To publish the new application accelerator that is created in your Git repositor
     ```console
     tanzu accelerator create simple --git-repository ${GIT_REPOSITORY_URL} --git-branch ${GIT_BRANCH}
     ```
+
     >**Note:** The accelerator name, `simple`, is used when updating accelerators as well, _not_ the `displayName` parameter in the `accelerator.yaml`
 
 3. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
@@ -120,7 +122,7 @@ You can also create a separate manifest file and apply it to the cluster by usin
     - `YOUR-GIT-REPOSITORY-URL` is the URL of your Git repository.
     - `YOUR-GIT-BRANCH` is the name of the branch.
 
-1. Apply the `simple-manifest.yaml` by running the following command in the directory where you created this file:
+2. Apply the `simple-manifest.yaml` by running the following command in the directory where you created this file:
 
     ```console
     kubectl apply -f simple-manifest.yaml
