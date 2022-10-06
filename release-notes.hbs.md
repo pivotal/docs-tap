@@ -34,9 +34,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="alv-features"></a>Application Live View
 
-- Application Live View uses a custom security context constraint to provide Openshift support.
+- Application Live View supports Steeltoe/.NET applications 
 - Custom Certificate Authority (CA) certificates are supported.
-
 
 #### <a id="app-sso-features"></a>Application Single Sign-On
 
@@ -283,8 +282,14 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="alv-known-issues"></a>Application Live View
 
-- Known issue 1
-- Known issue 2
+- **Unable to find CertificateRequests in App Live View Convention**
+
+On creation of a TAP workload, an error might appear with the text
+- `failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"`
+
+This occurs because the certificaterequest is missing for the corresponding certificate `appliveview-webhook-cert`.
+
+See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hbs.md#a-idmissing-cert-requestsa-unable-to-find-certificaterequests-in-app-live-view-convention)
 
 #### <a id="alv-ca-known-issues"></a>Application Single Sign-On
 

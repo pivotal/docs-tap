@@ -46,20 +46,18 @@ The Environment page contains details of the applications' environment.
 It contains properties including, but not limited to, system properties, environment variables, and
 configuration properties (such as appsettings.json) in a Steeltoe application.
 
-The page includes the following features:
+The page includes the following capabilities for `viewing` configured environment properties:
 
-- The UI has a search feature that allows you to search for a property or values.
-- Each property has a search icon at the right corner that helps you quickly see all occurrences of
-a specific property key without manually typing in the search field. Clicking the search button trims
-down the page to that property name.
-- The **Refresh Scope** on the top-right corner of the page probes the application to refresh all the
-environment properties.
-- You can edit an existing property by clicking **Override** in the row and editing the value.
-After the value is saved, you can see the updated property in the Applied overrides section at the
-top of the page.
-- **Reset** resets the environment property to the original state.
-- You can edit or remove the overridden environment variables in the **Applied Overrides** section.
-- The **Applied Overrides** section also allows you to add new environment properties to the application.
+- The UI has search feature that enables the user to search for a property or values.
+- Each property has a search icon at the right corner which helps the user quickly see all the occurrences of a specific property key without manually typing in the search field. Clicking the search button trims down the page to that property name.
+- The **Refresh Scope** on the top right corner of the page probes the application to refresh all the environment properties.
+
+The page also includes the following capabilities for `editing` configured environment properties:
+
+- The UI allows the user to edit environment properties and see the live changes on the application. These edits are temporary and will go away if the underlying pod gets restarted.
+- For each of the configured environment properties, the user can edit its value by clicking on **Override** button in the same row. After the value is saved, the user can view the message that the property has been overriden from the initial value. Also, the updated property is visible in the Applied Overrides section at the top of the page. The **Reset** button in the same row resets the environment property to the initial state. 
+- The user can also edit or remove the overridden environment variables in the **Applied Overrides** section.
+- The **Applied Overrides** section also enables the user to add new environment properties to the application.
 
 > **Note:** The `management.endpoint.env.post.enabled=true` has to be set in the application config
 > properties of the application, and a corresponding editable Environment has to be present in the
@@ -84,6 +82,8 @@ You can:
 Use the **Changes Only** toggle to display the changed log levels.
 Use the search feature to search by logger name.
 Click **Reset All** to reset all the loggers to the default state.
+
+> **Note:** The UI allows the user to change the log levels and see the live changes on the application. These changes are temporary and will go away if the underlying pod gets restarted.
 
 ![Screenshot of the Log Levels page. The log level WARN is selected for every logger except Default.](images/log-levels-steeltoe.png)
 
