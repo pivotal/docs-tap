@@ -339,13 +339,15 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 #### <a id="cnrs-issues"></a> Cloud Native Runtimes
 
 - **Failure to successfully deploy workloads on Openshift**
-  When creating a workload from a Deliverable resource, it may not create successfully, and an error might be seen with the text
+  When creating a workload from a Deliverable resource, it may not create and instead result in the following error:
+
   ```
   pods "<pod name>" is forbidden: unable to validate against any security context constraint:
   [provider "anyuid": Forbidden: not usable by user or serviceaccount, spec.containers[0].securityContext.runAsUser:
   Invalid value: 1000: must be in the ranges: [1000740000, 1000749999]
   ```
-  This may be due to ServiceAccounts or Users bound to overly restrictive SecurityContextConstraints.
+
+  This may be due to ServiceAccounts or users bound to overly restrictive SecurityContextConstraints.
 
   See the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html) for how to resolve this issue.
 
