@@ -141,8 +141,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="functions-features"></a> Functions (beta)
 
-- Feature 1
-- Feature 2
+- Functions Java and Python buildpack are included in TAP 1.3.
+- Node JS Functions accelerator now available in TAP GUI.
 
 #### <a id="tbs-features"></a> Tanzu Build Service
 
