@@ -11,16 +11,23 @@ spec 2. an APIDescriptor CR with that location created in the cluster.
 You may additionally need to setup different install values for api-auto-registration package or CORS for OpenAPI spec.
 
 How to configure
+
    - [different cluster name, TAP GUI url or CA Cert values for api-auto-registration](#update-values)
+
    - [CORS for viewing OpenAPI Spec in TAP GUI](#cors)
 
 How to generate OpenAPI Spec
+
    - [by skaffolding a new project using App Accelerator Template](#using-app-accelerator-template)
+
    - [in an existing Spring Boot project using springdoc](https://springdoc.org/#getting-started)
 
 How to create APIDescriptor CR
+
    - [using Out Of The Box Supply Chains](#using-ootb-supply-chain)
+
    - [using Custom Supply Chains](#using-custom-supply-chain)
+
    - [using other GitOps processes or Manually](#using-gitops-manually)
 
 ## <a id='update-values'></a>Update install values for api-auto-registration package

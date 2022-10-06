@@ -321,7 +321,7 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="api-auto-registration-known-issues"></a>API Auto Registration
 
-- Valid OpenAPI v2 specs that use `schema.$refs` currently fail validation. This bug will be fixed in the upcoming release.
+- Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation.
 If you are using a OpenAPI v2 spec with this field, you may consider converting to OpenAPI v3.
 See the [troubleshooting section](api-auto-registration/troubleshooting.hbs.md) for more details.
 All other spec types and OpenAPI v3 specs are unaffected.

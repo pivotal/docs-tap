@@ -27,5 +27,5 @@ Here are some handy commands for debugging or troubleshooting the APIDescriptor 
     ```
     Please note that if you manually remove the finalizers from the APIDescriptor resources, you may end up with stale API entities within TAP GUI that you will need to manually unregister.
 
-5. If using OpenAPI v2 spec with `schema.$refs`, due to a known bug (to be fixed in TAP 1.3.1), the spec will fail validation.
+5. If using OpenAPI v2 spec with `schema.$ref`, the spec will fail validation due to a known bug.
 To pass the validation, you can convert the spec to OpenAPI v3 by pasting your spec into https://editor.swagger.io/ and selecting "Edit > Convert to OpenAPI 3"
