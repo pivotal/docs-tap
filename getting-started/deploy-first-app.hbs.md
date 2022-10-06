@@ -2,22 +2,23 @@
 
 This is the first in a series of Getting started how-to guides for developers. It walks you through deploying your first application on Tanzu Application Platform by using the Tanzu Application Platform GUI.
 
->**Note:** This walk-through uses the Tanzu Application Platform GUI. Alternatively, you can deploy your first application on Tanzu Application Platform using the [Application Accelerator Extension for VS Code](../application-accelerator/vscode.md).
+>**Note:** This walk-through uses the Tanzu Application Platform GUI. Alternatively, you can deploy your first application on Tanzu Application Platform using the [Application Accelerator Extension for VS Code](../application-accelerator/vscode.hbs.md).
 
 ## <a id="you-will"></a>What you will do
 
-- Download an application accelerator, which serves as a template that codifies best practices and provides important configuration and structures ready and available for use.
+- Generate a project from an application accelerator.
+- Optionally provision a new Git repository for the project.
 - Upload it to your Git repository of choice.
-- Run a CLI command to deploy the app.
+- Deploy the app using the Tanzu CLI.
 - View the build and runtime logs for your app.
 - View the Web App in your browser.
 - (Optional) Add your application to Tanzu Application Platform GUI software catalog.
 
 Before you start, complete all [Getting started prerequisites](../getting-started.md#get-started-prereqs). For background on application accelerators, see [Application Accelerator](about-application-accelerator.md).
 
-## <a id="deploy-your-app"></a>Deploy your application through Tanzu Application Platform GUI
+## <a id="generate-project"></a>Generate a new project using an application accelerator
 
-To deploy your application, you must download an accelerator, upload it on your Git repository of choice, and run a CLI command. In this example, we use the `Tanzu-Java-Web-App` accelerator. We also use the Tanzu Application Platform GUI. For information about connecting to Tanzu Application Platform GUI, see
+In this example, we use the `Tanzu-Java-Web-App` accelerator. We also use the Tanzu Application Platform GUI. For information about connecting to Tanzu Application Platform GUI, see
    [Accessing Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md). 
 
 1. From Tanzu Application Platform GUI portal, click **Create** located on the left-hand side of the
@@ -29,13 +30,25 @@ To deploy your application, you must download an accelerator, upload it on your 
 
 1. In the **Generate Accelerators** dialog box, replace the default value `dev.local` in the **prefix for container image registry** field
    with the registry in the form of `SERVER-NAME/REPO-NAME`.
-   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See the Full Profile section on [Installing Tanzu Application Platform package and profiles](../install.md#full-profile).
-   Click **NEXT**, verify the provided information, and click **GENERATE ACCELERATOR**.
+   The `SERVER-NAME/REPO-NAME` must match what was specified for `registry` as part of the installation values for `ootb_supply_chain_basic`. See the Full Profile section on [Installing Tanzu Application Platform package and profiles](../install.hbs.md#full-profile). Click **NEXT**.
+
+    ![Screenshot of the Tanzu Java Web App accelerator form in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1-1.png)
+
+1. If your instance has optional Git repository support enabled, continue the sub-steps below. If your instance _does not_ support this, skip to step 5, "Verify the provided information".
+    1. Select `Create Git repo?`
+    1. Select the `Host` git repository provider from the drop down. In this example, we will select `github.com` 
+    1. Populate the `Owner` and `Repository` properties
+    ![Screenshot of the git repository creation form in Tanzu Application Platform GUI.](../images/getting-started-tap-gui-1-2.png)
+    1. As you are populating the form, a prompt will appear asking for permission to be allowed to provision Git repositories. Follow the prompts and continue.
+    1. Click **NEXT**.
+
+1. Verify the provided information, and click **GENERATE ACCELERATOR**.
 
 1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
 
-1. After downloading the ZIP file, expand it in a workspace directory and follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
+1. After downloading the ZIP file, expand it in a workspace directory. If you did not create a Git repository in the steps above, follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
+## <a id="deploy-your-app"></a>Deploy your application through Tanzu Application Platform GUI
 1. Set up environment variables by running:
 
     ```console
@@ -64,7 +77,7 @@ To deploy your application, you must download an accelerator, upload it on your 
 
     ```console
     tanzu apps workload create tanzu-java-web-app \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app \
     --git-branch main \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
