@@ -83,7 +83,7 @@ To see logs: "tanzu apps workload tail rmq-sample-app"
 Exports the submitted workload in `yaml` format. This flag can also be used with `--output` flag. With export, the output is shortened because some fields are removed.
 
 ```bash
-tanzu apps workload get pet-clinic --export
+tanzu apps workload get tanzu-java-web-app --export
 
 ---
 apiVersion: carto.run/v1alpha1
@@ -92,14 +92,14 @@ metadata:
 labels:
     apps.tanzu.vmware.com/workload-type: web
     autoscaling.knative.dev/min-scale: "1"
-name: pet-clinic
+name: tanzu-java-web-app
 namespace: default
 spec:
 source:
     git:
     ref:
-        tag: tap-1.2
-    url: https://github.com/sample-accelerators/spring-petclinic
+        tag: tap-1.3
+    url: https://github.com/vmware-tanzu/application-accelerator-samples/tanzu-java-web-app
 ```
 
 ### <a id="get-output"></a> `--output`/`-o`
@@ -108,7 +108,7 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
 
 + `yaml/yml`
     ```yaml
-    tanzu apps workload get pet-clinic -o yaml]
+    tanzu apps workload get tanzu-java-web-app -o yaml]
     ---
     apiVersion: carto.run/v1alpha1
     kind: Workload
@@ -123,8 +123,8 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
     source:
         git:
         ref:
-            tag: tap-1.1
-        url: https://github.com/sample-accelerators/spring-petclinic
+            tag: tap-1.3
+        url: https://github.com/vmware-tanzu/application-accelerator-samples/tanzu-java-web-app
     status:
         conditions:
         - lastTransitionTime: "2022-06-03T18:10:59Z"
@@ -153,7 +153,7 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
 
 + `json`
     ```json
-    tanzu apps workload get pet-clinic -o json
+    tanzu apps workload get tanzu-java-web-app -o json
     {
         "kind": "Workload",
         "apiVersion": "carto.run/v1alpha1",
@@ -173,9 +173,9 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
     "spec": {
             "source": {
                 "git": {
-                    "url": "https://github.com/sample-accelerators/spring-petclinic",
+                    "url": "https://github.com/vmware-tanzu/application-accelerator-samples/tanzu-java-web-app",
                     "ref": {
-                        "tag": "tap-1.1"
+                        "tag": "tap-1.3"
                     }
                 }
             }
@@ -215,7 +215,7 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
                     "stampedRef": {
                         "kind": "GitRepository",
                         "namespace": "default",
-                        "name": "pet-clinic",
+                        "name": "tanzu-java-web-app",
                         ...
                     }
                 }
