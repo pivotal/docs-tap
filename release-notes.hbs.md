@@ -29,8 +29,23 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="app-acc-features"></a> Application Accelerator
 
-- Feature 1
-- Feature 2
+- Packaging
+  - Out-of-the-box samples are now distributed as OCI images
+  - GitOps model support for publishing accelerator to facilitate governance around publishing accelerators
+- Controller
+  - Add source-image support for fragments and Fragment CRD
+- Engine
+  - OpenRewriteRecipe: More recipes are now supported in addition to Java: Xml, Properties, Maven, Json
+  - New ConflictResolution Strategy : `NWayDiff` will merge files that were modified in different places, as long as they don't conflict. Similar to git diff3 algorithm
+  - Enforce the validity of `inputType`: Only valid values `text`, `textarea`, `checkbox`, `select` and `radio` will be accepted
+- Server
+  - Add configmap to store accelerator invocation counts
+  - Add separate downloaded endpoint for downloads telemetry
+- Jobs
+  - No changes
+- Samples
+  - Samples are moved to https://github.com/vmware-tanzu/application-accelerator-samples
+  - Release includes samples marked with `tap-1.3` tag
 
 #### <a id="alv-features"></a>Application Live View
 
@@ -205,8 +220,11 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="app-acc-resolved"></a> Application Accelerator
 
-- Resolved issue 1
-- Resolved issue 2
+- Controller
+  - Importing a non-ready fragment should propagate non-readyness
+  - DependsOn from fragments are no longer "lost" when imported 
+- Engine
+  - OpenRewriteRecipe updates: Unrecognized Recipe properties now trigger an explicit error
 
 #### <a id="app-sso-resolved"></a> Application Single Sign-On
 
@@ -280,6 +298,10 @@ This release has the following known issues, listed by area and component.
   This occurs if the version of the `aws-cli` is less than the supported version `2.7.35`.
 
   See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
+
+#### <a id="app-acc-known-issues"></a>Application Accelerator
+
+- Generation of new project from an accelerator might time out for more complex accelerators. See the [Configure ingress timeouts when some accelerators take longer to generate](application-accelerator/configuration.html#configure-timeouts) section.
 
 #### <a id="alv-known-issues"></a>Application Live View
 
