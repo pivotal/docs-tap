@@ -149,7 +149,7 @@ status:
   tokenSignatureKeyCount: 0
   deployments:
     authServer:
-      LastParentGenerationWithRestart: 0
+      LastParentGenerationWithRestart: 0 # DEPRECATED and marked for removal.
       configHash: ""
       image: ""
       replicas: 0
