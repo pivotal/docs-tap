@@ -80,7 +80,7 @@ For OpenShift, see:
 
 ### Symptom
 
-You see the following error or similar in a node status:
+You see the following error, or similar, in a node status:
 
 ```console
 Warning ContainerGCFailed 119s (x2523 over 42h) kubelet rpc error: code = ResourceExhausted desc = grpc: trying to send message larger than max (16779959 vs. 16777216)
