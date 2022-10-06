@@ -50,7 +50,7 @@ metadata:
 spec:
   source:
     git:
-      url: https://github.com/vmware-tanzu/application-accelerator-samples/tanzu-java-web-app)
+      url: https://github.com/vmware-tanzu/application-accelerator-samples/tanzu-java-web-app
       ref:
         tag: tap-1.3
 ```
