@@ -133,6 +133,24 @@ To troubleshoot:
     kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
     ```
 
+## <a id="missing-cert-requests"></a> Unable to find CertificateRequests in App Live View Convention
+
+**Symptom**
+
+The certificate request is missing for certificate "app-live-view-conventions/appliveview-webhook-cert".
+
+**Solution**
+
+To troubleshoot:
+
+1. Run `kubectl get certificaterequest -A` to confirm if the certificaterequest is missing for App Live View Convention
+
+1. Try deleting the secret `appliveview-webhook-cert` corresponding to the certificate in the `app-live-view-conventions` namespace. This re-creates the certificaterequest and updates the corresponding certificate.
+
+    ```bash
+    kubectl delete secret appliveview-webhook-cert -n app-live-view-conventions 
+    ```
+
 ## <a id="no-live-info"></a> No live information for pod with ID
 
 **Symptom**
