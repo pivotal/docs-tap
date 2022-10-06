@@ -428,6 +428,70 @@ spec:
 
 If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
+## <a id='configure-timeouts'></a>Configure ingress timeouts when some accelerators take longer to generate 
+
+If TAP is configured to use an ingress for TAP-GUI and the Accelerator Server then it is possible to see a timeout during accelerator generation. This can happend if the accelerator takes longer time to generate than the default timeout. This manifests itself in the TAP-GUI by the action appearing to continue to run for an indefinite period of time. In the IDE extension it would show a `504` error. To mitigate this it is possible to increase the timeout value for the HTTPProxy resources used for the ingress by applying secrets with overlays to modify the HTTPProxy resources.
+
+### <a id='timeout-secrets-created'></a>Configure an ingress timeout overlay secret for each HTTPProxy
+
+For TAP-GUI, create the following overlay secret in the `tap-install` namespace:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: patch-tap-gui-timeout
+  namespace: tap-install
+stringData:
+  patch.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind": "HTTPProxy", "metadata": {"name": "tap-gui"}})
+    ---
+    spec:
+      routes:
+        #@overlay/match by=overlay.subset({"services": [{"name": "server"}]})
+        #@overlay/match-child-defaults missing_ok=True
+        - timeoutPolicy:
+            idle: 30s
+            response: 30s
+```
+
+For Accelerator Server (used for IDE extension), create the following overlay secret in the `tap-install` namespace:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: patch-accelerator-timeout
+  namespace: tap-install
+stringData:
+  patch.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@overlay/match by=overlay.subset({"kind": "HTTPProxy", "metadata": {"name": "accelerator"}})
+    ---
+    spec:
+      routes:
+        #@overlay/match by=overlay.subset({"services": [{"name": "acc-server"}]})
+        #@overlay/match-child-defaults missing_ok=True
+        - timeoutPolicy:
+            idle: 30s
+            response: 30s
+```
+
+### <a id='timeout-secrets-applied'></a>Apply the timeout overlay secrets in tap-values.yaml
+
+Add the following `package_overlays` section to the `tap-values.yaml` file before installing or updating the TAP installation:
+
+```
+package_overlays:
+- name: tap-gui
+  secrets:
+  - name: patch-tap-gui-timeout
+- name: accelerator
+  secrets:
+  - name: patch-accelerator-timeout
+```
+
 ## <a id='next-steps'></a>Next steps
 
 - [Creating accelerators](creating-accelerators/creating-accelerators.html)
