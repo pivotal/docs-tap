@@ -1,4 +1,4 @@
-# Application Accelerator for VMware Tanzu v1.2
+# Application Accelerator for VMware Tanzu v1.3
 
 
 ## <a id="overview"></a>Application Accelerator overview
