@@ -274,7 +274,7 @@ This release has the following known issues, listed by area and component.
 **Failure to connect to AWS EKS clusters:**
 
 When connecting to AWS EKS clusters, an error might appear with the text:
-  
+
   - `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
   - `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
 
@@ -295,7 +295,7 @@ Generation of new project from an accelerator might time out for more complex ac
 
 #### <a id="alv-known-issues"></a>Application Live View
 
-**Unable to find CertificateRequests in App Live View Convention:** On creation of a TAP workload, an error might appear with the text `failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"`. This occurs because the certificaterequest is missing for the corresponding certificate `appliveview-webhook-cert`. 
+**Unable to find CertificateRequests in App Live View Convention:** On creation of a Tanzu Application Platform workload, an error might appear with the text `failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"`. This occurs because the certificaterequest is missing for the corresponding certificate `appliveview-webhook-cert`.
 
 See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hbs.md#a-idmissing-cert-requestsa-unable-to-find-certificaterequests-in-app-live-view-convention).
 
