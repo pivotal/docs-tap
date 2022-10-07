@@ -29,7 +29,7 @@ grype:
         importFromNamespace: metadata-store-secrets
 scanning:
   metadataStore:
-    url: "" # Deactivate embedded integration since it's deprecated
+    url: "" # Configuration is moved, so set this string to empty.
 ```
 
 Where:
