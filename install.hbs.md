@@ -221,6 +221,10 @@ shared:
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
   kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
+  ca_cert_data:  # To be passed if using custom certtificates
+      -----BEGIN CERTIFICATE-----
+      MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+      -----END CERTIFICATE-----
 
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 
@@ -272,6 +276,8 @@ tap_telemetry:
 ```
 
 Where:
+
+Under the ca_cert_data key in the above full-profile file, provide one or more PEM-encoded CA certificates if using custom CA certificates. If shared.ca_cert_data is configured, TAP component packages inherits that value by default.
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
