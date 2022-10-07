@@ -128,6 +128,8 @@ You can also create a separate manifest file and apply it to the cluster by usin
     kubectl apply -f simple-manifest.yaml
     ```
 
+> **Note**: Application Accelerator supports handling and management of accelerator manifests using standard GitOps practices. For more information, please see the [Application Accelerator Configuration docs](../application-accelerator/configuration.hbs.md#using-git-ops)
+
 ## Next steps
 
 - [Add testing and security scanning to your application](add-test-and-security.md)
