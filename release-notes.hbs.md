@@ -305,7 +305,7 @@ See [Application Single Sign On - Known Issues](app-sso/known-issues/index.md).
 
 #### <a id="cnrs-issues"></a> Cloud Native Runtimes
 
-**Failure to successfully deploy workloads on Openshift:**
+**Failure to successfully deploy workloads on `run` cluster in Multi Cluster setup on Openshift:**
 
 When creating a workload from a Deliverable resource, it may not create and instead result in the following error:
 
