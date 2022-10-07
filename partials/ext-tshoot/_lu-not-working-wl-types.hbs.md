@@ -1,7 +1,7 @@
 ### Symptom
 
 When using `server` or `worker` as a
-[workload type](../../workloads/workload-types.hbs.md#types),
+[workload type](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3/tap/GUID-workloads-workload-types.html#types),
 live update might not work.
 
 ### Cause
