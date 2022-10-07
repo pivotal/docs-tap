@@ -10,7 +10,7 @@ Functions provide a quick way to get started writing an application. Compared wi
 
 * Functions have a single entry-point and perform a single task. This means that functions can be easier to understand and monitor.
 
-* The webserver is managed by the function buildpack. This means that you can focus on your code/business logic.
+* The webserver is managed by the function buildpack. This means that you can focus on your code or business logic.
 
 * A traditional webserver application might be a better fit if you want to implement an entire website or API in a single container
 
@@ -23,11 +23,25 @@ Functions provide a quick way to get started writing an application. Compared wi
 
 ## <a id="supportedlangs"></a> Supported languages and framework
 
-| **Language/framework** | **HTTP** | **CloudEvents** |
-|------------------------|----------|-----------------|
-| Java                   |     &check;     |     &check;            |
-| Python                 |     &check;     |          &check;       |
-| Node                   |    &check;      | N/A             |
+For HTTP and CloudEvents:
+
+| Language/framework     | HTTP     | CloudEvents |
+|------------------------|----------|-------------|
+| Java                   | &check;  | &check;     |
+| Python                 | &check;  | &check;     |
+| Node                   | &check;  | N/A         |
+
+<!-- NodeJS? -->
+
+For REST API:
+
+| Language/framework     | GET      | POST    |
+|------------------------|----------|---------|
+| Java                   | N/A      | &check; |
+| Python                 | &check;  | &check; |
+| Node                   | &check;  | &check; |
+
+<!-- NodeJS? -->
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -42,14 +56,16 @@ Before using function workloads on Tanzu Application Platform, complete the foll
 
 1. From the Tanzu Application Platform GUI portal, click **Create** on the left navigation bar to see the list of available accelerators.
 
-![Application-Accelerators-Accelerators-VMware-Tanzu-Application-Platform (2)](https://user-images.githubusercontent.com/36433204/194068385-3ad8b1fe-3c51-422e-bc72-27105d11a275.png)
+    ![Application-Accelerators-Accelerators-VMware-Tanzu-Application-Platform (2)](https://user-images.githubusercontent.com/36433204/194068385-3ad8b1fe-3c51-422e-bc72-27105d11a275.png)
+    <!-- maybe get a better screenshot -->
 
-1. Locate the function accelerator in the language/framework of your choice and click **CHOOSE**.
+1. Locate the function accelerator in the language or framework of your choice and click **CHOOSE**.
+
 1. Provide a name for your function project and function. Provide a Git repository to store this accelerator's files. Click **NEXT STEP**, verify the provided information, and click **CREATE**.
 
     ![Screenshot of the Generate Accelerators page in Tanzu Application Platform GUI. It shows a Python function buildpacks accelerator with App accelerator input fields including Name, Default function name, Event type, Git repository URL, and Git repository branch.](images/generate-accelerators.png)
-   
-Note: If creating a Java function, select a project type*.
+
+1. If creating a Java function, select a project type. <!-- when do you do this step? Is is while you're doing the previous step? -->
 
 1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
 
@@ -138,7 +154,7 @@ preferred procedure for uploading the generated project files to a Git repositor
     Docker Hub has the form: "my-dockerhub-user/functions-accelerator-python".
 
     Google Cloud Registry has the form: "gcr.io/my-project/functions-accelerator-python".
-    
+
     - Where YOUR-DEVELOPER-NAMESPACE is the namespace configured earlier.
 
 1. View the build and runtime logs for your application by running the tail command:
@@ -147,23 +163,22 @@ preferred procedure for uploading the generated project files to a Git repositor
     tanzu apps workload tail functions-accelerator-python --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
-1. After the workload is built and running, you can view the web application in your browser. To view the URL of the web application, run the following command and then ctrl-click the Workload Knative Services URL at the bottom of the command output.
+1. After the workload is built and running, you can view the web application in your browser.
+To view the URL of the web application, run the following command and then ctrl-click
+the Workload Knative Services URL at the bottom of the command output.
 
     ```console
     tanzu apps workload get functions-accelerator-python --namespace YOUR-DEVELOPER-NAMESPACE
     ```
-    
-   For other methods, you must use more advanced REST API testing utilities, such cURL. The cURL command examples below assume that cURL is installed on your computer.
-   
-| **Language/framework** | **GET** | **POST** |
-|------------------------|---------|----------|
-| Java                   |        N/A     |     &check;     |
-| Python                 |     &check;    |    &check;      |
-| Node                   |     &check;    |     &check;     |
 
- 
- 
- Java Function POST example 
+<!-- find out what the below section is about -->
+For other methods, you must use more advanced REST API testing utilities, such cURL.
+The cURL command example below assumes that cURL is installed on your computer.
+
+
+For languages for the REAT API, see [Supported languages and framework](#supportedlangs) earlier in this topic.
+
+ Java Function POST example
  ```console
  curl -w'\n' URL_FROM_YOUR_WORKLOAD_KNATIVE_SERVICES_SECTION \
  -H "Content-Type: application/json" \
