@@ -6,8 +6,8 @@ allows `ClientRegistrations` from is controlled with an annotation.
 ## Labels
 
 `ClientRegistrations` select an `AuthServer` with `spec.authServerSelector`. Therefore, an `AuthServer`
-must have a set of labels that uniquely identifies it amongst all `AuthServer`. Clients won't be
-able to register if they match no or too many `AuthServer`.
+must have a set of labels that uniquely identifies it amongst all `AuthServer`. A `ClientRegistration` must match only
+one `AuthServer`, and will not be able to register if multiple or no `AuthServer` resources are matched.
 
 For example:
 
@@ -44,7 +44,7 @@ metadata:
     sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
 ```
 
-To allow `ClientRegistrations` from all or a restricted set of Namespaces this annotation must be set. Its value is a
+To allow `ClientRegistrations` from all or a restricted set of namespaces this annotation must be set. Its value is a
 comma-separated list of allowed Namespaces, e.g. `"app-team-red,app-team-green"`, or `"*"` if it should allow clients
 from all namespaces.
 

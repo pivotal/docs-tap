@@ -68,7 +68,7 @@ kubectl get authservers
 ```
 
 AppSSO will create a secret containing the credentials that client applications will use, named after the client
-registration. The type of the secret is `servicebindings.io/oauth2`. You can obtain the values in the secret by running:
+registration. The type of the secret is `servicebinding.io/oauth2`. You can obtain the values in the secret by running:
 
 ```shell
 kubectl get secret my-client-registration -n default  -o json | jq ".data | map_values(@base64d)"

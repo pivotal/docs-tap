@@ -21,4 +21,4 @@ multiple authorization servers of production-grade scale with token key rotation
 and client restrictions.
 
 AppSSO's authorization server is based off
-of [Spring Authorization Server](https://github.com/spring-projects/spring-authorization-server).
+of [Spring Authorization Server project](https://spring.io/projects/spring-authorization-server).

@@ -29,6 +29,12 @@ In this tutorial, you are going to:
 
 Deploy your first Authorization Server along with an `RSAKey` key for signing tokens.
 
+<p class="note caution">
+<strong>Caution:</strong>
+⚠️ This `AuthServer` example makes use of an unsafe testing-only identity provider and it should never be used in
+production environments. Learn more about [identity providers here](../service-operators/identity-providers.md).
+</p>
+
 ```yaml
 ---
 apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
@@ -98,7 +104,7 @@ As you can see your `AuthServer` gets an issuer URI templated. This is its entry
 issuer URI in its status:
 
 ```shell
-kubectl get authservers.sso.apps.tanzu.vmware.com my-authserver-example --output go-template='{{ .status.issuerURI }}'
+kubectl get authservers.sso.apps.tanzu.vmware.com my-authserver-example -o jsonpath='{.status.issuerURI}'
 ```
 
 Open your `AuthServer`'s issuer URI in your browser. You should see a login page. Log in using username = `user` and
@@ -146,7 +152,7 @@ client registrations in the `default` namespace.
 The `sso.apps.tanzu.vmware.com/allow-unsafe-...` annotations enable "development mode" features, useful for testing.
 Those should not be used for production-grade authorization servers.
 
-Lean more about [Metadata](../service-operators/metadata.md).
+Learn more about [annotations & labels in `AuthServer` resource](../service-operators/metadata.md).
 
 ### TLS & issuer URI
 
@@ -190,9 +196,7 @@ spec:
 The token signing key is the private RSA key used to sign ID Tokens,
 using [JSON Web Signatures](https://datatracker.ietf.org/doc/html/rfc7515), and clients use the public key to verify the
 provenance and integrity of the ID tokens. The public keys used for validating messages are published
-as [JSON Web Keys](https://datatracker.ietf.org/doc/html/rfc7517) at `{.status.issuerURI}/oauth2/jwks`. When using the
-port-forward declared in the section above, JWKs are available
-at [http://localhost:7777/oauth2/jwks](http://localhost:7777/oauth2/jwks).
+as [JSON Web Keys](https://datatracker.ietf.org/doc/html/rfc7517) at `{.status.issuerURI}/oauth2/jwks`.
 
 The `spec.tokenSignature.signAndVerifyKeyRef.name` references a secret containing PEM-encoded RSA keys, both `key.pem`
 and `pub.pem`. In this specific example, we are

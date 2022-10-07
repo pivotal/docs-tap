@@ -4,14 +4,16 @@ Uninstall the AppSSO package and repository following resource naming introduced
 in the [Installation](installation.md) section:
 
 ```shell
-# Delete the Package
-tanzu package installed delete appsso \
-  --yes --namespace tap-install
-
-# Delete the PackageRepository (if installed separately from TAP)
-tanzu package repository delete appsso-package-repository \
-  --yes --namespace tap-install
-
-# Delete the TanzuNet credentials secret
-tanzu secret registry delete appsso-registry --yes
+tanzu package installed delete appsso --namespace tap-install
 ```
+
+To permanently delete and exclude AppSSO package from your TAP install, modify your TAP values file and include the
+following configuration:
+
+```yaml
+excluded_packages:
+  - sso.apps.tanzu.vmware.com
+```
+
+For more information, navigate
+to [Excluding packages from a Tanzu Application Platform profile](../../install.md#exclude-packages).
