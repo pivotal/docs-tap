@@ -175,8 +175,7 @@ the Workload Knative Services URL at the bottom of the command output.
 For other methods, you must use more advanced REST API testing utilities, such cURL.
 The cURL command example below assumes that cURL is installed on your computer.
 
-
-For languages for the REAT API, see [Supported languages and framework](#supportedlangs) earlier in this topic.
+For languages that support the REST API, see [Supported languages and framework](#supportedlangs) earlier in this topic.
 
  Java Function POST example
  ```console
