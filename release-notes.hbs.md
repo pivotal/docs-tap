@@ -426,7 +426,7 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 
 - **Tiltfile snippet does not work on files named `Tiltfile` when Tilt extension is installed:** For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#tiltfile-snippet).
 
-#### <a id="intelj-ext-known-issues"></a>Intellij Extension
+#### <a id="intelj-ext-known-issues"></a>IntelliJ Extension
 
 - **Unable to view workloads on the panel when connected to GKE cluster:**
   When connecting to Google's GKE clusters, an error might appear with the text
@@ -434,10 +434,10 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 - **Starting debug and live update sessions is synchronous:**
-  When a User `Run`s (or `Debug`s) a launch configuration intellij disables the launch controls preventing other
-  launch configs from being launched at the same time.  Re-activating these controls only when the launch config is started.
-  As such, starting mulitple Tanzu debug and live update sessions is a synchronous activity.  We are looking into
-  how we might improve this expereince for our Users.
+  When a user runs or debugs a launch configuration, IntelliJ disables the launch controls to prevent
+  other launch configurations from being launched at the same time.
+  These controls are reactivated when the launch configuration is started.
+  As such, starting multiple Tanzu debug and live update sessions is a synchronous activity.
 
 - **Live update not working when using server or worker Workload types:**
   When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`

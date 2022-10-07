@@ -92,7 +92,7 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
 
 ## <a id="mono-repo"></a> Working with Microservices in a Monorepo
 
-A *Mono Repo* is single git repository that contains multiple workloads. Each 
+A *Mono Repo* is single git repository that contains multiple workloads. Each
 individual workload is placed in a subfolder of the main repository.
 
 You can find an example of this in [Application Accelerator](../application-accelerator/about-application-accelerator.hbs.md).
@@ -115,7 +115,7 @@ This project exemplifies a typical layout:
 
 ### Recommended structure: Independently buildable microservices
 
-In this example, each of the microservices can be built independently of one another. Each subfolder contains *everything* needed to build that workload. 
+In this example, each of the microservices can be built independently of one another. Each subfolder contains *everything* needed to build that workload.
 
 This is reflected in the `source` section of `workload.yaml` by using the `subPath`
 attribute:
@@ -137,29 +137,29 @@ spec:
 ```
 
 Setting up a mono repo so that each microservice can be built completely independently
-is the recommended way to setup your own monorepos. 
+is the recommended way to setup your own monorepos.
 
 To work with these monorepos:
 
-- Import the monorepo as a project into Intellij. 
+- Import the monorepo as a project into IntelliJ.
 - Interact with each of the subfolders in the same way you would a project containing a single workload.
 
 ### Alternate structure: Services with build-time inter-dependencies
 
 Some monorepos may not have submodules that can be independently built.
-Instead the submodules `pom.xml` files may be setup to have some build-time interdependencies. 
+Instead the submodules `pom.xml` files may be setup to have some build-time interdependencies.
 For example:
 
-- A submodule `pom.xml` might reference the parent `pom.xml` as a common place for 
+- A submodule `pom.xml` might reference the parent `pom.xml` as a common place for
   centralised dependency management.
 - A microservice submodule may reference another (as a maven `<dependency>`).
 - Several microservice submodules may reference one or more 'shared' libary modules.
 
 For these projects, you will need to make these adjustments:
-- `workload.yaml` changes: 
-   - The `workload.yaml` should not point to a subfolder but to the repo root (since submodules have dependencies 
+- `workload.yaml` changes:
+   - The `workload.yaml` should not point to a subfolder but to the repo root (since submodules have dependencies
   on code outside of their own subfolder, all source code from the repo needs to be supplied to the workload builder).
-   - The `workload.yaml` needs to specify additional buildpack arguments via environment   
+   - The `workload.yaml` needs to specify additional buildpack arguments via environment
   variables (since these differentiate which submodule is actually being targetted by the
   build).
 
@@ -190,7 +190,7 @@ For these projects, you will need to make these adjustments:
    For detailed information about these and other `BP_xxx` buildpack parameters, refer
    to the [Buildpack Documentation](https://github.com/paketo-buildpacks/maven/blob/main/README.md).
 
-- The local path attribute in the launch config for each workload must point to the path of the repo root (since submodules have dependencies 
+- The local path attribute in the launch config for each workload must point to the path of the repo root (since submodules have dependencies
   on code outside of their own subfolder, all source code from the repo needs to be supplied to the workload builder).
 
    ![Launch Config Editor](../images/intellij-mono-repo-launch-config.png)
