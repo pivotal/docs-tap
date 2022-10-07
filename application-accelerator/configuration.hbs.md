@@ -9,7 +9,7 @@ If the repository used is accessible anonymously from a public server, then you 
 
 ## <a id="using-git-ops"></a> Using a Git-Ops style configuration for deploying a set of managed accelerators
 
-In order to enable a Git-Ops style of managing resources used for deploying accelerators there is a new set of properties for the App Accelerator configuration. The resources will be managed using a Carvel kapp-controller App that watches a Git repository containing the mainifests for the accelerators. This means that you can make changes to the manifests, or to the accelerators they point to, and the changes will be reconciled and reflected in the deployed resources.
+In order to enable a Git-Ops style of managing resources used for deploying accelerators there is a new set of properties for the App Accelerator configuration. The resources will be managed using a Carvel kapp-controller App in the `accelerator-system` namespace that watches a Git repository containing the manifests for the accelerators. This means that you can make changes to the manifests, or to the accelerators they point to, and the changes will be reconciled and reflected in the deployed resources.
 
 You can specify the following accelerator configuration properties when installing the Application Accelerator. The same properties can be provided in the `accelerator` section of the `tap-values.yaml` file:
 
@@ -127,7 +127,7 @@ tanzu accelerator create my-spring-cloud-serverless --git-repo https://github.co
 
 ## <a id="creating-git-credentials"></a> Configuring `tap-values.yaml` with Git credentials secret
 
-When deploying accelerators using Git repositories that need authentication and/or are installed with custom CA certificates then you need to provide some additional authentication values in a Secret. The examples in the next section provide more details about this. In this section we describe how to conventiently configure a Git credentials secret that can be used for some of the Git based examples below.
+When deploying accelerators using Git repositories that need authentication and/or are installed with custom CA certificates then you need to provide some additional authentication values in a Secret. The examples in the next section provide more details about this. In this section we describe how to conveniently configure a Git credentials secret that can be used for some of the Git based examples below.
 
 You can specify the following accelerator configuration properties when installing the Application Accelerator. The same properties can be provided in the `accelerator` section of the `tap-values.yaml` file:
 
@@ -432,7 +432,7 @@ If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu 
 
 ## <a id='configure-timeouts'></a>Configure ingress timeouts when some accelerators take longer to generate 
 
-If TAP is configured to use an ingress for TAP-GUI and the Accelerator Server then it is possible to see a timeout during accelerator generation. This can happend if the accelerator takes longer time to generate than the default timeout. This manifests itself in the TAP-GUI by the action appearing to continue to run for an indefinite period of time. In the IDE extension it would show a `504` error. To mitigate this it is possible to increase the timeout value for the HTTPProxy resources used for the ingress by applying secrets with overlays to modify the HTTPProxy resources.
+If TAP is configured to use an ingress for TAP-GUI and the Accelerator Server then it is possible to see a timeout during accelerator generation. This can happen if the accelerator takes longer time to generate than the default timeout. This manifests itself in the TAP-GUI by the action appearing to continue to run for an indefinite period of time. In the IDE extension it would show a `504` error. To mitigate this it is possible to increase the timeout value for the HTTPProxy resources used for the ingress by applying secrets with overlays to modify the HTTPProxy resources.
 
 ### <a id='timeout-secrets-created'></a>Configure an ingress timeout overlay secret for each HTTPProxy
 
