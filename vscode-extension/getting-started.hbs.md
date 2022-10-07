@@ -65,7 +65,7 @@ To create a `workload.yaml` file by using the Code Snippets:
 
 1. (Optional) Create a directory named `config` in the root directory of your project. For example,
 `my project/config`.
-1. Create a file named `workload` with the extension `.yaml` in the new config directory.
+1. Create a file named `workload.yaml` in the new config directory.
 For example, `my project/config/workload.yaml`.
 1. Open the new `workload.yaml` file in VS Code, enter `tanzu workload` in the file to trigger the
 Code Snippets, and either press Enter or left-click the `tanzu workload` text in the drop-down menu.
@@ -84,11 +84,11 @@ Before beginning to write your `catalog-info.yaml` file, ensure that you:
 - know the name of your application. For example, `my app`.
 - have a description of your application ready.
 
-To create a `workload.yaml` file by using the Code Snippets:
+To create a `catalog-info.yaml` file by using the Code Snippets:
 
 1. (Optional) Create a directory named `catalog` in the root directory of your project. For example,
 `my project/catalog`
-1. Create a file named `catalog-info` with the extension `.yaml` in the new config directory.
+1. Create a file named `catalog-info.yaml` in the new config directory.
 For example, `my project/catalog/catalog-info.yaml`
 1. Open the new `catalog-info.yaml` file in VS Code, enter `tanzu catalog-info` in the file to trigger
 the Code Snippets, and then either press Enter or left-click the `tanzu catalog-info` text in the
@@ -117,12 +117,12 @@ or otherwise leave the `local path` value unchanged. For more information, see l
 if the targeting Kubernetes cluster enabled by Tanzu Application Platform is not running on your local
 machine.
 
-To create a `workload.yaml` file by using the Code Snippets:
+To create a `Tiltfile` file by using the Code Snippets:
 
 1. Create a file named `Tiltfile` with no file extension in the root directory of your project.
 For example, `my project/Tiltfile`.
 1. Open the new Tiltfile file in VS Code and enter `tanzu tiltfile` in the file to trigger the
-Code Snippets, and then either press Enter or left-click the `tanzu catalog-info` text in the
+Code Snippets, and then either press Enter or left-click the `tanzu tiltfile` text in the
 drop-down menu.
     ![A new file called Tiltfile with the words "tanzu tiltfile" written in it and an action menu showing "tanzu tiltfile"](../images/vscode-tiltfile.png)
 1. Fill in the template by pressing the Tab key.
