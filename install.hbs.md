@@ -266,7 +266,7 @@ metadata_store:
 
 scanning:
   metadataStore:
-    url: "" # configuration has been moved, so set this to empty
+    url: "" # Configuration is moved, so set this string to empty.
 
 grype:
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
