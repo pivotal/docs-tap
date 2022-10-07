@@ -6,6 +6,10 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 
 {{> 'partials/ext-tshoot/cannot-view-workloads' }}
 
+## <a id='lu-not-working-wl-types'></a> Live update might not work when using server or worker Workload types
+
+{{> 'partials/ext-tshoot/lu-not-working-wl-types' }}
+
 ## <a id="dsbl-lnch-ctrl"></a> Disabled launch controls after running a launch configuration
 
 ## Symptom

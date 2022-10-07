@@ -436,8 +436,12 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   or `Tanzu: Apply`, which says that no workloads or Tiltfiles were found.
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cancel-action-warning).
 
-- **Live update not working when using server or worker Workload types:**
-  When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`
+- **Live update might not work when using server or worker Workload types:**
+  When using `server` or `worker` as
+  [workload type](workloads/workload-types.hbs.md#-available-workload-types),
+  live update might not work.
+  For more information, see
+  [Troubleshooting](vscode-extension/troubleshooting.hbs.md#lu-not-working-wl-types)
 
 - **Tiltfile snippet doesn't work on files named `Tiltfile` when Tilt extension is installed:**
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#tiltfile-snippet).
@@ -456,7 +460,11 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   As such, starting multiple Tanzu debug and live update sessions is a synchronous activity.
 
 - **Live update not working when using server or worker Workload types:**
-  When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`
+  When using `server` or `worker` as
+  [workload type](workloads/workload-types.hbs.md#-available-workload-types),
+  live update might not work.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lu-not-working-wl-types)
 
 - **Stoping one debug session stops them all:**
   When starting multiple simultaneous workload debud sessions, terminating one of those sessions will inadvertently also terminate

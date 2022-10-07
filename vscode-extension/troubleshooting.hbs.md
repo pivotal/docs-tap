@@ -13,3 +13,7 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 ## <a id='tiltfile-snippet'></a> Tiltfile snippet does not work on files named `Tiltfile` when Tilt extension is installed
 
 {{> 'partials/ext-tshoot/tiltfile-snippet' }}
+
+## <a id='lu-not-working-wl-types'></a> Live update might not work when using server or worker Workload types
+
+{{> 'partials/ext-tshoot/lu-not-working-wl-types' }}
