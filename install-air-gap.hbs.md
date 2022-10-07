@@ -303,7 +303,7 @@ grype:
 ```
 
 Where:
-
+Under the ca_cert_data key in the above full-profile file, provide one or more PEM-encoded CA certificates if using custom CA certificates. If shared.ca_cert_data is configured, TAP component packages inherits that value by default.
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
 - `REPOSITORY` is the fully qualified path to the Tanzu Build Service repository. This path must be writable. For example:
