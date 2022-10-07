@@ -448,7 +448,13 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   the others. (Note that is only disconnects the debugger, it doesn't terminate the workload process itself, so it is possible
   reatach/restart debug sessions). A fix for this bug will be included in TAP 1.3.1.
 
-#### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
+  #### <a id="contour-known-issues"></a>Contour
+
+  - The default values displayed for certain keys in values-schema (command: tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install) of contour package in TAP 1.3.0 is wrong. 
+  - Key envoy.hostPorts.enable is having a default value as false. It's displayed as true.
+  - Key envoy.hostPorts.enable is having a default value as LoadBalancer. It's displayed as NodePort.
+  
+  #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
 - Known issue 1
 - Known issue 2
