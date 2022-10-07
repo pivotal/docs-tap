@@ -137,18 +137,27 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="tap-gui-features"></a>Tanzu Application Platform GUI
 
-- Users are no longer required to set the following values when using ingress: `app.baseUrl`, `backend.baseUrl`, `backend.cors.origin`. These values can be inferred by the value derived from `ingressDomain` or through the top level key `ingress_domain`.
-- Now reads from a kubernetes metrics server and displays these values in the Runtime Resources Visibility tab when available. By default Tanzu Application Platform GUI will not try to fetch metrics. To enable metrics for a cluster follow the [Runtime Resources Visibility documentation](./tap-gui/plugins/runtime-resource-visibility.hbs.md#metrics-server).
-- Now reports logs in newline delimited json format.
-- Users can now modify the kubernetes deployment parameters via the `deployment` key.
-- Upgraded the version of backstage on which it runs to backstage 1.1.1.
-- Supports a new endpoint from which external components can push updates to catalog entities. The api-auto-registration package must be configured to push catalog entities to Tanzu Application Platform GUI.
+- Users are no longer required to set the following values when using ingress: `app.baseUrl`,
+  `backend.baseUrl`, `backend.cors.origin`.
+  These values can be inferred by the value derived from `ingressDomain` or through the top-level
+  key `ingress_domain`.
+- Now reads from a Kubernetes metrics server and displays these values in the Runtime Resources
+  Visibility tab when available. By default Tanzu Application Platform GUI does not try to fetch
+  metrics. To enable metrics for a cluster, follow the
+  [Runtime Resources Visibility documentation](tap-gui/plugins/runtime-resource-visibility.hbs.md#metrics-server).
+- Now reports logs in newline-delimited JSON format.
+- Users can now modify the Kubernetes deployment parameters by using the `deployment` key.
+- Upgraded the version of backstage on which it runs to backstage v1.1.1.
+- Supports a new endpoint from which external components can push updates to catalog entities.
+  The `api-auto-registration` package must be configured to push catalog entities to
+  Tanzu Application Platform GUI.
 
 - Application Accelerator plug-in:
   - Added metric to check how many executions an accelerator has in the accelerator list.
   - Added ability to create git repositories based on the provided configuration.
 - Runtime Resources plug-in:
-  - Pods, ReplicaSets, and Deployments now display configured memory and CPU limits. On clusters configured with `skipMetricsLookup` set to `false`, also displays realtime memory and CPU usage.
+  - Pods, ReplicaSets, and Deployments now display configured memory and CPU limits. On clusters
+    configured with `skipMetricsLookup` set to `false`, also displays realtime memory and CPU usage.
   - Supports new kubernetes resources: Jobs, CronJobs, StatefulSets, and DaemonSets.
   - Warning and error banners can now be dismissed.
   - Log viewer improvements:
@@ -157,12 +166,16 @@ This release includes the following changes, listed by component and area.
     - Log contents can be exported.
     - The log level can be changed for pods supporting App Live View.
 - Supply Chain plug-in:
-  - Improved error handling when a scan policy is misconfigured. Now includes links to documentation to properly configure scan policies, replacing the "No policy has been configured" messaging.
-  - Added cluster validation to avoid data collisions in the supply chain visualization when a workload with the same name and namespace exist on different clusters.
+  - Improved error handling when a scan policy is misconfigured. There are now links to documentation
+    to properly configure scan policies, which replace the `No policy has been configured` message.
+  - Added cluster validation to avoid data collisions in the supply chain visualization when a
+    workload with the same name and namespace exist on different clusters.
   - Beta: VMware Carbon Black scanning is now supported.
   - Keyboard navigation improvements.
-  - Updated headers on the Supply Chain graph to clearly indicate the name of the supply chain being used and the workload in the supply chain.
-  - Added direct links to "Package Details" and "CVE Details" pages from within scan results to support a new Security Analysis Plug-in.
+  - Updated headers on the Supply Chain graph to better display the name of the supply chain being
+    used and the workload in the supply chain.
+  - Added direct links to **Package Details** and **CVE Details** pages from within scan results to
+    support a new Security Analysis plug-in.
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
@@ -291,9 +304,11 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="tap-gui-resolved"></a>Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
-  - Deliverable link in Runtime Resources took a user to a blank page instead of to the supply chain delivery.
-  - Results for the wrong workload were shown if the same `part-of label` was used across workloads with the same name.
 
+  - Deliverable link in Runtime Resources no longer takes a user to a blank page instead of to the
+    supply chain delivery.
+  - Results for the wrong workload are no longer shown if the same `part-of label` is used across
+    workloads with the same name.
 
 ### <a id='1-3-known-issues'></a> Known issues
 
