@@ -16,7 +16,7 @@ shared:
     -----BEGIN CERTIFICATE-----
     MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
     -----END CERTIFICATE-----  
-    
+
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 
 # The above shared keys may be overridden in the below section.
@@ -59,7 +59,7 @@ tap_telemetry:
 
 Where:
 
-Under the ca_cert_data key in the above terate-profile file, provide one or more PEM-encoded CA certificates if using custom CA certificates. If shared.ca_cert_data is configured, TAP component packages inherits that value by default.
+Under the ca_cert_data key in the above iterate-profile file, provide one or more PEM-encoded CA certificates if using custom CA certificates. If shared.ca_cert_data is configured, TAP component packages inherits that value by default.
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
     - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
     - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
