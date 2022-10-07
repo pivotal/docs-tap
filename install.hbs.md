@@ -261,7 +261,7 @@ metadata_store:
 
 scanning:
   metadataStore:
-    url: "" # Deactivate embedded integration since it's deprecated.
+    url: "" # configuration has been moved, so set this to empty
 
 grype:
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
