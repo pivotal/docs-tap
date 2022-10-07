@@ -44,7 +44,7 @@ grype:
         importFromNamespace: metadata-store-secrets
 scanning:
   metadataStore:
-    url: "" # Deactivate embedded integration since it's deprecated.
+    url: "" # Configuration is moved, so set this string to empty.
 tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for the creation of Tanzu Application Platform usage reports.
 ```
