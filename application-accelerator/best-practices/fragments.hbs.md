@@ -11,11 +11,11 @@ Developing a Fragment is useful in the following situations:
 Developing and maintaining a Fragment is complex:
 
 * As a Fragment author you don’t know what kind of formatting rules or particular syntax variation is used in a host Accelerator. A Fragment you develop needs to be ready to work with all possible syntax and format variation. For example dependency in a Gradle build.gradle.kts can have following forms:
-    * implementation(‘org.springframework.boot:spring-boot-starter’)
-    * implementation("org.springframework.boot:spring-boot-starter")
-    * implementation(group = "org.springframework.boot”, name= “spring-boot-starter")
-    * implementation(group = ‘org.springframework.boot’, name= ‘spring-boot-starter’)
-    * implementation(name= “spring-boot-starter", group = "org.springframework.boot”)
+    * `implementation(‘org.springframework.boot:spring-boot-starter’)`
+    * `implementation("org.springframework.boot:spring-boot-starter")`
+    * `implementation(group = "org.springframework.boot”, name= “spring-boot-starter")`
+    * `implementation(group = ‘org.springframework.boot’, name= ‘spring-boot-starter’)`
+    * `implementation(name= “spring-boot-starter", group = "org.springframework.boot”)`
 * The Fragment will be used in multiple Accelerator contexts and behavior should still result in a compilable and deployable Application Skeleton
 * As testing a Fragment in isolation is more difficult than testing an Accelerator, testing takes more time as all the combinations need to be tested from Accelerator perspective.
 
