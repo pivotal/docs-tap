@@ -448,6 +448,14 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   the others. (Note that is only disconnects the debugger, it doesn't terminate the workload process itself, so it is possible
   reatach/restart debug sessions). A fix for this bug will be included in TAP 1.3.1.
 
+
+#### <a id="scc-features"></a>Supply Chain Choreographer
+
+- **Misleading DeliveryNotFound error message on Build profile clusters**
+  Deliverables incorrectly will show a DeliveryNotFound error on *build* profile clusters even though the
+  Workload is working correctly. The message is typically:
+  `No delivery found where full selector is satisfied by labels:`
+
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
 - Known issue 1
