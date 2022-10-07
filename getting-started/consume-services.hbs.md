@@ -106,8 +106,8 @@ This is the value to pass to `--service-ref` to create the application workload.
 
     ```console
     tanzu apps workload create spring-sensors-consumer-web \
-      --git-repo https://github.com/sample-accelerators/spring-sensors-rabbit \
-      --git-branch main \
+      --git-repo https://github.com/tanzu-end-to-end/spring-sensors \
+      --git-branch rabbit \
       --type web \
       --label app.kubernetes.io/part-of=spring-sensors \
       --annotation autoscaling.knative.dev/minScale=1 \
