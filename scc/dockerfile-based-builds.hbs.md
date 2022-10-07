@@ -159,7 +159,7 @@ SecurityContextConstraints (SCC), we recommend:
     ```
 
 1. binding the role to an actor (ServiceAccount as instructed in [Set up
-   developer namespaces to use installed packages ](set-up-namespaces.hbs.md))
+   developer namespaces to use installed packages ](../set-up-namespaces.hbs.md))
 
     ```yaml
     apiVersion: rbac.authorization.k8s.io/v1
