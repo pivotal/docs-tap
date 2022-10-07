@@ -51,7 +51,6 @@ tap_telemetry:
 
 Where:
 
-Under the ca_cert_data key in the above build-profile file, provide one or more PEM-encoded CA certificates if using custom CA certificates. If shared.ca_cert_data is configured, TAP component packages inherits that value by default.
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
     - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
     - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
@@ -87,3 +86,5 @@ credentials to pull an image from the registry for scanning.
 > by using an [automatic update process (deprecated)](../../tanzu-build-service/install-tbs.md#auto-updates-config).
 
 > **Note:** The `scanning.metadatastore.url` must be set to an empty string if you're installing Grype Scanner v1.2.0 or later or Snyk Scanner to deactivate the embedded Supply Chain Security Tools - Store integration.
+
+>**Note:** If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.
