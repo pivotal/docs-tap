@@ -464,9 +464,9 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 
 #### <a id="contour-known-issues"></a>Contour
 
- - The default values displayed for certain keys in values-schema (command: `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`) of contour package in TAP 1.3.0 is wrong. 
- - Key `envoy.hostPorts.enable` is having a default value as `false`. It's displayed as true.
- - Key `envoy.hostPorts.enable` is having a default value as `LoadBalancer`. It's displayed as NodePort.
+- Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`: The default values displayed for the following keys are incorrect in values-schema of Contour package in Tanzu Application Platform v1.3.0:
+    - Key `envoy.hostPorts.enable` has a default value as `false`, but it is displayed as `true`.
+    - Key `envoy.hostPorts.enable` has a default value as `LoadBalancer`, but it is displayed as `NodePort`.
   
   #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
