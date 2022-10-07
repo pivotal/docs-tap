@@ -193,8 +193,9 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="tbs-features"></a> Tanzu Build Service
 
-- TAP/TBS now ships with support for Jammy Stacks
-  - Users can [opt-in](tanzu-build-service/dependencies.md#bionic-vs-jammy) to building workloads with the jammy stacks
+- **Tanzu Build Service now includes support for Jammy Stacks:**
+You can opt-in to building workloads with the Jammy stacks by following the instructions in
+[Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
   - **Deprecation Notice:** Ubuntu Bionic stack is in the process of deprecation. Users should build workloads with the Jammy stack.
 - The (legacy) CNB BOM format is deprecated, but is enabled by default in TBS for TAP 1.3 and 1.4. In TAP 1.5, support will be disabled by
   default. And in TAP 1.6, support will be removed. To manually disabled legacy CNB BOM support add

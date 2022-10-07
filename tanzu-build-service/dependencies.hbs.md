@@ -49,7 +49,7 @@ VMware recommends that you migrate builds in advance.
 
 For more information, see the [Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#upgrading-stack-for-apps#buildpack-support-for-stacks). <!-- I can't find this section in the buildpack docs -->
 
-### <a id="migrate-to-jammy"></a> Use Jammy stacks for a workload
+### <a id="using-jammy"></a> Use Jammy stacks for a workload
 
 To use the Jammy stacks or migrate an existing workload, configure the workload with a Jammy
 builder by using the `param` flag, for example, `--param clusterBuilder=base-jammy`.
