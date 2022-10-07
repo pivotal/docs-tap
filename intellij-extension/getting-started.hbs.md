@@ -4,13 +4,12 @@ This topic describes how to set up the Tanzu Developer Tools for IntelliJ extens
 
 ## <a id="overview"></a> Overview
 
-The Tanzu Developer Tools for IntelliJ extension makes use of the following files
-within your project. 
+The Tanzu Developer Tools for IntelliJ extension makes use of the following files within your project.
 
-- `workload.yaml`: Required.
-- `catalog-info.yaml`: Required for TAP-gui integration.
-- `Tiltfile`: Required for live update.
-- `.tanzuignore`: Optional, but highly recommended.
+- `workload.yaml`: Required
+- `catalog-info.yaml`: Required for Tanzu Application Platform GUI integration
+- `Tiltfile`: Required for live update
+- `.tanzuignore`: Recommended
 
 You can create these files manually using the instructions in this topic,
 or use the files in the [View an example project](#example-project) section.
@@ -27,9 +26,9 @@ The `workload.yaml` file provides instructions to the Supply Chain Choreographer
 about how to build and manage a workload.
 For more information, see the [Supply Chain Choreographer](../scc/about.md) documentation.
 
->**Note:** The Tanzu Developer Tools for IntelliJ extension requires only one `workload.yaml`
->file per project.
->The `workload.yaml` must be a single-document YAML file, not a multi-document YAML file.
+> **Note:** The Tanzu Developer Tools for IntelliJ extension requires only one `workload.yaml`
+> file per project.
+> The `workload.yaml` must be a single-document YAML file, not a multi-document YAML file.
 
 ### <a id="example-workload-yaml"></a> Example workload.yaml
 
@@ -154,16 +153,19 @@ For more information about this line, see the [Tilt documentation](https://docs.
 
 ## <a id="create-tanzuignore"></a> Create the `.tanzuignore` file
 
-In your project, you can include a file named `.tanzuignore` with no extension (no filetype),
-for example, `my-project/.tanzuignore`.
+In your project, you can include a file named `.tanzuignore` with no file extension.
+For example, `my-project/.tanzuignore`.
 
-When working with local source code, the `.tanzuignore` excludes files from the source code to be uploaded within the image. 
-It has a syntax similar to the `.gitignore` file. 
+When working with local source code, `.tanzuignore` excludes files from the source code that are
+uploaded within the image.
+It has syntax similar to the `.gitignore` file.
 
 ### <a id="example-tanzuignore"></a> Example `.tanzuignore`
 
-See the [Tanzu Java Web App Sample](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) for a
-[typical `.tanzuignore`](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/.tanzuignore) file that you can use as is, or as a starting point for your own.
+For an example, see the `.tanzuignore`
+[file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/.tanzuignore)
+in GitHub that is used for the sample Tanzu Java web app.
+You can use the file as it is or edit it for your needs.
 
 ## <a id="example-project"></a> View an example project
 
