@@ -63,9 +63,9 @@ To install Tanzu Build Service by using the Tanzu CLI:
       - Harbor has the form `"my-harbor.io/my-project/build-service"`.
       - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
-    - `REPO-USERNAME` and `REPO-PASSWORD` are the user name
+    - `REPO-USERNAME` and `REPO-PASSWORD` are the username
     and password for the user that can write to `REPO-NAME`.
-    For Google Cloud Registry, use `_json_key` as the user name and the contents
+    For Google Cloud Registry, use `_json_key` as the username and the contents
     of the service account JSON file for the password.
 
         >**Note:** If you do not want to use plaintext for these credentials, you can configure them
@@ -163,11 +163,32 @@ in your `tbs-values.yaml` or `tap-values.yaml`.
 
 ### <a id='install-secret-refs'></a> Use Secret references for registry credentials
 
-To use secret references:
+You may not want to install TBS with passwords saved in plaintext in the `tbs-values.yml`.
+
+You can store these credentials in `Secrets` and reference them in the `tbs-values.yml` using the following process:
 
 1. Create a secret of type `kubernetes.io/dockerconfigjson` containing
-credentials for the writable repository in your registry (`kp_default_repository`)
-and the VMware Tanzu Network registry.
+credentials for the writable repository in your registry (`kp_default_repository`).
+This can be done with the `tanzu` cli:
+
+    ```
+    tanzu secret registry add kp-default-repository-creds \
+      --username "${INSTALL_REGISTRY_USERNAME}" \
+      --password "${INSTALL_REGISTRY_PASSWORD}" \
+      --server "${SERVER-NAME}" \
+      --namespace tap-install
+    ```
+
+Where:
+
+- `USERNAME` and `PASSWORD` are the username
+  and password for the user that can write to `KP-DEFAULT-REPOSITORY` which will be used at install time.
+  For Google Cloud Registry, use `_json_key` as the username and the contents
+  of the service account JSON file for the password.
+- `SERVER-NAME` is the host name of the registry server for the `KP-DEFAULT-REPOSITORY`. Examples:
+    * Harbor has the form `server: "my-harbor.io"`.
+    * Docker Hub has the form `server: "index.docker.io"`.
+    * Google Cloud Registry has the form `server: "gcr.io"`.
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
@@ -176,30 +197,19 @@ and the VMware Tanzu Network registry.
 
     ```yaml
     ---
-    kp_default_repository: "REPO-NAME"
+    kp_default_repository: "KP-DEFAULT-REPOSITORY"
     kp_default_repository_secret:
-      name: "REPO-SECRET-NAME"
-      namespace: "REPO-SECRET-NAMESPACE"
-    tanzunet_secret:
-      name: "TANZU-NET-SECRET-NAME"
-      namespace: "TANZU-NET-SECRET-NAMESPACE"
+      name: kp-default-repository-creds
+      namespace: tap-install
     ```
 
     Where:
 
-    - `REPO-NAME` is a writable repository in your registry.
+    - `KP-DEFAULT-REPOSITORY` is a writable repository in your registry.
     Tanzu Build Service dependencies are written to this location. Examples:
       - Harbor has the form `"my-harbor.io/my-project/build-service"`
       - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`
-    - `REPO-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson`
-    Secret containing credentials for `REPO-NAME`. You can write to this location with this credential.
-    - `REPO-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson`
-    Secret containing credentials for `REPO-NAME`. You can write to this location with this credential.
-    - `TANZU-NET-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson`
-    Secret containing credentials for VMware Tanzu Network registry.
-    - `TANZU-NET-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson`
-    Secret containing credentials for the VMware Tanzu Network registry.
 
 1. Apply this configuration by continuing the steps in [Install the Tanzu Build Service package](#tbs-tcli-install).
 
