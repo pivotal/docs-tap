@@ -147,12 +147,12 @@ This release includes the following changes, listed by component and area.
   - Added cluster validation to avoid data collisions in the supply chain visualization when a workload with the same name and namespace exist on different clusters.
   - Beta: VMware Carbon Black scanning is now supported.
   - Keyboard navigation improvements.
-  - Updated headers on the Supply Chain graph to better display the name of the supply chain being used and the workload in the supply chain.
+  - Updated headers on the Supply Chain graph to better display the name of the supply chain used and the workload in the supply chain.
   - Added direct links to **Package Details** and **CVE Details** pages from within scan results to support a new Security Analysis plug-in.
 - [Security Analysis plug-in](./tap-gui/plugins/sa-tap-gui.hbs.md):
-  - NEW for TAP 1.3!
-  - View vulnerabilities across all workloads and clusters in a single location
-  - View CVE details and package details pages (via the Supply Chain Choreographer plug-in's Vulnerabilities table)
+  - NEW for Tanzu Application Platform 1.3.
+  - View vulnerabilities across all workloads and clusters in a single location.
+  - View CVE details and package details pages (on the Supply Chain Choreographer plug-in's Vulnerabilities table).
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
@@ -274,7 +274,7 @@ This release has the following known issues, listed by area and component.
 **Failure to connect to AWS EKS clusters:**
 
 When connecting to AWS EKS clusters, an error might appear with the text:
-  
+
   - `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
   - `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
 
@@ -295,7 +295,7 @@ Generation of new project from an accelerator might time out for more complex ac
 
 #### <a id="alv-known-issues"></a>Application Live View
 
-**Unable to find CertificateRequests in App Live View Convention:** On creation of a TAP workload, an error might appear with the text `failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"`. This occurs because the certificaterequest is missing for the corresponding certificate `appliveview-webhook-cert`. 
+**Unable to find CertificateRequests in App Live View Convention:** On creation of a Tanzu Application Platform workload, an error might appear with the text `failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"`. This occurs because the certificaterequest is missing for the corresponding certificate `appliveview-webhook-cert`.
 
 See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hbs.md#a-idmissing-cert-requestsa-unable-to-find-certificaterequests-in-app-live-view-convention).
 

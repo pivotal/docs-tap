@@ -1,9 +1,9 @@
 # Dockerfile-based builds
 
-For any source-based supply chains, that is supply chains that are not taking a
-pre-built image, when you specify the new `dockerfile` parameter in a Workload
+For any source-based supply chains, that is, supply chains not taking a
+pre-built image, when you specify the new `dockerfile` parameter in a workload,
 the builds switch from using Kpack to using Kaniko. Kaniko is an open-source
-tool for building container images from a Dockerfile without the need of
+tool for building container images from a Dockerfile without the need for
 running Docker inside a container.
 
 <table>
@@ -85,20 +85,19 @@ are considered when pushing the container image.
 
 ## OpenShift
 
-Despite the fact that Kaniko is able to perform container image builds without
-the need of either a Docker daemon or the use of privileged containers, it does
+Despite that Kaniko can perform container image builds without
+needing either a Docker daemon or privileged containers, it does
 require the use of:
 
-- capabilities that are usually dropped from the more restrictive
-  SecurityContextContraints enabled by default in OpenShift
-- the root user
-
+- Capabilities usually dropped from the more restrictive
+  SecurityContextContraints enabled by default in OpenShift.
+- The root user.
 
 To overcome such limitations imposed by the default unprivileged
 SecurityContextConstraints (SCC), we recommend:
 
-1. creating a more permissive SCC with just enough extra privileges for Kaniko
-   to properly operate
+1. Creating a more permissive SCC with just enough extra privileges for Kaniko
+   to properly operate:
 
     ```yaml
     apiVersion: security.openshift.io/v1
@@ -139,8 +138,8 @@ SecurityContextConstraints (SCC), we recommend:
       - secret
     ```
 
-1. creating a ClusterRole to permit the use of such SCC to any actor binding to
-   that cluster role
+2. Creating a ClusterRole to permit the use of such SCC to any actor binding to
+   that cluster role:
 
     ```yaml
     apiVersion: rbac.authorization.k8s.io/v1
@@ -158,8 +157,8 @@ SecurityContextConstraints (SCC), we recommend:
           - use
     ```
 
-1. binding the role to an actor (ServiceAccount as instructed in [Set up
-   developer namespaces to use installed packages ](../set-up-namespaces.hbs.md))
+3. Binding the role to an actor (ServiceAccount as instructed in [Set up
+   developer namespaces to use installed packages ](../set-up-namespaces.hbs.md)):
 
     ```yaml
     apiVersion: rbac.authorization.k8s.io/v1
@@ -177,13 +176,12 @@ SecurityContextConstraints (SCC), we recommend:
 
 
 With the SCC created and the ServiceAccount bound to the role that permits the
-use of the SCC, OpenShift will accept the pods created to run Kaniko to build
+use of the SCC, OpenShift accepts the pods created to run Kaniko to build
 the container images.
 
 
-> **Note**: such restrictions are due to well-known limitations in how Kaniko
-> performs the image builds (see [kaniko#105]) and there is no solution as of
-> writing.
+> **Note**: Such restrictions are due to well-known limitations in how Kaniko
+> performs the image builds (see [kaniko#105]), and there is currently no solution.
 
 
 [kaniko#105]: https://github.com/GoogleContainerTools/kaniko/issues/105

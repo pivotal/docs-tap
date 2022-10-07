@@ -2,7 +2,7 @@
 
 ## <a id="overview"></a> Overview
 
-The Security Analysis GUI plug-in summarizes vulnerability data across all workloads running in Tanzu Application Platform, enabling faster identification and remediation of CVEs.  
+The Security Analysis GUI plug-in summarizes vulnerability data across all workloads running in Tanzu Application Platform, enabling faster identification and remediation of CVEs.
 
 ## <a id="install"></a> Installation & configuration
 
@@ -14,17 +14,17 @@ The Security Analysis plug-in is part of the Tanzu Application's View profile.
 
 The Security Analysis GUI plug-in is always accessible from the left navigation.  Clicking will open the Security Analysis dashboard.
 
-![Accessing the Security Analysis GUI](./images/sagui-access-plug-in.png)
+![Accessing the Security Analysis GUI](images/sagui-access-plug-in.png)
 
 ## <a id="viewing"></a> Viewing vulnerability data
 
-The Security Analysis dashboard provides a summary of all vulnerabilities across all clusters for single and multi-cluster deployments.  
+The Security Analysis dashboard provides a summary of all vulnerabilities across all clusters for single and multi-cluster deployments.
 
-![Viewing workload build vulnerabilities](./images/sagui-view-vulns.png)
+<!-- ![Viewing workload build vulnerabilities](images/sagui-view-vulns.png) Where is this file? -->
 
-The **Vulnerabilities by Severity** widget is a quickly counts the number of critical, high, medium, low, and unknown severity CVEs, based on that CVE's CVSS severity rating.  
+The **Vulnerabilities by Severity** widget is a quickly counts the number of critical, high, medium, low, and unknown severity CVEs, based on that CVE's CVSS severity rating.
 
-It includes a sum of all workloads' source and image scan vulnerabilities.  For example, if CVE-123 exists in Workload ABC's and Workload DEF's latest source scans and image scans, it will be counted four times.  
+It includes a sum of all workloads' source and image scan vulnerabilities.  For example, if CVE-123 exists in Workload ABC's and Workload DEF's latest source scans and image scans, it will be counted four times.
 
 >**Note:** The sum includes any CVEs on the allowlist (ignoreCVEs).
 
