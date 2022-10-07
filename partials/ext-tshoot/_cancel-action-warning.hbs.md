@@ -7,7 +7,7 @@ appears that says no workloads or Tiltfiles were found.
 
 ### Cause
 
-Extension bug.
+An extension bug is the cause.
 
 ### Solution
 

@@ -439,7 +439,8 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 - **Live update not working when using server or worker Workload types:**
   When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`
 
-- **Tiltfile snippet does not work on files named `Tiltfile` when Tilt extension is installed:** For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#tiltfile-snippet).
+- **Tiltfile snippet doesn't work on files named `Tiltfile` when Tilt extension is installed:**
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#tiltfile-snippet).
 
 #### <a id="intelj-ext-known-issues"></a>IntelliJ Extension
 
@@ -467,7 +468,7 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 - Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`: The default values displayed for the following keys are incorrect in values-schema of Contour package in Tanzu Application Platform v1.3.0:
     - Key `envoy.hostPorts.enable` has a default value as `false`, but it is displayed as `true`.
     - Key `envoy.hostPorts.enable` has a default value as `LoadBalancer`, but it is displayed as `NodePort`.
-  
+
   #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
 - Known issue 1
