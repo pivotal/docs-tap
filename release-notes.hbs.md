@@ -384,9 +384,15 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 #### <a id="tap-gui-plug-in-known-issues"></a>Tanzu Application Platform GUI Plug-ins
 
 - **Supply Chain Plug-in**
-  - Target Cluster column in workloads table shows incorrect cluster when two workloads of the same name, `part-of label`, namespace, and same supply chain name are used on different clusters.
-  - Updating a supply chain results in an error (`Can not create edge...`) when an existing workload is clicked in the workloads table and that supply chain is no longer present. **Workaround: Currently, you must recreate the same workload to execute through the new\updated supply chain.**
-  - API Descriptors\Service Bindings stages show an `Unknown` status (grey question mark in the graph) even if successful.
+
+  - The Target Cluster column in the Workloads table shows the incorrect cluster when two workloads
+    of the same name, `part-of label`, namespace, and same supply-chain name are used on different
+    clusters.
+  - Updating a supply chain results in an error (`Can not create edge...`) when an existing workload
+    is clicked in the Workloads table and that supply chain is no longer present.
+    For the workaround, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#update-sc-err).
+  - API Descriptors/Service Bindings stages show an `Unknown` status (grey question mark in the graph)
+    even if successful.
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 

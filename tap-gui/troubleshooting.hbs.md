@@ -14,6 +14,17 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
 Currently there is no way to use Tanzu Application Platform GUI in Safari. Please use a different
 web browser.
 
+## <a id='update-sc-err'></a> Updating a supply chain causes an error (`Can not create edge...`)
+
+### Symptom
+
+Updating a supply chain causes an error (`Can not create edge...`) when an existing workload
+is clicked in the Workloads table and that supply chain is no longer present.
+
+### Solution
+
+Recreate the same workload to execute through the new or updated supply chain.
+
 ## <a id='catalog-not-found'></a> Catalog not found
 
 ### Symptom
