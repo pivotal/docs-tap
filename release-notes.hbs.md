@@ -27,6 +27,13 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 This release includes the following changes, listed by component and area.
 
+#### <a id="api-auto-registration-features"></a> API Auto Registration
+
+- API Auto Registration is a new package that supports dynamic registration of API from workloads into TAP GUI.
+- Supports Async API, GraphQL, gRPC and OpenAPI.
+- Enhanced support for OpenAPI 3 to validate the spec and update the servers url section.
+- Custom Certificate Authority (CA) certificates are supported.
+
 #### <a id="app-acc-features"></a> Application Accelerator
 
 - Packaging
@@ -331,6 +338,13 @@ This release has the following known issues, listed by area and component.
   This occurs if the version of the `aws-cli` is less than the supported version `2.7.35`.
 
   See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
+
+#### <a id="api-auto-registration-known-issues"></a>API Auto Registration
+
+- Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation.
+If you are using a OpenAPI v2 spec with this field, you may consider converting to OpenAPI v3.
+See the [troubleshooting section](api-auto-registration/troubleshooting.hbs.md) for more details.
+All other spec types and OpenAPI v3 specs are unaffected.
 
 #### <a id="app-acc-known-issues"></a>Application Accelerator
 
