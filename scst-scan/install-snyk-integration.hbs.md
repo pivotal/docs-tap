@@ -149,12 +149,12 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
            importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
        ```
 
-  **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, explicitly deactivate the integration by appending the next fields to the `values.yaml` file, since it's enabled by default:
+    **Without Supply Chain Security Tools - Store Integration:** If you don't want to enable the Supply Chain Security Tools - Store integration, explicitly deactivate the integration by appending the next fields to the `values.yaml` file, since it's enabled by default:
 
     ```yaml
-    # ... 
+    # ...
     metadataStore:
-      url: "" # Deactivate Supply Chain Security Tools - Store integration
+      url: "" # Configuration is moved, so set this string to empty.
     ```
 
 6. Install the package by running:
@@ -168,8 +168,6 @@ To install Supply Chain Security Tools - Scan (Snyk scanner):
     ```
 
     Where `VERSION` is your package version number. For example, `1.0.0`.
-
-    For example:
 
     ```console
     $ tanzu package install snyk-scanner \
