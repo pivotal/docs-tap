@@ -27,6 +27,13 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 This release includes the following changes, listed by component and area.
 
+#### <a id="api-auto-registration-features"></a> API Auto Registration
+
+- API Auto Registration is a new package that supports dynamic registration of API from workloads into TAP GUI.
+- Supports Async API, GraphQL, gRPC and OpenAPI.
+- Enhanced support for OpenAPI 3 to validate the spec and update the servers url section.
+- Custom Certificate Authority (CA) certificates are supported.
+
 #### <a id="app-acc-features"></a> Application Accelerator
 
 - Packaging
@@ -332,6 +339,13 @@ This release has the following known issues, listed by area and component.
 
   See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
 
+#### <a id="api-auto-registration-known-issues"></a>API Auto Registration
+
+- Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation.
+If you are using a OpenAPI v2 spec with this field, you may consider converting to OpenAPI v3.
+See the [troubleshooting section](api-auto-registration/troubleshooting.hbs.md) for more details.
+All other spec types and OpenAPI v3 specs are unaffected.
+
 #### <a id="app-acc-known-issues"></a>Application Accelerator
 
 - Generation of new project from an accelerator might time out for more complex accelerators. See the [Configure ingress timeouts when some accelerators take longer to generate](application-accelerator/configuration.html#configure-timeouts) section.
@@ -448,8 +462,13 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   the others. (Note that is only disconnects the debugger, it doesn't terminate the workload process itself, so it is possible
   reatach/restart debug sessions). A fix for this bug will be included in TAP 1.3.1.
 
+#### <a id="contour-known-issues"></a>Contour
 
-#### <a id="scc-features"></a>Supply Chain Choreographer
+- Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`: The default values displayed for the following keys are incorrect in values-schema of Contour package in Tanzu Application Platform v1.3.0:
+    - Key `envoy.hostPorts.enable` has a default value as `false`, but it is displayed as `true`.
+    - Key `envoy.hostPorts.enable` has a default value as `LoadBalancer`, but it is displayed as `NodePort`.
+  
+#### <a id="scc-known-issues"></a>Supply Chain Choreographer
 
 - **Misleading DeliveryNotFound error message on Build profile clusters**
   Deliverables incorrectly will show a DeliveryNotFound error on *build* profile clusters even though the
