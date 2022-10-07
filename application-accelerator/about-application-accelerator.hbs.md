@@ -15,7 +15,7 @@ The Application Accelerator user interface(UI) enables you to discover available
 
 The following diagram illustrates the Application Accelerator architecture.
 
-![Diagram showing the Application Accelerator architecture](images/architecture-v0-5-0.png)
+![Diagram showing the Application Accelerator architecture](images/architecture-v1-3-0.png)
 
 ### <a id="how-does-it-work"></a>How does Application Accelerator work?
 
