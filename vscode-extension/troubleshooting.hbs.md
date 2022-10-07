@@ -13,3 +13,7 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 ## <a id='cancel-action-warning'></a> Warning notification when canceling an action
 
 {{> 'partials/ext-tshoot/cancel-action-warning' }}
+
+## <a id='lu-not-working-wl-types'></a> Live update might not work when using server or worker Workload types
+
+{{> 'partials/ext-tshoot/lu-not-working-wl-types' }}

@@ -489,6 +489,13 @@ When running a Source Scan of a blob compressed file, it looks for a `.git` dire
   or `Tanzu: Apply`, which says that no workloads or Tiltfiles were found.
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cancel-action-warning).
 
+- **Live update might not work when using server or worker Workload types:**
+  When using `server` or `worker` as
+  [workload type](workloads/workload-types.hbs.md#-available-workload-types),
+  live update might not work.
+  For more information, see
+  [Troubleshooting](vscode-extension/troubleshooting.hbs.md#lu-not-working-wl-types)
+
 #### <a id="intelj-ext-known-issues"></a>Intellij Extension
 
 - **Debugging ending prematurely:**
@@ -499,6 +506,13 @@ When running a Source Scan of a blob compressed file, it looks for a `.git` dire
   When connecting to Google's GKE clusters, an error might appear with the text
   `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
   To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
+
+- **Live update might not work when using server or worker Workload types:**
+  When using `server` or `worker` as
+  [workload type](workloads/workload-types.hbs.md#-available-workload-types),
+  live update might not work.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lu-not-working-wl-types)
 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
