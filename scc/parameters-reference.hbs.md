@@ -1,4 +1,4 @@
-# Parameters reference
+# Workload Parameters reference
 
 The supply chains and templates provided by the Out of the Box packages contain
 a series of parameters that customize their behavior. Here you'll find a list
@@ -173,6 +173,10 @@ docs](source-controller/reference.hbs.md#imagerepository) for details about the
 custom resource and [Create a workload from local source
 code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code)
 for an example of how to make use of it leveraging the Tanzu CLI.
+
+> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> the Workload object. To configure the `serviceAccount` parameter, use
+> `--param serviceAccount=...`.
 
 
 ### MavenArtifact
@@ -450,6 +454,10 @@ Parameters:
 
 </table>
 
+> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> the Workload object. To configure the `serviceAccount` parameter, use
+> `--param serviceAccount=...`.
+
 
 See [Tanzu Build Service (TBS) Integration](scc/tbs.hbs.md) for more details on
 the integration with Tanzu Build Service.
@@ -543,6 +551,10 @@ Parameters:
   </tr>
 </table>
 
+
+> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> the Workload object. To configure the `serviceAccount` parameter, use
+> `--param serviceAccount=...`.
 
 See [ImageRepository reference
 docs](source-controller/reference.hbs.md#imagerepository) for details on the
@@ -687,6 +699,10 @@ Parameters:
     </td>
   </tr>
 </table>
+
+> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> the Workload object. To configure the `serviceAccount` parameter, use
+> `--param serviceAccount=...`.
 
 See [Cartographer Conventions](cartographer-conventions/about.hbs.md) to know
 more about the controller behind `PodIntent`.
@@ -863,3 +879,44 @@ It can do so in three distinct manners:
 Details about the different modes of operation can be found in [Gitops vs
 RegistryOps](scc/gitops-vs-regops.hbs.md) with the parameters documented in
 place.
+
+## deliverable
+
+The `deliverable` resource is responsible for creatiing a `Deliverable` object
+that represents the intention of delivering to the cluster the configuration
+that has been produced by the supply chain.
+
+Parameters:
+
+<table>
+  <tr>
+    <th>parameter name</th>
+    <th>meaning</th>
+    <th>example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      name of the serviceaccount (in the same namespace as the Deliverable) to
+      use for providing the necessary permissions to create the children
+      objects for deploying the objects created by the supply chain to the
+      cluster.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+</table>
+
+> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> the Workload object. To configure the `serviceAccount` parameter, use
+> `--param serviceAccount=...`.
+
+> **Note:** On build clusters where a corresponding `ClusterDelivery` doesn't
+> exist, the Deliverable takes no effect (similarly to a Workload without a
+> SupplyChain, no action is taken).
+
