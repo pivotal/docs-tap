@@ -221,7 +221,7 @@ shared:
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
   kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
-  ca_cert_data:  # To be passed if using custom certtificates
+  ca_cert_data:  # To be passed if using custom certificates
       -----BEGIN CERTIFICATE-----
       MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
       -----END CERTIFICATE-----
