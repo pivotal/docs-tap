@@ -227,8 +227,6 @@ scanning:
   metadataStore:
     url: "" # Configuration is moved, so set this string to empty.
 
-tap_telemetry:
-  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (optional) identify data for creation of TAP usage reports
 EOF
 ```
 
@@ -240,7 +238,6 @@ service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
 This is the namespace where the scanning feature runs.
-- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See [Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.
 
 For AWS, the default settings creates a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the

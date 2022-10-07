@@ -15,13 +15,6 @@ The installation creates the following in your Kubernetes cluster:
 
 ## <a id='configuration'></a> Deployment configuration
 
-If you deploy Telemetry with Tanzu Application Platform profiles, append the following in `tap-values.yaml`:
-
-```yaml
-tap_telemetry:
-  customer_entitlement_account_number: "12345"
-```
-
 Where `customer_entitlement_account_number` is the unique identifer to differentiate the data from your cluster and the data from other clusters. 
 You can configure this property in your `tap-telemetry-values.yaml`:
 
