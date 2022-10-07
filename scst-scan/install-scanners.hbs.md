@@ -96,7 +96,7 @@ To install a new scanner, follow these steps:
 
     Where:
 
-    * `REFERENCE-NAME` is the name referenced by the installed package. For example, `grype-scanner`, `snyk-scanner-my-apps`.
+    * `REFERENCE-NAME` is the name referenced by the installed package. For example, `grype-scanner`, `snyk-scanner`.
     * `SCANNER-NAME` is the name of the scanner package you retrieved earlier. For example, `snyk.scanning.apps.tanzu.vmware.com`.
     * `VERSION` is your package version number. For example, `1.0.0-beta.2`.
     * `PATH-TO-VALUES-YAML` is the path that points to the `values.yaml` file created earlier.

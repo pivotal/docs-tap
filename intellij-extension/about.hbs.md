@@ -29,12 +29,16 @@ This extension gives the following features.
   From the workload panel you can see any workload found within the cluster and namespace specified
   in the current kubectl context.
 
-- **Work with Microservices in a Java Monorepo**
-  Since version 1.3 we support working with a monorepo containing multiple 'modules' representing 
-  different 'microservices'. This means it is possible to Deploy, Debug and Live update multiple
-  workloads simultaneously from the same [InteliJ multimodule project](https://www.jetbrains.com/help/idea/creating-and-managing-modules.html#modules-idea-java). For some detailed information on a typical monorepo setup refer
-  to [using-the-extension.hbs.md#mono-repo](Working with a Monorepo).
+- **Work with microservices in a Java monorepo**
+  Tanzu Developer Tools for IntelliJ v1.3 and later supports working with a monorepo containing
+  multiple modules that represent different microservices.
+  This makes it possible to deploy, debug, and live update multiple workloads simultaneously from
+  the same IntelliJ multimodule project. For more information about projects with multiple modules,
+  see the
+  [IntelliJ documentation](https://www.jetbrains.com/help/idea/creating-and-managing-modules.html#modules-idea-java).
+  For more information about a typical monorepo setup, see
+  [Working with microservices in a monorepo](using-the-extension.hbs.md#mono-repo).
 
 ## <a id="next-steps"></a> Next steps
 
-[Follow the steps to install the extension](install.md).
+[Follow the steps to install the extension](install.hbs.md).

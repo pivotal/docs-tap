@@ -13,6 +13,10 @@ shared:
     project_path: "SERVER-NAME/REPO-NAME" # To be used by Build Service by appending "/buildservice" and used by Supply chain by appending "/workloads".
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
+    ca_cert_data: | # To be passed if using custom certificates
+    -----BEGIN CERTIFICATE-----
+    MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+    -----END CERTIFICATE-----  
 
 # The above shared keys can be overridden in the below section.
 
@@ -40,7 +44,7 @@ grype:
         importFromNamespace: metadata-store-secrets
 scanning:
   metadataStore:
-    url: "" # Deactivate embedded integration since it's deprecated.
+    url: "" # Configuration is moved, so set this string to empty.
 tap_telemetry:
   customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for the creation of Tanzu Application Platform usage reports.
 ```
@@ -82,3 +86,5 @@ credentials to pull an image from the registry for scanning.
 > by using an [automatic update process (deprecated)](../../tanzu-build-service/install-tbs.md#auto-updates-config).
 
 > **Note:** The `scanning.metadatastore.url` must be set to an empty string if you're installing Grype Scanner v1.2.0 or later or Snyk Scanner to deactivate the embedded Supply Chain Security Tools - Store integration.
+
+>**Note:** If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.

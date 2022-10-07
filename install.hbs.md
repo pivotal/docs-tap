@@ -221,6 +221,10 @@ shared:
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
   kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
+  ca_cert_data:  # To be passed if using custom certificates.
+      -----BEGIN CERTIFICATE-----
+      MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+      -----END CERTIFICATE-----
 
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 
@@ -250,6 +254,7 @@ buildservice:
 
 tap_gui:
   service_type: ClusterIP # If the shared.ingress_domain is set as above, this must be set to ClusterIP.
+  app_config:
     catalog:
       locations:
         - type: url
@@ -261,7 +266,7 @@ metadata_store:
 
 scanning:
   metadataStore:
-    url: "" # Deactivate embedded integration since it's deprecated.
+    url: "" # Configuration is moved, so set this string to empty.
 
 grype:
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
@@ -299,6 +304,8 @@ This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 - `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.
+
+If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.
 
 If you use AWS, the default settings creates a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the

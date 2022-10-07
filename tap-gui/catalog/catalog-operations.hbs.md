@@ -197,22 +197,25 @@ To add or change organization catalog locations:
 
 2. Update the package to include the catalog:
 
-   - Run this command if you installed TAP GUI via a profile:
-   ```console
-   tanzu package installed update tap \
-     --package-name tap.tanzu.vmware.com \
-     --version PACKAGE-VERSION \
-     --values-file tap-values.yaml \
-     --namespace tap-install
-   ```
-   - Run this command if you installed TAP GUI as an individual package:
-   ```console
-   tanzu package installed update tap-gui \
-     --package-name tap-gui.tanzu.vmware.com \
-     --version PACKAGE-VERSION \
-     --values-file tap-gui-values.yaml \
-     --namespace tap-install
-   ```
+   - If you installed Tanzu Application Platform GUI by using a profile, run:
+
+     ```console
+     tanzu package installed update tap \
+       --package-name tap.tanzu.vmware.com \
+       --version PACKAGE-VERSION \
+       --values-file tap-values.yaml \
+       --namespace tap-install
+     ```
+
+   - If you installed Tanzu Application Platform GUI as an individual package, run:
+
+     ```console
+     tanzu package installed update tap-gui \
+       --package-name tap-gui.tanzu.vmware.com \
+       --version PACKAGE-VERSION \
+       --values-file tap-gui-values.yaml \
+       --namespace tap-install
+     ```
 
 3. Verify the status of this update by running:
 

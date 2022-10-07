@@ -41,22 +41,34 @@ kubectl get clusterbuilder -o yaml
 
 Cluster builders contain stack and buildpack metadata.
 
-### <a id="bionic-vs-jammy"></a> Bionic vs Jammy
+## <a id="bionic-vs-jammy"></a> Bionic and Jammy stacks
 
-TAP 1.3 has shipped with support for Ubuntu 22.04 (Jammy) based builds. Ubuntu 18.04 (Bionic) will be EOL in April 2023
-and it is recommended to migrate builds in advance of this timeline. For more details see the [buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#upgrading-stack-for-apps#buildpack-support-for-stacks).
+Tanzu Application Platform v1.3 supports Ubuntu v22.04 (Jammy) based builds.
+Ubuntu v18.04 (Bionic) reaches end of life in April 2023.
+VMware recommends that you migrate builds in advance.
 
-To use the Jammy stacks or migrate an existing workload, use a Jammy builder with the [param flag](tbs-workload-config.md#cluster-builder) ex: `--param clusterBuilder=base-jammy`
+For more information, see the [Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#upgrading-stack-for-apps#buildpack-support-for-stacks). <!-- I can't find this section in the buildpack docs -->
 
-    > **Note:** A possible issue you may encounter while upgrading apps to a newer stack, is the build platform
-    > erroneously reusing the old build cache. If you encounter such issues, try deleting & recreating the workload in
-    > TAP, or deleting & recreating the image in TBS.
+### <a id="using-jammy"></a> Use Jammy stacks for a workload
 
-#### <a id="defaulting-to-jammy"></a> Defaulting to Jammy
+To use the Jammy stacks or migrate an existing workload, configure the workload with a Jammy
+builder by using the `param` flag, for example, `--param clusterBuilder=base-jammy`.
+For further instructions, see [Configure the cluster builder](tbs-workload-config.md#cluster-builder).
 
-By default, TAP is installed with Bionic as the default stack. If you are ready to default all workloads to the Jammy stack,
-include the following field in `tap-values.yaml`: `stack_configuration: jammy-only`. This will install TAP/TBS with no Bionic-based builders
-and all workloads will be built with Jammy. You should only use this configuration if you are sure all workloads can be safely built with Jammy.
+> **Note:** While upgrading apps to a newer stack, you might encounter the build platform
+> erroneously reusing the old build cache. If you encounter this issue, delete
+> and recreate the workload in Tanzu Application Platform, or delete and
+> recreate the image in Tanzu Build Service.
+
+### <a id="defaulting-to-jammy"></a> Default all workloads to Jammy stacks
+
+By default, Tanzu Application Platform is installed with Bionic as the default stack.
+
+To default all workloads to the Jammy stack, include the `stack_configuration: jammy-only` field in `tap-values.yaml`.
+This installs Tanzu Application Platform and Tanzu Build Service with no Bionic-based builders,
+and all workloads will be built with Jammy.
+
+> **Important:** Only use this configuration if you are sure all workloads can be safely built with Jammy.
 
 ## <a id="lite-vs-full"></a> About lite and full dependencies
 

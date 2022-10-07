@@ -92,11 +92,11 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
 
 ## <a id="mono-repo"></a> Working with Microservices in a Monorepo
 
-A *Mono Repo* is single git repository that contains multiple workloads, each 
-individual workload is placed in a sub-folder of the main repository.
+A *Mono Repo* is single git repository that contains multiple workloads. Each
+individual workload is placed in a subfolder of the main repository.
 
-You can find an example of this in [../application-accelerator/about-application-accelerator.md][Application Accelerator].
-The relevant Accelerator is called *Spring Smtp Gateway* and its source-code can be obtained either as an Accelerator or
+You can find an example of this in [Application Accelerator](../application-accelerator/about-application-accelerator.hbs.md).
+The relevant Accelerator is called *Spring Smtp Gateway*, and its source-code can be obtained either as an Accelerator or
 [directly from github](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.3.x/spring-smtp-gateway).
 
 This project exemplifies a typical layout:
@@ -115,12 +115,9 @@ This project exemplifies a typical layout:
 
 ### Recommended structure: Independently buildable microservices
 
-Notice that this particular example is setup in such a way that 
-each of the microservices can be built independently of one another. 
-In other words, if you were to take only the contents of a single 'microservice' subfolder, 
-this folder contains *everything* needed to build that workload. 
+In this example, each of the microservices can be built independently of one another. Each subfolder contains *everything* needed to build that workload.
 
-This fact is reflected in the `source` section of `workload.yaml` by using the `subPath`
+This is reflected in the `source` section of `workload.yaml` by using the `subPath`
 attribute:
 
 ```
@@ -140,68 +137,61 @@ spec:
 ```
 
 Setting up a mono repo so that each microservice can be built completely independently
-is the recommended way to setup your own monorepos. 
+is the recommended way to setup your own monorepos.
 
-You can work with these monorepos by:
+To work with these monorepos:
 
-- importing the mono-repo's root as a project into IntelliJ. 
-- work with each of the sub-folders in the same way you would a project containing a single workload. I.e:
-   - click on a `Tiltfile` in a submodule to start live update for that module.
-   - click on a `workload.yaml` in a submodule to deploy and debug that module.
+- Import the monorepo as a project into IntelliJ.
+- Interact with each of the subfolders in the same way you would a project containing a single workload.
 
 ### Alternate structure: Services with build-time inter-dependencies
 
-Some monorepos may not be setup to have completely independent builds for its submodules.
-Instead the submodules' `pom.xml` files may be setup to have some build-time interdependencies. 
+Some monorepos may not have submodules that can be independently built.
+Instead the submodules `pom.xml` files may be setup to have some build-time interdependencies.
 For example:
 
-- a submodule `pom.xml` might reference the parent `pom.xml` as a common place for 
+- A submodule `pom.xml` might reference the parent `pom.xml` as a common place for
   centralised dependency management.
-- a microservice submodule may reference another (as a maven `<dependency>`). 
-  While somemwhat discouraged this may be the easiest way to avoid code-duplication between workloads.
-- several microservice submodules may reference one ore more 'shared' libary modules.
+- A microservice submodule may reference another (as a maven `<dependency>`).
+- Several microservice submodules may reference one or more 'shared' libary modules.
 
-You can work with such projects provided you make a few adjustments:
-
-- the `workload.yaml` should not point to a subfolder but to the repo root (since submodules have dependencies 
+For these projects, you will need to make these adjustments:
+- `workload.yaml` changes:
+   - The `workload.yaml` should not point to a subfolder but to the repo root (since submodules have dependencies
   on code outside of their own subfolder, all source code from the repo needs to be supplied to the workload builder).
-- the `workload.yaml` needs to specify additional buildpack arguments via environment   
-  variables (these differentiate which submodule is actually being targetted by the
-  build)
+   - The `workload.yaml` needs to specify additional buildpack arguments via environment
+  variables (since these differentiate which submodule is actually being targetted by the
+  build).
 
-Both of these `workload.yaml` changes are exemplified below:
+   Both of these `workload.yaml` changes are exemplified below:
 
-```
-apiVersion: carto.run/v1alpha1
-kind: Workload
-metadata:
-  name: fortune-ui
-  labels:
-    apps.tanzu.vmware.com/workload-type: web
-    app.kubernetes.io/part-of: fortune-ui
-spec:
-  build:
-    env:
-      - name: BP_MAVEN_BUILD_ARGUMENTS
-        value: package -pl fortune-teller-ui -am # <-- indicate which module to build.
-      - name: BP_MAVEN_BUILT_MODULE
-        value: fortune-teller-ui # <-- indicate where to find the built artefact to deploy.
-  source:
-    git:
-      url: https://github.com/my-user/fortune-teller # <-- repo root
-      ref:
-        branch: main
-```
+   ```
+   apiVersion: carto.run/v1alpha1
+   kind: Workload
+   metadata:
+   name: fortune-ui
+   labels:
+      apps.tanzu.vmware.com/workload-type: web
+      app.kubernetes.io/part-of: fortune-ui
+   spec:
+   build:
+      env:
+         - name: BP_MAVEN_BUILD_ARGUMENTS
+         value: package -pl fortune-teller-ui -am # <-- indicate which module to build.
+         - name: BP_MAVEN_BUILT_MODULE
+         value: fortune-teller-ui # <-- indicate where to find the built artefact to deploy.
+   source:
+      git:
+         url: https://github.com/my-user/fortune-teller # <-- repo root
+         ref:
+         branch: main
+   ```
 
-For detailed information about these and other `BP_xxx` buildpack parameters refer
-to the [Buildpack Documentation](https://github.com/paketo-buildpacks/maven/blob/main/README.md).
+   For detailed information about these and other `BP_xxx` buildpack parameters, refer
+   to the [Buildpack Documentation](https://github.com/paketo-buildpacks/maven/blob/main/README.md).
 
-**Important**: Similar adjustments have to *also* be made 
-to how you configure your IntelliJ launch configuration to deploy/debug or live update
-code from your IDE. In particular, you have to ensure that the *Local Path* attribute in 
-the launch config is set to point to the repo-root instead of a specific sub-folder. 
-Since pointing to a sub-folder is the default value for new launch configs, **this requires manual adjustment**. 
-See the screenshot below for an example:
+- The local path attribute in the launch config for each workload must point to the path of the repo root (since submodules have dependencies
+  on code outside of their own subfolder, all source code from the repo needs to be supplied to the workload builder).
 
-    ![Launch Config Editor](../images/intellij-mono-repo-launch-config.png)
+   ![Launch Config Editor](../images/intellij-mono-repo-launch-config.png)
 

@@ -95,3 +95,14 @@ collection for unused images and containers.
 
 Do not use Docker as the CRI because it is not supported. Some versions of EKS
 default to Docker as the runtime.
+
+## <a id="old-build-cache-used"></a> Build platform uses the old build cache after upgrade to new stack
+
+### Symptom
+
+While upgrading apps to a newer stack, you might encounter the build platform
+erroneously reusing the old build cache.
+
+### Solution
+
+If you encounter this issue, delete and recreate the workload in Tanzu Application Platform, or delete and recreate the image in Tanzu Build Service.

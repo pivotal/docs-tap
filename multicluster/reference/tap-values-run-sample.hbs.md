@@ -9,13 +9,16 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 shared:
   ingress_domain: INGRESS-DOMAIN
   kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
-
+  ca_cert_data: | # To be passed if using custom certificates.
+    -----BEGIN CERTIFICATE-----
+    MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+    -----END CERTIFICATE-----  
 supply_chain: basic
 
 contour:
   envoy:
     service:
-      type: LoadBalancer #NodePort can be used if your Kubernetes cluster doesn't support LoadBalancing
+      type: LoadBalancer # NodePort can be used if your Kubernetes cluster doesn't support LoadBalancing.
 
 appliveview_connector:
   backend:
@@ -23,7 +26,7 @@ appliveview_connector:
     ingressEnabled: true
     host: appliveview.VIEW-CLUSTER-INGRESS-DOMAIN
 tap_telemetry:
-  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (optional) identify data for creation of TAP usage reports
+  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creation of Tanzu Application Platform usage reports.
 ```
 
 Where:
@@ -32,3 +35,5 @@ Where:
 service's external IP address.
 - `VIEW-CLUSTER-INGRESS-DOMAIN` is the subdomain you setup on the View profile cluster. This matches the value key `appliveview.ingressDomain` or `shared.ingress_domain` on the view cluster. Include the default host name `appliveview.` ahead of the domain.
 - `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.
+
+>**Note:** If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.

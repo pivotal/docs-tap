@@ -27,6 +27,13 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 This release includes the following changes, listed by component and area.
 
+#### <a id="api-auto-registration-features"></a> API Auto Registration
+
+- API Auto Registration is a new package that supports dynamic registration of API from workloads into TAP GUI.
+- Supports Async API, GraphQL, gRPC and OpenAPI.
+- Enhanced support for OpenAPI 3 to validate the spec and update the servers url section.
+- Custom Certificate Authority (CA) certificates are supported.
+
 #### <a id="app-acc-features"></a> Application Accelerator
 
 - Packaging
@@ -65,6 +72,11 @@ This release includes the following changes, listed by component and area.
 - The controller configuration is kept in a `Secret`.
 - All existing `AuthServer` are updated and roll out when the controller's configuration changes significantly.
 - Aggregate RBAC for managing `AuthServer` into the _Service-Operator_ cluster role.
+
+#### <a id="carbon-black-scanner-features"></a> Carbon Black Cloud Scanner integration (beta)
+
+- Carbon Black Cloud Scanner image scanning integration (Beta) is available for [Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md).
+  - See Carbon Black Cloud Scanner [Installation and Configuration Guide](scst-scan/install-carbonblack-integration.hbs.md) for instructions on how to use Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains.
 
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
 
@@ -119,11 +131,6 @@ This release includes the following changes, listed by component and area.
 - Feature 1
 - Feature 2
 
-#### <a id="scst-scan"></a> Supply Chain Security Tools - Scan
-
-- Feature 1
-- Feature 2
-
 #### <a id="scst-policy-features"></a>Supply Chain Security Tools - Policy Controller
 
 - Update Policy Controller version from v0.2.0 to v0.3.0
@@ -137,13 +144,45 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="tap-gui-features"></a>Tanzu Application Platform GUI
 
+- Users are no longer required to set the following values when using ingress: `app.baseUrl`,
+  `backend.baseUrl`, `backend.cors.origin`.
+  These values can be inferred by the value derived from `ingressDomain` or through the top-level
+  key `ingress_domain`.
+- Now reads from a Kubernetes metrics server and displays these values in the Runtime Resources
+  Visibility tab when available. By default Tanzu Application Platform GUI does not try to fetch
+  metrics. To enable metrics for a cluster, follow the
+  [Runtime Resources Visibility documentation](tap-gui/plugins/runtime-resource-visibility.hbs.md#metrics-server).
+- Now reports logs in newline-delimited JSON format.
+- Users can now modify the Kubernetes deployment parameters by using the `deployment` key.
+- Upgraded the version of backstage on which it runs to backstage v1.1.1.
+- Supports a new endpoint from which external components can push updates to catalog entities.
+  The `api-auto-registration` package must be configured to push catalog entities to
+  Tanzu Application Platform GUI.
+
+- Application Accelerator plug-in:
+  - Added metric to check how many executions an accelerator has in the accelerator list.
+  - Added ability to create git repositories based on the provided configuration.
+- Runtime Resources plug-in:
+  - Pods, ReplicaSets, and Deployments now display configured memory and CPU limits. On clusters
+    configured with `skipMetricsLookup` set to `false`, also displays realtime memory and CPU usage.
+  - Supports new kubernetes resources: Jobs, CronJobs, StatefulSets, and DaemonSets.
+  - Warning and error banners can now be dismissed.
+  - Log viewer improvements:
+    - Log viewer now streams the messages in realtime.
+    - Log messages can be soft-wrapped.
+    - Log contents can be exported.
+    - The log level can be changed for pods supporting App Live View.
 - Supply Chain plug-in:
-  - Improved error handling when a scan policy is misconfigured. Now includes links to documentation to properly configure scan policies, replacing the "No policy has been configured" messaging.
-  - Added cluster validation to avoid data collisions in the supply chain visualization when a workload with the same name and namespace exist on different clusters.
+  - Improved error handling when a scan policy is misconfigured. There are now links to documentation
+    to properly configure scan policies, which replace the `No policy has been configured` message.
+  - Added cluster validation to avoid data collisions in the supply chain visualization when a
+    workload with the same name and namespace exist on different clusters.
   - Beta: VMware Carbon Black scanning is now supported.
   - Keyboard navigation improvements.
-  - Updated headers on the Supply Chain graph to clearly indicate the name of the supply chain being used and the workload in the supply chain.
-  - Added direct links to "Package Details" and "CVE Details" pages from within scan results to support a new Security Analysis Plug-in.
+  - Updated headers on the Supply Chain graph to better display the name of the supply chain being
+    used and the workload in the supply chain.
+  - Added direct links to **Package Details** and **CVE Details** pages from within scan results to
+    support a new Security Analysis plug-in.
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
@@ -161,8 +200,9 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="tbs-features"></a> Tanzu Build Service
 
-- TAP/TBS now ships with support for Jammy Stacks
-  - Users can [opt-in](tanzu-build-service/dependencies.md#bionic-vs-jammy) to building workloads with the jammy stacks
+- **Tanzu Build Service now includes support for Jammy Stacks:**
+You can opt-in to building workloads with the Jammy stacks by following the instructions in
+[Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
   - **Deprecation Notice:** Ubuntu Bionic stack is in the process of deprecation. Users should build workloads with the Jammy stack.
 - The (legacy) CNB BOM format is deprecated, but is enabled by default in TBS for TAP 1.3 and 1.4. In TAP 1.5, support will be disabled by
   default. And in TAP 1.6, support will be removed. To manually disabled legacy CNB BOM support add
@@ -195,11 +235,6 @@ This release has the following breaking changes, listed by area and component.
 - Deprecated path, invoked when `ScanTemplates` shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are used, now logs a message directing users to update the scanner integration to the latest version. The migration path is to use `ScanTemplates` shipped with Supply Chain Security Tools - Scan `v1.3.0`.
 
 #### <a id="tbs-breaking-changes"></a> Tanzu Build Service
-
-- Breaking change 1
-- Breaking change 2
-
-#### <a id="grype-scanner-changes"></a> Grype Scanner
 
 - Breaking change 1
 - Breaking change 2
@@ -246,16 +281,6 @@ This release has the following breaking changes, listed by area and component.
 
 - Pods deployed through `kubectl run` in non-default namespace now are able to build the neccessary keychain for registry access during validation.
 
-#### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Scan
-
-- Resolved issue 1
-- Resolved issue 2
-
-#### <a id="grype-scan-resolved"></a>Grype Scanner
-
-- Resolved issue 1
-- Resolved issue 2
-
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
 - Flag `azure-container-registry-config` that was shown in help output but was not part of apps plug-in flags, is not shown anymore.
@@ -287,9 +312,11 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="tap-gui-resolved"></a>Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
-  - Deliverable link in Runtime Resources took a user to a blank page instead of to the supply chain delivery.
-  - Results for the wrong workload were shown if the same `part-of label` was used across workloads with the same name.
 
+  - Deliverable link in Runtime Resources no longer takes a user to a blank page instead of to the
+    supply chain delivery.
+  - Results for the wrong workload are no longer shown if the same `part-of label` is used across
+    workloads with the same name.
 
 ### <a id='1-3-known-issues'></a> Known issues
 
@@ -311,6 +338,13 @@ This release has the following known issues, listed by area and component.
   This occurs if the version of the `aws-cli` is less than the supported version `2.7.35`.
 
   See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
+
+#### <a id="api-auto-registration-known-issues"></a>API Auto Registration
+
+- Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation.
+If you are using a OpenAPI v2 spec with this field, you may consider converting to OpenAPI v3.
+See the [troubleshooting section](api-auto-registration/troubleshooting.hbs.md) for more details.
+All other spec types and OpenAPI v3 specs are unaffected.
 
 #### <a id="app-acc-known-issues"></a>Application Accelerator
 
@@ -356,11 +390,6 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 - Known issue 1
 - Known issue 2
 
-#### <a id="scst-scan-issues"></a>Supply Chain Security Tools - Scan
-
-- Known issue 1
-- Known issue 2
-
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
 - **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
@@ -385,9 +414,15 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 #### <a id="tap-gui-plug-in-known-issues"></a>Tanzu Application Platform GUI Plug-ins
 
 - **Supply Chain Plug-in**
-  - Target Cluster column in workloads table shows incorrect cluster when two workloads of the same name, `part-of label`, namespace, and same supply chain name are used on different clusters.
-  - Updating a supply chain results in an error (`Can not create edge...`) when an existing workload is clicked in the workloads table and that supply chain is no longer present. **Workaround: Currently, you must recreate the same workload to execute through the new\updated supply chain.**
-  - API Descriptors\Service Bindings stages show an `Unknown` status (grey question mark in the graph) even if successful.
+
+  - The Target Cluster column in the Workloads table shows the incorrect cluster when two workloads
+    of the same name, `part-of label`, namespace, and same supply-chain name are used on different
+    clusters.
+  - Updating a supply chain results in an error (`Can not create edge...`) when an existing workload
+    is clicked in the Workloads table and that supply chain is no longer present.
+    For the workaround, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#update-sc-err).
+  - API Descriptors/Service Bindings stages show an `Unknown` status (grey question mark in the graph)
+    even if successful.
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
@@ -406,7 +441,7 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 
 - **Tiltfile snippet does not work on files named `Tiltfile` when Tilt extension is installed:** For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#tiltfile-snippet).
 
-#### <a id="intelj-ext-known-issues"></a>Intellij Extension
+#### <a id="intelj-ext-known-issues"></a>IntelliJ Extension
 
 - **Unable to view workloads on the panel when connected to GKE cluster:**
   When connecting to Google's GKE clusters, an error might appear with the text
@@ -414,10 +449,10 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 - **Starting debug and live update sessions is synchronous:**
-  When a User `Run`s (or `Debug`s) a launch configuration intellij disables the launch controls preventing other
-  launch configs from being launched at the same time.  Re-activating these controls only when the launch config is started.
-  As such, starting mulitple Tanzu debug and live update sessions is a synchronous activity.  We are looking into
-  how we might improve this expereince for our Users.
+  When a user runs or debugs a launch configuration, IntelliJ disables the launch controls to prevent
+  other launch configurations from being launched at the same time.
+  These controls are reactivated when the launch configuration is started.
+  As such, starting multiple Tanzu debug and live update sessions is a synchronous activity.
 
 - **Live update not working when using server or worker Workload types:**
   When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`
@@ -427,7 +462,13 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   the others. (Note that is only disconnects the debugger, it doesn't terminate the workload process itself, so it is possible
   reatach/restart debug sessions). A fix for this bug will be included in TAP 1.3.1.
 
-#### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
+#### <a id="contour-known-issues"></a>Contour
+
+ - The default values displayed for certain keys in values-schema (command: `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`) of contour package in TAP 1.3.0 is wrong. 
+ - Key `envoy.hostPorts.enable` is having a default value as `false`. It's displayed as true.
+ - Key `envoy.hostPorts.enable` is having a default value as `LoadBalancer`. It's displayed as NodePort.
+  
+  #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
 
 - Known issue 1
 - Known issue 2
