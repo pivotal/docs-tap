@@ -6,7 +6,7 @@ It helps you develop with the Tanzu Application Platform.
 This Tanzu Developer Tools extension enables you to rapidly iterate on your workloads on supported Kubernetes
 clusters with Tanzu Application Platform installed.
 
-Tanzu Developer Tools for VS Code currently supports VS Code on macOS and Windows OS for Java applications.
+Tanzu Developer Tools for VS Code currently supports VS Code only on macOS for Java applications.
 
 ## <a id="extension-features"></a> Extension Features
 
