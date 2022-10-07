@@ -20,7 +20,7 @@ Tanzu Application Platform.
 
 To apply a workload from the Command Palette:
 
-1. Pressing ⇧⌘P on macOS or Ctrl+Shift+P on Windows to open the Command Palette.
+1. Pressing ⇧⌘P on macOS to open the Command Palette.
 
 1. Run `Tanzu: Apply Workload`.
 
@@ -208,7 +208,7 @@ Tanzu Application Platform.
 
 To delete a workload:
 
-1. Open the Command Palette by pressing ⇧⌘P on macOS or Ctrl+Shift+P on Windows.
+1. Open the Command Palette by pressing ⇧⌘P on macOS.
 
 1. Run `Tanzu: Delete Workload`.
 
