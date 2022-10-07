@@ -33,7 +33,7 @@ Supply Chain Security Tools - Policy Controller is based on Sigstore's Policy Co
 
 The Policy Controller component is a policy enforcement tool only. It does not sign images. Operators can configure image signing for their containers in several ways, including:
 
-* By using Tanzu Build Service
+* By using [Tanzu Build Service](../tanzu-build-service/tbs-image-signing.hbs.md)
 * By using [kpack](https://github.com/pivotal/kpack/blob/main/docs/tutorial.md)
 * By integrating [cosign](https://docs.sigstore.dev/cosign/overview) into their build pipelines
 
