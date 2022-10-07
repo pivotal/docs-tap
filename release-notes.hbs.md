@@ -172,17 +172,17 @@ This release includes the following changes, listed by component and area.
     - Log messages can be soft-wrapped.
     - Log contents can be exported.
     - The log level can be changed for pods supporting App Live View.
-- Supply Chain plug-in:
-  - Improved error handling when a scan policy is misconfigured. There are now links to documentation
-    to properly configure scan policies, which replace the `No policy has been configured` message.
-  - Added cluster validation to avoid data collisions in the supply chain visualization when a
-    workload with the same name and namespace exist on different clusters.
+- Supply Chain Choreographer plug-in:
+  - Improved error handling when a scan policy is misconfigured. There are now links to documentation to properly configure scan policies, which replace the `No policy has been configured` message.
+  - Added cluster validation to avoid data collisions in the supply chain visualization when a workload with the same name and namespace exist on different clusters.
   - Beta: VMware Carbon Black scanning is now supported.
   - Keyboard navigation improvements.
-  - Updated headers on the Supply Chain graph to better display the name of the supply chain being
-    used and the workload in the supply chain.
-  - Added direct links to **Package Details** and **CVE Details** pages from within scan results to
-    support a new Security Analysis plug-in.
+  - Updated headers on the Supply Chain graph to better display the name of the supply chain being used and the workload in the supply chain.
+  - Added direct links to **Package Details** and **CVE Details** pages from within scan results to support a new Security Analysis plug-in.
+- [Security Analysis plug-in](./tap-gui/plugins/sa-tap-gui.hbs.md):
+  - NEW for TAP 1.3!
+  - View vulnerabilities across all workloads and clusters in a single location
+  - View CVE details and package details pages (via the Supply Chain Choreographer plug-in's Vulnerabilities table)
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
