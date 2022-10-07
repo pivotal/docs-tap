@@ -1,27 +1,8 @@
 # Release notes
 
-{{#unless vars.hide_content}}
-This Handlebars condition is used to hide content.
-In release notes, this condition hides content that describes an unreleased patch for a released minor.
-{{/unless}}
-This topic contains release notes for Tanzu Application Platform v1.3
-
-{{#unless vars.hide_content}}
-## <a id='1-3-1'></a> v1.3.1
-
-**Release Date**: MONTH DAY, 2022
-
-### <a id='1-3-1-security-fixes'></a> Security fixes
-
-### <a id='1-3-1-new-features'></a> Resolved issues
-
-### <a id='1-3-1-known-issues'></a> Known issues
-
-{{/unless}}
-
 ## <a id='1-3-0'></a> v1.3.0
 
-**Release Date**: MONTH DAY, 2022
+**Release Date**: October 11, 2022
 
 ### <a id='1-3-new-features'></a> New features
 
@@ -126,21 +107,11 @@ This release includes the following changes, listed by component and area.
 
 - Snyk CLI is updated to v1.994.0.
 
-#### <a id="scc-features"></a>Supply Chain Choreographer
-
-- Feature 1
-- Feature 2
-
 #### <a id="scst-policy-features"></a>Supply Chain Security Tools - Policy Controller
 
 - Update Policy Controller version from v0.2.0 to v0.3.0
 - Added ClusterImagePolicy [`warn` and `enforce` mode](./scst-policy/configuring.hbs.md#cip-mode)
 - Added ClusterImagePolicy [authority static actions](./scst-policy/configuring.hbs.md#cip-static-action)
-
-#### <a id="scst-store-features"></a>Supply Chain Security Tools - Store
-
-- Feature 1
-- Feature 2
 
 #### <a id="tap-gui-features"></a>Tanzu Application Platform GUI
 
@@ -158,7 +129,6 @@ This release includes the following changes, listed by component and area.
 - Supports a new endpoint from which external components can push updates to catalog entities.
   The `api-auto-registration` package must be configured to push catalog entities to
   Tanzu Application Platform GUI.
-
 - Application Accelerator plug-in:
   - Added metric to check how many executions an accelerator has in the accelerator list.
   - Added ability to create git repositories based on the provided configuration.
@@ -187,11 +157,6 @@ This release includes the following changes, listed by component and area.
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
 - Added **Tanzu Problems** panel to show workload status errors inside the IDE
-
-#### <a id="dev-tls-intelj-features"></a>Tanzu Developer Tools for IntelliJ
-
-- Feature 1
-- Feature 2
 
 #### <a id="functions-features"></a> Functions (beta)
 
@@ -234,11 +199,6 @@ This release has the following breaking changes, listed by area and component.
 - Alpha version scan CRDs have been removed.
 - Deprecated path, invoked when `ScanTemplates` shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are used, now logs a message directing users to update the scanner integration to the latest version. The migration path is to use `ScanTemplates` shipped with Supply Chain Security Tools - Scan `v1.3.0`.
 
-#### <a id="tbs-breaking-changes"></a> Tanzu Build Service
-
-- Breaking change 1
-- Breaking change 2
-
 #### <a id="app-sso-changes"></a> Application Single Sign-On
 
 - **Deprecation notice:**
@@ -256,9 +216,6 @@ This release has the following breaking changes, listed by area and component.
   instead of `<providerId>/<userId>`. See [Misconfigured `sub` claim](app-sso/service-operators/troubleshooting.md#sub-claim) for more information.
 
 ### <a id='1-3-resolved-issues'></a> Resolved issues
-
-- Resolved issue 1
-- Resolved issue 2
 
 #### <a id="1-3-upgrade-issues"></a>Upgrading Tanzu Application Platform
 
@@ -294,21 +251,6 @@ This release has the following breaking changes, listed by area and component.
 - Added checks to ensure SNAPSHOT has versioning enabled.
 - Fixed resource status conditions when metadata or metadata element is not found.
 
-#### <a id="srvc-toolkit-resolved"></a> Services Toolkit
-
-- Resolved issue 1
-- Resolved issue 2
-
-#### <a id="srvc-bindings-resolved"></a> Service Bindings
-
-- Resolved issue 1
-- Resolved issue 2
-
-#### <a id="sprng-convs-resolved"></a> Spring Boot Conventions
-
-- Resolved issue 1
-- Resolved issue 2
-
 #### <a id="tap-gui-resolved"></a>Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
@@ -324,96 +266,83 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="tap-known-issues"></a>Tanzu Application Platform
 
-  - New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
-  - The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end. For more information, see [Troubleshoot using Tanzu Application Platform](troubleshooting-tap/troubleshoot-using-tap.hbs.md#invalid-repo-paths).
+- New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
+- The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end. For more information, see [Troubleshoot using Tanzu Application Platform](troubleshooting-tap/troubleshoot-using-tap.hbs.md#invalid-repo-paths).
 
 #### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plug-ins
 
-- **Failure to connect to AWS EKS clusters:**
+**Failure to connect to AWS EKS clusters:**
 
-  When connecting to AWS EKS clusters, an error might appear with the text
+When connecting to AWS EKS clusters, an error might appear with the text:
+  
   - `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
   - `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
 
-  This occurs if the version of the `aws-cli` is less than the supported version `2.7.35`.
+This occurs if the version of the `aws-cli` is less than the supported version `2.7.35`.
 
-  See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
+See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
 
 #### <a id="api-auto-registration-known-issues"></a>API Auto Registration
 
-- Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation.
+Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation.
 If you are using a OpenAPI v2 spec with this field, you may consider converting to OpenAPI v3.
 See the [troubleshooting section](api-auto-registration/troubleshooting.hbs.md) for more details.
 All other spec types and OpenAPI v3 specs are unaffected.
 
 #### <a id="app-acc-known-issues"></a>Application Accelerator
 
-- Generation of new project from an accelerator might time out for more complex accelerators. See the [Configure ingress timeouts when some accelerators take longer to generate](application-accelerator/configuration.html#configure-timeouts) section.
+Generation of new project from an accelerator might time out for more complex accelerators. See the [Configure ingress timeouts when some accelerators take longer to generate](application-accelerator/configuration.html#configure-timeouts) section.
 
 #### <a id="alv-known-issues"></a>Application Live View
 
-- **Unable to find CertificateRequests in App Live View Convention**
+**Unable to find CertificateRequests in App Live View Convention:** On creation of a TAP workload, an error might appear with the text `failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"`. This occurs because the certificaterequest is missing for the corresponding certificate `appliveview-webhook-cert`. 
 
-On creation of a TAP workload, an error might appear with the text
-- `failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"`
-
-This occurs because the certificaterequest is missing for the corresponding certificate `appliveview-webhook-cert`.
-
-See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hbs.md#a-idmissing-cert-requestsa-unable-to-find-certificaterequests-in-app-live-view-convention)
+See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hbs.md#a-idmissing-cert-requestsa-unable-to-find-certificaterequests-in-app-live-view-convention).
 
 #### <a id="alv-ca-known-issues"></a>Application Single Sign-On
 
-[Application Single Sign On - Known Issues](app-sso/known-issues/index.md)
-
-#### <a id="conv-svc-known-issues"></a>Convention Service
-
-- Known issue 1
-- Known issue 2
+See [Application Single Sign On - Known Issues](app-sso/known-issues/index.md).
 
 #### <a id="cnrs-issues"></a> Cloud Native Runtimes
 
-- **Failure to successfully deploy workloads on Openshift**
-  When creating a workload from a Deliverable resource, it may not create and instead result in the following error:
+**Failure to successfully deploy workloads on Openshift:**
 
-  ```
-  pods "<pod name>" is forbidden: unable to validate against any security context constraint:
-  [provider "anyuid": Forbidden: not usable by user or serviceaccount, spec.containers[0].securityContext.runAsUser:
-  Invalid value: 1000: must be in the ranges: [1000740000, 1000749999]
-  ```
+When creating a workload from a Deliverable resource, it may not create and instead result in the following error:
 
-  This may be due to ServiceAccounts or users bound to overly restrictive SecurityContextConstraints.
+```
+pods "<pod name>" is forbidden: unable to validate against any security context constraint:
+[provider "anyuid": Forbidden: not usable by user or serviceaccount, spec.containers[0].securityContext.runAsUser:
+Invalid value: 1000: must be in the ranges: [1000740000, 1000749999]
+```
 
-  See the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html) for how to resolve this issue.
+This may be due to ServiceAccounts or users bound to overly restrictive SecurityContextConstraints.
 
-#### <a id="functions-issues"></a> Functions (beta)
-
-- Known issue 1
-- Known issue 2
+See the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html) for how to resolve this issue.
 
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
-- **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
-  For most languages, Source Code Scanning only scans files present in the source code repository.
-  Except for support added for Java projects using Maven, no network calls are made to fetch
-  dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
-  lock files to check the dependencies for vulnerabilities.
+**Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
-  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
-  present in the built binaries (`.jar` or `.war` files) instead.
+For most languages, Source Code Scanning only scans files present in the source code repository.
+Except for support added for Java projects using Maven, no network calls are made to fetch
+dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+lock files to check the dependencies for vulnerabilities.
 
-  Because VMware does not encourage committing binaries to source code repositories, Grype fails to
-  find vulnerabilities during a source scan.
-  The vulnerabilities are still found during the image scan after the binaries are built and packaged
-  as images.
+For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
+present in the built binaries (`.jar` or `.war` files) instead.
+
+Because VMware does not encourage committing binaries to source code repositories, Grype fails to
+find vulnerabilities during a source scan.
+The vulnerabilities are still found during the image scan after the binaries are built and packaged
+as images.
 
 #### <a id="tap-gui-known-issues"></a>Tanzu Application Platform GUI
 
-- **Tanzu Application Platform GUI doesn't work in Safari:**
-  Tanzu Application Platform GUI does not work in the Safari web browser.
+**Tanzu Application Platform GUI doesn't work in Safari:** Tanzu Application Platform GUI does not work in the Safari web browser.
 
 #### <a id="tap-gui-plug-in-known-issues"></a>Tanzu Application Platform GUI Plug-ins
 
-- **Supply Chain Plug-in**
+- **Supply Chain Plug-in:**
 
   - The Target Cluster column in the Workloads table shows the incorrect cluster when two workloads
     of the same name, `part-of label`, namespace, and same supply-chain name are used on different
@@ -473,11 +402,7 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
 
 #### <a id="contour-known-issues"></a>Contour
 
-- Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`: The default values displayed for the following keys are incorrect in values-schema of Contour package in Tanzu Application Platform v1.3.0:
-    - Key `envoy.hostPorts.enable` has a default value as `false`, but it is displayed as `true`.
-    - Key `envoy.hostPorts.enable` has a default value as `LoadBalancer`, but it is displayed as `NodePort`.
+Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`: The default values displayed for the following keys are incorrect in values-schema of Contour package in Tanzu Application Platform v1.3.0:
 
-  #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
-
-- Known issue 1
-- Known issue 2
+- Key `envoy.hostPorts.enable` has a default value as `false`, but it is displayed as `true`.
+- Key `envoy.hostPorts.enable` has a default value as `LoadBalancer`, but it is displayed as `NodePort`.
