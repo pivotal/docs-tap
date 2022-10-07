@@ -183,7 +183,7 @@ the workload must be updated to point at your Tekton pipeline.
 
   > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for Java and Node.js workloads that includes application runtime layer dependencies.
 
-- [Enable CVE scan results in the Tanzu Application Platform GUI](../tap-gui/plugins/scc-tap-gui.md#scan).
+- Add the necessary configuration to [enable CVE scan results in the Tanzu Application Platform GUI](../tap-gui/plugins/scc-tap-gui.md#scan). This configuration allows the Supply Chain Choreographer TAP GUI plug-in to retrieve metadata about project packages and their vulnerabilities.
 
 To install OOTB Supply Chain with Testing and Scanning:
 
