@@ -12,4 +12,4 @@ The most common cause is missing configuration in `tap-values.yaml` that allows 
 
 #### Solution
 
-See [Supply Chain Choreographer - Enable CVE scan results](plugins/scc-tap-gui.hbs.md#scan) for the necessary configuration to add to `tap-values.yaml`. After adding the configuration, update your TAP deployment or TAP GUI deployment with the new values.
+See [Supply Chain Choreographer - Enable CVE scan results](../../tap-gui/plugins/scc-tap-gui.hbs.md#scan) for the necessary configuration to add to `tap-values.yaml`. After adding the configuration, update your TAP deployment or TAP GUI deployment with the new values.
