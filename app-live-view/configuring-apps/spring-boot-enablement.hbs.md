@@ -29,7 +29,7 @@ so that Application Live View can access all those actuator endpoints and visual
 This overrides configuration settings that your app itself might contain, for example,
 if you configured your app to expose only specific actuators.
 
-Read about the [Application Live View Convention](convention-server.md) and the [Spring Boot Convention](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3/tap/GUID-spring-boot-conventions-about.html) to understand the potential impact of this, and manually configure this to suit your security needs.
+Read about the [Application Live View Convention](convention-server.md) and the [Spring Boot Convention](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-spring-boot-conventions-about.html) to understand the potential impact of this, and manually configure this to suit your security needs.
 
 
 ## Enable Spring Cloud Gateway apps

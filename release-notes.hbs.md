@@ -1,27 +1,8 @@
 # Release notes
 
-{{#unless vars.hide_content}}
-This Handlebars condition is used to hide content.
-In release notes, this condition hides content that describes an unreleased patch for a released minor.
-{{/unless}}
-This topic contains release notes for Tanzu Application Platform v1.3
-
-{{#unless vars.hide_content}}
-## <a id='1-3-1'></a> v1.3.1
-
-**Release Date**: MONTH DAY, 2022
-
-### <a id='1-3-1-security-fixes'></a> Security fixes
-
-### <a id='1-3-1-new-features'></a> Resolved issues
-
-### <a id='1-3-1-known-issues'></a> Known issues
-
-{{/unless}}
-
 ## <a id='1-3-0'></a> v1.3.0
 
-**Release Date**: MONTH DAY, 2022
+**Release Date**: October 11, 2022
 
 ### <a id='1-3-new-features'></a> New features
 
@@ -126,21 +107,11 @@ This release includes the following changes, listed by component and area.
 
 - Snyk CLI is updated to v1.994.0.
 
-#### <a id="scc-features"></a>Supply Chain Choreographer
-
-- Feature 1
-- Feature 2
-
 #### <a id="scst-policy-features"></a>Supply Chain Security Tools - Policy Controller
 
 - Update Policy Controller version from v0.2.0 to v0.3.0
 - Added ClusterImagePolicy [`warn` and `enforce` mode](./scst-policy/configuring.hbs.md#cip-mode)
 - Added ClusterImagePolicy [authority static actions](./scst-policy/configuring.hbs.md#cip-static-action)
-
-#### <a id="scst-store-features"></a>Supply Chain Security Tools - Store
-
-- Feature 1
-- Feature 2
 
 #### <a id="tap-gui-features"></a>Tanzu Application Platform GUI
 
@@ -158,7 +129,6 @@ This release includes the following changes, listed by component and area.
 - Supports a new endpoint from which external components can push updates to catalog entities.
   The `api-auto-registration` package must be configured to push catalog entities to
   Tanzu Application Platform GUI.
-
 - Application Accelerator plug-in:
   - Added metric to check how many executions an accelerator has in the accelerator list.
   - Added ability to create git repositories based on the provided configuration.
@@ -172,26 +142,21 @@ This release includes the following changes, listed by component and area.
     - Log messages can be soft-wrapped.
     - Log contents can be exported.
     - The log level can be changed for pods supporting App Live View.
-- Supply Chain plug-in:
-  - Improved error handling when a scan policy is misconfigured. There are now links to documentation
-    to properly configure scan policies, which replace the `No policy has been configured` message.
-  - Added cluster validation to avoid data collisions in the supply chain visualization when a
-    workload with the same name and namespace exist on different clusters.
+- Supply Chain Choreographer plug-in:
+  - Improved error handling when a scan policy is misconfigured. There are now links to documentation to properly configure scan policies, which replace the `No policy has been configured` message.
+  - Added cluster validation to avoid data collisions in the supply chain visualization when a workload with the same name and namespace exist on different clusters.
   - Beta: VMware Carbon Black scanning is now supported.
   - Keyboard navigation improvements.
-  - Updated headers on the Supply Chain graph to better display the name of the supply chain being
-    used and the workload in the supply chain.
-  - Added direct links to **Package Details** and **CVE Details** pages from within scan results to
-    support a new Security Analysis plug-in.
+  - Updated headers on the Supply Chain graph to better display the name of the supply chain being used and the workload in the supply chain.
+  - Added direct links to **Package Details** and **CVE Details** pages from within scan results to support a new Security Analysis plug-in.
+- [Security Analysis plug-in](./tap-gui/plugins/sa-tap-gui.hbs.md):
+  - NEW for TAP 1.3!
+  - View vulnerabilities across all workloads and clusters in a single location
+  - View CVE details and package details pages (via the Supply Chain Choreographer plug-in's Vulnerabilities table)
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
 - Added **Tanzu Problems** panel to show workload status errors inside the IDE
-
-#### <a id="dev-tls-intelj-features"></a>Tanzu Developer Tools for IntelliJ
-
-- Feature 1
-- Feature 2
 
 #### <a id="functions-features"></a> Functions (beta)
 
@@ -214,10 +179,10 @@ You can opt-in to building workloads with the Jammy stacks by following the inst
 - Added support for Openshift.
 - Added support for Kubernetes 1.24.
 - Created documentation and reference Service Instance Packages for new Cloud Service Provider integrations:
-  - [Azure Flexible Server (Postgres) by using the Azure Service Operator](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_flexibleserver_psql_with_azure_operator.html).
-  - [Azure Flexible Server (Postgres) by using Crossplane](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_database_with_crossplane.html).
-  - [Google Cloud SQL (Postgres) by using Config Connector](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_config_connector.html).
-  - [Google Cloud SQL (Postgres) by using Crossplane](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html).
+  - [Azure Flexible Server (Postgres) by using the Azure Service Operator](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_flexibleserver_psql_with_azure_operator.html).
+  - [Azure Flexible Server (Postgres) by using Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_database_with_crossplane.html).
+  - [Google Cloud SQL (Postgres) by using Config Connector](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_config_connector.html).
+  - [Google Cloud SQL (Postgres) by using Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html).
 - Formally defined the Service Operator user role (see [Role descriptions](./authn-authz/role-descriptions.hbs.md)).
 - **`tanzu services` CLI plug-in:** Improved information messages for deprecated commands.
 
@@ -233,11 +198,6 @@ This release has the following breaking changes, listed by area and component.
 
 - Alpha version scan CRDs have been removed.
 - Deprecated path, invoked when `ScanTemplates` shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are used, now logs a message directing users to update the scanner integration to the latest version. The migration path is to use `ScanTemplates` shipped with Supply Chain Security Tools - Scan `v1.3.0`.
-
-#### <a id="tbs-breaking-changes"></a> Tanzu Build Service
-
-- Breaking change 1
-- Breaking change 2
 
 #### <a id="app-sso-changes"></a> Application Single Sign-On
 
@@ -256,9 +216,6 @@ This release has the following breaking changes, listed by area and component.
   instead of `<providerId>/<userId>`. See [Misconfigured `sub` claim](app-sso/service-operators/troubleshooting.md#sub-claim) for more information.
 
 ### <a id='1-3-resolved-issues'></a> Resolved issues
-
-- Resolved issue 1
-- Resolved issue 2
 
 #### <a id="1-3-upgrade-issues"></a>Upgrading Tanzu Application Platform
 
@@ -294,21 +251,6 @@ This release has the following breaking changes, listed by area and component.
 - Added checks to ensure SNAPSHOT has versioning enabled.
 - Fixed resource status conditions when metadata or metadata element is not found.
 
-#### <a id="srvc-toolkit-resolved"></a> Services Toolkit
-
-- Resolved issue 1
-- Resolved issue 2
-
-#### <a id="srvc-bindings-resolved"></a> Service Bindings
-
-- Resolved issue 1
-- Resolved issue 2
-
-#### <a id="sprng-convs-resolved"></a> Spring Boot Conventions
-
-- Resolved issue 1
-- Resolved issue 2
-
 #### <a id="tap-gui-resolved"></a>Tanzu Application Platform GUI
 
 - Supply Chain Plug-in
@@ -324,96 +266,83 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="tap-known-issues"></a>Tanzu Application Platform
 
-  - New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
-  - The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end. For more information, see [Troubleshoot using Tanzu Application Platform](troubleshooting-tap/troubleshoot-using-tap.hbs.md#invalid-repo-paths).
+- New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
+- The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end. For more information, see [Troubleshoot using Tanzu Application Platform](troubleshooting-tap/troubleshoot-using-tap.hbs.md#invalid-repo-paths).
 
 #### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plug-ins
 
-- **Failure to connect to AWS EKS clusters:**
+**Failure to connect to AWS EKS clusters:**
 
-  When connecting to AWS EKS clusters, an error might appear with the text
+When connecting to AWS EKS clusters, an error might appear with the text:
+  
   - `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
   - `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
 
-  This occurs if the version of the `aws-cli` is less than the supported version `2.7.35`.
+This occurs if the version of the `aws-cli` is less than the supported version `2.7.35`.
 
-  See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
+See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
 
 #### <a id="api-auto-registration-known-issues"></a>API Auto Registration
 
-- Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation.
+Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation.
 If you are using a OpenAPI v2 spec with this field, you may consider converting to OpenAPI v3.
 See the [troubleshooting section](api-auto-registration/troubleshooting.hbs.md) for more details.
 All other spec types and OpenAPI v3 specs are unaffected.
 
 #### <a id="app-acc-known-issues"></a>Application Accelerator
 
-- Generation of new project from an accelerator might time out for more complex accelerators. See the [Configure ingress timeouts when some accelerators take longer to generate](application-accelerator/configuration.html#configure-timeouts) section.
+Generation of new project from an accelerator might time out for more complex accelerators. See the [Configure ingress timeouts when some accelerators take longer to generate](application-accelerator/configuration.html#configure-timeouts) section.
 
 #### <a id="alv-known-issues"></a>Application Live View
 
-- **Unable to find CertificateRequests in App Live View Convention**
+**Unable to find CertificateRequests in App Live View Convention:** On creation of a TAP workload, an error might appear with the text `failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"`. This occurs because the certificaterequest is missing for the corresponding certificate `appliveview-webhook-cert`. 
 
-On creation of a TAP workload, an error might appear with the text
-- `failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"`
-
-This occurs because the certificaterequest is missing for the corresponding certificate `appliveview-webhook-cert`.
-
-See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hbs.md#a-idmissing-cert-requestsa-unable-to-find-certificaterequests-in-app-live-view-convention)
+See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hbs.md#a-idmissing-cert-requestsa-unable-to-find-certificaterequests-in-app-live-view-convention).
 
 #### <a id="alv-ca-known-issues"></a>Application Single Sign-On
 
-[Application Single Sign On - Known Issues](app-sso/known-issues/index.md)
-
-#### <a id="conv-svc-known-issues"></a>Convention Service
-
-- Known issue 1
-- Known issue 2
+See [Application Single Sign On - Known Issues](app-sso/known-issues/index.md).
 
 #### <a id="cnrs-issues"></a> Cloud Native Runtimes
 
-- **Failure to successfully deploy workloads on Openshift**
-  When creating a workload from a Deliverable resource, it may not create and instead result in the following error:
+**Failure to successfully deploy workloads on `run` cluster in Multi Cluster setup on Openshift:**
 
-  ```
-  pods "<pod name>" is forbidden: unable to validate against any security context constraint:
-  [provider "anyuid": Forbidden: not usable by user or serviceaccount, spec.containers[0].securityContext.runAsUser:
-  Invalid value: 1000: must be in the ranges: [1000740000, 1000749999]
-  ```
+When creating a workload from a Deliverable resource, it may not create and instead result in the following error:
 
-  This may be due to ServiceAccounts or users bound to overly restrictive SecurityContextConstraints.
+```
+pods "<pod name>" is forbidden: unable to validate against any security context constraint:
+[provider "anyuid": Forbidden: not usable by user or serviceaccount, spec.containers[0].securityContext.runAsUser:
+Invalid value: 1000: must be in the ranges: [1000740000, 1000749999]
+```
 
-  See the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html) for how to resolve this issue.
+This may be due to ServiceAccounts or users bound to overly restrictive SecurityContextConstraints.
 
-#### <a id="functions-issues"></a> Functions (beta)
-
-- Known issue 1
-- Known issue 2
+See the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html) for how to resolve this issue.
 
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
-- **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
-  For most languages, Source Code Scanning only scans files present in the source code repository.
-  Except for support added for Java projects using Maven, no network calls are made to fetch
-  dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
-  lock files to check the dependencies for vulnerabilities.
+**Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
-  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
-  present in the built binaries (`.jar` or `.war` files) instead.
+For most languages, Source Code Scanning only scans files present in the source code repository.
+Except for support added for Java projects using Maven, no network calls are made to fetch
+dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+lock files to check the dependencies for vulnerabilities.
 
-  Because VMware does not encourage committing binaries to source code repositories, Grype fails to
-  find vulnerabilities during a source scan.
-  The vulnerabilities are still found during the image scan after the binaries are built and packaged
-  as images.
+For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
+present in the built binaries (`.jar` or `.war` files) instead.
+
+Because VMware does not encourage committing binaries to source code repositories, Grype fails to
+find vulnerabilities during a source scan.
+The vulnerabilities are still found during the image scan after the binaries are built and packaged
+as images.
 
 #### <a id="tap-gui-known-issues"></a>Tanzu Application Platform GUI
 
-- **Tanzu Application Platform GUI doesn't work in Safari:**
-  Tanzu Application Platform GUI does not work in the Safari web browser.
+**Tanzu Application Platform GUI doesn't work in Safari:** Tanzu Application Platform GUI does not work in the Safari web browser.
 
 #### <a id="tap-gui-plug-in-known-issues"></a>Tanzu Application Platform GUI Plug-ins
 
-- **Supply Chain Plug-in**
+- **Supply Chain Plug-in:**
 
   - The Target Cluster column in the Workloads table shows the incorrect cluster when two workloads
     of the same name, `part-of label`, namespace, and same supply-chain name are used on different
@@ -436,10 +365,15 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   or `Tanzu: Apply`, which says that no workloads or Tiltfiles were found.
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cancel-action-warning).
 
-- **Live update not working when using server or worker Workload types:**
-  When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`
+- **Live update might not work when using server or worker Workload types:**
+  When using `server` or `worker` as
+  [workload type](workloads/workload-types.hbs.md#-available-workload-types),
+  live update might not work.
+  For more information, see
+  [Troubleshooting](vscode-extension/troubleshooting.hbs.md#lu-not-working-wl-types)
 
-- **Tiltfile snippet does not work on files named `Tiltfile` when Tilt extension is installed:** For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#tiltfile-snippet).
+- **Tiltfile snippet doesn't work on files named `Tiltfile` when Tilt extension is installed:**
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#tiltfile-snippet).
 
 #### <a id="intelj-ext-known-issues"></a>IntelliJ Extension
 
@@ -455,7 +389,11 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   As such, starting multiple Tanzu debug and live update sessions is a synchronous activity.
 
 - **Live update not working when using server or worker Workload types:**
-  When using `server` or `worker` as [workload type](workloads/workload-types.hbs.md#-available-workload-types), live update might not work. This is because the default pod selector used to check when a pod is ready to do live update is incorrectly using the label `'serving.knative.dev/service': '<workload_name>'`, this label is not present on  `server` or `worker` workloads. To fix this go to the project's `Tiltfile`, look for the `k8s_resource` line and modify the `extra_pod_selectors` parameter to use any pod selector that will match your workload, e.g. `extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]`
+  When using `server` or `worker` as
+  [workload type](workloads/workload-types.hbs.md#-available-workload-types),
+  live update might not work.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lu-not-working-wl-types)
 
 - **Stoping one debug session stops them all:**
   When starting multiple simultaneous workload debud sessions, terminating one of those sessions will inadvertently also terminate
@@ -476,6 +414,3 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   `No delivery found where full selector is satisfied by labels:`
 
 #### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
-
-- Known issue 1
-- Known issue 2

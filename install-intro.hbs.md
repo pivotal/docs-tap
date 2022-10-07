@@ -15,7 +15,7 @@ To install Tanzu Application Platform on your Kubernetes clusters with internet 
 |----|----|----|
 |1.| Review the prerequisites to ensure you have met all requirements before installing. |[Prerequisites](prerequisites.html)|
 |2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI. |[Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)|
-|3.| Install Cluster Essentials for Tanzu*. |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)|
+|3.| Install Cluster Essentials for Tanzu*. |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html)|
 |4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster. |[Installing the Tanzu Application Platform package and profiles](install.html)|
 |5.| (Optional) Install any additional packages that were not in the profile. |[Installing Individual Packages](install-components.html)|
 |6.| Set up developer namespaces to use installed packages. |[Setting up developer namespaces to use installed packages](set-up-namespaces.html)|
@@ -33,7 +33,7 @@ To install Tanzu Application Platform on your Kubernetes clusters in an air-gapp
 |----|----|----|
 |1.| Review the prerequisites to ensure you have met all requirements before installing. |[Prerequisites](prerequisites.html)|
 |2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI. |[Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)|
-|3.| Install Cluster Essentials for Tanzu*. |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)|
+|3.| Install Cluster Essentials for Tanzu*. |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html)|
 |4.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster. |[Installing Tanzu Application Platform in an air-gapped environment](install-air-gap.html)|
 |5.| Install Tanzu Build Service full dependencies. |[Installing the Tanzu Build Service dependencies](tbs-offline-install-deps.html)|
 |6.| Configure custom certificate authorities for Tanzu Application Platform GUI. |[Configuring custom certificate authorities for Tanzu Application Platform GUI](tap-gui/non-standard-certs.html) |
@@ -57,7 +57,7 @@ To install Tanzu Application Platform on [Amazon Elastic Kubernetes Services (EK
 |1.| Review the prerequisites to ensure that you have set up everything required before beginning the installation |[Prerequisites](prerequisites.html)|
 |2.| Accept Tanzu Application Platform EULAs and install the Tanzu CLI |[Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)|
 |3.| Create AWS Resources (EKS Cluster, roles, etc)|[Create AWS Resources](aws-resources.html)|
-|4.| Install Cluster Essentials for Tanzu |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)|
+|4.| Install Cluster Essentials for Tanzu |[Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html)|
 |5.| Add the Tanzu Application Platform package repository, prepare your Tanzu Application Platform profile, and install the profile to the cluster |[Installing the Tanzu Application Platform package and profiles](install-aws.html)|
 |6.| (Optional) Install any additional packages that were not in the profile |[Installing Individual Packages](install-components.html)|
 |7.| Set up developer namespaces to use installed packages |[Setting up developer namespaces to use installed packages](set-up-namespaces-aws.html)|
