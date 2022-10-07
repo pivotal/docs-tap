@@ -66,6 +66,11 @@ This release includes the following changes, listed by component and area.
 - All existing `AuthServer` are updated and roll out when the controller's configuration changes significantly.
 - Aggregate RBAC for managing `AuthServer` into the _Service-Operator_ cluster role.
 
+#### <a id="carbon-black-scanner-features"></a> Carbon Black Cloud Scanner integration (beta)
+
+- Carbon Black Cloud Scanner image scanning integration (Beta) is available for [Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md).
+  - See Carbon Black Cloud Scanner [Installation and Configuration Guide](scst-scan/install-carbonblack-integration.hbs.md) for instructions on how to use Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains.
+
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
 
 - Added new default role `service-operator`.
@@ -115,11 +120,6 @@ This release includes the following changes, listed by component and area.
 - Snyk CLI is updated to v1.994.0.
 
 #### <a id="scc-features"></a>Supply Chain Choreographer
-
-- Feature 1
-- Feature 2
-
-#### <a id="scst-scan"></a> Supply Chain Security Tools - Scan
 
 - Feature 1
 - Feature 2
@@ -199,11 +199,6 @@ This release has the following breaking changes, listed by area and component.
 - Breaking change 1
 - Breaking change 2
 
-#### <a id="grype-scanner-changes"></a> Grype Scanner
-
-- Breaking change 1
-- Breaking change 2
-
 #### <a id="app-sso-changes"></a> Application Single Sign-On
 
 - **Deprecation notice:**
@@ -245,16 +240,6 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Policy Controller
 
 - Pods deployed through `kubectl run` in non-default namespace now are able to build the neccessary keychain for registry access during validation.
-
-#### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Scan
-
-- Resolved issue 1
-- Resolved issue 2
-
-#### <a id="grype-scan-resolved"></a>Grype Scanner
-
-- Resolved issue 1
-- Resolved issue 2
 
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
@@ -352,11 +337,6 @@ See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hb
   See the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html) for how to resolve this issue.
 
 #### <a id="functions-issues"></a> Functions (beta)
-
-- Known issue 1
-- Known issue 2
-
-#### <a id="scst-scan-issues"></a>Supply Chain Security Tools - Scan
 
 - Known issue 1
 - Known issue 2
