@@ -44,7 +44,7 @@ This release includes the following changes, listed by component and area.
 
 - TLS Auto-configured: TLS-enabled Ingress is auto-configured for AuthServer.
 - Custom Certificate Authority (CA) certificates support.
-- Improved error handling and audit logs for: 
+- Improved error handling and audit logs for:
   - `TOKEN_REQUEST_REJECTED` events.
   - Identity providers are incorrectly set up.
 - Enabled `/userinfo` endpoint to retrieve user information.
@@ -58,7 +58,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="carbon-black-scanner-features"></a> Carbon Black Cloud Scanner integration (beta)
 
-Carbon Black Cloud Scanner image scanning integration (beta) is available for [Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md). 
+Carbon Black Cloud Scanner image scanning integration (beta) is available for [Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md).
 See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integration.hbs.md) for instructions about using Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains.
 
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
@@ -402,17 +402,17 @@ as images.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lu-not-working-wl-types)
 
-- **Stoping one debug session stops them all:**
-  When starting multiple simultaneous workload debud sessions, terminating one of those sessions will inadvertently also terminate
-  the others. (Note that is only disconnects the debugger, it doesn't terminate the workload process itself, so it is possible
-  reatach/restart debug sessions). A fix for this bug will be included in TAP 1.3.1.
+- **Stopping one debug session stops them all:**
+  When starting multiple simultaneous workload debug sessions, stopping one of those sessions also
+  stops the others. This disconnects the debugger without stopping the workload process itself,
+  so it is possible to restart debug sessions. A fix is planned for Tanzu Application Platform v1.3.1.
 
 #### <a id="contour-known-issues"></a>Contour
 
 - Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`: The default values displayed for the following keys are incorrect in values-schema of Contour package in Tanzu Application Platform v1.3.0:
     - Key `envoy.hostPorts.enable` has a default value as `false`, but it is displayed as `true`.
     - Key `envoy.hostPorts.enable` has a default value as `LoadBalancer`, but it is displayed as `NodePort`.
-  
+
 #### <a id="scc-known-issues"></a>Supply Chain Choreographer
 
 - **Misleading DeliveryNotFound error message on Build profile clusters**

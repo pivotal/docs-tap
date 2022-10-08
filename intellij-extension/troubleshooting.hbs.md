@@ -12,11 +12,11 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 
 ## <a id="dsbl-lnch-ctrl"></a> Disabled launch controls after running a launch configuration
 
-## Symptom
+### Symptom
 
 When a user runs or debugs a launch configuration, IntelliJ disables the launch controls.
 
-## Cause
+### Cause
 
 IntelliJ disables the launch controls to prevent other launch configurations from being launched at
 the same time.
