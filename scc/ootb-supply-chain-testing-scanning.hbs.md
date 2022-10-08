@@ -33,7 +33,7 @@ perform the following:
 
 To make use this supply chain, verify that:
 
-- [CVE scan results appear in Tanzu Application Platform GUI](../tap-gui/plugins/scc-tap-gui.md#scan)
+- Tanzu Application Platform GUI is configured to [enable CVE scan results](../tap-gui/plugins/scc-tap-gui.md#scan). This configuration allows the Supply Chain Choreographer TAP GUI plug-in to retrieve metadata about project packages and their vulnerabilities.
 - Out of the Box Templates is installed.
 - Out of the Box Supply Chain With Testing **is NOT installed**.
 - Out of the Box Supply Chain With Testing and Scanning **is installed**.
