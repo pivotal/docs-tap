@@ -34,7 +34,7 @@ To use the extension with a project, the project must have these required files:
 
 There are two ways to create these files:
 
-- Use the [VS Code Snippets](#catalog-information) that Tanzu Developer Tools provides.
+- Use the [VS Code snippets](#catalog-information) that Tanzu Developer Tools provides.
   For more information about the snippets, see the
   [VS Code documentation](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
 
