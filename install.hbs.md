@@ -321,7 +321,7 @@ contour:
 
 ### <a id='additional-build-service-config'></a> (Optional) Additional Build Service Configurations
 
-The following Build Service Configurations are optional during the Tanzu Application Platform installation process:
+The following tasks are optional during the Tanzu Application Platform installation process:
 
 - [(Optional) Configure your profile with full dependencies](#full-dependencies)
 - [(Optional) Configure your profile with the Jammy stack only](#jammy-only)
