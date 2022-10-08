@@ -1,10 +1,10 @@
-### <a id='error-loading-metadata-store'></a> An error occurred while loading data from the Metadata Store
+### <a id='err-load-metadata-store'></a> An error occurred while loading data from the Metadata Store
 
 #### Symptom
 
 In the Supply Chain Choreographer plug-in, if you see an an error that reads *An error occurred while loading data from the Metadata Store*, there are some common causes. The screenshot below shows what the error looks like.
 
-![Error loading metadata store](images/scc-error-loading-metadata-store.png)
+<!-- [Error loading metadata store](images/scc-error-loading-metadata-store.png) How do we use images in partials? They can't be relative links -->
 
 #### Cause
 
