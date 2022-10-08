@@ -25,7 +25,12 @@ managed_resources:
 
 Where:
 
-- `GIT-REPO-URL` is the URL of a Git repository that contains manifest YAML files for the accelerators that you want to have managed (see below for manifest examples). You can specify a `sub_path` if necessary and also a `secret_ref` if the repository requires authentication. If not needed, then leave these additional properties out. See below for configuration of a [Git credentials secret](#creating-git-credentials).
+- `GIT-REPO-URL` is the URL (must include `https://` or `git@` at the beginning) of a Git repository that contains manifest YAML files for the accelerators that you want to have managed (see below for manifest examples). You can specify a `sub_path` if necessary and also a `secret_ref` if the repository requires authentication. If not needed, then leave these additional properties out. See below for configuration of a [Git credentials secret](#creating-git-credentials).
+
+### <a id="functional-considerations"></a> Functional & Organizational Considerations
+Any accelerator manifest that is defined under the `GIT-REPO-URL` (and optional `sub_path`) will be picked up by the kapp-controller App. If there are multiple manifests at the defined `GIT-REPO-URL`, they will all be watched for changes and will be displayed to the user as a merged catalog. 
+
+As an example of this, let's say we have two manifests containing multiple accelerator/fragment definitions, `manifest-1.yaml` and `manifest-2.yaml`, at the same path in our git repository. The resulting catalog that would be (`manifest-1.yaml` + `manifest-2.yaml`).
 
 ## <a id="examples-creating-acc"></a> Examples for creating accelerators
 
@@ -124,6 +129,36 @@ tanzu accelerator create my-spring-cloud-serverless --git-repo https://github.co
 ```
 
 >**Note:** It is not currently possible to provide the `git.ignore` option with the Tanzu CLI.
+
+### <a id="examples-multi-manifest"></a> Creating a manifest with multiple accelerators & fragments
+It is possible to have a manifest which contains multiple accelerators or fragments. An example of this could look like the following:
+> `accelerator-collection.yaml`
+```yaml
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: spring-cloud-serverless
+spec:
+  git:
+    url: https://github.com/vmware-tanzu/application-accelerator-samples
+    subPath: spring-cloud-serverless
+    ref:
+      branch: main
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: tanzu-java-web-app
+spec:
+  git:
+    url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+    subPath: tanzu-java-web-app
+    ref: 
+      branch: main
+```
+
+For an even larger example of this, please refer to [this manifest](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/sample-accelerators-main.yaml) that is optionally used to create an initial catalog of accelerators & fragments during a fresh Application Accelerator install.
 
 ## <a id="creating-git-credentials"></a> Configuring `tap-values.yaml` with Git credentials secret
 
