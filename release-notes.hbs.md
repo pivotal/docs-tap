@@ -58,8 +58,8 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="carbon-black-scanner-features"></a> Carbon Black Cloud Scanner integration (beta)
 
-- Carbon Black Cloud Scanner image scanning integration (Beta) is available for [Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md).
-  - See Carbon Black Cloud Scanner [Installation and Configuration Guide](scst-scan/install-carbonblack-integration.hbs.md) for instructions on how to use Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains.
+Carbon Black Cloud Scanner image scanning integration (beta) is available for [Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md). 
+See Carbon Black Cloud Scanner [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integration.hbs.md) for instructions about using Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains.
 
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
 

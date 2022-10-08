@@ -1,4 +1,4 @@
-# Install Carbon Black Scanner (Beta)
+# Install Carbon Black Scanner (beta)
 
 This document describes prerequisites to [Installing Scanners for Supply Chain Security Tools - Scan](install-scanners.hbs.md) from the Tanzu Application Platform package repository.
 
