@@ -91,7 +91,7 @@ This release includes the following changes, listed by component and area.
     - In fact, all column values in the Pods table have been updated so the output is equivalent to the output from `kubectl get pod/pod-name`.
 - Updated Go to its latest version (1.19).
 
-##### <a id="apps-plugin-deprecations"> Deprecations
+##### <a id="apps-plugin-deprecations"></a> Deprecations
 
 - The `tanzu apps workload update` command will be deprecated in the `apps` CLI plugin. Please use `tanzu apps workload apply` instead.
   - `update` will be deprecated in two TAP releases (in TAP v1.5.0) or in one year (on Oct 11, 2023), whichever is longer.
