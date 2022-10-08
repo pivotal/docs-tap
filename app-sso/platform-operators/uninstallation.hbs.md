@@ -7,7 +7,7 @@ in the [Installation](installation.md) section:
 tanzu package installed delete appsso --namespace tap-install
 ```
 
-To permanently delete and exclude AppSSO package from your TAP install, modify your TAP values file and include the
+To permanently delete and exclude AppSSO package from your Tanzu Application Platform install, edit your Tanzu Application Platform values file by including the
 following configuration:
 
 ```yaml
@@ -16,4 +16,4 @@ excluded_packages:
 ```
 
 For more information, navigate
-to [Excluding packages from a Tanzu Application Platform profile](../../install.md#exclude-packages).
+to [Exclude packages from a Tanzu Application Platform profile](../../install.md#exclude-packages).

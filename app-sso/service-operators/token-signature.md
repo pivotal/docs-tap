@@ -188,7 +188,7 @@ You can generate an RSA key yourself using OpenSSL. Here are the steps:
 
    > More [OpenSSL key generation examples here](https://www.openssl.org/docs/man1.1.1/man1/openssl-genpkey.html).
 
-2. Create a Secret resource using key generated from previous step:
+2. Create a Secret resource by using the key generated earlier in this procedure:
 
    ```shell
    # Base64 encode the key files

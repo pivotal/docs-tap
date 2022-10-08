@@ -1,4 +1,4 @@
-# Annotation & labels
+# Annotation and labels
 
 An `AuthServer` is selectable by `ClientRegistration` through labels. The namespace an `AuthServer`
 allows `ClientRegistrations` from is controlled with an annotation.
@@ -7,7 +7,7 @@ allows `ClientRegistrations` from is controlled with an annotation.
 
 `ClientRegistrations` select an `AuthServer` with `spec.authServerSelector`. Therefore, an `AuthServer`
 must have a set of labels that uniquely identifies it amongst all `AuthServer`. A `ClientRegistration` must match only
-one `AuthServer`, and will not be able to register if multiple or no `AuthServer` resources are matched.
+one `AuthServer`. Register fails if multiple or no `AuthServer` resources are matched.
 
 For example:
 

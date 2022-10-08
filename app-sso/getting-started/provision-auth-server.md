@@ -31,8 +31,8 @@ Deploy your first Authorization Server along with an `RSAKey` key for signing to
 
 <p class="note caution">
 <strong>Caution:</strong>
-⚠️ This `AuthServer` example makes use of an unsafe testing-only identity provider and it should never be used in
-production environments. Learn more about [identity providers here](../service-operators/identity-providers.md).
+This `AuthServer` example uses an unsafe testing-only identity provider. Never use it in
+production environments. For more information about identity providers, see [Identity providers](../service-operators/identity-providers.md).
 </p>
 
 ```yaml
@@ -152,7 +152,7 @@ client registrations in the `default` namespace.
 The `sso.apps.tanzu.vmware.com/allow-unsafe-...` annotations enable "development mode" features, useful for testing.
 Those should not be used for production-grade authorization servers.
 
-Learn more about [annotations & labels in `AuthServer` resource](../service-operators/metadata.md).
+For more information about annotations and labels in `AuthServer` resource, see [Annotation and labels](../service-operators/metadata.md).
 
 ### TLS & issuer URI
 
