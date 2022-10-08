@@ -134,4 +134,4 @@ kubectl delete pod metadata-store-db-0 -n metadata-store
 
 Supply Chain Security Tools - Store is used by different TAP GUI plugins to display information about vulnerabilities and packages. Some errors visible in the TAP GUI are related to this connection.
 
-{{> '../partials/tap-gui/troublshoot-error-loading-metadata-store' }}
+{{> 'partials/tap-gui/troublshoot-error-loading-metadata-store' }}
