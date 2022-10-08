@@ -15,7 +15,7 @@ The installation creates the following in your Kubernetes cluster:
 
 ## <a id='configuration'></a> Deployment configuration
 
-Where `customer_entitlement_account_number` is the unique identifer to differentiate the data from your cluster and the data from other clusters. 
+`customer_entitlement_account_number` is the unique identifer to differentiate the data from your cluster and the data from other clusters. 
 You can configure this property in your `tap-telemetry-values.yaml`:
 
 ```yaml
