@@ -284,20 +284,25 @@ See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troublesh
 
 #### <a id="api-auto-registration-known-issues"></a>API Auto Registration
 
-Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation.
-If you are using a OpenAPI v2 spec with this field, you may consider converting to OpenAPI v3.
-See the [troubleshooting section](api-auto-registration/troubleshooting.hbs.md) for more details.
+**Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation:**
+
+If using an OpenAPI v2 spec with this field, consider converting to OpenAPI v3.
+See [Troubleshooting](api-auto-registration/troubleshooting.hbs.md) for more details.
 All other spec types and OpenAPI v3 specs are unaffected.
 
 #### <a id="app-acc-known-issues"></a>Application Accelerator
 
-Generation of new project from an accelerator might time out for more complex accelerators. See the [Configure ingress timeouts when some accelerators take longer to generate](application-accelerator/configuration.html#configure-timeouts) section.
+**Generation of new project from an accelerator times out:**
+
+Generation of new project from an accelerator might time out for more complex accelerators. See [Configure ingress timeouts](application-accelerator/configuration.hbs.md#configure-timeouts).
 
 #### <a id="alv-known-issues"></a>Application Live View
 
-**Unable to find CertificateRequests in App Live View Convention:** On creation of a Tanzu Application Platform workload, an error might appear with the text `failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"`. This occurs because the certificaterequest is missing for the corresponding certificate `appliveview-webhook-cert`.
+**Unable to find CertificateRequests in App Live View Convention:**
 
-See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hbs.md#a-idmissing-cert-requestsa-unable-to-find-certificaterequests-in-app-live-view-convention).
+On creation of a Tanzu Application Platform workload, an error might appear with the text `failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"`. This occurs because the certificaterequest is missing for the corresponding certificate `appliveview-webhook-cert`.
+
+See the Application Live View [Troubleshooting](app-live-view/troubleshooting.hbs.md#missing-cert-requests).
 
 #### <a id="alv-ca-known-issues"></a>Application Single Sign-On
 
