@@ -28,12 +28,14 @@ perform the following:
   1. Applying operator-defined conventions to the container definition
   1. Creating a deliverable object for deploying the application to a cluster
 
-
 ## <a id="prerequisites"></a> Prerequisites
 
 To make use this supply chain, verify that:
 
-- Tanzu Application Platform GUI is configured to [enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan). This configuration allows the Supply Chain Choreographer TAP GUI plug-in to retrieve metadata about project packages and their vulnerabilities.
+- Tanzu Application Platform GUI is configured to
+  [enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
+  This configuration enables the Supply Chain Choreographer Tanzu Application Platform GUI plug-in to
+  retrieve metadata about project packages and their vulnerabilities.
 - Out of the Box Templates is installed.
 - Out of the Box Supply Chain With Testing **is NOT installed**.
 - Out of the Box Supply Chain With Testing and Scanning **is installed**.

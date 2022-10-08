@@ -130,8 +130,10 @@ If you see `could not accept SSL connection` in the metadata-store-db logs, dele
 kubectl delete pod metadata-store-db-0 -n metadata-store
 ```
 
-## Troubleshooting errors from Tanzu Application Platform GUI related to Supply Chain Security Tools - Store
+## Troubleshooting errors from Tanzu Application Platform GUI related to SCST - Store
 
-Supply Chain Security Tools - Store is used by different TAP GUI plugins to display information about vulnerabilities and packages. Some errors visible in the TAP GUI are related to this connection.
+Different Tanzu Application Platform GUI plug-ins use SCST - Store to display information about
+vulnerabilities and packages.
+Some errors visible in Tanzu Application Platform GUI are related to this connection.
 
 {{> 'partials/tap-gui/ts-err-load-metadata-store' }}
