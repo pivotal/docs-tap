@@ -409,7 +409,15 @@ as images.
 
 #### <a id="contour-known-issues"></a>Contour
 
-Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`: The default values displayed for the following keys are incorrect in values-schema of Contour package in Tanzu Application Platform v1.3.0:
+- Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`: The default values displayed for the following keys are incorrect in values-schema of Contour package in Tanzu Application Platform v1.3.0:
+    - Key `envoy.hostPorts.enable` has a default value as `false`, but it is displayed as `true`.
+    - Key `envoy.hostPorts.enable` has a default value as `LoadBalancer`, but it is displayed as `NodePort`.
+  
+#### <a id="scc-known-issues"></a>Supply Chain Choreographer
 
-- Key `envoy.hostPorts.enable` has a default value as `false`, but it is displayed as `true`.
-- Key `envoy.hostPorts.enable` has a default value as `LoadBalancer`, but it is displayed as `NodePort`.
+- **Misleading DeliveryNotFound error message on Build profile clusters**
+  Deliverables incorrectly will show a DeliveryNotFound error on *build* profile clusters even though the
+  Workload is working correctly. The message is typically:
+  `No delivery found where full selector is satisfied by labels:`
+
+#### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
