@@ -188,7 +188,7 @@ You can generate an RSA key yourself using OpenSSL. Here are the steps:
 
    > More [OpenSSL key generation examples here](https://www.openssl.org/docs/man1.1.1/man1/openssl-genpkey.html).
 
-2. Create a Secret resource in sso4k8s namespace using key generated from previous step:
+2. Create a Secret resource using key generated from previous step:
 
    ```shell
    # Base64 encode the key files
@@ -199,7 +199,7 @@ You can generate an RSA key yourself using OpenSSL. Here are the steps:
    kubectl create secret generic my-key \
     --from-file=key.pem=privatekey-base64.pem \
     --from-file=pub.pem=publickey-base64.pem \
-    --namespace sso4k8s
+    --namespace default
    ```
 
 3. Apply your `AuthServer`:

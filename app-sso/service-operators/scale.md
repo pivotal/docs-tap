@@ -2,7 +2,7 @@
 
 The number of authorization server replicas for an `AuthServer` can be specified under `spec.replicas`.
 
-Furthermore, `AuthServer` implements the `scale` subresource. That means you can scale it scale an `AuthServer`
+Furthermore, `AuthServer` implements the `scale` subresource. That means you can scale an `AuthServer`
 with existing tooling. For example:
 
 ```shell

@@ -162,10 +162,13 @@ available in a Secret that's owned by the ClientRegistration.
 apiVersion: v1
 kind: Secret
 type: servicebinding.io/oauth2
+metadata:
+  name: my-client-registration
+  namespace: app-team
 data: # fields below are base64-decoded for display purposes only
   type: oauth2
   provider: appsso
-  client-id: default_my_client_registration
+  client-id: default_my-client-registration
   client-secret: c2VjcmV0 # auto-generated
   issuer-uri: https://appsso.example.com
   client-authentication-method: basic

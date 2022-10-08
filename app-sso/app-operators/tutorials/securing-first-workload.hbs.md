@@ -100,7 +100,6 @@ spec:
     - authorization_code
   redirectURIs:
     - http://<app-url>/login/oauth2/code/<claim-name>
-    - http://127.0.0.1:8080/login/oauth2/code/appsso-starter-java
   scopes:
     - name: openid
 ```

@@ -8,10 +8,10 @@ Generally, `AuthServer.status` is designed to provide you with helpful feedback 
 
 All `AuthServer` components can be identified
 with [Kubernetes common labels](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/#labels)
-, e.g.:
+ and all related `AuthServer` subresources can be queried via `app.kubernetes.io/part-of` label, e.g:
 
 ```yaml
-app.kubernetes.io/part-of: my-authserver
+kubectl get all,ingress,service -A -l app.kubernetes.io/part-of=<authserver-name>
 ```
 
 ## Logs of all AuthServers
