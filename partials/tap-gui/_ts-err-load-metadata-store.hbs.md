@@ -2,14 +2,21 @@
 
 #### Symptom
 
-In the Supply Chain Choreographer plug-in, if you see an an error that reads *An error occurred while loading data from the Metadata Store*, there are some common causes. The screenshot below shows what the error looks like.
+In the Supply Chain Choreographer plug-in, you see the error message
+`An error occurred while loading data from the Metadata Store`.
 
 <!-- [Error loading metadata store](images/scc-error-loading-metadata-store.png) How do we use images in partials? They can't be relative links -->
 
 #### Cause
 
-The most common cause is missing configuration in `tap-values.yaml` that allows Tanzu Application Platform GUI to talk to Supply Chain Security Tools - Store.
+There are multiple potential causes. The most common cause is `tap-values.yaml` missing the
+configuration that enables Tanzu Application Platform GUI to communicate with
+Supply Chain Security Tools - Store.
 
 #### Solution
 
-See [Supply Chain Choreographer - Enable CVE scan results](../../tap-gui/plugins/scc-tap-gui.hbs.md#scan) for the necessary configuration to add to `tap-values.yaml`. After adding the configuration, update your TAP deployment or TAP GUI deployment with the new values.
+See
+[Supply Chain Choreographer - Enable CVE scan results](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3/tap/GUID-tap-gui-plugins-scc-tap-gui.html#scan)
+for the necessary configuration to add to `tap-values.yaml`.
+After adding the configuration, update your Tanzu Application Platform deployment or
+Tanzu Application Platform GUI deployment with the new values.
