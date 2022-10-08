@@ -1,4 +1,4 @@
-# Annotation and labels
+# Annotations and labels
 
 An `AuthServer` is selectable by `ClientRegistration` through labels. The namespace an `AuthServer`
 allows `ClientRegistrations` from is controlled with an annotation.

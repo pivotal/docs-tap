@@ -248,7 +248,7 @@ docs.vmware.com is built.
             - [OpenShift](app-sso/platform-operators/openshift.md)
             - [Uninstallation](app-sso/platform-operators/uninstallation.md)
         - [AppSSO for Service Operators](app-sso/service-operators/index.md)
-            - [Annotations & labels](app-sso/service-operators/metadata.md)
+            - [Annotations and labels](app-sso/service-operators/metadata.md)
             - [Issuer URI and TLS](app-sso/service-operators/issuer-uri-and-tls.md)
             - [Identity providers](app-sso/service-operators/identity-providers.md)
             - [Token signature](app-sso/service-operators/token-signature.md)
