@@ -42,19 +42,19 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="app-sso-features"></a>Application Single Sign-On
 
-- TLS Auto-configured: AuthServer gets TLS-enabled Ingress auto-configured
-- Custom Certificate Authority (CA) certificates are supported
+- TLS Auto-configured: TLS-enabled Ingress is auto-configured for AuthServer.
+- Custom Certificate Authority (CA) certificates support.
 - Improved error handling and audit logs for: 
-  - TOKEN_REQUEST_REJECTED events
-  - Identity Providers are incorrectly set-up
-- /userinfo endpoint enabled to retrieve user information
-- OpenShift support: AppSSO uses a custom Security Context Constraint
-- Security: Comply with the restricted Pod Security Standard and give the least privilege to the controller
-- Service-Operator cluster role: Aggregate RBAC for managing AuthServer
-- Controller updates
-  - The controller restarts when its configuration is updated
-  - The controller configuration is kept in a Secret
-  - All existing AuthServer are updated and roll out when the controller’s configuration changes significantly
+  - `TOKEN_REQUEST_REJECTED` events.
+  - Identity providers are incorrectly set up.
+- Enabled `/userinfo` endpoint to retrieve user information.
+- OpenShift support: AppSSO uses a custom Security Context Constraint.
+- Security: Comply with the restricted Pod Security Standard and give the least privilege to the controller.
+- Service-Operator cluster role: Aggregate RBAC for managing AuthServer.
+- Controller updates:
+  - The controller restarts when its configuration is updated.
+  - The controller configuration is kept in a Secret.
+  - All existing AuthServer are updated and rolled out when the controller’s configuration changes significantly.
 
 #### <a id="carbon-black-scanner-features"></a> Carbon Black Cloud Scanner integration (beta)
 
