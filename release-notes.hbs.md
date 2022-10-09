@@ -121,40 +121,46 @@ See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integrat
   `backend.baseUrl`, `backend.cors.origin`.
   These values can be inferred by the value derived from `ingressDomain` or through the top-level
   key `ingress_domain`.
-- Now reads from a Kubernetes metrics server and displays these values in the Runtime Resources
-  Visibility tab when available. By default Tanzu Application Platform GUI does not try to fetch
-  metrics. To enable metrics for a cluster, follow the
+- Tanzu Application Platform GUI reads from a Kubernetes metrics server and displays these values in
+  the Runtime Resources Visibility tab when available.
+  By default Tanzu Application Platform GUI does not try to fetch metrics.
+  To enable metrics for a cluster, follow the
   [Runtime Resources Visibility documentation](tap-gui/plugins/runtime-resource-visibility.hbs.md#metrics-server).
-- Now reports logs in newline-delimited JSON format.
-- Users can now modify the Kubernetes deployment parameters by using the `deployment` key.
-- Upgraded the version of backstage on which it runs to backstage v1.1.1.
+- Tanzu Application Platform GUI reports logs in newline-delimited JSON format.
+- Users can now edit the Kubernetes deployment parameters by using the `deployment` key.
+- Upgraded the version of backstage on which Tanzu Application Platform GUI runs to backstage v1.1.1.
 - Supports a new endpoint from which external components can push updates to catalog entities.
   The `api-auto-registration` package must be configured to push catalog entities to
   Tanzu Application Platform GUI.
 - Application Accelerator plug-in:
-  - Added metric to check how many executions an accelerator has in the accelerator list.
-  - Added ability to create git repositories based on the provided configuration.
+  - Added metric to see how many executions an accelerator has in the accelerator list.
+  - Added ability to create Git repositories based on the provided configuration.
 - Runtime Resources plug-in:
   - Pods, ReplicaSets, and Deployments now display configured memory and CPU limits. On clusters
-    configured with `skipMetricsLookup` set to `false`, also displays realtime memory and CPU usage.
-  - Supports new kubernetes resources: Jobs, CronJobs, StatefulSets, and DaemonSets.
+    configured with `skipMetricsLookup` set to `false`, realtime memory and CPU use are also displayed
+  - Supports new Kubernetes resources (Jobs, CronJobs, StatefulSets, and DaemonSets).
   - Warning and error banners can now be dismissed.
   - Log viewer improvements:
-    - Log viewer now streams the messages in realtime.
-    - Log messages can be soft-wrapped.
+    - Log viewer now streams messages in realtime.
+    - Log entries can be soft-wrapped.
     - Log contents can be exported.
     - The log level can be changed for pods supporting App Live View.
 - Supply Chain Choreographer plug-in:
-  - Improved error handling when a scan policy is misconfigured. There are now links to documentation to properly configure scan policies, which replace the `No policy has been configured` message.
-  - Added cluster validation to avoid data collisions in the supply chain visualization when a workload with the same name and namespace exist on different clusters.
+  - Improved error handling when a scan policy is misconfigured.
+    There are now links to documentation to properly configure scan policies, which replace the
+    `No policy has been configured` message.
+  - Added cluster validation to avoid data collisions in the supply chain visualization when a
+    workload with the same name and namespace exist on different clusters.
   - Beta: VMware Carbon Black scanning is now supported.
   - Keyboard navigation improvements.
-  - Updated headers on the Supply Chain graph to better display the name of the supply chain used and the workload in the supply chain.
-  - Added direct links to **Package Details** and **CVE Details** pages from within scan results to support a new Security Analysis plug-in.
-- [Security Analysis plug-in](./tap-gui/plugins/sa-tap-gui.hbs.md):
-  - NEW for Tanzu Application Platform 1.3.
+  - Updated headers on the Supply Chain graph to better display the name of the supply chain used and
+    the workload in the supply chain.
+  - Added direct links to **Package Details** and **CVE Details** pages from within scan results to
+    support a new Security Analysis plug-in.
+- New [Security Analysis plug-in](tap-gui/plugins/sa-tap-gui.hbs.md):
   - View vulnerabilities across all workloads and clusters in a single location.
-  - View CVE details and package details pages (on the Supply Chain Choreographer plug-in's Vulnerabilities table).
+  - View CVE details and package details page. See the Supply Chain Choreographer plug-in's
+    Vulnerabilities table.
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
