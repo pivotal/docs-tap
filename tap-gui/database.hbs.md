@@ -34,7 +34,7 @@ To use a PostgreSQL database:
                 origin: http://tap-gui.INGRESS-DOMAIN
         # Existing tap-values.yml above
             database:
-            client: pg
+                client: pg
                 connection:
                   host: PG-SQL-HOSTNAME
                   port: 5432
