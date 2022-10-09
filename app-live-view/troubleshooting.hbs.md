@@ -12,7 +12,7 @@ Your app is not visible in the Application Live View UI.
 
 The connector component is responsible for discovering the app and registering it with Application Live View.
 
-To troubleshoot, confirm the following:
+To troubleshoot, confirm the following:<!--฿ To introduce steps just write |To do x:| ฿-->
 
 1. The app must be a Spring Boot Application.
 
@@ -30,7 +30,7 @@ To troubleshoot, confirm the following:
     management.endpoints.web.exposure.include: "*"
     ```
 
-1. Confirm that you have included the following labels within your app deployment YAML file:
+1. Confirm that you have included<!--฿ |you verbed| is punchier than |you have verbed| and it fits in most cases. ฿--> the following labels within your app deployment YAML file:
 
    ```yaml
    tanzu.app.live.view="true"
@@ -57,7 +57,7 @@ Your app is not visible in Application Live View UI, but the actuator endpoints 
 
 To troubleshoot:
 
-1. Check the port on which actuator endpoints are configured.
+1. Check<!--฿ |Verify|, |Ensure|, and |Confirm| are all preferred. ฿--> the port on which actuator endpoints are configured.
 By default, they are enabled on the application port.
 If they are configured on a port different from the application port, set the labels
 in your app deployment YAML file as follows:
@@ -66,20 +66,20 @@ in your app deployment YAML file as follows:
     tanzu.app.live.view.application.port: "APPLICATION-PORT"
     tanzu.app.live.view.application.actuator.port: "ACTUATOR-PORT"
     ```
-
+<!--฿ |APP-NAME| is preferred. ฿-->
     Where:
 
     - `APPLICATION-PORT` is the application port.
     - `ACTUATOR-PORT` is the actuator port.
 
-1. Check the path on which the app and actuator endpoints are configured.
+1. Check<!--฿ |Verify|, |Ensure|, and |Confirm| are all preferred. ฿--> the path on which the app and actuator endpoints are configured.
 If they are configured on a different paths, set the labels in your app deployment YAML file as follows:
 
     ```yaml
     tanzu.app.live.view.application.path: "APPLICATION-PATH"
     tanzu.app.live.view.application.actuator.path: "ACTUATOR-PATH"
     ```
-
+<!--฿ |APP-NAME| is preferred. ฿-->
     Where:
 
     - `APPLICATION-PATH` is the application port.
@@ -118,8 +118,8 @@ management.endpoint.health.show-details: "always"
 
 **Symptom**
 
-You can find your app in the UI, but it is an old instance that no longer exists
-while the new instance doesn't show up yet.
+You can find your app in the UI, but it is an old instance that no longer exists while the new
+instance doesn't show up yet.
 
 **Solution**
 
@@ -127,7 +127,7 @@ To troubleshoot:
 
 1. View the App Live View connector pod logs to see if the connector is sending updates to the back end.
 
-1. Try deleting the connector pod so it is re-created by running:
+2. Delete the connector pod to recreate it by running:
 
     ```bash
     kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
@@ -137,19 +137,23 @@ To troubleshoot:
 
 **Symptom**
 
-The certificate request is missing for certificate "app-live-view-conventions/appliveview-webhook-cert".
+The certificate request is missing for certificate `app-live-view-conventions/appliveview-webhook-cert`.
 
 **Solution**
 
 To troubleshoot:
 
-1. Run `kubectl get certificaterequest -A` to confirm if the certificaterequest is missing for App Live View Convention
+1. Run `kubectl get certificaterequest -A` to see if the certificate request is missing for
+   App Live View Convention.
 
-1. Try deleting the secret `appliveview-webhook-cert` corresponding to the certificate in the `app-live-view-conventions` namespace. This re-creates the certificaterequest and updates the corresponding certificate.
+2. Delete the secret `appliveview-webhook-cert` that corresponds to the certificate in the
+   `app-live-view-conventions` namespace by running:
 
     ```bash
-    kubectl delete secret appliveview-webhook-cert -n app-live-view-conventions 
+    kubectl delete secret appliveview-webhook-cert -n app-live-view-conventions
     ```
+
+    This recreates the certificate request and updates the corresponding certificate.
 
 ## <a id="no-live-info"></a> No live information for pod with ID
 
@@ -159,12 +163,12 @@ In Tanzu Application Platform GUI, you receive the error `No live information fo
 
 **Cause**
 
-This might happen because of stale information in App Live View because it is an
-old instance that no longer exists while the new instance doesn't show up yet.
+This might happen because of stale information in App Live View because it is an old instance that
+no longer exists while the new instance doesn't show up yet.
 
 **Solution**
 
-The workaround is to delete the connector pod so it is re-created by running:
+The workaround is to delete the connector pod so it is re-created by<!--฿ Active voice is preferred. ฿--> running:
 
 ```bash
 kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
@@ -221,7 +225,7 @@ To verify that the labels in your workload YAML file are working:
 
     Where `WORKLOAD-NAME` is the name of your workload.
 
-    If everything works correctly, the status will contain a transformed template
+    If everything works correctly, the status will<!--฿ Avoid |will|: present tense is preferred. ฿--> contain a transformed template
     that includes the labels added as part of your workload YAML file. For example:
 
     ```yaml
@@ -263,9 +267,9 @@ The labels `tanzu.app.live.view`, `tanzu.app.live.view.application.flavours`
 and `tanzu.app.live.view.application.name` cannot be overridden.
 The default values set by the Application Live View Convention Server are used.
 
-However, if you want to override `management.endpoints.web.exposure.include`
+However, if you want to<!--฿ Maybe replace with just |to|. ฿--> override `management.endpoints.web.exposure.include`
 or `management.endpoint.health.show-details`, you can override these environment
-properties in `application.properties` or `application.yml` in the Spring Boot Application
+properties in `application.properties` or `application.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->` in the Spring Boot Application
 before deploying the workload in Tanzu Application Platform.
 Environment properties updated in your app take precedence over the default values
 set by Application Live View Convention Server.
@@ -283,6 +287,6 @@ management.server.port=8085
 Configure the connector as follows:
 
 ```yaml
-tanzu.app.live.view.application.actuator.path=/manage   (manage is the custom actuator path set on the application)
-tanzu.app.live.view.application.actuator.port=8085   (8085 is the custom management server port set on the application)
+tanzu<!--฿ The brand is |Tanzu|. ฿-->.app.live.view.application.actuator.path=/manage   (manage is the custom actuator path set on the application)
+tanzu<!--฿ The brand is |Tanzu|. ฿-->.app.live.view.application.actuator.port=8085   (8085 is the custom management server port set on the application)
 ```

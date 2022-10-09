@@ -10,7 +10,7 @@ To integrate Live Hover by using Spring Boot Tools you need:
 - A Tanzu Spring Boot application, such as
 [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app)
 - Spring Boot Extension Pack (includes Spring Boot Dashboard)
-[extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack) 
+[extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack)
 
 ## <a id="activate-feature"></a> Activate the Live Hover feature
 
@@ -92,5 +92,7 @@ your code.
 
 1. Hover over any of the bubbles to see live information about the corresponding element.
 
-1. The `Live Beans` and `Live Endpoint Mapping` information are displayed in Spring Boot Dashboard. To view the Spring Boot Dashboard, run `View: Show Spring Boot Dashboard` from the Command Palette. 
-![Spring Boot Dashboard showing Live Beans and Live Endpoint Mapping information](../images/vscode-beansmapping-example.png)
+1. The `Live Beans` and `Live Endpoint Mapping` information are displayed in Spring Boot Dashboard.
+   To view the Spring Boot Dashboard, run `View: Show Spring Boot Dashboard` from the Command Palette.
+
+   ![Spring Boot Dashboard showing Live Beans and Live Endpoint Mapping information](../images/vscode-beansmapping-example.png)
