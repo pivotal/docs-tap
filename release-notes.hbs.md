@@ -292,7 +292,7 @@ When connecting to AWS EKS clusters, an error might appear with the text:
 
 This occurs if the version of the `aws-cli` is less than the supported version, v`2.7.35`.
 
- For instructions on resolving this issue, see the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of Tanzu Application Platform troubleshooting.
+ For information about resolving this issue, see [Troubleshoot using Tanzu Application Platform](troubleshooting-tap/troubleshoot-using-tap.hbs.md#connect-aws-eks-clusters).
 
 #### <a id="api-auto-registration-known-issues"></a>API Auto Registration
 
