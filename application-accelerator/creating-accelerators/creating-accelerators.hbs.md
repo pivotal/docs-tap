@@ -162,7 +162,7 @@ This fragment contributes the following to any accelerator that imports it:
     - if the accelerator has a `build.gradle` file then what is specified for `sourceCompatibility` is replaced with the chosen version.
     - if the accelerator has a `config/workload.yaml` file and the user selected "Java 17" then a build environment entry of BP_JVM_VERSION is inserted into the `spec:` section.
 
-## <a id="deploying-accelerator-fragments"></a>Deploying accelerator fragments
+## <a id="deploy-accelerator-frags"></a>Deploying accelerator fragments
 
 To deploy new fragments to the accelerator system you can use the new `tanzu accelerator fragment create` CLI command or you can apply a custom resource manifest file with either `kubectl apply` or the `tanzu accelerator apply` commands.
 
