@@ -28,11 +28,13 @@ Follow these steps to update the new package repository:
     - If you are using Cluster Essentials 1.2 or above, run:
 
         ```console
-        tanzu package repository add tanzu-tap-repository \
+        tanzu package repository add TANZU-TAP-REPOSITORY-NEW \
         --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:${TAP_VERSION} \
         --namespace tap-install
         ```
-
+    >**Note:** Make sure to update the `TANZU-TAP-REPOSITORY-NEW` to the a new repository name. Do NOT use the existing Tanzu package repostitory name with the previous version of TAP Packages.
+    
+    
     - If you are using Cluster Essentials 1.1 or 1.0, run:
 
         ```console
