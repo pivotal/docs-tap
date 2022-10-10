@@ -434,5 +434,3 @@ as images.
   Deliverables incorrectly will show a DeliveryNotFound error on *build* profile clusters even though the
   Workload is working correctly. The message is typically:
   `No delivery found where full selector is satisfied by labels:`
-
-#### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
