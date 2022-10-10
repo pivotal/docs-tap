@@ -14,7 +14,7 @@ It is tightly coupled with the [Supply Chain Choregrapher plug-in](scc-tap-gui.h
 After installing and configuring the Supply Chain Choreographer GUI plug-in, there is no additional
 configuration needed for the Security Analysis plug-in.
 
-The Security Analysis plug-in is part of the Tanzu Application Platform View profile.
+The Security Analysis plug-in is part of the Tanzu Application Platform Full and View profiles.
 
 ## <a id="accessing"></a> Accessing the plug-in
 
