@@ -311,11 +311,12 @@ Generation of new project from an accelerator might time out for more complex ac
 #### <a id="alv-known-issues"></a>Application Live View
 
 **Unable to find CertificateRequests in App Live View Convention:**
-When creating a Tanzu Application Platform workload, an error might appear with the text
 
-    ```console
-    failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"
-    ```
+When creating a Tanzu Application Platform workload, an error might appear with the text:
+
+```console
+failed to authenticate: unable to find valid certificaterequests for certificate "app-live-view-conventions/appliveview-webhook-cert"
+```
 
 This occurs because the certificate request is missing for the corresponding certificate `appliveview-webhook-cert`.
 For more information, see [Troubleshooting](app-live-view/troubleshooting.hbs.md#missing-cert-requests).
@@ -433,5 +434,3 @@ as images.
   Deliverables incorrectly will show a DeliveryNotFound error on *build* profile clusters even though the
   Workload is working correctly. The message is typically:
   `No delivery found where full selector is satisfied by labels:`
-
-#### <a id="store-known-issues"></a>Supply Chain Security Tools - Store
