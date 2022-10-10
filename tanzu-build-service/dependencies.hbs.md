@@ -108,17 +108,17 @@ in the VMware Tanzu Buildpacks documentation.
 
 #### <a id="lite-buildpacks"></a> Lite dependencies: buildpacks
 
-The `lite` dependencies contain the following buildpacks:
+The `lite` dependencies contain the following buildpacks in Tanzu Application Platform v1.3:
 
-| Buildpack | Version in TAP v1.3 | Supported Stacks in Tanzu Application Platform v1.3 |
-|-----------|--------------------------------------------------------------------------|
+| Buildpack | Version | Supported Stacks |
+|-----------|---------|------------------|
 | Java Buildpack for VMware Tanzu (Lite) | 7.2.0 | Bionic, Jammy |
 | Java Native Image Buildpack for Tanzu (Lite) | 6.28.0 | Bionic, Jammy |
 | .NET Core Buildpack for VMware Tanzu (Lite) | 1.18.1 | Bionic, Jammy |
 | Node.js Buildpack for VMware Tanzu (Lite) | 1.16.0 | Bionic, Jammy |
 | Python Buildpack for VMware Tanzu (Lite) | 2.1.2 | Bionic, Jammy |
 | Go Buildpack for VMware Tanzu (Lite) | 2.0.2 | Bionic, Jammy |
-| Webservers Buildpack for VMware Tanzu (Lite) | 0.3.0 | Bionic |
+| Web Servers Buildpack for VMware Tanzu (Lite) | 0.3.0 | Bionic |
 | Ruby Buildpack for VMware Tanzu (Lite) | 1.1.0 | Bionic |
 | Procfile Buildpack for VMware Tanzu (Lite) | 5.4.0 | Bionic, Jammy |
 | Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.17 | Bionic |
@@ -154,10 +154,10 @@ in the VMware Tanzu Buildpacks documentation.
 
 #### <a id="full-buildpacks"></a> Full dependencies: buildpacks
 
-The `full` dependencies contain the following buildpacks:
+The `full` dependencies contain the following buildpacks in Tanzu Application Platform v1.3:
 
-| Buildpack | Version in TAP v1.3 | Supported Stacks in Tanzu Application Platform v1.3 |
-|-----------|--------------------------------------------------------------------------|
+| Buildpack | Version | Supported Stacks |
+|-----------|---------|------------------|
 | Java Buildpack for VMware Tanzu | 7.2.0 | Bionic, Jammy |
 | Java Native Image Buildpack for Tanzu | 6.28.0 | Bionic, Jammy |
 | .NET Core Buildpack for VMware Tanzu | 1.18.1 | Bionic, Jammy |
