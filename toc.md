@@ -378,7 +378,7 @@ docs.vmware.com is built.
           - [Install Out of the Box Templates](scc/install-ootb-templates.md)
           - [Building from source](scc/building-from-source.md)
       - [Reference guides for Supply Chain Choreographer for Tanzu](scc/scc-reference.hbs.md)
-        - [Tanzu Build Service (TBS) Integration](scc/tbs.md)
+          - [Tanzu Build Service (TBS) Integration](scc/tbs.md)
       - [Using a prebuilt image](scc/pre-built-image.md)
       - [Dockerfile-based builds](scc/dockerfile-based-builds.md)
       - [Git authentication](scc/git-auth.md)
