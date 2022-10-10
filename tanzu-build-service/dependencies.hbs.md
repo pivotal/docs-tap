@@ -1,8 +1,9 @@
 # Dependencies
 
-    > **Deprecation Notice:** Ubuntu Bionic will stop receiving support in April 2023. The Bionic stack for TAP/TBS is in the process
-    > of being deprecated and it will be removed in future releases. Users should begin building applications
-    > with the Jammy stack.
+> **Important:** Ubuntu Bionic will stop receiving support in April 2023.
+> The Bionic stack for Tanzu Build Service is deprecated and will be removed in a future release.
+> VMware recommends that you migrate builds to Jammy stacks.
+> For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
 
 This topic describes how Tanzu Build Service uses and installs dependencies.
 
@@ -44,8 +45,8 @@ Cluster builders contain stack and buildpack metadata.
 ## <a id="bionic-vs-jammy"></a> Bionic and Jammy stacks
 
 Tanzu Application Platform v1.3 supports Ubuntu v22.04 (Jammy) based builds.
-Ubuntu v18.04 (Bionic) reaches end of life in April 2023.
-VMware recommends that you migrate builds in advance.
+Ubuntu Bionic will stop receiving support in April 2023.
+VMware recommends that you migrate builds to Jammy.
 
 For more information, see the [Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#upgrading-stack-for-apps#buildpack-support-for-stacks). <!-- I can't find this section in the buildpack docs -->
 
@@ -179,7 +180,7 @@ The `full` dependencies contain the following buildpacks in Tanzu Application Pl
 
 The following table compares the contents of the `lite` and `full` dependencies.
 
-|  | lite | full |
+|   | lite | full |
 |---|---|---|
 | Faster installation time | Yes | No |
 | Dependencies pre-packaged (faster builds) | No | Yes |
