@@ -28,7 +28,7 @@ Where:
 - `GIT-REPO-URL` is the URL (must include `https://` or `git@` at the beginning) of a Git repository that contains manifest YAML files for the accelerators that you want to have managed (see below for manifest examples). You can specify a `sub_path` if necessary and also a `secret_ref` if the repository requires authentication. If not needed, then leave these additional properties out. See below for configuration of a [Git credentials secret](#creating-git-credentials).
 
 ### <a id="functional-considerations"></a> Functional & Organizational Considerations
-Any accelerator manifest that is defined under the `GIT-REPO-URL` (and optional `sub_path`) will be picked up by the kapp-controller App. If there are multiple manifests at the defined `GIT-REPO-URL`, they will all be watched for changes and will be displayed to the user as a merged catalog. 
+Any accelerator manifest that is defined under the `GIT-REPO-URL` (and optional `sub_path`) will be picked up by the kapp-controller App. If there are multiple manifests at the defined `GIT-REPO-URL`, they will all be watched for changes and will be displayed to the user as a merged catalog.
 
 As an example of this, let's say we have two manifests containing multiple accelerator/fragment definitions, `manifest-1.yaml` and `manifest-2.yaml`, at the same path in our git repository. The resulting catalog that would be (`manifest-1.yaml` + `manifest-2.yaml`).
 
@@ -154,7 +154,7 @@ spec:
   git:
     url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     subPath: tanzu-java-web-app
-    ref: 
+    ref:
       branch: main
 ```
 
@@ -396,7 +396,7 @@ spec:
       name: ssh-credentials
 ```
 
-> **Note:**  When using ssh credentials, the `repository-URL` must include the username as part of the URL like `ssh://user@example.com:22/repository.git`. See the [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for more detail.
+> **Note:**  When using ssh credentials the `repository-URL` must include the user name as part of the URL. For example: `ssh://user@example.com:22/repository.git`. See the [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for more detail.
 
 If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
@@ -465,7 +465,7 @@ spec:
 
 If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
-## <a id='configure-timeouts'></a>Configure ingress timeouts when some accelerators take longer to generate 
+## <a id='configure-timeouts'></a>Configure ingress timeouts when some accelerators take longer to generate
 
 If TAP is configured to use an ingress for TAP-GUI and the Accelerator Server then it is possible to see a timeout during accelerator generation. This can happen if the accelerator takes longer time to generate than the default timeout. This manifests itself in the TAP-GUI by the action appearing to continue to run for an indefinite period of time. In the IDE extension it would show a `504` error. To mitigate this it is possible to increase the timeout value for the HTTPProxy resources used for the ingress by applying secrets with overlays to modify the HTTPProxy resources.
 
