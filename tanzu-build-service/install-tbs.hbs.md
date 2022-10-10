@@ -132,15 +132,14 @@ in your `tbs-values.yaml` or `tap-values.yaml`.
 
 ### <a id='install-secret-refs'></a> Use Secret references for registry credentials
 
-You may not want to install TBS with passwords saved in plaintext in the `tbs-values.yml`.
+You might not want to install Tanzu Build Service with passwords saved in plaintext in the `tbs-values.yaml`.
 
-You can store these credentials in `Secrets` and reference them in the `tbs-values.yml` using the following process:
+To store these credentials in `Secrets` and reference them in the `tbs-values.yaml`:
 
-1. Create a secret of type `kubernetes.io/dockerconfigjson` containing
-credentials for the writable repository in your registry (`kp_default_repository`).
-This can be done with the `tanzu` cli:
+1. Using the Tanzu CLI, create a secret of type `kubernetes.io/dockerconfigjson` containing
+credentials for the writable repository in your registry (`kp_default_repository`):
 
-    ```
+    ```console
     tanzu secret registry add kp-default-repository-creds \
       --username "${INSTALL_REGISTRY_USERNAME}" \
       --password "${INSTALL_REGISTRY_PASSWORD}" \
@@ -148,16 +147,16 @@ This can be done with the `tanzu` cli:
       --namespace tap-install
     ```
 
-Where:
+   Where:
 
-- `USERNAME` and `PASSWORD` are the username
-  and password for the user that can write to `KP-DEFAULT-REPOSITORY` which will be used at install time.
-  For Google Cloud Registry, use `_json_key` as the username and the contents
-  of the service account JSON file for the password.
-- `SERVER-NAME` is the host name of the registry server for the `KP-DEFAULT-REPOSITORY`. Examples:
-    * Harbor has the form `server: "my-harbor.io"`.
-    * Docker Hub has the form `server: "index.docker.io"`.
-    * Google Cloud Registry has the form `server: "gcr.io"`.
+   - `USERNAME` and `PASSWORD` are the user name and password for the user that can write to the
+   `KP-DEFAULT-REPOSITORY` used at install time.
+   For Google Cloud Registry, use `_json_key` as the user name, and the contents of
+   the service account JSON file for the password.
+   - `SERVER-NAME` is the host name of the registry server for the `KP-DEFAULT-REPOSITORY`. Examples:
+       - Harbor has the form `server: "my-harbor.io"`.
+       - Docker Hub has the form `server: "index.docker.io"`.
+       - Google Cloud Registry has the form `server: "gcr.io"`.
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
