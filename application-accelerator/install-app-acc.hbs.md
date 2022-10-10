@@ -16,16 +16,16 @@ Before installing Application Accelerator:
 - Install Flux SourceController on the cluster.
 See [Install cert-manager, Contour, and FluxCD Source Controller](../cert-mgr-contour-fcd/install-cert-mgr.md).
 
--  Install Source Controller on the cluster.
+- Install Source Controller on the cluster.
 See [Install Source Controller](../source-controller/install-source-controller.md).
 
-## <a id='app-acc-config'></a> Configure properties and resource usage
+## <a id='app-acc-config'></a> Configure properties and resource use
 
 When you install the Application Accelerator, you can configure the following optional properties:
 
 | Property | Default | Description |
 | --- | --- | --- |
-| registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located |
+| registry.secret_ref | registry.tanzu.vmware<.com | The secret used for accessing the registry where the App-Accelerator images are located |
 | server.service_type | ClusterIP | The service type for the acc-ui-server service including LoadBalancer, NodePort, or ClusterIP |
 | server.watched_namespace | accelerator-system | The namespace the server watches for accelerator resources |
 | server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine |
@@ -40,15 +40,14 @@ When you install the Application Accelerator, you can configure the following op
 | telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.
 | telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?
 | git_credentials.secret_name | git-credentials | The name to use for the secret storing Git credentials for accelerators |
-| git_credentials.username | null | The username to use in secret storing Git credentials for accelerators |
+| git_credentials.username | null | The user name to use in secret storing Git credentials for accelerators |
 | git_credentials.password | null | The password to use in secret storing Git credentials for accelerators |
 | git_credentials.ca_file | null | The CA certificate data to use in secret storing Git credentials for accelerators |
 | managed_resources.enabled | false | Whether to enable the App used to control managed accelerator resources |
-| managed_resources.git.url | none | Required if managed_resources are enabled; Git repo URL containing manifests for managed accelerator resources |
-| managed_resources.git.ref | origin/main | Required if managed_resources are enabled; Git ref to use for repo containing manifests for managed accelerator resources |
-| managed_resources.git.sub_path | null | Git subPath to use for repo containing manifests for managed accelerator resources |
-| managed_resources.git.secret_ref | git-credentials | Secret name to use for repo containing manifests for managed accelerator resources |
-
+| managed_resources.git.url | none | Required if managed_resources are enabled. Git repository URL containing manifests for managed accelerator resources |
+| managed_resources.git.ref | origin/main | Required if managed_resources are enabled. Git ref to use for repository containing manifests for managed accelerator resources |
+| managed_resources.git.sub_path | null | Git subPath to use for repository containing manifests for managed accelerator resources |
+| managed_resources.git.secret_ref | git-credentials | Secret name to use for repository containing manifests for managed accelerator resources |
 
 VMware recommends that you do not override the defaults for `registry.secret_ref`,
 `server.engine_invocation_url`, or `engine.service_type`.
@@ -58,10 +57,9 @@ The following table is the resource use configurations for the components of App
 
 | Component | Resource requests | Resource limits |
 | --- | --- | --- |
-| acc-controller | cpu: 100m <br> memory: 20Mi| cpu: 100m <br> memory: 30Mi |
-| acc-server | cpu: 100m <br> memory:20Mi | cpu: 100m <br> memory: 30Mi |
-| acc-engine | cpu: 500m <br> memory: 1Gi | cpu: 500m <br> memory: 2Gi |
-
+| acc-controller | CPU: 100m <br> memory: 20Mi| CPU: 100m <br> memory: 30Mi |
+| acc-server | CPU: 100m <br> memory:20Mi | CPU: 100m <br> memory: 30Mi |
+| acc-engine | CPU: 500m <br> memory: 1Gi | CPU: 500m <br> memory: 2Gi |
 
 ## <a id='app-acc-install'></a> Install
 
@@ -88,7 +86,7 @@ To install Application Accelerator:
     tanzu package available get accelerator.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed in step 1 above.
+    Where `VERSION-NUMBER` is the version of the package listed earlier.
 
     For example:
 
@@ -97,7 +95,6 @@ To install Application Accelerator:
     ```
 
     For more information about values schema options, see the properties listed earlier.
-
 
 3. Create an `app-accelerator-values.yaml` using the following example code:
 
@@ -112,7 +109,8 @@ To install Application Accelerator:
     Edit the values if needed or leave the default values.
 
     >**Note:** For clusters that do not support the `LoadBalancer` service type, override the default
-    >value for `server.service_type`, for example:
+    >value for `server.service_type`, for example,
+
       >```yaml
       > server:
       >   service_type: "ClusterIP"
@@ -121,13 +119,13 @@ To install Application Accelerator:
       >   include: true
       >```.
 
-3. Install the package by running:
+4. Install the package by running:
 
     ```console
     tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-accelerator-values.yaml
     ```
 
-    Where `VERSION-NUMBER` is the version included in the Tanzu Application Platform installation.
+    Where `VERSION-NUMBER` is the version included with the Tanzu Application Platform installation.
 
     For example:
 
@@ -143,9 +141,9 @@ To install Application Accelerator:
     - Package install status: Reconciling
 
      Added installed package 'app-accelerator' in namespace 'tap-install'
-    ```
+    ```<!--฿ If this is a command to run and it has a version number, consider replacing the version number with an HBS variable, such as {{ vars.tap_version }}. ฿-->
 
-4. Verify the package install by running:
+5. Verify the package install by running:
 
     ```console
     tanzu package installed get app-accelerator -n tap-install
@@ -166,7 +164,7 @@ To install Application Accelerator:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-5. To see the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run the following command:
+6. To see the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run:
 
     ```console
     kubectl get service -n accelerator-system
@@ -178,20 +176,20 @@ To install Application Accelerator:
 
 Depending on the error output, there are some actions that can be taken
 
-### Check installed packages
+### Verify installed packages
 
-the package might be already installed, it can be verified by running the command:
+The package might be already installed, verify this by running the command:
 
 `tanzu package installed list -n tap-install`
 
 and look for any package called `accelerator.apps.tanzu.vmware.com`
 
-### Look resources events
+### Look at resource events
 
-Sometimes the error lies within the custom resources (accelerator, gitrepository, fragment, etc.),
-these errors can be checked using `kubectl`.
+Sometimes the error lies within the custom resources (accelerator, git repository, fragment, etc.),
+these errors are checked using kubectl.
 
-Up next there will be an example using the custom resource `accelerator`
+Up next there is an example using the custom resource `accelerator`
 
 `kubectl get acc -n accelerator-system`
 
@@ -215,8 +213,8 @@ weatherforecast-csharp     True    Ready      5h2m
 weatherforecast-steeltoe   True    Ready      5h2m
 ```
 
-to check the error event use the following command
+to verify the error event, run:
 
 `kubectl get acc node-function -n accelerator-system -o yaml`
 
-Then the event section can be checked for more info about the error
+Then the event section can be checked for more information about the error.
