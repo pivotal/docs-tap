@@ -71,7 +71,7 @@ Tanzu Application Platform.
 
 Debugging requires a `workload.yaml` file in your project.
 For information about creating a `workload.yaml` file, see
-[Set up Tanzu Developer Tools](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
+[Getting Started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
 
 Debugging on the cluster and Live Update cannot be used simultaneously.
 If you use Live Update for the current project, ensure that you stop the
@@ -85,7 +85,7 @@ To start debugging on the cluster:
 1. Add a [breakpoint](https://code.visualstudio.com/docs/editor/debugging#_breakpoints) in your code.
 2. Right-click anywhere in the VS Code project explorer or open the Command Palette by pressing ⇧⌘P
    (Ctrl+Shift+P on Windows).
-3. Select **Tanzu: Java Debug Workload** from either menu.
+3. Click **Tanzu: Java Debug Workload** from either menu.
 
    Context Menu screenshot:
    ![The VS Code interface showing the Explorer tab with the workload.yaml file pop-up menu open and the Tanzu: Java Debug Start option highlighted](../images/vscode-startdebug1.png)
@@ -125,17 +125,17 @@ workload running on the cluster within seconds.
 
 Live Update requires a `workload.yaml` file and a Tiltfile in your project.
 For information about how to create a `workload.yaml` and a Tiltfile, see
-[Set up Tanzu Developer Tools](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
+[Getting Started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
 
 Live Update and Debugging on the cluster cannot be used simultaneously.
 If you are debugging on the cluster, stop debugging before attempting to use Live Update.
 
 ### <a id="start-live-update"></a> Start Live Update
 
-Do one of the following actions to start live update:
+Do one of the following actions to start Live Update:
 
 - Right-click anywhere in the VS Code project explorer.
-- Select **Tanzu: Live Update Start** in the pop-up menu.
+- Click **Tanzu: Live Update Start** in the pop-up menu.
 
    ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the "Tanzu: Live Update Start" option highlighted](../images/vscode-startliveupdate1.png)
 
@@ -181,7 +181,7 @@ The Live Update status bar entry shows the following states:
 - Live Update Starting…
 - Live Update Running
 
-To hide the Live Update status bar entry, right-click it and then select
+To hide the Live Update status bar entry, right-click it and then click
 **Hide 'Tanzu Developer Tools (Extension)'**.
 
 ![The VS Code interface showing the Tanzu Live Update Status section of the Status bar with the right-click menu open and the "Hide 'Tanzu Developer Tools (Extension)'" option highlighted](../images/vscode-liveupdatestatus2.png)
@@ -239,7 +239,7 @@ To delete a workload:
 To switch the namespace where you created the workload:
 
 1. Go to **Code** > **Preferences** > **Settings**.
-1. Expand the **Extensions** section of the settings and select **Tanzu**.
+1. Expand the **Extensions** section of the settings and click **Tanzu**.
 1. In the **Namespace** option, add the namespace you want to deploy to. This is the `default`
    namespace by default.
 
@@ -269,35 +269,37 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
 
 ## <a id="mono-repo"></a> Working with Microservices in a Monorepo
 
-A *Mono Repo* is single git repository that contains multiple workloads. Each 
-individual workload is placed in a subfolder of the main repository.
+A monorepo is single Git repository that contains multiple workloads.
+Each individual workload is placed in a subfolder of the main repository.
 
 You can find an example of this in [Application Accelerator](../application-accelerator/about-application-accelerator.hbs.md).
-The relevant Accelerator is called *Spring Smtp Gateway*, and its source-code can be obtained either as an Accelerator or
-[directly from github](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.3.x/spring-smtp-gateway).
+The relevant accelerator is called Spring SMTP Gateway, and you can obtain its source code as an
+accelerator or directly from the
+[application-accelerator-samples](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.3.x/spring-smtp-gateway)
+GitHub repository.
 
 This project exemplifies a typical layout:
 
-- `<mono-repo-root>/`
+- `MONO-REPO-ROOT/`
   - `pom.xml` (parent pom)
   - `microservice-app-1/`
-     - `pom.xml`
-     - `mvnw` (and other mvn related files for building the workload)
-     - `Tiltfile` (supports liveupdate)
-     - `config`
-       - `workload.yaml` (suports deploying and debugging from IntelliJ)
-     - `src/` (contains source code for this microservice)
+    - `pom.xml`
+    - `mvnw` (and other mvn-related files for building the workload)
+    - `Tiltfile` (supports Live Update)
+    - `config`
+      - `workload.yaml` (supports deploying and debugging from IntelliJ)
+    - `src/` (contains source code for this microservice)
   - `microservice-app-2/`
-     - ...similar layout
+    - ...similar layout
 
-### Recommended structure: Independently buildable microservices
+### <a id="rec-struct"></a> Recommended structure: Microservices that can be built independently
 
-In this example, each of the microservices can be built independently of one another. Each subfolder contains *everything* needed to build that workload. 
+In this example, each of the microservices can be built independently of one another.
+Each subfolder contains everything needed to build that workload.
 
-This is reflected in the `source` section of `workload.yaml` by using the `subPath`
-attribute:
+This is reflected in the `source` section of `workload.yaml` by using the `subPath` attribute:
 
-```
+```yaml
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -309,40 +311,41 @@ spec:
       ref:
         branch: main
       url: https://github.com/kdvolder/sample-mono-repo.git
-    subPath: microservice-app-1 # <-- build only this
+    subPath: microservice-app-1 # build only this
   ...
 ```
 
-Setting up a mono repo so that each microservice can be built completely independently
-is the recommended way to setup your own monorepos. 
+For setting up your own repositories, it's best practice to set up a monorepo so that each
+microservice can be built completely independently.
 
 To work with these monorepos:
 
-- Import the monorepo as a project into VSCode. 
+- Import the monorepo as a project into VSCode.
 - Interact with each of the subfolders in the same way you would a project containing a single workload.
 
-### Alternate structure: Services with build-time inter-dependencies
+### <a id="alt-struct"></a> Alternative structure: Services with build-time interdependencies
 
-Some monorepos may not have submodules that can be independently built.
-Instead the submodules `pom.xml` files may be setup to have some build-time interdependencies. 
+Some monorepos do not have submodules that can be independently built.
+Instead the `pom.xml` files of the submodules are set up to have some build-time interdependencies.
 For example:
 
-- A submodule `pom.xml` might reference the parent `pom.xml` as a common place for 
-  centralised dependency management.
-- A microservice submodule may reference another (as a maven `<dependency>`).
-- Several microservice submodules may reference one or more 'shared' libary modules.
+- A submodule `pom.xml` can reference the parent `pom.xml` as a common place for
+  centralized dependency management.
+- A microservice submodule can reference another, as a maven dependency.
+- Several microservice submodules can reference one or more shared libary modules.
 
-For these projects, you will need to make these adjustments:
-- `workload.yaml` changes: 
-   - The `workload.yaml` should not point to a subfolder but to the repo root (since submodules have dependencies 
-  on code outside of their own subfolder, all source code from the repo needs to be supplied to the workload builder).
-   - The `workload.yaml` needs to specify additional buildpack arguments via environment   
-  variables (since these differentiate which submodule is actually being targetted by the
-  build).
+For these projects, make these adjustments:
 
-   Both of these `workload.yaml` changes are exemplified below:
+1. Make `workload.yaml` point to the repository root, not a subfolder.
+   Because submodules have dependencies on code outside of their own subfolder, all source code
+   from the repository must be supplied to the workload builder.
 
-   ```
+2. Make `workload.yaml` specify additional buildpack arguments through environment variables.
+   They differentiate the submodule that the build is targeting.
+
+   Both of these `workload.yaml` changes are in the following example:
+
+   ```yaml
    apiVersion: carto.run/v1alpha1
    kind: Workload
    metadata:
@@ -354,20 +357,21 @@ For these projects, you will need to make these adjustments:
    build:
       env:
          - name: BP_MAVEN_BUILD_ARGUMENTS
-         value: package -pl fortune-teller-ui -am # <-- indicate which module to build.
+         value: package -pl fortune-teller-ui -am # indicate which module to build.
          - name: BP_MAVEN_BUILT_MODULE
-         value: fortune-teller-ui # <-- indicate where to find the built artefact to deploy.
+         value: fortune-teller-ui # indicate where to find the built artefact to deploy.
    source:
       git:
-         url: https://github.com/my-user/fortune-teller # <-- repo root
+         url: https://github.com/my-user/fortune-teller # repo root
          ref:
          branch: main
    ```
 
-   For detailed information about these and other `BP_xxx` buildpack parameters, refer
-   to the [Buildpack Documentation](https://github.com/paketo-buildpacks/maven/blob/main/README.md).
+   For more information about these and other `BP_xxx` buildpack parameters, see the
+   [Buildpack Documentation](https://github.com/paketo-buildpacks/maven/blob/main/README.md).
 
-- The local path preference for each subfolder must point to the path of the repo root (since submodules have dependencies 
-  on code outside of their own subfolder, all source code from the repo needs to be supplied to the workload builder).
+3. Make the local path preference for each subfolder point to the path of the repository root
+   Because submodules have dependencies on code outside of their own subfolder, all source code
+   from the repository must be supplied to the workload builder.
 
    ![VSCode Monorepo Preferences](../images/vscode-monorepo-preferences.png)
