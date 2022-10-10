@@ -391,7 +391,7 @@ Tag in a Git repository from which the workload is created. Can be used with `--
 
 ### <a id="apply-git-commit"></a> `--git-commit`
 
-Commit in Git repository| from where the workload is resolved. Can be used with `--git-branch` or `git-tag`.
+Commit in Git repository from where the workload is resolved. Can be used with `--git-branch` or `git-tag`.
 
 <details><summary>Example</summary>
 
@@ -584,10 +584,13 @@ Enable to deploy the workload once, save changes to the code, and see those chan
     - Clone repository in https://github.com/vmware-tanzu/application-accelerator-samples
     - Change into the `tanzu-java-web-app` directory
     - In `Tiltfile`, first change the `SOURCE_IMAGE` variable to use your registry and project. After that, at the very end of the file add
+
     ```bash
     allow_k8s_contexts('your-cluster-name')
     ```
+
     - Then, inside the directory, run:
+
     ```bash
     tanzu apps workload apply tanzu-java-web-app --live-update --local-path . -s gcr.io/my-project/tanzu-java-web-app-live-update -y
 
