@@ -4,7 +4,7 @@
 
 ## Default view
 
-In the output of the `workload apply command`, the specification for the workload is shown as if they were in a YAML file.
+In the output of the `workload apply` command, the specification for the workload is shown as if they were in a YAML file.
 
 <details><summary>Example</summary>
 
@@ -659,7 +659,7 @@ Sets the path to a source in the local machine from where the workload creates a
 |>**Note:**| If Java/Spring compiled binary is passed instead of source code, the command will take less time to apply the workload since buildpack will skip the compiling steps and will simply start uploading the image.
 
 When working with local source code, you can exclude files from the source code to be uploaded within the image by creating a file `.tanzuignore` at the root of the source code.
-The `.tanzuignore` file contains a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`). If the file contains directories that are not in the source code, they are ignored and lines starting with `#` pound.
+The `.tanzuignore` file contains a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`). If the file contains directories that are not in the source code, they are ignored and lines starting with `#` hashtag.
 
 ### <a id="apply-maven-artifact"></a> `--maven-artifact`
 
@@ -879,7 +879,7 @@ Update workload:
 
 ### <a id="apply-registry-ca-cert"></a> `--registry-ca-cert`
 
-Refers to the path to the self-signed certificate needed for custom/private registry. This flag is also populated with a default value through environment variables. In this way, if the envvar `TANZU_APPS_REGISTRY_CA_CERT` is set, then it's not necessary to use it in the command.
+Refers to the path to the self-signed certificate needed for custom/private registry. This flag can be also populated with a default value through environment variables. In this way, if the environment variable `TANZU_APPS_REGISTRY_CA_CERT` is set, then it's not necessary to use it in the command.
 
 See [tanzu apps workload envvars](../tanzu-apps-workload.hbs.md#a-idenvvarsaenvironment-variables-with-default-values) to know the currently supported environment variables.
 
@@ -1105,6 +1105,7 @@ It's used to define which path is used as root to create and update the workload
 <details><summary>Example</summary>
 
   - Git repository
+
     ```bash
     tanzu apps workload apply subpathtester --git-repo https://github.com/path-to-repo/my-repo --git-branch main --type web --sub-path my-subpath
 
@@ -1130,6 +1131,7 @@ It's used to define which path is used as root to create and update the workload
 
   - Local path
       - In the directory of the project you want to create the workload from
+
       ```bash
       tanzu apps workload apply my-workload --local-path . -s gcr.io/my-registry/my-workload-image --sub-path subpath_folder
       ? Publish source in "." to "gcr.io/my-registry/my-workload-image"? It may be visible to others who can pull images from that repository Yes
