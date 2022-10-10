@@ -10,35 +10,35 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="api-auto-registration-features"></a> API Auto Registration
 
-- API Auto Registration is a new package that supports dynamic registration of API from workloads into TAP GUI.
+- API Auto Registration is a new package that supports dynamic registration of API from workloads into Tanzu Application Platform GUI.
 - Supports Async API, GraphQL, gRPC and OpenAPI.
-- Enhanced support for OpenAPI 3 to validate the spec and update the servers url section.
+- Enhanced support for OpenAPI 3 to validate the spec and update the servers URL section.
 - Custom Certificate Authority (CA) certificates are supported.
 
 #### <a id="app-acc-features"></a> Application Accelerator
 
 - Packaging
-  - Out-of-the-box samples are now distributed as OCI images
-  - GitOps model support for publishing accelerator to facilitate governance around publishing accelerators
+  - Out-of-the-box samples are now distributed as OCI images.
+  - GitOps model support for publishing accelerator to facilitate governance around publishing accelerators.
 - Controller
-  - Add source-image support for fragments and Fragment CRD
+  - Added source-image support for fragments and Fragment CRD.
 - Engine
-  - OpenRewriteRecipe: More recipes are now supported in addition to Java: Xml, Properties, Maven, Json
-  - New ConflictResolution Strategy : `NWayDiff` merges files that are modified in different places, as long as they don't conflict. Similar to git diff3 algorithm
-  - Enforce the validity of `inputType`: Only valid values `text`, `textarea`, `checkbox`, `select` and `radio` are accepted
+  - OpenRewriteRecipe: More recipes are now supported in addition to Java: Xml, Properties, Maven, and Json.
+  - New ConflictResolution Strategy : `NWayDiff` merges files modified in different places, as long as they don't conflict. Similar to the Git diff3 algorithm.
+  - Enforces the validity of `inputType`: Accepts only valid values: `text`, `textarea`, `checkbox`, `select`, and `radio`.
 - Server
-  - Add configmap to store accelerator invocation counts
-  - Add separate downloaded endpoint for downloads telemetry
+  - Added configmap to store accelerator invocation counts.
+  - Added separate downloaded endpoint for downloads telemetry.
 - Jobs
-  - No changes
+  - No changes.
 - Samples
-  - Samples are moved to https://github.com/vmware-tanzu/application-accelerator-samples
-  - Release includes samples marked with `tap-1.3` tag
+  - Samples are moved to https://github.com/vmware-tanzu/application-accelerator-samples.
+  - Release includes samples marked with the `tap-1.3` tag.
 
 #### <a id="alv-features"></a>Application Live View
 
-- Application Live View supports Steeltoe/.NET applications
-- Custom Certificate Authority (CA) certificates are supported.
+- Application Live View supports Steeltoe/.NET applications.
+- Supports Custom Certificate Authority (CA) certificates.
 
 #### <a id="app-sso-features"></a>Application Single Sign-On
 
@@ -49,12 +49,12 @@ This release includes the following changes, listed by component and area.
   - Identity providers are incorrectly set up.
 - Enabled `/userinfo` endpoint to retrieve user information.
 - OpenShift support: AppSSO uses a custom Security Context Constraint.
-- Security: Comply with the restricted Pod Security Standard and give the least privilege to the controller.
+- Security: Complies with the restricted Pod Security Standard and gives the least privilege to the controller.
 - Service-Operator cluster role: Aggregate RBAC for managing AuthServer.
 - Controller updates:
   - The controller restarts when its configuration is updated.
   - The controller configuration is kept in a Secret.
-  - All existing AuthServer are updated and rolled out when the controller’s configuration changes significantly.
+  - All existing AuthServers are updated and rolled out when the controller’s configuration changes significantly.
 
 #### <a id="carbon-black-scanner-features"></a> Carbon Black Cloud Scanner integration (beta)
 
@@ -71,30 +71,30 @@ See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integrat
   - auto-complete now works for all sub-command names and their positional argument values, flag names, and flag values.
 - `tanzu apps workload create/apply` improvements:
   - Apps plug-in users can now pass in registry flags to override the default registry options configured on the platform.
-    - These flags can leveraged when an application developer iterating on their code on their filesystem needs to push their code to a private registry. For example, this may be required when developing an application in an air-gapped environment.
-    - To mitigate the risk of exposing sensitive information in the terminal, each registry flag/value can specified by environment variables.
+    - These flags can be everaged when an application developer iterating on their code on their file system needs to push their code to a private registry. For example, this may be required when developing an application in an air-gapped environment.
+    - To mitigate the risk of exposing sensitive information in the terminal, each registry flag/value can be specified by environment variables.
     - Refer to [workload apply > registry flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---registry-ca-cert) for a more detailed explanation about these flags and how to use them.
-  - Provided first-class support for creating workloads from Maven artifacts through Maven flags. Previously this could only be achieved by passing the desired values through the `--complex-param` flag.
+  - Provided first-class support for creating workloads from Maven artifacts through Maven flags. Previously, this could only be achieved by passing the desired values through the `--complex-param` flag.
     - Refer to [workload apply > maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---maven-artifact) for a more detailed explanation about these flags and how to use them.
 - `tanzu apps workload get` improvements:
-  - Optimized the routines triggered when engaged in iterative development on the local filesystem.
-    - running `tanzu apps workload apply my-app --local-path . ... will only upload the contents of the project directory when source code changes are detected.
-  - Added a OUTPUT column to the resource table in the Supply Chain section to provide visibility to the resource that's stamped out by each supply chain step.
-    - The stamped out resource may be helpful when troubleshooting supply chain issues for a workload. For example, the OUTPUT value can be copied and pasted into a `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail).
-  - Added a Delivery section which provides visiblity to the delivery steps,  and the health, status, and stamped out resource associated with each delivery step.
-    - The Delivery section content might be conditionally displayed depending on whether the targetted environment includes the Deliverable object. Delivery will be present on environments created using the Iterate and Build installation profiles.
+  - Optimized the routines triggered when engaged in iterative development on the local file system.
+    - Running `tanzu apps workload apply my-app --local-path . ... only uploads the contents of the project directory when source code changes are detected.
+  - Added an OUTPUT column to the resource table in the Supply Chain section to provide visibility to the resource that's stamped out by each supply chain step.
+    - The stamped out resource can be helpful when troubleshooting supply chain issues for a workload. For example, the OUTPUT value can be copied and pasted into a `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail).
+  - Added a Delivery section that provides visiblity to the delivery steps and the health, status, and stamped out resource associated with each delivery step.
+    - The Delivery section content might be conditionally displayed depending on whether the targetted environment includes the Deliverable object. Delivery is present on environments created using the Iterate and Build installation profiles.
   - Added a `Healthy` column to the Supply Chain resources table.
     - The column values are color coded to indicate the health of each resource at-a-glance.
   - Added an Overview section to show workload name and type.
   - Added Emojis to, and indentation under, each section header in the command output to better distinguish each section.
   - Updated the STATUS column in the table within the Pods section so that it displays the `Init` status when there are init containers (instead of displaying a less helpful/accurate `pending` value).
     - In fact, all column values in the Pods table have been updated so the output is equivalent to the output from `kubectl get pod/pod-name`.
-- Updated Go to its latest version (1.19).
+- Updated Go to its latest version (v1.19).
 
 ##### <a id="apps-plugin-deprecations"></a> Deprecations
 
-- The `tanzu apps workload update` command will be deprecated in the `apps` CLI plugin. Please use `tanzu apps workload apply` instead.
-  - `update` will be deprecated in two TAP releases (in TAP v1.5.0) or in one year (on Oct 11, 2023), whichever is longer.
+- The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
+  - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
 
 #### <a id="src-cont-features"></a>Source Controller
 
@@ -111,9 +111,9 @@ See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integrat
 
 #### <a id="scst-policy-features"></a>Supply Chain Security Tools - Policy Controller
 
-- Update Policy Controller version from v0.2.0 to v0.3.0
-- Added ClusterImagePolicy [`warn` and `enforce` mode](./scst-policy/configuring.hbs.md#cip-mode)
-- Added ClusterImagePolicy [authority static actions](./scst-policy/configuring.hbs.md#cip-static-action)
+- Updated Policy Controller version from v0.2.0 to v0.3.0.
+- Added ClusterImagePolicy [`warn` and `enforce` mode](./scst-policy/configuring.hbs.md#cip-mode).
+- Added ClusterImagePolicy [authority static actions](./scst-policy/configuring.hbs.md#cip-static-action).
 
 #### <a id="tap-gui-features"></a>Tanzu Application Platform GUI
 
@@ -123,7 +123,7 @@ See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integrat
   key `ingress_domain`.
 - Tanzu Application Platform GUI reads from a Kubernetes metrics server and displays these values in
   the Runtime Resources Visibility tab when available.
-  By default Tanzu Application Platform GUI does not try to fetch metrics.
+  By default, Tanzu Application Platform GUI does not try to fetch metrics.
   To enable metrics for a cluster, follow the
   [Runtime Resources Visibility documentation](tap-gui/plugins/runtime-resource-visibility.hbs.md#metrics-server).
 - Tanzu Application Platform GUI reports logs in newline-delimited JSON format.
@@ -137,14 +137,14 @@ See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integrat
   - Added ability to create Git repositories based on the provided configuration.
 - Runtime Resources plug-in:
   - Pods, ReplicaSets, and Deployments now display configured memory and CPU limits. On clusters
-    configured with `skipMetricsLookup` set to `false`, realtime memory and CPU use are also displayed
+    configured with `skipMetricsLookup` set to `false`, realtime memory and CPU use are also displayed.
   - Supports new Kubernetes resources (Jobs, CronJobs, StatefulSets, and DaemonSets).
   - Warning and error banners can now be dismissed.
   - Log viewer improvements:
-    - Log viewer now streams messages in realtime.
+    - Log viewer now streams messages in real time.
     - Log entries can be soft-wrapped.
     - Log contents can be exported.
-    - The log level can be changed for pods supporting App Live View.
+    - The log level can be changed for pods supporting Application Live View.
 - Supply Chain Choreographer plug-in:
   - Improved error handling when a scan policy is misconfigured.
     There are now links to documentation to properly configure scan policies, which replace the
@@ -164,7 +164,7 @@ See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integrat
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
-- Added **Tanzu Problems** panel to show workload status errors inside the IDE
+- Added **Tanzu Problems** panel to show workload status errors inside the IDE.
 
 #### <a id="functions-features"></a> Functions (beta)
 
@@ -177,13 +177,13 @@ See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integrat
 You can opt-in to building workloads with the Jammy stacks by following the instructions in
 [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
 - **The Ubuntu Bionic stack is deprecated:**
-Ubuntu Bionic will stop receiving support in April 2023.
-VMware recommends that you migrate builds to Jammy stacks in advance.
+Ubuntu Bionic stops receiving support in April 2023.
+VMware recommends you migrate builds to Jammy stacks in advance.
 For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
 - **The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated:**
 It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
-VMware plans to deactivate this format by default in Tanzu Application Platform v1.5,
-and and remove support in Tanzu Application Platform v1.6.
+VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
+and remove support in Tanzu Application Platform v1.6.
 To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
 
 #### <a id="srvc-toolkit-features"></a> Services Toolkit
@@ -231,15 +231,15 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-3-upgrade-issues"></a>Upgrading Tanzu Application Platform
 
-- Adding new Tanzu Application Platform repository bundle in addition to another repository bundle does not cause a failure anymore.
+- Adding new Tanzu Application Platform repository bundle in addition to another repository bundle no longer causes a failure.
 
 #### <a id="app-acc-resolved"></a> Application Accelerator
 
 - Controller
-  - Importing a non-ready fragment should propagate non-readyness
-  - DependsOn from fragments are no longer "lost" when imported
+  - Importing a non-ready fragment should propagate non-readyness.
+  - DependsOn from fragments are no longer "lost" when imported.
 - Engine
-  - OpenRewriteRecipe updates: Unrecognized Recipe properties now trigger an explicit error
+  - OpenRewriteRecipe updates: Unrecognized Recipe properties now trigger an explicit error.
 
 #### <a id="app-sso-resolved"></a> Application Single Sign-On
 
@@ -248,7 +248,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Policy Controller
 
-- Pods deployed through `kubectl run` in non-default namespace now are able to build the neccessary keychain for registry access during validation.
+- Pods deployed through `kubectl run` in non-default namespace are now able to build the neccessary keychain for registry access during validation.
 
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
@@ -290,23 +290,24 @@ When connecting to AWS EKS clusters, an error might appear with the text:
   - `Error: Unable to connect: connection refused. Confirm kubeconfig details and try again` or
   - `invalid apiVersion "client.authentication.k8s.io/v1alpha1"`.
 
-This occurs if the version of the `aws-cli` is less than the supported version `2.7.35`.
+This occurs if the version of the `aws-cli` is less than the supported version, v`2.7.35`.
 
-See the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of TAP troubleshooting for instructions in how to resolve the issue.
+ For instructions on resolving this issue, see the ["failure to connect to AWS EKS clusters"](troubleshooting-tap/troubleshoot-using-tap.md#connect-aws-eks-clusters) section of Tanzu Application Platform troubleshooting.
 
 #### <a id="api-auto-registration-known-issues"></a>API Auto Registration
 
 **Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation:**
 
 If using an OpenAPI v2 spec with this field, consider converting to OpenAPI v3.
-See [Troubleshooting](api-auto-registration/troubleshooting.hbs.md) for more details.
+For more information, see [Troubleshooting](api-auto-registration/troubleshooting.hbs.md).
 All other spec types and OpenAPI v3 specs are unaffected.
 
 #### <a id="app-acc-known-issues"></a>Application Accelerator
 
 **Generation of new project from an accelerator times out:**
 
-Generation of new project from an accelerator might time out for more complex accelerators. See [Configure ingress timeouts](application-accelerator/configuration.hbs.md#configure-timeouts).
+Generation of a new project from an accelerator might time out for more complex accelerators.
+For more information, see [Configure ingress timeouts](application-accelerator/configuration.hbs.md#configure-timeouts).
 
 #### <a id="alv-known-issues"></a>Application Live View
 
@@ -323,11 +324,14 @@ For more information, see [Troubleshooting](app-live-view/troubleshooting.hbs.md
 
 #### <a id="alv-ca-known-issues"></a>Application Single Sign-On
 
-See [Application Single Sign On - Known Issues](app-sso/known-issues/index.md).
+**Redirect URIs change to http instead of https:**
+
+AppSSO makes requests to external identity providers with `http` rather than `https`.
+For more information, see [Troubleshoot AppSSO](app-sso/troubleshoot.md).
 
 #### <a id="cnrs-issues"></a> Cloud Native Runtimes
 
-**Failure to successfully deploy workloads on `run` cluster in Multi Cluster setup on Openshift:**
+**Failure to successfully deploy workloads on `run` cluster in multicluster setup on Openshift:**
 
 When creating a workload from a Deliverable resource, it may not create and instead result in the following error:
 
@@ -337,9 +341,9 @@ pods "<pod name>" is forbidden: unable to validate against any security context 
 Invalid value: 1000: must be in the ranges: [1000740000, 1000749999]
 ```
 
-This may be due to ServiceAccounts or users bound to overly restrictive SecurityContextConstraints.
+This can be due to ServiceAccounts or users bound to overly restrictive SecurityContextConstraints.
 
-See the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html) for how to resolve this issue.
+For information about resolving this issue, see the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html).
 
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
@@ -360,7 +364,9 @@ as images.
 
 #### <a id="tap-gui-known-issues"></a>Tanzu Application Platform GUI
 
-**Tanzu Application Platform GUI doesn't work in Safari:** Tanzu Application Platform GUI does not work in the Safari web browser.
+**Tanzu Application Platform GUI doesn't work in Safari:**
+
+Tanzu Application Platform GUI does not work in the Safari web browser.
 
 #### <a id="tap-gui-plug-in-known-issues"></a>Tanzu Application Platform GUI Plug-ins
 
@@ -371,66 +377,76 @@ as images.
     clusters.
   - Updating a supply chain results in an error (`Can not create edge...`) when an existing workload
     is clicked in the Workloads table and that supply chain is no longer present.
-    For the workaround, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#update-sc-err).
+    For information about resolving this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#update-sc-err).
   - API Descriptors/Service Bindings stages show an `Unknown` status (grey question mark in the graph)
     even if successful.
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
 - **Unable to view workloads on the panel when connected to GKE cluster:**
+
   When connecting to Google's GKE clusters, an error might appear with the text
   `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
   To fix this, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 - **Warning notification when canceling an action:**
+
   A warning notification can appear when running `Tanzu: Debug Start`, `Tanzu: Live Update Start`,
   or `Tanzu: Apply`, which says that no workloads or Tiltfiles were found.
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cancel-action-warning).
 
 - **Live update might not work when using server or worker Workload types:**
+
   When using `server` or `worker` as
   [workload type](workloads/workload-types.hbs.md#-available-workload-types),
   live update might not work.
   For more information, see
-  [Troubleshooting](vscode-extension/troubleshooting.hbs.md#lu-not-working-wl-types)
+  [Troubleshooting](vscode-extension/troubleshooting.hbs.md#lu-not-working-wl-types).
 
 - **Tiltfile snippet doesn't work on files named `Tiltfile` when Tilt extension is installed:**
+
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#tiltfile-snippet).
 
 #### <a id="intelj-ext-known-issues"></a>IntelliJ Extension
 
 - **Unable to view workloads on the panel when connected to GKE cluster:**
+
   When connecting to Google's GKE clusters, an error might appear with the text
   `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
   To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 - **Starting debug and live update sessions is synchronous:**
+
   When a user runs or debugs a launch configuration, IntelliJ disables the launch controls to prevent
   other launch configurations from being launched at the same time.
   These controls are reactivated when the launch configuration is started.
   As such, starting multiple Tanzu debug and live update sessions is a synchronous activity.
 
 - **Live update not working when using server or worker Workload types:**
+
   When using `server` or `worker` as
   [workload type](workloads/workload-types.hbs.md#-available-workload-types),
   live update might not work.
   For more information, see
-  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lu-not-working-wl-types)
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lu-not-working-wl-types).
 
 - **Stopping one debug session stops them all:**
+
   When starting multiple simultaneous workload debug sessions, stopping one of those sessions also
   stops the others. This disconnects the debugger without stopping the workload process itself,
   so it is possible to restart debug sessions. A fix is planned for Tanzu Application Platform v1.3.1.
 
 #### <a id="contour-known-issues"></a>Contour
 
-- Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`: The default values displayed for the following keys are incorrect in values-schema of Contour package in Tanzu Application Platform v1.3.0:
+- Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`:
+  The default values displayed for the following keys are incorrect in values-schema of Contour package in Tanzu Application Platform v1.3.0:
     - Key `envoy.hostPorts.enable` has a default value as `false`, but it is displayed as `true`.
     - Key `envoy.hostPorts.enable` has a default value as `LoadBalancer`, but it is displayed as `NodePort`.
 
 #### <a id="scc-known-issues"></a>Supply Chain Choreographer
 
 - **Misleading DeliveryNotFound error message on Build profile clusters**
-  Deliverables incorrectly will show a DeliveryNotFound error on *build* profile clusters even though the
-  Workload is working correctly. The message is typically:
-  `No delivery found where full selector is satisfied by labels:`
+
+  Deliverables incorrectly show a DeliveryNotFound error on *build* profile clusters even though the
+  workload is working correctly. The message is typically:
+  `No delivery found where full selector is satisfied by labels:`.
