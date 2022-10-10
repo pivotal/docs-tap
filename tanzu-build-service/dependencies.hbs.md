@@ -3,7 +3,7 @@
 > **Important:** Ubuntu Bionic will stop receiving support in April 2023.
 > The Bionic stack for Tanzu Build Service is deprecated and will be removed in a future release.
 > VMware recommends that you migrate builds to Jammy stacks.
-> For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
+> For how to migrate builds, see [Use Jammy stacks for a workload](#using-jammy).
 
 This topic describes how Tanzu Build Service uses and installs dependencies.
 
