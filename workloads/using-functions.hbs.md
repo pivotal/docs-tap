@@ -21,7 +21,7 @@ Functions provide a quick way to get started writing an application. Compared wi
 > VMware discourages running beta features in production.
 > VMware cannot guarantee that you can upgrade any beta feature in the future.
 
-## <a id="supportedlangs"></a> Supported languages and framework
+## <a id="supportedlangs"></a> Supported languages and frameworks
 
 For HTTP and CloudEvents:
 
@@ -29,9 +29,7 @@ For HTTP and CloudEvents:
 |------------------------|----------|-------------|
 | Java                   | &check;  | &check;     |
 | Python                 | &check;  | &check;     |
-| Node                   | &check;  | N/A         |
-
-<!-- NodeJS? -->
+| NodeJS                 | &check;  | N/A         |
 
 For REST API:
 
@@ -39,9 +37,7 @@ For REST API:
 |------------------------|----------|---------|
 | Java                   | N/A      | &check; |
 | Python                 | &check;  | &check; |
-| Node                   | &check;  | &check; |
-
-<!-- NodeJS? -->
+| NodeJS                 | &check;  | &check; |
 
 ## <a id="prereqs"></a> Prerequisites
 
@@ -56,16 +52,19 @@ Before using function workloads on Tanzu Application Platform, complete the foll
 
 1. From the Tanzu Application Platform GUI portal, click **Create** on the left navigation bar to see the list of available accelerators.
 
-    ![Application-Accelerators-Accelerators-VMware-Tanzu-Application-Platform (2)](https://user-images.githubusercontent.com/36433204/194068385-3ad8b1fe-3c51-422e-bc72-27105d11a275.png)
-    <!-- maybe get a better screenshot -->
+    ![Screenshot of Tanzu Application Platform GUI. The create button in the left navigation menu has been selected.](images/create-accelerator.png)
 
 1. Locate the function accelerator in the language or framework of your choice and click **CHOOSE**.
 
-1. Provide a name for your function project and function. Provide a Git repository to store this accelerator's files. Click **NEXT STEP**, verify the provided information, and click **CREATE**.
+1. Provide a name for your function project and your function.
+
+1. If you are creating a Java function, select a project type.
+
+1. Provide a Git repository to store the files for the accelerator.
+
+1. Click **NEXT STEP**, verify the provided information, and then click **CREATE**.
 
     ![Screenshot of the Generate Accelerators page in Tanzu Application Platform GUI. It shows a Python function buildpacks accelerator with App accelerator input fields including Name, Default function name, Event type, Git repository URL, and Git repository branch.](images/generate-accelerators.png)
-
-1. If creating a Java function, select a project type. <!-- when do you do this step? Is is while you're doing the previous step? -->
 
 1. After the Task Activity processes complete, click **DOWNLOAD ZIP FILE**.
 
@@ -139,7 +138,7 @@ preferred procedure for uploading the generated project files to a Git repositor
     ```console
     tanzu apps workload create functions-accelerator-python \
     --local-path . \
-    --source-image REGISTRY/IMAGE:TAG \
+    --source-image SOURCE-IMAGE \
     --type web \
     --yes
     --namespace YOUR-DEVELOPER-NAMESPACE
@@ -147,15 +146,11 @@ preferred procedure for uploading the generated project files to a Git repositor
 
     Where:
 
-    - `--source-image` is a writable repository in your registry.
-
-    Harbor has the form: "my-harbor.io/my-project/functions-accelerator-python".
-
-    Docker Hub has the form: "my-dockerhub-user/functions-accelerator-python".
-
-    Google Cloud Registry has the form: "gcr.io/my-project/functions-accelerator-python".
-
-    - Where YOUR-DEVELOPER-NAMESPACE is the namespace configured earlier.
+    - `SOURCE-IMAGE` is a writable repository in your registry in the form `REGISTRY/IMAGE:TAG`.
+      - Harbor has the form: "my-harbor.io/my-project/functions-accelerator-python".
+      - Docker Hub has the form: "my-dockerhub-user/functions-accelerator-python".
+      - Google Cloud Registry has the form: "gcr.io/my-project/functions-accelerator-python".
+    - `YOUR-DEVELOPER-NAMESPACE` is the namespace you configured earlier.
 
 1. View the build and runtime logs for your application by running the tail command:
 
@@ -163,23 +158,27 @@ preferred procedure for uploading the generated project files to a Git repositor
     tanzu apps workload tail functions-accelerator-python --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
+    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
+
 1. After the workload is built and running, you can view the web application in your browser.
-To view the URL of the web application, run the following command and then ctrl-click
+To view the URL of the web application, run the following command and then **ctrl-click**
 the Workload Knative Services URL at the bottom of the command output.
 
     ```console
     tanzu apps workload get functions-accelerator-python --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
-<!-- find out what the below section is about -->
-For other methods, you must use more advanced REST API testing utilities, such cURL.
-The cURL command example below assumes that cURL is installed on your computer.
+    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
-For languages that support the REST API, see [Supported languages and framework](#supportedlangs) earlier in this topic.
+1. (Optional) You can test your function using a curl command. Java function POST example:
 
- Java Function POST example
- ```console
- curl -w'\n' URL_FROM_YOUR_WORKLOAD_KNATIVE_SERVICES_SECTION \
- -H "Content-Type: application/json" \
- -d '{"firstName":"John", "lastName":"Doe"}'
-  ```
+   ```console
+   curl -w'\n' URL-FROM-YOUR-WORKLOAD-KNATIVE-SERVICES-SECTION \
+   -H "Content-Type: application/json" \
+   -d '{"firstName":"John", "lastName":"Doe"}'
+   ```
+
+   For language support for the REST API, see [Supported languages and frameworks](#supportedlangs)
+   earlier in this topic.
+
+   > **Note:** You must have curl installed on your computer.
