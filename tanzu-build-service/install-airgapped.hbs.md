@@ -25,10 +25,10 @@ Approximately 10&nbsp;GB of registry space is required when using the `full` dep
 
 - Your Docker registry must be accessible with user name and password credentials.
 
-## <a id='DeprecatedFeatures'></a> Deprecated Features
+## <a id='deprecated-features'></a> Deprecated Features
 
-* The (legacy) CNB BOM format is deprecated, but is enabled by default in TBS. Support can be disabled manually by
-  adding `include_legacy_bom=false` to your `tbs-values.yml` file.
+**The Cloud Native Buildpack Bill of Materials (CNB BOM) format:** For more information, see
+[Deactivate the CNB BOM format](install.md#deactivate-cnb-bom).
 
 ## <a id='tbs-offline-install-package'></a> Install the Tanzu Build Service package
 

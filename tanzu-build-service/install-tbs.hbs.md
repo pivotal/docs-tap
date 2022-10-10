@@ -24,10 +24,11 @@ Approximately 10&nbsp;GB of registry space is required when using the `full` dep
 
 - Your Docker registry must be accessible with user name and password credentials.
 
-## <a id='DeprecatedFeatures'></a> Deprecated Features
+## <a id='deprecated-features'></a> Deprecated Features
 
-* The (legacy) CNB BOM format is deprecated, but is enabled by default in TBS. Support can be disabled manually by
-  adding `include_legacy_bom=false` to your `tbs-values.yml` file.
+- **Automatic dependency updates:** For more information, see [Configure automatic dependency updates](#auto-updates-config).
+- **The Cloud Native Buildpack Bill of Materials (CNB BOM) format:** For more information, see [Deactivate the CNB BOM format](#deactivate-cnb-bom).
+
 
 ## <a id='tbs-tcli-install'></a> Install the Tanzu Build Service package
 
@@ -360,3 +361,10 @@ For more information, see [Descriptors](dependencies.md#descriptors).
 Available options are:
   - `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
   - `full` is optimized to speed up builds and includes dependencies for all supported workload types.
+
+## <a id='deactivate-cnb-bom'></a> (Optional) Deactivate the CNB BOM format
+
+The legacy CNB BOM format is deprecated, but is enabled by default in Tanzu Application Platform.
+
+To manually deactivate the format, add `include_legacy_bom=false` to either the `tbs-values.yaml` file,
+or to the `tap-values.yaml` file under the `buildservice` section.
