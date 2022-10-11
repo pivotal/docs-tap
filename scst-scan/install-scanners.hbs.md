@@ -1,19 +1,20 @@
-# Installing Scanners for Supply Chain Security Tools - Scan
+# Install another scanner for Supply Chain Security Tools - Scan
 
 This topic describes how to install scanners to work with Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
 
+Follow the below instructions to install a scanner other than the out of the box Grype Scanner.
+
 ## <a id="prerecs"></a> Prerequisites
 
-Before installing a new scanner:
-
-- Install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan are also required.
-- Complete [scanner specific prerequisites](available-scanners.hbs.md) for the scanner you're trying to install. For example, creating an API token to connect to the scanner.
+Before installing a new scanner, install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan are also required.
 
 ## <a id="installation"></a> Install
 
 To install a new scanner, follow these steps:
-
-1. List the available packages to discover what scanners you can use by running:
+1. Complete scanner specific prerequisites for the scanner you're trying to install. For example, creating an API token to connect to the scanner.
+   - [Snyk Scanner (Beta)](install-snyk-integration.hbs.md) - available for image scanning
+   - [Carbon Black Scanner (Beta)](install-carbonblack-integration.hbs.md) - available for image scanning
+2. List the available packages to discover what scanners you can use by running:
 
     ```console
     tanzu package available list --namespace tap-install
@@ -30,7 +31,7 @@ To install a new scanner, follow these steps:
       carbonblack.scanning.apps.tanzu.vmware.com           Carbon Black Scanner for Supply Chain Security Tools - Scan               Default scan templates using Carbon Black
     ```
 
-2. List version information for the scanner package by running:
+3. List version information for the scanner package by running:
     ```console
     tanzu package available list SCANNER-NAME --namespace tap-install
     ```
@@ -43,11 +44,11 @@ To install a new scanner, follow these steps:
       snyk.scanning.apps.tanzu.vmware.com   1.0.0-beta.2
     ```
 
-3. (Optional) Create the secrets the scanner package relies on:
+4. (Optional) Create the secrets the scanner package relies on:
 
     Take a look at the [Available Scanners Docs](available-scanners.hbs.md) to look at the specifics for your chosen scanner.
 
-4. Create a `values.yaml` to apply custom configurations to the scanner:
+5. Create a `values.yaml` to apply custom configurations to the scanner:
 
     > **Note:** This step might be required for some scanners but optional for others.
 
@@ -82,7 +83,7 @@ To install a new scanner, follow these steps:
     targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry.
     ```
 
-5. Define the `--values-file` flag to customize the default configuration:
+6. Define the `--values-file` flag to customize the default configuration:
 
     The `values.yaml` file you created earlier is referenced with the `--values-file` flag when running your Tanzu install command:
 
