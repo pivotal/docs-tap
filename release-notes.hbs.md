@@ -227,6 +227,10 @@ This release has the following breaking changes, listed by area and component.
 - The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern,
   instead of `<providerId>/<userId>`. See [Misconfigured `sub` claim](app-sso/service-operators/troubleshooting.md#sub-claim) for more information.
 
+#### <a id="app-live-view-changes"></a> Application Live View
+
+- In a multi-cluster setup, if `shared.ingress_domain` is configured, `ingressEnabled` flag in the backend is no longer set to `true` automatically. The user has to explicitly set `ingressEnabled` to `true` in order to create HTTPProxy and establish the communication between backend and connector.
+
 ### <a id='1-3-resolved-issues'></a> Resolved issues
 
 #### <a id="1-3-upgrade-issues"></a>Upgrading Tanzu Application Platform
