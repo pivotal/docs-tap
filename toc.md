@@ -3,7 +3,7 @@
 This is the table of contents from which the Tanzu Application Platform Documentation site on
 docs.vmware.com is built.
 
-- [Tanzu Application Platform v1.3](overview.md)
+- [Tanzu Application Platform v1.4](overview.md)
   - [About Tanzu Application Platform components and profiles](about-package-profiles.md)
 - [Release notes](release-notes.md)
 - [Installing Tanzu Application Platform](install-intro.md)
@@ -33,6 +33,9 @@ docs.vmware.com is built.
       - [Installing Individual Packages](install-components.md)
       - [Setting up developer namespaces to use installed packages](set-up-namespaces-aws.md)
       - [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md)
+  - [Installing Tanzu Application Platform on OpenShift clusters](install-openshift.md)
+      - [Application Live View on OpenShift](app-live-view/configuring-apps/openshift.md)
+      - [AppSSO on OpenShift](app-sso/platform-operators/openshift.md))
   - [Customizing package installation](customize-package-installation.md)
   - [Upgrading Tanzu Application Platform](upgrading.md)
   - [Opting out of telemetry collection](opting-out-telemetry.md)
@@ -233,7 +236,7 @@ docs.vmware.com is built.
             - [Custom configuration for the connector](app-live-view/configuring-apps/configuring-app-for-connector.md)
             - [Custom configuration for application actuator endpoints](app-live-view/configuring-apps/configuring-actuator.md)
             - [Scaling Knative apps in Tanzu Application Platform](app-live-view/configuring-apps/scaling-applications.md)
-            - [Application Live View on Openshift](app-live-view/configuring-apps/openshift.md)
+            - [Application Live View on OpenShift](app-live-view/configuring-apps/openshift.md)
         - [Supporting polyglot apps](app-live-view/polyglot.md)
         - [Internal architecture](app-live-view/architecture.md)
         - [Troubleshooting](app-live-view/troubleshooting.md)
