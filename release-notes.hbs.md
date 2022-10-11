@@ -327,7 +327,7 @@ For more information, see [Troubleshooting](app-live-view/troubleshooting.hbs.md
 **Redirect URIs change to http instead of https:**
 
 AppSSO makes requests to external identity providers with `http` rather than `https`.
-For more information, see [Troubleshoot AppSSO](app-sso/troubleshoot.md).
+For more information, see [Redirect URIs change to http instead of https](app-sso/known-issues/cidr-ranges.md).
 
 #### <a id="cnrs-issues"></a> Cloud Native Runtimes
 
