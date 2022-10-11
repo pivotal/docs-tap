@@ -141,8 +141,8 @@ credentials for the writable repository in your registry (`kp_default_repository
 
     ```console
     tanzu secret registry add kp-default-repository-creds \
-      --username "${INSTALL_REGISTRY_USERNAME}" \
-      --password "${INSTALL_REGISTRY_PASSWORD}" \
+      --username "${USERNAME}" \
+      --password "${PASSWORD}" \
       --server "${SERVER-NAME}" \
       --namespace tap-install
     ```
@@ -150,10 +150,10 @@ credentials for the writable repository in your registry (`kp_default_repository
    Where:
 
    - `USERNAME` and `PASSWORD` are the user name and password for the user that can write to the
-   `KP-DEFAULT-REPOSITORY` used at install time.
+   repository in your registry to use for installation ( `kp_default_repository`).
    For Google Cloud Registry, use `_json_key` as the user name, and the contents of
    the service account JSON file for the password.
-   - `SERVER-NAME` is the host name of the registry server for the `KP-DEFAULT-REPOSITORY`. Examples:
+   - `SERVER-NAME` is the host name of the registry server for the `kp_default_repository`. Examples:
        - Harbor has the form `server: "my-harbor.io"`.
        - Docker Hub has the form `server: "index.docker.io"`.
        - Google Cloud Registry has the form `server: "gcr.io"`.
@@ -179,7 +179,7 @@ credentials for the writable repository in your registry (`kp_default_repository
       - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`
 
-1. To apply this configuration, continue the installation steps.
+2. To apply this configuration, continue the installation steps.
 
 ### <a id='tbs-tcli-install-ecr'></a> Use AWS IAM authentication for registry credentials
 
