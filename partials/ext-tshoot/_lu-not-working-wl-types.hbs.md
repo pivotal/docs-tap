@@ -16,5 +16,5 @@ Go to the project's `Tiltfile`, look for the `k8s_resource` line, and modify the
 parameter to use any pod selector that matches your workload. For example:
 
 ```code
-extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]
+extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run'}]
 ```
