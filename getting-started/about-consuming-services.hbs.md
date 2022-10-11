@@ -36,7 +36,7 @@ The following list of Kubernetes operators expose APIs that integrate well with 
 Compatibility of a service with Tanzu Application Platform ranges on a scale
 between fully compatible and incompatible. The minimum requirement for compatibility is that there must be a declarative,
 Kubernetes-based API on which at least one API resource type adheres to the
-[Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) 
+[Provisioned Service](https://github.com/servicebinding/spec#provisioned-service)
 duck type defined by the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec) in GitHub. This duck type includes any resource type with the following schema:
 
 ```yaml
@@ -57,8 +57,8 @@ For services that do not provide a resource adhering to the Service Binding Spec
 be possible to provide configurations allowing such services to integrate with Tanzu Application Platform. See the following
 for examples of how to do this for Amazon AWS RDS.
 
-* [Consuming AWS RDS on Tanzu Application Platform (TAP) with AWS Controllers for Kubernetes (ACK)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html)
-* [Consuming AWS RDS on Tanzu Application Platform (TAP) with Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html)
+* [Consuming AWS RDS on Tanzu Application Platform (TAP) with AWS Controllers for Kubernetes (ACK)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html)
+* [Consuming AWS RDS on Tanzu Application Platform (TAP) with Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html)
 
 ## <a id="stk-user-roles"></a> User roles and responsibilities
 
