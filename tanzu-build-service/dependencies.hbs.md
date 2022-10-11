@@ -48,7 +48,8 @@ Tanzu Application Platform v1.3 supports Ubuntu v22.04 (Jammy) based builds.
 Ubuntu Bionic will stop receiving support in April 2023.
 VMware recommends that you migrate builds to Jammy.
 
-For more information, see the [Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html#upgrading-stack-for-apps#buildpack-support-for-stacks). <!-- I can't find this section in the buildpack docs -->
+For more information about support for Jammy stacks, see
+[About lite and full dependencies](#lite-vs-full) later in this topic.
 
 ### <a id="using-jammy"></a> Use Jammy stacks for a workload
 
