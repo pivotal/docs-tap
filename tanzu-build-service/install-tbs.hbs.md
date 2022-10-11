@@ -191,7 +191,7 @@ credentials for the writable repository in your registry (`kp_default_repository
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
-    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
+    >**Note:** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
@@ -224,7 +224,7 @@ registry used when installing Tanzu Application Platform.
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
-    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
+    >**Note:** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
@@ -274,7 +274,7 @@ To install `full` Tanzu Build Service dependencies:
 1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
  to your `tbs-values.yaml` file. For example:
 
-    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
+    >**Note:** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
@@ -338,7 +338,7 @@ For more information about automatic dependency updates, see [About automatic de
 
 To configure automatic dependency updates, add the following to the contents of your `tbs-values.yaml`:
 
->**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
+>**Note:** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
 >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
 ```yaml
