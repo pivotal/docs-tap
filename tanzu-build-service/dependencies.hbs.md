@@ -114,8 +114,8 @@ The `lite` dependencies contain the following buildpacks in Tanzu Application Pl
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
-| Java Buildpack for VMware Tanzu (Lite) | 7.2.0 | Bionic, Jammy |
-| Java Native Image Buildpack for Tanzu (Lite) | 6.28.0 | Bionic, Jammy |
+| Java Buildpack for VMware Tanzu (Lite) | 7.5.0 | Bionic, Jammy |
+| Java Native Image Buildpack for Tanzu (Lite) | 6.31.0 | Bionic, Jammy |
 | .NET Core Buildpack for VMware Tanzu (Lite) | 1.18.1 | Bionic, Jammy |
 | Node.js Buildpack for VMware Tanzu (Lite) | 1.16.0 | Bionic, Jammy |
 | Python Buildpack for VMware Tanzu (Lite) | 2.1.2 | Bionic, Jammy |
@@ -160,8 +160,8 @@ The `full` dependencies contain the following buildpacks in Tanzu Application Pl
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
-| Java Buildpack for VMware Tanzu | 7.2.0 | Bionic, Jammy |
-| Java Native Image Buildpack for Tanzu | 6.28.0 | Bionic, Jammy |
+| Java Buildpack for VMware Tanzu | 7.5.0 | Bionic, Jammy |
+| Java Native Image Buildpack for Tanzu | 6.31.0 | Bionic, Jammy |
 | .NET Core Buildpack for VMware Tanzu | 1.18.1 | Bionic, Jammy |
 | Node.js Buildpack for VMware Tanzu | 1.16.0 | Bionic, Jammy |
 | Python Buildpack for VMware Tanzu | 2.1.2 | Bionic, Jammy |
