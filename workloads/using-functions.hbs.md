@@ -1,18 +1,18 @@
 # Using functions (Beta)
 
-This topic describes how to create and deploy an HTTP or CloudEvent function from an application accelerator starter template.
+This topic describes how to create and deploy an HTTP or CloudEvent function from an Application Accelerator starter template.
 
 ## <a id="overview"></a> Overview
 
-The function experience on Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap their function and write only the code that matters to your business. Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
+The function experience on Tanzu Application Platform enables developers to deploy functions, use starter templates to bootstrap their function, and write only the code that matters to your business. Developers can run a single CLI command to deploy their functions to an auto-scaled cluster.
 
 Functions provide a quick way to get started writing an application. Compared with a traditional application:
 
-* Functions have a single entry-point and perform a single task. This means that functions can be easier to understand and monitor.
+- Functions have a single entry-point and perform a single task. This means that functions can be easier to understand and monitor.
 
-* The webserver is managed by the function buildpack. This means that you can focus on your code or business logic.
+- The function buildpack manages the webserver. This means that you can focus on your code or business logic.
 
-* A traditional webserver application might be a better fit if you want to implement an entire website or API in a single container
+- A traditional webserver application might be a better fit if you want to implement an entire website or API in a single container
 
 > **Important:** Beta features have been tested for functionality, but not performance.
 > Features enter the beta stage so that customers can gain early access, and give
@@ -21,7 +21,7 @@ Functions provide a quick way to get started writing an application. Compared wi
 > VMware discourages running beta features in production.
 > VMware cannot guarantee that you can upgrade any beta feature in the future.
 
-## <a id="supportedlangs"></a> Supported languages and frameworks
+### <a id="supportedlangs"></a> Supported languages and frameworks
 
 For HTTP and CloudEvents:
 
@@ -43,12 +43,13 @@ For REST API:
 
 Before using function workloads on Tanzu Application Platform, complete the following prerequisites:
 
-* Follow all instructions in [Installing Tanzu Application Platform](../install-intro.md).
+- Follow all instructions in [Installing Tanzu Application Platform](../install-intro.md).
 
-* Follow all instructions in [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
-
+- Follow all instructions in [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
 
 ## <a id="create-function-proj-acc"></a> Create a function project from an accelerator
+
+To create a function project from an accelerator:
 
 1. From the Tanzu Application Platform GUI portal, click **Create** on the left navigation bar to see the list of available accelerators.
 
@@ -75,7 +76,7 @@ Before using function workloads on Tanzu Application Platform, complete the foll
 From the CLI, you can generate a function project using an accelerator template,
 then download the project artifacts as a ZIP file.
 
-1. Validate that you have added the function accelerator template to the application accelerator server by running:
+1. Verify that you have added the function accelerator template to the application accelerator server by running:
 
      ```console
     tanzu accelerator list
@@ -133,6 +134,8 @@ preferred procedure for uploading the generated project files to a Git repositor
 
 ## <a id="deploy-function"></a> Deploy your function
 
+To deploy and verify your function:
+
 1. Deploy the function accelerator by running the `tanzu apps workload` create command:
 
     ```console
@@ -152,7 +155,7 @@ preferred procedure for uploading the generated project files to a Git repositor
       - Google Cloud Registry has the form: "gcr.io/my-project/functions-accelerator-python".
     - `YOUR-DEVELOPER-NAMESPACE` is the namespace you configured earlier.
 
-1. View the build and runtime logs for your application by running the tail command:
+1. View the build and runtime logs for your application by running the `tail` command:
 
     ```console
     tanzu apps workload tail functions-accelerator-python --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
