@@ -12,7 +12,7 @@ This release includes the following changes, listed by component and area.
 
 - API Auto Registration is a new package that supports dynamic registration of API from workloads into Tanzu Application Platform GUI.
 - Supports Async API, GraphQL, gRPC and OpenAPI.
-- Enhanced support for OpenAPI 3 to validate the spec and update the servers URL section.
+- Enhanced support for OpenAPI 3 to validate the specification and update the servers URL section.
 - Custom Certificate Authority (CA) certificates are supported.
 
 #### <a id="app-acc-features"></a> Application Accelerator
@@ -236,7 +236,7 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="app-acc-resolved"></a> Application Accelerator
 
 - Controller
-  - Importing a non-ready fragment should propagate non-readyness.
+  - Importing a non-ready fragment propagates non-readyness.
   - DependsOn from fragments are no longer "lost" when imported.
 - Engine
   - OpenRewriteRecipe updates: Unrecognized Recipe properties now trigger an explicit error.
@@ -248,7 +248,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Policy Controller
 
-- Pods deployed through `kubectl run` in non-default namespace are now able to build the neccessary keychain for registry access during validation.
+- Pods deployed through `kubectl run` in non-default namespace can now build the neccessary keychain for registry access during validation.
 
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
@@ -260,7 +260,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="source-controller-resolved"></a> Source Controller
 
-- Added checks to ensure SNAPSHOT has versioning enabled.
+- Added checks to ensure that SNAPSHOT has versioning enabled.
 - Fixed resource status conditions when metadata or metadata element is not found.
 
 #### <a id="tap-gui-resolved"></a>Tanzu Application Platform GUI
@@ -296,11 +296,11 @@ This occurs if the version of the `aws-cli` is less than the supported version, 
 
 #### <a id="api-auto-registration-known-issues"></a>API Auto Registration
 
-**Valid OpenAPI v2 specs that use `schema.$ref` currently fail validation:**
+**Valid OpenAPI v2 specifications that use `schema.$ref` currently fail validation:**
 
-If using an OpenAPI v2 spec with this field, consider converting to OpenAPI v3.
+If using an OpenAPI v2 specification with this field, consider converting to OpenAPI v3.
 For more information, see [Troubleshooting](api-auto-registration/troubleshooting.hbs.md).
-All other spec types and OpenAPI v3 specs are unaffected.
+All other specification types and OpenAPI v3 specifications are unaffected.
 
 #### <a id="app-acc-known-issues"></a>Application Accelerator
 
@@ -331,7 +331,7 @@ For more information, see [Redirect URIs change to http instead of https](app-ss
 
 #### <a id="cnrs-issues"></a> Cloud Native Runtimes
 
-**Failure to successfully deploy workloads on `run` cluster in multicluster setup on Openshift:**
+**Failure to deploy workloads on `run` cluster in multicluster setup on Openshift:**
 
 When creating a workload from a Deliverable resource, it may not create and instead result in the following error:
 
@@ -417,7 +417,7 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
 
 - **Starting debug and live update sessions is synchronous:**
 
-  When a user runs or debugs a launch configuration, IntelliJ disables the launch controls to prevent
+  When a user runs or debugs a launch configuration, IntelliJ deactivates the launch controls to prevent
   other launch configurations from being launched at the same time.
   These controls are reactivated when the launch configuration is started.
   As such, starting multiple Tanzu debug and live update sessions is a synchronous activity.
