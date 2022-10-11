@@ -8,7 +8,11 @@ This topic contains release notes for Tanzu Application Platform v1.3.
 
 ### <a id='1-3-new-features'></a> New features
 
-This release includes the following changes, listed by component and area.
+This release includes the following changes to Tanzu Application Platform and its components:
+
+#### <a id="tap-features"></a> Tanzu Application Platform
+
+Tanzu Application Platform now supports OpenShift and Kubernetes 1.24.
 
 #### <a id="api-auto-registration-features"></a> API Auto Registration
 
@@ -104,8 +108,6 @@ See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integrat
 - Optimized 'MavenArtifact' artifact download during interval sync.
   - Only after the SHA on the Maven Repository has changed can the source controller download the artifact. Otherwise, the download is skipped.
 - Added routine to reset `ImageRepository` condition status between reconciles.
-- Added support for OpenShift.
-- Added support for Kubernetes 1.24.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
@@ -198,8 +200,6 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 #### <a id="srvc-toolkit-features"></a> Services Toolkit
 
-- Added support for Openshift.
-- Added support for Kubernetes 1.24.
 - Created documentation and reference Service Instance Packages for new Cloud Service Provider integrations:
   - [Azure Flexible Server (Postgres) by using the Azure Service Operator](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_flexibleserver_psql_with_azure_operator.html).
   - [Azure Flexible Server (Postgres) by using Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_database_with_crossplane.html).
@@ -346,7 +346,7 @@ For more information, see [Redirect URIs change to http instead of https](app-ss
 
 #### <a id="cnrs-issues"></a> Cloud Native Runtimes
 
-**Failure to deploy workloads on `run` cluster in multicluster setup on Openshift:**
+**Failure to deploy workloads on `run` cluster in multicluster set up on OpenShift:**
 
 When creating a workload from a Deliverable resource, it may not create and instead result in the following error:
 
