@@ -1,6 +1,6 @@
 # Redirect URIs change to http instead of https
 
-## Issue description
+**Description**
 
 AppSSO makes requests to external identity providers with `http` rather than `https`.
 
