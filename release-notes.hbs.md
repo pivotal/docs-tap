@@ -166,8 +166,16 @@ See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integrat
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
-- Added **Tanzu Problems** panel to show workload status errors inside the IDE.
+- Tanzu Developer tools for VSCode are now supported on Windows OS
+- Ability to run multiple Debug and Live update sessions for applications with multiple micros services both in mono repo based applications and applications with each micro services in its own repository
+- Tanzu Context Menu actions are now available when you right click on any file in the project and not just workload.yaml or tiltfile
+- Added Tanzu Problems panel to show workload status errors inside the IDE.
+- Debug and live update is enabled by default with workload apply which makes live update experience faster in VSCode
 
+#### <a id="dev-tls-intellij-features"></a>Tanzu Developer Tools for IntelliJ
+- Tanzu Developer tools for IntelliJ are now supported on Windows OS
+- Tanzu Workload panel has been added to IntelliJ. The panel shows the current status of each workload, namespace, and cluster. It also shows whether Live Update and Debug are running, stopped, or disabled.
+- Ability to run multiple Debug and Live update sessions for applications with multiple micros services both in mono repo based applications and applications with each micro services in its own repository
 #### <a id="functions-features"></a> Functions (beta)
 
 - Functions Java and Python buildpack are included in Tanzu Application Platform 1.3.
