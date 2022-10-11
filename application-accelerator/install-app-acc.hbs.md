@@ -141,7 +141,7 @@ To install Application Accelerator:
     - Package install status: Reconciling
 
      Added installed package 'app-accelerator' in namespace 'tap-install'
-    ```<!--฿ If this is a command to run and it has a version number, consider replacing the version number with an HBS variable, such as {{ vars.tap_version }}. ฿-->
+    ```
 
 5. Verify the package install by running:
 
