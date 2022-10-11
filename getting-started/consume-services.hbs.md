@@ -190,7 +190,7 @@ There are more service use cases not covered in this getting started guide. See 
 </table>
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
-[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-overview.html).
+[Services Toolkit Component documentation](https://docs-staging.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-overview.html).
 
 ## Next steps
 
