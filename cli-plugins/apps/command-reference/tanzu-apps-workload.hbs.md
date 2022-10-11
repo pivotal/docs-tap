@@ -19,8 +19,8 @@ Workload configuration includes:
 
 ## <a id="envvars"></a>Environment variables with default values
 
-There are some environment variables that can be specify to have default values so users can execute their commands with the minimum required flags. 
-These flags and its naming convention are listed below:
+There are some environment variables that can be specified to have default values so users can execute their commands with the minimum required flags.
+These flags and naming convention are as follows:
 
 - `--type`: TANZU_APPS_TYPE
 - `--registry-ca-cert`: TANZU_APPS_REGISTRY_CA_CERT
