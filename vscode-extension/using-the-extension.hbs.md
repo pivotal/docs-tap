@@ -198,7 +198,7 @@ To Live Update multiple apps in a microservice repository:
 
    ```bazel
    k8s_resource('tanzu-java-web-app', port_forwards=["NUMBER:8080"],
-               extra_pod_selectors=[{'serving.knative.dev/service': 'tanzu-java-web-app'}])
+               extra_pod_selectors=[{'carto.run/workload-name': 'tanzu-java-web-app', 'app.kubernetes.io/component': 'run'}])
    ```
 
    Where `NUMBER` is the port you choose. For example, `port_forwards=["9999:8080"]`.
