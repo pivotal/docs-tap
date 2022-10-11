@@ -17,8 +17,6 @@ You can view the issuer URI by running
 
 See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more information.
 
->**Note:** You must configure the issuer URI through `spec.tls` instead of `spec.issuerURI`, which is deprecated.
-
 Token signature keys are configured through `spec.tokenSignature`. This is a required field. See
 [token signature](../service-operators/token-signature.md) for more context.
 
@@ -75,7 +73,6 @@ spec:
     secretRef:
       name: ""
     disabled: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`
-  issuerURI: "" # DEPRECATED and marked for removal. Use .tls instead.
   tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""
@@ -150,7 +147,6 @@ status:
   tokenSignatureKeyCount: 0
   deployments:
     authServer:
-      LastParentGenerationWithRestart: 0 # DEPRECATED and marked for removal.
       configHash: ""
       image: ""
       replicas: 0
