@@ -271,7 +271,7 @@ k8s_custom_deploy(
 )
 
 k8s_resource('APP-NAME', port_forwards=["8080:8080"],
-   extra_pod_selectors=[{'serving.knative.dev/service': 'APP-NAME'}])
+   extra_pod_selectors=[{'carto.run/workload-name': 'APP-NAME', 'app.kubernetes.io/component': 'run'}])
 allow_k8s_contexts('CONTEXT-NAME')
 ```
 
