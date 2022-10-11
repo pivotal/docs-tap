@@ -1,5 +1,21 @@
 # Release notes
 
+{{#unless vars.hide_content}}
+This Handlebars condition is used to hide content.
+In release notes, this condition hides content that describes an unreleased patch for a released minor.
+{{/unless}}
+This topic contains release notes for Tanzu Application Platform v1.3
+
+## <a id='1-3-1'></a> v1.3.1
+
+**Release Date**: November 15, 2022
+
+### <a id='1-3-1-security-fixes'></a> Security fixes
+
+### <a id='1-3-1-new-features'></a> Resolved issues
+
+### <a id='1-3-1-known-issues'></a> Known issues
+
 ## <a id='1-3-0'></a> v1.3.0
 
 **Release Date**: October 11, 2022
