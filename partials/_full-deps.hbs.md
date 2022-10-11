@@ -15,7 +15,7 @@ To install `full` dependencies:
       --to-tar=tbs-full-deps.tar
     # move tbs-full-deps.tar to environment with registry access
     imgpkg copy --tar tbs-full-deps.tar \
-      --to-repo=INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/tbs-full-deps:VERSION
+      --to-repo=INSTALL-REGISTRY-HOSTNAME/TARGET-REPOSITORY/tbs-full-deps
     ```
 
     Where:
