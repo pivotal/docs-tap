@@ -181,8 +181,7 @@ credentials for the writable repository in your registry (`kp_default_repository
 
    Where:
 
-   - `USERNAME` and `PASSWORD` are the user name and password for the user that can write to the
-   repository in your registry to use for installation ( `kp_default_repository`).
+   - `USERNAME` and `PASSWORD` are the user name and password for the user that can write to the `kp_default_repository`.
    For Google Cloud Registry, use `_json_key` as the user name, and the contents of
    the service account JSON file for the password.
    - `SERVER-NAME` is the host name of the registry server for the `kp_default_repository`. Examples:
