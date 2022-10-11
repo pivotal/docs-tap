@@ -211,7 +211,7 @@ credentials for the writable repository in your registry (`kp_default_repository
       - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`
 
-1. Apply this configuration by continuing the steps in [Install the Tanzu Build Service package](#tbs-tcli-install).
+1. To apply this configuration, continue the installation steps.
 
 ### <a id='tbs-tcli-install-ecr'></a> Use AWS IAM authentication for registry credentials
 
