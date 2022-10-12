@@ -14,11 +14,11 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 
 ### Symptom
 
-When a user runs or debugs a launch configuration, IntelliJ disables the launch controls.
+When a user runs or debugs a launch configuration, IntelliJ deactivates the launch controls.
 
 ### Cause
 
-IntelliJ disables the launch controls to prevent other launch configurations from being launched at
+IntelliJ deactivates the launch controls to prevent other launch configurations from being launched at
 the same time.
 These controls are reactivated when the launch configuration is started.
 As such, starting multiple Tanzu debug and live update sessions is a synchronous activity.
