@@ -363,4 +363,4 @@ For information about learning how to handle these vulnerabilities and unblock y
 
 ## <a id="scan-images-using-different-scanner"></a> Scan Images using a different scanner
 
-[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integrations for running an image scan using Snyk and VMware Carbon Black. For information about how to install these integrations and how to edit the supply chain template, see [Available Scanners for Supply Chain Security Tools - Scan](../scst-scan/available-scanners.hbs.md).
+[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integrations for running an image scan using Snyk and VMware Carbon Black.
