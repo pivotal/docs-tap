@@ -46,8 +46,6 @@ To install a new scanner, follow these steps:
 
 4. (Optional) Create the secrets the scanner package relies on:
 
-    Take a look at the [Available Scanners Docs](available-scanners.hbs.md) to look at the specifics for your chosen scanner.
-
 5. Create a `values.yaml` to apply custom configurations to the scanner:
 
     > **Note:** This step might be required for some scanners but optional for others.
@@ -130,7 +128,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
    ```console
     kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
   ```
-> **Note:** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For more information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md) and [Available Scanners Docs](available-scanners.hbs.md).
+> **Note:** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For more information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
 
 1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed:
 
@@ -154,7 +152,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 2. Create the following ImageScan YAML:
 
-    > **Note:** Some scanners do not support both `ImageScan` and `SourceScan`. See the [Available Scanners Docs](available-scanners.hbs.md).
+    > **Note:** Some scanners do not support both `ImageScan` and `SourceScan`.
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -189,7 +187,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 3. Create the following SourceScan YAML:
 
-    > **Note:** Some scanners do not support both `ImageScan` and `SourceScan`. See the [Available Scanners Docs](available-scanners.hbs.md).
+    > **Note:** Some scanners do not support both `ImageScan` and `SourceScan`.
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
