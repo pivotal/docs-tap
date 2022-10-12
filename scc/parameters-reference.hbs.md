@@ -1,13 +1,13 @@
 # Workload Parameters reference
 
 The supply chains and templates provided by the Out of the Box packages contain
-a series of parameters that customize their behavior. Here you'll find a list
-of all the parameters (`workload.spec.params`) that can be configured in
+a series of parameters that customize their behavior. Here you will find a list
+of all the parameters (`workload.spec.params`) that is configured in
 Workload objects to affect their behavior, broken down by the resource in the
-supply chain where they're utilized.
+supply chain where they are utilized.
 
 
-> **Note:** this page documents the parameters according to the most complete
+> **Note:** this topic documents the parameters according to the most complete
 > supply chain (`ootb-supply-chain-testing-scanning`) as the other supply
 > chains are subsets of this.
 
@@ -67,15 +67,14 @@ documentation:
 ## source provider
 
 The `source-provider` resource in the supply chain is responsible for creating
-objects that will fetch either source code or pre-compiled java applications
-depending how the Workload is configured (see [Building from
-Source](scc/building-from-source.hbs.md)).
-
+objects that fetch either source code or pre-compiled Java applications
+depending how the Workload is configured. See [Building from
+Source](scc/building-from-source.hbs.md).
 
 ### GitRepository
 
-Used when fetching source code from git repositories, it makes available to
-further resources in the supply chain the contents of the git repository as a
+Used when fetching source code from Git repositories, it makes available to
+further resources in the supply chain the contents of the Git repository as a
 tarball available inside the cluster.
 
 Parameters:
@@ -90,7 +89,7 @@ Parameters:
   <tr>
     <td><code>gitImplementation<code></td>
     <td>
-      Underlying library that should be used for fetching the source code.
+      VMware reccomends that you use the underlying library for fetching the source code.
       Either <code>libggit2</code> (required for Azure DevOps) or
       <code>go-git</code>.
     </td>
@@ -106,7 +105,7 @@ Parameters:
     <td><code>gitops_ssh_secret<code></td>
     <td>
       Name of the secret in the same namespace as the `Workload` to use for
-      providing credentials for fetching source code from the git repository.
+      providing credentials for fetching source code from the Git repository.
       See ([Git authentication](scc/git-auth)) for details.
     </td>
     <td>
@@ -118,29 +117,27 @@ Parameters:
   </tr>
 </table>
 
-> **Note:** it's typically not necessary to change the default git
+> **Note:** It's typically not necessary to change the default Git
 > implementation, but some providers (Azure DevOps, for instance) require the
 > use of `libgit2` due to the server-side implementation providing support
 > solely for [git's v2 protocol](https://git-scm.com/docs/protocol-v2). See
-> [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation)
-> for a breakdown of the features supported by each implementation.
+> [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) for a breakdown of the features supported by each implementation.
 
+For information about how to create a Workload that uses a GitHub
+repository as the provider of source code, see [Create a workload from GitHub
+repository](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
 
-See [Create a workload from GitHub
-repository](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository)
-for an example of how to create a Workload that makes use of a GitHub
-repository as the provider of source code, and
-[GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/) for
-reference documentation on GitRepository objects.
-
+For reference documentation on GitRepository objects, see
+[GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
 
 ### ImageRepository
 
-Used when fetching source code from container images (see [Create a workload
-from local source code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code)),
-it makes available to further resources in the supply chain the contents of the
-container image as a tarball that can be fetched liked any other source
-provider (git or maven).
+You use ImageRepository when fetching source code from container images. It
+makes the contents of the container image available as a tarball to further
+resources in the supply chain. The contents of the container image
+are fetched liked any other source
+provider, by using git or maven. See [Create a workload
+from local source code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
 
 Parameters:
 
@@ -168,16 +165,14 @@ Parameters:
 
 </table>
 
-See [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository) for details about the
-custom resource and [Create a workload from local source
-code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code)
-for an example of how to make use of it leveraging the Tanzu CLI.
+For information about custom resource details, see [ImageRepository reference
+docs](source-controller/reference.hbs.md#imagerepository). 
+
+For information about how to use ImageRepository with the Tanzu CLI [Create a workload from local source code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
 
 > **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
-
 
 ### MavenArtifact
 
@@ -217,19 +212,19 @@ Parameters:
   </tr>
 </table>
 
-See [MavenArtifact reference
-docs](source-controller/reference.hbs.md#mavenartifact) for details about the
-custom resource, and [Create a Workload from Maven repository
-artifact](cli-plugins/apps/create-workload.hbs.md#workload-maven) for an
-example of how to make use of it with the `tanzu apps workload` CLI plugin.
+For information about the
+custom resource, see [MavenArtifact reference
+docs](source-controller/reference.hbs.md#mavenartifact).
 
+For information about how to use the custom resource with the `tanzu apps workload` CLI plug-in [Create a Workload from Maven repository
+artifact](cli-plugins/apps/create-workload.hbs.md#workload-maven).
 
 ## source-tester
 
 The `source-tester` resource (part of `ootb-supply-chain-testing` as well as
 `ootb-supply-chain-testing-scanning`) is responsible for instantiating a Tekton
 [PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) object that
-invokes the execution of a Tekton Pipeline (in the same namespace as the
+calls the execution of a Tekton Pipeline (in the same namespace as the
 Workload) whenever its inputs (for instance, the source code revision to be
 tested) change.
 
@@ -252,8 +247,8 @@ Parameters:
     <td><code>testing_pipeline_matching_labels<code></td>
     <td>
       set of labels to use when searching for Tekton Pipeline objects in the
-      same namespace as the Workload. By default, a Pipeline labelled as
-      `apps.tanzu.vmware.com/pipeline: test` will be selected, but with the use
+      same namespace as the Workload. By default, a Pipeline labeled as
+      `apps.tanzu.vmware.com/pipeline: test` is selected, but with the use
       of this parameter, it's possible to override such behavior.
     </td>
     <td>
@@ -270,9 +265,9 @@ Parameters:
     <td><code>testing_pipeline_params<code></td>
     <td>
       set of extra parameters (i.e., aside from `source-url` and
-      `source-revision`) to pass to the Tekton Pipeline. Note that the Tekton Pipeline
+      `source-revision`) to pass to the Tekton Pipeline. The Tekton Pipeline
       <b>must</b> declare both the required parameters `source-url` and
-      `source-revision` as well the extra ones declared here.
+      `source-revision` as well the extra ones declared in this table.
     </td>
     <td>
       <pre>
@@ -286,25 +281,23 @@ Parameters:
 
 </table>
 
+For information about how to set up the
+Workload namespace for testing with TektonSee, see [Out of the Box Supply Chain with
+Testing](scc/ootb-supply-chain-testing.hbs.md). 
 
-See [Out of the Box Supply Chain with
-Testing](scc/ootb-supply-chain-testing.hbs.md) for details on how to setup the
-Workload namespace for testing with Tekton, and [Out of the Box Supply Chain
-with Testing on Jenkins](scc/ootb-supply-chain-testing-with-jenkins.hbs.md) for
-an example on how to make use of the parameters to customize this resource to
-test using a Jenkins cluster.
-
+For information about how to use the parameters to customize this resource to
+test using a Jenkins cluster, see [Out of the Box Supply Chain
+with Testing on Jenkins](scc/ootb-supply-chain-testing-with-jenkins.hbs.md).
 
 ## source-scanner
 
 The `source-scanner` resource (included solely in
 `ootb-supply-chain-testing-scanning`) takes care of scanning the source code
-that's been successfully tested by pointing a
+that is tested by pointing a
 [SourceScan](scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
 code as the tests.
 
-Its behavior, both in terms of [CVEs evaluation](scst-scan/policies.hbs.md) as
-well as [scanner to use](scst-scan/available-scanners.hbs.md), can be
+Its behavior, both in terms of [CVEs evaluation](scst-scan/policies.hbs.md) and [scanner to use](scst-scan/available-scanners.hbs.md), are
 customized with the parameters.
 
 Parameters:
@@ -346,13 +339,13 @@ Parameters:
 </table>
 
 See [Out of the Box Supply Chain with Testing and
-Scanning](scc/ootb-supply-chain-testing-scanning.hbs.md) for details on how to
-setup the Workload namespace with the ScanPolicy and ScanTemplate required for
+Scanning](scc/ootb-supply-chain-testing-scanning.hbs.md) for details about how to
+set up the Workload namespace with the ScanPolicy and ScanTemplate required for
 this resource, and [SourceScan reference](scst-scan/scan-crs.hbs.md#sourcescan)
 for details about the SourceScan custom resource.
 
-Additionally, check out [Supply Chain Security Tools for Tanzu –
-Store](scst-store/overview.hbs.md) for details on how the artifacts found
+See [Supply Chain Security Tools for Tanzu –
+Store](scst-store/overview.hbs.md) for details about how the artifacts found
 during scanning are catalogued.
 
 
@@ -361,7 +354,7 @@ during scanning are catalogued.
 The `image-provider` in the supply chains provides to further resources a
 container image carrying the application already built.
 
-Depending on how the Workload is configured, i.e., if using [pre-built
+Depending on how the Workload is configured, for example, if using [pre-built
 images](scc/pre-built-image.hbs.md) or [building from
 source](scc/building-from-source.hbs.md), different semantics apply:
 
@@ -373,15 +366,14 @@ source](scc/building-from-source.hbs.md), different semantics apply:
   `Image` or a `Runnable` for creating Tekton TaskRuns for building images from
   Dockerfiles)
 
-
 ### Kpack Image
 
-The Kpack Image object (see [About Tanzu Build
-Service](tanzu-build-service/tbs-about.hbs.md)) provides means for building a
+The Kpack Image object provides means for building a
 container image out of source code (or pre-built Java artifact), making such
-container image available to further resources in the supply chain via a
+container image available to further resources in the supply chain through a
 content addressable image reference that's carried all the way to the final
-deployment objects unchanged.
+deployment objects unchanged. See [About Tanzu Build
+Service](tanzu-build-service/tbs-about.hbs.md).
 
 Parameters:
 
@@ -442,7 +434,7 @@ Parameters:
   <tr>
     <td><code>live-update<code></td>
     <td>
-      enable the use of Tilt's live-update functionality.
+      enable the use of Tilt's live-update function.
     </td>
     <td>
       <pre>
@@ -459,27 +451,26 @@ Parameters:
 > `--param serviceAccount=...`.
 
 
-See [Tanzu Build Service (TBS) Integration](scc/tbs.hbs.md) for more details on
+See [Tanzu Build Service (TBS) Integration](scc/tbs.hbs.md) for more details about
 the integration with Tanzu Build Service.
 
 See [Developer Conventions](developer-conventions/about.hbs.md) and [About
-IntelliJ extension](intellij-extension/about.hbs.md) for details on
+IntelliJ extension](intellij-extension/about.hbs.md) for details about
 `live-update`.
 
 See [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md) for
-details on the use of Kpack builders with `clusterBuilder`.
+details about the use of Kpack builders with `clusterBuilder`.
 
 See [Service
 Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md)
-documentation for details on `buildServiceBindings`.
-
+documentation for details about `buildServiceBindings`.
 
 ### Runnable (TaskRuns for Dockerfile-based builds)
 
 In order to perform Dockerfile-based builds, the supply chains (all of them)
 instantiate a Runnable object that, in face of changes to its set of inputs
 (for instance, a new source code revision), takes care of instantiating Tekton
-TaskRun objects to invoke the execution of
+TaskRun objects to call the execution of
 [kaniko](https://github.com/GoogleContainerTools/kaniko) builds.
 
 Parameters:
@@ -514,8 +505,8 @@ Parameters:
 </table>
 
 See [Dockerfile-based builds](scc/dockerfile-based-builds.hbs.md) for more
-information on how to make use of it as well as limitations associated with the
-functionality.
+information about how to make use of it and limitations associated with the
+function.
 
 ### Pre-built image (ImageRepository)
 
@@ -557,9 +548,9 @@ Parameters:
 > `--param serviceAccount=...`.
 
 See [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository) for details on the
+docs](source-controller/reference.hbs.md#imagerepository) for details about the
 ImageRepository resource and [Using a prebuilt
-image](scc/pre-built-image.hbs.md) for information regarding the functionality
+image](scc/pre-built-image.hbs.md) for information regarding the function
 as a whole.
 
 ## image-scanner
@@ -612,19 +603,18 @@ Parameters:
 See [ImageScan reference](scst-scan/scan-crs.hbs.md#imagescan) for details
 about the ImageScan custom resource.
 
-Additionally, check out [Supply Chain Security Tools for Tanzu –
-Store](scst-store/overview.hbs.md) for details on how the artifacts found
+See [Supply Chain Security Tools for Tanzu –
+Store](scst-store/overview.hbs.md) for details about how the artifacts found
 during scanning are catalogued.
 
 
 ## config-provider
 
 The `config-provider` resource in the supply chains is responsible for
-generating a
-[PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)
-to be used further along in app configs (knative serivices / deployments) to
-represent the desired shape of the pods that get instantiated to run the
-application in containers.
+generating a PodTemplateSpec
+to use in app configs (knative serivices / deployments) to
+represent the shape of the pods that you want to get instantiated to run the
+application in containers. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation.
 
 It manages a [PodIntent](cartographer-conventions/reference/pod-intent.hbs.md)
 object that represents the intention of having such PodTemplateSpec enhanced
@@ -646,7 +636,7 @@ Parameters:
       name of the serviceaccount (in the same namespace as the Workload) to use
       for providing the necessary credentials to `PodIntent` for fetching
       the container image to inspect the metadata to pass to convention
-      servers as well as the serviceAccountName to be set in the
+      servers and the serviceAccountName set in the
       podtemplatespec.
     </td>
     <td>
@@ -667,7 +657,7 @@ Parameters:
       - name: annotations
         value:
           name: my-application
-          version: 1.2.3
+          version: v1.2.3
           team: store
       </pre>
     </td>
@@ -707,16 +697,16 @@ Parameters:
 See [Cartographer Conventions](cartographer-conventions/about.hbs.md) to know
 more about the controller behind `PodIntent`.
 
-Additionally, check out [Developer
-Conventions](developer-conventions/about.hbs.md) as well as [Spring Boot
-Conventions](spring-boot-conventions/about.hbs.md) for more details on the two
-convention servers enabled by default in TAP installations.
+See [Developer
+Conventions](developer-conventions/about.hbs.md) and [Spring Boot
+Conventions](spring-boot-conventions/about.hbs.md) for more details about the two
+convention servers enabled by default in Tanzu Application Platform installations.
 
 
 ## app-config
 
 The `app-config` resource is responsible for preparing a ConfigMap with the
-Kubernetes configuration that will be used for instantiating an application in
+Kubernetes configuration that is used for instantiating an application in
 the form of a particular workload type in a cluster.
 
 The resource is configured in the supply chain in such a way to allow, by
@@ -727,8 +717,7 @@ apply based on the labels set in the Workload object created by the developer:
 - `apps.tanzu.vmware.com/workload-type: worker`
 - `apps.tanzu.vmware.com/workload-type: server`
 
-Currently, only the `server` workload type has configurable parameters as shown
-below:
+Only the `server` workload type has the following configurable parameters:
 
 <table>
   <tr>
@@ -740,7 +729,7 @@ below:
   <tr>
     <td><code>ports<code></td>
     <td>
-      set of network ports to expose from the application to the kubernetes
+      set of network ports to expose from the application to the Kubernetes
       cluster.
     </td>
     <td>
@@ -756,7 +745,7 @@ below:
 </table>
 
 
-See [workload types](workloads/workload-types.hbs.md) for more details on the
+See [workload types](workloads/workload-types.hbs.md) for more details about the
 three different types of workloads, and [`server`-specific Workload
 paramters](workloads/server.hbs.md#-server-specific-workload-parameters) for a
 more detailed overview of the ports parameter.
@@ -787,7 +776,7 @@ Parameters:
       - name: annotations
         value:
           name: my-application
-          version: 1.2.3
+          version: v1.2.3
           team: store
       </pre>
     </td>
@@ -798,8 +787,8 @@ Parameters:
 See [use of `--service-ref` in Tanzu
 CLI](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
 for an example and [Consume services on
-TAP](getting-started/consume-services.hbs.md) for an overview of the
-functionality.
+Tanzu Application Platform](getting-started/consume-services.hbs.md) for an overview of the
+function.
 
 ## api-descriptors
 
@@ -826,7 +815,7 @@ Parameters:
       - name: annotations
         value:
           name: my-application
-          version: 1.2.3
+          version: v1.2.3
           team: store
       </pre>
     </td>
@@ -835,7 +824,7 @@ Parameters:
   <tr>
     <td><code>api_descriptor<code></td>
     <td>
-     information used to fill the desired state of the APIDescriptor object
+     information used to fill the state that you want of the APIDescriptor object
     (its spec).
     </td>
     <td>
@@ -856,8 +845,8 @@ Parameters:
 
 
 > **Note:** it's required that the Workload include the
-> `apis.apps.tanzu.vmware.com/register-api: "true"` label in order to activate
-> this functionality.
+> `apis.apps.tanzu.vmware.com/register-api: "true"` label to activate
+> this function.
 
 See [Use API Auto Registration](api-auto-registration/usage.hbs.md) for more
 details about API auto registration.
@@ -872,11 +861,11 @@ Kubernetes configuration generated throughout the supply chain.
 It can do so in three distinct manners:
 
 - publishing the configuration to a container image registry
-- publishing the configuration to a git repository
-  - solely via the push of a commit, or
+- publishing the configuration to a Git repository
+  - solely by using the push of a commit, or
   - pushing a commit _and_ opening a pull request.
 
-Details about the different modes of operation can be found in [Gitops vs
+Details about the different modes of operation are found in [Gitops vs
 RegistryOps](scc/gitops-vs-regops.hbs.md) with the parameters documented in
 place.
 
@@ -884,7 +873,7 @@ place.
 
 The `deliverable` resource is responsible for creatiing a `Deliverable` object
 that represents the intention of delivering to the cluster the configuration
-that has been produced by the supply chain.
+that are produced by the supply chain.
 
 Parameters:
 
@@ -919,4 +908,3 @@ Parameters:
 > **Note:** On build clusters where a corresponding `ClusterDelivery` doesn't
 > exist, the Deliverable takes no effect (similarly to a Workload without a
 > SupplyChain, no action is taken).
-
