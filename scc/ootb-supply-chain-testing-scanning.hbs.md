@@ -122,13 +122,13 @@ The names of the objects **must** match the ones in the example with default ins
 
     ```yaml
     ootb_supply_chain_testing_scanning:
-    scanning:
-      source:
-        policy: SCAN-POLICY
-        template: SCAN-TEMPLATE
-      image:
-        policy: SCAN-POLICY
-        template: SCAN-TEMPLATE
+      scanning:
+        source:
+          policy: SCAN-POLICY
+          template: SCAN-TEMPLATE
+        image:
+          policy: SCAN-POLICY
+          template: SCAN-TEMPLATE
     ```
 
     Where `SCAN-POLICY` and `SCAN-TEMPLATE` are the names of the `ScanPolicy` and `ScanTemplate`.
