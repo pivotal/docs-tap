@@ -120,13 +120,13 @@ The names of the objects **must** match the ones in the example with default ins
 
     ```yaml
     ootb_supply_chain_testing_scanning:
-    scanning:
-      source:
-        policy: SCAN-POLICY
-        template: SCAN-TEMPLATE
-      image:
-        policy: SCAN-POLICY
-        template: SCAN-TEMPLATE
+      scanning:
+        source:
+          policy: SCAN-POLICY
+          template: SCAN-TEMPLATE
+        image:
+          policy: SCAN-POLICY
+          template: SCAN-TEMPLATE
     ```
 
     Where `SCAN-POLICY` and `SCAN-TEMPLATE` are the names of the `ScanPolicy` and `ScanTemplate`.
@@ -367,4 +367,4 @@ The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning
 
 ## <a id="scan-image-using-snyk"></a> Scan Image using Snyk
 
-[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integration for running an image scan using Snyk and VMware Carbon Black. For information on how to install this integration and how to modify the supply chain template, see [Install Snyk Scanner (Beta)](../scst-scan/install-snyk-integration.hbs.md).
+[Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integrations for running an image scan using Snyk and VMware Carbon Black. For information about how to install these integrations and how to edit the supply chain template, see [Available Scanners for Supply Chain Security Tools - Scan](../scst-scan/available-scanners.hbs.md).
