@@ -174,7 +174,7 @@ You can remove the Live Update capability from your application entirely.
 This option can be useful in a troubleshooting scenario.
 Disabling Live Update redeploys your workload to the cluster and removes the Live Update capability.
 
-To disable Live Update:
+To deactivate Live Update:
 
 1. Press ⇧⌘P to open the Command Palette.
 1. Run `Tanzu: Live Update Disable`.
@@ -242,7 +242,7 @@ namespace by default.
 
 The current state of the workloads is visible on the Tanzu Workloads panel in the bottom left corner
 of the VS Code window. The panel shows the current status of each workload, namespace, and cluster.
-It also shows whether Live Update and Debug are running, stopped, or disabled.
+It also shows whether Live Update and Debug is running, stopped, or deactivated.
 
 The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context.
 
