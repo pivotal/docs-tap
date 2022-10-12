@@ -142,7 +142,7 @@ Click **Add Metric** to add the metric to the page, which is refreshed every 5 s
 
 The UI on the Metrics page includes the features that allow you to:
 
-- Pause the auto refresh feature by disabling the **Auto Refresh** toggle.
+- Pause the auto refresh feature by deactivating the **Auto Refresh** toggle.
 - Refresh the metrics manually by clicking **Refresh All**.
 - Change the format of the metric value according to your needs.
 - Delete a particular metric by clicking the minus symbol in the same row.

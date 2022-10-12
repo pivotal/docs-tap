@@ -276,7 +276,7 @@ If no log entries for the expected levels appear, ensure that:
 
 ### <a id="line-wrapping"></a>Line wrapping
 
-By default, log entries are not wrapped. To enable or disable line wrapping, click the **Wrap lines**
+By default, log entries are not wrapped. To activate or deactivate line wrapping, click the **Wrap lines**
 toggle.
 
 ### <a id="downloading"></a>Downloading logs
