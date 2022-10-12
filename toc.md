@@ -21,7 +21,7 @@ docs.vmware.com is built.
       - [Configuring custom CAs for Tanzu Application Platform GUI](tap-gui/non-standard-certs.md)
       - [Configuring Application Accelerator](application-accelerator/configuration.md)
       - [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.md)
-      - [Setting up developer namespaces to use installed packages](set-up-namespaces.md)
+      - [Setting up developer namespaces to use installed packages](set-up-namespaces-offline.md)
   - [Installing Tanzu Application Platform on AWS Cloud](install-aws.md)
       - [Creating AWS Resources](aws-resources.md)
       - [Installing Tanzu Application Platform packages and profiles](install-aws.md)
