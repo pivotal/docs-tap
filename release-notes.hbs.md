@@ -206,6 +206,8 @@ You can opt-in to building workloads with the Jammy stacks by following the inst
 Ubuntu Bionic stops receiving support in April 2023.
 VMware recommends you migrate builds to Jammy stacks in advance.
 For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
+- Tanzu Build Service supports Java apps on the Tiny Stack. 
+As Tiny has no shell, some Apache Tomcat config options will not be available, such as setting `bin/setenv.sh`
 - The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
 It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
 VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
