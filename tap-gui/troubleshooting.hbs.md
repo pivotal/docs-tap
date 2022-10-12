@@ -256,4 +256,4 @@ app_config:
 
 These are troubleshooting steps for the [Supply Chain Choreographer plug-in](plugins/scc-tap-gui.hbs.md).
 
-{{> 'partials/tap-gui/ts-err-load-metadata-store' }}
+{{> 'partials/tap-gui/ts-err-load-metadata-store' enable_cve_link="plugins/scc-tap-gui.hbs.md#scan" }}

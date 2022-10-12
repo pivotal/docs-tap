@@ -136,4 +136,4 @@ Different Tanzu Application Platform GUI plug-ins use SCST - Store to display in
 vulnerabilities and packages.
 Some errors visible in Tanzu Application Platform GUI are related to this connection.
 
-{{> 'partials/tap-gui/ts-err-load-metadata-store' }}
+{{> 'partials/tap-gui/ts-err-load-metadata-store' enable_cve_link="../tap-gui/plugins/scc-tap-gui.hbs.md#scan" }}
