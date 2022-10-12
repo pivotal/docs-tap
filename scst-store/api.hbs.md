@@ -1857,7 +1857,7 @@ it can be used as a scan destination, similar to NullString.
 | CreatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 | Description | string| `string` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
 | Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
 | References | [StringArray](#string-array)| `StringArray` |  | |  |  |
 | URL | string| `string` |  | |  |  |
