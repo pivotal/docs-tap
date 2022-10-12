@@ -65,7 +65,7 @@ Tanzu Application Platform now supports OpenShift and Kubernetes 1.24.
 #### <a id="carbon-black-scanner-features"></a> Carbon Black Cloud Scanner integration (beta)
 
 Carbon Black Cloud Scanner image scanning integration (beta) is available for [Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md).
-See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integration.hbs.md) for instructions about using Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains.
+See [Prerequisites for Carbon Black Scanner (Beta)](scst-scan/install-carbonblack-integration.hbs.md) for instructions about using Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains.
 
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
 
