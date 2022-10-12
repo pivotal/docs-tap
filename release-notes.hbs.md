@@ -199,14 +199,14 @@ See [Prerequisites for Carbon Black Scanner (Beta)](scst-scan/install-carbonblac
 
 #### <a id="tbs-features"></a> Tanzu Build Service
 
-- **Tanzu Build Service now includes support for Jammy Stacks:**
+- Tanzu Build Service now includes support for Jammy Stacks.
 You can opt-in to building workloads with the Jammy stacks by following the instructions in
 [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
-- **The Ubuntu Bionic stack is deprecated:**
+- The Ubuntu Bionic stack is deprecated.
 Ubuntu Bionic stops receiving support in April 2023.
 VMware recommends you migrate builds to Jammy stacks in advance.
 For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
-- **The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated:**
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
 It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
 VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
 and remove support in Tanzu Application Platform v1.6.
