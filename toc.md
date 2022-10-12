@@ -25,7 +25,7 @@ docs.vmware.com is built.
   - [Installing Tanzu Application Platform on AWS Cloud](install-aws.md)
       - [Creating AWS Resources](aws-resources.md)
       - [Installing Tanzu Application Platform packages and profiles](install-aws.md)
-          - [Viewing possible configuration settings for your package](view-package-config.md)
+          - [Viewing possible configuration settings for your package](view-package-config-aws.md)
       - [Installing Individual Packages](install-components.md)
       - [Setting up developer namespaces to use installed packages](set-up-namespaces-aws.md)
       - [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md)
