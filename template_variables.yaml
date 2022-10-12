@@ -1,6 +1,7 @@
 ---
 template_variables:
-  tap_version: 1.3.0
+  tap_version: 1.4.0
+  url_version: 1.4
   hide_content: true
   app-sso:
     version: 2.0.0
