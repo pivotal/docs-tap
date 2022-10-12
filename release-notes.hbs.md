@@ -113,6 +113,12 @@ See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integrat
 
 - Snyk CLI is updated to v1.994.0.
 
+#### <a id="scst-scan-features"></a>Supply Chain Security Tools - Scan
+
+- Added OpenShift+vSphere support for scanner plugins.
+- Added support to Grype and Snyk plugins for images hosted in Elastic Container Registry (ECR) using IAM Roles.
+- Added support for Kubernetes 1.24.
+
 #### <a id="scst-policy-features"></a>Supply Chain Security Tools - Policy Controller
 
 - Updated Policy Controller version from v0.2.0 to v0.3.0.
