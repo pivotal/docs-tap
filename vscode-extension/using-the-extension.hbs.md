@@ -95,7 +95,7 @@ You can remove the Live Update capability from your application entirely.
 This option can be useful in a troubleshooting scenario.
 Disabling Live Update redeploys your workload to the cluster and removes the Live Update capability.
 
-To disable Live Update:
+To deactivate Live Update:
 
 1. Press ⇧⌘P to open the Command Palette.
 1. Run `Tanzu: Live Update Disable`.
