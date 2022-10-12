@@ -233,7 +233,7 @@ After the metric is chosen, the user can view the associated tags.
 The user can choose the value of each of the tags based on filtering criteria.
 Clicking **Add Metric** adds the metric to the page which is refreshed every 5 seconds by default.
 
-The user can pause the auto refresh feature by disabling the **Auto Refresh** toggle.
+The user can pause the auto refresh feature by deactivating the **Auto Refresh** toggle.
 The user can also refresh the metrics manually by clicking **Refresh All**.
 The format of the metric value can be changed according to the user's needs.
 They can delete a particular metric by clicking the minus symbol in the same row.
