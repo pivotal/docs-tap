@@ -6,7 +6,6 @@ This topic describes how to:
   - [Set the Kubernetes cluster context](#cluster-context)
   - [Install or update the Tanzu CLI and plug-ins](#cli-and-plugin)
 
-
 ## <a id='accept-eulas'></a> Accept the End User License Agreements
 
 Before downloading and installing Tanzu Application Platform packages, you must accept the
@@ -32,7 +31,6 @@ To accept the Tanzu Application Platform EULA:
 3. Select ***Agree*** in the bottom-right of the dialog box as seen in the following screenshot.
 
     ![Screenshot of a dialog box inviting the reader to accept the EULA. The AGREE button is framed.](images/install-tanzu-cli-eulas2.png)
-
 
 ## <a id='cluster-context'></a> Set the Kubernetes cluster context
 
@@ -77,7 +75,7 @@ To install the Tanzu CLI and plug-ins:
 
 1. Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com).
 2. Go to the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform).
-3. Select `Release 1.3.0` from the release dropdown menu.
+3. Select `Release 1.3.0` from the release drop-down menu.
 4. Click `tanzu-cli-tap-1.3.0` to list the Tanzu framework bundles
 5. Click and download the Tanzu framework bundle for your operating system.
 6. (Optional) If an earlier upgrade attempt failed, you can uninstall the previous version of the Tanzu CLI and associated plug-ins and files. See [Remove Tanzu CLI, plug-ins, and associated files](uninstall.html#remove-tanzu-cli) for more information.
