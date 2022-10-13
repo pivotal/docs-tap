@@ -136,4 +136,4 @@ For more details on Tekton Pipelines, see the [Tekton documentation](https://tek
 You can also view the Tekton [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md) and
 [getting started guide](https://tekton.dev/docs/getting-started/).
 
-> **Note:** Windows workloads have been disabled and will error if any Tasks tries to use Windows scripts.
+> **Note:** Windows workloads have been deactivated and will error if any Tasks tries to use Windows scripts.
