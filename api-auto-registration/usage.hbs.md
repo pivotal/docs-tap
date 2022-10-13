@@ -2,13 +2,13 @@
 
 This topic describes how to use API Auto Registration.
 
->**Note:** The run profile requires you to [update the install values](#update-values) before proceeding with the next steps.
+>**Note:** The run profile requires you to [update the install values](#update-values)before proceeding with the next steps.
 > For iterate and full profiles, the default values work but you might prefer to update them anyway.
 > For more information about profiles, see [About TAP profiles](../about-package-profiles.md#profiles-and-packages).
 
-API Auto Registration requires that the following is present: 
+API Auto Registration requires that the following is present:
 
-1. A location exposing a dynamic or static API specifications. 
+1. A location exposing a dynamic or static API specifications.
 
 2. an APIDescriptor CR with that location created in the cluster.
 You might additionally need to set up different install values for api-auto-registration package or CORS for OpenAPI specifications.
@@ -37,7 +37,7 @@ How to create APIDescriptor CR:
 
 1. Create `api-auto-registration-values.yaml`:
 
-   If you would like to overwrite the default values, create, or update your `api-auto-registration-values.yaml` file that has the following text boxes:
+   If you need to overwrite the default values, create, or update your `api-auto-registration-values.yaml` file that has the following text boxes:
 
     ```yaml
     tap_gui_url: https://tap-gui.view-cluster.com
@@ -149,14 +149,14 @@ you can use `ClusterConfigTemplate` by the name of `config-template` in your pip
 you can verify how the template is written to read parameters, interpret baseURL from Knative Services and construct APIDescriptor CRs.
 
 In the Delivery pipeline, you must directly create an APIDescriptor custom resource. You must grant some permissions to create the CR from the Delivery pipeline.
-For more information on APIDescriptors, see [Key Concepts](key-concepts.md).
+For more information about APIDescriptors, see [Key Concepts](key-concepts.md).
 
 ## <a id='using-gitops-manually'></a>Using other GitOps processes or Manually
 
 Using your GitOps process (or manually), you must stamp out an APIDescriptor CR and apply it in the cluster you choose.
 The APIDescriptor needs all the required text boxes to reconcile.
 
-For more information on APIDescriptors, see [Key Concepts](key-concepts.md).
+For more information about APIDescriptors, see [Key Concepts](key-concepts.md).
 
 ## <a id='cors'></a>Setting up CORS for OpenAPI specifications
 
@@ -165,7 +165,7 @@ To use the Try it out feature for OpenAPI specifications from the API Documentat
 Your API must be configured to allow CORS Requests from Tanzu Application Platform GUI. How you accomplish this varies based on the programming language and framework you are using.
 If you are using Spring you can get more information [here](https://spring.io/blog/2015/06/08/cors-support-in-spring-framework).
 
-At a high level, the Tanzu Application Platform GUI domain must be accepted as valid cross-origin by your API.
+The Tanzu Application Platform GUI domain must be accepted as valid cross-origin by your API.
 Verify the following:
 
 - **Origins allowed** (header: `Access-Control-Allow-Origin`): a list of comma-separated values. This list must include your Tanzu Application Platform GUI host.
