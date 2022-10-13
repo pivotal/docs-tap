@@ -29,7 +29,6 @@ Approximately 10&nbsp;GB of registry space is required when using the `full` dep
 - **Automatic dependency updates:** For more information, see [Configure automatic dependency updates](#auto-updates-config).
 - **The Cloud Native Buildpack Bill of Materials (CNB BOM) format:** For more information, see [Deactivate the CNB BOM format](#deactivate-cnb-bom).
 
-
 ## <a id='tbs-tcli-install'></a> Install the Tanzu Build Service package
 
 To install Tanzu Build Service by using the Tanzu CLI:
@@ -74,7 +73,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
         >For more information, see [Use Secret References for registry credentials](#install-secret-refs)
         >or [Use AWS IAM authentication for registry credentials](#tbs-tcli-install-ecr).
 
-        >**Note:** If you are running on Openshift add `kubernetes_distribution: openshift`
+1. If you are running on Openshift, add `kubernetes_distribution: openshift` to your `tbs-values.yaml` file.
 
 1. (Optional) Under the `ca_cert_data` key in the `tbs-values.yaml` file,
 provide a PEM-encoded CA certificate for Tanzu Build Service.
@@ -206,11 +205,11 @@ credentials for the writable repository in your registry (`kp_default_repository
 
     - `KP-DEFAULT-REPOSITORY` is a writable repository in your registry.
     Tanzu Build Service dependencies are written to this location. Examples:
-      - Harbor has the form `"my-harbor.io/my-project/build-service"`
-      - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`
-      - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`
+      - Harbor has the form `"my-harbor.io/my-project/build-service"`.
+      - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
+      - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
 
-2. To apply this configuration, continue the installation steps.
+1. To apply this configuration, continue the installation steps.
 
 ### <a id='tbs-tcli-install-ecr'></a> Use AWS IAM authentication for registry credentials
 
@@ -242,8 +241,7 @@ registry used when installing Tanzu Application Platform.
 
 1. The developer namespace requires configuration for Tanzu Application Platform
 to use AWS IAM authentication for ECR.
-Configure an AWS IAM role that has read and write access to the registry location
-where workload images will be stored.
+Configure an AWS IAM role that has read and write access to the registry for storing workload images.
 
 1. Using the supply chain service account, add an annotation including the role
 ARN configured earlier by running:
