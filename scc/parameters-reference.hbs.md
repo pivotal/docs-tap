@@ -477,24 +477,21 @@ Parameters:
   <tr>
     <td><code>docker_build_extra_args<code></td>
     <td>
-      list of flags to pass directly to Kaniko (such as providing arguments,
-      and so on to a build)
+      List of flags to pass directly to Kaniko,such as providing arguments to a build.
     </td>
     <td><pre>- --build-arg=FOO=BAR</pre></td>
   </tr>
 </table>
 
-See [Dockerfile-based builds](scc/dockerfile-based-builds.hbs.md) for more
-information about how to use it and limitations associated with the
-function.
+For information about how to use Dockerfile-based builds and limitations associated with the function, see [Dockerfile-based builds](scc/dockerfile-based-builds.hbs.md).
 
 ### Pre-built image (ImageRepository)
 
-For those applications that already have their container images built outside
-the supply chains (i.e., providing an image reference under
-`workload.spec.image`), an `ImageRepository` object is created to keep track of
-any images pushed under such name, making the content-addressable name (i.e.,
-the image name containing the digest) available for further resources in the
+For applications that already have their container images built outside
+the supply chains, such as providing an image reference under
+`workload.spec.image`, an `ImageRepository` object is created to keep track of
+any images pushed under that name. This makes the content-addressable name, such as
+the image name containing the digest, available for further resources in the
 supply chain.
 
 Parameters:
@@ -522,23 +519,21 @@ Parameters:
   </tr>
 </table>
 
-
 > **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
-See [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository) for details about the
-ImageRepository resource and [Using a prebuilt
-image](scc/pre-built-image.hbs.md) for information regarding the function
-as a whole.
+For information about the
+ImageRepository resource, see [ImageRepository reference
+docs](source-controller/reference.hbs.md#imagerepository). 
+For information about the prebuild image function, see [Using a prebuilt
+image](scc/pre-built-image.hbs.md).
 
 ## image-scanner
 
-Similarly to `source-scanner`, the `image-scanner` resource (part of only
-`ootb-supply-chain-testing-scanning`) is responsible for scanning a container
-image (either build via the supply chain or outside - prebuilt) and not only
-persisting the results in the store, but also gating the image from moving
+The `image-scanner` resource is included only in
+`ootb-supply-chain-testing-scanning`. This resource is responsible for scanning a container image, either built by using the supply chain or prebuilt,
+persisting the results in the store, and gating the image from moving
 forward in case the CVEs found are not compliant with the ScanPolicy referenced
 by the ImageScan object create for doing so.
 
@@ -580,24 +575,22 @@ Parameters:
   </tr>
 </table>
 
-See [ImageScan reference](scst-scan/scan-crs.hbs.md#imagescan) for details
-about the ImageScan custom resource.
+For information about the ImageScan custom resource, see [ImageScan reference](scst-scan/scan-crs.hbs.md#imagescan).
 
-See [Supply Chain Security Tools for Tanzu –
-Store](scst-store/overview.hbs.md) for details about how the artifacts found
-during scanning are catalogued.
-
+For information about how the artifacts found
+during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
+Store](scst-store/overview.hbs.md).
 
 ## config-provider
 
 The `config-provider` resource in the supply chains is responsible for
 generating a PodTemplateSpec
-to use in app configs (knative serivices / deployments) to
-represent the shape of the pods that you want to get instantiated to run the
+to use in app configs, such as knative services and deployments, to
+represent the shape of the pods that you want to instantiate to run the
 application in containers. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation.
 
-It manages a [PodIntent](cartographer-conventions/reference/pod-intent.hbs.md)
-object that represents the intention of having such PodTemplateSpec enhanced
+The `config-provider` resource manages a [PodIntent](cartographer-conventions/reference/pod-intent.hbs.md)
+object that represents the intention of having PodTemplateSpec enhanced
 with conventions installed in the cluster whose final representation is then
 passed forward to other resources to form the final deployment configuration.
 
