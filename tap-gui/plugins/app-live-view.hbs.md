@@ -186,7 +186,7 @@ The search feature allows the user to look up for property's key/value or the be
 ### <a id="conditions-page"></a> Conditions page
 
 To navigate to the **Conditions** page, the user can select the `Conditions` option from the `Information Category` drop-down menu.
-The conditions evaluation report provides information about the evaluation of conditions on configuration and auto-configuration classes. 
+The conditions evaluation report provides information about the evaluation of conditions on configuration and auto-configuration classes.
 
 In case of Spring Boot, this gives the user a view of all the beans configured in the application.
 When the user clicks on the bean name, the conditions and the reason for the conditional match is
