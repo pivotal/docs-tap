@@ -38,9 +38,6 @@ Learn how to configure TLS for your `AuthServer`:
 
 > ℹ️ If your `AuthServer` obtains a certificate from a custom CA, then [help _App
 > Operators_ to trust it](#allow-workloads-to-trust-a-custom-ca-authserver).
->
-> ⚠️ The existing `.spec.issuerURI` is deprecated and is marked for deletion in the next release! The release notes
-> contain a [migration guide](../../release-notes.md#app-sso-features)
 
 ## Configure TLS by using a (Cluster)Issuer
 
