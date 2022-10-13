@@ -73,7 +73,7 @@ To install the API Auto Registration package:
 
 3. (Optional) VMware reccomends creating `api-auto-registration-values.yaml`.
 
-    If you need to overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file as follows:
+    To overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file as follows:
 
 
     ```yaml
