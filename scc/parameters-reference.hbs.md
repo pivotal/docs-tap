@@ -1,16 +1,11 @@
 # Workload Parameters reference
 
 The supply chains and templates provided by the Out of the Box packages contain
-a series of parameters that customize their behavior. Here you will find a list
-of all the parameters (`workload.spec.params`) that is configured in
-Workload objects to affect their behavior, broken down by the resource in the
-supply chain where they are utilized.
+a series of parameters that customize supply chain behavior. This topic describes the `workload.spec.params` parameters that are configured in Workload
+objects to affect their behavior, organized by the resource in the
+supply chain where they are used.
 
-
-> **Note:** this topic documents the parameters according to the most complete
-> supply chain (`ootb-supply-chain-testing-scanning`) as the other supply
-> chains are subsets of this.
-
+> **Note:** This topic describes parameters you can use to customize the scan policy for scanning source code that are related to a resource only available in the `ootb-supply-chain-testing-scanning`, but not `ootb-supply-chain-basic` or `ootb-supply-chain-testing` supply chains.
 
 ```
 source-provider                     fetches source code
@@ -55,27 +50,22 @@ config-writer                       writes the configuration to a destination
                                     to a `run` cluster
 ```
 
-
-For details about the supply chains themselves, see their corresponding
-documentation:
+For information about supply chains, see:
 
 - [Out of the Box Supply Chain Basic](scc/ootb-supply-chain-basic.hbs.md)
 - [Out of the Box Supply Chain Testing](scc/ootb-supply-chain-testing.hbs.md)
 - [Out of the Box Supply Chain Testing Scanning](scc/ootb-supply-chain-testing-scanning.hbs.md)
 
-
 ## source provider
 
-The `source-provider` resource in the supply chain is responsible for creating
+The `source-provider` resource in the supply chain creates
 objects that fetch either source code or pre-compiled Java applications
 depending how the Workload is configured. See [Building from
 Source](scc/building-from-source.hbs.md).
 
 ### GitRepository
 
-Used when fetching source code from Git repositories, it makes available to
-further resources in the supply chain the contents of the Git repository as a
-tarball available inside the cluster.
+Use `gitrepository` when fetching source code from Git repositories. This resource makes further resources available in the supply chain, such as the contents of the Git repository as a tarball available in the cluster.
 
 Parameters:
 
@@ -89,8 +79,8 @@ Parameters:
   <tr>
     <td><code>gitImplementation<code></td>
     <td>
-      VMware reccomends that you use the underlying library for fetching the source code.
-      Either <code>libggit2</code> (required for Azure DevOps) or
+      VMware recommends that you use the underlying library for fetching the source code.
+      Either <code>libggit2</code>, required for Azure DevOps, or
       <code>go-git</code>.
     </td>
     <td>
@@ -104,9 +94,9 @@ Parameters:
   <tr>
     <td><code>gitops_ssh_secret<code></td>
     <td>
-      Name of the secret in the same namespace as the `Workload` to use for
+      Name of the secret in the same namespace as the `Workload` used for
       providing credentials for fetching source code from the Git repository.
-      See ([Git authentication](scc/git-auth)) for details.
+      See [Git authentication](scc/git-auth).
     </td>
     <td>
       <pre>
@@ -117,11 +107,11 @@ Parameters:
   </tr>
 </table>
 
-> **Note:** It's typically not necessary to change the default Git
-> implementation, but some providers (Azure DevOps, for instance) require the
-> use of `libgit2` due to the server-side implementation providing support
-> solely for [git's v2 protocol](https://git-scm.com/docs/protocol-v2). See
-> [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) for a breakdown of the features supported by each implementation.
+> **Note:** It might not be necessary to change the default Git
+> implementation, but some providers such as Azure DevOps, require you to use
+> `libgit2` due to the server-side implementation providing support
+> only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2). For information about the features supported by each implementation, see
+> [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation).
 
 For information about how to create a Workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
@@ -135,8 +125,7 @@ For reference documentation on GitRepository objects, see
 You use ImageRepository when fetching source code from container images. It
 makes the contents of the container image available as a tarball to further
 resources in the supply chain. The contents of the container image
-are fetched liked any other source
-provider, by using git or maven. See [Create a workload
+are fetched by using Git or Maven. See [Create a workload
 from local source code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
 
 Parameters:
@@ -151,8 +140,8 @@ Parameters:
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      name of the serviceaccount (in the same namespace as the Workload) to use
-      for providing the necessary credentials to `ImageRepository` for fetching
+      name of the service account, in the same namespace as the Workload, you want to use
+      to provide the necessary credentials to `ImageRepository` for fetching
       the container images.
     </td>
     <td>
@@ -176,8 +165,8 @@ For information about how to use ImageRepository with the Tanzu CLI [Create a wo
 
 ### MavenArtifact
 
-Used when carrying pre-built Java artifacts, it makes the artifact available to
-further resources in the supply chain as a tarball which can then be wrapped as
+When carrying pre-built Java artifacts, `MavenArtifact` makes the artifact available to
+further resources in the supply chain as a tarball. You can wrap the tarball as
 a container image for further deployment.
 
 Differently from `git` and `image`, its configuration is solely driven by
@@ -195,7 +184,7 @@ Parameters:
   <tr>
     <td><code>maven<code></td>
     <td>
-      pointers to the maven artifact to fetch and polling interval.
+      Points to the maven artifact to fetch and the polling interval.
     </td>
     <td>
       <pre>
@@ -221,18 +210,16 @@ artifact](cli-plugins/apps/create-workload.hbs.md#workload-maven).
 
 ## source-tester
 
-The `source-tester` resource (part of `ootb-supply-chain-testing` as well as
-`ootb-supply-chain-testing-scanning`) is responsible for instantiating a Tekton
-[PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) object that
-calls the execution of a Tekton Pipeline (in the same namespace as the
-Workload) whenever its inputs (for instance, the source code revision to be
-tested) change.
+The `source-tester` resource is included in `ootb-supply-chain-testing` and
+`ootb-supply-chain-testing-scanning`. This resource is responsible for instantiating a Tekton [PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) object that
+calls the execution of a Tekton Pipeline, in the same namespace as the
+Workload, whenever its inputs change. For example, the source code revision that you want to test changes.
 
-Under the hood, a [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/) 
+A [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/) 
 object is instantiated to ensure that there's always a run for a particular set
-of inputs, with parameters being passed from the Workload down to Runnable's
-Pipeline selection mechanism (via `testing_pipeline_matching_labels`) and the
-execution of the PipelineRuns (via `testing_pipeline_params`).
+of inputs. The parameters are passed from the Workload down to Runnable's
+Pipeline selection mechanism through `testing_pipeline_matching_labels` and the
+execution of the PipelineRuns through `testing_pipeline_params`.
 
 Parameters:
 
@@ -246,10 +233,10 @@ Parameters:
   <tr>
     <td><code>testing_pipeline_matching_labels<code></td>
     <td>
-      set of labels to use when searching for Tekton Pipeline objects in the
+      Set of labels to use when searching for Tekton Pipeline objects in the
       same namespace as the Workload. By default, a Pipeline labeled as
-      `apps.tanzu.vmware.com/pipeline: test` is selected, but with the use
-      of this parameter, it's possible to override such behavior.
+      `apps.tanzu.vmware.com/pipeline: test` is selected, but when using
+      this parameter, it's possible to override the behavior.
     </td>
     <td>
       <pre>
@@ -264,8 +251,8 @@ Parameters:
   <tr>
     <td><code>testing_pipeline_params<code></td>
     <td>
-      set of extra parameters (i.e., aside from `source-url` and
-      `source-revision`) to pass to the Tekton Pipeline. The Tekton Pipeline
+      Set of extra parameters, aside from `source-url` and
+      `source-revision`, to pass to the Tekton Pipeline. The Tekton Pipeline
       <b>must</b> declare both the required parameters `source-url` and
       `source-revision` as well the extra ones declared in this table.
     </td>
@@ -297,8 +284,7 @@ that is tested by pointing a
 [SourceScan](scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
 code as the tests.
 
-Its behavior, both in terms of [CVEs evaluation](scst-scan/policies.hbs.md) and [scanner to use](scst-scan/available-scanners.hbs.md), are
-customized with the parameters.
+You can customize behavior for both [CVEs evaluation](scst-scan/policies.hbs.md) and [scanner to use](scst-scan/available-scanners.hbs.md) with parameters.
 
 Parameters:
 
@@ -313,7 +299,7 @@ Parameters:
     <td><code>scanning_source_template<code></td>
     <td>
       Name of the ScanTemplate object in the same namespace as the Workload to
-      make use of for running the scans against the source code.
+      use for running the scans against the source code.
     </td>
     <td>
       <pre>
@@ -327,7 +313,7 @@ Parameters:
     <td><code>scanning_source_policy<code></td>
     <td>
       Name of the ScanPolicy object in the same namespace as the Workload to
-      make use of when evaluating the scan results of a source scan.
+      use when evaluating the scan results of a source scan.
     </td>
     <td>
       <pre>
@@ -344,15 +330,14 @@ set up the Workload namespace with the ScanPolicy and ScanTemplate required for
 this resource, and [SourceScan reference](scst-scan/scan-crs.hbs.md#sourcescan)
 for details about the SourceScan custom resource.
 
-See [Supply Chain Security Tools for Tanzu –
-Store](scst-store/overview.hbs.md) for details about how the artifacts found
-during scanning are catalogued.
-
+For information about how the artifacts found
+during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
+Store](scst-store/overview.hbs.md).
 
 ## image-provider
 
-The `image-provider` in the supply chains provides to further resources a
-container image carrying the application already built.
+The `image-provider` in the supply chains provides a
+container image carrying the application already built to further resources.
 
 Depending on how the Workload is configured, for example, if using [pre-built
 images](scc/pre-built-image.hbs.md) or [building from
@@ -369,9 +354,9 @@ source](scc/building-from-source.hbs.md), different semantics apply:
 ### Kpack Image
 
 The Kpack Image object provides means for building a
-container image out of source code (or pre-built Java artifact), making such
+container image out of source code or pre-built Java artifact. This makes the
 container image available to further resources in the supply chain through a
-content addressable image reference that's carried all the way to the final
+content addressable image reference that's carried to the final
 deployment objects unchanged. See [About Tanzu Build
 Service](tanzu-build-service/tbs-about.hbs.md).
 
@@ -387,8 +372,8 @@ Parameters:
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      name of the serviceaccount (in the same namespace as the Workload) to use
-      for providing the necessary credentials to `Image` for pushing the
+      name of the serviceaccount, in the same namespace as the Workload, to use
+      for providing credentials to `Image` for pushing the
       container images it builds to the configured registry.
     </td>
     <td>
@@ -402,7 +387,7 @@ Parameters:
   <tr>
     <td><code>clusterBuilder<code></td>
     <td>
-      name of the Kpack cluster builder to make use of in the Kpack Image
+      Name of the Kpack cluster builder to use in the Kpack Image
       object created.
     </td>
     <td>
@@ -416,9 +401,9 @@ Parameters:
   <tr>
     <td><code>buildServiceBindings<code></td>
     <td>
-      definition of a list of service bindings to make use at build time (e.g.,
-      useful for providing credentials for fetching dependencies from
-      repositories that require credentials).
+      Definition of a list of service bindings to make use at build time. For example,
+      providing credentials for fetching dependencies from
+      repositories that require credentials.
     </td>
     <td>
       <pre>
@@ -450,26 +435,21 @@ Parameters:
 > the Workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
+For information about
+the integration with Tanzu Build Service, see [Tanzu Build Service (TBS) Integration](scc/tbs.hbs.md).
 
-See [Tanzu Build Service (TBS) Integration](scc/tbs.hbs.md) for more details about
-the integration with Tanzu Build Service.
+For information about `live-update`, see [Developer Conventions](developer-conventions/about.hbs.md) and [About IntelliJ extension](intellij-extension/about.hbs.md.
 
-See [Developer Conventions](developer-conventions/about.hbs.md) and [About
-IntelliJ extension](intellij-extension/about.hbs.md) for details about
-`live-update`.
+For information about using Kpack builders with `clusterBuilder`, see [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md).
 
-See [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md) for
-details about the use of Kpack builders with `clusterBuilder`.
-
-See [Service
-Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md)
-documentation for details about `buildServiceBindings`.
+For information about `buildServiceBindings`, see [Service
+Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md).
 
 ### Runnable (TaskRuns for Dockerfile-based builds)
 
-In order to perform Dockerfile-based builds, the supply chains (all of them)
-instantiate a Runnable object that, in face of changes to its set of inputs
-(for instance, a new source code revision), takes care of instantiating Tekton
+To perform Dockerfile-based builds, all the supply chains
+instantiate a Runnable object that, with changes to its inputs
+like a new source code revision, instantiates Tekton
 TaskRun objects to call the execution of
 [kaniko](https://github.com/GoogleContainerTools/kaniko) builds.
 
@@ -505,7 +485,7 @@ Parameters:
 </table>
 
 See [Dockerfile-based builds](scc/dockerfile-based-builds.hbs.md) for more
-information about how to make use of it and limitations associated with the
+information about how to use it and limitations associated with the
 function.
 
 ### Pre-built image (ImageRepository)
