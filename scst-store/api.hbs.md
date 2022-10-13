@@ -273,7 +273,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-image-packages-default"></span> Default Response
 ErrorMessage
@@ -314,7 +314,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-image-packages-query-default"></span> Default Response
 ErrorMessage
@@ -354,7 +354,7 @@ Status: OK
    
   
 
-[][Vulnerability](#vulnerability)
+[[]Vulnerability](#vulnerability)
 
 ##### <span id="get-image-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -475,7 +475,7 @@ Status: OK
    
   
 
-[][Image](#image)
+[[]Image](#image)
 
 ##### <span id="get-package-images-default"></span> Default Response
 ErrorMessage
@@ -514,7 +514,7 @@ Status: OK
    
   
 
-[][Source](#source)
+[[]Source](#source)
 
 ##### <span id="get-package-sources-default"></span> Default Response
 ErrorMessage
@@ -554,7 +554,7 @@ Status: OK
    
   
 
-[][Vulnerability](#vulnerability)
+[[]Vulnerability](#vulnerability)
 
 ##### <span id="get-package-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -595,7 +595,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-packages-default"></span> Default Response
 ErrorMessage
@@ -683,7 +683,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-source-packages-default"></span> Default Response
 ErrorMessage
@@ -724,7 +724,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-source-packages-query-default"></span> Default Response
 ErrorMessage
@@ -763,7 +763,7 @@ Status: OK
    
   
 
-[][Vulnerability](#vulnerability)
+[[]Vulnerability](#vulnerability)
 
 ##### <span id="get-source-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -805,7 +805,7 @@ Status: OK
    
   
 
-[][Vulnerability](#vulnerability)
+[[]Vulnerability](#vulnerability)
 
 ##### <span id="get-source-vulnerabilities-query-default"></span> Default Response
 ErrorMessage
@@ -847,7 +847,7 @@ Status: OK
    
   
 
-[][Source](#source)
+[[]Source](#source)
 
 ##### <span id="get-sources-default"></span> Default Response
 ErrorMessage
@@ -887,7 +887,7 @@ Status: OK
    
   
 
-[][Vulnerability](#vulnerability)
+[[]Vulnerability](#vulnerability)
 
 ##### <span id="get-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -975,7 +975,7 @@ Status: OK
    
   
 
-[][Image](#image)
+[[]Image](#image)
 
 ##### <span id="get-vulnerability-images-default"></span> Default Response
 ErrorMessage
@@ -1014,7 +1014,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-vulnerability-packages-default"></span> Default Response
 ErrorMessage
@@ -1053,7 +1053,7 @@ Status: OK
    
   
 
-[][Source](#source)
+[[]Source](#source)
 
 ##### <span id="get-vulnerability-sources-default"></span> Default Response
 ErrorMessage
@@ -1512,9 +1512,9 @@ marshalled as a JSON object.
 | Digest | string| `string` | ✓ | |  | `9n38274ods897fmay487gsdyfga678wr82` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
 | Name | string| `string` | ✓ | |  | `myorg/application` |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
 | Registry | string| `string` | ✓ | |  | `docker.io` |
-| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
 
 
 
@@ -1533,7 +1533,7 @@ marshalled as a JSON object.
 | DeletedAt | [DeletedAt](#deleted-at)| `DeletedAt` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
 | Name | string| `string` |  | |  |  |
-| Rating | [][Rating](#rating)| `[]*Rating` |  | |  |  |
+| Rating | [[]Rating](#rating)| `[]*Rating` |  | |  |  |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 
 
@@ -1596,12 +1596,12 @@ it can be used as a scan destination, similar to NullString.
 |------|------|---------|:--------:| ------- |-------------|---------|
 | Homepage | string| `string` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [][Image](#image)| `[]*Image` |  | |  |  |
+| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
 | Name | string| `string` |  | |  |  |
 | PackageManager | string| `string` |  | |  |  |
-| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
 | Version | string| `string` |  | |  |  |
-| Vulnerabilities | [][Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
+| Vulnerabilities | [[]Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
 
 
 
@@ -1620,7 +1620,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][interface{}](#interface)| `[]interface{}` |  | |  |  |
+| Results | [[]interface{}](#interface)| `[]interface{}` |  | |  |  |
 
 
 
@@ -1658,9 +1658,9 @@ it can be used as a scan destination, similar to NullString.
 | DeletedAt | [DeletedAt](#deleted-at)| `DeletedAt` |  | |  |  |
 | Host | string| `string` |  | |  | `gitlab.com` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [][Image](#image)| `[]*Image` |  | |  |  |
+| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
 | Organization | string| `string` |  | |  | `vmware` |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
 | Repository | string| `string` | ✓ | |  | `myproject` |
 | Sha | string| `string` | ✓ | |  | `0eb5fcd1` |
 
@@ -1688,8 +1688,8 @@ it can be used as a scan destination, similar to NullString.
 | CVEID | string| `string` | ✓ | |  | `CVE-7467-2020` |
 | Description | string| `string` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
-| Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
+| Ratings | [[]Rating](#rating)| `[]*Rating` |  | |  |  |
 | References | [StringArray](#string-array)| `StringArray` |  | |  |  |
 | URL | string| `string` |  | |  |  |
 
@@ -1710,7 +1710,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][ResponseImage](#response-image)| `[]*ResponseImage` |  | |  |  |
+| Results | [[]ResponseImage](#response-image)| `[]*ResponseImage` |  | |  |  |
 
 
 
@@ -1729,7 +1729,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][ResponsePackage](#response-package)| `[]*ResponsePackage` |  | |  |  |
+| Results | [[]ResponsePackage](#response-package)| `[]*ResponsePackage` |  | |  |  |
 
 
 
@@ -1748,7 +1748,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][ResponseSource](#response-source)| `[]*ResponseSource` |  | |  |  |
+| Results | [[]ResponseSource](#response-source)| `[]*ResponseSource` |  | |  |  |
 
 
 
@@ -1767,7 +1767,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][ResponseVulnerability](#response-vulnerability)| `[]*ResponseVulnerability` |  | |  |  |
+| Results | [[]ResponseVulnerability](#response-vulnerability)| `[]*ResponseVulnerability` |  | |  |  |
 
 
 
@@ -1786,9 +1786,9 @@ it can be used as a scan destination, similar to NullString.
 | Digest | string| `string` | ✓ | |  | `9n38274ods897fmay487gsdyfga678wr82` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
 | Name | string| `string` | ✓ | |  | `myorg/application` |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
 | Registry | string| `string` | ✓ | |  | `docker.io` |
-| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 
 
@@ -1807,13 +1807,13 @@ it can be used as a scan destination, similar to NullString.
 | CreatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 | Homepage | string| `string` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [][Image](#image)| `[]*Image` |  | |  |  |
+| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
 | Name | string| `string` |  | |  |  |
 | PackageManager | string| `string` |  | |  |  |
-| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 | Version | string| `string` |  | |  |  |
-| Vulnerabilities | [][Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
+| Vulnerabilities | [[]Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
 
 
 
@@ -1832,9 +1832,9 @@ it can be used as a scan destination, similar to NullString.
 | DeletedAt | [DeletedAt](#deleted-at)| `DeletedAt` |  | |  |  |
 | Host | string| `string` |  | |  | `gitlab.com` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [][Image](#image)| `[]*Image` |  | |  |  |
+| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
 | Organization | string| `string` |  | |  | `vmware` |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
 | Repository | string| `string` | ✓ | |  | `myproject` |
 | Sha | string| `string` | ✓ | |  | `0eb5fcd1` |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
@@ -1857,8 +1857,8 @@ it can be used as a scan destination, similar to NullString.
 | CreatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 | Description | string| `string` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
-| Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
+| Ratings | [[]Rating](#rating)| `[]*Rating` |  | |  |  |
 | References | [StringArray](#string-array)| `StringArray` |  | |  |  |
 | URL | string| `string` |  | |  |  |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
