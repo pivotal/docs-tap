@@ -82,24 +82,26 @@ An alternative to using the Tanzu CLI is to create a separate manifest file and 
 
 ## <a id="using-local-path"></a>Using local-path for publishing accelerators
 
-You can publish an accelerator directly from a local directory on your system. This helps when authoring accelerators and allows you to avoid having to commit every small change to a remote Git repository. Note that we can also specify `--interval` so the accelerator will be reconciled quicker when we push new changes.
+You can publish an accelerator directly from a local directory on your system. This helps when authoring accelerators and allows you to avoid having to commit every small change to a remote Git repository.
+
+>**Note:** that you can also specify `--interval` so the accelerator is reconciled quicker when we push new changes.
 
 ```sh
-tanzu accelerator create simple --local-path PATH-TO-THE-ACCELERATOR --source-image YOUR-SOURCE-IMAGE-REPO --interval 10s
+tanzu accelerator creates simple --local-path PATH-TO-THE-ACCELERATOR --source-image YOUR-SOURCE-IMAGE-REPO --interval 10s
 ```
 
 Where:
 
-- `PATH-TO-THE-ACCELERATOR` is the path to the accelerator source, it can be fully qualified or a relative path. If your current directory is already the directory where your source is,than simply use ".".
-- `YOUR-SOURCE-IMAGE-REPO` is the name of the OCI image repository where you want to push the new accelerator source. If using Docker Hub you could use something like `docker.io/YOUR-DOCKER_ID/simple-accelerator-source` where `YOUR-DOCKER_ID` is of course the Docker ID you want to use.
+- `PATH-TO-THE-ACCELERATOR` is the path to the accelerator source, it can be fully qualified or a relative path. If your current directory is already the directory where your source is, then use ".".
+- `YOUR-SOURCE-IMAGE-REPO` is the name of the OCI image repository where you want to push the new accelerator source. If using Docker Hub, use something such as `docker.io/YOUR-DOCKER_ID/simple-accelerator-source` where `YOUR-DOCKER_ID` is of course the Docker ID you want to use.
 
-Once you have made some additional changes you can push the latest to the same OCI image repository using:
+After you have made some additional changes you can push the latest to the same OCI image repository using:
 
 ```sh
 tanzu accelerator push --local-path PATH-TO-THE-ACCELERATOR --source-image YOUR-SOURCE-IMAGE-REPO
 ```
 
-The accelerator should now reflect the new content after ~10s wait since we specified that as the interval when we created the accelerator above.
+The accelerator should now reflect the new content after a ~10s wait since we specified that as the interval when we created the accelerator above.
 
 ## <a id="using-accelerator-fragments"></a>Using accelerator fragments
 
