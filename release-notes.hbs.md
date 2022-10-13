@@ -412,6 +412,7 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
     For information about resolving this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#update-sc-err).
   - API Descriptors/Service Bindings stages show an `Unknown` status (grey question mark in the graph)
     even if successful.
+  - Users see the error `An error occurred while loading data from the Metadata Store` when the TAP GUI is not fully configured. See [Troubleshooting](tap-gui/troubleshooting.hbs.md#an-error-occurred-while-loading-data-from-the-metadata-store).
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
