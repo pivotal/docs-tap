@@ -6,7 +6,6 @@ This topic describes how to:
   - [Set the Kubernetes cluster context](#cluster-context)
   - [Install or update the Tanzu CLI and plug-ins](#cli-and-plugin)
 
-
 ## <a id='accept-eulas'></a> Accept the End User License Agreements
 
 Before downloading and installing Tanzu Application Platform packages, you must accept the
@@ -32,7 +31,6 @@ To accept the Tanzu Application Platform EULA:
 3. Select ***Agree*** in the bottom-right of the dialog box as seen in the following screenshot.
 
     ![Screenshot of a dialog box inviting the reader to accept the EULA. The AGREE button is framed.](images/install-tanzu-cli-eulas2.png)
-
 
 ## <a id='cluster-context'></a> Set the Kubernetes cluster context
 
