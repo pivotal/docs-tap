@@ -59,6 +59,7 @@ Use this table to keep a running list of terms used and how they should be defin
 | convention server | Lowercase; this is one of the minor components that make up Convention Service |
 | Convention Service | Title case; this is a component with its own TanzuNet product page |
 | Default Supply Chain | singular |
+| kubectl| First use in a topic: Kubernetes command line tool (kubectl). Subsequent uses: kubectl. |
 | Tanzu Insight | This CLI plug-in is named simply Insight in the v1.0 documentation because it is separate from the Tanzu CLI |
 | packageRepository | Is a definition. Variations found in original doc (Package repository, PackageRepository, packagerepository) but standardize on the one shown. 2021.08.26 |
 | PackageRepositories | Don't use. There is really only one packageRepository of interest for this page. |
