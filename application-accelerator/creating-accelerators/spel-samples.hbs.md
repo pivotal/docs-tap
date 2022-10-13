@@ -5,7 +5,7 @@ This document shows some common [Spring Expression Language](https://docs.spring
 
 ## <a id="variables"></a>Variables
 
-You can reference all the values added as options in the `accelerator` section from the YAML file as variables in the `engine` section. You can access the value using the syntax 
+You can reference all the values added as options in the `accelerator` section from the YAML file as variables in the `engine` section. You can access the value using the syntax
 `#<option name>`:
 
 ```yaml
@@ -23,18 +23,18 @@ engine:
         with: "#foo"
 ```
 
-This sample replaces every occurrence of the text `bar` in the file `some/file.txt` 
+This sample replaces every occurrence of the text `bar` in the file `some/file.txt`
 with the contents of the `foo` option.
 
 ## <a id="implicit-variables"></a>Implicit variables
 
 Some variables are made available to the model by the engine, including:
 
-* `artifactId` is a built-in value derived from the `projectName` passed in from 
+- `artifactId` is a built-in value derived from the `projectName` passed in from
   the UI with spaces replaced by "_". If that value is empty, it is set to `app`.
-* `files` is a helper object that currently exposes the `contentsOf(<path>)` method. 
+- `files` is a helper object that currently exposes the `contentsOf(<path>)` method.
   For more information, see [ReplaceText](transforms/replace-text.md).
-* `camel2Kebab` and other variations of the form `xxx2Yyyy` are a series of
+- `camel2Kebab` and other variations of the form `xxx2Yyyy` are a series of
   helper functions for dealing with changing case of words. For more information, see [ReplaceText](transforms/replace-text.md).
 
 ## <a id="conditionals"></a>Conditionals
@@ -73,14 +73,14 @@ options:
     inputType: text
 ...
 engine:
-  - include: ["some/file.txt"]    
+  - include: ["some/file.txt"]
     chain:
     - type: RewritePath
       rewriteTo: "'somewhere/' + #renameTo + '.txt'"
 ```
 
 ## <a id="regular-expressions"></a>Regular expressions
- 
+
 Regular expressions allow you to use patterns as a matcher for strings. Here is a small
 example of what you can do with them:
 
@@ -104,10 +104,11 @@ engine:
 This example uses RegEx to match a string of letters that ends with a capital Z and any number of digits. If this condition is fulfilled, the text is replaced in the file, `file.txt`.
 
 ## <a id="dealing-with-string-array"></a>Dealing with string arrays
+
 Options with a `dataType` of `[string]` come out as an array of strings.
 
-To use them and for example format the result as a bulleted list,
-it is possible to use the Java `static String.join()` method, like so:
+To use them and for example, format the result as a bulleted list.
+It might to use the Java `static String.join()` method, such as:
 
 ```yaml
 accelerator:
