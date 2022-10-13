@@ -34,6 +34,8 @@ The sign-and-verify mechanism serves multiple security purposes:
 
 ## Token signature of an `AuthServer`
 
+*Required*
+
 An `AuthServer` receives its keys under `spec.tokenSignature`, e.g.:
 
 ```yaml
