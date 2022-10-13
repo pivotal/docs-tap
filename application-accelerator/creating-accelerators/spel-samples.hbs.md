@@ -107,8 +107,8 @@ This example uses RegEx to match a string of letters that ends with a capital Z 
 
 Options with a `dataType` of `[string]` come out as an array of strings.
 
-To use them and for example, format the result as a bulleted list.
-It might to use the Java `static String.join()` method, such as:
+To use them and for example, format the result as a bulleted list,
+you can use the Java `static String.join()` method. For example:
 
 ```yaml
 accelerator:
