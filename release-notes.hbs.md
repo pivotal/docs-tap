@@ -312,6 +312,21 @@ This release has the following known issues, listed by area and component.
 - New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
 - The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end. For more information, see [Troubleshoot using Tanzu Application Platform](troubleshooting-tap/troubleshoot-using-tap.hbs.md#invalid-repo-paths).
 
+#### <a id="upgrade-known-issues"></a>Upgrading TAP to version 1.3.0
+
+- If you are upgrading to TAP 1.3.0 from an existing installation please note the following:
+  - If you are upgrading a TAP installation that was first installed with version 1.2, you can proceed normally
+  - If you are upgrading a TAP installation that was first installed with version 1.1 or below, you must follow these steps before upgrading
+    - Install the [kp](https://github.com/vmware-tanzu/kpack-cli) cli
+      - [Open Source link](https://github.com/vmware-tanzu/kpack-cli/releases)
+      - [Tanzu Network link](https://network.pivotal.io/products/build-service/) (this requires accepting an additional EULA for the Tanzu Build Service product which is part of TAP)
+    - Docker login to the Tanzu Network registry and the installation registry selected for install time (`INSTALL_REGISTRY_HOSTNAME` in the [install docs](install.md))
+      - `docker login registry.tanzu.vmware.com`
+      - `docker login $INSTALL_REGISTRY_HOSTNAME`
+    - Run the following command with the `kp` cli:
+      - `kp lifecycle patch -i registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:851d49d1a9786d6b3fa17fa5d669dbbb687e23d047e6c08165d629603f0d70ec`
+    - Then you can follow the normal [upgrade steps](upgrading.md) to upgrade TAP
+
 #### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plug-ins
 
 **Failure to connect to AWS EKS clusters:**
