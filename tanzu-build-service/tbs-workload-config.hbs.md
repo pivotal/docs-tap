@@ -148,7 +148,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 If the language family buildpack you are using includes the Paketo CA certificates buildpack,
 you can use a service binding to provide custom certificates during the build and run process.
 For more information about language family buildpacks, see the
-[Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html)
+[Tanzu Buildpacks documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
 
 To create a service binding to provide custom CA certificates for a workload:
 
@@ -168,7 +168,7 @@ To create a service binding to provide custom CA certificates for a workload:
         -----END CERTIFICATE-----
     ```
 
-    Where `CA-CERT-FILENAME` is the name of your PEM encoded CA certificate file, for example, `arbitrary-file-name.pem`.
+    Where `CA-CERT-FILENAME` is the name of your PEM encoded CA certificate file. For example, `arbitrary-file-name.pem`.
 
 1. Apply the YAML file by running:
 
