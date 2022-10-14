@@ -157,7 +157,7 @@ To stop Live Update, click the trash can button in the terminal pane to stop the
 
 You can remove the Live Update capability from your application entirely.
 You might find this option useful in a troubleshooting scenario.
-Disabling Live Update redeploys your workload to the cluster and removes the Live Update capability.
+Deactivating Live Update redeploys your workload to the cluster and removes the Live Update capability.
 
 To deactivate Live Update:
 

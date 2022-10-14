@@ -10,7 +10,7 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 
 {{> 'partials/ext-tshoot/lu-not-working-wl-types' }}
 
-## <a id="dsbl-lnch-ctrl"></a> Disabled launch controls after running a launch configuration
+## <a id="dsbl-lnch-ctrl"></a> Deactivated launch controls after running a launch configuration
 
 ### Symptom
 
