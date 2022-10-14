@@ -145,7 +145,7 @@ repository of your choice.
                     application/json; charset=utf-8:
                       schema:
                         type: string
-                      examples: {}        
+                      examples: {}
     ```
 
 1. Click **ANALYZE** and then review the catalog entities to be added.

@@ -49,7 +49,7 @@ To enable CVE scan results:
 
     Where `ACCESS-TOKEN` is the token you obtained after creating a read-only service account.
 
-## <a id="view-approvals"></a> Enable View Approvals 
+## <a id="view-approvals"></a> Enable View Approvals
 To enable the supply chain graph to show **View Approvals**, follow the instructions on setting up GitOps and Pull Request in the [GitOps vs. RegistryOps](../../scc/gitops-vs-regops.md) topic.
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
@@ -99,6 +99,6 @@ In the example below, the merge request is approved, leading to a **Pull Config*
 
 Vulnerability source scans and image scans for workload builds can be viewed by clicking on the Source Scan stage or Image Scan stage.  The data is provided by the [Supply Chain Security Tools - Store](../../scst-store/overview.md).
 
-The vulnerabilities (i.e., CVEs) displayed represent any vulnerability associated to a package/version found in the source code or image, including vulnerabilities from past scans.  In other words, the vulnerability scan data represents the scan that just occurred, plus any other vulnerabilities related to the packages found in that scan.  
+The vulnerabilities (i.e., CVEs) displayed represent any vulnerability associated to a package/version found in the source code or image, including vulnerabilities from past scans.  In other words, the vulnerability scan data represents the scan that just occurred, plus any other vulnerabilities related to the packages found in that scan.
 
 >**Note:** For example, the log4shell package is found in image ABC on January 1st without any CVEs.  On January 15th, the log4j CVE is found while scanning image DEF.  If a user returns to the Image Scan stage for image ABC, the log4j CVE will be shown associated to the log4shell package.

@@ -172,7 +172,7 @@ There are two ways to stop live update:
 
 You can remove the Live Update capability from your application entirely.
 This option can be useful in a troubleshooting scenario.
-Disabling Live Update redeploys your workload to the cluster and removes the Live Update capability.
+Deactivating Live Update redeploys your workload to the cluster and removes the Live Update capability.
 
 To deactivate Live Update:
 
