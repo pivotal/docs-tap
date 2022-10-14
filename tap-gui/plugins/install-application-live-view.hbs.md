@@ -45,7 +45,7 @@ To install Application Live View Backend:
     ```console
     $ tanzu package available list backend.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for backend.appliveview.tanzu.vmware.com...
-      NAME                                  VERSION        RELEASED-AT           
+      NAME                                  VERSION        RELEASED-AT
       backend.appliveview.tanzu.vmware.com  1.1.1          2022-04-22T00:00:10Z
     ```
 
@@ -136,7 +136,7 @@ To install Application Live View Backend:
     For example:
 
     ```console
-    tanzu package installed get appliveview -n tap-install            
+    tanzu package installed get appliveview -n tap-install
     \ Retrieving installation details for appliveview...
     NAME:                    appliveview
     PACKAGE-NAME:            backend.appliveview.tanzu.vmware.com
@@ -164,7 +164,7 @@ To install Application Live View Connector:
     ```console
     $ tanzu package available list connector.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for connector.appliveview.tanzu.vmware.com...
-      NAME                                    VERSION        RELEASED-AT           
+      NAME                                    VERSION        RELEASED-AT
       connector.appliveview.tanzu.vmware.com  1.1.1          2022-04-22T00:00:10Z
     ```
 
@@ -277,7 +277,7 @@ To install Application Live View Conventions:
     ```console
     $ tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for conventions.appliveview.tanzu.vmware.com...
-      NAME                                      VERSION        RELEASED-AT           
+      NAME                                      VERSION        RELEASED-AT
       conventions.appliveview.tanzu.vmware.com  1.1.1          2022-04-22T00:00:00Z
     ```
 

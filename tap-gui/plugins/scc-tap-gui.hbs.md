@@ -21,7 +21,7 @@ Tanzu Application Platform GUI, or have installed the Tanzu Application Platform
 
 To visualize your workload through the SCC plug-in, you must first create a workload.
 
-The workload must have the `app.kubernetes.io/part-of` label specified, whether you manually create 
+The workload must have the `app.kubernetes.io/part-of` label specified, whether you manually create
 the workload or use those supplied with the OOTB supply chains.
 
 Use the left sidebar navigation to access your workload and visualize it in the supply chain that is
