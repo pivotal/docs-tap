@@ -49,6 +49,8 @@ The Unique CVEs column uses the same sum logic as described earlier, but for ind
 > The data on the Supply Chain Choreographer's Vulnerability Scan Results is based on vulnerabilities
 > across all of the Metadata Store.
 
+ >**Note:** Only vulnerability scans associated to a Cartographer workload will appear.  Use [`tanzu insight`](../../cli-plugins/insight/cli-overview.hbs.md) to view results for non-workload scan results.
+
 ## <a id="accessing-details"></a> Viewing CVE and package details
 
 The Security Analysis plug-in has a **CVE** page and a **Package** page.
