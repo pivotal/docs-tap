@@ -1,4 +1,4 @@
-# Configuration
+# Configure Application Single Sign-On
 
 ## TAP values
 

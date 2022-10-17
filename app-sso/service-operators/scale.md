@@ -1,4 +1,4 @@
-# Scale
+# Scale AuthServer
 
 The number of authorization server replicas for an `AuthServer` can be specified under `spec.replicas`.
 

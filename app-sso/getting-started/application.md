@@ -1,4 +1,4 @@
-# Deploy an application
+# Deploy an application with Application Single Sign-On
 
 ---
 

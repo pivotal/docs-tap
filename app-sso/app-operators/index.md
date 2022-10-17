@@ -1,4 +1,4 @@
-# AppSSO for App Operators
+# Application Single Sign-On for App Operators
 
 To secure a `Workload` with AppSSO you need a `ClientRegistration` with these ingredients:
 

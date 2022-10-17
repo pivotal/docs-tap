@@ -1,4 +1,4 @@
-# RBAC
+# RBAC for Application Single Sign-On
 
 The AppSSO package aggregates the following permissions into TAP's well-known roles:
 
