@@ -251,7 +251,7 @@ This release has the following breaking changes, listed by area and component.
 - Package configuration `webhooks_disabled` is removed and `extra` is renamed to `internal`.
 - The `KEYS COUNT` print column is replaced with the more insightful `STATUS` for `AuthServer`.
 - The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern,
-  instead of `<providerId>/<userId>`. See [Misconfigured `sub` claim](app-sso/service-operators/troubleshooting.md#sub-claim) for more information.
+  instead of `<providerId>/<userId>`. See [Misconfigured `sub` claim](app-sso/troubleshoot.md#sub-claim) for more information.
 
 #### <a id="app-live-view-changes"></a> Application Live View
 
@@ -358,7 +358,7 @@ For more information, see [Troubleshooting](app-live-view/troubleshooting.hbs.md
 **Redirect URIs change to http instead of https:**
 
 AppSSO makes requests to external identity providers with `http` rather than `https`.
-For more information, see [Redirect URIs change to http instead of https](app-sso/known-issues/cidr-ranges.md).
+For more information, see [Redirect URIs change to http instead of https](app-sso/known-issues/index.md#cidr-ranges).
 
 #### <a id="cnrs-issues"></a> Cloud Native Runtimes
 
