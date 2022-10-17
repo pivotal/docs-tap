@@ -1,4 +1,4 @@
-# Grant types
+# Configure grant types
 
 These are the grant types/flows for apps to get an access token on behalf of a user. If not included, the default
 will be `['client_credentials']`. They take effect by being included in the `authorizationGrantTypes` property list in

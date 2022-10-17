@@ -1,4 +1,4 @@
-# Uninstalling AppSSO from TAP
+# Uninstall Application Single Sign-On
 
 Uninstall the AppSSO package and repository following resource naming introduced
 in the [Installation](installation.md) section:

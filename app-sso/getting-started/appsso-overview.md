@@ -1,4 +1,4 @@
-# AppSSO Overview
+# Getting started with Application Single Sign-On
 
 At the core of AppSSO is the concept of an Authorization Server, outlined by
 the [AuthServer custom resource](../crds/authserver.md). Service Operators create those resources to provision running

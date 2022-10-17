@@ -1,4 +1,4 @@
-# Securing your first Workload
+# Secure a workload
 
 This tutorial will walk you through the steps to add an authentication mechanism to a sample Spring Boot application
 using AppSSO service, running on Tanzu Application Platform (TAP).

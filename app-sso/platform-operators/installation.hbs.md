@@ -1,4 +1,4 @@
-# Installation
+# Install Application Single Sign-On
 
 The AppSSO package is currently published as part of the Tanzu Application Platform package repository.
 

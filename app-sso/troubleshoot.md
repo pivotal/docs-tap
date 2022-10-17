@@ -35,7 +35,7 @@ annotation `kapp.k14s.io/disable-default-label-scoping-rules: ""` to avoid that 
 
 ## Redirect URIs are redirecting to http instead of https with a non-internal identity provider
 
-Follow [this workaround](../known-issues/index.md#cidr-ranges), adding IP ranges for the `AuthServer` to trust.
+Follow [this workaround](known-issues/index.md#cidr-ranges), adding IP ranges for the `AuthServer` to trust.
 
 ## Common issues
 
@@ -67,7 +67,7 @@ If your `ClientRegistration` selects and `AuthServer` which serves a certificate
 will not trust it by default.
 
 A `ca-certificates` service binding `Secret` allows to configure trust for custom CAs. [Your _Service
-Operator_ can export such a resource for you](../service-operators/issuer-uri-and-tls.md#allow-workloads-to-trust-a-custom-ca-authserver)
+Operator_ can export such a resource for you](service-operators/issuer-uri-and-tls.md#allow-workloads-to-trust-a-custom-ca-authserver)
 .
 
 Once they have exported a `ca-certificates` service binding `Secret`, we can import it and add another service claim to

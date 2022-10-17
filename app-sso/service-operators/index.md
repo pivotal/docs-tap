@@ -1,4 +1,4 @@
-# AppSSO for Service Operators
+# Application Single Sign-On for Service Operators
 
 `AuthServer` represents the request for an OIDC authorization server. It results in the deployment of an authorization
 server backed by Redis over mTLS.
@@ -10,11 +10,9 @@ For the full available configuration, `spec` and `status` see [the API reference
 
 The following sections outline the essential steps to configure a fully operational authorization server.
 
-- [Annotations & Labels](./metadata.md)
+- [Annotations and labels](./metadata.md)
 - [Issuer URI and TLS](./issuer-uri-and-tls.md)
 - [Token signature](./token-signature.md)
 - [Identity providers](./identity-providers.md)
-- [Readiness](./readiness.md)
-- [Scale](./scale.md)
-- [Troubleshooting](./troubleshooting.md)
-- [Known limitation](./known-limitations.md)
+- [AuthServer readiness](./readiness.md)
+- [Scale AuthServer](./scale.md)

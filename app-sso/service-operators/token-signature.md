@@ -1,4 +1,4 @@
-# Token signature
+# Token signatures
 
 An `AuthServer` must have token signature keys configured to be able to mint tokens.
 
