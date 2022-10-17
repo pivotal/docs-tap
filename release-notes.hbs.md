@@ -107,7 +107,7 @@ See [Prerequisites for Carbon Black Scanner (Beta)](scst-scan/install-carbonblac
 - Added support for pulling artifacts with `LATEST` and `SNAPSHOT` versions.
 - Optimized 'MavenArtifact' artifact download during interval sync.
   - Only after the SHA on the Maven Repository has changed can the source controller download the artifact. Otherwise, the download is skipped.
-- Added routine to reset `ImageRepository` condition status between reconciles.
+- Added a routine to reset the `ImageRepository` condition status between reconciles.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
