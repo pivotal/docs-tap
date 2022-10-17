@@ -37,26 +37,24 @@ annotation `kapp.k14s.io/disable-default-label-scoping-rules: ""` to avoid that 
 
 Follow [this workaround](known-issues/index.md#cidr-ranges), adding IP ranges for the `AuthServer` to trust.
 
-## Common issues
+## Misconfigured `clientSecret`
 
-### Misconfigured `clientSecret`
-
-#### Problem:
+### Problem:
 
 When attempting to sign in, you see `This commonly happens due to an incorrect [client_secret].` It might be because the client secret of an identity provider is misconfigured.
 
-#### Solution:
+### Solution:
 
 Validate the `spec.OpenId.clientSecretRef`.
 
-### <a id="sub-claim"></a>Misconfigured `sub` claim
+## <a id="sub-claim"></a>Misconfigured `sub` claim
 
-#### Problem:
+### Problem:
 
 The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern. 
 The previous `<providerId>/<userId>` pattern might cause bugs in URLs without proper URL-encoding in client applications. 
 
-#### Solution:
+### Solution:
 
 If your client application has stored `sub` claims,
 you must update them to match the new pattern `<providerId>_<userId>`.
@@ -99,33 +97,31 @@ spec:
 
 > 👉 Learn more about [secretgen-controller and its APIs](https://github.com/vmware-tanzu/carvel-secretgen-controller).
 
-## Common issues
+## Misconfigured redirect URI
 
-### Misconfigured redirect URI
-
-#### Problem:
+### Problem:
 You see `Error: [invalid_request] OAuth 2.0 Parameter: redirect_uri` when signing in. 
 
-#### Solution:
+### Solution:
 The `redirectUri` of this `ClientRegistration` must refer to the URI of the registered Workload.
 It does not refer to the URI of the AuthServer.
 
-### Misconfigured identity provider clientSecret
+## Misconfigured identity provider clientSecret
 
-#### Problem:
+### Problem:
 - When attempting to sign in, you see `client.samples.localhost.identity.team redirected you too many times.` It might be because the client secret of an identity provider is misconfigured.
 - If you have access to the authserver logs, verify if there is an entry with the text
 `"error":"[invalid_client] Client authentication failed: client_secret"`.
 
-#### Solution:
+### Solution:
 - Validate the secret referenced by the `clientSecretRef` for this particular identity provider in your `authserver.spec`.
 
-### Missing scopes
+## Missing scopes
 
-#### Problem:
+### Problem:
 When attempting to fetch data after signing in to your application by using AppSSO, you see `[invalid_scope] OAuth 2.0 Parameter: scope`.
 
-#### Solution:
+### Solution:
 Add the required scopes into your `ClientRegistration` yaml under `spec.scopes`.
 
 >**Note:** Changes to the secret do not propagate to the `ClientRegistration`. If you recreated the `Secret` that contains the
