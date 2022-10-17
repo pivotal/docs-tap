@@ -21,7 +21,7 @@ Follow these steps to update the new package repository:
 
 1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 4 in [Relocate images to a registry](install.html#add-tap-package-repo).
 
-    >**Note:** Make sure to update the `VERSION-NUMBER` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`. 
+    >**Note:** Make sure to update the `TAP_VERSION` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`. 
 
 1. Add the target version of the Tanzu Application Platform package repository:
 
@@ -58,10 +58,8 @@ For Tanzu Application Platform that is installed by profile, you can perform the
 >**Note:** Ensure you run the following command in the directory where the `tap-values.yaml` file resides.
 
 ```console
-tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION  --values-file tap-values.yaml -n tap-install
+tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
 ```
-
-Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
 
 >**Note:** When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically
 >run a build that fails due to a missing dependency.
