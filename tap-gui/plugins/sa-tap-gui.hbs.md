@@ -38,6 +38,8 @@ The **Workload Build Vulnerabilities** tables, with the **Violates Policy** tab 
 >**Note:** The sum of a workload's CVEs might not match the
  [Supply Chain Choreographer's Vulnerability Scan Results](scc-tap-gui.hbs.md#sc-view-scan-results). The data on this dashboard is based on `kubectl describe` for `SourceScan` and `ImageScan`. The data on the Supply Chain Choreographer's Vulnerability Scan Results is based Metadata Store data.
 
+ >**Note:** Only vulnerability scans associated to a Cartographer workload will appear.  Use [`tanzu insight`](../../cli-plugins/insight/cli-overview.hbs.md) to view results for non-workload scan results.
+
 ## <a id="accessing-details"></a> Viewing CVE and package details
 
 The Security Analysis plug-in has a **CVE** page and a **Package** page.
