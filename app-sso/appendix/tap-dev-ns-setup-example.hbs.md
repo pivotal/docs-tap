@@ -1,4 +1,4 @@
-# TAP developer namespace setup example
+# Set up developer namespaces
 
 > ✅ Applies to TAP v{{ vars.tap_version }}
 

@@ -256,7 +256,7 @@ docs.vmware.com is built.
             - [Token signatures](app-sso/service-operators/token-signature.md)
             - [AuthServer readiness](app-sso/service-operators/readiness.md)
             - [Scale AuthServer](app-sso/service-operators/scale.md)
-            - [Audit logs](app-sso/service-operators/audit-logs.md)
+            - [AuthServer audit logs](app-sso/service-operators/audit-logs.md)
         - [Application Single Sign-On for App Operators](app-sso/app-operators/index.md)
             - [Overview of Application Single Sign-On for App Operators](app-sso/app-operators/index.md)
             - [Register a workload](app-sso/app-operators/register-an-app-with-app-sso.md)

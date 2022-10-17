@@ -5,7 +5,7 @@ Sign-On as a service" offering on Tanzu Application Platform.
 
 ---
 
-> * ⏩ Want to get started with AppSSO? Start with the [Getting Started guide](getting-started/index.md).
+> * ⏩ Want to get started with AppSSO? Start with the [Getting Started guide](getting-started/appsso-overview.md).
 
 ---
 

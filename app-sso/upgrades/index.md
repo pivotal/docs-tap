@@ -1,4 +1,4 @@
-# Upgrades
+# Upgrade Application Single Sign-On
 
 The `AppSSO` package is upgraded as part of your `TAP` package installation. 
 

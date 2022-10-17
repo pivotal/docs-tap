@@ -1,4 +1,4 @@
-# Register an app with AppSSO
+# Register a workload
 
 ## Topics
 

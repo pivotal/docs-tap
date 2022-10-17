@@ -1,4 +1,4 @@
-# Readiness
+# AuthServer readiness
 
 Generally, `AuthServer.status` is a reliable source to judge an `AuthServer`'s readiness.
 

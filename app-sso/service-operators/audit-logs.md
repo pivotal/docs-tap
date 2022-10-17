@@ -1,4 +1,4 @@
-# Authorization server audit logs
+# AuthServer audit logs
 
 AppSSO `AuthServer`s do the following:
 
