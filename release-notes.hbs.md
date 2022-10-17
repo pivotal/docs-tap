@@ -435,10 +435,6 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
   For more information, see
   [Troubleshooting](vscode-extension/troubleshooting.hbs.md#lu-not-working-wl-types).
 
-- **Tiltfile snippet doesn't work on files named `Tiltfile` when Tilt extension is installed:**
-
-  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#tiltfile-snippet).
-
 #### <a id="intelj-ext-known-issues"></a>IntelliJ Extension
 
 - **Unable to view workloads on the panel when connected to GKE cluster:**
