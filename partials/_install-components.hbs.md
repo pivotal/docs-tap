@@ -1,43 +1,43 @@
 # Installing individual packages
 
-You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [About Tanzu Application Platform components and profiles](about-package-profiles.md).
+You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [About Tanzu Application Platform components and profiles](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-about-package-profiles.html).
 
 Installing individual Tanzu Application Platform packages
 is useful if you do not want to use a profile to install packages
 or if you want to install additional packages after installing a profile.
 Before installing the packages, be sure to complete the prerequisites, configure
 and verify the cluster, accept the EULA, and install the Tanzu CLI with any required plug-ins.
-For more information, see [Prerequisites](prerequisites.md).
+For more information, see [Prerequisites](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-prerequisites.html).
 
 
 ## <a id='individual-package-toc'></a> Install pages for individual Tanzu Application Platform packages
 
-- [Install API Auto Registration](api-auto-registration/installation.md)
-- [Install API portal](api-portal/install-api-portal.md)
-- [Install Application Accelerator](application-accelerator/install-app-acc.md)
-- [Install Application Live View](app-live-view/install.md)
-- [Install Application Single Sign-On](app-sso/platform-operators/installation.md)
-- [Install cert-manager, Contour, and FluxCD](cert-mgr-contour-fcd/install-cert-mgr.md)
-- [Install Cloud Native Runtimes](cloud-native-runtimes/install-cnrt.md)
-- [Install default roles for Tanzu Application Platform](authn-authz/install.md)  
-- [Install Developer Conventions](developer-conventions/install-dev-conventions.md)
-- [Install Eventing](eventing/install-eventing.md)
-- [Install Learning Center for Tanzu Application Platform](learning-center/install-learning-center.md)
-- [Install Out of the Box Templates](scc/install-ootb-templates.md)
-- [Install Out of the Box Supply Chain with Testing](scc/install-ootb-sc-wtest.md)
-- [Install Out of the Box Supply Chain with Testing and Scanning](scc/install-ootb-sc-wtest-scan.md)
-- [Install Service Bindings](service-bindings/install-service-bindings.md)
-- [Install Services Toolkit](services-toolkit/install-services-toolkit.md)
-- [Install Source Controller](source-controller/install-source-controller.md)
-- [Install Spring Boot Conventions](spring-boot-conventions/install-spring-boot-conventions.md)
-- [Install Supply Chain Choreographer](scc/install-scc.md)
-- [Install Supply Chain Security Tools - Store](scst-store/install-scst-store.md)
-- [Install Supply Chain Security Tools - Policy Controller](scst-policy/install-scst-policy.md)
-- [Install Supply Chain Security Tools - Scan](scst-scan/install-scst-scan.md)
-- [Install Tanzu Application Platform GUI](tap-gui/install-tap-gui.md)
-- [Install Tanzu Build Service](tanzu-build-service/install-tbs.md)
-- [Install Tekton](tekton/install-tekton.md)
-- [Install Telemetry](telemetry/install-telemetry.hbs.md)
+- [Install API Auto Registration](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-api-auto-registration-installation.html)
+- [Install API portal](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-api-portal-install-api-portal.html)
+- [Install Application Accelerator](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-application-accelerator-install-app-acc.html)
+- [Install Application Live View](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-app-live-view-install.html)
+- [Install Application Single Sign-On](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-app-sso-platform-operators-installation.html)
+- [Install cert-manager, Contour, and FluxCD](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-cert-mgr-contour-fcd-install-cert-mgr.html)
+- [Install Cloud Native Runtimes](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-cloud-native-runtimes-install-cnrt.html)
+- [Install default roles for Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-authn-authz-install.html)  
+- [Install Developer Conventions](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-developer-conventions-install-dev-conventions.html)
+- [Install Eventing](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-eventing-install-eventing.html)
+- [Install Learning Center for Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-learning-center-install-learning-center.html)
+- [Install Out of the Box Templates](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scc-install-ootb-templates.html)
+- [Install Out of the Box Supply Chain with Testing](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scc-install-ootb-sc-wtest.html)
+- [Install Out of the Box Supply Chain with Testing and Scanning](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scc-install-ootb-sc-wtest-scan.html)
+- [Install Service Bindings](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-service-bindings-install-service-bindings.html)
+- [Install Services Toolkit](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-services-toolkit-install-services-toolkit.html)
+- [Install Source Controller](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-source-controller-install-source-controller.html)
+- [Install Spring Boot Conventions](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-spring-boot-conventions-install-spring-boot-conventions.html)
+- [Install Supply Chain Choreographer](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scc-install-scc.html)
+- [Install Supply Chain Security Tools - Store](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-store-install-scst-store.html)
+- [Install Supply Chain Security Tools - Policy Controller](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-policy-install-scst-policy.html)
+- [Install Supply Chain Security Tools - Scan](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-scan-install-scst-scan.html)
+- [Install Tanzu Application Platform GUI](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-tap-gui-install-tap-gui.html)
+- [Install Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-tanzu-build-service-install-tbs.html)
+- [Install Tekton](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-tekton-install-tekton.html)
+- [Install Telemetry](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-telemetry-install-telemetry.html)
 
 
 ## <a id='verify'></a> Verify the installed packages
@@ -81,4 +81,10 @@ Use the following procedure to verify that the packages are installed.
     
 ## <a id='next-steps'></a>Next steps
 
-- [Setting up developer namespaces to use installed packages](set-up-namespaces.html)
+For online installation:
+
+- [Setting up developer namespaces to use installed packages](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-set-up-namespaces.html)
+
+For AWS installation:
+
+- [Setting up developer namespaces to use installed packages](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-set-up-namespaces-aws.html)
