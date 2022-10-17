@@ -26,4 +26,4 @@ spec:
 Continue with learning how to customize your `ClientRegistration`
 by [securing a `Workload` with SSO](tutorials/securing-first-workload.md).
 
-Learn more about [grant types](grant-types.md) and find [help for common issues](troubleshooting.md)
+Learn more about [grant types](grant-types.md) and find [help for common issues](../troubleshooting.md)
