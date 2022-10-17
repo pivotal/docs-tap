@@ -116,7 +116,7 @@ password = `password`.
 ---
 
 ✋ Note that if you are using TKGm or TKGs, which have customizable in-cluster communication CIDR ranges, there is a
-[known issue](../known-issues/cidr-ranges.md) regarding AppSSO making requests to external identity providers with
+[known issue](../known-issues/index.md#cidr-ranges) regarding AppSSO making requests to external identity providers with
 `http` rather than `https`.
 
 ---

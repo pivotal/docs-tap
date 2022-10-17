@@ -35,7 +35,7 @@ annotation `kapp.k14s.io/disable-default-label-scoping-rules: ""` to avoid that 
 
 ## Redirect URIs are redirecting to http instead of https with a non-internal identity provider
 
-Follow [this workaround](../known-issues/cidr-ranges.md), adding IP ranges for the `AuthServer` to trust.
+Follow [this workaround](../known-issues/index.md#cidr-ranges), adding IP ranges for the `AuthServer` to trust.
 
 ## Common issues
 
