@@ -63,7 +63,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
 
- > **Note:** If you'd like to see what versions are available on the Tanzu Network Registry you can use the following command:
+ > **Note:** To query for available `imgpkg` CLI versions on the Tanzu Network Registry, run:
  > ```console
  > imgpkg tag list -i registry.tanzu.vmware.com/tanzu-application-platform/tap-packages | grep -v sha | sort -Vimgpkg tag list -i registry.tanzu.vmware.com/tanzu-application-platform/tap-packages | grep -v sha | sort -V
  > ```
