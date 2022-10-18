@@ -890,6 +890,34 @@ to the Workload and the effects they have in the underlying objects, here
 you'll find the description of the parameters that can be provided to the
 Deliverable object (i.e., what can be set on `deliverable.spec.params`).
 
+The Deliverable is relevant in the context os deploying to a Kubernetes cluster
+the configuration that has been produced throughout the resources as defined by
+a ClusterSupplyChain:
+
+
+```
+      Workload              (according to ClusterSupplyChain in `build` cluster)
+
+        - fetch source
+        - build
+        - test
+        - scan
+        - generate kubernetes config
+        - push k8s config to git repository / image registry
+
+
+      Deliverable           (according to ClusterDelivery in `run` cluster)
+
+        - fetch kubernetes config (from git repository / image registry)
+        - apply kubernetes objects to cluster
+
+```
+
+Below you'll find the reference documentation that relates specifically to the
+two resources defined in the `basic` ClusterDelivery part of the
+`ootb-delivery-basic` package:
+
+
 ```
 source-provider                     fetches kubernetes configuration
     |
@@ -908,7 +936,7 @@ as well as the templates used by it, see:
 
 To know more about the use of the Deliverable object in a multi-cluster
 environment, check out [Getting started with multicluster Tanzu Application
-Platform](multicluster/getting-started.hbs.md). 
+Platform](multicluster/getting-started.hbs.md).
 
 For reference documentation about Deliverable, see [Deliverable and Delivery
 custom resources](https://cartographer.sh/docs/v0.5.0/reference/deliverable/).
@@ -919,6 +947,11 @@ custom resources](https://cartographer.sh/docs/v0.5.0/reference/deliverable/).
 The `source-provider` resource in the basic ClusterDelivery creates objects
 that continuously fetches Kubernetes configuration files from a git repository
 or image registry so that it can apply those to the cluster.
+
+Regardless of where it fetches that Kubernetes configuration from (git
+repository or image registry), it exposes those files to further resources along
+the ClusterDelivery as a tarball.
+
 
 ### GitRepository
 
@@ -988,8 +1021,8 @@ For reference documentation on GitRepository objects, see
 
 An ImageRepository object is instantiated whenever
 `deliverable.spec.source.image` is configured such that it can continuously
-look up for Kubernetes configuration files pushed to a container image
-registry as opposed to a git repository.
+look up for Kubernetes configuration files pushed to a container image registry
+as opposed to a git repository.
 
 Parameters:
 
@@ -1003,9 +1036,9 @@ Parameters:
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      name of the service account, in the same namespace as the Workload, you want to use
-      to provide the necessary credentials to `ImageRepository` for fetching
-      the container images.
+      name of the service account, in the same namespace as the Deliverable, you
+      want to use to provide the necessary permissions for `kapp-controller` to
+      deploy the objects to the cluster.
     </td>
     <td>
       <pre>
@@ -1018,9 +1051,72 @@ Parameters:
 </table>
 
 For information about custom resource details, see [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository). 
+docs](source-controller/reference.hbs.md#imagerepository).
 
 > **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Deliverable object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
+
+## app deployer
+
+The `app-deploy` resource in the ClusterDelivery is responsible for applying the
+Kubernetes configuration that has been built by the supply chain (and pushed to
+either a git repository or image repository) and applying to the cluster.
+
+### App
+
+Regardless of where the configuration comes from, an
+[`App`](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/) object is
+instantiated to deploy the set of Kubernetes configuration files to the cluster.
+
+Parameters:
+
+<table>
+  <tr>
+    <th>parameter name</th>
+    <th>meaning</th>
+    <th>example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      name of the service account, in the same namespace as the Deliverable, you want to use
+      to provide the necessary credentials to `ImageRepository` for fetching
+      the container images.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_sub_path<code> (deprecated)</td>
+    <td>
+      sub directory within the configuration bundle that should be used for
+      looking up the files to apply to the Kubernetes cluster.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_sub_path
+        value: ./config
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+> **Note:** the `gitops_sub_path` parameter is considered deprecated - instead,
+> make sure to use `deliverable.spec.source.subPath` instead.
+
+> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> the Deliverable object. To configure the `serviceAccount` parameter, use
+> `--param serviceAccount=...`. For details on RBAC and how `kapp-controller`
+> makes use of the ServiceAccount provided to it via the `serviceAccount`
+> parameter in the `Deliverable` object, check out the documentation of
+> [`kapp-controller`'s Security
+> Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/).
 
