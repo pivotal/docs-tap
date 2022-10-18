@@ -52,7 +52,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Docker Hub has the form `repository: "my-dockerhub-user"`.
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
-- `METADATA-STORE-URL-ON-VIEW-CLUSTER` references the URL of the Supply Chain Security Tools (SCST) - Store deployed on the View cluster. For more information, see SCST - Store's [Ingress and multicluster support](../../scst-store/ingress-multicluster.html#scst-scan-install) for additional details.
+- `METADATA-STORE-URL-ON-VIEW-CLUSTER` is the URL of the Supply Chain Security Tools (SCST) - Store deployed on the View cluster. For more information, see SCST - Store's [Ingress and multicluster support](../../scst-store/ingress-multicluster.html#scst-scan-install).
 - `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
 This is the namespace where the scanning feature runs.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
@@ -66,5 +66,7 @@ credentials to pull an image from the registry for scanning.
 > You can update dependencies by [upgrading Tanzu Application Platform](../../upgrading.md)
 > to the latest patch, or
 > by using an [automatic update process (deprecated)](../../tanzu-build-service/install-tbs.md#auto-updates-config).
+
+> **Note:** See [Multicluster setup](../../scst-store/multicluster-setup.hbs.md) for more information about the value settings of `grype.metadataStore`.
 
 > **Note:** The `scanning.metadatastore.url` must be set to an empty string if you're installing Grype Scanner v1.2.0 or later or Snyk Scanner to deactivate the embedded Supply Chain Security Tools - Store integration.
