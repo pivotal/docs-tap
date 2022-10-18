@@ -881,3 +881,146 @@ Parameters:
 > **Note:** On build clusters where a corresponding `ClusterDelivery` doesn't
 > exist, the Deliverable takes no effect (similarly to a Workload without a
 > SupplyChain, no action is taken).
+
+
+# Deliverable Parameters reference
+
+Similarly to the section above describing the parameters that can be supplied
+to the Workload and the effects they have in the underlying objects, here
+you'll find the description of the parameters that can be provided to the
+Deliverable object (i.e., what can be set on `deliverable.spec.params`).
+
+```
+source-provider                     fetches kubernetes configuration
+    |
+    |  kubernetes configuration
+    |
+app-deploy                          deploys to the cluster the objects in the
+                                    kubernetes configuration fetched
+```
+
+For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
+as well as the templates used by it, see:
+
+- [Out of the Box Delivery Basic](scc/ootb-delivery-basic.hbs.md)
+- [Out of the Templates](scc/ootb-templates.hbs.md)
+
+
+To know more about the use of the Deliverable object in a multi-cluster
+environment, check out [Getting started with multicluster Tanzu Application
+Platform](multicluster/getting-started.hbs.md). 
+
+For reference documentation about Deliverable, see [Deliverable and Delivery
+custom resources](https://cartographer.sh/docs/v0.5.0/reference/deliverable/).
+
+
+## source provider
+
+The `source-provider` resource in the basic ClusterDelivery creates objects
+that continuously fetches Kubernetes configuration files from a git repository
+or image registry so that it can apply those to the cluster.
+
+### GitRepository
+
+A GitRepository object is instantiated whenever `deliverable.spec.source.git`
+is configured such that it can continuously look up for Kubernetes
+configuration pushed to a git repository, making it available for further
+resources in the ClusterDelivery.
+
+Parameters:
+
+<table>
+  <tr>
+    <th>parameter name</th>
+    <th>meaning</th>
+    <th>example</th>
+  </tr>
+
+  <tr>
+    <td><code>gitImplementation<code></td>
+    <td>
+      VMware recommends that you use the underlying library for fetching the
+      source code.  Either <code>libggit2</code>, required for Azure DevOps, or
+      <code>go-git</code>.
+    </td>
+    <td>
+      <pre>
+      - name: gitImplementation
+        value: libggit2
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_ssh_secret<code></td>
+    <td>
+      Name of the secret in the same namespace as the `Deliverable` used for
+      providing credentials for fetching kubernetes configuration files from
+      the git repository pointed at.
+
+      See [Git authentication](scc/git-auth).
+    </td>
+    <td>
+      <pre>
+      - name: gitops_ssh_secret
+        value: git-credentials
+      </pre>
+    </td>
+  </tr>
+</table>
+
+> **Note:** It might not be necessary to change the default Git implementation,
+> but some providers such as Azure DevOps, require you to use `libgit2` due to
+> the server-side implementation providing support only for [git's v2
+> protocol](https://git-scm.com/docs/protocol-v2). For information about the
+> features supported by each implementation, see [git
+> implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation).
+
+For information about how to create a Workload that uses a GitHub
+repository as the provider of source code, see [Create a workload from GitHub
+repository](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
+
+For reference documentation on GitRepository objects, see
+[GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
+
+
+### ImageRepository
+
+An ImageRepository object is instantiated whenever
+`deliverable.spec.source.image` is configured such that it can continuously
+look up for Kubernetes configuration files pushed to a container image
+registry as opposed to a git repository.
+
+Parameters:
+
+<table>
+  <tr>
+    <th>parameter name</th>
+    <th>meaning</th>
+    <th>example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      name of the service account, in the same namespace as the Workload, you want to use
+      to provide the necessary credentials to `ImageRepository` for fetching
+      the container images.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+For information about custom resource details, see [ImageRepository reference
+docs](source-controller/reference.hbs.md#imagerepository). 
+
+> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> the Deliverable object. To configure the `serviceAccount` parameter, use
+> `--param serviceAccount=...`.
+
