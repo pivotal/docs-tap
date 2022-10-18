@@ -1081,9 +1081,9 @@ Parameters:
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      name of the service account, in the same namespace as the Deliverable, you want to use
-      to provide the necessary credentials to `ImageRepository` for fetching
-      the container images.
+      name of the service account, in the same namespace as the Deliverable,
+      you want to use to provide the necessary privileges for `App` to apply
+      the Kubernetes objects to the cluster.
     </td>
     <td>
       <pre>
