@@ -154,7 +154,7 @@ To install Contour from the Tanzu Application Platform package repository:
     $  tanzu package available list contour.tanzu.vmware.com -n tap-install
     - Retrieving package versions for contour.tanzu.vmware.com...
       NAME                      VERSION       RELEASED-AT
-      contour.tanzu.vmware.com  1.18.2+tap.1  2021-10-05T00:00:00Z
+      contour.tanzu.vmware.com  1.22.0+tap.5  2022-09-05 20:00:00 -0400 EDT
     ```
 
 2. Create a file named `contour-rbac.yaml` using the following sample and apply the configuration.
@@ -223,49 +223,38 @@ To install Contour from the Tanzu Application Platform package repository:
     1. Gather values schema by running:
 
         ```console
-        tanzu package available get contour.tanzu.vmware.com/1.18.2+tap.1 --values-schema -n tap-install
+        tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.5 --values-schema -n tap-install
         ```
 
         For example:
 
         ```console
-        $ tanzu package available get contour.tanzu.vmware.com/1.18.2+tap.1 --values-schema -n tap-install
-        | Retrieving package details for contour.tanzu.vmware.com/1.18.2+tap.1...
+        $ tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.5 --values-schema -n tap-install
+
           KEY                                  DEFAULT               TYPE     DESCRIPTION
-
-          certificates.duration                8760h                 string   If using cert-manager, how long the certificates should be valid for. If useCertManager is false, this field is ignored.
-          certificates.renewBefore             360h                  string   If using cert-manager, how long before expiration the certificates should be renewed. If useCertManager is false, this field is ignored.
-          contour.configFileContents           <nil>                 object   The YAML contents of the Contour config file. See https://projectcontour.io/docs/v1.18.2/configuration/#configuration-file for more information.
-          contour.logLevel                     info                  string   The Contour log level. Valid options are info and debug.
-
+          contour.configFileContents           <nil>                 object   The YAML contents of the Contour config file. See https://projectcontour.io/docs/v1.22.0/configuration/#configuration-file for more information.
+          contour.logLevel                     info                  string   The Contour log level. Valid options are 'info' and 'debug'.
           contour.replicas                     2                     integer  How many Contour pod replicas to have.
-
           contour.useProxyProtocol             false                 boolean  Whether to enable PROXY protocol for all Envoy listeners.
-
-          envoy.hostPorts.enable               true                  boolean  Whether to enable host ports. If false, http and https are ignored.
-
+          envoy.hostPorts.enable               false                 boolean  Whether to enable host ports. If false, http and https are ignored.
           envoy.hostPorts.http                 80                    integer  If enable == true, the host port number to expose Envoy's HTTP listener on.
-
           envoy.hostPorts.https                443                   integer  If enable == true, the host port number to expose Envoy's HTTPS listener on.
-
           envoy.logLevel                       info                  string   The Envoy log level.
-
           envoy.service.annotations            <nil>                 object   Annotations to set on the Envoy service.
-
-          envoy.service.aws.LBType             classic               string   AWS loadbalancer type.
-
-          envoy.service.externalTrafficPolicy  Cluster               string   The external traffic policy for the Envoy service.
-
+          envoy.service.aws.LBType             classic               string   The type of AWS load balancer to provision. Options are 'classic' and 'nlb'.
+          envoy.service.externalTrafficPolicy  <nil>                 string   The external traffic policy for the Envoy service.
+          envoy.service.loadBalancerIP         <nil>                 string   The desired load balancer IP for the Envoy service. If type is not 'LoadBalancer', this field is ignored. It is up to the cloud provider whether to honor this request. If not specified, then load balancer IP will be assigned by the cloud provider.
           envoy.service.nodePorts.http         <nil>                 integer  If type == NodePort, the node port number to expose Envoy's HTTP listener on. If not specified, a node port will be auto-assigned by Kubernetes.
           envoy.service.nodePorts.https        <nil>                 integer  If type == NodePort, the node port number to expose Envoy's HTTPS listener on. If not specified, a node port will be auto-assigned by Kubernetes.
-          envoy.service.type                   NodePort              string   The type of Kubernetes service to provision for Envoy.
-
+          envoy.service.type                   LoadBalancer          string   The type of Kubernetes service to provision for Envoy.
           envoy.terminationGracePeriodSeconds  300                   integer  The termination grace period, in seconds, for the Envoy pods.
-
           envoy.hostNetwork                    false                 boolean  Whether to enable host networking for the Envoy pods.
-
-          infrastructure_provider              vsphere               string   The infrastructure in which to deploy Contour and Envoy. example:- vsphere, aws
+          infrastructure_provider              vsphere               string   The underlying infrastructure provider. Valid values are `vsphere`, `aws` and `azure`.
+          kubernetes_distribution              <nil>                 string   Kubernetes distribution that this package is being installed on. Accepted values: ['','openshift']
           namespace                            tanzu-system-ingress  string   The namespace in which to deploy Contour and Envoy.
+          certificates.duration                8760h                 string   If using cert-manager, how long the certificates should be valid for. If useCertManager is false, this field is ignored.
+          certificates.renewBefore             360h                  string   If using cert-manager, how long before expiration the certificates should be renewed. If useCertManager is false, this field is ignored.
+          certificates.useCertManager          false                 boolean  Whether to use cert-manager to provision TLS certificates for securing communication between Contour and Envoy. If false, the upstream Contour certgen job will be used to provision certificates. If true, the cert-manager addon must be installed in the cluster.
         ```
 
     2. Create a `contour-install.yaml` file using the following sample as a guide.
@@ -282,7 +271,7 @@ To install Contour from the Tanzu Application Platform package repository:
           packageRef:
             refName: contour.tanzu.vmware.com
             versionSelection:
-              constraints: 1.18.2+tap.1
+              constraints: 1.22.0+tap.5
               prereleases: {}
           values:
           - secretRef:
@@ -345,7 +334,7 @@ To install Contour from the Tanzu Application Platform package repository:
     / Retrieving installation details for contour...
     NAME:                    contour
     PACKAGE-NAME:            contour.tanzu.vmware.com
-    PACKAGE-VERSION:         1.18.2+tap.1
+    PACKAGE-VERSION:         1.22.0+tap.5
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
