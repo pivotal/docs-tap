@@ -155,7 +155,7 @@ Parameters:
 </table>
 
 For information about custom resource details, see [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository). 
+docs](source-controller/reference.hbs.md#imagerepository).
 
 For information about how to use ImageRepository with the Tanzu CLI [Create a workload from local source code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
 
@@ -215,7 +215,7 @@ The `source-tester` resource is included in `ootb-supply-chain-testing` and
 calls the execution of a Tekton Pipeline, in the same namespace as the
 Workload, whenever its inputs change. For example, the source code revision that you want to test changes.
 
-A [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/) 
+A [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/)
 object is instantiated to ensure that there's always a run for a particular set
 of inputs. The parameters are passed from the Workload down to Runnable's
 Pipeline selection mechanism through `testing_pipeline_matching_labels` and the
@@ -270,7 +270,7 @@ Parameters:
 
 For information about how to set up the
 Workload namespace for testing with TektonSee, see [Out of the Box Supply Chain with
-Testing](scc/ootb-supply-chain-testing.hbs.md). 
+Testing](scc/ootb-supply-chain-testing.hbs.md).
 
 For information about how to use the parameters to customize this resource to
 test using a Jenkins cluster, see [Out of the Box Supply Chain
@@ -525,7 +525,7 @@ Parameters:
 
 For information about the
 ImageRepository resource, see [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository). 
+docs](source-controller/reference.hbs.md#imagerepository).
 For information about the prebuild image function, see [Using a prebuilt
 image](scc/pre-built-image.hbs.md).
 
