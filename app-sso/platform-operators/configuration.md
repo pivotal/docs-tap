@@ -50,7 +50,7 @@ You can configure trust for custom CAs by providing their certificates as a PEM 
 `AuthServer` will trust your custom CAs.
 
 This is useful if you have [identity providers](../service-operators/identity-providers.md) which serve certificates
-from a custom CA.
+from a custom CA, as well as [configuring `AuthServer` storage](../service-operators/storage.md).
 
 > ℹ️ AppSSO-specific `ca_cert_data` is concatenated with `shared.ca_cert_data`. The resulting PEM bundle contains both.
 

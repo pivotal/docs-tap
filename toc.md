@@ -258,6 +258,7 @@ docs.vmware.com is built.
             - [Issuer URI and TLS](app-sso/service-operators/issuer-uri-and-tls.md)
             - [Identity providers](app-sso/service-operators/identity-providers.md)
             - [Token signatures](app-sso/service-operators/token-signature.md)
+            - [Storage](app-sso/service-operators/storage.hbs.md)
             - [AuthServer readiness](app-sso/service-operators/readiness.md)
             - [Scale AuthServer](app-sso/service-operators/scale.md)
             - [AuthServer audit logs](app-sso/service-operators/audit-logs.md)
