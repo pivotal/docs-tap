@@ -13,6 +13,6 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 ### <a id='1-4-0-security-fixes'></a> Security fixes
 
-### <a id='1-4-0-new-features'></a> Resolved issues
+### <a id='1-4-0-resolved-issues'></a> Resolved issues
 
 ### <a id='1-4-0-known-issues'></a> Known issues
