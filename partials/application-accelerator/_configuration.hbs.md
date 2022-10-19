@@ -536,4 +536,4 @@ package_overlays:
 
 ## <a id='next-steps'></a>Next steps
 
-- [Creating accelerators](creating-accelerators/creating-accelerators.html)
+- [Creating accelerators](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-application-accelerator-creating-accelerators-creating-accelerators.html)
