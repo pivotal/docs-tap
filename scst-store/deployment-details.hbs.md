@@ -28,6 +28,10 @@ The default database included with the deployment is meant to get users started 
 
 Users can also configure the deployment to use their own RDS database instead of the default. See [AWS RDS Postgres Configuration](use-aws-rds.md).
 
+#### Using external postgres database
+
+Users can also configure the deployment to use any other postgres database. See [Use external postgres database](use-external-database.hbs.md).
+
 #### <a id='cust-data-pass'></a>Custom database password
 
 By default, a database password is generated upon deployment. To configure a custom password, use the `db_password` property in the `metadata-store-values.yaml` during deployment.
