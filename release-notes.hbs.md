@@ -260,6 +260,8 @@ This release has the following breaking changes, listed by area and component.
 
 ### <a id='1-3-resolved-issues'></a> Resolved issues
 
+The following issues, listed by area and component, are resolved in this release.
+
 #### <a id="1-3-upgrade-issues"></a>Upgrading Tanzu Application Platform
 
 - Adding new Tanzu Application Platform repository bundle in addition to another repository bundle no longer causes a failure.
