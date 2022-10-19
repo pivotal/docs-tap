@@ -14,7 +14,7 @@ Tanzu Application Platform GUI pod's environment variable as `NODE_TLS_REJECT_UN
 When the value equals `0`, certificate validation is deactivated for TLS connections.
 
 To do this, use the `package_overlays` key in the Tanzu Application Platform values file.
-For instructions, see [Customizing Package Installation](../customize-package-installation.md).
+For instructions, see [Customizing Package Installation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-customize-package-installation.html).
 
 The following is an example `Secret` containing an overlay to deactivate TLS:
 
@@ -118,4 +118,4 @@ For instructions, see [Customizing Package Installation](../customize-package-in
 
 ## <a id='next-steps'></a>Next steps
 
-- [Configuring Application Accelerator](../application-accelerator/configuration.html)
+- [Configuring Application Accelerator](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-install.html)
