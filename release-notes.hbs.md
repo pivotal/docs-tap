@@ -10,11 +10,17 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 **Release Date**: November 15, 2022
 
-### <a id='1-3-1-security-fixes'></a> Security fixes
+### <a id='1-3-1-security-fixes'></a> Security fixe
+
+This release has the following security fixes, listed by area and component.
 
 ### <a id='1-3-1-resolved-issues'></a> Resolved issues
 
+The following issues, listed by area and component, are resolved in this release.
+
 ### <a id='1-3-1-known-issues'></a> Known issues
+
+This release has the following known issues, listed by area and component.
 
 ## <a id='1-3-0'></a> v1.3.0
 
@@ -260,6 +266,8 @@ This release has the following breaking changes, listed by area and component.
   instead of `<providerId>/<userId>`. See [Misconfigured `sub` claim](app-sso/troubleshoot.md#sub-claim) for more information.
 
 ### <a id='1-3-resolved-issues'></a> Resolved issues
+
+The following issues, listed by area and component, are resolved in this release.
 
 #### <a id="1-3-upgrade-issues"></a>Upgrading Tanzu Application Platform
 
