@@ -30,6 +30,12 @@ The following issues, listed by area and component, are resolved in this release
 
 
 
+#### <a id="1-4-0-vscode-issues"></a> Tanzu Developer Tools for VS Code
+
+* Resolved an issue where VS Code extension showed a warning notification when the user cancelled an action.
+* Resolved an issue where VS Code extension could not generate a snippet on a `Tiltfile` when the user had a Tilt Extension installed.
+* Resolved an issue where VS Code extension could not Live Update when then workload type was `server` or `worker`
+
 ### <a id='1-4-0-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
