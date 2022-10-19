@@ -12,7 +12,7 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 ### <a id='1-3-1-security-fixes'></a> Security fixes
 
-### <a id='1-3-1-new-features'></a> Resolved issues
+### <a id='1-3-1-resolved-issues'></a> Resolved issues
 
 ### <a id='1-3-1-known-issues'></a> Known issues
 
