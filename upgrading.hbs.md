@@ -13,7 +13,7 @@ Before you upgrade Tanzu Application Platform:
 - For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.md#cli-and-plugin).
 - For information on Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations).
 - Verify all packages are reconciled by running `tanzu package installed list -A`.
-- It is strongly recommended to [upgrade](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#upgrade-7) the Cluster Essentials to version 1.2 to avoid the temporary warning state as described in the following section.
+- It is strongly recommended to [upgrade](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/GUID-deploy.html#upgrade-7) the Cluster Essentials to version {{ vars.url_version }} to avoid the temporary warning state as described in the following section.
 
 ## <a id="add-new-package-repo"></a> Update the new package repository
 
@@ -21,7 +21,7 @@ Follow these steps to update the new package repository:
 
 1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 4 in [Relocate images to a registry](install.html#add-tap-package-repo).
 
-    >**Note:** Make sure to update the `VERSION-NUMBER` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`. 
+    >**Note:** Make sure to update the `TAP_VERSION` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`. 
 
 1. Add the target version of the Tanzu Application Platform package repository:
 
@@ -58,10 +58,8 @@ For Tanzu Application Platform that is installed by profile, you can perform the
 >**Note:** Ensure you run the following command in the directory where the `tap-values.yaml` file resides.
 
 ```console
-tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION  --values-file tap-values.yaml -n tap-install
+tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
 ```
-
-Where `VERSION` is the target revision of Tanzu Application Platform you are migrating to.
 
 >**Note:** When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically
 >run a build that fails due to a missing dependency.

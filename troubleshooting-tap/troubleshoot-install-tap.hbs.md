@@ -283,7 +283,7 @@ _Installing the Tanzu CLI_.
 ## <a id='contour-error-kind'></a> Ingress is broken on Kind cluster
 
 Your Contour installation cannot provide ingress to workloads when installed on a Kind cluster without a LoadBalancer solution.
-Your Kind cluster was created with port mappings, as described in the [Kind install guide](../learning-center/local-install-guides/deploying-to-kind.html).
+Your Kind cluster was created with port mappings, as described in the [Kind install guide](../learning-center/local-install-guides/deploying-to-kind.hbs.md).
 
 **Explanation**
 
@@ -296,4 +296,4 @@ the service must be of type `NodePort`.
 Configure `contour.evnoy.service.type` to be `NodePort`. Then, configure
 `envoy.service.nodePorts.http` and `envoy.service.nodePorts.https` to the
 corresponding port mappings on your Kind node. Otherwise, the NodePort service
-is assigned random ports, which is not accessible through your Kind cluster.
+is assigned random ports, which are not accessible through your Kind cluster.

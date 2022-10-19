@@ -1,7 +1,7 @@
 # AuthServer
 
 `AuthServer` represents the request for an OIDC authorization server. It results in the deployment of an authorization
-server backed by Redis over mTLS.
+server backed by Redis over mutual TLS (if no storage is defined).
 
 An `AuthServer` should have labels which allow to uniquely match it amongst others. `ClientRegistration` selects an
 `AuthServer` by label selector and needs a unique match to be successful.
@@ -17,8 +17,8 @@ You can view the issuer URI by running
 
 See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more information.
 
-Token signature keys are configured through `spec.tokenSignature`. This is a required field. See
-[token signature](../service-operators/token-signature.md) for more context.
+Token signature keys are configured by using `spec.tokenSignature`. This is a required field. See
+[Token signatures](../service-operators/token-signature.md) for more context.
 
 Identity providers are configured under `spec.identityProviders`. If there are none, end-users won't be able to log in.
 
@@ -28,12 +28,12 @@ An `AuthServer` reconciles into the following resources in its namespace:
 
 ```text
 AuthServer/my-authserver
-├─Certificate/my-authserver-redis-client
-├─Certificate/my-authserver-redis-server
+├─Certificate/my-authserver-redis-client                   # if no storage is defined
+├─Certificate/my-authserver-redis-server                   # if no storage is defined
 ├─Certificate/my-authserver-root
 ├─ConfigMap/my-authserver-ca-cert
 ├─Deployment/my-authserver-auth-server
-├─Deployment/my-authserver-redis
+├─Deployment/my-authserver-redis                           # if no storage is defined
 ├─Issuer/my-authserver-bootstrap
 ├─Issuer/my-authserver-root
 ├─Role/my-authserver-auth-server
@@ -41,9 +41,10 @@ AuthServer/my-authserver
 ├─Secret/my-authserver-auth-server-clients
 ├─Secret/my-authserver-auth-server-keys
 ├─Secret/my-authserver-auth-server-properties
-├─Secret/my-authserver-redis-client-cert-keystore-password
+├─Secret/my-authserver-redis-service-binding               # if no storage is defined
+├─Secret/my-authserver-redis-client-cert-keystore-password # if no storage is defined
 ├─Secret/my-authserver-registry-credentials
-├─Service/my-authserver-redis
+├─Service/my-authserver-redis                              # if no storage is defined
 └─ServiceAccount/my-authserver-auth-server
 ```
 
@@ -78,6 +79,10 @@ spec:
       name: ""
     extraVerifyKeyRefs:
       - name: ""
+  storage: # optional
+    redis: # required if 'storage' is defined
+      secretRef: # Reference to Secret resource within same namespace as this AuthServer
+        name: ""
   identityProviders: # optional
     # each must be one and only one of internalUnsafe, ldap, openID or saml
     - name: "" # must be unique
@@ -150,8 +155,12 @@ status:
       configHash: ""
       image: ""
       replicas: 0
+    redis: # empty if storage is configured by the service operator
+      image: "" 
+  storage:
     redis:
-      image: ""
+      host: "" # the hostname of the configured Redis
+      port: "" # the port of the configured Redis
   conditions:
     - lastTransitionTime:
       message: ""
@@ -180,7 +189,10 @@ to troubleshoot issues.
 `.status.deployments.authServer` describes the current authorization server deployment by listing the running image,
 its replicas, the hash of the current configuration and the generation which has last resulted in a restart.
 
-`.status.deployments.redis` describes the current Redis deployment by listing its running image.
+`.status.deployments.redis` describes the current provided Redis deployment by listing its running image. This field is
+nil if storage is defined explicitly via `.spec.storage`.
+
+`.status.storage.redis` describes the configured Redis storage such as hostname and port number.
 
 `.status.conditions` documents each step in the reconciliation:
 
@@ -209,8 +221,12 @@ deployments:
     configHash: "11216479096262796218"
     image: "..."
     replicas: 1
-  redis:
+  redis: # empty if external storage is defined
     image: "..."
+storage:
+  redis:
+   host: "" # the hostname of the configured Redis
+   port: "" # the port of the configured Redis
 conditions:
   - lastTransitionTime: "2022-08-24T09:58:10Z"
     message: ""
