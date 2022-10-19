@@ -533,7 +533,3 @@ package_overlays:
   secrets:
   - name: patch-accelerator-timeout
 ```
-
-## <a id='next-steps'></a>Next steps
-
-- [Creating accelerators](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-application-accelerator-creating-accelerators-creating-accelerators.html)
