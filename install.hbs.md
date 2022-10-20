@@ -324,6 +324,12 @@ contour:
         LBType: nlb
 ```
 
+#### <a id='ceip'></a> CEIP policy disclosure
+
+Tanzu Application Platform is part of [VMware's CEIP program](https://www.vmware.com/solutions/trustvmware/ceip-products.html) where data is collected to help improve the customer experience. By setting `ceip_policy_disclosed` to `true` (not a string), you acknowledge the program is disclosed to you and you are aware data collection is happening. This field must be set for the installation to be completed.
+
+See [Opting out of telemetry collection](opting-out-telemetry.hbs.md) for more information.
+
 ### <a id='additional-build-service-config'></a> (Optional) Additional Build Service Configurations
 
 The following tasks are optional during the Tanzu Application Platform installation process:
