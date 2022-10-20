@@ -1,6 +1,6 @@
-# Prerequisites for Carbon Black Scanner (Beta)
+# Install Carbon Black Scanner (beta)
 
-This document describes prerequisites for installing Supply Chain Security Tools - Scan (Carbon Black Scanner) from the Tanzu Application Platform package repository.
+This document describes prerequisites to [Installing Scanners for Supply Chain Security Tools - Scan](install-scanners.hbs.md) from the Tanzu Application Platform package repository.
 
 >**Note:** Carbon Black's image scanning capability is in beta. Carbon Black might only return
 a partial list of CVEs when scanning Buildpack images.
@@ -201,5 +201,3 @@ If you don't want to enable the
     ```
 
 >**Note:** The Carbon Black Scanner integration is only available for an image scan, not a source scan.
-
-After all prerequisites have been completed, follow the steps in [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md) to install the Carbon Black Scanner.
