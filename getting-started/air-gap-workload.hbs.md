@@ -19,7 +19,24 @@ To create a workload from Git through https, follow these steps:
     kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
     ```
 
-2. If you would like to pass in a custom settings.xml for Java, create a file called settings-xml.yaml similar to the following example:
+2. (Optional) If you would like to pass in a git repository login credentials along with the CA certificate, create a file called git-credentials.yaml similar to the following example:
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: git-ca
+      # namespace: default
+    type: Opaque
+    data:
+      username: <BASE64>
+      password: <BASE64>
+      caFile: |
+        <BASE64>
+    ```
+    Provide GIT username, password and caFile in the base64 encoded format.
+
+3. If you would like to pass in a custom settings.xml for Java, create a file called settings-xml.yaml similar to the following example:
 
    ```yaml
    apiVersion: v1
@@ -51,11 +68,12 @@ To create a workload from Git through https, follow these steps:
        </settings>
    ```
 
-3. Apply the file:
+4. Apply the file:
 
    ```console
    kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
    ```
+
 
 ## Create a basic supply chain workload
 
