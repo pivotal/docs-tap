@@ -2,7 +2,7 @@
 
 This topic describes how to install scanners to work with Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
 
-Follow the instructions in this topic to install a scanner other than the out of the box Grype Scanner.
+Follow the below instructions to install a scanner other than the out of the box Grype Scanner.
 
 ## <a id="prerecs"></a> Prerequisites
 
@@ -12,8 +12,8 @@ Before installing a new scanner, install [Supply Chain Security Tools - Scan](in
 
 To install a new scanner, follow these steps:
 1. Complete scanner specific prerequisites for the scanner you're trying to install. For example, creating an API token to connect to the scanner.
-   - [Snyk Scanner (Beta)](install-snyk-integration.hbs.md) is available for image scanning.
-   - [Carbon Black Scanner (Beta)](install-carbonblack-integration.hbs.md) is available for image scanning.
+   - [Snyk Scanner (Beta)](install-snyk-integration.hbs.md) - available for image scanning
+   - [Carbon Black Scanner (Beta)](install-carbonblack-integration.hbs.md) - available for image scanning
 2. List the available packages to discover what scanners you can use by running:
 
     ```console
@@ -279,7 +279,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     sourcescan.scanning.apps.tanzu.vmware.com/grypesourcescan-sample-public   Completed   5805c650          https://github.com/houndci/hound.git   8m34s   21         121    112      9     0         263
     ```
 
-    > **Note:** If you define a `ScanPolicy` for the scans and the evaluation finds a violation, the `Phase` is `Failed` instead of `Completed`. In both cases the scan finished.
+    > **Note:** If you define a `ScanPolicy` for the scans and the evaluation finds a violation, the `Phase` is `Failed` instead of `Completed`. In both cases the scan finished successfully.
 
 6. Clean up:
 
