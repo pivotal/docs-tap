@@ -9,15 +9,18 @@ Alternatively, you can customize SCST - Store's configuration under the `metadat
 Furthermore, SCST - Store also supports the option to provide a custom certificate under the `tls` property, which requires two fields to specify the certificate: `secretName` and `namespace`.
 Otherwise, by default, a self-signed certificate is used.
 
-For example,
+This is an example snippet in a `tap-values.yaml`,
 
 ```yaml
-ingress_enabled: "true"
-ingress_domain: "example.com"
-app_service_type: "ClusterIP"  # recommended if ingress is enabled
-tls:  # this section is only needed if a custom certificate is being provided
-  secretName: custom-cert   # name of the custom certificate to use
-  namespace: my-namespace   # namespace in which the certificate exists
+...
+metadata_store:
+  ingress_enabled: "true"
+  ingress_domain: "example.com"
+  app_service_type: "ClusterIP"  # recommended if ingress is enabled
+  tls:  # this section is only needed if a custom certificate is being provided
+    secretName: custom-cert   # name of the custom certificate to use
+    namespace: my-namespace   # namespace in which the certificate exists
+...
 ```
 
 SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`, for example `metadata-store.example.com`. The created route supports HTTPS communication either using the custom certificate if the `tls` section is configured, or self-signed certificate with the same subject *Alternative Name* if the `tls` section is not provided.
