@@ -8,6 +8,8 @@ For information about installing Tanzu Application Platform in an air-gapped env
 
 - Create a workload from Git.
 - Create a basic supply chain workload.
+- Create a testing supply chain workload.
+- Create a testing scanning supply chain workload.
 
 ## Create a workload from Git
 
