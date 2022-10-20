@@ -31,12 +31,13 @@ To create a workload from Git through https, follow these steps:
       # namespace: default
     type: Opaque
     data:
-      username: <BASE64>
-      password: <BASE64>
+      username: <USERNAME-BASE64>
+      password: <PASSWORD-BASE64>
       caFile: |
-        <BASE64>
+        <CADATA-BASE64>
     ```
-    Provide GIT username, password and caFile in the base64 encoded format.
+    Where USERNAME-BASE64 is the base64 encoded username, PASSWORD-BASE64 is the base64 encoded password and CADATA-BASE64 is the base64 encoded ca certificate for the
+    git repository. 
 
 3. If you would like to pass in a custom settings.xml for Java, create a file called settings-xml.yaml similar to the following example:
 
