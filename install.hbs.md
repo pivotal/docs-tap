@@ -281,7 +281,7 @@ grype:
 Where:
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
-service's External IP address.
+service's External IP address. You do not need to know the External IP address or setup the DNS record at installation time. Installing the tap package will create the `tanzu-shared-ingress` and it's External IP. You can create the DNS record after completing the installation.
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
     * Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`.
     * Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`.
