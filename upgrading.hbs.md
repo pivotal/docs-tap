@@ -8,14 +8,44 @@ You can perform a fresh install of Tanzu Application Platform by following the i
 
 Before you upgrade Tanzu Application Platform:
 
-   >**Note:** If upgrading to TAP 1.3.0, please read the [following notice](release-notes.md#upgrade-known-issues).
-
 - Verify that you meet all the [prerequisites](prerequisites.md) of the target Tanzu Application Platform version. If the target Tanzu Application Platform version does not support your existing Kubernetes version, VMware recommends upgrading to a supported version before proceeding with the upgrade.
 - For information about installing your Tanzu Application Platform, see [Install your Tanzu Application Platform profile](install.md#install-profile).
 - For information about installing or updating the Tanzu CLI and plug-ins, see [Install or update the Tanzu CLI and plug-ins](install-tanzu-cli.md#cli-and-plugin).
 - For information on Tanzu Application Platform GUI considerations, see [Tanzu Application Platform GUI Considerations](tap-gui/upgrades.md#considerations).
 - Verify all packages are reconciled by running `tanzu package installed list -A`.
 - It is strongly recommended to [upgrade](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/GUID-deploy.html#upgrade-7) the Cluster Essentials to version {{ vars.url_version }} to avoid the temporary warning state as described in the following section.
+
+### <a id="upgrade-workaround"></a>Upgrade workaround 
+
+>**Note:** If you attempt to upgrade from Tanzu Application Platform v1.2, proceed to the next section [Update the new package repository](#add-new-package-repo).
+
+Follow these workaround steps only when you attempt to upgrade from Tanzu Application Platform v1.1 or below:
+
+1. Install the kp cli by using one of the following sources:  
+
+    - [Open Source](https://github.com/vmware-tanzu/kpack-cli/releases)
+    - [VMware Tanzu Network](https://network.pivotal.io/products/build-service/) 
+
+    >**Note:** VMware Tanzu Network requires accepting an additional EULA for the Tanzu Build Service, which is part of Tanzu Application Platform.
+
+    For more information, see [kpack-cli documentation](https://github.com/vmware-tanzu/kpack-cli) in GitHub.
+
+1. Docker log in to the Tanzu Network registry and the installation registry:
+
+    ```console
+    docker login registry.tanzu.vmware.com
+    docker login $INSTALL_REGISTRY_HOSTNAME
+    ```
+
+    Where `INSTALL_REGISTRY_HOSTNAME` is the environment variable you defined earlier while installation. For more information, see [Relocate images to a registry](install.html#relocate-images-to-a-registry).
+
+1. Run the following command with the `kp` cli:
+    
+    ```console
+    kp lifecycle patch -i registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:851d49d1a9786d6b3fa17fa5d669dbbb687e23d047e6c08165d629603f0d70ec
+    ```
+    
+1. Proceed to the next section [Update the new package repository](#add-new-package-repo).
 
 ## <a id="add-new-package-repo"></a> Update the new package repository
 
