@@ -132,3 +132,7 @@ EOF
 ```
 
 * `toNamespaces: [DEV-NAMESPACE]` - Array of namespaces where the secrets are exported to
+
+## Additional resources
+
+* [Ingress support](ingress.hbs.md)

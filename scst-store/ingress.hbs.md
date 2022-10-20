@@ -1,12 +1,15 @@
-# Ingress and multicluster support
+# Ingress support
 
 Supply Chain Security Tools (SCST) - Store has ingress support by using Contour's HTTPProxy resources. To enable ingress support, a Contour installation must be available in the cluster.
 
-SCST - Store's configuration includes two options to configure the proxy: `ingress_enabled` and `ingress_domain`. If needed, you can override the `shared.ingress_domain` Tanzu Application Platform level setting with the `ingress_domain` parameter.
-The store also supports the option to provide a custom certificate under the `tls` option, which needs two options to specify the certificate to use `secretName` and `namespace`.
+To change ingress configuration, modify your `tap-values.yaml` when you install a TAP profile. Configure the `shared.ingress_domain` property and SCST - Store will automatically use that setting.
+
+Alternatively, you can customize SCST - Store's configuration under the `metadata_store` property. Under `metadata_store`, there are two values to configure the proxy: `ingress_enabled` and `ingress_domain`.
+
+Furthermore, SCST - Store also supports the option to provide a custom certificate under the `tls` property, which requires two fields to specify the certificate: `secretName` and `namespace`.
 Otherwise, by default, a self-signed certificate is used.
 
-For example:
+For example,
 
 ```yaml
 ingress_enabled: "true"
@@ -14,16 +17,16 @@ ingress_domain: "example.com"
 app_service_type: "ClusterIP"  # recommended if ingress is enabled
 tls:  # this section is only needed if a custom certificate is being provided
   secretName: custom-cert   # name of the custom certificate to use
-  namespace: default        # namespace in which the certificate exists
+  namespace: my-namespace   # namespace in which the certificate exists
 ```
 
-SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`, such as `metadata-store.example.com`. The create route supports HTTPS communication either using the custom certificate if the TLS section is provided, or self-signed certificate with the same subject Alternative Name if the TLS section is not provided.
+SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`, for example `metadata-store.example.com`. The created route supports HTTPS communication either using the custom certificate if the `tls` section is configured, or self-signed certificate with the same subject *Alternative Name* if the `tls` section is not provided.
 
-Contour and DNS setup are not part of SCST - Store installation. Access to SCST - Store using Contour depends on the correct configuration of these two components.
+Contour and DNS setup are not part of the SCST - Store installation. Access to SCST - Store using Contour depends on the correct configuration of these two components.
 
 Make the proper DNS record available to clients to resolve `metadata-store.<ingress_domain>` to Envoy service's external IP address.
 
-DNS setup example:
+DNS setup example,
 
 ```bash
 $ kubectl describe svc envoy -n tanzu-system-ingress
@@ -49,112 +52,28 @@ $ curl https://metadata-store.example.com/api/health -k -v
   ...
 ```
 
->**Note:** The preceding curl example uses the not secure (`-k`) flag to skip TLS verification because the Store installs a self-signed certificate. The following section shows how to access the CA certificate to enable TLS verification for HTTP clients.
+>**Note:** The preceding `curl` example uses the not secure (`-k`) flag to skip TLS verification because the Store installs a self-signed certificate. The following section shows how to access the CA certificate to enable TLS verification for HTTP clients.
 
-## <a id="multicluster-setup"></a>Multicluster setup
+## <a id="tls"></a>Get the TLS CA certificate
 
-To support multicluster setup of SCST - Store, some communication secrets must be shared across the cluster.
-
-Set up the cluster containing SCST - Store first and enable SCST - Store ingress for ease of installation. When configuring a second Tanzu Application Platform cluster, components such as Supply Chain Security Tools - Scan need access to the Store's API. This requires access to the TLS CA certificate for HTTPS support and the Authorization access token.
-
-## <a id="tls"></a>TLS CA certificate
-
-To get SCST - Store's TLS CA certificate, run:
+To get SCST - Store's TLS CA certificate, use `kubectl get secret`. In this example, we save the certificate to the environment variable to a file.
 
 ```bash
-# On the Supply Chain Security Tools - Store's cluster
-CA_CERT=$(kubectl get secret -n metadata-store CERT-NAME -o json | jq -r ".data.\"ca.crt\"")
-cat <<EOF > store_ca.yaml
----
-apiVersion: v1
-kind: Secret
-type: Opaque
-metadata:
-  name: store-ca-cert
-  namespace: metadata-store-secrets
-data:
-  ca.crt: $CA_CERT
-EOF
-
-# On the second cluster 
-
-# Create secrets namespace
-kubectl create ns metadata-store-secrets
-
-# Create the CA Certificate secret
-kubectl apply -f store_ca.yaml
+kubectl get secret CERT-NAME -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > OUTPUT_FILE
 ```
 
-Where `CERT-NAME` is the name of the certificate, this must be `ingress-cert` if no custom certificate is used.
+Where
 
-Example:
-```bash
-# On the Supply Chain Security Tools - Store's cluster
-CA_CERT=$(kubectl get secret -n metadata-store ingress-cert -o json | jq -r ".data.\"ca.crt\"")
-cat <<EOF > store_ca.yaml
----
-apiVersion: v1
-kind: Secret
-type: Opaque
-metadata:
-  name: store-ca-cert
-  namespace: metadata-store-secrets
-data:
-  ca.crt: $CA_CERT
-EOF
+* `CERT-NAME` is the name of the certificate, this must be `ingress-cert` if no custom certificate is used.
+* `OUTPUT_FILE` is the file you want to create to store the certificate
 
-# On the second cluster 
-
-# Create secrets namespace
-kubectl create ns metadata-store-secrets
-
-# Create the CA Certificate secret
-kubectl apply -f store_ca.yaml
-```
-
-## <a id="rbac-auth-token"></a>RBAC Authentication token
-
-To get the SCST - Store's Auth token, run:
+For example,
 
 ```bash
-AUTH_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
+$ kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > insight-ca.crt
+$ cat insight-ca.crt
 ```
 
-Create the corresponding secret on the second cluster. Run:
+## Additional Resources
 
-```bash
-kubectl create secret generic store-auth-token --from-literal=auth_token=$AUTH_TOKEN -n metadata-store-secrets
-```
-
-This secret is created in the `metadata-store-secrets` namespace and imported by the SCST - Scan.
-
-## <a id="scst-scan-install"></a>Supply Chain Security Tools - Scan installation
-
-To allow SCST - Scan to access the created secrets, `SecretExport` resources must be created.
-
->**Note:** Corresponding `SecretImport` resources that receive the exported secrets are installed with the SCST - Scan package.
-
-These secrets must be exported to each developer namespace. The following is an example for supporting SCST - Scan installation on the developer namespace:
-
-```bash
-cat <<EOF | kubectl apply -f -
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretExport
-metadata:
-  name: store-ca-cert
-  namespace: metadata-store-secrets
-spec:
-  toNamespaces: [DEV-NAMESPACE]
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretExport
-metadata:
-  name: store-auth-token
-  namespace: metadata-store-secrets
-spec:
-  toNamespaces: [DEV-NAMESPACE]
-EOF
-```
-
-Install SCST - Scan with the YAML file sample configuration for the build-profile specified in [Build profile](../multicluster/reference/tap-values-build-sample.md).
+* [Configure target endpoint and certificate](using-encryption-and-connection.hbs.md)
