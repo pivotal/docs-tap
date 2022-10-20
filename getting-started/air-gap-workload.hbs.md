@@ -122,7 +122,8 @@ tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRA
 
 For creating workload with the testing supply chain, follow instructions given at [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test#install-OOTB-test-scan).
 
-In addition to the prerequisites given at [Prerequisites](getting-started/add-test-and-security.hbs.md#prereqs-install-OOTB-test-scan), follow [Using Grype in offline and air-gapped environments](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-scan-offline-airgap.html) before workload creation.
+In addition to the prerequisites given at [Prerequisites](add-test-and-security.hbs.md#prereqs-install-OOTB-test-scan), 
+Follow [Using Grype in offline and air-gapped environments](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-scan-offline-airgap.html) before workload creation.
 
 Create workload by running,
 ```console
