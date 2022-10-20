@@ -135,7 +135,7 @@ and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and 
     See [Deployment details and configuration](deployment-details.md#configuration) for
     more information about configuration options.
 
-    See [Ingress and multicluster support](ingress-multicluster.md) for more information about ingress and custom domain name support.
+    See [Ingress support](ingress.hbs.md) for more information about ingress and custom domain name support.
 
 1. Install the package by running:
 

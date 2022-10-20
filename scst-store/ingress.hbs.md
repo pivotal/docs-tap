@@ -1,6 +1,6 @@
 # Ingress and multicluster support
 
-Supply Chain Security Tools - Store has ingress support by using Contour's HTTPProxy resources. To enable ingress support, a Contour installation must be available in the cluster.
+Supply Chain Security Tools (SCST) - Store has ingress support by using Contour's HTTPProxy resources. To enable ingress support, a Contour installation must be available in the cluster.
 
 SCST - Store's configuration includes two options to configure the proxy: `ingress_enabled` and `ingress_domain`. If needed, you can override the `shared.ingress_domain` Tanzu Application Platform level setting with the `ingress_domain` parameter.
 The store also supports the option to provide a custom certificate under the `tls` option, which needs two options to specify the certificate to use `secretName` and `namespace`.

@@ -80,4 +80,4 @@ ingress_domain: "example.com"
 app_service_type: "ClusterIP" # recommended setting
 ```
 
-An HTTPProxy object is then installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress and multicluster support](ingress-multicluster.md).
+An HTTPProxy object is then installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress support](ingress.hbs.md).
