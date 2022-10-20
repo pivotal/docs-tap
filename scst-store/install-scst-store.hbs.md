@@ -18,57 +18,46 @@ Before installing Supply Chain Security Tools - Store:
 
 To install Supply Chain Security Tools - Store:
 
-1. The deployment assumes the user has set up the Kubernetes cluster to provision persistent volumes on demand. Make sure a default storage class is available in your cluster. Check whether default storage class is set in your cluster by running:
+1. The deployment assumes the user has set up the Kubernetes cluster to provision persistent volumes on demand. Make sure a default storage class is available in your cluster. Check whether default storage class is set in your cluster using `kubectl get storageClass`.
 
----    
-```console
+    ```console
     kubectl get storageClass
     ```
----
 
     For example:
 
----    
-```console
+    ```console
     $ kubectl get storageClass
     NAME                 PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
     standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  7s
     ```
----
 
-1. List version information for the package by running:
+1. List version information for the package using `tanzu package available list`.
 
----    
-```console
+    ```console
     tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
     ```
----
 
     For example:
 
----    
-```console
+    ```console
     $ tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for metadata-store.apps.tanzu.vmware.com...
       NAME                         VERSION       RELEASED-AT
       metadata-store.apps.tanzu.vmware.com  1.0.2
     ```
----
 
-1. (Optional) List out all the available deployment configuration options:
+1. (Optional) List out all the available deployment configuration options.
 
----    
-```console
+    ```console
     tanzu package available get metadata-store.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
----
 
-    Where `VERSION` is the your package version number. For example, `1.0.2`.
+    Where `VERSION` is the your package version number.
+    
+    For example
 
-    For example:
-
----    
-```console
+    ```console
     $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
     | Retrieving package details for metadata-store.apps.tanzu.vmware.com/1.0.2...
       KEY                             DEFAULT                                                                                                                                                                                                      TYPE     DESCRIPTION
@@ -118,47 +107,41 @@ To install Supply Chain Security Tools - Store:
                                                                                                                                                                                                                                                             access information(such as body payload) and other debug information.
       tls.server.rfcCiphers           [TLS_AES_128_GCM_SHA256 TLS_AES_256_GCM_SHA384 TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384 TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256 TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384]  array    List of cipher suites for the server. Values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants). If omitted, the default Go cipher suites will be used
     ```
----
 
 1. (Optional) Modify one of the deployment configurations by creating a configuration YAML with the
 custom configuration values you want. For example, if your environment does not support `LoadBalancer`,
 and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and configure the
 `app_service_type` property.
 
----    
-```yaml
+    ```yaml
     ---
     app_service_type: "ClusterIP"
     ```
----
 
     See [Deployment details and configuration](deployment-details.md#configuration) for
     more information about configuration options.
 
-    See [Ingress and multicluster support](ingress-multicluster.md) for more information about ingress and custom domain name support.
+    See [Ingress support](ingress.hbs.md) for more information about ingress and custom domain name support.
 
-1. Install the package by running:
+1. Install the package using `tanzu package install`
 
----    
-```console
+    ```console
     tanzu package install metadata-store \
       --package-name metadata-store.apps.tanzu.vmware.com \
       --version VERSION \
       --namespace tap-install \
       --values-file metadata-store-values.yaml
     ```
----
 
-    Where:
+    Where
 
     * `--values-file` is an optional flag. Only use it to customize the deployment
     configuration.
-    * `VERSION` is the package version number. For example, `1.0.2`.
+    * `VERSION` is the package version number.
 
-    For example:
+    For example
 
----    
-```console
+    ```console
     $ tanzu package install metadata-store \
       --package-name metadata-store.apps.tanzu.vmware.com \
       --version 1.0.2 \
@@ -177,4 +160,3 @@ and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and 
     
     Added installed package 'metadata-store' in namespace 'tap-install'
     ```
----
