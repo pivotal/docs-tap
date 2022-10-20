@@ -73,7 +73,7 @@ tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRA
 
 ## Create a testing supply chain workload
 
-For creating workload with the testing supply chain, follow instructions given at [Install OOTB Supply Chain with Testing](getting-started/add-test-and-security.hbs.md).
+For creating workload with the testing supply chain, follow instructions given at [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md).
 
 To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
@@ -120,7 +120,7 @@ tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRA
 ```
 ## Create a testing scanning supply chain workload
 
-For creating workload with the testing supply chain, follow instructions given at [Install OOTB Supply Chain with Testing and Scanning](getting-started/add-test-and-security.hbs.md).
+For creating workload with the testing supply chain, follow instructions given at [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md).
 
 In addition to the prerequisites given at [Prerequisites](getting-started/add-test-and-security.hbs.md) follow [Using Grype in offline and air-gapped environments](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-scan-offline-airgap.html) before workload creation.
 
