@@ -17,7 +17,7 @@ Before installing Supply Chain Security Tools - Store:
 
 To install Supply Chain Security Tools - Store:
 
-1. The deployment assumes the user has set up the Kubernetes cluster to provision persistent volumes on demand. Make sure a default storage class is available in your cluster. Check whether default storage class is set in your cluster by running:
+1. The deployment assumes the user has set up the Kubernetes cluster to provision persistent volumes on demand. Make sure a default storage class is available in your cluster. Check whether default storage class is set in your cluster using `kubectl get storageClass`.
 
     ```console
     kubectl get storageClass
@@ -31,7 +31,7 @@ To install Supply Chain Security Tools - Store:
     standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  7s
     ```
 
-1. List version information for the package by running:
+1. List version information for the package using `tanzu package available list`.
 
     ```console
     tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
@@ -46,15 +46,15 @@ To install Supply Chain Security Tools - Store:
       metadata-store.apps.tanzu.vmware.com  1.0.2
     ```
 
-1. (Optional) List out all the available deployment configuration options:
+1. (Optional) List out all the available deployment configuration options.
 
     ```console
     tanzu package available get metadata-store.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
     ```
 
-    Where `VERSION` is the your package version number. For example, `1.0.2`.
-
-    For example:
+    Where `VERSION` is the your package version number.
+    
+    For example
 
     ```console
     $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
@@ -100,9 +100,9 @@ and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and 
     See [Deployment details and configuration](deployment-details.md#configuration) for
     more information about configuration options.
 
-    See [Ingress and multicluster support](ingress-multicluster.md) for more information about ingress and custom domain name support.
+    See [Ingress support](ingress.hbs.md) for more information about ingress and custom domain name support.
 
-1. Install the package by running:
+1. Install the package using `tanzu package install`
 
     ```console
     tanzu package install metadata-store \
@@ -112,13 +112,13 @@ and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and 
       --values-file metadata-store-values.yaml
     ```
 
-    Where:
+    Where
 
     * `--values-file` is an optional flag. Only use it to customize the deployment
     configuration.
-    * `VERSION` is the package version number. For example, `1.0.2`.
+    * `VERSION` is the package version number.
 
-    For example:
+    For example
 
     ```console
     $ tanzu package install metadata-store \
