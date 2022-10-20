@@ -14,3 +14,4 @@ This section includes the following topics:
 - [Ingress support](ingress.hbs.md)
 - [Setting up custom TLS configuration](tls-configuration.hbs.md)
 - [Multicluster setup](multicluster-setup.hbs.md)
+- [Developer namespace setup](developer-namespace-setup.hbs.md)

@@ -108,30 +108,7 @@ grype:
 
 ## Configure the developer namespace
 
-After you've finished the entire TAP installation process, you are ready to configure the developer namespace. When you configure a developer namespace, you need to export the SCST - Store CA certificate and auth token to the namespace. You can do this by creating `SecretExport` resources on the developer namespace. Run the following command to create the `SecretExport` resources.
-
-```bash
-cat <<EOF | kubectl apply -f -
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretExport
-metadata:
-  name: store-ca-cert
-  namespace: metadata-store-secrets
-spec:
-  toNamespaces: [DEV-NAMESPACE]
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretExport
-metadata:
-  name: store-auth-token
-  namespace: metadata-store-secrets
-spec:
-  toNamespaces: [DEV-NAMESPACE]
-EOF
-```
-
-* `toNamespaces: [DEV-NAMESPACE]` - Array of namespaces where the secrets are exported to
+After you've finished the entire TAP installation process, you are ready to configure the developer namespace. Follow instructions to [setup the developer namespace](developer-namespace-setup.hbs.md).
 
 ## Additional resources
 

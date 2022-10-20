@@ -438,6 +438,7 @@ docs.vmware.com is built.
           - [Failover, redundancy, and backups](scst-store/failover.md)
           - [Setting up custom TLS configuration](scst-store/tls-configuration.hbs.md)
           - [Multicluster setup](scst-store/multicluster-setup.hbs.md)
+          - [Developer namespace setup](scst-store/developer-namespace-setup.hbs.md)
     - [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
       - [Overview of Tanzu Developer Tools for VS Code](vscode-extension/about.md)
       - [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md)
