@@ -2,12 +2,12 @@
 
 After you've finished the entire TAP installation process, you are ready to configure the developer namespace. When you configure a developer namespace, you need to export the Supply Chain Security Tools (SCST) - Store CA certificate and auth token to the namespace. This will allow SCST - Scan to find the credentials to send scan results to SCST - Store.
 
-There are two ways to to do this,
+There are two ways to to do this, depending on whether you're deploying TAP in a single cluster or multicluster configuration.
 
-1. Using the TAP values file
-1. Using `SecretExport`
+1. Single cluster - Using the TAP values file
+1. Multicluster - Using `SecretExport`
 
-## Using the TAP values file
+## Single cluster - Using the TAP values file
 
 When deploy TAP Full or Build profile, edit the `tap-values.yaml` file you used to deploy TAP.
 
@@ -29,32 +29,9 @@ Update TAP to apply the changes,
 $ tanzu package installed update tap -f tap-values.yaml -n tap-install
 ```
 
-## Using `SecretExport`
+## Multicluster - Using `SecretExport`
 
-You can do this by creating `SecretExport` resources on the developer namespace. Run the following command to create the `SecretExport` resources.
-
-```bash
-cat <<EOF | kubectl apply -f -
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretExport
-metadata:
-  name: store-ca-cert
-  namespace: metadata-store-secrets
-spec:
-  toNamespaces: [DEV-NAMESPACE]
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretExport
-metadata:
-  name: store-auth-token
-  namespace: metadata-store-secrets
-spec:
-  toNamespaces: [DEV-NAMESPACE]
-EOF
-```
-
-* `toNamespaces: [DEV-NAMESPACE]` - Array of namespaces where the secrets are exported to
+In a multicluster deployment, you must follow the steps in [Multicluster setup](multicluster-setup.hbs.md). It will walk you through creating secrets and exporting secrets to developer namespaces.
 
 ## Next steps
 
