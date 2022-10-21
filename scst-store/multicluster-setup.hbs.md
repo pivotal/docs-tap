@@ -131,7 +131,7 @@ spec:
 EOF
 ```
 
-* `toNamespaces: [DEV-NAMESPACE]` - Array of namespaces where the secrets are exported to
+Where `toNamespaces: [DEV-NAMESPACE]` is an array of developer namespaces where the secrets are exported.
 
 ## Additional resources
 
