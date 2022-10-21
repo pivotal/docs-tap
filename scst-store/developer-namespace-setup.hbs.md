@@ -16,7 +16,7 @@ metadata_store:
   ns_for_export_app_cert: "<DEV-NAMESPACE>"
 ```
 
-The `ns_for_export_app_cert` currently supports only one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this is discourage due to security reasons.
+The `ns_for_export_app_cert` currently supports only one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this will export the CA to all namespaces so you should consider whether this increased visibility presents a risk.
 
 ```yaml
 metadata_store:
