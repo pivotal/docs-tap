@@ -221,7 +221,7 @@ workloads in Tanzu Application Platform:
   applying an audit rule to detect deployment of any workload pods to control
   plane nodes.
 
-- Application pod scheduling on dedicated nodes for management components (mentioned above) is disabled through node taints and affinity rules.
+- Application pod scheduling on dedicated nodes for management components (mentioned above) is deactivated through node taints and affinity rules.
 
 To improve security in an AWS multi-tenant environment, deploy the workload clusters to an AWS account that is different from the one used to deploy the management cluster. To deploy workload clusters across multiple AWS accounts, see [Clusters on Different AWS Accounts](../tanzu-k8s-clusters/aws.md#multi-tenancy).
 
