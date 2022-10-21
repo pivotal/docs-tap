@@ -431,7 +431,7 @@ Follow these steps to install the Tanzu Application Platform package:
     tanzu package installed list -A
     ```
 
-3. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
+3. If you configured `full` dependencies in your `tap-values.yaml` file, install the `full` dependencies
 by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
 After installing the Full profile on your cluster, you can install the
