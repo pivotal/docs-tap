@@ -16,7 +16,7 @@ This is an example snippet in a `tap-values.yaml`,
 metadata_store:
   ingress_enabled: "true"
   ingress_domain: "example.com"
-  app_service_type: "ClusterIP"  # recommended if ingress is enabled
+  app_service_type: "ClusterIP"  # Defaults to `LoadBalancer`. If ingress is enabled then this should be set to `ClusterIP`.
   tls:  # this section is only needed if a custom certificate is being provided
     secretName: custom-cert   # name of the custom certificate to use
     namespace: my-namespace   # namespace in which the certificate exists

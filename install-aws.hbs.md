@@ -221,7 +221,7 @@ tap_gui:
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
-  app_service_type: ClusterIP # If the shared.ingress_domain is set as above, this must be set to ClusterIP.
+  app_service_type: ClusterIP # Defaults to `LoadBalancer`. If `shared.ingress_domain` is set as above, this must be set to `ClusterIP`.
 
 scanning:
   metadataStore:
