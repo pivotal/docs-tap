@@ -1,8 +1,8 @@
 # Build profile
 
-## Prerequisite
+## Prerequisites
 
-Before installing the Build profile, you should follow all the steps in [Install View cluster](../installing-multicluster.hbs.md#install-view-cluster).
+- [Install View cluster](../installing-multicluster.hbs.md#install-view-cluster).
 
 ## Example values.yaml
 
