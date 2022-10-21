@@ -106,9 +106,13 @@ grype:
 ...
 ```
 
-## Configure the developer namespace
+## Configure developer namespaces
 
-After you've finished the entire TAP installation process, you are ready to configure the developer namespace. When you configure a developer namespace, you need to export the SCST - Store CA certificate and auth token to the namespace. You can do this by creating `SecretExport` resources on the developer namespace. Run the following command to create the `SecretExport` resources.
+After you've finished the entire TAP installation process, you are ready to configure developer namespaces. As part of preparing developer namespaces, you'll need to export the secrets we created earlier to those namespaces.
+
+### Exporting SCST - Store secrets to developer namespace in a TAP multicluster deployment
+
+Export secrets to a developer namespace by creating `SecretExport` resources on the developer namespace. Run the following command to create the `SecretExport` resources. As a prerequisite, you must have followed earlier instructions to to create and populate the `metadata-store-secrets` namespace.
 
 ```bash
 cat <<EOF | kubectl apply -f -
@@ -131,7 +135,7 @@ spec:
 EOF
 ```
 
-* `toNamespaces: [DEV-NAMESPACE]` - Array of namespaces where the secrets are exported to
+Where `toNamespaces: [DEV-NAMESPACE]` is an array of developer namespaces where the secrets are exported.
 
 ## Additional resources
 

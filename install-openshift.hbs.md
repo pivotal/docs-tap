@@ -268,13 +268,14 @@ tap_gui:
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
-  app_service_type: ClusterIP
+  app_service_type: ClusterIP # If the shared.ingress_domain is set as above, this must be set to ClusterIP.
 
 scanning:
   metadataStore:
     url: "" # Configuration is moved, so set this string to empty.
 
 grype:
+  namespace: "MY-DEV-NAMESPACE"
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
 
 ```
@@ -305,8 +306,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
 This field is only required if you use a private repository, otherwise, leave it empty.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
-- `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
-This is the namespace where the scanning feature runs.
+- `MY-DEV-NAMESPACE` is the developer namespace. SCST - Store will export secrets to the namespace. And SCST - Scan will deploy the `ScanTemplates` there. This will allow the scanning feature to run in this namespace.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 
