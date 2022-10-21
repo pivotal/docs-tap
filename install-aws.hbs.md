@@ -227,6 +227,10 @@ scanning:
   metadataStore:
     url: "" # Configuration is moved, so set this string to empty.
 
+grype:
+  namespace: "MY-DEV-NAMESPACE"
+  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+
 EOF
 ```
 
