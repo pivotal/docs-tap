@@ -242,6 +242,8 @@ service's External IP address.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store will export secrets to the namespace. And SCST - Scan will deploy the `ScanTemplates` there. This will allow the scanning feature to run in this namespace.
   - If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA cert to all namespaces.
+- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
+credentials to pull an image from the registry for scanning.
 
 For AWS, the default settings creates a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
