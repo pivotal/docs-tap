@@ -155,7 +155,7 @@ Parameters:
 </table>
 
 For information about custom resource details, see [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository). 
+docs](source-controller/reference.hbs.md#imagerepository).
 
 For information about how to use ImageRepository with the Tanzu CLI [Create a workload from local source code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
 
@@ -215,7 +215,7 @@ The `source-tester` resource is included in `ootb-supply-chain-testing` and
 calls the execution of a Tekton Pipeline, in the same namespace as the
 Workload, whenever its inputs change. For example, the source code revision that you want to test changes.
 
-A [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/) 
+A [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/)
 object is instantiated to ensure that there's always a run for a particular set
 of inputs. The parameters are passed from the Workload down to Runnable's
 Pipeline selection mechanism through `testing_pipeline_matching_labels` and the
@@ -270,7 +270,7 @@ Parameters:
 
 For information about how to set up the
 Workload namespace for testing with TektonSee, see [Out of the Box Supply Chain with
-Testing](scc/ootb-supply-chain-testing.hbs.md). 
+Testing](scc/ootb-supply-chain-testing.hbs.md).
 
 For information about how to use the parameters to customize this resource to
 test using a Jenkins cluster, see [Out of the Box Supply Chain
@@ -525,7 +525,7 @@ Parameters:
 
 For information about the
 ImageRepository resource, see [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository). 
+docs](source-controller/reference.hbs.md#imagerepository).
 For information about the prebuild image function, see [Using a prebuilt
 image](scc/pre-built-image.hbs.md).
 
@@ -881,3 +881,242 @@ Parameters:
 > **Note:** On build clusters where a corresponding `ClusterDelivery` doesn't
 > exist, the Deliverable takes no effect (similarly to a Workload without a
 > SupplyChain, no action is taken).
+
+
+# Deliverable Parameters reference
+
+Similarly to the section above describing the parameters that can be supplied
+to the Workload and the effects they have in the underlying objects, here
+you'll find the description of the parameters that can be provided to the
+Deliverable object (i.e., what can be set on `deliverable.spec.params`).
+
+The Deliverable is relevant in the context os deploying to a Kubernetes cluster
+the configuration that has been produced throughout the resources as defined by
+a ClusterSupplyChain:
+
+
+```
+      Workload              (according to ClusterSupplyChain in `build` cluster)
+
+        - fetch source
+        - build
+        - test
+        - scan
+        - generate kubernetes config
+        - push k8s config to git repository / image registry
+
+
+      Deliverable           (according to ClusterDelivery in `run` cluster)
+
+        - fetch kubernetes config (from git repository / image registry)
+        - apply kubernetes objects to cluster
+
+```
+
+Below you'll find the reference documentation that relates specifically to the
+two resources defined in the `basic` ClusterDelivery part of the
+`ootb-delivery-basic` package:
+
+
+```
+source-provider                     fetches kubernetes configuration
+    |
+    |  kubernetes configuration
+    |
+app-deploy                          deploys to the cluster the objects in the
+                                    kubernetes configuration fetched
+```
+
+For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
+as well as the templates used by it, see:
+
+- [Out of the Box Delivery Basic](scc/ootb-delivery-basic.hbs.md)
+- [Out of the Templates](scc/ootb-templates.hbs.md)
+
+
+To know more about the use of the Deliverable object in a multi-cluster
+environment, check out [Getting started with multicluster Tanzu Application
+Platform](multicluster/getting-started.hbs.md).
+
+For reference documentation about Deliverable, see [Deliverable and Delivery
+custom resources](https://cartographer.sh/docs/v0.5.0/reference/deliverable/).
+
+
+## source provider
+
+The `source-provider` resource in the basic ClusterDelivery creates objects
+that continuously fetches Kubernetes configuration files from a git repository
+or image registry so that it can apply those to the cluster.
+
+Regardless of where it fetches that Kubernetes configuration from (git
+repository or image registry), it exposes those files to further resources along
+the ClusterDelivery as a tarball.
+
+
+### GitRepository
+
+A GitRepository object is instantiated whenever `deliverable.spec.source.git`
+is configured such that it can continuously look up for Kubernetes
+configuration pushed to a git repository, making it available for further
+resources in the ClusterDelivery.
+
+Parameters:
+
+<table>
+  <tr>
+    <th>parameter name</th>
+    <th>meaning</th>
+    <th>example</th>
+  </tr>
+
+  <tr>
+    <td><code>gitImplementation<code></td>
+    <td>
+      VMware recommends that you use the underlying library for fetching the
+      source code.  Either <code>libggit2</code>, required for Azure DevOps, or
+      <code>go-git</code>.
+    </td>
+    <td>
+      <pre>
+      - name: gitImplementation
+        value: libggit2
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_ssh_secret<code></td>
+    <td>
+      Name of the secret in the same namespace as the `Deliverable` used for
+      providing credentials for fetching kubernetes configuration files from
+      the git repository pointed at.
+
+      See [Git authentication](scc/git-auth).
+    </td>
+    <td>
+      <pre>
+      - name: gitops_ssh_secret
+        value: git-credentials
+      </pre>
+    </td>
+  </tr>
+</table>
+
+> **Note:** It might not be necessary to change the default Git implementation,
+> but some providers such as Azure DevOps, require you to use `libgit2` due to
+> the server-side implementation providing support only for [git's v2
+> protocol](https://git-scm.com/docs/protocol-v2). For information about the
+> features supported by each implementation, see [git
+> implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation).
+
+For information about how to create a Workload that uses a GitHub
+repository as the provider of source code, see [Create a workload from GitHub
+repository](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
+
+For reference documentation on GitRepository objects, see
+[GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
+
+
+### ImageRepository
+
+An ImageRepository object is instantiated whenever
+`deliverable.spec.source.image` is configured such that it can continuously
+look up for Kubernetes configuration files pushed to a container image registry
+as opposed to a git repository.
+
+Parameters:
+
+<table>
+  <tr>
+    <th>parameter name</th>
+    <th>meaning</th>
+    <th>example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      name of the service account, in the same namespace as the Deliverable, you
+      want to use to provide the necessary permissions for `kapp-controller` to
+      deploy the objects to the cluster.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+For information about custom resource details, see [ImageRepository reference
+docs](source-controller/reference.hbs.md#imagerepository).
+
+> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> the Deliverable object. To configure the `serviceAccount` parameter, use
+> `--param serviceAccount=...`.
+
+## app deployer
+
+The `app-deploy` resource in the ClusterDelivery is responsible for applying the
+Kubernetes configuration that has been built by the supply chain (and pushed to
+either a git repository or image repository) and applying to the cluster.
+
+### App
+
+Regardless of where the configuration comes from, an
+[`App`](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/) object is
+instantiated to deploy the set of Kubernetes configuration files to the cluster.
+
+Parameters:
+
+<table>
+  <tr>
+    <th>parameter name</th>
+    <th>meaning</th>
+    <th>example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      name of the service account, in the same namespace as the Deliverable,
+      you want to use to provide the necessary privileges for `App` to apply
+      the Kubernetes objects to the cluster.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_sub_path<code> (deprecated)</td>
+    <td>
+      sub directory within the configuration bundle that should be used for
+      looking up the files to apply to the Kubernetes cluster.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_sub_path
+        value: ./config
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+> **Note:** the `gitops_sub_path` parameter is considered deprecated - instead,
+> make sure to use `deliverable.spec.source.subPath` instead.
+
+> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> the Deliverable object. To configure the `serviceAccount` parameter, use
+> `--param serviceAccount=...`. For details on RBAC and how `kapp-controller`
+> makes use of the ServiceAccount provided to it via the `serviceAccount`
+> parameter in the `Deliverable` object, check out the documentation of
+> [`kapp-controller`'s Security
+> Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/).
+
