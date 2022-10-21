@@ -12,5 +12,5 @@ This section includes the following topics:
 - [Troubleshooting upgrading](upgrading.md)
 - [Failover, redundancy, and backups](failover.md)
 - [Ingress support](ingress.hbs.md)
-- [Setting up custom TLS configuration](tls-configuration.hbs.md)
+<!-- - [Setting up custom TLS configuration](tls-configuration.hbs.md) -->
 - [Multicluster setup](multicluster-setup.hbs.md)
