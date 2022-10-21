@@ -42,7 +42,7 @@ Before using the extension, you need follow the next steps:
 
 3. Add the `acc-server` URL.
 
-![Setting](../images/acc-server-config.png)
+![Server Configure Setting page showing the acc server url setting under the Tanzu App Accelerator of user settings](../images/acc-server-config.png)
 
 ## <a id="using-the-extension"></a> Using the extension
 
