@@ -20,7 +20,7 @@ For a production environment, VMware recommends that the Store is installed with
 
 ## <a id="ingress"></a>Using `Ingress`
 
-When using an [Ingress setup](ingress-multicluster.md), the Store creates a 
+When using an [Ingress setup](ingress.hbs.md), the Store creates a 
 specific TLS Certificate for HTTPS communications under the `metadata-store` namespace.
 
 To get a certificate, run:
