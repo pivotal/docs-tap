@@ -31,7 +31,11 @@ The following connection methods are recommended based on Tanzu Application Plat
 - Single cluster without Contour and without `LoadBalancer` = `NodePort`
 - Multicluster without Contour = Not supported
 
-For a production environment, VMware recommends that you install SCST - Store with ingress enabled.
+#### Using external postgres database
+
+Users can also configure the deployment to use any other postgres database. See [Use external postgres database](use-external-database.hbs.md).
+
+#### <a id='cust-data-pass'></a>Custom database password
 
 By default, a database password is generated upon deployment. To configure a custom password, use the `db_password` property in the `metadata-store-values.yaml` during deployment.
 
