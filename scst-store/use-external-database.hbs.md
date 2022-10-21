@@ -35,7 +35,7 @@
    deploy_internal_db: "false"
    ```
 
-> **Note** If `deploy_internal_db` is set to `false,` an instance of Postgres will not be deployed in the cluster.
+> **Note:** If `deploy_internal_db` is set to `false,` an instance of Postgres will not be deployed in the cluster.
 
 ## Validation
 
