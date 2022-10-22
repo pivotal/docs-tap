@@ -2,15 +2,15 @@
 
 Use one of the following methods to access Tanzu Application Platform GUI:
 
-* Access with the LoadBalancer method (default)
-* Access with the shared Ingress method
+- Access with the LoadBalancer method (default)
+- Access with the shared Ingress method
 
 ## <a id="lb-method"></a> Access with the LoadBalancer method (default)
 
 1. Verify that you specified the `service_type` for Tanzu Application Platform GUI in
 `tap-values.yaml`, as in this example:
 
-```
+```yaml
 tap_gui:
   service_type: LoadBalancer
 ```
@@ -19,16 +19,17 @@ Follow these steps:
 
 1. Obtain the external IP address of your LoadBalancer by running:
 
-    ```
+    ```console
     kubectl get svc -n tap-gui
     ```
 
 1. Access Tanzu Application Platform GUI by using the external IP address with the default port of 7000.
 It has the following form:
 
-    ```
+    ```console
     http://EXTERNAL-IP:7000
     ```
+
     Where `EXTERNAL-IP` is the external IP address of your LoadBalancer.
 
 ## <a id="ingress-method"></a> Access with the shared Ingress method
@@ -40,7 +41,7 @@ of Contour that is installed as part of the Profile installation.
 External IP address of the `envoy` service that the shared `tanzu-system-ingress` uses.
 Retrieve this IP address by running:
 
-    ```
+    ```console
     kubectl get service envoy -n tanzu-system-ingress
     ```
 
@@ -59,7 +60,7 @@ Retrieve this IP address by running:
 
 1. Specify parameters in `tap-values.yaml` related to Ingress. For example:
 
-    ```
+    ```yaml
     tap_gui:
       service_type: ClusterIP
       ingressEnabled: "true"
@@ -69,7 +70,7 @@ Retrieve this IP address by running:
 1. Update your other host names in the `tap_gui` section of your `tap-values.yaml` with the new host
 name. For example:
 
-    ```
+    ```yaml
     tap_gui:
       service_type: ClusterIP
       ingressEnabled: "true"

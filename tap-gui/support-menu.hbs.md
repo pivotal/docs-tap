@@ -11,9 +11,11 @@ this:
 ![Support menu](./images/support-menu.png)
 
 Out of the box, there are two support item groupings:
-* Contact Support, which is marked with an "email" icon and contains a link to
+
+- Contact Support, which is marked with an "email" icon and contains a link to
   VMware Tanzu's support portal.
-* Documentation, which is marked with a "docs" icon and contains a link to the
+
+- Documentation, which is marked with a "docs" icon and contains a link to the
   Tanzu Application Platform documentation (which you are currently reading).
 
 ## <a id="customizing"></a> Customizing
@@ -24,7 +26,7 @@ sending them to VMware support and documentation. You can provide this
 configuration via your `tap-values-file.yml`. Here is a configuration snippet, which
 produces the default support menu:
 
-```
+```yaml
 tap_gui:
   app_config:
     app:
@@ -49,7 +51,7 @@ tap_gui:
 
 The `url` field under the `support` stanza, for example,
 
-```
+```yaml
       support:
         url: https://tanzu.vmware.com/support
 ```
@@ -70,7 +72,7 @@ is expanded.
 
 The `title` field on a support item grouping, for example,
 
-```
+```yaml
         items:
           - title: Contact Support
 ```
@@ -81,29 +83,30 @@ determines the label for the grouping.
 
 The `icon` field on a support item grouping, for example,
 
-```
+```yaml
         items:
           - icon: email
 ```
 
 determines the icon to use for that grouping. The valid choices are:
-* `brokenImage`
-* `catalog`
-* `chat`
-* `dashboard`
-* `docs`
-* `email`
-* `github`
-* `group`
-* `help`
-* `user`
-* `warning`
+
+- `brokenImage`
+- `catalog`
+- `chat`
+- `dashboard`
+- `docs`
+- `email`
+- `github`
+- `group`
+- `help`
+- `user`
+- `warning`
 
 #### <a id="links"></a> Links
 
 The `links` field on a support item grouping, for example,
 
-```
+```yaml
         items:
           - links:
               - url: https://tanzu.vmware.com/support

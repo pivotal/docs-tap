@@ -39,7 +39,7 @@ You can manually create a workload.yaml and Tiltfile.
 
 Use the Tanzu CLI to create a workload.yaml file. For example:
 
-```
+```yaml
 tanzu apps workload create my-workload --git-repo https://example.com/my-workload.git > workload.yaml
 ```
 
@@ -49,7 +49,7 @@ For more information about this Tanzu CLI command, see [Tanzu apps workload crea
 
 The following is an example Tiltfile:
 
-```
+```Tiltfile
 SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='<source-image>')
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 NAMESPACE = os.getenv("NAMESPACE", default='default')
@@ -82,7 +82,7 @@ Update the following parameters in the preceding example:
 
 If you target a remote cluster, add the following to the Tiltfile:
 
-```
+```Tiltfile
 allow_k8s_contexts('context-name')
 ```
 
