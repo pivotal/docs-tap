@@ -27,14 +27,14 @@ To install Application Live View:
 
 1. List version information for both packages by running:
 
-    ```
+    ```console
     tanzu package available list run.appliveview.tanzu.vmware.com --namespace tap-install
     tanzu package available list build.appliveview.tanzu.vmware.com --namespace tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list run.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for run.appliveview.tanzu.vmware.com...
       NAME                              VERSION        RELEASED-AT
@@ -48,9 +48,10 @@ To install Application Live View:
 
 1. Create `app-live-view-values.yaml` with the following details:
 
-    ```
+    ```yaml
     ---
     ```
+
     >**Note:** The `app-live-view-values.yaml` section does not have any values schema for both
     >packages, therefore it is empty.
 
@@ -59,13 +60,13 @@ To install Application Live View:
 
 1. Install the Application Live View package by running:
 
-    ```
+    ```console
     tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install appliveview -p run.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     - Installing package 'run.appliveview.tanzu.vmware.com'
     | Getting package metadata for 'run.appliveview.tanzu.vmware.com'
@@ -81,13 +82,13 @@ To install Application Live View:
 
 1. Install the Application Live View conventions package by running:
 
-    ```
+    ```console
     tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install appliveview-conventions -p build.appliveview.tanzu.vmware.com -v 1.0.2 -n tap-install -f app-live-view-values.yaml
     - Installing package 'build.appliveview.tanzu.vmware.com'
     | Getting package metadata for 'build.appliveview.tanzu.vmware.com'
@@ -106,13 +107,13 @@ To install Application Live View:
 
 1. Verify the `Application Live View` package installation by running:
 
-    ```
+    ```console
     tanzu package installed get appliveview -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     tanzu package installed get appliveview -n tap-install
     | Retrieving installation details for cc...
     NAME:                    appliveview
@@ -127,13 +128,13 @@ To install Application Live View:
 
 1. Verify the package install for `Application Live View Conventions` package by running:
 
-    ```
+    ```console
     tanzu package installed get appliveview-conventions -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     tanzu package installed get appliveview-conventions -n tap-install
     | Retrieving installation details for cc...
     NAME:                    appliveview-conventions

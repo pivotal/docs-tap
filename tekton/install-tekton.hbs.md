@@ -19,13 +19,13 @@ To install Tekton Pipelines:
 
 1. See what versions of Tekton Pipelines are available to install by running:
 
-    ```
+    ```console
     tanzu package available list -n tap-install tekton.tanzu.vmware.com
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list -n tap-install tekton.tanzu.vmware.com
     \ Retrieving package versions for tekton.tanzu.vmware.com...
       NAME                     VERSION  RELEASED-AT
@@ -34,13 +34,13 @@ To install Tekton Pipelines:
 
 1. Install Tekton by running:
 
-    ```
+    ```console
     tanzu package install tekton-pipelines -n tap-install -p tekton.tanzu.vmware.com -v 0.30.0
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package install tekton-pipelines -n tap-install -p tekton.tanzu.vmware.com -v 0.30.0
     - Installing package 'tekton.tanzu.vmware.com'
     \ Getting package metadata for 'tekton.tanzu.vmware.com'
@@ -57,13 +57,13 @@ To install Tekton Pipelines:
 
 1. Verify that the package installed by running:
 
-    ```
+    ```console
     tanzu package installed get tekton-pipelines -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package installed get tekton-pipelines -n tap-install
     \ Retrieving installation details for tekton...
     NAME:                    tekton-pipelines
@@ -96,7 +96,7 @@ To install Tekton Pipelines:
    commands to create an empty secret and annotate it as a target of the
    secretgen controller:
 
-   ```
+   ```console
    kubectl create secret generic pull-secret --from-literal=.dockerconfigjson={} --type=kubernetes.io/dockerconfigjson
    kubectl annotate secret pull-secret secretgen.carvel.dev/image-pull-secret=""
    ```
@@ -104,19 +104,19 @@ To install Tekton Pipelines:
    After you create a `pull-secret` secret in the same namespace as the service account,
    run the following command to add the secret to the service account:
 
-   ```
+   ```console
    kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
    ```
 
     Verify that a service account is correctly configured by running:
 
-   ```
+   ```console
    kubectl describe serviceaccount default
    ```
 
    For example:
 
-   ```
+   ```console
    kubectl describe sa default
    Name:                default
    Namespace:           default

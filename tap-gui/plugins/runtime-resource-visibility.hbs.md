@@ -21,7 +21,7 @@ Developers must follow these instructions to see their resources on the dashboar
    - Use [Tanzu Application Platform Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md) in [Application Accelerator](application-accelerator.md) to generate the  `catalog-info.yaml` file. For additional instructions, see [Generate YAML files using Tanzu Application Platform Initializer](#gen-yaml-files-using-init).
    - Create the file using your preferred IDE. For example:
 
-       ```
+       ```yaml
         apiVersion: backstage.io/v1alpha1
         kind: Component
         metadata:
@@ -50,7 +50,7 @@ Developers must follow these instructions to see their resources on the dashboar
    - Use [Tanzu Application Platform Initializer](https://github.com/sample-accelerators/tap-initialize/blob/main/README.md) in [Application Accelerator](application-accelerator.md) to generate the  `workload.yaml` file. For additional instructions, see [Generate YAML files using Tanzu Application Platform Initializer](#gen-yaml-files-using-init).
    - Create the file manually with your preferred IDE. For example:
 
-         ```
+         ```yaml
          $ cat <<EOF | kubectl apply -f -
          ---
          apiVersion: serving.knative.dev/v1
