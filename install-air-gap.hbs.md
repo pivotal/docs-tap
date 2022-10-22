@@ -296,7 +296,8 @@ tap_gui:
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
-  app_service_type: ClusterIP
+  app_service_type: ClusterIP # Defaults to `LoadBalancer`. If `shared.ingress_domain` is set as above, this must be set to `ClusterIP`.
+
 grype:
   namespace: "MY-DEV-NAMESPACE"
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
@@ -326,7 +327,8 @@ service's External IP address.
 - `GITLAB-USER` is the user name of your GitLab instance.
 - `GITLAB-PASSWORD` is the password for the `GITLAB-USER` of your GitLab instance. This can also be the `GITLAB-TOKEN`.
 - `GITLAB-TOKEN` is the API token for your GitLab instance.
-- `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`. This is the namespace where the scanning feature runs.
+- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store will export secrets to the namespace. And SCST - Scan will deploy the `ScanTemplates` there. This will allow the scanning feature to run in this namespace.
+  - If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA cert to all namespaces.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 - `SECRET-NAME` is the name of the TLS secret for the domain consumed by HTTPProxy.

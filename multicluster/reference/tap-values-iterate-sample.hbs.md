@@ -34,9 +34,6 @@ ootb_supply_chain_basic: # Optional if the shared above mentioned shared keys ar
   gitops:
     ssh_secret: "SSH-SECRET-KEY" # (Optional) Defaults to "".
 
-metadata_store:
-  app_service_type: LoadBalancer
-
 image_policy_webhook:
   allow_unmatched_tags: true
 

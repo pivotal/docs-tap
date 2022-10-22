@@ -44,14 +44,14 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
   **Single Cluster Deployment**
 
-  Edit the `tap-values.yaml` file you used to deploy Supply Chain Security Tools - Store to export the ca secret to your developer namespace.
+  Edit the `tap-values.yaml` file you used to deploy Supply Chain Security Tools - Store to export the CA cert to your developer namespace.
 
   ```yaml
   metadata_store:
       ns_for_export_app_cert: "<DEV-NAMESPACE>"
   ```
 
-  >**Note:** The `ns_for_export_app_cert` currently supports only one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this is discourage due to security reasons.
+  >**Note:** The `ns_for_export_app_cert` currently supports only one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this will export the CA cert to all namespaces so you should consider whether this increased visibility presents a risk.
 
   Update Tanzu Application Platform to apply the changes:
 
