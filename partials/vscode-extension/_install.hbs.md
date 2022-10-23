@@ -40,7 +40,7 @@ from VS Code Marketplace:
 You can configure it in the **Settings** menu by going to **Code** > **Preferences** > **Settings**
 under **Java > Server: Launch Mode**.
 
-    ![The VS Code settings open to the Extensions > Java section, highlighting the option Java > Server: Launch Mode with that option changed to Standard](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/Images/images-vscode-install4.png)
+    <!--![The VS Code settings open to the Extensions > Java section, highlighting the option Java > Server: Launch Mode with that option changed to Standard](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/Images/images-vscode-install4.png)-->
 
     When the JDK and Language Support for Java are configured correctly, you see that the integrated
     development environment creates a directory target where the code is compiled.
