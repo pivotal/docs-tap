@@ -8,6 +8,7 @@ In the below procedure, we'll use the certificate information provided to you by
 
 - Your certificate authority will provide you a certificate file (similar to `FILE-NAME.crt`) as well as a signing key (similar to `FILE-NAME.key`). These files must be present on the host your execute the CLI commands from.
 
+![Tanzu Application Platform TLS Diagram](./images/TAP-GUI-TLS.jpg)
 ### Procedure
 
 To configure Tanzu Application Platform GUI with an existing certificate:

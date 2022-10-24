@@ -4,6 +4,7 @@
 
 In the below procedure, we'll use `cert-manager` to create a self-signed certificate issuer and then generate a certificate for Tanzu Application Platform GUI to use based off that. It should be noted, some browsers or coroprate policies may not allow you to visit web pages that have self-signed certificates. You may have to navigate through a series of error messages to visit the page.
 
+![Tanzu Application Platform TLS Diagram](./images/TAP-GUI-TLS-CERT.jpg)
 ### Prerequisites
 
 - Installation of Tanzu Application Platform profile that includes cert-manager. You can check for this by looking for the presence of the `cert-manager` namespace:

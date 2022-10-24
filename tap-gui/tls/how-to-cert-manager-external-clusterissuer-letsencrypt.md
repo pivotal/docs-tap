@@ -4,6 +4,8 @@
 
 In the below procedure, we'll use `cert-manager` to create a certificate issuer and then generate a certificate for Tanzu Application Platform GUI to use based off that. In this tutorial we'll use the free certificate issuers [Let's Encrypt](https://letsencrypt.org) but other `cert-manager` compatible certificate issuers can be used in a very similar manner.
 
+![Tanzu Application Platform TLS Diagram](./images/TAP-GUI-TLS-CERT.jpg)
+
 ### Prerequisites
 
 - Installation of Tanzu Application Platform profile that includes cert-manager. You can check for this by looking for the presence of the `cert-manager` namespace:
