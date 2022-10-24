@@ -126,7 +126,7 @@ You use ImageRepository when fetching source code from container images. It
 makes the contents of the container image available as a tarball to further
 resources in the supply chain. The contents of the container image
 are fetched by using Git or Maven. See [Create a workload
-from local source code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
+from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
 
 Parameters:
 
@@ -155,9 +155,9 @@ Parameters:
 </table>
 
 For information about custom resource details, see [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository).
+docs](../source-controller/reference.hbs.md#imagerepository).
 
-For information about how to use ImageRepository with the Tanzu CLI [Create a workload from local source code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
+For information about how to use ImageRepository with the Tanzu CLI [Create a workload from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
 
 > **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Workload object. To configure the `serviceAccount` parameter, use
@@ -203,10 +203,10 @@ Parameters:
 
 For information about the
 custom resource, see [MavenArtifact reference
-docs](source-controller/reference.hbs.md#mavenartifact).
+docs](../source-controller/reference.hbs.md#mavenartifact).
 
 For information about how to use the custom resource with the `tanzu apps workload` CLI plug-in [Create a Workload from Maven repository
-artifact](cli-plugins/apps/create-workload.hbs.md#workload-maven).
+artifact](../cli-plugins/apps/create-workload.hbs.md#workload-maven).
 
 ## source-tester
 
@@ -281,10 +281,10 @@ with Testing on Jenkins](ootb-supply-chain-testing-with-jenkins.hbs.md).
 The `source-scanner` resource (included solely in
 `ootb-supply-chain-testing-scanning`) scans the source code
 that is tested by pointing a
-[SourceScan](scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
+[SourceScan](../scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
 code as the tests.
 
-You can customize behavior for both [CVEs evaluation](scst-scan/policies.hbs.md) and [scanner to use](scst-scan/available-scanners.hbs.md) with parameters.
+You can customize behavior for both [CVEs evaluation](../scst-scan/policies.hbs.md) and [scanner to use](../scst-scan/available-scanners.hbs.md) with parameters.
 
 Parameters:
 
@@ -327,12 +327,12 @@ Parameters:
 See [Out of the Box Supply Chain with Testing and
 Scanning](ootb-supply-chain-testing-scanning.hbs.md) for details about how to
 set up the Workload namespace with the ScanPolicy and ScanTemplate required for
-this resource, and [SourceScan reference](scst-scan/scan-crs.hbs.md#sourcescan)
+this resource, and [SourceScan reference](../scst-scan/scan-crs.hbs.md#sourcescan)
 for details about the SourceScan custom resource.
 
 For information about how the artifacts found
 during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
-Store](scst-store/overview.hbs.md).
+Store](../scst-store/overview.hbs.md).
 
 ## image-provider
 
@@ -358,7 +358,7 @@ container image out of source code or pre-built Java artifact. This makes the
 container image available to further resources in the supply chain through a
 content addressable image reference that's carried to the final
 deployment objects unchanged. See [About Tanzu Build
-Service](tanzu-build-service/tbs-about.hbs.md).
+Service](../tanzu-build-service/tbs-about.hbs.md).
 
 Parameters:
 
@@ -438,7 +438,7 @@ Parameters:
 For information about
 the integration with Tanzu Build Service, see [Tanzu Build Service (TBS) Integration](tbs.hbs.md).
 
-For information about `live-update`, see [Developer Conventions](developer-conventions/about.hbs.md) and [About IntelliJ extension](intellij-extension/about.hbs.md.
+For information about `live-update`, see [Developer Conventions](../developer-conventions/about.hbs.md) and [About IntelliJ extension](intellij-extension/about.hbs.md.
 
 For information about using Kpack builders with `clusterBuilder`, see [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md).
 
@@ -525,7 +525,7 @@ Parameters:
 
 For information about the
 ImageRepository resource, see [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository).
+docs](../source-controller/reference.hbs.md#imagerepository).
 For information about the prebuild image function, see [Using a prebuilt
 image](pre-built-image.hbs.md).
 
@@ -575,11 +575,11 @@ Parameters:
   </tr>
 </table>
 
-For information about the ImageScan custom resource, see [ImageScan reference](scst-scan/scan-crs.hbs.md#imagescan).
+For information about the ImageScan custom resource, see [ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan).
 
 For information about how the artifacts found
 during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
-Store](scst-store/overview.hbs.md).
+Store](../scst-store/overview.hbs.md).
 
 ## config-provider
 
@@ -589,7 +589,7 @@ to use in app configs, such as knative services and deployments, to
 represent the shape of the pods that you want to instantiate to run the
 application in containers. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation.
 
-The `config-provider` resource manages a [PodIntent](cartographer-conventions/reference/pod-intent.hbs.md)
+The `config-provider` resource manages a [PodIntent](../cartographer-conventions/reference/pod-intent.hbs.md)
 object that represents the intention of having PodTemplateSpec enhanced
 with conventions installed in the cluster whose final representation is then
 passed forward to other resources to form the final deployment configuration.
@@ -667,12 +667,12 @@ Parameters:
 > the Workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
-See [Cartographer Conventions](cartographer-conventions/about.hbs.md) to know
+See [Cartographer Conventions](../cartographer-conventions/about.hbs.md) to know
 more about the controller behind `PodIntent`.
 
 See [Developer
-Conventions](developer-conventions/about.hbs.md) and [Spring Boot
-Conventions](spring-boot-conventions/about.hbs.md) for more details about the two
+Conventions](../developer-conventions/about.hbs.md) and [Spring Boot
+Conventions](../spring-boot-conventions/about.hbs.md) for more details about the two
 convention servers enabled by default in Tanzu Application Platform installations.
 
 
@@ -718,15 +718,15 @@ Only the `server` workload type has the following configurable parameters:
 </table>
 
 
-See [workload types](workloads/workload-types.hbs.md) for more details about the
+See [workload types](../workloads/workload-types.hbs.md) for more details about the
 three different types of workloads, and [`server`-specific Workload
-paramters](workloads/server.hbs.md#-server-specific-workload-parameters) for a
+parameters](../workloads/server.hbs.md#-server-specific-workload-parameters) for a
 more detailed overview of the ports parameter.
 
 ## service-bindings
 
 The `service-bindings` resource adds
-[ServiceBindings](service-bindings/about.hbs.md) to the set of Kubernetes
+[ServiceBindings](../service-bindings/about.hbs.md) to the set of Kubernetes
 configuration files to promote for deployment.
 
 Parameters:
@@ -758,15 +758,15 @@ Parameters:
 
 
 See [use of `--service-ref` in Tanzu
-CLI](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
+CLI](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
 for an example and [Consume services on
-Tanzu Application Platform](getting-started/consume-services.hbs.md) for an overview of the
+Tanzu Application Platform](../getting-started/consume-services.hbs.md) for an overview of the
 function.
 
 ## api-descriptors
 
 The `api-descriptor` resource takes care of adding an
-[APIDescriptor](api-auto-registration/key-concepts.hbs.md) to the set of
+[APIDescriptor](../api-auto-registration/key-concepts.hbs.md) to the set of
 Kubernetes objects to deploy such that API auto registration takes place.
 
 Parameters:
@@ -820,7 +820,7 @@ Parameters:
 > `apis.apps.tanzu.vmware.com/register-api: "true"` label to activate
 > this function.
 
-See [Use API Auto Registration](api-auto-registration/usage.hbs.md) for more
+See [Use API Auto Registration](../api-auto-registration/usage.hbs.md) for more
 details about API auto registration.
 
 ## config-writer (git or registry)
@@ -930,7 +930,7 @@ and the templates used by it, see:
 
 To know more about the use of the Deliverable object in a multicluster
 environment, see [Getting started with multicluster Tanzu Application
-Platform](multicluster/getting-started.hbs.md).
+Platform](../multicluster/getting-started.hbs.md).
 
 For reference information about Deliverable, see [Deliverable and Delivery
 custom resources](https://cartographer.sh/docs/v0.5.0/reference/deliverable/).
@@ -1042,7 +1042,7 @@ Parameters:
 </table>
 
 For information about custom resource details, see [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository).
+docs](../source-controller/reference.hbs.md#imagerepository).
 
 > **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Deliverable object. To configure the `serviceAccount` parameter, use
