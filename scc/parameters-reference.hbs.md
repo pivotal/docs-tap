@@ -291,7 +291,7 @@ that is tested by pointing a
 [SourceScan](../scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
 code as the tests.
 
-You can customize behavior for both [CVEs evaluation](../scst-scan/policies.hbs.md) and [scanner to use](../scst-scan/available-scanners.hbs.md) with parameters.
+You can customize behavior for both [CVEs evaluation](../scst-scan/policies.hbs.md) with parameters.
 
 Parameters:
 
