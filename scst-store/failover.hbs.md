@@ -14,8 +14,8 @@ By default, the database  has 1 replica, and  restarts with some downtime if it 
 
 The default internal database is not intended to be used in production. For production deployments, it is recommended to use an external database. See our guides for using external database.
 
-- [Use external postgres database](scst-store/use-external-database.hbs.md)
-- [AWS RDS postgres configuration](scst-store/use-aws-rds.hbs.md)
+- [Use external postgres database](use-external-database.hbs.md)
+- [AWS RDS postgres configuration](use-aws-rds.hbs.md)
 
 For the default postgres database deployment (set by default or by setting `deploy_internal_db` to true), `Velero` may be used as the backup method.
 Read more about using `Velero` as back up [here](backups.hbs.md).
