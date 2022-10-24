@@ -1,8 +1,18 @@
-# Setting up custom TLS configuration
+# Custom certificate and TLS configuration
 
-Supply Chain Security Tools - Store supports only TLS 1.2.
+This guide describes certificate and TLS configuration for Supply Chain Security Tools (SCST) - Store.
 
-By default, it will be setup with self signed certificate when ingress is enabled. TLS is automatically enabled with the default configuration.
+1. Default configuration
+1. Custom certificate
+1. TLS configuration
+
+**Note**: SCST - Store supports only TLS 1.2.
+
+## Default configuration
+
+By default SCST - Store creates a self-signed certificate. And TLS communication is automatically enabled.
+
+If [ingress support](ingress.hbs.md) is enabled, SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`, for example `metadata-store.example.com`. The created route supports HTTPS communication using the self-signed certificate with the same subject *Alternative Name*.
 
 ## (Optional) Setting up custom ingress TLS certificate
 
@@ -11,11 +21,11 @@ Optionally, users can configure TLS to use a custom certificate. In order to do 
 1. Place the certificates in secret
 1. Modify the `tap-values.yaml` to use this secret
 
-## Place the certificates in secret
+### Place the certificates in secret
 
 The certificate secret should be created before deploying Supply Chain Security Tools - Store. Create a Kubernetes object with kind `Secret` and type `kubernetes.io/tls`.
 
-## Update `tap-values.yaml`
+### Update `tap-values.yaml`
 
 In the `tap-values.yaml` file, you can configure the metadata store to use the `namespace` and `secretName` from the secret created in the last step.
 
@@ -28,7 +38,6 @@ metadata_store:
 
 * `namespace`: The targeted namespace for secret consumption by the HTTPProxy. 
 * `secretName`: The name of secret for consumption by the HTTPProxy.
-
 
 ## Change server TLS Ciphers
 
@@ -59,7 +68,7 @@ metadata_store:
 - `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`
 
 
-## Example Custom TLS settings
+### Example Custom TLS settings
 
 Here's the complete example of TLS configuration.
 
@@ -78,3 +87,6 @@ metadata_store:
         - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 ```
 
+## Additional resources
+
+* [Ingress support](ingress.hbs.md)
