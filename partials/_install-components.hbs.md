@@ -17,7 +17,7 @@ For more information, see [Prerequisites](https://docs.vmware.com/en/VMware-Tanz
 - [Install Application Accelerator](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-application-accelerator-install-app-acc.html)
 - [Install Application Live View](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-app-live-view-install.html)
 - [Install Application Single Sign-On](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-app-sso-platform-operators-installation.html)
-- [Install cert-manager, Contour, and FluxCD](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-cert-mgr-contour-fcd-install-cert-mgr.html)
+- [Install cert-manager, Contour, and FluxCD](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-cert-mgr-contour-fcd-install.html)
 - [Install Cloud Native Runtimes](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-cloud-native-runtimes-install-cnrt.html)
 - [Install default roles for Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-authn-authz-install.html)  
 - [Install Developer Conventions](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-developer-conventions-install-dev-conventions.html)
