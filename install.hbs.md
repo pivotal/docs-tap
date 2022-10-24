@@ -9,7 +9,7 @@ Before installing the packages, ensure you have:
 - Configured and verified the cluster.
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](install-tanzu-cli.html) with any required plug-ins.
 
-## <a id='add-tap-package-repo'></a> Relocate images to a registry
+## <a id='relocate-images'></a>Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
 attempting installation. If you don't relocate the images, Tanzu Application Platform will depend on
@@ -73,6 +73,14 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     ```console
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
+
+## <a id='add-tap-repo'></a> Add the Tanzu Application Platform package repository
+
+Tanzu cli packages are available on repositories. Adding the tanzu tap package repository makes tap and it's packages available for installation.
+
+>**Note:** [Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. For simplicity this section assumes you have completed it. Thus, please refer to that section to fill in the stubbed out variables.
+
+To add the tanzu tap package repository to your cluster:
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
