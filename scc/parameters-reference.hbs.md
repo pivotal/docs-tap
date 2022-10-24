@@ -114,6 +114,9 @@ Parameters:
 > [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation)
 > for a breakdown of the features supported by each implementation.
 
+For information about how to create a Workload that uses a GitHub
+repository as the provider of source code, see [Create a workload from GitHub
+repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
 
 See [Create a workload from GitHub
 repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository)
@@ -1025,7 +1028,7 @@ Parameters:
 
 For information about how to create a Workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
-repository](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
+repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
 
 For information about GitRepository objects, see
 [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
