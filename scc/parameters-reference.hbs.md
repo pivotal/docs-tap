@@ -128,11 +128,11 @@ reference documentation on GitRepository objects.
 
 ### ImageRepository
 
-Used when fetching source code from container images. See [Create a workload
-from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code),
-it makes available to further resources in the supply chain the contents of the
-container image as a tarball that is fetched liked any other source
-provider (git or maven).
+You use ImageRepository when fetching source code from container images. It
+makes the contents of the container image available as a tarball to further
+resources in the supply chain. The contents of the container image
+are fetched by using Git or Maven. See [Create a workload
+from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
 
 Parameters:
 
@@ -160,11 +160,10 @@ Parameters:
 
 </table>
 
-See [ImageRepository reference
-docs](../source-controller/reference.hbs.md#imagerepository) for details about the
-custom resource and [Create a workload from local source
-code](../cli-plugins/apps/create-workload.hbs.md)
-for an example of how to make use of it leveraging the Tanzu CLI.
+For information about custom resource details, see [ImageRepository reference
+docs](../source-controller/reference.hbs.md#imagerepository).
+
+For information about how to use ImageRepository with the Tanzu CLI [Create a workload from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
 
 > **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Workload object. To configure the `serviceAccount` parameter, use
@@ -209,12 +208,12 @@ Parameters:
   </tr>
 </table>
 
-See [MavenArtifact reference
-docs](../source-controller/reference.hbs.md#mavenartifact) for details about the
-custom resource, and [Create a Workload from Maven repository
-artifact](../cli-plugins/apps/create-workload.hbs.md#workload-maven) for an
-example of how to make use of it with the `tanzu apps workload` CLI plug-in.
+For information about the
+custom resource, see [MavenArtifact reference
+docs](../source-controller/reference.hbs.md#mavenartifact).
 
+For information about how to use the custom resource with the `tanzu apps workload` CLI plug-in [Create a Workload from Maven repository
+artifact](../cli-plugins/apps/create-workload.hbs.md#workload-maven).
 
 ## source-tester
 
@@ -289,11 +288,10 @@ with Testing on Jenkins](ootb-supply-chain-testing-with-jenkins.hbs.md).
 The `source-scanner` resource (included solely in
 `ootb-supply-chain-testing-scanning`) scans the source code
 that is tested by pointing a
-[SourceScan](scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
+[SourceScan](../scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
 code as the tests.
 
-Its behavior, in terms of [CVEs evaluation](../scst-scan/policies.hbs.md) is
-customized with the parameters.
+You can customize behavior for both [CVEs evaluation](../scst-scan/policies.hbs.md) and [scanner to use](../scst-scan/available-scanners.hbs.md) with parameters.
 
 Parameters:
 
@@ -339,10 +337,9 @@ set up the Workload namespace with the ScanPolicy and ScanTemplate required for
 this resource, and [SourceScan reference](../scst-scan/scan-crs.hbs.md#sourcescan)
 for details about the SourceScan custom resource.
 
-See [Supply Chain Security Tools for Tanzu –
-Store](../scst-store/overview.hbs.md) for details about how the artifacts found
-during scanning are catalogued.
-
+For information about how the artifacts found
+during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
+Store](../scst-store/overview.hbs.md).
 
 ## image-provider
 
@@ -364,12 +361,12 @@ source](building-from-source.hbs.md), different semantics apply:
 
 ### Kpack Image
 
-The Kpack Image object (see [About Tanzu Build
-Service](../tanzu-build-service/tbs-about.hbs.md)) provides means for building a
-container image out of source code (or pre-built Java artifact), making such
-container image available to further resources in the supply chain using a
-content addressable image reference that's carried all the way to the final
-deployment objects unchanged.
+The Kpack Image object provides means for building a
+container image out of source code or pre-built Java artifact. This makes the
+container image available to further resources in the supply chain through a
+content addressable image reference that's carried to the final
+deployment objects unchanged. See [About Tanzu Build
+Service](../tanzu-build-service/tbs-about.hbs.md).
 
 Parameters:
 
@@ -449,8 +446,7 @@ Parameters:
 For information about
 the integration with Tanzu Build Service, see [Tanzu Build Service (TBS) Integration](tbs.hbs.md).
 
-See [Tanzu Build Service (TBS) Integration](../scc/tbs.hbs.md) for more details about
-the integration with Tanzu Build Service.
+For information about `live-update`, see [Developer Conventions](../developer-conventions/about.hbs.md) and [About IntelliJ extension](intellij-extension/about.hbs.md.
 
 See [Developer Conventions](../developer-conventions/about.hbs.md) and [About
 IntelliJ extension](../intellij-extension/about.hbs.md) for details about
@@ -546,7 +542,7 @@ Parameters:
 
 For information about the
 ImageRepository resource, see [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository).
+docs](../source-controller/reference.hbs.md#imagerepository).
 For information about the prebuild image function, see [Using a prebuilt
 image](pre-built-image.hbs.md).
 
@@ -597,13 +593,11 @@ Parameters:
   </tr>
 </table>
 
-See [ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan) for details
-about the ImageScan custom resource.
+For information about the ImageScan custom resource, see [ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan).
 
-See [Supply Chain Security Tools for Tanzu –
-Store](../scst-store/overview.hbs.md) for details about how the artifacts found
-during scanning are catalogued.
-
+For information about how the artifacts found
+during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
+Store](../scst-store/overview.hbs.md).
 
 ## config-provider
 
@@ -614,8 +608,8 @@ to be used further along in app configs (knative serivices / deployments) to
 represent the shape of the pods that you want to get instantiated to run the
 application in containers.
 
-It manages a [PodIntent](../cartographer-conventions/reference/pod-intent.hbs.md)
-object that represents the intention of having such PodTemplateSpec enhanced
+The `config-provider` resource manages a [PodIntent](../cartographer-conventions/reference/pod-intent.hbs.md)
+object that represents the intention of having PodTemplateSpec enhanced
 with conventions installed in the cluster whose final representation is then
 passed forward to other resources to form the final deployment configuration.
 
@@ -745,7 +739,7 @@ Only the `server` workload type has configurable parameters as shown:
 
 See [workload types](../workloads/workload-types.hbs.md) for more details about the
 three different types of workloads, and [`server`-specific Workload
-paramters](../workloads/server.hbs.md#-server-specific-workload-parameters) for a
+parameters](../workloads/server.hbs.md#-server-specific-workload-parameters) for a
 more detailed overview of the ports parameter.
 
 ## service-bindings
@@ -785,7 +779,7 @@ Parameters:
 See [use of `--service-ref` in Tanzu
 CLI](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
 for an example and [Consume services on
-TAP](../getting-started/consume-services.hbs.md) for an overview of the
+Tanzu Application Platform](../getting-started/consume-services.hbs.md) for an overview of the
 function.
 
 ## api-descriptors
@@ -955,7 +949,7 @@ and the templates used by it, see:
 
 To know more about the use of the Deliverable object in a multicluster
 environment, see [Getting started with multicluster Tanzu Application
-Platform](multicluster/getting-started.hbs.md).
+Platform](../multicluster/getting-started.hbs.md).
 
 For reference information about Deliverable, see [Deliverable and Delivery
 custom resources](https://cartographer.sh/docs/v0.5.0/reference/deliverable/).
@@ -1067,7 +1061,7 @@ Parameters:
 </table>
 
 For information about custom resource details, see [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository).
+docs](../source-controller/reference.hbs.md#imagerepository).
 
 > **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Deliverable object. To configure the `serviceAccount` parameter, use
