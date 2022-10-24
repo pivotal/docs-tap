@@ -99,7 +99,7 @@ In an air-gapped environment, these `OIDC Issuers` need to be removed.
 
 This can be done by manually editing `release-fulcio.yaml` or running the following sample commands:
 
-```bash
+```console
 config_json='{
   "OIDCIssuers": {
     "https://kubernetes.default.svc.cluster.local": {
@@ -118,6 +118,7 @@ config_json='{
 
 # Use `yq` to find the correct fulcio-config resource
 # Update the `data.config.json` property with the new config JSON string
+
 config_json="${config_json}" \
   yq e '. |
     select(.metadata.name == "fulcio-config") as $config |
@@ -127,7 +128,8 @@ config_json="${config_json}" \
 ```
 
 If installing on EKS, update the `config_json` to this instead:
-```bash
+
+```console
 config_json='{
   "MetaIssuers": {
     "https://kubernetes.*.svc": {
