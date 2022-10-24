@@ -59,18 +59,17 @@ config-writer                       writes the configuration to a destination
 For details about the supply chains themselves, see their corresponding
 documentation:
 
-- [Out of the Box Supply Chain Basic](scc/ootb-supply-chain-basic.hbs.md)
-- [Out of the Box Supply Chain Testing](scc/ootb-supply-chain-testing.hbs.md)
-- [Out of the Box Supply Chain Testing Scanning](scc/ootb-supply-chain-testing-scanning.hbs.md)
+- [Out of the Box Supply Chain Basic](../scc/ootb-supply-chain-basic.hbs.md)
+- [Out of the Box Supply Chain Testing](../scc/ootb-supply-chain-testing.hbs.md)
+- [Out of the Box Supply Chain Testing Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md)
 
 
 ## source provider
 
 The `source-provider` resource in the supply chain is responsible for creating
 objects that will fetch either source code or pre-compiled java applications
-depending how the Workload is configured (see [Building from
-Source](scc/building-from-source.hbs.md)).
-
+depending how the Workload is configured. See [Building from
+Source](../scc/building-from-source.hbs.md).
 
 ### GitRepository
 
@@ -127,7 +126,7 @@ Parameters:
 
 
 See [Create a workload from GitHub
-repository](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository)
+repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository)
 for an example of how to create a Workload that makes use of a GitHub
 repository as the provider of source code, and
 [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/) for
@@ -169,9 +168,9 @@ Parameters:
 </table>
 
 See [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository) for details about the
+docs](../source-controller/reference.hbs.md#imagerepository) for details about the
 custom resource and [Create a workload from local source
-code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code)
+code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code)
 for an example of how to make use of it leveraging the Tanzu CLI.
 
 > **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
@@ -218,9 +217,9 @@ Parameters:
 </table>
 
 See [MavenArtifact reference
-docs](source-controller/reference.hbs.md#mavenartifact) for details about the
+docs](../source-controller/reference.hbs.md#mavenartifact) for details about the
 custom resource, and [Create a Workload from Maven repository
-artifact](cli-plugins/apps/create-workload.hbs.md#workload-maven) for an
+artifact](../cli-plugins/apps/create-workload.hbs.md#workload-maven) for an
 example of how to make use of it with the `tanzu apps workload` CLI plugin.
 
 
@@ -288,9 +287,9 @@ Parameters:
 
 
 See [Out of the Box Supply Chain with
-Testing](scc/ootb-supply-chain-testing.hbs.md) for details on how to setup the
+Testing](../scc/ootb-supply-chain-testing.hbs.md) for details on how to setup the
 Workload namespace for testing with Tekton, and [Out of the Box Supply Chain
-with Testing on Jenkins](scc/ootb-supply-chain-testing-with-jenkins.hbs.md) for
+with Testing on Jenkins](../scc/ootb-supply-chain-testing-with-jenkins.hbs.md) for
 an example on how to make use of the parameters to customize this resource to
 test using a Jenkins cluster.
 
@@ -300,11 +299,10 @@ test using a Jenkins cluster.
 The `source-scanner` resource (included solely in
 `ootb-supply-chain-testing-scanning`) takes care of scanning the source code
 that's been successfully tested by pointing a
-[SourceScan](scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
+[SourceScan](../scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
 code as the tests.
 
-Its behavior, both in terms of [CVEs evaluation](scst-scan/policies.hbs.md) as
-well as [scanner to use](scst-scan/available-scanners.hbs.md), can be
+Its behavior, in terms of [CVEs evaluation](../scst-scan/policies.hbs.md) can be
 customized with the parameters.
 
 Parameters:
@@ -346,13 +344,13 @@ Parameters:
 </table>
 
 See [Out of the Box Supply Chain with Testing and
-Scanning](scc/ootb-supply-chain-testing-scanning.hbs.md) for details on how to
+Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) for details on how to
 setup the Workload namespace with the ScanPolicy and ScanTemplate required for
-this resource, and [SourceScan reference](scst-scan/scan-crs.hbs.md#sourcescan)
+this resource, and [SourceScan reference](../scst-scan/scan-crs.hbs.md#sourcescan)
 for details about the SourceScan custom resource.
 
 Additionally, check out [Supply Chain Security Tools for Tanzu –
-Store](scst-store/overview.hbs.md) for details on how the artifacts found
+Store](../scst-store/overview.hbs.md) for details on how the artifacts found
 during scanning are catalogued.
 
 
@@ -362,8 +360,8 @@ The `image-provider` in the supply chains provides to further resources a
 container image carrying the application already built.
 
 Depending on how the Workload is configured, i.e., if using [pre-built
-images](scc/pre-built-image.hbs.md) or [building from
-source](scc/building-from-source.hbs.md), different semantics apply:
+images](../scc/pre-built-image.hbs.md) or [building from
+source](../scc/building-from-source.hbs.md), different semantics apply:
 
 - pre-built: an `ImageRepository` object is created aiming at providing a
   reference to the latest image found matching the name as specified in
@@ -377,7 +375,7 @@ source](scc/building-from-source.hbs.md), different semantics apply:
 ### Kpack Image
 
 The Kpack Image object (see [About Tanzu Build
-Service](tanzu-build-service/tbs-about.hbs.md)) provides means for building a
+Service](../tanzu-build-service/tbs-about.hbs.md)) provides means for building a
 container image out of source code (or pre-built Java artifact), making such
 container image available to further resources in the supply chain via a
 content addressable image reference that's carried all the way to the final
@@ -459,11 +457,11 @@ Parameters:
 > `--param serviceAccount=...`.
 
 
-See [Tanzu Build Service (TBS) Integration](scc/tbs.hbs.md) for more details on
+See [Tanzu Build Service (TBS) Integration](../scc/tbs.hbs.md) for more details on
 the integration with Tanzu Build Service.
 
-See [Developer Conventions](developer-conventions/about.hbs.md) and [About
-IntelliJ extension](intellij-extension/about.hbs.md) for details on
+See [Developer Conventions](../developer-conventions/about.hbs.md) and [About
+IntelliJ extension](../intellij-extension/about.hbs.md) for details on
 `live-update`.
 
 See [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md) for
@@ -513,7 +511,7 @@ Parameters:
   </tr>
 </table>
 
-See [Dockerfile-based builds](scc/dockerfile-based-builds.hbs.md) for more
+See [Dockerfile-based builds](../scc/dockerfile-based-builds.hbs.md) for more
 information on how to make use of it as well as limitations associated with the
 functionality.
 
@@ -557,9 +555,9 @@ Parameters:
 > `--param serviceAccount=...`.
 
 See [ImageRepository reference
-docs](source-controller/reference.hbs.md#imagerepository) for details on the
+docs](../source-controller/reference.hbs.md#imagerepository) for details on the
 ImageRepository resource and [Using a prebuilt
-image](scc/pre-built-image.hbs.md) for information regarding the functionality
+image](../scc/pre-built-image.hbs.md) for information regarding the functionality
 as a whole.
 
 ## image-scanner
@@ -609,11 +607,11 @@ Parameters:
   </tr>
 </table>
 
-See [ImageScan reference](scst-scan/scan-crs.hbs.md#imagescan) for details
+See [ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan) for details
 about the ImageScan custom resource.
 
 Additionally, check out [Supply Chain Security Tools for Tanzu –
-Store](scst-store/overview.hbs.md) for details on how the artifacts found
+Store](../scst-store/overview.hbs.md) for details on how the artifacts found
 during scanning are catalogued.
 
 
@@ -626,7 +624,7 @@ to be used further along in app configs (knative serivices / deployments) to
 represent the desired shape of the pods that get instantiated to run the
 application in containers.
 
-It manages a [PodIntent](cartographer-conventions/reference/pod-intent.hbs.md)
+It manages a [PodIntent](../cartographer-conventions/reference/pod-intent.hbs.md)
 object that represents the intention of having such PodTemplateSpec enhanced
 with conventions installed in the cluster whose final representation is then
 passed forward to other resources to form the final deployment configuration.
@@ -704,12 +702,12 @@ Parameters:
 > the Workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
-See [Cartographer Conventions](cartographer-conventions/about.hbs.md) to know
+See [Cartographer Conventions](../cartographer-conventions/about.hbs.md) to know
 more about the controller behind `PodIntent`.
 
 Additionally, check out [Developer
-Conventions](developer-conventions/about.hbs.md) as well as [Spring Boot
-Conventions](spring-boot-conventions/about.hbs.md) for more details on the two
+Conventions](../developer-conventions/about.hbs.md) as well as [Spring Boot
+Conventions](../spring-boot-conventions/about.hbs.md) for more details on the two
 convention servers enabled by default in TAP installations.
 
 
@@ -756,15 +754,15 @@ below:
 </table>
 
 
-See [workload types](workloads/workload-types.hbs.md) for more details on the
+See [workload types](../workloads/workload-types.hbs.md) for more details on the
 three different types of workloads, and [`server`-specific Workload
-paramters](workloads/server.hbs.md#-server-specific-workload-parameters) for a
+paramters](../workloads/server.hbs.md#-server-specific-workload-parameters) for a
 more detailed overview of the ports parameter.
 
 ## service-bindings
 
 The `service-bindings` resource adds
-[ServiceBindings](service-bindings/about.hbs.md) to the set of Kubernetes
+[ServiceBindings](../service-bindings/about.hbs.md) to the set of Kubernetes
 configuration files to promote for deployment.
 
 Parameters:
@@ -796,15 +794,15 @@ Parameters:
 
 
 See [use of `--service-ref` in Tanzu
-CLI](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
+CLI](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
 for an example and [Consume services on
-TAP](getting-started/consume-services.hbs.md) for an overview of the
+TAP](../getting-started/consume-services.hbs.md) for an overview of the
 functionality.
 
 ## api-descriptors
 
 The `api-descriptor` resource takes care of adding an
-[APIDescriptor](api-auto-registration/key-concepts.hbs.md) to the set of
+[APIDescriptor](../api-auto-registration/key-concepts.hbs.md) to the set of
 Kubernetes objects to deploy such that API auto registration takes place.
 
 Parameters:
@@ -859,7 +857,7 @@ Parameters:
 > `apis.apps.tanzu.vmware.com/register-api: "true"` label in order to activate
 > this functionality.
 
-See [Use API Auto Registration](api-auto-registration/usage.hbs.md) for more
+See [Use API Auto Registration](../api-auto-registration/usage.hbs.md) for more
 details about API auto registration.
 
 
@@ -877,7 +875,7 @@ It can do so in three distinct manners:
   - pushing a commit _and_ opening a pull request.
 
 Details about the different modes of operation can be found in [Gitops vs
-RegistryOps](scc/gitops-vs-regops.hbs.md) with the parameters documented in
+RegistryOps](../scc/gitops-vs-regops.hbs.md) with the parameters documented in
 place.
 
 ## deliverable
@@ -919,4 +917,3 @@ Parameters:
 > **Note:** On build clusters where a corresponding `ClusterDelivery` doesn't
 > exist, the Deliverable takes no effect (similarly to a Workload without a
 > SupplyChain, no action is taken).
-
