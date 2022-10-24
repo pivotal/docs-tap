@@ -24,6 +24,7 @@ metadata_store:
 ```
 
 SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`, for example `metadata-store.example.com`. The created route supports HTTPS communication either using the custom certificate if the `tls` section is configured, or self-signed certificate with the same subject *Alternative Name* if the `tls` section is not provided.
+See [Custom certificate and TLS configuration](tls-configuration.hbs.md) for more information.
 
 Contour and DNS setup are not part of the SCST - Store installation. Access to SCST - Store using Contour depends on the correct configuration of these two components.
 
@@ -79,4 +80,5 @@ $ cat insight-ca.crt
 
 ## Additional Resources
 
+* [Custom certificate and TLS configuration](tls-configuration.hbs.md)
 * [Configure target endpoint and certificate](using-encryption-and-connection.hbs.md)
