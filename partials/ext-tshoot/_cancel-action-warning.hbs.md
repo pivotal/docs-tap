@@ -11,4 +11,6 @@ An extension bug is the cause.
 
 ### Solution
 
-No action is needed. You can ignore this warning.
+Upgrade to Tanzu Application Platform v1.3.1.
+If you remain on Tanzu Application Platform v1.3.0, you can ignore this warning.
+There is no further action to take.
