@@ -115,7 +115,7 @@ Parameters:
 
 For information about how to create a Workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
-repository](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
+repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
 
 For reference documentation on GitRepository objects, see
 [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
@@ -1003,7 +1003,7 @@ Parameters:
 
 For information about how to create a Workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
-repository](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
+repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
 
 For information about GitRepository objects, see
 [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
