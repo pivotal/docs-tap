@@ -30,7 +30,7 @@ The following issues, listed by area and component, are resolved in this release
 
 
 
-#### <a id="1-4-0-vscode-issues"></a> Tanzu Developer Tools for VS Code
+#### <a id="1-4-0-vscode-resolved"></a> Tanzu Developer Tools for VS Code
 
 - The extension no longer shows a warning notification when the user cancels an action
 - The extension can now generate a snippet on a `Tiltfile` when the user has a Tilt extension installed
