@@ -106,7 +106,7 @@ Parameters:
     <td>
       Name of the secret in the same namespace as the `Workload` to use for
       providing credentials for fetching source code from the git repository.
-      See ([Git authentication](../scc/git-auth)) for details.
+      See [Git authentication](git-auth.hbs.md) for details.
     </td>
     <td>
       <pre>
@@ -136,7 +136,7 @@ reference documentation on GitRepository objects.
 ### ImageRepository
 
 Used when fetching source code from container images (see [Create a workload
-from local source code](cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code)),
+from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code)),
 it makes available to further resources in the supply chain the contents of the
 container image as a tarball that can be fetched liked any other source
 provider (git or maven).
