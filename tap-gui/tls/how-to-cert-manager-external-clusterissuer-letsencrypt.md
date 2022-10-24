@@ -15,7 +15,13 @@ In the below procedure, we'll use `cert-manager` to create a certificate issuer 
     ```
 
 - You'll need a domain name that you're in control of and can prove ownership/control. This should be the domain name you use for the `INGRESS-DOMAIN` values in your Tanzu Application Platform installation (and GUI)
-- You'll need to [validate your domain](https://letsencrypt.org/how-it-works/) via one of the processes outlined on [Let's Encrypt's](https://letsencrypt.org/getting-started/) site
+- You may need to [validate your domain](https://letsencrypt.org/how-it-works/) via one of the processes outlined on [Let's Encrypt's](https://letsencrypt.org/getting-started/) site to ensure its compatibility
+- You'll want to make sure that your domain name is pointed at the shared Contour ingress for the installation. You can find the IP address by using the following command:
+
+```console
+kubectl -n tanzu-system-ingress get services envoy -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+```
+
 
 ### Procedure
 
