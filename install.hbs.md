@@ -12,7 +12,7 @@ Before installing the packages, ensure you have:
 ## <a id='relocate-images'></a>Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
-attempting installation. If you don't relocate the images, Tanzu Application Platform will depend on
+attempting installation. If you don't relocate the images, Tanzu Application Platform depends on
 VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no uptime guarantees.
 The option to skip relocation is documented for evaluation and proof-of-concept only.
 
@@ -28,7 +28,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. Install Docker if it is not already installed.
 
-1. Log in to your image registry by running:
+2. Log in to your image registry by running:
 
     ```console
     docker login MY-REGISTRY
@@ -36,13 +36,13 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
     Where `MY-REGISTRY` is your own container registry.
 
-1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
+3. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
 
     ```console
     docker login registry.tanzu.vmware.com
     ```
 
-1. Set up environment variables for installation use by running:
+4. Set up environment variables for installation use by running:
 
     ```console
     export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
@@ -61,9 +61,10 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
     for the installation files for Tanzu Application Platform.
 
-1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
+5. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
 
  > **Note:** To query for the available `imgpkg` CLI versions on the Tanzu Network Registry, run:
+ >
  > ```console
  > imgpkg tag list -i registry.tanzu.vmware.com/tanzu-application-platform/tap-packages | grep -v sha | sort -V
  > ```
@@ -76,11 +77,11 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id='add-tap-repo'></a> Add the Tanzu Application Platform package repository
 
-Tanzu cli packages are available on repositories. Adding the tanzu tap package repository makes tap and it's packages available for installation.
+Tanzu CLI packages are available on repositories. Adding the Tanzu Application Platform package repository makes Tanzu Application Platform and its packages available for installation.
 
->**Note:** [Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. For simplicity this section assumes you have completed it. Thus, please refer to that section to fill in the stubbed out variables.
+>**Note:** [Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. For simplicity, this section assumes you have relocated images to a registry. Refer to that section to fill in the stubbed out variables.
 
-To add the tanzu tap package repository to your cluster:
+To add the Tanzu Application Platform package repository to your cluster:
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
