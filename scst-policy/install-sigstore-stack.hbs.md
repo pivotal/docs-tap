@@ -126,6 +126,22 @@ config_json="${config_json}" \
     ($other, $config)' -i release-fulcio.yaml
 ```
 
+If installing on EKS, update the `config_json` to this instead:
+```bash
+config_json='{
+  "MetaIssuers": {
+    "https://kubernetes.*.svc": {
+      "ClientID": "sigstore",
+      "Type": "kubernetes"
+    },
+    "https://oidc.eks.*.amazonaws.com/id/*": {
+      "ClientID": "sigstore",
+      "Type": "kubernetes"
+    }
+  }
+}'
+```
+
 Another update to the `release-fulcio.yaml` that may be required is that the `OIDCIssuer` for `Kuberenetes API Token`.
 The host URL is different for versions older than Kubernetes `1.23.x`. In Kubernetes versions less than `1.23.x`, the URL is `https://kubernetes.default.svc`.
 
