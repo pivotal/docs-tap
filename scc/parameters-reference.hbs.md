@@ -106,7 +106,7 @@ Parameters:
     <td>
       Name of the secret in the same namespace as the `Workload` to use for
       providing credentials for fetching source code from the git repository.
-      See ([Git authentication](scc/git-auth)) for details.
+      See ([Git authentication](../scc/git-auth)) for details.
     </td>
     <td>
       <pre>
@@ -170,7 +170,7 @@ Parameters:
 See [ImageRepository reference
 docs](../source-controller/reference.hbs.md#imagerepository) for details about the
 custom resource and [Create a workload from local source
-code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code)
+code](../cli-plugins/apps/create-workload.hbs.md)
 for an example of how to make use of it leveraging the Tanzu CLI.
 
 > **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
