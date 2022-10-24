@@ -49,10 +49,10 @@ To configure a self-signed TLS certificate for Tanzu Application Platform GUI:
       commonName: tap-gui.INGRESS-DOMAIN
       dnsNames:
         - tap-gui.INGRESS-DOMAIN
-    issuerRef:
-      name: letsencrypt-http01-issuer
-      kind: ClusterIssuer
-    secretName: tap-gui
+      issuerRef:
+        name: letsencrypt-http01-issuer
+        kind: ClusterIssuer
+      secretName: tap-gui
    ```
 
    Where:
