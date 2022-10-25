@@ -9,7 +9,7 @@ Your certificate authority gave you a certificate file, of the form `CERTIFICATE
 a signing key, of the form `KEY-FILE-NAME.key`.
 Ensure that these files are present on the host from which you run the CLI commands.
 
-![Tanzu Application Platform TLS Diagram](images/TAP-GUI-TLS.jpg)
+![Tanzu Application Platform TLS Diagram](images/TAP-GUI-TLS.png)
 
 ## <a id="procedure"></a> Procedure
 
