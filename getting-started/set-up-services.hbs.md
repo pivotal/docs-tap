@@ -170,17 +170,17 @@ To create a service instance:
           namespace: service-instances
         ```
 
-    >**Note:** If using Openshift, you might have to provide additional configuration for the `RabbitmqCluster`. For more details, see Using the RabbitMQ Kubernetes Operators on Openshift in the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/using-on-openshift.html).
+        >**Note:** If using Openshift, you might have to provide additional configuration for the `RabbitmqCluster`. For more details, see Using the RabbitMQ Kubernetes Operators on Openshift in the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/using-on-openshift.html).
 
-    1. Apply `rmq-1-service-instance.yaml` by running:
+    2. Apply `rmq-1-service-instance.yaml` by running:
 
         ```console
         kubectl apply -f rmq-1-service-instance.yaml
         ```
 
-    > PostgreSQL: [Deploying a Postgres Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-create-delete-postgres.html#deploying-a-postgres-instance)
-    >
-    > MySQL: [Creating a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-create-delete-mysql.html#create-a-mysql-instance)
+        For more information on deploying with PostgreSQL, see [Deploying a Postgres Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-create-delete-postgres.html#deploying-a-postgres-instance).
+
+        For more information on deploying with MySQL, see [Creating a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-create-delete-mysql.html#create-a-mysql-instance).
 
 3. Create a resource claim policy to define the namespaces the instance can be claimed and bound from.
 
