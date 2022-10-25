@@ -15,12 +15,12 @@ In the below procedure, we'll use `cert-manager` to create a certificate issuer 
     ```
 
 - You'll need a domain name that you're in control of and can prove ownership/control. This should be the domain name you use for the `INGRESS-DOMAIN` values in your Tanzu Application Platform installation (and GUI)
-- You may need to [validate your domain](https://letsencrypt.org/how-it-works/) via one of the processes outlined on [Let's Encrypt's](https://letsencrypt.org/getting-started/) site to ensure its compatibility
+- You may need to [validate your domain](https://letsencrypt.org/how-it-works/) via one of the processes outlined on [Let's Encrypt's](https://letsencrypt.org/getting-started/) site to ensure its compatibility. Whether or not you need to perform the challenge manually is dependent on whether or not cert-manager is able to perform the challenge for you.
 - You'll want to make sure that your domain name is pointed at the shared Contour ingress for the installation. You can find the IP address by using the following command:
 
-```console
-kubectl -n tanzu-system-ingress get services envoy -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
-```
+  ```console
+  kubectl -n tanzu-system-ingress get services envoy -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
+  ```
 
 
 ### Procedure
@@ -70,6 +70,13 @@ To configure a self-signed TLS certificate for Tanzu Application Platform GUI:
    ```console
    kubectl apply -f certificate.yaml
    ```
+
+   By applying the certificate cert-manager will attempt to perform an HTTP01
+   challenge by creating an Ingress resource specifically for the challenge,
+   which will be automatically removed from your cluster once the challenge is
+   completed. See the [cert-manager
+   docs](https://cert-manager.io/docs/configuration/acme/http01/) for more
+   details on how this works, and when it may not.
 
 1. Validate the certificate was created and is Ready. You may need to wait a few moments for this to take place:
    ```console
