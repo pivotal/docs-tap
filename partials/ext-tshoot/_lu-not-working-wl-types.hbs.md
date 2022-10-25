@@ -12,14 +12,11 @@ This label is not present on  `server` or `worker` workloads.
 
 ### Solution
 
-If you're using Tanzu Developer Tools for VS Code, one solution is to upgrade to
-Tanzu Application Platform v1.3.1.
+One solution is to upgrade to Tanzu Application Platform v1.3.1.
 
-If you're using Tanzu Developer Tools for IntelliJ, or if you're using Tanzu Developer Tools for VS Code
-and you want to remain on Tanzu Application Platform v1.3.0:
-
-Go to the project's `Tiltfile`, look for the `k8s_resource` line, and edit the `extra_pod_selectors`
-parameter to use any pod selector that matches your workload. For example:
+If you want to remain on Tanzu Application Platform v1.3.0, go to the project's `Tiltfile`, look for
+the `k8s_resource` line, and edit the `extra_pod_selectors` parameter to use any pod selector that
+matches your workload. For example:
 
 ```code
 extra_pod_selectors=[{'carto.run/workload-name': '<workload_name>', 'app.kubernetes.io/component': 'run', 'app.kubernetes.io/part-of': '<workload_name>'}]
