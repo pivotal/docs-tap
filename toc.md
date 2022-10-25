@@ -379,7 +379,7 @@ docs.vmware.com is built.
           - [Building from source](scc/building-from-source.md)
           - [Dockerfile-based builds](scc/dockerfile-based-builds.md)
           - [Tanzu Build Service (TBS) Integration](scc/tbs.md)
-      - [Using a prebuilt image](scc/pre-built-image.md)
+      - [Using an existing image](scc/pre-built-image.md)
       - [Git authentication](scc/git-auth.md)
       - [GitOps vs. RegistryOps](scc/gitops-vs-regops.md)
       - [Authoring Supply Chains](scc/authoring-supply-chains.md)
