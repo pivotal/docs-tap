@@ -10,9 +10,24 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 **Release Date**: November 15, 2022
 
-### <a id='1-3-1-security-fixes'></a> Security fixe
+### <a id='1-3-1-security-fixes'></a> Security fixes
 
 This release has the following security fixes, listed by area and component.
+
+#### <a id='1-3-1-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
+- `glib` has been updated to `2.58.0-9.ph3`
+- `glibc` has been updated to `2.28-22.ph3`
+- `expat` has been updated to `2.2.9-10.ph3`
+- `opa` has been updated to `v0.44.0`
+
+#### <a id='1-3-1-scst-scan-fixes'></a> Supply Chain Security Tools - Scan
+- `opa` has been updated to `v0.44.0`
+
+#### <a id='1-3-1-scst-snyk-fixes'></a> Supply Chain Security Tools - Snyk
+- `glib` has been updated to `2.58.0-9.ph3`
+- `glibc` has been updated to `2.28-22.ph3`
+- `expat` has been updated to `2.2.9-10.ph3`
+- `opa` has been updated to `v0.44.0`
 
 ### <a id='1-3-1-resolved-issues'></a> Resolved issues
 
