@@ -493,7 +493,7 @@ docs.vmware.com is built.
          - [Security Analysis](tap-gui/plugins/sa-tap-gui.md)
          - [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.md)
       - [Configuring TLS](tap-gui/tls/overview.md)
-         - [Enabling TLS for Tanzu Application Platform GUI](tap-gui/tls/overview.md)
+         - [Overview of enabling TLS for Tanzu Application Platform GUI](tap-gui/tls/overview.md)
          - [Configuring a TLS certificate by using an existing certificate](tap-gui/tls/enable-tls-existing-cert.md)
          - [Configuring a TLS certificate by using a self-signed certificate](tap-gui/tls/enable-self-signed-cert.md)
          - [Configuring a TLS certificate by using cert-manager and an external ClusterIssuer](tap-gui/tls/cert-mngr-ext-clusterissuer.md)

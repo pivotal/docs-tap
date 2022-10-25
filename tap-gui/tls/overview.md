@@ -1,4 +1,4 @@
-# Enabling TLS for Tanzu Application Platform GUI
+# Overview of enabling TLS for Tanzu Application Platform GUI
 
 Many users want inbound traffic to Tanzu Application Platform GUI to be properly encrypted.
 These topics instruct how to enable TLS encryption either with an existing certificate or by
