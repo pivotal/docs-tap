@@ -443,6 +443,7 @@ docs.vmware.com is built.
           - [Troubleshoot upgrading](scst-store/upgrading.md)
           - [Failover, redundancy, and backups](scst-store/failover.md)
           - [Setting up custom TLS configuration](scst-store/tls-configuration.hbs.md)
+          - [Ingress support](scst-store/ingress.hbs.md)
           - [Multicluster setup](scst-store/multicluster-setup.hbs.md)
           - [Developer namespace setup](scst-store/developer-namespace-setup.hbs.md)
     - [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
