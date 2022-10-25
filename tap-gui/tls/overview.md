@@ -18,7 +18,7 @@ This enables you to store the certificate in a Kubernetes `secret` and then pass
 To do this, see
 [Configuring a TLS certificate by using an existing certificate](enable-tls-existing-cert.hbs.md).
 
-![Tanzu Application Platform TLS Diagram](images/TAP-GUI-TLS.jpg)
+![Tanzu Application Platform TLS Diagram](images/TAP-GUI-TLS.png)
 
 ### <a id="cert-mngr-certs-clustiss"></a> cert-manager, certificates, and ClusterIssuers
 
@@ -30,7 +30,7 @@ This tool allows cert-manager to automatically acquire a certificate from a `clu
 This external entity can be an external certificate authority, such as Let's Encrypt, or a
 self-signed certificate.
 
-![Tanzu Application Platform TLS Diagram](images/TAP-GUI-TLS-CERT.jpg)
+![Tanzu Application Platform TLS Diagram](images/TAP-GUI-TLS-CERT.png)
 
 ## <a id="guides"></a> Guides
 

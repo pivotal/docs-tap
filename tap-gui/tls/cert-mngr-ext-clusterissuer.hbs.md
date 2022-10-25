@@ -6,7 +6,7 @@ certificate for Tanzu Application Platform GUI to use based on that issuer.
 This tutorial uses the free certificate issuer [Let's Encrypt](https://letsencrypt.org).
 You can use other certificate issuers compatible with `cert-manager` in a similar fashion.
 
-![Tanzu Application Platform TLS Diagram](images/TAP-GUI-TLS-CERT.jpg)
+![Tanzu Application Platform TLS Diagram](images/TAP-GUI-TLS-CERT.png)
 
 ## <a id="prereqs"></a> Prerequisites
 
