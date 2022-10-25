@@ -493,7 +493,7 @@ docs.vmware.com is built.
          - [Supply Chain Choreographer](tap-gui/plugins/scc-tap-gui.md)
       - [Upgrading Tanzu Application Platform GUI](tap-gui/upgrades.md)
       - [Troubleshoot Tanzu Application Platform GUI](tap-gui/troubleshooting.md)
-      - [Configuring TLS for Tanzu Application Platform GUI](tap-gui/tls.md)
+      - [Configuring TLS for Tanzu Application Platform GUI](tap-gui/tls/overview.md)
     - [Tanzu Application Platform Telemetry](telemetry/overview.md)
       - [Overview of Tanzu Application Platform Telemetry](telemetry/overview.md)
       - [Installing Tanzu Application Platform Telemetry](telemetry/install-telemetry.md)
