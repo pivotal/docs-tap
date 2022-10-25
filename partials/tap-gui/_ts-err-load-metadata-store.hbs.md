@@ -5,7 +5,7 @@
 In the Supply Chain Choreographer plug-in, you see the error message
 `An error occurred while loading data from the Metadata Store`.
 
-[Error loading metadata store](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/Images/images-scc-error-loading-metadata-store.png)
+<!-- [Error loading metadata store](images/scc-error-loading-metadata-store.png) How do we use images in partials? They can't be relative links -->
 
 #### Cause
 
