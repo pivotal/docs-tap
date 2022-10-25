@@ -1,24 +1,41 @@
 # Enabling TLS for Tanzu Application Platform GUI
 
-## Introduction
+Many users want inbound traffic to Tanzu Application Platform GUI to be properly encrypted.
+These topics instruct how to enable TLS encryption either with an existing certificate or by
+using the included cert-manager instance.
 
-Many users will want to ensure that inbound traffic to the Tanzu Application Platform GUI is properly encrypted. In these guides, the necessary steps are outlined and will enable TLS encryption either with an existign certificate, or by leveraging the included `cert-manager` instance.
+## <a id="concepts"></a> Concepts
 
-## Concepts
+The two key concepts are certificate delegation and the relationship between cert-manager,
+certificates, and ClusterIssuers.
 
-### Certificate Delegation
-Tanzu Application Platform GUI leverages the established shared Contour ingress for TLS termination. This means that we can store the certificate in a Kubernetes `secret`, then pass that `secret` and `namespace` to the `httpProxy` that is created as part of the installation. In order to do this, follow the steps outlined in [Using an Existing Certificate](./how-to-enable-tls-existing-cert.md)
+### <a id="cert-delegation"></a> Certificate delegation
 
-![Tanzu Application Platform TLS Diagram](./images/TAP-GUI-TLS.jpg)
-### Cert-Manager, Certificates, and ClusterIssuers
-Tanzu Application Platform GUI can also leverage the `cert-manager` package that is installed as part of the profile installation process. This tool allows `cert-manager` to automatically acquire a certificate from an `clusterIssuer` entity. This external entity can be an external Certificate Authority such as [Let's Encrypt](./how-to-cert-manager-external-clusterissuer-letsencrypt.md) or simply a [self-signed one](./how-to-enable-self-signed-cert.md).
+Tanzu Application Platform GUI uses the established shared Contour ingress for TLS termination.
 
-![Tanzu Application Platform TLS Diagram](./images/TAP-GUI-TLS-CERT.jpg)
-## Guides
+This enables you to store the certificate in a Kubernetes `secret` and then pass that `secret` and
+`namespace` to the `httpProxy` that was created during installation.
+To do this, see
+[Configuring a TLS certificate by using an existing certificate](enable-tls-existing-cert.hbs.md).
 
-The following how-to guides will help you to configure TLS in a variety of scenarios:
+![Tanzu Application Platform TLS Diagram](images/TAP-GUI-TLS.jpg)
 
-- [Using an Existing Certificate](./how-to-enable-tls-existing-cert.md)
-- [Using Cert-Manager and a Self-signed Certificate](./how-to-enable-self-signed-cert.md)
-- [Leverage Cert-Manager and an External ClusterIssuer](./how-to-cert-manager-external-clusterissuer-letsencrypt.md) ([Let's Encrypt](https://letsencrypt.org))
+### <a id="cert-mngr-certs-clustiss"></a> cert-manager, certificates, and ClusterIssuers
 
+Tanzu Application Platform GUI can also use the `cert-manager` package that is installed when
+the profile was installed.
+
+This tool allows cert-manager to automatically acquire a certificate from a `clusterIssuer` entity.
+
+This external entity can be an external certificate authority, such as Let's Encrypt, or a
+self-signed certificate.
+
+![Tanzu Application Platform TLS Diagram](images/TAP-GUI-TLS-CERT.jpg)
+
+## <a id="guides"></a> Guides
+
+The following topics describe different ways to configure TLS:
+
+- [Configuring a TLS certificate by using an existing certificate](enable-tls-existing-cert.hbs.md)
+- [Configuring a TLS certificate by using a self-signed certificate](enable-self-signed-cert.hbs.md)
+- [Configuring a TLS certificate by using cert-manager and an external ClusterIssuer](cert-mngr-ext-clusterissuer.hbs.md)
