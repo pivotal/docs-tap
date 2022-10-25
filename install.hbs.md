@@ -12,7 +12,7 @@ Before installing the packages, ensure you have:
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
-attempting installation. If you don't relocate the images, Tanzu Application Platform will depend on
+attempting installation. If you don't relocate the images, Tanzu Application Platform depends on
 VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no uptime guarantees.
 The option to skip relocation is documented for evaluation and proof-of-concept only.
 
@@ -28,7 +28,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. Install Docker if it is not already installed.
 
-1. Log in to your image registry by running:
+2. Log in to your image registry by running:
 
     ```console
     docker login MY-REGISTRY
@@ -36,13 +36,13 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
     Where `MY-REGISTRY` is your own container registry.
 
-1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
+3. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
 
     ```console
     docker login registry.tanzu.vmware.com
     ```
 
-1. Set up environment variables for installation use by running:
+4. Set up environment variables for installation use by running:
 
     ```console
     export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
@@ -61,9 +61,10 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
     for the installation files for Tanzu Application Platform.
 
-1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
+5. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
 
  > **Note:** To query for the available `imgpkg` CLI versions on the Tanzu Network Registry, run:
+ >
  > ```console
  > imgpkg tag list -i registry.tanzu.vmware.com/tanzu-application-platform/tap-packages | grep -v sha | sort -V
  > ```
@@ -73,6 +74,14 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     ```console
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:${TAP_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages
     ```
+
+## <a id='add-tap-repo'></a> Add the Tanzu Application Platform package repository
+
+Tanzu CLI packages are available on repositories. Adding the Tanzu Application Platform package repository makes Tanzu Application Platform and its packages available for installation.
+
+>**Note:** [Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. For simplicity, this section assumes you have relocated images to a registry. Refer to that section to fill in the stubbed out variables.
+
+To add the Tanzu Application Platform package repository to your cluster:
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
@@ -267,13 +276,14 @@ tap_gui:
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
-  app_service_type: ClusterIP
+  app_service_type: ClusterIP # Defaults to `LoadBalancer`. If `shared.ingress_domain` is set as above, this must be set to `ClusterIP`.
 
 scanning:
   metadataStore:
     url: "" # Configuration is moved, so set this string to empty.
 
 grype:
+  namespace: "MY-DEV-NAMESPACE"
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
 
 ```
@@ -304,8 +314,8 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
 This field is only required if you use a private repository, otherwise, leave it empty.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
-- `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
-This is the namespace where the scanning feature runs.
+- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store will export secrets to the namespace. And SCST - Scan will deploy the `ScanTemplates` there. This will allow the scanning feature to run in this namespace.
+  - If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA cert to all namespaces.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 
@@ -411,7 +421,7 @@ Follow these steps to install the Tanzu Application Platform package:
     tanzu package installed list -A
     ```
 
-3. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
+3. If you configured `full` dependencies in your `tap-values.yaml` file, install the `full` dependencies
 by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
 After installing the Full profile on your cluster, you can install the

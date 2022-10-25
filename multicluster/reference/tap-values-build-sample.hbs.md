@@ -1,8 +1,8 @@
 # Build profile
 
-## Prerequisite
+## Prerequisites
 
-Before installing the Build profile, you should follow all the steps in [Install View cluster](../installing-multicluster.hbs.md#install-view-cluster).
+- [Install View cluster](../installing-multicluster.hbs.md#install-view-cluster).
 
 ## Example values.yaml
 
@@ -74,8 +74,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
 - `METADATA-STORE-URL-ON-VIEW-CLUSTER` is the URL of the Supply Chain Security Tools (SCST) - Store deployed on the View cluster.
-- `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
-This is the namespace where the scanning feature runs.
+- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Scan will deploy the `ScanTemplates` there. This will allow the scanning feature to run in this namespace.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
 credentials to pull an image from the registry for scanning.
 

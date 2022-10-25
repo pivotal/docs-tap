@@ -125,7 +125,7 @@ You might be tempted to write something such as:
       patterns: ['**/pom.xml']
     - type: ReplaceText
       ...
-    - type: Include  
+    - type: Include
       patterns: ['**/*.java']
   ```
 
@@ -303,7 +303,7 @@ For example:
   ```
 
 The preceding accelerator copies all files from accelerator `<root>` while applying some
-text replacements only to `pom.xml` files. Other files are copied verbatim. 
+text replacements only to `pom.xml` files. Other files are copied verbatim.
 
 Here in more detail is how this works:
 
@@ -315,7 +315,7 @@ and replaces some text in them.
 
 So both **Transform A** and **Transform B** output `pom.xml` files. The fact that both result sets contain the same file,
 and with different contents in them in this case, is a conflict that has to be resolved.
-By default, `Combo` follows a simple rule to resolve such conflicts: take the contents from the last child. 
+By default, `Combo` follows a simple rule to resolve such conflicts: take the contents from the last child.
 Essentially, it behaves as if you overlaid both result sets one after another into the same location. The contents of
 the latter overwrite any previous files placed there by the earlier.
 
@@ -337,15 +337,15 @@ Every `<transform-definition>` can have a `condition` attribute.
             with: "#artifactId"
   ```
 
-When a transform's condition is `false`, that transform is "disabled."
+When a transform's condition is `false`, that transform is "deactivated."
 This means it is replaced by a transform that "does nothing."
 However, doing nothing can have different meanings depending on the context:
 
-* When in the context of a `Merge`, a disabled transform behaves like something that
+* When in the context of a `Merge`, a deactivated transform behaves like something that
 returns an empty set. A `Merge` adds things together using a kind
 of union; adding an empty set to union essentially does nothing.
 
-* When in the context of a `'Chain` however, a disabled transform behaves like
+* When in the context of a `'Chain` however, a deactivated transform behaves like
 the `identity` function instead (that is, `lambda (x) => x`). When you chain
 functions together, a value is passed through all functions in succession. So each
 function in the chain has the chance to "do something" by returning a different modified value.
@@ -353,7 +353,7 @@ If you are a function in a chain, to do nothing means to return
 the input you received unchanged as your output.
 
 If this all sounds confusing, fortunately there is a basic rule of thumb
-for understanding and predicting the effect of a disabled transform in
+for understanding and predicting the effect of a deactivated transform in
 the context of your accelerator definition. Namely, if a transform's condition evaluates to false,
 pretend it isn't there. In other words, your accelerator behaves as if you
 deleted (or commented out) that transform's YAML text from the accelerator
@@ -398,7 +398,7 @@ In the following example, some conditional transforms are used in a `Chain` cont
   - include: [ '**/*.json' ]
     chain:
     - type: ReplaceText
-      condition: '#customizeJson'  
+      condition: '#customizeJson'
       substitutions: ...
     - type: JsonPrettyPrint
       condition: '#prettyJson'
@@ -436,7 +436,7 @@ For example:
   ```
 
 Now add a little twist. Say you only wanted to include pom files if the user
-selects a `useMaven` option. You might be tempted to add a 'condition' to **transform B** to disable it when that
+selects a `useMaven` option. You might be tempted to add a 'condition' to **transform B** to deactivate it when that
 option isn't selected:
 
   ```yaml
@@ -451,8 +451,8 @@ option isn't selected:
   ```
 
 However, this doesn't do what you might expect. The final result _still_ contains
-`pom.xml` files. To understand why, recall the rule of thumb for disabled transforms:
-If a transform is disabled, pretend it isn't there. So when
+`pom.xml` files. To understand why, recall the rule of thumb for deactivated transforms:
+If a transform is deactivated, pretend it isn't there. So when
 `#useMaven` is `false`, the example reduces to:
 
   ```yaml

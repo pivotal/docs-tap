@@ -106,9 +106,38 @@ grype:
 ...
 ```
 
-## Configure the developer namespace
+## Configure developer namespaces
 
-After you've finished the entire TAP installation process, you are ready to configure the developer namespace. Follow instructions to [setup the developer namespace](developer-namespace-setup.hbs.md).
+After you've finished the entire TAP installation process, you are ready to configure developer namespaces. As part of preparing developer namespaces, you'll need to export the secrets we created earlier to those namespaces.
+
+### Exporting SCST - Store secrets to developer namespace in a TAP multicluster deployment
+
+Export secrets to a developer namespace by creating `SecretExport` resources on the developer namespace. Run the following command to create the `SecretExport` resources. As a prerequisite, you must have followed earlier instructions to to create and populate the `metadata-store-secrets` namespace.
+
+```bash
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretExport
+metadata:
+  name: store-ca-cert
+  namespace: metadata-store-secrets
+spec:
+  toNamespaces: [DEV-NAMESPACE]
+---
+apiVersion: secretgen.carvel.dev/v1alpha1
+kind: SecretExport
+metadata:
+  name: store-auth-token
+  namespace: metadata-store-secrets
+spec:
+  toNamespaces: [DEV-NAMESPACE]
+EOF
+```
+
+Where,
+
+* `toNamespaces: [DEV-NAMESPACE]` - Array of developer namespaces where the secrets are exported to
 
 ## Additional resources
 

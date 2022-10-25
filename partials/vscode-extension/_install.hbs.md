@@ -40,7 +40,7 @@ from VS Code Marketplace:
 You can configure it in the **Settings** menu by going to **Code** > **Preferences** > **Settings**
 under **Java > Server: Launch Mode**.
 
-    ![The VS Code settings open to the Extensions > Java section, highlighting the option Java > Server: Launch Mode with that option changed to Standard](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/Images/images-vscode-install4.png)
+    <!--![The VS Code settings open to the Extensions > Java section, highlighting the option Java > Server: Launch Mode with that option changed to Standard](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/Images/images-vscode-install4.png)-->
 
     When the JDK and Language Support for Java are configured correctly, you see that the integrated
     development environment creates a directory target where the code is compiled.
@@ -58,7 +58,7 @@ set the following:
     - **Confirm Delete**: This controls whether the extension asks for confirmation when deleting a
     workload.
     - **Enable Live Hover**: For more information, see
-    [Integrating Live Hover by using Spring Boot Tools](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-live-hover.html). Reload VS Code for this change to
+    [Integrating Live Hover by using Spring Boot Tools](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-vscode-extension-live-hover.html). Reload VS Code for this change to
     take effect.
     - **Source Image**: (Required) The registry location for publishing local source code. For example,
     `registry.io/yourapp-source`. This must include both a registry and a project name.

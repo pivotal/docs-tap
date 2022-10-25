@@ -42,15 +42,15 @@ Before using the extension, you need follow the next steps:
 
 3. Add the `acc-server` URL.
 
-![Setting](../images/acc-server-config.png)
+![Server Configure Setting page showing the acc server url setting under the Tanzu App Accelerator of user settings](../images/acc-server-config.png)
 
 ## <a id="using-the-extension"></a> Using the extension
 
 After adding the `acc-server` URL you should can explore the defined accelerators
 accessing the new added icon:
 
-![extension](../images/app-accelerators-vscode-icon.png)
+![The VS Code interface showing the explorer panel that has the DOCS-TAP, OUTLINE, and TIMELINE dropdowns. The TIMELINE dropdown has a blue thin lined box around it. The Demo Input Types icon in the bottom left of the Explorer panel had a read box around it.](../images/app-accelerators-vscode-icon.png)
 
 Choose any of the defined accelerators, fill the options and click  the `generate project`
 
-![accelerator](../images/acc-form.png)
+![The accelerator tab is open to the Hello Fun accelerator form open with the fields filled in and the ability to select the Generate Project button.](../images/acc-form.png)
