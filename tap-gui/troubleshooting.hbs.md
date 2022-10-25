@@ -252,8 +252,10 @@ app_config:
       - host: acc-server.accelerator-system.svc.cluster.local
 ```
 
-## Supply Chain Choreographer plug-in
+## <a id='scc-plug-in'></a> Supply Chain Choreographer plug-in
 
 These are troubleshooting steps for the [Supply Chain Choreographer plug-in](plugins/scc-tap-gui.hbs.md).
+
+### <a id='err-load-metadata-store'></a> An error occurred while loading data from the Metadata Store
 
 {{> 'partials/tap-gui/ts-err-load-metadata-store' }}

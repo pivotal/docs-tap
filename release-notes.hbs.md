@@ -206,7 +206,7 @@ You can opt-in to building workloads with the Jammy stacks by following the inst
 Ubuntu Bionic stops receiving support in April 2023.
 VMware recommends you migrate builds to Jammy stacks in advance.
 For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
-- Tanzu Build Service supports Java apps on the Tiny Stack. 
+- Tanzu Build Service supports Java apps on the Tiny Stack.
 Because Tiny has no shell, some Apache Tomcat configuration options are not available, for example, setting `bin/setenv.sh`.
 - The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
 It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
@@ -414,6 +414,9 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
     For information about resolving this issue, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#update-sc-err).
   - API Descriptors/Service Bindings stages show an `Unknown` status (grey question mark in the graph)
     even if successful.
+  - Users see the error `An error occurred while loading data from the Metadata Store` when
+    Tanzu Application Platform GUI is not fully configured. For more information, see
+    [Troubleshooting](tap-gui/troubleshooting.hbs.md#err-load-metadata-store).
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 

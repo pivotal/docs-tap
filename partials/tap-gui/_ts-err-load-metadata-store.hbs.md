@@ -1,5 +1,3 @@
-### <a id='err-load-metadata-store'></a> An error occurred while loading data from the Metadata Store
-
 #### Symptom
 
 In the Supply Chain Choreographer plug-in, you see the error message
