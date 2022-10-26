@@ -29,21 +29,20 @@ kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
 fallback behaviors where images are validated against the public Sigstore
 Rekor and Fulcio servers by using a keyless authority flow. Therefore, if the
 deploying image is signed publicly by a third-party using the keyless
-authority flow, the image can be admitted as it can validate against the public
-Rekor and Fulcio. To avoid this behavior, develop and apply a ClusterImagePolicy
+authority flow, the image are admitted as it can validate against the public
+Rekor and Fulcio. To avoid this behavior, develop, and apply a ClusterImagePolicy
 that applies to the images being deployed in the namespace.
 
 ## <a id="cluster-image"></a> Policy Controller ClusterImagePolicy
 
-The Policy Controller `ClusterImagePolicy` does not have a name requirement.
+The Policy Controller `ClusterImagePolicy` does not have a name.
 Image Policy Controller required that the `ClusterImagePolicy` be named
 `image-policy` and that there be only one `ClusterImagePolicy`. Multiple
 Policy Controller `ClusterImagePolicies` are applied. During validation, all
 `ClusterImagePolicy` that have an image `glob` pattern that matches the
 deploying image is evaluated. All matched `ClusterImagePolicies` must be
 valid. For a `ClusterImagePolicy` to be valid, at least one authority in the
-policy must successfully validate the signature of the deploying image.
-
+policy must  validate the signature of the deploying image.
 
 ## <a id="exclude-ns"></a> Excluding Namespaces
 
@@ -132,7 +131,6 @@ spec:
   ...
 ```
 
-
 ## <a id="img-matching"></a> Specifying Image Matching
 
 `spec.verification.images[].namePattern` from Image Policy Webhook maps to
@@ -148,12 +146,13 @@ terminating project path.
 If only one level of pathing is required, the `glob` pattern is
 `registry.com/*/*`.
 
-Policy Controller also have defaults defined. If `*` is specified, the `glob`
+Policy Controller has defaults defined. If `*` is specified, the `glob`
 matching behavior is `index.docker.io/library/*`. If `*/*` is specified,
 the `glob` matching behavior is `index.docker.io/*/*`. With these defaults,
 the `glob` pattern `**` matches against all images.
 
 **Image Policy Webhook:**
+
 ```yaml
 ---
 apiVersion: signing.apps.tanzu.vmware.com/v1beta1
@@ -176,6 +175,7 @@ spec:
 ```
 
 **Policy Controller:**
+
 ```yaml
 ---
 apiVersion: policy.sigstore.dev/v1beta1
@@ -188,8 +188,9 @@ spec:
 ```
 
 ## <a id="img-matching"></a> Specifying policy mode
-If `AllowUnmatchedImages` is set to `true` in the Image Policy Webhook deployment
-create the following policy in the cluster
+
+If `AllowUnmatchedImages` is set to `true` in the Image Policy Webhook deployment,
+create the following policy in the cluster:
 
 ```yaml
 ---
@@ -207,7 +208,7 @@ spec:
 
 ## <a id="uninstall-ipw"></a> Uninstall Image Policy Webhook
 
-After Policy Controller has been correctly configured and you have verified that
+After Policy Controller is correctly configured and you verify that
 is working as expected, you can proceed to uninstall the Image Policy Webhook:
 
 
@@ -223,7 +224,7 @@ excluded_packages:
   - image-policy-webhook.signing.apps.tanzu.vmware.com
 ```
 
-Then update your TAP installation:
+Then update your Tanzu Application Platform installation:
 
 ```console
 tanzu package installed update tap -n tap-install --values-file tap-values.yaml
