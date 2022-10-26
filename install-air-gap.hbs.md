@@ -311,10 +311,10 @@ service's External IP address.
     - Harbor: `harbor.io/my-project/build-service`.
     - Artifactory: `artifactory.com/my-project/build-service`.
 - `REGISTRY-USERNAME` and `REGISTRY-PASSWORD` are the user name and password for the internal registry.
-- `SERVER-NAME` is the hostname of the registry server. Examples:
-    - Harbor has the form `server: "my-harbor.io"`.
-    - Docker Hub has the form `server: "index.docker.io"`.
-    - Google Cloud Registry has the form `server: "gcr.io"`.
+- `SERVER-NAME` is the host name of the registry server. Examples:
+    * Harbor has the form `server: "my-harbor.io"`.
+    * Docker Hub has the form `server: "index.docker.io"`.
+    * Google Cloud Registry has the form `server: "gcr.io"`.
 - `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the shared section earlier and AWS ECR registry is used, you must ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
 - Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
    - Harbor has the form `repository: "my-project/supply-chain"`.
@@ -327,7 +327,7 @@ service's External IP address.
 - `GITLAB-USER` is the user name of your GitLab instance.
 - `GITLAB-PASSWORD` is the password for the `GITLAB-USER` of your GitLab instance. This can also be the `GITLAB-TOKEN`.
 - `GITLAB-TOKEN` is the API token for your GitLab instance.
-- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store will export secrets to the namespace. And SCST - Scan will deploy the `ScanTemplates` there. This will allow the scanning feature to run in this namespace.
+- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace.
   - If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA cert to all namespaces.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
