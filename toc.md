@@ -435,7 +435,6 @@ docs.vmware.com is built.
           - [Troubleshoot Supply Chain Security Tools - Store](scst-store/troubleshooting.md)
           - [Troubleshoot upgrading](scst-store/upgrading.md)
           - [Failover, redundancy, and backups](scst-store/failover.md)
-          - [Ingress and multicluster support](scst-store/ingress-multicluster.md)
           - [Setting up custom TLS configuration](scst-store/tls-configuration.hbs.md)
           - [Multicluster setup](scst-store/multicluster-setup.hbs.md)
     - [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
