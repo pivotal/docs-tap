@@ -69,9 +69,9 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
         }
     ```
 
-    You can modify the following fields of the Rego file as part of the [CVE triage workflow](../scst-scan/triaging-and-remediating-cves.hbs.md#amend-scan-policy):
+    You can edit the following text boxes of the Rego file as part of the [CVE triage workflow](../scst-scan/triaging-and-remediating-cves.hbs.md#amend-scan-policy):
     
-    - `notAllowedSeverities` contains the categories of CVEs that result in the SourceScan or ImageScan failing policy enforcement. Below is an example of how an `app-operator` might decide to only block "Critical", "High" and "UnknownSeverity" CVEs.
+    - `notAllowedSeverities` contains the categories of CVEs that cause the SourceScan or ImageScan failing policy enforcement. The following is an example of how an `app-operator` might decide to only block "Critical", "High" and "UnknownSeverity" CVEs.
 
       ```yaml
       ...
@@ -85,7 +85,7 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
       ...
       ```
 
-    - `ignoreCves` contains individual ignored CVEs when determining policy enforcement. Below is an example of how an `app-operator` might decide to ignore `CVE-2018-14643` and `GHSA-f2jv-r9rf-7988` if they are false positives. See [A Note on Vulnerability Scanners](overview.hbs.md#scst-scan-note) for more details.
+    - `ignoreCves` contains individual ignored CVEs when determining policy enforcement. The following is an example of how an `app-operator` might decide to ignore `CVE-2018-14643` and `GHSA-f2jv-r9rf-7988` if they are false positives. See [A Note on Vulnerability Scanners](overview.hbs.md#scst-scan-note) for more details.
 
       ```yaml
       ...
@@ -106,11 +106,12 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
 
 See how scan policies are used in the CVE triage workflow in the [Triaging and Remediating CVEs](../scst-scan/triaging-and-remediating-cves.hbs.md#amend-scan-policy)
 
-## <a id="more-detail"></a>Further refine the Scan Policy for usage
+## <a id="more-detail"></a>Further refine the Scan Policy for use
 
-The scan policy provided above is provided to demonstrate how vulnerabilities can simply be ignored during a compliance check. At the minimum, it suffers from a lack of auditability as to why a vulnerability is to be ignored. Some organizations may want to allow an exception, whereby a build with a failing vulnerability is allowed to progress through a supply chain. Further, they may want to only allow this exception for a certain period of time, thus requiring an expiration date. Vulnerability Exploitability Exchange (VEX) documents are also gaining in popularity to capture security advisory information pertaining to vulnerabilities. All of these use cases can be expressed with Rego.
+The scan policy earlier is provided to demonstrate how vulnerabilities are ignored during a compliance check. It has a lack of auditability as to why a vulnerability is ignored. You might want to allow an exception, where a build with a failing vulnerability is allowed to progress through a supply chain. You can allow this exception for a certain period of time, requiring an expiration date. Vulnerability Exploitability Exchange (VEX) documents are gaining popularity to capture security advisory information pertaining to vulnerabilities. You can express these use cases with Rego.
 
-For example, the following scan policy includes an additional field to at least capture comments regarding why a vulnerability is to be ignored. The `notAllowedSeverities` array remains an array of strings, but the `ignoreCves` array was updated from an array of strings to an array of objects. This resulted in a change to the `contains` function, essentially splitting it out into two separate functions, one for each array.
+For example, the following scan policy includes an additional text box to capture comments regarding why a vulnerability is ignored. The `notAllowedSeverities` array remains an array of strings, but the `ignoreCves` array was updated from an array of strings to an array of objects. This causes a change to the `contains` function, splitting it into separate functions for each array.
+
 ```yaml
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -168,7 +169,8 @@ spec:
     }
 ```
 
-Going further and including an expiration field and essentially, only allowing the vulnerability to be ignored for a period of time can be accomplished with the following example:
+Including an expiration text box and only allowing the vulnerability to be ignored for a period of time is shown in the following example:
+
 ```yaml
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -233,9 +235,9 @@ spec:
 
 ## <a id="gui-view-scan-policy"></a>Enable Tanzu Application Platform GUI to view ScanPolicy Resource
 
-In order for the Tanzu Application Platform GUI to view the ScanPolicy resource, it must have a matching `kubernetes-label-selector` with a `part-of` prefix.
+For the Tanzu Application Platform GUI to view the ScanPolicy resource, it must have a matching `kubernetes-label-selector` with a `part-of` prefix.
 
-Here is a portion of a ScanPolicy that is viewable by the TAP GUI:
+Here is a portion of a ScanPolicy that is viewable by the Tanzu Application Platform GUI:
 ```yaml
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
