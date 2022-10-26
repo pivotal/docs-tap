@@ -330,7 +330,7 @@ This occurs if the version of the `aws-cli` is less than the supported version, 
 
 #### <a id="api-auto-registration-known-issues"></a>API Auto Registration
 
-**Valid OpenAPI v2 specifications that use `schema.$ref` currently fail validation:**
+**Valid OpenAPI v2 specifications that use `schema.$ref` fail validation:**
 
 If using an OpenAPI v2 specification with this field, consider converting to OpenAPI v3.
 For more information, see [Troubleshooting](api-auto-registration/troubleshooting.hbs.md).
