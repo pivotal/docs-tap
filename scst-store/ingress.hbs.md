@@ -8,9 +8,6 @@ Alternatively, you can customize SCST - Store's configuration under the `metadat
 - `ingress_enabled`
 - `ingress_domain`
 
-Furthermore, SCST - Store also supports the option to provide a custom certificate under the `tls` property, which requires two fields to specify the certificate: `secretName` and `namespace`.
-Otherwise, by default, a self-signed certificate is used.
-
 This is an example snippet in a `tap-values.yaml`,
 
 ```yaml
@@ -18,11 +15,11 @@ This is an example snippet in a `tap-values.yaml`,
 metadata_store:
   ingress_enabled: "true"
   ingress_domain: "example.com"
-  app_service_type: "ClusterIP"  # Defaults to `LoadBalancer`. If ingress is enabled then this must be set to `ClusterIP`.
+  app_service_type: "ClusterIP"  # Defaults to `LoadBalancer`. If ingress is enabled then this should be set to `ClusterIP`.
 ...
 ```
 
-SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`. For example, `metadata-store.example.com`. The route supports HTTPS communication using a certificate. By default, a self-signed certificate is used with the same subject `alternative name`. <!--See [Custom certificate configuration](custom-cert.hbs.md) for information about how to configure custom certificates.-->
+SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`, for example `metadata-store.example.com`. The created route supports HTTPS communication using a certificate. By default, a self-signed certificate is used with the same subject *Alternative Name*. See [Custom certificate configuration](custom-cert.hbs.md) for information on how to configure custom certificates.
 
 Contour and DNS setup are not part of SCST - Store installation. Access to SCST - Store using Contour depends on the correct configuration of these two components.
 
@@ -80,4 +77,4 @@ $ cat insight-ca.crt
 
 * [Custom certificate configuration](custom-cert.hbs.md)
 * [TLS configuration](tls-configuration.hbs.md)
-* [Configure target endpoint and certificate](using-encrypted-connection.hbs.md)
+* [Configure target endpoint and certificate](using-encryption-and-connection.hbs.md)
