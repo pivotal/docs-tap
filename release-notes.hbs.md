@@ -502,15 +502,15 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
 
 #### <a id="contour-known-issues"></a>Contour
 
-- Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`:
-  The default values displayed for the following keys are incorrect in values-schema of Contour package in Tanzu Application Platform v1.3.0:
-    - Key `envoy.hostPorts.enable` has a default value as `false`, but it is displayed as `true`.
-    - Key `envoy.hostPorts.enable` has a default value as `LoadBalancer`, but it is displayed as `NodePort`.
+- Incorrect output for command `tanzu package available get contour.tanzu.vmware.com/1.22.0+tap.3 --values-schema -n tap-install`.
+  The default values displayed for the following keys are incorrect in the values-schema of the Contour package in Tanzu Application Platform v1.3.0:
+    - Key `envoy.hostPorts.enable` has a default value of `false`, but it is displayed as `true`.
+    - Key `envoy.hostPorts.enable` has a default value of `LoadBalancer`, but it is displayed as `NodePort`.
 
 #### <a id="scc-known-issues"></a>Supply Chain Choreographer
 
 - **Misleading DeliveryNotFound error message on Build profile clusters**
 
-  Deliverables incorrectly show a DeliveryNotFound error on *build* profile clusters even though the
+  Deliverables incorrectly show a DeliveryNotFound error on build profile clusters even though the
   workload is working correctly. The message is typically:
   `No delivery found where full selector is satisfied by labels:`.
