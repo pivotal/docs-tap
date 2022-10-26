@@ -8,6 +8,8 @@ that you plan to create the `Workload` in:
 - [Enable single user access](#single-user-access).
 - [Enable additional users access with Kubernetes RBAC](#additional-user-access).
 
+If you plan to install Out of the Box Supply Chain with testing and scanning, follow additional steps to configure the developer namespace for that use case.
+
 ## <a id='single-user-access'></a>Enable single user access
 
 Follow these steps to enable your current user to submit jobs to the Supply Chain:

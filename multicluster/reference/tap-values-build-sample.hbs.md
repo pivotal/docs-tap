@@ -2,7 +2,7 @@
 
 ## Prerequisites
 
-- [Install View cluster](../installing-multicluster.hbs.md#install-view-cluster).
+Before installing the Build profile, follow all the steps in [Install View cluster](../installing-multicluster.hbs.md#install-view-cluster).
 
 ## Example values.yaml
 
@@ -22,7 +22,7 @@ shared:
     ca_cert_data: | # To be passed if using custom certificates
     -----BEGIN CERTIFICATE-----
     MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
-    -----END CERTIFICATE-----  
+    -----END CERTIFICATE-----
 
 # The above shared keys can be overridden in the below section.
 
@@ -73,9 +73,8 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Docker Hub has the form `repository: "my-dockerhub-user"`.
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
-- `METADATA-STORE-URL-ON-VIEW-CLUSTER` is the URL of the Supply Chain Security Tools (SCST) - Store deployed on the View cluster. <!-- For more information, see SCST - Store's [Ingress and multicluster support](../../scst-store/ingress-multicluster.html#scst-scan-install). -->
-- `MY-DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
-This is the namespace where the scanning feature runs.
+- `METADATA-STORE-URL-ON-VIEW-CLUSTER` is the URL of the Supply Chain Security Tools (SCST) - Store deployed on the View cluster. For more information, see SCST - Store's [Ingress and multicluster support](../../scst-store/ingress-multicluster.html#scst-scan-install).
+- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
 credentials to pull an image from the registry for scanning.
 
