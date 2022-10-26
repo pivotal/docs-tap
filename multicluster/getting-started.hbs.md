@@ -50,57 +50,41 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
 1. To exit the monitoring session, press **CTRL** + **C**.
 
-1. Verify that your supply chain has produced the necessary `Deliverable` for the `Workload` by running:
+1. Verify that your supply chain has produced the necessary `ConfigMap` containing `Deliverable` content produced by the `Workload` by running:
 
     ```bash
-    kubectl get deliverable --namespace ${DEVELOPER_NAMESPACE}
+    kubectl get configmap tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -o go-template='{{.data.deliverable}}'
     ```
 
-    The output should look simiar to the following:
-
-    ```bash
-    kubectl get deliverable --namespace default
-    NAME                 SOURCE                                                                                                                DELIVERY   READY   REASON             AGE
-    tanzu-java-web-app   tapmulticluster.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-xxxxx              False   DeliveryNotFound   28h
-    ```
-
-    The `Deliverable` contains the reference to the `source`. In this case, it is a bundle on the image registry you specified for the supply chain. The supply chains can also leverage Git repositories instead of ImageRepositories, but that's beyond the scope of this tutorial. 
-
-1. Create a `Deliverable` after verifying there's a `Deliver` on the build cluster. Copy its content to a file that you can take to the Run profile clusters:
-
-    ```bash
-    kubectl get deliverable tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -oyaml > deliverable.yaml
-    ```
-
-1. Delete the `ownerReferences` and `status` sections from the `deliverable.yaml`.
-
-    After editing, the file will look like the following:
+    The output should look similar to the following:
 
     ```yaml
     apiVersion: carto.run/v1alpha1
     kind: Deliverable
     metadata:
-      creationTimestamp: "2022-03-10T14:35:52Z"
-      generation: 1
-      labels:
-        app.kubernetes.io/component: deliverable
-        app.kubernetes.io/part-of: tanzu-java-web-app
-        app.tanzu.vmware.com/deliverable-type: web
-        apps.tanzu.vmware.com/workload-type: web
-        carto.run/cluster-template-name: deliverable-template
-        carto.run/resource-name: deliverable
-        carto.run/supply-chain-name: source-to-url
-        carto.run/template-kind: ClusterTemplate
-        carto.run/workload-name: tanzu-java-web-app
-        carto.run/workload-namespace: default
       name: tanzu-java-web-app
-      namespace: default
-      resourceVersion: "635368"
-      uid: xxxx-xxxx-xxxx-xxxx-xxxx
+      labels:
+        apis.apps.tanzu.vmware.com/register-api: "true"
+        app.kubernetes.io/part-of: tanzu-java-web-app
+        apps.tanzu.vmware.com/workload-type: web
+        app.kubernetes.io/component: deliverable
+        app.tanzu.vmware.com/deliverable-type: web
     spec:
+      params:
+      - name: gitops_ssh_secret
+        value: ""
       source:
-        image: tapmulticluster.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-xxxx
+        git:
+          url: http://git-server.default.svc.cluster.local/app-namespace/tanzu-java-web-app
+          ref:
+            branch: main
     ```
+
+1. Store the `Deliverable` content, which you can take to the Run profile clusters, from the `ConfigMap` with:
+
+   ```console
+   kubectl get configmap tanzu-java-web-app -n ${DEVELOPER_NAMESPACE} -o go-template='{{.data.deliverable}}' > deliverable.yaml
+   ```
 
 1. Take this `Deliverable` file to the **Run** profile clusters by running:
 
