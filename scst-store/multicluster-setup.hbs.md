@@ -139,3 +139,4 @@ Where `toNamespaces: [DEV-NAMESPACE]` is an array of developer namespaces where 
 ## Additional resources
 
 * [Ingress support](ingress.hbs.md)
+* [Custom certificate configuration](custom-cert.hbs.md)
