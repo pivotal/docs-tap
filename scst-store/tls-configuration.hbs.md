@@ -2,7 +2,7 @@
 
 Supply Chain Security Tools - Store supports only TLS 1.2.
 
-By default, it will be setup with self signed certificate when ingress is enabled. TLS is automatically enabled with the default configuration.
+> **Note:** SCST - Store only supports TLS v1.2.
 
 ## (Optional) Setting up custom ingress TLS certificate
 
@@ -34,7 +34,7 @@ metadata_store:
 
 ### Setting up custom ingress TLS ciphers
 
-In the `tap-values.yaml` file, `tls.server.rfcCiphers` can be set as shown below:
+In the `tap-values.yaml` file, `tls.server.rfcCiphers` are set as shown in the following YAML:
 
 ```yaml
 metadata_store:
@@ -49,15 +49,14 @@ metadata_store:
         - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 ```
 
-`tls.server.rfcCiphers`: List of cipher suites for the server. Values are from the [Go TLS package constants](https://golang.org/pkg/crypto/tls/#pkg-constants). If omitted, the default Go cipher suites will be used. Here are the default values.
+`tls.server.rfcCiphers`: List of cipher suites for the server. Values are from the [Go TLS package constants](https://golang.org/pkg/crypto/tls/#pkg-constants). If omitted, the default Go cipher suites are used. Here are the default values.
 
-- `TLS_AES_128_GCM_SHA256`
-- `TLS_AES_256_GCM_SHA384`
-- `TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256`
-- `TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384`
-- `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256`
-- `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`
-
+- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->AES_128_GCM_SHA256`
+- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->AES_256_GCM_SHA384`
+- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->ECDHE_ECDSA_WITH_AES_128_GCM_SHA256`
+- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->ECDHE_ECDSA_WITH_AES_256_GCM_SHA384`
+- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->ECDHE_RSA_WITH_AES_128_GCM_SHA256`
+- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->ECDHE_RSA_WITH_AES_256_GCM_SHA384`
 
 ## Example Custom TLS settings
 
@@ -78,3 +77,7 @@ metadata_store:
         - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 ```
 
+## Additional resources
+
+- [Custom certificate configuration](custom-cert.hbs.md)
+- [Ingress support](ingress.hbs.md)
