@@ -11,5 +11,5 @@ This section includes the following topics:
 - [Log configuration and usage](logs.md)
 - [Troubleshooting upgrading](upgrading.md)
 - [Failover, redundancy, and backups](failover.md)
-- [Ingress and multicluster support](ingress-multicluster.md)
+- [Ingress support](ingress.hbs.md)
 - [Multicluster setup](multicluster-setup.hbs.md)
