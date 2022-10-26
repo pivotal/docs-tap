@@ -1,8 +1,8 @@
 # Upgrading Supply Chain Security Tools - Scan
 
-This document describes how to upgrade Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
+This topic describes how to upgrade Supply Chain Security Tools - Scan from the Tanzu Application Platform package repository.
 
-You can perform a fresh install of Supply Chain Security Tools - Scan by following the instructions in [Install Supply Chain Security Tools - Scan](install-scst-scan.md).
+You can perform a fresh install of SCST - Scan by following the instructions in [Install Supply Chain Security Tools - Scan](install-scst-scan.md).
 
 This topic includes instructions for:
 
@@ -16,16 +16,16 @@ This topic includes instructions for:
 
 ## <a id="prereqs"></a> Prerequisites
 
-Before you upgrade Supply Chain Security Tools - Scan:
+Before you upgrade SCST - Scan:
 
 * Upgrade the Tanzu Application Platform by following the instructions in [Upgrading Tanzu Application Platform](../upgrading.md)
 
 ## <a id="general-upgrades"></a> General Upgrades for Supply Chain Security Tools - Scan
 
-When you're upgrading to any version of Supply Chain Security Tools - Scan these are some factors to accomplish this task successfully:
+When you're upgrading to any version of SCST - Scan these are some factors to accomplish this task:
 
 1. Inspect the [Release Notes](../release-notes.md) for the version you're upgrading to. There you can find any breaking changes for the installation.
-1. Get the values schema for the package version you're upgrading to by running:
+2. Get the values schema for the package version you're upgrading to by running:
 
   ```console
   tanzu package available get scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
@@ -36,22 +36,22 @@ When you're upgrading to any version of Supply Chain Security Tools - Scan these
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading to Version v1.2.0
 
-If you're upgrading from a previous version of Supply Chain Security Tools - Scan to the version `v1.2.0`, do the following:
+If you're upgrading from a previous version of SCST - Scan to the version `v1.2.0`, do the following:
 
-1. Change the `SecretExports` from Supply Chain Security Tools - Store.
+1. Change the `SecretExports` from SCST - Store.
 
-  Supply Chain Security Tools - Scan needs information to connect to the Supply Chain Security Tools - Store deployment, you must change where these secrets are exported to enable the connection with the version `v1.2.0` of Supply Chain Security Tools - Scan.
+  SCST - Store needs information to connect to the SCST - Store deployment, you must change where these secrets are exported to enable the connection with the version `v1.2.0` of SCST - Store.
 
   **Single Cluster Deployment**
 
-  Edit the `tap-values.yaml` file you used to deploy Supply Chain Security Tools - Store to export the CA cert to your developer namespace.
+  Edit the `tap-values.yaml` file you used to deploy SCST - Store to export the CA certificate to your developer namespace.
 
   ```yaml
   metadata_store:
-      ns_for_export_app_cert: "<DEV-NAMESPACE>"
+      ns_for_export_app_cert: "DEV-NAMESPACE"
   ```
 
-  >**Note:** The `ns_for_export_app_cert` currently supports only one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this will export the CA cert to all namespaces so you should consider whether this increased visibility presents a risk.
+  >**Note:** The `ns_for_export_app_cert` supports only one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this exports the CA certificate to all namespaces. Consider whether this increased visibility presents a risk.
 
   Update Tanzu Application Platform to apply the changes:
 
@@ -79,12 +79,12 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
         name: store-auth-token
         namespace: metadata-store-secrets
       spec:
-        toNamespace: "<DEV-NAMESPACE>"
+        toNamespace: "DEV-NAMESPACE"
       ```
 
 2. Update your `tap-values.yaml` file.
 
-  The installation of the Supply Chain Security Tools - Scan and the Grype scanner have some changes. The connection to the Supply Chain Security Tools - Store component have moved to the Grype scanner package. To deactivate the connection from the Supply Chain Security Tools - Scan, which is still present for backwards compatibility, but is deprecated and is removed in `v1.3.0`.
+  The installation of the SCST - Scan and the Grype scanner have some changes. The connection to the SCST - Scan component have moved to the Grype scanner package. To deactivate the connection from the SCST - Scan, which is still present for backwards compatibility, but is deprecated and is removed in `v1.3.0`.
 
       ```yaml
       # Deactivate scan controller embedded Supply Chain Security Tools - Store integration
@@ -94,20 +94,20 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
       # Install Grype Scanner v1.2.0
       grype:
-        namespace: "<DEV-NAMESPACE>" # The developer namespace where the ScanTemplates are gonna be deployed
+        namespace: "DEV-NAMESPACE" # The developer namespace where the ScanTemplates are gonna be deployed
         metadataStore:
-          url: "<METADATA-STORE-URL>" # The base URL where the Store deployment can be reached
+          url: "METADATA-STORE-URL" # The base URL where the Store deployment can be reached
           caSecret:
-            name: "<CA-SECRET-NAME>" # The name of the secret containing the ca.crt
-            importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where Store is deployed (if single cluster) or where the connection secrets were created (if multi-cluster)
+            name: "CA-SECRET-NAME" # The name of the secret containing the ca.crt
+            importFromNamespace: "SECRET-NAMESPACE" # The namespace where Store is deployed (if single cluster) or where the connection secrets were created (if multi-cluster)
           authSecret:
-            name: "<TOKEN-SECRET-NAME>" # The name of the secret containing the auth token to connect to Store
-            importFromNamespace: "<SECRET-NAMESPACE>" # The namespace where the connection secrets were created (if multi-cluster)
+            name: "TOKEN-SECRET-NAME" # The name of the secret containing the auth token to connect to Store
+            importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
       ```
 
   For more insights on how to install Grype, see [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype).
 
-  Note: If a mix of Grype templates (`<v1.2.0` and `≥v1.2.0`) are used, both `scanning` and `grype` need to configure the parameters, and the secret needs to export to both scan-link-system and the dev namespace (either by exporting to "*" or by defining multiple secrets and exports. (similarly if grype is installed to multiple namespaces there must be corresponding exports). See [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype)
+  Note: If a mix of Grype templates (`<v1.2.0` and `≥v1.2.0`) are used, both `scanning` and `grype` must configure the parameters, and the secret must export to both scan-link-system and the dev namespace (either by exporting to "*" or by defining multiple secrets and exports. (similarly if grype is installed to multiple namespaces there must be corresponding exports). See [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype)
 
   Now update Tanzu Application Platform to apply the changes:
 
@@ -183,13 +183,13 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
   Deploy the resources
 
   ```console
-  kubectl apply -f verify-upgrade.yaml -n <DEV-NAMESPACE>
+  kubectl apply -f verify-upgrade.yaml -n DEV-NAMESPACE
   ```
 
   View the scan results
 
   ```console
-  kubectl describe imagescan sample-public-image-scan -n <DEV-NAMESPACE>
+  kubectl describe imagescan sample-public-image-scan -n DEV-NAMESPACE
   ```
 
   If it is successful, the `ImageScan` goes to the `Failed` phase and shows the results of the scan in the `Status`.

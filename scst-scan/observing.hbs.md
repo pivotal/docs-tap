@@ -181,7 +181,7 @@ A Source Scan for a blob artifact can cause reporting in the `status.artifact` a
 You can confirm you're having this problem by running a `kubectl describe` in the affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url` and see if they are different URLs. For example:
 
 ```console
-kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE>
+kubectl describe sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
 ```
 
 And compare the output:

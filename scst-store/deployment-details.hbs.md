@@ -24,7 +24,7 @@ The installation creates the following in your Kubernetes cluster:
 
 The default database included with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
 
-#### <a id='awsrds-postresdata'></a>Using AWS RDS postgres database
+#### <a id='awsrds-postresdata'></a>Using AWS RDS PostgreSQL database
 
 Users can also configure the deployment to use their own RDS database instead of the default. See [AWS RDS Postgres Configuration](use-aws-rds.md).
 
@@ -34,7 +34,7 @@ By default, a database password is generated upon deployment. To configure a cus
 
 ```yaml
 db_password: "PASSWORD-0123"
-``` 
+``` <!--฿ Verify that no placeholders above require explanation in the style of |Where PLACEHOLDER is...| ฿-->
 
 If you're deploying with Tanzu Application Platform profiles, in `tap-values.yaml`, put:
 
@@ -68,11 +68,11 @@ The store creates a read-only cluster role, which is bound to a service account 
 
 ## <a id='export-cert'></a>Exporting certificates
 
-Supply Chain Security Tools - Store creates a [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed.
+SCST - Store creates a [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post-scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed.
 
 ## <a id='ingress'></a>Ingress support
 
-Supply Chain Security Tools - Store's values file allows you to enable ingress support and to configure a custom domain name to use Contour to provide external access to Supply Chain Security Tools - Store's API. For example:
+SCST - Store's values file allows you to enable ingress support and to configure a custom domain name to use Contour to provide external access to SCST - Store's API. For example:
 
 ```yaml
 ingress_enabled: "true"
@@ -80,4 +80,4 @@ ingress_domain: "example.com"
 app_service_type: "ClusterIP" # recommended setting
 ```
 
-An HTTPProxy object is then installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress support](ingress.hbs.md).
+An HTTPProxy object is installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress support](ingress.hbs.md).
