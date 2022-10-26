@@ -26,7 +26,7 @@ metadata_store:
     secretName: "secretName"
 ```
 
-* `namespace`: The targeted namespace for secret consumption by the HTTPProxy. 
+* `namespace`: The targeted namespace for secret consumption by the HTTPProxy.
 * `secretName`: The name of secret for consumption by the HTTPProxy.
 
 
@@ -79,5 +79,4 @@ metadata_store:
 
 ## Additional resources
 
-- [Custom certificate configuration](custom-cert.hbs.md)
 - [Ingress support](ingress.hbs.md)
