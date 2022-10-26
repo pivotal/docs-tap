@@ -12,4 +12,5 @@ This section includes the following topics:
 - [Troubleshooting upgrading](upgrading.md)
 - [Failover, redundancy, and backups](failover.md)
 - [Ingress support](ingress.hbs.md)
+- [Custom certificate configuration](custom-cert.hbs.md)
 - [Multicluster setup](multicluster-setup.hbs.md)

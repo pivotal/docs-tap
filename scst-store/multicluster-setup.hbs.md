@@ -142,3 +142,4 @@ Where,
 ## Additional resources
 
 * [Ingress support](ingress.hbs.md)
+* [Custom certificate configuration](custom-cert.hbs.md)
