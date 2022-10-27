@@ -352,7 +352,7 @@ function in the chain has the chance to "do something" by returning a different 
 If you are a function in a chain, to do nothing means to return
 the input you received unchanged as your output.
 
-If this all sounds confusing, fortunately there is a basic rule of thumb
+If this all sounds confusing, fortunately there is a basic guideline
 for understanding and predicting the effect of a deactivated transform in
 the context of your accelerator definition. Namely, if a transform's condition evaluates to false,
 pretend it isn't there. In other words, your accelerator behaves as if you
@@ -413,7 +413,7 @@ In the preceding example, both **transform A** and **transform B** are condition
 **transform A**. When either of these conditions is `false`, the corresponding transform behaves
 like the identity function. Namely, whatever set of files it receives as input is exactly what it returns as output.
 
-This behavior accords with our rule of thumb. For example, if **transform A**'s condtion is
+This behavior accords with our guideline. For example, if **transform A**'s condtion is
 `false`, it behaves as if **transform A** wasn't there. **Transform A** is chained after `include` so it
 receives the `include`'s result, returns it unchanged, and this is passed to **transform B**. In other words,
 the result of the `include` is passed as is to **transform B**. This is precisely what would happen were **transform A**
@@ -451,7 +451,7 @@ option isn't selected:
   ```
 
 However, this doesn't do what you might expect. The final result _still_ contains
-`pom.xml` files. To understand why, recall the rule of thumb for deactivated transforms:
+`pom.xml` files. To understand why, recall the guideline for deactivated transforms:
 If a transform is deactivated, pretend it isn't there. So when
 `#useMaven` is `false`, the example reduces to:
 
