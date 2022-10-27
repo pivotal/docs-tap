@@ -1,23 +1,27 @@
 # Install Supply Chain Security Tools - Store independent from Tanzu Application Platform profiles
 
-This document describes how to install Supply Chain Security Tools - Store
+This topic describes how to install Supply Chain Security Tools - Store
 from the Tanzu Application Platform package repository.
 
->**Note:** VMware recommends installing Supply Chain Security Tools - Store by using Tanzu Application Platform Profiles.  See [About Tanzu Application Platform components and profiles](../about-package-profiles.md) and [Installing the Tanzu Application Platform Package and Profiles](../install.md).  Use the following instructions if you do not want to use a profile to install the Supply Chain Security Tools - Store package.
+>**Note:** VMware recommends installing SCST - Store by using Tanzu Application Platform Profiles. 
+See [About Tanzu Application Platform components and profiles](../about-package-profiles.md) 
+and [Installing the Tanzu Application Platform Package and Profiles](../install.md). 
+Use the following instructions if you do not want to use a profile to install the SCST - Store package.
 
 ## <a id='prereqs'></a>Prerequisites
 
-Before installing Supply Chain Security Tools - Store:
+Before installing SCST - Store:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - Install cert-manager on the cluster. For more information, see [Install cert-manager](../cert-mgr-contour-fcd/install-cert-mgr.md#install-cert-mgr).
-- See [Deployment Details and Configuration](deployment-details.md) to review what resources will be deployed. For more information, see the [overview](overview.md).
+- See [Deployment Details and Configuration](deployment-details.md) to review what resources are deployed.
+For more information, see the [overview](overview.md).
 
 ## <a id='install'></a>Install
 
-To install Supply Chain Security Tools - Store:
+To install SCST - Store:
 
-1. The deployment assumes the user has set up the Kubernetes cluster to provision persistent volumes on demand. Make sure a default storage class is available in your cluster. Check whether default storage class is set in your cluster using `kubectl get storageClass`.
+1. The deployment requires that the user has set up the Kubernetes cluster to provision persistent volumes on demand. Make a default storage class is available in your cluster. Confirm whether default storage class is set in your cluster using `kubectl get storageClass`.
 
     ```console
     kubectl get storageClass
@@ -31,7 +35,7 @@ To install Supply Chain Security Tools - Store:
     standard (default)   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  7s
     ```
 
-1. List version information for the package using `tanzu package available list`.
+2. List version information for the package using `tanzu package available list`.
 
     ```console
     tanzu package available list metadata-store.apps.tanzu.vmware.com --namespace tap-install
@@ -46,7 +50,7 @@ To install Supply Chain Security Tools - Store:
       metadata-store.apps.tanzu.vmware.com  1.0.2
     ```
 
-1. (Optional) List out all the available deployment configuration options.
+3. (Optional) List out all the available deployment configuration options.
 
     ```console
     tanzu package available get metadata-store.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
@@ -54,7 +58,7 @@ To install Supply Chain Security Tools - Store:
 
     Where `VERSION` is the your package version number.
     
-    For example
+    For example:
 
     ```console
     $ tanzu package available get metadata-store.apps.tanzu.vmware.com/1.0.2 --values-schema -n tap-install
@@ -87,7 +91,7 @@ To install Supply Chain Security Tools - Store:
       log_level                         default              string   Sets the log level. This can be set to "minimum", "less", "default", "more", "debug" or "trace". "minimum" currently does not output logs. "less" outputs log configuration options only. "default" and "more" outputs API endpoint access information. "debug" and "trace" outputs extended API endpoint access information(such as body payload) and other debug information.
     ```
 
-1. (Optional) Modify one of the deployment configurations by creating a configuration YAML with the
+4. (Optional) Edit one of the deployment configurations by creating a configuration YAML with the
 custom configuration values you want. For example, if your environment does not support `LoadBalancer`,
 and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and configure the
 `app_service_type` property.
@@ -118,7 +122,7 @@ and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and 
     configuration.
     * `VERSION` is the package version number.
 
-    For example
+    For example:
 
     ```console
     $ tanzu package install metadata-store \
