@@ -139,8 +139,8 @@ engine:
     # and keeping only the later one.
     # merge child 1: this child node wants to contribute 'gradle' files to the final result
     - condition:
-        "#includeGradle" # this child is deactivate if the Gradle option was not selected by the user
-        # A deactivate child doesn't contribute anything to the final result.
+        "#includeGradle" # this child is deactivated if the Gradle option was not selected by the user
+        # A deactivated child doesn't contribute anything to the final result.
       include: ["*.gradle"] # this child only focusses on gradle files (ignoring all other files)
     # merge child 2: this child wants to contribute 'pom' files to the final result
     - condition: "#includePoms"
