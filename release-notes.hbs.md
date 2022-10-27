@@ -194,8 +194,8 @@ See [Prerequisites for Carbon Black Scanner (Beta)](scst-scan/install-carbonblac
 
 #### <a id="functions-features"></a> Functions (beta)
 
-- Functions Java and Python buildpack are included in Tanzu Application Platform 1.3.
-- Node JS Functions accelerator now available in Tanzu Application Platform GUI.
+- Functions Java and Python buildpacks are included in Tanzu Application Platform v1.3.
+- Node JS Functions accelerator is now available in Tanzu Application Platform GUI.
 
 #### <a id="tbs-features"></a> Tanzu Build Service
 
