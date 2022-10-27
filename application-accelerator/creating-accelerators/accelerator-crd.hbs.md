@@ -28,8 +28,8 @@ The `Accelerator` CRD _spec_ defined in the `AcceleratorSpec` type has the follo
 | git.url | The repository URL, can be a HTTP/S or SSH address. | Optional (***) |
 | git.ignore | Overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default of `.git/` is used. | Optional (**) |
 | git.interval | The interval at which to check for repository updates. If not provided it defaults to 10 min. There is an additional refresh interval (currently 10s) involved before accelerators may appear in the UI. There could be a 10s delay before changes are reflected in the UI.*| Optional (**) |
-| git.ref | Git reference to checkout and monitor for changes, defaults to master branch. | Optional (**) |
-| git.ref.branch | The Git branch to checkout, defaults to master. | Optional (**) |
+| git.ref | Git reference to checkout and monitor for changes, defaults to main branch. | Optional (**) |
+| git.ref.branch | The Git branch to checkout, defaults to main. | Optional (**) |
 | git.ref.commit | The Git commit SHA to checkout, if specified tag filters are ignored. | Optional (**) |
 | git.ref.semver | The Git tag semver expression, takes precedence over tag. | Optional (**) |
 | git.ref.tag | The Git tag to checkout, takes precedence over branch. | Optional (**) |
@@ -60,8 +60,8 @@ The `Fragment` CRD _spec_ defined in the `FragmentSpec` type has the following f
 | git.url | The repository URL, can be a HTTP/S or SSH address. | Required |
 | git.ignore | Overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default of `.git/` is used. | Optional (**) |
 | git.interval | The interval at which to check for repository updates. If not provided it defaults to 10 min.| Optional (**) |
-| git.ref | Git reference to checkout and monitor for changes, defaults to master branch. | Optional (**) |
-| git.ref.branch | The Git branch to checkout, defaults to master. | Optional (**) |
+| git.ref | Git reference to checkout and monitor for changes, defaults to main branch. | Optional (**) |
+| git.ref.branch | The Git branch to checkout, defaults to main. | Optional (**) |
 | git.ref.commit | The Git commit SHA to checkout, if specified tag filters are ignored. | Optional (**) |
 | git.ref.semver | The Git tag semver expression, takes precedence over tag. | Optional (**) |
 | git.ref.tag | The Git tag to checkout, takes precedence over branch. | Optional (**) |
