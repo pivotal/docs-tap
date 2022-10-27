@@ -22,15 +22,15 @@ Use the following steps to install the Application Accelerator Visual Studio ext
 
     2. Select the extension file **tanzu-app-accelerator-0.1.2.vsix**.
 
-    ![Command palette open showing text Extensions: INSTALL FROM VSIX...](../images/vscode-install1.png)
+    ![The Command palette open shows the text Extensions: INSTALL FROM VSIX...](../images/vscode-install1.png)
 
     **Option 2:**
 
-    1. Select the **Extensions** tab: ![The extensions tab icon which is a square cut in fourths with the top-right fourth moved away from the other three](../images/vscode-install2.png)
+    1. Select the **Extensions** tab: ![The extensions tab icon, a square cut in fourths with the top-right fourth moved away from the other three](../images/vscode-install2.png)
 
     2. Select `Install from VSIX…` from the overflow menu.
 
-    ![The VS Code interface showing the extensions tab open, the overflow menu in the extensions tab open, and the "Install from VSIX..." option highlighted](../images/vscode-install3.png)
+    ![The VS Code interface shows the extensions tab open, the overflow menu in the extensions tab open, and the "Install from VSIX..." option highlighted](../images/vscode-install3.png)
 
 ## <a id="configure-the-extention"></a> Configure the extension
 
@@ -42,7 +42,7 @@ Before using the extension, you need follow the next steps:
 
 3. Add the `acc-server` URL.
 
-![Server Configure Setting page showing the acc server url setting under the Tanzu App Accelerator of user settings](../images/acc-server-config.png)
+![The Server Configure Setting page shows the acc server URL setting which is nested under the Tanzu App Accelerator user settings](../images/acc-server-config.png)
 
 ## <a id="using-the-extension"></a> Using the extension
 
