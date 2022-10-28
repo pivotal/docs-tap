@@ -193,6 +193,9 @@ The sample values file contains the necessary defaults for:
 
     >**Important:** Keep the values file for future configuration use.
 
+    >**Important:** The policy controller `policy.apps.tanzu.vmware.com` has to be excluded in all
+    TAP 1.3+ installations. See [Policy controller known issues section](scst-policy/known-issues.md)
+
 ### <a id='full-profile'></a> Full Profile
 
 To install Tanzu Application Platform with Supply Chain Basic,
@@ -214,6 +217,8 @@ shared:
       MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
       -----END CERTIFICATE-----
 profile: full
+excluded_packages:
+- policy.apps.tanzu.vmware.com
 ceip_policy_disclosed: true
 buildservice:
   kp_default_repository: "REPOSITORY"
