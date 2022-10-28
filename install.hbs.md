@@ -312,7 +312,7 @@ credentials to pull an image from the registry for scanning.
 
 If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.
 
-If you use AWS, the default settings creates a classic LoadBalancer.
+If you use AWS, the default settings create a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
 following to your `tap-values.yaml`:
 
