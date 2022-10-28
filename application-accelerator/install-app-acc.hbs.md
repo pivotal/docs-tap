@@ -172,7 +172,7 @@ To install Application Accelerator:
 
     This lists an external IP address for use with the `--server-url` Tanzu CLI flag for the Accelerator plug-in `generate` command.
 
-## <a id='troubleshooting'></a> Troobleshooting
+## <a id='troubleshooting'></a> Troubleshooting
 
 Depending on the error output, there are some actions that can be taken
 
