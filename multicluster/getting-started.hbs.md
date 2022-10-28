@@ -53,7 +53,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
 1. Verify that your supply chain has produced the necessary `ConfigMap` containing `Deliverable` content produced by the `Workload` by running:
 
     ```bash
-    kubectl get configmap tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -o go-template='{{.data.deliverable}}'
+    kubectl get configmap tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}'
     ```
 
     The output should look similar to the following:
@@ -83,7 +83,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
 1. Store the `Deliverable` content, which you can take to the Run profile clusters, from the `ConfigMap` with:
 
    ```console
-   kubectl get configmap tanzu-java-web-app -n ${DEVELOPER_NAMESPACE} -o go-template='{{.data.deliverable}}' > deliverable.yaml
+   kubectl get configmap tanzu-java-web-app -n ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}' > deliverable.yaml
    ```
 
 1. Take this `Deliverable` file to the **Run** profile clusters by running:
