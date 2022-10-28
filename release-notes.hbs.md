@@ -77,7 +77,7 @@ See [Prerequisites for Carbon Black Scanner (Beta)](scst-scan/install-carbonblac
   - auto-complete now works for all sub-command names and their positional argument values, flag names, and flag values.
 - `tanzu apps workload create/apply` improvements:
   - Apps plug-in users can now pass in registry flags to override the default registry options configured on the platform.
-    - These flags can be everaged when an application developer iterating on their code on their file system needs to push their code to a private registry. For example, this may be required when developing an application in an air-gapped environment.
+    - These flags can be leveraged when an application developer iterating on their code on their file system needs to push their code to a private registry. For example, this may be required when developing an application in an air-gapped environment.
     - To mitigate the risk of exposing sensitive information in the terminal, each registry flag/value can be specified by environment variables.
     - Refer to [workload apply > registry flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---registry-ca-cert) for a more detailed explanation about these flags and how to use them.
   - Provided first-class support for creating workloads from Maven artifacts through Maven flags. Previously, this could only be achieved by passing the desired values through the `--complex-param` flag.
