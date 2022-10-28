@@ -110,7 +110,7 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
 - `yaml/yml`
 
     ```console
-    tanzu apps workload get tanzu-java-web-app -o yaml]
+    tanzu apps workload get tanzu-java-web-app -o yaml
     ---
     apiVersion: carto.run/v1alpha1
     kind: Workload
