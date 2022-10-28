@@ -171,6 +171,9 @@ The following command generates the YAML file sample for the full-profile on AWS
 >**Note:** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run`, or `view`.
 Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
 
+>**Important:** The policy controller `policy.apps.tanzu.vmware.com` has to be excluded in all
+    TAP 1.3+ installations. See [Policy controller known issues section](scst-policy/known-issues.md)
+
 ```console
 cat << EOF > tap-values.yaml
 shared:
@@ -183,6 +186,10 @@ ceip_policy_disclosed: true
 #Below are the keys which may have default values set, but can be overridden.
 
 profile: full # Can take iterate, build, run, view.
+
+excluded_packages:
+- policy.apps.tanzu.vmware.com
+
 supply_chain: basic # Can take testing, testing_scanning.
 
 ootb_supply_chain_basic: # Based on supply_chain set above, can be changed to ootb_supply_chain_testing, ootb_supply_chain_testing_scanning.
