@@ -95,9 +95,10 @@ source:
 
 Configures how the workload is being shown. This supports the values `yaml`, `yml` and `json`, where `yaml` and `yml` are equal. It shows the actual workload in the cluster.
 
-+ `yaml/yml`
-    ```yaml
-    tanzu apps workload get pet-clinic -o yaml]
+- `yaml/yml`
+
+    ```console
+    tanzu apps workload get pet-clinic -o yaml
     ---
     apiVersion: carto.run/v1alpha1
     kind: Workload
@@ -140,8 +141,9 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
             ...
     ```
 
-+ `json`
-    ```json
+- `json`
+
+    ```console
     tanzu apps workload get pet-clinic -o json
     {
         "kind": "Workload",
