@@ -113,7 +113,7 @@ pet-clinic-config-writer-9fbk6-pod[step-main]     carto.run/workload-name: pet-c
 
 ### <a id="tail-timestamp"></a> `--timestamp`, `-t`
 
-Adds the timestamp to the begining of each log message
+Adds the timestamp to the beginning of each log message
 
 ```bash
 tanzu apps workload tail pet-clinic -t
