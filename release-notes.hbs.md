@@ -128,8 +128,8 @@ See [Install Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integrat
     - Running `tanzu apps workload apply my-app --local-path . ... only uploads the contents of the project directory when source code changes are detected.
   - Added an OUTPUT column to the resource table in the Supply Chain section to provide visibility to the resource that's stamped out by each supply chain step.
     - The stamped out resource can be helpful when troubleshooting supply chain issues for a workload. For example, the OUTPUT value can be copied and pasted into a `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail).
-  - Added a Delivery section that provides visiblity to the delivery steps and the health, status, and stamped out resource associated with each delivery step.
-    - The Delivery section content might be conditionally displayed depending on whether the targetted environment includes the Deliverable object. Delivery is present on environments created using the Iterate and Build installation profiles.
+  - Added a Delivery section that provides visibility to the delivery steps and the health, status, and stamped out resource associated with each delivery step.
+    - The Delivery section content might be conditionally displayed depending on whether the targeted environment includes the Deliverable object. Delivery is present on environments created using the Iterate and Build installation profiles.
   - Added a `Healthy` column to the Supply Chain resources table.
     - The column values are color coded to indicate the health of each resource at-a-glance.
   - Added an Overview section to show workload name and type.
@@ -316,7 +316,7 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="scst-scan-resolved"></a>Supply Chain Security Tools - Policy Controller
 
-- Pods deployed through `kubectl run` in non-default namespace can now build the neccessary keychain for registry access during validation.
+- Pods deployed through `kubectl run` in non-default namespace can now build the necessary keychain for registry access during validation.
 
 #### <a id="apps-plugin-resolved"></a> Tanzu CLI - Apps plug-in
 
