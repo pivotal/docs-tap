@@ -7,7 +7,7 @@ You can view workload details at whenever. Some details are:
  - Workload name and type.
  - The source of the workload application.
  - The supply chain which took care of the workload.
- - The supply chain resources which interact with the workload. It also has the output of the resource stamped out by the supply chain  
+ - The supply chain resources which interact with the workload. It also has the output of the resource stamped out by the supply chain
  - The delivery workflow that the application follows.
  - If there is any issue while deploying the workload and finally which *pods* the workload generates and the knative services related to the workload.
  - if the supply chain is using knative.
@@ -107,8 +107,9 @@ source:
 
 Configures how the workload is being shown. This supports the values `yaml`, `yml` and `json`, where `yaml` and `yml` are equal. It shows the actual workload in the cluster.
 
-+ `yaml/yml`
-    ```yaml
+- `yaml/yml`
+
+    ```console
     tanzu apps workload get tanzu-java-web-app -o yaml]
     ---
     apiVersion: carto.run/v1alpha1
@@ -153,8 +154,9 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
             ...
     ```
 
-+ `json`
-    ```json
+- `json`
+
+    ```console
     tanzu apps workload get tanzu-java-web-app -o json
     {
         "kind": "Workload",
