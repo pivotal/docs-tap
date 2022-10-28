@@ -380,7 +380,7 @@ Invalid value: 1000: must be in the ranges: [1000740000, 1000749999]
 
 This can be due to ServiceAccounts or users bound to overly restrictive SecurityContextConstraints.
 
-For information about resolving this issue, see the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html).
+For information about resolving this issue, see the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html#openshift-scc).
 
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
