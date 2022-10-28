@@ -4,7 +4,7 @@
 
 ### Description
 
-TAP 1.3+ installation with Policy controller included fails with the following error:
+Installation of policy controller fails with the following error message:
 
 ```bash
 panic: Failed to initialize TUF client from  : updating local metadata and targets: 
