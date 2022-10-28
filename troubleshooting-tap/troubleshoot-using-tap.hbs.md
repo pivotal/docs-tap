@@ -464,11 +464,11 @@ Follow these steps to update your `aws-cli` to a supported `v2.7.35` or greater 
 
 ## <a id='invalid-repo-paths'></a> Invalid repository paths are propagated
 
-When inputting shared.image_registry.project_path, invalid repository paths are propagated.
+When inputting `shared.image_registry.project_path`, invalid repository paths are propagated.
 
 **Explanation**
 
-The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end of the string.
+The key `shared.image_registry.project_path`, which takes input as `SERVER-NAME/REPO-NAME`, cannot take "/" at the end of the string.
 
 **Solution**
 
