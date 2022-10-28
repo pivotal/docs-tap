@@ -43,17 +43,15 @@ Before following this walkthrough, you must:
 
 ## <a id="stk-set-up"></a> Set up a service
 
-> **Note:** This walkthrough uses an example of the RabbitMQ Cluster Kubernetes operator, however it should be noted that the setup steps listed here remain largely the same for any compatible operator.
-> **Note:** This walkthrough uses the open source RabbitMQ Cluster Operator for Kubernetes. However for most real world deployments it is recommended to use the official, supported version provided by VMware - [VMware Tanzu RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
-
-This section covers:
+This section covers the following:
 
 * Installing the selected service Kubernetes operator.
-* Creating the role-based access control (RBAC) rules to grant Tanzu Application Platform permission to interact
-with the APIs provided by the newly installed Kubernetes operator.
+* Creating the role-based access control (RBAC) rules to grant Tanzu Application Platform permission to interact with the APIs provided by the newly installed Kubernetes operator.
 * Creating the additional supporting resources to aid with discovery of services.
 
 For this part of the walkthrough, you assume the role of the **service operator**.
+
+>**Note:** Although this walkthrough uses the example of RabbitMQ Cluster Kubernetes operator, the setup steps remain largely the same for any compatible operator. Also, this walkthrough uses the open source RabbitMQ Cluster operator for Kubernetes. For most real-world deployments, VMware recommends using the official, supported version provided by VMware. For more information, see [VMware Tanzu RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
 
 To set up a service:
 
