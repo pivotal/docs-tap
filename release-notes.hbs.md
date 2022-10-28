@@ -235,7 +235,10 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
 - Alpha version scan CRDs are removed.
-- Deprecated path, invoked when `ScanTemplates` shipped with versions prior to Supply Chain Security Tools - Scan `v1.2.0` are used, now logs a message directing users to update the scanner integration to the latest version. The migration path is to use `ScanTemplates` shipped with Supply Chain Security Tools - Scan `v1.3.0`.
+- A deprecated path is invoked when `ScanTemplates` ships with versions earlier than
+  Supply Chain Security Tools - Scan v1.2.0 are used.
+  It now logs a message directing users to update the scanner integration to the latest version.
+  The migration path uses `ScanTemplates` shipped with Supply Chain Security Tools - Scan v1.3.0.
 
 #### <a id="app-sso-changes"></a> Application Single Sign-On
 
