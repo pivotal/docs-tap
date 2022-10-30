@@ -25,7 +25,7 @@ managed_resources:
 
 Where:
 
-- `GIT-REPO-URL` is the URL (must include `HTTPS://` or `git@` at the beginning) of a Git repository that contains manifest YAML files for the accelerators that you want to have managed (see below for manifest examples). You can specify a `sub_path` if necessary and also a `secret_ref` if the repository requires authentication. If not needed, then leave these additional properties out. See the following for configuration of a [Git credentials secret](#creating-git-credentials).
+- `GIT-REPO-URL` is the URL (must include `https://` or `git@` at the beginning) of a Git repository that contains manifest YAML files for the accelerators that you want to have managed (see below for manifest examples). You can specify a `sub_path` if necessary and also a `secret_ref` if the repository requires authentication. If not needed, then leave these additional properties out. See the following for configuration of a [Git credentials secret](#creating-git-credentials).
 
 ### <a id="functional-considerations"></a> Functional and Organizational Considerations
 
@@ -145,7 +145,7 @@ metadata:
   name: spring-cloud-serverless
 spec:
   git:
-    URL: https://github.com/vmware-tanzu/application-accelerator-samples
+    url: https://github.com/vmware-tanzu/application-accelerator-samples
     subPath: spring-cloud-serverless
     ref:
       branch: main
@@ -156,7 +156,7 @@ metadata:
   name: tanzu-java-web-app
 spec:
   git:
-    URL: https://github.com/vmware-tanzu/application-accelerator-samples.git
+    url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     subPath: tanzu-java-web-app
     ref:
       branch: main
@@ -279,14 +279,14 @@ spec:
   displayName: private
   description: Accelerator using private repository
   git:
-    url: <repository-URL>
+    url: <REPOSITORY-URL>
     ref:
       branch: main
     secretRef:
       name: https-credentials
 ```
 
-> **Note:**  For https credentials the `repository-URL` must use `https://` as the URL scheme
+> **Note:**  For https credentials the `REPOSITORY-URL` must use `https://` as the URL scheme
 
 If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
@@ -334,14 +334,14 @@ spec:
   displayName: private
   description: Accelerator using private repository
   git:
-    url: <repository-URL>
+    url: <REPOSITORY-URL>
     ref:
       branch: main
     secretRef:
       name: https-ca-credentials
 ```
 
-> **Note:**  For https credentials the `repository-URL` must use `https://` as the URL scheme
+> **Note:**  For https credentials the `REPOSITORY-URL` must use `https://` as the URL scheme
 
 If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
@@ -394,14 +394,14 @@ spec:
   displayName: private
   description: Accelerator using private repository
   git:
-    url: <repository-URL>
+    url: <REPOSITORY-URL>
     ref:
       branch: main
     secretRef:
       name: ssh-credentials
 ```
 
-> **Note:**  When using SSH credentials the `repository-URL` must include the user name as part of the URL. For example: `ssh://user@example.com:22/repository.git`. See the [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for more detail.
+> **Note:**  When using SSH credentials the `REPOSITORY-URL` must include the user name as part of the URL. For example: `ssh://user@example.com:22/repository.git`. See the [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for more detail.
 
 If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
