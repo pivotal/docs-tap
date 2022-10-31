@@ -50,13 +50,13 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
 1. To exit the monitoring session, press **CTRL** + **C**.
 
-1. Verify that your supply chain has produced the necessary `ConfigMap` containing `Deliverable` content produced by the `Workload` by running:
+1. Verify that your supply chain has produced the necessary `ConfigMap` containing `Deliverable` content produced by the `Workload`:
 
     ```bash
     kubectl get configmap tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}'
     ```
 
-    The output should look similar to the following:
+    Expect to see the following output:
 
     ```yaml
     apiVersion: carto.run/v1alpha1
@@ -80,13 +80,13 @@ The Build cluster starts by building the necessary bundle for the workload that 
             branch: main
     ```
 
-1. Store the `Deliverable` content, which you can take to the Run profile clusters, from the `ConfigMap` with:
+1. Store the `Deliverable` content, which you can take to the Run profile clusters from the `ConfigMap` by running:
 
    ```console
    kubectl get configmap tanzu-java-web-app -n ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}' > deliverable.yaml
    ```
 
-1. Take this `Deliverable` file to the **Run** profile clusters by running:
+1. Take this `Deliverable` file to the Run profile clusters by running:
 
     ```bash
     kubectl apply -f deliverable.yaml --namespace ${DEVELOPER_NAMESPACE}
