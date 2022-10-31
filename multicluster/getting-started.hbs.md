@@ -56,7 +56,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
     kubectl get configmap tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}'
     ```
 
-    Expect to see the following output:
+    The output resembles the following:
 
     ```yaml
     apiVersion: carto.run/v1alpha1
