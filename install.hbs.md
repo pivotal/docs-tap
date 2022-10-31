@@ -218,8 +218,8 @@ The following is the YAML file sample for the full-profile:
 >**Note:** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`.
 Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
 
->**Important:** The policy controller `policy.apps.tanzu.vmware.com` has to be excluded in all
-    TAP 1.3+ installations. See [Policy controller known issues section](scst-policy/known-issues.md)
+>**Important:** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later. 
+For more information, see [Policy controller known issues](scst-policy/known-issues.md).
 
 ```yaml
 shared:
