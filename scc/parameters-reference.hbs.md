@@ -111,7 +111,7 @@ Parameters:
 > implementation, but some providers such as Azure DevOps, require you to use
 > `libgit2` due to the server-side implementation providing support
 > only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2). For information about the features supported by each implementation, see
-> [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation).
+> [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the flux documentation.
 
 For information about how to create a Workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
@@ -278,8 +278,8 @@ with Testing on Jenkins](ootb-supply-chain-testing-with-jenkins.hbs.md).
 
 ## source-scanner
 
-The `source-scanner` resource (included solely in
-`ootb-supply-chain-testing-scanning`) scans the source code
+The `source-scanner` resource, included solely in
+`ootb-supply-chain-testing-scanning`, scans the source code
 that is tested by pointing a
 [SourceScan](../scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
 code as the tests.
@@ -807,7 +807,7 @@ Parameters:
           type: openapi
           location:
             baseURL: http://petclinic-hard-coded.my-apps.tapdemo.vmware.com/
-            path: "/v3/api-docs"
+            path: "/v3/api"
           owner: team-petclinic
           system: pet-clinics
           description: "example"
@@ -882,13 +882,11 @@ Parameters:
 
 ## Deliverable Parameters reference
 
-Similarly to the section above describing the parameters that can be supplied
-to the Workload and the effects they have in the underlying objects, here
-you'll find the description of the parameters that are provided to the
-Deliverable object (i.e., what can be set on `deliverable.spec.params`).
+This section describes the parameters that are provided to the
+Deliverable object, such as what can be set on `deliverable.spec.params`.
 
-The Deliverable is relevant in the context os deploying to a Kubernetes cluster
-the configuration that has been produced throughout the resources as defined by
+The Deliverable is relevant in the context of deploying to a Kubernetes cluster
+that the configuration that is produced through the resources defined by
 a ClusterSupplyChain:
 
 ```
@@ -909,7 +907,7 @@ a ClusterSupplyChain:
 
 ```
 
-In the following section, you will find the reference documentation that relates specifically to the
+In the following section, you find the reference documentation that relates specifically to the
 two resources defined in the `basic` ClusterDelivery part of the
 `ootb-delivery-basic` package:
 
@@ -928,7 +926,7 @@ and the templates used by it, see:
 - [Out of the Box Delivery Basic](ootb-delivery-basic.hbs.md)
 - [Out of the Templates](ootb-templates.hbs.md)
 
-To know more about the use of the Deliverable object in a multicluster
+For information about the use of the Deliverable object in a multicluster
 environment, see [Getting started with multicluster Tanzu Application
 Platform](../multicluster/getting-started.hbs.md).
 
@@ -947,9 +945,9 @@ the ClusterDelivery as a tarball.
 
 ### GitRepository
 
-A GitRepository object is instantiated whenever `deliverable.spec.source.git`
-is configured such that it can continuously look up for Kubernetes
-configuration pushed to a Git repository, making it available for further
+A GitRepository object is instantiated when `deliverable.spec.source.git`
+is configured to continuously look for a Kubernetes
+configuration pushed to a Git repository, making it available for
 resources in the ClusterDelivery.
 
 Parameters:
@@ -994,12 +992,12 @@ Parameters:
   </tr>
 </table>
 
-> **Note:** It might not be necessary to change the default Git implementation,
-> but some providers such as Azure DevOps, require you to use `libgit2` due to
+> **Note:** It might not be necessary to change the default Git implementation
+> but some providers, such as Azure DevOps, require you to use `libgit2` due to
 > the server-side implementation providing support only for [git's v2
 > protocol](https://git-scm.com/docs/protocol-v2). For information about the
 > features supported by each implementation, see [git
-> implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation).
+> implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the flux documentation.
 
 For information about how to create a Workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
@@ -1010,9 +1008,9 @@ For information about GitRepository objects, see
 
 ### ImageRepository
 
-An ImageRepository object is instantiated whenever
-`deliverable.spec.source.image` is configured such that it can continuously
-look up for Kubernetes configuration files pushed to a container image registry
+An ImageRepository object is instantiated when
+`deliverable.spec.source.image` is configured to continuously
+look for Kubernetes configuration files pushed to a container image registry
 as opposed to a Git repository.
 
 Parameters:
@@ -1027,7 +1025,7 @@ Parameters:
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      name of the service account, in the same namespace as the Deliverable, you
+      Name of the service account, in the same namespace as the Deliverable, you
       want to use to provide the necessary permissions for `kapp-controller` to
       deploy the objects to the cluster.
     </td>
@@ -1052,7 +1050,7 @@ docs](../source-controller/reference.hbs.md#imagerepository).
 
 The `app-deploy` resource in the ClusterDelivery is responsible for applying the
 Kubernetes configuration that is built by the supply chain, pushed to
-either a git repository or image repository, and applied to the cluster.
+either a Git repository or image repository, and applied to the cluster.
 
 ### App
 
@@ -1072,7 +1070,7 @@ Parameters:
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      name of the service account, in the same namespace as the Deliverable,
+      Name of the service account, in the same namespace as the Deliverable,
       you want to use to provide the necessary privileges for `App` to apply
       the Kubernetes objects to the cluster.
     </td>
