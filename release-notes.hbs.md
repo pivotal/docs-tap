@@ -47,6 +47,23 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
+#### <a id="1-3-1-grype-scan-known-issues"></a>Grype scanner
+
+**Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
+
+For most languages, Source Code Scanning only scans files present in the source code repository.
+Except for support added for Java projects using Maven, no network calls are made to fetch
+dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+lock files to check the dependencies for vulnerabilities.
+
+For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
+present in the built binaries (`.jar` or `.war` files) instead.
+
+Because VMware does not encourage committing binaries to source code repositories, Grype fails to
+find vulnerabilities during a source scan.
+The vulnerabilities are still found during the image scan after the binaries are built and packaged
+as images.
+
 ## <a id='1-3-0'></a> v1.3.0
 
 **Release Date**: October 11, 2022
