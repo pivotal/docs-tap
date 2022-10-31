@@ -11,12 +11,12 @@ panic: Failed to initialize TUF client from  : updating local metadata and targe
 error updating to TUF remote mirror: tuf: invalid key
 ```
 
-Policy controller is trying to initialize TUF keys during installation. Due to a breaking change in 
-[go-tuf](https://github.com/theupdateframework/go-tuf/issues/379) the initialization fails
+Policy controller tries to initialize TUF keys during installation. Due to a breaking change in 
+[go-tuf](https://github.com/theupdateframework/go-tuf/issues/379) the initialization fails.
 
 ### Solution
 
-The policy controller's dependency on go-tuf should be updated to the newer version.
+The policy controller's dependency on go-tuf must be updated to the later version.
 
 ### Workaround
 
