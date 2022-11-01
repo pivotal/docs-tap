@@ -130,7 +130,7 @@ file:
     all components of the software catalog instead of defaulting to owned components.
     As another example, you can type `/create` to show Application Accelerator when the portal starts.
 
-    > **Caution:** Tanzu Application Platform GUI redirects you to `tap-gui.INGRESS-DOMAIN/YOUR-PREFERRED-ROUTE`
+    > **Caution** Tanzu Application Platform GUI redirects you to `tap-gui.INGRESS-DOMAIN/YOUR-PREFERRED-ROUTE`
     > even if there is an error in `YOUR-PREFERRED-ROUTE`.
 
 1. Reinstall your Tanzu Application Platform GUI package by following the steps in

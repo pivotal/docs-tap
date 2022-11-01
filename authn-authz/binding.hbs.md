@@ -23,7 +23,7 @@ You can use [Pinniped](https://pinniped.dev/) or the authentication service nati
 
 Follow these steps to install the Tanzu Application Platform RBAC CLI plug-in:
 
-> **Caution:** The Tanzu Application Platform RBAC CLI plug-in is currently in beta and is
+> **Caution** The Tanzu Application Platform RBAC CLI plug-in is currently in beta and is
 >intended for evaluation and test purposes only.
 
 1. Untar the `tar.gz` file:

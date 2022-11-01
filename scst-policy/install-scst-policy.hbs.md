@@ -22,7 +22,7 @@ An example cosign public key is provided that can validate an image from the
 public cosign registry. To provide your own key and images, follow the
 [Cosign Quick Start Guide](https://github.com/sigstore/cosign#quick-start) in GitHub to generate your own keys and sign an image.
 
->**Caution:** This component WILL REJECT `pods` if it is not correctly configured. Test your configuration in a test environment before applying policies to your production cluster.
+>**Caution** This component WILL REJECT `pods` if it is not correctly configured. Test your configuration in a test environment before applying policies to your production cluster.
 
 ## <a id='install-scst-policy'></a> Install
 

@@ -249,7 +249,7 @@ default `8081` as the management port.
 You can access the management context of a Spring Boot application by creating a service pointing to
 port `8081` and base path `/actuator`.
 
-> **Important:** To override the management port setting applied by this convention, see
+> **Important** To override the management port setting applied by this convention, see
 > [How to set a `JAVA_TOOL_OPTIONS` property for a workload](#set-java-tool-options) earlier in this
 > topic.
 > Any alternative methods for setting the management port are overwritten.

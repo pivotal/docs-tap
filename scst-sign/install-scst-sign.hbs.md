@@ -1,6 +1,6 @@
 # Install Supply Chain Security Tools - Sign
 
->**Caution:** This component is being deprecated in favor of [Supply Chain Security Tools - Policy Controller](../scst-policy/overview.md).
+>**Caution** This component is being deprecated in favor of [Supply Chain Security Tools - Policy Controller](../scst-policy/overview.md).
 >To migrate from Supply Chain Security Tools - Sign to Supply Chain Security Tools - Policy Controller, please follow these [steps](../scst-policy/migration.hbs.md)
 
 Supply Chain Security Tools - Sign is released as part of Tanzu Application
@@ -16,7 +16,7 @@ public cosign registry. If you want to provide your own key and images, follow t
 [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) in GitHub to
 generate your own keys and sign an image.
 
->**Caution:** This component rejects pods if the webhook fails or is incorrectly configured.
+>**Caution** This component rejects pods if the webhook fails or is incorrectly configured.
 >If the webhook is preventing the cluster from functioning,
 >see [Supply Chain Security Tools - Sign Known Issues](../release-notes.md)
 > in the Tanzu Application Platform release notes for recovery steps.

@@ -191,9 +191,9 @@ The sample values file contains the necessary defaults for:
     - The meta-package, or parent Tanzu Application Platform package
     - Subordinate packages, or individual child packages
 
-    >**Important:** Keep the values file for future configuration use.
+    >**Important** Keep the values file for future configuration use.
 
-    >**Important:** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later.
+    >**Important** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later.
     For more information, see [Policy controller known issues](scst-policy/known-issues.md).
 
 ### <a id='full-profile'></a> Full Profile

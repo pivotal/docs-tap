@@ -57,7 +57,7 @@ kubectl describe secret tap-gui-token-ID
 
 Where ID is the secret name from the first step.
 
-> **Caution:** If you enable metrics for a cluster but do not have a metrics server running on it,
+> **Caution** If you enable metrics for a cluster but do not have a metrics server running on it,
 > Tanzu Application Platform web interface users see an error notifying them that there is a
 > problem connecting to the back end.
 

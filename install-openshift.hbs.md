@@ -201,7 +201,7 @@ The sample values file contains the necessary defaults for:
     - The meta-package, or parent Tanzu Application Platform package.
     - Subordinate packages, or individual child packages.
 
-    >**Important:** Keep the values file for future configuration use.
+    >**Important** Keep the values file for future configuration use.
 
 
 1. [View possible configuration settings for your package](view-package-config.hbs.md)
@@ -210,7 +210,7 @@ The sample values file contains the necessary defaults for:
 
 The following is the YAML file sample for the full-profile:
 
->**Important:** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later.
+>**Important** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later.
 For more information, see [Policy controller known issues](scst-policy/known-issues.md).
 
 >**Note** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`.
@@ -374,7 +374,7 @@ To install Tanzu Application Platform with Jammy as the only available stack, us
 
 ### <a id='custom-scc'></a> Custom SCC
 
->**Important:** This section only applies when you install Tanzu Application Platform on Red Hat OpenShift Container Platform.
+>**Important** This section only applies when you install Tanzu Application Platform on Red Hat OpenShift Container Platform.
 
 In Red Hat OpenShift, Security Context Constraints (SCC) are used to restrict privileges for pods.
 SCCs define a set of rules that a pod must satisfy to be created.
@@ -531,7 +531,7 @@ To exclude packages from a Tanzu Application Platform profile:
       - service-bindings.lab.vmware.com
     ```
 
->**Important:** If you exclude a package after performing a profile installation including that package, you cannot see the accurate package states immediately after running `tap package installed list -n tap-install`. Also, you can break package dependencies by removing a package. Allow 20 minutes to verify that all packages have reconciled correctly while troubleshooting.
+>**Important** If you exclude a package after performing a profile installation including that package, you cannot see the accurate package states immediately after running `tap package installed list -n tap-install`. Also, you can break package dependencies by removing a package. Allow 20 minutes to verify that all packages have reconciled correctly while troubleshooting.
 
 ## <a id='next-steps'></a>Next steps
 

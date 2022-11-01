@@ -326,7 +326,7 @@ To install `full` Tanzu Build Service dependencies:
 
 ## <a id="auto-updates-config"></a> (Optional) Configure automatic dependency updates
 
->**Important:** The automatic updates feature is being deprecated.
+>**Important** The automatic updates feature is being deprecated.
 >The recommended way to patch dependencies is by upgrading Tanzu Application Platform
 >to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
 
