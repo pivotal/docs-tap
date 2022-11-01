@@ -16,7 +16,8 @@ Tanzu Application Platform now supports OpenShift and Kubernetes 1.24.
 
 #### <a id="api-auto-registration-features"></a> API Auto Registration
 
-- API Auto Registration is a new package that supports dynamic registration of API from workloads into Tanzu Application Platform GUI.
+- API Auto Registration is a new package that supports dynamic registration of API from workloads
+into Tanzu Application Platform GUI.
 - Supports Async API, GraphQL, gRPC and OpenAPI.
 - Enhanced support for OpenAPI 3 to validate the specification and update the servers URL section.
 - Custom Certificate Authority (CA) certificates are supported.
@@ -25,20 +26,23 @@ Tanzu Application Platform now supports OpenShift and Kubernetes 1.24.
 
 - Packaging
   - Out-of-the-box samples are now distributed as OCI images.
-  - GitOps model support for publishing accelerator to facilitate governance around publishing accelerators.
+  - GitOps style support for configuring a set of managed accelerators
 - Controller
   - Added source-image support for fragments and Fragment CRD.
 - Engine
-  - OpenRewriteRecipe: More recipes are now supported in addition to Java: Xml, Properties, Maven, and Json.
-  - New ConflictResolution Strategy : `NWayDiff` merges files modified in different places, as long as they don't conflict. Similar to the Git diff3 algorithm.
-  - Enforces the validity of `inputType`: Accepts only valid values: `text`, `textarea`, `checkbox`, `select`, and `radio`.
+  - OpenRewriteRecipe: More recipes are now supported in addition to Java. Also languages such as
+ Xml, Properties, Maven, and Json should be in capitals.
+  - New ConflictResolution Strategy : `NWayDiff` merges files modified in different places, as long
+as they don't conflict. Similar to the Git diff3 algorithm.
+  - Enforces the validity of `inputType`. Accepts only valid values such as: `text`, `textarea`,
+`checkbox`, `select`, and `radio`.
 - Server
   - Added configmap to store accelerator invocation counts.
   - Added separate downloaded endpoint for downloads telemetry.
 - Jobs
   - No changes.
 - Samples
-  - Samples are moved to https://github.com/vmware-tanzu/application-accelerator-samples.
+  - Samples are moved to [Application Accelerator Samples](https://github.com/vmware-tanzu/application-accelerator-samples).
   - Release includes samples marked with the `tap-1.3` tag.
 
 #### <a id="alv-features"></a>Application Live View
@@ -55,17 +59,21 @@ Tanzu Application Platform now supports OpenShift and Kubernetes 1.24.
   - Identity providers are incorrectly set up.
 - Enabled `/userinfo` endpoint to retrieve user information.
 - OpenShift support: AppSSO uses a custom Security Context Constraint.
-- Security: Complies with the restricted Pod Security Standard and gives the least privilege to the controller.
+- Security: Complies with the restricted Pod Security Standard and gives the least privilege to the
+controller.
 - Service-Operator cluster role: Aggregate RBAC for managing AuthServer.
 - Controller updates:
   - The controller restarts when its configuration is updated.
   - The controller configuration is kept in a Secret.
-  - All existing AuthServers are updated and rolled out when the controller’s configuration changes significantly.
+  - All existing AuthServers are updated and rolled out when the controller’s configuration changes
+significantly.
 
 #### <a id="carbon-black-scanner-features"></a> Carbon Black Cloud Scanner integration (beta)
 
-Carbon Black Cloud Scanner image scanning integration (beta) is available for [Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md).
-See [Prerequisites for Carbon Black Scanner (Beta)](scst-scan/install-carbonblack-integration.hbs.md) for instructions about using Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains.
+Carbon Black Cloud Scanner image scanning integration (beta) is available for
+[Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md).
+See [Prerequisites for Carbon Black Scanner (Beta)](scst-scan/install-carbonblack-integration.hbs.md)
+for instructions about using Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains.
 
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
 
