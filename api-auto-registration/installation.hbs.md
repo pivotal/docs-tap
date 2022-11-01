@@ -4,7 +4,7 @@ This topic describes how to install API Auto Registration from the Tanzu Applica
 
 >**Note:** The iterate, run, and full profiles include API Auto Registration by default.
 > If your cluster is one of these profiles, skip the installation and proceed to the [Usage section](usage.md).
-> For information about profiles, see [About TAP profiles](../about-package-profiles.md#profiles-and-packages).
+> For information about profiles, see [About Tanzu Application Platform profiles](../about-package-profiles.md#profiles-and-packages).
 
 ## <a id='prereqs'></a>Tanzu Application Platform prerequisites
 
@@ -71,7 +71,7 @@ To install the API Auto Registration package:
     kubectl get secret tap-values -n tap-install -o jsonpath="{.data['tap-values\.yaml']}" | base64 -d | yq '.tap_gui.app_config.app.baseUrl'
     ```
 
-3. (Optional) VMware reccomends creating `api-auto-registration-values.yaml`.
+3. (Optional) VMware recommends creating `api-auto-registration-values.yaml`.
 
     To overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file as follows:
 
