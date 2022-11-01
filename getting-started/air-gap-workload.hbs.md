@@ -19,7 +19,29 @@ To create a workload from Git through https, follow these steps:
     kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
     ```
 
-2. If you would like to pass in a custom settings.xml for Java, create a file called settings-xml.yaml similar to the following example:
+2. (Optional) To pass in  login credentials for a Git repository along with the CA certificate, create a file called git-credentials.yaml. For example:
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: git-ca
+      # namespace: default
+    type: Opaque
+    data:
+      username: <USERNAME-BASE64>
+      password: <PASSWORD-BASE64>
+      caFile: |
+        <CADATA-BASE64>
+    ```
+
+    Where:
+    - USERNAME-BASE64 is the base64 encoded username.
+    - PASSWORD-BASE64 is the base64 encoded password.
+    - CADATA-BASE64 is the base64 encoded CA certificate for the
+    Git repository.
+
+3. If you would like to pass in a custom settings.xml for Java, create a file called settings-xml.yaml similar to the following example:
 
    ```yaml
    apiVersion: v1
@@ -70,3 +92,67 @@ If you would rather pass the CA certificate in at workload create time, use the 
 ```console
 tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "gitops_ssh_secret=git-ca" --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
 ```
+
+## Create a testing supply chain workload
+
+For creating workload with the testing supply chain, follow instructions given at [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md).
+
+To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
+
+```yaml
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  name: developer-defined-tekton-pipeline
+  labels:
+    apps.tanzu.vmware.com/pipeline: test     # (!) required
+spec:
+  params:
+    - name: source-url                       # (!) required
+    - name: source-revision                  # (!) required
+  tasks:
+    - name: test
+      params:
+        - name: source-url
+          value: $(params.source-url)
+        - name: source-revision
+          value: $(params.source-revision)
+      taskSpec:
+        params:
+          - name: source-url
+          - name: source-revision
+        steps:
+          - name: test
+            image: MY-REGISTRY/gradle
+            script: |-
+              cd `mktemp -d`
+```
+
+Where `MY-REGISTRY` is your own container registry. All the images given in the pipeline yaml should be relocated to your private container registry.
+
+Create workload by running,
+```console
+tanzu apps workload create APPNAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
+```
+
+If you would rather pass the CA certificate in at workload create time, use the following command:
+
+```console
+tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "gitops_ssh_secret=git-ca" --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
+```
+## Create a testing scanning supply chain workload
+
+For creating workload with the testing supply chain, follow instructions given at [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test#install-OOTB-test-scan).
+
+In addition to the prerequisites given at [Prerequisites](add-test-and-security.hbs.md#prereqs-install-OOTB-test-scan),
+Follow [Using Grype in offline and air-gapped environments](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-scan-offline-airgap.html) before workload creation.
+
+Create workload by running,
+```console
+tanzu apps workload create APPNAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
+```
+
+If you would rather pass the CA certificate in at workload create time, use the following command:
+
+```console
+tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "gitops_ssh_secret=git-ca" --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
