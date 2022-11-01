@@ -21,7 +21,7 @@ To create a workload from Git through https, follow these steps:
     kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
     ```
 
-2. (Optional) If you would like to pass in a git repository login credentials along with the CA certificate, create a file called git-credentials.yaml similar to the following example:
+2. (Optional) To pass in  login credentials for a Git repository along with the CA certificate, create a file called git-credentials.yaml. For example:
 
     ```yaml
     apiVersion: v1
@@ -36,8 +36,12 @@ To create a workload from Git through https, follow these steps:
       caFile: |
         <CADATA-BASE64>
     ```
-    Where USERNAME-BASE64 is the base64 encoded username, PASSWORD-BASE64 is the base64 encoded password and CADATA-BASE64 is the base64 encoded ca certificate for the
-    git repository. 
+
+    Where:
+    - USERNAME-BASE64 is the base64 encoded username.
+    - PASSWORD-BASE64 is the base64 encoded password.
+    - CADATA-BASE64 is the base64 encoded CA certificate for the
+    Git repository.
 
 3. If you would like to pass in a custom settings.xml for Java, create a file called settings-xml.yaml similar to the following example:
 
@@ -143,7 +147,7 @@ tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRA
 
 For creating workload with the testing supply chain, follow instructions given at [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test#install-OOTB-test-scan).
 
-In addition to the prerequisites given at [Prerequisites](add-test-and-security.hbs.md#prereqs-install-OOTB-test-scan), 
+In addition to the prerequisites given at [Prerequisites](add-test-and-security.hbs.md#prereqs-install-OOTB-test-scan),
 Follow [Using Grype in offline and air-gapped environments](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-scan-offline-airgap.html) before workload creation.
 
 Create workload by running,
