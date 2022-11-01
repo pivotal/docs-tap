@@ -59,7 +59,7 @@ For instructions, refer to the following documentation for your Kubernetes clust
 
 For AWS, see:
 
-- The [Amazon blog](https://aws.amazon.com/blogs/containers/amazon-eks-1-21-released/)
+- The [Amazon blog](https://docs.aws.amazon.com/eks/latest/userguide/dockershim-deprecation.html)
 - The [eksctl CLI documentation](https://eksctl.io/usage/container-runtime/)
 
 For AKS, see:
