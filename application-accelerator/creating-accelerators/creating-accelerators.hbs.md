@@ -55,7 +55,7 @@ Use the following procedure to create an accelerator based on this Git repositor
 
     ![Screenshot of another accelerator in Tanzu Application Platform GUI](../images/new-accelerator-deployed-v1-1.png)
 
-    >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for your new accelerator.
+    >**Note** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for your new accelerator.
 
 An alternative to using the Tanzu CLI is to create a separate manifest file and apply it to the cluster:
 
@@ -84,7 +84,7 @@ An alternative to using the Tanzu CLI is to create a separate manifest file and 
 
 You can publish an accelerator directly from a local directory on your system. This helps when authoring accelerators and allows you to avoid having to commit every small change to a remote Git repository.
 
->**Note:** that you can also specify `--interval` so the accelerator is reconciled quicker when we push new changes.
+>**Note** that you can also specify `--interval` so the accelerator is reconciled quicker when we push new changes.
 
 ```sh
 tanzu accelerator creates simple --local-path PATH-TO-THE-ACCELERATOR --source-image YOUR-SOURCE-IMAGE-REPO --interval 10s
@@ -191,7 +191,7 @@ To create the fragment (we can save the above manifest in a `java-version.yaml` 
 tanzu accelerator apply -f ./java-version.yaml
 ```
 
->**Note:** The `accelerator apply` command can be used to apply both Accelerator and Fragment resources.
+>**Note** The `accelerator apply` command can be used to apply both Accelerator and Fragment resources.
 
 To avoid having to create a separate manifest file, you can use the following command instead:
 

@@ -104,7 +104,7 @@ To create a `catalog-info.yaml` file by using the code snippets:
 
 4. Fill in the template by pressing the Tab key.
 
-> **Note:** To create your `catalog-info.yaml` file manually, see
+> **Note** To create your `catalog-info.yaml` file manually, see
 > [Create a `catalog-info.yaml` file](#create-catalog-info-yaml).
 
 ### <a id="tiltfile-file"></a> The Tiltfile file

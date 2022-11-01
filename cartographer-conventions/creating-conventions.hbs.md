@@ -106,7 +106,7 @@ The status change also executes whatever steps are waiting in the supply chain.
 
 With this high-level understanding of Cartographer Conventions components, you can create and deploy a custom convention.
 
->**Note:** This document covers developing conventions using [GOLANG](https://golang.org/), but this can be done using other languages by following the specifications.
+>**Note** This document covers developing conventions using [GOLANG](https://golang.org/), but this can be done using other languages by following the specifications.
 
 ### <a id='prereqs'></a>Prerequisites
 
@@ -129,7 +129,7 @@ The following prerequisites must be met before a convention is developed and dep
 The `server.go` file contains the configuration for the server and the logic the server applies when a workload matches the defined criteria.
 For example, adding a Prometheus sidecar to web applications, or adding a `workload-type=spring-boot` label to any workload that has metadata, indicating it is a Spring Boot app.
 
->**Note:** For this example, the package `model` defines [resource types](./reference/convention-resources.md).
+>**Note** For this example, the package `model` defines [resource types](./reference/convention-resources.md).
 
 1. <a id='convention-1'></a> The example `server.go` configures the `ConventionHandler` to ingest the webhook requests from the convention controller. See [PodConventionContext](./reference/pod-convention-context.md). Here the handler must only deal with the existing [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [`ImageConfig`](./reference/image-config.md).
 
@@ -183,7 +183,7 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
     + `port` is the calculated port of the server to listen for requests. It must match the [`Deployment`](#install-deployment) if the `PORT` variable is not defined in it.
     + The `path` or pattern (default to `/`) is the convention server's default path. If it is changed, it must be changed in the [`ClusterPodConvention`](#install-convention).
 
->**Note:** The *Server Handler*, `func ConventionHandler(...)`, and the configure or start web server, `func NewConventionServer(...)`, is defined in the convention controller in the `webhook` package, but you can use a custom one.
+>**Note** The *Server Handler*, `func ConventionHandler(...)`, and the configure or start web server, `func NewConventionServer(...)`, is defined in the convention controller in the `webhook` package, but you can use a custom one.
 
 1. Creating the *Server Handler*, which handles the request from the convention controller with the [PodConventionContext](./reference/pod-convention-context.md) serialized to JSON.
 
@@ -509,7 +509,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ```
 
 6. <a id='install-convention'></a>The [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the Convention Controller:
-    >**Note:** The `annotations` block is only needed if you use a self-signed certificate. Otherwise, check the [cert-manager documentation](https://cert-manager.io/docs/).
+    >**Note** The `annotations` block is only needed if you use a self-signed certificate. Otherwise, check the [cert-manager documentation](https://cert-manager.io/docs/).
 
     ```yaml
     ...

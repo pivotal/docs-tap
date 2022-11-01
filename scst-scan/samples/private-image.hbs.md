@@ -20,7 +20,7 @@ spec:
 
 Where `IMAGE_URL` is the URL of an image in a private registry.
 
-> **Note:** The private image scan assumes that the target image secret was configured during Tanzu Application Platform installation.
+> **Note** The private image scan assumes that the target image secret was configured during Tanzu Application Platform installation.
 
 ## <a id="set-up-watch"></a>(Optional) Set up a watch
 

@@ -2,7 +2,7 @@
 
 This is the first in a series of Getting started how-to guides for developers. It walks you through deploying your first application on Tanzu Application Platform by using Tanzu Application Platform GUI.
 
->**Note:** This walkthrough uses Tanzu Application Platform GUI. Alternatively, you can deploy your first application on Tanzu Application Platform using the [Application Accelerator Extension for VS Code](../application-accelerator/vscode.hbs.md).
+>**Note** This walkthrough uses Tanzu Application Platform GUI. Alternatively, you can deploy your first application on Tanzu Application Platform using the [Application Accelerator Extension for VS Code](../application-accelerator/vscode.hbs.md).
 
 ## <a id="you-will"></a>What you will do
 
@@ -93,7 +93,7 @@ In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanz
 
     For more information, see [Tanzu Apps Workload Create](../cli-plugins/apps/command-reference/tanzu-apps-workload-create.md).
 
-    > **Note:** This deployment uses an accelerator source from Git, but in later steps you use the VS Code extension
+    > **Note** This deployment uses an accelerator source from Git, but in later steps you use the VS Code extension
     to debug and live-update this application.
 
 3. View the build and runtime logs for your app by running the `tail` command:
@@ -137,7 +137,7 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 3. Navigate back to the home page. The catalog changes and entries are visible for further inspection.
 
->**Note:** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md) database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
+>**Note** If your Tanzu Application Platform GUI instance does not have a [PostgreSQL](../tap-gui/database.md) database configured, the `catalog-info.yaml` location must be re-registered after the instance is restarted or upgraded.
 
 ## Next steps
 

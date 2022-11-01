@@ -55,7 +55,7 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
 
       Added installed package 'fluxcd-source-controller'
     ```
-    
+
     This package creates a new namespace called `flux-system`. This namespace hosts all the elements of fluxcd.
 
 3. Verify the package install by running:
@@ -103,7 +103,7 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
     ```
 
     Expect to see the following outputs or similar:
-    
+
     ```
     NAME                                     READY   STATUS    RESTARTS   AGE
     pod/source-controller-7684c85659-2zfxb   1/1     Running   0          40m
@@ -127,8 +127,8 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
     helmcharts.source.toolkit.fluxcd.io                      2022-03-07T19:20:14Z
     helmrepositories.source.toolkit.fluxcd.io                2022-03-07T19:20:14Z
     ```
-    
-    >**Note:** You will communicate with `fluxcd-source-controller` through its CRDs.
+
+    >**Note** You will communicate with `fluxcd-source-controller` through its CRDs.
 
 3. Follow these steps to consume a `GitRepository` object:
 

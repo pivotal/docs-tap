@@ -57,7 +57,7 @@ To use the Jammy stacks or migrate an existing workload, configure the workload 
 builder by using the `param` flag, for example, `--param clusterBuilder=base-jammy`.
 For further instructions, see [Configure the cluster builder](tbs-workload-config.md#cluster-builder).
 
-> **Note:** While upgrading apps to a newer stack, you might encounter the build platform
+> **Note** While upgrading apps to a newer stack, you might encounter the build platform
 > erroneously reusing the old build cache. If you encounter this issue, delete
 > and recreate the workload in Tanzu Application Platform, or delete and
 > recreate the image in Tanzu Build Service.

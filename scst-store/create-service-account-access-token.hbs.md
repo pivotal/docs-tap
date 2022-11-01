@@ -84,7 +84,7 @@ As a part of the Store installation, the `metadata-store-read-only` cluster role
     EOF
     ```
 
-    >**Note:** For Kubernetes v1.24 and later, services account secrets are no longer automatically created, the service account secret must be manually created.
+    >**Note** For Kubernetes v1.24 and later, services account secrets are no longer automatically created, the service account secret must be manually created.
 
 If you do not want to bind to a cluster role, create a read-only role in the `metadata-store` namespace with a service account. The following example command creates a service account named `metadata-store-read-client`, depending on the Kubernetes version:
 
@@ -174,7 +174,7 @@ If you do not want to bind to a cluster role, create a read-only role in the `me
     EOF
     ```
 
-    > **Note:** For Kubernetes v1.24 and later, services account secrets are no longer automatically created, so the service account secret must be manually created.
+    > **Note** For Kubernetes v1.24 and later, services account secrets are no longer automatically created, so the service account secret must be manually created.
 
 ### <a id='rw-serv-accts'></a>Read-write service account
 
@@ -266,7 +266,7 @@ To create a read-write service account, run the following command. The command c
     EOF
     ```
 
-    >**Note:** For Kubernetes v1.24, services account secrets are no longer automatically created, so the service account secret must be manually created.
+    >**Note** For Kubernetes v1.24, services account secrets are no longer automatically created, so the service account secret must be manually created.
 
 ## <a id='get-access-token'></a>Getting the Access Token
 

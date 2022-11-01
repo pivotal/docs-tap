@@ -49,7 +49,7 @@ $ curl https://metadata-store.example.com/api/health -k -v
   ...
 ```
 
->**Note:** The preceding `curl` example uses the not secure (`-k`) flag to skip TLS verification because the Store installs a self-signed certificate. The following section shows how to access the CA certificate to enable TLS verification for HTTP clients.
+>**Note** The preceding `curl` example uses the not secure (`-k`) flag to skip TLS verification because the Store installs a self-signed certificate. The following section shows how to access the CA certificate to enable TLS verification for HTTP clients.
 
 ## <a id="tls"></a>Get the TLS CA certificate
 

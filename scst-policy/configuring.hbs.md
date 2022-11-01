@@ -132,7 +132,7 @@ Authorities listed in the `authorities` block of the ClusterImagePolicy are
 Each `key` authority can contain a PEM-encoded ECDSA public key, a `secretRef`,
 or a `kms` path.
 
->**Note:** Only ECDSA public keys are supported.
+>**Note** Only ECDSA public keys are supported.
 
 ```yaml
 spec:
@@ -149,7 +149,7 @@ spec:
         kms: KMSPATH
 ```
 
->**Note:** The secret referenced in `key.secretRef.name` must be created
+>**Note** The secret referenced in `key.secretRef.name` must be created
 in the `cosign-system` namespace or the namespace where the Policy Controller
 is installed. Such secret must only contain one `data` entry with the public key.
 

@@ -41,7 +41,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
       - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
 
-    >**Note:** Add any unsigned image that must run in your namespace to the previous policy.
+    >**Note** Add any unsigned image that must run in your namespace to the previous policy.
     For example, if you add a Tekton pipeline that runs a gradle image for testing, you need
     to add `glob: index.docker.io/library/gradle*` to `spec.images.glob` in the preceding code. If you relocated
     the Tanzu Application Platform images to your own registry,
@@ -82,7 +82,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
     Where `YOUR-NAMESPACE` is the name of your secure namespace.
 
->**Note:** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
+>**Note** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
 that have chosen to opt in.
 
 When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `spec.images.glob[]` you define in the configuration. For more information about configuring an image policy, see [Configuring Supply Chain Security Tools - Policy](../scst-policy/configuring.md).

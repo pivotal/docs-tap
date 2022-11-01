@@ -3,7 +3,7 @@
 This document describes how to install cert-manager, Contour, and FluxCD Source Controller
 from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+>**Note** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include cert-manager, contour, and FluxCD Source Controller.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
@@ -293,7 +293,7 @@ To install Contour from the Tanzu Application Platform package repository:
         The LoadBalancer type is appropriate for most installations, but local
         clusters such as `kind` or `minikube` can fail to complete the package
         install if LoadBalancer services are not supported.
-        
+
         For local clusters, you can configure `contour.evnoy.service.type` to be
         `NodePort`. If your local cluster is set up with extra port mappings on
         the nodes, you might also need configure `envoy.service.nodePorts.http`

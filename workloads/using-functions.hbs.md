@@ -197,4 +197,4 @@ To deploy and verify your function:
    For language support for the REST API, see [Supported languages and frameworks](#supportedlangs)
    earlier in this topic.
 
-   > **Note:** You must have curl installed on your computer.
+   > **Note** You must have curl installed on your computer.

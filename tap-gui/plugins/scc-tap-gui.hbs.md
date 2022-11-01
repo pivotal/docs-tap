@@ -101,4 +101,4 @@ Vulnerability source scans and image scans for workload builds can be viewed by 
 
 The vulnerabilities (i.e., CVEs) displayed represent any vulnerability associated to a package/version found in the source code or image, including vulnerabilities from past scans.  In other words, the vulnerability scan data represents the scan that just occurred, plus any other vulnerabilities related to the packages found in that scan.
 
->**Note:** For example, the log4shell package is found in image ABC on January 1st without any CVEs.  On January 15th, the log4j CVE is found while scanning image DEF.  If a user returns to the Image Scan stage for image ABC, the log4j CVE will be shown associated to the log4shell package.
+>**Note** For example, the log4shell package is found in image ABC on January 1st without any CVEs.  On January 15th, the log4j CVE is found while scanning image DEF.  If a user returns to the Image Scan stage for image ABC, the log4j CVE will be shown associated to the log4shell package.

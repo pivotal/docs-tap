@@ -12,7 +12,7 @@ Before you can iterate on your function, you must have:
 - [Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.md)
 - [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later.
 
-> **Note:** The Tanzu Developer Tools extension currently only supports Java Functions.
+> **Note** The Tanzu Developer Tools extension currently only supports Java Functions.
 
 ## <a id="configuration"></a> Configure the Tanzu Developer Tools extension
 
@@ -70,7 +70,7 @@ and view your running application.
 
 1. View the changes to your workload running on the cluster.
 
-    > **Note:** When using Live Update, hot reload of your function on your cluster might not
+    > **Note** When using Live Update, hot reload of your function on your cluster might not
     > display changes made to your function.
     > To manually push changes to the cluster, run the `tilt up` command.
 

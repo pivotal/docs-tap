@@ -65,7 +65,7 @@ To start Live Update:
 
     ![Live Update config parameters](../images/intellij-liveupdate-config.png)
 
-> **Note:** You must compile your code before the changes are synchronized to the container.
+> **Note** You must compile your code before the changes are synchronized to the container.
 > For example, `Build Project`: `⌘`+`F9`.
 
 ### <a id="stop-liveupdate"></a> Stop Live Update

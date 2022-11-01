@@ -147,7 +147,7 @@ As shown earlier, the `imports` section calls a list of fragments to import and 
 all their options become options of the accelerator. Those options appear _after_
 the options defined by the accelerator, in the order the fragments are imported in.
 
->**Note:** It is even possible for a fragment to import another fragment, the semantics
+>**Note** It is even possible for a fragment to import another fragment, the semantics
 being the same as when an accelerator imports a fragment. This is a way to
 break apart a fragment even further if needed.
 
@@ -386,4 +386,4 @@ imports:
   tap-workload
 ```
 
->**Note:** the `imports` section at the end shows the fragments that this accelerator imports. The `options` section shows all options that are defined for this accelerator. This includes all options that are defined in the imported fragments, for example, the options for the Java version that are imported from the `java-version` fragment.
+>**Note** the `imports` section at the end shows the fragments that this accelerator imports. The `options` section shows all options that are defined for this accelerator. This includes all options that are defined in the imported fragments, for example, the options for the Java version that are imported from the `java-version` fragment.

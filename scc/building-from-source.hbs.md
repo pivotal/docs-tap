@@ -19,7 +19,7 @@ Regardless of the out of the box Supply Chain Package you've installed, you can 
 
 This document provides details about each approach.
 
->**Note:** To provide a prebuilt container image instead of
+>**Note** To provide a prebuilt container image instead of
 building the application from the beginning by using the supply chain, see
 [Using an existing image](pre-built-image.md).
 
@@ -69,7 +69,7 @@ Expect to see the following output:
       16 + |    subPath: tanzu-java-web-app
   ```
 
->**Note:** The Git repository URL must include the scheme: `http://`,
+>**Note** The Git repository URL must include the scheme: `http://`,
 `https://`, or `ssh://`.
 
 
@@ -149,7 +149,7 @@ Expect to see the following output:
       19 + |    subPath: tanzu-java-web-app
   ```
 
->**Note:** A secret reference is only provided to `GitRepository` if
+>**Note** A secret reference is only provided to `GitRepository` if
 `gitops_ssh_secret` is set to a non-empty string in some fashion,
 either by a package property or a workload parameter. To force a `GitRepository` to
 not reference a secret, set the value to an empty string (`""`).

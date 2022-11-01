@@ -2,7 +2,7 @@
 
 This document describes how to install the Eventing package from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+>**Note** Use the instructions on this page if you do not want to use a profile to install packages.
 The `full`, `iterate`, and `run` profiles include Eventing.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
@@ -61,7 +61,7 @@ To install Eventing:
           enable: true
         ```
 
-        >**Note:** For most installations, you can leave the `eventing-values.yaml` empty, and use the default values.
+        >**Note** For most installations, you can leave the `eventing-values.yaml` empty, and use the default values.
 
         If you are running on a single-node cluster, such as kind or minikube, set the `lite.enable: true`
         option. This option reduces resources requests for CNR deployments.

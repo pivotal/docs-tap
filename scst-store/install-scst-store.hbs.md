@@ -4,7 +4,7 @@
 This document describes how to install Supply Chain Security Tools - Store
 from the Tanzu Application Platform package repository.
 
->**Note:** VMware recommends installing Supply Chain Security Tools - Store by using Tanzu Application Platform Profiles.  See [About Tanzu Application Platform components and profiles](../about-package-profiles.md) and [Installing the Tanzu Application Platform Package and Profiles](../install.md).  Use the following instructions if you do not want to use a profile to install the Supply Chain Security Tools - Store package.
+>**Note** VMware recommends installing Supply Chain Security Tools - Store by using Tanzu Application Platform Profiles.  See [About Tanzu Application Platform components and profiles](../about-package-profiles.md) and [Installing the Tanzu Application Platform Package and Profiles](../install.md).  Use the following instructions if you do not want to use a profile to install the Supply Chain Security Tools - Store package.
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -54,7 +54,7 @@ To install Supply Chain Security Tools - Store:
     ```
 
     Where `VERSION` is the your package version number.
-    
+
     For example
 
     ```console
@@ -147,7 +147,7 @@ and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and 
       --version 1.0.2 \
       --namespace tap-install \
       --values-file metadata-store-values.yaml
-    
+
     - Installing package 'metadata-store.apps.tanzu.vmware.com'
     / Getting namespace 'tap-install'
     - Getting package metadata for 'metadata-store.apps.tanzu.vmware.com'
@@ -157,6 +157,6 @@ and you want to use `ClusterIP`, then create a `metadata-store-values.yaml` and 
     / Creating secret 'metadata-store-tap-install-values'
     | Creating package resource
     - Package install status: Reconciling
-    
+
     Added installed package 'metadata-store' in namespace 'tap-install'
     ```

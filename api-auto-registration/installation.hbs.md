@@ -2,7 +2,7 @@
 
 This topic describes how to install API Auto Registration from the Tanzu Application Platform package repository.
 
->**Note:** The iterate, run, and full profiles include API Auto Registration by default.
+>**Note** The iterate, run, and full profiles include API Auto Registration by default.
 > If your cluster is one of these profiles, skip the installation and proceed to the [Usage section](usage.md).
 > For information about profiles, see [About Tanzu Application Platform profiles](../about-package-profiles.md#profiles-and-packages).
 

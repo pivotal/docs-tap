@@ -37,7 +37,7 @@ It includes a sum of all workloads' source and image scan vulnerabilities.
 For example, if CVE-123 exists in the latest source scans and image scans of Workload ABC and
 Workload DEF, it is counted four times.
 
-> **Note:** The sum includes any CVEs on the allowlist (ignoreCVEs).
+> **Note** The sum includes any CVEs on the allowlist (ignoreCVEs).
 
 The **Workload Build Vulnerabilities** tables, with the **Violates Policy** tab and
 **Does Not Violate** tab, separate workloads based on the scan policy.

@@ -21,7 +21,7 @@ This topic dives into the specifics of that last phase of the supply chains
 by pushing configuration to a Git repository or an
 image registry.
 
->**Note:** For more information about providing source code either from a
+>**Note** For more information about providing source code either from a
 local directory or Git repository,
 see [Building from Source](building-from-source.md).
 
@@ -381,7 +381,7 @@ provide the credentials for that repository as follows:
     password: GIT-PASSWORD
   ```
 
->**Note:** Both the Tekton annotation and the `basic-auth` secret type must be
+>**Note** Both the Tekton annotation and the `basic-auth` secret type must be
 set. `GIT-SERVER` must be prefixed with the appropriate URL scheme and the Git
 server. For example, for `https://github.com/vmware-tanzu/cartographer`,
 `https://github.com` must be provided as the `GIT-SERVER`.

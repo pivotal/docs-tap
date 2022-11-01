@@ -58,9 +58,9 @@ type: Opaque
 data:
   username: <BASE64>
   password: <BASE64>
-  caFile:   <BASE64>   // PEM Encoded certificate data for Custom CA 
+  caFile:   <BASE64>   // PEM Encoded certificate data for Custom CA
   certFile: <BASE64>   // PEM-encoded client certificate
-  keyFile:  <BASE64>   // Private Key  
+  keyFile:  <BASE64>   // Private Key
 ```
 
 Maven supports a broad set of `version` syntax. Source Controller supports a strict subset of Maven's version syntax in order to ensure compatibility and avoid user confusion. The subset of supported syntax may grow over time, but will never expand past the syntax defined directly by Maven. This behavior means that we can use `mvn` as a reference implementation for artifact resolution.
@@ -77,4 +77,4 @@ Version support implemented in the following order:
 
 5. Version ranges - <https://maven.apache.org/enforcer/enforcer-rules/versionRanges.html>. Support is planned for a future release.
 
-**NOTE:** Pinned versions should be immutable, all other versions are dynamic and may change at any time. The `.spec.interval` defines how frequently to check for updated artifacts.
+**Note** Pinned versions should be immutable, all other versions are dynamic and may change at any time. The `.spec.interval` defines how frequently to check for updated artifacts.

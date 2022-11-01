@@ -61,7 +61,7 @@ added privileges they grant before allowing their use in a cluster.
 When deploying instances of workshop environments, the operator must expose the instances
 by using an external URL for access to define the domain name that is used as a suffix to host names for instances.
 
->**Note:** For the custom domain you are using, configure your DNS with a wildcard domain to forward all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
+>**Note** For the custom domain you are using, configure your DNS with a wildcard domain to forward all requests for subdomains of the custom domain to the ingress router of the Kubernetes cluster.
 
 VMware recommends that you avoid using a `.dev` or `.app` domain name, because such domain names require
 browsers to use HTTPS and not HTTP. Although you can provide a certificate for secure
@@ -69,7 +69,7 @@ connections under the domain name for use by Learning Center, this doesn't exten
 may do. If workshop instructions require that you create ingresses in Kubernetes
 using HTTP only, a `.dev` or `.app` domain name cannot work in the browser.
 
->**Note:** If you are running Kubernetes on your local machine using a system such as `minikube` and you don't have a custom domain name that maps to the IP address for the cluster, you can use a `nip.io` address. For example, if `minikube ip` returned `192.168.64.1`, you can use the 192.168.64.1.nip.io domain. You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This causes a failure as internal services needing to connect to each other end up connecting to themselves instead, because the address resolves to the host loopback address of `127.0.0.1`.
+>**Note** If you are running Kubernetes on your local machine using a system such as `minikube` and you don't have a custom domain name that maps to the IP address for the cluster, you can use a `nip.io` address. For example, if `minikube ip` returned `192.168.64.1`, you can use the 192.168.64.1.nip.io domain. You cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This causes a failure as internal services needing to connect to each other end up connecting to themselves instead, because the address resolves to the host loopback address of `127.0.0.1`.
 
 If needed, you can override the `shared.ingress_domain` in the values file of Tanzu Application Platform with the `ingressDomain` parameter of learning center:
 

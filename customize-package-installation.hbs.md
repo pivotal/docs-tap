@@ -47,7 +47,7 @@ To customize a package that was installed manually:
    ...
    ```
 
-   > **Note:** You can suffix the extension annotation with `.x`, where `x` is a number, to
+   > **Note** You can suffix the extension annotation with `.x`, where `x` is a number, to
    > apply multiple overlays.
    > For more information, see the
    > [Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.40.0/package-install-extensions/).

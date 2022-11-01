@@ -51,7 +51,7 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
       ns_for_export_app_cert: "DEV-NAMESPACE"
   ```
 
-  >**Note:** The `ns_for_export_app_cert` supports one namespace at a time. If you have multiple namespaces you can replace this value with a `*`, but this exports the CA certificate to all namespaces. Consider whether this increased visibility presents a risk.
+  >**Note** The `ns_for_export_app_cert` supports one namespace at a time. If you have multiple namespaces you can replace this value with a `*`, but this exports the CA certificate to all namespaces. Consider whether this increased visibility presents a risk.
 
   Update Tanzu Application Platform to apply the changes:
 
@@ -107,7 +107,7 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
 
   For more insights on how to install Grype, see [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype).
 
-  >**Note:** If a mix of Grype templates (`<v1.2.0` and `≥v1.2.0`) are used, both `scanning` and `grype` must configure the parameters, and the secret must export to both scan-link-system and the dev namespace. Do this by exporting to `*` or by defining multiple secrets and exports. If grype is installed to multiple namespaces there must be corresponding exports. See [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype)
+  >**Note** If a mix of Grype templates (`<v1.2.0` and `≥v1.2.0`) are used, both `scanning` and `grype` must configure the parameters, and the secret must export to both scan-link-system and the dev namespace. Do this by exporting to `*` or by defining multiple secrets and exports. If grype is installed to multiple namespaces there must be corresponding exports. See [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype)
 
   Now update Tanzu Application Platform to apply the changes:
 

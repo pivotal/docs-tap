@@ -2,12 +2,12 @@
 
 This topic describes prerequisites for installing Supply Chain Security Tools - Scan (Carbon Black Scanner) from the Tanzu Application Platform package repository.
 
->**Note:** Carbon Black's image scanning capability is in beta. Carbon Black might only return
+>**Note** Carbon Black's image scanning capability is in beta. Carbon Black might only return
 a partial list of CVEs when scanning Buildpack images.
 
 ## <a id="prerecs"></a> Prepare the Carbon Black Scanner configuration
 
-To prepare the Carbon Black Scanner configuration before you install any scanners: 
+To prepare the Carbon Black Scanner configuration before you install any scanners:
 
 1. Obtain a Carbon Black API Token from Carbon Black Cloud.
 
@@ -18,7 +18,7 @@ To prepare the Carbon Black Scanner configuration before you install any scanner
     - `cbc_org_key` - The Org Key of your CBC organization
     - `cbc_saas_url` - The CBC Backend URL
 
-    > **Note:** Obtain all values from your CBC console.
+    > **Note** Obtain all values from your CBC console.
 
     ```yaml
     apiVersion: v1
@@ -32,7 +32,7 @@ To prepare the Carbon Black Scanner configuration before you install any scanner
       cbc_org_key: CBC-ORG-KEY
       cbc_saas_url: CBC-SAAS-URL
     ```
-    
+
 3. Apply the Carbon Black secret YAML file by running:
 
     ```console
@@ -46,7 +46,7 @@ Create a `values.yaml` file by using the following configuration:
 
     You must define the following text boxes in the `values.yaml` file for the Carbon Black Scanner configuration.
     You can add text boxes as needed to enable or deactivate behaviors.
-    You can append the values to this file as shown later in this topic. 
+    You can append the values to this file as shown later in this topic.
 
     ```yaml
     ---
@@ -59,7 +59,7 @@ Create a `values.yaml` file by using the following configuration:
 
      - `DEV-NAMESPACE` is your developer namespace.
 
-       >**Note:** To use a namespace other than the default namespace, ensure that the namespace exists before you install.
+       >**Note** To use a namespace other than the default namespace, ensure that the namespace exists before you install.
        If the namespace does not exist, the scanner installation fails.
 
      - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning.
@@ -74,13 +74,13 @@ Create a `values.yaml` file by using the following configuration:
 
 To Integrate:
 1. Do one of the following procedures:
-   
+
   - [Use the Supply Chain Security Tools - Store](#with-store)
   - [Without using the Supply Chain Security Tools - Store](#without-store)
-  
+
 2. Apply the YAML.
 
-### <a id="with-store"></a> Using Supply Chain Security Tools - Store Integration 
+### <a id="with-store"></a> Using Supply Chain Security Tools - Store Integration
 
 To persist the results found by the Carbon Black Scanner,
   you can enable the SCST - Store integration
@@ -97,7 +97,7 @@ To persist the results found by the Carbon Black Scanner,
        metadataStore:
          #! The url where the Store deployment is accessible.
          #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
-         url: "STORE-URL" 
+         url: "STORE-URL"
          caSecret:
            #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
            #! Default value is: "app-tls-cert"
@@ -117,12 +117,12 @@ To persist the results found by the Carbon Black Scanner,
        metadataStore:
          #! The url where the Store deployment is accesible.
          #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
-         url: "STORE-URL" 
+         url: "STORE-URL"
          caSecret:
            #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
            #! Default value is: "app-tls-cert"
            name: "CA-SECRET-NAME"
-           #! The namespace where the secrets for the Store Deployment live. 
+           #! The namespace where the secrets for the Store Deployment live.
            #! Default value is: "metadata-store"
            importFromNamespace: "STORE-SECRETS-NAMESPACE"
          #! authSecret is for multicluster configurations.
@@ -133,7 +133,7 @@ To persist the results found by the Carbon Black Scanner,
            importFromNamespace: "STORE-SECRETS-NAMESPACE"
        ```
 
-### <a id="without-store"></a> Without Supply Chain Security Tools - Store Integration 
+### <a id="without-store"></a> Without Supply Chain Security Tools - Store Integration
 
 If you don't want to enable the
   SCST - Store integration, explicitly deactivate the integration by appending
@@ -200,6 +200,6 @@ If you don't want to enable the
     kubectl apply -n $DEV_NAMESPACE -f <SCAN-POLICY-YAML>
     ```
 
->**Note:** The Carbon Black Scanner integration is only available for an image scan, not a source scan.
+>**Note** The Carbon Black Scanner integration is only available for an image scan, not a source scan.
 
 After all prerequisites are completed, follow the steps in [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md) to install the Carbon Black Scanner.

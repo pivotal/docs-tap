@@ -106,7 +106,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     tanzu package repository get tanzu-tap-repository --namespace tap-install
     ```
 
-    > **Note:** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
+    > **Note** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
     > Tanzu Application Platform v1.0.2 or earlier.
 
 1. List the available packages by running:
@@ -193,7 +193,7 @@ The sample values file contains the necessary defaults for:
 
     >**Important:** Keep the values file for future configuration use.
 
-    >**Important:** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later. 
+    >**Important:** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later.
     For more information, see [Policy controller known issues](scst-policy/known-issues.md).
 
 ### <a id='full-profile'></a> Full Profile

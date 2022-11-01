@@ -113,7 +113,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     REASON:
     ```
 
-    > **Note:** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
+    > **Note** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
     > Tanzu Application Platform v1.0.2 or earlier.
 
 1. List the available packages by running:
@@ -210,10 +210,10 @@ The sample values file contains the necessary defaults for:
 
 The following is the YAML file sample for the full-profile:
 
->**Important:** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later. 
+>**Important:** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later.
 For more information, see [Policy controller known issues](scst-policy/known-issues.md).
 
->**Note:** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`.
+>**Note** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`.
 Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
 
 ```yaml
@@ -442,7 +442,7 @@ After installing the Full profile on your cluster, you can install the
 Tanzu Developer Tools for VS Code Extension to help you develop against it.
 For instructions, see [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md).
 
->**Note:** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
+>**Note** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
 ```
 tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --values-file tap-values.yaml -n tap-install

@@ -2,7 +2,7 @@
 
 This topic describes the prerequisites for installing Supply Chain Security Tools - Scan (Snyk Scanner) from the Tanzu Application Platform package repository.
 
->**Note:** Snyk's image scanning capability is in beta. Snyk might only return a partial list of CVEs when scanning Buildpack images.
+>**Note** Snyk's image scanning capability is in beta. Snyk might only return a partial list of CVEs when scanning Buildpack images.
 
 ## <a id="prerecs"></a> Prepare the Snyk Scanner configuration
 
@@ -45,7 +45,7 @@ This topic describes the prerequisites for installing Supply Chain Security Tool
 
     - `DEV-NAMESPACE` is your developer namespace.
 
-        >**Note:** To use a namespace other than the default namespace, ensure the namespace exists before you install. If the namespace does not exist, the scanner installation fails.
+        >**Note** To use a namespace other than the default namespace, ensure the namespace exists before you install. If the namespace does not exist, the scanner installation fails.
 
     - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning.
 
@@ -158,6 +158,6 @@ metadataStore:
     kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
     ```
 
->**Note:** The Snyk Scanner integration is only available for an image scan, not a source scan.
+>**Note** The Snyk Scanner integration is only available for an image scan, not a source scan.
 
 After all prerequisites have been completed, follow the steps in [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md) to install the Snyk Scanner.

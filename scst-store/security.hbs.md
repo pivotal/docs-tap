@@ -46,7 +46,7 @@ Additionally, a service account is created and bound to the `Read and Write` clu
 
 There is no default service account bound to the `Read Only` cluster role. You must create your service account and cluster role binding to bind to the `Read Only` role.
 
->**Note:** There is no support for roles with access to only specific types of resources (i.e., images, packages, vulnerabilities, etc.)
+>**Note** There is no support for roles with access to only specific types of resources (i.e., images, packages, vulnerabilities, etc.)
 
 ## <a id='contain-sec'></a>Container security
 
@@ -69,7 +69,7 @@ runAsUser: 999
 fsGroup: 999
 ```
 
->**Note:**  `65532` is the uuid for the "nobody" user. `999` is the uuid for the "postgres" user.
+>**Note**  `65532` is the uuid for the "nobody" user. `999` is the uuid for the "postgres" user.
 
 ## <a id='sec-scan'></a>Security scanning
 

@@ -235,7 +235,7 @@ to the properties you want to change. For example:
       --namespace YOUR-DEV-NAMESPACE
     ```
 
->**Note:** Although you can customize the templates, if you are following the Getting Started
+>**Note** Although you can customize the templates, if you are following the Getting Started
 >guide, VMware recommends that you follow what is provided in the installation of
 >`grype.scanning.apps.tanzu.vmware.com`. This is created in the same namespace as configured by
 >using `grype.namespace` in either Tanzu Application Platform profiles or individual component

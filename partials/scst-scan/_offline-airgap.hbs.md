@@ -35,7 +35,7 @@ To use Grype in offline and air-gapped environments:
       patch.yaml: |
         #@ load("@ytt:overlay", "overlay")
 
-        #@overlay/match by=overlay.subset({"kind":"ScanTemplate","metadata":{"namespace":"<DEV-NAMESPACE>"}}),expects="1+" 
+        #@overlay/match by=overlay.subset({"kind":"ScanTemplate","metadata":{"namespace":"<DEV-NAMESPACE>"}}),expects="1+"
         #! developer namespace you are using
         ---
         spec:
@@ -66,8 +66,8 @@ To use Grype in offline and air-gapped environments:
             - name: ca-cert
               configMap:
                 name: <CONFIGMAP-NAME> #! name of the configmap created
-    ``` 
-    > **Note:** The default maximum allowed built age of Grype's vulnerability database is 5 days. This means that scanning with a 6 day old database causes the scan to fail. Stale databases weaken your security posture. VMware reccomends updating the database daily. You can use the `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in accordance with your security posture.
+    ```
+    > **Note** The default maximum allowed built age of Grype's vulnerability database is 5 days. This means that scanning with a 6 day old database causes the scan to fail. Stale databases weaken your security posture. VMware reccomends updating the database daily. You can use the `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in accordance with your security posture.
 
     You can also add more certificates to the ConfigMap created earlier, to handle connections to a private registry for example, and mount them in the `volumeMounts` section if needed.
 
@@ -83,8 +83,8 @@ To use Grype in offline and air-gapped environments:
         subPath: another-ca.cert #! key pointing to ca certificate
     ```
 
-    >**Note:** If you have more than one developer namespace and you want to apply this change to all of them, change the `overlay match` on top of the patch.yaml to the following:
-      
+    >**Note** If you have more than one developer namespace and you want to apply this change to all of them, change the `overlay match` on top of the patch.yaml to the following:
+
     ```yaml
     #@overlay/match by=overlay.subset({"kind":"ScanTemplate"}),expects="1+"
     ```

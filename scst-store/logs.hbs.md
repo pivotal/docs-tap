@@ -41,7 +41,7 @@ Error logs are always outputted regardless of the verbosity level, even when set
 ## <a id='obtain-logs'></a> Obtaining logs
 
 Kubernetes pods emit logs. The deployment has two pods: one for the database and one
-for the API back end. 
+for the API back end.
 
 Use `kubectl get pods` to obtain the names of the pods by running:
 
@@ -81,7 +81,7 @@ I1206 18:34:17.784900       1 main.go:180] Valid token audiences:
 {"level":"info","ts":"2022-05-27T13:47:52.541133699Z","logger":"MetadataStore","msg":"Server Settings","hostname":"metadata-store-app-5c9d6bccdb-kcrt2","bindingaddress":"localhost:9443"}
 {"level":"info","ts":"2022-05-27T13:47:52.541150096Z","logger":"MetadataStore","msg":"Database Settings","hostname":"metadata-store-app-5c9d6bccdb-kcrt2","maxopenconnection":10,"maxidleconnection":100,"connectionmaxlifetime":60}
 ```
-> **Note:** The `kube-rbac-proxy` container uses a different log format than the Store. For information about the proxy's container log format, see [Logging Formats](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#logging-formats) in Github.
+> **Note** The `kube-rbac-proxy` container uses a different log format than the Store. For information about the proxy's container log format, see [Logging Formats](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-instrumentation/logging.md#logging-formats) in Github.
 
 ##  <a id='api-endptlog-out'></a> API endpoint log output
 
@@ -179,7 +179,7 @@ production environment logs.
 Some Store logs display the executed SQL query commands when you set the verbosity level to `trace` or a
 failed SQL call occurs.
 
->**Note:** Some information in these SQL Query trace logs might be sensitive, and the user might not
+>**Note** Some information in these SQL Query trace logs might be sensitive, and the user might not
 want them exposed in production environment logs.
 
 ###  <a id='sql_query-out-format'></a> Format

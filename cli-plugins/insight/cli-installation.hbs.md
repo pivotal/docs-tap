@@ -1,6 +1,6 @@
 # Install the Tanzu Insight CLI plug-in
 
-**Note:**
+**Note**
 
 - By following the [instructions](../../install-tanzu-cli.md) to install the Tanzu CLI and all the plug-ins, the Tanzu Insight plug-in is also installed.
 

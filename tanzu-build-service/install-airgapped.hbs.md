@@ -72,7 +72,7 @@ To install the Tanzu Build Service package on an air-gapped environment:
     - `REPO-USERNAME` and `REPO-PASSWORD` are the user name and password for the user that can
     write to `REPO-NAME`.
 
-        >**Note:** If you do not want to use plaintext for these credentials, you can
+        >**Note** If you do not want to use plaintext for these credentials, you can
         >instead configure these credentials by using a Secret reference.
         >For more information, see [Use Secret references for registry credentials](#install-secret-refs).
 

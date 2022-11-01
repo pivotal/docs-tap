@@ -108,7 +108,7 @@ versions of the CLI core and plug-ins are installed by running:
 
 4. Install or update the CLI core by running:
 
-   >**Note:** Replace v0.25.0 with the version you've downloaded which can be found by running one
+   >**Note** Replace v0.25.0 with the version you've downloaded which can be found by running one
    the following code examples. For example, if the file version you download is v0.25.0.1, then set the version to v0.25.0
 
    - **For Linux:**
@@ -172,7 +172,7 @@ versions of the CLI core and plug-ins are installed by running:
 
 9. Click **New**, enter the path value, click **OK**.
 
-    >**Note:** The path value must not include **tanzu.exe**. For example, `C:\Program Files\tanzu`.
+    >**Note** The path value must not include **tanzu.exe**. For example, `C:\Program Files\tanzu`.
 
 10. Click **New** following the **System Variables** section, add a new environmental variable named `TANZU_CLI_NO_INIT` with a variable value `true`, click **OK**.
 
