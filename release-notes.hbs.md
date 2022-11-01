@@ -64,6 +64,10 @@ find vulnerabilities during a source scan.
 The vulnerabilities are still found during the image scan after the binaries are built and packaged
 as images.
 
+#### **TAP GUI Backend Kubernetes Plugin Reporting Failure in Multi-Cluster Environments:**
+
+There is currently a known issue with all released versions of TAP GUI where in a multi-cluster environment, if one request to a Kubernetes cluster fails, the `backstage-kubernetes-backend` will report a failure to the frontend. This is a known issue with upstream Backstage (see [this section of upstream Backstage code](https://github.com/backstage/backstage/blob/c7f88d041b671185dc7a01e716f80dca0709e2a1/plugins/kubernetes-backend/src/service/KubernetesFanOutHandler.ts#L250-L271) for details on why this issue occurs). This behavior is baked into the API at the Backstage level, so there is no known workarounds at this time. VMware is working on upstream commit(s) to Backstage to resolve this issue.
+
 ## <a id='1-3-0'></a> v1.3.0
 
 **Release Date**: October 11, 2022
