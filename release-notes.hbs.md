@@ -57,9 +57,9 @@ dependencies. For languages using dependency lock files, such as Golang and Node
 lock files to check the dependencies for vulnerabilities.
 
 For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
-present in the built binaries (`.jar` or `.war` files) instead.
+present in the built binaries, such as `.jar` or `.war` files.
 
-Because VMware does not encourage committing binaries to source code repositories, Grype fails to
+Because VMware does not recommend committing binaries to source code repositories, Grype fails to
 find vulnerabilities during a source scan.
 The vulnerabilities are still found during the image scan after the binaries are built and packaged
 as images.
