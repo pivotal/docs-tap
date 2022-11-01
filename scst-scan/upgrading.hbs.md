@@ -36,11 +36,11 @@ When you're upgrading to any version of Supply Chain Security Tools - Scan these
 
 ## <a id="upgrade-to-1-2-0"></a> Upgrading to Version v1.2.0
 
-If you're upgrading from a previous version of Supply Chain Security Tools - Scan to the version `v1.2.0`, do the following:
+To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
 
 1. Change the `SecretExports` from Supply Chain Security Tools - Store.
 
-  Supply Chain Security Tools - Scan needs information to connect to the Supply Chain Security Tools - Store deployment, you must change where these secrets are exported to enable the connection with the version `v1.2.0` of Supply Chain Security Tools - Scan.
+  SCST - Scan needs information to connect to the SCST - Store deployment, you must change where these secrets are exported to enable the connection with the version `v1.2.0` of SCST - Scan.
 
   **Single Cluster Deployment**
 
@@ -51,7 +51,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
       ns_for_export_app_cert: "<DEV-NAMESPACE>"
   ```
 
-  >**Note:** The `ns_for_export_app_cert` currently supports only one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this is discourage due to security reasons.
+  >**Note:** The `ns_for_export_app_cert` supports one namespace at a time. If you have multiple namespaces you can replace this value with a `*`, but this exports the CA certificate to all namespaces. Consider whether this increased visibility presents a risk.
 
   Update Tanzu Application Platform to apply the changes:
 
@@ -63,28 +63,28 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
   You must reapply the SecretExport by changing the toNamespace: scan-link-system to Namespace: `DEV-NAMESPACE`
 
-    ```yaml
-    ---
-    apiVersion: secretgen.carvel.dev/v1alpha1
-    kind: SecretExport
-    metadata:
-      name: store-ca-cert
-      namespace: metadata-store-secrets
-    spec:
-      toNamespace: "<DEV-NAMESPACE>"
-    ---
-    apiVersion: secretgen.carvel.dev/v1alpha1
-    kind: SecretExport
-    metadata:
-      name: store-auth-token
-      namespace: metadata-store-secrets
-    spec:
-      toNamespace: "<DEV-NAMESPACE>"
-    ```
+      ```yaml
+      ---
+      apiVersion: secretgen.carvel.dev/v1alpha1
+      kind: SecretExport
+      metadata:
+        name: store-ca-cert
+        namespace: metadata-store-secrets
+      spec:
+        toNamespace: "DEV-NAMESPACE"
+      ---
+      apiVersion: secretgen.carvel.dev/v1alpha1
+      kind: SecretExport
+      metadata:
+        name: store-auth-token
+        namespace: metadata-store-secrets
+      spec:
+        toNamespace: "DEV-NAMESPACE"
+      ```
 
 2. Update your `tap-values.yaml` file.
 
-  The installation of the Supply Chain Security Tools - Scan and the Grype scanner have some changes. The connection to the Supply Chain Security Tools - Store component have moved to the Grype scanner package. To deactivate the connection from the Supply Chain Security Tools - Scan, which is still present for backwards compatibility, but is deprecated and is removed in `v1.3.0`.
+  The installation of the SCST - Scan and the Grype scanner have some changes. The connection to the SCST - Store component have moved to the Grype scanner package. To deactivate the connection from the SCST - Scan, which is still present for backwards compatibility, but is deprecated and is removed in `v1.3.0`.
 
       ```yaml
       # Deactivate scan controller embedded Supply Chain Security Tools - Store integration
@@ -107,7 +107,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
   For more insights on how to install Grype, see [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype).
 
-  Note: If a mix of Grype templates (`<v1.2.0` and `≥v1.2.0`) are used, both `scanning` and `grype` need to configure the parameters, and the secret needs to export to both scan-link-system and the dev namespace (either by exporting to "*" or by defining multiple secrets and exports. (similarly if grype is installed to multiple namespaces there must be corresponding exports). See [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype)
+  >**Note:** If a mix of Grype templates (`<v1.2.0` and `≥v1.2.0`) are used, both `scanning` and `grype` must configure the parameters, and the secret must export to both scan-link-system and the dev namespace. Do this by exporting to `*` or by defining multiple secrets and exports. If grype is installed to multiple namespaces there must be corresponding exports. See [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype)
 
   Now update Tanzu Application Platform to apply the changes:
 
@@ -121,7 +121,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
 
 4. Verify the upgrade.
 
-  You can run any `ImageScan` or `SourceScan` in your `<DEV-NAMESPACE>` where the Grype Scanner was installed, and it finishes successfully. Here is a sample you can try to run to detect if everything upgraded successfully.
+  You can run any `ImageScan` or `SourceScan` in your `<DEV-NAMESPACE>` where the Grype Scanner was installed, and it finishes. Here is a sample you can try to run to detect if everything upgraded.
 
   Create the `verify-upgrade.yaml` file in your system with the following content:
 
