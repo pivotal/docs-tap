@@ -58,7 +58,7 @@ The `tap-values.yaml` is the file used to customize the profile in `Tanzu packag
 In this section, a Tekton pipeline is added to the cluster. In the next section,
 the workload is updated to point to the pipeline and resolve any current errors.
 
->**Note:** Developers can perform this step because they know how their application must be tested. The operator can also add the Tekton supply chain to a cluster before the developer get access.
+>**Note** Developers can perform this step because they know how their application must be tested. The operator can also add the Tekton supply chain to a cluster before the developer get access.
 
 To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
