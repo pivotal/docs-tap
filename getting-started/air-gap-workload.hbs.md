@@ -38,6 +38,7 @@ To create a workload from Git through https, follow these steps:
     ```
 
     Where:
+
     - USERNAME-BASE64 is the base64 encoded user name.
     - PASSWORD-BASE64 is the base64 encoded password.
     - CADATA-BASE64 is the base64 encoded CA certificate for the
