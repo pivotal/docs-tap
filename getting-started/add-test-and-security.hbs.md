@@ -19,7 +19,7 @@ The default Out of the Box (OOTB) Supply Chain Basic and its dependencies were i
 The following installations also provide a sample Tekton pipeline that tests your sample application.  The pipeline is configurable. Therefore, you can customize the steps to perform
 either additional testing or other tasks with Tekton Pipelines.
 
->**Important:** You can only have one Tekton pipeline per namespace.
+>**Important** You can only have one Tekton pipeline per namespace.
 
 ## <a id="install-OOTB-test"></a>Install OOTB Supply Chain with Testing
 
@@ -58,7 +58,7 @@ The `tap-values.yaml` is the file used to customize the profile in `Tanzu packag
 In this section, a Tekton pipeline is added to the cluster. In the next section,
 the workload is updated to point to the pipeline and resolve any current errors.
 
->**Note:** Developers can perform this step because they know how their application must be tested. The operator can also add the Tekton supply chain to a cluster before the developer get access.
+>**Note** Developers can perform this step because they know how their application must be tested. The operator can also add the Tekton supply chain to a cluster before the developer get access.
 
 To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 

@@ -11,7 +11,7 @@ For information about installing Tanzu Application Platform in an air-gapped env
 - Create a testing supply chain workload.
 - Create a testing scanning supply chain workload.
 
-## Create a workload from Git
+## <a id="create-workload"></a>Create a workload from Git
 
 To create a workload from Git through https, follow these steps:
 
@@ -21,7 +21,7 @@ To create a workload from Git through https, follow these steps:
     kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
     ```
 
-2. (Optional) To pass in  login credentials for a Git repository along with the CA certificate, create a file called git-credentials.yaml. For example:
+2. (Optional) To pass in  login credentials for a Git repository with the certificate authority (CA) certificate, create a file called git-credentials.yaml. For example:
 
     ```yaml
     apiVersion: v1
@@ -38,12 +38,12 @@ To create a workload from Git through https, follow these steps:
     ```
 
     Where:
-    - USERNAME-BASE64 is the base64 encoded username.
+    - USERNAME-BASE64 is the base64 encoded user name.
     - PASSWORD-BASE64 is the base64 encoded password.
     - CADATA-BASE64 is the base64 encoded CA certificate for the
     Git repository.
 
-3. If you would like to pass in a custom settings.xml for Java, create a file called settings-xml.yaml similar to the following example:
+3. To pass in a custom settings.xml for Java, create a file called settings-xml.yaml. For example:
 
    ```yaml
    apiVersion: v1
@@ -82,23 +82,23 @@ To create a workload from Git through https, follow these steps:
    ```
 
 
-## Create a basic supply chain workload
+## <a id="create-basic-wkload"></a>Create a basic supply chain workload
 
-Next, create your basic supply chain workload. Due to a bug, you must pass in a build environment:
+Next, create your basic supply chain workload. Due to an unresolved issue, you must pass in a build environment:
 
 ```console
 tanzu apps workload create APPNAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
 ```
 
-If you would rather pass the CA certificate in at workload create time, use the following command:
+To instead pass the CA certificate in when you create the workload, run:
 
 ```console
 tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "gitops_ssh_secret=git-ca" --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
 ```
 
-## Create a testing supply chain workload
+## <a id="create-test-wkload"></a>Create a testing supply chain workload
 
-For creating workload with the testing supply chain, follow instructions given at [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md).
+For instructions about creating a workload with the testing supply chain, see [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md).
 
 To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
@@ -131,31 +131,34 @@ spec:
               cd `mktemp -d`
 ```
 
-Where `MY-REGISTRY` is your own container registry. All the images given in the pipeline yaml should be relocated to your private container registry.
+Where `MY-REGISTRY` is your own container image registry. Relocate all the images given in the pipeline YAML to your private container registry.
 
-Create workload by running,
+Create the workload by running:
+
 ```console
 tanzu apps workload create APPNAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
 ```
 
-If you would rather pass the CA certificate in at workload create time, use the following command:
+To instead pass the CA certificate when you create the workload, run:
 
 ```console
 tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "gitops_ssh_secret=git-ca" --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
 ```
-## Create a testing scanning supply chain workload
 
-For creating workload with the testing supply chain, follow instructions given at [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test#install-OOTB-test-scan).
+## <a id="create-test-scan-wkload"></a>Create a testing scanning supply chain workload
+
+For instructions about creating a workload with the testing and scanning supply chain, see [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test#install-OOTB-test-scan).
 
 In addition to the prerequisites given at [Prerequisites](add-test-and-security.hbs.md#prereqs-install-OOTB-test-scan),
-Follow [Using Grype in offline and air-gapped environments](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-scan-offline-airgap.html) before workload creation.
+follow [Using Grype in offline and air-gapped environments](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-scan-offline-airgap.html) before workload creation.
 
-Create workload by running,
+Create workload by running:
+
 ```console
 tanzu apps workload create APPNAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
 ```
 
-If you would rather pass the CA certificate in at workload create time, use the following command:
+To instead pass the CA certificate when you create the workload, run:
 
 ```console
 tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --param "gitops_ssh_secret=git-ca" --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
