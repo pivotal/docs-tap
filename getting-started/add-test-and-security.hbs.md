@@ -184,7 +184,7 @@ the workload must be updated to point at your Tekton pipeline.
 - Before installing OOTB Supply Chain with Testing and Scanning, you must first install OOTB Supply Chain with Testing.
 - Both the Scan Controller and the default Grype scanner must be installed for scanning. Refer to the verify installation steps later in the topic.
 
-  > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for the languages and frameworks with check marks in the column "Extended Scanning Coverage using Anchore Grype" on the [Language and Framework Support Table](../about-package-profiles.hbs.md#language-support).
+  > **Note** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for the languages and frameworks with check marks in the column "Extended Scanning Coverage using Anchore Grype" on the [Language and Framework Support Table](../about-package-profiles.hbs.md#language-support).
 
 - Add the necessary configuration to
   [enable CVE scan results in the Tanzu Application Platform GUI](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
@@ -367,7 +367,7 @@ pipeline:
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
 
-    > **Important**: If the source or image scan has a "Failed" phase this means that the scan failed due to a scan policy violation and the supply chain stops. For information about the CVE triage workflow, see [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow).
+    > **Important** If the source or image scan has a "Failed" phase this means that the scan failed due to a scan policy violation and the supply chain stops. For information about the CVE triage workflow, see [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow).
 
 ### <a id="query-for-vuln"></a> Query for vulnerabilities
 
