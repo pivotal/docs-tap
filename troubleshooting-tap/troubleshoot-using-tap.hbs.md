@@ -444,11 +444,11 @@ GitHub.
 
 **Solution**
 
-Follow these steps to update your `aws-cli` to a supported `v2.7.35` or greater and update the kubeconfig entry for your EKS cluster(s):
+Follow these steps to update your `aws-cli` to a supported v2.7.35 or later, and update the kubeconfig entry for your EKS clusters:
 
 1. Update `aws-cli` to the latest version. See [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html) for more information.
 
-1. Update the kubeconfig entry for your EKS cluster(s):
+1. Update the kubeconfig entry for your EKS clusters:
 
     ```console
     aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
