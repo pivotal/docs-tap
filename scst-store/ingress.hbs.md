@@ -3,7 +3,7 @@
 Supply Chain Security Tools (SCST) - Store has ingress support by using Contour's HTTPProxy resources.
 To enable ingress support, a Contour installation must be available in the cluster.
 
-To change ingress configuration, do one of the following: 
+To change ingress configuration, edit your `tap-values.yaml` when you install a Tanzu Application Platform profile. Configure the `shared.ingress_domain` property and SCST - Store automatically uses that setting.
 
 - edit your `tap-values.yaml` when you install a Tanzu Application 
 Platform profile. Configure the `shared.ingress_domain` property and SCST - Store automatically uses
@@ -23,15 +23,11 @@ This is an example of a `tap-values.yaml`:
 metadata_store:
   ingress_enabled: "true"
   ingress_domain: "example.com"
-  app_service_type: "ClusterIP"  # Defaults to `LoadBalancer`. If ingress is enabled, set to `ClusterIP`.
-  tls:  # this section is only needed if a custom certificate is being provided
-    secretName: custom-cert   # name of the custom certificate to use
-    namespace: my-namespace   # namespace in which the certificate exists
+  app_service_type: "ClusterIP"  # Defaults to `LoadBalancer`. If ingress is enabled then this must be set to `ClusterIP`.
 ...
 ```
 
-SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`.
-For example, `metadata-store.example.com`. To create a route that supports HTTPS communication:
+SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`, for example, `metadata-store.example.com`. The created route supports HTTPS communication using a certificate. By default, a self-signed certificate is used with the same subject `Alternative Name`. See [Custom certificate configuration](custom-cert.hbs.md) for information about how to configure custom certificates.
 
 - if the `tls` section is configured, use the custom certificate.
 - if the `tls` section is not provided, use the self-signed certificate with the same subject `Alternative Name`.
@@ -70,8 +66,7 @@ $ curl https://metadata-store.example.com/api/health -k -v
 
 ## <a id="tls"></a>Get the TLS CA certificate
 
-To get SCST - Store's TLS CA certificate, use `kubectl get secret`. 
-This example saves the certificate to the environment variable and to a file.
+To get SCST - Store's TLS CA certificate, use `kubectl get secret`. In this example, you save the certificate to the environment variable to a file.
 
 ```bash
 kubectl get secret CERT-NAME -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > OUTPUT_FILE

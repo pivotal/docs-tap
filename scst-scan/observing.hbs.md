@@ -114,7 +114,7 @@ Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.
 
 #### <a id="deactivate-scst-store"></a> Deactivate Supply Chain Security Tools (SCST) - Store
 
-SCST - Store is a prerequisite for installing SCST - Scan.
+SCST - Store is a prerequisite<!--฿ Requirements are things needed to install and run the product. We list them on the product index page. Prerequisites are things needed for a given procedure beyond the product requirements. We list those on the procedure page. ฿--> for installing SCST - Scan.
 If you install without the SCST - Store, you must edit the
 configurations to deactivate the Store:
 
@@ -142,7 +142,7 @@ configurations to deactivate the Store:
   The provided SBOM has a Syft Schema Version which doesn't match the version that is supported by Grype...
   ```
 
-  This means that the Syft Schema Version from the provided SBOM doesn't match the version supported by the installed grype-scanner. There are two different methods to resolve this incompatibility issue:
+  This means that the Syft Schema Version from the provided SBOM doesn't match the version supported by the installed `grype-scanner`. There are two different methods to resolve this incompatibility issue:
 
   - (Preferred method) Install a version of [Tanzu Build Service](../tanzu-build-service/tbs-about.md) that provides an SBOM with a compatible Syft Schema Version.
   - Deactivate the `failOnSchemaErrors` in `grype-values.yaml`. See [Install Supply Chain Security Tools - Scan](install-scst-scan.md). Although this change bypasses the check on Syft Schema Version, it does not resolve the incompatibility issue and produces a partial scanning result.
