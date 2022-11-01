@@ -34,12 +34,12 @@ tap_gui:
         - type: 'config'
           clusters:
             - url: CLUSTER-URL
-              name: CLUSTER-NAME # Build profile cluster can go here
+              name: CLUSTER-NAME # Build profile cluster can go here.
               authProvider: serviceAccount
               serviceAccountToken: CLUSTER-TOKEN
               skipTLSVerify: TRUE-OR-FALSE-VALUE
             - url: CLUSTER-URL
-              name: CLUSTER-NAME # Run profile cluster can go here
+              name: CLUSTER-NAME # Run profile cluster can go here.
               authProvider: serviceAccount
               serviceAccountToken: CLUSTER-TOKEN
               skipTLSVerify: TRUE-OR-FALSE-VALUE
