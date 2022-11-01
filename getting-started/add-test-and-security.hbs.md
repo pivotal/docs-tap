@@ -19,7 +19,7 @@ The default Out of the Box (OOTB) Supply Chain Basic and its dependencies were i
 The following installations also provide a sample Tekton pipeline that tests your sample application.  The pipeline is configurable. Therefore, you can customize the steps to perform
 either additional testing or other tasks with Tekton Pipelines.
 
->**Important:** You can only have one Tekton pipeline per namespace.
+>**Important** You can only have one Tekton pipeline per namespace.
 
 ## <a id="install-OOTB-test"></a>Install OOTB Supply Chain with Testing
 
