@@ -20,7 +20,7 @@ docs.vmware.com is built.
       - [Installing the Tanzu Build Service dependencies](tbs-offline-install-deps.md)
       - [Configuring custom CAs for Tanzu Application Platform GUI](tap-gui-non-standard-certs-offline.md)
       - [Configuring Application Accelerator](application-accelerator-configuration-offline.md)
-      - [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.md)
+      - [Using Grype in offline and air-gapped environments](grype-offline-airgap.md)
       - [Setting up developer namespaces to use installed packages](set-up-namespaces-offline.md)
   - [Customizing package installation](customize-package-installation.md)
   - [Upgrading Tanzu Application Platform](upgrading.md)
