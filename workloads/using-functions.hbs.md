@@ -21,7 +21,7 @@ Compared with a traditional application:
 - A traditional webserver application might be a better fit if you want to implement an entire
   website or API in a single container
 
-> **Important:** Beta features have been tested for functionality, but not performance.
+> **Important** Beta features have been tested for functionality, but not performance.
 > Features enter the beta stage so that customers can gain early access, and give
 > feedback on the design and behavior.
 > Beta features might undergo changes based on this feedback before the end of the beta stage.
@@ -197,4 +197,4 @@ To deploy and verify your function:
    For language support for the REST API, see [Supported languages and frameworks](#supportedlangs)
    earlier in this topic.
 
-   > **Note:** You must have curl installed on your computer.
+   > **Note** You must have curl installed on your computer.

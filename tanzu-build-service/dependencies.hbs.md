@@ -1,6 +1,6 @@
 # Dependencies
 
-> **Important:** Ubuntu Bionic will stop receiving support in April 2023.
+> **Important** Ubuntu Bionic will stop receiving support in April 2023.
 > The Bionic stack for Tanzu Build Service is deprecated and will be removed in a future release.
 > VMware recommends that you migrate builds to Jammy stacks.
 > For how to migrate builds, see [Use Jammy stacks for a workload](#using-jammy).
@@ -57,7 +57,7 @@ To use the Jammy stacks or migrate an existing workload, configure the workload 
 builder by using the `param` flag, for example, `--param clusterBuilder=base-jammy`.
 For further instructions, see [Configure the cluster builder](tbs-workload-config.md#cluster-builder).
 
-> **Note:** While upgrading apps to a newer stack, you might encounter the build platform
+> **Note** While upgrading apps to a newer stack, you might encounter the build platform
 > erroneously reusing the old build cache. If you encounter this issue, delete
 > and recreate the workload in Tanzu Application Platform, or delete and
 > recreate the image in Tanzu Build Service.
@@ -70,7 +70,7 @@ To default all workloads to the Jammy stack, include the `stack_configuration: j
 This installs Tanzu Application Platform and Tanzu Build Service with no Bionic-based builders,
 and all workloads will be built with Jammy.
 
-> **Important:** Only use this configuration if you are sure all workloads can be safely built with Jammy.
+> **Important** Only use this configuration if you are sure all workloads can be safely built with Jammy.
 
 ## <a id="lite-vs-full"></a> About lite and full dependencies
 
@@ -203,7 +203,7 @@ The following table compares the contents of the `lite` and `full` dependencies.
 
 ## <a id="deprecated-auto-updates"></a> About automatic dependency updates (deprecated)
 
->**Important:** The automatic updates feature is being deprecated.
+>**Important** The automatic updates feature is being deprecated.
 >The recommended way to patch dependencies is by upgrading Tanzu Application Platform
 >to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
 

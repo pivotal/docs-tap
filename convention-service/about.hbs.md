@@ -1,15 +1,15 @@
-# Convention Service 
+# Convention Service
 
->**Caution:** This component is being deprecated in favor of [Cartographer Conventions](../cartographer-conventions/about.md).
+>**Caution** This component is being deprecated in favor of [Cartographer Conventions](../cartographer-conventions/about.md).
 
 The [Cartographer Conventions](../cartographer-conventions/about.md) component must be installed to add conventions to your Pod.
 The v0.7.x version of the convention controller is a passive system that translates the CRDs to the [new group](../cartographer-conventions/reference/pod-intent.md).
 
 
-#### <a id="ootb-conventions"></a> Sample conventions  
+#### <a id="ootb-conventions"></a> Sample conventions
 There are several out-of-the-box conventions provided with a full profile installation of Tanzu Application Platform or individual component installation of the following packages.
-  
-  ```shell 
+
+  ```shell
     ❯ kubectl get pkgi -n tap-install | grep conventions
       appliveview-conventions    conventions.appliveview.tanzu.vmware.com       1.3.0-build.1       Reconcile succeeded   2m5s
       developer-conventions      developer-conventions.tanzu.vmware.com         0.7.0               Reconcile succeeded   2m5s
@@ -41,13 +41,13 @@ The webhook configuration for each convention is as follows:
           name: appliveview-webhook
           namespace: app-live-view-conventions
   ```
-  
+
   ```shell
   ❯ kubectl get deployment.apps/appliveview-webhook -n app-live-view-conventions                                                     ⏎
     NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
     appliveview-webhook   1/1     1            1           8m45s
   ```
-  
+
 + [Developer conventions](../developer-conventions/about.hbs.md)
 
   ```yaml
@@ -60,7 +60,7 @@ The webhook configuration for each convention is as follows:
           name: webhook
           namespace: developer-conventions
   ```
-  
+
   ```shell
   ❯ kubectl get deployment.apps/webhook -n developer-conventions                                                                     ⏎
     NAME      READY   UP-TO-DATE   AVAILABLE   AGE

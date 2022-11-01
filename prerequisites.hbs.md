@@ -25,7 +25,7 @@ Installation requires:
         - 10 GB of available storage if installing Tanzu Build Service with the `full` set of dependencies, which are suitable for offline
         environments.
 
-        >**Note:** For production environments, `full` dependencies are recommended to
+        >**Note** For production environments, `full` dependencies are recommended to
         >optimize security and performance. For more information about Tanzu Build Service
         >dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.md#lite-vs-full).
 
@@ -117,15 +117,15 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
 
 - To deploy Tanzu Application Platform packages iterate profile on local Minikube cluster, your cluster must have at least:
     - 8&nbsp;vCPUs for i9 (or equivalent) available to Tanzu Application Platform components on Mac OS.
-    - 12&nbsp;vCPUs for i7 (or equivalent) available to Tanzu Application Platform components on Mac OS. 
+    - 12&nbsp;vCPUs for i7 (or equivalent) available to Tanzu Application Platform components on Mac OS.
     - 8&nbsp;vCPUs available to Tanzu Application Platform components on Linux and Windows.
-    - 12&nbsp;GB of RAM available to Tanzu Application Platform components on Mac OS, Linux and Windows. 
+    - 12&nbsp;GB of RAM available to Tanzu Application Platform components on Mac OS, Linux and Windows.
     - 70&nbsp;GB of disk space available per node.
-- To deploy Tanzu Application Platform packages full profile, your cluster must have at least:    
+- To deploy Tanzu Application Platform packages full profile, your cluster must have at least:
     - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
     - 16&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
     - 100&nbsp;GB of disk space available per node.
-- To deploy Tanzu Application Platform packages build, run and iterate (shared) profile, your cluster must have at least:    
+- To deploy Tanzu Application Platform packages build, run and iterate (shared) profile, your cluster must have at least:
     - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
     - 12&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
     - 100&nbsp;GB of disk space available per node.

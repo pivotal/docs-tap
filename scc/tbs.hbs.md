@@ -92,10 +92,10 @@ builds of that Workload:
     settings.xml: <settings>...</settings>
   ```
 
->**Note:** See the Kpack [ServiceBinding documentation](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md) in GitHub 
+>**Note** See the Kpack [ServiceBinding documentation](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md) in GitHub
 for more details about build-time service bindings.
 
->**Note:** these configuration only take effect when Kpack
+>**Note** these configuration only take effect when Kpack
 is used for building a container image. If you use Dockerfile-based builds
 by leveraging the `dockerfile` parameter, see [dockerfile-based
  builds](dockerfile-based-builds.md) for more information.

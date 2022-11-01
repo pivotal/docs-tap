@@ -22,7 +22,7 @@ that have chosen to opt-in. This is done by adding the label
 kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
 ```
 
->**Caution:** Without a Policy Controller ClusterImagePolicy applied, there are
+>**Caution** Without a Policy Controller ClusterImagePolicy applied, there are
 fallback behaviors where images are validated against the public Sigstore
 Rekor and Fulcio servers by using a keyless authority flow. Therefore, if the
 deploying image is signed publicly by a third-party using the keyless
@@ -132,7 +132,7 @@ Authorities listed in the `authorities` block of the ClusterImagePolicy are
 Each `key` authority can contain a PEM-encoded ECDSA public key, a `secretRef`,
 or a `kms` path.
 
->**Note:** Only ECDSA public keys are supported.
+>**Note** Only ECDSA public keys are supported.
 
 ```yaml
 spec:
@@ -149,7 +149,7 @@ spec:
         kms: KMSPATH
 ```
 
->**Note:** The secret referenced in `key.secretRef.name` must be created
+>**Note** The secret referenced in `key.secretRef.name` must be created
 in the `cosign-system` namespace or the namespace where the Policy Controller
 is installed. Such secret must only contain one `data` entry with the public key.
 

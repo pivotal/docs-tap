@@ -57,7 +57,7 @@ kubectl describe secret tap-gui-token-ID
 
 Where ID is the secret name from the first step.
 
-> **Caution:** If you enable metrics for a cluster but do not have a metrics server running on it,
+> **Caution** If you enable metrics for a cluster but do not have a metrics server running on it,
 > Tanzu Application Platform web interface users see an error notifying them that there is a
 > problem connecting to the back end.
 
@@ -134,7 +134,7 @@ The following are some attributes that are displayed in the overview card:
 
 ![Screenshot of an Overview card. The VIEW POD LOGS and VIEW .YAML buttons are at the top-right.](images/runtime-resources-overview.png)
 
->**Note:** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
+>**Note** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
 applications supporting Application Live View.
 
 ### <a id="status-card"></a>Status card

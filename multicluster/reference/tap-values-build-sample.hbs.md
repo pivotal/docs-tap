@@ -78,7 +78,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
 credentials to pull an image from the registry for scanning.
 
-> **Note:** When you install Tanzu Application Platform, it is bootstrapped with the `lite`
+> **Note** When you install Tanzu Application Platform, it is bootstrapped with the `lite`
 > set of dependencies, including buildpacks and stacks, for application builds.
 > For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
 > You can find the buildpack and stack artifacts installed with Tanzu Application Platform
@@ -87,8 +87,8 @@ credentials to pull an image from the registry for scanning.
 > to the latest patch, or
 > by using an [automatic update process (deprecated)](../../tanzu-build-service/install-tbs.md#auto-updates-config).
 
-> **Note:** See [Multicluster setup](../../scst-store/multicluster-setup.hbs.md) for more information about the value settings of `grype.metadataStore`.
+> **Note** See [Multicluster setup](../../scst-store/multicluster-setup.hbs.md) for more information about the value settings of `grype.metadataStore`.
 
-> **Note:** The `scanning.metadatastore.url` must be set to an empty string if you're installing Grype Scanner v1.2.0 or later or Snyk Scanner to deactivate the embedded Supply Chain Security Tools - Store integration.
+> **Note** The `scanning.metadatastore.url` must be set to an empty string if you're installing Grype Scanner v1.2.0 or later or Snyk Scanner to deactivate the embedded Supply Chain Security Tools - Store integration.
 
->**Note:** If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.
+>**Note** If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.

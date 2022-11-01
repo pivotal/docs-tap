@@ -129,7 +129,7 @@ tanzu accelerator create my-spring-cloud-serverless --git-repo https://github.co
   --tags "spring,cloud,function,serverless"
 ```
 
->**Note:** It is not currently possible to provide the `git.ignore` option with the Tanzu CLI.
+>**Note** It is not currently possible to provide the `git.ignore` option with the Tanzu CLI.
 
 ### <a id="examples-multi-manifest"></a> Creating a manifest with multiple accelerators and fragments
 
@@ -241,7 +241,7 @@ For Git repositories that aren't accessible anonymously, you need to provide cre
 
 To create an accelerator using a private Git repository, first create a secret with the HTTP credentials.
 
->**Note:** For better security, use an access token as the password.
+>**Note** For better security, use an access token as the password.
 
 ```sh
 kubectl create secret generic https-credentials \
@@ -286,7 +286,7 @@ spec:
       name: https-credentials
 ```
 
-> **Note:**  For https credentials the `REPOSITORY-URL` must use `https://` as the URL scheme
+> **Note**  For https credentials the `REPOSITORY-URL` must use `https://` as the URL scheme
 
 If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
@@ -294,7 +294,7 @@ If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accel
 
 To create an accelerator using a private Git repository with a self-signed certificate, first create a secret with the HTTP credentials and the certificate.
 
->**Note:** For better security, use an access token as the password.
+>**Note** For better security, use an access token as the password.
 
 ```sh
 kubectl create secret generic https-ca-credentials \
@@ -341,7 +341,7 @@ spec:
       name: https-ca-credentials
 ```
 
-> **Note:**  For https credentials the `REPOSITORY-URL` must use `https://` as the URL scheme
+> **Note**  For https credentials the `REPOSITORY-URL` must use `https://` as the URL scheme
 
 If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 
@@ -401,7 +401,7 @@ spec:
       name: ssh-credentials
 ```
 
-> **Note:**  When using SSH credentials the `REPOSITORY-URL` must include the user name as part of the URL. For example: `ssh://user@example.com:22/repository.git`. See the [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for more detail.
+> **Note**  When using SSH credentials the `REPOSITORY-URL` must include the user name as part of the URL. For example: `ssh://user@example.com:22/repository.git`. See the [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for more detail.
 
 If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
 

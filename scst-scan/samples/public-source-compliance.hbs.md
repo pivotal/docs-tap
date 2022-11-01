@@ -8,7 +8,7 @@ SourceScan uses the ScanPolicy to run a compliance check against the CVEs.
 
 The example policy is set to only consider `Critical` severity CVEs as violations, which returns 7 Critical Severity Vulnerabilities.
 
->**Note:** This example ScanPolicy is deliberately constructed to showcase the features available
+>**Note** This example ScanPolicy is deliberately constructed to showcase the features available
 >and must not be considered an acceptable base policy.
 
 For this example, the scan (at the time of writing):

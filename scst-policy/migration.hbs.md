@@ -25,7 +25,7 @@ to enable Policy Controller verification.
 kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
 ```
 
->**Caution:** Without a Policy Controller ClusterImagePolicy applied, there are
+>**Caution** Without a Policy Controller ClusterImagePolicy applied, there are
 fallback behaviors where images are validated against the public Sigstore
 Rekor and Fulcio servers by using a keyless authority flow. Therefore, if the
 deploying image is signed publicly by a third-party using the keyless

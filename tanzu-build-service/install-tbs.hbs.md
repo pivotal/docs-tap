@@ -8,7 +8,7 @@ Tanzu Build Service.
 The Full, Iterate, and Build profiles include Tanzu Build Service.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
->**Note:** The following procedure might not include some configurations required for your environment.
+>**Note** The following procedure might not include some configurations required for your environment.
 >For advanced information about installing Tanzu Build Service, see the
 >[Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
 
@@ -68,7 +68,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
     For Google Cloud Registry, use `_json_key` as the username and the contents
     of the service account JSON file for the password.
 
-        >**Note:** If you do not want to use plaintext for these credentials, you can configure them
+        >**Note** If you do not want to use plaintext for these credentials, you can configure them
         by using a secret reference or by using AWS IAM authentication.
         >For more information, see [Use Secret References for registry credentials](#install-secret-refs)
         >or [Use AWS IAM authentication for registry credentials](#tbs-tcli-install-ecr).
@@ -79,7 +79,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
 provide a PEM-encoded CA certificate for Tanzu Build Service.
 This certificate is used for accessing the container image registry and is also provided to the build process.
 
-    > **Note:** If `shared.ca_cert_data` is configured in the `tap-values.yaml` file,
+    > **Note** If `shared.ca_cert_data` is configured in the `tap-values.yaml` file,
     > Tanzu Build Service inherits that value.
     >
     > Configuring `ca_cert_data` key in the `tbs-values.yaml` file adds the CA certificates at build time.
@@ -190,7 +190,7 @@ credentials for the writable repository in your registry (`kp_default_repository
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
-    >**Note:** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
+    >**Note** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
@@ -223,7 +223,7 @@ registry used when installing Tanzu Application Platform.
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
-    >**Note:** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
+    >**Note** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
@@ -272,7 +272,7 @@ To install `full` Tanzu Build Service dependencies:
 1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
  to your `tbs-values.yaml` file. For example:
 
-    >**Note:** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
+    >**Note** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
@@ -326,7 +326,7 @@ To install `full` Tanzu Build Service dependencies:
 
 ## <a id="auto-updates-config"></a> (Optional) Configure automatic dependency updates
 
->**Important:** The automatic updates feature is being deprecated.
+>**Important** The automatic updates feature is being deprecated.
 >The recommended way to patch dependencies is by upgrading Tanzu Application Platform
 >to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
 
@@ -336,7 +336,7 @@ For more information about automatic dependency updates, see [About automatic de
 
 To configure automatic dependency updates, add the following to the contents of your `tbs-values.yaml`:
 
->**Note:** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
+>**Note** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
 >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
 ```yaml

@@ -19,7 +19,7 @@ The default Out of the Box (OOTB) Supply Chain Basic and its dependencies were i
 The following installations also provide a sample Tekton pipeline that tests your sample application.  The pipeline is configurable. Therefore, you can customize the steps to perform
 either additional testing or other tasks with Tekton Pipelines.
 
->**Important:** You can only have one Tekton pipeline per namespace.
+>**Important** You can only have one Tekton pipeline per namespace.
 
 ## <a id="install-OOTB-test"></a>Install OOTB Supply Chain with Testing
 
@@ -58,7 +58,7 @@ The `tap-values.yaml` is the file used to customize the profile in `Tanzu packag
 In this section, a Tekton pipeline is added to the cluster. In the next section,
 the workload is updated to point to the pipeline and resolve any current errors.
 
->**Note:** Developers can perform this step because they know how their application must be tested. The operator can also add the Tekton supply chain to a cluster before the developer get access.
+>**Note** Developers can perform this step because they know how their application must be tested. The operator can also add the Tekton supply chain to a cluster before the developer get access.
 
 To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
@@ -184,7 +184,7 @@ the workload must be updated to point at your Tekton pipeline.
 - Before installing OOTB Supply Chain with Testing and Scanning, you must first install OOTB Supply Chain with Testing.
 - Both the Scan Controller and the default Grype scanner must be installed for scanning. Refer to the verify installation steps later in the topic.
 
-  > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for the languages and frameworks with check marks in the column "Extended Scanning Coverage using Anchore Grype" on the [Language and Framework Support Table](../about-package-profiles.hbs.md#language-support).
+  > **Note** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for the languages and frameworks with check marks in the column "Extended Scanning Coverage using Anchore Grype" on the [Language and Framework Support Table](../about-package-profiles.hbs.md#language-support).
 
 - Add the necessary configuration to
   [enable CVE scan results in the Tanzu Application Platform GUI](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).

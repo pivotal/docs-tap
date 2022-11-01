@@ -31,7 +31,7 @@ For more information about the Tiltfile, see the [Tilt documentation](https://do
 The Tanzu Developer Tools on IntelliJ extension enables you to debug your application in an environment
 similar to production by debugging on your Tanzu Application Platform enabled Kubernetes cluster.
 
->**Note:** An environment’s similarity to production relies on keeping dependencies updated, among other variables.
+>**Note** An environment’s similarity to production relies on keeping dependencies updated, among other variables.
 
 ## <a id="yaml-file-format"></a> YAML file format
 

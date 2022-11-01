@@ -17,7 +17,7 @@ To enable the Actuators on a .NET Core App:
     <PackageReference Include="Steeltoe.Management.EndpointCore" Version="$(SteeltoeVersion)" />
     ```
 
-    >**Note:** The PackageReference is expected to change to `Steeltoe.Management.Endpoint` from version Steeltoe 4.0 onwards.
+    >**Note** The PackageReference is expected to change to `Steeltoe.Management.Endpoint` from version Steeltoe 4.0 onwards.
 
 2. Call the extension `AddAllActuators` in your `Program.cs` file:
 
@@ -93,7 +93,7 @@ tanzu apps workload create steeltoe-app --type web --app steeltoe-app --image IM
 
 Where `IMAGE-NAME` is the name of your application image.
 
->**Note:** Thread metrics is available in SteeltoeVersion `3.2.*`. To enable the Threads page in the Application Live View UI, add the following configuration to your `.csproj` file:
+>**Note** Thread metrics is available in SteeltoeVersion `3.2.*`. To enable the Threads page in the Application Live View UI, add the following configuration to your `.csproj` file:
 
 ```xml
 <PropertyGroup>

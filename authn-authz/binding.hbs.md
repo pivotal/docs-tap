@@ -15,7 +15,7 @@ The following sections cover the Tanzu Application Platform RBAC CLI plug-in.
 1. Download the latest Tanzu CLI version.
 1. Download the Tanzu Application Platform RBAC CLI plug-in `tar.gz` file from [Tanzu Network](https://network.tanzu.vmware.com/products/tap-auth).
 1. Ensure you have admin access to the cluster.
-1. Ensure you have configured an authentication solution for the cluster. 
+1. Ensure you have configured an authentication solution for the cluster.
 You can use [Pinniped](https://pinniped.dev/) or the authentication service native to your Kubernetes distribution.
 
 
@@ -23,7 +23,7 @@ You can use [Pinniped](https://pinniped.dev/) or the authentication service nati
 
 Follow these steps to install the Tanzu Application Platform RBAC CLI plug-in:
 
-> **Caution:** The Tanzu Application Platform RBAC CLI plug-in is currently in beta and is
+> **Caution** The Tanzu Application Platform RBAC CLI plug-in is currently in beta and is
 >intended for evaluation and test purposes only.
 
 1. Untar the `tar.gz` file:
@@ -60,7 +60,7 @@ Use a different kubeconfig location by running:
 tanzu rbac --kubeconfig PATH-OF-KUBECONFIG binding add --user USER --role ROLE --namespace NAMESPACE
 ```
 
-> **Note:** The environment variable `KUBECONFIG` is not implemented.
+> **Note** The environment variable `KUBECONFIG` is not implemented.
 > You must use the `--kubeconfig` flag to enter a different location.
 
 For example:

@@ -19,13 +19,13 @@ Here are some handy commands for debugging or troubleshooting the APIDescriptor 
 
 4. Patch a APIDescriptor that is stuck in Deleting mode.
 
-   This might happen if the controller package is uninstalled before you clean up the APIDescriptor resources. 
+   This might happen if the controller package is uninstalled before you clean up the APIDescriptor resources.
    You can reinstall the package and delete all the APIDescriptor resources first, or run the following command for each stuck APIDescriptor resource.
 
     ```console
     kubectl patch apidescriptor <api-apidescriptor-name> -p '{"metadata":{"finalizers":null}}' --type=merge
     ```
-    >**Note:** If you manually remove the finalizers from the APIDescriptor resources, you can have stale API entities within Tanzu Application Platform GUI that you must manually deregister.
+    >**Note** If you manually remove the finalizers from the APIDescriptor resources, you can have stale API entities within Tanzu Application Platform GUI that you must manually deregister.
 
 5. If using OpenAPI v2 specifications with `schema.$ref`, the specifications fail validation due to a known issue.
 To pass the validation, you can convert the specifications to OpenAPI v3 by pasting your specifications into https://editor.swagger.io/ and selecting "Edit > Convert to OpenAPI 3"

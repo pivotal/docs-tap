@@ -113,7 +113,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     REASON:
     ```
 
-    > **Note:** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
+    > **Note** The `VERSION` and `TAG` numbers differ from the earlier example if you are on
     > Tanzu Application Platform v1.0.2 or earlier.
 
 1. List the available packages by running:
@@ -201,7 +201,7 @@ The sample values file contains the necessary defaults for:
     - The meta-package, or parent Tanzu Application Platform package.
     - Subordinate packages, or individual child packages.
 
-    >**Important:** Keep the values file for future configuration use.
+    >**Important** Keep the values file for future configuration use.
 
 
 1. [View possible configuration settings for your package](view-package-config.hbs.md)
@@ -372,7 +372,7 @@ To install Tanzu Application Platform with Jammy as the only available stack, us
 
 ### <a id='custom-scc'></a> Custom SCC
 
->**Important:** This section only applies when you install Tanzu Application Platform on Red Hat OpenShift Container Platform.
+>**Important** This section only applies when you install Tanzu Application Platform on Red Hat OpenShift Container Platform.
 
 In Red Hat OpenShift, Security Context Constraints (SCC) are used to restrict privileges for pods.
 SCCs define a set of rules that a pod must satisfy to be created.
@@ -440,7 +440,7 @@ After installing the Full profile on your cluster, you can install the
 Tanzu Developer Tools for VS Code Extension to help you develop against it.
 For instructions, see [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md).
 
->**Note:** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
+>**Note** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
 ```
 tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --values-file tap-values.yaml -n tap-install
@@ -529,7 +529,7 @@ To exclude packages from a Tanzu Application Platform profile:
       - service-bindings.lab.vmware.com
     ```
 
->**Important:** If you exclude a package after performing a profile installation including that package, you cannot see the accurate package states immediately after running `tap package installed list -n tap-install`. Also, you can break package dependencies by removing a package. Allow 20 minutes to verify that all packages have reconciled correctly while troubleshooting.
+>**Important** If you exclude a package after performing a profile installation including that package, you cannot see the accurate package states immediately after running `tap package installed list -n tap-install`. Also, you can break package dependencies by removing a package. Allow 20 minutes to verify that all packages have reconciled correctly while troubleshooting.
 
 ## <a id='next-steps'></a>Next steps
 

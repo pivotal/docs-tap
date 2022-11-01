@@ -45,7 +45,7 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
     kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
     ```
 
-    >**Note:** This step is not required if you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) instead of secrets. You can specify the Role Amazon Resource Name (ARN) in the next step.
+    >**Note** This step is not required if you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) instead of secrets. You can specify the Role Amazon Resource Name (ARN) in the next step.
 
 1. To add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace, run:
 
@@ -97,7 +97,7 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
     EOF
     ```
 
-    >**Note:** If you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html), you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret. Your service account entry then looks like the following:
+    >**Note** If you install Tanzu Application Platform on AWS with EKS and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html), you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret. Your service account entry then looks like the following:
 
     ```
     apiVersion: v1

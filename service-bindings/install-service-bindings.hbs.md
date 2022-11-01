@@ -3,7 +3,7 @@
 This document describes how to install Service Bindings
 from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+>**Note** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include Service Bindings.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 

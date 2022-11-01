@@ -1,6 +1,6 @@
 # Install Supply Chain Security Tools - Sign
 
->**Caution:** This component is being deprecated in favor of [Supply Chain Security Tools - Policy Controller](../scst-policy/overview.md).
+>**Caution** This component is being deprecated in favor of [Supply Chain Security Tools - Policy Controller](../scst-policy/overview.md).
 >To migrate from Supply Chain Security Tools - Sign to Supply Chain Security Tools - Policy Controller, please follow these [steps](../scst-policy/migration.hbs.md)
 
 Supply Chain Security Tools - Sign is released as part of Tanzu Application
@@ -16,14 +16,14 @@ public cosign registry. If you want to provide your own key and images, follow t
 [cosign quick start guide](https://github.com/sigstore/cosign#quick-start) in GitHub to
 generate your own keys and sign an image.
 
->**Caution:** This component rejects pods if the webhook fails or is incorrectly configured.
+>**Caution** This component rejects pods if the webhook fails or is incorrectly configured.
 >If the webhook is preventing the cluster from functioning,
 >see [Supply Chain Security Tools - Sign Known Issues](../release-notes.md)
 > in the Tanzu Application Platform release notes for recovery steps.
 
 ## <a id='install-scst-sign'></a> Install
 
->**Note:** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from
+>**Note** v1alpha1 api version of the ClusterImagePolicy is no longer supported as the group name has been renamed from
 `signing.run.tanzu.vmware.com` to `signing.apps.tanzu.vmware.com`.
 
 To install Supply Chain Security Tools - Sign:
@@ -138,7 +138,7 @@ To install Supply Chain Security Tools - Sign:
           namespace: ca-namespace
       ```
 
-      >**Note:** This setting is allowed even if `custom_cas` was informed.
+      >**Note** This setting is allowed even if `custom_cas` was informed.
 
     - `custom_cas`:
       This setting enables adding certificate content in PEM format.
@@ -165,7 +165,7 @@ To install Supply Chain Security Tools - Sign:
             ----- END CERTIFICATE -----
       ```
 
-      >**Note:** This setting is allowed even if `custom_ca_secrets` was informed.
+      >**Note** This setting is allowed even if `custom_ca_secrets` was informed.
 
     - `deployment_namespace`:
       This setting controls the namespace to which this component is deployed.
@@ -244,7 +244,7 @@ To install Supply Chain Security Tools - Sign:
 
    After you run the commands above your signing package will be running.
 
-   >**Note:** This component requires extra configuration steps to work properly. See
+   >**Note** This component requires extra configuration steps to work properly. See
    >[Configuring Supply Chain Security Tools - Sign](configuring.md)
    >for instructions on how to apply the required configuration.
 

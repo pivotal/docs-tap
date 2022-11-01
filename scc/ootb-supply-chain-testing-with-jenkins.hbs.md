@@ -253,7 +253,7 @@ It is pulled at the time that supply chain executes the job. As a result, it
 does not implicitly have access to the `imagePullSecrets` with the required
 credentials.
 
-> **Important:** The `ServiceAccount` that a developer can configure with their
+> **Important** The `ServiceAccount` that a developer can configure with their
 `Workload`s is *not* passed to the task and is not used to pull the Jenkins
 Adapter container image.  If you have followed the Tanzu Application Platform
 Install Guide then you have a `Secret` named `tap-registry` in each of your
@@ -327,7 +327,7 @@ that is sent to the Jenkins job.  The parameter are entered into the
 [{"name":"GIT_URL", "value":"https://github.com/spring-projects/spring-petclinic"}, {"name":"GIT_BRANCH", "value":"main"}]
 ```
 
-> **Important:** None of the fields in the `Workload` resource are implicitly passed to the
+> **Important** None of the fields in the `Workload` resource are implicitly passed to the
 Jenkins job. You have to set them in the `job-params` explicitly.
 
 >**Exception:** The `SOURCE_URL` and `SOURCE_REVISION` parameters are sent to the

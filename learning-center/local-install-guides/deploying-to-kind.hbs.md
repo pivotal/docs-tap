@@ -77,7 +77,7 @@ To install secret-gen controller, run:
 kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/latest/download/release.yml
 ```
 
->**Note:** Type "y" and enter to continue when prompted during installation of both kapp and secret-gen controllers.
+>**Note** Type "y" and enter to continue when prompted during installation of both kapp and secret-gen controllers.
 
 ## <a id="install-tanzu-pkg-repo"></a> Install Tanzu package repository
 
@@ -112,7 +112,7 @@ Follow these steps to install the Tanzu package repository:
 
   Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
 
-  >**Note:** We are currently on build 7. If this changes, we need to update the command with the correct build version after the --url flag.
+  >**Note** We are currently on build 7. If this changes, we need to update the command with the correct build version after the --url flag.
 
 1. To check the package repository install status, run:
 
@@ -162,7 +162,7 @@ kubectl set env deployment/learningcenter-operator -n eduk8s INGRESS_DOMAIN=192.
 
 This causes the Learning Center operator to redeploy with the new configuration. You can now deploy workshops.
 
->**Note:** Some home Internet gateways implement what is called rebind protection. These gateways do not allow DNS names from the public Internet bind to local IP address ranges inside the home network. If your home Internet gateway has such a feature and it is enabled, it blocks `nip.io` addresses from working. In this case, you must configure your home Internet gateway to allow `*.nip.io` names to be bound to local addresses. Also, you cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This causes a failure, because when internal services need to connect to each other, they connect to themselves instead.  This happens because the address resolves to the host loopback address of `127.0.0.1`.
+>**Note** Some home Internet gateways implement what is called rebind protection. These gateways do not allow DNS names from the public Internet bind to local IP address ranges inside the home network. If your home Internet gateway has such a feature and it is enabled, it blocks `nip.io` addresses from working. In this case, you must configure your home Internet gateway to allow `*.nip.io` names to be bound to local addresses. Also, you cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This causes a failure, because when internal services need to connect to each other, they connect to themselves instead.  This happens because the address resolves to the host loopback address of `127.0.0.1`.
 
 ## <a id="install-lc-pkg-k8s-clust"></a> Install Learning Center package onto a Kubernetes cluster
 

@@ -48,7 +48,7 @@ To install a new scanner, follow these steps:
 
 1. Create a `values.yaml` to apply custom configurations to the scanner:
 
-    > **Note:** This step might be required for some scanners but optional for others.
+    > **Note** This step might be required for some scanners but optional for others.
 
     To list the values you can configure for any scanner, run:
 
@@ -128,7 +128,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
    ```console
     kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
   ```
-> **Note:** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For more information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
+> **Note** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For more information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
 
 1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed:
 
@@ -152,7 +152,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 2. Create the following ImageScan YAML:
 
-    > **Note:** Some scanners do not support both `ImageScan` and `SourceScan`.
+    > **Note** Some scanners do not support both `ImageScan` and `SourceScan`.
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -187,7 +187,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 3. Create the following SourceScan YAML:
 
-    > **Note:** Some scanners do not support both `ImageScan` and `SourceScan`.
+    > **Note** Some scanners do not support both `ImageScan` and `SourceScan`.
 
     ```yaml
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
@@ -277,7 +277,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     sourcescan.scanning.apps.tanzu.vmware.com/grypesourcescan-sample-public   Completed   5805c650          https://github.com/houndci/hound.git   8m34s   21         121    112      9     0         263
     ```
 
-    > **Note:** If you define a `ScanPolicy` for the scans and the evaluation finds a violation, the `Phase` is `Failed` instead of `Completed`. In both cases the scan finished successfully.
+    > **Note** If you define a `ScanPolicy` for the scans and the evaluation finds a violation, the `Phase` is `Failed` instead of `Completed`. In both cases the scan finished successfully.
 
 6. Clean up:
 
@@ -306,7 +306,7 @@ ootb_supply_chain_testing_scanning:
       policy: SOURCE-SCAN-POLICY
 ```
 
-> **Note:** For the Supply Chain to work properly, the `SOURCE-SCAN-TEMPLATE` must support blob files and the `IMAGE-SCAN-TEMPLATE` must support private images.
+> **Note** For the Supply Chain to work properly, the `SOURCE-SCAN-TEMPLATE` must support blob files and the `IMAGE-SCAN-TEMPLATE` must support private images.
 
 For example:
 

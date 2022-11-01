@@ -77,7 +77,7 @@ Example:
       Imgpkg: exit status 1 (stderr: Error: Checking if image is bundle: Collecting images: Working with registry.tanzu.vmware.com/app-live-view/application-live-view-install-bundle@sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: GET https://registry.tanzu.vmware.com/v2/app-live-view/application-live-view-install-bundle/manifests/sha256:b13b9ba81bcc985d76607cfc04bcbb8829b4cc2820e64a99e0af840681da12aa: UNAUTHORIZED: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull: unauthorized to access repository: app-live-view/application-live-view-install-bundle, action: pull
   ```
 
->**Note:** This example shows an error received when with Application Live View as the package. This error can also occur with other packages.
+>**Note** This example shows an error received when with Application Live View as the package. This error can also occur with other packages.
 
 **Explanation**
 
@@ -115,7 +115,7 @@ Example:
   Error: failed to create ServiceAccount resource: serviceaccounts "app-accelerator-tap-install-sa" already exists
   ```
 
->**Note:** This example shows an error received with App Accelerator as the package. This error can also occur with other packages.
+>**Note** This example shows an error received with App Accelerator as the package. This error can also occur with other packages.
 
 **Explanation**
 
@@ -287,8 +287,8 @@ Your Kind cluster was created with port mappings, as described in the [Kind inst
 
 **Explanation**
 
-In Tanzu Application Platform v1.3.0, the default configuration for `contour.envoy.service.type` 
-is `LoadBalancer`. However, for the Envoy pods to be accessed by using the port mappings on your Kind cluster, 
+In Tanzu Application Platform v1.3.0, the default configuration for `contour.envoy.service.type`
+is `LoadBalancer`. However, for the Envoy pods to be accessed by using the port mappings on your Kind cluster,
 the service must be of type `NodePort`.
 
 **Solution**

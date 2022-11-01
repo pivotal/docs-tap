@@ -2,7 +2,7 @@
 
 This topic describes how to use API Auto Registration.
 
->**Note:** The run profile requires you to [update the install values](#update-values) before proceeding with the next steps.
+>**Note** The run profile requires you to [update the install values](#update-values) before proceeding with the next steps.
 > For iterate and full profiles, the default values work but you might prefer to update them anyway.
 > For more information about profiles, see [About Tanzu Application Platform profiles](../about-package-profiles.md#profiles-and-packages).
 

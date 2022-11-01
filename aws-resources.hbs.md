@@ -56,7 +56,7 @@ eksctl create cluster --name $EKS_CLUSTER_NAME --managed --region $AWS_REGION --
 
 Creating the control plane and node group can take anywhere from 30-60 minutes.
 
->**Note:** This step is optional if you already have an existing EKS Cluster of at least v1.22 with OpenID Connect (OIDC) authentication enabled. To enable the OIDC provider, see this [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html).
+>**Note** This step is optional if you already have an existing EKS Cluster of at least v1.22 with OpenID Connect (OIDC) authentication enabled. To enable the OIDC provider, see this [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html).
 
 ## <a id='create-container-repos'></a>Create the container repositories
 
@@ -92,7 +92,7 @@ To create the roles, you must establish two policies:
 
 - Permission Policy: Limits the scope of actions the role can take on resources.
 
->**Note:** These policies attempt to achieve a least privilege model. Review them to confirm they adhere to your organization's policies.
+>**Note** These policies attempt to achieve a least privilege model. Review them to confirm they adhere to your organization's policies.
 
 To simplify this walkthrough, use a script to create these policy documents and the roles. This script outputs the files and then creates the IAM roles by using the policy documents.
 

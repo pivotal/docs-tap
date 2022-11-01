@@ -51,8 +51,8 @@ Validate the `spec.OpenId.clientSecretRef`.
 
 ### Problem:
 
-The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern. 
-The previous `<providerId>/<userId>` pattern might cause bugs in URLs without proper URL-encoding in client applications. 
+The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern.
+The previous `<providerId>/<userId>` pattern might cause bugs in URLs without proper URL-encoding in client applications.
 
 ### Solution:
 
@@ -100,7 +100,7 @@ spec:
 ## Misconfigured redirect URI
 
 ### Problem:
-You see `Error: [invalid_request] OAuth 2.0 Parameter: redirect_uri` when signing in. 
+You see `Error: [invalid_request] OAuth 2.0 Parameter: redirect_uri` when signing in.
 
 ### Solution:
 The `redirectUri` of this `ClientRegistration` must refer to the URI of the registered Workload.
@@ -124,5 +124,5 @@ When attempting to fetch data after signing in to your application by using AppS
 ### Solution:
 Add the required scopes into your `ClientRegistration` yaml under `spec.scopes`.
 
->**Note:** Changes to the secret do not propagate to the `ClientRegistration`. If you recreated the `Secret` that contains the
+>**Note** Changes to the secret do not propagate to the `ClientRegistration`. If you recreated the `Secret` that contains the
 `clientSecret`, re-deploy the `ClientRegistration`.

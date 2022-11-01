@@ -3,7 +3,7 @@
 This document describes how to install Cloud Native Runtimes
 from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+>**Note** Use the instructions on this page if you do not want to use a profile to install packages.
 The `full`, `iterate`, and `run` profiles include Cloud Native Runtimes.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
@@ -73,7 +73,7 @@ To install Cloud Native Runtimes:
             namespace: tanzu-system-ingress
         ```
 
-        >**Note:** For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
+        >**Note** For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
 
         If you are running on a single-node cluster, such as kind or minikube, set the `lite.enable: true`
         option. This option reduces resources requests for CNR deployments.
@@ -128,7 +128,7 @@ To install Cloud Native Runtimes:
 
 1. Configure a namespace to use Cloud Native Runtimes:
 
-   >**Note:** This step covers configuring a namespace to run Knative services.
+   >**Note** This step covers configuring a namespace to run Knative services.
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >skip this step because namespace configuration is covered in
    >[Set up developer namespaces to use installed packages](../set-up-namespaces.hbs.md).
@@ -175,4 +175,4 @@ To install Cloud Native Runtimes:
         Events:              <none>
         ```
 
-        >**Note:** The service account has access to the `pull-secret` image pull secret.
+        >**Note** The service account has access to the `pull-secret` image pull secret.

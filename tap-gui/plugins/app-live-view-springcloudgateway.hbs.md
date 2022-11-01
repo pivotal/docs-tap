@@ -37,7 +37,7 @@ The page also displays the success rate for each of the routes.
 
 ![API Authentications By Path Page in UI](images/api-authentications-by-path.png)
 
-> **Note:** In addition to the preceding three pages, the Spring Boot actuator pages are
+> **Note** In addition to the preceding three pages, the Spring Boot actuator pages are
 > also displayed.
 
 ## <a id="troubleshooting"></a> Troubleshooting

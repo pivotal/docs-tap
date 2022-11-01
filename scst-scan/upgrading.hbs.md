@@ -51,7 +51,7 @@ If you're upgrading from a previous version of Supply Chain Security Tools - Sca
       ns_for_export_app_cert: "<DEV-NAMESPACE>"
   ```
 
-  >**Note:** The `ns_for_export_app_cert` currently supports only one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this is discourage due to security reasons.
+  >**Note** The `ns_for_export_app_cert` currently supports only one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this is discourage due to security reasons.
 
   Update Tanzu Application Platform to apply the changes:
 

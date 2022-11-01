@@ -132,7 +132,7 @@ ootb_templates:
 ```
 
 For details about how to edit an existing template, see
-[Modifying an Out of the Box Supply template](#modifying-an-out-of-the-box-template) 
+[Modifying an Out of the Box Supply template](#modifying-an-out-of-the-box-template)
 section.
 
 
@@ -230,7 +230,7 @@ modification to is `source-to-url` provided by the
       kubectl apply -f-
     ```
 
-    >**Note:** The modified supply chain does not outlive the destruction of the cluster. VMware recommends that you save it, for example, in a Git repository to install on every cluster where you expect the supply chain to exist.
+    >**Note** The modified supply chain does not outlive the destruction of the cluster. VMware recommends that you save it, for example, in a Git repository to install on every cluster where you expect the supply chain to exist.
 
 
 ## <a id="modify-ootb-sc"></a> Modifying an Out of the Box Supply template
@@ -251,7 +251,7 @@ The workflow for updating a template is as follows:
 1. Edit the template.
 1. Submit the modified template to the cluster.
 
->**Note:** You don't need to change anything related to supply
+>**Note** You don't need to change anything related to supply
 chains, because you're preserving the name of the object referenced
 by the supply chain.
 
@@ -367,7 +367,7 @@ contents of some of the objects that the installation submits to the cluster.
 Namely, such modifications result in the original definition
 persisting instead of the changes.
 
-For this reason, before you perform any customization to 
+For this reason, before you perform any customization to
 the Out of the Box packages, you must pause the top-level
 `PackageInstall/tap` object. Run:
 

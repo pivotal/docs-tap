@@ -17,7 +17,7 @@ You can view the issuer URI by running
 
 See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more information.
 
->**Note:** You must configure the issuer URI through `spec.tls` instead of `spec.issuerURI`, which is deprecated.
+>**Note** You must configure the issuer URI through `spec.tls` instead of `spec.issuerURI`, which is deprecated.
 
 Token signature keys are configured through `spec.tokenSignature`. If no keys are configured, no tokens can be minted.
 
@@ -159,7 +159,7 @@ status:
     - lastTransitionTime:
       message: ""
       reason: ""
-      status: "True" # or "False" 
+      status: "True" # or "False"
       type: ""
 ```
 
@@ -284,7 +284,7 @@ The `ServiceAccount` of the authorization server has a `Role` with the following
 
 This example requests an authorization server with two token signature keys and two identity providers.
 
->**Note:** The label used for matching to ClientRegistrations must be unique across namespaces.
+>**Note** The label used for matching to ClientRegistrations must be unique across namespaces.
 
 ```yaml
 ---

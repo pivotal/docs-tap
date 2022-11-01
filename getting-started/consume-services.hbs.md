@@ -125,7 +125,7 @@ This is the value to pass to `--service-ref` to create the application workload.
 
     Using the `--service-ref` flag instructs Tanzu Application Platform to bind the application workload to the service provided in the `ref`.
 
-    > **Note:** You are not passing a service ref to the `RabbitmqCluster` service instance directly,
+    > **Note** You are not passing a service ref to the `RabbitmqCluster` service instance directly,
     > but rather to the resource claim that has claimed the `RabbitmqCluster` service instance.
     > See the [consuming services diagram](#overview) at the beginning of this walkthrough.
 

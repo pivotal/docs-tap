@@ -4,7 +4,7 @@ The REST API with client authentication provides a means to have the portal crea
 
 If you do not need to authenticate users but still want to provide your own front end from which users select a workshop, such as when integrating workshops into an existing web property, you can enable anonymous mode and redirect users to a URL for workshop session creation.
 
->**Note:** Anonymous mode is only recommended for temporary deployments and not for a permanent web site providing access to workshops.
+>**Note** Anonymous mode is only recommended for temporary deployments and not for a permanent web site providing access to workshops.
 
 ## <a id="enabling-anonymous-access"></a>Enabling anonymous access
 
@@ -23,7 +23,7 @@ spec:
   ...
 ```
 
->**Note:** Users can still visit the training portal directly and view the catalog of available workshops, so instead of linking to the main page of the training portal, link from your custom index page to the individual links for creating each workshop.
+>**Note** Users can still visit the training portal directly and view the catalog of available workshops, so instead of linking to the main page of the training portal, link from your custom index page to the individual links for creating each workshop.
 
 ## <a id="trigger-workshop-creation"></a>Triggering workshop creation
 

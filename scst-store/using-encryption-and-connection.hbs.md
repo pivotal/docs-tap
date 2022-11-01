@@ -7,7 +7,7 @@ The connection to the Store requires TLS encryption and the configuration depend
     - [`LoadBalancer`](#use-lb)
     - [Port forwarding](#config-pf)
     - [`NodePort`](#use-np)
-    
+
 VMware recommended connection methods based on Tanzu Application Platform setup:
 
 * Single or multi-cluster with Contour = `Ingress`
@@ -16,11 +16,11 @@ VMware recommended connection methods based on Tanzu Application Platform setup:
 * Single cluster without Contour, without `LoadBalancer` and user does not have port forwarding access = `NodePort`
 * Multi-cluster without Contour = Not supported
 
-For a production environment, VMware recommends that the Store is installed with ingress enabled. 
+For a production environment, VMware recommends that the Store is installed with ingress enabled.
 
 ## <a id="ingress"></a>Using `Ingress`
 
-When using an [Ingress setup](ingress.hbs.md), the Store creates a 
+When using an [Ingress setup](ingress.hbs.md), the Store creates a
 specific TLS Certificate for HTTPS communications under the `metadata-store` namespace.
 
 To get a certificate, run:
@@ -29,8 +29,8 @@ To get a certificate, run:
 kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > insight-ca.crt
 ```
 
-The endpoint host is set to `metadata-store.<ingress-domain>`, 
-such as `metadata-store.example.domain.com`). 
+The endpoint host is set to `metadata-store.<ingress-domain>`,
+such as `metadata-store.example.domain.com`).
 
 This value matches the value of `ingress_domain`.
 
@@ -57,7 +57,7 @@ tanzu insight config set-target https://$METADATA_STORE_DOMAIN --ca-cert insight
 ## <a id="no-ingress"></a>Without `Ingress`
 
 If you install the Store without using the Ingress alternative,
-you must use a different Certificate resource for HTTPS communication. 
+you must use a different Certificate resource for HTTPS communication.
 In this case, query the `app-tls-cert` to get the CA Certificate:
 
 ```bash
@@ -115,7 +115,7 @@ sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts
 echo "127.0.0.1 $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
 ```
 
-> **Note:** You must run the following command in a separate terminal window, or run the command in the background:
+> **Note** You must run the following command in a separate terminal window, or run the command in the background:
 > `kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store &`
 
 Set the target by running:
@@ -128,7 +128,7 @@ tanzu insight config set-target https://$METADATA_STORE_DOMAIN:$METADATA_STORE_P
 
 `NodePort` is used to connect the CLI and Metadata Store as an alternative to port forwarding.  This is useful when the user does not have port forward access to the cluster.
 
->**Note:** NodePort is only recommended when: the cluster does not support ingress or the cluster does not support `LoadBalancer` type to services.  `NodePort` is not supported for a multi-cluster setup, as certificates cannot be modified. For example, the Metadata Store does not currently support a BYO-certificate.
+>**Note** NodePort is only recommended when: the cluster does not support ingress or the cluster does not support `LoadBalancer` type to services.  `NodePort` is not supported for a multi-cluster setup, as certificates cannot be modified. For example, the Metadata Store does not currently support a BYO-certificate.
 
 To use `NodePort`, you must obtain the CA certificate by using the following instructions:
 

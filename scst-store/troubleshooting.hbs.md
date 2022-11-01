@@ -20,7 +20,7 @@ If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and
 
 ### <a id='persistent-volume-retains-data-solution'></a>Solution
 
->**Caution:** Changing the database password deletes your Supply Chain Security Tools - Store data.
+>**Caution** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
 To redeploy the app, either use the same database password or follow these steps to erase the data on the volume:
 

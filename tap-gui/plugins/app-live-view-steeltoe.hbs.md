@@ -70,7 +70,7 @@ The page also includes the following capabilities for `editing` configured envir
 - The **Applied Overrides** section also enables the user to add new environment properties to the
   application.
 
-> **Note:** The `management.endpoint.env.post.enabled=true` must be set in the application config
+> **Note** The `management.endpoint.env.post.enabled=true` must be set in the application config
 > properties of the application, and a corresponding editable environment must be present in the
 > application.
 
@@ -94,7 +94,7 @@ Use the **Changes Only** toggle to display the changed log levels.
 Use the search feature to search by logger name.
 Click **Reset All** to reset all the loggers to the default state.
 
-> **Note:** The UI allows the user to change the log levels and see the live changes on the application. These changes are temporary and will go away if the underlying pod gets restarted.
+> **Note** The UI allows the user to change the log levels and see the live changes on the application. These changes are temporary and will go away if the underlying pod gets restarted.
 
 ![Screenshot of the Log Levels page. The log level WARN is selected for every logger except Default.](images/log-levels-steeltoe.png)
 

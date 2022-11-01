@@ -5,7 +5,7 @@ a series of parameters that customize supply chain behavior. This topic describe
 objects to change their behavior, organized by the resource in the
 supply chain where they are used.
 
-> **Note:** This topic describes parameters you can use to customize the scan policy for scanning source code that are related to a resource only available in the `ootb-supply-chain-testing-scanning`, but not `ootb-supply-chain-basic` or `ootb-supply-chain-testing` supply chains.
+> **Note** This topic describes parameters you can use to customize the scan policy for scanning source code that are related to a resource only available in the `ootb-supply-chain-testing-scanning`, but not `ootb-supply-chain-basic` or `ootb-supply-chain-testing` supply chains.
 
 ```
 source-provider                     fetches source code
@@ -106,7 +106,7 @@ Parameters:
   </tr>
 </table>
 
-> **Note:** It might not be necessary to change the default Git
+> **Note** It might not be necessary to change the default Git
 > implementation, but some providers such as Azure DevOps, require you to use
 > `libgit2` due to the server-side implementation providing support
 > only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2). For information about the features supported by each implementation, see
@@ -163,7 +163,7 @@ docs](../source-controller/reference.hbs.md#imagerepository).
 
 For information about how to use ImageRepository with the Tanzu CLI [Create a workload from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
 
-> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
@@ -220,7 +220,7 @@ The `source-tester` resource is in `ootb-supply-chain-testing` and
 calls the execution of a Tekton Pipeline, in the same namespace as the
 Workload, whenever its inputs change. For example, the source code revision that you want to test changes.
 
-A [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/) 
+A [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/)
 object is instantiated to ensure that there's always a run for a particular set
 of inputs. The parameters are passed from the Workload down to Runnable's
 Pipeline selection mechanism through `testing_pipeline_matching_labels` and the
@@ -437,7 +437,7 @@ Parameters:
 
 </table>
 
-> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
@@ -526,7 +526,7 @@ Parameters:
   </tr>
 </table>
 
-> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
@@ -671,7 +671,7 @@ Parameters:
   </tr>
 </table>
 
-> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
@@ -824,7 +824,7 @@ Parameters:
   </tr>
 </table>
 
-> **Note:** it's required that the Workload include the
+> **Note** it's required that the Workload include the
 > `apis.apps.tanzu.vmware.com/register-api: "true"` label to activate
 > this function.
 
@@ -880,11 +880,11 @@ Parameters:
   </tr>
 </table>
 
-> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
-> **Note:** On build clusters where a corresponding `ClusterDelivery` doesn't
+> **Note** On build clusters where a corresponding `ClusterDelivery` doesn't
 > exist, the Deliverable takes no effect (similarly to a Workload without a
 > SupplyChain, no action is taken).
 
@@ -1000,7 +1000,7 @@ Parameters:
   </tr>
 </table>
 
-> **Note:** It might not be necessary to change the default Git implementation
+> **Note** It might not be necessary to change the default Git implementation
 > but some providers, such as Azure DevOps, require you to use `libgit2` due to
 > the server-side implementation providing support only for [git's v2
 > protocol](https://git-scm.com/docs/protocol-v2). For information about the
@@ -1050,7 +1050,7 @@ Parameters:
 For information about custom resource details, see [ImageRepository reference
 docs](../source-controller/reference.hbs.md#imagerepository).
 
-> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Deliverable object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
@@ -1106,9 +1106,9 @@ Parameters:
 
 </table>
 
-> **Note:** the `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
+> **Note** the `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
 
-> **Note:** `--service-account` flag sets the `spec.serviceAccountName` key in
+> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Deliverable object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`. For details about RBAC and how `kapp-controller`
 > makes use of the ServiceAccount provided to it using the `serviceAccount`

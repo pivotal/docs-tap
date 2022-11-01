@@ -26,15 +26,15 @@ minikube start --insecure-registry=192.168.64.0/24
 
 If you already have a cluster started with Minikube, you cannot stop it and then provide this option when it is restarted. You can only use this option for a completely new cluster.
 
->**Note:** You must be using `dockerd`, not `containerd`, in the Minikube cluster. `containerd` does not accept an IP subnet when defining insecure registries to be trusted. It allows only specific hosts or IP addresses. Because you don't know what IP address Minikube will use in advance, you can't provide the IP address on the command line when starting Minikube to create the cluster.
+>**Note** You must be using `dockerd`, not `containerd`, in the Minikube cluster. `containerd` does not accept an IP subnet when defining insecure registries to be trusted. It allows only specific hosts or IP addresses. Because you don't know what IP address Minikube will use in advance, you can't provide the IP address on the command line when starting Minikube to create the cluster.
 
 ## <a id="prerequisites"></a> Prerequisites
 
 You must complete the following installation prerequisites as a user prior to installation:
 
-  - Create a tanzunet account and have access to your tanzunet credentials.  
-  - Install miniKube on your local machine.  
-  - Install tanzuCLI on your local machine.  
+  - Create a tanzunet account and have access to your tanzunet credentials.
+  - Install miniKube on your local machine.
+  - Install tanzuCLI on your local machine.
   - Install kubectlCLI on your local machine.
 
 ## <a id="ingress-ctrl-with-dns"></a> Ingress controller with DNS
@@ -50,7 +50,7 @@ minikube addons enable ingress-dns
 
 You are now ready to install the Learning Center package.
 
->**Note:** The ingress add-ons for Minikube do not work when using Minikube on top of Docker for Mac or Docker for Windows. On macOS you must use the Hyperkit VM driver. On Windows you must use the Hyper-V VM driver.
+>**Note** The ingress add-ons for Minikube do not work when using Minikube on top of Docker for Mac or Docker for Windows. On macOS you must use the Hyperkit VM driver. On Windows you must use the Hyper-V VM driver.
 
 ## <a id="install-carvel-tools"></a> Install carvel tools
 
@@ -68,7 +68,7 @@ To install secret-gen controller, run:
 kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/latest/download/release.yml
 ```
 
->**Note:** Type "y" and enter to continue when prompted during installation of both kapp and secret-gen controllers.
+>**Note** Type "y" and enter to continue when prompted during installation of both kapp and secret-gen controllers.
 
 ## <a id="install-tanzu-pkg-repo"></a> Install Tanzu package repository
 
@@ -103,7 +103,7 @@ Follow these steps to install the Tanzu package repository:
 
     Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
 
-    >**Note:** We are currently on build 7; if this changes, we need to update the command with the correct build version after the --url flag.
+    >**Note** We are currently on build 7; if this changes, we need to update the command with the correct build version after the --url flag.
 
 1. To check the package repository install status, run:
 
@@ -145,7 +145,7 @@ kubectl set env deployment/learningcenter-operator -n learningcenter INGRESS_DOM
 
 This causes the Learning Center operator to redeploy with the new configuration. You should now be able to start deploying workshops.
 
->**Note:** Some home Internet gateways implement what is called rebind protection. These gateways do not let DNS names from the public Internet bind to local IP address ranges inside the home network. If your home Internet gateway has such a feature and it is enabled, it blocks `nip.io` addresses from working. In this case, you must configure your home Internet gateway to allow `*.nip.io` names to be bound to local addresses.
+>**Note** Some home Internet gateways implement what is called rebind protection. These gateways do not let DNS names from the public Internet bind to local IP address ranges inside the home network. If your home Internet gateway has such a feature and it is enabled, it blocks `nip.io` addresses from working. In this case, you must configure your home Internet gateway to allow `*.nip.io` names to be bound to local addresses.
 
 ## <a id="install-lc-pkg-mk-cluster"></a> Install Learning Center package onto a minikube cluster
 

@@ -2,7 +2,7 @@
 
 This topic describes how to install API Auto Registration from the Tanzu Application Platform package repository.
 
->**Note:** The iterate, run, and full profiles include API Auto Registration by default. 
+>**Note** The iterate, run, and full profiles include API Auto Registration by default.
 > If your cluster is one of these profiles, skip the installation and proceed to the [Usage section](usage.md).
 > For information about profiles, see [About Tanzu Application Platform profiles](../about-package-profiles.md#profiles-and-packages).
 
@@ -46,7 +46,7 @@ To install the API Auto Registration package:
     ```console
     tanzu package available get apis.apps.tanzu.vmware.com/0.1.0 --values-schema --namespace tap-install
 
-    Retrieving package details for apis.apps.tanzu.vmware.com/0.1.0... 
+    Retrieving package details for apis.apps.tanzu.vmware.com/0.1.0...
     KEY                        DEFAULT                                       TYPE     DESCRIPTION
     ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS connections with a custom CA
     cluster_name               dev                                           string   Name of the cluster that will be used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
@@ -69,7 +69,7 @@ To install the API Auto Registration package:
 
     ```console
     kubectl get secret tap-values -n tap-install -o jsonpath="{.data['tap-values\.yaml']}" | base64 -d | yq '.tap_gui.app_config.app.baseUrl'
-    ``` 
+    ```
 
 3. (Optional) VMware recommends creating `api-auto-registration-values.yaml`.
 
@@ -88,14 +88,14 @@ To install the API Auto Registration package:
     ```
 
 4. Install the package using the Tanzu CLI:
-    
+
     ```console
-    tanzu package install api-auto-registration 
+    tanzu package install api-auto-registration
     --package-name apis.apps.tanzu.vmware.com
     --namespace tap-install
     --version $VERSION
     --values-file api-auto-registration-values.yaml
-    ``` 
+    ```
 
 5. Verify the package installation by running:
 
@@ -147,5 +147,5 @@ To install the API Auto Registration package:
     kubectl get apidescriptor sample-api-descriptor-with-absolute-url -o jsonpath='{.status.conditions[?(@.type=="Ready")].message}'
     ```
 
-    Verify that the entity is created in your Tanzu Application Platform GUI: 
+    Verify that the entity is created in your Tanzu Application Platform GUI:
     `<TAP_GUI_URL>/catalog/default/api/sample-api-descriptor-with-absolute-url`
