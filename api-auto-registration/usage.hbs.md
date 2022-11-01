@@ -4,13 +4,13 @@ This topic describes how to use API Auto Registration.
 
 >**Note:** The run profile requires you to [update the install values](#update-values) before proceeding with the next steps.
 > For iterate and full profiles, the default values work but you might prefer to update them anyway.
-> For more information about profiles, see [About TAP profiles](../about-package-profiles.md#profiles-and-packages).
+> For more information about profiles, see [About Tanzu Application Platform profiles](../about-package-profiles.md#profiles-and-packages).
 
-API Auto Registration requires that the following is present: 
+API Auto Registration requires that the following is present:
 
-1. A location exposing a dynamic or static API specifications. 
+1. A location exposing a dynamic or static API specification.
 
-2. an APIDescriptor CR with that location created in the cluster.
+2. An APIDescriptor CR with that location created in the cluster.
 You might additionally need to set up different install values for api-auto-registration package or CORS for OpenAPI specifications.
 
 How to configure:

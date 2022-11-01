@@ -236,7 +236,7 @@ to the properties you want to change. For example:
     ```
 
 >**Note:** Although you can customize the templates, if you are following the Getting Started
->guide, VMware reccomends that you follow what is provided in the installation of
+>guide, VMware recommends that you follow what is provided in the installation of
 >`grype.scanning.apps.tanzu.vmware.com`. This is created in the same namespace as configured by
 >using `grype.namespace` in either Tanzu Application Platform profiles or individual component
 >installation as in the earlier example. For more information, see
