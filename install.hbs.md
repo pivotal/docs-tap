@@ -213,12 +213,11 @@ The sample values file contains the necessary defaults for:
 
 ### <a id='full-profile'></a> Full profile
 
-The following is the YAML file sample for the full-profile:
-
->**Note:** The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`.
+The following is the YAML file sample for the full-profile. The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`.
 Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
 
->**Important** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later. Alternatively, a Sigstore Stack needs to be deployed and used as a TUF Mirror.
+>**Important:** The policy controller `policy.apps.tanzu.vmware.com` should be excluded while installing Tanzu Application Platform v1.3 and later. 
+Otherwise, a Sigstore Stack must be deployed and used as a TUF Mirror. 
 For more information, see [Policy controller known issues](scst-policy/known-issues.hbs.md).
 
 ```yaml
