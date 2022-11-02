@@ -191,10 +191,9 @@ The sample values file contains the necessary defaults for:
     - The meta-package, or parent Tanzu Application Platform package
     - Subordinate packages, or individual child packages
 
-    >**Important** Keep the values file for future configuration use.
+Keep the values file for future configuration use.
 
-    >**Important** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later. Alternatively, a Sigstore Stack needs to be deployed and used as a TUF Mirror.
-    For more information, see [Policy controller known issues](scst-policy/known-issues.hbs.md).
+    >**Important** The policy controller `policy.apps.tanzu.vmware.com` should be excluded while installing Tanzu Application Platform v1.3 and later. Otherwise, a Sigstore Stack must be deployed and used as a TUF Mirror. For more information, see [Policy controller known issues](scst-policy/known-issues.hbs.md).
 
 ### <a id='full-profile'></a> Full Profile
 
