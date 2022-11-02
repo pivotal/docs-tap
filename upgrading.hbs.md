@@ -33,7 +33,7 @@ Follow these steps to update the new package repository:
         --namespace tap-install
         ```
 
-        Where `NEW-TANZU-TAP-REPOSITORY` is the new repository name. Do not use the existing Tanzu package repostitory name with the previous version of Tanzu Application Platform packages.
+        Where `NEW-TANZU-TAP-REPOSITORY` is the new repository name. Do not use the existing Tanzu package repository name with the previous version of Tanzu Application Platform packages.
 
     - If you are using Cluster Essentials 1.1 or 1.0, run:
 
@@ -55,9 +55,23 @@ Follow these steps to update the new package repository:
 
 ### <a id="profile-based-instruct"></a> Upgrade instructions for Profile-based installation
 
-For Tanzu Application Platform that is installed by profile, you can perform the upgrade by running:
+The Policy Controller has a documented[known issue](scst-policy/known-issues.hbs.md) in TAP 1.3.0 which breaks installation.
+
+If excluding the policy controller was the chosen workaround, when upgrading to Tanzu Application Platform v1.3.1,
+the package `policy.apps.tanzu.vmware.com` needs to be removed from the `excluded_packages` list in the `tap-values.yaml`.
+
+If installing a custom Sigstore Stack was the chosen workaround, when upgrading to Tanzu Application Platform v1.3.1,
+remove `tuf_mirror` and `tuf_root` keys from the `tap-values.yaml`
+
+```yaml
+tuf_mirror: http://tuf.tuf-system.svc
+tuf_root: |
+  <Multi-line string content of root.json>
+```
 
 >**Note** Ensure you run the following command in the directory where the `tap-values.yaml` file resides.
+
+For Tanzu Application Platform that is installed by profile, you can perform the upgrade by running:
 
 ```console
 tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
