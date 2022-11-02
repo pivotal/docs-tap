@@ -533,3 +533,95 @@ package_overlays:
   secrets:
   - name: patch-accelerator-timeout
 ```
+
+## <a id="skipping-sources-tls-verification"></a> Configuring skipping TLS verification for access to Source Conttrollers
+
+If you configure the FLux or TAP Source COntrollers to use TLS and use custom certificates, then you can configure the Accelerator System to skip the TLS verification for calls to access the sources by providing the following property in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+sources:
+  skip_tls_verify: true
+```
+
+## <a id="enabling-tls-server"></a> Enabling TLS for Accelerator Server
+
+In order to enable TLS for the Accelerator Server, the following properties should be provided in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+server:
+  tls:
+    enabled: true
+    key: <SERVER-PRIVATE-KEY>
+    crt: <SERVER-CERTIFICATE>
+```
+
+Where:
+
+- `SERVER-PRIVATE-KEY` is the pem encoded server private key.
+- `SERVER-CERTIFICATE` is the pem encoded server certificate.
+
+Here is a sample `tap-values.yaml` configuration with TLS enabled for Accelerators Server:
+
+```yaml
+server:
+  tls:
+    enabled: true
+    key: |
+      -----BEGIN PRIVATE KEY-----
+      .
+      .  < private key data >
+      .
+      -----END PRIVATE KEY-----
+    crt: |
+      -----BEGIN CERTIFICATE-----
+      .
+      .  < certificate data >
+      .
+      -----END CERTIFICATE-----
+```
+
+## <a id="skipping-engine-tls-verification"></a> Configuring skipping TLS verification of Engine calls for Accelerator Server
+
+If you configure the Accelerator Engine to use TLS and use custom certificates, then you can configure the Accelerator Server to skip the TLS verification for calls to the Engine by providing the following property in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+server:
+  engine_skip_tls_verify: true
+```
+
+## <a id="enabling-tls-engine"></a> Enabling TLS for Accelerator Engine
+
+In order to enable TLS for the Accelerator Engine, the following properties should be provided in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+engine:
+  tls:
+    enabled: true
+    key: <ENGINE-PRIVATE-KEY>
+    crt: <ENGINE-CERTIFICATE>
+```
+
+Where:
+
+- `ENGINE-PRIVATE-KEY` is the pem encoded acc-engine private key.
+- `ENGINE-CERTIFICATE` is the pem encoded acc-engine certificate.
+
+Here is a sample `tap-values.yaml` configuration with TLS enabled for Accelerators Engine:
+
+```yaml
+engine:
+  tls:
+    enabled: true
+    key: |
+      -----BEGIN PRIVATE KEY-----
+      .
+      .  < private key data >
+      .
+      -----END PRIVATE KEY-----
+    crt: |
+      -----BEGIN CERTIFICATE-----
+      .
+      .  < certificate data >
+      .
+      -----END CERTIFICATE-----
+```
