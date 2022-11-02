@@ -61,7 +61,7 @@ If excluding the policy controller was the chosen workaround, when upgrading to 
 the package `policy.apps.tanzu.vmware.com` needs to be removed from the `excluded_packages` list in the `tap-values.yaml`.
 
 If installing a custom Sigstore Stack was the chosen workaround, when upgrading to Tanzu Application Platform v1.3.1,
-remove `tuf_mirror` and `tuf_root` keys from the `tap-values.yaml`
+remove `tuf_mirror` and `tuf_root` keys from the `tap-values.yaml` to use the official Sigstore TUF root
 
 ```yaml
 tuf_mirror: http://tuf.tuf-system.svc
