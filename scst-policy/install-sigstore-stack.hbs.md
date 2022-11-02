@@ -16,8 +16,8 @@ If a Sigstore Stack TUF is already deployed and accessible in the air-gapped env
 
 ## <a id='sigstore-release-files'></a> Download Stack Release Files
 
-In an air-gapped environment, `v0.4.8` is the minimum supported version of `Sigstore/scaffolding`.
-This is due to an issue in previous versions that caused the `Fulcio` deployment to crashloop due to the `CGO` package.
+For Sigstore Stack, `v0.4.8` is the recommended version of `Sigstore/scaffolding` to be deployed currently.
+This is due to an issue in previous versions that caused the `Fulcio` deployment to crashloop due to the `CGO` package. Newer versions can also cause a known issue with invalid TUF key due to a breaking change with the current Policy Controller packaged in TAP 1.3.0+. For more information about this breaking change, see [Known Issues](./known-issues.hbs.md)
 
 Download the release files of all the Sigstore Stack components from `Sigstore/scaffolding`:
 ```bash
@@ -80,11 +80,34 @@ for image in "${found_images[@]}"; do
 done
 ```
 
+During deployment of the Sigstore Stack, a sidecar image, `queue-proxy`, may require additional credentials. This can be achieved by adding a `secretgen` annotated placeholder secret to the target namespace and patching the corresponding service account. The placeholder will import `tap-registry` secret to the targetted namespace.
+
+```bash
+# <SERVICE> includes "trillian", "rekor", "fulcio", "ctlog", and "tuf"
+echo "Create tap-registry secret import"
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tap-registry
+  namespace: <SERVICE>-system
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+stringData:
+  .dockerconfigjson: "{}"
+type: kubernetes.io/dockerconfigjson
+EOF
+
+echo "Patch <SERVICE> service account"
+kubectl -n <SERVICE>-system patch serviceaccount <SERVICE> -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
+```
+
 ## <a id='sigstore-copy-files'></a> Copy Release Files to Cluster Accessible Machine
 
 With the images migrated and accessible, the next step is to copy the `release-*.yaml` files onto the machine that is installing the Sigstore Stack with Kubernetes cluster access.
 
-## <a id='sigstore-patch-release'></a> Patch Release Files
+## <a id='sigstore-prepare-fulcio-patch'></a> Prepare Patching Fulcio Release File
 
 The default `release-fulcio.yaml` has a `fulcio-config` resource. This config specifies the `OIDCIssuer`.
 By default, there are issuers for:
@@ -95,10 +118,16 @@ By default, there are issuers for:
 
 To add other OIDC Issuers, configure `fulcio-config` further.
 
-Apart from `Kubernetes API ServiceAccount token`, the other `OIDC Issuers` require external Internet access.
-In an air-gapped environment, these `OIDC Issuers` must be removed.
+Apart from `Kubernetes API ServiceAccount token`, the other `OIDCIssuers` require access to external services.
+Therefore, in an air-gapped environment, these `OIDCIssuers` need to be removed.
 
-This is done by manually editing `release-fulcio.yaml` or running the following sample commands:
+Additionally, the correct [MetaIssuers](#sigstore-metaissuers) may need to be added for the respective IaaS environment.
+
+A `config_json` will be constructed and then applied to the `release-fulcio.yaml`.
+
+### <a id='sigstore-oidcissuer'></a> OIDCIssuer
+
+A `config_json` containing the `Kubernetes API ServiceAccount token` issuer:
 
 ```bash
 config_json='{
@@ -116,7 +145,90 @@ config_json='{
     }
   }
 }'
+```
 
+If the Kubernetes version is newer or equal to `1.23.x`, the `OIDCIssuer` is `https://kubernetes.default.svc.cluster.local` with the same respective `IssuerURL` as shown in the example above.
+If the Kubernetes version is older than `1.23.x`, then the `OIDCIssuer` and `IssuerURL` is `https://kubernetes.default.svc`
+
+Other sample `OIDCIssuers`:
+
+```bash
+config_json='{
+  "OIDCIssuers": {
+    "https://accounts.google.com": {
+      "IssuerURL": "https://accounts.google.com",
+      "ClientID": "sigstore",
+      "Type": "email"
+    },
+    "https://allow.pub": {
+      "IssuerURL": "https://allow.pub",
+      "ClientID": "sigstore",
+      "Type": "spiffe",
+      "SPIFFETrustDomain": "allow.pub"
+    },
+    "https://oauth2.sigstore.dev/auth": {
+      "IssuerURL": "https://oauth2.sigstore.dev/auth",
+      "ClientID": "sigstore",
+      "Type": "email",
+      "IssuerClaim": "$.federated_claims.connector_id"
+    },
+    "https://token.actions.githubusercontent.com": {
+      "IssuerURL": "https://token.actions.githubusercontent.com",
+      "ClientID": "sigstore",
+      "Type": "github-workflow"
+    }
+  }
+}'
+```
+
+### <a id='sigstore-metaissuers'></a> MetaIssuers
+
+If installing on EKS, update the `config_json` to include this `MetaIssuer`:
+```bash
+config_json='{
+  "MetaIssuers": {
+    ...
+
+    "https://oidc.eks.*.amazonaws.com/id/*": {
+      "ClientID": "sigstore",
+      "Type": "kubernetes"
+    }
+  }
+}'
+```
+
+If installing on GCP, update the `config_json` to include this `MetaIssuer`:
+```bash
+config_json='{
+  "MetaIssuers": {
+    ...
+
+    "https://container.googleapis.com/v1/projects/*/locations/*/clusters/*": {
+      "ClientID": "sigstore",
+      "Type": "kubernetes"
+    }
+  }
+}'
+```
+
+If installing on AKS, update the `config_json` to include this `MetaIssuer`:
+```bash
+config_json='{
+  "MetaIssuers": {
+    ...
+
+    "https://oidc.prod-aks.azure.com/*": {
+      "ClientID": "sigstore",
+      "Type": "kubernetes"
+    }
+  }
+}'
+```
+
+### <a id='sigstore-applying-fulcio-patch'></a> Applying Patch for Fulcio Release File
+
+After configuring the required `config_json` desired, it can be applied by manually editing the `release-fulcio.yaml` file or through the following command:
+```bash
 # Use `yq` to find the correct fulcio-config resource
 # Update the `data.config.json` property with the new config JSON string
 config_json="${config_json}" \
@@ -125,18 +237,6 @@ config_json="${config_json}" \
     select(.metadata.name != "fulcio-config") as $other |
     $config.data["config.json"] = strenv(config_json) |
     ($other, $config)' -i release-fulcio.yaml
-```
-
-Another update to the `release-fulcio.yaml` that can be required is that the `OIDCIssuer` for `Kuberenetes API Token`.
-The host URL is different for versions older than Kubernetes `1.23.x`. In Kubernetes versions less than `1.23.x`, the URL is `https://kubernetes.default.svc`.
-
-
-A sample update to the `release-fulcio.yaml` is done with:
-```bash
-K8S_SERVER_VERSION=$(kubectl version -o json | yq '.serverVersion.minor' -)
-if [ "${K8S_SERVER_VERSION}" == "21" ] || [ "${K8S_SERVER_VERSION}" == "22" ]; then
-  sed -i.bak 's#https://kubernetes.default.svc.cluster.local#https://kubernetes.default.svc#' release-fulcio.yaml
-fi
 ```
 
 ## <a id='sigstore-patch-knative-serving'></a> Patch Knative-Serving
@@ -169,11 +269,31 @@ For more information, see [Service Account Issuer Discovery](https://kubernetes.
 
 To install Trillian:
 - `kubectl apply` the `release-trillian.yaml`
+- Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
+- Patch the service account to use the imported `tap-registry` secret
 - Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
 echo 'Install Trillian'
 kubectl apply -f "release-trillian.yaml"
+
+echo "Create tap-registry secret import"
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tap-registry
+  namespace: trillian-system
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+stringData:
+  .dockerconfigjson: "{}"
+type: kubernetes.io/dockerconfigjson
+EOF
+
+echo "Patch trillian service account"
+kubectl -n trillian-system patch serviceaccount trillian -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
 
 echo 'Wait for Trillian ready'
 kubectl wait --timeout 2m -n trillian-system --for=condition=Ready ksvc log-server
@@ -184,11 +304,31 @@ kubectl wait --timeout 2m -n trillian-system --for=condition=Ready ksvc log-sign
 
 To install Rekor:
 - `kubectl apply` the `release-rekor.yaml`
+- Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
+- Patch the service account to use the imported `tap-registry` secret
 - Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
 echo 'Install Rekor'
 kubectl apply -f "release-rekor.yaml"
+
+echo "Create tap-registry secret import"
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tap-registry
+  namespace: rekor-system
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+stringData:
+  .dockerconfigjson: "{}"
+type: kubernetes.io/dockerconfigjson
+EOF
+
+echo "Patch rekor service account"
+kubectl -n rekor-system patch serviceaccount rekor -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
 
 echo 'Wait for Rekor ready'
 kubectl wait --timeout 5m -n rekor-system --for=condition=Complete jobs --all
@@ -199,6 +339,8 @@ kubectl wait --timeout 2m -n rekor-system --for=condition=Ready ksvc rekor
 
 To install Fulcio:
 - `kubectl apply` the `release-fulcio.yaml`
+- Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
+- Patch the service account to use the imported `tap-registry` secret
 - Wait for the jobs and services to be `Complete` or be `Ready`.
 
 The Sigstore Scaffolding `release-fulcio.yaml` downloaded can have an empty YAML document at the end of the file separated by `---` and followed by no elements. This will result in:
@@ -211,6 +353,24 @@ This is a known issue and can be ignored.
 echo 'Install Fulcio'
 kubectl apply -f "release-fulcio.yaml"
 
+echo "Create tap-registry secret import"
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tap-registry
+  namespace: fulcio-system
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+stringData:
+  .dockerconfigjson: "{}"
+type: kubernetes.io/dockerconfigjson
+EOF
+
+echo "Patch fulcio service account"
+kubectl -n fulcio-system patch serviceaccount fulcio -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
+
 echo 'Wait for Fulcio ready'
 kubectl wait --timeout 5m -n fulcio-system --for=condition=Complete jobs --all
 kubectl wait --timeout 5m -n fulcio-system --for=condition=Ready ksvc fulcio
@@ -220,11 +380,31 @@ kubectl wait --timeout 5m -n fulcio-system --for=condition=Ready ksvc fulcio
 
 To install CTLog:
 - `kubectl apply` the `release-ctlog.yaml`
+- Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
+- Patch the service account to use the imported `tap-registry` secret
 - Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
 echo 'Install CTLog'
 kubectl apply -f "release-ctlog.yaml"
+
+echo "Create tap-registry secret import"
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tap-registry
+  namespace: ctlog-system
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+stringData:
+  .dockerconfigjson: "{}"
+type: kubernetes.io/dockerconfigjson
+EOF
+
+echo "Patch ctlog service account"
+kubectl -n ctlog-system patch serviceaccount ctlog -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
 
 echo 'Wait for CTLog ready'
 kubectl wait --timeout 5m -n ctlog-system --for=condition=Complete jobs --all
@@ -235,12 +415,32 @@ kubectl wait --timeout 2m -n ctlog-system --for=condition=Ready ksvc ctlog
 
 To install TUF:
 - `kubectl apply` the `release-tuf.yaml`
+- Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
+- Patch the service account to use the imported `tap-registry` secret
 - Copy the public keys from the previous deployment of CTLog, Fulcio, and Rekor to the TUF namespace
 - Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
 echo 'Install TUF'
 kubectl apply -f "release-tuf.yaml"
+
+echo "Create tap-registry secret import"
+cat <<EOF | kubectl apply -f -
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tap-registry
+  namespace: tuf-system
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+stringData:
+  .dockerconfigjson: "{}"
+type: kubernetes.io/dockerconfigjson
+EOF
+
+echo "Patch tuf service account"
+kubectl -n tuf-system patch serviceaccount tuf -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
 
 # Then copy the secrets (even though it's all public stuff, certs, public keys)
 # to the tuf-system namespace so that we can construct a tuf root out of it.
