@@ -26,19 +26,19 @@ into Tanzu Application Platform GUI.
 
 - Packaging
   - Out-of-the-box samples are now distributed as OCI images.
-  - GitOps style support for configuring a set of managed accelerators
+  - GitOps style support for configuring a set of managed accelerators.
 - Controller
   - Added source-image support for fragments and Fragment CRD.
 - Engine
-  - OpenRewriteRecipe: More recipes are now supported in addition to Java. Also languages such as
- Xml, Properties, Maven, and Json should be in capitals.
-  - New ConflictResolution Strategy : `NWayDiff` merges files modified in different places, as long
-as they don't conflict. Similar to the Git diff3 algorithm.
+  - OpenRewriteRecipe: More recipes are now supported in addition to Java. Also, languages such as
+ XML, PROPERTIES, MAVEN, and JSON should be in capitals.
+  - New ConflictResolution Strategy: `NWayDiff` merges files modified in different places, if they
+don't conflict. Like the Git diff3 algorithm.
   - Enforces the validity of `inputType`. Accepts only valid values such as: `text`, `textarea`,
 `checkbox`, `select`, and `radio`.
 - Server
   - Added configmap to store accelerator invocation counts.
-  - Added separate downloaded endpoint for downloads telemetry.
+  - Added separately downloaded endpoints for downloads telemetry.
 - Jobs
   - No changes.
 - Samples
