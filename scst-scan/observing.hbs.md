@@ -114,7 +114,7 @@ Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.
 
 #### <a id="deactivate-scst-store"></a> Deactivate Supply Chain Security Tools (SCST) - Store
 
-SCST - Store is a prerequisite<!--฿ Requirements are things needed to install and run the product. We list them on the product index page. Prerequisites are things needed for a given procedure beyond the product requirements. We list those on the procedure page. ฿--> for installing SCST - Scan.
+SCST - Store is a prerequisite for installing SCST - Scan.
 If you install without the SCST - Store, you must edit the
 configurations to deactivate the Store:
 
