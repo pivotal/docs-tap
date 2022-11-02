@@ -10,16 +10,17 @@ The Sigstore Stack consists of:
 - [Certificate Transparency Log (CTLog)](https://github.com/google/certificate-transparency-go)
 - [TheUpdateFramework (TUF)](https://theupdateframework.io/)
 
-For more information about air-gapped installation, see [Install Tanzu Application Platform in an air-gapped environment](../install-air-gap.hbs.md)
+For information about air-gapped installation, see [Install Tanzu Application Platform in an air-gapped environment](../install-air-gap.hbs.md).
 
 If a Sigstore Stack TUF is already deployed and accessible in the air-gapped environment, proceed to [Update Policy Controller with TUF Mirror and Root](#sigstore-update-policy-controller).
 
 ## <a id='sigstore-release-files'></a> Download Stack Release Files
 
-For Sigstore Stack, `v0.4.8` is the recommended version of `Sigstore/scaffolding` to be deployed currently.
-This is due to an issue in previous versions that caused the `Fulcio` deployment to crashloop due to the `CGO` package. Newer versions can also cause a known issue with invalid TUF key due to a breaking change with the current Policy Controller packaged in TAP 1.3.0+. For more information about this breaking change, see [Known Issues](./known-issues.hbs.md)
+For Sigstore Stack, `v0.4.8` is the recommended version of `Sigstore/scaffolding` to deploy.
+This is due to an issue in previous versions that caused the `Fulcio` deployment to crashloop because of the `CGO` package. Later versions can also cause a known issue with invalid TUF key due to a breaking change with the current Policy Controller packaged in Tanzu Application Platform v1.3.0 and later. For information about this breaking change, see [Known Issues](./known-issues.hbs.md).
 
 Download the release files of all the Sigstore Stack components from `Sigstore/scaffolding`:
+
 ```bash
 RELEASE_VERSION="v0.4.8"
 
@@ -40,7 +41,7 @@ curl -sL "${TUF_URL}" -o "release-tuf.yaml"
 
 For air-gapped environments, the images from the `release-*.yaml` must be migrated to the internal air-gapped registry and the corresponding image references updated.
 
-The following is a sample script that does this:
+The following example shows this migration:
 
 ```bash
 TARGET_REGISTRY=<TARGET REGISTRY REGISTRY>
@@ -80,7 +81,7 @@ for image in "${found_images[@]}"; do
 done
 ```
 
-During deployment of the Sigstore Stack, a sidecar image, `queue-proxy`, may require additional credentials. This can be achieved by adding a `secretgen` annotated placeholder secret to the target namespace and patching the corresponding service account. The placeholder will import `tap-registry` secret to the targetted namespace.
+During deployment of the Sigstore Stack, a sidecar image such as `queue-proxy`, can require additional credentials. You can achieve this by adding a `secretgen` annotated placeholder secret to the target namespace and patching the corresponding service account. The placeholder imports `tap-registry` secret to the targeted namespace.
 
 ```bash
 # <SERVICE> includes "trillian", "rekor", "fulcio", "ctlog", and "tuf"
@@ -105,7 +106,7 @@ kubectl -n <SERVICE>-system patch serviceaccount <SERVICE> -p '{"imagePullSecret
 
 ## <a id='sigstore-copy-files'></a> Copy Release Files to Cluster Accessible Machine
 
-With the images migrated and accessible, the next step is to copy the `release-*.yaml` files onto the machine that is installing the Sigstore Stack with Kubernetes cluster access.
+With the images migrated and accessible, copy the `release-*.yaml` files onto the machine that is installing the Sigstore Stack with Kubernetes cluster access.
 
 ## <a id='sigstore-prepare-fulcio-patch'></a> Prepare Patching Fulcio Release File
 
@@ -119,11 +120,11 @@ By default, there are issuers for:
 To add other OIDC Issuers, configure `fulcio-config` further.
 
 Apart from `Kubernetes API ServiceAccount token`, the other `OIDCIssuers` require access to external services.
-Therefore, in an air-gapped environment, these `OIDCIssuers` need to be removed.
+In an air-gapped environment, you must remove these `OIDCIssuers`.
 
-Additionally, the correct [MetaIssuers](#sigstore-metaissuers) may need to be added for the respective IaaS environment.
+You can add the correct [MetaIssuers](#sigstore-metaissuers) for the respective IaaS environment.
 
-A `config_json` will be constructed and then applied to the `release-fulcio.yaml`.
+A `config_json` is constructed and then applied to the `release-fulcio.yaml`.
 
 ### <a id='sigstore-oidcissuer'></a> OIDCIssuer
 
@@ -147,7 +148,7 @@ config_json='{
 }'
 ```
 
-If the Kubernetes version is newer or equal to `1.23.x`, the `OIDCIssuer` is `https://kubernetes.default.svc.cluster.local` with the same respective `IssuerURL` as shown in the example above.
+If the Kubernetes version is later or equal to `1.23.x`, the `OIDCIssuer` is `https://kubernetes.default.svc.cluster.local`, with the same respective `IssuerURL` as shown in the earlier example.
 If the Kubernetes version is older than `1.23.x`, then the `OIDCIssuer` and `IssuerURL` is `https://kubernetes.default.svc`
 
 Other sample `OIDCIssuers`:
@@ -227,7 +228,8 @@ config_json='{
 
 ### <a id='sigstore-applying-fulcio-patch'></a> Applying Patch for Fulcio Release File
 
-After configuring the required `config_json` desired, it can be applied by manually editing the `release-fulcio.yaml` file or through the following command:
+After configuring the required `config_json`, you can apply it by manually editing the `release-fulcio.yaml` file or by running the following command:
+
 ```bash
 # Use `yq` to find the correct fulcio-config resource
 # Update the `data.config.json` property with the new config JSON string
@@ -243,9 +245,7 @@ config_json="${config_json}" \
 
 Knative Serving is already deployed during the first attempt of installing Tanzu Application Platform. This component must be present to continue deploying the Sigstore Stack.
 
-With the Sigstore Stack deployment, Knative Serving's `configmap/config-features` must be updated to enable some required features.
-
-This is done with the following command:
+With the Sigstore Stack deployment, Knative Serving's `configmap/config-features` must be updated to enable some required features. Run:
 
 ```bash
 kubectl patch configmap/config-features \
@@ -347,7 +347,7 @@ The Sigstore Scaffolding `release-fulcio.yaml` downloaded can have an empty YAML
 ```
 error: error validating "release-fulcio.yaml": error validating data: [apiVersion not set, kind not set]; if you choose to ignore these errors, turn validation off with --validate=false
 ```
-This is a known issue and can be ignored.
+This is a known issue and you can ignore it.
 
 ```bash
 echo 'Install Fulcio'
@@ -455,7 +455,8 @@ kubectl wait --timeout 2m -n tuf-system --for=condition=Ready ksvc tuf
 
 ## <a id='sigstore-update-policy-controller'></a> Update Policy Controller with TUF Mirror and Root
 
-Obtain the `root.json` file from the `tuf-system` namespace with the following command:
+Obtain the `root.json` file from the `tuf-system` namespace. Run:
+
 ```bash
 kubectl -n tuf-system get secrets tuf-root -o jsonpath='{.data.root}' | base64 -d > root.json
 ```
@@ -518,7 +519,7 @@ tanzu package installed update policy-controller --values-file tap-values-standa
 Updated installed package 'policy-controller' in namespace 'tap-install'
 ```
 
-This updates the policy-controller only. It is important that if Policy Controller was installed through the Tanzu Application Platform package with profiles, the update command to update the Tanzu Application Platform installation is still required, as it updates the values file. If only the Policy Controller package is updated with new values and not the Tanzu Application Platform package's values, the Tanzu Application Platform package's values overwrite the Policy Controller's values.
+This updates the policy-controller only. It is important that if Policy Controller was installed through the Tanzu Application Platform package with profiles, the `update` command to update the Tanzu Application Platform installation is still required, as it updates the values file. If only the Policy Controller package is updated with new values and not the Tanzu Application Platform package's values, the Tanzu Application Platform package's values overwrite the Policy Controller's values.
 
 For more information about profiles, see [Package Profiles](../about-package-profiles.hbs.md).
 For more information about Policy Controller, see [Install Supply Chain Security Tools - Policy Controller](./install-scst-policy.hbs.md) documentation.

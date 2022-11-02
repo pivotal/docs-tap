@@ -10,11 +10,11 @@ Platform's Full, Iterate and Run profiles. Use the instructions in this topic to
 - A container image registry that supports TLS connections.
 >**Note** This component does not work with not secure registries.
 
-- If Supply Chain Security Tools - Sign is installed with an existing running
+- If SCST - Sign is installed with an existing running
 Image Policy Webhook `ClusterImagePolicy`, see
 [Migration From Supply Chain Security Tools - Sign](migration.md).
 
-- If the installation is occuring in an air-gapped environment, a Sigstore Stack is required on the cluster or accessible from the air-gapped environment. For more information, see [Install Sigstore Stack](./install-sigstore-stack.hbs.md)
+- If you are installing in an air-gapped environment, a Sigstore Stack is required on the cluster or accessible from the air-gapped environment. See [Install Sigstore Stack](./install-sigstore-stack.hbs.md)
 
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. The Policy Controller only supports ECDSA public keys.
@@ -96,9 +96,9 @@ To install Supply Chain Security Tools - Policy Controller:
     - `custom_ca_secrets`:
       If your container registries are secured by self-signed certificates, this setting controls which secrets are added to the application
       container as custom certificate authorities (CAs). `custom_ca_secrets`
-      consists of an array of items. Each item contains two fields:
-      the `secret_name` field defines the name of the secret,
-      and the `namespace` field defines the name of the namespace where said
+      consists of an array of items. Each item contains two text boxes:
+      the `secret_name` text box defines the name of the secret,
+      and the `namespace` text box defines the name of the namespace where said
       secret is stored.
 
       For example:
@@ -119,10 +119,10 @@ To install Supply Chain Security Tools - Policy Controller:
       certificate authorities (CAs) to communicate with registries deployed with
       self-signed certificates.
       `custom_cas` consists of an array of items. Each item contains
-      a single field named `ca_content`. The value of this field must be a
+      a single text box named `ca_content`. The value of this text box must be a
       PEM-formatted certificate authority. The certificate content must be
       defined as a YAML block, preceded by the literal indicator (`|`) to
-      preserve line breaks and ensure the certificates are interpreted correctly.
+      preserve line breaks and ensure that the certificates are interpreted correctly.
 
       For example:
 
@@ -161,7 +161,7 @@ To install Supply Chain Security Tools - Policy Controller:
       priority class. This priority class is added to the pods to prevent
       preemption of this component's pods in case of node pressure.
 
-      The default value for this field is `6`. If your use requires
+      The default value for this text box is `6`. If your use requires
       more than 6 pods, change this value to allow the number of replicas you intend to deploy.
 
       >**Note** VMware recommends to run this component with a critical priority level to prevent the cluster from rejecting all admission requests if the component's `pod`s are evicted due to resource limitations.
@@ -171,7 +171,7 @@ To install Supply Chain Security Tools - Policy Controller:
       component. The default value is `1`.
 
       **For production environments**: VMware recommends you increase the number of replicas to
-        `3` to ensure availability of the component and better admission performance.
+        `3` to ensure the availability of the component and better admission performance.
 
     - `requests_cpu`:
       This setting controls the minimum CPU resource allocated to the Policy
@@ -183,7 +183,7 @@ To install Supply Chain Security Tools - Policy Controller:
       This setting controls the minimum memory resource allocated to the Policy
       admission controller. The default value is "20Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
 
-1. Install the package:
+2. Install the package:
 
     ```console
     tanzu package install policy-controller \
