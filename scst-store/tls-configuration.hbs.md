@@ -51,12 +51,12 @@ metadata_store:
 
 `tls.server.rfcCiphers`: List of cipher suites for the server. Values are from the [Go TLS package constants](https://golang.org/pkg/crypto/tls/#pkg-constants). If omitted, the default Go cipher suites are used. Here are the default values.
 
-- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->AES_128_GCM_SHA256`
-- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->AES_256_GCM_SHA384`
-- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->ECDHE_ECDSA_WITH_AES_128_GCM_SHA256`
-- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->ECDHE_ECDSA_WITH_AES_256_GCM_SHA384`
-- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->ECDHE_RSA_WITH_AES_128_GCM_SHA256`
-- `TLS_<!--฿ Use dashes for spacing in placeholders, not underscores. ฿-->ECDHE_RSA_WITH_AES_256_GCM_SHA384`
+- `TLS_AES_128_GCM_SHA256`
+- `TLS_AES_256_GCM_SHA384`
+- `TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256`
+- `TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384`
+- `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256`
+- `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`
 
 ## Example Custom TLS settings
 

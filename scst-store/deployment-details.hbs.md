@@ -34,7 +34,7 @@ By default, a database password is generated upon deployment. To configure a cus
 
 ```yaml
 db_password: "PASSWORD-0123"
-``` <!--฿ Verify that no placeholders above require explanation in the style of |Where PLACEHOLDER is...| ฿-->
+```
 
 If you're deploying with Tanzu Application Platform profiles, in `tap-values.yaml`, put:
 
