@@ -25,29 +25,38 @@ When you install the Application Accelerator, you can configure the following op
 
 | Property | Default | Description |
 | --- | --- | --- |
-| registry.secret_ref | registry.tanzu.vmware<.com | The secret used for accessing the registry where the App-Accelerator images are located |
-| server.service_type | ClusterIP | The service type for the acc-ui-server service including LoadBalancer, NodePort, or ClusterIP |
-| server.watched_namespace | accelerator-system | The namespace the server watches for accelerator resources |
+| registry.secret_ref | reg-creds | The secret used for accessing the registry where the App Accelerator images are located. |
+| kubernetes_distribution | None | Kubernetes distribution that this package is being installed on. Accepted values: ["", "openshift"] |
+| sources.skip_tls_verify | false | Whether to skip TLS verification for TAP and FluxCD source controllers |
+| server.service_type | ClusterIP | The service type for the acc-server service (LoadBalancer, NodePort or ClusterIP) |
+| server.watched_namespace | default | The namespace that the server watches for accelerator resources |
 | server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine |
-| engine.service_type | ClusterIP | The service type for the acc-engine service including LoadBalancer, NodePort, or ClusterIP |
-| engine.max_direct_memory_size | 32M | The maximum size for the Java -XX:MaxDirectMemorySize setting |
-| samples.include | True | Option to include the bundled sample Accelerators in the installation |
-| ingress.include | False | Option to include the ingress configuration in the installation |
-| ingress.enable_tls | False | Option to include TLS for the ingress configuration |
-| domain | tap.example.com | Top-level domain to use for ingress configuration, defaults to `shared.ingress_domain` |
+| server.engine_skip_tls_verify | false | Whether to skip TLS verification for engine invocations | 
+| server.tls.enabled | false | Whether to enable TLS for server |
+| server.tls.key | "" | PEM encoded server private key to be used when TLS is enabled |
+| server.tls.crt | "" | PEM encode server certificate to be used when TLS is enabled |
+| engine.service_type | ClusterIP | The service type for the acc-engine service (LoadBalancer, NodePort or ClusterIP) |
+| engine.max_direct_memory_size | 32M | The max size for the Java -XX:MaxDirectMemorySize setting |
+| engine.tls.enabled | false | Whether to enable TLS for engine |
+| engine.tls.key | "" | PEM encoded server private key to be used when TLS is enabled |
+| engine.tls.crt | "" | PEM encode server certificate to be used when TLS is enabled |
+| samples.include | True | Whether to include the bundled sample Accelerators in the install |
+| ingress.include | False | Whether to include the ingress configuration in the install |
+| ingress.enable_tls | False | Whether to include TLS for the ingress configuration |
+| domain | tap.example.com | Top level domain to use for ingress configuration |
 | tls.secret_name | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
-| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.
-| telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?
+| telemetry.record_invocation_events | true | Should the system record engine invocations when generating files for an accelerator? |
+| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources |
 | git_credentials.secret_name | git-credentials | The name to use for the secret storing Git credentials for accelerators |
-| git_credentials.username | null | The user name to use in secret storing Git credentials for accelerators |
+| git_credentials.username | null | The username to use in secret storing Git credentials for accelerators |
 | git_credentials.password | null | The password to use in secret storing Git credentials for accelerators |
 | git_credentials.ca_file | null | The CA certificate data to use in secret storing Git credentials for accelerators |
 | managed_resources.enabled | false | Whether to enable the App used to control managed accelerator resources |
-| managed_resources.git.url | none | Required if managed_resources are enabled. Git repository URL containing manifests for managed accelerator resources |
-| managed_resources.git.ref | origin/main | Required if managed_resources are enabled. Git ref to use for repository containing manifests for managed accelerator resources |
-| managed_resources.git.sub_path | null | Git subPath to use for repository containing manifests for managed accelerator resources |
-| managed_resources.git.secret_ref | git-credentials | Secret name to use for repository containing manifests for managed accelerator resources |
+| managed_resources.git.url | none | Required if managed_resources are enabled; Git repo URL containing manifests for managed accelerator resources |
+| managed_resources.git.ref | origin/main | Required if managed_resources are enabled; Git ref to use for repo containing manifests for managed accelerator resources |
+| managed_resources.git.sub_path | null | Git subPath to use for repo containing manifests for managed accelerator resources |
+| managed_resources.git.secret_ref | git-credentials | Secret name to use for repo containing manifests for managed accelerator resources |
 
 VMware recommends that you do not override the defaults for `registry.secret_ref`,
 `server.engine_invocation_url`, or `engine.service_type`.
