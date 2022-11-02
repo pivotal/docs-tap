@@ -36,6 +36,7 @@ The following issues, listed by area and component, are resolved in this release
 #### <a id="1-3-1-intellij-resolved"></a> Tanzu Developer Tools for IntelliJ
 
 - The extension can now Live Update when the workload type is `server` or `worker`
+- The extension no longer stops other debug sessions when stopping one debug session. 
 
 #### <a id="1-3-1-vs-code-resolved"></a> Tanzu Developer Tools for VS Code
 
@@ -517,12 +518,6 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
   live update might not work.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#lu-not-working-wl-types).
-
-- **Stopping one debug session stops them all:**
-
-  When starting multiple simultaneous workload debug sessions, stopping one of those sessions also
-  stops the others. This disconnects the debugger without stopping the workload process itself,
-  so it is possible to restart debug sessions. A fix is planned for Tanzu Application Platform v1.3.1.
 
 #### <a id="contour-known-issues"></a>Contour
 
