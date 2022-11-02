@@ -4,7 +4,7 @@
 
 ### Description
 
-Installation of policy controller fails with the following error message:
+Installation of policy controller 1.1.2 fails with the following error message:
 
 ```bash
 panic: Failed to initialize TUF client from  : updating local metadata and targets:
