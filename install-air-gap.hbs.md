@@ -193,8 +193,8 @@ The sample values file contains the necessary defaults for:
 
     >**Important:** Keep the values file for future configuration use.
 
-    >**Important:** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later. 
-    For more information, see [Policy controller known issues](scst-policy/known-issues.md).
+    >**Important** The policy controller `policy.apps.tanzu.vmware.com` must be excluded while installing Tanzu Application Platform v1.3 and later. Alternatively, a Sigstore Stack needs to be deployed and used as a TUF Mirror.
+    For more information, see [Policy controller known issues](scst-policy/known-issues.hbs.md).
 
 ### <a id='full-profile'></a> Full Profile
 
