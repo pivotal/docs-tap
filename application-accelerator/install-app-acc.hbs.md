@@ -3,7 +3,7 @@
 This topic describes how to install Application Accelerator
 from the Tanzu Application Platform package repository.
 
->**Note** Use the instructions on this page if you do not want to use a profile to install packages.
+>**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include Application Accelerator.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
@@ -108,7 +108,7 @@ To install Application Accelerator:
 
     Edit the values if needed or leave the default values.
 
-    >**Note** For clusters that do not support the `LoadBalancer` service type, override the default
+    >**Note:** For clusters that do not support the `LoadBalancer` service type, override the default
     >value for `server.service_type`, for example,
 
       >```yaml
