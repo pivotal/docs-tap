@@ -27,7 +27,7 @@ metadata_store:
 ...
 ```
 
-SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`, for example, `metadata-store.example.com`. The created route supports HTTPS communication using a certificate. By default, a self-signed certificate is used with the same subject `Alternative Name`. See [Custom certificate configuration](custom-cert.hbs.md) for information about how to configure custom certificates.
+SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`, for example, `metadata-store.example.com`. The created route supports HTTPS communication using a certificate. By default, a self-signed certificate is used with the same subject `Alternative Name`. <!--See [Custom certificate configuration](custom-cert.hbs.md) for information about how to configure custom certificates.-->
 
 - if the `tls` section is configured, use the custom certificate.
 - if the `tls` section is not provided, use the self-signed certificate with the same subject `Alternative Name`.
