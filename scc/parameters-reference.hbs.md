@@ -850,7 +850,7 @@ place.
 
 ## deliverable
 
-The `deliverable` resource is responsible for creatiing a `Deliverable` object
+The `deliverable` resource is responsible for creating a `Deliverable` object
 that represents the intention of delivering to the cluster the configuration
 that is produced by the supply chain.
 

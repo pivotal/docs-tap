@@ -108,7 +108,7 @@ The app shows up in Application Live View UI, but the **Health** page does not s
 **Solution**
 
 The information exposed by the health endpoint depends on the `management.endpoint.health.show-details` property.
-This must be set to `always` as as follows:
+This must be set to `always` as follows:
 
 ```console
 management.endpoint.health.show-details: "always"

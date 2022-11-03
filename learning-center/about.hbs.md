@@ -25,7 +25,7 @@ Use case scenarios that Learning Center supports include:
   topic, or where a product demo was packaged up as a workshop and they want to use it to demonstrate the product to a
   customer. You can destroy the workshop environment when complete, but there is no need for the cluster to be destroyed.
 
-When running workshops, wherever possible a shared Kubernetes cluster reduces the amount of setup required. This works for developer-focused workshops, becauses it is usually not necessary to provide elevated access to the
+When running workshops, wherever possible a shared Kubernetes cluster reduces the amount of setup required. This works for developer-focused workshops, because it is usually not necessary to provide elevated access to the
 Kubernetes cluster, and you can use role-based access controls (RBAC) to prevent users from interfering with each other.
 You can also set quotas so users are restricted as to how much resources they can use.
 

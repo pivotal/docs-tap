@@ -5,7 +5,7 @@ This topic describes advanced configuration options available for Application Ac
 Accelerators can be created either using the Tanzu CLI or by applying a YAML manifest using kubectl. Another option is [Using a Git-Ops style configuration for deploying a set of managed accelerators](#using-git-ops).
 
 Application Accelerator pulls content from accelerator source repositories using either the "Flux SourceController" or the "Tanzu Application Platform Source Controller" components.
-If the repository used is accessible anonymously from a public server, then you do not have to configure anything additional. Otherwise, provide authenication as explained in [Using non-public repositories](#non-public-repos). There are also options for making these configurations easier explained in [Configuring `tap-values.yaml` with Git credentials secret](#creating-git-credentials)
+If the repository used is accessible anonymously from a public server, then you do not have to configure anything additional. Otherwise, provide authentication as explained in [Using non-public repositories](#non-public-repos). There are also options for making these configurations easier explained in [Configuring `tap-values.yaml` with Git credentials secret](#creating-git-credentials)
 
 ## <a id="using-git-ops"></a> Using a Git-Ops style configuration for deploying a set of managed accelerators
 

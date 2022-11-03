@@ -178,7 +178,7 @@ parameters:
 - `secret-name`, **required** The secret that contains the URL, user name,
   password, and certificate (optional) to the Jenkins instance that houses the
   job that is required to be run.
-- `job-name`, **required** The name of the Jenkins job that is reqired to run.
+- `job-name`, **required** The name of the Jenkins job that is required to run.
 - `job-params`, **required** A list of key-value pairs, encoded as a JSON
   string, that passes in parameters needed for the Jenkins job.
 

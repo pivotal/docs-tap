@@ -44,4 +44,4 @@ This role provides the service account associated with the Tanzu workload the pe
 
 ## <a id="deliverable"></a>deliverable
 
-This role gives the delivery “robot” service account the permissions neeeded to create running workloads. This role is not for a user.
+This role gives the delivery “robot” service account the permissions needed to create running workloads. This role is not for a user.

@@ -46,7 +46,7 @@ Before using the extension, you need follow the next steps:
 
 ## <a id="using-the-extension"></a> Using the extension
 
-After adding the `acc-server` URL you should can explore the defined accelerators
+After adding the `acc-server` URL you can explore the defined accelerators
 accessing the new added icon:
 
 ![extension](../images/app-accelerators-vscode-icon.png)

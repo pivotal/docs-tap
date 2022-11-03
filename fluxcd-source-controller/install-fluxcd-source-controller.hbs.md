@@ -118,7 +118,7 @@ To install FluxCD source-controller from the Tanzu Application Platform package 
     replicaset.apps/source-controller-7684c85659   1         1         1       40m
     ```
 
-2. Verify all the CRD were installedby running:
+2. Verify all the CRD were installed by running:
 
     ```
     kubectl get crds -n flux-system | grep ".fluxcd.io"

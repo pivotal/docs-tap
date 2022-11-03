@@ -10,7 +10,7 @@ Log messages follow a JSON format. Each log can contain the following keys:
 | msg        | Log message |
 | object     | Relevant object that triggered the log message |
 | error      | A message for the error.<br> Only present with "error" log level |
-| stacktrace | A stacktrace for where the error occured.<br> Only present with error level |
+| stacktrace | A stacktrace for where the error occurred.<br> Only present with error level |
 
 The possible log messages the webhook emits and their explanations are summarized in the following table:
 
