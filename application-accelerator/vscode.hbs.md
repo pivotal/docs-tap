@@ -46,7 +46,7 @@ Before using the extension, you need follow the next steps:
 
 ## <a id="using-the-extension"></a> Using the extension
 
-After adding the `acc-server` URL you should can explore the defined accelerators
+After adding the `acc-server` URL you can explore the defined accelerators
 accessing the new added icon:
 
 ![The VS Code interface showing the explorer panel that has the DOCS-TAP, OUTLINE, and TIMELINE dropdowns. The TIMELINE dropdown has a blue thin lined box around it. The Demo Input Types icon in the bottom left of the Explorer panel had a read box around it.](../images/app-accelerators-vscode-icon.png)

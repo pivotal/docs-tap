@@ -1,6 +1,6 @@
 # Configure target endpoint and certificate
 
-The connection to the Store requires TLS encryption and the configuration depends on the kind of installation. Use the following instructions to set up the TLS connection according to the your setup:
+The connection to the Store requires TLS encryption and the configuration depends on the kind of installation. Use the following instructions to set up the TLS connection according to your setup:
 
 - [With `Ingress`](#ingress)
 - [Without `Ingress`](#no-ingress)
