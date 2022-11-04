@@ -12,17 +12,18 @@ error updating to TUF remote mirror: tuf: invalid key
 ```
 
 Policy Controller tries to initialize TUF keys during installation. Because of a breaking change in
-[go-tuf](https://github.com/theupdateframework/go-tuf/issues/379) the initialization fails when using the Official Sigstore TUF root.
+go-tuf the initialization fails when using the Official Sigstore TUF root.
+For more information, see [go-tuf](https://github.com/theupdateframework/go-tuf/issues/379) in GitHub.
 
 ### Solution
 
 The policy controller's dependency on go-tuf must be updated to the later version.
 
-### Workaround
+### Workarounds
 
 Exclude Policy Controller during installation or use a self-deployed Sigstore Stack:
 
-1. Exclude the Policy Controller package in all profile installations by editing this YAML:
+- Exclude the Policy Controller package in all profile installations by editing this YAML:
 
    ```yaml
    profile: PROFILE-VALUE
@@ -30,4 +31,4 @@ Exclude Policy Controller during installation or use a self-deployed Sigstore St
     - policy.apps.tanzu.vmware.com
    ```
 
-2. Install Sigstore Stack and use the generated TUF system as the mirror and root of Policy Controller. For more information, see [Install Sigstore Stack](install-sigstore-stack.hbs.md).
+- Install Sigstore Stack and use the generated TUF system as the mirror and root of Policy Controller. For more information, see [Install Sigstore Stack](install-sigstore-stack.hbs.md).
