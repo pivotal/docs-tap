@@ -22,9 +22,10 @@ Configure a supported authentication provider or a custom OpenID Connect (OIDC) 
 [Backstage authentication documentation](https://backstage.io/docs/auth/).
 
 - To configure a custom OpenID Connect (OIDC) provider, edit your `tap-values.yaml` or your custom
-configuration file to include an OIDC authentication provider.
-Configure the OIDC provider with your OAuth App values. For example:
+  configuration file to include an OIDC authentication provider.
+  Configure the OIDC provider with your OAuth App values. For example:
 
+<<<<<<< HEAD
     ```yaml
     tap_gui:
       service_type: ClusterIP
@@ -56,15 +57,49 @@ Configure the OIDC provider with your OAuth App values. For example:
                 scope: ${AUTH_OIDC_SCOPE} # default='openid profile email'
                 prompt: auto # default=none (allowed values: auto, none, consent, login)
     ```
+=======
+  ```yaml
+  shared:
+    ingress_domain: "INGRESS-DOMAIN"
 
-    Where `metadataUrl` is a JSON file with generic OIDC provider configuration.
-    It contains `authorizationUrl` and `tokenUrl`.
-    These values are read from the `metadataUrl` file by Tanzu Application Platform GUI,
-    so you must not specify these values explicitly in the earlier authentication configuration.
+  tap_gui:
+    service_type: ClusterIP
+    app_config:
+      app:
+        baseUrl: http://tap-gui.INGRESS-DOMAIN
+      catalog:
+        locations:
+          - type: url
+            target: https://GIT-CATALOG-URL/catalog-info.yaml
+      backend:
+        baseUrl: http://tap-gui.INGRESS-DOMAIN
+        cors:
+          origin: http://tap-gui.INGRESS-DOMAIN
+  #Existing values file above
+      auth:
+        environment: development
+        session:
+          secret: custom session secret
+        providers:
+          oidc:
+            development:
+              metadataUrl: ${AUTH_OIDC_METADATA_URL}
+              clientId: ${AUTH_OIDC_CLIENT_ID}
+              clientSecret: ${AUTH_OIDC_CLIENT_SECRET}
+              tokenSignedResponseAlg: ${AUTH_OIDC_TOKEN_SIGNED_RESPONSE_ALG} # default='RS256'
+              scope: ${AUTH_OIDC_SCOPE} # default='openid profile email'
+              prompt: auto # default=none (allowed values: auto, none, consent, login)
+  ```
+>>>>>>> 02d470ec (Reformats indentation in tap-gui/auth.hbs.md)
 
-    For more information, see
-    [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347)
-    in GitHub.
+  Where `metadataUrl` is a JSON file with generic OIDC provider configuration.
+  It contains `authorizationUrl` and `tokenUrl`.
+  These values are read from the `metadataUrl` file by Tanzu Application Platform GUI,
+  so you must not specify these values explicitly in the earlier authentication configuration.
+
+  For more information, see
+  [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347)
+  in GitHub.
 
 ## <a id='allow-guest-access'></a> (Optional) Allow guest access
 
