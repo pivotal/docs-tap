@@ -97,6 +97,25 @@ Configure a supported authentication provider or a custom OpenID Connect (OIDC) 
   These values are read from the `metadataUrl` file by Tanzu Application Platform GUI,
   so you must not specify these values explicitly in the earlier authentication configuration.
 
+  You also need to provide a piece of information to your identity provider, the
+  redirect URI, sometimes also called redirect URL or callback URL/URI, of the
+  TAP GUI instance. This takes the form of
+  ```
+  SCHEME://tap-gui.INGRESS-DOMAIN/api/auth/oidc/handler/frame
+
+  ```
+
+  Where:
+  * `SCHEME`: is the URI scheme, most commonly `http` or `https`
+  * `INGRESS-DOMAIN`: is the hostname you selected for your TAP GUI instance
+
+  Which when using https and example.com as examples for the two placeholders
+  respectively we arrive at the redirect URI of:
+
+  ```
+  https://tap-gui.example.com/api/auth/oidc/handler/frame
+  ```
+
   For more information, see
   [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347)
   in GitHub.
