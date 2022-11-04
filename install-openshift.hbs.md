@@ -369,7 +369,7 @@ Tanzu Application Platform v1.3.0 supports building applications with the [Ubunt
 By default, workloads are built with Ubuntu 18.04 (Bionic) stack. However, if you do not need access to the Bionic stack,
 you can install Tanzu Application Platform without the Bionic stack and all workloads are built with the Jammy stack by default.
 
-To install Tanzu Application Platform with Jammy as the only available stack, add `stack_configuration: jammy-only` under the `buildservice:` section in the `tap-values.yaml`.
+To install Tanzu Application Platform with Jammy as the only available stack, use `stack_configuration: jammy-only` in the `tap-values.yaml`.
 
 ### <a id='custom-scc'></a> Custom SCC
 
