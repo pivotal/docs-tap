@@ -78,7 +78,16 @@ There is currently a known issue with all released versions of TAP GUI where in 
 
 ### <a id='1-3-new-features'></a> New features
 
-This release includes the following changes, listed by component and area.
+This release includes the following changes to Tanzu Application Platform and its components:
+
+#### <a id="tap-features"></a> Tanzu Application Platform
+
+Tanzu Application Platform now supports: 
+
+- OpenShift Red Hat OpenShift Container Platform v4.10
+  - vSphere
+  - Baremetal
+- Kubernetes v1.24
 
 #### <a id="api-auto-registration-features"></a> API Auto Registration
 
