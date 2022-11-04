@@ -59,7 +59,7 @@ In Tanzu Application Platform v1.3.0, there is a [known issue](scst-policy/known
 There are various workarounds.
 
 If your chosen workaround was excluding Policy Controller then, when upgrading to Tanzu Application Platform v1.3.1,
-you must remove the package `policy.apps.tanzu.vmware.com` from the `excluded_packages` list in `tap-values.yaml`.
+remove the package `policy.apps.tanzu.vmware.com` from the `excluded_packages` list in `tap-values.yaml`.
 
 If your chosen workaround was installing a custom Sigstore Stack then, when upgrading to Tanzu Application Platform v1.3.1,
 remove the `tuf_mirror` and `tuf_root` keys from `tap-values.yaml` to use the official Sigstore TUF root.
