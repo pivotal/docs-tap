@@ -22,50 +22,69 @@ Configure a supported authentication provider or a custom OpenID Connect (OIDC) 
 [Backstage authentication documentation](https://backstage.io/docs/auth/).
 
 - To configure a custom OpenID Connect (OIDC) provider, edit your `tap-values.yaml` or your custom
-configuration file to include an OIDC authentication provider.
-Configure the OIDC provider with your OAuth App values. For example:
+  configuration file to include an OIDC authentication provider.
+  Configure the OIDC provider with your OAuth App values. For example:
 
-    ```yaml
-    shared:
-      ingress_domain: "INGRESS-DOMAIN"
+  ```yaml
+  shared:
+    ingress_domain: "INGRESS-DOMAIN"
 
-    tap_gui:
-      service_type: ClusterIP
-      app_config:
-        app:
-          baseUrl: http://tap-gui.INGRESS-DOMAIN
-        catalog:
-          locations:
-            - type: url
-              target: https://GIT-CATALOG-URL/catalog-info.yaml
-        backend:
-          baseUrl: http://tap-gui.INGRESS-DOMAIN
-          cors:
-            origin: http://tap-gui.INGRESS-DOMAIN
-    #Existing values file above
-        auth:
-          environment: development
-          session:
-            secret: custom session secret
-          providers:
-            oidc:
-              development:
-                metadataUrl: ${AUTH_OIDC_METADATA_URL}
-                clientId: ${AUTH_OIDC_CLIENT_ID}
-                clientSecret: ${AUTH_OIDC_CLIENT_SECRET}
-                tokenSignedResponseAlg: ${AUTH_OIDC_TOKEN_SIGNED_RESPONSE_ALG} # default='RS256'
-                scope: ${AUTH_OIDC_SCOPE} # default='openid profile email'
-                prompt: auto # default=none (allowed values: auto, none, consent, login)
-    ```
+  tap_gui:
+    service_type: ClusterIP
+    app_config:
+      app:
+        baseUrl: http://tap-gui.INGRESS-DOMAIN
+      catalog:
+        locations:
+          - type: url
+            target: https://GIT-CATALOG-URL/catalog-info.yaml
+      backend:
+        baseUrl: http://tap-gui.INGRESS-DOMAIN
+        cors:
+          origin: http://tap-gui.INGRESS-DOMAIN
+  #Existing values file above
+      auth:
+        environment: development
+        session:
+          secret: custom session secret
+        providers:
+          oidc:
+            development:
+              metadataUrl: ${AUTH_OIDC_METADATA_URL}
+              clientId: ${AUTH_OIDC_CLIENT_ID}
+              clientSecret: ${AUTH_OIDC_CLIENT_SECRET}
+              tokenSignedResponseAlg: ${AUTH_OIDC_TOKEN_SIGNED_RESPONSE_ALG} # default='RS256'
+              scope: ${AUTH_OIDC_SCOPE} # default='openid profile email'
+              prompt: auto # default=none (allowed values: auto, none, consent, login)
+  ```
 
-    Where `metadataUrl` is a JSON file with generic OIDC provider configuration.
-    It contains `authorizationUrl` and `tokenUrl`.
-    These values are read from the `metadataUrl` file by Tanzu Application Platform GUI,
-    so you must not specify these values explicitly in the earlier authentication configuration.
+  Where `metadataUrl` is a JSON file with generic OIDC provider configuration.
+  It contains `authorizationUrl` and `tokenUrl`.
+  These values are read from the `metadataUrl` file by Tanzu Application Platform GUI,
+  so you must not specify these values explicitly in the earlier authentication configuration.
 
-    For more information, see
-    [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347)
-    in GitHub.
+  You also need to provide a piece of information to your identity provider, the
+  redirect URI, sometimes also called redirect URL or callback URL/URI, of the
+  TAP GUI instance. This takes the form of
+  ```
+  SCHEME://tap-gui.INGRESS-DOMAIN/api/auth/oidc/handler/frame
+
+  ```
+
+  Where:
+  * `SCHEME`: is the URI scheme, most commonly `http` or `https`
+  * `INGRESS-DOMAIN`: is the hostname you selected for your TAP GUI instance
+
+  Which when using https and example.com as examples for the two placeholders
+  respectively we arrive at the redirect URI of:
+
+  ```
+  https://tap-gui.example.com/api/auth/oidc/handler/frame
+  ```
+
+  For more information, see
+  [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347)
+  in GitHub.
 
 ## <a id='allow-guest-access'></a> (Optional) Allow guest access
 
