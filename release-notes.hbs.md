@@ -12,7 +12,12 @@ This release includes the following changes to Tanzu Application Platform and it
 
 #### <a id="tap-features"></a> Tanzu Application Platform
 
-Tanzu Application Platform now supports OpenShift and Kubernetes 1.24.
+Tanzu Application Platform now supports: 
+
+- OpenShift Red Hat OpenShift Container Platform v4.10
+  - vSphere
+  - Baremetal
+- Kubernetes v1.24
 
 #### <a id="api-auto-registration-features"></a> API Auto Registration
 
