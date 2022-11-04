@@ -66,7 +66,7 @@ For further instructions, see [Configure the cluster builder](tbs-workload-confi
 
 By default, Tanzu Application Platform is installed with Bionic as the default stack.
 
-To default all workloads to the Jammy stack, include the `stack_configuration: jammy-only` field in `tap-values.yaml`.
+To default all workloads to the Jammy stack, include the `stack_configuration: jammy-only` field under the `buildservice:` section in `tap-values.yaml`.
 This installs Tanzu Application Platform and Tanzu Build Service with no Bionic-based builders,
 and all workloads will be built with Jammy.
 
