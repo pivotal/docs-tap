@@ -22,8 +22,8 @@ Configure a supported authentication provider or a custom OpenID Connect (OIDC) 
 [Backstage authentication documentation](https://backstage.io/docs/auth/).
 
 - To configure a custom OpenID Connect (OIDC) provider, edit your `tap-values.yaml` or your custom
-configuration file to include an OIDC authentication provider.
-Configure the OIDC provider with your OAuth App values. For example:
+  configuration file to include an OIDC authentication provider.
+  Configure the OIDC provider with your OAuth App values. For example:
 
     ```yaml
     tap_gui:
@@ -57,14 +57,14 @@ Configure the OIDC provider with your OAuth App values. For example:
                 prompt: auto # default=none (allowed values: auto, none, consent, login)
     ```
 
-    Where `metadataUrl` is a JSON file with generic OIDC provider configuration.
-    It contains `authorizationUrl` and `tokenUrl`.
-    These values are read from the `metadataUrl` file by Tanzu Application Platform GUI,
-    so you must not specify these values explicitly in the earlier authentication configuration.
+  Where `metadataUrl` is a JSON file with generic OIDC provider configuration.
+  It contains `authorizationUrl` and `tokenUrl`.
+  These values are read from the `metadataUrl` file by Tanzu Application Platform GUI,
+  so you must not specify these values explicitly in the earlier authentication configuration.
 
-    For more information, see
-    [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347)
-    in GitHub.
+  For more information, see
+  [this example](https://github.com/backstage/backstage/blob/e4ab91cf571277c636e3e112cd82069cdd6fca1f/app-config.yaml#L333-L347)
+  in GitHub.
 
 ## <a id='allow-guest-access'></a> (Optional) Allow guest access
 
