@@ -45,7 +45,7 @@ To prepare the Carbon Black Scanner configuration before you install any scanner
 Create a `values.yaml` file by using the following configuration:
 
     You must define the following fields in the `values.yaml` file for the Carbon Black Scanner configuration.
-    You can add text boxes as needed to enable or deactivate behaviors.
+    You can add fields as needed to enable or deactivate behaviors.
     You can append the values to this file as shown later in this topic.
 
     ```yaml
@@ -65,7 +65,7 @@ Create a `values.yaml` file by using the following configuration:
      - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning.
 
      - `CARBONBLACK-CONFIG-SECRET` is the name of the secret you created that contains the Carbon Black configuration to connect to CBC.
-       This text box is required.
+       This field is required.
 
     The Carbon Black Scanner integration can work with or without the SCST - Store integration.
     The `values.yaml` file is slightly different for each configuration.
@@ -137,7 +137,7 @@ To persist the results found by the Carbon Black Scanner,
 
 If you don't want to enable the
   Supply Chain Security Tools - Store integration, explicitly disable the integration by appending
-  the next fields to the `values.yaml` file, since it's enabled by default:
+  the next field to the `values.yaml` file, since it's enabled by default:
 
   ```yaml
   # ...
