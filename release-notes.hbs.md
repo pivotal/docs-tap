@@ -39,7 +39,7 @@ The following issues, listed by area and component, are resolved in this release
 #### <a id="1-3-1-intellij-resolved"></a> Tanzu Developer Tools for IntelliJ
 
 - The extension can now Live Update when the workload type is `server` or `worker`
-- The extension no longer stops other debug sessions when stopping one debug session. 
+- The extension no longer stops other debug sessions when stopping one debug session.
 
 #### <a id="1-3-1-vs-code-resolved"></a> Tanzu Developer Tools for VS Code
 
@@ -82,7 +82,7 @@ This release includes the following changes to Tanzu Application Platform and it
 
 #### <a id="tap-features"></a> Tanzu Application Platform
 
-Tanzu Application Platform now supports: 
+Tanzu Application Platform now supports:
 
 - OpenShift Red Hat OpenShift Container Platform v4.10
   - vSphere
@@ -139,8 +139,9 @@ Tanzu Application Platform now supports:
 
 #### <a id="carbon-black-scanner-features"></a> Carbon Black Cloud Scanner integration (beta)
 
-Carbon Black Cloud Scanner image scanning integration (beta) is available for [Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md).
-See [Prerequisites for Carbon Black Scanner (Beta)](scst-scan/install-carbonblack-integration.hbs.md) for instructions about using Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains.
+Carbon Black Cloud Scanner image scanning integration (beta) is available for
+[Supply Chain Security Tools - Scan](scst-scan/overview.hbs.md).
+For instructions about using Carbon Black Cloud Scanner with Tanzu Application Platform Supply Chains, see [Prerequisites for Carbon Black Scanner (beta)](scst-scan/install-carbonblack-integration.hbs.md)
 
 #### <a id="default-roles-features"></a>Default roles for Tanzu Application Platform
 
