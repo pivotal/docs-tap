@@ -73,10 +73,11 @@ Create a `values.yaml` file by using the following configuration:
 ## <a id="store-integration"></a> Supply Chain Security Tools - Store integration
 
 To Integrate:
+
 1. Do one of the following procedures:
 
-  - [Use the Supply Chain Security Tools - Store](#with-store)
-  - [Without using the Supply Chain Security Tools - Store](#without-store)
+   - [Use the Supply Chain Security Tools - Store](#with-store)
+   - [Without using the Supply Chain Security Tools - Store](#without-store)
 
 2. Apply the YAML.
 
@@ -197,7 +198,7 @@ If you don't want to enable the
 1. Apply the YAML:
 
     ```console
-    kubectl apply -n $DEV_NAMESPACE -f <SCAN-POLICY-YAML>
+    kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
     ```
 
 >**Note** The Carbon Black Scanner integration is only available for an image scan, not a source scan.
