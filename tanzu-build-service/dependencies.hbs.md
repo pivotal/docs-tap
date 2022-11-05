@@ -44,7 +44,7 @@ Cluster builders contain stack and buildpack metadata.
 
 ## <a id="bionic-vs-jammy"></a> Bionic and Jammy stacks
 
-Tanzu Application Platform v1.3 supports Ubuntu v22.04 (Jammy) based builds.
+Tanzu Application Platform v1.3 and later supports Ubuntu v22.04 (Jammy) based builds.
 Ubuntu Bionic will stop receiving support in April 2023.
 VMware recommends that you migrate builds to Jammy.
 
