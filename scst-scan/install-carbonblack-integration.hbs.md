@@ -7,7 +7,7 @@ a partial list of CVEs when scanning Buildpack images.
 
 ## <a id="prerecs"></a> Prepare the Carbon Black Scanner configuration
 
-To prepare the Carbon Black Scanner configuration before you install any scanners: 
+To prepare the Carbon Black Scanner configuration before you install any scanners:
 
 1. Obtain a Carbon Black API Token from Carbon Black Cloud.
 
@@ -45,8 +45,8 @@ To prepare the Carbon Black Scanner configuration before you install any scanner
 Create a `values.yaml` file by using the following configuration:
 
     You must define the following fields in the `values.yaml` file for the Carbon Black Scanner configuration.
-    You can add text boxes as needed to enable or deactivate behaviors.
-    You can append the values to this file as shown later in this topic. 
+    You can add fields as needed to enable or deactivate behaviors.
+    You can append the values to this file as shown later in this topic.
 
     ```yaml
     ---
@@ -65,7 +65,7 @@ Create a `values.yaml` file by using the following configuration:
      - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning.
 
      - `CARBONBLACK-CONFIG-SECRET` is the name of the secret you created that contains the Carbon Black configuration to connect to CBC.
-       This text box is required.
+       This field is required.
 
     The Carbon Black Scanner integration can work with or without the SCST - Store integration.
     The `values.yaml` file is slightly different for each configuration.
@@ -74,13 +74,13 @@ Create a `values.yaml` file by using the following configuration:
 
 To Integrate:
 1. Do one of the following procedures:
-   
+
   - [Use the Supply Chain Security Tools - Store](#with-store)
   - [Without using the Supply Chain Security Tools - Store](#without-store)
-  
+
 2. Apply the YAML.
 
-### <a id="with-store"></a> Using Supply Chain Security Tools - Store Integration 
+### <a id="with-store"></a> Using Supply Chain Security Tools - Store Integration
 
 To persist the results found by the Carbon Black Scanner,
   you can enable the Supply Chain Security Tools - Store integration
@@ -97,7 +97,7 @@ To persist the results found by the Carbon Black Scanner,
        metadataStore:
          #! The url where the Store deployment is accesible.
          #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
-         url: "<STORE-URL>" 
+         url: "<STORE-URL>"
          caSecret:
            #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
            #! Default value is: "app-tls-cert"
@@ -117,12 +117,12 @@ To persist the results found by the Carbon Black Scanner,
        metadataStore:
          #! The url where the Store deployment is accesible.
          #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
-         url: "<STORE-URL>" 
+         url: "<STORE-URL>"
          caSecret:
            #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
            #! Default value is: "app-tls-cert"
            name: "<CA-SECRET-NAME>"
-           #! The namespace where the secrets for the Store Deployment live. 
+           #! The namespace where the secrets for the Store Deployment live.
            #! Default value is: "metadata-store"
            importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
          #! authSecret is for multicluster configurations.
@@ -133,11 +133,11 @@ To persist the results found by the Carbon Black Scanner,
            importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
        ```
 
-### <a id="without-store"></a> Without Supply Chain Security Tools - Store Integration 
+### <a id="without-store"></a> Without Supply Chain Security Tools - Store Integration
 
 If you don't want to enable the
   Supply Chain Security Tools - Store integration, explicitly disable the integration by appending
-  the next fields to the `values.yaml` file, since it's enabled by default:
+  the next field to the `values.yaml` file, since it's enabled by default:
 
   ```yaml
   # ...
