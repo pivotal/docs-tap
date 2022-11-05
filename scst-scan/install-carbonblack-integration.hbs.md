@@ -45,7 +45,7 @@ To prepare the Carbon Black Scanner configuration before you install any scanner
 Create a `values.yaml` file by using the following configuration:
 
     You must define the following fields in the `values.yaml` file for the Carbon Black Scanner configuration.
-    You can add text boxes as needed to enable or deactivate behaviors.
+    You can add fields as needed to enable or deactivate behaviors.
     You can append the values to this file as shown later in this topic.
 
     ```yaml
@@ -65,7 +65,7 @@ Create a `values.yaml` file by using the following configuration:
      - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning.
 
      - `CARBONBLACK-CONFIG-SECRET` is the name of the secret you created that contains the Carbon Black configuration to connect to CBC.
-       This text box is required.
+       This field is required.
 
     The Carbon Black Scanner integration can work with or without the SCST - Store integration.
     The `values.yaml` file is slightly different for each configuration.
@@ -84,7 +84,7 @@ To Integrate:
 
 To persist the results found by the Carbon Black Scanner,
   you can enable the SCST - Store integration
-  by appending the text boxes to the `values.yaml` file.
+  by appending the fields to the `values.yaml` file.
 
   The Grype and Carbon Black Scanner Integrations both enable the Metadata Store.
   To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not.
@@ -137,7 +137,7 @@ To persist the results found by the Carbon Black Scanner,
 
 If you don't want to enable the
   SCST - Store integration, explicitly deactivate the integration by appending
-  the next text boxes to the `values.yaml` file, because it's enabled by default:
+  the next field to the `values.yaml` file, because it's enabled by default:
 
   ```yaml
   # ...
