@@ -5,7 +5,9 @@ You can create two types of service accounts:
 1. Read-only service account - can only use `GET` API requests
 2. Read-write service account - full access to the API requests
 
-### <a id='ro-serv-accts'></a>Read-only service account
+## <a id='ro-serv-accts'></a>Read-only service account
+
+### With default cluster role
 
 As a part of the Store installation, the `metadata-store-read-only` cluster role
 is created by default. This cluster role allows the bound user to have `get`
@@ -179,7 +181,7 @@ on the Kubernetes version:
     > longer automatically created. The service account secret must be
     > manually created.
 
-### <a id='rw-serv-accts'></a>Read-write service account
+## Read-write service account
 
 The following command creates a service account called
 `metadata-store-read-write-client`, depending on the Kubernetes version. To

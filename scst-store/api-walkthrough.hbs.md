@@ -21,14 +21,13 @@ The following procedure explains how to use CURL to POST an image report.
 3. Retrieve the CA Certificate and store it locally. Run:
 
     ```console
-    kubectl get secret app-tls-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/ca.crt
+    kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > /tmp/ca.crt
     ```
 
 4. Run the Curl POST Command:
 
     ```console
-    curl https://metadata-store-app:8443/api/imageReport \
-        --resolve metadata-store-app:8443:127.0.0.1 \
+    curl https://metadata-store.<ingress-domain>/api/imageReport \
         --cacert /tmp/ca.crt \
         -H "Authorization: Bearer ${METADATA_STORE_ACCESS_TOKEN}" \
         -H "Content-Type: application/json" \
