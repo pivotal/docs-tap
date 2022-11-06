@@ -20,40 +20,22 @@ The installation creates the following in your Kubernetes cluster:
 
 ## <a id='configuration'></a> Deployment configuration
 
-### <a id="db-config"></a> Database configuration
+All configurations are nested inside of `metadata_store` in your tap values deployment yaml.
 
-The default database included with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
+### Supported Network Configurations
 
-#### <a id='awsrds-postresdata'></a>Using AWS RDS postgres database
+Recommended connection methods based on Tanzu Application Platform setup:
 
-Users can also configure the deployment to use their own RDS database instead of the default. See [AWS RDS Postgres Configuration](use-aws-rds.md).
+* Single or multi-cluster with Contour = `Ingress`
+* Single cluster without Contour and with `LoadBalancer` support = `LoadBalancer`
+* Single cluster without Contour and without `LoadBalancer` = `NodePort`
+* Multi-cluster without Contour = Not supported
 
-#### Using external postgres database
+For a production environment, it is recommended that Supply Chain Security Tools - Store is installed with ingress enabled.
 
-Users can also configure the deployment to use any other postgres database. See [Use external postgres database](use-external-database.hbs.md).
+#### <a id='appserv-type'></a>App service type
 
-#### <a id='cust-data-pass'></a>Custom database password
-
-By default, a database password is generated upon deployment. To configure a custom password, use the `db_password` property in the `metadata-store-values.yaml` during deployment.
-
-```yaml
-db_password: "PASSWORD-0123"
-```
-
-If you're deploying with Tanzu Application Platform profiles, in `tap-values.yaml`, put:
-
-```yaml
-metadata_store:
-  db_password: "PASSWORD-0123"
-```
-
-Where `PASSWORD-0123` is the same password used between deployments.
-
->**Note** there is a known issue related to changing database passwords [Persistent Volume Retains Data](../release-notes.md#store-persistent-volume-retains-data).
-
-### <a id='appserv-type'></a>App service type
-
-Supported values include `LoadBalancer`, `ClusterIP`, `NodePort`. The `app_service_type` is set to `LoadBalancer` by default. If your environment does not support `LoadBalancer`, and you want to use `ClusterIP`, configure the `app_service_type` property in your `metadata-store-values.yaml`:
+Supported values include `LoadBalancer`, `ClusterIP`, `NodePort`. The `app_service_type` is set to `LoadBalancer` by default. If your environment does not support `LoadBalancer`, and you want to use `ClusterIP`, configure the `app_service_type` property in your deployment yaml:
 
 ```yaml
 app_service_type: "ClusterIP"
@@ -61,20 +43,7 @@ app_service_type: "ClusterIP"
 
 If the `ingress_enabled` property is set to `"true"`, VMware recommends setting the `app_service_type` property to `"ClusterIP"`.
 
-### <a id='service-accounts'></a>Service accounts
-
-By default, a service account with read-write privileges to the metadata store app is installed.
-This service account is a cluster-wide account that uses ClusterRole.
-If you don't want the service account and role, set the `add_default_rw_service_account` property to `"false"`.
-To create a custom service account, see [Configure access tokens](create-service-account-access-token.md).
-
-The store creates a read-only cluster role, which is bound to a service account by using `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [Configure access tokens](create-service-account-access-token.md).
-
-## <a id='export-cert'></a>Exporting certificates
-
-Supply Chain Security Tools - Store creates a [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed.
-
-## <a id='ingress'></a>Ingress support
+#### <a id='ingress'></a>Ingress support
 
 Supply Chain Security Tools - Store's values file allows you to enable ingress support and to configure a custom domain name to use Contour to provide external access to Supply Chain Security Tools - Store's API. For example:
 
@@ -84,4 +53,43 @@ ingress_domain: "example.com"
 app_service_type: "ClusterIP" # recommended setting
 ```
 
-An HTTPProxy object is then installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress support](ingress.hbs.md).
+An HTTPProxy object is then installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress](ingress.hbs.md).
+
+>**Note** the `ingress_enabled` property expects a string value of `"true"` or `"false"`, not a boolean value.
+
+### <a id="db-config"></a> Database configuration
+
+The default database included with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
+
+#### <a id='awsrds-postresdata'></a>Using AWS RDS postgres database
+
+Users can also configure the deployment to use their own RDS database instead of the default. See [AWS RDS Postgres Configuration](use-aws-rds.hbs.md).
+
+#### Using external postgres database
+
+Users can also configure the deployment to use any other postgres database. See [Use external postgres database](use-external-database.hbs.md).
+
+#### <a id='cust-data-pass'></a>Custom database password
+
+By default, a database password is generated upon deployment. To configure a custom password, use the `db_password` property in the deployment yaml.
+
+```yaml
+db_password: "PASSWORD-0123"
+```
+
+Where `PASSWORD-0123` is the same password used between deployments.
+
+>**Note:** there is a known issue related to changing database passwords [Persistent Volume Retains Data](../release-notes.md#store-persistent-volume-retains-data).
+
+### <a id='service-accounts'></a>Service accounts
+
+By default, a service account with read-write privileges to the metadata store app is installed.
+This service account is a cluster-wide account that uses ClusterRole.
+If you don't want the service account and role, set the `add_default_rw_service_account` property to `"false"`.
+To create a custom service account, see [Create Service Account](create-service-account.hbs.md).
+
+The store creates a read-only cluster role, which can be bound to a service account by using `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [Create Service Account](create-service-account.hbs.md).
+
+## <a id='export-cert'></a>Exporting certificates
+
+Supply Chain Security Tools - Store creates a [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed.
