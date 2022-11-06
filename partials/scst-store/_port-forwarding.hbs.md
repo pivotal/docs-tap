@@ -1,6 +1,6 @@
-<!-- Configure port forwarding to connect to the metadata store -->
+<!-- Configure port forwarding in order to connect to the metadata store -->
 
-Configure port forwarding for the service so the insight plug-in can access SCST - Store. Run:
+Configure port forwarding for the service so the insight plug-in can access Supply Chain Security Tools - Store. Run:
 
 ```console
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
@@ -22,3 +22,5 @@ sudo sed -i '' "/$METADATA_STORE_DOMAIN/d" /etc/hosts
 
 echo "127.0.0.1 $METADATA_STORE_DOMAIN" | sudo tee -a /etc/hosts > /dev/null
 ```
+
+

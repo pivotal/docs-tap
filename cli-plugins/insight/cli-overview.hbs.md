@@ -4,11 +4,10 @@ The Tanzu Insight CLI plug-in enables querying vulnerability, image, and package
 
 Follow the below steps to install, configure, and use the Tanzu Insight CLI plug-in.
 
->**Note:** Prior to using the CLI plug-in, you must install the Supply Chain Security Tools - Store, either as its own package, or as part of Tanzu Application Platform Build profile or Tanzu Application Platform View profile.
+>**Note:** Prior to using the CLI plug-in, you must install the Supply Chain Security Tools - Store, either as its own package, or as part of Tanzu Application Platform View profile.
 
-1. [Install the Tanzu Insight CLI plug-in](cli-installation.md)
-1. [Configure target endpoint and certificate](../../scst-store/using-encryption-and-connection.md)
-1. [Configure access tokens](../../scst-store/create-service-account-access-token.md)
+1. If the `insight` plug-in is not already installed, see [Install the Tanzu Insight plug-in](cli-installation.md)
+1. [Configure insight](cli-configuration.hbs.md)
 
 Once `tanzu insight` CLI plug-in is set up:
 
