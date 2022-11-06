@@ -22,7 +22,7 @@ The installation creates the following in your Kubernetes cluster:
 
 All configurations are nested inside of `metadata_store` in your tap values deployment YAML.
 
-The default database included with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
+### Supported Network Configurations
 
 The following connection methods are recommended based on Tanzu Application Platform setup:
 
