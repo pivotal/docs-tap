@@ -448,6 +448,12 @@ This can be due to ServiceAccounts or users bound to overly restrictive Security
 
 For information about resolving this issue, see the Cloud Native Runtimes [troubleshooting documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-troubleshooting.html).
 
+#### <a id="eventing-issues"></a> Eventing
+
+**Eventing package fails during a TAP Profile-based installation**
+
+For information about resolving this issue, see the "Known Issues" section of the Cloud Native Runtimes [upgrade documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-upgrade.html).
+
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
 **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
