@@ -77,4 +77,4 @@ $ cat insight-ca.crt
 
 * [Custom certificate configuration](custom-cert.hbs.md)
 * [TLS configuration](tls-configuration.hbs.md)
-* [Configure target endpoint and certificate](using-encryption-and-connection.hbs.md)
+* [Configure target endpoint and certificate](using-encrypted-connection.hbs.md)
