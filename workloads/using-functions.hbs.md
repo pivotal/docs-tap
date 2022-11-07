@@ -48,8 +48,8 @@ For REST API:
 
 ## <a id="prereqs"></a> Prerequisites
 
-Before using function workloads on Tanzu Application Platform, follow all instructions to
-install Tanzu Application Platform for your environment:
+Before using function workloads, follow all instructions to install Tanzu Application Platform
+for your environment:
 
 - [Installing Tanzu Application Platform online](../online-install-intro.md)
 - [Installing Tanzu Application Platform in an air-gapped environment](../offline-install-intro.md#install-air-gap)
