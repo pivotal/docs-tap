@@ -53,12 +53,12 @@ the container is being built and deployed.
 
 1. Depending on the type of cluster you use, you might see an error message similar to the following:
 
-   >`ERROR: Stop! cluster-name might be production. If you're sure you want to deploy there,
-   >add allow_k8s_contexts('cluster-name') to your Tiltfile. Otherwise, switch k8scontexts
-   >and restart Tilt.`
+   `ERROR: Stop! cluster-name might be production. If you're sure you want to deploy there,
+   add allow_k8s_contexts('cluster-name') to your Tiltfile. Otherwise, switch k8scontexts
+   and restart Tilt.`
 
-    If you see this error, add the line `allow_k8s_contexts('CLUSTER-NAME')` to your Tiltfile,
-    where `CLUSTER-NAME` is the name of your cluster.
+   If you see this error, add the line `allow_k8s_contexts('CLUSTER-NAME')` to your Tiltfile,
+   where `CLUSTER-NAME` is the name of your cluster.
 
 1. When the Live Update status in the status bar is visible and says
 `Live Update Started`, navigate to `http://localhost:8080` in your browser
