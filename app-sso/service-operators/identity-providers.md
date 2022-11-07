@@ -37,25 +37,37 @@ spec:
         # REQUIRED
         # The issuer identifier. If the provider supports OpenID Connect Discovery,
         # this value will be used to auto-configure the provider, by obtaining information
-        # at https://issuer-uri/.well-known/openid-configuration
+        # at https://issuer-uri/.well-known/openid-configuration .
+        #
+        # The issuerURI MUST NOT contain ".well-known/openid-configuration", and MUST match
+        # the value of the "issuer" field in the OpenID Connect configuration document at
+        # https://issuer-uri/.well-known/openid-configuration
+        #
+        # To obtain the correct issuerURI, you can for example run:
+        #
+        #   curl -s "https://openid.example.com/.well-known/openid-configuration" | jq -r ".issuer"
+        #
         issuerURI: https://openid.example.com
         # Obtained when registering a client with the provider, often through a web UI
         clientID: my-client-abcdef
         # Obtained when registering a client with the provider, often through a web UI
         clientSecretRef:
           name: my-openid-client-secret
-        # The URI for performing an authorization request and obtaining an authorization_code
-        authorizationUri: https://example.com/oauth2/authorize
-        # The URI for performing a token request, and obtaining a token
-        tokenUri: https://example.com/oauth2/token
-        # The JWKS endpoint for obtaining the JSON Web Keys, used to verify token signatures
-        jwksUri: https://example.com/oauth2/jwks
         # Scopes used in the authorization request
         # MUST contain "openid". Other common OpenID values are "profile", "email".
         scopes:
           - "openid"
           - "other-scope"
-        # OPTIONAL
+        # OPTIONAL - The URI for performing an authorization request and obtaining an authorization_code
+        authorizationUri: https://example.com/oauth2/authorize
+        # OPTIONAL - The URI for performing a token request, and obtaining a token
+        tokenUri: https://example.com/oauth2/token
+        # OPTIONAL - The JWKS endpoint for obtaining the JSON Web Keys, used to verify token signatures
+        jwksUri: https://example.com/oauth2/jwks
+        # OPTIONAL - select which claim in the `id_token` contains the "roles" of the user. When
+        # ClientRegistrations have a `roles` scope, it will be used to populate the `roles` claim in
+        # the `id_token` issued by the AuthServer.
+        # Note: roles is a non-standard OpenID Connect claim
         claimMappings:
           # The "my-oidc-provider-groups" claim from the ID token issued by "my-oidc-provider"
           # will be mapped into the "roles" claim in tokens issued by AppSSO
