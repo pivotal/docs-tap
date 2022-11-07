@@ -46,7 +46,6 @@ This indicates that the accelerator resource requested is not in a `READY` state
 Review the instructions in the [When Accelerator ready column is false](#ts-ready-false) section or
 contact your system admin.
 
-
 ## <a id="authorship-issues"></a> Accelerator authorship issues
 
 ### <a id="tips"></a>General tips
