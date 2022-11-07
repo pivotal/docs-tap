@@ -48,13 +48,11 @@ For REST API:
 
 ## <a id="prereqs"></a> Prerequisites
 
-Before using function workloads on Tanzu Application Platform, complete the following prerequisites:
+Before using function workloads on Tanzu Application Platform, follow all instructions to
+install Tanzu Application Platform for your environment:
 
-- Follow all instructions to install Tanzu Application Platform:
-  - [Installing Tanzu Application Platform online](../install-intro.md#install-online)
-  - [Installing Tanzu Application Platform in an air-gapped environment](../install-intro.md#install-air-gap)
-
-- Follow all instructions in [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
+- [Installing Tanzu Application Platform online](../online-install-intro.md)
+- [Installing Tanzu Application Platform in an air-gapped environment](../offline-install-intro.md#install-air-gap)
 
 ## <a id="create-function-proj-acc"></a> Create a function project from an accelerator
 
