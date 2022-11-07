@@ -24,7 +24,7 @@ The installation creates the following in your Kubernetes cluster:
 
 The default database included with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
 
-#### <a id='awsrds-postresdata'></a>Using AWS RDS postgres database
+#### <a id='awsrds-postresdata'></a>Using AWS RDS PostgreSQL database
 
 Users can also configure the deployment to use their own RDS database instead of the default. See [AWS RDS Postgres Configuration](use-aws-rds.md).
 
@@ -33,8 +33,10 @@ Users can also configure the deployment to use their own RDS database instead of
 By default, a database password is generated upon deployment. To configure a custom password, use the `db_password` property in the `metadata-store-values.yaml` during deployment.
 
 ```yaml
-db_password: "PASSWORD-0123"
-``` 
+db_password: "PASSWORD"
+```
+
+Where `PASSWORD` is the custom password you want to use.
 
 If you're deploying with Tanzu Application Platform profiles, in `tap-values.yaml`, put:
 
@@ -45,7 +47,7 @@ metadata_store:
 
 Where `PASSWORD-0123` is the same password used between deployments.
 
->**Note:** there is a known issue related to changing database passwords [Persistent Volume Retains Data](../release-notes.md#store-persistent-volume-retains-data).
+>**Note** There is a known issue related to changing database passwords [Persistent Volume Retains Data](../release-notes.md#store-persistent-volume-retains-data).
 
 ### <a id='appserv-type'></a>App service type
 
@@ -68,11 +70,11 @@ The store creates a read-only cluster role, which is bound to a service account 
 
 ## <a id='export-cert'></a>Exporting certificates
 
-Supply Chain Security Tools - Store creates a [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed.
+SCST - Store creates a [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed.
 
 ## <a id='ingress'></a>Ingress support
 
-Supply Chain Security Tools - Store's values file allows you to enable ingress support and to configure a custom domain name to use Contour to provide external access to Supply Chain Security Tools - Store's API. For example:
+SCST - Store's values file allows you to enable ingress support and to configure a custom domain name to use Contour to provide external access to SCST - Store's API. For example:
 
 ```yaml
 ingress_enabled: "true"
