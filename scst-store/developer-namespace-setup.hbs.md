@@ -16,6 +16,8 @@ metadata_store:
   ns_for_export_app_cert: "DEV-NAMESPACE"
 ```
 
+Where `DEV-NAMESPACE` is the name of the developer namespace.
+
 The `ns_for_export_app_cert` supports one namespace at a time. If you have multiple namespaces you can replace this value with a `"*"`, but this exports the CA to all namespaces. Consider whether this increased visibility presents a risk.
 
 ```yaml
