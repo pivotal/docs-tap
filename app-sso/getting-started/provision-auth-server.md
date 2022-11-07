@@ -110,6 +110,9 @@ kubectl get authservers.sso.apps.tanzu.vmware.com my-authserver-example -o jsonp
 Open your `AuthServer`'s issuer URI in your browser. You should see a login page. Log in using username = `user` and
 password = `password`.
 
+You can also standard OpenID information about your `AuthServer` by visiting:
+`http://my-authserver-example.default.<your domain>/.well-known/openid-configuration`.
+
 > ℹ️ If the issuer URIs domain is not yours, then the AppSSO package installation needs to be updated.
 > See [installation](../platform-operators/installation.md)
 
