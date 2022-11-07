@@ -251,7 +251,7 @@ docs.vmware.com is built.
             - [Configure AppSSO](app-sso/platform-operators/configuration.md)
             - [RBAC for AppSSO](app-sso/platform-operators/rbac.md)
             - [AppSSO for OpenShift cluster](app-sso/platform-operators/openshift.md)
-            - [UpgradeAppSSO](app-sso/upgrades/index.md)
+            - [Upgrade AppSSO](app-sso/upgrades/index.md)
             - [Uninstall AppSSO](app-sso/platform-operators/uninstallation.md)
         - [AppSSO for service operators](app-sso/service-operators/index.md)
             - [AppSSO for service operators overview](app-sso/service-operators/index.md)
