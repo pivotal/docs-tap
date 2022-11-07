@@ -226,7 +226,7 @@ Follow these steps to enable additional users by using Kubernetes RBAC to submit
 
 ## Additional configuration for testing and scanning
 
-If you plan to install Out of the Box Supply Chains with Testing and Scanning, [follow additional steps](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scc-ootb-supply-chain-testing.html#developer-namespace-1) required for setting up a developer namespace.
+If you plan to install Out of the Box Supply Chains with Testing and Scanning, see the[Developer Namespace](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scc-ootb-supply-chain-testing.html#developer-namespace-1) section.
 
 ## <a id='next-steps'></a>Next steps
 
