@@ -5,14 +5,14 @@ VMware Tanzu Developer Tools extension for Visual Studio Code.
 This extension enables live updates of your application while running on the
 cluster, and allows you to debug your application directly on the cluster.
 
+> **Important** The Tanzu Developer Tools extension currently only supports Java Functions.
+
 ## <a id="prereqs"></a> Prerequisites
 
 Before you can iterate on your function, you must have:
 
 - [Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.md)
 - [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later.
-
-> **Note** The Tanzu Developer Tools extension currently only supports Java Functions.
 
 ## <a id="configuration"></a> Configure the Tanzu Developer Tools extension
 

@@ -8,9 +8,9 @@ Tanzu Build Service.
 The Full, Iterate, and Build profiles include Tanzu Build Service.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
->**Note** The following procedure might not include some configurations required for your environment.
->For advanced information about installing Tanzu Build Service, see the
->[Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
+The following procedure might not include some configurations required for your environment.
+For advanced information about installing Tanzu Build Service, see the
+[Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
 
 ## <a id='tbs-prereqs'></a> Prerequisites
 
