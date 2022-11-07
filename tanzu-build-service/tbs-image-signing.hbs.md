@@ -77,8 +77,8 @@ media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the
       cosign.pub: PUBLIC-KEY-DATA
     ```
 
-    >**Note** For more information about configuring Cosign key pairs, see the
-    >[Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-images.html#image-signing-with-cosign).
+    For more information about configuring Cosign key pairs, see the
+    [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-images.html#image-signing-with-cosign).
 
 1. To enable Cosign signing, create or modify the service account resource that is
 referenced in the image resource so that it includes the Cosign key pair secret created earlier.
@@ -140,12 +140,12 @@ referenced in the image resource so that it includes the Cosign key pair secret 
       - Docker Hub has the form `"my-dockerhub-user/my-repo"` or `"index.docker.io/my-user/my-repo"`
       - Google Cloud Registry has the form `"gcr.io/my-project/my-repo"`
 
-    >**Note** If you are using Out of the Box Supply Chains, modify the respective `ClusterImageTemplate`
-    >to enable signing in your supply chain. For more information, see [Authoring supply chains](../scc/authoring-supply-chains.md).
-    >
-    >VMware discourages referencing the service account using the `service_account` value when installing the
-    >Out of the Box Supply Chain.
-    >This is because it gives your run cluster access to the private signing key.
+1. If you are using Out of the Box Supply Chains, modify the respective `ClusterImageTemplate`
+to enable signing in your supply chain. For more information, see [Authoring supply chains](../scc/authoring-supply-chains.md).
+
+    > **Important** VMware discourages referencing the service account using the `service_account` value
+    > when installing the Out of the Box Supply Chain.
+    > This is because it gives your run cluster access to the private signing key.
 
 1. Apply the image resource to the cluster by running:
 

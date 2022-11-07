@@ -186,7 +186,8 @@ To deploy and verify your function:
 
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
-1. (Optional) You can test your function using a curl command. Java function POST example:
+1. (Optional) You can test your function using a curl command. To do so, you must have curl
+installed on your computer. Java function POST example:
 
    ```console
    curl -w'\n' URL-FROM-YOUR-WORKLOAD-KNATIVE-SERVICES-SECTION \
@@ -196,5 +197,3 @@ To deploy and verify your function:
 
    For language support for the REST API, see [Supported languages and frameworks](#supportedlangs)
    earlier in this topic.
-
-   > **Note** You must have curl installed on your computer.
