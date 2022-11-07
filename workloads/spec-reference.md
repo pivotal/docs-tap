@@ -249,11 +249,11 @@ Parameters:
 
 For information about how to set up the
 Workload namespace for testing with TektonSee, see [Out of the Box Supply Chain with
-Testing](ootb-supply-chain-testing.hbs.md).
+Testing](../scc/ootb-supply-chain-testing.hbs.md).
 
 For information about how to use the parameters to customize this resource to
 test using a Jenkins cluster, see [Out of the Box Supply Chain
-with Testing on Jenkins](ootb-supply-chain-testing-with-jenkins.hbs.md).
+with Testing on Jenkins](../scc/ootb-supply-chain-testing-with-jenkins.hbs.md).
 
 ## source-scanner
 
@@ -304,7 +304,7 @@ Parameters:
 </table>
 
 See [Out of the Box Supply Chain with Testing and
-Scanning](ootb-supply-chain-testing-scanning.hbs.md) for details about how to
+Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) for details about how to
 set up the Workload namespace with the ScanPolicy and ScanTemplate required for
 this resource, and [SourceScan reference](../scst-scan/scan-crs.hbs.md#sourcescan)
 for details about the SourceScan custom resource.
@@ -319,8 +319,8 @@ The `image-provider` in the supply chains provides a
 container image carrying the application already built to further resources.
 
 Depending on how the Workload is configured, for example, if using [pre-built
-images](pre-built-image.hbs.md) or [building from
-source](building-from-source.hbs.md), different semantics apply:
+images](../scc/pre-built-image.hbs.md) or [building from
+source](../scc/building-from-source.hbs.md), different semantics apply:
 
 - pre-built: an `ImageRepository` object is created aiming at providing a
   reference to the latest image found matching the name as specified in
@@ -415,7 +415,7 @@ Parameters:
 > `--param serviceAccount=...`.
 
 For information about
-the integration with Tanzu Build Service, see [Tanzu Build Service (TBS) Integration](tbs.hbs.md).
+the integration with Tanzu Build Service, see [Tanzu Build Service (TBS) Integration](../scc/tbs.hbs.md).
 
 For information about `live-update`, see [Developer Conventions](../developer-conventions/about.hbs.md)
 and [About IntelliJ extension](intellij-extension/about.hbs.md.
@@ -465,7 +465,7 @@ Parameters:
 </table>
 
 For information about how to use Dockerfile-based builds and limitations associated with the function,
-see [Dockerfile-based builds](dockerfile-based-builds.hbs.md).
+see [Dockerfile-based builds](../scc/dockerfile-based-builds.hbs.md).
 
 ### Pre-built image (ImageRepository)
 
@@ -509,7 +509,7 @@ For information about the
 ImageRepository resource, see [ImageRepository reference
 docs](../source-controller/reference.hbs.md#imagerepository).
 For information about the prebuild image function, see [Using a prebuilt
-image](pre-built-image.hbs.md).
+image](../scc/pre-built-image.hbs.md).
 
 ## image-scanner
 
@@ -821,7 +821,7 @@ It can do so in three distinct manners:
     - pushing a commit _and_ opening a pull request.
 
 Details about the different modes of operation are found in [Gitops vs
-RegistryOps](gitops-vs-regops.hbs.md) with the parameters documented in
+RegistryOps](../scc/gitops-vs-regops.hbs.md) with the parameters documented in
 place.
 
 ## deliverable
@@ -907,8 +907,8 @@ app-deploy                          deploys to the cluster the objects in the
 For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
 and the templates used by it, see:
 
-- [Out of the Box Delivery Basic](ootb-delivery-basic.hbs.md)
-- [Out of the Templates](ootb-templates.hbs.md)
+- [Out of the Box Delivery Basic](../scc/ootb-delivery-basic.hbs.md)
+- [Out of the Templates](../scc/ootb-templates.hbs.md)
 
 For information about the use of the Deliverable object in a multicluster
 environment, see [Getting started with multicluster Tanzu Application
