@@ -21,9 +21,11 @@ The policy controller's dependency on go-tuf must be updated to the later versio
 
 ### Workarounds
 
-Exclude Policy Controller during installation or use a self-deployed Sigstore Stack:
+One workaround is to exclude Policy Controller during installation.
+Another workaround is to use a self-deployed Sigstore Stack.
 
-- Exclude the Policy Controller package in all profile installations by editing this YAML:
+- **Option 1:** Exclude the Policy Controller package in all profile installations by adding
+  Policy Controller to the `excluded_packages` list in `tap-values.yaml`. Example:
 
    ```yaml
    profile: PROFILE-VALUE
@@ -31,4 +33,5 @@ Exclude Policy Controller during installation or use a self-deployed Sigstore St
     - policy.apps.tanzu.vmware.com
    ```
 
-- Install Sigstore Stack and use the generated TUF system as the mirror and root of Policy Controller. For more information, see [Install Sigstore Stack](install-sigstore-stack.hbs.md).
+- **Option 2:** Install Sigstore Stack and use the generated TUF system as the mirror and root of
+  Policy Controller. For more information, see [Install Sigstore Stack](install-sigstore-stack.hbs.md).
