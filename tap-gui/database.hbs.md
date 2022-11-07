@@ -23,51 +23,87 @@ For production or general-purpose use-cases, VMware recommends using a PostgreSQ
 
 ## <a id="config-postgresql"></a> Configure a PostgreSQL database
 
-To use a PostgreSQL database:
+To configure TAP GUI to use a PostgreSQL database:
 
-1. Use the following values in `tap-values.yaml`:
+### <a id="postgresql-modify-values"></a> Modify your `tap-values.yaml`:
 
-    ```yaml
-        backend:
-          baseUrl: http://tap-gui.INGRESS-DOMAIN
-          cors:
-            origin: http://tap-gui.INGRESS-DOMAIN
-        # Existing tap-values.yaml above
-          database:
-            client: pg
-            connection:
-              host: PG-SQL-HOSTNAME
-              port: 5432
-              user: PG-SQL-USERNAME
-              password: PG-SQL-PASSWORD
-              ssl: {rejectUnauthorized: false} # Set to true if using SSL
-    ```
+```yaml
+backend:
+  baseUrl: http://tap-gui.INGRESS-DOMAIN
+  cors:
+    origin: http://tap-gui.INGRESS-DOMAIN
+# Existing tap-values.yaml above
+  database:
+    client: pg
+    connection:
+      host: PG-SQL-HOSTNAME
+      port: 5432
+      user: PG-SQL-USERNAME
+      password: PG-SQL-PASSWORD
+      ssl: {rejectUnauthorized: false} # Set to true if using SSL
+```
 
-    Where:
+Where:
 
-    - `PG-SQL-HOSTNAME` is the host name of your PostgreSQL database.
-    - `PG-SQL-USERNAME` is the user name of your PostgreSQL database.
-    - `PG-SQL-PASSWORD` is the password of your PostgreSQL database.
+- `PG-SQL-HOSTNAME` is the host name of your PostgreSQL database.
+- `PG-SQL-USERNAME` is the user name of your PostgreSQL database.
+- `PG-SQL-PASSWORD` is the password of your PostgreSQL database.
 
-2. Update the package profile by running:
+#### Additional configuration parameters
 
-    ```console
-    tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
-    ```
+While this represents the minimal set of configuration options needed to make
+TAP GUI work with the `pg` driver, there actually exist many more configuration
+options that you can leverage. For example you may want to restrict TAP GUI to a
+[single
+database](https://backstage.io/docs/tutorials/switching-sqlite-postgres#using-a-single-database).
+By default TAP GUI will create a database for each plugin, but can be configured
+to divide plugins based on different postgres schemas and use a single specified
+database.
 
-    Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+```yaml
+backend:
+  # ... other backend details
+  database:
+    client: pg
 
-    For example:
+    # This parameter tells TAP GUI to put plugins in their own schema instead of
+    # their own database.
+    # default: database
+    pluginDivisionMode: schema
 
-    ```console
-    $ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version {{ vars.tap_version }} --values-file tap-values.yaml -n tap-install
-    | Updating package 'tap'
-    | Getting package install for 'tap'
-    | Getting package metadata for 'tap.tanzu.vmware.com'
-    | Updating secret 'tap-tap-install-values'
-    | Updating package install for 'tap'
-    / Waiting for 'PackageInstall' reconciliation for 'tap'
+    connection:
+      # ... other connection details
+      database: PG-SQL-DATABASE
+```
+
+Where:
+- `PG-SQL-DATABASE` is the database name TAP GUI is to use
+
+A complete list of these configuration options can be found in the
+[node-postgres docs](https://node-postgres.com/api/client).
+
+### <a id="update-package-profile"></a> Update the package profile
+
+You can realize your new configuration by updating TAP with your modified
+values. This will update TAP GUI as it is owned by TAP.
+
+```console
+tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
+```
+
+Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+
+For example:
+
+```console
+$ tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version {{ vars.tap_version }} --values-file tap-values.yaml -n tap-install
+| Updating package 'tap'
+| Getting package install for 'tap'
+| Getting package metadata for 'tap.tanzu.vmware.com'
+| Updating secret 'tap-tap-install-values'
+| Updating package install for 'tap'
+/ Waiting for 'PackageInstall' reconciliation for 'tap'
 
 
-    Updated package install 'tap' in namespace 'tap-install'
-    ```
+Updated package install 'tap' in namespace 'tap-install'
+```
