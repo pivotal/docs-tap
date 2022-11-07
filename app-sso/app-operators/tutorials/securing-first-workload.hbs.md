@@ -210,7 +210,7 @@ tanzu apps workload create appsso-starter-java \
     --type web \
     --label app.kubernetes.io/part-of=appsso-starter-java \
     --service-ref "appsso-starter-java=services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:appsso-starter-java" \
-    --git-repo "ssh://git@github.com/vmware-tanzu/application-accelerator-samples.git" \
+    --git-repo "https://github.com/sample-accelerators/appsso-starter-java.git" \
     --sub-path "appsso-starter-java" \
     --git-branch main \
     --live-update \
