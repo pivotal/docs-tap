@@ -111,7 +111,7 @@ Open your `AuthServer`'s issuer URI in your browser. You should see a login page
 password = `password`.
 
 You can review the standard OpenID information of your `AuthServer` by visiting 
-http://my-authserver-example.default.<your domain>/.well-known/openid-configuration.
+`http://my-authserver-example.default.<your domain>/.well-known/openid-configuration`.
 
 > ℹ️ If the issuer URIs domain is not yours, then the AppSSO package installation needs to be updated.
 > See [installation](../platform-operators/installation.md)
