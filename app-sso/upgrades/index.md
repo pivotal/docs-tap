@@ -21,7 +21,7 @@ with the following changes:
 
 - Migrate from `.spec.issuerURI` to `.spec.tls`:
 
-    >**Note** AppSSO templates your issuer URI and provides TLS-enabled. When using the newer `.spec.tls`,
+    >**Note** AppSSO templates your issuer URI and enables TLS. When using the newer `.spec.tls`,
     a custom `Service` and ingress resource are no longer required.
 
     1. Configure one of `.spec.tls.{issuerRef, certificateRef, secretRef}`. See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more information.
@@ -31,9 +31,8 @@ with the following changes:
     1. Apply your `AuthServer`. You can find its issuer URI in `.status.issuerURI`.
     1. Update the redirect URIs in your upstream identity providers.
 
-    >**Note** Although this is discouraged, `.spec.issuerURI` is still valid with AppSSO `2.0.0`,
-    but, in that case, please note that you will need to provide a `Service` and an ingress resource,
-    exactly as with AppSSO `1.0.0`.
+    >**Note** It is not recommented to continue using `.spec.issuerURI` in AppSSO v2.0.0. 
+    To use `.spec.issuerURI`in AppSSO v2.0.0, you must provide a `Service` and an ingress resource as in AppSSO v1.0.0.
 
 - If you use the `internalUnsafe` identity provider to migrate existing users by replacing the bcrypt hash through the
 plain-text equivalent. You can still use existing bcrypt passwords by prefixing them with `{bcrypt}`:
