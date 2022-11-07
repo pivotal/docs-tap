@@ -95,7 +95,7 @@ appears in the supply chain that shows **Pull Config** boxes and **Delivery** bo
 ![Screenshot of part of the box-and-line diagram. Two Pull Config boxes are each separately linked to two Delivery boxes.](images/pull-config-and-delivery-boxes.png)
 
 When you have a `Pull Request` configured in your environment, access the merge request from the
-supply chain by clicking the **Approve a Request** button. This button is displayed after you click
+supply chain by clicking **APPROVE A REQUEST**. This button is displayed after you click
 **View Approvals** in the supply chain diagram.
 
 In the following example, the merge request is approved, which causes **Pull Config** and **Delivery**
@@ -109,12 +109,10 @@ Click the **Source Scan** stage or **Image Scan** stage to view vulnerability so
 image scans for workload builds. The data is from
 [Supply Chain Security Tools - Store](../../scst-store/overview.hbs.md).
 
-Reported CVE issues represent any vulnerability associated with a package or version found in the
+CVE issues represent any vulnerabilities associated with a package or version found in the
 source code or image, including vulnerabilities from past scans.
-In other words, the vulnerability scan data represents the scan that just occurred and any other
-vulnerabilities related to the packages found in that scan.
 
 > **Note** For example, the `log4shell` package is found in image ABC on 1 January without any CVEs.
 > On 15 January, the log4j CVE issue is found while scanning image DEF. If a user returns to the
-> **Image Scan** stage for image ABC, the log4j CVE issue is shown associated with the `log4shell`
-> package.
+> **Image Scan** stage for image ABC, the log4j CVE issue appears and is associated with the
+> `log4shell` package.
