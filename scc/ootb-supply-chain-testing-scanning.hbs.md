@@ -242,6 +242,11 @@ to the properties you want to change. For example:
 >installation as in the earlier example. For more information, see
 >[About Source and Image Scans](../scst-scan/explanation.md#about-src-and-image-scans).
 
+#### <a id="storing-scan-results"></a>Enable storing scan results
+
+To enable SCST - Scan to store scan results to SCST - Store, see the [Developer namespace setup](../scst-store/developer-namespace-setup.hbs.md) topic to export the SCST - Store CA certificate and authentication token to the developer namespace.
+
+
 #### <a id="multiple-pl"></a> Allow multiple Tekton pipelines in a namespace
 
 You can configure your developer namespace to include more than one pipeline using either of the following methods:
