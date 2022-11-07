@@ -714,8 +714,6 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Extended Scanning Coverage using Anchore Grype \*\*\*</strong>
    </td>
-   <td><strong>Application Accelerators for VMware Tanzu</strong>
-   </td>
   </tr>
   <tr>
    <td>Java
@@ -727,8 +725,6 @@ Tanzu Application Platform components.
    <td>&check;
    </td>
    <td>
-   </td>
-   <td>&check;
    </td>
    <td>&check;
    </td>
@@ -750,8 +746,6 @@ Tanzu Application Platform components.
    </td>
    <td>
    </td>
-   <td>&check;
-   </td>
   </tr>
   <tr>
    <td>.NET Core
@@ -767,8 +761,6 @@ Tanzu Application Platform components.
    <td>
    </td>
    <td>&check;
-   </td>
-   <td>
    </td>
   </tr>
   <tr>
@@ -786,8 +778,6 @@ Tanzu Application Platform components.
    </td>
    <td>
    </td>
-   <td>&check;
-   </td>
   </tr>
   <tr>
    <td>NodeJS
@@ -803,8 +793,6 @@ Tanzu Application Platform components.
    <td>&check;
    </td>
    <td>&check;
-   </td>
-   <td>
    </td>
   </tr>
   <tr>
@@ -822,8 +810,6 @@ Tanzu Application Platform components.
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
   </tr>
   <tr>
    <td>Golang
@@ -840,15 +826,11 @@ Tanzu Application Platform components.
    </td>
    <td>&check;
    </td>
-   <td>
-   </td>
   </tr>
   <tr>
    <td>PHP
    </td>
    <td>&check;
-   </td>
-   <td>
    </td>
    <td>
    </td>
@@ -875,8 +857,6 @@ Tanzu Application Platform components.
    <td>
    </td>
    <td>&check;
-   </td>
-   <td>
    </td>
   </tr>
 </table>
