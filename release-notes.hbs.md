@@ -556,6 +556,7 @@ restart your Supply Chain Security Tools - Scan deployment by running:
   There is no way to access details for the second.
 
 - **Back-end Kubernetes plug-in reporting failure in multicluster environments:**
+
   In a multicluster environment when one request to a Kubernetes cluster fails,
   `backstage-kubernetes-backend` reports a failure to the front end.
   This is a known issue with upstream Backstage and it applies to all released versions of
