@@ -464,6 +464,16 @@ When running a Source Scan of a blob compressed file, it looks for a `.git` dire
       when viewing a workload in a supply chain.
       Use the CLI tools instead to view the status of the workload in the supply chain.
 
+- **Back-end Kubernetes plug-in reporting failure in multicluster environments:**
+
+In a multicluster environment when one request to a Kubernetes cluster fails,
+`backstage-kubernetes-backend` reports a failure to the front end.
+This is a known issue with upstream Backstage and it applies to all released versions of
+Tanzu Application Platform GUI. For more information, see
+[this Backstage code in GitHub](https://github.com/backstage/backstage/blob/c7f88d041b671185dc7a01e716f80dca0709e2a1/plugins/kubernetes-backend/src/service/KubernetesFanOutHandler.ts#L250-L271).
+This behavior arises from the API at the Backstage level. There are currently no known workarounds.
+There are plans for upstream commits to Backstage to resolve this issue.
+
 - **Runtime Resource Visibility plug-in:**
   When accessing the **Runtime Resources** tab from the **Component** view, the following warning appears:
   `Access error when querying cluster 'host' for resource '/apis/source.apps.tanzu.vmware.com/v1alpha1/mavenartifacts' (status: 403). Contact your administrator.`
