@@ -11,11 +11,20 @@ For more information about profiles, see [About Tanzu Application Platform compo
 
 Before installing Supply Chain Security Tools - Scan:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install [Supply Chain Security Tools - Store](../scst-store/install-scst-store.md) for scan results to persist. The integration with Supply Chain Security Tools - Store are handled in:
-  - **Single Cluster:** The Supply Chain Security Tools - Store is present in the same cluster where Supply Chain Security Tools - Scan and the `ScanTemplates` are present.
-  - **Multi-Cluster:** The Supply Chain Security Tools - Store is present in a different cluster (e.g.: view cluster) where the Supply Chain Security Tools - Scan and `ScanTemplates` are present.
-  - **Integration Deactivated:** The Supply Chain Security Tools - Scan deployment is not required to communicate with Supply Chain Security Tools - Store.
+- Complete all prerequisites to install Tanzu Application Platform. For more
+  information, see [Prerequisites](../prerequisites.md).
+- Install [Supply Chain Security Tools -
+  Store](../scst-store/install-scst-store.md) for scan results to persist. The
+  integration with Supply Chain Security Tools - Store are handled in:
+  - **Single Cluster:** The Supply Chain Security Tools - Store is present in
+    the same cluster where Supply Chain Security Tools - Scan and the
+    `ScanTemplates` are present.
+  - **Multi-Cluster:** The Supply Chain Security Tools - Store is present in a
+    different cluster (e.g.: view cluster) where the Supply Chain Security Tools
+    - Scan and `ScanTemplates` are present.
+  - **Integration Deactivated:** The Supply Chain Security Tools - Scan
+    deployment is not required to communicate with Supply Chain Security Tools -
+    Store.
 
     For more information, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
@@ -69,7 +78,8 @@ The installation for Supply Chain Security Tools – Scan involves installing tw
 - Scan controller
 - Grype scanner
 
-The Scan controller enables you to use a scanner, in this case, the Grype scanner. Ensure both the Grype scanner and the Scan controller are installed.
+The Scan controller enables you to use a scanner, in this case, the Grype
+scanner. Ensure both the Grype scanner and the Scan controller are installed.
 
 To install Supply Chain Security Tools - Scan (Scan controller):
 
@@ -90,7 +100,9 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. (Optional) Make changes to the default installation settings:
 
-    If you're using the Grype Scanner `≥v1.2.0`, or the Snyk Scanner, the following scanning configuration can deactivate the embedded Supply Chain Security Tools - Store integration with a `scan-values.yaml` file, such as:
+    If you're using the Grype Scanner `≥v1.2.0`, or the Snyk Scanner, the
+    following scanning configuration can deactivate the embedded Supply Chain
+    Security Tools - Store integration with a `scan-values.yaml` file, such as:
 
     ```yaml
     ---
@@ -98,10 +110,13 @@ To install Supply Chain Security Tools - Scan (Scan controller):
       url: ""
     ```
 
-    If you're using the Grype Scanner `<1.2.0`, the scanning configuration must configure the store parameters. See the [v1.1 docs](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-scst-scan-install-scst-scan.html) for reference.
+    If you're using the Grype Scanner `<1.2.0`, the scanning configuration must
+    configure the store parameters. See the [v1.1
+    docs](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-scst-scan-install-scst-scan.html)
+    for reference.
 
-
-    You can retrieve any other configurable setting using the following command, and appending the key-value pair to the previous `scan-values.yaml` file:
+    You can retrieve any other configurable setting using the following command,
+    and appending the key-value pair to the previous `scan-values.yaml` file:
 
     ```console
     tanzu package available get scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
@@ -140,7 +155,8 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
 1. (Optional) Make changes to the default installation settings:
 
-    To define the configuration for the Supply Chain Security Tools - Store integration in the `grype-values.yaml` file for the Grype Scanner:
+    To define the configuration for the Supply Chain Security Tools - Store
+    integration in the `grype-values.yaml` file for the Grype Scanner:
 
     ```yaml
     ---
@@ -154,21 +170,31 @@ To install Supply Chain Security Tools - Scan (Scan controller):
         name: "TOKEN-SECRET-NAME" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
-    >**Note** You must either define both the METADATA-STORE-URL and caSecret, or not define them as they depend on each other.
+    >**Note** You must either define both the METADATA-STORE-URL and caSecret,
+    >or not define them as they depend on each other.
 
     Where:
 
-    - `DEV-NAMESPACE` is the namespace where you want to deploy the `ScanTemplates`.
-    This is the namespace where the scanning feature runs.
-    - `METADATA-STORE-URL` is the base URL where the Supply Chain Security Tools (SCST) - Store deployment can be reached, for example, `https://metadata-store-app.metadata-store.svc.cluster.local:8443`.
-    - `CA-SECRET-NAME` is the name of the secret containing the ca.crt to connect to the SCST - Store deployment.
-    - `SECRET-NAMESPACE` is the namespace where SCST - Store is deployed, if you are using a single cluster. If you are using multicluster, it is where the connection secrets were created.
-    - `TOKEN-SECRET-NAME` is the name of the secret containing the authentication token to connect to the SCST - Store deployment when installed in a different cluster, if you are using multicluster.
-    If built images are pushed to the same registry as the Tanzu Application Platform images,
-    this can reuse the `tap-registry` secret created in
-    [Add the Tanzu Application Platform package repository](../install.html#add-tap-package-repo) as described earlier.
+    - `DEV-NAMESPACE` is the namespace where you want to deploy the
+    `ScanTemplates`. This is the namespace where the scanning feature runs.
+    - `METADATA-STORE-URL` is the base URL where the Supply Chain Security Tools
+      (SCST) - Store deployment can be reached, for example,
+      `https://metadata-store-app.metadata-store.svc.cluster.local:8443`.
+    - `CA-SECRET-NAME` is the name of the secret containing the ca.crt to
+      connect to the SCST - Store deployment.
+    - `SECRET-NAMESPACE` is the namespace where SCST - Store is deployed, if you
+      are using a single cluster. If you are using multicluster, it is where the
+      connection secrets were created.
+    - `TOKEN-SECRET-NAME` is the name of the secret containing the
+    authentication token to connect to the SCST - Store deployment when
+    installed in a different cluster, if you are using multicluster. If built
+    images are pushed to the same registry as the Tanzu Application Platform
+    images, this can reuse the `tap-registry` secret created in [Add the Tanzu
+    Application Platform package
+    repository](../install.html#add-tap-package-repo) as described earlier.
 
-    You can retrieve any other configurable setting using the following command, and appending the key-value pair to the previous `grype-values.yaml` file:
+    You can retrieve any other configurable setting using the following command,
+    and appending the key-value pair to the previous `grype-values.yaml` file:
 
     ```console
     tanzu package available get grype.scanning.apps.tanzu.vmware.com/VERSION --values-schema -n tap-install
