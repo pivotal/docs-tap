@@ -465,6 +465,7 @@ When running a Source Scan of a blob compressed file, it looks for a `.git` dire
       Use the CLI tools instead to view the status of the workload in the supply chain.
 
 - **Back-end Kubernetes plug-in reporting failure in multicluster environments:**
+
   In a multicluster environment when one request to a Kubernetes cluster fails,
   `backstage-kubernetes-backend` reports a failure to the front end.
   This is a known issue with upstream Backstage and it applies to all released versions of
