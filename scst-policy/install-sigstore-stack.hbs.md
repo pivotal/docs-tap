@@ -241,7 +241,7 @@ config_json="${config_json}" \
 
 ## <a id='sigstore-patch-knative-serving'></a> Patch Knative-Serving
 
-Knative Serving is already deployed during the first attempt of installing Tanzu Application Platform. This component must be present to continue deploying the Sigstore Stack.
+Knative Serving may already be deployed, depending on the selected profile, during the first attempt of installing Tanzu Application Platform. This component must be present to continue deploying the Sigstore Stack. If Knative is not present, please install it by following [Install Cloud Native Runtimes](../cloud-native-runtimes/install-cnrt.hbs.md).
 
 With the Sigstore Stack deployment, Knative Serving's `configmap/config-features` must be updated to enable some required features.
 
@@ -295,6 +295,10 @@ EOF
 echo "Patch trillian service account"
 kubectl -n trillian-system patch serviceaccount trillian -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
 
+echo 'Restart trillian deployment if tap-registry secret was required'
+kubectl -n trillian-system rollout restart deployment/log-server-00001-deployment
+kubectl -n trillian-system rollout restart deployment/log-signer-00001-deployment
+
 echo 'Wait for Trillian ready'
 kubectl wait --timeout 2m -n trillian-system --for=condition=Ready ksvc log-server
 kubectl wait --timeout 2m -n trillian-system --for=condition=Ready ksvc log-signer
@@ -329,6 +333,9 @@ EOF
 
 echo "Patch rekor service account"
 kubectl -n rekor-system patch serviceaccount rekor -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
+
+echo 'Restart rekor deployment if tap-registry secret was required'
+kubectl -n rekor-system rollout restart deployment/rekor-00001-deployment
 
 echo 'Wait for Rekor ready'
 kubectl wait --timeout 5m -n rekor-system --for=condition=Complete jobs --all
@@ -371,6 +378,9 @@ EOF
 echo "Patch fulcio service account"
 kubectl -n fulcio-system patch serviceaccount fulcio -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
 
+echo 'Restart fulcio deployment if tap-registry secret was required'
+kubectl -n fulcio-system rollout restart deployment/fulcio-00001-deployment
+
 echo 'Wait for Fulcio ready'
 kubectl wait --timeout 5m -n fulcio-system --for=condition=Complete jobs --all
 kubectl wait --timeout 5m -n fulcio-system --for=condition=Ready ksvc fulcio
@@ -405,6 +415,9 @@ EOF
 
 echo "Patch ctlog service account"
 kubectl -n ctlog-system patch serviceaccount ctlog -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
+
+echo 'Restart ctlog deployment if tap-registry secret was required'
+kubectl -n ctlog-system rollout restart deployment/ctlog-00001-deployment
 
 echo 'Wait for CTLog ready'
 kubectl wait --timeout 5m -n ctlog-system --for=condition=Complete jobs --all
@@ -522,3 +535,13 @@ This updates the policy-controller only. It is important that if Policy Controll
 
 For more information about profiles, see [Package Profiles](../about-package-profiles.hbs.md).
 For more information about Policy Controller, see [Install Supply Chain Security Tools - Policy Controller](./install-scst-policy.hbs.md) documentation.
+
+## <a id='sigstore-uninstall'></a> Uninstall Sigstore Stack
+
+```bash
+kubectl delete -f "release-tuf.yaml"
+kubectl delete -f "release-ctlog.yaml"
+kubectl delete -f "release-fulcio.yaml"
+kubectl delete -f "release-rekor.yaml"
+kubectl delete -f "release-trillian.yaml"
+```

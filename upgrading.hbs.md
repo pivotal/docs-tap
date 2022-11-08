@@ -66,7 +66,7 @@ Tanzu Application Platform v1.3.1, remove the package `policy.apps.tanzu.vmware.
 
 If your chosen workaround was installing a custom Sigstore Stack then, when upgrading to
 Tanzu Application Platform v1.3.1, remove the `tuf_mirror` and `tuf_root` keys from `tap-values.yaml`
-to use the official Sigstore TUF root.
+to use the official Sigstore TUF root. Afterwards, proceed to [Uninstall Sigstore Stack](./scst-policy/install-sigstore-stack.hbs.md#uninstall-sigstore-stack).
 
 ```yaml
 tuf_mirror: http://tuf.tuf-system.svc
@@ -82,10 +82,10 @@ If you installed Tanzu Application Platform by using a profile, you can perform 
 tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
 ```
 
-When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically run a build that fails due to a missing dependency. 
-This error does not persist and any subsequent builds will resolve this error. 
-You can safely wait for the next build of the workloads, which is triggered by new source code changes. 
-If you do not want to wait for subsequent builds to run automatically, follow the instructions in the troubleshooting item 
+When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically run a build that fails due to a missing dependency.
+This error does not persist and any subsequent builds will resolve this error.
+You can safely wait for the next build of the workloads, which is triggered by new source code changes.
+If you do not want to wait for subsequent builds to run automatically, follow the instructions in the troubleshooting item
 [Builds fail after upgrading to Tanzu Application Platform v1.2](tanzu-build-service/troubleshooting.md#tbs-1-2-breaking-change).
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
