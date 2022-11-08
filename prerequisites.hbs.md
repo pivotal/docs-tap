@@ -135,6 +135,7 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
 - Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in certain optional configurations.
 See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) for more information.
     - Tanzu Build Service requires root privileges in the case that [CustomStacks](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-custom-stacks.html) are required.
+    - Kaniko usage in a Supply Chain would require root privileges to build containers.
     - Tanzu Learning Center has run as root requirements.
 
 
