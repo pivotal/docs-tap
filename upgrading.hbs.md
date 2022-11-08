@@ -83,10 +83,10 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --
 ```
 
 When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically run a build that fails due to a missing dependency.
-This error does not persist and any subsequent builds will resolve this error.
-You can safely wait for the next build of the workloads, which is triggered by new source code changes.
-If you do not want to wait for subsequent builds to run automatically, follow the instructions in the troubleshooting item
-[Builds fail after upgrading to Tanzu Application Platform v1.2](tanzu-build-service/troubleshooting.md#tbs-1-2-breaking-change).
+This error does not persist and any subsequent builds resolve this error.
+You can wait for the next build of the workloads that new source code changes trigger.
+If you do not want to wait for subsequent builds to run automatically, follow the instructions in 
+[Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
