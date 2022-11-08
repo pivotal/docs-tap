@@ -469,6 +469,15 @@ authentication and certificate validation for the `metadata-store` API.
 - **Tanzu Application Platform GUI doesn't work in Safari:**
   Tanzu Application Platform GUI does not work in the Safari web browser.
 
+- **Back-end Kubernetes plug-in reporting failure in multicluster environments:**
+  In a multicluster environment when one request to a Kubernetes cluster fails,
+  `backstage-kubernetes-backend` reports a failure to the front end.
+  This is a known issue with upstream Backstage and it applies to all released versions of
+  Tanzu Application Platform GUI. For more information, see
+  [this Backstage code in GitHub](https://github.com/backstage/backstage/blob/c7f88d041b671185dc7a01e716f80dca0709e2a1/plugins/kubernetes-backend/src/service/KubernetesFanOutHandler.ts#L250-L271).
+  This behavior arises from the API at the Backstage level. There are currently no known workarounds.
+  There are plans for upstream commits to Backstage to resolve this issue.
+
 #### Tanzu CLI
 
 - `tanzu apps workload get`: Passing in `--output json` with the `--export` flag returns YAML
