@@ -132,11 +132,12 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
 
 - For the [`full` profile](install.html#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
-- Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in certain optional configurations.
-See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) for more information.
-    - Tanzu Build Service requires root privileges in the case that [CustomStacks](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-custom-stacks.html) are required.
-    - Kaniko usage in a Supply Chain would require root privileges to build containers.
-    - Tanzu Learning Center has run as root requirements.
+- Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in the following optional configurations:
+    - Tanzu Build Service, in which CustomStacks requires root privileges. For more information, see [CustomStacks](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-custom-stacks.html).
+    - Supply Chain, in which Kaniko usage requires root privileges to build containers.
+    - Tanzu Learning Center, which requires root privileges.
+
+        See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) for more information.
 
 
 ## <a id='tools-and-cli-reqs'></a>Tools and CLI requirements
