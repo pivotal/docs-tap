@@ -220,7 +220,7 @@ To add or change organization catalog locations:
 3. Verify the status of this update by running:
 
    ```console
-   tanzu package installed list
+   tanzu package installed list -n tap-install
    ```
 
 ## <a id='install-demo'></a> Install demo apps and their catalogs
