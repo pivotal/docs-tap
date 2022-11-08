@@ -4,7 +4,9 @@ Supply Chain Security Tools (SCST) - Store has ingress support by using Contour'
 
 To change ingress configuration, edit your `tap-values.yaml` when you install a Tanzu Application Platform profile. Configure the `shared.ingress_domain` property and SCST - Store automatically uses that setting.
 
-Alternatively, you can customize SCST - Store's configuration under the `metadata_store` property. Under `metadata_store`, there are two values to configure the proxy: `ingress_enabled` and `ingress_domain`.
+Alternatively, you can customize SCST - Store's configuration under the `metadata_store` property. Under `metadata_store`, there are two values to configure the proxy: 
+- `ingress_enabled`
+- `ingress_domain`
 
 This is an example snippet in a `tap-values.yaml`,
 
@@ -17,11 +19,11 @@ metadata_store:
 ...
 ```
 
-SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`. For example, `metadata-store.example.com`. The created route supports HTTPS communication using a certificate. By default, a self-signed certificate is used with the same subject `Alternative Name`. See [Custom certificate configuration](custom-cert.hbs.md) for information about how to configure custom certificates.
+SCST - Store installation creates an HTTPProxy entry with host routing by using the qualified name `metadata-store.<ingress_domain>`. For example, `metadata-store.example.com`. The route supports HTTPS communication using a certificate. By default, a self-signed certificate is used with the same subject `alternative name`. See [Custom certificate configuration](custom-cert.hbs.md) for information about how to configure custom certificates.
 
-Contour and DNS setup are not part of the SCST - Store installation. Access to SCST - Store using Contour depends on the correct configuration of these two components.
+Contour and DNS setup are not part of SCST - Store installation. Access to SCST - Store using Contour depends on the correct configuration of these two components.
 
-Make the proper DNS record available to clients to resolve `metadata-store.<ingress_domain>` to Envoy service's external IP address.
+Make the proper DNS record available to clients to resolve `metadata-store` and set `ingress_domain` to Envoy service's external IP address.
 
 DNS setup example,
 
