@@ -94,7 +94,7 @@ require the use of:
 - The root user.
 
 To overcome such limitations imposed by the default unprivileged
-SecurityContextConstraints (SCC), we recommend:
+SecurityContextConstraints (SCC), VMware recommends:
 
 1. Creating a more permissive SCC with just enough extra privileges for Kaniko
    to properly operate:
@@ -157,8 +157,8 @@ SecurityContextConstraints (SCC), we recommend:
           - use
     ```
 
-3. Binding the role to an actor (ServiceAccount as instructed in [Set up
-   developer namespaces to use installed packages ](../set-up-namespaces.hbs.md)):
+3. Binding the role to an actor, ServiceAccount, as instructed in [Set up
+   developer namespaces to use installed packages ](../set-up-namespaces.hbs.md):
 
     ```yaml
     apiVersion: rbac.authorization.k8s.io/v1
@@ -180,8 +180,8 @@ use of the SCC, OpenShift accepts the pods created to run Kaniko to build
 the container images.
 
 
-> **Note**: Such restrictions are due to well-known limitations in how Kaniko
-> performs the image builds (see [kaniko#105]), and there is currently no solution.
+> **Note** Such restrictions are due to well-known limitations in how Kaniko
+> performs the image builds, and there is currently no solution. For more information, see [kaniko#105].
 
 
 [kaniko#105]: https://github.com/GoogleContainerTools/kaniko/issues/105
