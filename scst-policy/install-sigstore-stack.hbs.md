@@ -243,7 +243,7 @@ config_json="${config_json}" \
 
 ## <a id='sigstore-patch-knative-serving'></a> Patch Knative-Serving
 
-Knative Serving is already deployed during the first attempt of installing Tanzu Application Platform. This component must be present to continue deploying the Sigstore Stack.
+Knative Serving may already be deployed, depending on the selected profile, during the first attempt of installing Tanzu Application Platform. This component must be present to continue deploying the Sigstore Stack. If Knative is not present, please install it by following [Install Cloud Native Runtimes](../cloud-native-runtimes/install-cnrt.hbs.md).
 
 With the Sigstore Stack deployment, Knative Serving's `configmap/config-features` must be updated to enable some required features. Run:
 
