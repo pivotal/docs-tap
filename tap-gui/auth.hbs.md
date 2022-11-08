@@ -58,7 +58,7 @@ Configure a supported authentication provider or a custom OpenID Connect (OIDC) 
               prompt: auto # default=none (allowed values: auto, none, consent, login)
   ```
 
-  Where `AUTH-OIDC-METADATA_URL` is a JSON file with generic OIDC provider configuration.
+  Where `AUTH-OIDC-METADATA-URL` is a JSON file with generic OIDC provider configuration.
   It contains `authorizationUrl` and `tokenUrl`.
   Tanzu Application Platform GUI reads these values from `metadataUrl`,
   so you must not specify these values explicitly in the earlier authentication configuration.
