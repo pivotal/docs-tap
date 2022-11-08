@@ -125,7 +125,6 @@ Tanzu Application Platform now supports:
   - `TOKEN_REQUEST_REJECTED` events.
   - Identity providers are incorrectly set up.
 - Enabled `/userinfo` endpoint to retrieve user information.
-- OpenShift support: AppSSO uses a custom Security Context Constraint.
 - Security: Complies with the restricted Pod Security Standard and gives the least privilege to the controller.
 - Service-Operator cluster role: Aggregate RBAC for managing AuthServer.
 - Controller updates:
@@ -180,8 +179,6 @@ For instructions about using Carbon Black Cloud Scanner with Tanzu Application P
 - Optimized 'MavenArtifact' artifact download during interval sync.
   - Only after the SHA on the Maven Repository has changed can the source controller download the artifact. Otherwise, the download is skipped.
 - Added routine to reset `ImageRepository` condition status between reconciles.
-- Added support for OpenShift.
-- Added support for Kubernetes 1.24.
 
 #### <a id="snyk-scanner"></a> Snyk Scanner (beta)
 
@@ -282,8 +279,6 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 #### <a id="srvc-toolkit-features"></a> Services Toolkit
 
-- Added support for Openshift.
-- Added support for Kubernetes 1.24.
 - Created documentation and reference Service Instance Packages for new Cloud Service Provider integrations:
   - [Azure Flexible Server (Postgres) by using the Azure Service Operator](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_flexibleserver_psql_with_azure_operator.html).
   - [Azure Flexible Server (Postgres) by using Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_azure_database_with_crossplane.html).
