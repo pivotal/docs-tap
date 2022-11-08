@@ -63,7 +63,6 @@ don't conflict. Like the Git diff3 algorithm.
   - `TOKEN_REQUEST_REJECTED` events.
   - Identity providers are incorrectly set up.
 - Enabled `/userinfo` endpoint to retrieve user information.
-- OpenShift support: AppSSO uses a custom Security Context Constraint.
 - Security: Complies with the restricted Pod Security Standard and gives the least privilege to the
 controller.
 - Service-Operator cluster role: Aggregate RBAC for managing AuthServer.
@@ -128,9 +127,7 @@ For instructions about using Carbon Black Cloud Scanner with Tanzu Application P
 
 #### <a id="scst-scan-features"></a>Supply Chain Security Tools - Scan
 
-- Added OpenShift+vSphere support for scanner plugins.
-- Added support to Grype and Snyk plugins for images hosted in Elastic Container Registry (ECR) using IAM Roles.
-- Added support for Kubernetes 1.24.
+- Added support to Grype and Snyk plug-ins for images hosted in Elastic Container Registry (ECR) using IAM Roles.
 
 #### <a id="scst-policy-features"></a>Supply Chain Security Tools - Policy Controller
 
