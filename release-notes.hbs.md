@@ -68,16 +68,6 @@ find vulnerabilities during a source scan.
 The vulnerabilities are still found during the image scan after the binaries are built and packaged
 as images.
 
-#### Tanzu Application Platform GUI back-end Kubernetes plug-in reporting failure in multicluster environments
-
-In a multicluster environment when one request to a Kubernetes cluster fails,
-`backstage-kubernetes-backend` reports a failure to the front end.
-This is a known issue with upstream Backstage and it applies to all released versions of
-Tanzu Application Platform GUI. For more information, see
-[this Backstage code in GitHub](https://github.com/backstage/backstage/blob/c7f88d041b671185dc7a01e716f80dca0709e2a1/plugins/kubernetes-backend/src/service/KubernetesFanOutHandler.ts#L250-L271).
-This behavior arises from the API at the Backstage level. There are currently no known workarounds.
-There are plans for upstream commits to Backstage to resolve this issue.
-
 ## <a id='1-3-0'></a> v1.3.0
 
 **Release Date**: October 11, 2022
@@ -498,6 +488,16 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
   - Users see the error `An error occurred while loading data from the Metadata Store` when
     Tanzu Application Platform GUI is not fully configured. For more information, see
     [Troubleshooting](tap-gui/troubleshooting.hbs.md#err-load-metadata-store).
+
+- **Back-end Kubernetes plug-in reporting failure in multicluster environments:**
+
+In a multicluster environment when one request to a Kubernetes cluster fails,
+`backstage-kubernetes-backend` reports a failure to the front end.
+This is a known issue with upstream Backstage and it applies to all released versions of
+Tanzu Application Platform GUI. For more information, see
+[this Backstage code in GitHub](https://github.com/backstage/backstage/blob/c7f88d041b671185dc7a01e716f80dca0709e2a1/plugins/kubernetes-backend/src/service/KubernetesFanOutHandler.ts#L250-L271).
+This behavior arises from the API at the Backstage level. There are currently no known workarounds.
+There are plans for upstream commits to Backstage to resolve this issue.
 
 #### <a id="vscode-ext-known-issues"></a>VS Code Extension
 
