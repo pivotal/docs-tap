@@ -21,7 +21,7 @@ Follow these steps to update the new package repository:
 
 1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 4 in [Relocate images to a registry](install.html#add-tap-package-repo).
 
-    >**Note** Make sure to update the `TAP_VERSION` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`.
+    >**Important** Make sure to update the `TAP_VERSION` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`.
 
 1. Add the target version of the Tanzu Application Platform package repository:
 
@@ -43,7 +43,7 @@ Follow these steps to update the new package repository:
         --namespace tap-install
         ```
 
-        >**Note** If you are using Cluster Essentials 1.0 or 1.1, expect to see the installed Tanzu Application Platform packages in a temporary “Reconcile Failed” state, following a “Package not found” warning. These warnings will disappear after you upgrade the installed Tanzu Application Platform packages to version 1.2.0.
+        Expect to see the installed Tanzu Application Platform packages in a temporary “Reconcile Failed” state, following a “Package not found” warning. These warnings will disappear after you upgrade the installed Tanzu Application Platform packages to version 1.2.0.
 
 1. Verify you have added the new package repository by running:
 
@@ -74,21 +74,19 @@ tuf_root: |
   MULTI-LINE-STRING-CONTENT-OF-ROOT.JSON
 ```
 
->**Note** Ensure you run the following command in the directory where the `tap-values.yaml` file resides.
-
 If you installed Tanzu Application Platform by using a profile, you can perform the upgrade by running:
+
+>**Important** Ensure you run the following command in the directory where the `tap-values.yaml` file resides.
 
 ```console
 tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
 ```
 
->**Note** When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically
->run a build that fails due to a missing dependency.
->This error does not persist and any subsequent builds will resolve this error.
->You can safely wait for the next build of the workloads, which is triggered by new source code changes.
->If you do not want to wait for subsequent builds to run automatically,
->follow the instructions in the troubleshooting item
->[Builds fail after upgrading to Tanzu Application Platform v1.2](tanzu-build-service/troubleshooting.md#tbs-1-2-breaking-change).
+When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically run a build that fails due to a missing dependency. 
+This error does not persist and any subsequent builds will resolve this error. 
+You can safely wait for the next build of the workloads, which is triggered by new source code changes. 
+If you do not want to wait for subsequent builds to run automatically, follow the instructions in the troubleshooting item 
+[Builds fail after upgrading to Tanzu Application Platform v1.2](tanzu-build-service/troubleshooting.md#tbs-1-2-breaking-change).
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
