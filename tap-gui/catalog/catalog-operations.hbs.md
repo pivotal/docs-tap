@@ -195,7 +195,11 @@ To add or change organization catalog locations:
    For more information about static catalog configuration, see the
    [Backstage documentation](https://backstage.io/docs/features/software-catalog/configuration#static-location-configuration).
 
-2. Update the package to include the catalog:
+2. Alternatively, use `type: gitlab-discovery` to have the `GitLabDiscoveryProcessor` discover
+   catalog entities by crawling the GitLab instance and registering entities matching the
+   configured path. For more information see the [Backstage documentation](https://backstage.io/docs/integrations/gitlab/discovery#alternative-processor).
+
+3. Update the package to include the catalog:
 
    - If you installed Tanzu Application Platform GUI by using a profile, run:
 
@@ -217,7 +221,7 @@ To add or change organization catalog locations:
        --namespace tap-install
      ```
 
-3. Verify the status of this update by running:
+4. Verify the status of this update by running:
 
    ```console
    tanzu package installed list
