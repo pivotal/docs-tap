@@ -14,7 +14,7 @@ The multicluster topology uses the [profile capabilities](../overview.md#profile
 
 The following diagram illustrates this topology.
 
-![Diagram showing the multicluster topology.](../images/multicluster-diagram.jpg)
+![Diagram showing the multicluster topology that includes View, Build, and Run cluster.](../images/multicluster-diagram.jpg)
 
 ## Next steps
 
