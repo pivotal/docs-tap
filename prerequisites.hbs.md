@@ -137,7 +137,7 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
     - Supply Chain, in which Kaniko usage requires root privileges to build containers.
     - Tanzu Learning Center, which requires root privileges.
 
-    See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) for more information.
+    For more information about pod security policies, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
 
 
 ## <a id='tools-and-cli-reqs'></a>Tools and CLI requirements
