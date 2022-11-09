@@ -39,6 +39,7 @@ docs.vmware.com is built.
       - [View package config settings](view-package-config-openshift.hbs.md)
       - [Application Live View on OpenShift](app-live-view-openshift.hbs.md)
       - [AppSSO on OpenShift](app-sso-openshift.hbs.md)
+      - [Developer Conventions on OpenShift](developer-conventions/openshift.md)
       - [Install individual packages](install-components-openshift.hbs.md)
       - [Set up namespaces](set-up-namespaces-openshift.hbs.md)
       - [Install Tanzu Developer Tools for VS Code](vscode-install-openshift.hbs.md)

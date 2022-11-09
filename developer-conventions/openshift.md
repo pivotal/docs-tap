@@ -1,4 +1,4 @@
-# Application Single Sign-On for OpenShift cluster
+# Developer Conventions for OpenShift cluster
 
 On _OpenShift_ clusters Developer Conventions must run with a custom SecurityContextConstraint (SCC) to enable compliance with restricted Kubernetes Pod Security Standards.  The following SCC will be configured for the Developer Convention's webhook when the `kubernetes_distribution: openshift` key is configured in tap-values.  Specification follows:
 
