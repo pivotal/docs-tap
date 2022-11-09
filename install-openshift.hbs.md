@@ -534,5 +534,5 @@ To exclude packages from a Tanzu Application Platform profile:
 
 ## <a id='next-steps'></a>Next steps
 
-- (Optional) [Installing Individual Packages](install-components.html)
-- [Setting up developer namespaces to use installed packages](set-up-namespaces.html)
+- (Optional) [Installing Individual Packages](install-components-openshift.hbs.md)
+- [Setting up developer namespaces to use installed packages](set-up-namespaces-openshift.hbs.md)
