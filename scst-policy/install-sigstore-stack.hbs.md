@@ -4,6 +4,7 @@
 bringing up the Sigstore Stack.
 
 The Sigstore Stack consists of:
+
 - [Trillian](https://github.com/google/trillian)
 - [Rekor](https://github.com/sigstore/rekor)
 - [Fulcio](https://github.com/sigstore/fulcio)
@@ -111,6 +112,7 @@ With the images migrated and accessible, the next step is to copy the `release-*
 
 The default `release-fulcio.yaml` has a `fulcio-config` resource. This config specifies the `OIDCIssuer`.
 By default, there are issuers for:
+
 - `Kubernetes API ServiceAccount token`
 - `Google Accounts`
 - `Sigstore OAuth2`
@@ -268,10 +270,11 @@ For more information, see [Service Account Issuer Discovery](https://kubernetes.
 ## <a id='sigstore-install-trillian'></a> Install Trillian
 
 To install Trillian:
-- `kubectl apply` the `release-trillian.yaml`
-- Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
-- Patch the service account to use the imported `tap-registry` secret
-- Wait for the jobs and services to be `Complete` or be `Ready`.
+
+1. `kubectl apply` the `release-trillian.yaml`
+2. Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
+3. Patch the service account to use the imported `tap-registry` secret
+4. Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
 echo 'Install Trillian'
@@ -307,10 +310,11 @@ kubectl wait --timeout 2m -n trillian-system --for=condition=Ready ksvc log-sign
 ## <a id='sigstore-install-rekor'></a> Install Rekor
 
 To install Rekor:
-- `kubectl apply` the `release-rekor.yaml`
-- Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
-- Patch the service account to use the imported `tap-registry` secret
-- Wait for the jobs and services to be `Complete` or be `Ready`.
+
+1. `kubectl apply` the `release-rekor.yaml`
+2. Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
+3. Patch the service account to use the imported `tap-registry` secret
+4. Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
 echo 'Install Rekor'
@@ -345,10 +349,11 @@ kubectl wait --timeout 2m -n rekor-system --for=condition=Ready ksvc rekor
 ## <a id='sigstore-install-fulcio'></a> Install Fulcio
 
 To install Fulcio:
-- `kubectl apply` the `release-fulcio.yaml`
-- Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
-- Patch the service account to use the imported `tap-registry` secret
-- Wait for the jobs and services to be `Complete` or be `Ready`.
+
+1. `kubectl apply` the `release-fulcio.yaml`
+2. Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
+3. Patch the service account to use the imported `tap-registry` secret
+4. Wait for the jobs and services to be `Complete` or be `Ready`.
 
 The Sigstore Scaffolding `release-fulcio.yaml` downloaded can have an empty YAML document at the end of the file separated by `---` and followed by no elements. This will result in:
 ```
@@ -389,10 +394,11 @@ kubectl wait --timeout 5m -n fulcio-system --for=condition=Ready ksvc fulcio
 ## <a id='sigstore-install-ctlog'></a> Install Certificate Transparency Log (CTLog)
 
 To install CTLog:
-- `kubectl apply` the `release-ctlog.yaml`
-- Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
-- Patch the service account to use the imported `tap-registry` secret
-- Wait for the jobs and services to be `Complete` or be `Ready`.
+
+1. `kubectl apply` the `release-ctlog.yaml`
+2. Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
+3. Patch the service account to use the imported `tap-registry` secret
+4. Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
 echo 'Install CTLog'
@@ -427,12 +433,37 @@ kubectl wait --timeout 2m -n ctlog-system --for=condition=Ready ksvc ctlog
 ## <a id='sigstore-install-tuf'></a> Install TUF
 
 To install TUF:
-- `kubectl apply` the `release-tuf.yaml`
-- Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
-- Patch the service account to use the imported `tap-registry` secret
-- Copy the public keys from the previous deployment of CTLog, Fulcio, and Rekor to the TUF namespace
-- Wait for the jobs and services to be `Complete` or be `Ready`.
 
+1. Add a `RoleBinding` if you are using OpenShift
+1. `kubectl apply` the `release-tuf.yaml`
+2. Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
+3. Patch the service account to use the imported `tap-registry` secret
+4. Copy the public keys from the previous deployment of CTLog, Fulcio, and Rekor to the TUF namespace
+5. Wait for the jobs and services to be `Complete` or be `Ready`.
+
+If you are using OpenShift, we need to set the correct Security Context Constraints so the TUF server
+is able to write to the root filesystem. This is done by adding the `anyuid` Security Context Constraint
+through a `RoleBinding`:
+
+```bash
+cat <<EOF >> release-tuf.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name:  tuf-os-scc-role-binding
+  namespace: tuf-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:openshift:scc:anyuid
+subjects:
+  - kind: ServiceAccount
+    namespace: tuf-system
+    name: tuf
+EOF
+```
+
+Now proceed to install TUF:
 ```bash
 echo 'Install TUF'
 kubectl apply -f "release-tuf.yaml"
@@ -491,7 +522,7 @@ policy:
 When updating the current Tanzu Application Platform installed through profiles with the updated values file, the previously failing Tanzu Application Platform `PackageInstall` has the following error:
 
 ```bash
-tanzu package installed update --install tap --values-file tap-values-updated.yaml -n tap-install
+tanzu package installed update tap --values-file tap-values-updated.yaml -n tap-install
  Updating installed package 'tap'
  Getting package install for 'tap'
  Getting package metadata for 'tap.tanzu.vmware.com'
