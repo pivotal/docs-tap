@@ -62,7 +62,7 @@ metadata:
     sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: "" # optional
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: "" # optional
 spec:
-  # .tls and .issuerURI are mutually exclusive
+  # .tls is optional if a default issuer is set
   tls:
     # must be one and only one of issuerRef, certificateRef or secretRef, unless disabled
     issuerRef:
@@ -182,6 +182,8 @@ to troubleshoot issues.
 
 `.status.issuerURI` is the templated issuer URI. This is the entry point for any traffic.
 
+`.status.tls` is the actual TLS configuration.
+
 `.status.tokenSignatureKeyCount` is the number of currently configured token signature keys.
 
 `.status.clientRegistrationCount` is the number of currently registered clients.
@@ -203,7 +205,7 @@ nil if storage is defined explicitly via `.spec.storage`.
 - `IdentityProvidersResolved`: Has all identity provider configuration been resolved?
 - `ConfigResolved`: Has the complete configuration for the authorization server been resolved?
 - `AuthServerConfigured`: Has the complete configuration for the authorization server been applied?
-- `IssuerURIReady`: Is the authorization server yet responding to `{spec.issuerURI}/.well-known/openid-configuration`?
+- `IssuerURIReady`: Is the authorization server yet responding to `{.status.issuerURI}/.well-known/openid-configuration`?
 - `Ready`: whether all the previous conditions are "True"
 
 The super condition `Ready` denotes a fully successful reconciliation of a given `ClientRegistration`.
@@ -227,6 +229,17 @@ storage:
   redis:
    host: "" # the hostname of the configured Redis
    port: "" # the port of the configured Redis
+tls:
+  disabled: false
+  # One of issuerRef, certificateRef or secretRef will be set if TLS is enabled 
+  issuerRef:
+    name: ""
+    kind: ""
+    group: ""
+  certificateRef:
+    name: ""
+  secretRef:
+    name: ""
 conditions:
   - lastTransitionTime: "2022-08-24T09:58:10Z"
     message: ""
