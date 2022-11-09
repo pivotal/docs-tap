@@ -531,8 +531,3 @@ To exclude packages from a Tanzu Application Platform profile:
     ```
 
 >**Important** If you exclude a package after performing a profile installation including that package, you cannot see the accurate package states immediately after running `tap package installed list -n tap-install`. Also, you can break package dependencies by removing a package. Allow 20 minutes to verify that all packages have reconciled correctly while troubleshooting.
-
-## <a id='next-steps'></a>Next steps
-
-- (Optional) [Installing Individual Packages](install-components-openshift.hbs.md)
-- [Setting up developer namespaces to use installed packages](set-up-namespaces-openshift.hbs.md)
