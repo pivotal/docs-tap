@@ -222,10 +222,10 @@ To use `GitLabDiscoveryProcessor` to discover and register catalog entities:
 
      ```console
      tanzu package installed update tap-gui \
-     --package-name tap-gui.tanzu.vmware.com \
-     --version PACKAGE-VERSION \
-     --values-file tap-gui-values.yaml \
-     --namespace tap-install
+       --package-name tap-gui.tanzu.vmware.com \
+       --version PACKAGE-VERSION \
+       --values-file tap-gui-values.yaml \
+       --namespace tap-install
      ```
 
 3. Verify the status of this update by running:
