@@ -25,7 +25,6 @@ Configure a supported authentication provider or a custom OpenID Connect (OIDC) 
   custom configuration file to include an OIDC authentication provider.
   Configure the OIDC provider with your OAuth App values. For example:
 
-<<<<<<< HEAD
     ```yaml
     tap_gui:
       service_type: ClusterIP
@@ -50,47 +49,13 @@ Configure a supported authentication provider or a custom OpenID Connect (OIDC) 
           providers:
             oidc:
               development:
-                metadataUrl: ${AUTH_OIDC_METADATA_URL}
-                clientId: ${AUTH_OIDC_CLIENT_ID}
-                clientSecret: ${AUTH_OIDC_CLIENT_SECRET}
-                tokenSignedResponseAlg: ${AUTH_OIDC_TOKEN_SIGNED_RESPONSE_ALG} # default='RS256'
-                scope: ${AUTH_OIDC_SCOPE} # default='openid profile email'
+                metadataUrl: AUTH-OIDC-METADATA-URL
+                clientId: AUTH-OIDC-CLIENT-ID
+                clientSecret: AUTH-OIDC-CLIENT-SECRET
+                tokenSignedResponseAlg: AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG # default='RS256'
+                scope: AUTH-OIDC-SCOPE # default='openid profile email'
                 prompt: auto # default=none (allowed values: auto, none, consent, login)
     ```
-=======
-  ```yaml
-  shared:
-    ingress_domain: "INGRESS-DOMAIN"
-
-  tap_gui:
-    service_type: ClusterIP
-    app_config:
-      app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-      catalog:
-        locations:
-          - type: url
-            target: https://GIT-CATALOG-URL/catalog-info.yaml
-      backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-          origin: http://tap-gui.INGRESS-DOMAIN
-  #Existing values file above
-      auth:
-        environment: development
-        session:
-          secret: custom session secret
-        providers:
-          oidc:
-            development:
-              metadataUrl: AUTH-OIDC-METADATA-URL
-              clientId: AUTH-OIDC-CLIENT-ID
-              clientSecret: AUTH-OIDC-CLIENT-SECRET
-              tokenSignedResponseAlg: AUTH-OIDC-TOKEN-SIGNED-RESPONSE-ALG # default='RS256'
-              scope: AUTH-OIDC-SCOPE # default='openid profile email'
-              prompt: auto # default=none (allowed values: auto, none, consent, login)
-  ```
->>>>>>> 02d470ec (Reformats indentation in tap-gui/auth.hbs.md)
 
   Where `AUTH-OIDC-METADATA-URL` is a JSON file with generic OIDC provider configuration.
   It contains `authorizationUrl` and `tokenUrl`.
