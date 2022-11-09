@@ -78,8 +78,11 @@ This release includes the following changes to Tanzu Application Platform and it
 
 #### <a id="tap-features"></a> Tanzu Application Platform
 
-Tanzu Application Platform now supports OpenShift v4.10 and Kubernetes 1.24:
-
+- Tanzu Application Platform now supports: 
+  - OpenShift Red Hat OpenShift Container Platform v4.10
+    - vSphere
+    - Baremetal
+  - Kubernetes v1.24
 - Tanzu Application Platform components are installed the same way on OpenShift v4.10 as on any other supported Kubernetes distributions with minor configuration changes that are opaque to users.
 - Tanzu Application Platform workloads are built and deployed the same way on OpenShift v4.10 as on any other supported Kubernetes distributions.
 
