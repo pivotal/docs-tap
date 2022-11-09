@@ -35,7 +35,7 @@ docs.vmware.com is built.
       - [Install Tanzu Developer Tools for VS Code](vscode-install-aws.md)
   - [Installing on OpenShift clusters](openshift-install-intro.hbs.md)
       - [Installation overview](openshift-install-intro.hbs.md)
-      - [Install packages and profiles](install-components-openshift.hbs.md)
+      - [Install packages and profiles](install-openshift.hbs.md)
       - [View package config settings](view-package-config-openshift.hbs.md)
       - [Application Live View on OpenShift](app-live-view-openshift.hbs.md)
       - [AppSSO on OpenShift](app-sso-openshift.hbs.md)

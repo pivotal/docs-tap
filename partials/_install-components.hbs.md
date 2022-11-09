@@ -78,13 +78,3 @@ Use the following procedure to verify that the packages are installed.
     tekton-pipelines         tekton.tanzu.vmware.com                            0.30.0           Reconcile succeeded
     tbs                      buildservice.tanzu.vmware.com                      1.5.0            Reconcile succeeded
     ```
-    
-## <a id='next-steps'></a>Next steps
-
-For online installation:
-
-- [Setting up developer namespaces to use installed packages](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-set-up-namespaces.html)
-
-For AWS installation:
-
-- [Setting up developer namespaces to use installed packages](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-set-up-namespaces-aws.html)
