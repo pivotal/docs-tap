@@ -27,8 +27,12 @@ This release has the following security fixes, listed by area and component.
 
 The following issues, listed by area and component, are resolved in this release.
 
-#### <a id="1-4-0-vscode-resolved"></a> Tanzu Developer Tools for VS Code
+#### <a id="1-4-0-vscode-resolved"></a>
 
 ### <a id='1-4-0-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
+
+#### <a id='Tanzu Developer Tools for Visual Studio Code'></a> Tanzu Developer Tools for Visual Studio Code
+
+- `Tanzu Debug` no longer port forwards the application port (8080).
