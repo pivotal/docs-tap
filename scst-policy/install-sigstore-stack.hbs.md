@@ -434,12 +434,36 @@ kubectl wait --timeout 2m -n ctlog-system --for=condition=Ready ksvc ctlog
 
 To install TUF:
 
+1. Add a `RoleBinding` if you are using OpenShift
 1. `kubectl apply` the `release-tuf.yaml`
 2. Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
 3. Patch the service account to use the imported `tap-registry` secret
 4. Copy the public keys from the previous deployment of CTLog, Fulcio, and Rekor to the TUF namespace
 5. Wait for the jobs and services to be `Complete` or be `Ready`.
 
+If you are using OpenShift, we need to set the correct Security Context Constraints so the TUF server
+is able to write to the root filesystem. This is done by adding the `anyuid` Security Context Constraint
+through a `RoleBinding`:
+
+```bash
+cat <<EOF >> release-tuf.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name:  tuf-os-scc-role-binding
+  namespace: tuf-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: system:openshift:scc:anyuid
+subjects:
+  - kind: ServiceAccount
+    namespace: tuf-system
+    name: tuf
+EOF
+```
+
+Now proceed to install TUF:
 ```bash
 echo 'Install TUF'
 kubectl apply -f "release-tuf.yaml"
