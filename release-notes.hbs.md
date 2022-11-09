@@ -15,6 +15,10 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 This release includes the following changes, listed by component and area.
 
+### <a id='1-4-0-breaking-changes'></a> Breaking changes
+
+This release includes the following changes, listed by component and area.
+
 ### <a id='1-4-0-security-fixes'></a> Security fixes
 
 This release has the following security fixes, listed by area and component.
