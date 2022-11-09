@@ -1,4 +1,4 @@
-# Application Live View on Openshift 
+# Application Live View on OpenShift 
 
 Application Live View must run with a custom SecurityContextConstraint (SCC) to enable compliance with restricted Kubernetes Pod Security Standards on Openshift. The following SCC is configured for Application Live View Backend, Application Live View Connector, and Application Live View Convention Service when `kubernetes_distribution: openshift` is set in tap-values.yaml.
 
