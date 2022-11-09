@@ -151,11 +151,14 @@ To deregister an entity:
 
 ### <a id='add-or-change'></a> Add or change organization catalog locations
 
-To add or change organization catalog locations:
+To add or change organization catalog locations, you can use static configuration or you can use
+`GitLabDiscoveryProcessor` to discover and register catalog entities that match the configured path.
 
-1. Use static configuration to add or change catalog locations.
+#### Option 1: Use static configuration
 
-   - Update components by changing the catalog location in either the `app_config` section of
+To use static configuration to add or change catalog locations:
+
+1. Update components by changing the catalog location in either the `app_config` section of
    `tap-gui-values.yaml` or the custom values file you used when installing. For example:
 
      ```yaml
@@ -165,7 +168,7 @@ To add or change organization catalog locations:
          target: UPDATED-CATALOG-LOCATION
      ```
 
-   - Register components by adding the new catalog location in either the `app_config` section of
+1. Register components by adding the new catalog location in either the `app_config` section of
    `tap-gui-values.yaml` or the custom values file you used when installing. For example:
 
      ```yaml
@@ -195,11 +198,15 @@ To add or change organization catalog locations:
    For more information about static catalog configuration, see the
    [Backstage documentation](https://backstage.io/docs/features/software-catalog/configuration#static-location-configuration).
 
-2. Alternatively, use `type: gitlab-discovery` to have the `GitLabDiscoveryProcessor` discover
-   catalog entities by crawling the GitLab instance and registering entities matching the
-   configured path. For more information see the [Backstage documentation](https://backstage.io/docs/integrations/gitlab/discovery#alternative-processor).
+#### Option 2: Use GitLabDiscoveryProcessor to discover and register catalog entities
 
-3. Update the package to include the catalog:
+To use `GitLabDiscoveryProcessor` to discover and register catalog entities:
+
+1. Use `type: gitlab-discovery` to make `GitLabDiscoveryProcessor` crawl the GitLab
+   instance to discover and register catalog entities that match the configured path.
+   For more information, see the [Backstage documentation](https://backstage.io/docs/integrations/gitlab/discovery#alternative-processor).
+
+2. Update the package to include the catalog:
 
    - If you installed Tanzu Application Platform GUI by using a profile, run:
 
@@ -215,13 +222,13 @@ To add or change organization catalog locations:
 
      ```console
      tanzu package installed update tap-gui \
-       --package-name tap-gui.tanzu.vmware.com \
-       --version PACKAGE-VERSION \
-       --values-file tap-gui-values.yaml \
-       --namespace tap-install
+     --package-name tap-gui.tanzu.vmware.com \
+     --version PACKAGE-VERSION \
+     --values-file tap-gui-values.yaml \
+     --namespace tap-install
      ```
 
-4. Verify the status of this update by running:
+3. Verify the status of this update by running:
 
    ```console
    tanzu package installed list -n tap-install
