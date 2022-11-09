@@ -90,7 +90,7 @@ Supply Chain Basic.
 
 ### <a id="updates-to-developer-namespace"></a> Updates to the developer Namespace
 
-In order for source code testing to be present in the supply chain, a Tekton
+For source code testing to be present in the supply chain, a Tekton
 Pipeline must exist in the same namespace as the Workload so that, at the right
 moment, the Tekton PipelineRun object that gets created to run the tests can
 reference such developer-provided Pipeline.
@@ -158,11 +158,11 @@ which triggers a re-run.
 You can configure your developer namespace to include more than one pipeline
 using either of the following methods:
 
-  - Use a single pipeline running on a container image that includes testing
-    tools and runs a common script to execute tests. This allows you to
-    accommodate multiple workloads based in different languages in the same
-    namespace that use a common make test script, as shown in the following
-    example:
+- Use a single pipeline running on a container image that includes testing
+  tools and runs a common script to execute tests. This allows you to
+  accommodate multiple workloads based in different languages in the same
+  namespace that use a common make test script, as shown in the following
+  example:
 
     ```console
     apiVersion: tekton.dev/v1beta1
@@ -182,9 +182,9 @@ using either of the following methods:
                   make test
     ```
 
-  - Update the pipeline resources to include labels that differentiate between
-    the pipelines. For example, differentiate between Java and Go pipelines by
-    adding labels for Java and Go:
+- Update the pipeline resources to include labels that differentiate between
+  the pipelines. For example, differentiate between Java and Go pipelines by
+  adding labels for Java and Go:
 
     ```console
     apiVersion: tekton.dev/v1beta1
@@ -220,30 +220,30 @@ using either of the following methods:
                   go test -v ./...
     ```
 
-  To match the correct pipeline, you add a `testing_pipeline_matching_labels`
-  parameter to the workload. For example, if you want to match to the Java
-  pipeline, you have the following workload.yaml:
+To match the correct pipeline, you add a `testing_pipeline_matching_labels`
+parameter to the workload. For example, if you want to match to the Java
+pipeline, you have the following `workload.yaml`:
 
-  ```console
-  apiVersion: carto.run/v1alpha1
-  kind: Workload
-  metadata:
-    name: sample-java-app
-    labels:
-      apps.tanzu.vmware.com/has-tests: true
-      apps.tanzu.vmware.com/workload-type: web
-      app.kubernetes.io/part-of: sample-java-app
-  spec:
-    params:
-      - name: testing_pipeline_matching_labels 
-        value:
-          apps.tanzu.vmware.com/pipeline: test
-          apps.tanzu.vmware.com/language: java
-    ...
-  ```
+```console
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: sample-java-app
+  labels:
+    apps.tanzu.vmware.com/has-tests: true
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: sample-java-app
+spec:
+  params:
+    - name: testing_pipeline_matching_labels
+      value:
+        apps.tanzu.vmware.com/pipeline: test
+        apps.tanzu.vmware.com/language: java
+  ...
+```
 
-  This will match the workload to the pipeline with the `apps.tanzu.vmware.com/language: java` label.
-  
+This matches the workload to the pipeline with the `apps.tanzu.vmware.com/language: java` label.
+
 ## <a id="developer-workload"></a> Developer Workload
 
 With the Tekton Pipeline object
