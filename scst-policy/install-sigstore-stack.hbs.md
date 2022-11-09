@@ -499,7 +499,7 @@ policy:
 When updating the current Tanzu Application Platform installed through profiles with the updated values file, the previously failing Tanzu Application Platform `PackageInstall` has the following error:
 
 ```bash
-tanzu package installed update --install tap --values-file tap-values-updated.yaml -n tap-install
+tanzu package installed update tap --values-file tap-values-updated.yaml -n tap-install
  Updating installed package 'tap'
  Getting package install for 'tap'
  Getting package metadata for 'tap.tanzu.vmware.com'
