@@ -52,6 +52,10 @@ The following issues, listed by area and component, are resolved in this release
 - The extension can now generate a snippet on a `Tiltfile` when the user has a Tilt extension installed
 - The extension can now Live Update when the workload type is `server` or `worker`
 
+#### <a id="1-3-1-cnr-resolved"></a> Cloud Native Runtimes
+
+- Deploying workloads on a `run` cluster in multicluster setup on Openshift no longer fails with Forbidden errors.
+
 ### <a id='1-3-1-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
