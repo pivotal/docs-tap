@@ -109,7 +109,7 @@ uses symbolic reference and is not a URL.
 The format of the reference to a GitHub or GitLab repository is similar to what you use with Kustomize
 when referencing remote repositories. For example:
 
-- `github.com/organisation/project?ref=develop` or `github.com/organisation/project?ref=main`: Use the workshop content you host at the root of the GitHub repository. Use the `master` or `main` branch. Be sure to specify the ref branch, because not specifying the branch may lead to content download errors.
+- `github.com/organisation/project?ref=develop` or `github.com/organisation/project?ref=main`: Use the workshop content you host at the root of the GitHub repository. Use the `develop` or `main` branch. Be sure to specify the ref branch, because not specifying the branch may lead to content download errors.
 - `github.com/organisation/project/subdir?ref=develop`: Use the workshop content you host at `subdir`
 of the GitHub repository. Use the `develop` branch.
 - `gitlab.com/organisation/project`: Use the workshop content you host at the root of the GitLab
@@ -1335,7 +1335,7 @@ used for accessing the Kubernetes REST API.
 
 Access controls enforced by the workshop environment or training portal protect accessing any service through the ingress.
 If you use the training portal, this must be transparent.
-Otherwise, supply any login credentials for the workshop again when prompted by your web browser.  
+Otherwise, supply any login credentials for the workshop again when prompted by your web browser.
 
 ## <a id="external-ws-instructions"></a> External workshop instructions
 
