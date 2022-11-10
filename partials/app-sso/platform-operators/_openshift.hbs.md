@@ -1,4 +1,6 @@
-On OpenShift clusters, AppSSO must run with a custom SecurityContextConstraint (SCC) to enable compliance with
+# Application Single Sign-On for OpenShift cluster
+
+On _OpenShift_ clusters AppSSO must run with a custom SecurityContextConstraint (SCC) to enable compliance with
 restricted Kubernetes Pod Security Standards. The following SCC will be configured for AppSSO's controller
 and its `AuthServer`-managed resources when the `kubernetes_distribution: openshift` key is configured in tap-values.yaml.
 Specification follows:

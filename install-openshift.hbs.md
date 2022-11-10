@@ -383,8 +383,6 @@ Some Tanzu Application Platform components run on Pod Security Standards (PSS) w
 
 OpenShift v4.11 includes restricted-v2 or nonroot-v2 with which Tanzu Application Platform packages reconcile without any issues. The components in Tanzu Application Platform v1.3.0 use custom SCC that is a mirror of [restricted-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-restricted-v2.yaml) or [nonroot-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-nonroot-v2.yaml) and are built by using restricted-v1 or nonroot-v1. The custom SCCs used in Tanzu Application Platform v1.3.0 to support OpenShift v4.10 are similar to the nonroot-v2 and restricted-v2 in OpenShift v4.11.
 
-See [Custom SCC details](scc-details.hbs.md) for more information.
-
 #### <a id='exclude-custom-scc'></a> (Optional) Exclude components that require RedHat OpenShift privileged SCC
 
 Learning Center package uses privileged SCC. To exclude this package, update your `tap-values` file with a section listing the exclusions:
