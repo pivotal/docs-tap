@@ -36,6 +36,11 @@ This release has the following security fixes, listed by area and component.
 
 The following issues, listed by area and component, are resolved in this release.
 
+#### <a id="1-3-1-supplychainplugin-resolved"></a>Supply Chain Choreographer Plug-in
+- Updating a supply chain no longer results in an error (Can not create edge...) when an existing workload is clicked in the Workloads table and that supply chain is no longer present.
+- Image Scan timestamp was not showing the latest scan time.
+
+
 #### <a id="1-3-1-intellij-resolved"></a> Tanzu Developer Tools for IntelliJ
 
 - The extension can now Live Update when the workload type is `server` or `worker`
@@ -67,6 +72,10 @@ Because VMware does not recommend committing binaries to source code repositorie
 find vulnerabilities during a source scan.
 The vulnerabilities are still found during the image scan after the binaries are built and packaged
 as images.
+
+#### <a id="1-3-1-supplychainplugin-known-issues"></a>Supply Chain Choreographer Plug-in
+- UI shows error "Unable to retrieve details from Image Provider Stage" when the Builder is not available or configured, however the CLI shows correct error "Builder default is not ready".
+- Clicking on the `Scan Template` link in the Overview section for a scanning stage results in a blank page being opened in the browser.
 
 ## <a id='1-3-0'></a> v1.3.0
 
