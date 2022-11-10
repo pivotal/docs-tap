@@ -275,3 +275,9 @@ rules:
   #@overlay/match by=overlay.subset({"apiGroups": ["source.apps.tanzu.vmware.com"]})
   - resources: ['mavenartifacts']
 ```
+
+## Supply Chain Choreographer plug-in
+
+These are troubleshooting steps for the [Supply Chain Choreographer plug-in](plugins/scc-tap-gui.hbs.md).
+
+{{> 'partials/tap-gui/ts-err-load-metadata-store' }}
