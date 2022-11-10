@@ -3,7 +3,7 @@
 In the Supply Chain Choreographer plug-in, you see the error message
 `An error occurred while loading data from the Metadata Store`.
 
-<!-- [Error loading metadata store](images/scc-error-loading-metadata-store.png) How do we use images in partials? They can't be relative links -->
+![Screenshot of Tanzu Application Platform GUI displaying the error message about loading data from the metadata store.](/docs-tap/images/scc-error-loading-metadata-store.png)
 
 #### Cause
 
