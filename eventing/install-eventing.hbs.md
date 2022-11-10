@@ -28,7 +28,7 @@ To install Eventing:
     $ tanzu package available list eventing.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for eventing.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
-      eventing.tanzu.vmware.com  2.0.1    2022-10-11T00:00:00Z
+      eventing.tanzu.vmware.com  2.0.2    2022-10-11T00:00:00Z
     ```
 
 1. (Optional) Make changes to the default installation settings:
@@ -36,14 +36,14 @@ To install Eventing:
     1. Gather values schema.
 
         ```console
-        tanzu package available get eventing.tanzu.vmware.com/2.0.1 --values-schema -n tap-install
+        tanzu package available get eventing.tanzu.vmware.com/2.0.2 --values-schema -n tap-install
         ```
 
         For example:
 
         ```console
-        $ tanzu package available get eventing.tanzu.vmware.com/2.0.1 --values-schema -n tap-install
-        | Retrieving package details for eventing.tanzu.vmware.com/2.0.1...
+        $ tanzu package available get eventing.tanzu.vmware.com/2.0.2 --values-schema -n tap-install
+        | Retrieving package details for eventing.tanzu.vmware.com/2.0.2...
           KEY           DEFAULT  TYPE     DESCRIPTION
           lite.enable   false    boolean  Optional: Not recommended for production. Set to "true" to reduce CPU and Memory resource requests for all Eventing Deployments, Daemonsets, and Statefulsets by half. On by default when "provider" is set to "local".
           pdb.enable    true     boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
@@ -69,13 +69,13 @@ To install Eventing:
 1. Install the package by running:
 
     ```console
-    tanzu package install eventing -p eventing.tanzu.vmware.com -v 2.0.1 -n tap-install -f eventing-values.yaml --poll-timeout 30m
+    tanzu package install eventing -p eventing.tanzu.vmware.com -v 2.0.2 -n tap-install -f eventing-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
     ```console
-    $ tanzu package install eventing -p eventing.tanzu.vmware.com -v 2.0.1 -n tap-install -f eventing-values.yaml --poll-timeout 30m
+    $ tanzu package install eventing -p eventing.tanzu.vmware.com -v 2.0.2 -n tap-install -f eventing-values.yaml --poll-timeout 30m
     - Installing package 'eventing.tanzu.vmware.com'
     | Getting package metadata for 'eventing.tanzu.vmware.com'
     | Creating service account 'eventing-tap-install-sa'
@@ -105,7 +105,7 @@ To install Eventing:
     | Retrieving installation details for eventing...
     NAME:                    eventing
     PACKAGE-NAME:            eventing.tanzu.vmware.com
-    PACKAGE-VERSION:         2.0.1
+    PACKAGE-VERSION:         2.0.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
