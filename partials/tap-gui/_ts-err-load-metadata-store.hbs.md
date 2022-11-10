@@ -5,7 +5,7 @@
 In the Supply Chain Choreographer plug-in, you see the error message
 `An error occurred while loading data from the Metadata Store`.
 
-<!-- ![Screenshot of Tanzu Application Platform GUI displaying the error message about loading data from the metadata store.](../docs-tap/images/scc-error-loading-metadata-store.png) -->
+![Screenshot of Tanzu Application Platform GUI displaying the error message about loading data from the metadata store.](/docs-tap/images/scc-error-loading-metadata-store.png)
 
 #### Cause
 
