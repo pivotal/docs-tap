@@ -5,7 +5,13 @@ URI and create a TLS-enabled `Ingress` for it. For this purpose, your platform o
 template. Once you created and `AuthServer` you can find the actual URL in `.status.issuerURI`.
 
 You can configure how and if to obtain a TLS certificate for the issuer URI via `.spec.tls`. Unless TLS is disabled
-HTTPS is enforced, i.e. requests for `http://` will be redirected to `https://`.
+HTTPS is enforced, i.e. requests for `http://` will be redirected to `https://`. You can observe the actual TLS
+configuration in `.status.tls`.
+
+> ℹ️ If AppSSO is installed
+> with [a default issuer](../platform-operators/configuration.md#default_authserver_clusterissuer),
+> then `AuthServer.spec.tls` can be omitted and a TLS certificate will be obtained automatically. This is the
+> recommended approach for TLS.
 
 For example:
 
@@ -17,17 +23,19 @@ metadata:
   namespace: services
   # ...
 spec:
-  tls:
-    issuerRef:
-      name: my-issuer
-  # ...
+# ...
 status:
   issuerURI: https://login.services.example.com
+  tls:
+    issuerRef:
+      name: my-default-issuer
+      kind: ClusterIssuer
+      group: cert-manager.io
   # ...
 ```
 
 This `AuthServer` will be reachable at its templated issuer URI `https://login.services.example.com` and serve a TLS
-certificate obtained from _my-issuer_.
+certificate obtained from _my-default-issuer_.
 
 Learn how to configure TLS for your `AuthServer`:
 

@@ -5,9 +5,9 @@
 Most commonly, the AppSSO package installation is configured through TAP's meta package installation. The TAP package
 has a `shared` top-level configuration key for sharing common configuration between the packages it installs.
 
-AppSSO inherits TAP's `shared.{ingress_domain, ca_cert_data, kubernetes_distribution}` configuration values. Furthermore,
-AppSSO-specific configuration can be specified under `appsso`. AppSSO-specific configuration has precedence over TAP's
-shared values.
+AppSSO inherits TAP's `shared.{ingress_domain, ingress_issuer, ca_cert_data, kubernetes_distribution}` configuration
+values. Furthermore, AppSSO-specific configuration can be specified under `appsso`. AppSSO-specific configuration has
+precedence over TAP's shared values.
 
 For example:
 
@@ -43,6 +43,15 @@ The domain template will be applied with the given `domain_name` and the `AuthSe
 To be able to use a wild-card certificate, consider `"{{.Name}}-{{.Namespace}}.{{.Domain}}"`.
 
 It is strongly recommended to keep the name and namespace part of the template to avoid domain name collisions.
+
+## default_authserver_clusterissuer
+
+You can denote a `cert-manager.io/v1/ClusterIssuer` as a default for `AuthServer.spec.tls.issuerRef`. If
+set, `AuthServer.spec.tls` can be omitted. When its value is the empty string, i.e `""`, no default issuer will be
+assumed and `AuthServer.spec.tls` is required. If your TAP installation is configured with `shared.ingress_domain`, then
+AppSSO will inherit is as the value for `default_authserver_clusterissuer`.
+
+> ℹ️ If omitted `default_authserver_clusterissuer` is set to `shared.ingress_issuer`.
 
 ## ca_cert_data
 
