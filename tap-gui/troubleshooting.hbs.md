@@ -280,4 +280,4 @@ rules:
 
 These are troubleshooting steps for the [Supply Chain Choreographer plug-in](plugins/scc-tap-gui.hbs.md).
 
-{{> 'partials/tap-gui/ts-err-load-metadata-store' }}
+{{> 'partials/tap-gui/err-load-metadata-store' }}
