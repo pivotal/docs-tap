@@ -37,12 +37,10 @@ docs.vmware.com is built.
       - [Install overview](openshift-install-intro.hbs.md)
       - [Install packages and profiles](install-openshift.hbs.md)
       - [View package config settings](view-package-config-openshift.hbs.md)
-      - [Application Live View on OpenShift](app-live-view-openshift.hbs.md)
-      - [AppSSO on OpenShift](app-sso-openshift.hbs.md)
-      - [Developer Conventions on OpenShift](developer-conventions/openshift.md)
       - [Install individual packages](install-components-openshift.hbs.md)
       - [Set up namespaces](set-up-namespaces-openshift.hbs.md)
       - [Install Tanzu Developer Tools for VS Code](vscode-install-openshift.hbs.md)
+      - [Custom SCC details](scc-details.hbs.md)
   - [Customize package installation](customize-package-installation.md)
   - [Upgrade](upgrading.md)
   - [Opt out of telemetry collection](opting-out-telemetry.md)
@@ -537,4 +535,3 @@ docs.vmware.com is built.
     - [Tekton](tekton/tekton-about.md)
       - [Tekton overview](tekton/tekton-about.md)
       - [Install Tekton](tekton/install-tekton.md)
-
