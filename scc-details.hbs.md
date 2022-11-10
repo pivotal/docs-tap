@@ -10,16 +10,16 @@ Custom SCC (SecurityContextConstraint) details for Tanzu Application Platform co
 
 <!-- The below partial is in the docs-tap/partials directory -->
 
-{{> 'partials/app-live-view/configuring-apps/openshift-app-live-view' }}
+{{> 'partials/app-live-view/configuring-apps/openshift' }}
 
 ## <a id='app-sso-scc'></a>Application Single Sign-On for OpenShift cluster
 
 <!-- The below partial is in the docs-tap/partials directory -->
 
-{{> 'partials/app-sso/platform-operators/openshift-app-sso' }}
+{{> 'partials/app-sso/platform-operators/openshift' }}
 
 ## <a id='dev-conv-scc'></a>Developer Conventions for OpenShift cluster
 
 <!-- The below partial is in the docs-tap/partials directory -->
 
-{{> 'partials/developer-conventions/openshift-dev-conventions' }}
+{{> 'partials/developer-conventions/openshift' }}
