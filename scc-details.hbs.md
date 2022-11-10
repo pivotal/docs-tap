@@ -1,4 +1,4 @@
-Custom SCC details
+# Custom SCC details
 
 Custom SCC (SecurityContextConstraint) details for Tanzu Application Platform components are as follows:
 
