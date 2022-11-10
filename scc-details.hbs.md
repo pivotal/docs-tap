@@ -2,10 +2,17 @@
 
 Custom SCC (SecurityContextConstraint) details for Tanzu Application Platform components are as follows:
 
+- [Application Accelerator on OpenShift cluster](#acc-scc)
 - [Application Live View on OpenShift](#alv-scc)
 - [Application Single Sign-On for OpenShift cluster](#app-sso-scc)
 - [Contour for Openshift cluster](#contour-scc)
 - [Developer Conventions for OpenShift cluster](#dev-conv-scc)
+
+## <a id='acc-scc'></a>Application Accelerator on OpenShift
+
+<!-- The below partial is in the docs-tap/partials directory -->
+
+{{> 'partials/application-accelerator/openshift-app-accelerator' }}
 
 ## <a id='alv-scc'></a>Application Live View on OpenShift
 
