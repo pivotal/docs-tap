@@ -1,6 +1,6 @@
 Custom SCC details
 
-Custom SCC details for Tanzu Application Platform components are as follows:
+Custom SCC (SecurityContextConstraint) details for Tanzu Application Platform components are as follows:
 
 - [Application Live View on OpenShift](#alv-scc)
 - [Application Single Sign-On for OpenShift cluster](#app-sso-scc)
