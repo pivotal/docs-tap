@@ -15,6 +15,12 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 This release includes the following changes, listed by component and area.
 
+#### <a id="1-4-0-tap-new-features"></a> TAP
+
+TAP is introducing a [shared ingress issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress communication by
+default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md), and [TAP GUI](tap-gui/about.hbs.md)
+are using this issuer to secure ingress. In upcoming releases all components will support it eventually.
+
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
 
 #### <a id='scc-plug-in-new-features'></a>Supply Chain Choreographer Plug-in

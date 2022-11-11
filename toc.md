@@ -44,6 +44,11 @@ docs.vmware.com is built.
   - [Customize package installation](customize-package-installation.md)
   - [Upgrade](upgrading.md)
   - [Opt out of telemetry collection](opting-out-telemetry.md)
+- [Security and compliance](security-and-compliance/about.hbs.md)
+  - [Ingress certificates](security-and-compliance/ingress-certificates.hbs.md)
+  - [Custom CA certificates](security-and-compliance/custom-ca-certificates.hbs.md)
+  - [NIST](security-and-compliance/tap-nist-matrix.hbs.md)
+  - [Whitepaper](security-and-compliance/security-whitepaper.hbs.md)
 - [Multicluster topology](multicluster/about.hbs.md)
   - [Multicluster overview](multicluster/about.md)
   - [Install](multicluster/installing-multicluster.md)
@@ -536,4 +541,3 @@ docs.vmware.com is built.
     - [Tekton](tekton/tekton-about.md)
       - [Tekton overview](tekton/tekton-about.md)
       - [Install Tekton](tekton/install-tekton.md)
-
