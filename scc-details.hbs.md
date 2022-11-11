@@ -5,7 +5,7 @@ Custom SCC (SecurityContextConstraint) details for Tanzu Application Platform co
 - [Application Accelerator on OpenShift cluster](#acc-scc)
 - [Application Live View on OpenShift](#alv-scc)
 - [Application Single Sign-On for OpenShift cluster](#app-sso-scc)
-- [Contour for Openshift cluster](#contour-scc)
+- [Contour for OpenShift cluster](#contour-scc)
 - [Developer Conventions for OpenShift cluster](#dev-conv-scc)
 - [Tanzu Build Service for OpenShift cluster](#tbs-scc)
 
@@ -27,7 +27,7 @@ Custom SCC (SecurityContextConstraint) details for Tanzu Application Platform co
 
 {{> 'partials/app-sso/platform-operators/openshift-app-sso' }}
 
-## <a id='contour-scc'></a> Contour for Openshift cluster
+## <a id='contour-scc'></a> Contour for OpenShift cluster
 
 <!-- The below partial is in the docs-tap/partials directory -->
 
