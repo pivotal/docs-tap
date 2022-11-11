@@ -122,6 +122,8 @@ By default, there are issuers for:
 To add other OIDC Issuers, configure `fulcio-config` further.
 
 Apart from `Kubernetes API ServiceAccount token`, the other `OIDCIssuers` require access to external services.
+Your cluster needs to have an OIDC issuer enabled in order to configure `OIDCIssuers` correctly.
+If you don't need keyless signatures, you can remove the `OIDCIssuers` entry.
 In an air-gapped environment, you must remove these `OIDCIssuers`.
 
 You can add the correct [MetaIssuers](#sigstore-metaissuers) for the respective IaaS environment.
@@ -135,8 +137,8 @@ A `config_json` containing the `Kubernetes API ServiceAccount token` issuer:
 ```bash
 config_json='{
   "OIDCIssuers": {
-    "https://kubernetes.default.svc.cluster.local": {
-      "IssuerURL": "https://kubernetes.default.svc.cluster.local",
+    "https://kubernetes.default.svc": {
+      "IssuerURL": "https://kubernetes.default.svc",
       "ClientID": "sigstore",
       "Type": "kubernetes"
     }
@@ -150,8 +152,14 @@ config_json='{
 }'
 ```
 
-If the Kubernetes version is later or equal to `1.23.x`, the `OIDCIssuer` is `https://kubernetes.default.svc.cluster.local`, with the same respective `IssuerURL` as shown in the earlier example.
-If the Kubernetes version is older than `1.23.x`, then the `OIDCIssuer` and `IssuerURL` is `https://kubernetes.default.svc`
+Set the `IssuerURL` to the OIDC issuer configured in your cluster. You can discover
+your the URL by using `kubectl proxy -p 8001` and running the following command:
+
+```bash
+curl localhost:8001/.well-known/openid-configuration | jq .issuer
+```
+
+Then set the `OIDCIssuer` to the value returned in the last command.
 
 Other sample `OIDCIssuers`:
 
