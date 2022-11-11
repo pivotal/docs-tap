@@ -1,6 +1,6 @@
-# Known Issues
+# Supply Chain Security Store - Policy Known Issues
 
-## Invalid TUF key
+## TUF key is not valid
 
 ### Description
 
@@ -11,13 +11,13 @@ panic: Failed to initialize TUF client from  : updating local metadata and targe
 error updating to TUF remote mirror: tuf: invalid key
 ```
 
-Policy Controller tries to initialize TUF keys during installation. Because of a breaking change in
-go-tuf the initialization fails when using the Official Sigstore TUF root.
-For more information, see [go-tuf](https://github.com/theupdateframework/go-tuf/issues/379) in GitHub.
+Policy Controller tries to initialize TUF keys during installation.
+The initialization fails because of a breaking change in
+go-tuf when using the Official Sigstore TUF root. See [go-tuf](https://github.com/theupdateframework/go-tuf/issues/379) in GitHub.
 
 ### Solution
 
-The policy controller's dependency on go-tuf must be updated to the later version.
+The Policy Controller's dependency on go-tuf must be updated to the later version.
 
 ### Workarounds
 

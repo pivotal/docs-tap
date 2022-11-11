@@ -1,6 +1,6 @@
 On OpenShift clusters, AppSSO must run with a custom SecurityContextConstraint (SCC) to enable compliance with
-restricted Kubernetes Pod Security Standards. The following SCC will be configured for AppSSO's controller
-and its `AuthServer`-managed resources when the `kubernetes_distribution: openshift` key is configured in tap-values.yaml.
+restricted Kubernetes Pod Security Standards. The following SCC is configured for AppSSO controller
+and its `AuthServer` managed resources when the `kubernetes_distribution: openshift` key is configured in `tap-values.yaml`.
 Specification follows:
 
 ```yaml
@@ -43,8 +43,7 @@ seccompProfiles:
 
 ```
 
-Its controller's `ServiceAccount` is given these additional permissions so that it may provision AuthServers allowed
-to use our custom SCC:
+AppSSO controller's `ServiceAccount` is given the following additional permissions, including a `use` permission for AppSSO SCC, so `AuthServer` can use the custom SCC:
 
 ```yaml
 - apiGroups:
@@ -56,8 +55,6 @@ to use our custom SCC:
     - "list"
     - "watch"
 ```
-
-as well as a `use` permission specifically for AppSSO SCC:
 
 ```yaml
 - apiGroups:
