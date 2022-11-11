@@ -1,9 +1,9 @@
-# Configuring the Tanzu Application Platform GUI database
+# Configure the Tanzu Application Platform GUI database
 
 The Tanzu Application Platform GUI catalog allows for two approaches for storing catalog information:
 
-- **In-memory database:** The default option uses an in-memory database and is suitable for test and
-  development scenarios only.
+- **In-memory database:**
+  The default option uses an in-memory database and is suitable for test and development scenarios only.
   The in-memory database reads the catalog data from Git URLs that you write in `tap-values.yaml`.
 
   This data is temporary. Any operations that cause the `server` pod in the `tap-gui` namespace
@@ -14,18 +14,21 @@ The Tanzu Application Platform GUI catalog allows for two approaches for storing
   If you choose this method, you lose all user preferences and any manually registered entities when
   the Tanzu Application Platform GUI server pod is re-created.
 
-- **PostgreSQL database:** For production use-cases, use a PostgreSQL database that exists outside
-  the Tanzu Application Platform packaging.
+- **PostgreSQL database:**
+  For production use-cases, use a PostgreSQL database that exists outside the
+  Tanzu Application Platform packaging.
   The PostgreSQL database stores all the catalog data persistently both from the Git locations and
   the UI manual entity registrations.
 
-For production or general-purpose use-cases, VMware recommends using a PostgreSQL database.
+For production or general-purpose use-cases, a PostgreSQL database is recommended.
 
 ## <a id="config-postgresql"></a> Configure a PostgreSQL database
 
-To configure TAP GUI to use a PostgreSQL database:
+See the following sections for configuring Tanzu Application Platform GUI to use a PostgreSQL database.
 
-### <a id="postgresql-modify-values"></a> Modify your `tap-values.yaml`:
+### <a id="postgresql-edit-values"></a> Edit `tap-values.yaml`
+
+Apply the following values in `tap-values.yaml`:
 
 ```yaml
 backend:
@@ -45,20 +48,22 @@ backend:
 
 Where:
 
-- `PG-SQL-HOSTNAME` is the host name of your PostgreSQL database.
-- `PG-SQL-USERNAME` is the user name of your PostgreSQL database.
-- `PG-SQL-PASSWORD` is the password of your PostgreSQL database.
+- `PG-SQL-HOSTNAME` is the host name of your PostgreSQL database
+- `PG-SQL-USERNAME` is the user name of your PostgreSQL database
+- `PG-SQL-PASSWORD` is the password of your PostgreSQL database
 
-#### Additional configuration parameters
+#### <a id="config-extras"></a> (Optional) Configure extra parameters
 
-While this represents the minimal set of configuration options needed to make
-TAP GUI work with the `pg` driver, there actually exist many more configuration
-options that you can leverage. For example you may want to restrict TAP GUI to a
-[single
-database](https://backstage.io/docs/tutorials/switching-sqlite-postgres#using-a-single-database).
-By default TAP GUI will create a database for each plugin, but can be configured
-to divide plugins based on different postgres schemas and use a single specified
-database.
+Beyond the minimum configuration options needed to make Tanzu Application Platform GUI work with the
+`pg` driver, there are many more configuration options for other purposes.
+For example, you can restrict Tanzu Application Platform GUI to a single database.
+For more information about this restriction, see the
+[Backstage documentation](https://backstage.io/docs/tutorials/switching-sqlite-postgres#using-a-single-database).
+
+By default, Tanzu Application Platform GUI creates a database for each plug-in, but you can configure
+it to divide plug-ins based on different PostgreSQL schemas and use a single specified database.
+
+See the following example of extra configuration parameters:
 
 ```yaml
 backend:
@@ -66,8 +71,8 @@ backend:
   database:
     client: pg
 
-    # This parameter tells TAP GUI to put plugins in their own schema instead of
-    # their own database.
+    # This parameter tells Tanzu Application Platform GUI to put plug-ins in their own schema instead
+    # of their own database.
     # default: database
     pluginDivisionMode: schema
 
@@ -76,16 +81,17 @@ backend:
       database: PG-SQL-DATABASE
 ```
 
-Where:
-- `PG-SQL-DATABASE` is the database name TAP GUI is to use
+Where `PG-SQL-DATABASE` is the database name for Tanzu Application Platform GUI to use
 
-A complete list of these configuration options can be found in the
-[node-postgres docs](https://node-postgres.com/api/client).
+For the complete list of these configuration options, see the
+[node-postgres documentation](https://node-postgres.com/api/client).
 
 ### <a id="update-package-profile"></a> Update the package profile
 
-You can realize your new configuration by updating TAP with your modified
-values. This will update TAP GUI as it is owned by TAP.
+You can apply your new configuration by updating Tanzu Application Platform with your modified values.
+This updates Tanzu Application Platform GUI because it belongs to Tanzu Application Platform.
+
+To apply your new configuration, run:
 
 ```console
 tanzu package installed update  tap --package-name tap.tanzu.vmware.com --version VERSION-NUMBER --values-file tap-values.yaml -n tap-install
