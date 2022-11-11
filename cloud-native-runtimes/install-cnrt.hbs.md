@@ -30,7 +30,7 @@ To install Cloud Native Runtimes:
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  2.0.1    2022-10-11T00:00:00Z
+      cnrs.tanzu.vmware.com  2.0.2    2022-11-15T00:00:00Z
     ```
 
 1. (Optional) Make changes to the default installation settings:
@@ -38,14 +38,14 @@ To install Cloud Native Runtimes:
     1. Gather values schema.
 
         ```console
-        tanzu package available get cnrs.tanzu.vmware.com/2.0.1 --values-schema -n tap-install
+        tanzu package available get cnrs.tanzu.vmware.com/2.0.2 --values-schema -n tap-install
         ```
 
         For example:
 
         ```console
-        $ tanzu package available get cnrs.tanzu.vmware.com/2.0.1 --values-schema -n tap-install
-        | Retrieving package details for cnrs.tanzu.vmware.com/2.0.1...
+        $ tanzu package available get cnrs.tanzu.vmware.com/2.0.2 --values-schema -n tap-install
+        | Retrieving package details for cnrs.tanzu.vmware.com/2.0.2...
           KEY                         DEFAULT                               TYPE     DESCRIPTION
           provider                    <nil>                                 string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on a local Kubernetes cluster provider.
           default_tls_secret          <nil>                                 string   Optional: Overrides the config-contour configmap in namespace knative-serving.
@@ -85,13 +85,13 @@ To install Cloud Native Runtimes:
 1. Install the package by running:
 
     ```console
-    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.0.1 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.0.2 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
     ```console
-    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.0.1 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.0.2 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
     | Creating service account 'cloud-native-runtimes-tap-install-sa'
@@ -118,7 +118,7 @@ To install Cloud Native Runtimes:
     | Retrieving installation details for cc...
     NAME:                    cloud-native-runtimes
     PACKAGE-NAME:            cnrs.tanzu.vmware.com
-    PACKAGE-VERSION:         2.0.1
+    PACKAGE-VERSION:         2.0.2
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
