@@ -21,7 +21,7 @@ How to configure:
 
 How to generate OpenAPI Spec:
 
-   - [by skaffolding a new project using App Accelerator Template](#using-app-accelerator-template)
+   - [by scaffolding a new project using App Accelerator Template](#using-app-accelerator-template)
 
    - [in an existing Spring Boot project using springdoc](https://springdoc.org/#getting-started)
 
@@ -144,8 +144,8 @@ After the supply chain runs it creates an `APIDescriptor` custom resource. This 
 
 ## <a id='using-custom-supply-chain'></a>Using Custom Supply Chains
 
-If you are creating custom supply chains, you can still use API Auto Registration. To write your own Supply Chain pipeline,
-you can use `ClusterConfigTemplate` by the name of `config-template` in your pipeline. To write your own custom task,
+If you are creating custom supply chains, you can still use API Auto Registration. To write a Supply Chain pipeline,
+you can use `ClusterConfigTemplate` by the name of `config-template` in your pipeline. To write a custom task,
 you can verify how the template is written to read parameters, interpret baseURL from Knative Services and construct APIDescriptor CRs.
 
 In the Delivery pipeline, you must directly create an APIDescriptor custom resource. You must grant some permissions to create the CR from the Delivery pipeline.
