@@ -70,7 +70,7 @@ To install Tanzu Build Service by using the Tanzu CLI:
 
 1. (Optional) Tanzu Build Service is bootstrapped with the `lite` set of dependencies.
 To configure `full` dependencies, add the key-value pair `exclude_dependencies: true`
-to your `tbs-values.yaml` file. For example:
+to your `tbs-values.yaml` file. This is to exclude the default `lite` dependencies from the installation. For example:
 
     ```yaml
     ---
