@@ -2,6 +2,9 @@
 
 Deploying Tanzu Application Platform in a multicluster setup includes installing multiple profiles: View, Build, Run, Iterate. Supply Chain Security Tools (SCST) - Store is deployed with the View profile. After installing the View profile but before installing the Build profile, you must add configuration related to SCST - Store to the Kubernetes cluster where you intend to install the Build profile. This guide helps you add that configuration which allows components in the Build cluster to communicate with the SCST - Store in the View cluster.
 
+> **Note** If you have already deployed the Build profile, you can still follow this guide.
+> However, in the step [Install Build profile](#install-build-profile), instead of deploying the Build profile again, you should update your deploying using `tanzu package installed update`.
+
 ## Prerequisites
 
 You must have already installed the View profile. Follow the steps in [Install View profile](../multicluster/installing-multicluster.hbs.md#install-view).
@@ -82,7 +85,7 @@ kubectl create secret generic store-auth-token \
 
 The cluster now has a CA certificate named  `store-ca-cert` and authentication token named `store-auth-token` in the namespace `metadata-store-secrets`. 
 
-## Install Build profile
+## <a id='install-build-profile'></a>Install Build profile
 
 If you came into this guide from the [Install multicluster Tanzu Application Platform profiles](../multicluster/installing-multicluster.hbs.md) topic after installing the View profile, return to that topic to [install the Build profile](../multicluster/installing-multicluster.hbs.md#install-build).
 
@@ -95,7 +98,10 @@ The secrets you created are used in the Build profile `values.yaml` to configure
 ```yaml
 ...
 grype:
+  namespace: "MY-DEV-NAMESPACE" # (Optional) Defaults to default namespace.
+  targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
   metadataStore:
+    url: METADATA-STORE-URL-ON-VIEW-CLUSTER
     caSecret:
         name: store-ca-cert
         importFromNamespace: metadata-store-secrets
@@ -104,6 +110,12 @@ grype:
         importFromNamespace: metadata-store-secrets
 ...
 ```
+
+Where:
+
+* `METADATA-STORE-URL-ON-VIEW-CLUSTER` is the ingress URL of SCST - Store deployed to the View cluster, for example `https://metadata-store.example.com`. See [Ingress support](ingress.hbs.md) for more information.
+* `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the credentials to pull an image from the registry for scanning.
+* `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Scan deploys the ScanTemplates there. This allows the scanning feature to run in this namespace.
 
 ## Configure developer namespaces
 

@@ -267,3 +267,23 @@ Add the `app.kubernetes.io/part-of` label to the Scan Policy. See [Enable Tanzu 
 GUI to view ScanPolicy
 Resource](policies.hbs.md#a-idgui-view-scan-policyaenable-tanzu-application-platform-gui-to-view-scanpolicy-resource)
 for more details.
+
+#### Lookup error when connecting to SCST - Store
+
+If your scan pod is failing, and in the logs you see this error:
+
+```
+dial tcp: lookup metadata-store-app.metadata-store.svc.cluster.local on 10.100.0.10:53: no such host
+```
+
+This is caused by a connection error while attempting to connect to the local cluster URL. If this is a multicluster deployment, make sure you have set the `grype.metadataStore.url` property in your Build profile `values.yaml`. It needs to be set to the ingress domain of SCST - Store which is deployed in the View cluster. See [SCST - Store - Multicluster setup - Install Build profile](../scst-store/multicluster-setup.hbs.md#install-build-profile) for more information on that configuration.
+
+#### Sourcescan error with SCST - Store endpoint without a prefix
+
+If your Source Scan resource is failing, and the status shows this error:
+
+```
+Error: endpoint require 'http://' or 'https://' prefix
+```
+
+This is becuase the `grype.metadataStore.url` value in the TAP profile `values.yaml` was not configured with the correct prefix. Check that the URL starts with either `http://` or `https://`.
