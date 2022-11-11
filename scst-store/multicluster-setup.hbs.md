@@ -14,6 +14,9 @@ cluster to communicate with SCST - Store in the View cluster.
 > profile](#install-build-profile) step, instead of deploying the Build profile
 > again, update your deployment using `tanzu package installed update`.
 
+> **Note** If you have already deployed the Build profile, you can still follow this guide.
+> However, in the step [Install Build profile](#install-build-profile), instead of deploying the Build profile again, you should update your deploying using `tanzu package installed update`.
+
 ## Prerequisites
 
 You must have already installed the View profile. See [Install View profile](../multicluster/installing-multicluster.hbs.md#install-view).
