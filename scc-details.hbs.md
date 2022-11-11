@@ -7,6 +7,7 @@ Custom SCC (SecurityContextConstraint) details for Tanzu Application Platform co
 - [Application Single Sign-On for OpenShift cluster](#app-sso-scc)
 - [Contour for Openshift cluster](#contour-scc)
 - [Developer Conventions for OpenShift cluster](#dev-conv-scc)
+- [Tanzu Build Service for OpenShift cluster](#tbs-scc)
 
 ## <a id='acc-scc'></a>Application Accelerator on OpenShift
 
@@ -37,3 +38,9 @@ Custom SCC (SecurityContextConstraint) details for Tanzu Application Platform co
 <!-- The below partial is in the docs-tap/partials directory -->
 
 {{> 'partials/developer-conventions/openshift-dev-conventions' }}
+
+## <a id='tbs-scc'></a>Tanzu Build Service for OpenShift cluster
+
+<!-- The below partial is in the docs-tap/partials directory -->
+
+{{> 'partials/tanzu-build-service/_openshift-tbs' }}
