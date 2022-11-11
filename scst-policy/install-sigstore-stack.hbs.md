@@ -139,8 +139,8 @@ A `config_json` containing the `Kubernetes API ServiceAccount token` issuer:
 ```bash
 config_json='{
   "OIDCIssuers": {
-    "https://kubernetes.default.svc.cluster.local": {
-      "IssuerURL": "https://kubernetes.default.svc.cluster.local",
+    "https://kubernetes.default.svc": {
+      "IssuerURL": "https://kubernetes.default.svc",
       "ClientID": "sigstore",
       "Type": "kubernetes"
     }
@@ -155,7 +155,7 @@ config_json='{
 ```
 
 Set the `IssuerURL` to the OIDC issuer configured in your cluster. You can discover
-your the URL by using `kubectl proxy -p 8001` and running:
+the URL by using `kubectl proxy -p 8001` and running:
 
 ```bash
 curl localhost:8001/.well-known/openid-configuration | jq .issuer
