@@ -89,7 +89,7 @@ For the complete list of these configuration options, see the
 ### <a id="update-package-profile"></a> Update the package profile
 
 You can apply your new configuration by updating Tanzu Application Platform with your modified values.
-This updates Tanzu Application Platform GUI because it belongs to Tanzu Application Platform.
+Doing so updates Tanzu Application Platform GUI because it belongs to Tanzu Application Platform.
 
 To apply your new configuration, run:
 
