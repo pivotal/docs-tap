@@ -33,9 +33,10 @@ This release has the following security fixes, listed by area and component.
 The following issues, listed by area and component, are resolved in this release.
 
 #### <a id="1-3-1-supplychainplugin-resolved"></a>Supply Chain Choreographer Plug-in
-- Updating a supply chain no longer results in an error (Can not create edge...) when an existing workload is clicked in the Workloads table and that supply chain is no longer present.
-- Image Scan timestamp was not showing the latest scan time.
 
+- Updating a supply chain no longer causes an error (`Can not create edge...`) when an existing
+  workload is clicked in the Workloads table and that supply chain is no longer present.
+- The Image Scan timestamp no longer fails to show the latest scan time.
 
 #### <a id="1-3-1-intellij-resolved"></a> Tanzu Developer Tools for IntelliJ
 
@@ -73,9 +74,15 @@ find vulnerabilities during a source scan.
 The vulnerabilities are still found during the image scan after the binaries are built and packaged
 as images.
 
-#### <a id="1-3-1-supplychainplugin-known-issues"></a>Supply Chain Choreographer Plug-in
-- UI shows error "Unable to retrieve details from Image Provider Stage" when the Builder is not available or configured, however the CLI shows correct error "Builder default is not ready".
-- Clicking on the `Scan Template` link in the Overview section for a scanning stage results in a blank page being opened in the browser.
+#### <a id="1-3-1-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
+
+- **Supply Chain Choreographer Plug-in**
+
+  - The UI shows the error message `Unable to retrieve details from Image Provider Stage` when the
+    Builder is not available or configured, however the CLI shows the correct error message
+    `Builder default is not ready`.
+  - Clicking on the `Scan Template` link in the **Overview** section for a scanning stage causes a
+    blank page to open in the browser.
 
 ## <a id='1-3-0'></a> v1.3.0
 
@@ -87,7 +94,7 @@ This release includes the following changes to Tanzu Application Platform and it
 
 #### <a id="tap-features"></a> Tanzu Application Platform
 
-- Tanzu Application Platform now supports: 
+- Tanzu Application Platform now supports:
   - OpenShift Red Hat OpenShift Container Platform v4.10
         - vSphere
         - Baremetal
