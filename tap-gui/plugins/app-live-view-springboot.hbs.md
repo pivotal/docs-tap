@@ -52,9 +52,8 @@ The page includes the following features:
 - The user can edit or remove the overridden environment variables in the **Applied Overrides** section.
 - The **Applied Overrides** section also enables the user to add new environment properties to the application.
 
-> **Note:** The `management.endpoint.env.post.enabled=true` has to be set in the application config
-> properties of the application and a corresponding, editable Environment has to be present in the
-> application.
+The `management.endpoint.env.post.enabled=true` has to be set in the application config properties
+of the application and a corresponding, editable Environment has to be present in the application.
 
 ![Environment Page in UI](images/environment-1.png)
 

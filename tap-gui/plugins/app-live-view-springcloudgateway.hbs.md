@@ -31,8 +31,7 @@ The API Authentications By Path page displays the total requests, number of succ
 and unsuccessful authentications grouped by the HTTP method and gateway route path.
 The page also displays the success rate for each of the routes.
 
-> **Note:** In addition to the preceding three pages, the Spring Boot actuator pages are
-> also displayed.
+In addition to the preceding three pages, the Spring Boot actuator pages are also displayed.
 
 ## <a id="troubleshooting"></a> Troubleshooting
 

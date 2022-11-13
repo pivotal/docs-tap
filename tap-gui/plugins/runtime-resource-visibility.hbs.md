@@ -177,8 +177,8 @@ To view additional information about your running applications, see the
 To view logs for a pod, click **View Pod Logs** from the **Pod Details** page.
 By default, you see all the logs for the pod since its creation for all the pod's containers.
 
-> **Note:** The logs displayed are not streamed in real time. To fetch new log entries, click
-> **Refresh** in the upper right corner of the page.
+The logs displayed are not streamed in real time. To fetch new log entries, click **Refresh** in the
+upper right corner of the page.
 
 ![Screenshot of Pod Logs page, which displays information for Tanzu Java Web App](images/runtime-resources-pod-logs.png)
 
