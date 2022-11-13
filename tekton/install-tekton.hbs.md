@@ -132,7 +132,7 @@ secret to the service account by running:
     Events:              <none>
     ```
 
-    > **Note:** The service account has access to the `pull-secret` image pull secret.
+    The service account has access to the `pull-secret` image pull secret.
 
 For more details about Tekton Pipelines, see the [Tekton documentation](https://tekton.dev/docs/) and
 the [GitHub repository](https://github.com/tektoncd/pipeline).
@@ -141,4 +141,5 @@ For information about getting started with Tekton, see the Tekton
 [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md) in GitHub and the
 [getting started guide](https://tekton.dev/docs/getting-started/) in the Tekton documentation.
 
-> **Note:** Windows workloads are deactivated and cause an error if any Tasks try to use Windows scripts.
+> **Caution** Windows workloads are deactivated and cause an error if any Tasks try to use Windows
+> scripts.

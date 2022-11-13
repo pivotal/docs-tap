@@ -67,7 +67,7 @@ The page also includes the following capabilities for `editing` configured envir
 - The **Applied Overrides** section also enables the user to add new environment properties to the
   application.
 
-> **Note:** `management.endpoint.env.post.enabled=true` must be set in the application config
+> **Important** `management.endpoint.env.post.enabled=true` must be set in the application config
 > properties of the application and a corresponding, editable environment must be present in the
 > application.
 
@@ -91,7 +91,8 @@ The search feature enables the user to search by logger name.
 The **Reset** resets the log levels to the original state.
 The **Reset All** on top right corner of the page resets all the loggers to default state.
 
-> **Note:** The UI allows the user to change the log levels and see the live changes on the application. These changes are temporary and will go away if the underlying pod gets restarted.
+The UI allows the user to change the log levels and see the live changes on the application.
+These changes are temporary and will go away if the underlying pod gets restarted.
 
 ![Log Levels Page in UI](images/log-levels.png)
 
@@ -122,7 +123,7 @@ To navigate to the **Memory** page, the user can select the `Memory` option from
 
 ![Memory Page in UI](images/memory.png)
 
->**Note:** This graphical visualization happens in real time and shows real-time data only.
+This graphical visualization happens in real time and shows real-time data only.
 As mentioned at the top, the Application Live View features do not store any information.
 That means the graphs visualize the data over time only for as long as you stay on that page.
 
@@ -139,7 +140,7 @@ That is, it produces, consumes and HTTP method by clicking on the mapping.
 The search feature enables the user to search on the request mapping or the method.
 The toggle **/actuator/\*\* Request Mappings** displays the actuator related mappings of the application.
 
->**Note:** When application actuator endpoint is exposed on management.server.port, the application
+When the application actuator endpoint is exposed on `management.server.port`, the application
 does not return any actuator request mappings data in the context.
 The application displays a message when the actuator toggle is enabled.
 
@@ -166,7 +167,7 @@ The refresh icon above the graph loads the latest traces of the application.
 The toggle **/actuator/\*\*** on the top right corner of the page displays the actuator related
 traces of the application.
 
->**Note:** When application actuator endpoint is exposed on management.server.port, no actuator
+When the application actuator endpoint is exposed on `management.server.port`, no actuator
 HTTP Traces data is returned for the application.
 In this case, a message is displayed when the actuator toggle is enabled.
 

@@ -134,8 +134,8 @@ The following are some attributes that are displayed in the overview card:
 
 ![Screenshot of an Overview card. The VIEW POD LOGS and VIEW .YAML buttons are at the top-right.](images/runtime-resources-overview.png)
 
->**Note:** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
-applications supporting Application Live View.
+The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for applications
+supporting Application Live View.
 
 ### <a id="status-card"></a>Status card
 

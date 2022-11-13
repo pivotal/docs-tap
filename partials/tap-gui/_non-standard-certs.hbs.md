@@ -12,7 +12,7 @@ workaround:
 
 ## <a id='add-custom-ca'></a> Add a custom CA
 
-> **Note:** The overlay previously available in this section is no longer necessary.
+The overlay previously available in this section is no longer necessary.
 
 As of Tanzu Application Platform {{ vars.tap_version }}, the value `ca_cert_data` is supported
 at the top level of its values file. Any number of newline-delimited CA certificates in PEM format
