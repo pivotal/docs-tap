@@ -26,9 +26,8 @@ The `workload.yaml` file provides instructions to the Supply Chain Choreographer
 about how to build and manage a workload.
 For more information, see the [Supply Chain Choreographer](../scc/about.md) documentation.
 
-> **Note** The Tanzu Developer Tools for IntelliJ extension requires only one `workload.yaml`
-> file per project.
-> The `workload.yaml` must be a single-document YAML file, not a multi-document YAML file.
+The Tanzu Developer Tools for IntelliJ extension requires only one `workload.yaml` file per project.
+The `workload.yaml` must be a single-document YAML file, not a multi-document YAML file.
 
 ### <a id="example-workload-yaml"></a> Example workload.yaml
 
@@ -104,7 +103,7 @@ The `Tiltfile` provides the configuration for Tilt to enable your project to [li
 on the Tanzu Application Platform enabled Kubernetes cluster.
 For more information, see the [Tilt](https://docs.tilt.dev/) documentation.
 
-> **Note** The Tanzu Developer Tools for IntelliJ extension requires only one Tiltfile per project.
+The Tanzu Developer Tools for IntelliJ extension requires only one Tiltfile per project.
 
 ### <a id="example-tiltfile"></a> Example Tiltfile
 
@@ -147,9 +146,9 @@ If your Tanzu Application Platform enabled Kubernetes cluster is running on your
 you can remove the entire `allow_k8s_contexts` line.
 For more information about this line, see the [Tilt documentation](https://docs.tilt.dev/api.html#api.allow_k8s_contexts).
 
->**Note** If you want to compile the source image from a local directory other than the
->project directory, change the value of `local path`.
->For more information, see [local path](glossary.md#local-path) in the glossary.
+If you want to compile the source image from a local directory other than the project directory,
+change the value of `local path`.
+For more information, see [local path](glossary.md#local-path) in the glossary.
 
 ## <a id="create-tanzuignore"></a> Create the `.tanzuignore` file
 
