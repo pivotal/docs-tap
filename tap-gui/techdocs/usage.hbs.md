@@ -97,7 +97,7 @@ To generate and publish TechDocs by using the TechDocs CLI:
     npx @techdocs/cli generate --source-dir DIRECTORY-CONTAINING-THE-ROOT-YAML-FILE --output-dir ./site
     ```
 
-    >**Note:** This creates a temporary `site` directory in your current working directory that contains the generated TechDocs files.
+    This creates a temporary `site` directory in your current working directory that contains the generated TechDocs files.
 
 4. Review the contents of the `site` directory to verify the TechDocs were generated successfully.
 5. Set environment variables for authenticating with AWS S3 with an account that has read/write access:

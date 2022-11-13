@@ -11,7 +11,7 @@ back-end and connector components.
 - Application Live View Conventions Package (`build.appliveview.tanzu.vmware.com`) contains
 Application Live View Convention Service only.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include Application Live View.
 For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../../install.md).
 
