@@ -92,8 +92,8 @@ The following are some attributes that are displayed in the overview card:
 
 ![Screenshot of the Tanzu web app default URL](images/runtime-resources-overview.png)
 
->**Note:** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
-applications supporting Application Live View.
+The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for applications
+supporting Application Live View.
 
 ### <a id="status-card"></a>Status card
 

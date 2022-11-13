@@ -101,7 +101,7 @@ tanzu accelerator create my-hello-fun --git-repo https://github.com/sample-accel
   --tags "spring,cloud,function,serverless"
 ```
 
->**Note:** It is not currently possible to provide the `git.ignore` option with the Tanzu CLI.
+It is not currently possible to provide the `git.ignore` option with the Tanzu CLI.
 
 ## <a id="non-public-repos"></a> Using non-public repositories
 
@@ -119,7 +119,7 @@ For Git repositories that aren't accessible anonymously, you need to provide cre
 
 To create an accelerator using a private Git repository, first create a secret with the HTTP credentials.
 
->**Note:** For better security, use an access token as the password.
+For better security, use an access token as the password.
 
 ```sh
 kubectl create secret generic https-credentials \
@@ -170,7 +170,7 @@ If you are using the Tanzu CLI, then add the `--secret-ref` flag to your `tanzu 
 
 To create an accelerator using a private Git repository with a self-signed certificate, first create a secret with the HTTP credentials and the certificate.
 
->**Note:** For better security, use an access token as the password.
+For better security, use an access token as the password.
 
 ```sh
 kubectl create secret generic https-ca-credentials \

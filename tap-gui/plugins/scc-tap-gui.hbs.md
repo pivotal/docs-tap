@@ -113,7 +113,7 @@ image scans for workload builds. The data is from
 CVE issues represent any vulnerabilities associated with a package or version found in the
 source code or image, including vulnerabilities from past scans.
 
-> **Note** For example, the `log4shell` package is found in image ABC on 1 January without any CVEs.
-> On 15 January, the log4j CVE issue is found while scanning image DEF. If a user returns to the
-> **Image Scan** stage for image ABC, the log4j CVE issue appears and is associated with the
-> `log4shell` package.
+For example, the `log4shell` package is found in image ABC on 1 January without any CVEs.
+On 15 January, the log4j CVE issue is found while scanning image DEF. If a user returns to the
+**Image Scan** stage for image ABC, the log4j CVE issue appears and is associated with the
+`log4shell` package.

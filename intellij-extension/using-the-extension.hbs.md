@@ -59,7 +59,7 @@ Click the stop button in the Debug overlay to stop debugging on the cluster.
 
     ![Live Update config parameters](../images/intellij-liveupdate-config.png)
 
-> **Note:** You must compile your code before the changes are synced to the container.
+> **Important:** You must compile your code before the changes are synchronized to the container.
 > For example, `Build Project`: `⌘`+`F9`.
 
 ### <a id="stop-liveupdate"></a> Stop Live Update

@@ -95,8 +95,8 @@ drop-down menu.
     ![A new file called catalog-info.yaml with the words "tanzu catalog-info" written in it and an action menu showing "tanzu catalog-info"](../images/vscode-cataloginfo.png)
 1. Fill in the template by pressing the Tab key.
 
-> **Note:** To create your `catalog-info.yaml` file manually, see
-> [Create a `catalog-info.yaml` file](#create-catalog-info-yaml).
+To create your `catalog-info.yaml` file manually, see
+[Create a `catalog-info.yaml` file](#create-catalog-info-yaml).
 
 ### <a id="tiltfile-file"></a> The Tiltfile file
 
