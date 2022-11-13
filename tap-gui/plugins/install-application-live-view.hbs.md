@@ -11,7 +11,7 @@ Application Live View installs three packages for `full`, `light`, and `iterate`
 
 - For the `build` profile, Application Live View installs Application Live View Conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View Convention Service in `app-live-view-conventions` namespace.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+Use the instructions on this page if you do not want to use a profile to install packages.
 For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../../install.html).
 
 
@@ -125,7 +125,7 @@ To install Application Live View Backend:
     Added installed package 'appliveview' in namespace 'tap-install'
     ```
 
-    >**Note:** The Application Live View Backend component is deployed in `app-live-view` namespace by default.
+    The Application Live View Backend component is deployed in `app-live-view` namespace by default.
 
 1. Verify the Application Live View Backend package installation by running:
 
@@ -194,7 +194,7 @@ To install Application Live View Connector:
         sslDisabled: "true"
     ```
 
-    >**Note:** The Application Live View Connector connects to the `cluster-local` back end to register the applications.
+    The Application Live View Connector connects to the `cluster-local` back end to register the applications.
 
     For a multicluster environment, use the following values:
 
@@ -211,7 +211,7 @@ To install Application Live View Connector:
 
     You can edit the values to suit your project needs or leave the default values as is.
 
-    >**Note:** Using the HTTP proxy either on 80 or 443 based on SSL config exposes the Backend service running on port 7000. The connector connects to the Backend on port 80/443 by default. Therefore, you are not required to explicitly configure the `port` field.
+    Using the HTTP proxy either on 80 or 443 based on SSL config exposes the Backend service running on port 7000. The connector connects to the Backend on port 80/443 by default. Therefore, you are not required to explicitly configure the `port` field.
 
 
 1. Install the Application Live View Connector package by running:
@@ -238,7 +238,7 @@ To install Application Live View Connector:
     Added installed package 'appliveview-connector' in namespace 'tap-install'
     ```
 
-    >**Note:** Each cluster installs the connector as a DaemonSet. The connector is configured to connect to the central instance of the Backend. The Application Live View Connector component is deployed in `app-live-view-connector` namespace by default.
+    Each cluster installs the connector as a DaemonSet. The connector is configured to connect to the central instance of the Backend. The Application Live View Connector component is deployed in `app-live-view-connector` namespace by default.
 
 1. Verify the `Application Live View Connector` package installation by running:
 

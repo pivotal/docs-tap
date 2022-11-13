@@ -96,9 +96,8 @@ The page includes the following features:
 - The user can edit or remove the overridden environment variables in the **Applied Overrides** section.
 - The **Applied Overrides** section also enables the user to add new environment properties to the application.
 
-> **Note:** The `management.endpoint.env.post.enabled=true` has to be set in the application config
-> properties of the application and a corresponding, editable Environment has to be present in the
-> application.
+The `management.endpoint.env.post.enabled=true` has to be set in the application config properties
+of the application and a corresponding, editable Environment has to be present in the application.
 
 ![Screenshot of the Environment Page showing the various properties.](images/environment-1.png)
 
@@ -152,7 +151,7 @@ To navigate to the **Memory** page, the user can select the `Memory` option from
 
 ![Screenshot of the Memory Page graphically showing the memory usage inside the JVM.](images/memory.png)
 
->**Note:** This graphical visualization happens in real time and shows real-time data only.
+This graphical visualization happens in real time and shows real-time data only.
 As mentioned at the top, the Application Live View features do not store any information.
 That means the graphs visualize the data over time only for as long as you stay on that page.
 
@@ -170,8 +169,8 @@ That is, it produces, consumes and HTTP method by clicking on the mapping.
 The search feature enables the user to search on the request mapping or the method.
 The toggle **/actuator/\*\* Request Mappings** displays the actuator related mappings of the application.
 
->**Note:** When application actuator endpoint is exposed on management.server.port, the application
-does not return any actuator request mappings data in the context.
+When the application actuator endpoint is exposed on `management.server.port`, the application does
+not return any actuator request mappings data in the context.
 The application displays a message when the actuator toggle is enabled.
 
 ![Screenshot of the Request Mappings Page showing the application's request mappings.](images/request-mappings-1.png)
@@ -198,7 +197,7 @@ The refresh icon above the graph loads the latest traces of the application.
 The toggle **/actuator/\*\*** on the top right corner of the page displays the actuator related
 traces of the application.
 
->**Note:** When application actuator endpoint is exposed on management.server.port, no actuator
+When the application actuator endpoint is exposed on `management.server.port`, no actuator
 HTTP Traces data is returned for the application.
 In this case, a message is displayed when the actuator toggle is enabled.
 
