@@ -12,16 +12,16 @@ error updating to TUF remote mirror: tuf: invalid key
 ```
 
 The image policy webhook tries to initialize TUF keys during the first request for signature verification.
-Due to a breaking change in[go-tuf](https://github.com/theupdateframework/go-tuf/issues/379)
+Due to a breaking change in [go-tuf](https://github.com/theupdateframework/go-tuf/issues/379),
 the initialization fails when using the Official Sigstore TUF root.
 
 ### Solution
 
-Upgrade to Image Policy Webhook 1.1.9 available from TAP 1.3.2
+Upgrade to Image Policy Webhook v1.1.9 available in Tanzu Application Platform v1.3.2.
 
 ### Workaround
 
-Manually trigger the first request to the image policy webhook
+Manually trigger the first request to the image policy webhook.
 
 #### Steps
 
@@ -55,7 +55,7 @@ Manually trigger the first request to the image policy webhook
         - name: cosign-key
     ```
 
-1. Create a pod that matches the pattern in `ClusterImagePolicy` to trigger a verification
+1. Create a pod that matches the pattern in `ClusterImagePolicy` to trigger a verification.
 
     ```console
     kubectl run cosign \
@@ -64,4 +64,4 @@ Manually trigger the first request to the image policy webhook
       --command -- sleep 900
     ```
 
-1. The `ClusterImagePolicy` can be deleted or edited for further use
+1. You can delete or edit the `ClusterImagePolicy` for further use.
