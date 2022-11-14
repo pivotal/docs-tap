@@ -183,7 +183,7 @@ Authserver and run it with docker.
    --redirect-url "http://127.0.0.1:4180/oauth2/callback"
    ```
 
-   _Note_: Ensure that your issuer url does not resolve to `127.0.0.1`
+   >**Note** Ensure that your issuer URL does not resolve to `127.0.0.1`.
 
 9. Check your browser at `127.0.0.1:4180` to see if your configuration allows you to sign in.
 
