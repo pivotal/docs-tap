@@ -108,8 +108,8 @@ versions of the CLI core and plug-ins are installed by running:
 
 4. Install or update the CLI core by running:
 
-   >**Note** Replace v0.25.0 with the version you've downloaded which can be found by running one
-   the following code examples. For example, if the file version you download is v0.25.0.1, then set the version to v0.25.0
+   >**Note** Replace v0.25.0 with the version you've downloaded which can be found by inspecting the directory name under `$HOME/tanzu/cli/core/`.
+   For example, if the directory name under `$HOME/tanzu/cli/core/` is v0.25.1, then set `VERSION` below to `v0.25.1`
 
    - **For Linux:**
 
