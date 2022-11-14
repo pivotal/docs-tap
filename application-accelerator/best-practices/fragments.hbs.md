@@ -36,7 +36,7 @@ Testing takes more time as all the combinations need to be tested from an Accele
 Some considerations:
 
 - To flexibly reuse Fragments in different combinations each fragment must cover a small,
-cohesive function. In other words, fragments must follow these two Unix principles:
+cohesive function. In other words, fragments must follow these two UNIX< principles:
 
   - Small is beautiful.
   - Each Fragment does one thing well.
