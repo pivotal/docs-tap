@@ -148,4 +148,4 @@ To install the API Auto Registration package:
     ```
 
     Verify that the entity is created in your Tanzu Application Platform GUI:
-    `<TAP_GUI_URL>/catalog/default/api/sample-api-descriptor-with-absolute-url`
+    `TAP-GUI-URL/catalog/default/api/sample-api-descriptor-with-absolute-url`
