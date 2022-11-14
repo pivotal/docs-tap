@@ -112,7 +112,7 @@ To install Supply Chain Security Tools - Sign:
             allow_unmatched_images: false
             ```
 
-            >**Note**: For a quicker installation process VMware recommends that
+            >**Note** For a quicker installation process VMware recommends that
             >you set `allow_unmatched_images` to `true` initially.
             >This setting means that the webhook allows unsigned images to
             >run if the image does not match any pattern in the policy.
