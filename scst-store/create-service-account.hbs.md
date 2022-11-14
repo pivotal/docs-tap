@@ -19,7 +19,7 @@ As a part of the Store installation, the `metadata-store-read-only` cluster role
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRoleBinding
     metadata:
-      name: metadata-store-ready-only
+      name: metadata-store-read-only
     roleRef:
       apiGroup: rbac.authorization.k8s.io
       kind: ClusterRole
@@ -46,7 +46,7 @@ As a part of the Store installation, the `metadata-store-read-only` cluster role
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRoleBinding
     metadata:
-      name: metadata-store-ready-only
+      name: metadata-store-read-only
     roleRef:
       apiGroup: rbac.authorization.k8s.io
       kind: ClusterRole
