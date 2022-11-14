@@ -6,7 +6,9 @@ This section outlines observability and troubleshooting methods and issues for u
 
 The scans  run inside a Kubernetes Job where the Job creates a pod. Both the Job and pod are cleaned up after completion.
 
-Before applying a new scan, you can set a watch on the Jobs, Pods, SourceScans, Imagescans to observe their progression:
+Before applying a new scan, you can set a watch on the Jobs, Pods, SourceScans, Imagescans to
+observe their progression:
+
 ```console
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
@@ -17,7 +19,7 @@ watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 
 Run these commands to get more logs and details about the errors around scanning. The Jobs and pods persist for a predefined amount of seconds before getting deleted. (`deleteScanJobsSecondsAfterFinished` is the tap pkg variable that defines this)
 
-####  <a id="debugging-scan-pods"></a> Debugging Scan pods
+#### <a id="debugging-scan-pods"></a> Debugging Scan pods
 
 Run the following to get error logs from a pod when scan pods are in a failing state:
 
@@ -27,6 +29,7 @@ kubectl logs <scan-pod-name> -n <DEV-NAMESPACE>
 See [here](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/) for more details about debugging Kubernetes pods.
 
 The following is an example of a successful scan run output:
+
 ```yaml
 scan:
   cveCount:
@@ -57,7 +60,7 @@ kubectl logs <scan-pod-name> -n <DEV-NAMESPACE> -c <init-container-name>
 ``` 
 See [Debug Init Containers](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/) in the Kubernetes documentation for debug init container tips.
 
-####  <a id="debug-source-image-scan"></a> Debugging SourceScan and ImageScan
+#### <a id="debug-source-image-scan"></a> Debugging SourceScan and ImageScan
 
 To retrieve status conditions of an SourceScan and ImageScan, run:
 
@@ -75,10 +78,10 @@ Under `Status.Conditions`, for a condition look at the "Reason", "Type", "Messag
 
 See [here](../cli-plugins/apps/debug-workload.md) for Tanzu workload commands for tailing build and runtime logs and getting workload status and details.
 
-
 #### <a id="view-scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs
 
 To retrieve scan-controller manager logs:
+
 ```console
 kubectl -n scan-link-system logs -f deployment/scan-link-controller-manager -c manager
 ```
@@ -105,9 +108,8 @@ Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.
 
 #### <a id="deactivate-scst-store"></a> Deactivate Supply Chain Security Tools - Store
 
-SCST - Store is a prerequisite for installing SCST - Scan.
-If you install without the SCST - Store, you must edit the
-configurations to deactivate the Store:
+SCST - Store is required to install SCST - Scan. If you install without the SCST - Store,
+you must edit the configurations to deactivate the Store:
 
   ```yaml
   ---
@@ -212,10 +214,41 @@ If you encounter `No policy has been defined`, it might be because the Tanzu App
 
 Confirm that the Scan Policy associated with a SourceScan or ImageScan exists. For example, the `scanPolicy` in the scan matches the name of the Scan Policy.
 
-```
+```console
 kubectl describe sourcescan NAME -n DEV-NAMESPACE
 kubectl describe imagescan NAME -n DEV-NAMESPACE
 kubectl get scanpolicy NAME -n DEV-NAMESPACE
 ```
 
-Add the `app.kubernetes.io/part-of` label to the Scan Policy. See [Enable Tanzu Application Platform GUI to view ScanPolicy Resource](policies.hbs.md#a-idgui-view-scan-policyaenable-tanzu-application-platform-gui-to-view-scanpolicy-resource) for more details.
+Add the `app.kubernetes.io/part-of` label to the Scan Policy. See [Enable Tanzu Application Platform
+GUI to view ScanPolicy
+Resource](policies.hbs.md#a-idgui-view-scan-policyaenable-tanzu-application-platform-gui-to-view-scanpolicy-resource)
+for more details.
+
+#### Lookup error when connecting to SCST - Store
+
+If your scan pod is failing, and in the logs you see this error:
+
+```console
+dial tcp: lookup metadata-store-app.metadata-store.svc.cluster.local on 10.100.0.10:53: no such host
+```
+
+A connection error while attempting to connect to the local cluster URL causes
+this error. If this is a multicluster deployment, set the
+`grype.metadataStore.url` property in your Build profile `values.yaml`. It needs
+to be set to the ingress domain of SCST - Store which is deployed in the View
+cluster. See [SCST - Store - Multicluster setup - Install Build
+profile](../scst-store/multicluster-setup.hbs.md#install-build-profile) for more
+information on that configuration.
+
+#### Sourcescan error with SCST - Store endpoint without a prefix
+
+If your Source Scan resource is failing, and the status shows this error:
+
+```console
+Error: endpoint require 'http://' or 'https://' prefix
+```
+
+This is because the `grype.metadataStore.url` value in the Tanzu Application
+Platform profile `values.yaml` was not configured with the correct prefix.
+Verify that the URL starts with either `http://` or `https://`.
