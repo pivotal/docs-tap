@@ -35,6 +35,7 @@ To see logs:   "tanzu apps workload tail tanzu-java-web-app"
 To get status: "tanzu apps workload get tanzu-java-web-app"
 
 ```
+
 </details>
 
 In the first section, the definition of workload is displayed. It's followed by a dialog box asking `whether the workload should be created or updated`. In the last section, if workload is created or updated, a couple of hints are displayed about the next set of commands that are used for a follow up. Each flag used in this example is explained in detail in the following section.
@@ -70,6 +71,7 @@ Create workload:
    19 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
    20 + |    subPath: tanzu-java-web-app
 ```
+
 </details>
 
 To delete an annotation, use `-` after it's name.
@@ -93,6 +95,7 @@ Update workload:
 
 ? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-app"></a> `--app`
@@ -129,6 +132,7 @@ To see logs:   "tanzu apps workload tail tanzu-app"
 To get status: "tanzu apps workload get tanzu-app"
 
 ```
+
 </details>
 
 ### <a id="apply-build-env"></a> `--build-env`
@@ -162,6 +166,7 @@ Create workload:
 
 ? Do you want to create this workload?
 ```
+
 </details>
 
 To delete a build environment variable, use `-` after its name.
@@ -188,6 +193,7 @@ Update workload:
 
 ? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-debug"></a> `--debug`
@@ -220,6 +226,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-dry-run"></a> `--dry-run`
@@ -258,6 +265,7 @@ spec:
 status:
   supplyChainRef: {}
 ```
+
 </details>
 
 ### <a id="apply-env"></a> `--env`
@@ -312,6 +320,7 @@ Update workload:
 
 ? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-file"></a> `--file`, `-f`
@@ -350,6 +359,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-git-repo"></a> `--git-repo`
@@ -383,6 +393,7 @@ Create workload:
 
 ? Do you want to create this workload?
 ```
+
 </details>
 
 ### <a id="apply-git-tag"></a> `--git-tag`
@@ -417,6 +428,7 @@ Create workload:
 
 ? Do you want to create this workload?
 ```
+
 </details>
 
 ### <a id="apply-image"></a> `--image`
@@ -455,6 +467,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-label"></a> `--label`
@@ -485,6 +498,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
   To unset labels, use `-` after their name.
@@ -508,6 +522,7 @@ Update workload:
 
 ? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-limit-cpu"></a> `--limit-cpu`
@@ -540,6 +555,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-limit-memory"></a> `--limit-memory`
@@ -572,27 +588,32 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-live-update"></a> `--live-update`
 
-Enable to deploy the workload once, save changes to the code, and see those changes reflected within seconds in the workload running on the cluster.
+Enable to deploy the workload once, save changes to the code, and see those changes reflected within
+seconds in the workload running on the cluster.
 
 <details><summary>Example</summary>
 
-  - A usage example with a spring boot application.
-    - Clone repository in https://github.com/vmware-tanzu/application-accelerator-samples
-    - Change into the `tanzu-java-web-app` directory
-    - In `Tiltfile`, first change the `SOURCE_IMAGE` variable to use your registry and project. After that, at the very end of the file add
+  1. A usage example with a spring boot application:
+    1. Clone the repository using get clone <https://github.com/vmware-tanzu/application-accelerator-samples>
+    2.  Change into the `tanzu-java-web-app` directory
+    3. In `Tiltfile`, first change the `SOURCE_IMAGE` variable to use your registry and project.
+At the very end of the file add:
 
-    ```bash
-    allow_k8s_contexts('your-cluster-name')
-    ```
+```bash
+allow_k8s_contexts('your-cluster-name')
+```
 
-    - Then, inside the directory, run:
+Inside the directory, run:
 
-    ```bash
-    tanzu apps workload apply tanzu-java-web-app --live-update --local-path . -s gcr.io/my-project/tanzu-java-web-app-live-update -y
+```bash
+tanzu apps workload apply tanzu-java-web-app --live-update --local-path . -s
+gcr.io/my-project/tanzu-java-web-app-live-update -y
+```
 
     The files and directories listed in the .tanzuignore file are being excluded from the uploaded source code.
     Publishing source in "." to "gcr.io/my-project/tanzu-java-web-app-live-update"...
@@ -689,6 +710,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-maven-group"></a> `--maven-group`
@@ -730,6 +752,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-namespace"></a> `--namespace`, `-n`
@@ -759,6 +782,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-param"></a> `--param`
@@ -793,6 +817,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 To unset parameters, use `-` after their name.
@@ -817,6 +842,7 @@ Update workload:
 
 ? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-param-yaml"></a> `--param-yaml`
@@ -851,6 +877,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 To unset parameters, use `-` after their name.
@@ -878,6 +905,7 @@ Update workload:
 
 ? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-registry-ca-cert"></a> `--registry-ca-cert`
@@ -908,6 +936,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-registry-password"></a> `--registry-password`
@@ -952,6 +981,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-request-memory"></a> `--request-memory`
@@ -984,6 +1014,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-service-account"></a> `--service-account`
@@ -1014,6 +1045,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 To unset a service account, pass empty string.
@@ -1037,6 +1069,7 @@ Update workload:
 
 ? Really update the workload "tanzu-java-web-app"? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-service-ref"></a> `--service-ref`
@@ -1071,6 +1104,7 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 To delete service binding, use the service name followed by `-`.
@@ -1099,6 +1133,7 @@ Update workload:
 
 ? Really update the workload "rmq-sample-app"? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-subpath"></a> `--sub-path`
@@ -1107,7 +1142,7 @@ It's used to define which path is used as root to create and update the workload
 
 <details><summary>Example</summary>
 
-  - Git repository
+- Git repository
 
     ```bash
     tanzu apps workload apply subpathtester --git-repo https://github.com/path-to-repo/my-repo --git-branch main --type web --sub-path my-subpath
@@ -1132,8 +1167,8 @@ It's used to define which path is used as root to create and update the workload
     ? Do you want to create this workload? (y/N)
     ```
 
-  - Local path
-      - In the directory of the project you want to create the workload from
+- Local path
+  - In the directory of the project you want to create the workload from
 
       ```bash
       tanzu apps workload apply my-workload --local-path . -s gcr.io/my-registry/my-workload-image --sub-path subpath_folder
@@ -1155,6 +1190,7 @@ It's used to define which path is used as root to create and update the workload
       ? Do you want to create this workload? (y/N)
 
       ```
+
 </details>
 
 ### <a id="apply-tail"></a> `--tail`
@@ -1204,6 +1240,7 @@ tanzu-java-web-app-build-1-build-pod[prepare]   +     url: http://source-control
 ...
 ...
 ```
+
 </details>
 
 ### <a id="apply-tail-timestamp"></a> `--tail-timestamp`
@@ -1253,6 +1290,7 @@ tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.365372427-05:0
 ...
 ...
 ```
+
 </details>
 
 ### <a id="apply-type"></a> `--type`
@@ -1280,6 +1318,7 @@ Create workload:
      14 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
      15 + |    subPath: tanzu-java-web-app
 ```
+
 </details>
 
 ### <a id="apply-wait"></a> `--wait`
@@ -1309,6 +1348,7 @@ To get status: "tanzu apps workload get tanzu-java-web-app"
 Waiting for workload "tanzu-java-web-app" to become ready...
 Workload "tanzu-java-web-app" is ready
 ```
+
 </details>
 
 ### <a id="apply-wait-timeout"></a> `--wait-timeout`
@@ -1339,6 +1379,7 @@ To get status: "tanzu apps workload get tanzu-java-web-app"
 Waiting for workload "tanzu-java-web-app" to become ready...
 Workload "tanzu-java-web-app" is ready
 ```
+
 </details>
 
 ### <a id="apply-yes"></a> `--yes`, `-y`
@@ -1371,4 +1412,5 @@ To see logs:   "tanzu apps workload tail spring-pet-clinic"
 To get status: "tanzu apps workload get spring-pet-clinic"
 
 ```
+
 </details>
