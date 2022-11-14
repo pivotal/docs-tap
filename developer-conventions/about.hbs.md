@@ -48,7 +48,7 @@ When either of the preceding actions take place, the convention behaves as follo
 
 After these changes are made, you can use the Tanzu Dev Tools extension or other CLI-based debuggers to debug your workload directly on the cluster.
 
-> **Note**: Currently, Developer Conventions only supports debug operations for Java applications.
+> **Note** Currently, Developer Conventions only supports debug operations for Java applications.
 
 ## <a id='next-steps'></a> Next steps
 
