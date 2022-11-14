@@ -44,7 +44,7 @@ as follows:
     password: GITHUB-ACCESS-TOKEN
   ```
 
->**Note**: In this example, you use an access token because GitHub deprecates
+>**Note** In this example, you use an access token because GitHub deprecates
 basic authentication with plain user name and password.
 For more information, see [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 on GitHub.

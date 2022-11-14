@@ -70,7 +70,7 @@ tanzu apps workload create -f - --yes
 
 The console remains waiting for some input, and the content with a valid `yaml` definition for a workload can be either written or pasted, then press `ctrl`+D three times to start workload creation. This can also be done with `workload update` and `workload apply` commands.
 
-**Note**: to pass workload through `stdin`, `--yes` flag is needed. If not used, command will fail.
+**Note** to pass workload through `stdin`, `--yes` flag is needed. If not used, command will fail.
 
 ## <a id='autocompletion'></a> Autocompletion
 
