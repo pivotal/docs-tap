@@ -48,9 +48,10 @@ Follow these steps to update the new package repository:
 1. Verify you have added the new package repository by running:
 
     ```console
-    tanzu package repository get tanzu-tap-repository --namespace tap-install
+    tanzu package repository get TAP-REPO-NAME --namespace tap-install
     ```
-    Note: Please use the appropriate package repository name based on what was chosen in the previous step(either NEW-TANZU-TAP-REPOSITORY or tanzu-tap-repository).
+
+    Where `TAP-REPO-NAME` is the package repository name. It must match with either `NEW-TANZU-TAP-REPOSITORY` or `tanzu-tap-repository` in the previous step.
 
 ## <a id="upgrade-tap"></a> Perform the upgrade of Tanzu Application Platform
 
