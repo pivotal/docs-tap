@@ -1,13 +1,4 @@
-# Configure access tokens
-
-Service accounts are required to generate the access tokens.
-
-The access token is a `Bearer` token used in the HTTP request header `Authorization`. (ex. `Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
-
-By default, Supply Chain Security Tools - Store includes `read-write` service account installed.
-This service account is cluster-wide.
-
-## <a id='serv-accts'></a>Service accounts
+# Create Service Accounts
 
 You can create two types of service accounts:
 
@@ -16,7 +7,10 @@ You can create two types of service accounts:
 
 ### <a id='ro-serv-accts'></a>Read-only service account
 
-As a part of the Store installation, the `metadata-store-read-only` cluster role is created by default. This cluster role allows the bound user to have `get` access to all resources. To bind to this cluster role, run the following command depending on the Kubernetes version:
+As a part of the Store installation, the `metadata-store-read-only` cluster role
+is created by default. This cluster role allows the bound user to have `get`
+access to all resources. To bind to this cluster role, run the following command
+depending on the Kubernetes version:
 
 - Kubernetes version before v1.24:
 
@@ -84,9 +78,16 @@ As a part of the Store installation, the `metadata-store-read-only` cluster role
     EOF
     ```
 
-    >**Note** For Kubernetes v1.24 and later, services account secrets are no longer automatically created, the service account secret must be manually created.
+  >**Note** For Kubernetes v1.24 and later, services account secrets are no
+  >longer automatically created. The service account secret must be manually
+  >created.
 
-If you do not want to bind to a cluster role, create a read-only role in the `metadata-store` namespace with a service account. The following example command creates a service account named `metadata-store-read-client`, depending on the Kubernetes version:
+### With custom cluster role
+
+If you do not want to bind to the default cluster role, create a read-only role
+in the `metadata-store` namespace with a service account. The following example
+command creates a service account named `metadata-store-read-client`, depending
+on the Kubernetes version:
 
 - Kubernetes v1.24 or earlier:
 
@@ -174,11 +175,15 @@ If you do not want to bind to a cluster role, create a read-only role in the `me
     EOF
     ```
 
-    > **Note** For Kubernetes v1.24 and later, services account secrets are no longer automatically created, so the service account secret must be manually created.
+    > **Note** For Kubernetes v1.24 and later, services account secrets are no
+    > longer automatically created. The service account secret must be
+    > manually created.
 
 ### <a id='rw-serv-accts'></a>Read-write service account
 
-To create a read-write service account, run the following command. The command creates a service account called `metadata-store-read-write-client`, depending on the Kubernetes version:
+The following command creates a service account called
+`metadata-store-read-write-client`, depending on the Kubernetes version. To
+create a read-write service account, run:
 
 - Kubernetes version before 1.24:
 
@@ -265,10 +270,12 @@ To create a read-write service account, run the following command. The command c
         kubernetes.io/service-account.name: "metadata-store-read-write-client"
     EOF
     ```
-
-    >**Note** For Kubernetes v1.24, services account secrets are no longer automatically created, so the service account secret must be manually created.
-
-## <a id='get-access-token'></a>Getting the Access Token
+  
+  >**Note** For Kubernetes v1.24, services account secrets are no longer
+  >automatically created. The service account secret must be manually
+  >created.
+  
+## Getting the Access Token
 
 To retrieve the read-only access token, run:
 
@@ -282,20 +289,6 @@ To retrieve the read-write access token, run:
 kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d
 ```
 
-The access token is a "Bearer" token used in the http request header "Authorization." (ex. `Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
-
-## <a id='set-access-token'></a> Setting the Access Token
-
-When using the CLI, you must set the `METADATA_STORE_ACCESS_TOKEN` environment variable, or use the `--access-token` flag. VMware discourages using the `--access-token` flag as the token appears in your shell history.
-
-The following command retrieves the access token from Kubernetes and store it in `METADATA_STORE_ACCESS_TOKEN` where `SERVICE-ACCOUNT-SECRET-NAME` is the name of the secret for the service account you plan to use.
-
-```console
-export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets SERVICE-ACCOUNT-SECRET-NAME -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
-```
-
-For example:
-
-```console
-$ export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
-```
+The access token is a "Bearer" token used in the http request header
+"Authorization." For example, `Authorization: Bearer
+eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`.
