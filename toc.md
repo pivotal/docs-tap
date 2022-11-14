@@ -270,6 +270,7 @@ docs.vmware.com is built.
             - [AppSSO for service operators overview](app-sso/service-operators/index.md)
             - [Annotations and labels](app-sso/service-operators/metadata.md)
             - [Issuer URI and TLS](app-sso/service-operators/issuer-uri-and-tls.md)
+            - [CA certificates](app-sso/service-operators/ca-certs.md)
             - [Identity providers](app-sso/service-operators/identity-providers.md)
             - [Token signatures](app-sso/service-operators/token-signature.md)
             - [Storage](app-sso/service-operators/storage.hbs.md)
