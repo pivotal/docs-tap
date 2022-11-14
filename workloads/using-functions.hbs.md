@@ -156,6 +156,7 @@ To deploy and verify your function:
     --type web \
     --yes
     --namespace YOUR-DEVELOPER-NAMESPACE
+    --build-env 'BP_FUNCTION=func.hello'
     ```
 
     Where:
