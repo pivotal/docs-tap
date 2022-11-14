@@ -76,9 +76,7 @@ tuf_root: |
   MULTI-LINE-STRING-CONTENT-OF-ROOT.JSON
 ```
 
-If you installed Tanzu Application Platform by using a profile, you can perform the upgrade by running:
-
->**Important** Ensure you run the following command in the directory where the `tap-values.yaml` file resides.
+If you installed Tanzu Application Platform by using a profile, you can perform the upgrade by running the following command in the directory where the `tap-values.yaml` file resides:
 
 ```console
 tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
