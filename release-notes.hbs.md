@@ -74,6 +74,12 @@ find vulnerabilities during a source scan.
 The vulnerabilities are still found during the image scan after the binaries are built and packaged
 as images.
 
+#### <a id="1-3-1-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI
+
+- Known security vulnerability
+
+  - TAP GUI is vulnerable to [CVE-39353](https://nvd.nist.gov/vuln/detail/CVE-2022-39353). In order for a deployment to be vulnerability to this exploit, one must use the **SAML authentication provider** as indicated by a `auth.saml` block in their TAP GUI configuration file. Currently, SAML is not a documented nor supported authentication provider for TAP GUI.
+
 #### <a id="1-3-1-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
 
 - **Supply Chain Choreographer Plug-in**
