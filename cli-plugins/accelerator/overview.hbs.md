@@ -38,7 +38,7 @@ The developer can set an `ACC_SERVER_URL` environment variable to avoid having t
 Run `export ACC_SERVER_URL=<URL>` for the terminal session in use.
 If the developer explicitly specifies the `--server-url` flag, it overrides the `ACC_SERVER_URL` environment variable if it is set.
 
-*Note: this URL can be used for the VScode extension `acc server url` config*
+>**Note** This URL can be used for the VScode extension `acc server url` config.
 
 ## <a id="installation"></a>Installation
 
