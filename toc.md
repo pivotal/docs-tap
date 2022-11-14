@@ -463,6 +463,7 @@ docs.vmware.com is built.
           - [Ingress support](scst-store/ingress.hbs.md)
           - [Multicluster setup](scst-store/multicluster-setup.hbs.md)
           - [Developer namespace setup](scst-store/developer-namespace-setup.hbs.md)
+          - [Create a service account with a custom cluster role](scst-store/custom-role.hbs.md)
     - [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
       - [Tanzu Developer Tools for VS Code overview](vscode-extension/about.md)
       - [Install Tanzu Developer Tools for VS Code](vscode-extension/install.md)
