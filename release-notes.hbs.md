@@ -20,7 +20,7 @@ This release has the following security fixes, listed by area and component.
 - `opa` is updated to `v0.44.0`
 
 #### <a id='1-3-1-scst-store-fixes'></a> Supply Chain Security Tools - Store
-- updated `postgres-bionic-13` image, fixes CVE-2020-16156 and CVE-2022-29458
+- Updated `postgres-bionic-13` image. This fixes CVE-2020-16156 and CVE-2022-29458.
 
 #### <a id='1-3-1-scst-snyk-fixes'></a> Supply Chain Security Tools - Snyk
 - `glib` is updated to `2.58.0-9.ph3`
