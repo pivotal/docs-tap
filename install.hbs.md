@@ -325,7 +325,7 @@ This field is only required if you use a private repository, otherwise, leave it
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 
-If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.
+If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
 
 If you use AWS, the default settings create a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the

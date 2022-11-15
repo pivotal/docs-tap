@@ -91,4 +91,4 @@ credentials to pull an image from the registry for scanning.
 
 > **Note** The `scanning.metadatastore.url` must be set to an empty string if you're installing Grype Scanner v1.2.0 or later or Snyk Scanner to deactivate the embedded Supply Chain Security Tools - Store integration.
 
->**Note** If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.
+>**Note** If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
