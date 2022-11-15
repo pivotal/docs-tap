@@ -59,7 +59,7 @@ metadata:
 EOF
 ```
 
-> **Note** For Kubernetes v1.24 and later, services account secrets are no =
+> **Note** For Kubernetes v1.24 and later, services account secrets are no
 > longer automatically created.
 > This is why we added a `Secret` resource in the above yaml.
 
