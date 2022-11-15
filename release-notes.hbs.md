@@ -33,7 +33,7 @@ This release has the following security fixes, listed by area and component.
 
 #### <a id='1-3-1-scst-store-fixes'></a> Supply Chain Security Tools - Store
 
-- Updated `postgres-bionic-13` image. This fixes
+- Updated the `postgres-bionic-13` image. This fixes
 [CVE-2020-16156](https://nvd.nist.gov/vuln/detail/CVE-2020-16156) and
 [CVE-2022-29458](https://nvd.nist.gov/vuln/detail/CVE-2022-29458).
 
