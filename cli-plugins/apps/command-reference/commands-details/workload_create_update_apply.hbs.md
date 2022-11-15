@@ -618,7 +618,12 @@ seconds in the workload running on the cluster.
 
 An example with a Spring Boot application:
 
-1. Clone the repository using get clone <https://github.com/vmware-tanzu/application-accelerator-samples>.
+1. Clone the repository by running:
+
+   ```console
+   git clone https://github.com/vmware-tanzu/application-accelerator-samples
+   ```
+
 1. Change into the `tanzu-java-web-app` directory.
 1. In `Tiltfile`, first change the `SOURCE_IMAGE` variable to use your registry and project.
 1. At the very end of the file add:
