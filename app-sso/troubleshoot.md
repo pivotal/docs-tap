@@ -6,7 +6,8 @@ Generally, `AuthServer.status` is designed to provide you with helpful feedback 
 
 ## Find all AuthServer-related Kubernetes resources
 
-Identify all `AuthServer` components with Kubernetes common labels. For more information, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/#labels).
+Identify all `AuthServer` components with Kubernetes common labels. For more information,
+see [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/common-labels/#labels).
 
 Query all related `AuthServer` subresources by using `app.kubernetes.io/part-of` label. For example:
 
@@ -41,7 +42,8 @@ Follow [this workaround](known-issues/index.md#cidr-ranges), adding IP ranges fo
 
 ### Problem:
 
-When attempting to sign in, you see `This commonly happens due to an incorrect [client_secret].` It might be because the client secret of an identity provider is misconfigured.
+When attempting to sign in, you see `This commonly happens due to an incorrect [client_secret].` It might be because the
+client secret of an identity provider is misconfigured.
 
 ### Solution:
 
@@ -52,7 +54,8 @@ Validate the `spec.OpenId.clientSecretRef`.
 ### Problem:
 
 The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern.
-The previous `<providerId>/<userId>` pattern might cause bugs in URLs without proper URL-encoding in client applications.
+The previous `<providerId>/<userId>` pattern might cause bugs in URLs without proper URL-encoding in client
+applications.
 
 ### Solution:
 
@@ -100,29 +103,39 @@ spec:
 ## Misconfigured redirect URI
 
 ### Problem:
+
 You see `Error: [invalid_request] OAuth 2.0 Parameter: redirect_uri` when signing in.
 
 ### Solution:
+
 The `redirectUri` of this `ClientRegistration` must refer to the URI of the registered Workload.
 It does not refer to the URI of the AuthServer.
 
 ## Misconfigured identity provider clientSecret
 
 ### Problem:
-- When attempting to sign in, you see `client.samples.localhost.identity.team redirected you too many times.` It might be because the client secret of an identity provider is misconfigured.
+
+- When attempting to sign in, you see `client.samples.localhost.identity.team redirected you too many times.` It might
+  be because the client secret of an identity provider is misconfigured.
 - If you have access to the authserver logs, verify if there is an entry with the text
-`"error":"[invalid_client] Client authentication failed: client_secret"`.
+  `"error":"[invalid_client] Client authentication failed: client_secret"`.
 
 ### Solution:
-- Validate the secret referenced by the `clientSecretRef` for this particular identity provider in your `authserver.spec`.
+
+- Validate the secret referenced by the `clientSecretRef` for this particular identity provider in
+  your `authserver.spec`.
 
 ## Missing scopes
 
 ### Problem:
-When attempting to fetch data after signing in to your application by using AppSSO, you see `[invalid_scope] OAuth 2.0 Parameter: scope`.
+
+When attempting to fetch data after signing in to your application by using AppSSO, you
+see `[invalid_scope] OAuth 2.0 Parameter: scope`.
 
 ### Solution:
+
 Add the required scopes into your `ClientRegistration` yaml under `spec.scopes`.
 
->**Note** Changes to the secret do not propagate to the `ClientRegistration`. If you recreated the `Secret` that contains the
+> **Note** Changes to the secret do not propagate to the `ClientRegistration`. If you recreated the `Secret` that
+> contains the
 `clientSecret`, re-deploy the `ClientRegistration`.

@@ -56,10 +56,12 @@ AppSSO will inherit is as the value for `default_authserver_clusterissuer`.
 ## ca_cert_data
 
 You can configure trust for custom CAs by providing their certificates as a PEM bundle to `ca_cert_data`. As a result
-`AuthServer` will trust your custom CAs.
+_all_ `AuthServer` will trust your custom CAs.
 
-This is useful if you have [identity providers](../service-operators/identity-providers.md) which serve certificates
-from a custom CA, as well as [configuring `AuthServer` storage](../service-operators/storage.md).
+This is useful if, for example, you have [identity providers](../service-operators/identity-providers.md) which serve
+certificates from a custom CA, as well as [configuring `AuthServer` storage](../service-operators/storage.md).
+
+Alternatively, you can [configure trust for a single `AuthServer`](../service-operators/ca-certs.md).
 
 > ℹ️ AppSSO-specific `ca_cert_data` is concatenated with `shared.ca_cert_data`. The resulting PEM bundle contains both.
 

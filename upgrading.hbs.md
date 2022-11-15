@@ -48,8 +48,10 @@ Follow these steps to update the new package repository:
 1. Verify you have added the new package repository by running:
 
     ```console
-    tanzu package repository get tanzu-tap-repository --namespace tap-install
+    tanzu package repository get TAP-REPO-NAME --namespace tap-install
     ```
+
+    Where `TAP-REPO-NAME` is the package repository name. It must match with either `NEW-TANZU-TAP-REPOSITORY` or `tanzu-tap-repository` in the previous step.
 
 ## <a id="upgrade-tap"></a> Perform the upgrade of Tanzu Application Platform
 
@@ -74,9 +76,7 @@ tuf_root: |
   MULTI-LINE-STRING-CONTENT-OF-ROOT.JSON
 ```
 
-If you installed Tanzu Application Platform by using a profile, you can perform the upgrade by running:
-
->**Important** Ensure you run the following command in the directory where the `tap-values.yaml` file resides.
+If you installed Tanzu Application Platform by using a profile, you can perform the upgrade by running the following command in the directory where the `tap-values.yaml` file resides:
 
 ```console
 tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install

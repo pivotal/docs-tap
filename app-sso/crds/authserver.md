@@ -83,6 +83,9 @@ spec:
     redis: # required if 'storage' is defined
       secretRef: # Reference to Secret resource within same namespace as this AuthServer
         name: ""
+  caCerts: # optional
+    - secretRef: # Reference to Secret resource within same namespace as this AuthServer
+        name: ""
   identityProviders: # optional
     # each must be one and only one of internalUnsafe, ldap, openID or saml
     - name: "" # must be unique
@@ -217,6 +220,11 @@ issuerURI: "https://..."
 observedGeneration: 1
 tokenSignatureKeyCount: 0
 clientRegistrationCount: 0
+caCerts:
+  - cert:
+      subject: ""
+    source:
+      secretEntry: ""
 deployments:
   authServer:
     LastParentGenerationWithRestart: 1

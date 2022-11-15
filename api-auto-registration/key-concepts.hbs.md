@@ -2,8 +2,8 @@
 
 ## <a id='api-descriptor'></a>APIDescriptor Custom Resource Explained
 
-For API Auto Registration to take place, a custom resource of type `APIDescriptor` needs to be created. 
-The information from this CR is then used to construct an API entity in TAP GUI. 
+For API Auto Registration to take place, a custom resource of type `APIDescriptor` needs to be created.
+The information from this CR is then used to construct an API entity in TAP GUI.
 Here are all the fields exposed by this custom resource.
 
 ```yaml
@@ -18,7 +18,7 @@ spec:
   system:                # system that the API is part of
   owner:                 # person/team that owns the API
   location:
-    path:                # sub-path where the API spec is available 
+    path:                # sub-path where the API spec is available
     baseURL:             # base URL object where the API spec is available. oneOf(url, ref)
       url:               # static absolute base URL
       ref:               # object ref to oneOf(HTTPProxy, Knative Service, Ingress)
@@ -29,7 +29,8 @@ spec:
 ```
 
 Many of the above fields will result in specific behavior within TAP GUI.
-- The system and owner are copied to the API entity created. You may have to separately create and add to the catalog the [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) and [Group](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group) kind. 
+
+- The system and owner are copied to the API entity created. You may have to separately create and add to the catalog the [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) and [Group](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group) kind.
 - The namespace where the APIDescriptor CR is applied gets used as the namespace for API entity in TAP GUI. This results in the API entity's name, system and owner to all be under that namespace.
 - To explicitly use a system or owner in a different namespace, you can specify that in the respective field `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team`.
 - If the system or owner you are trying to link doesn't have explicit namespace specified, you can qualify them with `default` namespace, e.g.: `system: default/my-default-system`
