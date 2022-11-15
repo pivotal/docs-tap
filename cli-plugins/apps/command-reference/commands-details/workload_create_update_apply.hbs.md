@@ -616,47 +616,53 @@ seconds in the workload running on the cluster.
 
 <details><summary>Example</summary>
 
-  1. A use example with a spring boot application:
-    1. Clone the repository using get clone <https://github.com/vmware-tanzu/application-accelerator-samples>.
-    2. Change into the `tanzu-java-web-app` directory.
-    3. In `Tiltfile`, first change the `SOURCE_IMAGE` variable to use your registry and project.
-At the very end of the file add:
+An example with a Spring Boot application:
 
-```bash
-allow_k8s_contexts('your-cluster-name')
-```
+1. Clone the repository using get clone <https://github.com/vmware-tanzu/application-accelerator-samples>.
+1. Change into the `tanzu-java-web-app` directory.
+1. In `Tiltfile`, first change the `SOURCE_IMAGE` variable to use your registry and project.
+1. At the very end of the file add:
 
-Inside the directory, run:
+   ```bash
+   allow_k8s_contexts('your-cluster-name')
+   ```
 
-```bash
-tanzu apps workload apply tanzu-java-web-app --live-update --local-path . -s
-gcr.io/my-project/tanzu-java-web-app-live-update -y
-```
+1. Inside the directory, run:
 
-    The files and directories listed in the .tanzuignore file are being excluded from the uploaded source code.
-    Publishing source in "." to "gcr.io/my-project/tanzu-java-web-app-live-update"...
-    Published source
-    Create workload:
-          1 + |---
-          2 + |apiVersion: carto.run/v1alpha1
-          3 + |kind: Workload
-          4 + |metadata:
-          5 + |  name: tanzu-java-web-app
-          6 + |  namespace: default
-          7 + |spec:
-          8 + |  params:
-          9 + |  - name: live-update
-         10 + |    value: "true"
-         11 + |  source:
-         12 + |    image: gcr.io/my-project/tanzu-java-web-app-live-update:latest@sha256:3c9fd738492a23ac532a709301fcf0c9aa2a8761b2b9347bdbab52ce9404264b
+   ```bash
+   tanzu apps workload apply tanzu-java-web-app --live-update --local-path . -s
+   gcr.io/my-project/tanzu-java-web-app-live-update -y
+   ```
 
-    Created workload "tanzu-java-web-app"
+   Expected output:
 
-    To see logs:   "tanzu apps workload tail tanzu-java-web-app"
-    To get status: "tanzu apps workload get tanzu-java-web-app"
+   ```bash
+   The files and directories listed in the .tanzuignore file are being excluded from the uploaded source code.
+   Publishing source in "." to "gcr.io/my-project/tanzu-java-web-app-live-update"...
+   Published source
+   Create workload:
+       1 + |---
+       2 + |apiVersion: carto.run/v1alpha1
+       3 + |kind: Workload
+       4 + |metadata:
+       5 + |  name: tanzu-java-web-app
+       6 + |  namespace: default
+       7 + |spec:
+       8 + |  params:
+       9 + |  - name: live-update
+      10 + |    value: "true"
+      11 + |  source:
+      12 + |    image: gcr.io/my-project/tanzu-java-web-app-live-update:latest@sha256:3c9fd738492a23ac532a709301fcf0c9aa2a8761b2b9347bdbab52ce9404264b
 
-    ```
-    - Run Tilt to deploy the workload.
+   Created workload "tanzu-java-web-app"
+
+   To see logs:   "tanzu apps workload tail tanzu-java-web-app"
+   To get status: "tanzu apps workload get tanzu-java-web-app"
+
+   ```
+
+1. Run Tilt to deploy the workload.
+
     ```bash
     tilt up
 
@@ -692,6 +698,7 @@ gcr.io/my-project/tanzu-java-web-app-live-update -y
     tanzu-java-w… │      ┊ Ready           - (…) Pending
     ...
     ```
+
 </details>
 
 ### <a id="apply-local-path"></a> `--local-path`
