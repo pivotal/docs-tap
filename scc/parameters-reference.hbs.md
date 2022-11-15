@@ -70,9 +70,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -136,15 +136,15 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      name of the service account, in the same namespace as the Workload, you want to use
+      Name of the service account, in the same namespace as the Workload, you want to use
       to provide the necessary credentials to `ImageRepository` for fetching
       the container images.
     </td>
@@ -181,9 +181,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -230,9 +230,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -295,9 +295,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -370,15 +370,15 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      name of the serviceaccount, in the same namespace as the Workload, to use
+      Name of the service account, in the same namespace as the Workload, to use
       for providing credentials to `Image` for pushing the
       container images it builds to the configured registry.
     </td>
@@ -464,9 +464,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -505,9 +505,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -548,9 +548,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -606,9 +606,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -631,7 +631,7 @@ Parameters:
   <tr>
     <td><code>annotations<code></td>
     <td>
-     extra set of annotations to pass down to the PodTemplateSpec.
+     Extra set of annotations to pass down to the PodTemplateSpec.
     </td>
     <td>
       <pre>
@@ -702,15 +702,15 @@ Only the `server` workload type has configurable parameters as shown:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
     <td><code>ports<code></td>
     <td>
-      set of network ports to expose from the application to the Kubernetes
+      Set of network ports to expose from the application to the Kubernetes
       cluster.
     </td>
     <td>
@@ -741,15 +741,15 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
     <td><code>annotations<code></td>
     <td>
-     extra set of annotations to pass down to the ServiceBinding and
+     Extra set of annotations to pass down to the ServiceBinding and
      ResourceClaim objects.
     </td>
     <td>
@@ -781,15 +781,15 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
     <td><code>annotations<code></td>
     <td>
-     extra set of annotations to pass down to the APIDescriptor object.
+     Extra set of annotations to pass down to the APIDescriptor object.
     </td>
     <td>
       <pre>
@@ -805,7 +805,7 @@ Parameters:
   <tr>
     <td><code>api_descriptor<code></td>
     <td>
-     information used to fill the state of the APIDescriptor object that you want
+     Information used to fill the state of the APIDescriptor object that you want
     (its spec).
     </td>
     <td>
@@ -858,15 +858,15 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      name of the serviceaccount (in the same namespace as the Deliverable) to
+      Name of the service account (in the same namespace as the Deliverable) to
       use for providing the necessary permissions to create the children
       objects for deploying the objects created by the supply chain to the
       cluster.
@@ -932,7 +932,7 @@ For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
 and the templates used by it, see:
 
 - [Out of the Box Delivery Basic](ootb-delivery-basic.hbs.md)
-- [Out of the Templates](ootb-templates.hbs.md)
+- [Out of the Box Templates](ootb-templates.hbs.md)
 
 For information about the use of the Deliverable object in a multicluster
 environment, see [Getting started with multicluster Tanzu Application
@@ -947,8 +947,8 @@ The `source-provider` resource in the basic ClusterDelivery creates objects
 that continuously fetches Kubernetes configuration files from a Git repository
 or container image registry so that it can apply those to the cluster.
 
-Regardless of where it fetches that Kubernetes configuration from (git
-repository or image registry), it exposes those files to further resources along
+Regardless of where it fetches that Kubernetes configuration from, Git
+repository or image registry, it exposes those files to further resources along
 the ClusterDelivery as a tarball.
 
 ### GitRepository
@@ -962,9 +962,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -1002,9 +1002,9 @@ Parameters:
 
 > **Note** It might not be necessary to change the default Git implementation
 > but some providers, such as Azure DevOps, require you to use `libgit2` due to
-> the server-side implementation providing support only for [git's v2
+> the server-side implementation providing support only for [Git v2
 > protocol](https://git-scm.com/docs/protocol-v2). For information about the
-> features supported by each implementation, see [git
+> features supported by each implementation, see [Git
 > implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the flux documentation.
 
 For information about how to create a Workload that uses a GitHub
@@ -1025,9 +1025,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -1070,9 +1070,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -1106,9 +1106,9 @@ Parameters:
 
 </table>
 
-> **Note** the `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
+> **Note** The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
 
-> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
+> **Note** The `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Deliverable object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`. For details about RBAC and how `kapp-controller`
 > makes use of the ServiceAccount provided to it using the `serviceAccount`
