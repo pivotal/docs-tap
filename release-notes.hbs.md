@@ -119,6 +119,29 @@ Known security vulnerability
   - Clicking on the `Scan Template` link in the **Overview** section for a scanning stage causes a
     blank page to open in the browser.
 
+- **K8s logging backend  Plug-in**
+
+  - Fixes a bug where pod logs did not have OIDC support.
+  
+- **App Accelerator Scaffolder Plug-in**
+
+  - The kebab-menu in the Accelerators page is not visible when using light-mode theme.
+
+- **Supply Chain Plugin**
+
+  - Fixes an error where changing the supply chain of a workload resulted in UI errors.
+  - Fixes an error with the timestamp not being updated in the scanning stages (source scanning and image scanning).
+  - Fixes an error in the tables where the filters were being hidden when sorting columns.
+  - Fixes an error in the "image provider" step when the user attempts to view a workload that was created using a pre-built image.
+
+- **Kubernetes orm**
+  
+  - fixes an error in the "image provider" step when the user attempts to view a workload that was created using a pre-built image.
+
+- **Backend**
+
+  - Override the catalog url for accelerator templates.
+
 ## <a id='1-3-0'></a> v1.3.0
 
 **Release Date**: October 11, 2022
