@@ -88,7 +88,7 @@ additional details on schema and specification of the resource.
 Once a ClientRegistration resource has been defined, you can now create a service resource claim by using Tanzu CLI:
 
 ```shell
-tanzu service claim create my-client-claim \
+tanzu service resource-claim create my-client-claim \
   --namespace my-workload-namespace \
   --resource-api-version sso.apps.tanzu.vmware.com/v1alpha1 \
   --resource-kind ClientRegistration \
@@ -112,7 +112,7 @@ spec:
     namespace: my-workload-namespace
 ```
 
-Observe the status of the service resource claim by running `tanzu service claim list -n my-workload-namespace -o wide`:
+Observe the status of the service resource claim by running `tanzu service resource-claim list -n my-workload-namespace -o wide`:
 
 ```text
 NAMESPACE              NAME             READY  REASON  CLAIM REF
