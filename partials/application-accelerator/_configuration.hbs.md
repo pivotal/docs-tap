@@ -1,11 +1,18 @@
 # Configure Application Accelerator
 
-This topic describes advanced configuration options available for Application Accelerator. This includes configuring Git-Ops style deployments of accelerators and configurations for use with non-public repositories and in air-gapped environments.
+This topic describes advanced configuration options available for Application Accelerator. This
+includes configuring Git-Ops style< deployments of accelerators and configurations for use with
+non-public repositories and in air-gapped environments.
 
-Accelerators can be created either using the Tanzu CLI or by applying a YAML manifest using kubectl. Another option is [Using a Git-Ops style configuration for deploying a set of managed accelerators](#using-git-ops).
+Accelerators are created either using the Tanzu CLI or by applying a YAML manifest using kubectl.
+Another option is [Using a Git-Ops style configuration for deploying a set of managed accelerators](#using-git-ops).
 
-Application Accelerator pulls content from accelerator source repositories using either the "Flux SourceController" or the "Tanzu Application Platform Source Controller" components.
-If the repository used is accessible anonymously from a public server, then you do not have to configure anything additional. Otherwise, provide authentication as explained in [Using non-public repositories](#non-public-repos). There are also options for making these configurations easier explained in [Configuring `tap-values.yaml` with Git credentials secret](#creating-git-credentials)
+Application Accelerator pulls content from accelerator source repositories using either the
+"Flux SourceController" or the "Tanzu Application Platform Source Controller" components.
+If the repository used is accessible anonymously from a public server, then you do not have to
+configure anything additional. Otherwise, provide authentication as explained in
+[Using non-public repositories](#non-public-repos). There are also options for making these
+configurations easier explained in [Configuring `tap-values.yaml` with Git credentials secret](#creating-git-credentials)
 
 ## <a id="using-git-ops"></a> Using a Git-Ops style configuration for deploying a set of managed accelerators
 
@@ -532,4 +539,104 @@ package_overlays:
 - name: accelerator
   secrets:
   - name: patch-accelerator-timeout
+```
+
+## <a id="skipping-sources-tls-verification"></a> Configuring skipping TLS verification for access to Source Conttrollers
+
+If you configure the FLux or TAP Source COntrollers to use TLS and use custom certificates,
+then you can configure the Accelerator System to skip the TLS verification for calls to access the
+sources by providing the following property in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+sources:
+  skip_tls_verify: true
+```
+
+## <a id="enabling-tls-server"></a> Enabling TLS for Accelerator Server
+
+In order to enable TLS for the Accelerator Server, the following properties should be provided in
+the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+server:
+  tls:
+    enabled: true
+    key: <SERVER-PRIVATE-KEY>
+    crt: <SERVER-CERTIFICATE>
+```
+
+Where:
+
+- `SERVER-PRIVATE-KEY` is the pem encoded server private key.
+- `SERVER-CERTIFICATE` is the pem encoded server certificate.
+
+Here is a sample `tap-values.yaml` configuration with TLS enabled for Accelerators Server:
+
+```yaml
+server:
+  tls:
+    enabled: true
+    key: |
+      -----BEGIN PRIVATE KEY-----
+      .
+      .  < private key data >
+      .
+      -----END PRIVATE KEY-----
+    crt: |
+      -----BEGIN CERTIFICATE-----
+      .
+      .  < certificate data >
+      .
+      -----END CERTIFICATE-----
+```
+
+## <a id="skipping-engine-tls-verification"></a> Configuring skipping TLS verification of Engine calls for Accelerator Server
+
+If you configure the Accelerator Engine to use TLS and use custom certificates, then you can
+configure the Accelerator Server to skip the TLS verification for calls to the Engine by providing
+the following property in the `accelerator` section of the `tap-values.yaml` file:
+the Accelerator Server to skip the TLS verification for calls to the Engine by providing the following
+property in the `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+server:
+  engine_skip_tls_verify: true
+```
+
+## <a id="enabling-tls-engine"></a> Enabling TLS for Accelerator Engine
+
+In order to enable TLS for the Accelerator Engine, the following properties are be provided in the
+ `accelerator` section of the `tap-values.yaml` file:
+
+```yaml
+engine:
+  tls:
+    enabled: true
+    key: <ENGINE-PRIVATE-KEY>
+    crt: <ENGINE-CERTIFICATE>
+```
+
+Where:
+
+- `ENGINE-PRIVATE-KEY` is the pem encoded acc-engine private key.
+- `ENGINE-CERTIFICATE` is the pem encoded acc-engine certificate.
+
+Here is a sample `tap-values.yaml` configuration with TLS enabled for Accelerators Engine:
+
+```yaml
+engine:
+  tls:
+    enabled: true
+    key: |
+      -----BEGIN PRIVATE KEY-----
+      .
+      .  < private key data >
+      .
+      -----END PRIVATE KEY-----
+    crt: |
+      -----BEGIN CERTIFICATE-----
+      .
+      .  < certificate data >
+      .
+      -----END CERTIFICATE-----
 ```
