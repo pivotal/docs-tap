@@ -56,5 +56,41 @@ Force the VS Code Java tooling to re-read and synchronize information from the P
 1. Right-click on the `pom.xml` file.
 2. Select **Reload Projects**.
 
-This causes the internal compiler level to be set correctly based on the information from `pom.xml`.
-For example, Java 11 in `tanzu-java-web-app`.
+This should trigger the internal compiler level to then be set correctly based
+on the information from the `pom.xml` (e.g. Java 11 in the `tanzu-java-web-app` example).
+
+## <a id='debug-not-working-corrupt-launch-conf'>Starting a Debug Session Errors with 'Unable to open debugger port'
+
+### Symptom
+
+You try to start a 'Tanzu Debug' session and it immediately fails an error like:
+
+```
+Error running 'Tanzu Debug - fortune-teller-fortune-service': Unable to open debugger port (localhost:5005): java.net.ConnectException "Connection refused"
+```
+
+### Cause
+
+Old "Tanzu Debug" launch configurations sometimes appear to be corrupted after installing a newer version of the 
+plugin. You can check whether this the problem you are experiencing by opening the launch configuration:
+
+- Right-Click the `workload.yaml` file.
+- Select "Modify Run Configuration..." from the menu.
+- Scroll down and expand "Before Launch" section of the dialog.
+- Notice that it contains two "Unknown Task" entries ('com.vmware.tanzu.tanzuBeforeRunPortForward` and 
+  `com.vmware.tanzu.tanzuBeforeRunWorkloadApply`)
+
+The result of these two tasks being 'unknown' causes those steps of the debug launch not to be executed.
+This in turn means that the target application will not be deployed and accessible on the expected port;
+this results in an error when the debugger tries to connect to it.
+
+### Solution
+
+Simplt closing and restarting IntelliJ typically fixes this problem. If that doesn't help you can try 
+deleting the old (corrupted) launch configuration and recreating it.
+
+Note: While the launch configuration appears corrupt when you look at it in the launch config editor... 
+in actuality there doesn't seem to be a real problem with it. This problem seems to happen only when 
+you install a new version of the plugin and start using it right away without first restarting IntelliJ. 
+We suspect this to be a bug in IntelliJ platform where it doesn't completely or correctly initialize the 
+plugin when it is being 'hot loaded' into an active session rather than loaded on startup.
