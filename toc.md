@@ -315,6 +315,8 @@ docs.vmware.com is built.
     - [Spring Boot conventions](spring-boot-conventions/about.md)
       - [Spring Boot conventions overview](spring-boot-conventions/about.md)
       - [Install Spring Boot conventions](spring-boot-conventions/install-spring-boot-conventions.md)
+      - [Configuring and Accessing Spring Boot Actuators in TAP](spring-boot-conventions/configuring-spring-boot-actuators.md)
+      - [Enabling Application Live View for Spring Boot Applications](spring-boot-conventions/enabling-app-live-view.md)
       - [Conventions](spring-boot-conventions/reference/conventions.md)
       - [Troubleshoot Spring Boot Conventions](spring-boot-conventions/troubleshooting.md)
     - [Service Bindings for Kubernetes](service-bindings/about.md)

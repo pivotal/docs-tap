@@ -51,7 +51,7 @@ To install Application Live View back end:
     $ tanzu package available list backend.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for backend.appliveview.tanzu.vmware.com...
       NAME                                  VERSION        RELEASED-AT
-      backend.appliveview.tanzu.vmware.com  1.3.0          2022-09-07T00:00:00Z
+      backend.appliveview.tanzu.vmware.com  1.4.0-build.1  2022-11-11T00:00:00Z
     ```
 
 1. (Optional) Change the default installation settings by running:
@@ -60,23 +60,28 @@ To install Application Live View back end:
     tanzu package available get backend.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.3.0`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.4.0-build.1`.
 
     For example:
 
     ```console
-    $ tanzu package available get backend.appliveview.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
-      KEY                DEFAULT          TYPE     DESCRIPTION
-      ingressDomain      tap.example.com  string   Domain to be used by the HTTPProxy ingress object. The "appliveview"
-                                                   subdomain is prepended to the value provided. For example:
-                                                   "example.com" becomes "appliveview.example.com".
-      ingressEnabled     false            boolean  Flag for whether to create an HTTPProxy for ingress.
-
-      kubernetes_flavor                   string   Kubernetes flavor
-
-      tls.namespace      <nil>            string   The targeted namespace for secret consumption by the HTTPProxy.
-
-      tls.secretName     <nil>            string   The name of secret for consumption by the HTTPProxy.
+    $ tanzu package available get backend.appliveview.tanzu.vmware.com/1.4.0-build.1 --values-schema --namespace tap-install
+      KEY                      DEFAULT          TYPE        DESCRIPTION
+      ingressDomain            tap.example.com  string      Domain to be used by the HTTPProxy ingress object. The "appliveview"              
+                                                            subdomain will be prepended to the value provided. For example:                   
+                                                            "example.com" would become "appliveview.example.com".                             
+      ingressEnabled           false            boolean     Flag for whether or not to create an HTTPProxy for ingress.                       
+                                                                                                                                       
+      kubernetes_distribution                   string      Kubernetes distribution that this package is being installed on. Accepted         
+                                                            values: ['''',''openshift'']                                                      
+      kubernetes_version                        string      Optional: The Kubernetes Version. Valid values are '1.24.*', or ''                
+                                                                                                                                       
+      server.tls.crt                            string      TLS cert file                                                                     
+      server.tls.enabled       false            boolean     Flag to enable tls on backend                                                     
+      server.tls.key                            string      TLS key file                                                                      
+      tls.namespace            <nil>            string      The targeted namespace for secret consumption by the HTTPProxy.                   
+                                                                                                                                       
+      tls.secretName           <nil>            string      The name of secret for consumption by the HTTPProxy.
     ```
 
     For more information about values schema options, see the properties listed earlier.
@@ -151,7 +156,7 @@ To install Application Live View back end:
     For example:
 
     ```console
-    $ tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v 1.3.0 -n tap-install -f app-live-view-backend-values.yaml
+    $ tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v 1.4.0-build.1 -n tap-install -f app-live-view-backend-values.yaml
     - Installing package 'backend.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'backend.appliveview.tanzu.vmware.com'
@@ -179,7 +184,7 @@ To install Application Live View back end:
     \ Retrieving installation details for appliveview...
     NAME:                    appliveview
     PACKAGE-NAME:            backend.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.3.0
+    PACKAGE-VERSION:         1.4.0-build.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -203,7 +208,7 @@ To install Application Live View connector:
     $ tanzu package available list connector.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for connector.appliveview.tanzu.vmware.com...
       NAME                                    VERSION        RELEASED-AT
-      connector.appliveview.tanzu.vmware.com  1.3.0          2022-09-07T00:00:00Z
+      connector.appliveview.tanzu.vmware.com  1.4.0-build.1  2022-11-11T00:00:00Z
     ```
 
 1. (Optional) Change the default installation settings by running:
@@ -212,22 +217,27 @@ To install Application Live View connector:
     tanzu package available get connector.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.3.0`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.4.0-build.1`.
 
     For example:
 
     ```console
-    $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
-      KEY                     DEFAULT             TYPE     DESCRIPTION
-      backend.host            <nil>               string   Domain to be used to reach the Application Live View backend. Prepend "appliveview"
-                                                           subdomain to the value if you are using shared ingress. For example: "example.com"
-                                                           becomes "appliveview.example.com".
-      backend.ingressEnabled  false               boolean  Flag for the connector to connect to ingress on backend.
-
-      backend.port            <nil>               number   Port to reach the Application Live View backend.
-      backend.sslDisabled     false               boolean  Flag for whether to disable SSL.
-      backend.caCertData      cert-in-pem-format  string   CA Cert Data for ingress domain.
-      kubernetes_flavor                           string   Kubernetes flavor.
+    $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.4.0-build.1 --values-schema --namespace tap-install
+      KEY                                   DEFAULT             TYPE        DESCRIPTION
+      kubernetes_version                                        string      Optional: The Kubernetes Version. Valid values are '1.24.*', or ''                
+                                                                                                                                                       
+      backend.sslDisabled                   false               boolean     Flag for whether or not to disable ssl                                            
+      backend.caCertData                    cert-in-pem-format  string      CA Cert Data for ingress domain                                                   
+      backend.host                          <nil>               string      Domain to be used to reach the application live view backend. Prepend             
+                                                                            "appliveview" subdomain to the value if you are using shared ingress. For         
+                                                                            example: "example.com" would become "appliveview.example.com".                    
+      backend.ingressEnabled                false               boolean     Flag for the connector to connect to ingress on backend                           
+                                                                                                                                                       
+      backend.port                          <nil>               number      Port to reach the application live view backend                                   
+      connector.namespace_scoped.enabled    false               boolean     Flag for the connector to run in namespace scope                                  
+      connector.namespace_scoped.namespace  default             string      Namespace to deploy connector                                                     
+      kubernetes_distribution                                   string      Kubernetes distribution that this package is being installed on. Accepted         
+                                                                            values: ['''',''openshift'']
     ```
 
     For more information about values schema options, see the properties listed earlier.
@@ -288,12 +298,12 @@ To install Application Live View connector:
     tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-connector-values.yaml
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.3.0`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.4.0-build.1`.
 
     For example:
 
     ```console
-    $ tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v 1.3.0 -n tap-install -f app-live-view-connector-values.yaml
+    $ tanzu package install appliveview-connector -p connector.appliveview.tanzu.vmware.com -v 1.4.0-build.1 -n tap-install -f app-live-view-connector-values.yaml
     | Installing package 'connector.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'connector.appliveview.tanzu.vmware.com'
@@ -321,7 +331,7 @@ To install Application Live View connector:
     | Retrieving installation details for appliveview-connector...
     NAME:                    appliveview-connector
     PACKAGE-NAME:            connector.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.3.0
+    PACKAGE-VERSION:         1.4.0-build.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -345,7 +355,7 @@ To install Application Live View Conventions:
     $ tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for conventions.appliveview.tanzu.vmware.com...
       NAME                                      VERSION        RELEASED-AT
-      conventions.appliveview.tanzu.vmware.com  1.3.0          2022-09-07T00:00:00Z
+      conventions.appliveview.tanzu.vmware.com  1.4.0-build.1  2022-11-11T00:00:00Z
     ```
 
 1. (Optional) Change the default installation settings by running:
@@ -354,14 +364,15 @@ To install Application Live View Conventions:
     tanzu package available get conventions.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.3.0`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.4.0-build.1`.
 
     For example:
 
     ```console
-    $ tanzu package available get conventions.appliveview.tanzu.vmware.com/1.3.0 --values-schema --namespace tap-install
-      KEY                     DEFAULT             TYPE     DESCRIPTION
-      kubernetes_flavor                           string   Kubernetes flavor
+    $ tanzu package available get conventions.appliveview.tanzu.vmware.com/1.4.0-build.1 --values-schema --namespace tap-install
+      KEY                               DEFAULT             TYPE     DESCRIPTION
+      kubernetes_distribution                               string  Kubernetes distribution that this package is being installed on. Accepted values: ['''',''openshift'']                                                      
+      kubernetes_version                                    string  Optional: The Kubernetes Version. Valid values are '1.24.*', or ''
     ```
 
     For more information about values schema options, see the properties listed earlier.
@@ -372,12 +383,12 @@ To install Application Live View Conventions:
     tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.3.0`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.4.0-build.1`.
 
     For example:
 
     ```console
-    $ tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v 1.3.0 -n tap-install
+    $ tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v 1.4.0-build.1 -n tap-install
     - Installing package 'conventions.appliveview.tanzu.vmware.com'
     | Getting namespace 'tap-install'
     | Getting package metadata for 'conventions.appliveview.tanzu.vmware.com'
@@ -403,7 +414,7 @@ To install Application Live View Conventions:
     | Retrieving installation details for appliveview-conventions...
     NAME:                    appliveview-conventions
     PACKAGE-NAME:            conventions.appliveview.tanzu.vmware.com
-    PACKAGE-VERSION:         1.3.0
+    PACKAGE-VERSION:         1.4.0-build.1
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
