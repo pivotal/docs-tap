@@ -8,12 +8,23 @@ Accelerators are created either using the Tanzu CLI or by applying a YAML manife
 Another option is [Using a Git-Ops style configuration for deploying a set of managed accelerators](#using-git-ops).
 
 Application Accelerator pulls content from accelerator source repositories using either the
+"Flux SourceController" or the "Tanzu Application Platform Source Controller" components.
+If the repository used is accessible anonymously from a public server, then you do not have to
+configure anything additional. Otherwise, provide authentication as explained in
+[Using non-public repositories](#non-public-repos). There are also options for making these
+configurations easier explained in [Configuring `tap-values.yaml` with Git credentials secret](#creating-git-credentials)
 
 ## <a id="using-git-ops"></a> Using a Git-Ops style configuration for deploying a set of managed accelerators
 
-To enable a Git-Ops style of managing resources used for deploying accelerators, there is a new set of properties for the App Accelerator configuration. The resources are managed using a Carvel kapp-controller App in the `accelerator-system` namespace that watches a Git repository containing the manifests for the accelerators. This means that you can make changes to the manifests, or to the accelerators they point to, and the changes are be reconciled and reflected in the deployed resources.
+To enable a Git-Ops style of managing resources used for deploying accelerators, there is a new set
+of properties for the App Accelerator configuration. The resources are managed using a
+Carvel kapp-controller App in the `accelerator-system` namespace that watches a Git repository
+containing the manifests for the accelerators. This means that you can make changes to the manifests,
+or to the accelerators they point to, and the changes are be reconciled and reflected in the
+deployed resources.
 
-You can specify the following accelerator configuration properties when installing the Application Accelerator. The same properties are provided in the `accelerator` section of the `tap-values.yaml` file:
+You can specify the following accelerator configuration properties when installing the Application
+Accelerator. The same properties are provided in the `accelerator` section of the `tap-values.yaml` file:
 
 ```yaml
 managed_resources:
@@ -27,13 +38,20 @@ managed_resources:
 
 Where:
 
-- `GIT-REPO-URL` is the URL (must include `https://` or `git@` at the beginning) of a Git repository that contains manifest YAML files for the accelerators that you want to have managed (see below for manifest examples). You can specify a `sub_path` if necessary and also a `secret_ref` if the repository requires authentication. If not needed, then leave these additional properties out. See the following for configuration of a [Git credentials secret](#creating-git-credentials).
+- `GIT-REPO-URL` is the URL (must include `https://` or `git@` at the beginning) of a Git repository
+  that contains manifest YAML files for the accelerators that you want to have managed
+  (see below for manifest examples). You can specify a `sub_path` if necessary and also a
+  `secret_ref` if the repository requires authentication. If not needed, then leave these additional
+  properties out. See the following for configuration of a [Git credentials secret](#creating-git-credentials).
 
 ### <a id="functional-considerations"></a> Functional and Organizational Considerations
 
-Any accelerator manifest that is defined under the `GIT-REPO-URL` (and optional `sub_path`) are picked up by the kapp-controller App. If there are multiple manifests at the defined `GIT-REPO-URL`, they are all be watched for changes and  displayed to the user as a merged catalog.
+Any accelerator manifest that is defined under the `GIT-REPO-URL` (and optional `sub_path`) are
+picked up by the kapp-controller App. If there are multiple manifests at the defined `GIT-REPO-URL`,
+they are all be watched for changes and  displayed to the user as a merged catalog.
 
-As an example of this, say you have two manifests containing multiple accelerator/fragment definitions, `manifest-1.yaml` and `manifest-2.yaml`, at the same path in the organizational considerations.
+As an example of this, say you have two manifests containing multiple accelerator/fragment definitions,
+`manifest-1.yaml` and `manifest-2.yaml`, at the same path in the organizational considerations.
 
 ## <a id="examples-creating-acc"></a> Examples for creating accelerators
 
@@ -56,7 +74,11 @@ spec:
       branch: main
 ```
 
-This minimal example creates an accelerator named `spring-cloud-serverless`. The `displayName`, `description`, `iconUrl`, and `tags` fields are populated based on the content under the `accelerator` key in the `accelerator.yaml` file found in the `main` branch of the Git repository at https://github.com/vmware<-tanzu</application-accelerator-samples under the sub-path `spring-cloud-serverless`. For example:
+This example creates an accelerator named `spring-cloud-serverless`. The `displayName`, `description`,
+`iconUrl`, and `tags` fields are populated based on the content under the `accelerator` key in the
+`accelerator.yaml` file found in the `main` branch of the Git repository
+at [Application Accelerator Samples](https://github.com/vmware<-tanzu</application-accelerator-samples)
+under the sub-path `spring-cloud-serverless`. For example:
 
 > accelerator.yaml
 
@@ -115,7 +137,7 @@ spec:
       branch: test
 ```
 
-To create this accelerator with kubectl you can run:
+To create this accelerator with kubectl run:
 
 ```sh
 kubectl apply --namespace --accelerator-system --filename my-spring-cloud-serverless.yaml
@@ -131,7 +153,7 @@ tanzu accelerator create my-spring-cloud-serverless --git-repo https://github.co
   --tags "spring,cloud,function,serverless"
 ```
 
->**Note** It is not currently possible to provide the `git.ignore` option with the Tanzu CLI.
+>**Note:** It is not currently possible to provide the `git.ignore` option with the Tanzu CLI.
 
 ### <a id="examples-multi-manifest"></a> Creating a manifest with multiple accelerators and fragments
 
@@ -164,15 +186,21 @@ spec:
       branch: main
 ```
 
-For an even larger example of this, see [this manifest](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/sample-accelerators-main.yaml) that is optional to create an initial catalog of accelerators and fragments during a fresh Application Accelerator install.
-
+For an even larger example of this,
+see [this manifest](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/sample-accelerators-main.yaml)
+that is optional to create an initial catalog of accelerators and fragments during a fresh
+Application Accelerator install.
 
 ## <a id="creating-git-credentials"></a> Configuring `tap-values.yaml` with Git credentials secret
 
-When deploying accelerators using Git repositories that requires authentication or are installed with custom CA certificates to provide some additional authentication values in a secret. The examples in the next section provide more details about this. In this section
-VMware describes how to conveniently configure a Git credentials secret that is used for some of the Git based examples later.
+When deploying accelerators using Git repositories that requires authentication or are installed
+with custom CA certificates to provide some additional authentication values in a secret.
+The examples in the next section provide more details about this. In this section
+VMware describes how to conveniently configure a Git credentials secret that is used for some of the
+Git based examples later.
 
-You can specify the following accelerator configuration properties when installing the Application Accelerator. The same properties are provided in the `accelerator` section of the `tap-values.yaml` file:
+You can specify the following accelerator configuration properties when installing the Application
+Accelerator. The same properties are provided in the `accelerator` section of the `tap-values.yaml` file:
 
 ```yaml
 accelerator:
@@ -186,7 +214,8 @@ accelerator:
 Where:
 
 - `GIT-USER-NAME` is the user name for authenticating with the Git repository.
-- `GIT-PASSWORD-OR-ACCESS-TOKEN` is the password or access token used for authenticating with the Git repository. VMware recommend using an access token for this.
+- `GIT-PASSWORD-OR-ACCESS-TOKEN` is the password or access token used for authenticating with the
+  Git repository. VMware recommend using an access token for this.
 
 - `CUSTOM-CA-CERT` is the certificate data needed when accessing the Git repository.
 
@@ -208,7 +237,9 @@ accelerator:
       -----END CERTIFICATE-----
 ```
 
-You can specify the Custom CA certificate data using the shared config value `shared.ca_cert_data` and is propagated to all components that can make use of it, including the App Accelerator configuration. The example earlier produces an output such as this using the shared value:
+You can specify the Custom CA certificate data using the shared config value `shared.ca_cert_data` and
+is propagated to all components that can make use of it, including the App Accelerator configuration.
+The example earlier produces an output such as this using the shared value:
 
 ```yaml
 shared:
@@ -232,10 +263,15 @@ accelerator:
 
 For Git repositories that aren't accessible anonymously, you need to provide credentials in a Secret.
 
-- For HTTPS repositories the secret must contain user name and password fields. The password field can contain a personal access token instead of an actual password. See [fluxcd/source-controller Basic access authentication](https://fluxcd.io/docs/components/source/gitrepositories/#basic-access-authentication)
-- For HTTPS with self-signed certificates, you can add a `.data.caFile` value to the secret created for HTTPS authentication. See [fluxcd/source-controller HTTPS Certificate Authority](https://fluxcd.io/docs/components/source/gitrepositories/#https-certificate-authority)
-- For SSH repositories, the secret must contain identity, identity.pub and known_hosts fields. See [fluxcd/source-controller SSH authentication](https://fluxcd.io/docs/components/source/gitrepositories/#ssh-authentication).
-- For Image repositories that aren't publicly available, an image pull secret can be provided. For more information, see [Using imagePullSecrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
+- For HTTPS repositories the secret must contain user name and password fields. The password field
+  can contain a personal access token instead of an actual password.
+  See [fluxcd/source-controller Basic access authentication](https://fluxcd.io/docs/components/source/gitrepositories/#basic-access-authentication)
+- For HTTPS with self-signed certificates, you can add a `.data.caFile` value to the secret created
+  for HTTPS authentication. See [fluxcd/source-controller HTTPS Certificate Authority](https://fluxcd.io/docs/components/source/gitrepositories/#https-certificate-authority)
+- For SSH repositories, the secret must contain identity, identity.pub and known_hosts fields.
+  See [fluxcd/source-controller SSH authentication](https://fluxcd.io/docs/components/source/gitrepositories/#ssh-authentication).
+- For Image repositories that aren't publicly available, an image pull secret can be provided.
+  For more information, see [Using imagePullSecrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
 
 ### <a id="private-git-repo-example"></a> Examples for a private Git repository
 
@@ -243,7 +279,7 @@ For Git repositories that aren't accessible anonymously, you need to provide cre
 
 To create an accelerator using a private Git repository, first create a secret with the HTTP credentials.
 
->**Note** For better security, use an access token as the password.
+>**Note:** For better security, use an access token as the password.
 
 ```sh
 kubectl create secret generic https-credentials \
@@ -252,7 +288,7 @@ kubectl create secret generic https-credentials \
     --from-literal=password=<access-token>
 ```
 
-This creates a secret such as the following:
+To create a secret run:
 
 > https-credentials.yaml
 
@@ -268,7 +304,8 @@ data:
   password: <BASE64>
 ```
 
-After you have the secret created, you can create the accelerator by using the `spec.git.secretRef.name` property:
+After you have the secret created, you can create the accelerator by using the
+`spec.git.secretRef.name` property:
 
 > private-acc.yaml
 
@@ -288,15 +325,17 @@ spec:
       name: https-credentials
 ```
 
-> **Note**  For https credentials the `REPOSITORY-URL` must use `https://` as the URL scheme
+> **Note:**  For https credentials the `REPOSITORY-URL` must use `https://` as the URL scheme
 
-If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
+If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create`
+command and provide the name of the secret for that flag.
 
 #### <a id="http-ca-cred-example"></a> Example using http credentials with self-signed certificate
 
-To create an accelerator using a private Git repository with a self-signed certificate, first create a secret with the HTTP credentials and the certificate.
+To create an accelerator using a private Git repository with a self-signed certificate, first create
+a secret with the HTTP credentials and the certificate.
 
->**Note** For better security, use an access token as the password.
+>**Note:** For better security, use an access token as the password.
 
 ```sh
 kubectl create secret generic https-ca-credentials \
@@ -306,7 +345,7 @@ kubectl create secret generic https-ca-credentials \
     --from-file=caFile=<path-to-CA-file>
 ```
 
-This creates a secret such as the following:
+To create a secret run:
 
 > https-ca-credentials.yaml
 
@@ -323,7 +362,8 @@ data:
   caFile: <BASE64>
 ```
 
-After you have the secret created, you can create the accelerator by using the `spec.git.secretRef.name` property:
+After you have the secret created, you can create the accelerator by using the
+`spec.git.secretRef.name` property:
 
 > private-acc.yaml
 
@@ -343,13 +383,15 @@ spec:
       name: https-ca-credentials
 ```
 
-> **Note**  For https credentials the `REPOSITORY-URL` must use `https://` as the URL scheme
+> **Note:**  For https credentials the `REPOSITORY-URL` must use `https://` as the URL scheme
 
-If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
+If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create`
+command and provide the name of the secret for that flag.
 
 #### <a id="ssh-example"></a> Example using SSH credentials
 
-To create an accelerator using a private Git repository, first create a secret with the SSH credentials such as this example:
+To create an accelerator using a private Git repository, first create a secret with the SSH
+credentials such as this example:
 
 ```sh
 ssh-keygen -q -N "" -f ./identity
@@ -360,7 +402,9 @@ kubectl create secret generic ssh-credentials \
     --from-file=./identity.pub \
     --from-file=./known_hosts
 ```
-If you have a key file already created, skip the `ssh-keygen` and `ssh-keyscan` steps and replace the values for the `kubectl create secret` command using the following:
+
+If you have a key file already created, skip the `ssh-keygen` and `ssh-keyscan` steps and replace
+the values for the `kubectl create secret` command. Such as:
 
 - `--from-file=identity=<path to your identity file>`
 - `--from-file=identity.pub=<path to your identity.pub file>`
@@ -383,7 +427,8 @@ data:
   known_hosts: <BASE64>
 ```
 
-To use this secret when creating an accelerator, provide the secret name in the `spec.git.secretRef.name` property:
+To use this secret when creating an accelerator, provide the secret name in the
+`spec.git.secretRef.name` property:
 
 > private-acc-ssh.yaml
 
@@ -403,13 +448,20 @@ spec:
       name: ssh-credentials
 ```
 
-> **Note**  When using SSH credentials the `REPOSITORY-URL` must include the user name as part of the URL. For example: `ssh://user@example.com:22/repository.git`. See the [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for more detail.
+> **Note:**  When using SSH credentials the `REPOSITORY-URL` must include the user name as part of
+> the URL. For example: `ssh://user@example.com:22/repository.git`.
+> See the [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for
+> more detail.
 
-If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
+If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create`
+command and provide the name of the secret for that flag.
 
 ### <a id="private-source-image-example"></a> Examples for a private source-image repository
 
-If your registry uses a self-signed certificate then you must add the CA certificate data to the configuration for the "Tanzu Application Platform Source Controller" component. The easiest way to do that is to add it under `source_controller.ca_cert_data` in your `tap-values.yaml` file that is used during installation.
+If your registry uses a self-signed certificate then you must add the CA certificate data to the
+configuration for the "Tanzu Application Platform Source Controller" component. The easiest way to
+do that is to add it under `source_controller.ca_cert_data` in your `tap-values.yaml` file that is
+used during installation.
 
 > tap-values.yaml
 
@@ -427,7 +479,8 @@ source_controller:
 
 #### <a id="image-pull-example"></a> Example using image-pull credentials
 
-To create an accelerator using a private source-image repository, first create a secret with the image-pull credentials:
+To create an accelerator using a private source-image repository, first create a secret with the
+image-pull credentials:
 
 ```sh
 create secret generic registry-credentials \
@@ -452,7 +505,8 @@ data:
   password: <BASE64>
 ```
 
-After you have the secret created, you can create the accelerator by using the `spec.git.secretRef.name` property:
+After you have the secret created, you can create the accelerator by using the
+`spec.git.secretRef.name` property:
 
 > private-acc.yaml
 
@@ -470,15 +524,23 @@ spec:
     - name: registry-credentials
 ```
 
-If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create` command and provide the name of the secret for that flag.
+If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create`
+command and provide the name of the secret for that flag.
 
 ## <a id='configure-timeouts'></a>Configure ingress timeouts when some accelerators take longer to generate
 
-If the Tanzu Application Platform is configured to use an ingress for TAP-GUI and the Accelerator Server, then it might detect a timeout during accelerator generation. This can happen if the accelerator takes a longer time to generate than the default timeout. This manifests itself in the TAP-GUI by the action appearing to continue to run for an indefinite period. In the IDE extension, it shows a `504` error. To mitigate this, it is possible to increase the timeout value for the HTTPProxy resources used for the ingress by applying secrets with overlays to modify the HTTPProxy resources.
+If the Tanzu Application Platform is configured to use an ingress for
+Tanzu Application Platform-GUI and the Accelerator
+Server, then it might detect a timeout during accelerator generation. This can happen if the
+accelerator takes a longer time to generate than the default timeout. This manifests itself in the
+Tanzu Application Platform-GUI by the action appearing to continue to run for an indefinite period.
+In the IDE extension, it shows a `504` error. To mitigate this, you may increase the timeout value
+for the HTTPProxy resources used for the ingress by applying secrets with overlays to edit the
+HTTPProxy resources.
 
 ### <a id='timeout-secrets-created'></a>Configure an ingress timeout overlay secret for each HTTPProxy
 
-For TAP-GUI, create the following overlay secret in the `tap-install` namespace:
+For Tanzu Application Platform-GUI, create the following overlay secret in the `tap-install` namespace:
 
 ```yaml
 apiVersion: v1
@@ -500,7 +562,8 @@ stringData:
             response: 30s
 ```
 
-For Accelerator Server (used for IDE extension), create the following overlay secret in the `tap-install` namespace:
+For Accelerator Server (used for IDE extension), create the following overlay secret in the
+`tap-install` namespace:
 
 ```yaml
 apiVersion: v1
@@ -524,9 +587,10 @@ stringData:
 
 ### <a id='timeout-secrets-applied'></a>Apply the timeout overlay secrets in tap-values.yaml
 
-Add the following `package_overlays` section to the `tap-values.yaml` file before installing or updating the TAP installation:
+Add the following `package_overlays` section to the `tap-values.yaml` file before installing or
+updating the TTanzu Application Platform installation:
 
-```
+```yaml
 package_overlays:
 - name: tap-gui
   secrets:
@@ -538,7 +602,10 @@ package_overlays:
 
 ## <a id="skipping-sources-tls-verification"></a> Configuring skipping TLS verification for access to Source Conttrollers
 
-If you configure the FLux or TAP Source COntrollers to use TLS and use custom certificates, then you can configure the Accelerator System to skip the TLS verification for calls to access the sources by providing the following property in the `accelerator` section of the `tap-values.yaml` file:
+If you configure the FLux or Tanzu Application Platform Source COntrollers to use TLS and use custom
+certificates, then you can configure the Accelerator System to skip the TLS verification for calls
+to access the sources by providing the following property in the `accelerator` section of
+ the `tap-values.yaml` file:
 
 ```yaml
 sources:
@@ -547,7 +614,8 @@ sources:
 
 ## <a id="enabling-tls-server"></a> Enabling TLS for Accelerator Server
 
-In order to enable TLS for the Accelerator Server, the following properties should be provided in the `accelerator` section of the `tap-values.yaml` file:
+In order to enable TLS for the Accelerator Server, the following properties must be provided in
+the `accelerator` section of the `tap-values.yaml` file:
 
 ```yaml
 server:
@@ -584,7 +652,7 @@ server:
 
 ## <a id="skipping-engine-tls-verification"></a> Configuring skipping TLS verification of Engine calls for Accelerator Server
 
-If you configure the Accelerator Engine to use TLS and use custom certificates, then you can configure the Accelerator Server to skip the TLS verification for calls to the Engine by providing the following property in the `accelerator` section of the `tap-values.yaml` file:
+If you configure the Accelerator Engine to use TLS and use custom certificates, then you can configure
 the Accelerator Server to skip the TLS verification for calls to the Engine by providing the following
 property in the `accelerator` section of the `tap-values.yaml` file:
 
