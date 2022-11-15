@@ -4,6 +4,17 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 ## <a id='TAP-packages'></a> Tanzu Application Platform components
 
+- **[API Auto Registration](api-auto-registration/about.md)**
+
+  When users deploy a workload that exposes an API, they want that API to automatically show in
+  Tanzu Application Platform GUI without requiring any added manual steps.
+
+  API Auto Registration is an automated workflow that can use a supply chain to create and manage a
+  Kubernetes Custom Resource (CR) of type `APIDescriptor`. A Kubernetes controller reconciles the CR
+  and updates the API entity in Tanzu Application Platform GUI to achieve automated API registration
+  from workloads. You can also use API Auto Registration without supply chains by directly applying
+  an `APIDescriptor` CR to the cluster.
+
 - **[API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)**
 
   API portal for VMware Tanzu enables API consumers to find APIs they can use in their own
@@ -12,11 +23,12 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Consumers can view detailed API documentation and try out an API to see if it meets their needs.
   API portal assembles its dashboard and detailed API documentation views by ingesting OpenAPI
   documentation from the source URLs. An API portal operator can add any number of OpenAPI source
-  URLs to be displayed in a single instance.
+  URLs to to appear in a single instance.
 
 - **[Application Accelerator for VMware Tanzu](application-accelerator/about-application-accelerator.md)**
 
-  The Application Accelerator component helps app developers and app operators create application accelerators.
+  The Application Accelerator component helps app developers and app operators create application
+  accelerators.
 
   Accelerators are templates that codify best practices and ensure important configurations and
   structures are in place from the start. Developers can bootstrap their applications and get
@@ -38,41 +50,56 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[Application Single Sign-On for VMware Tanzu](app-sso/about.md)**
 
-  Application Single Sign-On enables application users to sign in to their identity provider once and be authorized and identified to access any Kubernetes-deployed workload. It is a secure and straightforward approach for developers and operators to manage access across all workloads in the enterprise.
+  Application Single Sign-On enables application users to sign in to their identity provider once
+  and be authorized and identified to access any Kubernetes-deployed workload. It is a secure and
+  straightforward approach for developers and operators to manage access across all workloads in the
+  enterprise.
 
-- **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
+- **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VM<ware-Tanzu/index.html)**
 
-  Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based
-  on Knative and runs on a single Kubernetes cluster. For information about Knative, see the
-  [Knative documentation](https://knative.dev/docs/). Cloud Native Runtimes capabilities are included
+  Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based on
+  Knative and runs on a single Kubernetes cluster. For information about Knative, see the
+  [Knative documentation](https://knative.dev/docs/). Cloud Native Runtimes capabilities are
   in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
 
 - **[Convention Service for VMware Tanzu](convention-service/about.md)**
 
   The convention service provides a means for people in operational roles to express their hard-won
-  knowledge and opinions about how apps should run on Kubernetes as a convention. The convention
+  knowledge and opinions about how apps run on Kubernetes as a convention. The convention
   service applies these opinions to fleets of developer workloads as they are deployed to the
   platform, saving time for operators and developers.
 
 - **[Default roles for Tanzu Application Platform](authn-authz/overview.md)**
 
-  This package includes five default roles for users, including app-editor, app-viewer, app-operator, and service accounts including workload and deliverable. These roles are available to help operators limit permissions a user or service account requires on a cluster that runs Tanzu Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based access control (RBAC).
+  This package includes five default roles for users, including app-editor, app-viewer, app-operator,
+  and service accounts including workload and deliverable. These roles are available to help
+  operators limit permissions a user or service account requires on a cluster that runs Tanzu
+  Application Platform. They are built by using aggregated cluster roles in Kubernetes role-based
+  access control (RBAC).
 
-  Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI. Tanzu Application Platform GUI support for default roles is planned for a future release.
+  Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI.
+  Tanzu Application Platform GUI support for default roles is planned for a future release.
 
 - **[Developer Conventions](convention-service/about.md)**
 
   Developer conventions configure workloads to prepare them for inner loop development.
 
-  It’s meant to be a “deploy and forget” component for developers: after it is installed on the
+  It’s meant to be a “deploy and forget” component for developers. After it is installed on the
   cluster with the Tanzu Package CLI, developers do not need to directly interact with it.
   Developers instead interact with the Tanzu Developer Tools for VSCode IDE Extension or
-  Tanzu CLI Apps plug-in, which rely on the Developer Conventions to modify the workload to enable
+  Tanzu CLI Apps plug-in, which rely on the Developer Conventions to edit the workload to enable
   inner loop capabilities.
+
+- **[Eventing for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
+
+  Eventing for VMware Tanzu focuses on providing tooling and patterns for Kubernetes applications to
+  manage event-triggered systems through Knative Eventing. For information about Knative, see
+  the [Knative documentation](https://knative.dev/docs/).
 
 - **[Flux Source Controller](https://fluxcd.io/docs/components/source/)**
 
-  The main role of the source management component is to provide a common interface for artifact acquisition.
+  The main role of this source management component is to provide a common interface for artifact
+  acquisition.
 
 - **[Grype](https://github.com/anchore/grype)**
 
@@ -90,17 +117,17 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   It enables app operators to create preapproved paths to production by integrating Kubernetes
   resources with the elements of their existing toolchains, such as Jenkins.
 
-  Each preapproved supply chain creates a paved road to production. It orchestrates supply chain
-  resources, namely test, build, scan, and deploy, enabling developers to focus on delivering
-  value to their users. Preapproved supply chains also assure application operators that all code in
+  Each pre-approved supply chain creates a paved road to production. It orchestrates supply chain
+  resources, namely test, build, scan, and deploy. Enabling developers to focus on delivering
+  value to their users. Pre-approved supply chains also assure application operators that all code in
   production has passed through the steps of an approved workflow.
 
 - **[Supply Chain Security tools for Tanzu - Scan](scst-scan/overview.md)**
 
-  With Supply Chain Security Tools for VMware Tanzu - Scan, Tanzu customers can build and deploy
+  With Supply Chain Security Tools for VMware Tanzu - Scan, you can build and deploy
   secure trusted software that complies with their corporate security requirements.
 
-  To enable this, Supply Chain Security Tools - Scan provides scanning and gatekeeping capabilities
+  To enable this, Supply Chain Security Tools - Scan provides scanning and gate keeping capabilities
   that Application and DevSecOps teams can incorporate earlier in their path to production.
   This is an established industry best practice for reducing security risk and ensuring more
   efficient remediation.
@@ -109,15 +136,15 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 - **[Supply Chain Security Tools - Policy Controller](scst-policy/overview.md)**
 
   Supply Chain Security Tools - Policy is an admission controller that allows a cluster operator
-  to specify policies to verify image container signatures before admitting them to a cluster. It works with
-  [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for fine-tuned
-  configuration of policies based on image source patterns.
+  to specify policies to verify image container signatures before admitting them to a cluster. It
+  works with [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for
+  fine-tuned configuration of policies based on image source patterns.
 
 - **[Supply Chain Security Tools - Store](scst-store/overview.md)**
 
   Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and
   enables you to query for image, source, package, and vulnerability relationships.
-  It integrates with Supply Chain Security Tools - Scan to automatically store the resulting source
+  It integrates with SCST - Scan to automatically store the resulting source
   and image vulnerability reports.
 
 - **[Overview of Tanzu Application Platform GUI](tap-gui/about.md)**
@@ -130,12 +157,12 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[Tanzu Build Service](tanzu-build-service/tbs-about.md)**
 
-  Tanzu Build Service uses the open-source Cloud Native Buildpacks project to turn application
+  Tanzu Build Service uses the open-source Cloud Native Build packs project to turn application
   source code into container images.
 
   Build Service executes reproducible builds that align with modern container standards and keeps
   images up to date. It does so by leveraging Kubernetes infrastructure with kpack, a Cloud Native
-  Buildpacks Platform, to orchestrate the image life cycle.
+  Build packs Platform, to orchestrate the image life cycle.
 
   The kpack CLI tool, kp, can aid in managing kpack resources. Build Service helps you
   develop and automate containerized software workflows securely and at scale.
@@ -149,8 +176,8 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[Tanzu Learning Center](learning-center/about.md)**
 
-  Learning Center provides a platform for creating and self-hosting workshops. With Learning Center, content
-  creators can create workshops from markdown files that learners can view in a terminal
+  Learning Center provides a platform for creating and self-hosting workshops. With Learning Center,
+  content creators can create workshops from markdown files that learners can view in a terminal
   shell environment with an instructional wizard UI. The UI can embed slide content, an integrated
   development environment (IDE), a web console for accessing the Kubernetes cluster, and other custom
   web applications.
@@ -164,9 +191,25 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
 
-## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.2
+- **[Tanzu Application Platform Telemetry](telemetry/overview.hbs.md)**
 
-You can deploy Tanzu Application Platform through predefined profiles, each containing various packages, or you can install  packages individually. The profiles are designed to allow Tanzu Application Platform to scale across an organization's multicluster, multicloud, or hybrid cloud infrastructure. These profiles are not meant to cover all customer use cases, but serve as a starting point to allow for further customization.
+  Tanzu Application Platform Telemetry is a set of objects that collect data about the use of
+  Tanzu Application Platform and send it back to VMware for product improvements. A benefit of
+  remaining enrolled in telemetry and identifying your company during Tanzu Application Platform
+  installation is that VMware can provide your organization with use reports about Tanzu Application
+  Platform. See [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports)
+  for more information about enrolling in telemetry reports.
+
+>**Note:** You can opt out of telemetry collection by following the
+>instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).
+
+## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.3
+
+You can deploy Tanzu Application Platform through predefined profiles, each containing various packages,
+or you can install  the packages individually. The profiles allow Tanzu Application Platform to scale
+across an organization's multicluster, multi-cloud, or hybrid cloud infrastructure.
+These profiles are not meant to cover all use cases, but serve as a starting point to allow
+for further customization.
 
 The following profiles are available in Tanzu Application Platform:
 
@@ -177,13 +220,16 @@ The following profiles are available in Tanzu Application Platform:
   Intended for iterative application development.
 
 - **Build** (`build`):
-  Intended for the transformation of source revisions to workload revisions. Specifically, hosting workloads and SupplyChains.
+  Intended for the transformation of source revisions to workload revisions. Specifically, hosting
+  workloads and SupplyChains.
 
 - **Run** (`run`):
-  Intended for the transformation of workload revisions to running pods. Specifically, hosting deliveries and deliverables.
+  Intended for the transformation of workload revisions to running pods. Specifically, hosting
+  deliveries and deliverables.
 
 - **View** (`view`):
-  Intended for instances of applications related to centralized developer experiences. Specifically, Tanzu Application Platform GUI and Metadata Store.
+  Intended for instances of applications related to centralized developer experiences. Specifically,
+  Tanzu Application Platform GUI and Metadata Store.
 
 The following table lists the packages contained in each profile:
 
@@ -639,7 +685,8 @@ The following table lists the packages contained in each profile:
   <tr>
 </table>
 
->**Note:** Only one supply chain should be installed at any given time. For information on switching from one supply chain to another, see [Add testing and security scanning to your application](getting-started/add-test-and-security.md).
+>**Note:** Only one supply chain can be installed at any given time. For information on switching
+supply chains, see [Add testing and security scanning to your application](getting-started/add-test-and-security.md).
 
 ## <a id='language-support'></a> Language and framework support in Tanzu Application Platform
 
@@ -829,10 +876,11 @@ Tanzu Application Platform components.
   </tr>
 </table>
 
-<sup>\**</sup> Tanzu Developer Tooling refers to the developer conventions that enable debugging
-and Live Update functionality in inner loop.
+**Tanzu Developer Tooling:** refers to the developer conventions that enable debugging
+and Live Update function in the inner loop.
 
-<sup>\***</sup> Extended Scanning Coverage: Supply Chain Security Tools - Scan and Store using Anchore Grype. Out of the Box Tanzu Application Platform scanning leverages a tool by Anchore called Grype.
+**Extended Scanning Coverage:** SCST - Scan and Store using Anchore Grype.
+Out of the Box Tanzu Application Platform scanning leverages a tool by Anchore called Grype.
 Grype provides standard CVE scanning support for a wide variety of languages.
 However, if you use Tanzu Build Service to build application images using a buildpack
 that produces a Bill of Materials in the Syft format,
@@ -843,4 +891,4 @@ Ruby applications with Tanzu Build Service.
 
 ## <a id='install'></a> Installing Tanzu Application Platform
 
-For more information on installing Tanzu Application Platform, see [Installing Tanzu Application Platform](install-intro.hbs.md).
+For more information about installing Tanzu Application Platform, see [Installing Tanzu Application Platform](install-intro.hbs.md).
