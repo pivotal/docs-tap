@@ -132,9 +132,9 @@ spec:
 Application Live View Convention Server detects properties defined in the workload
 `env` section and respects those values.
 
->**Warning!** You can also define properties such as `management.endpoints.web.exposure.include`
+>**Note** You can also define properties such as `management.endpoints.web.exposure.include`
 and `management.endpoint.health.show-details` in `application.properties` or `application.yml`
-in the Spring Boot or Spring Cloud Gateway Application. Properties defined in this way have lower priority and will be overridden
+in the Spring Boot or Spring Cloud Gateway Application. Properties defined in this way have lower priority and are overridden
 by the Application Live View Convention default values.
 
 # <a id="verify"></a> Verify the applied labels and annotations

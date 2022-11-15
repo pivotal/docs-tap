@@ -278,7 +278,7 @@ spec:
       - name: first-key
 ```
 
-> **Note**: You may need to grant the service account
+> **Note** You may need to grant the service account
 > `image-policy-controller-manager` in the deployment namespace RBAC
 > permissions for the verbs `get` and `list` in the namespace that hosts
 > your secrets.
@@ -340,7 +340,7 @@ Registry|registry.example.org/*|registry.example.org/myproject/my-image:mytag<br
 Any Subdomain|\*.example.org/\*|my-registry.example.org/myproject/my-image:mytag<br>registry.example.org/anotherproject/anotherimage:anothertag|
 Anything|\*|my-registry.example.org/myproject/my-image:mytag<br>registry.example.org/anotherproject/anotherimage:anothertag<br>registry.io/project/image:tag|
 
-> **Note**: Providing a name pattern without specifying a tag acts as a
+> **Note** Providing a name pattern without specifying a tag acts as a
 > wildcard for the tag even if other wildcards are specified. The pattern `registry.example.org/myproject/my-image` is the same
 > as `registry.example.org/myproject/my-image:*`. In the same way,
 > `*.example.org/project/image` is equivalent to `*.example.org/project/image:*`
