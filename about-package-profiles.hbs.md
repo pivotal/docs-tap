@@ -4,17 +4,6 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 ## <a id='TAP-packages'></a> Tanzu Application Platform components
 
-- **[API Auto Registration](api-auto-registration/about.md)**
-
-  When users deploy a workload that exposes an API, they want that API to automatically show in
-  Tanzu Application Platform GUI without requiring any added manual steps.
-
-  API Auto Registration is an automated workflow that can use a supply chain to create and manage a
-  Kubernetes Custom Resource (CR) of type `APIDescriptor`. A Kubernetes controller reconciles the CR
-  and updates the API entity in Tanzu Application Platform GUI to achieve automated API registration
-  from workloads. You can also use API Auto Registration without supply chains by directly applying
-  an `APIDescriptor` CR to the cluster.
-
 - **[API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)**
 
   API portal for VMware Tanzu enables API consumers to find APIs they can use in their own
@@ -190,15 +179,6 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
-
-- **[Tanzu Application Platform Telemetry](telemetry/overview.hbs.md)**
-
-  Tanzu Application Platform Telemetry is a set of objects that collect data about the use of
-  Tanzu Application Platform and send it back to VMware for product improvements. A benefit of
-  remaining enrolled in telemetry and identifying your company during Tanzu Application Platform
-  installation is that VMware can provide your organization with use reports about Tanzu Application
-  Platform. See [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports)
-  for more information about enrolling in telemetry reports.
 
 >**Note:** You can opt out of telemetry collection by following the
 >instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).
