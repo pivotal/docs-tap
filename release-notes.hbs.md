@@ -80,11 +80,11 @@ as images.
 
 #### <a id="1-3-1-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI
 
-- Known security vulnerability
+Known security vulnerability
 
-  - TAP GUI is vulnerable to [CVE-39353](https://nvd.nist.gov/vuln/detail/CVE-2022-39353)/[GHSA-crh6-fp67-6883](https://github.com/xmldom/xmldom/security/advisories/GHSA-crh6-fp67-6883). In order for a TAP GUI deployment to be vulnerable to this exploit, one must use the SAML authentication provider as indicated by an `auth.saml` block in their TAP GUI configuration file. Currently, SAML is not a documented nor supported authentication provider for TAP GUI.
-  
-    **NOTE: Until the underlying vulnerability is fixed, it is advised _not_ to use SAML authentication with TAP GUI. For customers currently leveraging SAML authentication, it is advised to switch to different authentication mechanism or disable TAP GUI in the cluster until a patch version is released which remediates this exploit.**
+  - Tanzu Application Platform GUI is vulnerable to [CVE-39353](https://nvd.nist.gov/vuln/detail/CVE-2022-39353)/[GHSA-crh6-fp67-6883](https://github.com/xmldom/xmldom/security/advisories/GHSA-crh6-fp67-6883). For a Tanzu Application Platform GUI deployment to be vulnerable to this exploit, you must use the SAML authentication provider as indicated by an `auth.saml` block in your Tanzu Application Platform GUI configuration file. Currently, SAML is not a documented or supported authentication provider for Tanzu Application Platform GUI.
+
+    >**Caution** Until the underlying vulnerability is fixed, VMware advises _not_ to use SAML authentication with Tanzu Application Platform GUI. For customers currently leveraging SAML authentication, VMware advises switching to a different authentication mechanism or disabling Tanzu Application Platform GUI in the cluster until a patch version is released that remediates this exploit.
 
 #### <a id="1-3-1-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
 
