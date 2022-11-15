@@ -21,43 +21,47 @@ This topic contains release notes for Tanzu Application Platform v1.3
 This release has the following security fixes, listed by area and component.
 
 #### <a id='1-3-1-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
-- `glib` is updated to `2.58.0-9.ph3`
-- `glibc` is updated to `2.28-22.ph3`
-- `expat` is updated to `2.2.9-10.ph3`
-- `opa` is updated to `v0.44.0`
+
+- `glib` is updated to `2.58.0-9.ph3`.
+- `glibc` is updated to `2.28-22.ph3`.
+- `expat` is updated to `2.2.9-10.ph3`.
+- `opa` is updated to `v0.44.0`.
 
 #### <a id='1-3-1-scst-scan-fixes'></a> Supply Chain Security Tools - Scan
-- `opa` is updated to `v0.44.0`
+
+- `opa` is updated to `v0.44.0`.
 
 #### <a id='1-3-1-scst-store-fixes'></a> Supply Chain Security Tools - Store
-- updated `postgres-bionic-13` image, fixes CVE-2020-16156 and CVE-2022-29458
+
+- Updated `postgres-bionic-13` image. This fixes CVE-2020-16156 and CVE-2022-29458.
 
 #### <a id='1-3-1-scst-snyk-fixes'></a> Supply Chain Security Tools - Snyk
-- `glib` is updated to `2.58.0-9.ph3`
-- `glibc` is updated to `2.28-22.ph3`
-- `expat` is updated to `2.2.9-10.ph3`
-- `opa` is updated to `v0.44.0`
+
+- `glib` is updated to `2.58.0-9.ph3`.
+- `glibc` is updated to `2.28-22.ph3`.
+- `expat` is updated to `2.2.9-10.ph3`.
+- `opa` is updated to `v0.44.0`.
 
 ### <a id='1-3-1-resolved-issues'></a> Resolved issues
 
 The following issues, listed by area and component, are resolved in this release.
 
-#### <a id="1-3-1-supplychainplugin-resolved"></a>Supply Chain Choreographer Plug-in
+#### <a id="1-3-1-supplychainplugin-resolved"></a>Supply Chain Choreographer plug-in
 
 - Updating a supply chain no longer causes an error (`Can not create edge...`) when an existing
-  workload is clicked in the Workloads table and that supply chain is no longer present.
+workload is clicked in the Workloads table and that supply chain is no longer present.
 - The Image Scan timestamp no longer fails to show the latest scan time.
 
 #### <a id="1-3-1-intellij-resolved"></a> Tanzu Developer Tools for IntelliJ
 
-- The extension can now Live Update when the workload type is `server` or `worker`
+- The extension can now Live Update when the workload type is `server` or `worker`.
 - The extension no longer stops other debug sessions when stopping one debug session.
 
 #### <a id="1-3-1-vs-code-resolved"></a> Tanzu Developer Tools for VS Code
 
-- The extension no longer shows a warning notification when the user cancels an action
-- The extension can now generate a snippet on a `Tiltfile` when the user has a Tilt extension installed
-- The extension can now Live Update when the workload type is `server` or `worker`
+- The extension no longer shows a warning notification when the user cancels an action.
+- The extension can now generate a snippet on a `Tiltfile` when the user has a Tilt extension installed.
+- The extension can now Live Update when the workload type is `server` or `worker`.
 
 #### <a id="1-3-1-cnr-resolved"></a> Cloud Native Runtimes
 
@@ -74,9 +78,9 @@ This release has the following known issues, listed by area and component.
 For most languages, Source Code Scanning only scans files present in the source code repository.
 Except for support added for Java projects using Maven, no network calls are made to fetch
 dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
-lock files to check the dependencies for vulnerabilities.
+lock files to check dependencies for vulnerabilities.
 
-For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
+For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies
 present in the built binaries, such as `.jar` or `.war` files.
 
 Because VMware does not recommend committing binaries to source code repositories, Grype fails to
@@ -84,12 +88,20 @@ find vulnerabilities during a source scan.
 The vulnerabilities are still found during the image scan after the binaries are built and packaged
 as images.
 
+#### <a id="1-3-1-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI
+
+Known security vulnerability
+
+  - Tanzu Application Platform GUI is vulnerable to [CVE-39353](https://nvd.nist.gov/vuln/detail/CVE-2022-39353)/[GHSA-crh6-fp67-6883](https://github.com/xmldom/xmldom/security/advisories/GHSA-crh6-fp67-6883). For a Tanzu Application Platform GUI deployment to be vulnerable to this exploit, you must use the SAML authentication provider as indicated by an `auth.saml` block in your Tanzu Application Platform GUI configuration file. Currently, SAML is not a documented or supported authentication provider for Tanzu Application Platform GUI.
+
+    >**Caution** Until the underlying vulnerability is fixed, VMware advises _not_ to use SAML authentication with Tanzu Application Platform GUI. For customers currently leveraging SAML authentication, VMware advises switching to a different authentication mechanism or disabling Tanzu Application Platform GUI in the cluster until a patch version is released that remediates this exploit.
+
 #### <a id="1-3-1-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
 
 - **Supply Chain Choreographer Plug-in**
 
   - The UI shows the error message `Unable to retrieve details from Image Provider Stage` when the
-    Builder is not available or configured, however the CLI shows the correct error message
+    Builder is not available or configured. However, the CLI shows the correct error message
     `Builder default is not ready`.
   - Clicking on the `Scan Template` link in the **Overview** section for a scanning stage causes a
     blank page to open in the browser.
