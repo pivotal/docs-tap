@@ -79,7 +79,7 @@ To install the Tanzu CLI and plug-ins:
 
 1. Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com).
 2. Go to the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform).
-3. Select `Release 1.2.0` from the release dropdown menu.
+3. Select **Release {{ vars.tap_version }}** from the release dropdown menu.
 4. Click and download the Tanzu framework bundle for your operating system.
 5. (Optional) If an earlier upgrade attempt failed, you can uninstall the previous version of the
    Tanzu CLI and associated plug-ins and files.
