@@ -5,7 +5,7 @@ for Learning Center.
 
 ## <a id="training-portal-pending"></a>Training portal stays in pending state
 
-The training portal stays in a "pending" state. 
+The training portal stays in a "pending" state.
 
 The Training Portal custom resource (CR) has a status property. To see the status, run:
 
@@ -61,7 +61,7 @@ To recover from this error you only need to redeploy the trainingPortal resource
 
 ## <a id='cannot-update-parameters'></a>Updates to Tanzu Application Platform values file not reflected in Learning Center Training Portal
 
-If you installed Learning Center through Tanzu profiles, then your installation made use of a tap_values.yaml file where configurations were specified for Learning Center. If you make updates to these configurations using this command:
+If you installed Learning Center through Tanzu profiles, then your installation made use of a tap-values.yaml file where configurations were specified for Learning Center. If you make updates to these configurations using this command:
 
 ```
 tanzu package installed update tap --package-name tap.tanzu.vmware.com --version {VERSION} -f tap-values.yml -n tap-install
@@ -147,7 +147,7 @@ For example, if using the default workshop on an Elastic Kubernetes Service (EKS
 
 `learning-center-guided.learningcenter.yourdomain.com`
 
-Where learningcenter.yourdomain.com needs a DNS configuration made to point to your default ingress controller. 
+Where learningcenter.yourdomain.com needs a DNS configuration made to point to your default ingress controller.
 
 In this case, the wildcard domain configuration needed is `*.learningcenter.yourdomain.com`.
 
