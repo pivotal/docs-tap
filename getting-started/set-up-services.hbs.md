@@ -16,19 +16,19 @@ Before you begin, for important background, see [About consuming services on Tan
 
 The following diagram depicts a summary of what this walkthrough covers, including binding an application workload to the service instance by the application developer.
 
-![Diagram shows the default namespace and service instances namespace. The default namespace has two application workloads, each connected to a service binding. The service bindings connect to the service instance in the service instances namespace through a resource claim.](../images/getting-started-stk-1.png)
+![Diagram shows the default namespace and service instances namespace. The default namespace has two application workloads, each connected to a service binding. The service bindings connect to the service instance in the service instances namespace through a claim.](../images/getting-started-stk-1.png)
 
 Bear the following observations in mind as you work through this guide:
 
 1. There is a clear separation of concerns across the various user roles.
 
     * Application developers set the life cycle of workloads.
-    * Application operators set the life cycle of resource claims.
+    * Application operators set the life cycle of claims.
     * Service operators set the life cycle of service instances.
     * The life cycle of service bindings is implicitly tied to the life cycle of workloads.
-2. Resource claims and resource claim policies are the mechanism to enable cross-namespace binding.
-3. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
-4. Exclusivity of resource claims: Resource claims are considered to be mutually exclusive, meaning that only one resource claim can claim a service instance.
+2. Claims and resource claim policies are the mechanism to enable cross-namespace binding.
+3. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the class claim, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
+4. Exclusivity of claims: claims are considered to be mutually exclusive, meaning that claims for a given service instance can only be fulfilled by at most one claim at any given time.
 
 ## <a id="stk-prereqs"></a> Prerequisites
 
@@ -70,15 +70,15 @@ To set up a service:
 
 2. Apply RBAC rules to grant Tanzu Application Platform permission to interact with the new API.
 
-    1. In a file named `resource-claims-rmq.yaml`, create a `ClusterRole` that defines the rules and label it so that the rules are aggregated to the appropriate controller:
+    1. In a file named `rmq-reader-for-binding-and-claims.yaml`, create a `ClusterRole` that defines the rules and label it so that the rules are aggregated to the appropriate controller:
 
         ```yaml
-        # resource-claims-rmq.yaml
+        # rmq-reader-for-binding-and-claims.yaml
         ---
         apiVersion: rbac.authorization.k8s.io/v1
         kind: ClusterRole
         metadata:
-          name: resource-claims-rmq
+          name: rmq-reader-for-binding-and-claims
           labels:
             servicebinding.io/controller: "true"
         rules:
@@ -87,23 +87,23 @@ To set up a service:
           verbs: ["get", "list", "watch"]
         ```
 
-    2. Apply `resource-claims-rmq.yaml` by running:
+    2. Apply `rmq-reader-for-binding-and-claims.yaml` by running:
 
         ```console
-        kubectl apply -f resource-claims-rmq.yaml
+        kubectl apply -f rmq-reader-for-binding-and-claims.yaml
         ```
 
-        PostgreSQL: [Creating Service Bindings](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-creating-service-bindings.html)
+        PostgreSQL: [Creating Service Bindings](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-creating-service-bindings.html#setup-postgres-with-services-toolkit)
 
-        MySQL: [Connecting an Application to a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-creating-service-bindings.html)
+        MySQL: [Connecting an Application to a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-creating-service-bindings.html#setup-mysql-with-services-toolkit)
 
 3. Make the new API discoverable to application operators.
 
-    1. In a file named `rabbitmqcluster-clusterinstanceclass.yaml`, create a `ClusterInstanceClass`
+    1. In a file named `rmq-class.yaml`, create a `ClusterInstanceClass`
     that refers to the new service, and set any additional metadata. For example:
 
         ```yaml
-        # rabbitmqcluster-clusterinstanceclass.yaml
+        # rmq-class.yaml
         ---
         apiVersion: services.apps.tanzu.vmware.com/v1alpha1
         kind: ClusterInstanceClass
@@ -123,10 +123,10 @@ To set up a service:
         #   kind: MySQL
         ```
 
-    1. Apply `rabbitmqcluster-clusterinstanceclass.yaml` by running:
+    1. Apply `rmq-class.yaml` by running:
 
         ```console
-        kubectl apply -f rabbitmqcluster-clusterinstanceclass.yaml
+        kubectl apply -f rmq-class.yaml
         ```
 
         After applying this resource, it is listed in the output of the
@@ -153,6 +153,8 @@ To create a service instance:
     > for greater separation of concerns, and means that you can achieve greater control
     > over who has access to what. However, this is not a strict requirement.
     > You can create both service instances and application workloads in the same namespace.
+    > There is no need to create a resource claim policy if the service instance resides in the
+    > same namespace as the application workload.
 
 2. Create a `RabbitmqCluster` service instance.
 
@@ -224,12 +226,12 @@ To create a service instance:
 
 This section covers:
 
-* Using `tanzu service claimable list --class` to view details about service instances claimable from a namespace.
-* Using `tanzu service claim create` to create a claim for the service instance.
+* Using `tanzu service class list` to view details about available classes from which instances can be claimed.
+* Using `tanzu service class-claim create` to create a claim for the service instance.
 
 For this part of the walkthrough, you assume the role of the **application operator**.
 
-Resource claims in Tanzu Application Platform are a powerful concept that serve many purposes.
+Claims in Tanzu Application Platform are a powerful concept that serve many purposes.
 Arguably their most important role is to enable application operators to request
 services that they can use with their application workloads without having
 to create and manage the services themselves. For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-resource_claims-api_docs.html).
@@ -237,40 +239,34 @@ to create and manage the services themselves. For more information, see [Resourc
 In cases where service instances are running in the same namespace as
 application workloads, you do not have to create a claim. You can bind to the service instance directly.
 
-In this section you use the `tanzu service claims create` command to create
+In this section you use the `tanzu service class-claim create` command to create
 a claim that the `RabbitmqCluster` service instance you created earlier can fulfill.
 This command requires the following information to create a claim:
 
-- `--resource-name`
-- `--resource-kind`
-- `--resource-api-version`
-- `--resource-namespace`
+- `--class`
 
 To claim a service instance:
 
 1. Find the claimable instance and the necessary claim information by running:
 
     ```console
-    tanzu service claimable list --class rabbitmq
+    tanzu service class list
     ```
 
     Expected output:
 
     ```console
-      tanzu services claimable list --class rabbitmq
+      tanzu service class list
 
-      NAME    NAMESPACE            API KIND         API GROUP/VERSION
-      rmq-1   service-instances    RabbitmqCluster  rabbitmq.com/v1beta1
+      NAME      DESCRIPTION
+      rabbitmq  It's a RabbitMQ cluster!
     ```
 
 2. Using the information from the previous command, create a claim for the service instance by running:
 
     ```console
-    tanzu service claim create rmq-1 \
-      --resource-name rmq-1 \
-      --resource-namespace service-instances \
-      --resource-kind RabbitmqCluster \
-      --resource-api-version rabbitmq.com/v1beta1
+    tanzu service class-claim create rmq-1 \
+      --class rabbitmq
     ```
 
 You have set the scene for the application developer to inspect the claim and to use it to bind to application workloads, as described in [Consume services on Tanzu Application Platform](consume-services.md).
