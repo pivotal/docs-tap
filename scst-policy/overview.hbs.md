@@ -1,4 +1,4 @@
-# Supply Chain Security Tools for VMware Tanzu - Policy Controller 
+# Supply Chain Security Tools for VMware Tanzu - Policy Controller
 
 Supply Chain Security Tools - Policy Controller is a security tool that helps
 operators ensure that the container images in their registry have not been
@@ -44,8 +44,8 @@ To Install Supply Chain Security Tools - Policy Controller, see [Install Supply 
 
 ## <a id='known-issues'></a> Known issues
 
-### <a id='1-2-2'></a>TAP v1.2.2 and earlier
+### <a id='1-2-2'></a>Tanzu Application Platform v1.2.2 and earlier
 
-- **`kubectl run` pods fail to validate in non-default namespaces:**
-
-  - When policy verification occurs on an image deployed through `kubectl run` on a non-default namespace, the verification will fail to create the keychain required if the image requires credentials.
+**`kubectl run` pods fail to validate in non-default namespaces:**
+When policy verification occurs on an image deployed through `kubectl run` on a non-default namespace,
+the verification fails to create the keychain required if the image requires credentials.
