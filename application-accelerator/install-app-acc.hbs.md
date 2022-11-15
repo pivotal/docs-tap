@@ -37,7 +37,7 @@ When you install the Application Accelerator, you can configure the following op
 | domain | tap.example.com | Top-level domain to use for ingress configuration, defaults to `shared.ingress_domain` |
 | tls.secret_name | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
-| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.
+| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources
 | telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?
 | git_credentials.secret_name | git-credentials | The name to use for the secret storing Git credentials for accelerators |
 | git_credentials.username | null | The user name to use in secret storing Git credentials for accelerators |
