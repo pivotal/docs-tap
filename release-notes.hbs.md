@@ -129,7 +129,8 @@ This release includes the following changes to Tanzu Application Platform and it
 - Controller
   - Added source-image support for fragments and Fragment CRD.
 - Engine
-  - OpenRewriteRecipe: More recipes are now supported in addition to Java: Xml, Properties, Maven, and Json.
+  - OpenRewriteRecipe: More recipes are now supported in addition to Java.
+    This includes XML, Properties, Maven, and JSON.
   - New ConflictResolution Strategy : `NWayDiff` merges files modified in different places, as long as they don't conflict. Similar to the Git diff3 algorithm.
   - Enforces the validity of `inputType`: Accepts only valid values: `text`, `textarea`, `checkbox`, `select`, and `radio`.
 - Server
