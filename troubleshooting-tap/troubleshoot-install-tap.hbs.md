@@ -298,10 +298,10 @@ While upgrading Tanzu Application Platform to v1.2.2 from any previous version, 
 
 **Solution**
 
-As a workaround, to add the Tanzu Application Platform v1.2.2 repo bundle, use:
+As a workaround, to add the Tanzu Application Platform v1.2.2 repo bundle, run:
 
-    ```
-    tanzu package repository update <existing-repo-bunlde-name> --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.2.2 -n <namespace>
-    ```
+```
+tanzu package repository update EXISTING-REPO-BUNDLE-NAME --url registry.tanzu.vmware.com/tanzu-application-platform/tap-packages:1.2.2 -n NAMESPACE
+```
 
 You might observe an error with package installs `ReconcileFailed True Expected to find at least one version` until Tanzu Application Platform is upgraded to v1.2.2, but this does not affect the functionality of any components.
