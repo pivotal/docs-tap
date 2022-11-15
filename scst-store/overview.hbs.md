@@ -20,6 +20,13 @@ See [Tanzu Insight plug-in overview](../cli-plugins/insight/cli-overview.md) to 
 
 See [Multicluster setup](multicluster-setup.hbs.md) for information about how to set up SCST - Store in a multicluster setup.
 
+## Integrating with TAP GUI
+
+Using the Supply Chain Choreographer within TAP GUI, users can visualize their supply chain.
+It talks to SCST - Store in order to show the packages and vulnerabilities in your source code and images.
+
+To enable this feature, follow the instructions in [Supply Chain Choreographer in Tanzu Application Platform GUI - Enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
+
 ## <a id='additional-info'></a>Additional documentation
 
 [Additional documentation](additional.md) includes information about the API, deployment details and configuration, AWS RDS configuration, other database backup recommendations, known issues, and other topics.
