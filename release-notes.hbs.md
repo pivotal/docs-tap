@@ -2,16 +2,6 @@
 
 This topic contains release notes for Tanzu Application Platform v1.3
 
-## <a id='1-3-2'></a> v1.3.2
-
-**Release Date**: December 13, 2022
-
-### <a id='1-3-2-security-fixes'></a> Security fixes
-
-### <a id='1-3-2-new-features'></a> Resolved issues
-
-### <a id='1-3-2-known-issues'></a> Known issues
-
 ## <a id='1-3-1'></a> v1.3.1
 
 **Release Date**: November 15, 2022
