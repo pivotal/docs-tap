@@ -20,6 +20,17 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 This release has the following security fixes, listed by area and component.
 
+#### <a id='1-3-1-stk-sec-fix'></a> Services Toolkit
+
+The following CVEs were removed:
+
+- [CVE-2022-3786](https://nvd.nist.gov/vuln/detail/CVE-2022-3786) (High)
+- [CVE-2022-3358](https://nvd.nist.gov/vuln/detail/CVE-2022-3358) (Low)
+- [CVE-2022-3602](https://nvd.nist.gov/vuln/detail/CVE-2022-3602) (High)
+- [CVE-2022-3358](https://nvd.nist.gov/vuln/detail/CVE-2022-3358) (Low)
+- [CVE-2022-3602](https://nvd.nist.gov/vuln/detail/CVE-2022-3602) (High)
+- [CVE-2022-3786](https://nvd.nist.gov/vuln/detail/CVE-2022-3786) (High)
+
 #### <a id='1-3-1-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
 
 - `glib` is updated to `2.58.0-9.ph3`.
