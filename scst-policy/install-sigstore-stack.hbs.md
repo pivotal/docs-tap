@@ -11,14 +11,22 @@ The Sigstore Stack consists of:
 - [Certificate Transparency Log (CTLog)](https://github.com/google/certificate-transparency-go)
 - [TheUpdateFramework (TUF)](https://theupdateframework.io/)
 
-For more information about air-gapped installation, see [Install Tanzu Application Platform in an air-gapped environment](../install-air-gap.hbs.md)
+For information about air-gapped installation, see [Install Tanzu Application
+Platform in an air-gapped environment](../install-air-gap.hbs.md).
 
-If a Sigstore Stack TUF is already deployed and accessible in the air-gapped environment, proceed to [Update Policy Controller with TUF Mirror and Root](#sigstore-update-policy-controller).
+If a Sigstore Stack TUF is already deployed and accessible in the air-gapped
+environment, proceed to [Update Policy Controller with TUF Mirror and
+Root](#sigstore-update-policy-controller).
 
 ## <a id='sigstore-release-files'></a> Download Stack Release Files
 
-For Sigstore Stack, `v0.4.8` is the recommended version of `Sigstore/scaffolding` to be deployed currently.
-This is due to an issue in previous versions that caused the `Fulcio` deployment to crashloop due to the `CGO` package. Newer versions can also cause a known issue with invalid TUF key due to a breaking change with the current Policy Controller packaged in TAP 1.3.0+. For more information about this breaking change, see [Known Issues](./known-issues.hbs.md)
+For Sigstore Stack, VMware recommends deploying `v0.4.8` of
+`Sigstore/scaffolding`. This is due to an issue in previous versions
+that caused the `Fulcio` deployment to crashloop because of the `CGO` package.
+Later versions can also cause a known issue with invalid TUF key due to a
+breaking change with the current Policy Controller packaged in Tanzu Application
+Platform v1.3.0 and later. For information about this breaking change, see
+[Known Issues](./known-issues.hbs.md).
 
 Download the release files of all the Sigstore Stack components from `Sigstore/scaffolding`:
 ```bash
@@ -39,7 +47,9 @@ curl -sL "${TUF_URL}" -o "release-tuf.yaml"
 
 ## <a id='sigstore-migrate-images'></a> Migrate Images onto Internal Registry
 
-For air-gapped environments, the images from the `release-*.yaml` must be migrated to the internal air-gapped registry and the corresponding image references updated.
+For air-gapped environments, you must migrate the images from the
+`release-*.yaml` to the internal air-gapped registry and update the
+corresponding image references.
 
 The following is a sample script that does this:
 
@@ -81,7 +91,11 @@ for image in "${found_images[@]}"; do
 done
 ```
 
-During deployment of the Sigstore Stack, a sidecar image, `queue-proxy`, may require additional credentials. This can be achieved by adding a `secretgen` annotated placeholder secret to the target namespace and patching the corresponding service account. The placeholder will import `tap-registry` secret to the targetted namespace.
+During Sigstore Stack deployment, a sidecar image such as `queue-proxy`,
+can require additional credentials. You can achieve this by adding a `secretgen`
+annotated placeholder secret to the target namespace and patching the
+corresponding service account. The placeholder imports the `tap-registry` secret to
+the targeted namespace.
 
 ```bash
 # <SERVICE> includes "trillian", "rekor", "fulcio", "ctlog", and "tuf"
@@ -128,7 +142,7 @@ enabled to configure `OIDCIssuers` correctly. If you don't need keyless
 signatures, you can remove the `OIDCIssuers` entry. In an air-gapped
 environment, you must remove these `OIDCIssuers`.
 
-Additionally, the correct [MetaIssuers](#sigstore-metaissuers) may need to be added for the respective IaaS environment.
+You can add the correct [MetaIssuers](#sigstore-metaissuers) for your IaaS environment.
 
 A `config_json` will be constructed and then applied to the `release-fulcio.yaml`.
 
@@ -241,7 +255,7 @@ config_json='{
 }'
 ```
 
-### <a id='sigstore-applying-fulcio-patch'></a> Applying Patch for Fulcio Release File
+### <a id='sigstore-applying-fulcio-patch'></a> Applying the patch for Fulcio release file
 
 After configuring the required `config_json`, you can apply it by manually
 editing the `release-fulcio.yaml` file or by running:
@@ -262,11 +276,11 @@ config_json="${config_json}" \
 Knative Serving might already be deployed, depending on the selected profile,
 during the first attempt of installing Tanzu Application Platform. This
 component must be present to continue deploying the Sigstore Stack. If Knative
-is not present, install it by following [Install Cloud Native
+is not present, install it. See [Install Cloud Native
 Runtimes](../cloud-native-runtimes/install-cnrt.hbs.md).
 
-With the Sigstore Stack deployment, Knative Serving's
-`configmap/config-features` must be updated to enable some required features.
+With the Sigstore Stack deployment, you must update Knative Serving's
+`configmap/config-features` to enable some required features.
 Run:
 
 ```bash
@@ -278,7 +292,8 @@ kubectl patch configmap/config-features \
 
 ## <a id='sigstore-oidc-reviewer'></a> Create OIDC Reviewer Binding
 
-To fetch public keys and validate the JWT tokens from the `Discovery Document`, you must allow unauthenticated requests.
+To fetch public keys and validate the JWT tokens from the `Discovery Document`,
+you must allow unauthenticated requests.
 
 ```bash
 kubectl create clusterrolebinding oidc-reviewer \
@@ -286,7 +301,9 @@ kubectl create clusterrolebinding oidc-reviewer \
   --group=system:unauthenticated
 ```
 
-For more information, see [Service Account Issuer Discovery](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-issuer-discovery) in the Kubernetes documentation.
+For more information, see [Service Account Issuer
+Discovery](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-issuer-discovery)
+in the Kubernetes documentation.
 
 ## <a id='sigstore-install-trillian'></a> Install Trillian
 
@@ -561,7 +578,10 @@ Error: resource reconciliation failed: kapp: Error: waiting on reconcile package
 Error: exit status 1
 ```
 
-Although the command fails, the values file is updated in the installation secrets. During the next reconciliation cycle, the package attempts to reconcile and sync with the expected configuration. At that point, Policy Controller updates and reconciles with the latest values.
+Although the command fails, the values file is updated in the installation
+secrets. During the next reconciliation cycle, the package attempts to reconcile
+and sync with the expected configuration. At that point, Policy Controller
+updates and reconciles with the latest values.
 
 If Policy Controller was installed standalone or updated manually, update the values file with:
 
@@ -587,10 +607,18 @@ tanzu package installed update policy-controller --values-file tap-values-standa
 Updated installed package 'policy-controller' in namespace 'tap-install'
 ```
 
-This updates the policy-controller only. It is important that if Policy Controller was installed through the Tanzu Application Platform package with profiles, the update command to update the Tanzu Application Platform installation is still required, as it updates the values file. If only the Policy Controller package is updated with new values and not the Tanzu Application Platform package's values, the Tanzu Application Platform package's values overwrite the Policy Controller's values.
+This updates the policy-controller only. It is important that if Policy
+Controller was installed through the Tanzu Application Platform package with
+profiles, the `update` command to update the Tanzu Application Platform
+installation is still required, as it updates the values file. If only the
+Policy Controller package is updated with new values and not the Tanzu
+Application Platform package's values, the Tanzu Application Platform package's
+values overwrite the Policy Controller's values.
 
-For more information about profiles, see [Package Profiles](../about-package-profiles.hbs.md).
-For more information about Policy Controller, see [Install Supply Chain Security Tools - Policy Controller](./install-scst-policy.hbs.md) documentation.
+For more information about profiles, see [Package
+Profiles](../about-package-profiles.hbs.md). For more information about Policy
+Controller, see [Install Supply Chain Security Tools - Policy
+Controller](./install-scst-policy.hbs.md) documentation.
 
 ## <a id='sigstore-uninstall'></a> Uninstall Sigstore Stack
 
