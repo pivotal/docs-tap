@@ -107,7 +107,9 @@ kubectl -n <SERVICE>-system patch serviceaccount <SERVICE> -p '{"imagePullSecret
 
 ## <a id='sigstore-copy-files'></a> Copy Release Files to Cluster Accessible Machine
 
-With the images migrated and accessible, copy the `release-*.yaml` files onto the machine that is installing the Sigstore Stack with Kubernetes cluster access.
+With the images migrated and accessible, copy the `release-*.yaml` files onto
+the cluster accessible machine that is installing the Sigstore Stack with
+Kubernetes cluster access.
 
 ## <a id='sigstore-prepare-fulcio-patch'></a> Prepare Patching Fulcio Release File
 
@@ -121,10 +123,11 @@ By default, there are issuers for:
 
 To add other OIDC Issuers, configure `fulcio-config` further.
 
-Apart from `Kubernetes API ServiceAccount token`, the other `OIDCIssuers` require access to external services.
-Your cluster needs to have an OIDC issuer enabled in order to configure `OIDCIssuers` correctly.
-If you don't need keyless signatures, you can remove the `OIDCIssuers` entry.
-In an air-gapped environment, you must remove these `OIDCIssuers`.
+Apart from `Kubernetes API ServiceAccount token`, the other `OIDCIssuers`
+require access to external services. Your cluster must have an OIDC issuer
+enabled to configure `OIDCIssuers` correctly. If you don't need keyless
+signatures, you can remove the `OIDCIssuers` entry. In an air-gapped
+environment, you must remove these `OIDCIssuers`.
 
 You can add the correct [MetaIssuers](#sigstore-metaissuers) for the respective IaaS environment.
 
@@ -153,7 +156,7 @@ config_json='{
 ```
 
 Set the `IssuerURL` to the OIDC issuer configured in your cluster. You can discover
-your the URL by using `kubectl proxy -p 8001` and running the following command:
+your the URL by using `kubectl proxy -p 8001` and running:
 
 ```bash
 curl localhost:8001/.well-known/openid-configuration | jq .issuer
@@ -195,6 +198,7 @@ config_json='{
 ### <a id='sigstore-metaissuers'></a> MetaIssuers
 
 If installing on EKS, update the `config_json` to include this `MetaIssuer`:
+
 ```bash
 config_json='{
   "MetaIssuers": {
@@ -209,6 +213,7 @@ config_json='{
 ```
 
 If installing on GCP, update the `config_json` to include this `MetaIssuer`:
+
 ```bash
 config_json='{
   "MetaIssuers": {
@@ -223,6 +228,7 @@ config_json='{
 ```
 
 If installing on AKS, update the `config_json` to include this `MetaIssuer`:
+
 ```bash
 config_json='{
   "MetaIssuers": {
@@ -238,7 +244,8 @@ config_json='{
 
 ### <a id='sigstore-applying-fulcio-patch'></a> Applying Patch for Fulcio Release File
 
-After configuring the required `config_json`, you can apply it by manually editing the `release-fulcio.yaml` file or by running the following command:
+After configuring the required `config_json`, you can apply it by manually
+editing the `release-fulcio.yaml` file or by running:
 
 ```bash
 # Use `yq` to find the correct fulcio-config resource
@@ -253,9 +260,15 @@ config_json="${config_json}" \
 
 ## <a id='sigstore-patch-knative-serving'></a> Patch Knative-Serving
 
-Knative Serving may already be deployed, depending on the selected profile, during the first attempt of installing Tanzu Application Platform. This component must be present to continue deploying the Sigstore Stack. If Knative is not present, please install it by following [Install Cloud Native Runtimes](../cloud-native-runtimes/install-cnrt.hbs.md).
+Knative Serving might already be deployed, depending on the selected profile,
+during the first attempt of installing Tanzu Application Platform. This
+component must be present to continue deploying the Sigstore Stack. If Knative
+is not present, install it by following [Install Cloud Native
+Runtimes](../cloud-native-runtimes/install-cnrt.hbs.md).
 
-With the Sigstore Stack deployment, Knative Serving's `configmap/config-features` must be updated to enable some required features. Run:
+With the Sigstore Stack deployment, Knative Serving's
+`configmap/config-features` must be updated to enable some required features.
+Run:
 
 ```bash
 kubectl patch configmap/config-features \
@@ -273,15 +286,16 @@ kubectl create clusterrolebinding oidc-reviewer \
   --clusterrole=system:service-account-issuer-discovery \
   --group=system:unauthenticated
 ```
+
 For more information, see [Service Account Issuer Discovery](https://kubernetes.io/docs/tasks/configure-pod-container/configure-service-account/#service-account-issuer-discovery) in the Kubernetes documentation.
 
 ## <a id='sigstore-install-trillian'></a> Install Trillian
 
 To install Trillian:
 
-1. `kubectl apply` the `release-trillian.yaml`
-2. Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
-3. Patch the service account to use the imported `tap-registry` secret
+1. `kubectl apply` the `release-trillian.yaml`.
+2. Add the `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`.
+3. Patch the service account to use the imported `tap-registry` secret.
 4. Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
@@ -319,9 +333,9 @@ kubectl wait --timeout 2m -n trillian-system --for=condition=Ready ksvc log-sign
 
 To install Rekor:
 
-1. `kubectl apply` the `release-rekor.yaml`
-2. Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
-3. Patch the service account to use the imported `tap-registry` secret
+1. `kubectl apply` the `release-rekor.yaml`.
+2. Add the `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`.
+3. Patch the service account to use the imported `tap-registry` secret.
 4. Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
@@ -358,15 +372,18 @@ kubectl wait --timeout 2m -n rekor-system --for=condition=Ready ksvc rekor
 
 To install Fulcio:
 
-1. `kubectl apply` the `release-fulcio.yaml`
-2. Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
-3. Patch the service account to use the imported `tap-registry` secret
+1. `kubectl apply` the `release-fulcio.yaml`.
+2. Add the `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`.
+3. Patch the service account to use the imported `tap-registry` secret.
 4. Wait for the jobs and services to be `Complete` or be `Ready`.
 
-The Sigstore Scaffolding `release-fulcio.yaml` downloaded can have an empty YAML document at the end of the file separated by `---` and followed by no elements. This will result in:
+The Sigstore Scaffolding `release-fulcio.yaml` downloaded can have an empty YAML document at the end of the file separated by `---` and followed by no elements. This results in:
+
 ```
 error: error validating "release-fulcio.yaml": error validating data: [apiVersion not set, kind not set]; if you choose to ignore these errors, turn validation off with --validate=false
+
 ```
+
 This is a known issue and you can ignore it.
 
 ```bash
@@ -403,9 +420,9 @@ kubectl wait --timeout 5m -n fulcio-system --for=condition=Ready ksvc fulcio
 
 To install CTLog:
 
-1. `kubectl apply` the `release-ctlog.yaml`
-2. Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
-3. Patch the service account to use the imported `tap-registry` secret
+1. `kubectl apply` the `release-ctlog.yaml`.
+2. Add the `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`.
+3. Patch the service account to use the imported `tap-registry` secret.
 4. Wait for the jobs and services to be `Complete` or be `Ready`.
 
 ```bash
@@ -442,15 +459,15 @@ kubectl wait --timeout 2m -n ctlog-system --for=condition=Ready ksvc ctlog
 
 To install TUF:
 
-1. Add a `RoleBinding` if you are using OpenShift
-1. `kubectl apply` the `release-tuf.yaml`
-2. Add `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`
-3. Patch the service account to use the imported `tap-registry` secret
-4. Copy the public keys from the previous deployment of CTLog, Fulcio, and Rekor to the TUF namespace
-5. Wait for the jobs and services to be `Complete` or be `Ready`.
+1. If you are using OpenShift, add a `RoleBinding`.
+2. `kubectl apply` the `release-tuf.yaml`.
+3. Add the `secretgen` placeholder for `secretgen` to import `tap-registry` secret to the namespace for `queue-proxy`.
+4. Patch the service account to use the imported `tap-registry` secret.
+5. Copy the public keys from the previous deployment of CTLog, Fulcio, and Rekor to the TUF namespace.
+6. Wait for the jobs and services to be `Complete` or be `Ready`.
 
-If you are using OpenShift, we need to set the correct Security Context Constraints so the TUF server
-is able to write to the root filesystem. This is done by adding the `anyuid` Security Context Constraint
+If you are using OpenShift, you must set the correct Security Context Constraints so the TUF server
+can write to the root file system. This is done by adding the `anyuid` Security Context Constraint
 through a `RoleBinding`:
 
 ```bash
@@ -472,6 +489,7 @@ EOF
 ```
 
 Now proceed to install TUF:
+
 ```bash
 echo 'Install TUF'
 kubectl apply -f "release-tuf.yaml"

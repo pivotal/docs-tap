@@ -21,7 +21,7 @@ To create a workload from Git through https, follow these steps:
     kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
     ```
 
-2. (Optional) To pass in  login credentials for a Git repository with the certificate authority (CA) certificate, create a file called git-credentials.yaml. For example:
+2. (Optional) To pass in login credentials for a Git repository with the certificate authority (CA) certificate, create a file called `git-credentials.yaml`. For example:
 
     ```yaml
     apiVersion: v1
@@ -31,20 +31,20 @@ To create a workload from Git through https, follow these steps:
       # namespace: default
     type: Opaque
     data:
-      username: <USERNAME-BASE64>
-      password: <PASSWORD-BASE64>
+      username: USERNAME-BASE64
+      password: PASSWORD-BASE6
       caFile: |
-        <CADATA-BASE64>
+        CADATA-BASE64
     ```
 
     Where:
 
-    - USERNAME-BASE64 is the base64 encoded user name.
-    - PASSWORD-BASE64 is the base64 encoded password.
-    - CADATA-BASE64 is the base64 encoded CA certificate for the
+    - `USERNAME-BASE64` is the base64 encoded user name.
+    - `PASSWORD-BASE64` is the base64 encoded password.
+    - `CADATA-BASE64` is the base64 encoded CA certificate for the
     Git repository.
 
-3. To pass in a custom settings.xml for Java, create a file called settings-xml.yaml. For example:
+3. To pass in a custom settings.xml for Java, create a file called `settings-xml.yaml`. For example:
 
    ```yaml
    apiVersion: v1
@@ -99,7 +99,7 @@ tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRA
 
 ## <a id="create-test-wkload"></a>Create a testing supply chain workload
 
-For instructions about creating a workload with the testing supply chain, see [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md).
+For instructions about creating a workload with the testing supply chain, see [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md#install-OOTB-test).
 
 To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
