@@ -17,10 +17,7 @@ Before installing Supply Chain Security Tools - Scan:
   - **Multi-Cluster:** The Supply Chain Security Tools - Store is present in a different cluster (e.g.: view cluster) where the Supply Chain Security Tools - Scan and `ScanTemplates` will be present.
   - **Integration Deactivated:** The Supply Chain Security Tools - Scan deployment doesn't need to communicate with Supply Chain Security Tools - Store. 
 
-    For usage instructions, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
-
-- Install the Tanzu Insight CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
-  See [Install the Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-installation.md).
+  For more information, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
 ## <a id='install-scst-scan'></a> Install
 
