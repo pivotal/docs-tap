@@ -15,13 +15,13 @@ For information about installing Tanzu Application Platform in an air-gapped env
 
 To create a workload from Git through https, follow these steps:
 
-1. Create a secret in your developer namespace with the caFile that matches the gitops_ssh_secret name in tap_values:
+1. Create a secret in your developer namespace with the caFile that matches the `gitops_ssh_secret` name in tap_values:
 
     ```console
     kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
     ```
 
-2. If you would like to pass in a custom settings.xml for Java, create a file called settings-xml.yaml similar to the following example:
+2. If you would like to pass in a custom settings.xml for Java, create a file called `settings-xml.yaml` similar to the following example:
 
    ```yaml
    apiVersion: v1
@@ -64,7 +64,7 @@ To create a workload from Git through https, follow these steps:
 Next, create your basic supply chain workload. Due to a bug, you must pass in a build environment:
 
 ```console
-tanzu apps workload create APPNAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
+tanzu apps workload create APP-NAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
 ```
 
 If you would rather pass the CA certificate in at workload create time, use the following command:
