@@ -1,13 +1,17 @@
 # Configure target endpoint and certificate
 
-The connection to the Supply Chain Security Tools - Store requires TLS encryption, and the configuration depends on the kind of installation.
+The connection to the Supply Chain Security Tools - Store requires TLS
+encryption, and the configuration depends on the kind of installation.
 
-For a production environment, it's recommended that Supply Chain Security Tools - Store is installed with ingress enabled. The following instructions will help set up the TLS connection assuming that you've deployed with ingress enabled.
-
+For a production environment, VMware recommends that SCST - Store is installed
+with ingress enabled. The following instructions help set up the TLS connection,
+assuming that you deployed with ingress enabled.
 
 ## Using `Ingress`
 
-When using an [Ingress setup](ingress.hbs.md), the Supply Chain Security Tools - Store creates a specific TLS Certificate for HTTPS communications under the `metadata-store` namespace.
+When using an [Ingress setup](ingress.hbs.md), the SCST - Store creates a
+specific TLS Certificate for HTTPS communications under the `metadata-store`
+namespace.
 
 {{> 'partials/insight-ingress-configuration' }}
 
@@ -17,7 +21,7 @@ When using an [Ingress setup](ingress.hbs.md), the Supply Chain Security Tools -
 
 ## <a id='additional-resources'></a>Additional Resources
 
-For instructions on deploying the Supply Chain Security Tools - Store **without** Ingress, see:
+For information about deploying the SCST - Store **without** Ingress, see:
 
 - [Using LoadBalancer](configuration/use-load-balancer.hbs.md)
 - [Using NodePort](configuration/use-node-port.hbs.md)
