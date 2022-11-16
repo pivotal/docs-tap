@@ -1,20 +1,22 @@
 # Install Supply Chain Security Tools - Policy Controller
 
 Supply Chain Security Tools - Policy Controller is installed as part of Tanzu Application
-Platform's Full, Iterate and Run profiles. Use the instructions in this topic to manually install this component.
+Platform's Full, Iterate, and Run profiles. Use the instructions in this topic to manually install this component.
 
 ## <a id='scst-policy-prereqs'></a> Prerequisites
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-
 - A container image registry that supports TLS connections.
+
 >**Note** This component does not work with not secure registries.
 
 - If Supply Chain Security Tools - Sign is installed with an existing running
 Image Policy Webhook `ClusterImagePolicy`, see
 [Migration From Supply Chain Security Tools - Sign](migration.md).
 
-- If the installation is occuring in an air-gapped environment, a Sigstore Stack is required on the cluster or accessible from the air-gapped environment. For more information, see [Install Sigstore Stack](./install-sigstore-stack.hbs.md)
+- If you are installing in an air-gapped environment, a Sigstore Stack is
+  required on the cluster or accessible from the air-gapped environment. See
+  [Install Sigstore Stack](./install-sigstore-stack.hbs.md).
 
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. The Policy Controller only supports ECDSA public keys.
@@ -22,7 +24,9 @@ An example cosign public key is provided that can validate an image from the
 public cosign registry. To provide your own key and images, follow the
 [Cosign Quick Start Guide](https://github.com/sigstore/cosign#quick-start) in GitHub to generate your own keys and sign an image.
 
->**Caution** This component WILL REJECT `pods` if it is not correctly configured. Test your configuration in a test environment before applying policies to your production cluster.
+>**Caution** This component rejects `pods` if they are not correctly configured.
+>Test your configuration in a test environment before applying policies to your
+>production cluster.
 
 ## <a id='install-scst-policy'></a> Install
 
@@ -164,7 +168,9 @@ To install Supply Chain Security Tools - Policy Controller:
       The default value for this field is `6`. If your use requires
       more than 6 pods, change this value to allow the number of replicas you intend to deploy.
 
-      >**Note** VMware recommends to run this component with a critical priority level to prevent the cluster from rejecting all admission requests if the component's `pod`s are evicted due to resource limitations.
+      >**Note** VMware recommends running this component with a critical priority
+      >level to prevent the cluster from rejecting all admission requests if the
+      >component's `pod`s are evicted due to resource limitations.
 
     - `replicas`:
       This setting controls the default amount of replicas deployed by this
