@@ -40,7 +40,7 @@ docs.vmware.com is built.
       - [Install individual packages](install-components-openshift.hbs.md)
       - [Set up namespaces](set-up-namespaces-openshift.hbs.md)
       - [Install Tanzu Developer Tools for VS Code](vscode-install-openshift.hbs.md)
-      - [Custom SCC details](scc-details.hbs.md)
+      - [Custom Security Context Constraint details](scc-details.hbs.md)
   - [Customize package installation](customize-package-installation.md)
   - [Upgrade](upgrading.md)
   - [Opt out of telemetry collection](opting-out-telemetry.md)

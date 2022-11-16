@@ -1,6 +1,6 @@
-# Custom SCC details
+# Custom Security Context Constraint details
 
-Custom SCC (SecurityContextConstraint) details for Tanzu Application Platform components are as follows:
+Custom Security Context Constraint (SCC) details for Tanzu Application Platform components are as follows:
 
 - [Application Accelerator on OpenShift cluster](#acc-scc)
 - [Application Live View on OpenShift](#alv-scc)
