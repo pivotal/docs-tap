@@ -174,9 +174,9 @@ Before you begin, you will need a container image registry to use the sample app
 
 ### <a id="example-app-acc"></a>  Option 1: Application Accelerator
 
-If your company has configured Application Accelerator, you can use it to obtain the sample
-application if the application has not been removed.
-For more information about Application Accelerator, see [Application Accelerator](../application-accelerator/about-application-accelerator.md).
+If your company has configured
+[Application Accelerator](../application-accelerator/about-application-accelerator.md),
+you can obtain the sample application there if it was not removed.
 
 To view the example using Application Accelerator:
 
