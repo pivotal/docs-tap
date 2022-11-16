@@ -59,10 +59,10 @@ ingress_domain: "example.com"
 app_service_type: "ClusterIP" # recommended setting
 ```
 
-An HTTPProxy object is then installed with `metadata-store.example.com` as the
+An HTTPProxy object is installed with `metadata-store.example.com` as the
 fully qualified domain name. See [Ingress](ingress.hbs.md).
 
->**Note** the `ingress_enabled` property expects a string value of `"true"` or `"false"`, not a Boolean value.
+>**Note** The `ingress_enabled` property expects a string value of `"true"` or `"false"`, not a Boolean value.
 
 ### <a id="db-config"></a> Database configuration
 
