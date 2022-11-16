@@ -533,3 +533,4 @@ To exclude packages from a Tanzu Application Platform profile:
 
 - (Optional) [Installing Individual Packages](install-components.html)
 - [Setting up developer namespaces to use installed packages](set-up-namespaces.html)
+- [Replace the default ingress issuer](security-and-compliance/ingress-certificates.hbs.md#replacing-the-default-ingress-issuer)
