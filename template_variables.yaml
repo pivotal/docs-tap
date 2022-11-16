@@ -4,4 +4,4 @@ template_variables:
   url_version: 1.4
   hide_content: true
   app-sso:
-    version: 2.0.0
+    version: 3.0.0
