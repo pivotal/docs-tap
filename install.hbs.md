@@ -496,9 +496,9 @@ To install the `full` dependencies package:
 
     Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
 
-## <a id='developer-namespaces'></a>A Note on Developer Namespaces
-
-[Setting up developer namespaces](set-up-namespaces.html) is a required step before installation is complete. Creating a workload, a Knative Service or other TAP packages will not work until this step is completed.
+>**Important** You must set up developer namespaces before completing the installation. Otherwise, 
+creating a workload, a Knative service and other Tanzu Application Platform packages will fail. 
+For more information, see [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md).
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
