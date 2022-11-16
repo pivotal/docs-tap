@@ -207,6 +207,7 @@ docs.vmware.com is built.
             - [Creating an accelerator](application-accelerator/creating-accelerators/creating-accelerators.md)
             - [Creating accelerator.yaml](application-accelerator/creating-accelerators/accelerator-yaml.md)
             - [Introduction to transforms](application-accelerator/creating-accelerators/transform-intro.md)
+            - [Custom types](application-accelerator/creating-accelerators/custom-types.md)
             - [Composition](application-accelerator/creating-accelerators/composition.md)
             - [Transform reference](application-accelerator/creating-accelerators/transforms/index.md)
                 - [Overview](application-accelerator/creating-accelerators/transforms/index.md)

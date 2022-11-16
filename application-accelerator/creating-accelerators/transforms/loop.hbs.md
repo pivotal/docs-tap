@@ -70,3 +70,37 @@ doAsChain:
     artifactId: "#a"
     version: "'5.7.1'"
 ```
+
+Using `Loop` in combination with [custom types](../custom-types.hbs.md) is of
+course possible and is even a common usecase:
+
+
+```yaml
+accelerator:
+  types:
+    - name: MavenPlugin
+      struct:
+        - name: groupId
+        - name: artifactId
+        - name: version
+  options:
+    - name: pluginsToAdd
+      dataType: [MavenPlugin] # End users will be able to enter a collection of GAV tuples
+engine:
+  include: [pom.xml]
+  chain:
+    - type: Loop
+      on: pluginsToAdd # Iterate on the pluginsToAdd collection
+      var: p           # The variable "p" will contain each tuple in turn
+      doAsChain:       # Will apply the second execution to the result of the first, and so on...
+        type: OpenRewriteRecipe
+        recipe: org.openrewrite.maven.AddPlugin
+        options:
+          groupId:    "#p['groupId']"
+          artifactId: "#p['artifactId']"
+          version:    "#p['version']"
+```
+
+## See also
+
+* [Custom Types](../custom-types.hbs.md)
