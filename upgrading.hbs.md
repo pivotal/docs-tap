@@ -63,11 +63,11 @@ In Tanzu Application Platform v1.3.0, there is a [known issue](scst-policy/known
 Policy Controller that breaks installation. There are various workarounds.
 
 If your chosen workaround was excluding Policy Controller then, when upgrading to
-Tanzu Application Platform v1.3.1, remove the package `policy.apps.tanzu.vmware.com` from the
+Tanzu Application Platform v1.3.2, remove the package `policy.apps.tanzu.vmware.com` from the
 `excluded_packages` list in `tap-values.yaml`.
 
 If your chosen workaround was installing a custom Sigstore Stack then, when upgrading to
-Tanzu Application Platform v1.3.1, remove the `tuf_mirror` and `tuf_root` keys from `tap-values.yaml`
+Tanzu Application Platform v1.3.2, remove the `tuf_mirror` and `tuf_root` keys from `tap-values.yaml`
 to use the official Sigstore TUF root. Afterwards, proceed to [Uninstall Sigstore Stack](./scst-policy/install-sigstore-stack.hbs.md#uninstall-sigstore-stack).
 
 ```yaml
@@ -85,7 +85,7 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --
 When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically run a build that fails due to a missing dependency.
 This error does not persist and any subsequent builds resolve this error.
 You can wait for the next build of the workloads that new source code changes trigger.
-If you do not want to wait for subsequent builds to run automatically, follow the instructions in 
+If you do not want to wait for subsequent builds to run automatically, follow the instructions in
 [Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation

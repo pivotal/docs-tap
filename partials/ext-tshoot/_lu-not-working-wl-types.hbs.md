@@ -12,7 +12,7 @@ This label is not present on  `server` or `worker` workloads.
 
 ### Solution
 
-One solution is to upgrade to Tanzu Application Platform v1.3.1.
+One solution is to upgrade to Tanzu Application Platform v1.3.2.
 
 If you want to remain on Tanzu Application Platform v1.3.0, go to the project's `Tiltfile`, look for
 the `k8s_resource` line, and edit the `extra_pod_selectors` parameter to use any pod selector that

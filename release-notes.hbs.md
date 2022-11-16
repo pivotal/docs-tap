@@ -4,23 +4,13 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 ## <a id='1-3-2'></a> v1.3.2
 
-**Release Date**: December 13, 2022
+**Release Date**: November 15, 2022
 
 ### <a id='1-3-2-security-fixes'></a> Security fixes
 
-### <a id='1-3-2-new-features'></a> Resolved issues
-
-### <a id='1-3-2-known-issues'></a> Known issues
-
-## <a id='1-3-1'></a> v1.3.1
-
-**Release Date**: November 15, 2022
-
-### <a id='1-3-1-security-fixes'></a> Security fixes
-
 This release has the following security fixes, listed by area and component.
 
-#### <a id='1-3-1-stk-sec-fix'></a> Services Toolkit
+#### <a id='1-3-2-stk-sec-fix'></a> Services Toolkit
 
 The following CVEs were removed:
 
@@ -31,60 +21,60 @@ The following CVEs were removed:
 - [CVE-2022-3602](https://nvd.nist.gov/vuln/detail/CVE-2022-3602) (High)
 - [CVE-2022-3786](https://nvd.nist.gov/vuln/detail/CVE-2022-3786) (High)
 
-#### <a id='1-3-1-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
+#### <a id='1-3-2-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
 
 - `glib` is updated to `2.58.0-9.ph3`.
 - `glibc` is updated to `2.28-22.ph3`.
 - `expat` is updated to `2.2.9-10.ph3`.
 - `opa` is updated to `v0.44.0`.
 
-#### <a id='1-3-1-scst-scan-fixes'></a> Supply Chain Security Tools - Scan
+#### <a id='1-3-2-scst-scan-fixes'></a> Supply Chain Security Tools - Scan
 
 - `opa` is updated to `v0.44.0`.
 
-#### <a id='1-3-1-scst-store-fixes'></a> Supply Chain Security Tools - Store
+#### <a id='1-3-2-scst-store-fixes'></a> Supply Chain Security Tools - Store
 
 - Updated the `postgres-bionic-13` image. This fixes
 [CVE-2020-16156](https://nvd.nist.gov/vuln/detail/CVE-2020-16156) and
 [CVE-2022-29458](https://nvd.nist.gov/vuln/detail/CVE-2022-29458).
 
-#### <a id='1-3-1-scst-snyk-fixes'></a> Supply Chain Security Tools - Snyk
+#### <a id='1-3-2-scst-snyk-fixes'></a> Supply Chain Security Tools - Snyk
 
 - `glib` is updated to `2.58.0-9.ph3`.
 - `glibc` is updated to `2.28-22.ph3`.
 - `expat` is updated to `2.2.9-10.ph3`.
 - `opa` is updated to `v0.44.0`.
 
-### <a id='1-3-1-resolved-issues'></a> Resolved issues
+### <a id='1-3-2-resolved-issues'></a> Resolved issues
 
 The following issues, listed by area and component, are resolved in this release.
 
-#### <a id="1-3-1-supplychainplugin-resolved"></a>Supply Chain Choreographer plug-in
+#### <a id="1-3-2-supplychainplugin-resolved"></a>Supply Chain Choreographer plug-in
 
 - Updating a supply chain no longer causes an error (`Can not create edge...`) when an existing
 workload is clicked in the Workloads table and that supply chain is no longer present.
 - The Image Scan timestamp no longer fails to show the latest scan time.
 
-#### <a id="1-3-1-intellij-resolved"></a> Tanzu Developer Tools for IntelliJ
+#### <a id="1-3-2-intellij-resolved"></a> Tanzu Developer Tools for IntelliJ
 
 - The extension can now Live Update when the workload type is `server` or `worker`.
 - The extension no longer stops other debug sessions when stopping one debug session.
 
-#### <a id="1-3-1-vs-code-resolved"></a> Tanzu Developer Tools for VS Code
+#### <a id="1-3-2-vs-code-resolved"></a> Tanzu Developer Tools for VS Code
 
 - The extension no longer shows a warning notification when the user cancels an action.
 - The extension can now generate a snippet on a `Tiltfile` when the user has a Tilt extension installed.
 - The extension can now Live Update when the workload type is `server` or `worker`.
 
-#### <a id="1-3-1-cnr-resolved"></a> Cloud Native Runtimes
+#### <a id="1-3-2-cnr-resolved"></a> Cloud Native Runtimes
 
 - Deploying workloads on a `run` cluster in multicluster setup on Openshift no longer fails with Forbidden errors.
 
-### <a id='1-3-1-known-issues'></a> Known issues
+### <a id='1-3-2-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
 
-#### <a id="1-3-1-grype-scan-known-issues"></a>Grype scanner
+#### <a id="1-3-2-grype-scan-known-issues"></a>Grype scanner
 
 **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
@@ -101,7 +91,7 @@ find vulnerabilities during a source scan.
 The vulnerabilities are still found during the image scan after the binaries are built and packaged
 as images.
 
-#### <a id="1-3-1-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI
+#### <a id="1-3-2-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI
 
 Known security vulnerability
 
@@ -109,7 +99,7 @@ Known security vulnerability
 
     >**Caution** Until the underlying vulnerability is fixed, VMware advises _not_ to use SAML authentication with Tanzu Application Platform GUI. For customers currently leveraging SAML authentication, VMware advises switching to a different authentication mechanism or disabling Tanzu Application Platform GUI in the cluster until a patch version is released that remediates this exploit.
 
-#### <a id="1-3-1-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
+#### <a id="1-3-2-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
 
 - **Supply Chain Choreographer Plug-in**
 
@@ -122,7 +112,7 @@ Known security vulnerability
 - **K8s logging backend  Plug-in**
 
   - Fixes a bug where pod logs did not have OIDC support.
-  
+
 - **App Accelerator Scaffolder Plug-in**
 
   - The kebab-menu in the Accelerators page is not visible when using light-mode theme.
@@ -135,7 +125,7 @@ Known security vulnerability
   - Fixes an error in the "image provider" step when the user attempts to view a workload that was created using a pre-built image.
 
 - **Kubernetes orm**
-  
+
   - fixes an error in the "image provider" step when the user attempts to view a workload that was created using a pre-built image.
 
 - **Backend**

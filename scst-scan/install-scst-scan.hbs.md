@@ -48,7 +48,7 @@ When you install the Supply Chain Security Tools - Scan (Scan controller), you c
 | metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | URL of the Insight Metadata Store | <1.2.0 |
 | metadataStore.authSecret.importFromNamespace | | string | Namespace from which to import the Insight Metadata Store auth_token | <1.2.0 |
 | metadataStore.authSecret.name | n/a | string | Name of deployed secret with key auth_token | <1.2.0 |
-| retryScanJobsSecondsAfterError | 60 | integer | Seconds to wait before retrying errored scans | >1.3.1 |
+| retryScanJobsSecondsAfterError | 60 | integer | Seconds to wait before retrying errored scans | >1.3.2 |
 
 
 When you install the Supply Chain Security Tools - Scan (Grype scanner), you can configure the following optional properties:
