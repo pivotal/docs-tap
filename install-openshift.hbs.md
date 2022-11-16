@@ -204,7 +204,7 @@ The sample values file contains the necessary defaults for:
     >**Important** Keep the values file for future configuration use.
 
 
-1. [View possible configuration settings for your package](view-package-config.hbs.md)
+1. [View possible configuration settings for your package](view-package-config-openshift.hbs.md)
 
 ### <a id='full-profile'></a> Full profile
 
