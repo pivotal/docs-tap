@@ -274,13 +274,13 @@ config_json="${config_json}" \
 ## <a id='sigstore-patch-knative-serving'></a> Patch Knative-Serving
 
 Knative Serving might already be deployed, depending on the selected profile,
-during the first attempt of installing Tanzu Application Platform. This
-component must be present to continue deploying the Sigstore Stack. If Knative
-is not present, install it. See [Install Cloud Native
+during the first attempt of installing Tanzu Application Platform. Knative
+Serving is required to continue deploying the Sigstore Stack. If Knative is not
+present, install it. See [Install Cloud Native
 Runtimes](../cloud-native-runtimes/install-cnrt.hbs.md).
 
 With the Sigstore Stack deployment, you must update Knative Serving's
-`configmap/config-features` to enable some required features.
+`configmap/config-features` to enable required features.
 Run:
 
 ```bash
@@ -621,6 +621,8 @@ Controller, see [Install Supply Chain Security Tools - Policy
 Controller](./install-scst-policy.hbs.md) documentation.
 
 ## <a id='sigstore-uninstall'></a> Uninstall Sigstore Stack
+
+To uninstall Sigstore Stack, run:
 
 ```bash
 kubectl delete -f "release-tuf.yaml"
