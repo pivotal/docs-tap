@@ -41,7 +41,7 @@ For example, in the `tanzu-java-web-app` sample application the POM contains the
 
 ```java
 <properties>
-		<java.version>11</java.version>
+        <java.version>11</java.version>
         ...
 </properties>
 ```
