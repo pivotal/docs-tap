@@ -59,7 +59,8 @@ If you have created a contour ingress controller, verify all pods have a running
 kubectl get pods -n projectcontour -o wide
 ```
 
-For information about installing Contour, which comes with Tanzu Application Platform, see [Install cert-manager, Contour](../../cert-mgr-contour-fcd/install-cert-mgr.hbs.md#a-idinstall-contourainstall-contour).
+For information about installing Contour, which comes with Tanzu Application Platform,
+see [Install cert-manager, Contour](../../cert-mgr-contour-fcd/install-cert-mgr.hbs.md#install-contour).
 
 ## <a id="install-carvel-tools"></a> Install carvel tools
 
