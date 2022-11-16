@@ -1,5 +1,7 @@
 # Known Issues
 
+This topic contains known issues and workarounds for Supply Chain Security Tools - Sign.
+
 ## Invalid TUF key
 
 ### Description
@@ -28,7 +30,7 @@ Manually trigger the first request to the image policy webhook.
 1. Create the `ClusterImagePolicy` with a pattern and any public key:
 
     For example:
-    
+
     ```yaml
     ---
     apiVersion: signing.apps.tanzu.vmware.com/v1beta1
