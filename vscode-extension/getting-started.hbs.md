@@ -285,7 +285,7 @@ Before you begin, you need a container registry for the sample application.
 **Option 1: Application Accelerator**
 
 If your company has configured
-[Application Accelerator](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html),
+[Application Accelerator](../application-accelerator/about-application-accelerator.md),
 you can obtain the sample application there if it was not removed.
 
 1. Open Application Accelerator.
