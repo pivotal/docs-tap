@@ -7,7 +7,7 @@ allows `ClientRegistrations` from is controlled with an annotation.
 
 `ClientRegistrations` select an `AuthServer` with `spec.authServerSelector`. Therefore, an `AuthServer`
 must have a set of labels that uniquely identifies it amongst all `AuthServer`. A `ClientRegistration` must match only
-one `AuthServer`. Register fails if multiple or no `AuthServer` resources are matched.
+one `AuthServer`. Registration fails if multiple or no `AuthServer` resources are matched.
 
 For example:
 
