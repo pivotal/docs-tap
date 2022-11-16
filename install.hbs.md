@@ -496,6 +496,10 @@ To install the `full` dependencies package:
 
     Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
 
+>**Important** You must set up developer namespaces before completing the installation. Otherwise, 
+creating a workload, a Knative service and other Tanzu Application Platform packages will fail. 
+For more information, see [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md).
+
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
 To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
