@@ -19,7 +19,7 @@ tanzu package installed update PACKAGE_INSTALLATION_NAME -p sso.apps.tanzu.vmwar
 VMware strongly recommends that you recreate your `AuthServers` after upgrading your AppSSO package installation to `3.0.0`
 with the following changes:
 
-- Migrate field `.spec.tls.disabled` to `.spec.tls.deactivated`. The older `.disabled` field will be removed in a future release.
+- Migrate field `.spec.tls.disabled` to `.spec.tls.deactivated`. The older `.disabled` field will be removed in the next release.
 
 ### `v1.0.0` to `v2.0.0`
 
