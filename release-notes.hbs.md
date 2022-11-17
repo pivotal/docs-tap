@@ -161,13 +161,13 @@ This release includes the following changes to Tanzu Application Platform and it
 
 - Packaging
   - Out-of-the-box samples are now distributed as OCI images.
-  - GitOps model support for publishing accelerator to facilitate governance around publishing accelerators.
+  - GitOps model support for publishing accelerators to facilitate governance around publishing accelerators.
 - Controller
   - Added source-image support for fragments and Fragment CRD.
 - Engine
   - OpenRewriteRecipe: More recipes are now supported in addition to Java.
-    This includes XML, Properties, Maven, and JSON.
-  - New ConflictResolution Strategy : `NWayDiff` merges files modified in different places, as long as they don't conflict. Similar to the Git diff3 algorithm.
+    This includes XML, properties, Maven, and JSON.
+  - New ConflictResolution Strategy: `NWayDiff` merges files modified in different places, provided they don't conflict. Similar to the Git diff3 algorithm.
   - Enforces the validity of `inputType`: Accepts only valid values: `text`, `textarea`, `checkbox`, `select`, and `radio`.
 - Server
   - Added configmap to store accelerator invocation counts.
