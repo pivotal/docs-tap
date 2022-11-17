@@ -3,12 +3,18 @@
 You can configure Tanzu Application Platform GUI to retrieve Kubernetes object details from multiple
 clusters and then surface those details in the various Tanzu Application Platform GUI plug-ins.
 
-> Note about `View` and `Run`: Below we use the terms `View` and `Run` to describe the cluster's roles and distinguish which steps should be applied to which cluster. `Run` clusters are where the Tanzu Application Platform workloads themselves run. `View` clusters are where the Tanzu Application Platform GUI is run from. In multi-cluster configurations, these can be separate clusters. However, in many configurations these can also be the same cluster.
+> **Important**
+> In this topic the terms `View` and `Run` describe the cluster's roles and distinguish
+> which steps to apply to which cluster.
+> `Run` clusters are where the Tanzu Application Platform workloads themselves run.
+> `View` clusters are where the Tanzu Application Platform GUI is run from.
+> In multicluster configurations, these can be separate clusters. However, in many configurations
+> these can also be the same cluster.
 
 ## <a id="set-up-service-account"></a> Set up a Service Account to view resources on a cluster
 
-To view resources on a `Run` cluster, you must create a service account on the `View` cluster that can
-`get`, `watch`, and `list` resources on that `Run` cluster.
+To view resources on a `Run` cluster, create a service account on the `View` cluster that can `get`,
+`watch`, and `list` resources on that `Run` cluster.
 You first create a `ClusterRole` with these rules and a `ServiceAccount` in its own `Namespace`, and
 then bind the `ClusterRole` to the `ServiceAccount`.
 
@@ -128,7 +134,8 @@ To do so:
 
     This YAML content creates `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
 
-1. On the `Run` cluster, create `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding` by running:
+1. On the `Run` cluster, create `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`
+   by running:
 
     ```console
     kubectl create -f tap-gui-viewer-service-account-rbac.yaml
@@ -165,7 +172,7 @@ To do so:
      ```
 
 1. (Optional) Configure the Kubernetes client to verify the TLS certificates presented by a cluster's
-API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
+   API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
 
     ```console
     CLUSTER_CA_CERTIFICATES=$(kubectl config view --raw -o jsonpath='{.clusters[?(@.name=="CLUSTER-NAME")].cluster.certificate-authority-data}')
@@ -184,57 +191,58 @@ API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
 The cluster must be identified to Tanzu Application Platform GUI with the `ServiceAccount` token
 and the cluster Kubernetes control plane URL.
 
-You must add a `kubernetes` section to the `app_config` section in the `tap-values.yaml` file that Tanzu Application Platform used when you installed it.
+You must add a `kubernetes` section to the `app_config` section in the `tap-values.yaml` file that
+Tanzu Application Platform used when you installed it.
 This section must have an entry for each cluster that has resources to view.
 
 To do so:
 
 1. Copy this YAML content into `tap-values.yaml`:
 
-  ```yaml
-  tap_gui:
-  ## Previous configuration above
-    app_config:
-      kubernetes:
-        serviceLocatorMethod:
-          type: 'multiTenant'
-        clusterLocatorMethods:
-          - type: 'config'
-            clusters:
-            ## Cluster 1
-              - url: CLUSTER-URL
-                name: CLUSTER-NAME
-                authProvider: serviceAccount
-                serviceAccountToken: "CLUSTER-TOKEN"
-                skipTLSVerify: true
-                skipMetricsLookup: true
-            ## Cluster 2+
-              - url: CLUSTER-URL
-                name: CLUSTER-NAME
-                authProvider: serviceAccount
-                serviceAccountToken: "CLUSTER-TOKEN"
-                skipTLSVerify: true
-                skipMetricsLookup: true
-  ```
+     ```yaml
+     tap_gui:
+     ## Previous configuration above
+       app_config:
+         kubernetes:
+           serviceLocatorMethod:
+             type: 'multiTenant'
+           clusterLocatorMethods:
+             - type: 'config'
+               clusters:
+               ## Cluster 1
+                 - url: CLUSTER-URL
+                   name: CLUSTER-NAME
+                   authProvider: serviceAccount
+                   serviceAccountToken: "CLUSTER-TOKEN"
+                   skipTLSVerify: true
+                   skipMetricsLookup: true
+               ## Cluster 2+
+                 - url: CLUSTER-URL
+                   name: CLUSTER-NAME
+                   authProvider: serviceAccount
+                   serviceAccountToken: "CLUSTER-TOKEN"
+                   skipTLSVerify: true
+                   skipMetricsLookup: true
+     ```
 
-  Where:
+     Where:
 
- - `CLUSTER-URL` is the value you discovered earlier.
- - `CLUSTER-TOKEN` is the value you discovered earlier.
- - `CLUSTER-NAME` is a unique name of your choice.
+     - `CLUSTER-URL` is the value you discovered earlier.
+     - `CLUSTER-TOKEN` is the value you discovered earlier.
+     - `CLUSTER-NAME` is a unique name of your choice.
 
-  If there are resources to view on the cluster that hosts Tanzu Application Platform GUI, add an
-  entry to `clusters` for it as well.
+     If there are resources to view on the cluster that hosts Tanzu Application Platform GUI, add an
+     entry to `clusters` for it as well.
 
-  If you would like the Kubernetes client to verify the TLS certificates presented by a cluster's
-  API server, set the following properties for the cluster:
+     If you would like the Kubernetes client to verify the TLS certificates presented by a cluster's
+     API server, set the following properties for the cluster:
 
-  ```yaml
-  skipTLSVerify: false
-  caData: CLUSTER-CA-CERTIFICATES
-  ```
+     ```yaml
+     skipTLSVerify: false
+     caData: CLUSTER-CA-CERTIFICATES
+     ```
 
-  Where `CLUSTER-CA-CERTIFICATES` is the value you discovered earlier.
+     Where `CLUSTER-CA-CERTIFICATES` is the value you discovered earlier.
 
 1. Update the `tap-gui` package by running this command:
 
@@ -243,12 +251,11 @@ To do so:
     ```
 
 1. Wait a moment for the `tap-gui` package to update and then verify that `STATUS` is
-`Reconcile succeeded` by running:
+   `Reconcile succeeded` by running:
 
     ```console
     tanzu package installed get tap-gui -n tap-install
     ```
-
 
 ## <a id="runtime-resrc-plug-in"></a> View resources on multiple clusters in the Runtime Resources Visibility plug-in
 
