@@ -50,10 +50,7 @@ To install Eventing:
           provider      <nil>    string   Optional: Kubernetes cluster provider. To be specified if deploying Eventing on a local Kubernetes cluster provider.
         ```
 
-    1. Create a `eventing-values.yaml` by using the following sample as a guide:
-
-        Sample `eventing-values.yaml` for Eventing:
-
+    1. Create a `eventing-values.yaml` by using the following sample `eventing-values.yaml` as a guide:
 
         ```console
         ---
@@ -63,8 +60,8 @@ To install Eventing:
 
         >**Note** For most installations, you can leave the `eventing-values.yaml` empty, and use the default values.
 
-        If you are running on a single-node cluster, such as kind or minikube, set the `lite.enable: true`
-        option. This option reduces resources requests for CNR deployments.
+        If you run on a single-node cluster, such as kind or minikube, set the `lite.enable:` to `true`. 
+        This option reduces resources requests for Cloud Native Runtimes deployments.
 
 1. Install the package by running:
 
@@ -90,7 +87,7 @@ To install Eventing:
     Added installed package 'eventing'
     ```
 
-    Use an empty file for `eventing-values.yaml` if you want the default installation configuration. Otherwise, see the previous step to learn more about setting installation configuration values.
+    Use an empty file for `eventing-values.yaml` to enable default installation configuration. Otherwise, see the previous step to set installation configuration values.
 
 1. Verify the package install by running:
 
