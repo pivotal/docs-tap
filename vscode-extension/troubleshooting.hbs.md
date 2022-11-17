@@ -6,7 +6,7 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 
 {{> 'partials/ext-tshoot/cannot-view-workloads' }}
 
-## <a id='dbg-fail-crrpt-lnch-conf'>Starting a Debug Session Errors with `Unable to open debugger port`
+## <a id='dbg-fail-crrpt-lnch-conf'>Starting a Tanzu Debug session fails with `Unable to open debugger port`
 
 ### Symptom
 
@@ -45,7 +45,7 @@ the plug-in when the plug-in is hot-swapped into an active session instead of lo
 Closing and restarting IntelliJ typically fixes this problem.
 If that doesn't work for you, delete the old corrupted launch configuration and recreate it.
 
-## <a id='lu-not-working-classversion'></a> Live update errors with `UnsupportedClassVersionError`
+## <a id='lu-not-working-classversion'></a> Live update fails with `UnsupportedClassVersionError`
 
 ### Symptom
 
