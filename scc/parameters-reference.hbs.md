@@ -94,9 +94,9 @@ Parameters:
   <tr>
     <td><code>gitops_ssh_secret<code></td>
     <td>
-      Name of the secret in the same namespace as the `Workload` used for
+      Name of the secret in the same namespace as the <code>Workload</code> used for
       providing credentials for fetching source code from the Git repository.
-      See [Git authentication](git-auth.hbs.md).
+      For more information, see <a href="git-auth.html">Git authentication</a>.
     </td>
     <td>
       <pre>
@@ -977,11 +977,10 @@ Parameters:
   <tr>
     <td><code>gitops_ssh_secret<code></td>
     <td>
-      Name of the secret in the same namespace as the `Deliverable` used for
+      Name of the secret in the same namespace as the <code>Deliverable</code> used for
       providing credentials for fetching Kubernetes configuration files from
-      the Git repository pointed at.
-
-      See [Git authentication](git-auth).
+      the Git repository pointed at.<br><br>
+      For more information, see <a href="git-auth.html">Git authentication</a>.
     </td>
     <td>
       <pre>
