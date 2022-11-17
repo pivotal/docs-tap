@@ -519,7 +519,7 @@ For information about resolving this issue, see the Cloud Native Runtimes [troub
 
 **Eventing package fails during a TAP Profile-based installation**
 
-For information about resolving this issue, see the section Known issue in Eventing 2.0 during the upgrade of a profile-based installation in the [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-upgrade.html#known-issue-eventing-profile-based).
+For information about resolving this issue, see the Known issue in the [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-upgrade.html#known-issue-eventing-profile-based).
 
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
