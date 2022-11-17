@@ -315,61 +315,61 @@ To install Contour from the Tanzu Application Platform package repository:
 
     2. Create a `contour-install.yaml` file by using the following sample as a guide:
 
-    >**Note** This sample is for installation in an AWS public cloud with `LoadBalancer` services:
+        >**Note** This sample is for installation in an AWS public cloud with `LoadBalancer` services.
 
-    ```yaml
-    apiVersion: packaging.carvel.dev/v1alpha1
-    kind: PackageInstall
-    metadata:
-      name: contour
-      namespace: tap-install
-    spec:
-      serviceAccountName: contour-tap-install-sa
-      packageRef:
-        refName: contour.tanzu.vmware.com
-        versionSelection:
-          constraints: 1.22.0+tap.5
-          prereleases: {}
-      values:
-      - secretRef:
+        ```yaml
+        apiVersion: packaging.carvel.dev/v1alpha1
+        kind: PackageInstall
+        metadata:
+          name: contour
+          namespace: tap-install
+        spec:
+          serviceAccountName: contour-tap-install-sa
+          packageRef:
+            refName: contour.tanzu.vmware.com
+            versionSelection:
+              constraints: 1.22.0+tap.5
+              prereleases: {}
+          values:
+          - secretRef:
+              name: contour-values
+        ---
+        apiVersion: v1
+        kind: Secret
+        metadata:
           name: contour-values
-    ---
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: contour-values
-      namespace: tap-install
-    stringData:
-      values.yaml: |
-        envoy:
-          service:
-            type: LoadBalancer
-        infrastructure_provider: aws
-    ```
+          namespace: tap-install
+        stringData:
+          values.yaml: |
+            envoy:
+              service:
+                type: LoadBalancer
+            infrastructure_provider: aws
+        ```
 
-    The LoadBalancer type is appropriate for most installations, but local
-    clusters such as `kind` or `minikube` can fail to complete the package
-    install if LoadBalancer services are not supported.
+        The LoadBalancer type is appropriate for most installations, but local
+        clusters such as `kind` or `minikube` can fail to complete the package
+        install if LoadBalancer services are not supported.
 
-    For local clusters, you can configure `contour.evnoy.service.type` to be
-    `NodePort`. If your local cluster is set up with extra port mappings on
-    the nodes, you might also need configure `envoy.service.nodePorts.http`
-    and `envoy.service.nodePorts.https` to match the port mappings from your
-    local machine into one of the nodes of your local cluster. This pattern
-    is seen when using the [Learning Center on
-    Kind](../learning-center/local-install-guides/deploying-to-kind.html).
+        For local clusters, you can configure `contour.evnoy.service.type` to be
+        `NodePort`. If your local cluster is set up with extra port mappings on
+        the nodes, you might also need configure `envoy.service.nodePorts.http`
+        and `envoy.service.nodePorts.https` to match the port mappings from your
+        local machine into one of the nodes of your local cluster. This pattern
+        is seen when using the [Learning Center on
+        Kind](../learning-center/local-install-guides/deploying-to-kind.html).
 
-    Contour provides an Ingress implementation by default. If you have another Ingress
-    implementation in your cluster, you must explicitly specify an
-    [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
-    to select a particular implementation.
+        Contour provides an Ingress implementation by default. If you have another Ingress
+        implementation in your cluster, you must explicitly specify an
+        [IngressClass](https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-class)
+        to select a particular implementation.
 
-    [Cloud Native Runtimes](#install-cnr) programs Contour HTTPRoutes are based on the
-    installed namespace. The default installation of CNR uses a single Contour to provide
-    internet-visible services. You can install a second Contour instance with service type
-    `ClusterIP` if you want to expose some services to only the local cluster.
-    The second instance must be installed in a separate namespace.
-    You must set the CNR value `ingress.internal.namespace` to point to this namespace.
+        [Cloud Native Runtimes](#install-cnr) programs Contour HTTPRoutes are based on the
+        installed namespace. The default installation of CNR uses a single Contour to provide
+        internet-visible services. You can install a second Contour instance with service type
+        `ClusterIP` if you want to expose some services to only the local cluster.
+        The second instance must be installed in a separate namespace.
+        You must set the CNR value `ingress.internal.namespace` to point to this namespace.
 
 6. Install the package by running:
 
