@@ -70,6 +70,25 @@ workload is clicked in the Workloads table and that supply chain is no longer pr
 
 - Deploying workloads on a `run` cluster in multicluster setup on Openshift no longer fails with Forbidden errors.
 
+#### <a id="1-3-2-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI plug-ins
+
+- **Kubernetes logging backend plug-in:**
+
+  - Fixes issue where pod logs did not have OIDC support.
+
+- **Supply Chain plug-in:**
+
+  - Fixed issue where changing the supply chain of a workload caused UI errors
+  - Fixed issue with the timestamp not updating in the source scanning and image stages
+  - Fixed issue in the tables where the filters were hidden when sorting columns
+  - Fixed issue in the image provider step when the user attempts to view a workload that was created
+    by using a pre-built image.
+
+- **Kubernetes ORM:**
+
+  - Fixed issue in the image provider step when the user attempts to view a workload that was created
+    using a pre-built image.
+
 ### <a id='1-3-2-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
@@ -101,7 +120,7 @@ Known security vulnerability
 
 #### <a id="1-3-2-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
 
-- **Supply Chain Choreographer Plug-in**
+- **Supply Chain Choreographer plug-in:**
 
   - The UI shows the error message `Unable to retrieve details from Image Provider Stage` when the
     Builder is not available or configured. However, the CLI shows the correct error message
@@ -109,28 +128,13 @@ Known security vulnerability
   - Clicking on the `Scan Template` link in the **Overview** section for a scanning stage causes a
     blank page to open in the browser.
 
-- **K8s logging backend  Plug-in**
+- **Application Accelerator Scaffolder plug-in:**
 
-  - Fixes a bug where pod logs did not have OIDC support.
+  - The More Options button on the **Accelerators** page is not visible when using the light-mode theme.
 
-- **App Accelerator Scaffolder Plug-in**
+- **Backend:**
 
-  - The kebab-menu in the Accelerators page is not visible when using light-mode theme.
-
-- **Supply Chain Plugin**
-
-  - Fixes an error where changing the supply chain of a workload resulted in UI errors.
-  - Fixes an error with the timestamp not being updated in the scanning stages (source scanning and image scanning).
-  - Fixes an error in the tables where the filters were being hidden when sorting columns.
-  - Fixes an error in the "image provider" step when the user attempts to view a workload that was created using a pre-built image.
-
-- **Kubernetes orm**
-
-  - fixes an error in the "image provider" step when the user attempts to view a workload that was created using a pre-built image.
-
-- **Backend**
-
-  - Override the catalog url for accelerator templates.
+  - Override the catalog URL for accelerator templates.
 
 ## <a id='1-3-0'></a> v1.3.0
 
