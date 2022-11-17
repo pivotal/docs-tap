@@ -60,7 +60,7 @@ kubectl get pods -n projectcontour -o wide
 ```
 
 For information about installing Contour, which comes with Tanzu Application Platform,
-see [Install cert-manager, Contour](../../cert-mgr-contour-fcd/install-cert-mgr.hbs.md#install-contour).
+see [Install cert-manager, Contour](../../cert-mgr-contour-fcd/install.hbs.md#install-cert-mgr).
 
 ## <a id="install-carvel-tools"></a> Install carvel tools
 
