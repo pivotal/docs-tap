@@ -14,7 +14,9 @@ Platform's Full, Iterate, and Run profiles. Use the instructions in this topic t
 Image Policy Webhook `ClusterImagePolicy`, see
 [Migration From Supply Chain Security Tools - Sign](migration.md).
 
-- If you are installing in an air-gapped environment and need to enable verification via keyless authorities (`policy.tuf_enabled: true`), a Sigstore Stack is required on the cluster or accessible from the air-gapped environment. See [Install Sigstore Stack](./install-sigstore-stack.hbs.md)
+- For keyless authorities support setting the value `policy.tuf_enabled: true` is required. By default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`. 
+
+- If you are installing in an air-gapped environment and require keyless authorities, a Sigstore Stack needs to be deployed on the cluster or be accessible from the air-gapped environment. For more information, see [Install Sigstore Stack](./install-sigstore-stack.hbs.md).
 
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. The Policy Controller only supports ECDSA public keys.
@@ -42,9 +44,6 @@ To install Supply Chain Security Tools - Policy Controller:
     $ tanzu package available list policy.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for policy.apps.tanzu.vmware.com...
       NAME                          VERSION        RELEASED-AT
-      policy.apps.tanzu.vmware.com  1.0.0          2022-06-02 20:00:00 -0400 EDT
-      policy.apps.tanzu.vmware.com  1.0.1          2022-06-08 20:00:00 -0400 EDT
-      ...
       policy.apps.tanzu.vmware.com  1.2.0          2023-10-01 20:00:00 -0400 EDT
     ```
 
@@ -196,8 +195,6 @@ To install Supply Chain Security Tools - Policy Controller:
     - `tuf_enabled`:
       This setting defines whether the TUF initialization is done on startup. It is a requirement for the support of the keyless verification.
       The default value is "false", which means by default the keyless authorities of `ClusterImagePolicy`is not supported, but also that policy-controller does not have an external dependency on setup. 
-
-      >**Note** If keyless support is needed in the target environment this setting must be explicitly enabled. 
 
     - `tuf_root`:
       The root.json file content of the TUF mirror.

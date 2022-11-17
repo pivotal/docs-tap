@@ -129,6 +129,8 @@ spec:
 Authorities listed in the `authorities` block of the ClusterImagePolicy are
 `key` or `keyless` specifications.
 
+>**Note** Keyless support is disabled by default. For more information, see [Install Doc](./install-scst-policy.hbs.md).
+
 Each `key` authority can contain a PEM-encoded ECDSA public key, a `secretRef`,
 or a `kms` path.
 
@@ -154,7 +156,7 @@ in the `cosign-system` namespace or the namespace where the Policy Controller
 is installed. Such secret must only contain one `data` entry with the public key.
 
 Each keyless authority can contain a Fulcio URL, a Rekor URL, a certificate, or
-an array of identities. For keyless support see the [Install Doc](./install-scst-policy.hbs.md).
+an array of identities.
 
 ```yaml
 spec:

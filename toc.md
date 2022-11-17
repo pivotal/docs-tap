@@ -437,7 +437,6 @@ docs.vmware.com is built.
       - [Install Sigstore Stack](scst-policy/install-sigstore-stack.md)
       - [Migration From Supply Chain Security Tools - Sign](scst-policy/migration.md)
       - [Configure Supply Chain Security Tools - Policy](scst-policy/configuring.md)
-      - [Supply Chain Security Tools - Policy Known Issues](scst-policy/known-issues.md)
     - [Supply Chain Security Tools for Tanzu - Sign](scst-sign/overview.md)
       - [Supply Chain Security Tools for Tanzu - Sign overview](scst-sign/overview.md)
       - [Install Supply Chain Security Tools - Sign](scst-sign/install-scst-sign.md)

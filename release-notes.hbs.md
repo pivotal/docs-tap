@@ -46,9 +46,9 @@ This release has the following breaking changes, listed by area and component.
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
 
-#### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools for VMware Tanzu - Policy Controller
+#### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
 
-- Policy Controller no longer initializes the TUF root by default which is needed to support the keyless authorities in `ClusterImagePolicy`. To continue using this feature it is required to provide the value `policy.tuf_enabled: true` through the `tap-values.yaml` during the upgrade process. 
+Policy Controller no longer initializes TUF by default which is needed to support the keyless authorities in `ClusterImagePolicy`. To continue to use keyless authorities, it is required to provide the value `policy.tuf_enabled: true` through the `tap-values.yaml` during the upgrade process. Then by default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`. 
 
 ### <a id='1-4-0-security-fixes'></a> Security fixes
 
