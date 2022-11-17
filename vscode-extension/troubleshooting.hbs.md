@@ -53,12 +53,18 @@ After live-update has synchronized changes you made locally to the running workl
 start failing with an error message similar to the following:
 
 ```console
-Caused by: org.springframework.beans.factory.CannotLoadBeanClassException: Error loading class<br>
-[com.example.springboot.HelloController] for bean with name 'helloController' defined in file<br>
-[/workspace/BOOT-INF/classes/com/example/springboot/HelloController.class]: problem with class file<br>
-or dependent class; nested exception is<br>
-java.lang.UnsupportedClassVersionError: com/example/springboot/HelloController has been compiled by<br>
-a more recent version of the Java Runtime (class file version 61.0), this version of the<br>
+Caused by: org.springframework.beans.factory.CannotLoadBeanClassException: Error loading class
+
+[com.example.springboot.HelloController] for bean with name 'helloController' defined in file
+
+[/workspace/BOOT-INF/classes/com/example/springboot/HelloController.class]: problem with class file
+
+or dependent class; nested exception is
+
+java.lang.UnsupportedClassVersionError: com/example/springboot/HelloController has been compiled by
+
+a more recent version of the Java Runtime (class file version 61.0), this version of the
+
 Java Runtime only recognizes class file versions up to 55.0
 ```
 
