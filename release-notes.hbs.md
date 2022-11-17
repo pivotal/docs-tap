@@ -517,9 +517,9 @@ For information about resolving this issue, see the Cloud Native Runtimes [troub
 
 #### <a id="eventing-issues"></a> Eventing
 
-**Eventing package fails during a TAP Profile-based installation**
+**Eventing package fails during a profile-based Tanzu Application Platform installation**
 
-For information about resolving this issue, see the Known issue in the [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-upgrade.html#known-issue-eventing-profile-based).
+For information about resolving this issue, see the known issue in the [Cloud Native Runtimes documentation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-upgrade.html#known-issue-eventing-profile-based).
 
 #### <a id="grype-scan-known-issues"></a>Grype scanner
 
