@@ -14,9 +14,7 @@ Platform's Full, Iterate, and Run profiles. Use the instructions in this topic t
 Image Policy Webhook `ClusterImagePolicy`, see
 [Migration From Supply Chain Security Tools - Sign](migration.md).
 
-- If you are installing in an air-gapped environment, a Sigstore Stack is
-  required on the cluster or accessible from the air-gapped environment. See
-  [Install Sigstore Stack](./install-sigstore-stack.hbs.md).
+- If you are installing in an air-gapped environment and need to enable verification via keyless authorities (`policy.tuf_enabled: true`), a Sigstore Stack is required on the cluster or accessible from the air-gapped environment. See [Install Sigstore Stack](./install-sigstore-stack.hbs.md)
 
 - During configuration for this component, you are asked to provide a cosign public key to use to
 validate signed images. The Policy Controller only supports ECDSA public keys.
@@ -46,6 +44,8 @@ To install Supply Chain Security Tools - Policy Controller:
       NAME                          VERSION        RELEASED-AT
       policy.apps.tanzu.vmware.com  1.0.0          2022-06-02 20:00:00 -0400 EDT
       policy.apps.tanzu.vmware.com  1.0.1          2022-06-08 20:00:00 -0400 EDT
+      ...
+      policy.apps.tanzu.vmware.com  1.2.0          2023-10-01 20:00:00 -0400 EDT
     ```
 
 1. (Optional) Make changes to the default installation settings by running:
@@ -54,45 +54,49 @@ To install Supply Chain Security Tools - Policy Controller:
     tanzu package available get policy.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
 
-    Where `VERSION` is the version number you discovered. For example, `1.0.1`.
+    Where `VERSION` is the version number you discovered. For example, `1.2.0`.
 
     For example:
 
     ```console
-    $ tanzu package available get policy.apps.tanzu.vmware.com/1.0.1 --values-schema --namespace tap-install
-    | Retrieving package details for policy.apps.tanzu.vmware.com/1.0.1...
+    $ tanzu package available get policy.apps.tanzu.vmware.com/1.2.0 --values-schema --namespace tap-install
+    | Retrieving package details for policy.apps.tanzu.vmware.com/1.2.0...
 
-    KEY                   DEFAULT        TYPE     DESCRIPTION
-    custom_ca_secrets     <nil>          array    List of custom CA secrets that should be included in the application container
-                                                  for registry communication. An array of secret references each containing a
-                                                  secret_name field with the secret name to be referenced and a namespace field
-                                                  with the name of the namespace where the referred secret resides.
-    custom_cas            <nil>          array    List of custom CA contents that should be included in the application container
-                                                  for registry communication. An array of items containing a ca_content field with
-                                                  the PEM-encoded contents of a certificate authority.
-    requests_cpu          20m            string   The CPU request defines the minimum CPU time for the Policy
-                                                  Controller manager. During CPU contention, CPU request is used as
-                                                  a weighting where higher CPU requests are allocated more CPU time.
-                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
+    KEY                   DEFAULT        TYPE     DESCRIPTION                                                                                                  
+    replicas              1              integer  The number of replicas to be created for the Policy Controller. This value must not be enclosed              
+                                                  in quotes. If this value is not specified then a default value of 1 is used.                                 
+    requests_cpu          20m            string   The CPU request defines the minimum CPU time for the Policy                                                  
+                                                  Controller manager. During CPU contention, CPU request is used as                                            
+                                                  a weighting where higher CPU requests are allocated more CPU time.                                           
+                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu                
+                                                                                                                                                              
+    requests_memory       20Mi           string   The memory request defines the minium memory amount for the Policy Controller manager.                       
+                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory             
+                                                                                                                                                              
+    tuf_enabled           false          boolean  Enable TUF initialization. It is a requirement for the support of the keyless verification.      
 
-    deployment_namespace  cosign-system  string   Deployment namespace specifies the namespace where this component should be
-                                                  deployed to. If not specified, "cosign-system" is assumed.
-    limits_cpu            200m           string   The CPU limit defines a hard ceiling on how much CPU time
-                                                  that the Policy Controller manager container can use.
-                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
-
-    limits_memory         200Mi          string   The memory limit defines a hard ceiling on how much memory
-                                                  that the Policy Controller manager container can use.
-                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
-
-    quota.pod_number      6              string   The maximum number of Policy Controller Pods allowed to be created with the
-                                                  priority class system-cluster-critical. This value must be enclosed in quotes
-                                                  (""). If this value is not specified then a default value of 6 is used.
-    replicas              1              integer  The number of replicas to be created for the Policy Controller. This value must
-                                                  not be enclosed in quotes. If this value is not specified then a default value
-                                                  of 1 is used.
-    requests_memory       20Mi           string   The memory request defines the minium memory amount for the Policy Controller manager.
-                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
+    custom_cas            <nil>          array    List of custom CA contents that should be included in the application container for registry communication.  
+                                                  An array of items containing a ca_content field with the PEM-encoded contents of a certificate authority.    
+    deployment_namespace  cosign-system  string   Deployment namespace specifies the namespace where this component should be deployed to.                     
+                                                  If not specified, "cosign-system" is assumed.                                                                
+    limits_memory         200Mi          string   The memory limit defines a hard ceiling on how much memory                                                   
+                                                  that the Policy Controller manager container can use.                                                        
+                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory             
+                                                                                                                                                              
+    quota.pod_number      6              string   The maximum number of Policy Controller Pods allowed to be created with the priority class                   
+                                                  system-cluster-critical. This value must be enclosed in quotes (""). If this value is not                    
+                                                  specified then a default value of 6 is used.                                                                 
+    tuf_root                             string   The root.json file content of the TUF mirror                                                                 
+                                                                                                                                                              
+    custom_ca_secrets     <nil>          array    List of custom CA secrets that should be included in the application container for registry communication.   
+                                                  An array of secret references each containing a secret_name field with the secret name to be referenced      
+                                                  and a namespace field with the name of the namespace where the referred secret resides.                      
+    limits_cpu            200m           string   The CPU limit defines a hard ceiling on how much CPU time                                                    
+                                                  that the Policy Controller manager container can use.                                                        
+                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu                
+                                                                                                                                                              
+    tuf_mirror                           string   TUF mirror address                                                                                           
+                                                                                        
     ```
 
 1. Create a file named `scst-policy-values.yaml` and add the settings you want to customize:
@@ -189,6 +193,18 @@ To install Supply Chain Security Tools - Policy Controller:
       This setting controls the minimum memory resource allocated to the Policy
       admission controller. The default value is "20Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
 
+    - `tuf_enabled`:
+      This setting defines whether the TUF initialization is done on startup. It is a requirement for the support of the keyless verification.
+      The default value is "false", which means by default the keyless authorities of `ClusterImagePolicy`is not supported, but also that policy-controller does not have an external dependency on setup. 
+
+      >**Note** If keyless support is needed in the target environment this setting must be explicitly enabled. 
+
+    - `tuf_root`:
+      The root.json file content of the TUF mirror.
+    
+    - `tuf_mirror`:
+      This setting defines the TUF mirror address which is used for doing the initialization.
+
 2. Install the package:
 
     ```console
@@ -199,14 +215,14 @@ To install Supply Chain Security Tools - Policy Controller:
       --values-file scst-policy-values.yaml
     ```
 
-    Where `VERSION` is the version number you discovered earlier. For example, `1.0.1`.
+    Where `VERSION` is the version number you discovered earlier. For example, `1.2.0`.
 
     For example:
 
     ```console
     $ tanzu package install policy-controller \
         --package-name policy.apps.tanzu.vmware.com \
-        --version 1.0.1 \
+        --version 1.2.0 \
         --namespace tap-install \
         --values-file scst-policy-values.yaml
 

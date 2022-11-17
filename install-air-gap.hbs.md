@@ -153,7 +153,9 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 
 ## <a id='air-gap-policy'></a> Prepare Sigstore TUF Stack for Air-gapped Policy Controller
 
-Supply Chain Security Tools - Policy Controller requires access to a The Update Framework (TUF) server.
+>**Note** This section only applies if the target environment requires support for keyless auhtorities in `ClusterImagePulicy`. In this case Tanzu Application Platform needs to be installed with the value `policy.tuf_enabled: true` and a Sigstore TUF stack needs to be deployed or made accessible.
+
+With the TUF initialization enabled Supply Chain Security Tools - Policy Controller requires access to a The Update Framework (TUF) server.
 In an environment with public Internet access, the public official Sigstore TUF server is used.
 
 The Sigstore Stack consists of:
@@ -192,13 +194,6 @@ The sample values file contains the necessary defaults for:
     - Subordinate packages, or individual child packages
 
     Keep the values file for future configuration use.
-
-    While installing Tanzu Application Platform v1.3 and later,
-    exclude the policy controller `policy.apps.tanzu.vmware.com`, or deploy a
-    Sigstore Stack to use as a TUF Mirror. For more information, see [Policy
-    controller known issues](scst-policy/known-issues.hbs.md).
-
-    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
 
 ### <a id='full-profile'></a> Full Profile
 

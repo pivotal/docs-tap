@@ -154,7 +154,7 @@ in the `cosign-system` namespace or the namespace where the Policy Controller
 is installed. Such secret must only contain one `data` entry with the public key.
 
 Each keyless authority can contain a Fulcio URL, a Rekor URL, a certificate, or
-an array of identities.
+an array of identities. For keyless support see the [Install Doc](./install-scst-policy.hbs.md).
 
 ```yaml
 spec:
