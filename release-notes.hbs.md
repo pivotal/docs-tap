@@ -231,7 +231,7 @@ For instructions about using Carbon Black Cloud Scanner with Tanzu Application P
     - Refer to [workload apply > maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---maven-artifact) for a more detailed explanation about these flags and how to use them.
 - `tanzu apps workload get` improvements:
   - Optimized the routines triggered when engaged in iterative development on the local file system.
-    - Running `tanzu apps workload apply my-app --local-path . ... only uploads the contents of the project directory when source code changes are detected.
+    - Running `tanzu apps workload apply my-app --local-path . ...` only uploads the contents of the project directory when source code changes are detected.
   - Added an OUTPUT column to the resource table in the Supply Chain section to provide visibility to the resource that's stamped out by each supply chain step.
     - The stamped out resource can be helpful when troubleshooting supply chain issues for a workload. For example, the OUTPUT value can be copied and pasted into a `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail).
   - Added a Delivery section that provides visibility to the delivery steps and the health, status, and stamped out resource associated with each delivery step.
