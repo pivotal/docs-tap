@@ -74,4 +74,6 @@ credentials to pull an image from the registry for scanning.
 
 > **Note:** See [Multicluster setup](../../scst-store/multicluster-setup.hbs.md) for more information about the value settings of `grype.metadataStore`.
 
-> **Note:** The `scanning.metadatastore.url` must be set to an empty string if you're installing Grype Scanner v1.2.0 or later or Snyk Scanner to deactivate the embedded Supply Chain Security Tools - Store integration.
+> **Note** You must set the `scanning.metadatastore.url` to an empty string if you're installing Grype Scanner v1.2.0 and later or Snyk Scanner to deactivate the embedded SCST - Store integration.
+
+>**Note:** If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.
