@@ -8,7 +8,7 @@ description of the page the user is looking at, and a list of support
 item groupings. For example, the default menu on the Catalog page looks like
 this:
 
-![Support menu](./images/support-menu.png)
+![Screenshot of the support menu, which has links for the Tanzu Support Page and the Tanzu Application Platform documentation.](../images/support-menu.png)
 
 Out of the box, there are two support item groupings:
 
@@ -59,7 +59,7 @@ The `url` field under the `support` stanza, for example,
 determines the address of the "contact support" link that appears on error
 pages like this one:
 
-![Error Page](./images/error-page.png)
+![Screenshot of the 404 Error Page Not Found Page.](../images/error-page.png)
 
 ### <a id="items"></a> Items
 
