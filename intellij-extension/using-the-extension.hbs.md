@@ -27,7 +27,7 @@ To start debugging on the cluster:
 2. Right-click the `workload.yaml` file in your project.
 3. Click **Debug 'Tanzu Debug Workload...'** in the pop-up menu.
 
-    ![The IntelliJ interface showing the project tab with the workload.yaml file pop-up menu open and the Tanzu Debug Workload option highlighted](../images/intellij-debugWorkload.png)
+    ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Debug Workload option highlighted.](../images/intellij-debugWorkload.png)
 
 4. Ensure that the configuration parameters are set:
 
@@ -37,7 +37,7 @@ To start debugging on the cluster:
    - **Local Path:** This is the path on the local file system to a directory of source code to build.
    - **Namespace:** This is the namespace that workloads are deployed into.
 
-    ![Debug config parameters](../images/intellij-config.png)
+    ![Create Run Configuration window showing populated configuration parameter text boxes.](../images/intellij-config.png)
 
    You can also manually create Tanzu Debug configurations by using the **Edit Configurations**
    IntelliJ UI.
@@ -46,7 +46,7 @@ To start debugging on the cluster:
 
 Click the stop button in the **Debug** overlay to stop debugging on the cluster.
 
-![The IntelliJ interface showing the debug interface pointing out the stop rectangle icon and mouseover description](../images/intellij-stopDebug.png)
+![The IntelliJ interface showing the debug interface pointing out the stop rectangle icon and mouseover description.](../images/intellij-stopDebug.png)
 
 ### <a id="start-live-update"></a> Start Live Update
 
@@ -54,7 +54,7 @@ To start Live Update:
 
 1. Right-click your project’s Tiltfile and then click **Run 'Tanzu Live Update - ...'**.
 
-   ![The IntelliJ interface showing the project tab with the Tiltfile file pop-up menu open](../images/intellij-startLiveUpdate.png)
+   ![The IntelliJ interface showing the project tab with the Tiltfile file pop-up menu open.](../images/intellij-startLiveUpdate.png)
 
 2. Ensure that the configuration parameters are set:
 
@@ -63,7 +63,7 @@ To start Live Update:
     - **Local Path:** This is the path on the local file system to a directory of source code to build.
     - **Namespace:** This is the namespace that workloads are deployed into.
 
-    ![Live Update config parameters](../images/intellij-liveupdate-config.png)
+    ![Edit Run Configuration window showing the Live Update configuration parameter text boxes.](../images/intellij-liveupdate-config.png)
 
 > **Note** You must compile your code before the changes are synchronized to the container.
 > For example, `Build Project`: `⌘`+`F9`.
@@ -73,7 +73,7 @@ To start Live Update:
 To stop Live Update, use the native controls to stop the Tanzu Live Update Run Configuration that is
 running.
 
-![Stop Live Update](../images/intellij-stopliveupdate.png)
+![Screenshot of the native controls. The Stop Tanzu Live Update button is highlighted.](../images/intellij-stopliveupdate.png)
 
 ## <a id="workload-panel"></a> Tanzu Workloads panel
 
@@ -95,7 +95,7 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
     kubectl config set-context --current --namespace=YOUR-NAMESPACE
     ```
 
-    ![Workload Panel](../images/intellij-panel-debug-running.png)
+    ![Screenshot of Tanzu Workloads Panel. The tab on the right shows a Java file named HelloController.](../images/intellij-panel-debug-running.png)
 
 ## <a id="mono-repo"></a> Working with microservices in a monorepo
 
@@ -208,4 +208,4 @@ For these projects, make these adjustments:
    the repository root. Because submodules have dependencies on code outside of their own subfolder,
    all source code from the repository must be supplied to the workload builder.
 
-   ![Launch Config Editor](../images/intellij-mono-repo-launch-config.png)
+   ![Edit Run Configuration window for Tanzu Debug dash SMTP-gateway.](../images/intellij-mono-repo-launch-config.png)
