@@ -22,7 +22,7 @@ You can use the example blank catalog described in the Tanzu Application Platfor
 and main component YAML files.
 
 Relationship Diagram:
-![Tanzu Application Platform GUI Relationships](../images/tap-gui-relationships.jpg)
+![Relationships box-and-line diagram. User 1 is within Group 1, which is within Organization. Component 2 is within System. User 1 owns Component 2. Group 1 owns System.](../images/tap-gui-relationships.jpg)
 
 ### <a id='users-and-groups'></a> Users and groups
 
