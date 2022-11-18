@@ -86,7 +86,7 @@ When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image res
 This error does not persist and any subsequent builds resolve this error.
 You can wait for the next build of the workloads that new source code changes trigger.
 If you do not want to wait for subsequent builds to run automatically, follow the instructions in 
-[Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
+[Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
