@@ -99,8 +99,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 1. (Optional) Make changes to the default installation settings:
 
     If you're using the Grype Scanner `v1.2.0 and earlier`, or the Snyk Scanner, the
-    following scanning configuration can deactivate the embedded Supply Chain
-    Security Tools - Store integration with a `scan-values.yaml` file, such as:
+    following scanning configuration might deactivate the embedded SCST - Store integration with a `scan-values.yaml` file.
 
     ```yaml
     ---
