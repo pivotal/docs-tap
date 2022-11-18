@@ -51,7 +51,7 @@ The first way to use the API documentation plug-in is API-first.
 Click **APIs** in the left-hand navigation sidebar of Tanzu Application Platform GUI.
 This opens the **API catalog page**.
 
-![Screenshot of API catalog page](../images/api-plugin-1.png)
+![Screenshot of the API catalog page. The API named demo-api is framed in red.](../images/api-plugin-1.png)
 
 On that page, you can view all the APIs already registered in the catalog regardless of whether they
 are associated with components or systems.
@@ -61,24 +61,24 @@ software catalog, listed on the home page of Tanzu Application Platform GUI.
 If there is an API entity associated with the selected component or system, the **VIEW API** icon
 is active.
 
-![Screenshot of Component page](../images/api-plugin-2.png)
+![Screenshot of the Component page. The View API button is framed in red.](../images/api-plugin-2.png)
 
 The **VIEW API** tab displays which APIs are being consumed by a component and which APIs are
 being provided by the component.
 
-![Screenshot of VIEW API page](../images/api-plugin-3.png)
+![Screenshot of the VIEW API page. The API named demo-api is framed in red.](../images/api-plugin-3.png)
 
 Clicking on the API itself takes you to the catalog entry for the API, which the Kind
 type listed in the upper-left corner denotes.
 Every API entity has a title and short description, including a reference to the team that owns the
 definition of that API and the software catalog objects that are connected to it.
 
-![Screenshot of API page - Overview](../images/api-plugin-4.png)
+![Screenshot of the Overview tab on the page for an API named demo-api.](../images/api-plugin-4.png)
 
 By choosing the **Definition** tab on the top of the API page, you can see the definition of that
 API in human-readable and machine-readable format.
 
-![Screenshot of API page - Definition](../images/api-plugin-5.png)
+![Screenshot of the Definition tab on the page for an API named demo-api.](../images/api-plugin-5.png)
 
 The API documentation plug-in supports the following API formats:
 
@@ -97,7 +97,7 @@ software catalog entity:
 
 1. Click **REGISTER ENTITY**.
 
-    ![REGISTER button on the right side of the header](../../images/getting-started-tap-gui-5.png)
+    ![Screenshot of Your Organization Catalog. The REGISTER ENTITY button in the header is framed in red.](../../images/getting-started-tap-gui-5.png)
 
 1. **Register an existing component** prompts you to type a repository URL.
 Paste the link to the `catalog-info.yaml` file of your choice that contains the definition of your
@@ -150,7 +150,7 @@ repository of your choice.
 
 1. Click **ANALYZE** and then review the catalog entities to be added.
 
-    ![Review the entities to be added to the catalog](../images/api-plugin-6.png)
+   ![Screenshot of the workflow diagram to create a new API entity. The Review stage has been reached.](../images/api-plugin-6.png)
 
 1. Click **IMPORT**.
 
