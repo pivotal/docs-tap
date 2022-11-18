@@ -23,7 +23,7 @@ This page gives a tabular overview containing the following information:
 The user can navigate between **Information Categories** by selecting from the drop-down menu on the
 top right corner of the page.
 
-![Details Page in UI](images/details.png)
+![Details Page in the UI for an example application named demo.](images/details.png)
 
 ## <a id="health-page"></a> Health page
 
@@ -34,7 +34,7 @@ It lists all the components that make up the health of the application such as r
 and disk space.
 It displays the status, details associated with each of the components.
 
-![Health Page in UI](images/health.png)
+![Health Page in the UI listing positive states for several components.](images/health.png)
 
 ## <a id="environment-page"></a> Environment page
 
@@ -71,9 +71,9 @@ The page also includes the following capabilities for `editing` configured envir
 > properties of the application and a corresponding, editable environment must be present in the
 > application.
 
-![Environment Page in UI](images/environment-1.png)
+![Environment Page in the UI showing many properties.](images/environment-1.png)
 
-![Environment Page Editable in UI](images/environment-2.png)
+![Environment Page in the UI showing text properties that can be edited.](images/environment-2.png)
 
 ## <a id="log-levels-page"></a> Log Levels page
 
@@ -93,7 +93,7 @@ The **Reset All** on top right corner of the page resets all the loggers to defa
 
 > **Note** The UI allows the user to change the log levels and see the live changes on the application. These changes are temporary and will go away if the underlying pod gets restarted.
 
-![Log Levels Page in UI](images/log-levels.png)
+![Log Levels Page in the UI showing many loggers.](images/log-levels.png)
 
 ## <a id="threads-page"></a> Threads page
 
@@ -109,9 +109,9 @@ The refresh icon refreshes to the latest state of the threads.
 The user can view more thread details by clicking on the Thread ID.
 The page also has a feature to download thread dump for analysis purposes.
 
-![Threads Page in UI](images/threads-1.png)
+![Threads Page in the UI showing thread identities and statuses.](images/threads-1.png)
 
-![Thread Details Page in UI](images/threads-2.png)
+![Thread Details Page in the UI showing in-depth details for a thread.](images/threads-2.png)
 
 ## <a id="memory-page"></a> Memory page
 
@@ -120,7 +120,7 @@ To navigate to the **Memory** page, the user can select the `Memory` option from
 - The memory page highlights the memory use inside of the JVM. It displays a graphical representation of the different memory regions within heap and non-heap memory. This visualizes data from inside of the JVM (in case of Spring Boot apps running on a JVM) and therefore provides memory insights into the application in contrast to "outside" information about the Kubernetes pod level.
 - The real-time graphs displays a stacked overview of the different spaces in memory with the total memory used and total memory size. The page contains graphs to display the GC pauses and GC events. The **Heap Dump** on top right corner allows the user to download heap dump data.
 
-![Memory Page in UI](images/memory.png)
+![Memory Page in the UI showing four graphs. The top-left graph is selected.](images/memory.png)
 
 >**Note** This graphical visualization happens in real time and shows real-time data only.
 As mentioned at the top, the Application Live View features do not store any information.
@@ -143,9 +143,9 @@ The toggle **/actuator/\*\* Request Mappings** displays the actuator related map
 does not return any actuator request mappings data in the context.
 The application displays a message when the actuator toggle is enabled.
 
-![Request Mappings Page in UI](images/request-mappings-1.png)
+![Request Mappings Page in the UI. A search text box is at the top right.](images/request-mappings-1.png)
 
-![Request Mappings Details Page in UI](images/request-mappings-2.png)
+![Request Mappings Details Page in the UI showing a handler and what it produces.](images/request-mappings-2.png)
 
 ## <a id="http-requests-page"></a> HTTP Requests page
 
@@ -170,9 +170,9 @@ traces of the application.
 HTTP Traces data is returned for the application.
 In this case, a message is displayed when the actuator toggle is enabled.
 
-![Http Requests Page in UI](images/http-requests-1.png)
+![HTTP Requests Page in the UI showing a graph and, below it, a list of the latest requests.](images/http-requests-1.png)
 
-![Http Request Details Page in UI](images/http-requests-2.png)
+![HTTP Request Details Page in the UI. The Close button for the Details page is at the bottom.](images/http-requests-2.png)
 
 ## <a id="caches-page"></a> Caches page
 
@@ -189,7 +189,7 @@ The user can clear all the caches completely by clicking **Evict All**.
 If there are no cache managers for the application, the message
 `No cache managers available for the application` is displayed.
 
-![Caches Page in UI](images/caches.png)
+![Caches Page in the UI that shows a table for cache names and targets.](images/caches.png)
 
 ## <a id="config-props-page"></a> Configuration Properties page
 
@@ -201,7 +201,7 @@ In case of Spring Boot, it displays application's @ConfigurationProperties beans
 It gives a snapshot of all the beans and their associated configuration properties.
 The search feature allows the user to look up for property's key/value or the bean name.
 
-![Configuration Properties Page in UI](images/config-props.png)
+![Configuration Properties Page in the UI. The search text box is at the top right.](images/config-props.png)
 
 ## <a id="conditions-page"></a> Conditions page
 
@@ -218,7 +218,7 @@ In case of not configured beans, it shows both the matched and unmatched conditi
 In addition to this, it also displays names of unconditional auto configuration classes if any.
 The user can filter out on the beans and the conditions using the search feature.
 
-![Conditions Page in UI](images/conditions.png)
+![Conditions Page in the UI. The search text box is at the top right.](images/conditions.png)
 
 ## <a id="scheduled-tasks-page"></a> Scheduled Tasks page
 
@@ -232,7 +232,7 @@ associated with them.
 The user can search for a particular property or a task in the search bar to retrieve the task or
 property details.
 
-![Scheduled Tasks Page in UI](images/scheduled-tasks.png)
+![Scheduled Tasks Page in the UI. The search text box is at the top right.](images/scheduled-tasks.png)
 
 ## <a id="beans-page"></a> Beans page
 
@@ -242,7 +242,7 @@ The beans page provides information about a list of all application beans and it
 It displays the information about the bean type, dependencies, and its resource.
 The user can search by the bean name or its corresponding fields.
 
-![Beans Page in UI](images/beans.png)
+![Beans Page in the UI. The search text box is at the top right.](images/beans.png)
 
 ## <a id="metrics-page"></a> Metrics page
 
@@ -262,7 +262,7 @@ The user can also refresh the metrics manually by clicking **Refresh All**.
 The format of the metric value can be changed according to the user's needs.
 They can delete a particular metric by clicking the minus symbol in the same row.
 
-![Metrics Page in UI](images/metrics.png)
+![Metrics Page in the UI. The ADD METRIC button is at the far right.](images/metrics.png)
 
 ## <a id="actuator-page"></a> Actuator page
 
@@ -271,7 +271,7 @@ To navigate to the **Actuator** page, the user can select the **Actuator** optio
 The actuator page provides a tree view of the actuator data.
 The user can choose from a list of actuator endpoints and parse through the raw actuator data.
 
-![Actuator Page in UI](images/actuator.png)
+![Actuator Page in the UI. The ENDPOINT drop-down menu is at the top left, below the Information Category drop-down menu.](images/actuator.png)
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
