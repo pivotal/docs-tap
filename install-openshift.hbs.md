@@ -202,6 +202,8 @@ The sample values file contains the necessary defaults for:
     - Subordinate packages, or individual child packages.
 
     >**Important** Keep the values file for future configuration use.
+    
+    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides a secure means for tap components to read these credentials.
 
 
 1. [View possible configuration settings for your package](view-package-config-openshift.hbs.md)
