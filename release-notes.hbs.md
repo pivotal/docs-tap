@@ -80,13 +80,13 @@ after the binaries are built and packaged as images.
 #### <a id="1-1-2-known-issues-scst-scan"></a>Supply Chain Security Tools - Scan
 
 **Blob Source Scan is reporting wrong source URL:**
-- When running a Source Scan of a blob compressed file, Supply Chain Security Tools - Scan looks for a `.git` directory present in the files to extract information that is useful for the report sent to the Supply Chain Security Tools - Store deployment.
+- When running a Source Scan of a blob compressed file, SCST - Scan looks for a `.git` directory present in the files to extract useful information for the report sent to the SCST - Store deployment.
 
 - Workaround - The following workarounds fix this issue:
 
-  1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
-  1. Configure your SourceScan or Workload to connect by using HTTPS to the repository instead of using SSH.
-  1. Edit the FluxCD GitRepository resource to not include the `.git` directory.
+  1. This problem is resolved in SCST - Scan `v1.2.0`. Upgrade your SCST - Scan and Grype Scanner deployment to version `v1.2.0` or later.
+  2. Configure your SourceScan or Workload to connect using HTTPS to the repository instead of using SSH.
+  3. Edit the FluxCD GitRepository resource to not include the `.git` directory.
 
 #### <a id="1-1-2-known-issues-scst-sign"></a>Supply Chain Security Tools - Sign
 
