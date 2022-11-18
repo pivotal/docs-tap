@@ -430,9 +430,9 @@ Follow these steps to install the Tanzu Application Platform package:
 3. If you configured `full` dependencies in your `tap-values.yaml` file, install the `full` dependencies
 by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
-After installing the Full profile on your cluster, you can install the
-Tanzu Developer Tools for VS Code Extension to help you develop against it.
-For instructions, see [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md).
+>**Important** After installing the full profile on your cluster, you must set up developer namespaces. Otherwise, 
+creating a workload, a Knative service or other Tanzu Application Platform packages fails. 
+For more information, see [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md).
 
 >**Note** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
@@ -495,10 +495,6 @@ To install the `full` dependencies package:
     ```
 
     Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
-
->**Important** You must set up developer namespaces before completing the installation. Otherwise, 
-creating a workload, a Knative service or other Tanzu Application Platform packages fails. 
-For more information, see [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md).
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
