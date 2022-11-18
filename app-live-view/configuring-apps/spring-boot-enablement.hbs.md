@@ -17,8 +17,8 @@ Add the maven dependency in `pom.xml` as follows:
 </dependency>
 ```
 
-To enable Application Live View for Spring Boot apps, the Spring Boot conventions automatically sets the Application Live View labels onto the PodSpec.
-For more information on the labels automatically set by Spring Boot Convention, see [Enabling Application Live View for Spring Boot Applications](../../spring-boot-conventions/enabling-app-live-view.md).
+To enable Application Live View for Spring Boot apps, Spring Boot conventions automatically sets the Application Live View labels onto the PodSpec.
+For more information on the labels automatically set by Spring Boot conventions, see [Enabling Application Live View for Spring Boot Applications](../../spring-boot-conventions/enabling-app-live-view.md).
 
 
 ## Enable Spring Cloud Gateway apps
@@ -39,7 +39,7 @@ Add the maven dependencies in `pom.xml` as follows:
 </dependency>
 ```
 
-To enable Application Live View on the Spring Cloud Gateway TAP workload, the Spring Boot conventions automatically applies labels on the workload, such as `tanzu.app.live.view.application.flavours: spring-boot_spring-cloud-gateway` and `tanzu.app.live.view: true`, based on the Spring Cloud Gateway image metadata.
+To enable Application Live View on the Spring Cloud Gateway Tanzu Application Platform workload, Spring Boot conventions automatically applies labels on the workload, such as `tanzu.app.live.view.application.flavours: spring-boot_spring-cloud-gateway` and `tanzu.app.live.view: true`, based on the Spring Cloud Gateway image metadata.
 
 Here is an example of creating a workload for a Spring Cloud Gateway Application:
 
@@ -52,18 +52,18 @@ tanzu apps workload create tanzu-scg-web-app --git-repo https://github.com/ksank
 
 If your application image is NOT built with Tanzu Build Service, to enable Application Live View on `Spring Boot` Tanzu Application Platform workload, use the following command. For example:
 
-```
+```console
 tanzu apps workload create boot-app --type web --app boot-app --image <IMAGE NAME> --annotation autoscaling.knative.dev/min-scale=1 --yes --label tanzu.app.live.view=true --label tanzu.app.live.view.application.name=boot-app --label tanzu.app.live.view.application.flavours=spring-boot
 ```
 
 If your application image is NOT built with Tanzu Build Service, to enable Application Live View on `Spring Cloud Gateway` Tanzu Application Platform workload, use the following command. For example:
 
-```
+```console
 tanzu apps workload create scg-app --type web --app scg-app --image <IMAGE NAME> --annotation autoscaling.knative.dev/min-scale=1 --yes --label tanzu.app.live.view=true --label tanzu.app.live.view.application.name=scg-app --label tanzu.app.live.view.application.flavours=spring-boot_spring-cloud-gateway
 ```
 
 If your application image is NOT built with Tanzu Build Service, to enable Application Live View on `Steeltoe` Tanzu Application Platform workload, use the following command. For example:
 
-```
+```console
 tanzu apps workload create steeltoe-app --type web --app steeltoe-app --image <IMAGE NAME> --annotation autoscaling.knative.dev/min-scale=1 --yes --label tanzu.app.live.view=true --label tanzu.app.live.view.application.name=steeltoe-app --label tanzu.app.live.view.application.flavours=steeltoe
 ```

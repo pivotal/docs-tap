@@ -10,9 +10,9 @@ It enhances Tanzu PodIntents with metadata such as labels, annotations, or app p
 This metadata allows Application Live View, specifically the connector, to discover
 app instances so that Application Live View can access the actuator data from those workloads.
 
->**Note** The Application Live View Conventions now supports only Steeltoe Applications. The Spring Boot Conventions supports both Spring Boot and Spring Cloud Gateway Applications. <!--For more information about Spring Boot Conventions, see [Enabling Application Live View with Spring Boot Applications](../../spring-boot-conventions/app-live-view-enablement.hbs.md)-->
+>**Note** Application Live View Conventions now supports only Steeltoe applications. Spring Boot Conventions supports both Spring Boot and Spring Cloud Gateway applications. <!--For more information about Spring Boot Conventions, see [Enabling Application Live View with Spring Boot Applications](../../spring-boot-conventions/app-live-view-enablement.hbs.md)-->
 
-To run Application Live View with Steeltoe apps, the Spring Boot convention recognizes PodIntents and adds the following metadata labels
+To run Application Live View with Steeltoe apps, the Spring Boot convention recognizes PodIntents and adds the following metadata labels:
 
 - `tanzu.app.live.view: "true"`: Enables the connector to observe application pod.
 - `tanzu.app.live.view.application.name: APPLICATION-NAME`: Identifies the app name to be used internally by Application Live View.
@@ -45,9 +45,9 @@ You can verify the applied labels and annotations by running:
 kubectl get podintents.conventions.carto.run WORKLOAD-NAME -o yaml
 ```
 
-Where `WORKLOAD-NAME` the name of the deployed workload, for example `steetoe-app`.
+Where `WORKLOAD-NAME` is the name of the deployed workload, for example `steetoe-app`.
 
-Expected output for Steeltoe Workload:
+Expected output for Steeltoe workload:
 
 ```console
 apiVersion: conventions.carto.run/v1alpha1
