@@ -60,7 +60,7 @@ To install Eventing:
 
         >**Note** For most installations, you can leave the `eventing-values.yaml` empty, and use the default values.
 
-        If you run on a single-node cluster, such as kind or minikube, set the `lite.enable:` to `true`. 
+        If you run on a single-node cluster, such as kind or minikube, set the `lite.enable:` property to `true`.
         This option reduces resources requests for Cloud Native Runtimes deployments.
 
 1. Install the package by running:
