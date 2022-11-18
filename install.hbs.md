@@ -434,7 +434,7 @@ by following the procedure in [Install full dependencies](#tap-install-full-deps
 creating a workload, a Knative service or other Tanzu Application Platform packages fails. 
 For more information, see [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md).
 
->**Note** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
+You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
 ```
 tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --values-file tap-values.yaml -n tap-install
