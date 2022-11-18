@@ -197,6 +197,7 @@ The sample values file contains the necessary defaults for:
     exclude the policy controller `policy.apps.tanzu.vmware.com`, or deploy a
     Sigstore Stack to use as a TUF Mirror. For more information, see [Policy
     controller known issues](scst-policy/known-issues.hbs.md).
+    
     >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides a secure means for tap components to read these credentials.
 
 ### <a id='full-profile'></a> Full Profile
