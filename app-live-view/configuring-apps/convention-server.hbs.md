@@ -10,7 +10,7 @@ It enhances Tanzu PodIntents with metadata such as labels, annotations, or app p
 This metadata allows Application Live View, specifically the connector, to discover
 app instances so that Application Live View can access the actuator data from those workloads.
 
->**Note** Application Live View Conventions now supports only Steeltoe applications. Spring Boot Conventions supports both Spring Boot and Spring Cloud Gateway applications. <!--For more information about Spring Boot Conventions, see [Enabling Application Live View with Spring Boot Applications](../../spring-boot-conventions/app-live-view-enablement.hbs.md)-->
+>**Note** Application Live View Conventions now supports only Steeltoe applications. Spring Boot conventions supports both Spring Boot and Spring Cloud Gateway applications. For more information about Spring Boot conventions, see [Enable Application Live View with Spring Boot apps](../../spring-boot-conventions/enabling-app-live-view.hbs.md)
 
 To run Application Live View with Steeltoe apps, the Spring Boot convention recognizes PodIntents and adds the following metadata labels:
 

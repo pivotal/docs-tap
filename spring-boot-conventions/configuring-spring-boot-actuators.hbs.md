@@ -1,4 +1,4 @@
-# Configuring and Accessing Spring Boot actuators in Tanzu Application Platform
+# Configure and access Spring Boot actuators in Tanzu Application Platform
 
 This topic describes how Spring Boot actuators are automatically configured by the Spring Boot conventions in Tanzu Application Platform. With this feature, users can activate/deactivate the automatic configuration of actuators on Tanzu Application Platform and on individual workloads.
 

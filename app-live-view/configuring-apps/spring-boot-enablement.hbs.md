@@ -18,7 +18,7 @@ Add the maven dependency in `pom.xml` as follows:
 ```
 
 To enable Application Live View for Spring Boot apps, Spring Boot conventions automatically sets the Application Live View labels onto the PodSpec.
-For more information on the labels automatically set by Spring Boot conventions, see [Enabling Application Live View for Spring Boot Applications](../../spring-boot-conventions/enabling-app-live-view.md).
+For more information on the labels automatically set by Spring Boot conventions, see [Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
 
 
 ## Enable Spring Cloud Gateway apps

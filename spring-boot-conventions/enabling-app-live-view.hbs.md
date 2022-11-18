@@ -1,4 +1,4 @@
-# Enable Application Live View for Spring Boot Applications
+# Enable Application Live View for Spring Boot applications
 
 To run Application Live View for Spring Boot apps, Spring Boot conventions recognizes PodIntents and automatically adds the following metadata labels:
 
@@ -15,7 +15,7 @@ To run Application Live View for Spring Cloud Gateway apps, Spring Boot conventi
 - `tanzu.app.live.view.application.flavours: spring-boot,spring-cloud-gateway`: Exposes the framework flavors of the app.
 
 These metadata labels allow Application Live View to identify pods that are enabled for Application Live View. The metadata labels also tell the Application Live View connector what kind of app it is and on which port the actuators are accessible for Application Live View.
-For more information, see [Configuring and Accessing Spring Boot Actuators in TAP](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
+For more information, see [Configuring and accessing Spring Boot actuators in Tanzu Application Platform](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
 
 
 ## <a id="verify"></a> Verify the applied labels and annotations

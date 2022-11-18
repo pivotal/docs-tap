@@ -1,4 +1,4 @@
-# Enabling Steeltoe apps for Application Live View
+# Enable Steeltoe apps for Application Live View
 
 This topic describes how developers can extend .NET Core Apps to Steeltoe apps and enable
 Application Live View on Steeltoe workloads within Tanzu Application Platform.
