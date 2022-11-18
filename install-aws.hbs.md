@@ -160,9 +160,9 @@ The sample values file contains the necessary defaults for:
     - The meta-package, or parent Tanzu Application Platform package.
     - Subordinate packages, or individual child packages.
 
-    >**Important** Keep the values file for future configuration use.
-    
-    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides a secure means for tap components to read these credentials.
+    Keep the values file for future configuration use.
+
+    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
 
 1. [View possible configuration settings for your package](view-package-config-aws.hbs.md)
 

@@ -193,12 +193,12 @@ The sample values file contains the necessary defaults for:
 
     Keep the values file for future configuration use.
 
-    >**Important** While installing Tanzu Application Platform v1.3 and later,
+    While installing Tanzu Application Platform v1.3 and later,
     exclude the policy controller `policy.apps.tanzu.vmware.com`, or deploy a
     Sigstore Stack to use as a TUF Mirror. For more information, see [Policy
     controller known issues](scst-policy/known-issues.hbs.md).
-    
-    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides a secure means for tap components to read these credentials.
+
+    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
 
 ### <a id='full-profile'></a> Full Profile
 
