@@ -10,7 +10,7 @@ The `workload.yaml` must be a single-document YAML file, not a multidocument YAM
 
 When working with multiple projects in a single workspace, you can configure the Tanzu Dev Tools Extension settings on a per-project basis by using the dropdown selector in the `Settings` page.
 
-![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu is expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
+![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu shows both projects in the current workspace.](../images/vscode-multiple-projects.png)
 
 ## <a id="debugging-on-clust"></a> Debugging on the cluster
 
@@ -120,7 +120,7 @@ The Live Update status bar entry shows the following states:
 The Live Update status bar entry can be hidden by right-clicking on it and selecting
 **Hide 'Tanzu Developer Tools (Extension)'**.
 
-![The VS Code interface showing the Tanzu Live Update Status section of the Status bar with the right-click menu open and the Hide Tanzu Developer Tools (Extension) option highlighted.](../images/vscode-liveupdatestatus2.png)
+![VS Code interface showing the Tanzu Live Update Status section of the Status bar. The pop-up menu is open.](../images/vscode-liveupdatestatus2.png)
 
 ## <a id="switch-namespace"></a> Switch Namespace
 
