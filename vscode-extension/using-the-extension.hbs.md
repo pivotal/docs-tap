@@ -11,7 +11,7 @@ The `workload.yaml` must be a single-document YAML file, not a multidocument YAM
 When working with multiple projects in a single workspace, you can configure the extension settings
 on a per-project basis by using the drop-down menu in **Settings**.
 
-![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu is expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
+![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu shows both projects in the current workspace.](../images/vscode-multiple-projects.png)
 
 ## <a id="apply-workload"></a> Apply a workload
 
@@ -55,7 +55,7 @@ To apply a workload from the Command Palette:
 
     After the workload is deployed, the status on the Tanzu Workloads panel changes to `Ready`.
 
-    ![Workload ready on Tanzu Workloads.](../images/vscode-panel-workload-ready.png)
+    ![Workload ready on Tanzu Workloads. It shows details for tanzu-java-web-app.](../images/vscode-panel-workload-ready.png)
 
 To apply a workload from the context menu:
 
@@ -113,7 +113,7 @@ To start debugging on the cluster:
 1. Right-click the `workload.yaml` file in your project.
 1. Select **Debug 'Tanzu Debug Workload...'** in the pop-up menu.
 
-    ![The VS Code interface showing the Explorer tab with the workload.yaml file pop-up menu open and the Tanzu: Java Debug Start option highlighted.](../images/vscode-startdebug1.png)
+    ![The VS Code interface showing the Explorer tab with the Workload YAML file pop-up menu open and the Tanzu: Java Debug Start option highlighted.](../images/vscode-startdebug1.png)
 
 ### <a id="stop-debugging"></a> Stop Debugging on the cluster
 
@@ -199,7 +199,7 @@ The Live Update status bar entry shows the following states:
 To hide the Live Update status bar entry, right-click it and select
 **Hide 'Tanzu Developer Tools (Extension)'**.
 
-![The VS Code interface showing the Tanzu Live Update Status section of the Status bar with the right-click menu open and the Hide Tanzu Developer Tools (Extension) option highlighted.](../images/vscode-liveupdatestatus2.png)
+![VS Code interface showing the Tanzu Live Update Status section of the Status bar. The pop-up menu is open.](../images/vscode-liveupdatestatus2.png)
 
 ## <a id="delete-workload"></a> Delete a workload
 
@@ -258,4 +258,4 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
     kubectl config set-context --current --namespace=YOUR-NAMESPACE
     ```
 
-    ![VS Code Workload Panel](../images/vscode-panel-live-update-running.png)
+    ![VS Code Workload Panel showing the Terminal log.(../images/vscode-panel-live-update-running.png)
