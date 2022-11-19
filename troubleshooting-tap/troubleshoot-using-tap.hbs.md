@@ -34,6 +34,29 @@ kubectl get image.kpack.io <workload-name> -o yaml
 kubectl get build.kpack.io -o yaml
 ```
 
+## <a id='builder-not-ready'></a> Workload creation hangs with "Builder default is not ready" message 
+
+You may see the "Builder default is not ready" message in two places:
+1. the "Messages" section of the `tanzu apps workload get my-app` command
+2. the Supply Chain section of the TAP GUI
+
+This message indicates there is something wrong with the Builder (the component which builds the container image for your workload).
+
+**Explanation**
+
+This message is typically encountered when the core component of the Builder (`kpack`) gets into a bad state.</br>
+
+Although this isn't the only scenario where this may happen, kpack can get into a bad state when TAP has been deployed to a local `minikube` or `kind` cluster and especially when that `minikube` or `kind` cluster is restarted.
+
+**Solution**
+
+1. Restart `kpack` by deleting the `kpack-controller` and `kpack-webhook` pods in the `kpack` namespace.</br>
+   Deleting these resources will trigger their recreation:
+   * `kubectl delete pods --all --namespace kpack`
+1. Check status of the replacement pods:
+   * `kubectl get pods --namespace kpack`
+1. Check the workload status once the new kpack pods `STATUS` are `Running`:
+   * `tanzu apps workload get YOUR-WORKLOAD-NAME`
 
 ## <a id='error-update'></a> "Workload already exists" error after updating the workload
 
