@@ -26,7 +26,7 @@ To install the extension:
 3. Press cmd+shift+P to open the Command Palette and run `Extensions: Install from VSIX...`.
 4. Select the extension file **tanzu-vscode-extension.vsix**.
 
-    ![Command palette open showing text Extensions: INSTALL FROM VSIX...](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/Images/images-vscode-install1.png)
+    ![Command palette open showing text Extensions: INSTALL FROM VSIX...](/docs-tap/images/vscode-install1.png)
 
 5. If you do not have the following extensions, and they do not automatically install, install them
 from VS Code Marketplace:
@@ -40,7 +40,7 @@ from VS Code Marketplace:
 You can configure it in the **Settings** menu by going to **Code** > **Preferences** > **Settings**
 under **Java > Server: Launch Mode**.
 
-    <!--![The VS Code settings open to the Extensions > Java section, highlighting the option Java > Server: Launch Mode with that option changed to Standard](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/Images/images-vscode-install4.png)-->
+    ![The VS Code settings open to the Extensions angle bracket Java section, highlighting the option Java angle bracket Server: Launch Mode with that option changed to Standard](/docs-tap/images/vscode-install4.png)
 
     When the JDK and Language Support for Java are configured correctly, you see that the integrated
     development environment creates a directory target where the code is compiled.
