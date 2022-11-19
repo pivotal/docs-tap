@@ -24,19 +24,19 @@ To apply a workload from the Command Palette:
 
 1. Run `Tanzu: Apply Workload`.
 
-    ![Command palette open showing text Tanzu: Apply Workload](../images/vscode-applyworkload1.png)
+    ![Command palette open showing text Tanzu: Apply Workload.](../images/vscode-applyworkload1.png)
 
 1. If there are multiple projects with workloads, select the workload to apply.
 
-    ![Apply Workload menu open showing workloads available to apply](../images/vscode-applyworkload2.png)
+    ![Apply Workload menu open showing workloads available to apply.](../images/vscode-applyworkload2.png)
 
     A notification appears showing that the workload was applied.
 
-    ![Apply Workload notification showing workload has been applied](../images/vscode-applyworkload3.png)
+    ![Apply Workload notification showing workload has been applied.](../images/vscode-applyworkload3.png)
 
     A new workload appears on the Tanzu Workloads panel.
 
-    ![Workload on Tanzu Workloads](../images/vscode-panel-workload-unknown.png)
+    ![Workload on Tanzu Workloads.](../images/vscode-panel-workload-unknown.png)
 
     The workload panel shows the workloads running in the namespace that is defined in the current
     Kubernetes context.
@@ -55,22 +55,22 @@ To apply a workload from the Command Palette:
 
     After the workload is deployed, the status on the Tanzu Workloads panel changes to `Ready`.
 
-    ![Workload ready on Tanzu Workloads](../images/vscode-panel-workload-ready.png)
+    ![Workload ready on Tanzu Workloads.](../images/vscode-panel-workload-ready.png)
 
 To apply a workload from the context menu:
 
 1. Apply a workload from the context menu by right-clicking on your workload file and selecting
 **Tanzu: Apply Workload**.
 
-    ![Context menu open showing text Tanzu: Apply Workload](../images/vscode-applyworkload4.png)
+    ![Context menu open showing text Tanzu: Apply Workload.](../images/vscode-applyworkload4.png)
 
     A notification appears showing that the workload was applied.
 
-    ![Apply Workload notification showing workload has been applied](../images/vscode-applyworkload3.png)
+    ![Apply Workload notification showing workload has been applied.](../images/vscode-applyworkload3.png)
 
     A new workload appears on the Tanzu Workloads panel.
 
-    ![Workload on the Tanzu Workloads panel](../images/vscode-panel-workload-unknown.png)
+    ![Workload on the Tanzu Workloads panel.](../images/vscode-panel-workload-unknown.png)
 
     The workload panel shows the workloads running in the namespace that is defined in the current
     Kubernetes context.
@@ -89,7 +89,7 @@ To apply a workload from the context menu:
 
     After the workload is deployed, the status on the Tanzu Workloads panel changes to **Ready**.
 
-    ![Workload ready on Tanzu Workloads](../images/vscode-panel-workload-ready.png)
+    ![Workload ready on Tanzu Workloads.](../images/vscode-panel-workload-ready.png)
 
 ## <a id="debugging-on-clust"></a> Debugging on the cluster
 
@@ -113,7 +113,7 @@ To start debugging on the cluster:
 1. Right-click the `workload.yaml` file in your project.
 1. Select **Debug 'Tanzu Debug Workload...'** in the pop-up menu.
 
-    ![The VS Code interface showing the Explorer tab with the workload.yaml file pop-up menu open and the Tanzu: Java Debug Start option highlighted](../images/vscode-startdebug1.png)
+    ![The VS Code interface showing the Explorer tab with the workload.yaml file pop-up menu open and the Tanzu: Java Debug Start option highlighted.](../images/vscode-startdebug1.png)
 
 ### <a id="stop-debugging"></a> Stop Debugging on the cluster
 
@@ -121,11 +121,11 @@ To stop debugging on the cluster, do one of the following:
 
 - Click the stop button in the Debug overlay.
 
-    ![The VS Code interface close-up on the debug overlay showing the stop rectangle icon and mouseover description](../images/vscode-stopdebug1.png)
+    ![The VS Code interface close-up on the debug overlay showing the stop rectangle icon and pointer description.](../images/vscode-stopdebug1.png)
 
 - Press ⌘+J to open the panel and then click the trash can icon for the debug task running in the panel.
 
-    ![The VS Code interface close-up on the tasks panel showing the delete trash can icon](../images/vscode-stopdebug2.png)
+    ![The VS Code interface close-up on the tasks panel showing the delete trash can button.](../images/vscode-stopdebug2.png)
 
 ## <a id="live-update"></a> Live Update
 
@@ -146,11 +146,11 @@ There are two ways to start live update:
 
 - Right-click your project’s `Tiltfile` and select `Tanzu: Live Update Start`.
 
-    ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the "Tanzu: Live Update Start" option highlighted](../images/vscode-startliveupdate1.png)
+   ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
 
 - Start the Command Palette (`⇧⌘P`) and run the `Tanzu: Live Update Start` command.
 
-    ![Command palette open showing text Tanzu: Live Update Start](../images/vscode-startliveupdate2.png)
+   ![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
 
 ### <a id="stop-live-update"></a> Stop Live Update
 
@@ -162,11 +162,11 @@ There are two ways to stop live update:
 
 - Right-click your project’s Tiltfile and select `Tanzu: Live Update Stop`.
 
-    ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the "Tanzu: Live Update Stop" option highlighted](../images/vscode-stopliveupdate1.png)
+    ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Stop option highlighted.](../images/vscode-stopliveupdate1.png)
 
 - Press ⇧⌘P to start the Command Palette and then run `Tanzu: Live Update Stop`.
 
-    ![Command palette open showing text Tanzu: Live Update Stop](../images/vscode-stopliveupdate2.png)
+    ![Command palette open showing text Tanzu: Live Update Stop.](../images/vscode-stopliveupdate2.png)
 
 ### <a id="disable-live-update"></a> Deactivate Live Update
 
@@ -179,7 +179,7 @@ To deactivate Live Update:
 1. Press ⇧⌘P to open the Command Palette.
 1. Run `Tanzu: Live Update Disable`.
 
-    ![Command palette open showing text Tanzu: Live Update Disable](../images/vscode-liveupdatedisable.png)
+   ![Command palette open showing text Tanzu: Live Update Disable.](../images/vscode-liveupdatedisable.png)
 
 1. Type the name of the workload for which you want to deactivate Live Update.
 
@@ -188,7 +188,7 @@ To deactivate Live Update:
 The current status of Live Update is visible on the right side of the status bar at the bottom of
 the VS Code window.
 
-![The VS Code interface showing the Tanzu Live Update Status section of the Status bar](../images/vscode-liveupdatestatus1.png)
+![The VS Code interface showing the Tanzu Live Update Status section of the Status bar.](../images/vscode-liveupdatestatus1.png)
 
 The Live Update status bar entry shows the following states:
 
@@ -199,7 +199,7 @@ The Live Update status bar entry shows the following states:
 To hide the Live Update status bar entry, right-click it and select
 **Hide 'Tanzu Developer Tools (Extension)'**.
 
-![The VS Code interface showing the Tanzu Live Update Status section of the Status bar with the right-click menu open and the "Hide 'Tanzu Developer Tools (Extension)'" option highlighted](../images/vscode-liveupdatestatus2.png)
+![The VS Code interface showing the Tanzu Live Update Status section of the Status bar with the right-click menu open and the Hide Tanzu Developer Tools (Extension) option highlighted.](../images/vscode-liveupdatestatus2.png)
 
 ## <a id="delete-workload"></a> Delete a workload
 
@@ -212,20 +212,20 @@ To delete a workload:
 
 1. Run `Tanzu: Delete Workload`.
 
-    ![Command palette open showing text Tanzu: Delete Workload](../images/vscode-deleteworkload1.png)
+    ![Command palette open showing text Tanzu: Delete Workload.](../images/vscode-deleteworkload1.png)
 
 1. Select the workload to delete.
 
-    ![Delete Workload menu open showing workloads available to delete](../images/vscode-deleteworkload2.png)
+    ![Delete Workload menu open showing workloads available to delete.](../images/vscode-deleteworkload2.png)
 
     If the **Tanzu: Confirm Delete** setting is enabled, a message appears that prompts you to delete
     the workload and not warn again, delete the workload, or cancel.
 
-    ![Delete Confirmation Notification showing delete options](../images/vscode-deleteworkload3.png)
+    ![Delete Confirmation Notification showing delete options.](../images/vscode-deleteworkload3.png)
 
     A notification appears showing that the workload was deleted.
 
-    ![Delete Workload Notification showing workload has been deleted](../images/vscode-deleteworkload4.png)
+    ![Delete Workload Notification showing workload has been deleted.](../images/vscode-deleteworkload4.png)
 
 ## <a id="switch-namespace"></a> Switch namespaces
 
@@ -236,7 +236,7 @@ To switch the namespace where you created the workload:
 1. In the **Namespace** option, add the namespace you want to deploy to. This is the `default`
 namespace by default.
 
-![The VS Code settings scrolled to the Tanzu section within the Extensions section](../images/vscode-switchnamespace1.png)
+![The VS Code settings scrolled to the Tanzu section within the Extensions section.](../images/vscode-switchnamespace1.png)
 
 ## <a id="workload-panel"></a> Tanzu Workloads panel
 
