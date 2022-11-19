@@ -44,17 +44,17 @@ To install Spring Boot conventions:
     tanzu package available get spring-boot-conventions.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.4.0-build.1`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example: `1.4.0-build.1`.
 
     For example:
 
     ```console
     $ tanzu package available get spring-boot-conventions.tanzu.vmware.com/1.4.0-build.1 --values-schema --namespace tap-install
       KEY                               DEFAULT             TYPE     DESCRIPTION
-        autoConfigureActuators          false               boolean  Enable or disable the automatic configuration of actuators on the TAP platform level          
-        kubernetes_distribution                             string   Kubernetes distribution that this package is being installed on. Accepted         
-                                                                     values: ['''',''openshift'']                                                      
-        kubernetes_version                                  string   Optional: The Kubernetes Version. Valid values are '1.24.*', or '' 
+        autoConfigureActuators          false               boolean  Enable or disable the automatic configuration of actuators on the TAP platform level
+        kubernetes_distribution                             string   Kubernetes distribution that this package is being installed on. Accepted
+                                                                     values: ['''',''openshift'']
+        kubernetes_version                                  string   Optional: The Kubernetes Version. Valid values are '1.24.*', or ''
     ```
 
 1. Install the package by running:
@@ -66,7 +66,7 @@ To install Spring Boot conventions:
    --namespace tap-install
    ```
 
-1. Verify that you installed the package by running:
+2. Verify you installed the package by running:
 
    ```console
    tanzu package installed get spring-boot-conventions --namespace tap-install

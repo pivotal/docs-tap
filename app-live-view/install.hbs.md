@@ -67,20 +67,20 @@ To install Application Live View back end:
     ```console
     $ tanzu package available get backend.appliveview.tanzu.vmware.com/1.4.0-build.1 --values-schema --namespace tap-install
       KEY                      DEFAULT          TYPE        DESCRIPTION
-      ingressDomain            tap.example.com  string      Domain to be used by the HTTPProxy ingress object. The "appliveview"              
-                                                            subdomain will be prepended to the value provided. For example:                   
-                                                            "example.com" would become "appliveview.example.com".                             
-      ingressEnabled           false            boolean     Flag for whether or not to create an HTTPProxy for ingress.                       
-                                                                                                                                       
-      kubernetes_distribution                   string      Kubernetes distribution that this package is being installed on. Accepted         
-                                                            values: ['''',''openshift'']                                                      
-      kubernetes_version                        string      Optional: The Kubernetes Version. Valid values are '1.24.*', or ''                
-                                                                                                                                       
-      server.tls.crt                            string      TLS cert file                                                                     
-      server.tls.enabled       false            boolean     Flag to enable tls on backend                                                     
-      server.tls.key                            string      TLS key file                                                                      
-      tls.namespace            <nil>            string      The targeted namespace for secret consumption by the HTTPProxy.                   
-                                                                                                                                       
+      ingressDomain            tap.example.com  string      Domain to be used by the HTTPProxy ingress object. The "appliveview"
+                                                            subdomain is prepended to the value provided. For example:
+                                                            "example.com" becomes "appliveview.example.com".
+      ingressEnabled           false            boolean     Flag for whether to create an HTTPProxy for ingress.
+
+      kubernetes_distribution                   string      Kubernetes distribution that this package is installed on. Accepted
+                                                            values: ['''',''openshift''].
+      kubernetes_version                        string      Optional: The Kubernetes Version. Valid values are '1.24.*', or ''.
+
+      server.tls.crt                            string      TLS cert file.
+      server.tls.enabled       false            boolean     Flag to enable TLS on back end.
+      server.tls.key                            string      TLS key file.
+      tls.namespace            <nil>            string      The targeted namespace for secret consumption by the HTTPProxy.
+
       tls.secretName           <nil>            string      The name of secret for consumption by the HTTPProxy.
     ```
 
@@ -224,20 +224,20 @@ To install Application Live View connector:
     ```console
     $ tanzu package available get connector.appliveview.tanzu.vmware.com/1.4.0-build.1 --values-schema --namespace tap-install
       KEY                                   DEFAULT             TYPE        DESCRIPTION
-      kubernetes_version                                        string      Optional: The Kubernetes Version. Valid values are '1.24.*', or ''                
-                                                                                                                                                       
-      backend.sslDisabled                   false               boolean     Flag for whether or not to disable ssl                                            
-      backend.caCertData                    cert-in-pem-format  string      CA Cert Data for ingress domain                                                   
-      backend.host                          <nil>               string      Domain to be used to reach the application live view backend. Prepend             
-                                                                            "appliveview" subdomain to the value if you are using shared ingress. For         
-                                                                            example: "example.com" would become "appliveview.example.com".                    
-      backend.ingressEnabled                false               boolean     Flag for the connector to connect to ingress on backend                           
-                                                                                                                                                       
-      backend.port                          <nil>               number      Port to reach the application live view backend                                   
-      connector.namespace_scoped.enabled    false               boolean     Flag for the connector to run in namespace scope                                  
-      connector.namespace_scoped.namespace  default             string      Namespace to deploy connector                                                     
-      kubernetes_distribution                                   string      Kubernetes distribution that this package is being installed on. Accepted         
-                                                                            values: ['''',''openshift'']
+      kubernetes_version                                        string      Optional: The Kubernetes Version. Valid values are '1.24.*', or ''.
+
+      backend.sslDisabled                   false               boolean     Flag for whether to disable SSL.
+      backend.caCertData                    cert-in-pem-format  string      CA Cert Data for ingress domain.
+      backend.host                          <nil>               string      Domain to be used to reach the Application Live View back end. Prepend
+                                                                            "appliveview" subdomain to the value if you are using shared ingress. For
+                                                                            example: "example.com" becomes "appliveview.example.com".
+      backend.ingressEnabled                false               boolean     Flag for the connector to connect to ingress on back end.
+
+      backend.port                          <nil>               number      Port to reach the Application Live View back end.
+      connector.namespace_scoped.enabled    false               boolean     Flag for the connector to run in namespace scope.
+      connector.namespace_scoped.namespace  default             string      Namespace to deploy connector.
+      kubernetes_distribution                                   string      Kubernetes distribution that this package is being installed on. Accepted
+                                                                            values: ['''',''openshift''].
     ```
 
     For more information about values schema options, see the properties listed earlier.
@@ -371,13 +371,13 @@ To install Application Live View Conventions:
     ```console
     $ tanzu package available get conventions.appliveview.tanzu.vmware.com/1.4.0-build.1 --values-schema --namespace tap-install
       KEY                               DEFAULT             TYPE     DESCRIPTION
-      kubernetes_distribution                               string  Kubernetes distribution that this package is being installed on. Accepted values: ['''',''openshift'']                                                      
-      kubernetes_version                                    string  Optional: The Kubernetes Version. Valid values are '1.24.*', or ''
+      kubernetes_distribution                               string  Kubernetes distribution that this package is installed on. Accepted values: ['''',''openshift''].
+      kubernetes_version                                    string  Optional: The Kubernetes Version. Valid values are '1.24.*', or ''.
     ```
 
     For more information about values schema options, see the properties listed earlier.
 
-1. Install the Application Live View Conventions package by running:
+2. Install the Application Live View Conventions package by running:
 
     ```console
     tanzu package install appliveview-conventions -p conventions.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
@@ -401,7 +401,7 @@ To install Application Live View Conventions:
     Added installed package 'appliveview-conventions' in namespace 'tap-install'
     ```
 
-1. Verify the package install for Application Live View Conventions package by running:
+3. Verify the package install for Application Live View Conventions package by running:
 
     ```console
     tanzu package installed get appliveview-conventions -n tap-install

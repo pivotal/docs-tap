@@ -215,7 +215,9 @@ The sample values file contains the necessary defaults for:
     - The meta-package, or parent Tanzu Application Platform package.
     - Subordinate packages, or individual child packages.
 
-    >**Important** Keep the values file for future configuration use.
+    Keep the values file for future configuration use.
+    
+    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
 
 
 1. [View possible configuration settings for your package](view-package-config.hbs.md)
@@ -430,11 +432,11 @@ Follow these steps to install the Tanzu Application Platform package:
 3. If you configured `full` dependencies in your `tap-values.yaml` file, install the `full` dependencies
 by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
-After installing the Full profile on your cluster, you can install the
-Tanzu Developer Tools for VS Code Extension to help you develop against it.
-For instructions, see [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md).
+>**Important** After installing the full profile on your cluster, you must set up developer namespaces. Otherwise, 
+creating a workload, a Knative service or other Tanzu Application Platform packages fails. 
+For more information, see [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md).
 
->**Note** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
+You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
 ```
 tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --values-file tap-values.yaml -n tap-install
@@ -495,10 +497,6 @@ To install the `full` dependencies package:
     ```
 
     Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
-
->**Important** You must set up developer namespaces before completing the installation. Otherwise, 
-creating a workload, a Knative service or other Tanzu Application Platform packages fails. 
-For more information, see [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md).
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 

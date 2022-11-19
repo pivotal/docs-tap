@@ -23,174 +23,174 @@ To install cert-manager with a self-signed `ClusterIssuer` from the Tanzu Applic
 
 1. List version information for the package by running:
 
-      ```console
-      tanzu package available list cert-manager.tanzu.vmware.com -n tap-install
-      ```
+    ```console
+    tanzu package available list cert-manager.tanzu.vmware.com -n tap-install
+    ```
 
-      For example:
+    For example:
 
-      ```console
-      $ tanzu package available list cert-manager.tanzu.vmware.com -n tap-install
-      / Retrieving package versions for cert-manager.tanzu.vmware.com...
-        NAME                           VERSION           RELEASED-AT
-        cert-manager.tanzu.vmware.com  2.0.0             ...
-      ```
+    ```console
+    $ tanzu package available list cert-manager.tanzu.vmware.com -n tap-install
+    / Retrieving package versions for cert-manager.tanzu.vmware.com...
+      NAME                           VERSION           RELEASED-AT
+      cert-manager.tanzu.vmware.com  2.0.0             ...
+    ```
 
 2. Discover available configuration for the package by running:
 
-      ```console
-      tanzu package available get cert-manager.tanzu.vmware.com/2.0.0 --namespace tap-install --values-schema
-      ```
+    ```console
+    tanzu package available get cert-manager.tanzu.vmware.com/2.0.0 --namespace tap-install --values-schema
+    ```
 
-   For example:
+    For example:
 
-      ```console
-      $ tanzu package available get cert-manager.tanzu.vmware.com/2.0.0 --namespace tap-install --values-schema
+    ```console
+    $ tanzu package available get cert-manager.tanzu.vmware.com/2.0.0 --namespace tap-install --values-schema
 
-      KEY                   DEFAULT  TYPE    DESCRIPTION
-      certManager.pspNames  []       array   PodSecurityPolicy names which cert-manager is allowed to use
-      issuers               []       array   The ClusterIssuers to install - default: []
-      namespace                      string  Cert-manager's namespace - also used as its cluster resource namespace
-      https://cert-manager.io/v1.9-docs/faq/cluster-resource/
-      ```
+    KEY                   DEFAULT  TYPE    DESCRIPTION
+    certManager.pspNames  []       array   PodSecurityPolicy names which cert-manager is allowed to use
+    issuers               []       array   The ClusterIssuers to install - default: []
+    namespace                      string  Cert-manager's namespace - also used as its cluster resource namespace
+    https://cert-manager.io/v1.9-docs/faq/cluster-resource/
+    ```
 
-3. Create a file named `cert-manager-rbac.yaml` using the following sample and apply the configuration.
+3. Create a file named `cert-manager-rbac.yaml` by using the following sample:
 
-      ```yaml
-      apiVersion: rbac.authorization.k8s.io/v1
+    ```yaml
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: cert-manager-tap-install-cluster-admin-role
+    rules:
+    - apiGroups:
+      - '*'
+      resources:
+      - '*'
+      verbs:
+      - '*'
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
+    metadata:
+      name: cert-manager-tap-install-cluster-admin-role-binding
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
       kind: ClusterRole
-      metadata:
-        name: cert-manager-tap-install-cluster-admin-role
-      rules:
-      - apiGroups:
-        - '*'
-        resources:
-        - '*'
-        verbs:
-        - '*'
-      ---
-      apiVersion: rbac.authorization.k8s.io/v1
-      kind: ClusterRoleBinding
-      metadata:
-        name: cert-manager-tap-install-cluster-admin-role-binding
-      roleRef:
-        apiGroup: rbac.authorization.k8s.io
-        kind: ClusterRole
-        name: cert-manager-tap-install-cluster-admin-role
-      subjects:
-      - kind: ServiceAccount
-        name: cert-manager-tap-install-sa
-        namespace: tap-install
-      ---
-      apiVersion: v1
-      kind: ServiceAccount
-      metadata:
-        name: cert-manager-tap-install-sa
-        namespace: tap-install
-      ```
+      name: cert-manager-tap-install-cluster-admin-role
+    subjects:
+    - kind: ServiceAccount
+      name: cert-manager-tap-install-sa
+      namespace: tap-install
+    ---
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
+      name: cert-manager-tap-install-sa
+      namespace: tap-install
+    ```
 
-      For example:
+    Apply the configuration:
 
-      ```console
-      kubectl apply -f cert-manager-rbac.yaml
-      ```
+    ```console
+    kubectl apply -f cert-manager-rbac.yaml
+    ```
 
-4. Create a file named `cert-manager-install.yaml` using the following sample and apply the configuration.
+4. Create a file named `cert-manager-install.yaml` by using the following sample:
 
-      ```yaml
-      ---
-      apiVersion: packaging.carvel.dev/v1alpha1
-      kind: PackageInstall
-      metadata:
-        name: cert-manager
-        namespace: tap-install
-      spec:
-        serviceAccountName: cert-manager-tap-install-sa
-        packageRef:
-          refName: cert-manager.tanzu.vmware.com
-          versionSelection:
-            constraints: "VERSION-NUMBER"
-            prereleases: {}
-        values:
-          - secretRef:
-              name: cert-manager-values
+    ```yaml
+    ---
+    apiVersion: packaging.carvel.dev/v1alpha1
+    kind: PackageInstall
+    metadata:
+      name: cert-manager
+      namespace: tap-install
+    spec:
+      serviceAccountName: cert-manager-tap-install-sa
+      packageRef:
+        refName: cert-manager.tanzu.vmware.com
+        versionSelection:
+          constraints: "VERSION-NUMBER"
+          prereleases: {}
+      values:
+        - secretRef:
+            name: cert-manager-values
 
-      ---
-      apiVersion: v1
-      kind: Secret
-      metadata:
-        name: cert-manager-values
-        namespace: tap-install
-      stringData:
-        values.yaml: |
-          issuers:
-            - name: tap-ingress-selfsigned
-              self_signed: {}
-      ```
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: cert-manager-values
+      namespace: tap-install
+    stringData:
+      values.yaml: |
+        issuers:
+          - name: tap-ingress-selfsigned
+            self_signed: {}
+    ```
 
-   Where:
+    Where:
 
-    - `VERSION-NUMBER` is the version of the package listed in step 1.
-    - Secret "cert-manager-values" contains your configuration of the cert-manager package
+    - `VERSION-NUMBER` is the version of the package listed earlier.
+    - Secret `cert-manager-values` contains your configuration of the cert-manager package.
 
-   For example:
+    Apply the configuration:
 
-      ```console
-      kubectl apply -f cert-manager-install.yaml
-      ```
+    ```console
+    kubectl apply -f cert-manager-install.yaml
+    ```
 
 5. Verify the package installation:
 
-      ```console
-      tanzu package installed get cert-manager -n tap-install
-      ```
+    ```console
+    tanzu package installed get cert-manager -n tap-install
+    ```
 
-      For example:
+    For example:
 
-      ```console
-      $ tanzu package installed get cert-manager -n tap-install
-      / Retrieving installation details for cert-manager...
-      NAME:                    cert-manager
-      PACKAGE-NAME:            cert-manager.tanzu.vmware.com
-      PACKAGE-VERSION:         2.0.0
-      STATUS:                  Reconcile succeeded
-      CONDITIONS:              [{ReconcileSucceeded True}]
-      USEFUL-ERROR-MESSAGE:
-      ```
+    ```console
+    $ tanzu package installed get cert-manager -n tap-install
+    / Retrieving installation details for cert-manager...
+    NAME:                    cert-manager
+    PACKAGE-NAME:            cert-manager.tanzu.vmware.com
+    PACKAGE-VERSION:         2.0.0
+    STATUS:                  Reconcile succeeded
+    CONDITIONS:              [{ReconcileSucceeded True}]
+    USEFUL-ERROR-MESSAGE:
+    ```
 
-   Verify that `STATUS` is `Reconcile succeeded`
+    Verify that `STATUS` is `Reconcile succeeded`
 
 6. Verify that cert-manager is up and running:
 
-      ```console
-      kubectl get deployment -n cert-manager
-      ```
+    ```console
+    kubectl get deployment -n cert-manager
+    ```
 
-      For example:
+    For example:
 
-      ```console
-      $ kubectl get deployment -n cert-manager
-      NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
-      cert-manager              1/1     1            1           5m
-      cert-manager-cainjector   1/1     1            1           5m
-      cert-manager-webhook      1/1     1            1           5m
-      ```
+    ```console
+    $ kubectl get deployment -n cert-manager
+    NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+    cert-manager              1/1     1            1           5m
+    cert-manager-cainjector   1/1     1            1           5m
+    cert-manager-webhook      1/1     1            1           5m
+    ```
 
 7. Verify that the self-signed `ClusterIssuer` is present:
 
-      ```console
-      kubectl get clusterissuer
-      ```
+    ```console
+    kubectl get clusterissuer
+    ```
 
-   For example:
+    For example:
 
-      ```console
-      $ kubectl get clusterissuer
-      NAME                               READY   AGE
-      tap-ingress-selfsigned             True    5m
-      tap-ingress-selfsigned-bootstrap   True    5m
-      ...
-      ```
+    ```console
+    $ kubectl get clusterissuer
+    NAME                               READY   AGE
+    tap-ingress-selfsigned             True    5m
+    tap-ingress-selfsigned-bootstrap   True    5m
+    ...
+    ```
 
 ## <a id='install-contour'></a>Install Contour
 
@@ -211,7 +211,7 @@ To install Contour from the Tanzu Application Platform package repository:
       contour.tanzu.vmware.com  1.22.0+tap.5  2022-09-05 20:00:00 -0400 EDT
     ```
 
-2. Create a file named `contour-rbac.yaml` using the following sample and apply the configuration.
+2. Create a file named `contour-rbac.yaml` by using the following sample and apply the configuration:
 
     ```yaml
     apiVersion: rbac.authorization.k8s.io/v1
@@ -252,9 +252,10 @@ To install Contour from the Tanzu Application Platform package repository:
     kubectl apply -f contour-rbac.yaml
     ```
 
-4. Create a file named `contour-install.yaml` using the following sample and apply the configuration.
-    The following configuration installs the Contour package with default options.
-    If you want to make changes to the default installation settings, go to the next step.
+4. Create a file named `contour-install.yaml` by using the following sample and apply the configuration: 
+
+    >**Note** The following configuration installs the Contour package with default options. 
+    To make changes to the default installation settings, go to the next step.
 
     ```yaml
     apiVersion: packaging.carvel.dev/v1alpha1
@@ -270,7 +271,8 @@ To install Contour from the Tanzu Application Platform package repository:
           constraints: "VERSION-NUMBER"
           prereleases: {}
     ```
-    Where `VERSION-NUMBER` is the version of the package listed in step 1.
+
+    Where `VERSION-NUMBER` is the version of the package listed earlier.
 
 5. (Optional) Make changes to the default installation settings:
 
@@ -311,8 +313,9 @@ To install Contour from the Tanzu Application Platform package repository:
           certificates.useCertManager          false                 boolean  Whether to use cert-manager to provision TLS certificates for securing communication between Contour and Envoy. If false, the upstream Contour certgen job will be used to provision certificates. If true, the cert-manager addon must be installed in the cluster.
         ```
 
-    2. Create a `contour-install.yaml` file using the following sample as a guide.
-        This sample is for installation in an AWS public cloud with `LoadBalancer` services:
+    2. Create a `contour-install.yaml` file by using the following sample as a guide:
+
+        >**Note** This sample is for installation in an AWS public cloud with `LoadBalancer` services.
 
         ```yaml
         apiVersion: packaging.carvel.dev/v1alpha1
@@ -373,7 +376,6 @@ To install Contour from the Tanzu Application Platform package repository:
     ```console
     kubectl apply -f contour-install.yaml
     ```
-
 
 7. Verify the package install by running:
 

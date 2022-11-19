@@ -1,33 +1,32 @@
-# Enabling Application Live View for Spring Boot Applications
+# Enable Application Live View for Spring Boot applications
 
-To run Application Live View for Spring Boot apps, the Spring Boot convention recognizes PodIntents and automatically adds the following metadata labels
+To run Application Live View for Spring Boot apps, Spring Boot conventions recognizes PodIntents and automatically adds the following metadata labels:
 
 - `tanzu.app.live.view: "true"`: Enables the connector to observe application pod.
 - `tanzu.app.live.view.application.name: APPLICATION-NAME`: Identifies the app name to be used internally by Application Live View.
 - `tanzu.app.live.view.application.actuator.port: ACTUATOR-PORT`: Identifies the port on the pod at which the actuators are available for Application Live View.
 - `tanzu.app.live.view.application.flavours: spring-boot`: Exposes the framework flavor of the app.
 
-To run Application Live View for Spring Cloud Gateway apps, the Spring Boot convention recognizes PodIntents and adds the following metadata labels:
+To run Application Live View for Spring Cloud Gateway apps, Spring Boot conventions recognizes PodIntents and adds the following metadata labels:
 
 - `tanzu.app.live.view: "true"`: Enables the connector to observe application pod.
 - `tanzu.app.live.view.application.name: APPLICATION-NAME`: Identifies the app name to be used internally by Application Live View.
 - `tanzu.app.live.view.application.actuator.port: ACTUATOR-PORT`: Identifies the port on the pod at which the actuators are available for Application Live View.
 - `tanzu.app.live.view.application.flavours: spring-boot,spring-cloud-gateway`: Exposes the framework flavors of the app.
 
-These metadata labels allow Application Live View to identify pods that are enabled for Application Live View. The metadata labels also tell the Application Live View connector what kind of app it is, and on which port the actuators are accessible for Application Live View.
+These metadata labels allow Application Live View to identify pods that are enabled for Application Live View. The metadata labels also tell the Application Live View connector what kind of app it is and on which port the actuators are accessible for Application Live View.
+For more information, see [Configuring and accessing Spring Boot actuators in Tanzu Application Platform](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
 
-For more information, see [Configuring and Accessing Spring Boot Actuators in TAP](../spring-boot-conventions/configuring-spring-boot-actuators.hbs.md). 
 
+## <a id="verify"></a> Verify the applied labels and annotations
 
-# <a id="verify"></a> Verify the applied labels and annotations
-
-You can verify the applied labels and annotations by running:
+To verify the applied labels and annotations, run:
 
 ```console
 kubectl get podintents.conventions.carto.run WORKLOAD-NAME -o yaml
 ```
 
-Where `WORKLOAD-NAME` the name of the deployed workload, for example `tanzu-java-web-app`.
+Where `WORKLOAD-NAME` is the name of the deployed workload. For example: `tanzu-java-web-app`.
 
 Expected output of Spring Boot workload:
 
