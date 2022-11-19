@@ -23,7 +23,7 @@ This page gives a tabular overview containing the following information:
 You can navigate between **Information Categories** by selecting from the drop-down menu on the
 top right corner of the page.
 
-![Details Page in UI](images/details-steeltoe.png)
+![Details Page in the UI showing information such as Application Name, Instance ID, and Location.](images/details-steeltoe.png)
 
 ## <a id="health-page"></a> Health page
 
@@ -35,7 +35,7 @@ It lists all the components that make up the health of the application, such as 
 and disk space.
 It displays the status and details associated with each of the components.
 
-![Health Page in UI](images/health-steeltoe.png)
+![Health Page in the UI showing information such as readiness, disk space, and liveness.](images/health-steeltoe.png)
 
 ## <a id="environment-page"></a> Environment page
 
@@ -74,7 +74,7 @@ The page also includes the following capabilities for `editing` configured envir
 > properties of the application, and a corresponding editable environment must be present in the
 > application.
 
-![Environment Page in UI](images/environment-steeltoe.png)
+![Environment Page in the UI showing provider information. The search text box is at the top right.](images/environment-steeltoe.png)
 
 ## <a id="log-levels-page"></a> Log Levels page
 
@@ -112,9 +112,9 @@ trace.
 - To view more thread details, click the Thread ID.
 - The page also has a feature to download thread dump for analysis.
 
-![Threads Page in UI](images/threads-page-steeltoe-1.png)
+![Threads Page in the UI showing Worker and IO Completion Port charts.](images/threads-page-steeltoe-1.png)
 
-![Threads Page in UI](images/threads-page-steeltoe-2.png)
+![Threads Page in the UI showing Thread Details, such as Thread ID and Thread Name.](images/threads-page-steeltoe-2.png)
 
 ## <a id="memory-page"></a> Memory page
 
@@ -125,7 +125,7 @@ This page displays all details related to used and committed memory of the appli
 This also displays the garbage collection count by generation (gen0/gen1).
 The page also has a feature to download heap dump for analysis.
 
-![Memory Page in UI](images/memory-page-steeltoe.png)
+![Memory Page in the UI showing charts for Heap Memory, Garbage Collection Count by Generation 0, and Garbage Collection Count by Generation 1.](images/memory-page-steeltoe.png)
 
 ## <a id="metrics-page"></a> Metrics page
 
@@ -147,7 +147,7 @@ The UI on the Metrics page includes the features that allow you to:
 - Change the format of the metric value according to your needs.
 - Delete a particular metric by clicking the minus symbol in the same row.
 
-![Metrics Page in UI](images/metrics-steeltoe.png)
+![Metrics Page in the UI. There are drop-down menus for Metrics and Area. An Add Metric button is at the far right.](images/metrics-steeltoe.png)
 
 ## <a id="actuator-page"></a> Actuator page
 
@@ -156,7 +156,7 @@ To access the **Actuator** page, select the **Actuator** option from the
 The actuator page provides a tree view of the actuator data.
 You can choose from a list of actuator endpoints and parse through the raw actuator data.
 
-![Actuator Page in UI](images/actuator-steeltoe.png)
+![Actuator Page in the UI. It shows an Endpoint drop-down menu and a tree view of the actuator data.](images/actuator-steeltoe.png)
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
