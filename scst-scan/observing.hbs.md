@@ -155,9 +155,10 @@ you must edit the configurations to deactivate the Store:
     ```
 
 #### <a id="incompatible-scan-policy"></a> Resolving incompatible scan policy
-  If your scan policy appears to not be enforced, it might be because the Rego file defined in the scan policy is incompatible with the scanner that is being used. For example, the Grype Scanner outputs in the CycloneDX XML format while the Snyk Scanner outputs SPDX JSON.
 
-  See [Install Snyk Scanner](install-snyk-integration.md#a-idverifya-verify-integration-with-snyk) for an example of a ScanPolicy formatted for SPDX JSON.
+If your scan policy appears to not be enforced, it might be because the Rego file defined in the scan policy is incompatible with the scanner that is being used. For example, the Grype Scanner outputs in the CycloneDX XML format while the Snyk Scanner outputs SPDX JSON.
+
+See [Sample ScanPolicy for Snyk in SPDX JSON format](install-snyk-integration.md#snyk-scan-policy) for an example of a ScanPolicy formatted for SPDX JSON.
 
 #### <a id="ca-not-found-in-secret"></a> Could not find CA in secret
 
