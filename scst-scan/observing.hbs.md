@@ -185,7 +185,9 @@ you must edit the configurations to deactivate the Store:
 
 A Source Scan for a blob artifact can cause reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote SSH URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message.
 
-You can confirm you're having this problem by running a `kubectl describe` in the affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url` and see if they are different URLs. For example:
+You can confirm you're having this problem by running `kubectl describe` in the
+affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url`.
+The problem occurs if they are different URLs. For example:
 
 ```console
 kubectl describe sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
@@ -213,7 +215,7 @@ status:
 
 **Workaround:** This problem happens in SCST - Scan `v1.2.0` when you use a Grype Scanner ScanTemplates earlier than `v1.2.0`, because this is a deprecated path. To fix this problem, upgrade your Grype Scanner deployment to `v1.2.0` or later. See [Upgrading Supply Chain Security Tools - Scan](upgrading.md#upgrade-to-1-2-0) for step-by-step instructions.
 
-#### <a id="supply-chain-stops"></a> Resolving failing scans that block a Supply Chain 
+#### <a id="supply-chain-stops"></a> Resolving failing scans that block a Supply Chain
 
 If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md).
 
