@@ -169,7 +169,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
         name: "TOKEN-SECRET-NAME" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
-    >**Note** You must either define both the METADATA-STORE-URL and caSecret,
+    >**Note** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`,
     >or not define them as they depend on each other.
 
     Where:
