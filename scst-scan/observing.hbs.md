@@ -50,14 +50,14 @@ eval:
 store:
   locations:
   - https://metadata-store-app.metadata-store.svc.cluster.local:8443/api/sources?repo=hound&sha=5805c6502976c10f5529e7f7aeb0af0c370c0354&org=houndci
-``` 
+```
 A scan run that has an error means that one of the init containers: `scan-plugin`, `metadata-store-plugin`, `compliance-plugin`, `summary`, or any other additional containers had a failure.
 
 To inspect for a specific init container in a pod:
 
 ```console
 kubectl logs <scan-pod-name> -n <DEV-NAMESPACE> -c <init-container-name>
-``` 
+```
 See [Debug Init Containers](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/) in the Kubernetes documentation for debug init container tips.
 
 #### <a id="debug-source-image-scan"></a> Debugging SourceScan and ImageScan
@@ -166,7 +166,7 @@ you must edit the configurations to deactivate the Store:
   ```
 
   However, if the earlier tap-values.yaml doesn't work, include:
-  
+
   ```yaml
   metadata_store:
     ns_for_export_app_cert: "*"
@@ -176,10 +176,12 @@ you must edit the configurations to deactivate the Store:
 
 A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` the wrong URL for the resource, passing the remote SSH URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message.
 
-You can confirm you're having this problem by running a `kubectl describe` in the affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url` and see if they are different URLs. For example:
+You can confirm you're having this problem by running `kubectl describe` in the
+affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url`.
+The problem occurs if they are different URLs. For example:
 
 ```console
-kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE>
+kubectl describe sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
 ```
 
 And compare the output:
