@@ -1,4 +1,4 @@
-# Enforce compliance policy using Open Policy Agent 
+# Enforce compliance policy using Open Policy Agent
 
 ## <a id="writing-pol-temp"></a>Writing a policy template
 
@@ -20,7 +20,7 @@ To define a Rego file for an image scan or source scan, you must comply with the
 
 Follow these steps to define a Rego file for policy enforcement that you can reuse across image scan and source scan CRs that output in the CycloneDX XML format.
 
->**Note:** The Snyk Scanner outputs SPDX JSON. See [Install Snyk Scanner](install-snyk-integration.md#a-idverifya-verify-integration-with-snyk) for an example of a ScanPolicy formatted for SPDX JSON output.
+>**Note** The Snyk Scanner outputs SPDX JSON. See [Verify integration with Snyk](install-snyk-integration.md#verify) for an example of a ScanPolicy formatted for SPDX JSON output.
 
 1. Create a scan policy with a Rego file. Here is a sample scan policy resource:
 
@@ -69,7 +69,7 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
     ```
 
     You can modify the following fields of the Rego file as part of the [CVE triage workflow](../scst-scan/triaging-and-remediating-cves.hbs.md#amend-scan-policy):
-    
+
     - `notAllowedSeverities` contains the categories of CVEs that result in the SourceScan or ImageScan failing policy enforcement. Below is an example of how an `app-operator` might decide to only block "Critical" and "High" CVEs.
 
       ```yaml
