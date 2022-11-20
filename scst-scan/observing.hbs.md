@@ -28,36 +28,38 @@ Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.
 
 ### <a id="reporting-wrong-blob-url"></a> Blob Source Scan is reporting wrong source URL
 
-  A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` for the wrong URL for the resource, passing the remote ssh URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message. 
+A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` for the wrong URL for the resource, passing the remote SSH URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message.
 
-  You can confirm you're having this problem running a `kubectl describe` in the affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url`. For example:
+You can confirm you're having this problem running `kubectl describe` in the affected resource.
+The problem occurs if the `spec.blob.url` value differs from `status.artifact.blob.url`.
+For example:
 
-  ```console
-  kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE>
-  ```
+```console
+kubectl describe sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
+```
 
-  Compare the output:
+Compare the output:
 
-  ```console
-  ...
-  spec:
+```console
+...
+spec:
+  blob:
+    ...
+    url: http://source-controller.flux-system.svc.cluster.local./gitrepository/sample/repo/8d4cea98b0fa9e0112d58414099d0229f190f7f1.tar.gz
+    ...
+status:
+  artifact:
     blob:
       ...
-      url: http://source-controller.flux-system.svc.cluster.local./gitrepository/sample/repo/8d4cea98b0fa9e0112d58414099d0229f190f7f1.tar.gz
+      url: ssh://git@github.com:sample/repo.git
+  compliantArtifact:
+    blob:
       ...
-  status:
-    artifact:
-      blob:
-        ...
-        url: ssh://git@github.com:sample/repo.git
-    compliantArtifact:
-      blob:
-        ...
-        url: ssh://git@github.com:sample/repo.git
-  ```
+      url: ssh://git@github.com:sample/repo.git
+```
 
-  **Workaround:** There are a few workarounds you can try to fix this issue:
-  
-    1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
-    1. Configure your SourceScan or Workload to connect to the repository by using HTTPS instead of using SSH.
-    1. Edit the FluxCD GitRepository resource to not include the `.git` directory.
+**Workaround:** There are a few workarounds you can try to fix this issue:
+
+1. This problem is resolved in Supply Chain Security Tools - Scan `v1.2.0`. Upgrade your Supply Chain Security Tools - Scan and Grype Scanner deployment to version `v1.2.0` or later.
+1. Configure your SourceScan or Workload to connect to the repository by using HTTPS instead of using SSH.
+1. Edit the FluxCD GitRepository resource to not include the `.git` directory.
