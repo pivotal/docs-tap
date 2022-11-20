@@ -161,25 +161,27 @@ you must edit the configurations to deactivate the Store:
 
 #### <a id="ca-not-found-in-secret"></a> Could not find CA in secret
 
-  If you encounter the following issue, it might be due to not exporting  `app-tls-cert` to the correct namespace:
+If you encounter the following issue, it might be due to not exporting  `app-tls-cert` to the correct namespace:
 
-  ```console
-  {"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
-  ```
+```console
+{"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
+```
 
-  Include the following in your `tap-values.yaml`:
+Include the following in your `tap-values.yaml`:
 
-  ```yaml
-  metadata_store:
-    ns_for_export_app_cert: "DEV-NAMESPACE"
-  ```
+```yaml
+metadata_store:
+  ns_for_export_app_cert: "DEV-NAMESPACE"
+```
 
-  However, if the earlier tap-values.yaml doesn't work, include:
+If the previous change doesn't work, include:
 
-  ```yaml
-  metadata_store:
-    ns_for_export_app_cert: "*"
-  ```
+```yaml
+metadata_store:
+  ns_for_export_app_cert: "*"
+```
+
+> **Note** This might not align with security best practices.
 
 #### <a id="reporting-wrong-blob-url"></a> Blob Source Scan is reporting wrong source URL
 
