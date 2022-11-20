@@ -88,9 +88,9 @@ Supply Chain Security Tools - Scan intermittently sets the phase of a scan to `E
 
 A Source Scan for a blob artifact might result in reporting the `status.artifact` and `status.compliantArtifact` for the wrong URL for the resource. This passes the remote SSH URL instead of the cluster local fluxcd URL. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message.
 
-You can confirm you're having this problem by running `kubectl describe` in the affected resource.
-The problem occurs if the `spec.blob.url` value differs from `status.artifact.blob.url`.
-For example:
+You can confirm you're having this problem by running `kubectl describe` in the
+affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url`.
+The problem occurs if they are different URLs. For example:
 
 ```console
 kubectl describe sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
