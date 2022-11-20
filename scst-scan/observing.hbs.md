@@ -16,7 +16,7 @@ watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 
 ## <a id="troubleshooting"></a> Troubleshooting
 
-If you run into any problems or face non-expected behavior, you can always address the logs to get 
+If you run into any problems or face non-expected behavior, you can always address the logs to get
 more feedback.
 
 ```console
@@ -86,22 +86,32 @@ Supply Chain Security Tools - Scan intermittently sets the phase of a scan to `E
 
 ### <a id="reporting-wrong-blob-url"></a> Blob Source Scan is reporting wrong source URL
 
-  A Source Scan for a blob artifact might result in reporting the `status.artifact` and `status.compliantArtifact` for the wrong URL for the resource. This passes the remote SSH URL instead of the cluster local fluxcd URL. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message. 
+A Source Scan for a blob artifact might result in reporting the `status.artifact` and `status.compliantArtifact` for the wrong URL for the resource. This passes the remote SSH URL instead of the cluster local fluxcd URL. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message.
 
-  You can confirm you're having this problem by running a `kubectl describe` in the affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url`. For example:
+You can confirm you're having this problem running `kubectl describe` in the affected resource.
+The problem occurs if the `spec.blob.url` value differs from `status.artifact.blob.url`.
+For example:
 
-  ```console
-  kubectl describe sourcescan <SOURCE-SCAN-NAME> -n <DEV-NAMESPACE>
-  ```
+```console
+kubectl describe sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
+```
 
-  Compare the output:
+Compare the output:
 
-  ```console
-  ...
-  spec:
+```console
+...
+spec:
+  blob:
+    ...
+    url: http://source-controller.flux-system.svc.cluster.local./gitrepository/sample/repo/8d4cea98b0fa9e0112d58414099d0229f190f7f1.tar.gz
+    ...
+status:
+  artifact:
     blob:
       ...
-      url: http://source-controller.flux-system.svc.cluster.local./gitrepository/sample/repo/8d4cea98b0fa9e0112d58414099d0229f190f7f1.tar.gz
+      url: ssh://git@github.com:sample/repo.git
+  compliantArtifact:
+    blob:
       ...
   status:
     artifact:
@@ -112,10 +122,10 @@ Supply Chain Security Tools - Scan intermittently sets the phase of a scan to `E
       blob:
         ...
         url: ssh://git@github.com:sample/repo.git
-  ```
+```
 
-  **Workaround:** The following workarounds fix this issue:
-  
-    1. This problem is resolved in SCST - Scan `v1.2.0`. Upgrade your SCST - Scan and Grype Scanner deployment to `v1.2.0` or later.
-    2. Configure your SourceScan or Workload to connect to the repository by using HTTPS instead of using SSH.
-    3. Edit the FluxCD GitRepository resource to not include the `.git` directory. 
+**Workaround:** The following workarounds fix this issue:
+
+1. This problem is resolved in SCST - Scan `v1.2.0`. Upgrade your SCST - Scan and Grype Scanner deployment to `v1.2.0` or later.
+2. Configure your SourceScan or Workload to connect to the repository by using HTTPS instead of using SSH.
+3. Edit the FluxCD GitRepository resource to not include the `.git` directory.
