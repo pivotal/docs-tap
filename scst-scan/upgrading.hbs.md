@@ -107,9 +107,9 @@ To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
 
   For more insights on how to install Grype, see [Install Supply Chain Security Tools - Scan (Grype Scanner)](install-scst-scan.md#install-grype).
 
-  >**Note** If a mix of Grype templates, such as `earlier than v1.2.0` and
-  >`v1.2.0 and later`, are used, both `scanning` and `grype` must configure the
-  >parameters. The secret must also export to both scan-link-system and the dev
+  >**Note** If a mix of Grype templates, such as earlier than v1.2.0 and
+  >v1.2.0 and later, are used, both `scanning` and `grype` must configure the
+  >parameters. The secret must also export to both scan-link-system and the developer
   >namespace. Do this by exporting to `*` or by defining multiple secrets and
   >exports. If Grype is installed to multiple namespaces there must be
   >corresponding exports. See [Install Supply Chain Security Tools - Scan (Grype
