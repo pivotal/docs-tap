@@ -30,7 +30,7 @@ Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.
 
 A Source Scan for a blob artifact can result in reporting in the `status.artifact` and `status.compliantArtifact` for the wrong URL for the resource, passing the remote SSH URL instead of the cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is an unsupported protocol` error message.
 
-You can confirm you're having this problem running `kubectl describe` in the affected resource.
+You can confirm you're having this problem by running `kubectl describe` in the affected resource.
 The problem occurs if the `spec.blob.url` value differs from `status.artifact.blob.url`.
 For example:
 
