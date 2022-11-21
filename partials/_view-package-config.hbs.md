@@ -58,5 +58,3 @@ Shared Keys define values that configure multiple packages. These keys are defin
 |Shared Key|Used By|Description|
 |----|----|----|
 |`ca_cert_data`|`convention_controller`, `source_controller`|Optional: PEM Encoded certificate data to trust TLS connections with a private CA.|
-
-For information about package-specific configuration, see [Installing individual packages](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-install-components.html).
