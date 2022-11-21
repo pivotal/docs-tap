@@ -59,22 +59,21 @@ stringData:
 Where:
 
 - `openID` is the issuer identifier. You can define as many OpenID providers as you like. If the provider supports OpenID Connect Discovery, 
-the value of `openID` is used to auto-configure the provider by using information from https://issuer-uri/.well-known/openid-configuration.
+the value of `openID` is used to auto-configure the provider by using information from `https://ISSUER-URI/.well-known/openid-configuration`.
 - The value of `issuerURI` must not contain ".well-known/openid-configuration" and must match 
-the value of the `issuer` field. See [OpenID Connect documentation](https://issuer-uri/.well-known/openid-configuration) for more information. 
-- `scopes` is used in the authorization request. Its value must contain ``"openid"``. 
-Other common `OpenID` values include ``"profile"`` and ``"email"``.
+the value of the `issuer` field. See OpenID Connect documentation at `https://ISSUER-URI/.well-known/openid-configuration` for more information. 
+- `scopes` is used in the authorization request. Its value must contain `"openid"`. 
+Other common `OpenID` values include `"profile"` and `"email"`.
+    >**Note** You can retrieve the values of `issuerURI` and `clientID` when registering a client with the provider, which in most cases, is by using a web UI. 
+You can also run `curl -s "https://openid.example.com/.well-known/openid-configuration" | jq -r ".issuer"` to retrieve the correct `issuerURI` value.
 - The value of `clientSecretRef` must be a `Secret` with the entry `clientSecret`.
 - `authorizationUri` (optional) is the URI for performing an authorization request and obtaining an `authorization_code`.
 - `tokenUri` (optional) is the URI for performing a token request and obtaining a token.
-- `jwksUri` (optional) is the JWKS endpoint for obtaining the JSON Web Keys to verify token signatures.
+- `jwksUri` (optional) is the JSON Web Key Set (JWKS) endpoint for obtaining the JSON Web Keys to verify token signatures.
 - `claimMappings` (optional) selects which claim in the `id_token` contains the `roles` of the user. 
 `roles` is a non-standard OpenID Connect claim. When `ClientRegistrations` has a `roles` scope, 
 it is used to populate the `roles` claim in the `id_token` issued by the `AuthServer`.
 - `my-oidc-provider-groups` claim from the ID token issued by `my-oidc-provider` is mapped into the `roles` claim in tokens issued by AppSSO.
-
->**Note** You can retrieve the values of `issuerURI` and `clientID` when registering a client with the provider, which in most cases, is by using a web UI. 
-You can also run `curl -s "https://openid.example.com/.well-known/openid-configuration" | jq -r ".issuer"` to retrieve the correct `issuerURI` value.
 
 Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and select `my-oidc-provider`.
 
