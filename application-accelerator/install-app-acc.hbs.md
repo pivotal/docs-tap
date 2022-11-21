@@ -3,7 +3,7 @@
 This topic describes how to install Application Accelerator
 from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+>**Note** Use the instructions on this page if you do not want to use a profile to install packages.
 >Both the full and light profiles include Application Accelerator.
 >For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
@@ -38,7 +38,7 @@ When you install the Application Accelerator, you can configure the following op
 | tls.secret_name | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
 | telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources
-| telemetry.record_invocation_events | true | The system record each engine invocation when generating files for an accelerator?
+| telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?
 | git_credentials.secret_name | git-credentials | The name to use for the secret storing Git credentials for accelerators |
 | git_credentials.username | null | The user name to use in secret storing Git credentials for accelerators |
 | git_credentials.password | null | The password to use in secret storing Git credentials for accelerators |
@@ -49,7 +49,7 @@ When you install the Application Accelerator, you can configure the following op
 | managed_resources.git.sub_path | null | Git subPath to use for repository containing manifests for managed accelerator resources |
 | managed_resources.git.secret_ref | git-credentials | Secret name to use for repository containing manifests for managed accelerator resources |
 
-VMware recommends that you do not override the default for `registry.secret_ref`,
+VMware recommends that you do not override the defaults for `registry.secret_ref`,
 `server.engine_invocation_url`, or `engine.service_type`.
 These properties are only used to configure non-standard installations.
 
@@ -108,7 +108,7 @@ To install Application Accelerator:
 
     Edit the values if needed or leave the default values.
 
-    >**Note:** For clusters that do not support the `LoadBalancer` service type, override the default
+    >**Note** For clusters that do not support the `LoadBalancer` service type, override the default
     >value for `server.service_type`. For example:
 
       >```yaml
@@ -189,7 +189,7 @@ Look for any package called `accelerator.apps.tanzu.vmware.com`.
 ### Look at resource events
 
 The error might be within the custom resources such as accelerator, Git repository, fragment,
-and so on. These errors are checked by using kubectl.
+and so on. These errors are checked by using Kubernetes command line tool (kubectl).
 
 Here is an example using the custom resource `accelerator`:
 
