@@ -10,7 +10,11 @@ There are several reasons why it makes sense to spend time developing Accelerato
 
 ## <a id="design-considerations"></a> Design considerations
 
-Choose for each Accelerator one base technology stack (combined with related tooling) and one target deployment architecture. For example, if you have both Spring Boot and C# .NET Core applications in your target environment, create one for Spring Boot and one for C# .NET Core and do not try to mix them, as it makes both the directory structure and acceleratory.YAML unreadable.
+Each accelerator must have only one base technology stack (combined with related tooling) and one
+target architecture. For example, if you use both Spring Boot and C# .NET Core applications in your
+target environment you must set up two separate accelerators.
+Mixing multiple technology stacks and multiple target architectures makes both the directory structure
+and acceleratory.YAML unreadable.
 
 Think about the scope of your Accelerator. The scope needs to be aligned with the different types of deployments you have. For example, back-end API, front-end UI, business service, and so on.
 
@@ -37,6 +41,10 @@ Having an Accelerator that generates an Application Skeleton without having a go
 
 It is a good habit to have tests for the Application Skeleton:
 
-- An overall application test that bootstraps the application and sees if it comes online such as [`smoke`](https://en.wikipedia.org/wiki/Smoke_testing_(software)).
-- A test per layer: For example, presentation layer, business layer, or data layer. These tests can be unit-tests leveraging stubbing or mocking frameworks.
-- An integration test per layer, especially the presentation layer or data layer. For example, one might provide an integration test with some database interaction using [`test containers`](https://www.testcontainers.org/).
+- You must have an overall application test that bootstraps the application and sees if it comes
+  online such as the application [`smoke`](https://en.wikipedia.org/wiki/Smoke_testing_(software)).
+- A test per layer of the Application is needed. For example, presentation layer, business layer, or
+data layer. These tests can be unit-tests leveraging stubbing or mocking frameworks.
+- An integration test per layer of the Application is also needed. Especially the presentation
+   or data layer. For example, one might provide an integration test with some database interaction
+using [`test containers`](https://www.testcontainers.org/).
