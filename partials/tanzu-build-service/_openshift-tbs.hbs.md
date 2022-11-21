@@ -1,5 +1,5 @@
 On OpenShift clusters Tanzu Build Service must run with a custom [Security Context Constraint](https://docs.openshift.com/container-platform/4.10/authentication/managing-security-context-constraints.html) (SCC) to enable compliance.
-The following SCC will be configured for Tanzu Build Service when installing on OpenShift using the `kubernetes_distribution: openshift` key is configured in `tap-values.yaml`.
+Tanzu Application Platform configures the following SCC for Tanzu Build Service when you configure the `kubernetes_distribution: openshift` key in the `tap-values.yaml` file.
 
 ```yaml
 ---

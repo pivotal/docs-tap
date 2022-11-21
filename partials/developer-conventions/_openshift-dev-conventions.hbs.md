@@ -1,4 +1,7 @@
-On OpenShift clusters, Developer Conventions must run with a custom SecurityContextConstraint (SCC) to enable compliance with restricted Kubernetes Pod Security Standards. The following SCC will be configured for the Developer Convention's webhook when the `kubernetes_distribution: openshift` key is configured in `tap-values.yaml`. Specification follows:
+On OpenShift clusters, Developer Conventions must run with a custom SecurityContextConstraint (SCC) to enable compliance with restricted Kubernetes Pod Security Standards. 
+Tanzu Application Platform configures the following SCC for the Developer Convention's webhook when you configure the `kubernetes_distribution: openshift` key in the `tap-values.yaml` file.
+
+Specification follows:
 
 ```yaml
 ---
