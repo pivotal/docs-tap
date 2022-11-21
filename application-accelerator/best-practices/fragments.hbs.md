@@ -5,10 +5,10 @@ It cannot run on its own. It’s always part of the calling (host) Accelerator.
 
 Developing a Fragment is useful in the following situations:
 
-- Updating a version of an element of a technology stack in multiple locations.
-Such as updating the JDK version in the build tool configuration, the build pack
-configuration, and the deployment options
-- To add a consistent cross-cutting concern to a set of Accelerators. Such as logging, monitoring,
+- When you must update a version of an element of a technology stack in multiple locations.
+For example, when the Java Development Kit (JDK) version must be updated in the build tool
+configuration, the buildpack configuration, and in the deployment options.
+- For adding a consistent cross-cutting concern to a set of Accelerators. Such as logging, monitoring,
 or support for a certain type of deployment or framework.
 - To add integration with some technology to a generated application skeleton.
 Such as  certain database support, support for a certain messaging middleware, or an
@@ -28,15 +28,12 @@ variations. For example, dependency in a `Gradle` build.gradle.kts can have the 
     - `implementation(group = ‘org.springframework.boot’, name= ‘spring-boot-starter’)`
     - `implementation(name= “spring-boot-starter", group = "org.springframework.boot”)`
 
-- The Fragment is used in multiple Accelerator contexts and the behavior still causes a compiled
-and deployable Application Skeleton.
-- Testing a Fragment in isolation is more difficult than testing an Accelerator.
-Testing takes more time as all the combinations need to be tested from an Accelerator perspective.
-
-Some considerations:
-
-- To flexibly reuse Fragments in different combinations each fragment must cover a small,
-cohesive function. In other words, fragments must follow these two UNIX< principles:
+- When the fragment is used in multiple accelerator contexts and the behavior still causes a compiled
+and deployable application skeleton.
+- Testing a fragment in isolation is more difficult than testing an accelerator.Testing takes more
+time as all the combinations must be tested from an accelerator perspective.
+- When flexibly reusing fragments in different combinations each fragment must cover a small,
+cohesive function. Fragments must follow these two UNIX principles:
 
   - Small is beautiful.
   - Each Fragment does one thing well.
