@@ -14,11 +14,11 @@ Note: These instructions are for the recommended configuration where ingress is 
 
 ## <a id='check-con'></a>Check the connection
 
-Check that your configuration is correct and you are able to make a connection.
+Check that your configuration is correct and you are able to make a connection using `tanzu insight health`.
 
-```console
-tanzu insight health
-```
+> **Important** The `tanzu insight health` command will test the configured endpoint and CA certificate.
+> However, it does not test whether the access token is correct.
+> For that you need to use the plug-in to [add](add-data.hbs.md) and [query](query-data.hbs.md) data.
 
 For example:
 
