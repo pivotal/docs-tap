@@ -1,5 +1,8 @@
 On OpenShift clusters, Contour must run with a custom SecurityContextConstraint (SCC) to enable compliance with
-restricted Kubernetes Pod Security Standards. The following SCC is configured for the service accounts in the `tanzu-system-ingress` namespace, which applies to Contour's controller and Envoy pods, when the `kubernetes_distribution: openshift` key is configured in `tap-values.yaml`.
+restricted Kubernetes Pod Security Standards. Tanzu Application Platform configures the following SCC for the service 
+accounts in the `tanzu-system-ingress` namespace, which applies to Contour's controller and Envoy pods, 
+when you configure the `kubernetes_distribution: openshift` key in the `tap-values.yaml` file.
+
 Specification follows:
 
 ```yaml
