@@ -10,8 +10,6 @@ pop-out menu.
 This menu contains a one-line description of the page the user is looking at, and a list of support
 item groupings. For example, the default menu on the Catalog page looks similar to the following image:
 
-![Screenshot of the support menu, which has links for the Tanzu Support Page and the Tanzu Application Platform documentation.](../images/support-menu.png)
-
 As standard, there are two support item groupings:
 
 * Contact Support, which is marked with an **email** icon and contains a link to
@@ -62,8 +60,6 @@ The `url` field under the `support` section, for example,
 
 provides the address of the **contact support** link that appears on error
 pages such as this one:
-
-![Screenshot of the 404 Error Page Not Found Page.](../images/error-page.png)
 
 ### <a id="items"></a> Items
 
