@@ -17,3 +17,4 @@ This section includes the following topics:
 - [TLS configuration](tls-configuration.hbs.md)
 - [Multicluster setup](multicluster-setup.hbs.md)
 - [Developer namespace setup](developer-namespace-setup.hbs.md)
+- [Create a service account with a custom cluster role](custom-role.hbs.md)
