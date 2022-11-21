@@ -14,7 +14,7 @@ Platform's Full, Iterate, and Run profiles. Use the instructions in this topic t
 Image Policy Webhook `ClusterImagePolicy`, see
 [Migration From Supply Chain Security Tools - Sign](migration.md).
 
-- For keyless authorities support setting the value `policy.tuf_enabled: true` is required. By default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`. 
+- For keyless authorities support setting the value `policy.tuf_enabled: true` is required. By default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`.
 
 - If you are installing in an air-gapped environment and require keyless authorities, a Sigstore Stack needs to be deployed on the cluster or be accessible from the air-gapped environment. For more information, see [Install Sigstore Stack](./install-sigstore-stack.hbs.md).
 
@@ -61,41 +61,40 @@ To install Supply Chain Security Tools - Policy Controller:
     $ tanzu package available get policy.apps.tanzu.vmware.com/1.2.0 --values-schema --namespace tap-install
     | Retrieving package details for policy.apps.tanzu.vmware.com/1.2.0...
 
-    KEY                   DEFAULT        TYPE     DESCRIPTION                                                                                                  
-    replicas              1              integer  The number of replicas to be created for the Policy Controller. This value must not be enclosed              
-                                                  in quotes. If this value is not specified then a default value of 1 is used.                                 
-    requests_cpu          20m            string   The CPU request defines the minimum CPU time for the Policy                                                  
-                                                  Controller manager. During CPU contention, CPU request is used as                                            
-                                                  a weighting where higher CPU requests are allocated more CPU time.                                           
-                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu                
-                                                                                                                                                              
-    requests_memory       20Mi           string   The memory request defines the minium memory amount for the Policy Controller manager.                       
-                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory             
-                                                                                                                                                              
-    tuf_enabled           false          boolean  Enable TUF initialization. It is a requirement for the support of the keyless verification.      
+    KEY                        DEFAULT        TYPE     DESCRIPTION
+    custom_cas                 <nil>          array    List of custom CA contents that should be included in the application container for registry communication.
+                                                       An array of items containing a ca_content field with the PEM-encoded contents of a certificate authority.
+    deployment_namespace       cosign-system  string   Deployment namespace specifies the namespace where this component should be deployed to.
+                                                       If not specified, "cosign-system" is assumed.
+    fail_on_empty_authorities  true           boolean  Configure if a ClusterImagePolicy will fail or allow empty authorities
+    limits_cpu                 200m           string   The CPU limit defines a hard ceiling on how much CPU time
+                                                       that the Policy Controller manager container can use.
+                                                       https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
 
-    custom_cas            <nil>          array    List of custom CA contents that should be included in the application container for registry communication.  
-                                                  An array of items containing a ca_content field with the PEM-encoded contents of a certificate authority.    
-    deployment_namespace  cosign-system  string   Deployment namespace specifies the namespace where this component should be deployed to.                     
-                                                  If not specified, "cosign-system" is assumed.                                                                
-    limits_memory         200Mi          string   The memory limit defines a hard ceiling on how much memory                                                   
-                                                  that the Policy Controller manager container can use.                                                        
-                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory             
-                                                                                                                                                              
-    quota.pod_number      6              string   The maximum number of Policy Controller Pods allowed to be created with the priority class                   
-                                                  system-cluster-critical. This value must be enclosed in quotes (""). If this value is not                    
-                                                  specified then a default value of 6 is used.                                                                 
-    tuf_root                             string   The root.json file content of the TUF mirror                                                                 
-                                                                                                                                                              
-    custom_ca_secrets     <nil>          array    List of custom CA secrets that should be included in the application container for registry communication.   
-                                                  An array of secret references each containing a secret_name field with the secret name to be referenced      
-                                                  and a namespace field with the name of the namespace where the referred secret resides.                      
-    limits_cpu            200m           string   The CPU limit defines a hard ceiling on how much CPU time                                                    
-                                                  that the Policy Controller manager container can use.                                                        
-                                                  https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu                
-                                                                                                                                                              
-    tuf_mirror                           string   TUF mirror address                                                                                           
-                                                                                        
+    no_match_policy            deny           string   The action when no policy matches the admitting image digest. Valid values are "warn", "allow", or "deny".
+    quota.pod_number           6              string   The maximum number of Policy Controller Pods allowed to be created with the priority class
+                                                       system-cluster-critical. This value must be enclosed in quotes (""). If this value is not
+                                                       specified then a default value of 6 is used.
+    replicas                   1              integer  The number of replicas to be created for the Policy Controller. This value must not be enclosed
+                                                       in quotes. If this value is not specified then a default value of 1 is used.
+    requests_memory            20Mi           string   The memory request defines the minium memory amount for the Policy Controller manager.
+                                                       https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
+
+    tuf_root                                  string   The root.json file content of the TUF mirror
+
+    custom_ca_secrets          <nil>          array    List of custom CA secrets that should be included in the application container for registry communication.
+                                                       An array of secret references each containing a secret_name field with the secret name to be referenced
+                                                       and a namespace field with the name of the namespace where the referred secret resides.
+    limits_memory              200Mi          string   The memory limit defines a hard ceiling on how much memory
+                                                       that the Policy Controller manager container can use.
+                                                       https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory
+
+    requests_cpu               20m            string   The CPU request defines the minimum CPU time for the Policy
+                                                       Controller manager. During CPU contention, CPU request is used as
+                                                       a weighting where higher CPU requests are allocated more CPU time.
+                                                       https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu
+
+    tuf_mirror                                string   TUF mirror address
     ```
 
 1. Create a file named `scst-policy-values.yaml` and add the settings you want to customize:
@@ -194,13 +193,19 @@ To install Supply Chain Security Tools - Policy Controller:
 
     - `tuf_enabled`:
       This setting defines whether the TUF initialization is done on startup. It is a requirement for the support of the keyless verification.
-      The default value is "false", which means by default the keyless authorities of `ClusterImagePolicy`is not supported, but also that policy-controller does not have an external dependency on setup. 
+      The default value is "false", which means by default the keyless authorities of `ClusterImagePolicy`is not supported, but also that policy-controller does not have an external dependency on setup.
 
     - `tuf_root`:
       The root.json file content of the TUF mirror.
-    
+
     - `tuf_mirror`:
       This setting defines the TUF mirror address which is used for doing the initialization.
+
+    - `no_match_policy`:
+      The action when no policy matches the admitting image digest. Valid values are `"warn"`, `"allow"`, or `"deny"`. Default value is `"deny"`
+
+    - `fail_on_empty_authorities`:
+      Failing or allowing empty authorities when adding a new `ClusterImagePolicy`. Default value is `true`.
 
 2. Install the package:
 
