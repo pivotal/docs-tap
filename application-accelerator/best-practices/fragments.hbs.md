@@ -5,8 +5,8 @@ It cannot run on its own. It’s always part of the calling (host) accelerator.
 
 Developing a fragment is useful in the following situations:
 
-- When you need to update a version of an element of a technology stack in multiple locations.
-For example, when the Java Development Kit (JDK) version needs to be updated in the build tool
+- When you must update a version of an element of a technology stack in multiple locations.
+For example, when the Java Development Kit (JDK) version must be updated in the build tool
 configuration, the buildpack configuration, and in the deployment options.
 - For adding a consistent cross-cutting concern to a set of Accelerators. Such as logging, monitoring,
 or support for a certain type of deployment or framework.
@@ -30,7 +30,7 @@ variations. For example, dependency in a `Gradle` build.gradle.kts can have the 
 - When the fragment is used in multiple accelerator contexts and the behavior still causes a compiled
 and deployable application skeleton.
 - Testing a fragment in isolation is more difficult than testing an accelerator.Testing takes more
-time as all the combinations need to be tested from an accelerator perspective.
+time as all the combinations must be tested from an accelerator perspective.
 - When flexibly reusing fragments in different combinations each fragment must cover a small,
 cohesive function. Fragments must follow these two UNIX principles:
 

@@ -13,7 +13,7 @@ organization.
 
 Each accelerator must have only one base technology stack (combined with related tooling) and one
 target architecture. For example, if you use both Spring Boot and C# .NET Core applications in your
-target environment you will need to set up two separate accelerators.
+target environment you must set up two separate accelerators.
 Mixing multiple technology stacks and multiple target architectures makes both the directory structure
 and acceleratory.YAML unreadable.
 
@@ -61,10 +61,10 @@ running in production without testing.
 
 It is a good habit to have tests for the application skeleton:
 
-- You need to have an overall application test that bootstraps the application and sees if it comes
+- You must have an overall application test that bootstraps the application and sees if it comes
   online such as the application [`smoke`](https://en.wikipedia.org/wiki/Smoke_testing_(software)).
 - A test per layer of the Application is needed. For example, presentation layer, business layer, or
-data layer. These tests may be unit-tests leveraging stubbing or mocking frameworks.
+data layer. These tests can be unit-tests leveraging stubbing or mocking frameworks.
 - An integration test per layer of the Application is also needed. Especially the presentation
    or data layer. For example, one might provide an integration test with some database interaction
 using [`test containers`](https://www.testcontainers.org/).
