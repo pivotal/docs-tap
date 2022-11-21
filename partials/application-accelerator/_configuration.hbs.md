@@ -1,7 +1,7 @@
 # Configure Application Accelerator
 
 This topic describes advanced configuration options available for Application Accelerator. This
-includes configuring Git-Ops style< deployments of accelerators and configurations for use with
+includes configuring Git-Ops style deployments of accelerators and configurations for use with
 non-public repositories and in air-gapped environments.
 
 Accelerators are created either using the Tanzu CLI or by applying a YAML manifest using kubectl.
@@ -530,7 +530,7 @@ command and provide the name of the secret for that flag.
 
 ## <a id='configure-timeouts'></a>Configure ingress timeouts when some accelerators take longer to generate
 
-If the Tanzu Application Platform is configured to use an ingress for
+If Tanzu Application Platform is configured to use an ingress for
 Tanzu Application Platform-GUI and the Accelerator
 Server, then it might detect a timeout during accelerator generation. This can happen if the
 accelerator takes a longer time to generate than the default timeout. This manifests itself in the
