@@ -15,13 +15,13 @@ For information about installing Tanzu Application Platform in an air-gapped env
 
 To create a workload from Git through https, follow these steps:
 
-1. Create a secret in your developer namespace with the caFile that matches the gitops_ssh_secret name in tap_values:
+1. Create a secret in your developer namespace with the caFile that matches the `gitops_ssh_secret` name in tap_values:
 
     ```console
     kubectl create secret generic custom-ca --from-file=caFile=CA_PATH -n NAMESPACE
     ```
 
-2. (Optional) To pass in  login credentials for a Git repository with the certificate authority (CA) certificate, create a file called git-credentials.yaml. For example:
+2. (Optional) To pass in login credentials for a Git repository with the certificate authority (CA) certificate, create a file called `git-credentials.yaml`. For example:
 
     ```yaml
     apiVersion: v1
@@ -31,20 +31,20 @@ To create a workload from Git through https, follow these steps:
       # namespace: default
     type: Opaque
     data:
-      username: <USERNAME-BASE64>
-      password: <PASSWORD-BASE64>
+      username: USERNAME-BASE64
+      password: PASSWORD-BASE64
       caFile: |
-        <CADATA-BASE64>
+        CADATA-BASE64
     ```
 
     Where:
 
-    - USERNAME-BASE64 is the base64 encoded user name.
-    - PASSWORD-BASE64 is the base64 encoded password.
-    - CADATA-BASE64 is the base64 encoded CA certificate for the
+    - `USERNAME-BASE64` is the base64 encoded user name.
+    - `PASSWORD-BASE64` is the base64 encoded password.
+    - `CADATA-BASE64` is the base64 encoded CA certificate for the
     Git repository.
 
-3. To pass in a custom settings.xml for Java, create a file called settings-xml.yaml. For example:
+3. To pass in a custom settings.xml for Java, create a file called `settings-xml.yaml`. For example:
 
    ```yaml
    apiVersion: v1
@@ -82,13 +82,12 @@ To create a workload from Git through https, follow these steps:
    kubectl create -f settings-xml.yaml -n DEVELOPER-NAMESPACE
    ```
 
-
 ## <a id="create-basic-wkload"></a>Create a basic supply chain workload
 
 Next, create your basic supply chain workload. Due to an unresolved issue, you must pass in a build environment:
 
 ```console
-tanzu apps workload create APPNAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
+tanzu apps workload create APP-NAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
 ```
 
 To instead pass the CA certificate in when you create the workload, run:
@@ -99,7 +98,7 @@ tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRA
 
 ## <a id="create-test-wkload"></a>Create a testing supply chain workload
 
-For instructions about creating a workload with the testing supply chain, see [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md).
+For instructions about creating a workload with the testing supply chain, see [Install OOTB Supply Chain with Testing](add-test-and-security.hbs.md#install-OOTB-test).
 
 To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
@@ -137,7 +136,7 @@ Where `MY-REGISTRY` is your own container image registry. Relocate all the image
 Create the workload by running:
 
 ```console
-tanzu apps workload create APPNAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
+tanzu apps workload create APP-NAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
 ```
 
 To instead pass the CA certificate when you create the workload, run:
@@ -151,12 +150,12 @@ tanzu apps workload create APP-NAME --git-repo  https://GITREPO --git-branch BRA
 For instructions about creating a workload with the testing and scanning supply chain, see [Install OOTB Supply Chain with Testing and Scanning](add-test-and-security.hbs.md#install-OOTB-test#install-OOTB-test-scan).
 
 In addition to the prerequisites given at [Prerequisites](add-test-and-security.hbs.md#prereqs-install-OOTB-test-scan),
-follow [Using Grype in offline and air-gapped environments](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-scan-offline-airgap.html) before workload creation.
+follow [Using Grype in offline and air-gapped environments](../scst-scan/offline-airgap.hbs.md) before workload creation.
 
 Create workload by running:
 
 ```console
-tanzu apps workload create APPNAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
+tanzu apps workload create APP-NAME --git-repo  https://GITURL --git-branch BRANCH --type web --label app.kubernetes.io/part-of=CATALOGNAME --yes --param-yaml --label apps.tanzu.vmware.com/has-tests=true buildServiceBindings='[{"name": "settings-xml", "kind": "Secret"}]' --build-env "BP_MAVEN_BUILD_ARGUMENTS=-Dmaven.test.skip=true --no-transfer-progress package"
 ```
 
 To instead pass the CA certificate when you create the workload, run:

@@ -110,7 +110,7 @@ metadataStore:
   url: "" # Configuration is moved, so set this string to empty.
 ```
 
-## <a id="snyk-scan-policy"></a> Sample ScanPolicy for in SPDX JSON format
+## <a id="snyk-scan-policy"></a> Sample ScanPolicy for Snyk in SPDX JSON format
 
 1. Create a ScanPolicy YAML with a Rego file for scanner output in the SPDX JSON format. Here is a sample scan policy resource:
 
@@ -152,7 +152,7 @@ metadataStore:
         }
     ```
 
-1. Apply the earlier created YAML:
+1. Apply the YAML file by running:
 
     ```console
     kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML

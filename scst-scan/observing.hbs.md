@@ -10,6 +10,7 @@ up after completion.
 
 Before applying a new scan, you can set a watch on the Jobs, Pods, SourceScans, Imagescans to
 observe their progression:
+
 ```console
 watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
 ```
@@ -22,7 +23,7 @@ Run these commands to get more logs and details about the errors around scanning
 persist for a predefined amount of seconds before getting deleted.
 (`deleteScanJobsSecondsAfterFinished` is the tap pkg variable that defines this)
 
-####  <a id="debugging-scan-pods"></a> Debugging Scan pods
+#### <a id="debugging-scan-pods"></a> Debugging Scan pods
 
 Run the following to get error logs from a pod when scan pods are in a failing state:
 
@@ -34,6 +35,7 @@ See [here](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/)
 about debugging Kubernetes pods.
 
 The following is an example of a successful scan run output:
+
 ```yaml
 scan:
   cveCount:
@@ -70,7 +72,7 @@ See [Debug Init
 Containers](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/) in the
 Kubernetes documentation for debug init container tips.
 
-####  <a id="debug-source-image-scan"></a> Debugging SourceScan and ImageScan
+#### <a id="debug-source-image-scan"></a> Debugging SourceScan and ImageScan
 
 To retrieve status conditions of an SourceScan and ImageScan, run:
 
@@ -90,10 +92,10 @@ the keyword "Error" to investigate issues.
 See [here](../cli-plugins/apps/debug-workload.md) for Tanzu workload commands for tailing build and
 runtime logs and getting workload status and details.
 
-
 #### <a id="view-scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs
 
 To retrieve scan-controller manager logs:
+
 ```console
 kubectl -n scan-link-system logs -f deployment/scan-link-controller-manager -c manager
 ```
@@ -135,7 +137,7 @@ Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.
 
 #### <a id="deactivate-scst-store"></a> Deactivate Supply Chain Security Tools (SCST) - Store
 
-SCST - Store is a prerequisite for installing SCST - Scan. If you install without the SCST - Store,
+SCST - Store is required to install SCST - Scan. If you install without the SCST - Store,
 you must edit the configurations to deactivate the Store:
 
   ```yaml
@@ -179,30 +181,30 @@ you must edit the configurations to deactivate the Store:
     ```
 
 #### <a id="incompatible-scan-policy"></a> Resolving incompatible scan policy
-  If your scan policy appears to not be enforced, it might be because the Rego file defined in the
-  scan policy is incompatible with the scanner that is being used. For example, the Grype Scanner
-  outputs in the CycloneDX XML format while the Snyk Scanner outputs SPDX JSON.
 
-  See [Install Snyk Scanner](install-snyk-integration.md#a-idverifya-verify-integration-with-snyk)
-  for an example of a ScanPolicy formatted for SPDX JSON.
+If your scan policy appears to not be enforced, it might be because the Rego file defined in the
+scan policy is incompatible with the scanner that is being used.
+For example, the Grype Scanner outputs in the CycloneDX XML format while the Snyk Scanner outputs SPDX JSON.
+
+See [Sample ScanPolicy for Snyk in SPDX JSON format](install-snyk-integration.md#snyk-scan-policy)
+for an example of a ScanPolicy formatted for SPDX JSON.
 
 #### <a id="ca-not-found-in-secret"></a> Could not find CA in secret
 
-  If you encounter the following issue, it might be due to not exporting  `app-tls-cert` to the
-  correct namespace:
+If you encounter the following issue, it might be due to not exporting  `app-tls-cert` to the correct namespace:
 
-  ```console
-  {"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
-  ```
+```console
+{"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
+```
 
-  Configure `ns_for_export_app_cert` in your `tap-values.yaml`.
+Configure `ns_for_export_app_cert` in your `tap-values.yaml`.
 
-  ```yaml
-  metadata_store:
-    ns_for_export_app_cert: "DEV-NAMESPACE"
-  ```
+```yaml
+metadata_store:
+  ns_for_export_app_cert: "DEV-NAMESPACE"
+```
 
-  If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"`.
+If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"`.
 
 #### <a id="reporting-wrong-blob-url"></a> Blob Source Scan is reporting wrong source URL
 
@@ -211,9 +213,9 @@ A Source Scan for a blob artifact can cause reporting in the `status.artifact` a
 cluster local fluxcd one. One symptom of this issue is the `image-builder` failing with a `ssh:// is
 an unsupported protocol` error message.
 
-You can confirm you're having this problem by running a `kubectl describe` in the affected resource
-and comparing the `spec.blob.url` value against the `status.artifact.blob.url` and see if they are
-different URLs. For example:
+You can confirm you're having this problem by running `kubectl describe` in the
+affected resource and comparing the `spec.blob.url` value against the `status.artifact.blob.url`.
+The problem occurs if they are different URLs. For example:
 
 ```console
 kubectl describe sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
@@ -257,7 +259,7 @@ GUI is unable to view the Scan Policy resource.
 Confirm that the Scan Policy associated with a SourceScan or ImageScan exists. For example, the
 `scanPolicy` in the scan matches the name of the Scan Policy.
 
-```
+```console
 kubectl describe sourcescan NAME -n DEV-NAMESPACE
 kubectl describe imagescan NAME -n DEV-NAMESPACE
 kubectl get scanpolicy NAME -n DEV-NAMESPACE
@@ -272,18 +274,26 @@ for more details.
 
 If your scan pod is failing, and in the logs you see this error:
 
-```
+```console
 dial tcp: lookup metadata-store-app.metadata-store.svc.cluster.local on 10.100.0.10:53: no such host
 ```
 
-This is caused by a connection error while attempting to connect to the local cluster URL. If this is a multicluster deployment, make sure you have set the `grype.metadataStore.url` property in your Build profile `values.yaml`. It needs to be set to the ingress domain of SCST - Store which is deployed in the View cluster. See [SCST - Store - Multicluster setup - Install Build profile](../scst-store/multicluster-setup.hbs.md#install-build-profile) for more information on that configuration.
+A connection error while attempting to connect to the local cluster URL causes
+this error. If this is a multicluster deployment, set the
+`grype.metadataStore.url` property in your Build profile `values.yaml`. It needs
+to be set to the ingress domain of SCST - Store which is deployed in the View
+cluster. See [SCST - Store - Multicluster setup - Install Build
+profile](../scst-store/multicluster-setup.hbs.md#install-build-profile) for more
+information on that configuration.
 
 #### Sourcescan error with SCST - Store endpoint without a prefix
 
 If your Source Scan resource is failing, and the status shows this error:
 
-```
+```console
 Error: endpoint require 'http://' or 'https://' prefix
 ```
 
-This is becuase the `grype.metadataStore.url` value in the TAP profile `values.yaml` was not configured with the correct prefix. Check that the URL starts with either `http://` or `https://`.
+This is because the `grype.metadataStore.url` value in the Tanzu Application
+Platform profile `values.yaml` was not configured with the correct prefix.
+Verify that the URL starts with either `http://` or `https://`.

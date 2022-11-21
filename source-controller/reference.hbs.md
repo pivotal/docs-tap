@@ -77,4 +77,4 @@ Version support implemented in the following order:
 
 5. Version ranges - <https://maven.apache.org/enforcer/enforcer-rules/versionRanges.html>. Support is planned for a future release.
 
-**Note** Pinned versions should be immutable, all other versions are dynamic and may change at any time. The `.spec.interval` defines how frequently to check for updated artifacts.
+>**Note** Pinned versions should be immutable, all other versions are dynamic and can change at any time. The `.spec.interval` defines how frequently to check for updated artifacts.

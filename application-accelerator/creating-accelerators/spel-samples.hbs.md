@@ -1,11 +1,12 @@
 # SpEL samples
 
-This document shows some common [Spring Expression Language](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions)
+This topic shows some common [Spring Expression Language](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions)
 (SpEL) use cases for the `accelerator.yaml` file.
 
 ## <a id="variables"></a>Variables
 
-You can reference all the values added as options in the `accelerator` section from the YAML file as variables in the `engine` section. You can access the value using the syntax
+You can reference all the values added as options in the `accelerator` section from the YAML file as
+variables in the `engine` section. You can access the value using the syntax
 `#<option name>`:
 
 ```yaml
@@ -34,7 +35,7 @@ Some variables are made available to the model by the engine, including:
   the UI with spaces replaced by "_". If that value is empty, it is set to `app`.
 - `files` is a helper object that currently exposes the `contentsOf(<path>)` method.
   For more information, see [ReplaceText](transforms/replace-text.md).
-- `camel2Kebab` and other variations of the form `xxx2Yyyy` are a series of
+- `camel2Kebab` and other variations of the form `xxx2Yyyy` is a series of
   helper functions for dealing with changing case of words. For more information, see [ReplaceText](transforms/replace-text.md).
 
 ## <a id="conditionals"></a>Conditionals
@@ -101,14 +102,15 @@ engine:
         with: "#foo"
 ```
 
-This example uses RegEx to match a string of letters that ends with a capital Z and any number of digits. If this condition is fulfilled, the text is replaced in the file, `file.txt`.
+This example uses RegEx to match a string of letters that ends with a capital Z and any number of
+digits. If this condition is fulfilled, the text is replaced in the file, `file.txt`.
 
 ## <a id="dealing-with-string-array"></a>Dealing with string arrays
 
 Options with a `dataType` of `[string]` come out as an array of strings.
 
 To use them and for example, format the result as a bulleted list.
-It might to use the Java `static String.join()` method, such as:
+It might use the Java `static String.join()` method, such as:
 
 ```yaml
 accelerator:

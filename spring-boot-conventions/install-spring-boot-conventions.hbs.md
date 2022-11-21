@@ -32,22 +32,41 @@ To install Spring Boot conventions:
    ```console
    $ tanzu package available list spring-boot-conventions.tanzu.vmware.com --namespace tap-install
    / Retrieving package versions for spring-boot-conventions.tanzu.vmware.com...
-   NAME                                       VERSION   RELEASED-AT
+   NAME                                       VERSION           RELEASED-AT
    ...
-   spring-boot-conventions.tanzu.vmware.com   0.1.2     2021-10-28T00:00:00Z
+   spring-boot-conventions.tanzu.vmware.com   1.4.0-build.1     2022-11-11T00:00:00Z
    ...
    ```
 
-2. Install the package by running:
+1. (Optional) Change the default installation settings by running:
+
+    ```console
+    tanzu package available get spring-boot-conventions.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+
+    Where `VERSION-NUMBER` is the version of the package listed. For example: `1.4.0-build.1`.
+
+    For example:
+
+    ```console
+    $ tanzu package available get spring-boot-conventions.tanzu.vmware.com/1.4.0-build.1 --values-schema --namespace tap-install
+      KEY                               DEFAULT             TYPE     DESCRIPTION
+        autoConfigureActuators          false               boolean  Enable or disable the automatic configuration of actuators on the TAP platform level
+        kubernetes_distribution                             string   Kubernetes distribution that this package is being installed on. Accepted
+                                                                     values: ['''',''openshift'']
+        kubernetes_version                                  string   Optional: The Kubernetes Version. Valid values are '1.24.*', or ''
+    ```
+
+1. Install the package by running:
 
    ```console
    tanzu package install spring-boot-conventions \
    --package-name spring-boot-conventions.tanzu.vmware.com \
-   --version 0.1.2 \
+   --version 1.4.0-build.1 \
    --namespace tap-install
    ```
 
-3. Verify that you installed the package by running:
+2. Verify you installed the package by running:
 
    ```console
    tanzu package installed get spring-boot-conventions --namespace tap-install
@@ -60,7 +79,7 @@ To install Spring Boot conventions:
    | Retrieving installation details for spring-boot-conventions...
    NAME:                    spring-boot-conventions
    PACKAGE-NAME:            spring-boot-conventions.tanzu.vmware.com
-   PACKAGE-VERSION:         0.1.2
+   PACKAGE-VERSION:         1.4.0-build.1
    STATUS:                  Reconcile succeeded
    CONDITIONS:              [{ReconcileSucceeded True  }]
    USEFUL-ERROR-MESSAGE:

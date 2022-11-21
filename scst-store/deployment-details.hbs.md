@@ -4,48 +4,54 @@
 
 The installation creates the following in your Kubernetes cluster:
 
-* Two components — an API back end and a database.
+- Two components — an API back end and a database.
   Each component includes:
-    * service
-    * deployment
-    * replicaset
-    * Pod
-* Persistent volume claim
-* External IP address (based on a deployment configuration set to use `LoadBalancer`).
-* A Kubernetes secret to allow pulling Supply Chain Security Tools - Store images from a registry.
-* A namespace called `metadata-store`.
-* A service account with read-write privileges named `metadata-store-read-write-client`, and a corresponding secret for the service account. It's bound to a ClusterRole named `metadata-store-read-write`.
-* A read-only ClusterRole named `metadata-store-read-only` that isn't bound to a service account. See [Service Accounts](#service-accounts).
-* (Optional) An HTTPProxy object for ingress support.
+    - service
+    - deployment
+    - replicaset
+    - Pod
+- Persistent volume claim
+- External IP address (based on a deployment configuration set to use `LoadBalancer`).
+- A Kubernetes secret to allow pulling SCST - Store images from a registry.
+- A namespace called `metadata-store`.
+- A service account with read-write privileges named `metadata-store-read-write-client`, and a corresponding secret for the service account. It's bound to a ClusterRole named `metadata-store-read-write`.
+- A read-only ClusterRole named `metadata-store-read-only` that isn't bound to a service account. See [Service Accounts](#service-accounts).
+- (Optional) An HTTPProxy object for ingress support.
 
 ## <a id='configuration'></a> Deployment configuration
 
-All configurations are nested inside of `metadata_store` in your tap values deployment yaml.
+All configurations are nested inside of `metadata_store` in your tap values deployment YAML.
 
 ### Supported Network Configurations
 
-Recommended connection methods based on Tanzu Application Platform setup:
+The following connection methods are recommended based on Tanzu Application Platform setup:
 
-* Single or multi-cluster with Contour = `Ingress`
-* Single cluster without Contour and with `LoadBalancer` support = `LoadBalancer`
-* Single cluster without Contour and without `LoadBalancer` = `NodePort`
-* Multi-cluster without Contour = Not supported
+- Single or multicluster with Contour = `Ingress`
+- Single cluster without Contour and with `LoadBalancer` support = `LoadBalancer`
+- Single cluster without Contour and without `LoadBalancer` = `NodePort`
+- Multicluster without Contour = Not supported
 
-For a production environment, it is recommended that Supply Chain Security Tools - Store is installed with ingress enabled.
+For a production environment, VMware recommends that you install SCST - Store with ingress enabled.
 
 #### <a id='appserv-type'></a>App service type
 
-Supported values include `LoadBalancer`, `ClusterIP`, `NodePort`. The `app_service_type` is set to `LoadBalancer` by default. If your environment does not support `LoadBalancer`, and you want to use `ClusterIP`, configure the `app_service_type` property in your deployment yaml:
+Supported values include `LoadBalancer`, `ClusterIP`, `NodePort`. The
+`app_service_type` is set to `LoadBalancer` by default. If your environment does
+not support `LoadBalancer`, and you want to use `ClusterIP`, configure the
+`app_service_type` property in your deployment YAML:
 
 ```yaml
 app_service_type: "ClusterIP"
 ```
 
-If the `ingress_enabled` property is set to `"true"`, VMware recommends setting the `app_service_type` property to `"ClusterIP"`.
+If you set the `ingress_enabled` to `"true"`, VMware recommends setting
+the `app_service_type` property to `"ClusterIP"`.
 
 #### <a id='ingress'></a>Ingress support
 
-Supply Chain Security Tools - Store's values file allows you to enable ingress support and to configure a custom domain name to use Contour to provide external access to Supply Chain Security Tools - Store's API. For example:
+SCST - Store's values file allows you to enable ingress support and to configure
+a custom domain name to use Contour to provide external access to SCST - Store's
+API. For example:
 
 ```yaml
 ingress_enabled: "true"
@@ -53,25 +59,32 @@ ingress_domain: "example.com"
 app_service_type: "ClusterIP" # recommended setting
 ```
 
-An HTTPProxy object is then installed with `metadata-store.example.com` as the fully qualified domain name. See [Ingress](ingress.hbs.md).
+An HTTPProxy object is installed with `metadata-store.example.com` as the
+fully qualified domain name. See [Ingress](ingress.hbs.md).
 
->**Note** the `ingress_enabled` property expects a string value of `"true"` or `"false"`, not a boolean value.
+>**Note** The `ingress_enabled` property expects a string value of `"true"` or `"false"`, not a Boolean value.
 
 ### <a id="db-config"></a> Database configuration
 
-The default database included with the deployment is meant to get users started using the metadata store. The default database deployment does not support many enterprise production requirements, including scaling, redundancy, or failover. However, it is still a secure deployment.
+The default database included with the deployment is meant to get users started
+using the metadata store. The default database deployment does not support many
+enterprise production requirements, including scaling, redundancy, or failover.
+However, it is a secure deployment.
 
-#### <a id='awsrds-postresdata'></a>Using AWS RDS postgres database
+#### <a id='awsrds-postresdata'></a>Using AWS RDS PostgreSQL database
 
-Users can also configure the deployment to use their own RDS database instead of the default. See [AWS RDS Postgres Configuration](use-aws-rds.hbs.md).
+Users can also configure the deployment to use their own RDS database instead of
+the default. See [AWS RDS Postgres Configuration](use-aws-rds.hbs.md).
 
-#### Using external postgres database
+#### Using external PostgreSQL database
 
-Users can also configure the deployment to use any other postgres database. See [Use external postgres database](use-external-database.hbs.md).
+Users can also configure the deployment to use any other PostgreSQL database.
+See [Use external postgres database](use-external-database.hbs.md).
 
 #### <a id='cust-data-pass'></a>Custom database password
 
-By default, a database password is generated upon deployment. To configure a custom password, use the `db_password` property in the deployment yaml.
+By default, a database password is generated upon deployment. To configure a
+custom password, use the `db_password` property in the deployment YAML.
 
 ```yaml
 db_password: "PASSWORD-0123"
@@ -88,8 +101,14 @@ This service account is a cluster-wide account that uses ClusterRole.
 If you don't want the service account and role, set the `add_default_rw_service_account` property to `"false"`.
 To create a custom service account, see [Create Service Account](create-service-account.hbs.md).
 
-The store creates a read-only cluster role, which can be bound to a service account by using `ClusterRoleBinding`. To create service accounts to bind to this cluster role, see [Create Service Account](create-service-account.hbs.md).
+The store creates a read-only cluster role, which is bound to a service account
+by using `ClusterRoleBinding`. To create service accounts to bind to this
+cluster role, see [Create Service Account](create-service-account.hbs.md).
 
 ## <a id='export-cert'></a>Exporting certificates
 
-Supply Chain Security Tools - Store creates a [Secret Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md) for exporting certificates to `Supply Chain Security Tools - Scan` to securely post scan results. These certificates are exported to the namespace where `Supply Chain Security Tools - Scan` is installed.
+SCST - Store creates a [Secret
+Export](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/secret-export.md)
+for exporting certificates to `Supply Chain Security Tools - Scan` to securely
+post scan results. These certificates are exported to the namespace where
+`Supply Chain Security Tools - Scan` is installed.

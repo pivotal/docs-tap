@@ -6,17 +6,67 @@ This repo contains the content for Tanzu Application Platform docs.
 
 ## Branches
 
-| Branch | Usage |
-|--------|-------|
-| main | Development branch for pre-release v1.4 docs staged at https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4/tap/GUID-overview.html |
-| 1-3-2 | Branch that is staged at https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3.2/tap/GUID-overview.html |
-| 1-3-1 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html |
-| 1-3-0-do-not-use | No longer in use. Do not PR to this branch. |
-| 1-2-2 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html |
-| 1-2-1-do-not-use | No longer in use. Do not PR to this branch. |
-| 1-2-0-do-not-use | No longer in use. Do not PR to this branch. |
-| 1-1 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html |
-| 1-0 | Branch that is published to https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html |
+<table>
+<thead>
+<tr>
+<th>Branch</th>
+<th>Staging</th>
+<th>Production</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>main</td>
+<td><a href="https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4/tap/GUID-overview.html">Staging</a> (Pre-release v1.4 docs)</td>
+<td><em>n/a</em></td>
+</tr>
+<tr>
+<td>1-3-3</td>
+<td><a href="https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3.3/tap/GUID-overview.html">Staging</a></td>
+<td><em>n/a</em></td>
+</tr>
+<tr>
+<td>1-3-2</td>
+<td><a href="https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html">Staging</a></td>
+<td><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html">Production</a></td>
+</tr>
+<tr>
+<td>1-3-1-do-not-use</td>
+<td>Not in use. Do not PR to this branch.</td>
+<td>Not in use. Do not PR to this branch.</td>
+</tr>
+<tr>
+<td>1-3-0-do-not-use</td>
+<td>No longer in use. Do not PR to this branch.</td>
+<td>No longer in use. Do not PR to this branch.</td>
+</tr>
+<tr>
+<td>1-2-2</td>
+<td><a href="https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html">Staging</a></td>
+<td><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html">Production</a></td>
+</tr>
+<tr>
+<td>1-2-1-do-not-use</td>
+<td>No longer in use. Do not PR to this branch.</td>
+<td>No longer in use. Do not PR to this branch.</td>
+</tr>
+<tr>
+<td>1-2-0-do-not-use</td>
+<td>No longer in use. Do not PR to this branch.</td>
+<td>No longer in use. Do not PR to this branch.</td>
+</tr>
+<tr>
+<td>1-1</td>
+<td><a href="https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html">Staging</a></td>
+<td><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html">Production</a></td>
+</tr>
+<tr>
+<td>1-0</td>
+<td><a href="https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html">Staging</a></td>
+<td><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html">Production</a></td>
+</tr>
+</tbody>
+</table>
 
 ## Components with their own repositories
 

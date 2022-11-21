@@ -215,7 +215,9 @@ The sample values file contains the necessary defaults for:
     - The meta-package, or parent Tanzu Application Platform package.
     - Subordinate packages, or individual child packages.
 
-    >**Important** Keep the values file for future configuration use.
+    Keep the values file for future configuration use.
+    
+    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
 
 
 1. [View possible configuration settings for your package](view-package-config.hbs.md)
@@ -306,7 +308,7 @@ service's External IP address. It is not required to know the External IP addres
 - `KP-DEFAULT-REPO-USERNAME` is the user name that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     * For Google Cloud Registry, use `kp_default_repository_username: _json_key`.
     * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
-- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential. You can also configure this credential by using a secret reference. See [Install Tanzu Build Service](tanzu-build-service/install-tbs.html#install-secret-refs) for details.
+- `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     * For Google Cloud Registry, use the contents of the service account JSON file.
     * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
 - `SERVER-NAME` is the host name of the registry server. Examples:
@@ -325,7 +327,7 @@ This field is only required if you use a private repository, otherwise, leave it
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 
-If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.
+If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
 
 If you use AWS, the default settings creates a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
@@ -430,11 +432,11 @@ Follow these steps to install the Tanzu Application Platform package:
 3. If you configured `full` dependencies in your `tap-values.yaml` file, install the `full` dependencies
 by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
-After installing the Full profile on your cluster, you can install the
-Tanzu Developer Tools for VS Code Extension to help you develop against it.
-For instructions, see [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md).
+>**Important** After installing the full profile on your cluster, you must set up developer namespaces. Otherwise, 
+creating a workload, a Knative service or other Tanzu Application Platform packages fails. 
+For more information, see [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md).
 
->**Note** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
+You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
 ```
 tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --values-file tap-values.yaml -n tap-install
@@ -496,10 +498,6 @@ To install the `full` dependencies package:
 
     Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
 
-## <a id='developer-namespaces'></a>A Note on Developer Namespaces
-
-[Setting up developer namespaces](set-up-namespaces.html) is a required step before installation is complete. Creating a workload, a Knative Service or other TAP packages will not work until this step is completed.
-
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
 To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
@@ -533,3 +531,4 @@ To exclude packages from a Tanzu Application Platform profile:
 
 - (Optional) [Installing Individual Packages](install-components.html)
 - [Setting up developer namespaces to use installed packages](set-up-namespaces.html)
+- [Replace the default ingress issuer](security-and-compliance/ingress-certificates.hbs.md#replacing-the-default-ingress-issuer)

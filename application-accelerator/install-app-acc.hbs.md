@@ -4,8 +4,8 @@ This topic describes how to install Application Accelerator
 from the Tanzu Application Platform package repository.
 
 >**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-Both the full and light profiles include Application Accelerator.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+>Both the full and light profiles include Application Accelerator.
+>For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 ## <a id='app-acc-prereqs'></a>Prerequisites
 
@@ -14,7 +14,7 @@ Before installing Application Accelerator:
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 
 - Install Flux SourceController on the cluster.
-See [Install cert-manager, Contour, and FluxCD Source Controller](../cert-mgr-contour-fcd/install-cert-mgr.md).
+See [Install cert-manager, Contour, and FluxCD Source Controller](../cert-mgr-contour-fcd/install.md).
 
 - Install Source Controller on the cluster.
 See [Install Source Controller](../source-controller/install-source-controller.md).
@@ -25,7 +25,7 @@ When you install the Application Accelerator, you can configure the following op
 
 | Property | Default | Description |
 | --- | --- | --- |
-| registry.secret_ref | registry.tanzu.vmware<.com | The secret used for accessing the registry where the App-Accelerator images are located |
+| registry.secret_ref | registry.tanzu.vmware.com | The secret used for accessing the registry where the App-Accelerator images are located |
 | server.service_type | ClusterIP | The service type for the acc-ui-server service including LoadBalancer, NodePort, or ClusterIP |
 | server.watched_namespace | accelerator-system | The namespace the server watches for accelerator resources |
 | server.engine_invocation_url | http://acc-engine.accelerator-system.svc.cluster.local/invocations | The URL to use for invoking the accelerator engine |
@@ -34,11 +34,11 @@ When you install the Application Accelerator, you can configure the following op
 | samples.include | True | Option to include the bundled sample Accelerators in the installation |
 | ingress.include | False | Option to include the ingress configuration in the installation |
 | ingress.enable_tls | False | Option to include TLS for the ingress configuration |
-| domain | tap.example.com | Top-level domain to use for ingress configuration, defaults to `shared.ingress_domain` |
+| domain | tap.example.com | Top-level domain to use for ingress configuration, default is `shared.ingress_domain` |
 | tls.secret_name | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
-| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.
-| telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?
+| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources
+| telemetry.record_invocation_events | true | The system record each engine invocation when generating files for an accelerator?
 | git_credentials.secret_name | git-credentials | The name to use for the secret storing Git credentials for accelerators |
 | git_credentials.username | null | The user name to use in secret storing Git credentials for accelerators |
 | git_credentials.password | null | The password to use in secret storing Git credentials for accelerators |
@@ -49,7 +49,7 @@ When you install the Application Accelerator, you can configure the following op
 | managed_resources.git.sub_path | null | Git subPath to use for repository containing manifests for managed accelerator resources |
 | managed_resources.git.secret_ref | git-credentials | Secret name to use for repository containing manifests for managed accelerator resources |
 
-VMware recommends that you do not override the defaults for `registry.secret_ref`,
+VMware recommends that you do not override the default for `registry.secret_ref`,
 `server.engine_invocation_url`, or `engine.service_type`.
 These properties are only used to configure non-standard installations.
 
@@ -109,7 +109,7 @@ To install Application Accelerator:
     Edit the values if needed or leave the default values.
 
     >**Note:** For clusters that do not support the `LoadBalancer` service type, override the default
-    >value for `server.service_type`, for example,
+    >value for `server.service_type`. For example:
 
       >```yaml
       > server:
@@ -125,7 +125,7 @@ To install Application Accelerator:
     tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-accelerator-values.yaml
     ```
 
-    Where `VERSION-NUMBER` is the version included with the Tanzu Application Platform installation.
+    If `VERSION-NUMBER` is the version included in the Tanzu Application Platform installation.
 
     For example:
 
@@ -164,38 +164,40 @@ To install Application Accelerator:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-6. To see the IP address for the Application Accelerator API when the `server.service_type` is set to `LoadBalancer`, run:
+6. To see the IP address for the Application Accelerator API when the `server.service_type` is set
+   to `LoadBalancer`, run:
 
     ```console
     kubectl get service -n accelerator-system
     ```
 
-    This lists an external IP address for use with the `--server-url` Tanzu CLI flag for the Accelerator plug-in `generate` command.
+    This lists an external IP address for use with the `--server-url` Tanzu CLI flag for the
+    Accelerator plug-in `generate` command.
 
 ## <a id='troubleshooting'></a> Troubleshooting
 
-Depending on the error output, there are some actions that can be taken
+Depending on the error output, there are some actions that you can take.
 
 ### Verify installed packages
 
-The package might be already installed, verify this by running the command:
+The package might be already installed. Verify this by running:
 
 `tanzu package installed list -n tap-install`
 
-and look for any package called `accelerator.apps.tanzu.vmware.com`
+Look for any package called `accelerator.apps.tanzu.vmware.com`.
 
 ### Look at resource events
 
-Sometimes the error lies within the custom resources (accelerator, git repository, fragment, etc.),
-these errors are checked using kubectl.
+The error might be within the custom resources such as accelerator, Git repository, fragment,
+and so on. These errors are checked by using kubectl.
 
-Up next there is an example using the custom resource `accelerator`
+Here is an example using the custom resource `accelerator`:
 
-`kubectl get acc -n accelerator-system`
+`kubectl get acc -n accelerator-system`.
 
-it should output
+It displays the output:
 
-```
+```console
 NAME                       READY   REASON     AGE
 appsso-starter-java        True    Ready      5h2m
 hungryman                  True    Ready      5h2m
@@ -213,8 +215,8 @@ weatherforecast-csharp     True    Ready      5h2m
 weatherforecast-steeltoe   True    Ready      5h2m
 ```
 
-to verify the error event, run:
+To verify the error event, run:
 
 `kubectl get acc node-function -n accelerator-system -o yaml`
 
-Then the event section can be checked for more information about the error.
+You can then look at the event section for more information about the error.

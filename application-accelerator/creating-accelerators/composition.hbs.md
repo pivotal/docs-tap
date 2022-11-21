@@ -132,6 +132,8 @@ accelerator:
     - name: another-fragment
       expose:
         - name: "*"
+      exposeTypes:
+        - name: "*"
 
     - name: yet-another-fragment
       expose:
@@ -139,12 +141,17 @@ accelerator:
 
         - name: someOtherOption
           as: aDifferentName
+      exposeType:
+        - name: SomeType
+
+        - name: SomeOtherType
+          as: ADifferentName
 engine:
   ...
 ```
 
 As shown earlier, the `imports` section calls a list of fragments to import and by default,
-all their options become options of the accelerator. Those options appear _after_
+all their options and types become options/type of the accelerator. Those options appear _after_
 the options defined by the accelerator, in the order the fragments are imported in.
 
 >**Note** It is even possible for a fragment to import another fragment, the semantics
@@ -169,6 +176,29 @@ The semantics of the `expose` block are as follows:
 - As soon as a single remap rule appears, the default is overridden (for example,
   to override some names AND expose the others unchanged, the `*` must
   be explicitly re-added)
+- To explicitly un-expose ALL options from an imported fragment, an empty array can
+  be used and overrides the default: `expose: []`
+
+Similarly, you can also select which [custom types](custom-types.hbs.md) of the fragment
+to make available as types of the accelerator. **This feature should only be used
+when a name clash arises in types names.**
+
+The semantics of the `exposeTypes` block are as follows:
+
+- for every `name`/`as` pair, don't use the original (`name`) of the
+  type but instead, use the alias (`as`). Options that used the original
+  name are automatically 'rewritten' to use the new name.
+- if the special `name: "*"` (which is NOT a legit type name usually) appears,
+  all imported other type names that are not remapped (the index at which the
+  `*` appears in the YAML list is irrelevant) will be exposed
+  with their original name.
+- The default value for `exposeTypes` is `[{name: "*"}]`, _i.e._ by default
+  expose all types with their original name.
+- As soon as a single remap rule appears, the default is overridden (for example,
+  to override some names AND expose the others unchanged, the `*` must
+  be explicitly re-added)
+- To explicitly un-expose ALL types from an imported fragment, an empty array can
+  be used and overrides the default: `exposeTypes: []`
 
 ### <a id="using-dependsOn-in-imports"></a> Using `dependsOn` in the `imports` section
 

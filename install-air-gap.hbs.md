@@ -193,10 +193,12 @@ The sample values file contains the necessary defaults for:
 
     Keep the values file for future configuration use.
 
-    >**Important** While installing Tanzu Application Platform v1.3 and later,
+    While installing Tanzu Application Platform v1.3 and later,
     exclude the policy controller `policy.apps.tanzu.vmware.com`, or deploy a
     Sigstore Stack to use as a TUF Mirror. For more information, see [Policy
     controller known issues](scst-policy/known-issues.hbs.md).
+
+    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
 
 ### <a id='full-profile'></a> Full Profile
 
@@ -340,7 +342,7 @@ credentials to pull an image from the registry for scanning.
 - `SECRET-NAME` is the name of the TLS secret for the domain consumed by HTTPProxy.
 - `APP-LIVE-VIEW-NAMESPACE` is the targeted namespace for the TLS secret for the domain.
 
-If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherits that value by default.
+If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
 
 Create the app-live-view namespace and the TLS secret for the domain before installing the Tanzu Application Platform packages in the cluster. This ensures the HTTPProxy is updated with the TLS secret.
 

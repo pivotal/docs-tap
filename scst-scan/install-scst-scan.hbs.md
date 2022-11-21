@@ -99,8 +99,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 1. (Optional) Make changes to the default installation settings:
 
     If you're using the Grype Scanner `v1.2.0 and earlier`, or the Snyk Scanner, the
-    following scanning configuration can deactivate the embedded Supply Chain
-    Security Tools - Store integration with a `scan-values.yaml` file, such as:
+    following scanning configuration might deactivate the embedded SCST - Store integration with a `scan-values.yaml` file.
 
     ```yaml
     ---
@@ -168,7 +167,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
         name: "TOKEN-SECRET-NAME" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
-    >**Note** You must either define both the METADATA-STORE-URL and caSecret,
+    >**Note** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`,
     >or not define them as they depend on each other.
 
     Where:

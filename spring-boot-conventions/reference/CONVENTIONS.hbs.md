@@ -233,6 +233,8 @@ under `dependencies`, the Spring Boot actuator convention is applied to the `Pod
 
 The Spring Boot Actuator convention does the following actions:
 
+If the workload-level or platform-level automatic configuration of actuators is enabled:
+
 1. Sets the management port in the `JAVA_TOOL_OPTIONS` environment variable to `8081`.
 2. Sets the base path in the `JAVA_TOOL_OPTIONS` environment variable to `/actuator`.
 3. Adds an annotation, `boot.spring.io/actuator`, to where the actuator is accessed.
@@ -255,6 +257,8 @@ port `8081` and base path `/actuator`.
 > Any alternative methods for setting the management port are overwritten.
 > For example, if you configure the management port using `application.properties/yml`
 > or `config server`, the Spring Boot Actuator convention overrides your configuration.
+
+>**Note** If the workload-level or platform-level automatic configuration of actuators is deactivated, the Spring Boot actuator convention does not set any JAVA_TOOLS_OPTIONS and does not set the annotation `boot.spring.io/actuator`.
 
 Example of PodIntent after applying the convention:
 
@@ -280,7 +284,7 @@ status:
  template:
    metadata:
      annotations:
-       boot.spring.io/actuator: http://:8080/actuator
+       boot.spring.io/actuator: http://:8081/actuator
        boot.spring.io/version: 2.3.3.RELEASE
        conventions.carto.run/applied-conventions: |-
          spring-boot-convention/spring-boot
