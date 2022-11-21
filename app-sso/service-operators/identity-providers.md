@@ -60,7 +60,7 @@ Where:
 
 - `openID` is the issuer identifier. You can define as many OpenID providers as you like. If the provider supports OpenID Connect Discovery, 
 the value of `openID` is used to auto-configure the provider by using information from `https://openid.example.com/.well-known/openid-configuration`.
-- The value of `issuerURI` must not contain ".well-known/openid-configuration" and must match 
+- The value of `issuerURI` must not contain `.well-known/openid-configuration` and must match 
 the value of the `issuer` field. See OpenID Connect documentation at `https://openid.example.com/.well-known/openid-configuration` for more information.
     >**Note** You can retrieve the values of `issuerURI` and `clientID` when registering a client with the provider, which in most cases, is by using a web UI. 
 - `scopes` is used in the authorization request. Its value must contain `"openid"`. 
