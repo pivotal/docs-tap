@@ -14,7 +14,7 @@ can be run from a Tekton `Pipeline`.
 Follow the instructions from [Out of the Box Supply Chain With
 Testing](ootb-supply-chain-testing.html) or [Out of the Box Supply Chain With
 Testing and Scanning](ootb-supply-chain-testing-scanning.html) to successfully
-install the required packages. To set up one, but not both, of those
+install the required packages. You need to set up one, but not both, of those
 packages.
 
 These supply chains can use the Jenkins service during the `source-tester`
@@ -330,7 +330,7 @@ that is sent to the Jenkins job.  The parameter are entered into the
 > **Important** None of the fields in the `Workload` resource are implicitly passed to the
 Jenkins job. You have to set them in the `job-params` explicitly.
 
->**Exception:** The `SOURCE_URL` and `SOURCE_REVISION` parameters are sent to the
+>**Exception** The `SOURCE_URL` and `SOURCE_REVISION` parameters are sent to the
 Jenkins job implicitly by the Jenkins Adapter trigger program.  You can use the
 `SOURCE_REVISION` to verify which commit SHA to test, for example.  See [Making
 a Jenkins Test Job](#making-a-jenkins-test-job) earlier for details about how to use
