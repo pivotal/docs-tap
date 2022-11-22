@@ -129,6 +129,8 @@ spec:
 Authorities listed in the `authorities` block of the ClusterImagePolicy are
 `key` or `keyless` specifications.
 
+>**Note** Keyless support is disabled by default. For more information, see [Install Doc](./install-scst-policy.hbs.md).
+
 Each `key` authority can contain a PEM-encoded ECDSA public key, a `secretRef`,
 or a `kms` path.
 

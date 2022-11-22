@@ -227,11 +227,6 @@ The sample values file contains the necessary defaults for:
 The following is the YAML file sample for the full-profile. The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run` or `view`.
 Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
 
->**Important** While installing Tanzu Application Platform v1.3 and later,
-exclude the policy controller `policy.apps.tanzu.vmware.com`, or deploy a
-Sigstore Stack to use as a TUF Mirror. For more information, see [Policy
-controller known issues](scst-policy/known-issues.hbs.md).
-
 ```yaml
 shared:
   ingress_domain: "INGRESS-DOMAIN"
@@ -252,9 +247,6 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 #Below are the keys which may have default values set, but can be overridden.
 
 profile: full # Can take iterate, build, run, view.
-
-excluded_packages:
-- policy.apps.tanzu.vmware.com
 
 supply_chain: basic # Can take testing, testing_scanning.
 
@@ -295,6 +287,8 @@ grype:
   namespace: "MY-DEV-NAMESPACE"
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
 
+policy:
+  tuf_enabled: false # By default TUF initialization and keyless verification is disabled.
 ```
 
 Where:

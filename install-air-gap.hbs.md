@@ -151,10 +151,12 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
-## <a id='air-gap-policy'></a> Prepare Sigstore TUF Stack for Air-gapped Policy Controller
+## <a id='air-gap-policy'></a> Prepare Sigstore Stack for Air-gapped Policy Controller
 
-Supply Chain Security Tools - Policy Controller requires access to a The Update Framework (TUF) server.
-In an environment with public Internet access, the public official Sigstore TUF server is used.
+>**Note** This section only applies if the target environment requires support for keyless authorities in `ClusterImagePolicy`. In this case Tanzu Application Platform needs to be installed with the value `policy.tuf_enabled: true`. By default keyless authorities support is disabled.
+
+By default the public official Sigstore "The Update Framework" (TUF) server is used.
+To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`. 
 
 The Sigstore Stack consists of:
 
@@ -164,8 +166,7 @@ The Sigstore Stack consists of:
 - [Certificate Transparency Log (CTLog)](https://github.com/google/certificate-transparency-go)
 - [The Update Framework (TUF)](https://theupdateframework.io/)
 
-For an air-gapped environment, an internally accessible Sigstore stack is required. While installing, Policy Controller fails to reconcile and deploy in most cases. The Policy Controller must be configured with a TUF mirror and TUF root.
-
+For an air-gapped environment, an internally accessible Sigstore stack is required for keyless authorities.
 For more information about how to set up the Sigstore Stack, see [Install Sigstore Stack](scst-policy/install-sigstore-stack.html).
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
@@ -192,13 +193,6 @@ The sample values file contains the necessary defaults for:
     - Subordinate packages, or individual child packages
 
     Keep the values file for future configuration use.
-
-    While installing Tanzu Application Platform v1.3 and later,
-    exclude the policy controller `policy.apps.tanzu.vmware.com`, or deploy a
-    Sigstore Stack to use as a TUF Mirror. For more information, see [Policy
-    controller known issues](scst-policy/known-issues.hbs.md).
-
-    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
 
 ### <a id='full-profile'></a> Full Profile
 

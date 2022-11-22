@@ -1,5 +1,7 @@
 # Install Sigstore Stack
 
+>**Note:** VMware does not provide support for sigstore stack deployments. However a sample of deploying version 0.4.8 is described below, such that keyless signing and verification in air-gapped environments can be used.
+
 [Sigstore/scaffolding](https://github.com/sigstore/scaffolding) is used for
 bringing up the Sigstore Stack.
 
@@ -19,14 +21,6 @@ environment, proceed to [Update Policy Controller with TUF Mirror and
 Root](#sigstore-update-policy-controller).
 
 ## <a id='sigstore-release-files'></a> Download Stack Release Files
-
-For Sigstore Stack, VMware recommends deploying `v0.4.8` of
-`Sigstore/scaffolding`. This is due to an issue in previous versions
-that caused the `Fulcio` deployment to crashloop because of the `CGO` package.
-Later versions can also cause a known issue with invalid TUF key due to a
-breaking change with the current Policy Controller packaged in Tanzu Application
-Platform v1.3.0 and later. For information about this breaking change, see
-[Known Issues](./known-issues.hbs.md).
 
 Download the release files of all the Sigstore Stack components from `Sigstore/scaffolding`:
 

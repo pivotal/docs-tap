@@ -40,12 +40,15 @@ are using this issuer to secure ingress. In upcoming releases all components wil
   it is now easier to see how many workloads are impacted by the CVE that the scan detected.
 
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
-
 This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-vscode-bc"></a> Tanzu Developer Tools for Visual Studio Code
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
+
+#### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
+
+Policy Controller no longer initializes TUF by default which is needed to support the keyless authorities in `ClusterImagePolicy`. To continue to use keyless authorities, it is required to provide the value `policy.tuf_enabled: true` through the `tap-values.yaml` during the upgrade process. Then by default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`. 
 
 ### <a id='1-4-0-security-fixes'></a> Security fixes
 
