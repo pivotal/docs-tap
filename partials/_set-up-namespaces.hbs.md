@@ -22,7 +22,7 @@ Apply a specific label-selector and `Namespace Provisioner` takes care of the re
    kubectl create ns ns1 label=apps.tanzu.vmware.com/tap-ns
    ```
 
-Unless you need to [Enable additional users access with Kubernetes RBAC](#additional-user-access) after you've followed the instructions above, you're done!
+Unless you need to [enable additional users access with Kubernetes RBAC](#additional-user-access) after you've followed the instructions above, you're done!
 
 Additonal instructions on how to customize and extend `namespace provisioner` will be published shortly.
 
