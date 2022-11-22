@@ -59,22 +59,11 @@ The following sections describe how to upgrade in different scenarios.
 
 ### <a id="profile-based-instruct"></a> Upgrade instructions for Profile-based installation
 
-In Tanzu Application Platform v1.3.0, there is a [known issue](scst-policy/known-issues.hbs.md) with
-Policy Controller that breaks installation. There are various workarounds.
+In Tanzu Application Platform v1.3.2, the upgrade for Policy Controller has resolved the need for previously documented workarounds regarding this [known issue](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-scst-policy-known-issues.html) with Policy Controller that broke installation.
 
-If your chosen workaround was excluding Policy Controller then, when upgrading to
-Tanzu Application Platform v1.3.1, remove the package `policy.apps.tanzu.vmware.com` from the
-`excluded_packages` list in `tap-values.yaml`.
+>**Note** Beginning in Tanzu Application Platform v1.4.0 keyless support is disabled by default. For more information, also see the [Install Doc](./install-scst-policy.hbs.md).
 
-If your chosen workaround was installing a custom Sigstore Stack then, when upgrading to
-Tanzu Application Platform v1.3.1, remove the `tuf_mirror` and `tuf_root` keys from `tap-values.yaml`
-to use the official Sigstore TUF root. Afterwards, proceed to [Uninstall Sigstore Stack](./scst-policy/install-sigstore-stack.hbs.md#uninstall-sigstore-stack).
-
-```yaml
-tuf_mirror: http://tuf.tuf-system.svc
-tuf_root: |
-  MULTI-LINE-STRING-CONTENT-OF-ROOT.JSON
-```
+Policy Controller no longer initializes TUF by default which is needed to support the keyless authorities in `ClusterImagePolicy`. To continue to use keyless authorities, it is required to provide the value `policy.tuf_enabled: true` through the `tap-values.yaml` during the upgrade process. Then by default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`. 
 
 If you installed Tanzu Application Platform by using a profile, you can perform the upgrade by running the following command in the directory where the `tap-values.yaml` file resides:
 
