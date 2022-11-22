@@ -81,7 +81,9 @@ spec:
       - name: ""
   storage: # optional
     redis: # required if 'storage' is defined
-      secretRef: # Reference to Secret resource within same namespace as this AuthServer
+      serviceRef: # Reference to a provisioned service within same namespace as this AuthServer. Currently supports Secret reference only.
+        apiVersion: "v1"
+        kind: "Secret"
         name: ""
   caCerts: # optional
     - secretRef: # Reference to Secret resource within same namespace as this AuthServer
