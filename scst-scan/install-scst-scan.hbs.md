@@ -26,10 +26,7 @@ Before installing Supply Chain Security Tools - Scan:
     deployment is not required to communicate with Supply Chain Security Tools -
     Store.
 
-    For more information, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
-
-- Install the Tanzu Insight CLI plug-in to query the Supply Chain Security Tools - Store for CVE results.
-  See [Install the Tanzu Insight CLI plug-in](../cli-plugins/insight/cli-installation.md).
+  For more information, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
 ## <a id='configure-scst-scan'></a> Configure properties
 
