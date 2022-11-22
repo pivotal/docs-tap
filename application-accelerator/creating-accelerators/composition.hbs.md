@@ -8,31 +8,33 @@ verbose as new accelerators are added: some create a project different from the 
 with similar aspects, which requires some form of copy-paste.
 
 To alleviate this concern, Application Accelerators support a feature named _Composition_
-that allows the re-use of parts of an accelerator, named **Fragments**.
+that allows the re-use of parts of an accelerator, called **fragments**.
 
-## <a id="introducting-fragments"></a> Introducing Fragments
+## <a id="introducting-fragments"></a> Introducing fragments
 
-A **Fragment** looks exactly the same as an accelerator:
+A **fragment** looks exactly the same as an accelerator:
 
-- it is made of a set of files
-- contains an `accelerator.yaml` descriptor, with options declarations and a root Transform.
+- It is made of a set of files.
+- It contains an `accelerator.yaml` descriptor, with options declarations and a root transform.
 
-The only differences reside in the way they are declared to the system — they are
-filed as **Fragments** custom resources — and the way they deal with files: because
-they deal with their own files and files from the accelerator using them,
+There are differences however. Namely:
+
+- Fragments are declared to the system differently. That is, they are
+filed as **fragments** custom resources.
+- They deal with files differently. Because fragments deal with their own files and files from the accelerator using them,
 they typically use dedicated conflict resolution [strategies](transforms/conflict-resolution.md)
-(more on that later).
+(more on this later).
 
-Fragments can be thought of as "functions" in programming languages: once defined and
+Fragments can be thought of as "functions" in programming languages. After being defined and
 referenced, they can be "called" at various points in the main accelerator.
 The composition feature is designed with ease of use and "common use case first"
-in mind, so these "functions" are typically called with as little noise as possible,
-you can also call them complex or different values.
+in mind, so these "functions" are typically called with as little noise as possible.
+You can also call them complex or different values.
 
 Composition relies on two building blocks that play hand in hand:
 
-- the `imports` section at the top of an accelerator manifest,
-- and the, `InvokeFragment` Transform, to be used alongside any other Transform.
+- The `imports` section at the top of an accelerator manifest.
+- The, `InvokeFragment` transform, to be used alongside any other transform.
 
 ## <a id="imports-section-explained"></a>| The `imports` section explained
 
@@ -55,12 +57,11 @@ engine:
 
 The effect of importing a fragment this way is twofold:
 
-- it makes its files available to the engine (therefore importing a fragment is required),
-- it exposes all its options as options of the accelerator as if they were defined
+- It makes its files available to the engine (therefore importing a fragment is required).
+- It exposes all its options as options of the accelerator as if they were defined
   by the accelerator itself.
 
-So in the earlier example, if the `my-first-fragment` fragment had the following `accelerator.yaml`
-file:
+So in the earlier example, if the `my-first-fragment` fragment had the following `accelerator.yaml` file:
 
 ```yaml
 accelerator
@@ -150,11 +151,11 @@ engine:
   ...
 ```
 
-As shown earlier, the `imports` section calls a list of fragments to import and by default,
+As shown earlier, the `imports` section calls a list of fragments to import. By default,
 all their options and types become options/type of the accelerator. Those options appear _after_
 the options defined by the accelerator, in the order the fragments are imported in.
 
->**Note** It is even possible for a fragment to import another fragment, the semantics
+It is even possible for a fragment to import another fragment, the semantics
 being the same as when an accelerator imports a fragment. This is a way to
 break apart a fragment even further if needed.
 
@@ -164,20 +165,20 @@ when a name clash arises in option names.**
 
 The semantics of the `expose` block are as follows:
 
-- for every `name`/`as` pair, don't use the original (`name`) of the
+- For every `name`/`as` pair, don't use the original (`name`) of the
   option but instead, use the alias (`as`). Other metadata about the option
   is left unchanged.
-- if the special `name: "*"` (which is NOT a legit option name usually) appears,
+- If the special `name: "*"` (which is NOT a legit option name usually) appears,
  all imported option names that are not remapped (the index at which the
   `*` appears in the YAML list is irrelevant) might be exposed
   with their original name.
-- The default value for `expose` is `[{name: "*"}]`, _i.e._ by default
-  expose all options with their original name.
-- As soon as a single remap rule appears, the default is overridden (for example,
+- The default value for `expose` is `[{name: "*"}]`, that is, by default
+  exposes all options with their original name.
+- As soon as a single remap rule appears, the default is overridden. For example,
   to override some names AND expose the others unchanged, the `*` must
-  be explicitly re-added)
+  be explicitly re-added.
 - To explicitly un-expose ALL options from an imported fragment, an empty array can
-  be used and overrides the default: `expose: []`
+  be used and overrides the default: `expose: []`.
 
 Similarly, you can also select which [custom types](custom-types.hbs.md) of the fragment
 to make available as types of the accelerator. **This feature should only be used
@@ -185,20 +186,20 @@ when a name clash arises in types names.**
 
 The semantics of the `exposeTypes` block are as follows:
 
-- for every `name`/`as` pair, don't use the original (`name`) of the
+- For every `name`/`as` pair, don't use the original (`name`) of the
   type but instead, use the alias (`as`). Options that used the original
   name are automatically 'rewritten' to use the new name.
-- if the special `name: "*"` (which is NOT a legit type name usually) appears,
-  all imported other type names that are not remapped (the index at which the
-  `*` appears in the YAML list is irrelevant) will be exposed
-  with their original name.
-- The default value for `exposeTypes` is `[{name: "*"}]`, _i.e._ by default
-  expose all types with their original name.
-- As soon as a single remap rule appears, the default is overridden (for example,
+- If the special `name: "*"` appears, which is NOT usually a legit type name,
+  all imported other type names that are not remapped are exposed
+  with their original name. The index at which the
+  `*` appears in the YAML list is irrelevant.
+- The default value for `exposeTypes` is `[{name: "*"}]`, that is, by default
+  exposes all types with their original name.
+- As soon as a single remap rule appears, the default is overridden. For example,
   to override some names AND expose the others unchanged, the `*` must
-  be explicitly re-added)
+  be explicitly re-added.
 - To explicitly un-expose ALL types from an imported fragment, an empty array can
-  be used and overrides the default: `exposeTypes: []`
+  be used, which overrides the default: `exposeTypes: []`.
 
 ### <a id="using-dependsOn-in-imports"></a> Using `dependsOn` in the `imports` section
 
@@ -233,13 +234,13 @@ engine:
 
 ## <a id="cli-fragments"></a> Discovering fragments using Tanzu CLI accelerator plug-in
 
-Using the accelerator plug-in for Tanzu CLI, you can list fragments that are available. Running:
+Using the accelerator plug-in for Tanzu CLI, you can view a list of available fragments. Run:
 
 ```sh
 tanzu accelerator fragment list
 ```
 
-Results in a list of available accelerator fragments:
+To see a list of available accelerator fragments. For example:
 
 ```sh
 NAME                                 READY   REPOSITORY
@@ -291,7 +292,7 @@ importedBy:
 
 This shows the `options` and `importedBy` with a list of three accelerators that import this fragment.
 
-Correspondingly, the `tanzu accelerator get <accelerator-name>` show the fragments that an accelerator imports. Run this command:
+Correspondingly, the `tanzu accelerator get <accelerator-name>` shows the fragments that an accelerator imports. Run:
 
 ```sh
 tanzu accelerator get java-rest-service
@@ -416,4 +417,4 @@ imports:
   tap-workload
 ```
 
->**Note** the `imports` section at the end shows the fragments that this accelerator imports. The `options` section shows all options that are defined for this accelerator. This includes all options that are defined in the imported fragments, for example, the options for the Java version that are imported from the `java-version` fragment.
+The `imports` section at the end shows the fragments that this accelerator imports. The `options` section shows all options defined for this accelerator. This includes all options defined in the imported fragments, for example, the options for the Java version imported from the `java-version` fragment.
