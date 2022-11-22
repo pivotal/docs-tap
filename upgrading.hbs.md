@@ -61,7 +61,7 @@ The following sections describe how to upgrade in different scenarios.
 
 In Tanzu Application Platform v1.3.2, the upgrade for Policy Controller has resolved the need for previously documented workarounds regarding this [known issue](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-scst-policy-known-issues.html) with Policy Controller that broke installation.
 
->**Note** Beginning in Tanzu Application Platform v1.4.0 keyless support is disabled by default. For more information, also see the [Install Doc](./install-scst-policy.hbs.md).
+>**Note** Beginning in Tanzu Application Platform v1.4.0 keyless support is disabled by default. <!--For more information, also see the [Install Doc](./install-scst-policy.hbs.md).-->
 
 Policy Controller no longer initializes TUF by default which is needed to support the keyless authorities in `ClusterImagePolicy`. To continue to use keyless authorities, it is required to provide the value `policy.tuf_enabled: true` through the `tap-values.yaml` during the upgrade process. Then by default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`. 
 

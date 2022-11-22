@@ -28,4 +28,4 @@ tanzu insight config set-target https://$METADATA_STORE_DOMAIN:$METADATA_STORE_P
 > **Important** The `tanzu insight config set-target` will not initiate a test connection.
 > Use `tanzu insight health` to test connecting using the configured endpoint and CA certificate.
 > Neither commands test whether the access token is correct.
-> For that you need to use the plug-in to [add](add-data.hbs.md) and [query](query-data.hbs.md) data.
+> <!--For that you need to use the plug-in to [add](add-data.hbs.md) and [query](query-data.hbs.md) data.-->
