@@ -372,9 +372,9 @@ you can install Tanzu Application Platform without the Bionic stack and all work
 
 To install Tanzu Application Platform with Jammy as the only available stack, include the `stack_configuration: jammy-only` field under the `buildservice:` section in `tap-values.yaml`.
 
-### <a id='custom-scc'></a> Custom SCC
+### <a id='custom-scc'></a> Custom Security Context Constraints
 
->**Important** This section only applies when you install Tanzu Application Platform on Red Hat OpenShift Container Platform.
+>**Important** This section only applies when you install Tanzu Application Platform v1.3 on Red Hat OpenShift Container Platform v4.10.
 
 In Red Hat OpenShift, Security Context Constraints (SCC) are used to restrict privileges for pods.
 SCCs define a set of rules that a pod must satisfy to be created.
