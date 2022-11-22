@@ -10,6 +10,10 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 ### <a id='1-3-3-new-features'></a> Resolved issues
 
+### <a id="1-3-3-supplychain-resolved"></a>Supply Chain Choreographer
+- On a Build profile cluster, a `ConfigMap` containing the `Deliverable` is now produced. Previously a `Deliverable` was
+  created directly on the cluster. 
+
 ### <a id='1-3-3-known-issues'></a> Known issues
 
 ## <a id='1-3-2'></a> v1.3.2
