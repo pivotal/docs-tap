@@ -323,11 +323,11 @@ service's External IP address.
     * Docker Hub has the form `server: "index.docker.io"`.
     * Google Cloud Registry has the form `server: "gcr.io"`.
 - `REPO-NAME` is where workload images are stored in the registry. If this key is passed through the shared section earlier and AWS ECR registry is used, you must ensure that the `SERVER-NAME/REPO-NAME/buildservice` and `SERVER-NAME/REPO-NAME/workloads` exist. AWS ECR expects the paths to be pre-created.
-Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
-    * Harbor has the form `repository: "my-project/supply-chain"`.
-    * Docker Hub has the form `repository: "my-dockerhub-user"`.
-    * Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
-- `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication.
+- Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
+   - Harbor has the form `repository: "my-project/supply-chain"`.
+   - Docker Hub has the form `repository: "my-dockerhub-user"`.
+   - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
+- `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication. See [Git authentication](scc/git-auth.hbs.md#git-authentication) for more information.
 - `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#a-idmaven-repository-secreta-maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `GITLABURL` is the host name of your GitLab instance.
