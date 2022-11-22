@@ -71,7 +71,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     - Harbor has the form `repository: "my-project/supply-chain"`.
     - Docker Hub has the form `repository: "my-dockerhub-user"`.
     - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
-- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
+- `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to. See [Git authentication](scc/git-auth.hbs.md#git-authentication) for more information.
 - `TAP-ITERATE-CNRS-DOMAIN` is the iterate cluster CNRS domain.
 - `VIEW-CLUSTER-INGRESS-DOMAIN` is the subdomain you setup on the View profile cluster. This matches the value key `appliveview.ingressDomain` or `shared.ingress_domain` on the view cluster. Include the default host name `appliveview.` ahead of the domain.
 
