@@ -21,7 +21,7 @@ Apply a specific label-selector and `Namespace Provisioner` takes care of the re
 1. To create and set up a namespace called `ns1` execute the following commands:
    ```
    kubectl create namespace ns1
-   kubectl label namespaces ns1 apps.tanzu.vmware.com/tap-ns=
+   kubectl label namespaces ns1 apps.tanzu.vmware.com/tap-ns=""
    ```
 
 Unless you need to [enable additional users access with Kubernetes RBAC](#additional-user-access) after you've followed the instructions above, you're done!
