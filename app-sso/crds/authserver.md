@@ -64,7 +64,7 @@ metadata:
 spec:
   # .tls is optional if a default issuer is set
   tls:
-    # must be one and only one of issuerRef, certificateRef or secretRef, unless disabled
+    # must be one and only one of issuerRef, certificateRef or secretRef, unless deactivated
     issuerRef:
       name: ""
       kind: ""
@@ -73,7 +73,8 @@ spec:
       name: ""
     secretRef:
       name: ""
-    disabled: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`
+    deactivated: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`
+    disabled: false # DEPRECATED use 'deactivated' instead; if true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`
   tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""
@@ -164,6 +165,12 @@ status:
     redis:
       host: "" # the hostname of the configured Redis
       port: "" # the port of the configured Redis
+  tls:
+    deactivated: false
+    issuerRef:
+      name: ""
+      kind: ""
+      group: cert-manager.io
   conditions:
     - lastTransitionTime:
       message: ""
@@ -238,7 +245,7 @@ storage:
    host: "" # the hostname of the configured Redis
    port: "" # the port of the configured Redis
 tls:
-  disabled: false
+  deactivated: false
   # One of issuerRef, certificateRef or secretRef will be set if TLS is enabled 
   issuerRef:
     name: ""

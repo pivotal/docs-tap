@@ -7,12 +7,19 @@ For help on migrating your resources in between versions, see the [migration gui
 If you installed the `AppSSO` package on its own, and not as part of `TAP`, you can upgrade it individually by running:
 
 ```
-tanzu package installed update PACKAGE_INSTALLATION_NAME -p sso.apps.tanzu.vmware.com -v 2.0.0 --values-file PATH_TO_YOUR_VALUES_YAML -n YOUR_INSTALL_NAMESPACE
+tanzu package installed update PACKAGE_INSTALLATION_NAME -p sso.apps.tanzu.vmware.com -v 3.0.0 --values-file PATH_TO_YOUR_VALUES_YAML -n YOUR_INSTALL_NAMESPACE
 ```
 
 >**Note** You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](../../upgrading.hbs.md) for more information.
 
 ## <a id="migration-guides"></a>Migration guides
+
+### `v2.0.0` to `v3.0.0`
+
+VMware strongly recommends that you recreate your `AuthServers` after upgrading your AppSSO package installation to `3.0.0`
+with the following changes:
+
+- Migrate field `.spec.tls.disabled` to `.spec.tls.deactivated`. The older `.disabled` field will be removed in the next release.
 
 ### `v1.0.0` to `v2.0.0`
 

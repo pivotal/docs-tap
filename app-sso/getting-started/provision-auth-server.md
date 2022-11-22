@@ -52,7 +52,7 @@ metadata:
 spec:
   replicas: 1
   tls:
-    disabled: true
+    deactivated: true
   identityProviders:
     - name: "internal"
       internalUnsafe:
@@ -162,11 +162,11 @@ For more information about annotations and labels in `AuthServer` resource, see 
 ```yaml
 spec:
   tls:
-    disabled: true
+    deactivated: true
 ```
 
 The `tls` field configures how and if to obtain a certificate for an `AuthServer` as to secure its issuer URI. In this
-case we have disabled it. As a result we will get an issuer URI which uses plain HTTP.
+case we have deactivated it. As a result we will get an issuer URI which uses plain HTTP.
 
 __Note:__ Plain HTTP access is for getting-started development
 only! [Learn more about a production readiness with TLS](../service-operators/issuer-uri-and-tls.md)

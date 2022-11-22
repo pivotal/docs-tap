@@ -4,7 +4,7 @@ An `AuthServer` entry point for its clients and their end-users is called _issue
 URI and create a TLS-enabled `Ingress` for it. For this purpose, your platform operator configures the domain name and
 template. Once you created and `AuthServer` you can find the actual URL in `.status.issuerURI`.
 
-You can configure how and if to obtain a TLS certificate for the issuer URI via `.spec.tls`. Unless TLS is disabled
+You can configure how and if to obtain a TLS certificate for the issuer URI via `.spec.tls`. Unless TLS is deactivated
 HTTPS is enforced, i.e. requests for `http://` will be redirected to `https://`. You can observe the actual TLS
 configuration in `.status.tls`.
 
@@ -42,7 +42,7 @@ Learn how to configure TLS for your `AuthServer`:
 - [Configure TLS by using a (Cluster)Issuer](#configure-tls-by-using-a-clusterissuer)
 - [Configure TLS by using a Certificate](#configure-tls-by-using-a-certificate)
 - [Configure TLS by using a Secret](#configure-tls-by-using-a-secret)
-- [Disable TLS](#disable-tls-unsafe)
+- [Deactivate TLS](#deactivate-tls-unsafe)
 
 > ℹ️ If your `AuthServer` obtains a certificate from a custom CA, then [help _App
 > Operators_ to trust it](#allow-workloads-to-trust-a-custom-ca-authserver).
@@ -178,10 +178,10 @@ spec:
       name: my-tls-cert
 ```
 
-## Disable TLS (unsafe)
+## Deactivate TLS (unsafe)
 
-You can disable TLS autoconfiguration. Keep in mind that your `AuthServer` will then only work over plain HTTP. TLS
-can only be disabled in the presence of the `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""` annotation.
+You can deactivate TLS autoconfiguration. Keep in mind that your `AuthServer` will then only work over plain HTTP. TLS
+can only be deactivated in the presence of the `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""` annotation.
 
 ```yaml
 ---
@@ -195,10 +195,10 @@ metadata:
   # ...
 spec:
   tls:
-    disabled: true
+    deactivated: true
 ```
 
-> ⚠️ Disabling TLS is unsafe and strongly discouraged for production!
+> ⚠️ Deactivating TLS is unsafe and strongly discouraged for production!
 
 ## Allow `Workloads` to trust a custom CA `AuthServer`
 
