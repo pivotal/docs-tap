@@ -4,7 +4,7 @@ This how-to guide walks the application developer through deploying two applicat
 
 ## <a id="prereqs"></a>Prerequisites
 
-Before starting this procedure, be sure that the service operator and application operator have already:
+Before starting this procedure, ensure that the service operator and application operator have already:
 
 - Set up a service.
 - Created a service instance.
@@ -32,7 +32,7 @@ Bear the following observations in mind as you work through this guide:
     * Service operators set the life cycle of service instances.
     * The life cycle of service bindings is implicitly tied to the life cycle of workloads.
 
-2. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the class claim, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
+2. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance to the class claim, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
 
 ## <a id="stk-prereqs"></a> Prerequisites
 
@@ -43,9 +43,13 @@ Before following this walkthrough, you must:
 1. Have set up the `default` namespace to use installed packages and use it as your developer namespace.
 For more information, see [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
 1. Ensure that your Tanzu Application Platform cluster can pull source code from GitHub.
-1. Ensure that the service operator and application operator has completed the work of setting up the service, creating the service instance, and creating a claim for the service instance, as described in [Set up services for consumption by developers](set-up-services.md).
+2. Ensure that the service operator and application operator have completed:
 
-As application developer, you are now ready to inspect the claim created for the service instance by the application operator in [Set up services for consumption by developers](set-up-services.md) and use it to bind to application workloads.
+   - Setting up the service.
+   - Creating the service instance.
+   - Creating a claim for the service instance.
+
+After you've completed these prerequisites, as application developer, you are ready to inspect the claim created for the service instance by the application operator in [Set up services for consumption by developers](set-up-services.md) and use it to bind to application workloads.
 
 ## <a id="stk-bind"></a> Bind an application workload to the service instance
 

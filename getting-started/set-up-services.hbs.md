@@ -16,7 +16,7 @@ Before you begin, for important background, see [About consuming services on Tan
 
 The following diagram depicts a summary of what this walkthrough covers, including binding an application workload to the service instance by the application developer.
 
-![Diagram shows the default namespace and service instances namespace. The default namespace has two application workloads, each connected to a service binding. The service bindings connect to the service instance in the service instances namespace through a claim.](../images/getting-started-stk-1.png)
+![Diagram showing the default namespace and service instances namespace. The default namespace has two application workloads, each connected to a service binding. The service bindings connect to the service instance in the service instances namespace through a claim.](../images/getting-started-stk-1.png)
 
 Bear the following observations in mind as you work through this guide:
 
@@ -27,8 +27,8 @@ Bear the following observations in mind as you work through this guide:
     * Service operators set the life cycle of service instances.
     * The life cycle of service bindings is implicitly tied to the life cycle of workloads.
 2. Claims and resource claim policies are the mechanism to enable cross-namespace binding.
-3. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance, to the class claim, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
-4. Exclusivity of claims: claims are considered to be mutually exclusive, meaning that claims for a given service instance can only be fulfilled by at most one claim at any given time.
+3. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance to the class claim, to the resource claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
+4. Exclusivity of claims: claims are considered to be mutually exclusive, meaning that claims for a service instance can only be fulfilled by at most one claim at a time.
 
 ## <a id="stk-prereqs"></a> Prerequisites
 
@@ -233,7 +233,7 @@ For this part of the walkthrough, you assume the role of the **application opera
 
 Claims in Tanzu Application Platform are a powerful concept that serve many purposes.
 Arguably their most important role is to enable application operators to request
-services that they can use with their application workloads without having
+services to use with their application workloads without having
 to create and manage the services themselves. For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-resource_claims-api_docs.html).
 
 In cases where service instances are running in the same namespace as
