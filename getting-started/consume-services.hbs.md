@@ -36,7 +36,7 @@ Bear the following observations in mind as you work through this guide:
 
 ## <a id="stk-prereqs"></a> Prerequisites
 
-Before following this walkthrough, you must:
+Before following this walkthrough, as app developer you must:
 
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
@@ -49,7 +49,7 @@ For more information, see [Set up developer namespaces to use installed packages
    - Creating the service instance.
    - Creating a claim for the service instance.
 
-After you've completed these prerequisites, as application developer, you are ready to inspect the claim created for the service instance by the application operator in [Set up services for consumption by developers](set-up-services.md) and use it to bind to application workloads.
+After you've completed these prerequisites, you are ready to inspect the claim created for the service instance by the application operator in [Set up services for consumption by developers](set-up-services.md) and use it to bind to application workloads.
 
 ## <a id="stk-bind"></a> Bind an application workload to the service instance
 
