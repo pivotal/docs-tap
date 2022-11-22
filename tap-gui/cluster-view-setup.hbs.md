@@ -165,7 +165,22 @@ To do so:
      ```console
      CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
-     CLUSTER_TOKEN=$(kubectl create token tap-gui-viewer --namespace tap-gui)
+     // You can create a short lived token with the kubectl create token command if that is the preferred method. 
+     // This method will require frequent token rotation.
+     kubectl apply -f - <<EOF
+     apiVersion: v1
+     kind: Secret
+     metadata:
+       name: tap-gui-viewer
+       namespace: tap-gui
+       annotations:
+         kubernetes.io/service-account.name: tap-gui-viewer
+     type: kubernetes.io/service-account-token
+     EOF
+
+     CLUSTER_TOKEN=$(kubectl -n tap-gui get secret tap-gui-viewer -o=json \
+     | jq -r '.data["token"]' \
+     | base64 --decode)
 
      echo CLUSTER_URL: $CLUSTER_URL
      echo CLUSTER_TOKEN: $CLUSTER_TOKEN
