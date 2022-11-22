@@ -151,12 +151,13 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
       workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
     ```
 
-## <a id='air-gap-policy'></a> Prepare Sigstore Stack for Air-gapped Policy Controller
+## <a id='air-gap-policy'></a> Prepare Sigstore Stack for air-gapped policy controller
 
->**Note** This section only applies if the target environment requires support for keyless authorities in `ClusterImagePolicy`. In this case Tanzu Application Platform needs to be installed with the value `policy.tuf_enabled: true`. By default keyless authorities support is disabled.
+>**Important** This section only applies if the target environment requires support for keyless authorities in `ClusterImagePolicy`. You must set the `policy.tuf_enabled` field to `true` when installing Tanzu Application Platform. 
+By default, keyless authorities support is deactivated.
 
-By default the public official Sigstore "The Update Framework" (TUF) server is used.
-To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`. 
+By default, the public official Sigstore "The Update Framework (TUF) server" is used.
+You can use an alternative Sigstore Stack by setting `policy.tuf_mirror` and `policy.tuf_root`.
 
 The Sigstore Stack consists of:
 
@@ -166,7 +167,7 @@ The Sigstore Stack consists of:
 - [Certificate Transparency Log (CTLog)](https://github.com/google/certificate-transparency-go)
 - [The Update Framework (TUF)](https://theupdateframework.io/)
 
-For an air-gapped environment, an internally accessible Sigstore stack is required for keyless authorities.
+For an air-gapped environment, an internally accessible Sigstore Stack is required for keyless authorities.
 For more information about how to set up the Sigstore Stack, see [Install Sigstore Stack](scst-policy/install-sigstore-stack.html).
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile

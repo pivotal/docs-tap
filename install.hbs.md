@@ -288,7 +288,7 @@ grype:
   targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
 
 policy:
-  tuf_enabled: false # By default TUF initialization and keyless verification is disabled.
+  tuf_enabled: false # By default, TUF initialization and keyless verification are deactivated.
 ```
 
 Where:
