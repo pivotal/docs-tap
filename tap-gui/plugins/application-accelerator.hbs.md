@@ -79,7 +79,7 @@ To develop your code:
 1. Expand the ZIP file.
 2. Open the project in your integrated development environment (IDE).
 
-    ![Screenshot of a file called HelloAppApplication.java in the text editor Visual Studio Code](images/aa6_ide.png)
+    ![Screenshot of a file called Hello App Application dot java in the text editor Visual Studio Code.](images/aa6-ide.png)
 
 ## <a id='next-steps'></a>Next steps
 

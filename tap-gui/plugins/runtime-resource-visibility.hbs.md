@@ -94,11 +94,11 @@ To view the list of your running resources:
 
 1. Select your component from the Catalog index page.
 
-   ![Screenshot of selecting component on runtime resources index table](images/runtime-resources-components.png)
+   ![Screenshot of selecting component on runtime resources index table.](images/runtime-resources-components.png)
 
 2. Select the **Runtime Resources** tab.
 
-   ![Screenshot of selecting Runtime resources tab](images/runtime-resources-index.png)
+   ![Screenshot of selecting Runtime resources tab.](images/runtime-resources-index.png)
 
 ### <a id="view-resource-details"></a>View details for a specific resource
 
@@ -179,4 +179,4 @@ In this page, additional information is available for Knative resources, includi
 
 This page shows you most relevant information for a specific Pod including its containers and the [Application Live View](app-live-view.md) information.
 
-![Screenshot of resource detail page](images/runtime-resources-pod-details.png)
+![Screenshot of Tanzu Java web app runtime resources detail page](images/runtime-resources-pod-details.png)
