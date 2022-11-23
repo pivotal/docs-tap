@@ -46,7 +46,7 @@ To enable CVE scan results:
 
     Where `ACCESS-TOKEN` is the token you obtained after creating a read-only service account.
 
-> **Important** Make sure the `Authorization` field starts with the word `Bearer`.
+> **Important** The `Authorization` value must start with the word `Bearer`.
 
 ## <a id="view-approvals"></a> Enable View Approvals
 
