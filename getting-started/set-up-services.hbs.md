@@ -280,6 +280,14 @@ There are more service use cases not covered in this getting started guide. See 
   <th><strong>Short Description</strong></th>
   <tr>
     <td>
+      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/GUID-usecases-introducing_different_service_implementations_in_different_environments.html">Introducing Different Service Implementatations in Different Environments</a>
+    </td>
+    <td>
+      Using classes to have a claim resolve to a different backing service resource depending on which environment it is in.<br>
+      This removes the need for application operators to change `ClassClaim`s and `Workload`s as they are promoted through environments.
+    </td>
+  </tr><tr>
+    <td>
       <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html">Consuming AWS RDS on Tanzu Application Platform</a>
     </td>
     <td>

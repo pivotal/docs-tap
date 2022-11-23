@@ -133,6 +133,10 @@ This is the value to pass to `--service-ref` to create the application workload.
     > but rather to the claim that has claimed the `RabbitmqCluster` service instance.
     > See the [consuming services diagram](#overview) at the beginning of this walkthrough.
 
+    > **Note** The Deliverable produced will eventually fail if the referenced resource in `--service-ref` consistently does not exist.
+    > This behaviour is encoded in the OOTB Supply Chains via the use of the [OOTB templates](../scc/ootb-templates.md).
+    > The `service-bindings` OOTB template can be used to replicate the same behaviour in bespoke Supply Chains.
+
 2. After the workloads are ready, visit the URL of the `spring-sensors-consumer-web` app.
 Confirm that sensor data, passing from the `spring-sensors-producer` workload to
 the `create spring-sensors-consumer-web` workload using the `RabbitmqCluster` service instance, is displayed.
