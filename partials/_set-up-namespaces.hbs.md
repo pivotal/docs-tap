@@ -14,6 +14,25 @@ If you plan to install Out of the Box Supply Chain with testing and scanning, fo
 
 Follow these steps to enable your current user to submit jobs to the Supply Chain:
 
+As of TAP v1.4.0, `Namespace Provisioner` automatically handles everything for you.</br>
+Apply a specific label-selector and `Namespace Provisioner` takes care of the rest.</br>
+***Note:** `Namespace Provisioner` acts on any namespace with the label selector regardless of the label selector's value (even an empty string). 
+
+1. To create and set up a namespace called `ns1` execute the following commands:
+   ```
+   kubectl create namespace ns1
+   kubectl label namespaces ns1 apps.tanzu.vmware.com/tap-ns=""
+   ```
+
+Unless you need to [enable additional users access with Kubernetes RBAC](#additional-user-access) after you've followed the instructions above, you're done!
+
+Additonal instructions on how to customize and extend `namespace provisioner` will be published shortly.
+
+
+---------------
+### Legacy namespace set up instructions 
+**These should be removed once TAP 1.4 docs are made public**
+If you're running an older version of TAP which doesn't include `Namespace Provisioner` you can follow the directions below:
 1. To add read/write registry credentials to the developer namespace, run:
 
     ```console
