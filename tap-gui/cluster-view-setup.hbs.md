@@ -165,7 +165,7 @@ To do so:
      ```console
      CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
-     // You can create a short lived token with the kubectl create token command if that is the preferred method. 
+     // You can create a short lived token with the kubectl create token command if that is the preferred method.
      // This method will require frequent token rotation.
      kubectl apply -f - <<EOF
      apiVersion: v1
@@ -281,4 +281,4 @@ clusters.
 
 1. View the multiple resources and their statuses across the clusters.
 
-    ![Screenshot of example Tanzu Application Platform runtime resources](images/tap-gui-multiple-clusters.png)
+    ![Screenshot of example Tanzu Application Platform runtime resources.](images/tap-gui-multiple-clusters.png)

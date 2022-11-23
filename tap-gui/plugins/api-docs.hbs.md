@@ -49,7 +49,7 @@ The first way to use the API documentation plug-in is API-first.
 Click **APIs** in the left navigation pane of Tanzu Application Platform GUI.
 This opens the **API catalog page**.
 
-![Screenshot of the API catalog page. The API named demo-api is framed in red.](../images/api-plugin-1.png)
+![Screenshot of the API catalog page. The API named demo dash api is framed in red.](../images/api-plugin-1.png)
 
 On that page, you can view all the APIs already registered in the catalog regardless of whether they
 are associated with components or systems.
@@ -64,19 +64,19 @@ is active.
 The **VIEW API** tab displays which APIs are being consumed by a component and which APIs are
 being provided by the component.
 
-![Screenshot of the VIEW API page. The API named demo-api is framed in red.](../images/api-plugin-3.png)
+![Screenshot of the VIEW API page. The API named demo dash api is framed in red.](../images/api-plugin-3.png)
 
 Clicking on the API itself takes you to the catalog entry for the API, which the Kind
 type listed in the upper-left corner denotes.
 Every API entity has a title and short description, including a reference to the team that owns the
 definition of that API and the software catalog objects that are connected to it.
 
-![Screenshot of the Overview tab on the page for an API named demo-api.](../images/api-plugin-4.png)
+![Screenshot of the Overview tab on the page for an API named demo dash api.](../images/api-plugin-4.png)
 
 By choosing the **Definition** tab on the top of the API page, you can see the definition of that
 API in human-readable and machine-readable format.
 
-![Screenshot of the Definition tab on the page for an API named demo-api.](../images/api-plugin-5.png)
+![Screenshot of the Definition tab on the page for an API named demo dash api.](../images/api-plugin-5.png)
 
 The API documentation plug-in supports the following API formats:
 
