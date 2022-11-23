@@ -205,4 +205,4 @@ clusters.
 
 1. View the multiple resources and their statuses across the clusters.
 
-    ![Screenshot of example Tanzu Application Platform runtime resources](images/tap-gui-multiple-clusters.png)
+    ![Screenshot of example Tanzu Application Platform runtime resources.](images/tap-gui-multiple-clusters.png)

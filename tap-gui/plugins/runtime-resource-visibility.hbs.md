@@ -33,11 +33,11 @@ To view the list of your running resources:
 
 1. Select your component from the Catalog index page.
 
-   ![Screenshot of selecting component on runtime resources index table](images/runtime-resources-components.png)
+   ![Screenshot of selecting component on runtime resources index table.](images/runtime-resources-components.png)
 
 2. Select the **Runtime Resources** tab.
 
-   ![Screenshot of selecting Runtime resources tab](images/runtime-resources-index.png)
+   ![Screenshot of selecting Runtime resources tab.](images/runtime-resources-index.png)
 
 
 ## <a id="knative-service-details"></a> Knative service details page
@@ -101,7 +101,7 @@ For more information, see
 [Concepts - Object Spec and Status](https://kubernetes.io/docs/concepts/_print/#object-spec-and-status)
 in the Kubernetes documentation.
 
-![Screenshot of condition types and status conditions](images/runtime-resources-status.png)
+![Screenshot of condition types and status conditions.](images/runtime-resources-status.png)
 
 
 ### <a id="ownership-card"></a>Ownership card
@@ -118,7 +118,7 @@ See [Owners and Dependents](https://kubernetes.io/docs/concepts/overview/working
 
 The Annotations and Labels card show information about `metadata.annotations` and `metadata.labels`.
 
-![Screenshot of Annotations and Labels sections](images/runtime-resources-annotations.png)
+![Screenshot of Annotations and Labels sections.](images/runtime-resources-annotations.png)
 
 
 ## <a id="navigating-to-pods"></a>Navigating to Pod Details Page

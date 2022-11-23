@@ -26,8 +26,7 @@ installed on your cluster.
 
 The example workload described in this topic is named `tanzu-java-web-app`.
 
-![Screenshot of the Workloads section that includes the apps spring-petclinic and
-tanzu-java-web-app.](images/workloads.png)
+![Screenshot of the Workloads section that includes the apps spring-petclinic and tanzu-java-web-app.](images/workloads.png)
 
 Click **tanzu-java-web-app** in the **WORKLOADS** table to navigate to the visualization of the
 supply chain.
@@ -44,4 +43,4 @@ There are two sections within this view:
 This is a sample result of the Build stage for the `tanzu-java-web-app` from using
 Tanzu Build Service:
 
-![Screenshot of details of the Build stage of the app tanzu-java-web-app.](images/build-stage-sample.png)
+![Screenshot of details of the Build stage of the application tanzu dash java dash web dash app.](images/build-stage-sample.png)
