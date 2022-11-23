@@ -757,8 +757,8 @@ This group identifies the project across all other Maven projects.
 
 ### <a id="apply-maven-type"></a> `--maven-type`
 
-This Specifies the type of artifact that the Maven project produces. This flag is optional,
-and set by default as `jar` by the supply chain.
+This specifies the type of artifact that the Maven project produces. This flag is optional,
+and is set by default as `jar` by the supply chain.
 
 ### <a id="apply-maven-version"></a> `--maven-version`
 
@@ -952,7 +952,7 @@ Update workload:
 
 Refers to the path of the self-signed certificate needed for the custom/private registry.
 This is also populated with a default value through environment variables. If the environment
-variable `TANZU_APPS_REGISTRY_CA_CERT` is set,and it's not necessary to use it in the command.
+variable `TANZU_APPS_REGISTRY_CA_CERT` is set, it's not necessary to use it in the command.
 
 See [Environment variables with default values](../tanzu-apps-workload.hbs.md#envvars)
 to know the currently supported environment variables.
@@ -984,9 +984,8 @@ Create workload:
 
 ### <a id="apply-registry-password"></a> `--registry-password`
 
-If credentials are needed the user name and password values are set through this flag
-and `--registry-username`. The value of this flag can also be specified
-through `TANZU_APPS_REGISTRY_PASSWORD`.
+If credentials are needed, the user name and password values are set through the `--registry-password`
+flag. The value of this flag can also be specified through `TANZU_APPS_REGISTRY_PASSWORD`.
 
 ### <a id="apply-registry-token"></a> `--registry-token`
 
