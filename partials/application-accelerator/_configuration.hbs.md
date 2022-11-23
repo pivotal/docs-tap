@@ -589,7 +589,7 @@ stringData:
 ### <a id='timeout-secrets-applied'></a>Apply the timeout overlay secrets in tap-values.yaml
 
 Add the following `package_overlays` section to the `tap-values.yaml` file before installing or
-updating the TTanzu Application Platform installation:
+updating the Tanzu Application Platform installation:
 
 ```yaml
 package_overlays:
@@ -601,12 +601,12 @@ package_overlays:
   - name: patch-accelerator-timeout
 ```
 
-## <a id="skipping-sources-tls-verification"></a> Configuring skipping TLS verification for access to Source Conttrollers
+## <a id="skipping-sources-tls-verification"></a> Configuring skipping TLS verification for access to Source Controller
 
-If you configure the FLux or Tanzu Application Platform Source COntrollers to use TLS and use custom
-certificates, then you can configure the Accelerator System to skip the TLS verification for calls
-to access the sources by providing the following property in the `accelerator` section of
- the `tap-values.yaml` file:
+If you configure the FLux or Tanzu Application Platform Source Controller to use Transport Layer
+Security (TLS) and use custom certificates, then you can configure the Accelerator System to skip
+the TLS verification for calls to access the sources by providing the following property in the
+`accelerator` section of the `tap-values.yaml` file:
 
 ```yaml
 sources:
