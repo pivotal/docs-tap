@@ -309,7 +309,7 @@ Update workload:
 
 ### <a id="apply-file"></a> `--file`, `-f`
 
-Set a workload specification file to create the workload from, any other workload specification passed by flags to the command will set or override whatever is in the file. Another way to use this flag is using `-` in the command, to receive workload definition through standard input. Refer to [Working with Yaml Files](../../usage.md#a-idyaml-filesaworking-with-yaml-files) section to see an example.
+Set a workload specification file to create the workload from, any other workload specification passed by flags to the command will set or override whatever is in the file. Another way to use this flag is using `-` in the command, to receive workload definition through standard input. Refer to [Working with Yaml Files](../../usage.md#yaml-files) section to see an example.
 
 <details><summary>Example</summary>
 

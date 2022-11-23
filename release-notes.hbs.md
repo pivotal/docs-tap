@@ -168,12 +168,12 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="apps-plugin-features"></a> Tanzu CLI - Apps plug-in
 
-- Added support for [`--sub-path`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-subpatha---sub-path) flag where users can specify a relative path inside the repository or image to treat as application root for source.
-- Added [`--service-account`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-service-accounta---service-account) flag to specify ServiceAccount name used by the workload to create resources submitted by the supply chain.
-- Added shorthand `-s` for [`--source-image`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-source-imagea---source-image--s) flag.
-- Added support for [`--output`](cli-plugins/apps/command-reference/commands-details/workload_list.md#a-idlist-outputa---output--o) flag to `workloads list` command.
-- Added support for JSON or YAML params using new flag [`--param-yaml`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-param-yamla---param-yaml).
-- Added support for creating workloads from JAR, WAR, and ZIP files through the [`--local-path`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#a-idapply-local-patha---local-path) flag.
+- Added support for [`--sub-path`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#apply-subpath) flag where users can specify a relative path inside the repository or image to treat as application root for source.
+- Added [`--service-account`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#apply-service-account) flag to specify ServiceAccount name used by the workload to create resources submitted by the supply chain.
+- Added shorthand `-s` for [`--source-image`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#apply-source-image) flag.
+- Added support for [`--output`](cli-plugins/apps/command-reference/commands-details/workload_list.md#list-output) flag to `workloads list` command.
+- Added support for JSON or YAML params using new flag [`--param-yaml`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#apply-param-yaml).
+- Added support for creating workloads from JAR, WAR, and ZIP files through the [`--local-path`](cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.md#apply-local-path) flag.
 - Added source information from workload  in the `workload get` command output.
 - Added new command [`tanzu apps cluster-supply-chain get`](cli-plugins/apps/command-reference/tanzu-apps-cluster-supply-chain-get.md).
 - Added support for excluding files on local path using `.tanzuignore` file.
