@@ -12,7 +12,7 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 ### <a id="1-3-3-supplychain-resolved"></a>Supply Chain Choreographer
 - On a Build profile cluster, a `ConfigMap` containing the `Deliverable` is now produced. Previously a `Deliverable` was
-  created directly on the cluster. 
+  created directly on the cluster.
 
 ### <a id='1-3-3-known-issues'></a> Known issues
 
@@ -446,7 +446,7 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="tap-known-issues"></a>Tanzu Application Platform
 
-- New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#a-idcontour-error-kinda-ingress-is-broken-on-kind-cluster).
+- New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#contour-error-kind).
 - The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end. For more information, see [Troubleshoot using Tanzu Application Platform](troubleshooting-tap/troubleshoot-using-tap.hbs.md#invalid-repo-paths).
 
 #### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plug-ins
