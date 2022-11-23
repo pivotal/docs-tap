@@ -43,7 +43,7 @@ To apply a workload:
 
    A new workload appears on the Tanzu Workloads panel.
 
-   ![Workload on Tanzu Workloads](../images/vscode-panel-workload-unknown.png)
+   ![Workload on Tanzu Workloads.](../images/vscode-panel-workload-unknown.png)
 
    The workload panel shows the workloads running in the namespace that is defined in the current
    Kubernetes context.
@@ -62,7 +62,7 @@ To apply a workload:
 
    After the workload is deployed, the status on the Tanzu Workloads panel changes to `Ready`.
 
-   ![Workload ready on Tanzu Workloads](../images/vscode-panel-workload-ready.png)
+   ![Workload ready on Tanzu Workloads.](../images/vscode-panel-workload-ready.png)
 
 ## <a id="debugging-on-clust"></a> Debugging on the cluster
 
@@ -91,7 +91,7 @@ To start debugging on the cluster:
    ![The VS Code interface showing the Explorer tab with the Workload YAML file pop-up menu open and the Tanzu: Java Debug Start option highlighted.](../images/vscode-startdebug1.png)
 
    Command Palette screenshot:
-   ![Command palette open showing text Tanzu: Java Debug Start](../images/vscode-startdebug2.png)
+   ![Command palette open showing text Tanzu: Java Debug Start.](../images/vscode-startdebug2.png)
 
 ### <a id="stop-debugging"></a> Stop Debugging on the cluster
 
@@ -265,7 +265,7 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
    kubectl config set-context --current --namespace=YOUR-NAMESPACE
    ```
 
-   ![VS Code Workload Panel](../images/vscode-panel-live-update-running.png)
+   ![VS Code Workload Panel.](../images/vscode-panel-live-update-running.png)
 
 ## <a id="mono-repo"></a> Working with Microservices in a Monorepo
 
@@ -374,4 +374,4 @@ For these projects, make these adjustments:
    Because submodules have dependencies on code outside of their own subfolder, all source code
    from the repository must be supplied to the workload builder.
 
-   ![VSCode Monorepo Preferences](../images/vscode-monorepo-preferences.png)
+   ![Monorepo preferences in Visual Studio Code Settings.](../images/vscode-monorepo-preferences.png)

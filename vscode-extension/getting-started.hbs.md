@@ -74,7 +74,7 @@ To create a `workload.yaml` file by using the code snippets:
 3. Open the new `workload.yaml` file in VS Code, enter `tanzu workload` in the file to trigger the
    code snippets, and either press Enter or left-click the `tanzu workload` text in the drop-down menu.
 
-   ![A new file called workload.yaml with the words "tanzu workload" written in it and an action menu showing "tanzu workload"](../images/vscode-workload.png)
+   ![A new file called workload dot yaml with the words tanzu workload written in it and an action menu showing tanzu workload.](../images/vscode-workload.png)
 
 4. Fill in the template by pressing the Tab key.
 
@@ -100,7 +100,7 @@ To create a `catalog-info.yaml` file by using the code snippets:
    the code snippets, and then either press Enter or left-click the `tanzu catalog-info` text in the
    drop-down menu.
 
-    ![A new file called catalog-info.yaml with the words "tanzu catalog-info" written in it and an action menu showing "tanzu catalog-info"](../images/vscode-cataloginfo.png)
+    ![A new file called catalog-info dot yaml with the words tanzu catalog-info written in it and an action menu showing tanzu catalog-info.](../images/vscode-cataloginfo.png)
 
 4. Fill in the template by pressing the Tab key.
 
@@ -133,7 +133,7 @@ To create a `Tiltfile` file by using the Code Snippets:
    code snippets, and then either press Enter or left-click the `tanzu tiltfile` text in the drop-down
    menu.
 
-   ![A new file called Tiltfile with the words "tanzu tiltfile" written in it and an action menu showing "tanzu tiltfile"](../images/vscode-tiltfile.png)
+   ![A new file called Tiltfile with the words tanzu tiltfile written in it and an action menu showing tanzu tiltfile.](../images/vscode-tiltfile.png)
 
 3. Fill in the template by pressing the Tab key.
 4. If the targeting Kubernetes cluster enabled by Tanzu Application Platform is not running on your
