@@ -6,19 +6,19 @@ See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
 
 ### <a id='methods'></a>Version
 
-0.0.1
+1.4.1
 
 ## <a id='con-nego'></a>Content negotiation
 
 ### <a id='uri-schemes'></a>URI Schemes
-* http
-* https
+  * http
+  * https
 
 ### <a id='consumes'></a>Consumes
-* application/json
+  * application/json
 
 ### <a id='produce'></a>Produces
-* application/json
+  * application/json
 
 ## <a id='all-endpoints'></a>All endpoints
 
@@ -62,6 +62,17 @@ See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
 | GET | /api/packages/{IDorName}/sources | [get package sources](#get-package-sources) | List the sources containing the given package. |
 | GET | /api/sources | [get sources](#get-sources) | Search for sources by ID, repository, commit sha and/or organization. |
 | GET | /api/vulnerabilities/{CVEID}/sources | [get vulnerability sources](#get-vulnerability-sources) | List sources that contain the given vulnerability. |
+  
+
+
+###  <a id='v1artifact_groups'></a>v1artifact_groups 
+
+| Method  | URI     | Name   | Summary |
+|---------|---------|--------|---------|
+| POST | /api/v1/artifact-groups | [create artifact group](#create-artifact-group) | Create an artifact group with specified labels and entity |
+| POST | /api/v1/artifact-groups/_search | [search artifact groups](#search-artifact-groups) | Query for a list of artifact group that contains image(s) with specified digests, and or source(s) with specified shas. At least one image digest or source sha must be provided. This query can be further refined by matching images and sources with a specific combination of package name and/or cve id. |
+| POST | /api/v1/artifact-groups/vulnerabilities/_reach | [search artifact groups vuln reach](#search-artifact-groups-vuln-reach) | Search for how many artifact groups are affected by vulnerabilities associated with the specified image(s) digests, and/or source(s) shas. At least one image digest or source sha must be provided. |
+| POST | /api/v1/artifact-groups/vulnerabilities/_search | [search artifact groups vulnerabilities](#search-artifact-groups-vulnerabilities) | Search for all vulnerabilities associated with an artifact group that contains image(s) with specified digests, and/or source(s) with specified shas. At least one image digest or source sha must be provided. |
   
 
 
@@ -117,6 +128,55 @@ See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
 
 
 ## <a id='paths'></a>Paths
+
+### <span id="create-artifact-group"></span> Create an artifact group with specified labels and entity (*CreateArtifactGroup*)
+
+```
+POST /api/v1/artifact-groups
+```
+
+#### Parameters
+
+| Name | Source | Type | Go type | Separator | Required | Default | Description |
+|------|--------|------|---------|-----------| :------: |---------|-------------|
+| ArtifactGroupPostRequest | `body` | [ArtifactGroupPostRequest](#artifact-group-post-request) | `models.ArtifactGroupPostRequest` | | ✓ | |  |
+
+#### All responses
+| Code | Status | Description | Has headers | Schema |
+|------|--------|-------------|:-----------:|--------|
+| [201](#create-artifact-group-201) | Created | ArtifactGroupPostResponse |  | [schema](#create-artifact-group-201-schema) |
+| [400](#create-artifact-group-400) | Bad Request | ErrorMessage |  | [schema](#create-artifact-group-400-schema) |
+| [default](#create-artifact-group-default) | | ErrorMessage |  | [schema](#create-artifact-group-default-schema) |
+
+#### Responses
+
+
+##### <span id="create-artifact-group-201"></span> 201 - ArtifactGroupPostResponse
+Status: Created
+
+###### <span id="create-artifact-group-201-schema"></span> Schema
+   
+  
+
+[ArtifactGroupPostResponse](#artifact-group-post-response)
+
+##### <span id="create-artifact-group-400"></span> 400 - ErrorMessage
+Status: Bad Request
+
+###### <span id="create-artifact-group-400-schema"></span> Schema
+   
+  
+
+[ErrorMessage](#error-message)
+
+##### <span id="create-artifact-group-default"></span> Default Response
+ErrorMessage
+
+###### <span id="create-artifact-group-default-schema"></span> Schema
+
+  
+
+[ErrorMessage](#error-message)
 
 ### <span id="create-image-report"></span> Create a new image report. Related packages and vulnerabilities are also created. (*CreateImageReport*)
 
@@ -273,7 +333,7 @@ Status: OK
    
   
 
-[[]Package](#package)
+[][Package](#package)
 
 ##### <span id="get-image-packages-default"></span> Default Response
 ErrorMessage
@@ -314,7 +374,7 @@ Status: OK
    
   
 
-[[]Package](#package)
+[][Package](#package)
 
 ##### <span id="get-image-packages-query-default"></span> Default Response
 ErrorMessage
@@ -354,7 +414,7 @@ Status: OK
    
   
 
-[[]Vulnerability](#vulnerability)
+[][Vulnerability](#vulnerability)
 
 ##### <span id="get-image-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -475,7 +535,7 @@ Status: OK
    
   
 
-[[]Image](#image)
+[][Image](#image)
 
 ##### <span id="get-package-images-default"></span> Default Response
 ErrorMessage
@@ -514,7 +574,7 @@ Status: OK
    
   
 
-[[]Source](#source)
+[][Source](#source)
 
 ##### <span id="get-package-sources-default"></span> Default Response
 ErrorMessage
@@ -554,7 +614,7 @@ Status: OK
    
   
 
-[[]Vulnerability](#vulnerability)
+[][Vulnerability](#vulnerability)
 
 ##### <span id="get-package-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -595,7 +655,7 @@ Status: OK
    
   
 
-[[]Package](#package)
+[][Package](#package)
 
 ##### <span id="get-packages-default"></span> Default Response
 ErrorMessage
@@ -683,7 +743,7 @@ Status: OK
    
   
 
-[[]Package](#package)
+[][Package](#package)
 
 ##### <span id="get-source-packages-default"></span> Default Response
 ErrorMessage
@@ -724,7 +784,7 @@ Status: OK
    
   
 
-[[]Package](#package)
+[][Package](#package)
 
 ##### <span id="get-source-packages-query-default"></span> Default Response
 ErrorMessage
@@ -763,7 +823,7 @@ Status: OK
    
   
 
-[[]Vulnerability](#vulnerability)
+[][Vulnerability](#vulnerability)
 
 ##### <span id="get-source-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -805,7 +865,7 @@ Status: OK
    
   
 
-[[]Vulnerability](#vulnerability)
+[][Vulnerability](#vulnerability)
 
 ##### <span id="get-source-vulnerabilities-query-default"></span> Default Response
 ErrorMessage
@@ -847,7 +907,7 @@ Status: OK
    
   
 
-[[]Source](#source)
+[][Source](#source)
 
 ##### <span id="get-sources-default"></span> Default Response
 ErrorMessage
@@ -887,7 +947,7 @@ Status: OK
    
   
 
-[[]Vulnerability](#vulnerability)
+[][Vulnerability](#vulnerability)
 
 ##### <span id="get-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -975,7 +1035,7 @@ Status: OK
    
   
 
-[[]Image](#image)
+[][Image](#image)
 
 ##### <span id="get-vulnerability-images-default"></span> Default Response
 ErrorMessage
@@ -1014,7 +1074,7 @@ Status: OK
    
   
 
-[[]Package](#package)
+[][Package](#package)
 
 ##### <span id="get-vulnerability-packages-default"></span> Default Response
 ErrorMessage
@@ -1053,7 +1113,7 @@ Status: OK
    
   
 
-[[]Source](#source)
+[][Source](#source)
 
 ##### <span id="get-vulnerability-sources-default"></span> Default Response
 ErrorMessage
@@ -1093,6 +1153,157 @@ ErrorMessage
 
 [ErrorMessage](#error-message)
 
+### <span id="search-artifact-groups"></span> Query for a list of artifact group that contains image(s) with specified digests, and or source(s) with specified shas. At least one image digest or source sha must be provided. This query can be further refined by matching images and sources with a specific combination of package name and/or cve id. (*SearchArtifactGroups*)
+
+```
+POST /api/v1/artifact-groups/_search
+```
+
+Query for a list of artifact group that contains image(s) with specified digests, and or source(s) with specified shas.
+
+#### Parameters
+
+| Name | Source | Type | Go type | Separator | Required | Default | Description |
+|------|--------|------|---------|-----------| :------: |---------|-------------|
+| ArtifactGroupFiltersPostRequest | `body` | [ArtifactGroupSearchFilters](#artifact-group-search-filters) | `models.ArtifactGroupSearchFilters` | | ✓ | |  |
+
+#### All responses
+| Code | Status | Description | Has headers | Schema |
+|------|--------|-------------|:-----------:|--------|
+| [200](#search-artifact-groups-200) | OK | PaginatedArtifactGroupResponse |  | [schema](#search-artifact-groups-200-schema) |
+| [400](#search-artifact-groups-400) | Bad Request | ErrorMessage |  | [schema](#search-artifact-groups-400-schema) |
+| [default](#search-artifact-groups-default) | | ErrorMessage |  | [schema](#search-artifact-groups-default-schema) |
+
+#### Responses
+
+
+##### <span id="search-artifact-groups-200"></span> 200 - PaginatedArtifactGroupResponse
+Status: OK
+
+###### <span id="search-artifact-groups-200-schema"></span> Schema
+   
+  
+
+[PaginatedArtifactGroupResponse](#paginated-artifact-group-response)
+
+##### <span id="search-artifact-groups-400"></span> 400 - ErrorMessage
+Status: Bad Request
+
+###### <span id="search-artifact-groups-400-schema"></span> Schema
+   
+  
+
+[ErrorMessage](#error-message)
+
+##### <span id="search-artifact-groups-default"></span> Default Response
+ErrorMessage
+
+###### <span id="search-artifact-groups-default-schema"></span> Schema
+
+  
+
+[ErrorMessage](#error-message)
+
+### <span id="search-artifact-groups-vuln-reach"></span> Search for how many artifact groups are affected by vulnerabilities associated with the specified image(s) digests, and/or source(s) shas. At least one image digest or source sha must be provided. (*SearchArtifactGroupsVulnReach*)
+
+```
+POST /api/v1/artifact-groups/vulnerabilities/_reach
+```
+
+#### Parameters
+
+| Name | Source | Type | Go type | Separator | Required | Default | Description |
+|------|--------|------|---------|-----------| :------: |---------|-------------|
+| ArtifactGroupVulnReachFiltersPostRequest | `body` | [ArtifactGroupVulnReachFiltersPostRequest](#artifact-group-vuln-reach-filters-post-request) | `models.ArtifactGroupVulnReachFiltersPostRequest` | | ✓ | |  |
+
+#### All responses
+| Code | Status | Description | Has headers | Schema |
+|------|--------|-------------|:-----------:|--------|
+| [200](#search-artifact-groups-vuln-reach-200) | OK | PaginatedArtifactGroupVulnReachResponse |  | [schema](#search-artifact-groups-vuln-reach-200-schema) |
+| [400](#search-artifact-groups-vuln-reach-400) | Bad Request | ErrorMessage |  | [schema](#search-artifact-groups-vuln-reach-400-schema) |
+| [default](#search-artifact-groups-vuln-reach-default) | | ErrorMessage |  | [schema](#search-artifact-groups-vuln-reach-default-schema) |
+
+#### Responses
+
+
+##### <span id="search-artifact-groups-vuln-reach-200"></span> 200 - PaginatedArtifactGroupVulnReachResponse
+Status: OK
+
+###### <span id="search-artifact-groups-vuln-reach-200-schema"></span> Schema
+   
+  
+
+[PaginatedArtifactGroupVulnReachResponse](#paginated-artifact-group-vuln-reach-response)
+
+##### <span id="search-artifact-groups-vuln-reach-400"></span> 400 - ErrorMessage
+Status: Bad Request
+
+###### <span id="search-artifact-groups-vuln-reach-400-schema"></span> Schema
+   
+  
+
+[ErrorMessage](#error-message)
+
+##### <span id="search-artifact-groups-vuln-reach-default"></span> Default Response
+ErrorMessage
+
+###### <span id="search-artifact-groups-vuln-reach-default-schema"></span> Schema
+
+  
+
+[ErrorMessage](#error-message)
+
+### <span id="search-artifact-groups-vulnerabilities"></span> Search for all vulnerabilities associated with an artifact group that contains image(s) with specified digests, and/or source(s) with specified shas. At least one image digest or source sha must be provided. (*SearchArtifactGroupsVulnerabilities*)
+
+```
+POST /api/v1/artifact-groups/vulnerabilities/_search
+```
+
+The result can be further refined by matching the images and sources with a package name and/or an artifact group UID
+
+#### Parameters
+
+| Name | Source | Type | Go type | Separator | Required | Default | Description |
+|------|--------|------|---------|-----------| :------: |---------|-------------|
+| ArtifactGroupVulnSearchFiltersPostRequest | `body` | [ArtifactGroupVulnSearchFilters](#artifact-group-vuln-search-filters) | `models.ArtifactGroupVulnSearchFilters` | | ✓ | |  |
+
+#### All responses
+| Code | Status | Description | Has headers | Schema |
+|------|--------|-------------|:-----------:|--------|
+| [200](#search-artifact-groups-vulnerabilities-200) | OK | PaginatedArtifactGroupVulnerabilityResponse |  | [schema](#search-artifact-groups-vulnerabilities-200-schema) |
+| [400](#search-artifact-groups-vulnerabilities-400) | Bad Request | ErrorMessage |  | [schema](#search-artifact-groups-vulnerabilities-400-schema) |
+| [default](#search-artifact-groups-vulnerabilities-default) | | ErrorMessage |  | [schema](#search-artifact-groups-vulnerabilities-default-schema) |
+
+#### Responses
+
+
+##### <span id="search-artifact-groups-vulnerabilities-200"></span> 200 - PaginatedArtifactGroupVulnerabilityResponse
+Status: OK
+
+###### <span id="search-artifact-groups-vulnerabilities-200-schema"></span> Schema
+   
+  
+
+[PaginatedArtifactGroupVulnerabilityResponse](#paginated-artifact-group-vulnerability-response)
+
+##### <span id="search-artifact-groups-vulnerabilities-400"></span> 400 - ErrorMessage
+Status: Bad Request
+
+###### <span id="search-artifact-groups-vulnerabilities-400-schema"></span> Schema
+   
+  
+
+[ErrorMessage](#error-message)
+
+##### <span id="search-artifact-groups-vulnerabilities-default"></span> Default Response
+ErrorMessage
+
+###### <span id="search-artifact-groups-vulnerabilities-default-schema"></span> Schema
+
+  
+
+[ErrorMessage](#error-message)
+
 ### <span id="v1-get-images"></span> Query for images. If no parameters are given, this endpoint will return all images. (*V1GetImages*)
 
 ```
@@ -1103,8 +1314,7 @@ GET /api/v1/images
 
 | Name | Source | Type | Go type | Separator | Required | Default | Description |
 |------|--------|------|---------|-----------| :------: |---------|-------------|
-| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all
-available results. |
+| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all available results. |
 | digest | `query` | string | `string` |  |  |  |  |
 | name | `query` | string | `string` |  |  |  |  |
 | page | `query` | int64 (formatted integer) | `int64` |  |  | `1` |  |
@@ -1158,8 +1368,7 @@ GET /api/v1/images/packages
 
 | Name | Source | Type | Go type | Separator | Required | Default | Description |
 |------|--------|------|---------|-----------| :------: |---------|-------------|
-| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all
-available results. |
+| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all available results. |
 | digest | `query` | string | `string` |  |  |  |  |
 | name | `query` | string | `string` |  |  |  |  |
 | package_name | `query` | string | `string` |  |  |  | Substring package name filter. For example, setting `name=cur` would match `curl` and `libcurl`. |
@@ -1215,8 +1424,7 @@ GET /api/v1/images/vulnerabilities
 | Name | Source | Type | Go type | Separator | Required | Default | Description |
 |------|--------|------|---------|-----------| :------: |---------|-------------|
 | Severity | `query` | string | `string` |  |  |  | Case insensitive vulnerabilities severity filter. Possible values are: low, medium, high, critical, unknown. |
-| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all
-available results. |
+| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all available results. |
 | digest | `query` | string | `string` |  |  |  |  |
 | name | `query` | string | `string` |  |  |  |  |
 | page | `query` | int64 (formatted integer) | `int64` |  |  | `1` |  |
@@ -1270,8 +1478,7 @@ GET /api/v1/packages
 
 | Name | Source | Type | Go type | Separator | Required | Default | Description |
 |------|--------|------|---------|-----------| :------: |---------|-------------|
-| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all
-available results. |
+| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all available results. |
 | name | `query` | string | `string` |  |  |  | Name filter works as a substring match on the package name. For example, setting `name=cur` would match `curl` and `libcurl`. |
 | package_manager | `query` | string | `string` |  |  |  |  |
 | page | `query` | int64 (formatted integer) | `int64` |  |  | `1` |  |
@@ -1325,8 +1532,7 @@ GET /api/v1/sources
 
 | Name | Source | Type | Go type | Separator | Required | Default | Description |
 |------|--------|------|---------|-----------| :------: |---------|-------------|
-| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all
-available results. |
+| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all available results. |
 | org | `query` | string | `string` |  |  |  |  |
 | page | `query` | int64 (formatted integer) | `int64` |  |  | `1` |  |
 | page_size | `query` | int64 (formatted integer) | `int64` |  |  | `20` |  |
@@ -1424,8 +1630,7 @@ GET /api/v1/sources/vulnerabilities
 | Name | Source | Type | Go type | Separator | Required | Default | Description |
 |------|--------|------|---------|-----------| :------: |---------|-------------|
 | Severity | `query` | string | `string` |  |  |  | Case insensitive vulnerabilities severity filter. Possible values are: low, medium, high, critical, unknown. |
-| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all
-available results. |
+| all | `query` | boolean | `bool` |  |  |  | If no pagination parameters are provided, defaults to true and returns all available results. |
 | org | `query` | string | `string` |  |  |  |  |
 | page | `query` | int64 (formatted integer) | `int64` |  |  | `1` |  |
 | page_size | `query` | int64 (formatted integer) | `int64` |  |  | `20` |  |
@@ -1471,6 +1676,118 @@ ErrorMessage
 
 ## Models
 
+### <span id="artifact-group-post-request"></span> ArtifactGroupPostRequest
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| EntityID | uint64 (formatted integer)| `uint64` |  | | The database ID of the source or image being associated with this artifact group | `24` |
+| Labels | map of string| `map[string]string` |  | | Key-Value pair of labels associated with the Artifact Group | `{"env":"production","namespace":"default"}` |
+| Type | string| `string` |  | | The entity type being associated with this artifact group. Allowable values: image, source | `image` |
+| UID | string| `string` | ✓ | | Unique identifier for the Artifact Group such as workload UID | `8b1cc5da-fabe-45a6-ab8c-49260bbeef99` |
+
+
+
+### <span id="artifact-group-response"></span> ArtifactGroupResponse
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| Entities | [][Entity](#entity)| `[]*Entity` |  | | Entities associated with the Artifact Group |  |
+| Labels | map of string| `map[string]string` |  | | Key-Value pair of labels associated with the Artifact Group | `{"env":"production","namespace":"default"}` |
+| UID | string| `string` |  | | Unique identifier for the Artifact Group such as workload UID | `8b1cc5da-fabe-45a6-ab8c-49260bbeef99` |
+
+
+
+### <span id="artifact-group-search-filters"></span> ArtifactGroupSearchFilters
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| All | boolean| `bool` |  | | If no pagination parameters are provided, defaults to true and returns all available results. |  |
+| CVEID | string| `string` |  | | An optional CVE ID that the image and source must contain. Only packages, and their images and sources, with this CVE ID will be returned. If both package name and CVE ID are provided, then only the images and sources with the specified package name and CVE ID will be returned. | `CVE-7467-2020` |
+| Digests | []string| `[]string` |  | | A list of image digests. At least one image digest or source sha must be provided. | `["9n38274ods897fmay487gsdyfga678wr82","7n38274ods897fmay487gsdyfga678wr82"]` |
+| PackageName | string| `string` |  | | An optional package name that the image and source must contain. Only packages, and their images and sources, with this name will be returned. If both package name and CVE ID are provided, then only the images and sources with the specified package name and CVE ID will be returned. | `package1` |
+| Page | int64 (formatted integer)| `int64` |  | `1`|  |  |
+| PageSize | int64 (formatted integer)| `int64` |  | `20`|  |  |
+| Shas | []string| `[]string` |  | | A list of source shas. At least one image digest or source sha must be provided. | `["sha256:2c11624a8d9c9071996a886a4acaf09939ef3386e4c07735c6a2532f02eed4ea","sha256:04bafe0d8df23ec342edb72acc3fb02f61c418bc6e8d7093149956a9aad2d12a"]` |
+
+
+
+### <span id="artifact-group-vuln-reach-filters-post-request"></span> ArtifactGroupVulnReachFiltersPostRequest
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| All | boolean| `bool` |  | | If no pagination parameters are provided, defaults to true and returns all available results. |  |
+| Digests | []string| `[]string` |  | | A list of image digests. | `["sha256:2c11624a8d9c9071996a886a4acaf09939ef3386e4c07735c6a2532f02eed4ea","sha256:04bafe0d8df23ec342edb72acc3fb02f61c418bc6e8d7093149956a9aad2d12a"]` |
+| Page | int64 (formatted integer)| `int64` |  | `1`|  |  |
+| PageSize | int64 (formatted integer)| `int64` |  | `20`|  |  |
+| Shas | []string| `[]string` |  | | A list of source shas. | `["9n38274ods897fmay487gsdyfga678wr82","7n38274ods897fmay487gsdyfga678wr82"]` |
+
+
+
+### <span id="artifact-group-vuln-reach-post-response"></span> ArtifactGroupVulnReachPostResponse
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| AgCount | uint64 (formatted integer)| `uint64` |  | | Number of artifact groups affected by the vulnerability | `5` |
+| Vulnerability | [VulnResponse](#vuln-response)| `VulnResponse` |  | |  |  |
+
+
+
+### <span id="artifact-group-vuln-search-filters"></span> ArtifactGroupVulnSearchFilters
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| All | boolean| `bool` |  | | If no pagination parameters are provided, defaults to true and returns all available results. |  |
+| ArtifactGroupUID | string| `string` |  | | An optional artifact group UID that the image and source must contain. Only artifact groups, and their images and sources, with this artifact group UID will be returned. If both package name and artifact group UID are provided, then only the images and sources with the specified package name and artifact group UID will be returned. | `9aa3548e-5fae-11ed-9b6a-0242ac120002` |
+| Digests | []string| `[]string` |  | | A list of image digests. At least one image digest or source sha must be provided. | `["9n38274ods897fmay487gsdyfga678wr82","7n38274ods897fmay487gsdyfga678wr82"]` |
+| PackageName | string| `string` |  | | An optional package name that the image and source must contain. Only packages, and their images and sources, with this name will be returned. If both package name and artifact group UID are provided, then only the images and sources with the specified package name and artifact group UID will be returned. | `package1` |
+| Page | int64 (formatted integer)| `int64` |  | `1`|  |  |
+| PageSize | int64 (formatted integer)| `int64` |  | `20`|  |  |
+| Shas | []string| `[]string` |  | | A list of source shas. At least one image digest or source sha must be provided. | `["sha256:2c11624a8d9c9071996a886a4acaf09939ef3386e4c07735c6a2532f02eed4ea","sha256:04bafe0d8df23ec342edb72acc3fb02f61c418bc6e8d7093149956a9aad2d12a"]` |
+
+
+
 ### <span id="deleted-at"></span> DeletedAt
 
 
@@ -1478,6 +1795,30 @@ ErrorMessage
 
 
 * composed type [NullTime](#null-time)
+
+### <span id="entity"></span> Entity
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| Digest | string| `string` |  | | The digest of the image entity. Only visible if the entity is of image type | `sha256:f7de1564f13da1ef7e5720ebce14006793242c0d8d7d60c343632bcf3bc5306d` |
+| Host | string| `string` |  | | The dns name where the source entity is hosted on. Only visible if the entity type is of source type | `gitlab.com` |
+| ID | uint64 (formatted integer)| `uint64` | ✓ | | The database ID of the source or image | `24` |
+| Name | string| `string` |  | | The name of the image entity. Only visible if the entity is of image type. | `checkr/flagr` |
+| Org | string| `string` |  | | The organization name of the source entity. Only visible if the entity type is of source type | `my-organization` |
+| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Registry | string| `string` |  | | The DNS name of the registry that stores the image entity. Only visible if the entity is of image type | `docker.io` |
+| Repo | string| `string` |  | | The repository name of the source entity. Only visible if the entity type is of source type | `my-sample-repo` |
+| Sha | string| `string` |  | | The commit sha of the source entity. Only visible if the entity type is of source type | `d6cd1e2bd19e03a81132a23b2025920577f84e37` |
+| Type | string| `string` | ✓ | | The entity Type of scan that is stored. This is set to either "image" or "source". | `image` |
+
+
 
 ### <span id="error-message"></span> ErrorMessage
 
@@ -1512,9 +1853,9 @@ marshalled as a JSON object.
 | Digest | string| `string` | ✓ | |  | `9n38274ods897fmay487gsdyfga678wr82` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
 | Name | string| `string` | ✓ | |  | `myorg/application` |
-| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
 | Registry | string| `string` | ✓ | |  | `docker.io` |
-| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
 
 
 
@@ -1533,7 +1874,7 @@ marshalled as a JSON object.
 | DeletedAt | [DeletedAt](#deleted-at)| `DeletedAt` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
 | Name | string| `string` |  | |  |  |
-| Rating | [[]Rating](#rating)| `[]*Rating` |  | |  |  |
+| Rating | [][Rating](#rating)| `[]*Rating` |  | |  |  |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 
 
@@ -1596,12 +1937,31 @@ it can be used as a scan destination, similar to NullString.
 |------|------|---------|:--------:| ------- |-------------|---------|
 | Homepage | string| `string` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
+| Images | [][Image](#image)| `[]*Image` |  | |  |  |
 | Name | string| `string` |  | |  |  |
 | PackageManager | string| `string` |  | |  |  |
-| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
 | Version | string| `string` |  | |  |  |
-| Vulnerabilities | [[]Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
+| Vulnerabilities | [][Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
+
+
+
+### <span id="paginated-artifact-group-vuln-reach-response"></span> PaginatedArtifactGroupVulnReachResponse
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| Count | int64 (formatted integer)| `int64` |  | |  | `10` |
+| CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
+| LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
+| PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
+| Results | [][ArtifactGroupVulnReachPostResponse](#artifact-group-vuln-reach-post-response)| `[]*ArtifactGroupVulnReachPostResponse` |  | |  |  |
 
 
 
@@ -1620,7 +1980,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [[]interface{}](#interface)| `[]interface{}` |  | |  |  |
+| Results | [][interface{}](#interface)| `[]interface{}` |  | |  |  |
 
 
 
@@ -1644,6 +2004,24 @@ it can be used as a scan destination, similar to NullString.
 
 
 
+### <span id="rating-response"></span> RatingResponse
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| ID | uint64 (formatted integer)| `uint64` |  | | Rating ID | `3` |
+| Score | double (formatted number)| `float64` |  | | CVSS score | `9.7` |
+| Severity | string| `string` |  | | Threat level of vulnerability | `High` |
+| Vector | string| `string` |  | | CVSS score in vector format | `AV:L/AC:L/Au:N/C:C/I:C/A:C` |
+
+
+
 ### <span id="source"></span> Source
 
 
@@ -1658,9 +2036,9 @@ it can be used as a scan destination, similar to NullString.
 | DeletedAt | [DeletedAt](#deleted-at)| `DeletedAt` |  | |  |  |
 | Host | string| `string` |  | |  | `gitlab.com` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
+| Images | [][Image](#image)| `[]*Image` |  | |  |  |
 | Organization | string| `string` |  | |  | `vmware` |
-| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
 | Repository | string| `string` | ✓ | |  | `myproject` |
 | Sha | string| `string` | ✓ | |  | `0eb5fcd1` |
 
@@ -1673,6 +2051,27 @@ it can be used as a scan destination, similar to NullString.
 
 []string
 
+### <span id="vuln-response"></span> VulnResponse
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| CNA | string| `string` |  | | CVE Numbering Authority | `GitHub, Inc.` |
+| CVEID | string| `string` |  | | CVE ID of the vulnerability | `CVE-7467-2020` |
+| Description | string| `string` |  | | Description of the vulnerability | `IBM Datapower Gateway 10.0.2.0 through 10.0.4.0, 10.0.1.0 through 10.0.1.5, and 2018.4.1.0 through 2018.4.1.18 could allow unauthorized viewing of logs and files due to insufficient authorization checks. IBM X-Force ID: 218856.` |
+| ID | uint64 (formatted integer)| `uint64` |  | | Vulnerability ID | `12` |
+| Ratings | [][RatingResponse](#rating-response)| `[]*RatingResponse` |  | | Rating information |  |
+| References | []string| `[]string` |  | | Additional external links | `https://github.com/example/repo/issues/11` |
+| URL | string| `string` |  | | Related url to the vulnerability | `https://nvd.nist.gov/vuln/detail/CVE-7467-2020` |
+
+
+
 ### <span id="vulnerability"></span> Vulnerability
 
 
@@ -1684,14 +2083,170 @@ it can be used as a scan destination, similar to NullString.
 
 | Name | Type | Go type | Required | Default | Description | Example |
 |------|------|---------|:--------:| ------- |-------------|---------|
-| CNA | string| `string` |  | |  |  |
+| CNA | string| `string` |  | |  | `GitHub, Inc.` |
 | CVEID | string| `string` | ✓ | |  | `CVE-7467-2020` |
-| Description | string| `string` |  | |  |  |
+| Description | string| `string` |  | |  | `A description of CVE-7467-2020` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
-| Ratings | [[]Rating](#rating)| `[]*Rating` |  | |  |  |
+| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
 | References | [StringArray](#string-array)| `StringArray` |  | |  |  |
-| URL | string| `string` |  | |  |  |
+| URL | string| `string` |  | |  | `https://nvd.nist.gov/vuln/detail/CVE-7467-2020` |
+
+
+
+### <span id="artifact-group-post-entity"></span> artifactGroupPostEntity
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| ID | uint64 (formatted integer)| `uint64` | ✓ | | The database ID of the source or image | `24` |
+| Type | string| `string` | ✓ | | The entity Type of scan that is stored. This is set to either "image" or "source". | `image` |
+
+
+
+### <span id="artifact-group-post-response"></span> artifactGroupPostResponse
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| Entities | [][ArtifactGroupPostEntity](#artifact-group-post-entity)| `[]*ArtifactGroupPostEntity` |  | | Entities associated with the Artifact Group |  |
+| Labels | map of string| `map[string]string` |  | | Key-Value pair of labels associated with the Artifact Group | `{"env":"production","namespace":"default"}` |
+| UID | string| `string` |  | | Unique identifier for the Artifact Group such as workload UID | `8b1cc5da-fabe-45a6-ab8c-49260bbeef99` |
+
+
+
+### <span id="artifact-group-vuln-artifact-group"></span> artifactGroupVulnArtifactGroup
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| Entities | [][ArtifactGroupVulnEntity](#artifact-group-vuln-entity)| `[]*ArtifactGroupVulnEntity` |  | | Entities associated with the Artifact Group |  |
+| Labels | map of string| `map[string]string` |  | | Key-Value pair of labels associated with the Artifact Group | `{"env":"production","namespace":"default"}` |
+| UID | string| `string` |  | | Unique identifier for the Artifact Group such as workload UID | `8b1cc5da-fabe-45a6-ab8c-49260bbeef99` |
+
+
+
+### <span id="artifact-group-vuln-entity"></span> artifactGroupVulnEntity
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| Digest | string| `string` |  | | The digest of the image entity. Only visible if the entity is of image type | `sha256:f7de1564f13da1ef7e5720ebce14006793242c0d8d7d60c343632bcf3bc5306d` |
+| Host | string| `string` |  | | The dns name where the source entity is hosted on. Only visible if the entity type is of source type | `gitlab.com` |
+| ID | uint64 (formatted integer)| `uint64` | ✓ | | The database ID of the source or image | `24` |
+| Name | string| `string` |  | | The name of the image entity. Only visible if the entity is of image type. | `checkr/flagr` |
+| Org | string| `string` |  | | The organization name of the source entity. Only visible if the entity type is of source type | `my-organization` |
+| Registry | string| `string` |  | | The DNS name of the registry that stores the image entity. Only visible if the entity is of image type | `docker.io` |
+| Repo | string| `string` |  | | The repository name of the source entity. Only visible if the entity type is of source type | `my-sample-repo` |
+| Sha | string| `string` |  | | The commit sha of the source entity. Only visible if the entity type is of source type | `d6cd1e2bd19e03a81132a23b2025920577f84e37` |
+| Type | string| `string` | ✓ | | The entity Type of scan that is stored. This is set to either "image" or "source". | `image` |
+
+
+
+### <span id="artifact-group-vuln-package"></span> artifactGroupVulnPackage
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| Homepage | string| `string` |  | |  |  |
+| ID | uint64 (formatted integer)| `uint64` |  | |  |  |
+| Images | [][Image](#image)| `[]*Image` |  | | This field will always be empty | `[]` |
+| Name | string| `string` |  | |  |  |
+| PackageManager | string| `string` |  | |  |  |
+| Sources | [][Source](#source)| `[]*Source` |  | | This field will always be empty | `[]` |
+| Version | string| `string` |  | |  |  |
+| Vulnerabilities | [][Vulnerability](#vulnerability)| `[]*Vulnerability` |  | | This field will always be empty | `[]` |
+
+
+
+### <span id="artifact-group-vuln-result"></span> artifactGroupVulnResult
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| ArtifactGroups | [][ArtifactGroupVulnArtifactGroup](#artifact-group-vuln-artifact-group)| `[]*ArtifactGroupVulnArtifactGroup` |  | |  |  |
+| CNA | string| `string` |  | |  | `GitHub, Inc.` |
+| CVEID | string| `string` | ✓ | |  | `CVE-7467-2020` |
+| Description | string| `string` |  | |  | `A description of CVE-7467-2020` |
+| ID | uint64 (formatted integer)| `uint64` |  | |  |  |
+| Packages | [][ArtifactGroupVulnPackage](#artifact-group-vuln-package)| `[]*ArtifactGroupVulnPackage` |  | |  |  |
+| Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
+| References | [StringArray](#string-array)| `StringArray` |  | |  |  |
+| URL | string| `string` |  | |  | `https://nvd.nist.gov/vuln/detail/CVE-7467-2020` |
+
+
+
+### <span id="paginated-artifact-group-response"></span> paginatedArtifactGroupResponse
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| Count | int64 (formatted integer)| `int64` |  | |  | `10` |
+| CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
+| LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
+| PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
+| Results | [][ArtifactGroupResponse](#artifact-group-response)| `[]*ArtifactGroupResponse` |  | |  |  |
+
+
+
+### <span id="paginated-artifact-group-vulnerability-response"></span> paginatedArtifactGroupVulnerabilityResponse
+
+
+  
+
+
+
+**Properties**
+
+| Name | Type | Go type | Required | Default | Description | Example |
+|------|------|---------|:--------:| ------- |-------------|---------|
+| Count | int64 (formatted integer)| `int64` |  | |  | `10` |
+| CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
+| LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
+| PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
+| Results | [][ArtifactGroupVulnResult](#artifact-group-vuln-result)| `[]*ArtifactGroupVulnResult` |  | |  |  |
 
 
 
@@ -1710,7 +2265,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [[]ResponseImage](#response-image)| `[]*ResponseImage` |  | |  |  |
+| Results | [][ResponseImage](#response-image)| `[]*ResponseImage` |  | |  |  |
 
 
 
@@ -1729,7 +2284,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [[]ResponsePackage](#response-package)| `[]*ResponsePackage` |  | |  |  |
+| Results | [][ResponsePackage](#response-package)| `[]*ResponsePackage` |  | |  |  |
 
 
 
@@ -1748,7 +2303,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [[]ResponseSource](#response-source)| `[]*ResponseSource` |  | |  |  |
+| Results | [][ResponseSource](#response-source)| `[]*ResponseSource` |  | |  |  |
 
 
 
@@ -1767,7 +2322,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [[]ResponseVulnerability](#response-vulnerability)| `[]*ResponseVulnerability` |  | |  |  |
+| Results | [][ResponseVulnerability](#response-vulnerability)| `[]*ResponseVulnerability` |  | |  |  |
 
 
 
@@ -1786,9 +2341,9 @@ it can be used as a scan destination, similar to NullString.
 | Digest | string| `string` | ✓ | |  | `9n38274ods897fmay487gsdyfga678wr82` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
 | Name | string| `string` | ✓ | |  | `myorg/application` |
-| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
 | Registry | string| `string` | ✓ | |  | `docker.io` |
-| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 
 
@@ -1807,13 +2362,13 @@ it can be used as a scan destination, similar to NullString.
 | CreatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 | Homepage | string| `string` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
+| Images | [][Image](#image)| `[]*Image` |  | |  |  |
 | Name | string| `string` |  | |  |  |
 | PackageManager | string| `string` |  | |  |  |
-| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 | Version | string| `string` |  | |  |  |
-| Vulnerabilities | [[]Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
+| Vulnerabilities | [][Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
 
 
 
@@ -1832,9 +2387,9 @@ it can be used as a scan destination, similar to NullString.
 | DeletedAt | [DeletedAt](#deleted-at)| `DeletedAt` |  | |  |  |
 | Host | string| `string` |  | |  | `gitlab.com` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
+| Images | [][Image](#image)| `[]*Image` |  | |  |  |
 | Organization | string| `string` |  | |  | `vmware` |
-| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
 | Repository | string| `string` | ✓ | |  | `myproject` |
 | Sha | string| `string` | ✓ | |  | `0eb5fcd1` |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
@@ -1852,13 +2407,13 @@ it can be used as a scan destination, similar to NullString.
 
 | Name | Type | Go type | Required | Default | Description | Example |
 |------|------|---------|:--------:| ------- |-------------|---------|
-| CNA | string| `string` |  | |  |  |
+| CNA | string| `string` |  | |  | `GitHub, Inc.` |
 | CVEID | string| `string` | ✓ | |  | `CVE-7467-2020` |
 | CreatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
-| Description | string| `string` |  | |  |  |
+| Description | string| `string` |  | |  | `A description of CVE-7467-2020` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
-| Ratings | [[]Rating](#rating)| `[]*Rating` |  | |  |  |
+| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
 | References | [StringArray](#string-array)| `StringArray` |  | |  |  |
-| URL | string| `string` |  | |  |  |
+| URL | string| `string` |  | |  | `https://nvd.nist.gov/vuln/detail/CVE-7467-2020` |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
