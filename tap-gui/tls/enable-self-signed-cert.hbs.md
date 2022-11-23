@@ -6,7 +6,7 @@ generate a certificate for Tanzu Application Platform GUI to use based on that i
 Some browsers and corporate policies do not allow you to visit webpages that have self-signed
 certificates. You might need to navigate through a series of error messages to visit the page.
 
-![Tanzu Application Platform TLS Diagram](images/TAP-GUI-TLS-CERT.png)
+![TLS diagram showing the relationships between Tanzu Application Platform GUI, cert dash manager, and Contour Shared Ingress.](images/TAP-GUI-TLS-CERT.png)
 
 ## <a id="prereq"></a> Prerequisite
 
