@@ -129,7 +129,7 @@ You can navigate directly to the Pod Details page from the Resources index table
 
 Alternatively, you can see the pod table in each resource details page as shown in the following screenshot.
 
-![Screenshot of object detail table listing pod](images/runtime-resources-pods.png)
+![Screenshot of object detail table listing pod.](images/runtime-resources-pods.png)
 
 
 ## <a id="pod-details"></a>Navigating to Application Live View
