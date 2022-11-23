@@ -38,6 +38,6 @@ In addition to the earlier, you can further adopt security best practices by usi
 
 ### <a id="amend-scan-policy"></a>Amending the scan policy
 
-If you decide to proceed without remediating the CVE, for example, when a CVE is evaluated to be a false positive or when a fix is not currently available, you can amend the ScanPolicy to ignore one or more CVEs. For information about common scanner limitations, see [Note on Vulnerability Scanners](overview.hbs.md#a-idscst-scan-noteaa-note-on-vulnerability-scanners). For information about templates, see [Writing Policy Templates](policies.md).
+If you decide to proceed without remediating the CVE, for example, when a CVE is evaluated to be a false positive or when a fix is not currently available, you can amend the ScanPolicy to ignore one or more CVEs. For information about common scanner limitations, see [Note on Vulnerability Scanners](overview.hbs.md#scst-scan-note). For information about templates, see [Writing Policy Templates](policies.md).
 
 Under RBAC, users with the `app-operator-scanning` role that is part of the `app-operator` aggregate role, have permission to edit the ScanPolicy. See [Detailed role permissions breakdown](../authn-authz/permissions-breakdown.hbs.md).

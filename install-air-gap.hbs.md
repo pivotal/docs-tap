@@ -153,7 +153,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
 
 ## <a id='air-gap-policy'></a> Prepare Sigstore Stack for air-gapped policy controller
 
->**Important** This section only applies if the target environment requires support for keyless authorities in `ClusterImagePolicy`. You must set the `policy.tuf_enabled` field to `true` when installing Tanzu Application Platform. 
+>**Important** This section only applies if the target environment requires support for keyless authorities in `ClusterImagePolicy`. You must set the `policy.tuf_enabled` field to `true` when installing Tanzu Application Platform.
 By default, keyless authorities support is deactivated.
 
 By default, the public official Sigstore "The Update Framework (TUF) server" is used.
@@ -325,7 +325,7 @@ service's External IP address.
    - Docker Hub has the form `repository: "my-dockerhub-user"`.
    - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication. See [Git authentication](scc/git-auth.hbs.md) for more information.
-- `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#a-idmaven-repository-secreta-maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
+- `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `GITLABURL` is the host name of your GitLab instance.
 - `GITLAB-USER` is the user name of your GitLab instance.

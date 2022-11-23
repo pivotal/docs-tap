@@ -267,7 +267,7 @@ kubectl get scanpolicy NAME -n DEV-NAMESPACE
 
 Add the `app.kubernetes.io/part-of` label to the Scan Policy. See [Enable Tanzu Application Platform
 GUI to view ScanPolicy
-Resource](policies.hbs.md#a-idgui-view-scan-policyaenable-tanzu-application-platform-gui-to-view-scanpolicy-resource)
+Resource](policies.hbs.md#gui-view-scan-policy)
 for more details.
 
 #### Lookup error when connecting to SCST - Store
