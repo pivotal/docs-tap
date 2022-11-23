@@ -120,6 +120,9 @@ Known security vulnerability
     `Builder default is not ready`.
   - Clicking on the `Scan Template` link in the **Overview** section for a scanning stage causes a
     blank page to open in the browser.
+  - The image provider stage is not correctly reporting status failures and is instead showing a green status when it should not. This does, however,       stop the supply chain execution
+  - Image Provider logs are not appearing in the Stage Details section if the build fails. The logs are, however, available through the cli.
+
 
 - **K8s logging backend  Plug-in**
 
