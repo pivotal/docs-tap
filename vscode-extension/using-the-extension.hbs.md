@@ -55,7 +55,7 @@ To apply a workload from the Command Palette:
 
     After the workload is deployed, the status on the Tanzu Workloads panel changes to `Ready`.
 
-    ![Workload ready on Tanzu Workloads. It shows details for tanzu-java-web-app.](../images/vscode-panel-workload-ready.png)
+    ![Workload ready on Tanzu Workloads. It shows details for tanzu dash java dash web dash app.](../images/vscode-panel-workload-ready.png)
 
 To apply a workload from the context menu:
 
@@ -225,7 +225,7 @@ To delete a workload:
 
     A notification appears showing that the workload was deleted.
 
-    ![Delete Workload Notification showing workload has been deleted.](../images/vscode-deleteworkload4.png)
+    ![Delete Workload Notification showing that the workload has been deleted.](../images/vscode-deleteworkload4.png)
 
 ## <a id="switch-namespace"></a> Switch namespaces
 
@@ -258,4 +258,4 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
     kubectl config set-context --current --namespace=YOUR-NAMESPACE
     ```
 
-    ![VS Code Workload Panel showing the Terminal log.(../images/vscode-panel-live-update-running.png)
+    ![VS Code Workload Panel showing the Terminal log.](../images/vscode-panel-live-update-running.png)

@@ -44,7 +44,7 @@ IntelliJ UI.
 
 Click the stop button in the Debug overlay to stop debugging on the cluster.
 
-![The IntelliJ interface showing the debug interface pointing out the stop rectangle icon and mouseover description.](../images/intellij-stopDebug.png)
+![The IntelliJ interface showing the debug interface pointing out the stop rectangle icon and pointer description.](../images/intellij-stopDebug.png)
 
 ### <a id="start-live-update"></a> Start Live Update
 
