@@ -69,7 +69,7 @@ To create a `workload.yaml` file by using the Code Snippets:
 For example, `my project/config/workload.yaml`.
 1. Open the new `workload.yaml` file in VS Code, enter `tanzu workload` in the file to trigger the
 Code Snippets, and either press Enter or left-click the `tanzu workload` text in the drop-down menu.
-    ![A new file called workload.yaml with the words "tanzu workload" written in it and an action menu showing "tanzu workload"](../images/vscode-workload.png)
+    ![A new file called workload dot yaml with the words tanzu workload written in it and an action menu showing tanzu workload.](../images/vscode-workload.png)
 1. Fill in the template by pressing the Tab key.
 
 To create your `workload.yaml` file manually, see [Create a `workload.yaml` file](#create-workload-yaml).
@@ -93,7 +93,7 @@ For example, `my project/catalog/catalog-info.yaml`
 1. Open the new `catalog-info.yaml` file in VS Code, enter `tanzu catalog-info` in the file to trigger
 the Code Snippets, and then either press Enter or left-click the `tanzu catalog-info` text in the
 drop-down menu.
-    ![A new file called catalog-info.yaml with the words "tanzu catalog-info" written in it and an action menu showing "tanzu catalog-info"](../images/vscode-cataloginfo.png)
+    ![A new file called catalog-info dot yaml with the words tanzu catalog dash info written in it and an action menu showing tanzu catalog-info.](../images/vscode-cataloginfo.png)
 1. Fill in the template by pressing the Tab key.
 
 > **Note:** To create your `catalog-info.yaml` file manually, see
@@ -124,7 +124,7 @@ For example, `my project/Tiltfile`.
 1. Open the new Tiltfile file in VS Code and enter `tanzu tiltfile` in the file to trigger the
 Code Snippets, and then either press Enter or left-click the `tanzu tiltfile` text in the
 drop-down menu.
-    ![A new file called Tiltfile with the words "tanzu tiltfile" written in it and an action menu showing "tanzu tiltfile"](../images/vscode-tiltfile.png)
+    ![A new file called Tiltfile with the words tanzu tiltfile written in it and an action menu showing tanzu tiltfile.](../images/vscode-tiltfile.png)
 1. Fill in the template by pressing the Tab key.
 2. If the targeting Kubernetes cluster enabled by Tanzu Application Platform is not running on your
 local machine, add a new line to the end of the **Tiltfile** template and enter:
