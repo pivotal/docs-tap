@@ -31,12 +31,12 @@ This repo contains the content for Tanzu Application Platform docs.
 <td><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html">Production</a></td>
 </tr>
 <tr>
-<td>1-3-1-do-not-use</td>
+<td>1-3-1</td>
 <td>Not in use. Do not PR to this branch.</td>
 <td>Not in use. Do not PR to this branch.</td>
 </tr>
 <tr>
-<td>1-3-0-do-not-use</td>
+<td>1-3-0</td>
 <td>No longer in use. Do not PR to this branch.</td>
 <td>No longer in use. Do not PR to this branch.</td>
 </tr>
@@ -46,12 +46,17 @@ This repo contains the content for Tanzu Application Platform docs.
 <td><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html">Production</a></td>
 </tr>
 <tr>
-<td>1-2-1-do-not-use</td>
+<td>1-2-1</td>
 <td>No longer in use. Do not PR to this branch.</td>
 <td>No longer in use. Do not PR to this branch.</td>
 </tr>
 <tr>
-<td>1-2-0-do-not-use</td>
+<td>1-2-0</td>
+<td>No longer in use. Do not PR to this branch.</td>
+<td>No longer in use. Do not PR to this branch.</td>
+</tr>
+<tr>
+<td>1-2</td>
 <td>No longer in use. Do not PR to this branch.</td>
 <td>No longer in use. Do not PR to this branch.</td>
 </tr>
