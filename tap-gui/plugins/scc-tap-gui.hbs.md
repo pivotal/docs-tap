@@ -44,4 +44,4 @@ There are two sections within this view:
 This is a sample result of the Build stage for the `tanzu-java-web-app` from using
 Tanzu Build Service:
 
-![Screenshot of the Stage Detail section for image dash builder.](images/build-stage-sample.png)
+![Screenshot of details of the Build stage of the app tanzu-java-web-app.](images/build-stage-sample.png)
