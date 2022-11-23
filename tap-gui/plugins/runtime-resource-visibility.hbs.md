@@ -77,11 +77,11 @@ To view the list of your running resources:
 
 1. Select your component from the Catalog index page.
 
-   ![Screenshot of selecting component on runtime resources index table](images/runtime-resources-components.png)
+   ![Screenshot of selecting component on runtime resources index table.](images/runtime-resources-components.png)
 
 1. Select the **Runtime Resources** tab.
 
-   ![Screenshot of selecting Runtime resources tab](images/runtime-resources-index.png)
+   ![Screenshot of selecting Runtime resources tab.](images/runtime-resources-index.png)
 
 ### <a id="resources-included"></a> Resources
 
@@ -132,7 +132,7 @@ The following are some attributes that are displayed in the overview card:
 - Namespace
 - Cluster
 
-![Screenshot of an Overview card. The VIEW POD LOGS and VIEW .YAML buttons are at the top-right.](images/runtime-resources-overview.png)
+![Screenshot of an Overview card. The VIEW POD LOGS and VIEW dot YAML buttons are at the top-right.](images/runtime-resources-overview.png)
 
 >**Note** The **VIEW CPU AND MEMORY DETAILS** and **VIEW THREADS** sections are only available for
 applications supporting Application Live View.
@@ -145,7 +145,7 @@ Not all resources have conditions, and they can vary from one resource to the ot
 For more information about object `spec` and `status`, see the
 [Kubernetes documentation](https://kubernetes.io/docs/concepts/_print/#object-spec-and-status).
 
-![Screenshot of condition types and status conditions](images/runtime-resources-status.png)
+![Screenshot of condition types and status conditions.](images/runtime-resources-status.png)
 
 ### <a id="ownership-card"></a>Ownership card
 
@@ -161,7 +161,7 @@ For more information about owners and dependents, see the
 
 The Annotations and Labels card displays information about `metadata.annotations` and `metadata.labels`.
 
-![Screenshot of Annotations and Labels sections](images/runtime-resources-annotations.png)
+![Screenshot of Annotations and Labels sections.](images/runtime-resources-annotations.png)
 
 ## <a id="select-supply-chain-pods"></a>Selecting completed supply chain pods
 
@@ -221,14 +221,14 @@ Kubernetes manages these resource units by using a binary base, which is explain
 To view additional information about your running applications, see the
 [Application Live View](app-live-view-springboot.md) section in the **Pod Details** page.
 
-![Screenshot of Tanzu Java web app runtime resource detail page](images/runtime-resources-pod-details.png)
+![Screenshot of Tanzu Java web app runtime resource detail page.](images/runtime-resources-pod-details.png)
 
 ## <a id="viewing-pod-logs"></a>Viewing pod logs
 
 To view logs for a pod, click **View Pod Logs** from the **Pod Details** page.
 By default, logs for the pod's first container are displayed, dating back to when the pod was created.
 
-![Screenshot of Pod Logs page, which displays information for Tanzu Java Web App](images/runtime-resources-pod-logs.png)
+![Screenshot of Pod Logs page, which displays information for Tanzu Java Web App.](images/runtime-resources-pod-logs.png)
 
 ### <a id="pause-resume-logs"></a>Pausing and resuming logs
 
