@@ -33,13 +33,13 @@ documentation.
 1. Go to **APIs & Services** > **Credentials**.
 1. Click **Create Credentials** and select **OAuth client ID**.
 
-    ![OAuth client created](../plugins/images/tap-gui-gke-auth-1.png)
+    ![Create Credentials drop-down menu within the Google Cloud console.](../plugins/images/tap-gui-gke-auth-1.png)
 
 1. Select **Web Application** as the **Application Type**.
 
-    ![OAuth client created](../plugins/images/tap-gui-gke-auth-2.png)
+    ![Application Type drop-down menu within the Google Cloud console.](../plugins/images/tap-gui-gke-auth-2.png)
 
-1. Populate the following dialog boxes with these settings:
+2. Populate the following dialog boxes with these settings:
 
     - Name: `TAP GUI` or your custom app name
     - Authorized JavaScript origins: `http://tap-gui.INGRESS-DOMAIN`
@@ -48,11 +48,11 @@ documentation.
     Where `INGRESS-DOMAIN` is the ingress domain you specified during the installation of
     Tanzu Application Platform GUI
 
-    ![OAuth client created](../plugins/images/tap-gui-gke-auth-3.png)
+    ![Create OAuth client ID settings page in the Google Cloud console.](../plugins/images/tap-gui-gke-auth-3.png)
 
-1. Click `Create` and store your credentials.
+3. Click `Create` and store your credentials.
 
-    ![OAuth client created](../plugins/images/tap-gui-gke-auth-4.png)
+    ![Client credentials text boxes in the Google Cloud console.](../plugins/images/tap-gui-gke-auth-4.png)
 
 ### <a id="configure-tap-gui"></a> Configure Tanzu Application Platform GUI to view the remote GKE cluster
 

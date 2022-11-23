@@ -254,7 +254,7 @@ Access error when querying cluster 'host' for resource '/apis/source.apps.tanzu.
 In most cases, this issue only affects the `full` profile and only when multicluster visibility is
 not set up for Tanzu Application Platform GUI. It only appears in v1.2.0 and is resolved in v1.2.1.
 
-![Screenshot warning of no Maven artifact access ](../images/../tap-gui/images/tap-gui-maven-artifact-1.png)
+![Screenshot warning of no Maven artifact access. The details of the error message are framed in red.](../images/../tap-gui/images/tap-gui-maven-artifact-1.png)
 
 ### Solution
 

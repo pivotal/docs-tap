@@ -12,7 +12,7 @@ You can customize the logo and the name displayed in the top banner in the
 Tanzu Application Platform GUI portal.
 By default, the portal displays the VMware Tanzu logo and **Tanzu Application Platform** as the name.
 
-![Screenshot displaying the default VMware Tanzu branding within the Tanzu Application Platform GUI portal](../images/standard-branding.png)
+![Screenshot displaying the default VMware Tanzu branding within the Tanzu Application Platform GUI portal.](../images/standard-branding.png)
 
 ### <a id="brand-customizing"></a> Customize branding
 
@@ -44,7 +44,7 @@ you see the customized version of your portal.
 If there is an error in `BASE-64-IMAGE` or `PORTAL-NAME`, Tanzu Application Platform GUI reverts to
 the original branding template.
 
-![Screenshot displaying the custom branding within the Tanzu Application Platform GUI portal](../images/customized-branding.png)
+![Screenshot displaying the custom branding within the Tanzu Application Platform GUI portal.](../images/customized-branding.png)
 
 ## <a id="customize-catalog-page"></a> Customize Software Catalog page
 
@@ -81,7 +81,7 @@ the customized version of your portal.
 If there is an error in the provided configuration parameters, Tanzu Application Platform GUI
 reverts to the original organization name.
 
-![Screenshot displaying the custom Software Catalog naming within the Tanzu Application Platform GUI portal](../images/customized-catalog-name.png)
+![Screenshot displaying the custom Software Catalog naming within the Tanzu Application Platform GUI portal.](../images/customized-catalog-name.png)
 
 ## <a id="customize-auth-page"></a> Customize Authentication page
 

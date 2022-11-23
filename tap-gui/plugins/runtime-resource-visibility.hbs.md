@@ -69,7 +69,7 @@ In this page, additional information is available for Knative resources, includi
 - revisions
 - pod details
 
-![Screenshot of the Java web app deployment page](images/runtime-resources-knative-service-details.png)
+![Screenshot of the Java web app deployment page.](images/runtime-resources-knative-service-details.png)
 
 ## <a id="detail-pages"></a> Detail pages
 
@@ -113,7 +113,7 @@ specified in `metadata.ownerReferences`. You can use this section to navigate be
 For more information about owners and dependents, see the
 [Kubernetes documentation](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/).
 
-![Screenshot of the metadata owner references](images/runtime-resources-ownership.png)
+![Screenshot of the metadata owner references.](images/runtime-resources-ownership.png)
 
 ### <a id="annotations"></a>Annotations and Labels
 
@@ -134,7 +134,7 @@ This drop-down menu is only visible if the resources include Build or ConfigWrit
 
 Users can see the pod table in each resource details page.
 
-![Screenshot of object detail table listing pod](images/runtime-resources-pods.png)
+![Screenshot of object detail table listing pod.](images/runtime-resources-pods.png)
 
 ### <a id="pod-details-metrics"></a> Overview of pod metrics
 
