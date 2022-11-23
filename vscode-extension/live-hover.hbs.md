@@ -88,11 +88,11 @@ run:
 1. Open a Java file, such as `HelloController.java`.
 After a delay of up to 30 seconds, because of a 30-second polling loop, green highlights appear in
 your code.
-![Live Hover example showing @RestController and @RequestMapping in the code highlighted in green.](../images/vscode-live-hover-example.png)
+![Live Hover example showing at sign RestController and at sign RequestMapping in the code highlighted in green.](../images/vscode-live-hover-example.png)
 
 1. Hover over any of the bubbles to see live information about the corresponding element.
 
 1. The `Live Beans` and `Live Endpoint Mapping` information are displayed in Spring Boot Dashboard.
    To view the Spring Boot Dashboard, run `View: Show Spring Boot Dashboard` from the Command Palette.
 
-   ![Spring Boot Dashboard showing Live Beans and Live Endpoint Mapping information](../images/vscode-beansmapping-example.png)
+   ![Spring Boot Dashboard showing Live Beans and Live Endpoint Mapping information.](../images/vscode-beansmapping-example.png)
