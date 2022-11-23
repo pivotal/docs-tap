@@ -32,8 +32,7 @@ tanzu-java-web-app.](images/workloads.png)
 Click **tanzu-java-web-app** in the **WORKLOADS** table to navigate to the visualization of the
 supply chain.
 
-![Screenshot of the Supply Chain visualization. The source-scanner stage is
-selected.](images/visual-sc.png)
+![Screenshot of the Supply Chain visualization. The source-scanner stage is selected.](images/visual-sc.png)
 
 There are two sections within this view:
 
@@ -45,4 +44,4 @@ There are two sections within this view:
 This is a sample result of the Build stage for the `tanzu-java-web-app` from using
 Tanzu Build Service:
 
-![Screen Shot of Build Stage](images/build-stage-sample.png)
+![Screenshot of the Stage Detail section for image dash builder.](images/build-stage-sample.png)
