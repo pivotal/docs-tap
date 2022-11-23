@@ -32,7 +32,7 @@ you see the customized version of your portal.
 If there is an error in any of the supplied images encoded in base64 or in your choice of portal name,
 Tanzu Application Platform GUI reverts to the original branding template.
 
-![Screenshot displaying the custom branding within the Tanzu Application Platform GUI portal](../images/customized-branding.png)
+![Screenshot displaying the custom branding within the Tanzu Application Platform GUI portal.](../images/customized-branding.png)
 
 ## <a id="customize-catalog-page"></a> Customize the Software Catalog page
 
@@ -68,7 +68,7 @@ the customized version of your portal.
 If there is an error in the provided configuration parameters, Tanzu Application Platform GUI
 reverts to the original organization name.
 
-![Screenshot displaying the custom Software Catalog naming within the Tanzu Application Platform GUI portal](../images/customized-catalog-name.png)
+![Screenshot displaying the custom Software Catalog naming within the Tanzu Application Platform GUI portal.](../images/customized-catalog-name.png)
 
 ### <a id="prevent-changes"></a> Prevent changes to the software catalog
 
