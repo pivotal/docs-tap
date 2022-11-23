@@ -2,7 +2,7 @@
 
 ## Overview
 
-This repo contains the content for Tanzu Application Platform docs, v1.0–v1.2
+This repo contains the content for Tanzu Application Platform docs, v1.0–v1.3
 
 ## Branches
 
