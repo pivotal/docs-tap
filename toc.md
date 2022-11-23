@@ -524,6 +524,7 @@ docs.vmware.com is built.
       - [Configure Tanzu Build Service properties on a workload](tanzu-build-service/tbs-workload-config.md)
       - [Create a signed container image with Tanzu Build Service](tanzu-build-service/tbs-image-signing.md)
       - [Dependencies](tanzu-build-service/dependencies.md)
+      - [Security Context Constraint for OpenShift](tanzu-build-service/openshift.md)
       - [Troubleshoot Tanzu Build Service](tanzu-build-service/troubleshooting.md)
     - [Tekton](tekton/tekton-about.md)
       - [Tekton overview](tekton/tekton-about.md)
