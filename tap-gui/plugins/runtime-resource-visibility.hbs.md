@@ -51,7 +51,7 @@ In this page, additional information is available for Knative resources, includi
 - revisions
 - pod details
 
-   ![Screenshot of Java web app deployment page](images/runtime-resources-details.png)
+   ![Screenshot of Java web app deployment page.](images/runtime-resources-details.png)
 
 
 ## <a id="view-resource-details"></a> View details for a specific resource
@@ -67,7 +67,7 @@ For information about owners and dependents, see the
 
 See the following example of an expanded index table showing one of the owner resources and its dependents.
 
-![Screenshot of Tanzu Java web app Runtime resources expanded](images/runtime-resources-expanded.png)
+![Screenshot of Tanzu Java web app Runtime resources expanded.](images/runtime-resources-expanded.png)
 
 
 ## <a id="detail-pages"></a> Detail pages
@@ -89,7 +89,7 @@ The following are some attributes that are displayed in the overview card:
 - Namespace
 - Cluster
 
-   ![Screenshot of Tanzu web app default url](images/runtime-resources-overview.png)
+   ![Screenshot of Tanzu web app default url.](images/runtime-resources-overview.png)
 
 
 ### <a id="status-card"></a>Status card
@@ -111,7 +111,7 @@ specified in the `metadata.ownerReferences`. You can use this section to navigat
 
 See [Owners and Dependents](https://kubernetes.io/docs/concepts/overview/working-with-objects/owners-dependents/) in the Kubernetes documentation.
 
-![Screenshot of metadata owner references](images/runtime-resources-ownership.png)
+![Screenshot of metadata owner references.](images/runtime-resources-ownership.png)
 
 
 ### <a id="annotations"></a>Annotations and Labels
@@ -125,7 +125,7 @@ The Annotations and Labels card show information about `metadata.annotations` an
 
 You can navigate directly to the Pod Details page from the Resources index table.
 
-![Screenshot of Tanzu java web app runtime resources accessing pod from index table](images/runtime-resources-index-pod.png)
+![Screenshot of Tanzu java web app runtime resources accessing pod from index table.](images/runtime-resources-index-pod.png)
 
 Alternatively, you can see the pod table in each resource details page as shown in the following screenshot.
 
@@ -137,4 +137,4 @@ Alternatively, you can see the pod table in each resource details page as shown 
 To view additional information about your running applications, see the
 [Application Live View](app-live-view.md) section in the Pod Details page.
 
-![Screenshot of Tanzu Java web app runtime resource detail page](images/runtime-resources-pod-details.png)
+![Screenshot of Tanzu Java web app runtime resource detail page.](images/runtime-resources-pod-details.png)
