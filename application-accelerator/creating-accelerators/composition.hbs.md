@@ -167,29 +167,6 @@ The semantics of the `expose` block are as follows:
 - As soon as a single remap rule appears, the default is overridden. For example,
   to override some names AND expose the others unchanged, the `*` must
   be explicitly re-added.
-- To explicitly un-expose ALL options from an imported fragment, an empty array can
-  be used and overrides the default: `expose: []`.
-
-Similarly, you can also select which [custom types](custom-types.hbs.md) of the fragment
-to make available as types of the accelerator. **This feature should only be used
-when a name clash arises in types names.**
-
-The semantics of the `exposeTypes` block are as follows:
-
-- For every `name`/`as` pair, don't use the original (`name`) of the
-  type but instead, use the alias (`as`). Options that used the original
-  name are automatically 'rewritten' to use the new name.
-- If the special `name: "*"` appears, which is NOT usually a legit type name,
-  all imported other type names that are not remapped are exposed
-  with their original name. The index at which the
-  `*` appears in the YAML list is irrelevant.
-- The default value for `exposeTypes` is `[{name: "*"}]`, that is, by default
-  exposes all types with their original name.
-- As soon as a single remap rule appears, the default is overridden. For example,
-  to override some names AND expose the others unchanged, the `*` must
-  be explicitly re-added.
-- To explicitly un-expose ALL types from an imported fragment, an empty array can
-  be used, which overrides the default: `exposeTypes: []`.
 
 ### <a id="using-dependsOn-in-imports"></a> Using `dependsOn` in the `imports` section
 
@@ -211,7 +188,7 @@ Lastly, as a convenience for conditional use of fragments, you can make an expos
             value: workload
 ```
 
-This plays well with the use of `condition`, as in the following expample:
+This plays well with the use of `condition`, as in the following example:
 
 ```yaml
 ...
