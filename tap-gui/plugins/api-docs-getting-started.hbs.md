@@ -150,13 +150,13 @@ other software catalog entity:
 3. Paste the link to the `catalog-info.yaml` and click **ANALYZE**. Review the catalog entities and
    click **IMPORT**.
 
-    ![Review the entities to be added to the catalog](./tap-gui/images/../../../images/api-plugin-7.png)
+    ![Screenshot of the stage for reviewing the entities to be added to the catalog.](./tap-gui/images/../../../images/api-plugin-7.png)
 
 4. Navigate to the **API** page by clicking **APIs** on the left-hand side navigation panel.
    The catalog changes and entries are visible for further inspection.
    If you select the system **demo-app**, the diagram appears as follows:
 
-    ![Review the entities to be added to the catalog](./tap-gui/images/../../../images/api-plugin-8.png)
+    ![Screenshot of the APIs page. It shows the system diagram for demo dash app.](./tap-gui/images/../../../images/api-plugin-8.png)
 
 ### <a id="deploy-your-app"></a> Update your demo API entry
 
@@ -165,7 +165,7 @@ To update your demo API entry:
 1. To update your demo API entity, select **demo-api** from the list of available APIs in your
    software catalog and click the **Edit** icon on the **Overview** page.
 
-    ![Review the entities to be added to the catalog](./tap-gui/images/../../../images/api-plugin-9.png)
+    ![Screenshot of the overview of demo dash api. The edit button on the card labeled About is framed in red.](./tap-gui/images/../../../images/api-plugin-9.png)
 
     It opens the source `catalog-info.yaml` file that you can edit. For example, change the
     `spec.paths.parameters.example` from `type_any_name` to `Tanzu` and save your changes.
