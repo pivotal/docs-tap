@@ -45,6 +45,8 @@ To enable CVE scan results:
 
     Where `ACCESS-TOKEN` is the token you obtained after creating a read-only service account.
 
+> **Important** The `Authorization` value must start with the word `Bearer`.
+
 ## <a id="view-approvals"></a> Enable View Approvals
 
 To enable the supply chain box-and-line diagram to show **View Approvals**, set up for GitOps and
