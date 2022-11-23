@@ -2,37 +2,6 @@
 
 This topic contains release notes for Tanzu Application Platform v1.3
 
-## <a id='1-3-deprecations'></a> Tanzu Application Platform v1.3 Deprecations
-
-#### <a id="scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
-
-- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
-
-#### <a id="app-sso-deprecations"></a> Application Single Sign-On
-
-- **Deprecation notice:**
-  - `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
-    to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
-  - `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
-   for removal in the next release.
-
-#### <a id="apps-plugin-deprecations"></a> Tanzu CLI
-
-- The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
-  - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
-
-#### <a id="tbs-deprecations"></a> Tanzu Build Service
-
-- **The Ubuntu Bionic stack is deprecated:**
-Ubuntu Bionic stops receiving support in April 2023.
-VMware recommends you migrate builds to Jammy stacks in advance.
-For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
-- **The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated:**
-It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
-VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
-and remove support in Tanzu Application Platform v1.6.
-To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
-
 ## <a id='1-3-2'></a> v1.3.2
 
 **Release Date**: November 16, 2022
@@ -659,34 +628,3 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
   Deliverables incorrectly show a DeliveryNotFound error on build profile clusters even though the
   workload is working correctly. The message is typically:
   `No delivery found where full selector is satisfied by labels:`.
-
-## <a id='1-3-deprecations'></a> Tanzu Application Platform v1.3 Deprecations
-
-### <a id="scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
-
-- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
-
-### <a id="app-sso-deprecations"></a> Application Single Sign-On
-
-- **Deprecation notice:**
-  - `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
-    to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
-  - `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
-   for removal in the next release.
-
-### <a id="apps-plugin-deprecations"></a> Tanzu CLI
-
-- The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
-  - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
-
-### <a id="tbs-deprecations"></a> Tanzu Build Service
-
-- **The Ubuntu Bionic stack is deprecated:**
-Ubuntu Bionic stops receiving support in April 2023.
-VMware recommends you migrate builds to Jammy stacks in advance.
-For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
-- **The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated:**
-It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
-VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
-and remove support in Tanzu Application Platform v1.6.
-To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
