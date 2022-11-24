@@ -58,7 +58,17 @@ This release has the following security fixes, listed by area and component.
 
 The following issues, listed by area and component, are resolved in this release.
 
+#### <a id="1-4-0-api-auto-registration-ri"></a> API Auto Registration
+
+- Now periodically checks the original API specification from the defined location to find changes, and registers any changes into the `API Descriptor`, triggering also the reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or frequency is configurable through the new value `sync_period`. The default value is 5 minutes.
+- Base image updated to resolve [CVE-2022-3786](https://nvd.nist.gov/vuln/detail/CVE-2022-3786) and [CVE-2022-3602](https://nvd.nist.gov/vuln/detail/CVE-2022-3602).
+
 #### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
+
+- **Immediate entity provider backend Plug-in**
+
+  - The entity provider (used mainly by API Auto Registration) now allows a body size of `5Mb` (increased from `100Kb`) to accept larger API specs.
+  - Respecting the restriction of Backstage for [Entity Provider mutations](https://backstage.io/docs/features/software-catalog/external-integrations#provider-mutations), whenever an existing entity is intended for a mutation through this plugin, and its origin is a different entity provider, a `409 Conflict` error is returned.
 
 #### <a id="supply-chain-plugin-ri"></a> Supply Chain Choreographer Plug-In
 

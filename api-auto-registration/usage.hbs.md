@@ -50,7 +50,7 @@ How to create APIDescriptor CR:
         -----END CERTIFICATE-----
     ```
 
-2. Update the package using the Tanzu CLI:
+2. If you installed the API Auto Registration package on its own, and not as part of TAP, you can update the package using the Tanzu CLI:
 
     ```console
     tanzu package installed update api-auto-registration
@@ -59,6 +59,8 @@ How to create APIDescriptor CR:
     --version $VERSION
     --values-file api-auto-registration-values.yaml
     ```
+   
+>**Note** You can also update API Auto Registration as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md) for more information.
 
 ## <a id='using-app-accelerator-template'></a>Using App Accelerator Template
 

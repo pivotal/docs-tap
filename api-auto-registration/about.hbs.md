@@ -5,9 +5,8 @@
 API Auto Registration automates the registration of API specification defined in a workload's configuration.
 The registered API specification is accessible in Tanzu Application Platform GUI without any additional steps.
 An automated workflow, using a supply chain, leverages API Auto Registration to create and manage a Kubernetes Custom Resource (CR) of kind `APIDescriptor`. 
-A Kubernetes controller reconciles the CR and updates the API entity in Tanzu Application Platform GUI to achieve automated API specification registration
-from origin workloads.You might also use API Auto Registration without supply chain automation with other GitOps processes or by directly applying an `APIDescriptor` CR to
-the cluster.
+A Kubernetes controller periodically reconciles the CR and updates the API entity in Tanzu Application Platform GUI to achieve automated API specification registration from origin workloads.
+You might also use API Auto Registration without supply chain automation with other GitOps processes or by directly applying an `APIDescriptor` CR to the cluster.
 
 ![API Auto Registration](./images/autoregistering-api-entities-stages.png)
 
