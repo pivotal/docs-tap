@@ -79,6 +79,12 @@ This issue is also present in previous releases of Supply Chain Security Tools -
 
   - When policy verification occurs on an image deployed through `kubectl run` on a non-default namespace, the verification will fail to create the keychain required if the image requires credentials.
 
+#### <a id="1-2-2-learning-center-issues"></a>Learning Center
+
+- **session.objects, environment.objects and session.patches are not deployed:** 
+  
+  - Due to a security improvement in Learning Center, session.objects, environment.objects and session.patches are not working properly. VMware resolved this issue by Learning Center `v0.2.4` in TAP 1.3.2. 
+
 ## <a id='1-2-1'></a> v1.2.1
 
 **Release Date**: August 9, 2022
