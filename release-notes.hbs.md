@@ -511,3 +511,9 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
   Deliverables incorrectly show a DeliveryNotFound error on build profile clusters even though the
   workload is working correctly. The message is typically:
   `No delivery found where full selector is satisfied by labels:`.
+
+#### <a id="learning-center-known-issues"></a>Learning Center
+
+- **session.objects, environment.objects and session.patches are not deployed:** 
+  
+  - Due to a security improvement in Learning Center, session.objects, environment.objects and session.patches are not working properly. VMware resolved this issue by Learning Center `v0.2.4` in TAP 1.3.2. 
