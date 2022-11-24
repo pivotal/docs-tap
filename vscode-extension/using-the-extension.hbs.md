@@ -43,7 +43,7 @@ To apply a workload:
 
    A new workload appears on the Tanzu Workloads panel.
 
-   ![Workload on Tanzu Workloads](../images/vscode-panel-workload-unknown.png)
+   ![Workload on Tanzu Workloads showing details for tanzu-java-web-app.](../images/vscode-panel-workload-unknown.png)
 
    The workload panel shows the workloads running in the namespace that is defined in the current
    Kubernetes context.
@@ -62,7 +62,7 @@ To apply a workload:
 
    After the workload is deployed, the status on the Tanzu Workloads panel changes to `Ready`.
 
-   ![Workload ready on Tanzu Workloads](../images/vscode-panel-workload-ready.png)
+   ![Workload ready on Tanzu Workloads. It shows details for tanzu-java-web-app.](../images/vscode-panel-workload-ready.png)
 
 ## <a id="debugging-on-clust"></a> Debugging on the cluster
 
@@ -91,7 +91,7 @@ To start debugging on the cluster:
    ![The VS Code interface showing the Explorer tab with the Workload YAML file pop-up menu open and the Tanzu: Java Debug Start option highlighted.](../images/vscode-startdebug1.png)
 
    Command Palette screenshot:
-   ![Command palette open showing text Tanzu: Java Debug Start](../images/vscode-startdebug2.png)
+   ![Command palette open showing text Tanzu: Java Debug Start.](../images/vscode-startdebug2.png)
 
 ### <a id="stop-debugging"></a> Stop Debugging on the cluster
 
@@ -99,7 +99,7 @@ Do one of the following actions to stop debugging on the cluster:
 
 - Click the stop button in the Debug overlay.
 
-  ![The VS Code interface close-up on the debug overlay showing the stop rectangle button and mouseover description.](../images/vscode-stopdebug1.png)
+  ![The VS Code interface close-up on the debug overlay showing the stop rectangle button and pointer description.](../images/vscode-stopdebug1.png)
 
 - Press ⌘+J (Ctrl+J on Windows) to open the panel and then click the trash can button for the debug
   task running in the panel.
@@ -173,7 +173,7 @@ To deactivate Live Update:
 The current status of Live Update is visible on the right side of the status bar at the bottom of
 the VS Code window.
 
-![The VS Code interface showing the Tanzu Live Update Status section of the Status bar.](../images/vscode-liveupdatestatus1.png)
+![The VS Code interface showing the Tanzu Live Update Status section of the Status bar. The pop-up menu is open.](../images/vscode-liveupdatestatus1.png)
 
 The Live Update status bar entry shows the following states:
 
@@ -265,7 +265,7 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
    kubectl config set-context --current --namespace=YOUR-NAMESPACE
    ```
 
-   ![VS Code Workload Panel](../images/vscode-panel-live-update-running.png)
+   ![VS Code Workload Panel showing the Terminal log.](../images/vscode-panel-live-update-running.png)
 
 ## <a id="mono-repo"></a> Working with Microservices in a Monorepo
 
@@ -374,4 +374,4 @@ For these projects, make these adjustments:
    Because submodules have dependencies on code outside of their own subfolder, all source code
    from the repository must be supplied to the workload builder.
 
-   ![VSCode Monorepo Preferences](../images/vscode-monorepo-preferences.png)
+   ![VS Code Monorepo Preferences in Settings. The folder drop-down menu is circled in red. The Local Path text box is also circled in red.](../images/vscode-monorepo-preferences.png)
