@@ -152,3 +152,11 @@ Where learningcenter.yourdomain.com needs a DNS configuration made to point to y
 In this case, the wildcard domain configuration needed is `*.learningcenter.yourdomain.com`.
 
 After this configuration is made, you might need to restart your operator resource by deleting and redeploying to see the URL update.
+
+## <a id="missing-training-portal-url"></a>session.objects, environment.objects and session.patches are not deployed
+
+Due to a security improvement in Learning Center, session.objects, environment.objects and session.patches are not working properly in TAP 1.2.2 and 1.3.0. 
+
+***Solution***
+
+VMware resolved this issue by Learning Center `v0.2.4` in TAP 1.3.2.
