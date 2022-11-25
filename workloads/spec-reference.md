@@ -238,7 +238,7 @@ Parameters:
       Set of extra parameters, aside from `source-url` and
       `source-revision`, to pass to the Tekton Pipeline. The Tekton Pipeline
       <b>must</b> declare both the required parameters `source-url` and
-      `source-revision` as well as the extra ones declared in this table.
+      `source-revision` and the extra ones declared in this table.
     </td>
     <td>
       <pre>
@@ -831,7 +831,7 @@ place.
 ## <a id = "deliverable"></a> deliverable
 
 The `deliverable` resource is responsible for creating a `Deliverable` object
-that represents the intention of delivering to the cluster the configuration
+that represents the intention of delivering to the cluster the configurations
 that are produced by the supply chain.
 
 Parameters:
@@ -894,18 +894,17 @@ a ClusterSupplyChain:
 
 ```
 
-In the following section, you find the reference documentation that relates specifically to the
-two resources defined in the `basic` ClusterDelivery part of the
+The following section describes the two resources defined in the `basic` ClusterDelivery part of the
 `ootb-delivery-basic` package:
 
-```
-source-provider                     fetches kubernetes configuration
-    |
-    |  kubernetes configuration
-    |
-app-deploy                          deploys to the cluster the objects in the
-                                    kubernetes configuration fetched
-```
+    ```console
+    source-provider                     fetches kubernetes configuration
+        |
+        |  kubernetes configuration
+        |
+    app-deploy                          deploys to the cluster the objects in the
+                                        kubernetes configuration fetched
+    ```
 
 For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
 and the templates used by it, see:
