@@ -80,6 +80,7 @@ stored in dedicated repositories.
 
 | Component | Repo |
 |-----------|------|
+| API Auto Registration | https://gitlab.eng.vmware.com/tap-api-first/api-auto-registration |
 | API portal | https://github.com/pivotal-cf/docs-api-portal |
 | Carvel | https://github.com/vmware-tanzu/carvel/tree/develop/site/content |
 | Cloud Native Runtimes | https://gitlab.eng.vmware.com/daisy/cloud-native-runtimes-for-vmware-tanzu |
@@ -109,6 +110,7 @@ Use this table to keep a running list of terms used and how they should be defin
 
 | Word or phrase | Explanation |
 |----------------|-------------|
+| API Auto Registration | Both __Auto__ and __Registration__ are separated from each other, and capitalized |
 | API portal | The p _is_ supposed to be lowercase. [Pull request #73](https://github.com/pivotal/docs-tap/pull/73#issue-1011334602).|
 | components | The individual products available in the TAP SKU. For example, Cloud Native Runtimes is a component of TAP. Not: add-ons or capabilities.|
 | convention controller | Lowercase; this is one of the minor components that make up Convention Service |

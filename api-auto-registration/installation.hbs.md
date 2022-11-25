@@ -27,8 +27,8 @@ To install the API Auto Registration package:
     $ tanzu package available list apis.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for apis.apps.tanzu.vmware.com...
       NAME                                     VERSION  RELEASED-AT
-      apis.apps.tanzu.vmware.com  0.0.6        2022-08-23 19:00:00 -0500 -05
       apis.apps.tanzu.vmware.com  0.1.0        2022-08-30 19:00:00 -0500 -05
+      apis.apps.tanzu.vmware.com  0.2.0        2022-11-24 12:20:00 -0500 -05
     ```
 
 1. (Optional) Gather values schema:
@@ -44,12 +44,13 @@ To install the API Auto Registration package:
     For example:
 
     ```console
-    tanzu package available get apis.apps.tanzu.vmware.com/0.1.0 --values-schema --namespace tap-install
+    tanzu package available get apis.apps.tanzu.vmware.com/0.2.0 --values-schema --namespace tap-install
 
-    Retrieving package details for apis.apps.tanzu.vmware.com/0.1.0...
+    Retrieving package details for apis.apps.tanzu.vmware.com/0.2.0...
     KEY                        DEFAULT                                       TYPE     DESCRIPTION
     ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS connections with a custom CA
     cluster_name               dev                                           string   Name of the cluster that will be used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
+    sync_period                5m                                            string   Time period used for reconciling an APIDescriptor
     tap_gui_url                http://server.tap-gui.svc.cluster.local:7000  string   FQDN URL for TAP GUI
     replicas                   1                                             integer  Number of controller replicas to deploy
     resources.limits.cpu       500m                                          string   CPU limit of the controller
@@ -85,6 +86,7 @@ To install the API Auto Registration package:
         ...
         9TlA7A4FFpQqbhAuAVH6KQ8WMZIrVxJSQ03c9lKVkI62wQ==
         -----END CERTIFICATE-----
+    sync_period: 2m
     ```
 
 4. Install the package using the Tanzu CLI:
