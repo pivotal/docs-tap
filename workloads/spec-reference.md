@@ -8,29 +8,28 @@ For information about supply chains, see:
 
 - [Out of the Box Supply Chain Basic](../scc/ootb-supply-chain-basic.hbs.md)
 - [Out of the Box Supply Chain Testing](../scc/ootb-supply-chain-testing.hbs.md)
-- [Out of the Box Supply Chain Testing Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md)
+- [Out of the Box Supply Chain Testing Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md)<!--฿ If this is a topic ToC, maybe delete it. It is work to maintain it, and the jumplist in the subnav is obvious. ฿-->
 
 ## List of supply chain resources
 
-Some of these may or may not be applicable depending on the supply chain in use, check the corresponding column for
-Basic, Testing and Scanning. Follow each linked resource to discover their parameters.
+Some of these might be applicable depending on the supply chain in use. Verify in the corresponding column if Basic, Testing and Scanning are applicable.
 
 | Supply Chain Resource                 | Output Type                     | Purpose                                                                                           | Basic | Testing | Scanning |
 |---------------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------|-------|---------| --- |
-| [source-provider](#source-provider)   | source                          | fetches source code                                                                               | Yes   | Yes     | Yes |
-| [source-tester](#source-tester)       | source                          | tests source code                                                                                 | No | Yes     | Yes |
-| [source-scanner](#source-scanner)     | source                          | scans source code                                                                                 | No | No      | Yes |
-| [image-provider](#image-provder)      | image                           | builds app container image                                                                        | Yes | Yes     | Yes |
-| [image-scanner](#image-scanner)       | image | scans app container image                                                                         | No | No | Yes     |
-| [config-provider](#config-provider)   | podtemplate spec                | tailors a pod spec based on the app image and conventions set up in the cluster                   | Yes | Yes     | Yes |
-| [app-config](#app-config)             | kubernetes configuration        | creates kubernetes config files (knative service / deployment - depending on workload type)       | Yes | Yes     | Yes |
-| [service-bindings](#service-bindings) | kubernetes configuration        | adds service bindings to the set of config files                                                  | Yes | Yes     | Yes |
-| [api-descriptors](#api-descriptors)   | kubernetes configuration        | adds api descriptors to the set of config files                                                   | Yes | Yes     | Yes |
-| [config-writer](#config-writer)       | kubernetes configuration        | writes configuration to a destination (git or registry) for further deployment to a _
+| [source-provider](#source-provider) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->   | source                          | fetches source code                                                                               | Yes   | Yes     | Yes |
+| [source-tester](#source-tester) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->       | source                          | tests source code                                                                                 | No | Yes     | Yes |
+| [source-scanner](#source-scanner) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->     | source                          | scans source code                                                                                 | No | No      | Yes |
+| [image-provider](#image-provder) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->      | image                           | builds app container<!--฿ |application container| is preferred. ฿--> image                                                                        | Yes | Yes     | Yes |
+| [image-scanner](#image-scanner) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->       | image | scans app container<!--฿ |application container| is preferred. ฿--> image                                                                         | No | No | Yes     |
+| [config-provider](#config-provider) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->   | podtemplate spec<!--฿ |specifications| is preferred. ฿-->                | tailors a pod spec<!--฿ |specifications| is preferred. ฿--> based on the app image and conventions set up in the cluster                   | Yes | Yes     | Yes |
+| [app-config](#app-config) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->             | kubernetes<!--฿ |Kubernetes| is preferred. ฿--> configuration        | creates kubernetes<!--฿ |Kubernetes| is preferred. ฿--> config files (knative service / deployment - depending on workload type)       | Yes | Yes     | Yes |
+| [service-bindings](#service-bindings) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿--> | kubernetes<!--฿ |Kubernetes| is preferred. ฿--> configuration        | adds service bindings to the set of config files                                                  | Yes | Yes     | Yes |
+| [api-descriptors](#api-descriptors) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->   | kubernetes<!--฿ |Kubernetes| is preferred. ฿--> configuration        | adds api<!--฿ |API| is preferred. ฿--> descriptors to the set of config files                                                   | Yes | Yes     | Yes |
+| [config-writer](#config-writer) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->       | kubernetes<!--฿ |Kubernetes| is preferred. ฿--> configuration        | writes configuration to a destination (git or registry) for further deployment to a _
 run_ cluster | Yes | Yes     | Yes |
-| [deliverable](#deliverable)           | kubernetes configuration        | writes deliverable content to be extracted for use in a run cluster | Yes | Yes | Yes |
+| [deliverable](#deliverable) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->           | kubernetes<!--฿ |Kubernetes| is preferred. ฿--> configuration        | writes deliverable content to be extracted for use in a run cluster | Yes | Yes | Yes |
 
-## source-provider
+## <a id="source-provider"></a>source-provider
 
 The `source-provider` resource in the supply chain creates objects that fetch either source code or pre-compiled Java
 applications depending how the Workload is configured. See [Building from Source](../scc/building-from-source.hbs.md).
@@ -74,7 +73,7 @@ Parameters:
     <td>
       <pre>
       - name: gitops_ssh_secret
-        value: git-credentials
+        value: git<!--฿ |Git| is the preferred casing. ฿-->-credentials
       </pre>
     </td>
   </tr>
@@ -83,40 +82,41 @@ Parameters:
 > **Note** It might not be necessary to change the default Git
 > implementation, but some providers such as Azure DevOps, require you to use
 > `libgit2` due to the server-side implementation providing support
-> only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2). For information about the features supported by
+> only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->. For information about the features supported by
 > each implementation, see
-> [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the flux
+> [Git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿--> in the Flux
 > documentation.
 
-For information about how to create a Workload that uses a GitHub
+For information about how to create a workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
 repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
 
 For reference documentation on GitRepository objects, see
-[GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
+[Git Repository](https://fluxcd.io/flux/components/source/gitrepositories/) in the Flux documentation.
+<a href = "https://fluxcd.io/flux/components/source/gitrepositories/" target = "_blank">Flux documentation</a>
 
 ### ImageRepository
 
-You use ImageRepository when fetching source code from container images. It
+Use the ImageRepository when fetching source code from container images. It
 makes the contents of the container image available as a tarball to further
 resources in the supply chain. The contents of the container image
 are fetched by using Git or Maven. See [Create a workload
-from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
+from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code-3).
 
 Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter Name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
-      name of the service account, in the same namespace as the Workload, you want to use
-      to provide the necessary credentials to `ImageRepository` for fetching
+      The name of the service account (in the same namespace as the workload) you will use
+      to provide the credentials to `ImageRepository` for fetching
       the container images.
     </td>
     <td>
@@ -129,11 +129,10 @@ Parameters:
 
 </table>
 
-For information about custom resource details, see [ImageRepository reference
-docs](../source-controller/reference.hbs.md#imagerepository).
+For information about custom resource details, see [ImageRepository](../source-controller/reference.hbs.md#imagerepository) reference topic.
 
 For information about how to use ImageRepository with the Tanzu
-CLI [Create a workload from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code)
+CLI, see [Create a workload](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code)
 .
 
 > **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
@@ -153,9 +152,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter Name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -165,14 +164,18 @@ Parameters:
     </td>
     <td>
       <pre>
+
+      ```
       - name: maven
         value:
           artifactId: springboot-initial
           groupId: com.example
           version: RELEASE
           classifier: sources         # optional
-          type: jar                   # optional
+          type: # optional
           artifactRetryTimeout: 1m0s  # optional
+      ```
+
       </pre>
     </td>
   </tr>
@@ -186,7 +189,7 @@ For information about how to use the custom resource with the `tanzu apps worklo
 plug-in [Create a Workload from Maven repository
 artifact](../cli-plugins/apps/create-workload.hbs.md#workload-maven).
 
-## source-tester
+## <a is="source-tester"<>/a>source-tester
 
 The `source-tester` resource is in `ootb-supply-chain-testing` and
 `ootb-supply-chain-testing-scanning`. This resource is responsible for instantiating a
@@ -195,7 +198,7 @@ calls the execution of a Tekton Pipeline, in the same namespace as the
 Workload, whenever its inputs change. For example, the source code revision that you want to test changes.
 
 A [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/)
-object is instantiated to ensure that there's always a run for a particular set
+object is instantiated to ensure that there's<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> always a run for a particular set
 of inputs. The parameters are passed from the Workload down to Runnable's
 Pipeline selection mechanism through `testing_pipeline_matching_labels` and the
 execution of the PipelineRuns through `testing_pipeline_params`.
@@ -221,7 +224,7 @@ Parameters:
       <pre>
       - name: testing_pipeline_matching_labels
         value:
-          apps.tanzu.vmware.com/pipeline: test
+          apps.tanzu<!--฿ The brand is |Tanzu|. ฿-->.vmware<!--฿ |VMware| is preferred. ฿-->.com/pipeline: test
           my.company/language: golang
       </pre>
     </td>
@@ -255,11 +258,11 @@ For information about how to use the parameters to customize this resource to
 test using a Jenkins cluster, see [Out of the Box Supply Chain
 with Testing on Jenkins](../scc/ootb-supply-chain-testing-with-jenkins.hbs.md).
 
-## source-scanner
+## <a id="source-scanner"></a>source-scanner
 
 The `source-scanner` resource, included solely in
 `ootb-supply-chain-testing-scanning`, scans the source code
-that is tested by pointing a
+that is tested by<!--฿ Active voice is preferred. ฿--> pointing a
 [SourceScan](../scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
 code as the tests.
 
@@ -313,14 +316,14 @@ For information about how the artifacts found
 during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
 Store](../scst-store/overview.hbs.md).
 
-## image-provider
+## <a id="image-provider"></a>image-provider
 
 The `image-provider` in the supply chains provides a
 container image carrying the application already built to further resources.
 
 Depending on how the Workload is configured, for example, if using [pre-built
-images](../scc/pre-built-image.hbs.md) or [building from
-source](../scc/building-from-source.hbs.md), different semantics apply:
+images](../scc/pre-built-image.hbs.md) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿--> or [building from
+source](../scc/building-from-source.hbs.md) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->, different semantics apply:
 
 - pre-built: an `ImageRepository` object is created aiming at providing a
   reference to the latest image found matching the name as specified in
@@ -335,7 +338,7 @@ source](../scc/building-from-source.hbs.md), different semantics apply:
 The Kpack Image object provides means for building a
 container image out of source code or pre-built Java artifact. This makes the
 container image available to further resources in the supply chain through a
-content addressable image reference that's carried to the final
+content addressable image reference that's<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> carried to the final
 deployment objects unchanged. See [About Tanzu Build
 Service](../tanzu-build-service/tbs-about.hbs.md).
 
@@ -418,7 +421,7 @@ For information about
 the integration with Tanzu Build Service, see [Tanzu Build Service (TBS) Integration](../scc/tbs.hbs.md).
 
 For information about `live-update`, see [Developer Conventions](../developer-conventions/about.hbs.md)
-and [About IntelliJ extension](intellij-extension/about.hbs.md.
+and [About IntelliJ extension](intellij<!--฿ |IntelliJ| is the brand name ฿-->-extension/about.hbs.md.
 
 For information about using Kpack builders with `clusterBuilder`,
 see [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md).
@@ -432,7 +435,7 @@ To perform Dockerfile-based builds, all the supply chains
 instantiate a Runnable object that, with changes to its inputs
 like a new source code revision, instantiates Tekton
 TaskRun objects to call the execution of
-[kaniko](https://github.com/GoogleContainerTools/kaniko) builds.
+[kaniko](https://github.com/GoogleContainerTools/kaniko) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿--> builds.
 
 Parameters:
 
@@ -511,12 +514,13 @@ docs](../source-controller/reference.hbs.md#imagerepository).
 For information about the prebuild image function, see [Using a prebuilt
 image](../scc/pre-built-image.hbs.md).
 
-## image-scanner
+## <a id="image-scanner"></a>image-scanner
+
 
 The `image-scanner` resource is included only in
 `ootb-supply-chain-testing-scanning`. This resource is responsible for scanning a container image, either built by using
 the supply chain or prebuilt,
-persisting the results in the store, and gating the image from moving
+persisting the results in<!--฿ Consider replacing with |causes|. ฿--> the store, and gating the image from moving
 forward in case the CVEs found are not compliant with the ScanPolicy referenced
 by the ImageScan object create for doing so.
 
@@ -564,7 +568,7 @@ For information about how the artifacts found
 during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
 Store](../scst-store/overview.hbs.md).
 
-## config-provider
+## <a id ="config-provider"></a>config-provider
 
 The `config-provider` resource in the supply chains is responsible for
 generating a PodTemplateSpec
@@ -660,7 +664,7 @@ Conventions](../developer-conventions/about.hbs.md) and [Spring Boot
 Conventions](../spring-boot-conventions/about.hbs.md) for more details about the two
 convention servers enabled by default in Tanzu Application Platform installations.
 
-## app-config
+## <a id ="app-config"></a>app-config
 
 The `app-config` resource is responsible for preparing a ConfigMap with the
 Kubernetes configuration that is used for instantiating an application in
@@ -702,12 +706,12 @@ Only the `server` workload type has the following configurable parameters:
 </table>
 
 
-See [workload types](../workloads/workload-types.hbs.md) for more details about the
+See [workload types](../workloads/workload-types.hbs.md) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿--> for more details about the
 three different types of workloads, and [`server`-specific Workload
 parameters](../workloads/server.hbs.md#-server-specific-workload-parameters) for a
 more detailed overview of the ports parameter.
 
-## service-bindings
+## <a id ="service-bindings"></a>service-bindings
 
 The `service-bindings` resource adds
 [ServiceBindings](../service-bindings/about.hbs.md) to the set of Kubernetes
@@ -742,12 +746,12 @@ Parameters:
 
 
 See [use of `--service-ref` in Tanzu
-CLI](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
+CLI](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->
 for an example and [Consume services on
 Tanzu Application Platform](../getting-started/consume-services.hbs.md) for an overview of the
 function.
 
-## api-descriptors
+## <a id = "api-descriptors"></a>api-descriptors
 
 The `api-descriptor` resource takes care of adding an
 [APIDescriptor](../api-auto-registration/key-concepts.hbs.md) to the set of
@@ -788,10 +792,10 @@ Parameters:
       <pre>
       - name: api_descriptor
         value:
-          type: openapi
+          type:<!--฿ |run:| is preferred. ฿--> openapi
           location:
-            baseURL: http://petclinic-hard-coded.my-apps.tapdemo.vmware.com/
-            path: "/v3/api"
+            baseURL: http://petclinic-hard-coded.my-apps.tapdemo.vmware<!--฿ |VMware| is preferred. ฿-->.com/
+            path: "/v3/api<!--฿ |API| is preferred. ฿-->"
           owner: team-petclinic
           system: pet-clinics
           description: "example"
@@ -807,7 +811,7 @@ Parameters:
 See [Use API Auto Registration](../api-auto-registration/usage.hbs.md) for more
 details about API auto registration.
 
-## config-writer (git or registry)
+## <a id = "config-writer"></a> config-writer (git or registry)
 
 The `config-writer` resource is responsible for performing the last mile of the
 supply chain: persisting in an external system (registry or git repository) the
@@ -824,9 +828,9 @@ Details about the different modes of operation are found in [Gitops vs
 RegistryOps](../scc/gitops-vs-regops.hbs.md) with the parameters documented in
 place.
 
-## deliverable
+## <a id = "deliverable"></a> deliverable
 
-The `deliverable` resource is responsible for creatiing a `Deliverable` object
+The `deliverable` resource is responsible for creating a `Deliverable` object
 that represents the intention of delivering to the cluster the configuration
 that are produced by the supply chain.
 
@@ -867,7 +871,7 @@ Parameters:
 ## Deliverable Parameters reference
 
 This section describes the parameters that are provided to the
-Deliverable object, such as what can be set on `deliverable.spec.params`.
+Deliverable object, such as what can be<!--฿ Consider switching to active voice. ฿--> set on `deliverable.spec.params`.
 
 The Deliverable is relevant in the context of deploying to a Kubernetes cluster
 that the configuration that is produced through the resources defined by
@@ -880,8 +884,8 @@ a ClusterSupplyChain:
         - build
         - test
         - scan
-        - generate kubernetes config
-        - push k8s config to git repository / image registry
+        - generate kubernetes<!--฿ |Kubernetes| is preferred. ฿--> config
+        - push k8s<!--฿ |Kubernetes| is preferred. ฿--> config to git<!--฿ |Git| is the preferred casing. ฿--> repository / image registry<!--฿ If generic, |container image registry| on first use. If VMware-provided, |VMware Tanzu Network registry| on first use. In both cases, |registry| thereafter except where risking ambiguity. ฿-->
 
 
       Deliverable           (according to ClusterDelivery in `run` cluster)
@@ -970,7 +974,7 @@ Parameters:
     <td>
       <pre>
       - name: gitops_ssh_secret
-        value: git-credentials
+        value: git<!--฿ |Git| is the preferred casing. ฿-->-credentials
       </pre>
     </td>
 
@@ -980,9 +984,9 @@ Parameters:
 > **Note** It might not be necessary to change the default Git implementation
 > but some providers, such as Azure DevOps, require you to use `libgit2` due to
 > the server-side implementation providing support only for [git's v2
-> protocol](https://git-scm.com/docs/protocol-v2). For information about the
+> protocol](https://git-scm.com/docs/protocol-v2) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->. For information about the
 > features supported by each implementation, see [git
-> implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the flux
+> implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿--> in the flux
 > documentation.
 
 For information about how to create a Workload that uses a GitHub
