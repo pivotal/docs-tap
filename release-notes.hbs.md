@@ -6,6 +6,14 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 **Release Date**: November 16, 2022
 
+### <a id='1-3-2-new-features'></a> New features
+
+This release includes the following changes to Tanzu Application Platform and its components:
+
+#### <a id="tap-features"></a> Tanzu Application Platform
+
+- Tanzu vSphere 8.0 will be supported with TAP 1.3.2.
+
 ### <a id='1-3-2-security-fixes'></a> Security fixes
 
 This release has the following security fixes, listed by area and component.
