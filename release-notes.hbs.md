@@ -12,7 +12,7 @@ This release includes the following changes to Tanzu Application Platform and it
 
 #### <a id="tap-features"></a> Tanzu Application Platform
 
-- Tanzu vSphere 8.0 will be supported with TAP 1.3.2.
+- VMware vSphere with Tanzu 8.0 is supported.
 
 ### <a id='1-3-2-security-fixes'></a> Security fixes
 
