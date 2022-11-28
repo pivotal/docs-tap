@@ -3,7 +3,10 @@
 This GitHub Action creates a TBS Build on the given cluster.
 
 > **Important** TODO: @apeek what is VMware's stance on Alpha features. We have a similar block regarding [workload
-> functions beta feature](../workloads/using-functions.hbs.md). This feature is in Alpha...
+> functions beta feature](../workloads/using-functions.hbs.md).
+
+> **Important** Alpha features are experimental and are not ready for production use. Configuration and behavior are
+> likely to change and functionality may be removed in a future release.
 
 ## Overview
 
@@ -63,6 +66,7 @@ gh secret set SERVER --app actions --body "$SERVER"
 ```
 
 ### Usage
+
 ```yaml
 - uses: vmware-tanzu/build-image-action@v1-alpha
   with:
@@ -77,8 +81,8 @@ gh secret set SERVER --app actions --body "$SERVER"
     # If not running locally, use `${{ secrets.TOKEN }}`
     token: ''
     # _(required)_ The namespace to create the build resource in
-    namespace: 
-    
+    namespace:
+
     ## Image configuration
     # _(required)_ Destination for the built image
     # Example: gcr.io/<my-project>/<my-image>
@@ -92,7 +96,9 @@ gh secret set SERVER --app actions --body "$SERVER"
 ```
 
 #### Example
+
 To use the action in a workflow:
+
 ```yaml
 - name: Build Image
   id: build
