@@ -1,6 +1,8 @@
-# GitHub Action for Tanzu Build Service Build
+# GitHub Action for Tanzu Build Service Build (Alpha)
 
 This GitHub Action creates a TBS Build on the given cluster.
+
+**Important** TODO: This feature is in Alpha...
 
 ## Overview
 
