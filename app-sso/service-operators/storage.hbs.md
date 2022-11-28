@@ -98,7 +98,9 @@ spec:
   # ...
   storage:
     redis:
-      secretRef:
+      serviceRef:
+        apiVersion: "v1"
+        kind: "Secret"
         name: redis-credentials
 ```
 
