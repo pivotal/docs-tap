@@ -1,0 +1,1 @@
+<!-- describe each component and how they work together -->

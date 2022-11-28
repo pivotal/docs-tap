@@ -8,14 +8,15 @@ Tanzu Application Platform enables developers to quickly build and test applicat
 Developers can turn source code into a workload that runs in a container with a URL.
 
 A workload enables developers to choose application specifications, such as repository location, environment variables, service binding, and more.
-For more information on workload creation and management, see [Command Reference](command-reference.md).
 
 Tanzu Application Platform can support a range of workloads, including a serverless process that starts on demand, a constellation of microservices that functions as a logical application, or a small hello-world test app.
 
-## <a id='command-reference'></a>Command reference
+## <a id='tutorials'></a>Tutorials
 
-For information about available commands, see [Command Reference](command-reference.md).
+To get started with apps plugin and workload management, see [Tutorials](tutorials.hbs.md)
 
-## <a id='usage-and-examples'></a>Usage and examples
+## <a id='how-to-guides'></a>How-to-guides
 
-For information about how to use the Apps CLI plug-in, see [Usage and Examples](usage.md).
+For more complex examples regarding apps cli plugin usage, check [How-to-guides](how-to-guides.hbs.md)
+
+<!-- describe each component and how they work together -->
