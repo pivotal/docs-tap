@@ -5,8 +5,8 @@ resource, which triggers a build for a specified Jenkins job.
 
 The Jenkins task in both the [Out of the Box Supply Chain with Testing](ootb-supply-chain-testing.html)
 and [Out of the Box Supply Chain With Testing and Scanning](ootb-supply-chain-testing-scanning.html)
-may be configured to trigger a Jenkins job.  The task is implemented as a Tekton `ClusterTask` and
-may now run from a Tekton `Pipeline`.
+can be configured to trigger a Jenkins job.  The task is implemented as a Tekton `ClusterTask` and
+can now run from a Tekton `Pipeline`.
 
 ## <a id="prerequisite"></a> Prerequisites
 
@@ -30,19 +30,19 @@ Tanzu Application Platform Jenkins task.
 It is assumed that the Jenkins job is being used to run test suites on code.
 For the Jenkins job to know which source code to test the
 Jenkins task calls the Jenkins job with the `Workload` and `job-params` parameters, even
-if they are not declared in the `Workload` `job-params`.  The Jenkins tasks
+if they are not declared in `Workload` or `job-params`.  The Jenkins tasks
 only pass these parameters if they are defined in the Jenkins job itself.
 
 - `SOURCE-URL` **string** The URL of the source code to be tested.  The
   `source-provider` resource in the supply chain provides this code and is only
   resolvable inside the Kubernetes cluster.  This URL is only useful if your
-  Jenkins service is running inside the cluster or there is ingress
+  Jenkins service is running inside the cluster or if there is ingress
   set up and the Jenkins service can make requests to services inside the
   cluster.
 
 - `SOURCE-REVISION` **string** The revision of the source code to be tested.
   The format of this value can vary depending on the implementation of the
-  `source_provider` resource.  If the "source-provider" is the FluxCD
+  `source_provider` resource.  If the `source-provider` is the FluxCD
   `GitRepository` resource then the value of the `SOURCE_REVISION` is  the
   Git branch name followed by the commit SHA, both separated by a (`/`) slash
   character (e.g. `main/2b1ed6c3c4f74f15b0e4de2732234eafd050eb1ca`).  Your
@@ -150,7 +150,7 @@ stringData:
 ```
 
 You cannot use the Tanzu CLI to create secrets such as this, but you can use
-the Kubernetes command line interface tool (kubectl) CLI instead.
+the Kubernetes CLI tool (kubectl) instead.
 
 If you saved the password to a file and you saved the optional PEM-encoded CA certificate in a file,
 here is an example command to create this kind of secret:
@@ -283,7 +283,7 @@ parameters:
   - name: testing_pipeline_matching_labels
     value:
       #! This label must match the label on the pipeline created earlier
-      apps.tanzu.com/pipeline: jenkins-pipeline
+      apps.tanzu<!--฿ The brand is |Tanzu|. ฿-->.com/pipeline: jenkins-pipeline
 
   #! Required: Passes parameters to pipeline
   - name: testing_pipeline_params
@@ -324,9 +324,10 @@ that are sent to the Jenkins job.  The parameter is entered into the
 [{"name":"GIT_URL", "value":"https://github.com/spring-projects/spring-petclinic"}, {"name":"GIT_BRANCH", "value":"main"}]
 ```
 
-> **Important** None of the fields in the `Workload` resource are implicitly passed to the
+**Important** None of the fields in the `Workload` resource are implicitly passed to the
 Jenkins job. You have to set them in the `job-params` explicitly.
->**Exception** The `SOURCE_URL` and `SOURCE_REVISION` parameters are sent to the
+
+**Exception** The `SOURCE_URL` and `SOURCE_REVISION` parameters are sent to the
 Jenkins job implicitly by the Jenkins Adapter trigger application.  You can use the
 `SOURCE_REVISION` to verify which commit SHA to test, for example.  See [Making
 a Jenkins Test Job](#making-a-jenkins-test-job) earlier for details about how to use
