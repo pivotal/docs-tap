@@ -81,9 +81,9 @@ This issue is also present in previous releases of Supply Chain Security Tools -
 
 #### <a id="1-2-2-learning-center-issues"></a>Learning Center
 
-- **session.objects, environment.objects and session.patches are not deployed:** 
-  
-  - Due to a security improvement in Learning Center, session.objects, environment.objects and session.patches are not working properly. VMware resolved this issue by Learning Center `v0.2.4` in TAP 1.3.2. 
+- **session.objects, environment.objects, and session.patches are not deployed:**
+
+  - Due to a security improvement in Learning Center, session.objects, environment.objects, and session.patches are not working properly. VMware resolved this issue by Learning Center `v0.2.4` in TAP 1.3.2.
 
 ## <a id='1-2-1'></a> v1.2.1
 
