@@ -63,13 +63,11 @@ This is because the cluster where Store is deployed does not have `storageclass`
     kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
     ```
 
-## <a id="eks-1-23-volume"></a> Builds fail due to volume errors on EKS running Kubernetes v1.23
+## <a id="eks-1-23-volume"></a> Builds fail due to volume errors on Amazon Elastic Kubernetes Service (EKS) running Kubernetes v1.23
 
 ### Symptom
 
-Installing Store on or upgrading an existing EKS cluster to Kubernetes v1.23
-
-Database pod is showing:
+When installing Store on or upgrading an existing EKS cluster to Kubernetes v1.23, the database pod shows:
 
 ```console
 running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for PVC "postgres-db-pv-claim"
@@ -77,13 +75,21 @@ running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for
 
 ### Explanation
 
-This is due to the [CSIMigrationAWS in this K8s version version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to use EBS volumes.
+This is due to the [CSIMigrationAWS in this Kubernetes
+version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/)
+which requires that users install the Amazon Elastic Block Store (EBS) CSI
+Driver to use EBS volumes. See the [Amazon Elastic Block Store (EBS) CSI
+Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) topic in
+the Amazon documentation.
 
 Store uses the default storage class which uses EBS volumes by default on EKS.
 
 ### Solution
 
-Follow the AWS documentation to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) before installing Store or before upgrading to Kubernetes v1.23.
+To install the Amazon EBS CSI Driver before installing Store or before upgrading
+to Kubernetes v1.23, see the [Amazon EBS CSI
+Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) topic in
+the Amazon documentation.
 
 ## <a id="certificate-expiries"></a> Certificate Expiries
 
