@@ -96,7 +96,7 @@ providers:
 - Minikube.
     - Reference the [resource requirements](#resource-requirements) in the following section.
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
-- Red Hat OpenShift Container Platform v4.10
+- Red Hat OpenShift Container Platform v4.10, v4.11
     - vSphere
     - Baremetal
 - Tanzu Kubernetes Grid multicloud.
