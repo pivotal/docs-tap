@@ -1,17 +1,15 @@
-# GitHub Action for Tanzu Build Service Build (Alpha)
+# GitHub Build Action for Tanzu Build Service (Alpha)
 
 This GitHub Action creates a TBS Build on the given cluster.
 
-**Important** TODO: This feature is in Alpha...
+> **Important** TODO: @apeek what is VMware's stance on Alpha features. We have a similar block regarding [workload
+> functions beta feature](../workloads/using-functions.hbs.md). This feature is in Alpha...
 
 ## Overview
 
-## Try it out
-
 ### Setup
 
-In order to use this action a service account will need to exist inside TAP that has permissions to access the required
-resources.
+This action uses a Kubernetes service account with specific permissions.
 
 Here are the minimum required permissions needed:
 
@@ -42,8 +40,8 @@ rules:
     verbs: [ 'get', 'watch', 'list', 'create', 'delete' ]
 ```
 
-The action will need access to the cluster and needs the
-following [GitHub encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) set
+The action needs access to the cluster with the
+following [GitHub encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) set.
 
 ```bash
 SECRET=$(kubectl get sa <sa-with-minimum-required-permissions> -oyaml -n <namespace-where-sa-exists> | yq '.secrets[0].name')
@@ -53,7 +51,7 @@ TOKEN=$(kubectl get secret $SECRET -oyaml -n <namespace-where-sa-exists> | ksd |
 SERVER=$(kubectl config view --minify | yq '.clusters[0].cluster.server')
 ```
 
-You can create the required secrets on the repository
+Create the required secrets on the repository
 through [GitHub.com](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)
 or through the `gh` CLI:
 
@@ -65,46 +63,57 @@ gh secret set SERVER --app actions --body "$SERVER"
 ```
 
 ### Usage
+```yaml
+- uses: vmware-tanzu/build-image-action@v1-alpha
+  with:
+    ## Authorization
+    # Host of the API server
+    # If not running locally, use `${{ secrets.SERVER }}`
+    server: ''
+    # CA Certificate of the API Server
+    # If not running locally, use `${{ secrets.CA_CERT }}`
+    ca_cert: ''
+    # Service Account token to access kubernetes
+    # If not running locally, use `${{ secrets.TOKEN }}`
+    token: ''
+    # _(required)_ The namespace to create the build resource in
+    namespace: 
+    
+    ## Image configuration
+    # _(required)_ Destination for the built image
+    # Example: gcr.io/<my-project>/<my-image>
+    destination: ''
+    # Optional list of build time environment variables
+    env: ''
+    # Name of the service account in the namespace, defaults to `default`
+    serviceAccountName: ''
+    # Name of the cluster builder to use, defaults to `default`
+    clusterBuilder: ''
+```
 
-#### Auth
-
-- `server`: Host of the API Server.
-- `ca-cert`: CA Certificate of the API Server.
-- `token`: Service Account token to access kubernetes.
-- `namespace`: _(required)_ The namespace to create the build resource in.
-
-#### Image Configuration
-
-- `destination`: _(required)_
-- `env`: Optional list of build time environment variables
-- `serviceAccountName`: Name of the service account in the namespace, defaults to `default`
-- `clusterBuilder`: Name of the cluster builder to use, defaults to `default`
-
-#### Basic Configuration
-
-In your GitHub workflow, add a step to build the image:
-
+#### Example
+To use the action in a workflow:
 ```yaml
 - name: Build Image
   id: build
-  uses: vmware-tanzu/build-image-action@v1
+  uses: vmware-tanzu/build-image-action@v1-alpha
   with:
-    # auth
+    # Authorization
     server: ${{ secrets.SERVER }}
     token: ${{ secrets.TOKEN }}
     ca_cert: ${{ secrets.CA_CERT }}
     namespace: ${{ secrets.NAMESPACE }}
-    # image config
+    # Image configuration
     destination: gcr.io/project-id/name-for-image
     env: |
       BP_JAVA_VERSION=17
 ```
 
-##### Outputs
+### Outputs
 
 - `name`: The full name, including sha of the built image.
 
-##### Example
+#### Example
 
 To use the output in a following step:
 
@@ -113,4 +122,3 @@ To use the output in a following step:
   run:
     echo "${{ steps.build.outputs.name }}"
 ```
-
