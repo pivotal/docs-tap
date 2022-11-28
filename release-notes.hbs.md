@@ -46,6 +46,11 @@ This release has the following breaking changes, listed by area and component.
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
 
+#### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
+
+The Image Policy Webhook component is removed in TAP 1.4 after being deprecated
+in favor of the [Policy Controller](./scst-policy/overview.hbs.md)
+
 #### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
 
 Policy Controller no longer initializes TUF by default which is needed to support the keyless authorities in `ClusterImagePolicy`. To continue to use keyless authorities, it is required to provide the value `policy.tuf_enabled: true` through the `tap-values.yaml` during the upgrade process. Then by default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`. 

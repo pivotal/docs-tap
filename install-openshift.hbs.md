@@ -149,8 +149,6 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       fluxcd.source.controller.tanzu.vmware.com            Flux Source Controller                                                    The source-controller is a Kubernetes operator, specialised in artifacts
                                                                                                                                      acquisition from external sources such as Git, Helm repositories and S3 buckets.
       grype.scanning.apps.tanzu.vmware.com                 Grype for Supply Chain Security Tools - Scan                              Default scan templates using Anchore Grype
-      image-policy-webhook.signing.apps.tanzu.vmware.com   Image Policy Webhook                                                      Image Policy Webhook enables defining of a policy to restrict unsigned container
-                                                                                                                                     images.
       learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            Guided technical workshops
       metadata-store.apps.tanzu.vmware.com                 Supply Chain Security Tools - Store                                       Post SBoMs and query for image, package, and vulnerability metadata.
       ootb-delivery-basic.tanzu.vmware.com                 Tanzu App Platform Out of The Box Delivery Basic                          Out of The Box Delivery Basic.
@@ -397,17 +395,6 @@ excluded_packages:
 ```
 
 See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
-
-### <a id='exclude-ipw'></a> (Optional) Exclude Image Policy Webhook
-
-Image Policy Webhook is deprecated. To exclude this package, update your `tap-values` file with a section listing the exclusion:
-
-```yaml
-...
-excluded_packages:
-  - image-policy-webhook.signing.apps.tanzu.vmware.com
-...
-```
 
 See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
 
