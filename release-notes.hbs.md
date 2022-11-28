@@ -628,6 +628,6 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
 
 ### <a id="learning-center-known-issues"></a>Learning Center
 
-- **session.objects, environment.objects and session.patches are not deployed:** 
+- **session.objects, environment.objects, and session.patches are not deployed:**
 
-  - Due to a security improvement in Learning Center, session.objects, environment.objects and session.patches are not working properly. VMware resolved this issue by Learning Center `v0.2.4` in TAP 1.3.2. 
+  - Due to a security improvement in Learning Center, session.objects, environment.objects, and session.patches are not working properly. VMware resolved this issue by Learning Center `v0.2.4` in TAP 1.3.2.
