@@ -12,16 +12,16 @@ For information about supply chains, see:
 
 ## List of supply chain resources
 
-Some of these might be applicable depending on the supply chain in use. Verify in the corresponding column if Basic, Testing and Scanning are applicable.
+Some of these might be applicable depending on the supply chain in use. Verify in the corresponding column if Basic, Testing, and Scanning are applicable.
 
 | Supply Chain Resource                 | Output Type                     | Purpose                                                                                           | Basic | Testing | Scanning |
 |---------------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------|-------|---------| --- |
-| [source-provider](#source-provider)   | source                          | Fetches source code                                                                               | Yes   | Yes     | Yes |
+| [source-provider](#source-provider)   | Source                          | Fetches source code                                                                               | Yes   | Yes     | Yes |
 | [source-tester](#source-tester)       | source                          | Tests source code                                                                                 | No | Yes     | Yes |
-| [source-scanner](#source-scanner)     | source                          | Scans source code                                                                                 | No | No      | Yes |
-| [image-provider](#image-provider)      | image                           | Builds application container image                                                                        | Yes | Yes     | Yes |
-| [image-scanner](#image-scanner)       | image | Scans app container image                                                                         | No | No | Yes     |
-| [config-provider](#config-provider)   | podtemplate spec                | Tailors a pod spec based on the app image and conventions set up in the cluster                   | Yes | Yes     | Yes |
+| [source-scanner](#source-scanner)     | Source                          | Scans source code                                                                                 | No | No      | Yes |
+| [image-provider](#image-provider)      | Image                           | Builds application container image                                                                        | Yes | Yes     | Yes |
+| [image-scanner](#image-scanner)       | Image | Scans app container image                                                                         | No | No | Yes     |
+| [config-provider](#config-provider)   | Podtemplate spec                | Tailors a pod spec based on the app image and conventions set up in the cluster                   | Yes | Yes     | Yes |
 | [app-config](#app-config)             | Kubernetes configuration        | Creates Kubernetes config files (knative service / deployment - depending on workload type)       | Yes | Yes     | Yes |
 | [service-bindings](#service-bindings) | Kubernetes configuration        | Adds service bindings to the set of config files                                                  | Yes | Yes     | Yes |
 | [api-descriptors](#api-descriptors)   | Kubernetes configuration        | Adds api descriptors to the set of config files                                                   | Yes | Yes     | Yes |
@@ -34,7 +34,7 @@ run_ cluster | Yes | Yes     | Yes |
 ## <a id="source-provider"></a>source-provider
 
 The `source-provider` resource in the supply chain creates objects that fetch either source code or pre-compiled Java
-applications depending how the workload is configured. See [Building from Source](../scc/building-from-source.hbs.md).
+applications depending on how the workload is configured. For more information, see [Building from Source](../scc/building-from-source.hbs.md).
 
 ### GitRepository
 
@@ -70,7 +70,7 @@ Parameters:
     <td>
       The name of the secret in the same namespace as the `Workload` used for
       providing credentials for fetching source code from the Git repository.
-      See <a href="../scc/git-auth.hbs.md">Git authentication</a>.
+      For more information, see <a href="../scc/git-auth.hbs.md">Git authentication</a>.
     </td>
     <td>
       <pre>
@@ -91,7 +91,7 @@ Parameters:
 
 For information about how to create a workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
-repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
+repository](../cli-plugins/apps/create-workload.hbs.md#workload-local-source).
 
 For reference documentation on GitRepository objects, see
 [Git Repository](https://fluxcd.io/flux/components/source/gitrepositories/) in the Flux documentation.
@@ -102,8 +102,8 @@ For reference documentation on GitRepository objects, see
 Use the ImageRepository when fetching source code from container images. It
 makes the contents of the container image available as a tarball to further
 resources in the supply chain. The contents of the container image
-are fetched by using Git or Maven. See [Create a workload
-from local source code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code-3).
+are fetched by using Git or Maven. For more information, see [Create a workload
+from local source code](../cli-plugins/apps/create-workload.hbs.md#workload-local-source).
 
 Parameters:
 
@@ -134,8 +134,7 @@ Parameters:
 For information about custom resource details, see [ImageRepository](../source-controller/reference.hbs.md#imagerepository) reference topic.
 
 For information about how to use ImageRepository with the Tanzu
-CLI, see [Create a workload](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code)
-.
+CLI, see [Create a workload](../cli-plugins/apps/create-workload.hbs.md#cli-plugins).
 
 > **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
 > the Workload object. To configure the `serviceAccount` parameter, use
@@ -308,7 +307,7 @@ Parameters:
   </tr>
 </table>
 
-See [Out of the Box Supply Chain with Testing and
+For more information, see [Out of the Box Supply Chain with Testing and
 Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md) for details about how to
 set up the Workload namespace with the ScanPolicy and ScanTemplate required for
 this resource, and [SourceScan reference](../scst-scan/scan-crs.hbs.md#sourcescan)
@@ -341,7 +340,7 @@ Use the Kpack Image object to build a
 container image out of source code or pre-built Java artifact. This makes the
 container image available to further resources in the supply chain through a
 content addressable image reference that's carried to the final
-deployment objects unchanged. See [About Tanzu Build
+deployment objects unchanged. For more information, see [About Tanzu Build
 Service](../tanzu-build-service/tbs-about.hbs.md).
 
 Parameters:
@@ -577,8 +576,7 @@ generating a PodTemplateSpec
 to use in app configs, such as knative services and deployments, to
 represent the shape of the pods that you want to instantiate to run the
 application in containers.
-See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)
-in the Kubernetes documentation.
+For more information, see [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation.
 
 The `config-provider` resource manages a [PodIntent](../cartographer-conventions/reference/pod-intent.hbs.md)
 object that represents the intention of having PodTemplateSpec enhanced
@@ -707,10 +705,9 @@ Only the `server` workload type has the following configurable parameters:
 </table>
 
 
-See [workload types](../workloads/workload-types.hbs.md)  for more details about the
-three different types of workloads, and [`server`-specific Workload
-parameters](../workloads/server.hbs.md#-server-specific-workload-parameters) for a
-more detailed overview of the ports parameter.
+For more information about the three different types of workloads, see [workload types](../workloads/workload-types.hbs.md).
+For a more detailed overview of the ports parameter, see, [`server`-specific Workload
+parameters](../workloads/server.hbs.md#-server-specific-workload-parameters).
 
 ## <a id ="service-bindings"></a>service-bindings
 
@@ -745,12 +742,11 @@ Parameters:
   </tr>
 </table>
 
+For an example, see [use of `--service-ref` in Tanzu
+CLI](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref).
 
-See [use of `--service-ref` in Tanzu
-CLI](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
-for an example and [Consume services on
-Tanzu Application Platform](../getting-started/consume-services.hbs.md) for an overview of the
-function.
+For an overview of the function, see [Consume services on
+Tanzu Application Platform](../getting-started/consume-services.hbs.md).
 
 ## <a id = "api-descriptors"></a>api-descriptors
 
@@ -965,9 +961,7 @@ Parameters:
     <td>
       Name of the secret in the same namespace as the `Deliverable` used for
       providing credentials for fetching Kubernetes configuration files from
-      the Git repository pointed at.
-
-      See [Git authentication](git-auth).
+      the Git repository pointed at. See [Git authentication](git-auth).
     </td>
     <td>
       <pre>
