@@ -184,7 +184,7 @@ Using Tanzu Services plugin CLI, create a service resource claim for the workloa
 ---
 
 ```shell
-tanzu services claims create appsso-starter-java \
+tanzu service claim create appsso-starter-java \
     --namespace workloads \
     --resource-namespace workloads \
     --resource-name appsso-starter-java \
@@ -195,7 +195,7 @@ tanzu services claims create appsso-starter-java \
 Once applied, you may check the status of the claim like so:
 
 ```shell
-tanzu services claim list --namespace workloads
+tanzu service claim list --namespace workloads
 ```
 
 You should see `appsso-starter-java` claim with `Ready` status as `True`.
@@ -275,7 +275,7 @@ tanzu apps workload delete appsso-starter-java --namespace workloads
 Delete the service resource claim for the ClientRegistration
 
 ```shell
-tanzu services claim delete appsso-starter-java --namespace workloads
+tanzu service claim delete appsso-starter-java --namespace workloads
 ```
 
 Disconnect the accelerator from AppSSO
