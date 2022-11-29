@@ -53,7 +53,13 @@ in favor of the [Policy Controller](./scst-policy/overview.hbs.md)
 
 #### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
 
-Policy Controller no longer initializes TUF by default which is needed to support the keyless authorities in `ClusterImagePolicy`. To continue to use keyless authorities, it is required to provide the value `policy.tuf_enabled: true` through the `tap-values.yaml` during the upgrade process. Then by default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`. 
+Policy Controller no longer initializes TUF by default. TUF is required to
+support the keyless authorities in `ClusterImagePolicy`. To continue to use
+keyless authorities, provide the value `policy.tuf_enabled:
+true` by using the `tap-values.yaml` while upgrading. By default,
+the public Sigstore The Update Framework (TUF) server is used. To
+target an alternative Sigstore stack, specify `policy.tuf_mirror` and
+`policy.tuf_root`.
 
 ### <a id='1-4-0-security-fixes'></a> Security fixes
 
