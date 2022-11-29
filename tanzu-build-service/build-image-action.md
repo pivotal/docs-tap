@@ -79,16 +79,13 @@ gh secret set SERVER --app actions --body "$SERVER"
   with:
     ## Authorization
     # Host of the API server
-    # If not running locally, use `${{ secrets.SERVER }}`
-    server: ''
+    server: `${{ secrets.SERVER }}`
     # CA Certificate of the API Server
-    # If not running locally, use `${{ secrets.CA_CERT }}`
-    ca_cert: ''
+    ca_cert: `${{ secrets.CA_CERT }}`
     # Service Account token to access kubernetes
-    # If not running locally, use `${{ secrets.TOKEN }}`
-    token: ''
+    token: `${{ secrets.TOKEN }}`
     # _(required)_ The namespace to create the build resource in
-    namespace:
+    namespace: `${{ secrets.NAMESPACE }}`
 
     ## Image configuration
     # _(required)_ Destination for the built image
