@@ -212,7 +212,7 @@ to create and manage the services themselves. For more information, see [Resourc
 In cases where service instances are running in the same namespace as
 application workloads, you do not have to create a claim. You can bind to the service instance directly.
 
-In this section you use the `tanzu service claims create` command to create
+In this section you use the `tanzu service claim create` command to create
 a claim that the `RabbitmqCluster` service instance you created earlier can fulfill.
 This command requires the following information to create a claim successfully:
 
@@ -232,7 +232,7 @@ To claim a service instance:
     Expected output:
 
     ```console
-      tanzu services claimable list --class rabbitmq
+      tanzu service claimable list --class rabbitmq
 
       NAME    NAMESPACE            API KIND         API GROUP/VERSION
       rmq-1   service-instances    RabbitmqCluster  rabbitmq.com/v1beta1

@@ -67,7 +67,7 @@ To create an application workload:
 `--service-ref` command by running:
 
     ```console
-    tanzu services claims list
+    tanzu service claim list
     ```
 
     Expected output:
@@ -80,7 +80,7 @@ To create an application workload:
 1. Retrieve detailed information about the claim by running:
 
     ```console
-    tanzu services claims get rmq-1
+    tanzu service claim get rmq-1
     ```
 
     Expected output:
