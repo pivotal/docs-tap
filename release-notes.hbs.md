@@ -136,7 +136,8 @@ Known security vulnerability
 
 - **Backend:**
 
-  - Override the catalog URL for accelerator templates.
+  - Override the catalog URL for accelerator templates so that the user is no longer sent to a URL
+    that is only reachable from inside the cluster and that is only machine-readable.
 
 ## <a id='1-3-0'></a> v1.3.0
 
