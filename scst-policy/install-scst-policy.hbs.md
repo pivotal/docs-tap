@@ -10,10 +10,6 @@ Platform's Full, Iterate, and Run profiles. Use the instructions in this topic t
 
 >**Note** This component does not work with not secure registries.
 
-- If SCST - Sign is installed with an existing running
-Image Policy Webhook `ClusterImagePolicy`, see
-[Migration From Supply Chain Security Tools - Sign](migration.md).
-
 - For keyless authorities support setting the value `policy.tuf_enabled: true` is required. By default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`.
 
 - If you are installing in an air-gapped environment and require keyless authorities, a Sigstore Stack needs to be deployed on the cluster or be accessible from the air-gapped environment. For more information, see [Install Sigstore Stack](./install-sigstore-stack.hbs.md).
