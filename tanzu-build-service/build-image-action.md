@@ -1,18 +1,19 @@
 # GitHub Build Action for Tanzu Build Service (Alpha)
 
-This GitHub Action creates a TBS Build on the given cluster.
-
-> **Important** TODO: @apeek what is VMware's stance on Alpha features. We have a similar block regarding [workload
-> functions beta feature](../workloads/using-functions.hbs.md).
+This GitHub Action creates a Tanzu Build Service (TBS) Build on the given cluster.
 
 > **Important** Alpha features are experimental and are not ready for production use. Configuration and behavior are
 > likely to change and functionality may be removed in a future release.
 
 ## Overview
 
+### Prerequisites
+- [TBS](install-tbs.hbs.md) 
+
+
 ### Setup
 
-This action uses a Kubernetes service account with specific permissions.
+This action uses a Kubernetes Service Account with specific permissions.
 
 Here are the minimum required permissions needed:
 
@@ -44,7 +45,13 @@ rules:
 ```
 
 The action needs access to the cluster with the
-following [GitHub encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) set.
+following [GitHub encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) set:
+- CA_CERT
+- NAMESPACE
+- TOKEN
+- SERVER
+
+To get this information, run the following commands:
 
 ```bash
 SECRET=$(kubectl get sa <sa-with-minimum-required-permissions> -oyaml -n <namespace-where-sa-exists> | yq '.secrets[0].name')
@@ -117,11 +124,11 @@ To use the action in a workflow:
 
 ### Outputs
 
-- `name`: The full name, including sha of the built image.
+- `name`: The full name, including sha, of the built image.
 
 #### Example
 
-To use the output in a following step:
+To use the output in a subsequent step:
 
 ```yaml
 - name: Do something with image
