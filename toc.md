@@ -439,7 +439,6 @@ docs.vmware.com is built.
       - [Configure Supply Chain Security Tools - Policy](scst-policy/configuring.md)
     - [Supply Chain Security Tools for Tanzu - Sign](scst-sign/overview.md)
       - [Supply Chain Security Tools for Tanzu - Sign overview](scst-sign/overview.md)
-      - [Install Supply Chain Security Tools - Sign](scst-sign/install-scst-sign.md)
       - [Configure Supply Chain Security Tools - Sign](scst-sign/configuring.md)
       - [Logs messages and reasons](scst-sign/logs.md)
       - [Known issues](scst-sign/known-issues.md)
