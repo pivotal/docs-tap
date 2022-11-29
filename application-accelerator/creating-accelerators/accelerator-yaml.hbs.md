@@ -1,7 +1,8 @@
 # Creating an accelerator.yaml file
 
 This topic describes how to create an accelerator.yaml file.
-By including an `accelerator.yaml` file in your Accelerator repository, you can declare input options that users fill in using a form in the UI.
+By including an `accelerator.yaml` file in your Accelerator repository, you can declare input options
+that users fill in using a form in the UI.
 Those option values control processing by the template engine before it returns the zipped output files.
 For more information, see the [Sample accelerator](accelerator-yaml-sample.md).
 
@@ -52,7 +53,7 @@ These properties are in accelerator listings such as the web UI:
 
 ### <a id="accelerator-options"></a> Accelerator options
 
-The list of options is passed to the UI to create input fields for each option.
+The list of options is passed to the UI to create input text boxes for each option.
 
 The following option properties are used by both the UI and the engine.
 
@@ -62,23 +63,28 @@ The following option properties are used by both the UI and the engine.
 
 - **dataType**:
   Data types that work with the UI are `string`, `boolean`, `number`, and arrays of those,
-  as in `[string]`, `[number]`, and so on. Most input types return a string, which is the default. Use Boolean values with `checkbox`.
+  as in `[string]`, `[number]`, and so on. Most input types return a string, which is the default.
+  Use Boolean values with `checkbox`.
 
 - **defaultValue**:
-  This literal value pre-populates the option. Ensure its type matches the dataType.
+  This literal value pre-populates the option. Ensure that it's type matches the dataType.
   For example, use `["text 1", "text 2"]` for the dataType `[string]`.
   Options without a `defaultValue` can trigger a processing error if the user doesn't provide a
   value for that option.
 
 - **validationRegex**:
   When present, a regex validates the string representation of the
-  option value _when set_. It doesn't apply when the value is blank. As a consequence, don't use the regex
-  to enforce a prerequisite. See **required** for that purpose.
+  option value _when set_. It doesn't apply when the value is blank. As a consequence, don't use the
+  regex to enforce a prerequisite. See **required** for that purpose.
 
   This regex is used by several layers in Application Accelerator,
-  built using several technologies, for example, JavaScript and Java. So refrain from using "exotic" regex features. Also, the regex applies to portions of the value by default. That is, `[a-z ]+` matches `Hello world` despite the capital `H`. To apply it to the whole value (or just start/end), anchor it using `^` and `$`.
+  built using several technologies, for example, JavaScript and Java. So refrain from using "exotic"
+  regex features. Also, the regex applies to portions of the value by default. That is, `[a-z ]+`
+  matches `Hello world` despite the capital `H`. To apply it to the whole value (or just start/end),
+  anchor it using `^` and `$`.
 
-  Finally, backslashes in a YAML string using double quotes must be escaped, so to match a number, write `validationRegex: "\\d+"` or use another string style.
+  Finally, backslashes in a YAML string using double quotes must be escaped, so to match a number,
+  write `validationRegex: "\\d+"` or use another string style.
 
 The following option properties are for UI purposes only.
 
@@ -87,11 +93,11 @@ The following option properties are for UI purposes only.
 - **description**: A tooltip to accompany the input.
 
 - **inputType**:
-    - `text`: The default input type.
-    - `textarea`: Single text value with larger input that allows line breaks.
-    - `checkbox`: Ideal for Boolean values or multivalue selection from choices.
-    - `select`: Single-value selection from choices using a drop-down menu.
-    - `radio`: Alternative single-value selection from choices using buttons.
+  - `text`: The default input type.
+  - `textarea`: Single text value with larger input that allows line breaks.
+  - `checkbox`: Ideal for Boolean values or multivalue selection from choices.
+  - `select`: Single-value selection from choices using a drop-down menu.
+  - `radio`: Alternative single-value selection from choices using buttons.
 
 - **choices**:
   This is a list of predefined choices. Users can select from the list in the UI.
@@ -107,17 +113,19 @@ The following option properties are for UI purposes only.
   option.
   When the other option has a value exactly equal to `value`, or `true` if no `value` is specified,
   then the option with `dependsOn` is visible. Otherwise, it is hidden.
-  Ensure the value matches the dataType of the `dependsOn` option.
+  Ensure that the value matches the dataType of the `dependsOn` option.
   For example, a multi-value option (`dataType = [string]`) such as a `checkbox` uses `[matched-value]`
-  to trigger another option when `matched-value` (and only `matched-value`) is selected. See the section
-  below for more clarifications about `dependsOn`.
+  to trigger another option when `matched-value` (and only `matched-value`) is selected. See the
+  following section for more clarifications about `dependsOn`.
 
 #### <a id="depends-on-multi-value"></a> DependsOn and multi-value dataType
+
 `dependsOn` tests for strict equality, even for multi-valued options. This
 means that a multi-valued option should not be used to trigger several other
 options unfolding, one for each value. Instead, use several single-valued options:
 
 Instead of
+
 ```yaml
 options:
   - name: toppings
@@ -139,7 +147,9 @@ options:
       value: [meat]
   ...
 ```
+
 do this:
+
 ```yaml
 options:
   - name: useVeggies
@@ -165,10 +175,10 @@ options:
 ### <a id="examples"></a> Examples
 
 The screenshot and `accelerator.yaml` file snippet that follows demonstrates each `inputType`.
-You can also see the sample
-[demo-input-types](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/demo-input-types) on GitHub.
+You can also see the GitHub sample
+[demo-input-types](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/demo-input-types).
 
-![Screenshot of option inputs for sample accelerator demo-input-types](../images/demo-input-types-2.png)
+![A screenshot of option inputs for sample accelerator demo-input-types.](../images/demo-input-types-2.png)
 
 ```yaml
 accelerator:
@@ -321,7 +331,8 @@ root. The properties in this node dictate how this set of files is transformed i
 files zipped as the accelerator result.
 
 `engine.include` filters the set of files, retaining only those matching a list of path
-patterns. This ensures that that the accelerator only detects files in the repository that match the list of patterns.
+patterns. This ensures that that the accelerator only detects files in the repository that match the
+list of patterns.
 
 `engine.exclude` further restricts which files are detected. The example ensures files in any
 directory called `secret` are never detected.
@@ -335,8 +346,8 @@ set of input files. These are files remaining after applying the `include` and `
 Each of the children therefore produces a set of files.
 All the files from all the children are then combined, as if overlaid on top of each other
 in the same directory.
-If more than one child produces a file with the same path, the transform resolves the conflict by dropping the
-file contents from the earlier child and keeping the contents from the later child.
+If more than one child produces a file with the same path, the transform resolves the conflict by
+dropping the file contents from the earlier child and keeping the contents from the later child.
 
 `engine.merge.chain` specifies additional transformations to apply to the set of files produced by
 this child. In the example, `ReplaceText` is only applied to Java files and `README.md`.
