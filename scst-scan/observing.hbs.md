@@ -297,3 +297,12 @@ Error: endpoint require 'http://' or 'https://' prefix
 This is because the `grype.metadataStore.url` value in the Tanzu Application
 Platform profile `values.yaml` was not configured with the correct prefix.
 Verify that the URL starts with either `http://` or `https://`.
+
+#### <a id="deprecated-pre-v1.2-templates"></a> Deprecated pre-v1.2 templates
+
+If the scan phase is in `Error` and the status condition message shows this:
+```
+Summary logs could not be retrieved: . error opening stream pod logs reader: container summary is not valid for pod scan-grypeimagescan-sample-public-zmj2g-hqv5g
+```
+
+One possible reason is due to using Grype Scanner ScanTemplates shipped with versions before Supply Chain Security Tools - Scan v1.2.0 which are now deprecated and are no longer supported in v1.4.0+.
