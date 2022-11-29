@@ -124,6 +124,26 @@ spec:
   - glob: "**"
 ```
 
+### <a id="cip-match"></a> `match`
+
+The `match` can be used to filter resources using group, version, kind or labels in a
+selected namespace to enforce the defined policy.
+If the list of matching resources is empty, it defaults to all core resources.
+
+```yaml
+spec:
+  match:
+  - group: batch
+    resource: cronjobs
+    version: v1
+    selector:
+      matchLabels:
+        app: tap
+```
+
+The above example filters all `v1 cronjobs` with label `app: tap` in a namespace that
+is labeled for policy enforcement
+
 ### <a id="cip-authorities"></a> `authorities`
 
 Authorities listed in the `authorities` block of the ClusterImagePolicy are
