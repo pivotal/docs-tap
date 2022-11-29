@@ -2,41 +2,50 @@
 
 The `grype` CLI attempts to perform two over the Internet calls: one to verify for newer versions of the CLI and another to update the vulnerability database before scanning.
 
-You must deactivate both of these external calls. For the `grype` CLI to function in an offline or air-gapped environment, the vulnerability database must be hosted within the environment. You must configure the `grype` CLI with the internal URL.
+For the `grype` CLI to function in an offline or air-gapped environment, the vulnerability database must be hosted within the environment. You must configure the `grype` CLI with the internal URL.
 
-The `grype` URL accepts environment variables to satisfy these needs.
+The `grype` CLI accepts environment variables to satisfy these needs.
 
 For information about setting up an offline vulnerability database, see the [Anchore Grype README](https://github.com/anchore/grype#offline-and-air-gapped-environments) in GitHub.
 
-## <a id="overview"></a> Overview
+## <a id="enable-grype-airgap"></a> To enable Grype in offline air-gapped environments
 
-To enable Grype in offline air-gapped environments:
+1. Add the following to your tap-values.yaml:
+    ```yaml
+    grype:
+      db:
+        dbUpdateUrl: <INTERNAL-VULN-DB-URL>
+    ```
+    * `INTERNAL-VULN-DB-URL`: url points to the internal file server
 
-1. Create ConfigMap
-2. Create Patch Secret
-3. Configure tap-values.yaml to use `package_overlays`
-4. Update Tanzu Application Platform
+1. Update Tanzu Application Platform
+    ```console
+    tanzu package installed update tap -f tap-values.yaml -n tap-install
+    ```
 
-## <a id="use-grype"></a> Using Grype
+## <a id="troubleshooting"></a> Troubleshooting
 
-To use Grype in offline and air-gapped environments:
+### ERROR failed to fetch latest cli version
+```
+ERROR failed to fetch latest version: Get "https://toolbox-data.anchore.io/grype/releases/latest/VERSION": dial tcp: lookup toolbox-data.anchore.io on [::1]:53: read udp [::1]:65010->[::1]:53: read: connection refused
+```
+The grype CLI is checking for newer versions of the CLI by contacting the anchore endpoint over the internet.
 
-1. Create a ConfigMap that contains the public ca.crt to the file server hosting the Grype database files. Apply this ConfigMap to your developer namespace.
+#### Solution
+To deactivate this check, set the environment variable `GRYPE_CHECK_FOR_APP_UPDATE` to `false` via package overlay with the following steps:
 
-2. Create a Secret that contains the ytt overlay to add the Grype environment variables to the ScanTemplates.
-
+1. Create a Secret that contains the ytt overlay to add the Grype environment variable to the ScanTemplates.
     ```yaml
     apiVersion: v1
     kind: Secret
     metadata:
-      name: grype-airgap-overlay
+      name: grype-airgap-deactivate-cli-check-overlay
       namespace: tap-install #! namespace where tap is installed
     stringData:
       patch.yaml: |
         #@ load("@ytt:overlay", "overlay")
 
-        #@overlay/match by=overlay.subset({"kind":"ScanTemplate","metadata":{"namespace":"<DEV-NAMESPACE>"}}),expects="1+"
-        #! developer namespace you are using
+        #@overlay/match by=overlay.subset({"kind":"ScanTemplate"}),expects="1+"
         ---
         spec:
           template:
@@ -48,62 +57,67 @@ To use Grype in offline and air-gapped environments:
                   #@overlay/append
                   - name: GRYPE_CHECK_FOR_APP_UPDATE
                     value: "false"
-                  - name: GRYPE_DB_AUTO_UPDATE
-                    value: "true"
-                  - name: GRYPE_DB_UPDATE_URL
-                    value: <INTERNAL-VULN-DB-URL> #! url points to the internal file server
-                  - name: GRYPE_DB_CA_CERT
-                    value: "/etc/ssl/certs/custom-ca.crt"
+    ```
+
+2. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
+    ```yaml
+    package_overlays:
+      - name: "grype"
+        secrets:
+            - name: "grype-airgap-deactivate-cli-check-overlay"
+    ```
+
+3. Update Tanzu Application Platform
+    ```console
+    tanzu package installed update tap -f tap-values.yaml -n tap-install
+    ```
+
+### Database is too old
+
+```
+1 error occurred:
+	* db could not be loaded: the vulnerability database was built N days/weeks ago (max allowed age is 5 days)
+```
+Grype needs up-to-date vulnerability information to provide accurate matches. By default, it will fail to run if the local database was not built in the last 5 days.
+
+#### Solution
+The data staleness check is configurable via the environment variable `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` and can be addressed using a package overlay with the following steps:
+
+1. Create a Secret that contains the ytt overlay to add the Grype environment variable to the ScanTemplates.
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: grype-airgap-override-stale-db-overlay
+      namespace: tap-install #! namespace where tap is installed
+    stringData:
+      patch.yaml: |
+        #@ load("@ytt:overlay", "overlay")
+
+        #@overlay/match by=overlay.subset({"kind":"ScanTemplate"}),expects="1+"
+        ---
+        spec:
+          template:
+            initContainers:
+              #@overlay/match by=overlay.subset({"name": "scan-plugin"}), expects="1+"
+              - name: scan-plugin
+                #@overlay/match missing_ok=True
+                env:
+                  #@overlay/append
                   - name: GRYPE_DB_MAX_ALLOWED_BUILT_AGE #! see note on best practices
                     value: "120h"
-                volumeMounts:
-                  #@overlay/append
-                  - name: ca-cert
-                    mountPath: /etc/ssl/certs/custom-ca.crt
-                    subPath: <INSERT-KEY-IN-CONFIGMAP> #! key pointing to ca certificate
-            volumes:
-            #@overlay/append
-            - name: ca-cert
-              configMap:
-                name: <CONFIGMAP-NAME> #! name of the configmap created
     ```
-    > **Note** The default maximum allowed built age of Grype's vulnerability database is 5 days. This means that scanning with a 6 day old database causes the scan to fail. Stale databases weaken your security posture. VMware reccomends updating the database daily. You can use the `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in accordance with your security posture.
+    > **Note** The default maximum allowed built age of Grype's vulnerability database is 5 days. This means that scanning with a 6 day old database causes the scan to fail. Stale databases weaken your security posture. VMware recommends updating the database daily. You can use the `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in accordance with your security posture.
 
-    You can also add more certificates to the ConfigMap created earlier, to handle connections to a private registry for example, and mount them in the `volumeMounts` section if needed.
-
-    For example:
-
+2. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
     ```yaml
-    #! ...
-    volumeMounts:
-      #@overlay/append
-      #! ...
-      - name: ca-cert
-        mountPath: /etc/ssl/certs/another-ca.crt
-        subPath: another-ca.cert #! key pointing to ca certificate
+    package_overlays:
+      - name: "grype"
+        secrets:
+            - name: "grype-airgap-override-stale-db-overlay"
     ```
 
-    >**Note** If you have more than one developer namespace and you want to apply this change to all of them, change the `overlay match` on top of the patch.yaml to the following:
-
-    ```yaml
-    #@overlay/match by=overlay.subset({"kind":"ScanTemplate"}),expects="1+"
+3. Update Tanzu Application Platform
+    ```console
+    tanzu package installed update tap -f tap-values.yaml -n tap-install
     ```
-
-3. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
-
-  ```yaml
-  package_overlays:
-     - name: "grype"
-       secrets:
-          - name: "grype-airgap-overlay"
-  ```
-
-4. Update Tanzu Application Platform
-
-  ```console
-  tanzu package installed update tap -f tap-values.yaml -n tap-install
-  ```
-
-## <a id='next-steps'></a>Next steps
-
-- [Setting up developer namespaces to use installed packages](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-set-up-namespaces.html)
