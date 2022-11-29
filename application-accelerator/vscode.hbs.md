@@ -3,10 +3,10 @@
 The application Accelerator Visual Studio Code extension lets you explore and generate projects
 from the defined accelerators in Tanzu Application Platform using VS Code.
 
-## <a id="depenencies"></a> Dependencies
+## <a id="dependencies"></a> Dependencies
 
-To use the VS Code extension, you must interact with the `acc-server`, for more
-information see [How to expose this server follow the instructions](../cli-plugins/accelerator/overview.md#server-api-connections)
+To use the VS Code extension, you must interact with the `acc-server`. For more
+information, see [How to expose this server follow the instructions](../cli-plugins/accelerator/overview.md#server-api-connections).
 
 ## <a id="vs-code-app-accel-install"></a> Installation
 
