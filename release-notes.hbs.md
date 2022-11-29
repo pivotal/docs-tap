@@ -217,27 +217,44 @@ For instructions about using Carbon Black Cloud Scanner with Tanzu Application P
 #### <a id="apps-plugin"></a> Tanzu CLI - Apps plug-in
 
 - `tanzu apps *` improvements:
-  - auto-complete now works for all sub-command names and their positional argument values, flag names, and flag values.
+  - auto-complete now works for all sub-command names and their positional argument values,
+  flag names, and flag values.
 - `tanzu apps workload create/apply` improvements:
-  - Apps plug-in users can now pass in registry flags to override the default registry options configured on the platform.
-    - These flags can be leveraged when an application developer iterating on their code on their file system needs to push their code to a private registry. For example, this may be required when developing an application in an air-gapped environment.
-    - To mitigate the risk of exposing sensitive information in the terminal, each registry flag/value can be specified by environment variables.
-    - Refer to [workload apply > registry flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---registry-ca-cert) for a more detailed explanation about these flags and how to use them.
-  - Provided first-class support for creating workloads from Maven artifacts through Maven flags. Previously, this could only be achieved by passing the desired values through the `--complex-param` flag.
-    - Refer to [workload apply > maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---maven-artifact) for a more detailed explanation about these flags and how to use them.
+  - Apps plug-in users can now pass in registry flags to override the default registry options
+  configured on the platform.
+    - These flags are leveraged when an app developer iterating on their code on their file system
+  must push their code to a private registry. For example, this might be required when developing
+  an application in an air-gapped environment.
+    - To mitigate the risk of exposing sensitive information in the terminal, each registry
+  flag/value can be specified by environment variables.
+    - See [workload apply > registry flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---registry-ca-cert) for a more detailed explanation about these flags and how to use them.
+  - Provided first-class support for creating workloads from Maven artifacts through Maven flags.
+  Previously, this can only be achieved by passing the values you want through the
+  `--complex-param` flag.
+    - See [workload apply > maven source flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---maven-artifact for a more detailed explanation about these flags and how to use them.
 - `tanzu apps workload get` improvements:
   - Optimized the routines triggered when engaged in iterative development on the local file system.
-    - Running `tanzu apps workload apply my-app --local-path . ...` only uploads the contents of the project directory when source code changes are detected.
-  - Added an OUTPUT column to the resource table in the Supply Chain section to provide visibility to the resource that's stamped out by each supply chain step.
-    - The stamped out resource can be helpful when troubleshooting supply chain issues for a workload. For example, the OUTPUT value can be copied and pasted into a `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail).
-  - Added a Delivery section that provides visibility to the delivery steps and the health, status, and stamped out resource associated with each delivery step.
-    - The Delivery section content might be conditionally displayed depending on whether the targeted environment includes the Deliverable object. Delivery is present on environments created using the Iterate and Build installation profiles.
-  - Added a `Healthy` column to the Supply Chain resources table.
-    - The column values are color coded to indicate the health of each resource at-a-glance.
-  - Added an Overview section to show workload name and type.
-  - Added Emojis to, and indentation under, each section header in the command output to better distinguish each section.
-  - Updated the STATUS column in the table within the Pods section so that it displays the `Init` status when there are init containers (instead of displaying a less helpful/accurate `pending` value).
-    - In fact, all column values in the Pods table have been updated so the output is equivalent to the output from `kubectl get pod/pod-name`.
+    - Running `tanzu apps workload apply my-app --local-path . ...` only uploads the contents of the
+  project directory when source code changes are detected.
+  - Added an OUTPUT column to the resource table in the Supply Chain section to provide visibility
+  to the resource that's stamped out by each supply chain step.
+    - The stamped-out resource can be helpful when troubleshooting supply chain issues for a
+  workload. For example, the OUTPUT value can be copied and pasted into a
+  `kubectl describe [output-value]` to view the resource's state/status/messages/etc... in more detail).
+  - Added a delivery section that provides visibility to the delivery steps and the health, status,
+  and stamped-out resource associated with each delivery step.
+    - The delivery section content might be conditionally displayed depending on whether the
+  targeted environment includes the deliverable object. Delivery is present on environments created
+  using the Iterate and build installation profiles.
+  - Added a `Healthy` column to the supply chain resources table.
+    - The column values are color-coded to indicate the health of each resource at-a-glance.
+  - Added an overview section to show workload name and type.
+  - Added emojis, and indentation under, each section header in the command output to better
+  distinguish each section.
+  - Updated the status column in the table within the pod's section so that it displays the `Init`
+  status when there are `Init` containers (instead of displaying a less helpful/accurate `pending` value).
+    - In fact, all column values in the pod's table are updated so the output is equivalent to the
+  output from `kubectl get pod/pod-name`.
 - Updated Go to its latest version (v1.19).
 
 ##### <a id="apps-plugin-deprecations"></a> Deprecations
@@ -628,6 +645,6 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
 
 ### <a id="learning-center-known-issues"></a>Learning Center
 
-- **session.objects, environment.objects and session.patches are not deployed:** 
+- **session.objects, environment.objects and session.patches are not deployed:**
 
-  - Due to a security improvement in Learning Center, session.objects, environment.objects and session.patches are not working properly. VMware resolved this issue by Learning Center `v0.2.4` in TAP 1.3.2. 
+  - Due to a security improvement in Learning Center, session.objects, environment.objects and session.patches are not working properly. VMware resolved this issue by Learning Center `v0.2.4` in TAP 1.3.2.
