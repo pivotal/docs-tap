@@ -8,14 +8,44 @@ This GitHub Action creates a Tanzu Build Service (TBS) Build on the given cluste
 ## Overview
 
 ### Prerequisites
-- [TBS](install-tbs.hbs.md) 
+- [Tanzu Application Platform](../install-intro.hbs.md)
 
 
 ### Setup
+#### Create developer namespace
+Create a namespace where the Build resource will be created.
+```bash
+kubectl create namespace <developer-namespace>
+```
 
+Create a secret that uses `secretgen` to get the registry credentials and update the default Service Account:
+```yaml
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: default
+  namespace: <developer-namespace>
+secrets:
+  - name: image-secret
+imagePullSecrets:
+  - name: image-secret
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: image-secret
+  namespace: <developer-namespace>
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: e30K
+```
+
+#### Service Account
 This action uses a Kubernetes Service Account with specific permissions.
-
-Here are the minimum required permissions needed:
+Create a service account in the developer namespace and bind it to the following roles:
 
 ```yaml
 ---
@@ -33,7 +63,7 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   name: github-actions
-  namespace: dev
+  namespace: <developer-namespace>
 rules:
   - apiGroups: [ '' ]
     resources: [ 'pods', 'pods/log' ]
@@ -44,7 +74,7 @@ rules:
     verbs: [ 'get', 'watch', 'list', 'create', 'delete' ]
 ```
 
-The action needs access to the cluster with the
+The action needs access to the cluster, using the service account created, with the
 following [GitHub encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) set:
 - CA_CERT
 - NAMESPACE
@@ -54,10 +84,11 @@ following [GitHub encrypted secrets](https://docs.github.com/en/actions/security
 To get this information, run the following commands:
 
 ```bash
-SECRET=$(kubectl get sa <sa-with-minimum-required-permissions> -oyaml -n <namespace-where-sa-exists> | yq '.secrets[0].name')
-CA_CERT=$(kubectl get secret $SECRET -oyaml -n <namespace-where-sa-exists> | yq '.data."ca.crt"')
-NAMESPACE=$(kubectl get secret $SECRET -oyaml -n <namespace-where-sa-exists> | ksd | yq .stringData.namespace)
-TOKEN=$(kubectl get secret $SECRET -oyaml -n <namespace-where-sa-exists> | ksd | yq .stringData.token)
+SECRET=$(kubectl get sa <sa-with-minimum-required-permissions> -oyaml -n <developer-namespace> | yq '.secrets[0].name')
+
+CA_CERT=$(kubectl get secret $SECRET -oyaml -n <developer-namespace> | yq '.data."ca.crt"')
+NAMESPACE=$(kubectl get secret $SECRET -oyaml -n <developer-namespace> | ksd | yq .stringData.namespace)
+TOKEN=$(kubectl get secret $SECRET -oyaml -n <developer-namespace> | ksd | yq .stringData.token)
 SERVER=$(kubectl config view --minify | yq '.clusters[0].cluster.server')
 ```
 
@@ -97,6 +128,8 @@ gh secret set SERVER --app actions --body "$SERVER"
     serviceAccountName: ''
     # Name of the cluster builder to use, defaults to `default`
     clusterBuilder: ''
+    # Max active time that the pod can run for in seconds, defaults to 3600
+    timeout:
 ```
 
 #### Example
