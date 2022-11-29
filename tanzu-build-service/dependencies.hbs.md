@@ -25,7 +25,8 @@ To ensure dependency compatibility, Tanzu Build Service only releases patches fo
 dependencies in patch versions of Tanzu Application Platform.
 For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
 
-Tanzu Applicaiton Platform users may wish to upgrade Tanzu Build Service dependencies out of band of Tanzu Application Platform releases to consume new features in buildpacks or stacks or remediate vulnerabilities more quickly. This can be accomplished using the the `kpack` CLI to [manually update](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-updating-deps.html#bulk-update) Tanzu Build Service with new buildpack and stack versions published on TanzuNetwork.   
+To upgrade Tanzu Build Service dependencies outside of Tanzu Application Platform releases, use the `kpack` CLI. This enables you to consume new versions of buildpacks and stacks and remediate vulnerabilities more quickly. For more information, see [Updating Build Service Dependencies](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-updating-deps.html#bulk-update).
+
 
 By default, Tanzu Build Service is installed with the `lite` set of dependencies,
 which are smaller-footprint and contain a subset of the buildpacks and stacks in
