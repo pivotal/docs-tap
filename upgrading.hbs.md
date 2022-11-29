@@ -66,6 +66,9 @@ To support the keyless authorities in `ClusterImagePolicy`, Policy Controller no
 By default, the public official Sigstore "The Update Framework (TUF) server" is used.
 You can use an alternative Sigstore Stack by setting `policy.tuf_mirror` and `policy.tuf_root`.
 
+> **Note** In Tanzu Application Platform v1.4.0, Image Policy Webhook is removed. If this component was actively being used, follow
+[these](./scst-policy/migration.hbs.md) steps to migrate to Policy Controller.
+
 If you installed Tanzu Application Platform by using a profile, you can perform the upgrade by running the following command in the directory where the `tap-values.yaml` file resides:
 
 ```console
