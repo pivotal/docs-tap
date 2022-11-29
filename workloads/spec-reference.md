@@ -961,7 +961,7 @@ Parameters:
     <td>
       Name of the secret in the same namespace as the `Deliverable` used for
       providing credentials for fetching Kubernetes configuration files from
-      the Git repository pointed at. See [Git authentication](..scc/git-auth.md).
+      the Git repository pointed at. See [Git authentication](../scc/git-auth.md).
     </td>
     <td>
       <pre>
