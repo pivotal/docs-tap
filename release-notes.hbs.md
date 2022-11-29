@@ -20,6 +20,12 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 ### <a id='1-3-3-known-issues'></a> Known issues
 
+This release has the following known issues, listed by area and component.
+
+#### <a id="1-3-3-ootb-ki"></a>Out of the Box Supply Chains
+
+This release does not support configuring trusted CA certs for an internal gitops server.
+
 ## <a id='1-3-2'></a> v1.3.2
 
 **Release Date**: November 16, 2022
