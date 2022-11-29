@@ -438,7 +438,6 @@ docs.vmware.com is built.
       - [Migration From Supply Chain Security Tools - Sign](scst-policy/migration.md)
       - [Configure Supply Chain Security Tools - Policy](scst-policy/configuring.md)
     - [Supply Chain Security Tools for Tanzu - Sign](scst-sign/overview.md)
-      - [Supply Chain Security Tools for Tanzu - Sign overview](scst-sign/overview.md)
     - [Supply Chain Security Tools for Tanzu – Store](scst-store/overview.hbs.md)
       - [Supply Chain Security Tools for Tanzu – Store overview](scst-store/overview.hbs.md)
       - [Install Supply Chain Security Tools - Store](scst-store/install-scst-store.hbs.md)
