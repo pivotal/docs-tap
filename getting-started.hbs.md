@@ -1342,7 +1342,7 @@ For more information, see [Resource Claims](https://docs.vmware.com/en/Services-
 In cases where service instances are running in the same namespace as
 application workloads, you do not have to create a claim. You can bind to the service instance directly.
 
-In this section you will use the `tanzu service claims create` command to create
+In this section you will use the `tanzu service claim create` command to create
 claim that the `RabbitmqCluster` service instance you created earlier can fulfill.
 This command requires the following information to create a claim successfully:
 
@@ -1402,7 +1402,7 @@ To create an application workload:
 `--service-ref` command by running:
 
     ```console
-    tanzu services claims list
+    tanzu service claim list
     ```
 
     Expected output:
@@ -1417,7 +1417,7 @@ To create an application workload:
 1. Retrieve detailed information about the claim by running:
 
     ```console
-    tanzu services claims get rmq-1
+    tanzu service claim get rmq-1
     ```
 
     Expected output:
