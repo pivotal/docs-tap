@@ -17,7 +17,7 @@ configurations easier explained in [Configuring `tap-values.yaml` with Git crede
 ## <a id="using-git-ops"></a> Using a Git-Ops style configuration for deploying a set of managed accelerators
 
 To enable a Git-Ops style of managing resources used for deploying accelerators, there is a new set
-of properties for the App Accelerator configuration. The resources are managed using a
+of properties for the Application Accelerator configuration. The resources are managed using a
 Carvel kapp-controller App in the `accelerator-system` namespace that watches a Git repository
 containing the manifests for the accelerators. This means that you can make changes to the manifests,
 or to the accelerators they point to, and the changes are reconciled and reflected in the
@@ -155,7 +155,7 @@ tanzu accelerator create my-spring-cloud-serverless --git-repo https://github.co
   --tags "spring,cloud,function,serverless"
 ```
 
->**Note:** It is not currently possible to provide the `git.ignore` option with the Tanzu CLI.
+>**Note:** It is not possible to provide the `git.ignore` option with the Tanzu CLI.
 
 ### <a id="examples-multi-manifest"></a> Creating a manifest with multiple accelerators and fragments
 
@@ -238,7 +238,7 @@ accelerator:
       -----END CERTIFICATE-----
 ```
 
-You can specify the Custom CA certificate data using the shared config value `shared.ca_cert_data` and
+You can specify the custom CA certificate data using the shared config value `shared.ca_cert_data` and
 it propagates to all components that can make use of it, including the App Accelerator configuration.
 The example earlier produces an output such as this using the shared value:
 
@@ -266,13 +266,13 @@ For Git repositories that aren't accessible anonymously, you need to provide cre
 
 - For HTTPS repositories the secret must contain user name and password fields. The password field
   can contain a personal access token instead of an actual password.
-  See [fluxcd/source-controller Basic access authentication](https://fluxcd.io/docs/components/source/gitrepositories/#basic-access-authentication)
+  See [Fluxcd/source-controller basic access authentication](https://fluxcd.io/docs/components/source/gitrepositories/#basic-access-authentication)
 - For HTTPS with self-signed certificates, you can add a `.data.caFile` value to the secret created
   for HTTPS authentication. See [fluxcd/source-controller HTTPS Certificate Authority](https://fluxcd.io/docs/components/source/gitrepositories/#https-certificate-authority)
 - For SSH repositories, the secret must contain identity, identity.pub, and known_hosts fields.
   See [fluxcd/source-controller SSH authentication](https://fluxcd.io/docs/components/source/gitrepositories/#ssh-authentication).
-- For Image repositories that aren't publicly available, an image pull secret may be provided.
-  For more information, see [Using imagePullSecrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
+- For Image repositories that aren't publicly available, an image pull secret can be provided.
+  For more information, see [Kubernetes document on using imagePullSecrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
 
 ### <a id="private-git-repo-example"></a> Examples for a private Git repository
 
@@ -457,7 +457,7 @@ spec:
 If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create`
 command and provide the name of the secret for that flag.
 
-### <a id="private-source-image-example"></a> Examples for a private source-image repository
+### <a id="private-source-imageexmpl></a> Examples for a private source-image repository
 
 If your registry uses a self-signed certificate then you must add the CA certificate data to the
 configuration for the "Tanzu Application Platform Source Controller" component. The easiest way to
@@ -601,7 +601,7 @@ package_overlays:
   - name: patch-accelerator-timeout
 ```
 
-## <a id="skipping-sources-tls-verification"></a> Configuring skipping TLS verification for access to Source Controller
+## <a id="skip-sources-tls-veri"></a> Configuring skipping TLS verification for access to Source Controller
 
 If you configure the FLux or Tanzu Application Platform Source Controller to use Transport Layer
 Security (TLS) and use custom certificates, then you can configure the Accelerator System to skip
@@ -651,7 +651,7 @@ server:
       -----END CERTIFICATE-----
 ```
 
-## <a id="skipping-engine-tls-verification"></a> Configuring skipping TLS verification of Engine calls for Accelerator Server
+## <a id="skip-engine-tls-verifi"></a> Configuring skipping TLS verification of Engine calls for Accelerator Server
 
 If you configure the Accelerator Engine to use TLS and use custom certificates, then you can
 configure the Accelerator Server to skip the TLS verification for calls to the Engine by providing
