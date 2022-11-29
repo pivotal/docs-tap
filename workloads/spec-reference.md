@@ -45,9 +45,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -165,8 +165,6 @@ Parameters:
     </td>
     <td>
       <pre>
-
-      ```
       - name: maven
         value:
           artifactId: springboot-initial
@@ -175,8 +173,6 @@ Parameters:
           classifier: sources         # optional
           type: # optional
           artifactRetryTimeout: 1m0s  # optional
-      ```
-
       </pre>
     </td>
   </tr>
@@ -208,9 +204,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -273,9 +269,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -347,9 +343,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -442,9 +438,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -529,9 +525,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -719,9 +715,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -834,9 +830,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
@@ -1044,9 +1040,9 @@ Parameters:
 
 <table>
   <tr>
-    <th>parameter name</th>
-    <th>meaning</th>
-    <th>example</th>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
   </tr>
 
   <tr>
