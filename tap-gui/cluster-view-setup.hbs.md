@@ -165,8 +165,6 @@ To do so:
      ```console
      CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
-     // You can create a short lived token with the kubectl create token command if that is the preferred method. 
-     // This method will require frequent token rotation.
      kubectl apply -f - <<EOF
      apiVersion: v1
      kind: Secret
@@ -185,6 +183,9 @@ To do so:
      echo CLUSTER_URL: $CLUSTER_URL
      echo CLUSTER_TOKEN: $CLUSTER_TOKEN
      ```
+
+     > **Note** You can create a short-lived token with the `kubectl create token` command if that is
+     > the preferred method. This method requires frequent token rotation.
 
 1. (Optional) Configure the Kubernetes client to verify the TLS certificates presented by a cluster's
    API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
