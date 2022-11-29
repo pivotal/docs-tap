@@ -153,9 +153,9 @@ In this case, the wildcard domain configuration needed is `*.learningcenter.your
 
 After this configuration is made, you might need to restart your operator resource by deleting and redeploying to see the URL update.
 
-## <a id="missing-training-portal-url"></a>session.objects, environment.objects and session.patches are not deployed
+## <a id="missing-training-portal-url"></a>session.objects, environment.objects, and session.patches are not deployed
 
-Due to a security improvement in Learning Center, session.objects, environment.objects and session.patches are not working properly in TAP 1.2.2 and 1.3.0. 
+Due to a security improvement in Learning Center, session.objects, environment.objects, and session.patches are not working properly in TAP 1.2.2 and 1.3.0.
 
 ***Solution***
 
