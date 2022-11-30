@@ -219,7 +219,7 @@ shared:
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
   kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
-  kubernetes_version: "K8S-VERSION"
+  kubernetes_version: "1.23.x" or "1.24.x" #Eg. For openshift 4.10 - "1.23.3" and for 4.11 - "1.24.1". Please pass appropriate value for patch version x.
   ca_cert_data: | # To be passed if using custom certificates.
       -----BEGIN CERTIFICATE-----
       MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
