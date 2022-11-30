@@ -1,6 +1,6 @@
 <!-- Configure port forwarding to connect to the metadata store -->
 
-Configure port forwarding for the service so the insight plug-in can access SCST - Store. Run:
+Configure port forwarding for the service so that the insight plug-in can access SCST - Store. Run:
 
 ```console
 kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
