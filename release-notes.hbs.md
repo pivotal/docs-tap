@@ -644,7 +644,7 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
   workload is working correctly. The message is typically:
   `No delivery found where full selector is satisfied by labels:`.
 
-### <a id="learning-center-known-issues"></a>Learning Center
+#### <a id="learning-center-known-issues"></a>Learning Center
 
 - **session.objects, environment.objects, and session.patches are not deployed:**
 
