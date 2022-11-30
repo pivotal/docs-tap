@@ -180,11 +180,12 @@ For more information on APIDescriptors, see [Key Concepts](key-concepts.md).
 
 The agent, usually a browser, uses the [CORS](https://fetch.spec.whatwg.org/#http-cors-protocol)
 protocol to verify whether the current origin uses an API.
-To use the Try it out feature for OpenAPI specifications from the API Documentation plug-in, you must
+To use the "Try it out" feature for OpenAPI specifications from the API Documentation plug-in, you must
 configure CORS to allow successful requests.
+
 Your API must be configured to allow CORS Requests from Tanzu Application Platform GUI. How you
 accomplish this varies based on the programming language and framework you are using.
-If you are using Spring see [CORS support in spring framework](https://spring.io/blog/2015/06/08/cors-support-in-spring-framework).
+If you are using Spring, see [CORS support in spring framework](https://spring.io/blog/2015/06/08/cors-support-in-spring-framework).
 
 At a high level, the Tanzu Application Platform GUI domain must be accepted as valid cross-origin by
 your API. Verify:
