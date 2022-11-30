@@ -1,6 +1,6 @@
 # Install API portal for VMware Tanzu
 
-This document describes how to install API portal for VMware Tanzu
+This page describes how to install API portal for VMware Tanzu
 from the Tanzu Application Platform package repository.
 
 >**Note** Use the instructions on this page if you do not want to use the full profile to install packages.
