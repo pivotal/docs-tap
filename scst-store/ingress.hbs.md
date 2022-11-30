@@ -5,16 +5,17 @@ Contour's HTTPProxy resources. To enable ingress support, a Contour installation
 must be available in the cluster.
 
 To change ingress configuration, edit your `tap-values.yaml` when you install a
-Tanzu Application Platform profile. Configure the `shared.ingress_domain`
-property and SCST - Store automatically uses that setting.
+Tanzu Application Platform profile. When you configure the `shared.ingress_domain`
+property, SCST - Store automatically uses that setting.
 
 Alternatively, you can customize SCST - Store's configuration under the
 `metadata_store` property. Under `metadata_store`, there are two values to
 configure the proxy:
+
 - `ingress_enabled`
 - `ingress_domain`
 
-This is an example snippet in a `tap-values.yaml`,
+This is an example snippet in a `tap-values.yaml`:
 
 ```yaml
 ...
@@ -39,7 +40,7 @@ components.
 Make the proper DNS record available to clients to resolve `metadata-store` and
 set `ingress_domain` to Envoy service's external IP address.
 
-DNS setup example,
+DNS setup example:
 
 ```bash
 $ kubectl describe svc envoy -n tanzu-system-ingress
@@ -79,13 +80,13 @@ example, you save the certificate to the environment variable to a file.
 kubectl get secret CERT-NAME -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > OUTPUT_FILE
 ```
 
-Where
+Where:
 
 - `CERT-NAME` is the name of the certificate, this must be `ingress-cert` if no
   custom certificate is used.
 - `OUTPUT_FILE` is the file you want to create to store the certificate
 
-For example,
+For example:
 
 ```bash
 $ kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > insight-ca.crt
