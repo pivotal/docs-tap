@@ -1,12 +1,12 @@
 <!-- Configure certificate and end point for insight cli when ingress is enabled -->
 
-The endpoint host is set to `metadata-store.<ingress-domain>` (such as `metadata-store.example.domain.com`), where `<ingress-domain>` matches the value of the `ingress_domain` property in your deployment YAML.
+The endpoint host should be set to `metadata-store.<ingress-domain>` (such as `metadata-store.example.domain.com`), where `<ingress-domain>` should match the value of the `ingress_domain` property in your deployment yaml.
 
-> **Note** In a multicluster setup, a DNS record is **required** for the domain. The instructions for single cluster setup do not apply, skip to [Set Target](#set-target).
+**Note:** In a multi-cluster setup, a DNS record is **required** for the domain. The below instructions for single cluster setup do not apply, skip to [Set Target](#set-target).
 
 # Single Cluster setup
 
-In a single-cluster setup, VMware reccomends a DNS record. If no accessible DNS record exists for the domain, edit the `/etc/hosts` file to add a local record:
+In a single-cluster setup, a DNS record is still recommended. However, if no accessible DNS record exists for the domain, edit the `/etc/hosts` file to add a local record:
 
 ```bash
 ENVOY_IP=$(kubectl get svc envoy -n tanzu-system-ingress -o jsonpath="{.status.loadBalancer.ingress[0].ip}")
