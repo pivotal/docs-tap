@@ -13,11 +13,9 @@ Before installing Application Accelerator:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 
-- Install Flux SourceController on the cluster.
-See [Install cert-manager, Contour, and FluxCD Source Controller](../cert-mgr-contour-fcd/install.md).
+- Install Flux SourceController on the cluster. See [Install FluxCD Source Controller](../fluxcd-source-controller/install.hbs.md).
 
-- Install Source Controller on the cluster.
-See [Install Source Controller](../source-controller/install-source-controller.md).
+- Install Source Controller on the cluster. See [Install Source Controller](../source-controller/install-source-controller.md).
 
 ## <a id='app-acc-config'></a> Configure properties and resource use
 

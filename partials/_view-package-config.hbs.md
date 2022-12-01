@@ -56,4 +56,4 @@ Shared Keys define values that configure multiple packages. These keys are defin
 
 |Shared Key|Used By|Description|
 |----|----|----|
-|`ca_cert_data`|`convention_controller`, `source_controller`|Optional: PEM Encoded certificate data to trust TLS connections with a private CA.|
+|`ca_cert_data`|`convention_controller`, `scanning`, `source_controller`|Optional: PEM Encoded certificate data to trust TLS connections with a private CA.|

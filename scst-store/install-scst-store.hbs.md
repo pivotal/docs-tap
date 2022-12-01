@@ -17,7 +17,7 @@ Before installing SCST - Store:
 - Complete all prerequisites to install Tanzu Application Platform. For more
   information, see [Prerequisites](../prerequisites.md).
 - Install cert-manager on the cluster. For more information, see [Install
-  cert-manager](../cert-mgr-contour-fcd/install.md#install-cert-mgr).
+  cert-manager](../cert-manager/install.md).
 - See [Deployment Details and Configuration](deployment-details.md) to review
   what resources are deployed. For more information, see the
   [overview](overview.md).

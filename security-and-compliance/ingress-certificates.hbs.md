@@ -4,7 +4,7 @@ By default, TAP installs and uses a self-signed CA for issuing TLS certificates 
 securing ingress communication.
 
 This _ingress issuer_ is a self-signed `cert-manager.io/v1/ClusterIssuer` and is provided by
-TAP's [cert-manager package](../cert-mgr-contour-fcd/about.md). Its default name is `tap-ingress-selfsigned`.
+TAP's [cert-manager package](../cert-manager/about.hbs.md). Its default name is `tap-ingress-selfsigned`.
 
 To understand how each component is using the ingress issuer refer to the [component in question](../components.hbs.md).
 
@@ -19,7 +19,7 @@ To replace the default ingress issuer, create your own `ClusterIssuer` and set `
 your issuer. Once the configuration is applied, components will eventually obtain certificates from the new issuer and
 serve them.
 
-Keep in mind that TAP's [cert-manager package](../cert-mgr-contour-fcd/about.md) needs to be present for
+Keep in mind that TAP's [cert-manager package](../cert-manager/about.hbs.md) needs to be present for
 the `ClusterIssuer` API to be available. That means you can only provide your own `ClusterIssuer` after the initial
 installation. You can, however, already refer your issuer in the initial installation.
 
@@ -60,10 +60,10 @@ spec:
 > ℹ️ Learn about the possible configurations of `ClusterIssuer`
 > from [cert-manager's documentation](https://cert-manager.io/docs/configuration/).
 
-## Disabling TLS for ingress
+## Deactivating TLS for ingress
 
-Although it is not recommended, you can disable the ingress issuer by setting `shared.ingress_issuer: ""`. As a result,
-components will consider TLS for ingress to be disabled.
+Although it is not recommended, you can deactivate the ingress issuer by setting `shared.ingress_issuer: ""`. As a result,
+components will consider TLS for ingress to be deactivated.
 
 ## Overriding TLS for components
 
