@@ -1,19 +1,23 @@
-# Install FluxCD source-controller
+# Install FluxCD Source Controller
+
+> **Note** Use the instructions on this page if you do not want to use a profile to install packages.
+> All profiles include FluxCD Source Controller. For more information about profiles,
+> see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
 
 ## <a id='sc-prereqs'></a>Prerequisites
 
-Before installing Source Controller:
+Before installing FluxCD Source Controller:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install cert-manager on the cluster. For more information, see [Install cert-manager](../cert-mgr-contour-fcd/install.md#install-cert-mgr).
+- Install cert-manager on the cluster. For more information, see [Install cert-manager](../cert-manager/install.hbs.md).
 
 ## <a id="Configuration"></a> Configuration
 
-Source controller package has no configurable properties.
+The FluxCD Source controller package has no configuration values.
 
 ##  <a id="installation"></a> Installation
 
-To install FluxCD source-controller from the Tanzu Application Platform package repository:
+To install FluxCD Source Controller from the Tanzu Application Platform package repository:
 
 1. List version information for the package by running:
 
