@@ -12,8 +12,10 @@ The following sections outline the essential steps to configure a fully operatio
 
 - [Annotations and labels](./metadata.md)
 - [Issuer URI and TLS](./issuer-uri-and-tls.md)
-- [Token signature](./token-signature.md)
+- [CA certificates](./ca-certs.md)
 - [Identity providers](./identity-providers.md)
+- [Token signatures](./token-signature.md)
 - [Storage](./storage.hbs.md)
 - [AuthServer readiness](./readiness.md)
 - [Scale AuthServer](./scale.md)
+- [AuthServer audit logs](./audit-logs.md)
