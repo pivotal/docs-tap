@@ -69,7 +69,7 @@ Copy the SCST - Store authentication token into an environment variable. You use
 this environment variable in the next step.
 
 ```bash
-AUTH_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d)
+AUTH_TOKEN=$(kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-write-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d)
 ```
 
 ## Apply the CA certificate and authentication token to a new Kubernetes cluster
