@@ -1,4 +1,5 @@
 # Using Custom Types
+
 Application Accelerators can declare new types to be used for options declaration,
 in addition to the built-in types `string`, `number` and `boolean`.
 
@@ -7,6 +8,7 @@ in addition to the built-in types `string`, `number` and `boolean`.
 The `accelerator.yaml` file syntax supports an entry named `types` inside the top-level
 `accelerator` section, allowing the definition of custom types, with support for
 `struct` types, like so:
+
 ```yaml
 accelerator:
   options:
@@ -37,6 +39,7 @@ A type name MUST be a `CapitalizedName`.
 The effect of the previous example is that a new _type_ then becomes available
 (in addition to the built-in `string`, `number`, `boolean` and sequences thereof)
 for the `dataType` property of any option:
+
 ```yaml
 accelerator:
   options:
@@ -45,12 +48,15 @@ accelerator:
   types:
     ...
 ```
-whereby UIs would render something similar to the following:
-![SimpleTask](simple-task.png)
 
-and associate the entered
+whereby UIs would render something similar to the following:
+
+![SimpleTask form is open with text box examples filled in.](simple-task.png)
+
+Associate the entered
 values to the `myTask` top-level name, resulting in the following example
 values submission (here represented using JSON notation):
+
 ```json
 {
   "myTask": { // Note the use of a nested object here
@@ -60,16 +66,18 @@ values submission (here represented using JSON notation):
   }
 }
 ```
+
 Thus, the actual type of the `myTask` value is `object` (in Javascript/JSON parlance)
 and `Map<String, ?>` when seen from the Java engine side.
 
 The above example is technically possible with the custom types feature,
-but brings little benefit over having 3 options named _e.g._ `myTaskTitle`, 
+but brings little benefit over having 3 options named _e.g._ `myTaskTitle`,
 `myTaskDetails` and `myTaskDone` to achieve the same end result.
 
 The real value of custom types comes from the ability to use such types
 in sequence types, allowing users to enter an unbounded list of structured
 data:
+
 ```yaml
 accelerator:
   options:
@@ -78,7 +86,9 @@ accelerator:
   types:
     ...
 ```
-which could result of the following example submission (JSON):
+
+Which could result of the following example submission (JSON):
+
 ```json
 {
   "myTasks": [ // Note the use of JSON array
@@ -97,6 +107,7 @@ which could result of the following example submission (JSON):
 ```
 
 ### Limitations
+
 As stated above, a `struct` custom type declaration is made of an ordered
 series of option definitions. The support and semantics for individual fields
 of such option-definition-like elements when used in the type _declaration_ is stated below.
@@ -118,7 +129,7 @@ accelerator:
           choices:               # supported
             - value: v
               text:  t
-          validationRegex:       # validates that single property 
+          validationRegex:       # validates that single property
           label:                 # will become the "title" of the widget
           inputType:             # supported
           required:              # supported
@@ -139,11 +150,12 @@ accelerator:
       dependsOn:       # OK to depend on another option
 ```
 
-
 ## Interaction with SpEL
+
 Everywhere that SpEL is used in the engine syntax, accelerator authors
 may use SpEL's syntax for accessing properties and/or array elements:
-```
+
+```console
   #myTasks[2]['done']
 ```
 
@@ -154,9 +166,11 @@ the data length in advance. See the section about the [`Loop`](transforms/loop.h
 to discover more idiomatic usage of repeated structured data.
 
 ## Interaction with Composition
+
 Using composition alongside custom types brings several challenges / opportunities:
-* users may want to **leverage** types declared in an imported fragment
-* there could be a type **name clash** between a host accelerator/fragment and an imported
+
+- users may want to **leverage** types declared in an imported fragment
+- there could be a type **name clash** between a host accelerator/fragment and an imported
   fragment, because the imported fragment author is unaware of how the fragment will be used.
 
 See the section about [composition](composition.hbs.md) to learn about syntax to
