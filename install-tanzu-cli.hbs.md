@@ -17,17 +17,20 @@ To accept EULAs:
         - [Buildpacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-buildpacks-suite)
         - [Stacks for VMware Tanzu](https://network.tanzu.vmware.com/products/tanzu-stacks-suite)
 
+This is an example of how to accept EULAs for Tanzu Application Platform: After signing in to Tanzu
+Network, select the "Click here to sign the EULA" link in the yellow warning box under the release
+drop down as seen in the following screen shot. (If this warning is not there then the EULA has
+already been  accepted).
 
-This is an example of how to accept EULAs for Tanzu Application Platform:
-After signing in to Tanzu Network, select the "Click here to sign the EULA" link in the yellow warning box under the release drop down as seen in the following screen shot. (If this warning is not there then the EULA has already been  accepted).
-
-![EULA Warning](images/install-tanzu-cli-eulas1.png)
+![EULA warning on the Tanzu network page.](images/install-tanzu-cli-eulas1.png)
 
 Select "Agree" in the bottom right of the dialog box that comes up as seen in the following screen shot.
 
-![EULA Dialog Box](images/install-tanzu-cli-eulas2.png)
+![EULA license agreement with a cancel or agree option.](images/install-tanzu-cli-eulas2.png)
 
-This example shows that you have now accepted the EULAs for Tanzu Application Platform. In addition, you must accept the EULAs for Cluster Essentials for VMware Tanzu and for Tanzu Build Services and its associated components as stated above.
+This example shows that you have now accepted the EULAs for Tanzu Application Platform. In addition,
+you must accept the EULAs for Cluster Essentials for VMware Tanzu and for Tanzu Build Services and
+its associated components as stated above.
 
 ## <a id='install-tanzu-cli'></a> Installing the Tanzu CLI
 
@@ -409,7 +412,7 @@ To install or update Tanzu CLI plug-ins follow the steps below:
     secret              Tanzu secret management                                            Standalone  default    v0.11.1  installed
     accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.0.1   installed
     apps                Applications on Kubernetes                                         Standalone             v0.4.1   installed
-    services            Discover Service Types and manage Service Instances (ALPHA)        Standalone             v0.1.2   installed  
+    services            Discover Service Types and manage Service Instances (ALPHA)        Standalone             v0.1.2   installed
     ```
 
     Ensure that you have the `accelerator`, `apps`, `package`, `secret`, and `services` plug-ins.
