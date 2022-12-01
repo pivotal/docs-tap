@@ -33,6 +33,8 @@ This is the table of contents from which the Tanzu Application Platform Document
             - [Cluster supply chain](cli-plugins/apps/command-reference/tanzu_apps_cluster-supply-chain.md)
                 - [Cluster supply chain list](cli-plugins/apps/command-reference/tanzu_apps_cluster-supply-chain_list.md)
         - [Usage and examples](cli-plugins/apps/usage.md)
+    - [Application Accelerator](application-accelerator/app-accelerator-overview.hbs.md)
+      - [Install Application Accelerator](application-accelerator/install-app-acc.hbs.md)
     - [Convention Service](convention-service/about.md)
       - [Install Convention Service](convention-service/install-conv-service.md)
       - [Creating conventions](convention-service/creating-conventions.md)
