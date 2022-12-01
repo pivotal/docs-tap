@@ -96,14 +96,14 @@ Step 6 : Set the Tanzu network account
      host: ""	        #optional
      connectorHost: ""     #optional
      backstage:
-       host: https://tap-gui.tap.maz-dp-deypr.tapdemo.vmware.com
+       host: https://tap-gui.tap.<clusterName>.tapdemo.vmware.com
        port: 443
      oidc:
-       clientId: 0oa7fdi231JfuBIrD5d7
-       clientSecret: 8SEu6ZuNrTpOQp2Zk53Aoy12Ew-S1mwWPA3MUWZw
-       oAuthIssuerUrl: https://dev-81295634.okta.com/oauth2/default
+       clientId: xx-xx-xx-xx
+       clientSecret: xx-xx-xx-xx--xx-xx-xx-xx
+       oAuthIssuerUrl: https://<tenant_id>.okta.com/oauth2/default
        jwtClaimUsername: sub
-       proxyRule: https://dev-81295634.okta.com/oauth2/default
+       proxyRule: https://tenant_id.okta.com/oauth2/default
    ```
 
    Once the above yaml is applied , you should be able to see a similar message :
