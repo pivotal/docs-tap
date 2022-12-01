@@ -862,7 +862,7 @@ deliverable object, such as what can be set on `deliverable.spec.params`.
 
 The deliverable object applies the configuration produced by the resources defined by a ClusterSupplyChain to a Kubernetes cluster.
 
-```
+```console
       Workload              (according to ClusterSupplyChain in `build` cluster)
 
         - fetch source
@@ -889,6 +889,7 @@ The following section describes the two resources defined in the `basic` Cluster
         |
     app-deploy                          deploys to the cluster the objects in the
                                         kubernetes configuration fetched
+
 ```
 
 For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
