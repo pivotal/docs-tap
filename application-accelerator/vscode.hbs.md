@@ -30,7 +30,7 @@ Use the following steps to install the Application Accelerator Visual Studio ext
 
     4. Select `Install from VSIX…` from the overflow menu.
 
-    ![The VS Code interface extensions page is open. The overflow menu drop-down is open with Install from VSIX... highlighted.](../images/vscode-install3.png).
+    ![The VS Code interface extensions page overflow menu is open with Install from VSIX... highlighted.](../images/vscode-install3.png).
 
 ## <a id="configure-the-extention"></a> Configure the extension
 
@@ -42,15 +42,15 @@ Before using the extension, you need follow the next steps:
 
 3. Add the `acc-server` URL.
 
-![The Server Configure Setting page is open with the acc server URL setting highlighted](../images/acc-server-config.png)
+![The Server Configure Setting page is open with the acc server URL highlighted](../images/acc-server-config.png)
 
 ## <a id="using-the-extension"></a> Using the extension
 
 After adding the `acc-server` URL you can explore the defined accelerators
 accessing the new added icon:
 
-![The explorer panel is open and the TIMELINE drop-down is selected. The Demo Types icon is highlighted.](../images/app-accelerators-vscode-icon.png)
+![The explorer panel is open, the TIMELINE drop-down is selected, and the Demo Types icon is highlighted.](../images/app-accelerators-vscode-icon.png)
 
 Choose any of the defined accelerators, fill the options and click  the `generate project`
 
-![The accelerator tab is open to the Hello Fun accelerator form. The text boxes are filled in and the Generate Project button is highlighted.](../images/acc-form.png)
+![The accelerator tab is open to the Hello Fun accelerator form. The text boxes have and example and the Generate Project button is highlighted.](../images/acc-form.png)
