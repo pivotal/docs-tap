@@ -402,6 +402,7 @@ docs.vmware.com is built.
           - [Install Out of the Box Templates](scc/install-ootb-templates.md)
       - [Reference guides](scc/scc-reference.hbs.md)
           - [Workload Parameters](scc/parameters-reference.hbs.md)
+          - [Events](scc/events.hbs.md)
       - [Building Container Images](scc/build-container-img.hbs.md)
           - [Building from source](scc/building-from-source.md)
           - [Dockerfile-based builds](scc/dockerfile-based-builds.md)

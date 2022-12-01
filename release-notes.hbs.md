@@ -25,6 +25,7 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 
 #### <a id='scc-plug-in-new-features'></a>Supply Chain Choreographer Plug-in
 
+- [Events are now emitted](scc/events.hbs.md) when resources are being applied, or their output or health status changed.
 - Source Tester stage now includes a link to the Jenkins job when Jenkins is configured for use
   in the supply chain.
 - `spec.source.git.url` is added to the Overview section of the Source Provider stage in the
