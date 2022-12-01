@@ -470,6 +470,7 @@ docs.vmware.com is built.
       - [Use Tanzu Developer Tools for VS Code](vscode-extension/using-the-extension.md)
       - [Pinniped compatibility](vscode-extension/pinniped-auth.md)
       - [Integrate Live Hover by using Spring Boot Tools](vscode-extension/live-hover.md)
+      - [Memory View in Spring Boot Dashboard](vscode-extension/memory-view.md)
       - [Troubleshoot Tanzu Developer Tools for VS Code](vscode-extension/troubleshooting.md)
     - [Tanzu Developer Tools for IntelliJ](intellij-extension/about.md)
       - [Tanzu Developer Tools for IntelliJ overview](intellij-extension/about.md)
