@@ -60,10 +60,10 @@ spec:
 > ℹ️ Learn about the possible configurations of `ClusterIssuer`
 > from [cert-manager's documentation](https://cert-manager.io/docs/configuration/).
 
-## Disabling TLS for ingress
+## Deactivating TLS for ingress
 
-Although it is not recommended, you can disable the ingress issuer by setting `shared.ingress_issuer: ""`. As a result,
-components will consider TLS for ingress to be disabled.
+Although it is not recommended, you can deactivate the ingress issuer by setting `shared.ingress_issuer: ""`. As a result,
+components will consider TLS for ingress to be deactivated.
 
 ## Overriding TLS for components
 
