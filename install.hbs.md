@@ -163,8 +163,6 @@ To add the Tanzu Application Platform package repository to your cluster:
       fluxcd.source.controller.tanzu.vmware.com            Flux Source Controller                                                    The source-controller is a Kubernetes operator, specialised in artifacts
                                                                                                                                      acquisition from external sources such as Git, Helm repositories and S3 buckets.
       grype.scanning.apps.tanzu.vmware.com                 Grype for Supply Chain Security Tools - Scan                              Default scan templates using Anchore Grype
-      image-policy-webhook.signing.apps.tanzu.vmware.com   Image Policy Webhook                                                      Image Policy Webhook enables defining of a policy to restrict unsigned container
-                                                                                                                                     images.
       learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            Guided technical workshops
       metadata-store.apps.tanzu.vmware.com                 Supply Chain Security Tools - Store                                       Post SBoMs and query for image, package, and vulnerability metadata.
       ootb-delivery-basic.tanzu.vmware.com                 Tanzu App Platform Out of The Box Delivery Basic                          Out of The Box Delivery Basic.
@@ -230,11 +228,16 @@ Refer to [Install multicluster Tanzu Application Platform profiles](multicluster
 ```yaml
 shared:
   ingress_domain: "INGRESS-DOMAIN"
+  ingress_issuer: # Optional, can denote a cert-manager.io/v1/ClusterIssuer of your choice. Defaults to "tap-ingress-selfsigned". 
+
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
+
   kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
+  kubernetes_version: "1.23.x" or "1.24.x" #Eg. For openshift 4.10 - "1.23.3" and for 4.11 - "1.24.1". Please pass appropriate value for patch version x.
+
   ca_cert_data: | # To be passed if using custom certificates.
       -----BEGIN CERTIFICATE-----
       MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
@@ -289,6 +292,8 @@ grype:
 
 policy:
   tuf_enabled: false # By default, TUF initialization and keyless verification are deactivated.
+tap_telemetry:
+  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (optional) identify data for creation of TAP usage reports
 ```
 
 Where:
@@ -320,6 +325,7 @@ This field is only required if you use a private repository, otherwise, leave it
 - `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
+- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.
 
 If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
 
@@ -385,19 +391,6 @@ By default, workloads are built with Ubuntu 18.04 (Bionic) stack. However, if yo
 you can install Tanzu Application Platform without the Bionic stack and all workloads are built with the Jammy stack by default.
 
 To install Tanzu Application Platform with Jammy as the only available stack, include the `stack_configuration: jammy-only` field under the `buildservice:` section in `tap-values.yaml`.
-
-### <a id='exclude-ipw'></a> (Optional) Exclude Image Policy Webhook
-
-Image Policy Webhook is deprecated. To exclude this package, update your `tap-values` file with a section listing the exclusion:
-
-```yaml
-...
-excluded_packages:
-  - image-policy-webhook.signing.apps.tanzu.vmware.com
-...
-```
-
-See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
 
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 

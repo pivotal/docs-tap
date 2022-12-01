@@ -1,6 +1,6 @@
 # Install Sigstore Stack
 
->**Note:** VMware does not provide support for sigstore stack deployments. However a sample of deploying version 0.4.8 is described below, such that keyless signing and verification in air-gapped environments can be used.
+>**Note:** VMware does not support Sigstore stack deployments. However, a sample version 0.4.8 deployment that uses keyless signing and verification in air-gapped environments is shown in this section.
 
 [Sigstore/scaffolding](https://github.com/sigstore/scaffolding) is used for
 bringing up the Sigstore Stack.
@@ -14,7 +14,7 @@ The Sigstore Stack consists of:
 - [TheUpdateFramework (TUF)](https://theupdateframework.io/)
 
 For information about air-gapped installation, see [Install Tanzu Application
-Platform in an air-gapped environment](../install-air-gap.hbs.md)\.
+Platform in an air-gapped environment](../install-air-gap.hbs.md).
 
 If a Sigstore Stack TUF is already deployed and accessible in the air-gapped
 environment, proceed to [Update Policy Controller with TUF Mirror and

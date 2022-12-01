@@ -26,6 +26,7 @@ The `Accelerator` CRD _spec_ defined in the `AcceleratorSpec` type has the follo
 | tags | An array of strings defining attributes of the Accelerator that can be used in a search. | Optional (*) |
 | git | Defines the accelerator source Git repository. | Optional (***) |
 | git.url | The repository URL, can be a HTTP/S or SSH address. | Optional (***) |
+| git.gitImplementation | Determines which git client library to use. Defaults to go-git, valid values are ('go-git', 'libgit2') | Optional (**) |
 | git.ignore | Overrides the set of excluded patterns in the .sourceignore format (which is the same as .gitignore). If not provided, a default of `.git/` is used. | Optional (**) |
 | git.interval | The interval at which to check for repository updates. If not provided it defaults to 10 min. There is an additional refresh interval (currently 10s) involved before accelerators may appear in the UI. There could be a 10s delay before changes are reflected in the UI.*| Optional (**) |
 | git.ref | Git reference to checkout and monitor for changes, defaults to main branch. | Optional (**) |

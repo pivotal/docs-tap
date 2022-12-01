@@ -1,7 +1,7 @@
 # Multicluster setup
 
 Deploying Tanzu Application Platform in a multicluster setup includes installing
-multiple profiles such as, View, Build, Run, Iterate. 
+multiple profiles such as, View, Build, Run, Iterate.
 
 Supply Chain Security Tools - Store is deployed with the View profile. After
 installing the View profile, but before installing the Build profile, you must
@@ -78,28 +78,30 @@ Before you deploy the Build profile, you must apply the CA certificate and
 authentication token from the earlier steps. Then the Build profile deployment
 has access to these values.
 
-With you kubectl targeted at the Build cluster, create a namespace for the CA
+To apply the CA certificate and authentication token:
+
+1. With your kubectl targeted at the Build cluster, create a namespace for the CA
 certificate and authentication token.
 
-```bash
-kubectl create ns metadata-store-secrets
-```
+    ```bash
+    kubectl create ns metadata-store-secrets
+    ```
 
-Apply the CA certificate `store_ca.yaml` secret YAML generated earlier.
+1. Apply the CA certificate `store_ca.yaml` secret YAML generated earlier.
 
-```bash
-kubectl apply -f store_ca.yaml
-```
+    ```bash
+    kubectl apply -f store_ca.yaml
+    ```
 
-Create a secret to store the access stoken. This uses the `AUTH_TOKEN` environment variable from before.
+1. Create a secret to store the access stoken. This uses the `AUTH_TOKEN` environment variable from before.
 
-```bash
-kubectl create secret generic store-auth-token \
-  --from-literal=auth_token=$AUTH_TOKEN -n metadata-store-secrets
-```
+    ```bash
+    kubectl create secret generic store-auth-token \
+      --from-literal=auth_token=$AUTH_TOKEN -n metadata-store-secrets
+    ```
 
 The cluster now has a CA certificate named  `store-ca-cert` and authentication
-token named `store-auth-token` in the namespace `metadata-store-secrets`. 
+token named `store-auth-token` in the namespace `metadata-store-secrets`.
 
 ## <a id='install-build-profile'></a>Install Build profile
 
@@ -115,7 +117,7 @@ names of these secrets are already hard coded in the example `values.yaml`.
 ### More information about how Build profile uses the configuration
 
 The secrets you created are used in the Build profile `values.yaml` to configure
-the Grype scanner which talks to SCST - Store. After performing vulnerabilities
+the Grype scanner which talks to SCST - Store. After performing a vulnerabilities
 scan, the Grype scanner sends the results to SCST - Store. Here's a snippet of
 what the configuration might look like.
 
@@ -153,7 +155,7 @@ After you finish the entire Tanzu Application Platform installation process, you
 are ready to configure developer namespaces. To prepare developer namespaces,
 you must export the secrets you created earlier to those namespaces.
 
-### Exporting SCST - Store secrets to developer namespace in a Tanzu Application Platform multicluster deployment
+### Exporting SCST - Store secrets to a developer namespace in a Tanzu Application Platform multicluster deployment
 
 Export secrets to a developer namespace by creating `SecretExport` resources on
 the developer namespace. Run the following command to create the `SecretExport`
@@ -169,7 +171,7 @@ metadata:
   name: store-ca-cert
   namespace: metadata-store-secrets
 spec:
-  toNamespaces: [DEV-NAMESPACE]
+  toNamespaces: [DEV-NAMESPACES]
 ---
 apiVersion: secretgen.carvel.dev/v1alpha1
 kind: SecretExport
@@ -177,11 +179,11 @@ metadata:
   name: store-auth-token
   namespace: metadata-store-secrets
 spec:
-  toNamespaces: [DEV-NAMESPACE]
+  toNamespaces: [DEV-NAMESPACES]
 EOF
 ```
 
-Where `toNamespaces: [DEV-NAMESPACE]` is an array of developer namespaces where the secrets are exported.
+Where `[DEV-NAMESPACES]` is an array of developer namespaces where the secrets are exported.
 
 ## Additional resources
 

@@ -25,6 +25,7 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 
 #### <a id='scc-plug-in-new-features'></a>Supply Chain Choreographer Plug-in
 
+- [Events are now emitted](scc/events.hbs.md) when resources are being applied, or their output or health status changed.
 - Source Tester stage now includes a link to the Jenkins job when Jenkins is configured for use
   in the supply chain.
 - `spec.source.git.url` is added to the Overview section of the Source Provider stage in the
@@ -46,13 +47,27 @@ This release has the following breaking changes, listed by area and component.
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
 
+#### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
+
+The Image Policy Webhook component is removed in TAP 1.4 after being deprecated
+in favor of the [Policy Controller](./scst-policy/overview.hbs.md)
+
 #### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
 
-Policy Controller no longer initializes TUF by default which is needed to support the keyless authorities in `ClusterImagePolicy`. To continue to use keyless authorities, it is required to provide the value `policy.tuf_enabled: true` through the `tap-values.yaml` during the upgrade process. Then by default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`. 
+Policy Controller no longer initializes TUF by default. TUF is required to
+support the keyless authorities in `ClusterImagePolicy`. To continue to use
+keyless authorities, provide the value `policy.tuf_enabled:
+true` by using the `tap-values.yaml` while upgrading. By default,
+the public Sigstore The Update Framework (TUF) server is used. To
+target an alternative Sigstore stack, specify `policy.tuf_mirror` and
+`policy.tuf_root`.
 
 ### <a id='1-4-0-security-fixes'></a> Security fixes
 
 This release has the following security fixes, listed by area and component.
+
+#### <a id='1-4-0-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
+- `python` has been updated to `3.7.5-22.ph3`
 
 ### <a id='1-4-0-resolved-issues'></a> Resolved issues
 

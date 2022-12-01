@@ -149,8 +149,6 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       fluxcd.source.controller.tanzu.vmware.com            Flux Source Controller                                                    The source-controller is a Kubernetes operator, specialised in artifacts
                                                                                                                                      acquisition from external sources such as Git, Helm repositories and S3 buckets.
       grype.scanning.apps.tanzu.vmware.com                 Grype for Supply Chain Security Tools - Scan                              Default scan templates using Anchore Grype
-      image-policy-webhook.signing.apps.tanzu.vmware.com   Image Policy Webhook                                                      Image Policy Webhook enables defining of a policy to restrict unsigned container
-                                                                                                                                     images.
       learningcenter.tanzu.vmware.com                      Learning Center for Tanzu Application Platform                            Guided technical workshops
       metadata-store.apps.tanzu.vmware.com                 Supply Chain Security Tools - Store                                       Post SBoMs and query for image, package, and vulnerability metadata.
       ootb-delivery-basic.tanzu.vmware.com                 Tanzu App Platform Out of The Box Delivery Basic                          Out of The Box Delivery Basic.
@@ -293,6 +291,9 @@ service's External IP address.
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     * For Google Cloud Registry, use the contents of the service account JSON file.
     * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
+- `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.23.x` or `1.24.x`, where `x` stands for the patch version. Examples:
+    - Red Hat OpenShift Container Platform v4.10 uses the Kubernetes version `1.23.3`. 
+    - Red Hat OpenShift Container Platform v4.11 uses the Kubernetes version `1.24.1`. 
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Docker Hub has the form `server: "index.docker.io"`.
@@ -397,17 +398,6 @@ excluded_packages:
 ```
 
 See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
-
-### <a id='exclude-ipw'></a> (Optional) Exclude Image Policy Webhook
-
-Image Policy Webhook is deprecated. To exclude this package, update your `tap-values` file with a section listing the exclusion:
-
-```yaml
-...
-excluded_packages:
-  - image-policy-webhook.signing.apps.tanzu.vmware.com
-...
-```
 
 See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
 

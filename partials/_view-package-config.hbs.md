@@ -1,5 +1,3 @@
-# Viewing possible configuration settings for your package
-
 To view possible configuration settings for a package, run:
 
 ```console
@@ -48,7 +46,6 @@ The following table summarizes the top-level keys used for package-specific conf
 |Supply Chain Security Tools - Scan|`scanning`|
 |Supply Chain Security Tools - Scan (Grype Scanner)|`grype`|
 |Supply Chain Security Tools - Store|`metadata_store`|
-|Image Policy Webhook|`image_policy_webhook`|
 |Build Service|`buildservice`|
 |Tanzu Application Platform GUI|`tap_gui`|
 |Learning Center|`learningcenter`|
@@ -57,4 +54,4 @@ Shared Keys define values that configure multiple packages. These keys are defin
 
 |Shared Key|Used By|Description|
 |----|----|----|
-|`ca_cert_data`|`convention_controller`, `source_controller`|Optional: PEM Encoded certificate data to trust TLS connections with a private CA.|
+|`ca_cert_data`|`convention_controller`, `scanning`, `source_controller`|Optional: PEM Encoded certificate data to trust TLS connections with a private CA.|

@@ -8,23 +8,26 @@ Platform's Full, Iterate, and Run profiles. Use the instructions in this topic t
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - A container image registry that supports TLS connections.
 
->**Note** This component does not work with not secure registries.
+> **Note** This component does not work with not secure registries.
 
-- If SCST - Sign is installed with an existing running
-Image Policy Webhook `ClusterImagePolicy`, see
-[Migration From Supply Chain Security Tools - Sign](migration.md).
+- For keyless authorities support, you must set `policy.tuf_enabled: true`. By
+  default, the public official Sigstore The Update Framework (TUF) server is
+  used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and
+  `policy.tuf_root`.
 
-- For keyless authorities support setting the value `policy.tuf_enabled: true` is required. By default the public official Sigstore "The Update Framework" (TUF) server is used. To target an alternative Sigstore stack, specify `policy.tuf_mirror` and `policy.tuf_root`.
+- If you are installing in an air-gapped environment and require keyless
+  authorities, you must deploy a Sigstore Stack on the cluster or be accessible
+  from the air-gapped environment. For more information, see [Install Sigstore
+  Stack](./install-sigstore-stack.hbs.md).
 
-- If you are installing in an air-gapped environment and require keyless authorities, a Sigstore Stack needs to be deployed on the cluster or be accessible from the air-gapped environment. For more information, see [Install Sigstore Stack](./install-sigstore-stack.hbs.md).
+- During configuration for this component, you are asked to provide a cosign
+public key to validate signed images. The Policy Controller only supports
+ECDSA public keys. An example cosign public key is provided that can validate an
+image from the public cosign registry. To provide your own key and images,
+follow the [Cosign Quick Start
+Guide](https://github.com/sigstore/cosign#quick-start) in GitHub.
 
-- During configuration for this component, you are asked to provide a cosign public key to use to
-validate signed images. The Policy Controller only supports ECDSA public keys.
-An example cosign public key is provided that can validate an image from the
-public cosign registry. To provide your own key and images, follow the
-[Cosign Quick Start Guide](https://github.com/sigstore/cosign#quick-start) in GitHub to generate your own keys and sign an image.
-
->**Caution** This component rejects `pods` if they are not correctly configured.
+> **Caution** This component rejects `pods` if they are not correctly configured.
 >Test your configuration in a test environment before applying policies to your
 >production cluster.
 
@@ -117,7 +120,7 @@ To install Supply Chain Security Tools - Policy Controller:
           namespace: ca-namespace
       ```
 
-      >**Note** This setting is allowed even if `custom_cas` is defined.
+      > **Note** This setting is allowed even if `custom_cas` is defined.
 
     - `custom_cas`:
       This setting enables adding certificate content in PEM format.
@@ -144,7 +147,7 @@ To install Supply Chain Security Tools - Policy Controller:
             ----- END CERTIFICATE -----
       ```
 
-      >**Note** This setting is allowed even if `custom_ca_secrets` is defined.
+      > **Note** This setting is allowed even if `custom_ca_secrets` is defined.
 
     - `deployment_namespace`:
       This setting controls the namespace to which this component is deployed.
@@ -184,16 +187,16 @@ To install Supply Chain Security Tools - Policy Controller:
     - `requests_cpu`:
       This setting controls the minimum CPU resource allocated to the Policy
       admission controller. During CPU contention, this value is used as a weighting
-      where higher values indicate more CPU time is allocated. The default value is "20m".
-      See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
+      where higher values indicate more CPU time is allocated. The default value is `20m`.
+      See [CPU resource units](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) in the Kubernetes documentation.
 
     - `requests_memory`:
       This setting controls the minimum memory resource allocated to the Policy
-      admission controller. The default value is "20Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
+      admission controller. The default value is `20Mi`. See [Memory resource units](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) in the Kubernetes documentation.
 
     - `tuf_enabled`:
-      This setting defines whether the TUF initialization is done on startup. It is a requirement for the support of the keyless verification.
-      The default value is "false", which means by default the keyless authorities of `ClusterImagePolicy`is not supported, but also that policy-controller does not have an external dependency on setup.
+      This setting defines whether the TUF initialization is done on startup. It is required for keyless verification support.
+      The default value is `false`, which means that keyless authorities of `ClusterImagePolicy` are not supported. Also, policy-controller does not have an external dependency on setup.
 
     - `tuf_root`:
       The root.json file content of the TUF mirror.
@@ -244,7 +247,7 @@ To install Supply Chain Security Tools - Policy Controller:
 
 After you run the commands earlier the policy controller is running.
 
->**Note** Policy Controller is now installed, but it does not enforce any
+> **Note** Policy Controller is now installed, but it does not enforce any
 policies by default. Policies must be explicitly configured on the cluster.
 To configure signature verification policies, see [Configuring Supply Chain
 Security Tools - Policy](configuring.md).

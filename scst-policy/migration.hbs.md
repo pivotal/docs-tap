@@ -1,19 +1,11 @@
 # Migration From Supply Chain Security Tools - Sign
 
-This section explains how to migrate the `ClusterImagePolicy` resource
+In TAP 1.4, the Image Policy Webhook is removed. If the Image Policy Webhook was actively
+used with the previous TAP versions in your cluster, you have to follow
+this section which explains how to migrate the `ClusterImagePolicy` resource
 from Image Policy Webhook to Policy Controller. For more information about
 additional features introduced in Policy Controller, see
 [Configuring Supply Chain Security Tools - Policy](configuring.md).
-
-## <a id="img-policy-webhook"></a> Add Policy Controller Namespace to Image Policy Webhook
-
-If there is an active Image Policy Webhook `ClusterImagePolicy`, it prevents
-Policy Controller from deploying. To ensure that Policy Controller deploys,
-update the Image Policy Webhook `ClusterImagePolicy` by adding `cosign-system`
-to the excluded namespaces. If an alternative `deployment_namespace` is
-specified for installing Policy Controller, exclude that namespace.
-For more information about how to exclude namespaces, see
-[Configuring Supply Chain Security Tools - Sign](../scst-sign/configuring.md#create-cip-resource)
 
 ## <a id="enable-controller"></a> Enable Policy Controller on Namespaces
 
@@ -204,28 +196,4 @@ spec:
     authorities:
     - static:
         action: pass
-```
-
-## <a id="uninstall-ipw"></a> Uninstall Image Policy Webhook
-
-After Policy Controller is correctly configured and you verify that
-is working as expected, you can proceed to uninstall the Image Policy Webhook:
-
-
-```console
-tanzu package installed delete image-policy-webhook --namespace tap-install
-```
-
-If you installed Image Policy Webhook using a profile, exclude it using your
-`tap-values.yaml` file:
-
-```yaml
-excluded_packages:
-  - image-policy-webhook.signing.apps.tanzu.vmware.com
-```
-
-Then update your Tanzu Application Platform installation:
-
-```console
-tanzu package installed update tap -n tap-install --values-file tap-values.yaml
 ```

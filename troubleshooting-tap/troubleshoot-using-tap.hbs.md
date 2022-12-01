@@ -2,6 +2,17 @@
 
 In this topic, you'll find troubleshooting information to help resolve issues using Tanzu Application Platform.
 
+## <a id='use-events'></a> Use events to find possible culprits
+
+Events can highlight issues with components in a supply chain. For example, high occurrences of `StampedObjectApplied`
+and/or `ResourceOutputChanged` may indicate problems with trashing on a given component.
+
+You can view the recent events for a workload by running the following:
+
+```console
+kubectl describe workload.carto.run <workload-name> -n <workload-ns>
+```
+
 ## <a id='missing-build-logs'></a> Missing build logs after creating a workload
 
 You create a workload, but no logs appear when you check for logs by running the following command:

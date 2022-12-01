@@ -15,6 +15,7 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 shared:
   ingress_domain: "INGRESS-DOMAIN"
   kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
+  kubernetes_version: "1.23.x" or "1.24.x" #Eg. For openshift 4.10 - "1.23.3" and for 4.11 - "1.24.1". Please pass appropriate value for patch version x.
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME" # To be used by Build Service by appending "/buildservice" and used by Supply chain by appending "/workloads".
     username: "KP-DEFAULT-REPO-USERNAME"
@@ -51,6 +52,8 @@ grype:
 scanning:
   metadataStore:
     url: "" # Configuration is moved, so set this string to empty.
+tap_telemetry:
+  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for the creation of Tanzu Application Platform usage reports.
 ```
 
 Where:
@@ -77,6 +80,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 - `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the Secret that contains the
 credentials to pull an image from the registry for scanning.
+- `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.
 
 > **Note** When you install Tanzu Application Platform, it is bootstrapped with the `lite`
 > set of dependencies, including buildpacks and stacks, for application builds.

@@ -297,3 +297,29 @@ Error: endpoint require 'http://' or 'https://' prefix
 This is because the `grype.metadataStore.url` value in the Tanzu Application
 Platform profile `values.yaml` was not configured with the correct prefix.
 Verify that the URL starts with either `http://` or `https://`.
+
+#### <a id="deprecated-pre-v1.2-templates"></a> Deprecated pre-v1.2 templates
+
+If the scan phase is in `Error` and the status condition message shows this:
+```
+Summary logs could not be retrieved: . error opening stream pod logs reader: container summary is not valid for pod scan-grypeimagescan-sample-public-zmj2g-hqv5g
+```
+
+One possible reason is due to using Grype Scanner ScanTemplates shipped with versions before Supply Chain Security Tools - Scan v1.2.0 which are now deprecated and are no longer supported in v1.4.0+.
+
+The two options to resolve this issue are:
+1. Upgrade Grype Scanner to v1.2+ (preferably latest). This will automatically replace the old ScanTemplates with the upgraded ScanTemplates.
+2. Create a ScanTemplate using this [steps](create-scan-template.hbs.md).
+
+
+#### <a id="incorrectly-configured-self-signed-cert"></a> Incorrectly configured self-signed cert
+
+If the pod logs show the following error:
+```
+x509: certificate signed by unknown authority
+```
+then this indicates that the self-signed cert may be incorrectly configured.
+
+To resolve this issue, follow this [example](../multicluster/reference/tap-values-build-sample.hbs.md) of how to set up the shared self-signed cert.
+
+The shared.ca_cert_data installation value can contain a PEM-encoded CA bundle. The scanning component will then trust the CAs contained in the bundle. The self-signed cert is configured through the [shared top level key](../partials/_view-package-config.hbs.md).
