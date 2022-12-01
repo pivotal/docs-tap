@@ -25,8 +25,7 @@ Some of these might be applicable depending on the supply chain in use. Verify i
 | [app-config](#app-config)             | Kubernetes configuration        | Creates Kubernetes config files (knative service / deployment - depending on workload type)       | Yes | Yes     | Yes |
 | [service-bindings](#service-bindings) | Kubernetes configuration        | Adds service bindings to the set of config files                                                  | Yes | Yes     | Yes |
 | [api-descriptors](#api-descriptors)   | Kubernetes configuration        | Adds api descriptors to the set of config files                                                   | Yes | Yes     | Yes |
-| [config-writer](#config-writer)       | Kubernetes configuration        | Writes configuration to a destination (git or registry) for further deployment to a _
-run_ cluster | Yes | Yes     | Yes |
+| [config-writer](#config-writer)       | Kubernetes configuration        | Writes configuration to a destination (git or registry) for further deployment to a _run_cluster | Yes | Yes     | Yes |
 | [deliverable](#deliverable)           | Kubernetes configuration        | Writes deliverable content to be extracted for use in a run cluster | Yes | Yes | Yes |
 
 
@@ -822,7 +821,7 @@ place.
 
 ## <a id = "deliverable"></a> deliverable
 
-The `deliverable` resource is responsible for creating a `Deliverable` object
+The `deliverable` resource is responsible for creating a `deliverable` object
 that represents the intention of delivering to the cluster the configurations
 that are produced by the supply chain.
 
@@ -838,7 +837,7 @@ Parameters:
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
-      name of the serviceaccount (in the same namespace as the Deliverable) to
+      name of the serviceaccount (in the same namespace as the deliverable) to
       use for providing the necessary permissions to create the children
       objects for deploying the objects created by the supply chain to the
       cluster.
@@ -857,17 +856,15 @@ Parameters:
 > `--param serviceAccount=...`.
 
 > **Note** On build clusters where a corresponding `ClusterDelivery` doesn't
-> exist, the Deliverable takes no effect (similarly to a Workload without a
+> exist, the deliverable takes no effect (similarly to a Workload without a
 > SupplyChain, no action is taken).
 
 ## Deliverable Parameters reference
 
 This section describes the parameters that are provided to the
-Deliverable object, such as what can be set on `deliverable.spec.params`.
+deliverable object, such as what can be set on `deliverable.spec.params`.
 
-The Deliverable is relevant in the context of deploying to a Kubernetes cluster
-that the configuration that is produced through the resources defined by
-a ClusterSupplyChain:
+The deliverable object applies the configuration that is produced by the resources defined by a ClusterSupplyChain to a Kubernetes cluster.:
 
 ```
       Workload              (according to ClusterSupplyChain in `build` cluster)
@@ -904,11 +901,11 @@ and the templates used by it, see:
 - [Out of the Box Delivery Basic](../scc/ootb-delivery-basic.hbs.md)
 - [Out of the Templates](../scc/ootb-templates.hbs.md)
 
-For information about the use of the Deliverable object in a multicluster
+For information about the use of the deliverable object in a multicluster
 environment, see [Getting started with multicluster Tanzu Application
 Platform](../multicluster/getting-started.hbs.md).
 
-For reference information about Deliverable, see [Deliverable and Delivery
+For reference information about deliverable, see [Deliverable and Delivery
 custom resources](https://cartographer.sh/docs/v0.5.0/reference/deliverable/).
 
 ## source provider
@@ -955,7 +952,7 @@ Parameters:
   <tr>
     <td><code>gitops_ssh_secret</code></td>
     <td>
-      Name of the secret in the same namespace as the `Deliverable` used for
+      Name of the secret in the same namespace as the `deliverable` used for
       providing credentials for fetching Kubernetes configuration files from
       the Git repository pointed at. See [Git authentication](../scc/git-auth.md).
     </td>
@@ -1003,7 +1000,7 @@ Parameters:
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
-      Name of the service account, in the same namespace as the Deliverable, you
+      Name of the service account, in the same namespace as the deliverable, you
       want to use to provide the necessary permissions for `kapp-controller` to
       deploy the objects to the cluster.
     </td>
@@ -1021,7 +1018,7 @@ For information about custom resource details, see [ImageRepository reference
 docs](../source-controller/reference.hbs.md#imagerepository).
 
 > **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the Deliverable object. To configure the `serviceAccount` parameter, use
+> the deliverable object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
 ## app deployer
@@ -1048,7 +1045,7 @@ Parameters:
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
-      Name of the service account, in the same namespace as the Deliverable,
+      Name of the service account, in the same namespace as the deliverable,
       you want to use to provide the necessary privileges for `App` to apply
       the Kubernetes objects to the cluster.
     </td>
@@ -1079,9 +1076,9 @@ Parameters:
 > **Note** the `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
 
 > **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the Deliverable object. To configure the `serviceAccount` parameter, use
+> the deliverable object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`. For details about RBAC and how `kapp-controller`
 > makes use of the ServiceAccount provided to it using the `serviceAccount`
-> parameter in the `Deliverable` object, see
+> parameter in the `deliverable` object, see
 > [`kapp-controller`'s Security
 > Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/).
