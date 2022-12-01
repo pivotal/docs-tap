@@ -1,7 +1,7 @@
 # Set up developer namespaces to use installed packages
 
 You can choose either one of the following two approaches to create a `Workload`
-for your application by using the registry credentials specified,
+for your application by using the registry credentials specified, 
 add credentials and Role-Based Access Control (RBAC) rules to the namespace
 that you plan to create the `Workload` in:
 
@@ -12,17 +12,20 @@ If you plan to install Out of the Box Supply Chain with testing and scanning, fo
 
 ## <a id='single-user-access'></a>Enable single user access
 
-Follow these steps to enable your current user to submit jobs to the Supply Chain:
+Follow these steps to enable your current user to submit workloads to the Supply Chain:
 
 As of TAP v1.4.0, `Namespace Provisioner` automatically handles everything for you.</br>
-Apply a specific label-selector and `Namespace Provisioner` takes care of the rest.</br>
-***Note:** `Namespace Provisioner` acts on any namespace with the label selector regardless of the label selector's value (even an empty string). 
+Add the label `namespaces ns1 apps.tanzu.vmware.com/tap-ns` to any namespace you'd like to set up
+and `Namespace Provisioner` will take care of the rest.</br>
 
-1. To create and set up a namespace called `ns1` execute the following commands:
-   ```
-   kubectl create namespace ns1
-   kubectl label namespaces ns1 apps.tanzu.vmware.com/tap-ns=""
-   ```
+>**Note** `Namespace Provisioner` acts on any namespace with the label `namespaces ns1 apps.tanzu.vmware.com/tap-ns` applied regardless of the label selector's value (even an empty string). 
+
+For example:<br>
+To create and set up a namespace called `ns1` execute the following commands:
+```console
+kubectl create namespace ns1
+kubectl label namespaces ns1 apps.tanzu.vmware.com/tap-ns=""
+```
 
 Unless you need to [enable additional users access with Kubernetes RBAC](#additional-user-access) after you've followed the instructions above, you're done!
 
@@ -31,15 +34,18 @@ Additonal instructions on how to customize and extend `namespace provisioner` wi
 
 ---------------
 ### Legacy namespace set up instructions 
+
 **These should be removed once TAP 1.4 docs are made public**
 If you're running an older version of TAP which doesn't include `Namespace Provisioner` you can follow the directions below:
+
 1. To add read/write registry credentials to the developer namespace, run:
 
-    ```console
-    tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
-    ```
+   ```console
+   tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME 
+   --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
+   ```
 
-    Where:
+   Where:
 
     - `YOUR-NAMESPACE` is the name you give to the developer namespace.
     For example, use `default` for the default namespace.
