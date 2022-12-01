@@ -92,7 +92,7 @@ For information about how to create a workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
 repository](../cli-plugins/apps/create-workload.hbs.md#workload-local-source).
 
-For reference documentation on GitRepository objects, see
+For more information about GitRepository objects, see
 [Git Repository](https://fluxcd.io/flux/components/source/gitrepositories/) in the Flux documentation.
 <a href = "https://fluxcd.io/flux/components/source/gitrepositories/" target = "_blank">Flux documentation</a>
 
@@ -116,7 +116,7 @@ Parameters:
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
-      The name of the service account (in the same namespace as the workload) you will use
+      The name of the service account (in the same namespace as the workload) to use
       to provide the credentials to `ImageRepository` for fetching
       the container images.
     </td>
@@ -697,9 +697,8 @@ Only the `server` workload type has the following configurable parameters:
   </tr>
 </table>
 
-
 For more information about the three different types of workloads, see [workload types](../workloads/workload-types.hbs.md).
-For a more detailed overview of the ports parameter, see, [`server`-specific Workload
+For a more detailed overview of the ports parameter, see [`server`-specific Workload
 parameters](../workloads/server.hbs.md#-server-specific-workload-parameters).
 
 ## <a id ="service-bindings"></a>service-bindings
@@ -861,7 +860,7 @@ Parameters:
 This section describes the parameters that are provided to the
 deliverable object, such as what can be set on `deliverable.spec.params`.
 
-The deliverable object applies the configuration that is produced by the resources defined by a ClusterSupplyChain to a Kubernetes cluster.
+The deliverable object applies the configuration produced by the resources defined by a ClusterSupplyChain to a Kubernetes cluster.
 
 ```
       Workload              (according to ClusterSupplyChain in `build` cluster)
@@ -1057,7 +1056,7 @@ Parameters:
   <tr>
     <td><code>gitops_sub_path<code> (deprecated)</td>
     <td>
-      The sub directory within the configuration bundle that is used for
+      The subdirectory within the configuration bundle used for
       looking up the files to apply to the Kubernetes cluster.
     </td>
     <td>
