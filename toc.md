@@ -87,6 +87,8 @@ This is the table of contents from which the Tanzu Application Platform Document
             - [Install default roles independently](authn-authz/install.md)
     - [Application Accelerator](application-accelerator/app-accelerator-overview.hbs.md)
       - [Install Application Accelerator](application-accelerator/install-app-acc.hbs.md)
+    - [Application Live View](app-live-view/app-live-view-about.hbs.md)
+      - [Install Application Live View](tap-gui/plugins/install-application-live-view.hbs.md)
     - [Convention Service](convention-service/about.md)
       - [Install Convention Service](convention-service/install-conv-service.md)
       - [Creating conventions](convention-service/creating-conventions.md)
