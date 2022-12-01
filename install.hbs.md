@@ -228,12 +228,16 @@ Refer to [Install multicluster Tanzu Application Platform profiles](multicluster
 ```yaml
 shared:
   ingress_domain: "INGRESS-DOMAIN"
+  ingress_issuer: # Optional, can denote a cert-manager.io/v1/ClusterIssuer of your choice. Defaults to "tap-ingress-selfsigned". 
+
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
+
   kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
   kubernetes_version: "1.23.x" or "1.24.x" #Eg. For openshift 4.10 - "1.23.3" and for 4.11 - "1.24.1". Please pass appropriate value for patch version x.
+
   ca_cert_data: | # To be passed if using custom certificates.
       -----BEGIN CERTIFICATE-----
       MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
