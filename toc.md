@@ -275,7 +275,6 @@ docs.vmware.com is built.
             - [Register a workload](app-sso/app-operators/register-an-app-with-app-sso.md)
             - [Configure grant types](app-sso/app-operators/grant-types.md)
             - [Secure a workload](app-sso/app-operators/tutorials/securing-first-workload.md)
-            - [Set up developer namespaces](app-sso/appendix/tap-dev-ns-setup-example.md)
         - [Custom Resource Definitions](app-sso/crds/clientregistration.md)
             - [ClientRegistration](app-sso/crds/clientregistration.md)
             - [AuthServer](app-sso/crds/authserver.md)

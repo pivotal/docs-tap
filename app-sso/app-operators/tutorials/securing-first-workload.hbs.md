@@ -133,9 +133,6 @@ kubectl create namespace workloads
 Within the `workloads` namespace, apply [TAP required developer namespaces](../../../set-up-namespaces.md)
 as described.
 
-👉 Follow along
-with [TAP developer namespace setup example in the Appendix](../../appendix/tap-dev-ns-setup-example.md).
-
 ### Apply the `ClientRegistration`
 
 Apply the `client.yaml` definition file (described [above](#the-sample-applications-clientregistration))
