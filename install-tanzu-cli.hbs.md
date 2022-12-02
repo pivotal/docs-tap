@@ -28,11 +28,11 @@ To accept the Tanzu Application Platform EULA:
 2. Select the ***Click here to sign the EULA*** link in the yellow warning box under the release
    drop-down menu. If the yellow warning box is not visible, the EULA has already been accepted.
 
-    ![Screenshot of a VMware Tanzu Network download page.](images/install-tanzu-cli-eulas1.png)
+    ![Screenshot of a VMware Tanzu Network download page with notice stating user must sign EULA before downloading.](images/install-tanzu-cli-eulas1.png)
 
 3. Select ***Agree*** in the bottom-right of the dialog box as seen in the following screenshot.
 
-    ![Screenshot of a dialog box inviting the reader to accept the EULA. The AGREE button is framed.](images/install-tanzu-cli-eulas2.png)
+    ![Screenshot of a dialog box inviting the reader to accept the EULA. The Agree button is framed.](images/install-tanzu-cli-eulas2.png)
 
 
 ## <a id='cluster-context'></a> Set the Kubernetes cluster context
