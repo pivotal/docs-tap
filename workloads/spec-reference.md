@@ -11,9 +11,9 @@ The supply chains and templates provided by the Out of the Box packages contain 
 parameters that customize supply chain behavior. This section describes the `workload.spec.params`
 parameters that can be configured in workload objects. The following table provides a list of supply
 chain resources organized by the resource in the supply chain where they are used. Some of these
-resources might be applicable depending on the supply chain in use.
+resources might not be applicable depending on the supply chain in use.
 
-### List of Supply Chain Resources
+### List of Supply Chain Resources for Workload Object
 
 | Supply Chain Resource                 | Output Type                     | Purpose                                                                                           | Basic | Testing | Scanning |
 |---------------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------|-------|---------| --- |
@@ -28,7 +28,6 @@ resources might be applicable depending on the supply chain in use.
 | [api-descriptors](#api-descriptors)   | Kubernetes configuration        | Adds api descriptors to the set of config files                                                   | Yes | Yes     | Yes |
 | [config-writer](#config-writer)       | Kubernetes configuration        | Writes configuration to a destination (git or registry) for further deployment to a run cluster | Yes | Yes     | Yes |
 | [deliverable](#deliverable)           | Kubernetes configuration        | Writes deliverable content to be extracted for use in a run cluster | Yes | Yes | Yes |
-| [app deployer](#app-deployer)           | n/a       | Applies configuration produced by a supply chain to the cluster | Yes | Yes | Yes |
 
 For information about supply chains, see:
 
@@ -91,7 +90,7 @@ Parameters:
 > implementation, but some providers such as Azure DevOps, require you to use
 > `libgit2` due to the server-side implementation providing support
 > only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2). For information about the
-> features supported by each implementation, see [Git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux > documentation.
+> features supported by each implementation, see [Git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux documentation.
 
 For information about how to create a workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
@@ -148,7 +147,7 @@ CLI, see [Create a workload](../cli-plugins/apps/create-workload.hbs.md#cli-plug
 
 When carrying pre-built Java artifacts, `MavenArtifact` makes the artifact available to
 further resources in the supply chain as a tarball. You can wrap the tarball as
-a container image for further deployment.Differently from `git` and `image`, its configuration
+a container image for further deployment. Differently from `git` and `image`, its configuration
 is solely driven by parameters in the workload.
 
 Parameters:
@@ -259,8 +258,8 @@ with Testing on Jenkins](../scc/ootb-supply-chain-testing-with-jenkins.hbs.md).
 
 ### <a id="source-scanner"></a>source-scanner
 
-The `source-scanner` resource, included solely in
-`ootb-supply-chain-testing-scanning`, scans the source code
+The `source-scanner` resource is available in
+`ootb-supply-chain-testing-scanning`. It scans the source code
 that is tested by pointing a
 [SourceScan](../scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
 code as the tests.
@@ -279,7 +278,7 @@ Parameters:
   <tr>
     <td><code>scanning_source_template</code></td>
     <td>
-      The name of the ScanTemplate object in the same namespace as the workload to
+      The name of the ScanTemplate object (in the same namespace as the workload) to
       use for running the scans against the source code.
     </td>
     <td>
@@ -293,7 +292,7 @@ Parameters:
   <tr>
     <td><code>scanning_source_policy</code></td>
     <td>
-      The name of the ScanPolicy object in the same namespace as the workload to
+      The name of the ScanPolicy object (in the same namespace as the workload) to
       use when evaluating the scan results of a source scan.
     </td>
     <td>
@@ -353,7 +352,7 @@ Parameters:
   <tr>
     <td><code>serviceAccount</code></td>
     <td>
-      The name of the serviceaccount, in the same namespace as the Workload, to use
+      The name of the serviceaccount (in the same namespace as the workload) to use
       for providing credentials to `Image` for pushing the
       container images it builds to the configured registry.
     </td>
@@ -413,7 +412,7 @@ Parameters:
 </table>
 
 > **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the Workload object. To configure the `serviceAccount` parameter, use
+> the workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
 For information about
@@ -504,7 +503,7 @@ Parameters:
 </table>
 
 > **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the Workload object. To configure the `serviceAccount` parameter, use
+> the workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
 For information about the
@@ -515,11 +514,11 @@ image](../scc/pre-built-image.hbs.md).
 
 ### <a id="image-scanner"></a>image-scanner
 
-
-The `image-scanner` resource is included only in `ootb-supply-chain-testing-scanning`. This resource
-is responsible for scanning a container image, either built by using the supply chain or prebuilt,
-persisting the results in the store, and gating the image from moving forward in case the CVEs found
-are not compliant with the ScanPolicy referenced by the ImageScan object create for doing so.
+The `image-scanner` resource is included only in `ootb-supply-chain-testing-scanning`.
+This resource scans a container image (either built by using the supply chain or prebuilt),
+persisting the results in the store, and gating the image from moving forward in
+case the CVEs found are not compliant with the ScanPolicy referenced by the ImageScan
+object create for doing so.
 
 Parameters:
 
@@ -567,8 +566,8 @@ Store](../scst-store/overview.hbs.md).
 
 ### <a id ="config-provider"></a>config-provider
 
-The `config-provider` resource in the supply chains is responsible for
-generating a PodTemplateSpec to use in application configs, such as knative services and deployments,
+The `config-provider` resource in the supply chains generates a PodTemplateSpec
+to use in application configs, such as Knative services and deployments,
 to represent the desired pod configuration to instantiate to run the application in containers.
 For more information, see [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation.
 
@@ -659,7 +658,7 @@ Conventions](../spring-boot-conventions/about.hbs.md).
 
 ### <a id ="app-config"></a>app-config
 
-The `app-config` resource is responsible for preparing a ConfigMap with the
+The `app-config` resource prepares a ConfigMap with the
 Kubernetes configuration that is used for instantiating an application in
 the form of a particular workload type in a cluster.
 
@@ -742,9 +741,9 @@ Tanzu Application Platform](../getting-started/consume-services.hbs.md).
 
 ### <a id ="api-descriptors"></a>api-descriptors
 
-The `api-descriptor` resource takes care of adding an
+The `api-descriptor` resource adds an
 [APIDescriptor](../api-auto-registration/key-concepts.hbs.md) to the set of
-Kubernetes objects to deploy such that API auto registration takes place.
+Kubernetes objects to deploy. This enables API auto registration.
 
 Parameters:
 
@@ -802,7 +801,7 @@ For more details about API auto registration, see [Use API Auto Registration](..
 ### <a id ="config-writer"></a> config-writer (git or registry)
 
 The `config-writer` resource is responsible for performing the last mile of the
-supply chain: persisting in an external system (registry or git repository) the
+supply chain: persisting in an external system (registry or Git repository) the
 Kubernetes configuration generated throughout the supply chain.
 
 There are three methods:
@@ -812,13 +811,12 @@ There are three methods:
     - solely by using the push of a commit, or
     - pushing a commit _and_ opening a pull request.
 
-Details about the different modes of operation are found in [Gitops vs
-RegistryOps](../scc/gitops-vs-regops.hbs.md) with the parameters documented in
-place.
+For more information about the different modes of operation, see [Gitops vs
+RegistryOps](../scc/gitops-vs-regops.hbs.md).
 
 ### <a id ="deliverable"></a> deliverable
 
-The `deliverable` resource is responsible for creating a `deliverable` object
+The `deliverable` resource creates a `deliverable` object
 that represents the intention of delivering to the cluster the configurations
 that are produced by the supply chain.
 
@@ -856,72 +854,10 @@ Parameters:
 > exist, the deliverable takes no effect (similarly to a workload without a
 > SupplyChain, no action is taken).
 
-### <a id="app-deployer"></a>app deployer
-
-The `app-deploy` resource in the ClusterDelivery is responsible for applying the
-Kubernetes configuration that is built by the supply chain, pushed to
-either a Git repository or image repository, and applied to the cluster.
-
-#### App
-
-Regardless of where the configuration comes from, an
-[`App`](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/) object is
-instantiated to deploy the set of Kubernetes configuration files to the cluster.
-
-Parameters:
-
-<table>
-  <tr>
-    <th>Parameter name</th>
-    <th>Meaning</th>
-    <th>Example</th>
-  </tr>
-
-  <tr>
-    <td><code>serviceAccount</code></td>
-    <td>
-      The name of the service account, in the same namespace as the deliverable,
-      you want to use to provide the necessary privileges for `App` to apply
-      the Kubernetes objects to the cluster.
-    </td>
-    <td>
-      <pre>
-      - name: serviceAccount
-        value: default
-      </pre>
-    </td>
-  </tr>
-
-  <tr>
-    <td><code>gitops_sub_path<code> (deprecated)</td>
-    <td>
-      The subdirectory within the configuration bundle used for
-      looking up the files to apply to the Kubernetes cluster.
-    </td>
-    <td>
-      <pre>
-      - name: gitops_sub_path
-        value: ./config
-      </pre>
-    </td>
-  </tr>
-
-</table>
-
-> **Note** The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
-
-> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the deliverable object. To configure the `serviceAccount` parameter, use
-> `--param serviceAccount=...`. For details about RBAC and how `kapp-controller`
-> makes use of the ServiceAccount provided to it using the `serviceAccount`
-> parameter in the `deliverable` object, see
-> [`kapp-controller`'s Security
-> Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/) in the Carvel documentation.
-
 ## <a id ="deliverable-parameters"></a>Deliverable Parameters reference
 
-This section describes the parameters that are provided to the
-deliverable object, such as what can be set on `deliverable.spec.params`.
+This section describes the `deliverable.spec.params` parameters that are provided to the
+deliverable object.
 
 The deliverable object applies the configuration produced by the resources defined by a
 ClusterSupplyChain to a Kubernetes cluster.
@@ -934,11 +870,11 @@ ClusterSupplyChain to a Kubernetes cluster.
         - test
         - scan
         - generate kubernetes config
-        - push k8s config to git repository / image registry
+        - push k8s config to Git repository / image registry
 
       Deliverable           (according to ClusterDelivery in `run` cluster)
 
-        - fetch kubernetes config (from git repository / image registry)
+        - fetch kubernetes config (from Git repository / image registry)
         - apply kubernetes objects to cluster
 
 ```
@@ -955,6 +891,13 @@ The following section describes the two resources defined in the `basic` Cluster
                                         kubernetes configuration fetched
 
 ```
+### List of Supply Chain Resources for Deliverable Object
+
+| Supply Chain Resource                 | Output Type                     | Purpose                                                                                           | Basic | Testing | Scanning |
+|---------------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------|-------|---------| --- |
+| [source provider](#source-provider-del)           | n/a       | Fetch Kubernetes config from Git repository or image registry | Yes | Yes | Yes |
+| [app deployer](#app-deployer)           | n/a       | Applies configuration produced by a supply chain to the cluster | Yes | Yes | Yes |
+
 
 For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
 and the templates used by it, see:
@@ -969,13 +912,13 @@ Platform](../multicluster/getting-started.hbs.md).
 For reference information about deliverable, see [Deliverable and Delivery
 custom resources](https://cartographer.sh/docs/v0.5.0/reference/deliverable/) in the Cartographer documentation.
 
-### source provider
+### <a id ="source-provider-del"></a>source-provider
 
 The `source-provider` resource in the basic ClusterDelivery creates objects
 that continuously fetch Kubernetes configuration files from a Git repository
 or container image registry so that it can apply those to the cluster.
 
-Regardless of where it fetches that Kubernetes configuration from (git
+Regardless of where it fetches that Kubernetes configuration from (Git
 repository or image registry), it exposes those files to further resources along
 the ClusterDelivery as a tarball.
 
@@ -1079,5 +1022,64 @@ docs](../source-controller/reference.hbs.md#imagerepository).
 > the deliverable object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
+### <a id="app-deployer"></a>app deployer
 
->
+The `app-deploy` resource in the ClusterDelivery applies the
+Kubernetes configuration that is built by the supply chain, pushed to
+either a Git repository or image repository, and applied to the cluster.
+
+#### App
+
+Regardless of where the configuration comes from, an
+[`App`](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/) object is
+instantiated to deploy the set of Kubernetes configuration files to the cluster.
+
+Parameters:
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount</code></td>
+    <td>
+      The name of the service account, in the same namespace as the deliverable,
+      you want to use to provide the necessary privileges for `App` to apply
+      the Kubernetes objects to the cluster.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_sub_path<code> (deprecated)</td>
+    <td>
+      The subdirectory within the configuration bundle used for
+      looking up the files to apply to the Kubernetes cluster.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_sub_path
+        value: ./config
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+> **Note** The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
+
+> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
+> the deliverable object. To configure the `serviceAccount` parameter, use
+> `--param serviceAccount=...`. For details about RBAC and how `kapp-controller`
+> makes use of the ServiceAccount provided to it using the `serviceAccount`
+> parameter in the `deliverable` object, see
+> [`kapp-controller`'s Security
+> Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/) in the Carvel documentation.

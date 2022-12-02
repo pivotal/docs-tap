@@ -79,7 +79,7 @@ docs.vmware.com is built.
   - [Web](workloads/web.md)
   - [Server](workloads/server.md)
   - [Worker](workloads/worker.md)
-  - [Spec Reference](workloads/spec-reference.md)
+  - [Parameter Reference](workloads/spec-reference.md)
   - [Functions (Beta)](workloads/using-functions.md)
       - [Using functions](workloads/using-functions.md)
       - [Iterate on your function](workloads/iterate-functions.md)
