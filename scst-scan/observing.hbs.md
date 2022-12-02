@@ -323,3 +323,13 @@ then this indicates that the self-signed cert may be incorrectly configured.
 To resolve this issue, follow this [example](../multicluster/reference/tap-values-build-sample.hbs.md) of how to set up the shared self-signed cert.
 
 The shared.ca_cert_data installation value can contain a PEM-encoded CA bundle. The scanning component will then trust the CAs contained in the bundle. The self-signed cert is configured through the [shared top level key](../partials/_view-package-config.hbs.md).
+
+#### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
+
+The `docker` field and related sub-fields by Supply Chain Security Tools - Scan Controller, Grype Scanner, or Snyk Scanner were deprecated in TAP 1.4.0. Previously these fields could be used to populate the `registry-credentials` secret. If you encounter the following error during installation:
+```
+UNAUTHORIZED: unauthorized to access repository
+```
+The recommended migration path for users who are setting up their namespaces manually is to add registry credentials to both the developer namespace and the `scan-link-system` namespace, using these [instructions](../partials/_set-up-namespaces.hbs.md).
+
+Note: This manual step does not apply to users who used `--export-to-all-namespaces` when setting up the TAP package repo.
