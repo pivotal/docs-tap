@@ -27,8 +27,7 @@ For more information, see [Overview of multicluster Tanzu Application Platform](
 
 To enable CVE scan results:
 
-1. [Create a read-only service account](../../scst-store/create-service-account.hbs.md#ro-serv-accts)
-   to obtain an access token for the metadata store.
+1. [Obtain the read-write token](../../scst-store/create-service-account.hbs.md#getting-access-token), which is created by default when installing Tanzu Application Platform (Alternatively, [create an additional read-write service account](../../scst-store/create-service-account.hbs.md#rw-serv-accts))
 2. Add this proxy configuration to the `tap-gui:` section of `tap-values.yaml`:
 
     ```yaml
@@ -44,7 +43,7 @@ To enable CVE scan results:
               X-Custom-Source: project-star
     ```
 
-    Where `ACCESS-TOKEN` is the token you obtained after creating a read-only service account.
+    Where `ACCESS-TOKEN` is the token you obtained after creating a read-write service account.
 
 > **Important** The `Authorization` value must start with the word `Bearer`.
 

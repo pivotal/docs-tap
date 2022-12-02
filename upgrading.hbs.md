@@ -59,6 +59,12 @@ The following sections describe how to upgrade in different scenarios.
 
 ### <a id="profile-based-instruct"></a> Upgrade instructions for Profile-based installation
 
+#### Changes affecting upgrades
+
+1. Keyless support deactivated by default
+1. Image Policy Webhook no longer used
+1. CVE results require a read-write service account
+
 >**Note** In Tanzu Application Platform v1.4.0, keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](scst-policy/install-scst-policy.hbs.md).
 
 To support the keyless authorities in `ClusterImagePolicy`, Policy Controller no longer initializes TUF by default. To continue using keyless authorities, you must set the `policy.tuf_enabled` field to `true` in the `tap-values.yaml` file during the upgrade process.
@@ -67,7 +73,11 @@ By default, the public official Sigstore "The Update Framework (TUF) server" is 
 You can use an alternative Sigstore Stack by setting `policy.tuf_mirror` and `policy.tuf_root`.
 
 > **Note** In Tanzu Application Platform v1.4.0, Image Policy Webhook is removed. If this component was actively being used, follow
-[these](./scst-policy/migration.hbs.md) steps to migrate to Policy Controller.
+[these steps](./scst-policy/migration.hbs.md) to migrate to Policy Controller.
+
+> **Note** In Tanzu Application Platform v1.4.0, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account.  Tanzu Application Platform v1.3.0 used a read-only service account. Follow [these steps](/tap-gui/plugins/scc-tap-gui.hbs.md#scan) to enable CVE results.
+
+#### Performing the upgrade
 
 If you installed Tanzu Application Platform by using a profile, you can perform the upgrade by running the following command in the directory where the `tap-values.yaml` file resides:
 
