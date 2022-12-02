@@ -1,38 +1,52 @@
-# Memory View in Spring Boot Dashboard
+# Use Memory View in Spring Boot Dashboard
 
-For more information on Spring Boot Dashboard, see
+This topic describes how to view memory use by using Spring Boot Dashboard.
+
+For more information about Spring Boot Dashboard, see
 [Spring Boot Dashboard](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-boot-dashboard).
 
-## <a id="prerequisites"></a> Prerequisites
+## <a id="prereqs"></a> Prerequisites
 
 To see the Memory View in Spring Boot Dashboard you need:
 
 - A Tanzu Spring Boot application, such as
-[tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app)
-- Spring Boot Extension Pack (includes Spring Boot Dashboard)
-[extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack)
+  [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app)
+- The [Spring Boot Extension Pack](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack),
+  which includes Spring Boot Dashboard
 
-## <a id="deploy-workload"></a> Deploy a Workload
+## <a id="deploy-workload"></a> Deploy a workload
 
-To deploy the workload for an app to a cluster, see the **Deploy a Workload to the Cluster** section of [Integrating Live Hover by using Spring Boot Tools](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4/tap/GUID-vscode-extension-live-hover.html#deploy-a-workload-to-the-cluster-2)
+Deploy the workload for an app to a cluster by following the steps in
+[Deploy a Workload to the Cluster](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4/tap/GUID-vscode-extension-live-hover.html#deploy-workload).
 
-1. To view the Spring Boot Dashboard, run `View: Show Spring Boot Dashboard` from the Command Palette.
+## <a id="view-memory"></a> View memory use in Spring Boot Dashboard
 
-1. When the app is running, the  `Memory View` section is displayed in Spring Boot Dashboard. The graphical representation in the memory view highlights the memory use   inside of the JVM. The drop downs below the graph allows you to switch between different running processes and graphical views.
+To view the Spring Boot Dashboard, run `View: Show Spring Boot Dashboard` from the Command Palette.
 
-    The heap and non-heap memeory regions provides memory insights into the application. The real-time graphs displays a stacked overview of the different spaces in memory relative to the total memory used and total memory size.
+When the app is running, the Memory View section is displayed in Spring Boot Dashboard.
+The graphical representation in the memory view highlights the memory use inside the Java virtual
+machine (JVM).
+The drop-down menus beneath the graph enable you to switch between different running processes and
+graphical views.
 
-    The memory view also contains graphs to display the GC pauses and GC events. Long and frequent GC pauses are a good indicator that the app is having a memory problem that needs further investigation.
+The heap and non-heap memory regions provide memory insights into the application.
+The real-time graphs display a stacked overview of the different spaces in memory relative to the
+total memory used and total memory size.
 
-    ![Spring Boot Dashboard Memory View Heap Memory.](../images/vscode-heap-memory-example.png)
+The memory view also contains graphs to display the GC pauses and GC events.
+Long and frequent GC pauses indicate that the app is having a memory problem that requires further
+investigation.
 
-    ![Spring Boot Dashboard Memory View Non Heap Memory.](../images/vscode-nonheap-memory-example.png)
+![Screenshot of Spring Boot Dashboard Memory View Heap Memory.](../images/vscode-heap-memory-example.png)
 
-    ![Spring Boot Dashboard Memory View GC Pauses.](../images/vscode-gcpauses-example.png)
+![Screenshot of Spring Boot Dashboard Memory View Non Heap Memory.](../images/vscode-nonheap-memory-example.png)
 
-    ![Spring Boot Dashboard Memory View Garbage Collections.](../images/vscode-garbage-collection-example.png)
+![Screenshot of Spring Boot Dashboard Memory View Garbage Collection Pauses.](../images/vscode-gcpauses-example.png)
 
-The graphs show only real-time data and you can configure the number of data points to view and interval by enabling it in 
-**Code** > **Preferences** > **Settings** > **Extensions** > **Spring Boot Dashboard** > **Memory View Settings**. 
+![Screenshot of Spring Boot Dashboard Memory View Garbage Collections.](../images/vscode-garbage-collection-example.png)
 
-   ![Spring Boot Dashboard Memory View Settings.](../images/vscode-memory-view-settings.png)
+The graphs show only real-time data. You can configure the number of data points to view and the
+interval by changing the settings. To access the settings, go to
+**Code** > **Preferences** > **Settings** > **Extensions** > **Spring Boot Dashboard** > **Memory View Settings**.
+
+![Screenshot of Spring Boot Dashboard Memory View Settings.](../images/vscode-memory-view-settings.png)
