@@ -40,6 +40,9 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 - Added an **Impacted Workloads** column to the **Stage Details** section of scanning stages, so that
   it is now easier to see how many workloads are impacted by the CVE that the scan detected.
 
+#### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
+- Users no longer need to create a package overlay to enable Grype in offline and air-gapped environments. Refer to our updated [instructions](./partials/scst-scan/_offline-airgap.hbs.md).
+
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
 This release has the following breaking changes, listed by area and component.
 
@@ -48,6 +51,8 @@ This release has the following breaking changes, listed by area and component.
 - `Tanzu Debug` no longer port forwards the application port (8080).
 
 #### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
+- Removed deprecated ScanTemplates:
+  - Deprecated Grype ScanTemplates shipped with versions prior to TAP 1.2.0 have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
 - Deprecation notice:
   - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in TAP 1.7.0.
   - The deprecation will impact the following components: Scan Controller, Grype Scanner and Snyk Scanner.
