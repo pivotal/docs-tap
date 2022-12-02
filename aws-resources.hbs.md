@@ -51,12 +51,16 @@ Where:
 To create an EKS cluster in the specified region, run:
 
 ```
-eksctl create cluster --name $EKS_CLUSTER_NAME --managed --region $AWS_REGION --instance-types t3.large --version 1.22 --with-oidc -N 5
+eksctl create cluster --name $EKS_CLUSTER_NAME --managed --region $AWS_REGION --instance-types t3.large --version 1.23 --with-oidc -N 5
 ```
 
 Creating the control plane and node group can take anywhere from 30-60 minutes.
 
->**Note** This step is optional if you already have an existing EKS Cluster of at least v1.22 with OpenID Connect (OIDC) authentication enabled. To enable the OIDC provider, see this [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html).
+>**Note** This step is optional if you already have an existing EKS Cluster of at least v1.23 with OpenID Connect (OIDC) authentication enabled. To enable the OIDC provider, see this [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html).
+
+## <a id='Install EBS CSI Driver'></a>Install EBS CSI Driver
+
+Starting with EKS 1.23, the EBS CSI driver is no longer installed by default, which is required for the Tanzu Application Platform.  Ensure it is installed using the [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/managing-ebs-csi.html).
 
 ## <a id='create-container-repos'></a>Create the container repositories
 
