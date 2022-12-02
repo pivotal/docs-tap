@@ -92,6 +92,9 @@ This release has the following security fixes, listed by area and component.
 #### <a id='1-4-0-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
 - `python` has been updated to `3.7.5-22.ph3`
 
+#### <a id="1-4-0-api-auto-registration-fixes"></a> API Auto Registration
+- Base image updated to use the latest Paketo Jammy Base image.
+
 ### <a id='1-4-0-resolved-issues'></a> Resolved issues
 
 The following issues, listed by area and component, are resolved in this release.
@@ -99,7 +102,6 @@ The following issues, listed by area and component, are resolved in this release
 #### <a id="1-4-0-api-auto-registration-ri"></a> API Auto Registration
 
 - Now periodically checks the original API specification from the defined location to find changes, and registers any changes into the `API Descriptor`, triggering also the reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or frequency is configurable through the new value `sync_period`. The default value is 5 minutes.
-- Base image updated to resolve [CVE-2022-3786](https://nvd.nist.gov/vuln/detail/CVE-2022-3786) and [CVE-2022-3602](https://nvd.nist.gov/vuln/detail/CVE-2022-3602).
 
 #### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
 
