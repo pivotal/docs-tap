@@ -20,12 +20,25 @@ and `Namespace Provisioner` will take care of the rest.</br>
 
 >**Note** `Namespace Provisioner` acts on any namespace with the label `namespaces ns1 apps.tanzu.vmware.com/tap-ns` applied regardless of the label selector's value (even an empty string). 
 
-For example:<br>
-To create and set up a namespace called `ns1` execute the following commands:
-```console
-kubectl create namespace ns1
-kubectl label namespaces ns1 apps.tanzu.vmware.com/tap-ns=""
-```
+To create and set up a namespace called `ns1` execute the following:</br>
+1. create and label the namespace:
+    ```console
+    kubectl create namespace ns1
+    kubectl label namespaces ns1 apps.tanzu.vmware.com/tap-ns=""
+    ```
+2. (**Conditionally Optional**) - The `registry-credentials` secret, which is referenced by the Tanzu Build Service, is typically added during TAP installation at which time it gets exported to all namespaces. This secret is required for `Namespace Provisioner` to work properly.</br>
+If this secret wasn't exported to all namespaces for any reason, you will have to manually create this secret in namespace `ns1`.
+  * check to see if `registry-credentials` was created and exported to all namespaces:
+    ```console
+    tanzu secret registry list -n tap-install
+    ```
+  * Look for `registry-credentials` in the output from the command above.</br>
+  If the `EXPORTED` value _**is not**_ `to all namespaces`, you must create the secret in namespace `ns1`:
+    ```console
+    tanzu secret registry add registry-credentials \
+    --server REGISTRY-SERVER --username REGISTRY-USERNAME \
+    --password REGISTRY-PASSWORD --namespace ns1 --yes
+    ```
 
 Unless you need to [enable additional users access with Kubernetes RBAC](#additional-user-access) after you've followed the instructions above, you're done!
 
