@@ -15,7 +15,7 @@ The Application Accelerator user interface(UI) enables you to discover available
 
 The following diagram of Accelerator components illustrates the Application Accelerator architecture.
 
-![Diagram showing the Application Accelerator architecture](images/architecture-v0-5-0.png)
+![Accelerator repos interacting with Kubernetes cluster containing Controllers, Template Engine, and API server. APIs, CLI tools, and web UI also shown.](images/architecture-v0-5-0.png)
 
 ### <a id="how-does-it-work"></a>How does Application Accelerator work?
 
@@ -27,12 +27,12 @@ Accelerator custom resources (CRs) control which repositories appear in the Appl
 You can maintain CRs by using Kubernetes tools such as kubectl or by using the Tanzu CLI accelerator commands.
 The Accelerator controller reconciles the CRs with a Flux2 Source Controller to fetch files from GitHub or GitLab.
 
-The Application Accelerator UI gives you a searchable list of accelerators to choose from.
+The Application Accelerator web UI gives you a searchable list of accelerators to choose from.
 After you select an accelerator, the UI presents input fields for any input options.
 
 Application Accelerator sends the input values to the Accelerator Engine for processing.
 The Engine then returns the project in a ZIP file.
-You can open the project in your favorite integrated development environment(IDE) to develop further.
+You can open the project in your favorite integrated development environment (IDE) to develop further.
 
 ## <a id="next-steps"></a>Next steps
 
