@@ -1,4 +1,4 @@
-# Enable Authorization on Remote GKE Clusters
+# View resources on Remote GKE Clusters
 
 This section describes two supported options to add access-controlled visibility for a remote GKE cluster:
 
