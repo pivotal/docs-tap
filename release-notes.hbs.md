@@ -48,8 +48,6 @@ This release has the following breaking changes, listed by area and component.
 - `Tanzu Debug` no longer port forwards the application port (8080).
 
 #### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
-- Removed deprecated ScanTemplates:
-  - Deprecated Grype ScanTemplates shipped with versions prior to TAP 1.2.0 have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
 - Deprecation notice:
   - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in TAP 1.7.0.
   - The deprecation will impact the following components: Scan Controller, Grype Scanner and Snyk Scanner.
