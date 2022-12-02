@@ -13,7 +13,7 @@ The Application Accelerator user interface(UI) enables you to discover available
 
 ## <a id="architecture"></a>Architecture
 
-The following diagram illustrates the Application Accelerator architecture.
+The following diagram of Accelerator components illustrates the Application Accelerator architecture.
 
 ![Accelerator repos interacting with Kubernetes cluster containing Controllers, Template Engine, and API server. APIs, CLI tools, web UI, and IDE also shown.](images/architecture-v1-3-0.png)
 
