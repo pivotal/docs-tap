@@ -856,12 +856,13 @@ Parameters:
 
 ## <a id ="deliverable-parameters"></a>Deliverable Parameters reference
 
-This section describes the `deliverable.spec.params` parameters that are provided to the
-deliverable object.
-
 The deliverable object applies the configuration produced by the resources defined by a
 ClusterSupplyChain to a Kubernetes cluster.
 
+This section describes the `deliverable.spec.params` parameters that can be configured in the
+deliverable object. The following section describes the two resources defined in the `basic`
+ClusterDelivery part of the `ootb-delivery-basic` package:
+<!---
 ```console
       Workload              (according to ClusterSupplyChain in `build` cluster)
 
@@ -879,9 +880,6 @@ ClusterSupplyChain to a Kubernetes cluster.
 
 ```
 
-The following section describes the two resources defined in the `basic` ClusterDelivery part of the
-`ootb-delivery-basic` package:
-
 ```console
     source-provider                     fetches kubernetes configuration
         |
@@ -891,9 +889,10 @@ The following section describes the two resources defined in the `basic` Cluster
                                         kubernetes configuration fetched
 
 ```
-### List of Supply Chain Resources for Deliverable Object
+--->
+### List of Cluster Delivery Resources for Deliverable Object
 
-| Supply Chain Resource                 | Output Type                     | Purpose                                                                                           | Basic | Testing | Scanning |
+| Cluster Delivery Resource                 | Output Type                     | Purpose                                                                                           | Basic | Testing | Scanning |
 |---------------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------|-------|---------| --- |
 | [source provider](#source-provider-del)           | n/a       | Fetch Kubernetes config from Git repository or image registry | Yes | Yes | Yes |
 | [app deployer](#app-deployer)           | n/a       | Applies configuration produced by a supply chain to the cluster | Yes | Yes | Yes |
