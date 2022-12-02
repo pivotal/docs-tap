@@ -863,35 +863,6 @@ This section describes the `deliverable.spec.params` parameters that can be conf
 deliverable object. The following section describes the two resources defined in the `basic`
 ClusterDelivery part of the `ootb-delivery-basic` package:
 
-<!--
-```console
-      Workload              (according to ClusterSupplyChain in `build` cluster)
-
-        - fetch source
-        - build
-        - test
-        - scan
-        - generate kubernetes config
-        - push k8s config to Git repository / image registry
-
-      Deliverable           (according to ClusterDelivery in `run` cluster)
-
-        - fetch kubernetes config (from Git repository / image registry)
-        - apply kubernetes objects to cluster
-
-```
-
-```console
-    source-provider                     fetches kubernetes configuration
-        |
-        |  kubernetes configuration
-        |
-    app-deploy                          deploys to the cluster the objects in the
-                                        kubernetes configuration fetched
-
-```
--->
-
 ### List of Cluster Delivery Resources for Deliverable Object
 
 | Cluster Delivery Resource                 | Output Type                     | Purpose                                                                                           | Basic | Testing | Scanning |
