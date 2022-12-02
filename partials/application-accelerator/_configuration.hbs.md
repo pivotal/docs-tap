@@ -7,9 +7,9 @@ non-public repositories and in air-gapped environments.
 Accelerators are created either using the Tanzu CLI or by applying a YAML manifest using kubectl.
 Another option is [Using a Git-Ops style configuration for deploying a set of managed accelerators](#using-git-ops).
 
-Application Accelerator pulls content from accelerator source repositories using either the
+Application Accelerator pulls content from accelerator source repositories by using either the
 "Flux SourceController" or the "Tanzu Application Platform Source Controller" components.
-If the repository used is accessible anonymously from a public server, then you do not have to
+If the repository used is accessible anonymously from a public server, you do not have to
 configure anything additional. Otherwise, provide authentication as explained in
 [Using non-public repositories](#non-public-repos). There are also options for making these
 configurations easier explained in [Configuring `tap-values.yaml` with Git credentials secret](#creating-git-credentials)
@@ -603,8 +603,8 @@ package_overlays:
 
 ## <a id="skip-sources-tls-veri"></a> Configuring skipping TLS verification for access to Source Controller
 
-If you configure the FLux or Tanzu Application Platform Source Controller to use Transport Layer
-Security (TLS) and use custom certificates, then you can configure the Accelerator System to skip
+You can configure the FLux or Tanzu Application Platform Source Controller to use Transport Layer
+Security (TLS) and use custom certificates. In that case, configure the Accelerator System to skip
 the TLS verification for calls to access the sources by providing the following property in the
 `accelerator` section of the `tap-values.yaml` file:
 
