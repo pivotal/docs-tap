@@ -862,7 +862,8 @@ ClusterSupplyChain to a Kubernetes cluster.
 This section describes the `deliverable.spec.params` parameters that can be configured in the
 deliverable object. The following section describes the two resources defined in the `basic`
 ClusterDelivery part of the `ootb-delivery-basic` package:
-<!---
+
+<!--
 ```console
       Workload              (according to ClusterSupplyChain in `build` cluster)
 
@@ -889,7 +890,8 @@ ClusterDelivery part of the `ootb-delivery-basic` package:
                                         kubernetes configuration fetched
 
 ```
---->
+-->
+
 ### List of Cluster Delivery Resources for Deliverable Object
 
 | Cluster Delivery Resource                 | Output Type                     | Purpose                                                                                           | Basic | Testing | Scanning |
