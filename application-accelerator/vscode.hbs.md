@@ -22,7 +22,7 @@ Use the following steps to install the Application Accelerator Visual Studio ext
 
     2. Select the extension file **tanzu-app-accelerator-0.1.2.vsix**.
 
-    ![The Command palette is open and Extensions: Install from VSIX appears in the drop-down menu.](../images/vscode-install1.png).
+        ![The Command palette is open and Extensions: Install from VSIX appears in the drop-down menu.](../images/vscode-install1.png).
 
     **Option 2:**
 
@@ -30,7 +30,7 @@ Use the following steps to install the Application Accelerator Visual Studio ext
 
     4. Select `Install from VSIX…` from the overflow menu.
 
-    ![The VS Code interface extensions page overflow menu is open with Install from VSIX... highlighted.](../images/vscode-install3.png).
+        ![The VS Code interface extensions page overflow menu is open with Install from VSIX... highlighted.](../images/vscode-install3.png).
 
 ## <a id="configure-the-extention"></a> Configure the extension
 
@@ -42,7 +42,7 @@ Before using the extension, you need follow the next steps:
 
 3. Add the `acc-server` URL.
 
-![The Server Configure Setting page is open with the acc server URL highlighted](../images/acc-server-config.png)
+   ![The Server Configure Setting page is open with the acc server URL highlighted](../images/acc-server-config.png)
 
 ## <a id="using-the-extension"></a> Using the extension
 
@@ -53,4 +53,4 @@ accessing the new added icon:
 
 Choose any of the defined accelerators, fill the options and click  the `generate project`
 
-![The accelerator tab is open to the Hello Fun accelerator form. The text boxes have and example and the Generate Project button is highlighted.](../images/acc-form.png)
+![The accelerator tab is open to the Hello Fun accelerator form. The text boxes display example text and the Generate Project button is highlighted.](../images/acc-form.png)
