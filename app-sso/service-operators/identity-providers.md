@@ -128,6 +128,7 @@ stringData:
 ```
 
 Where:
+
 - `url` is the URL of the LDAP server. It must be `ldaps`, and must contain a port.
 - `bind.dn` is the DN used to perform the bind.
 - `bind.passwordRef` must be a Secret with the entry `password`. That entry is the password used to perform the bind.
@@ -244,6 +245,7 @@ spec:
 ```
 
 Where:
+
 - `search.base` is the base used when runnning an LDAP search for groups.
 - `search.filter` is the filter used when runnning an LDAP search for groups. It must contain the string `{0}` which
   is replaced by the dn of the user when performing group search, e.g. `member=cn=marie,ou=Users,dc=example,dc=org`.

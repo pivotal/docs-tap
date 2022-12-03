@@ -29,7 +29,7 @@ variations. For example, dependency in a `Gradle` build.gradle.kts can have the 
 
 - When the fragment is used in multiple accelerator contexts and the behavior still causes a compiled
 and deployable application skeleton.
-- Testing a fragment in isolation is more difficult than testing an accelerator.Testing takes more
+- Testing a fragment in isolation is more difficult than testing an accelerator. Testing takes more
 time as all the combinations must be tested from an accelerator perspective.
 - When flexibly reusing fragments in different combinations each fragment must cover a small,
 cohesive function. Fragments must follow these two UNIX principles:
@@ -54,8 +54,8 @@ must not include the word ‘fragment’.
 - Each fragment must contain a README file explaining what additional functions the fragment adds
 to a generated application skeleton. It must also include what options are expected in the fragment.
 It must contain a description of how this fragment is to be used in a host accelerator. If there are
-any known limitations or not covered use cases, they must be clearly stated in the README file. For
+any known limitations or use cases not covered, they must be clearly stated in the README file. For
 example, if the fragment supports Maven and Gradle as build tools but only Groovy DSL of Gradle is
-supported the README file must include this information.
-- If a fragment must provide additional documentation to end users it can either be added to a README-X
+supported, the README file must include this information.
+- If a fragment must provide additional documentation to end users, it can either be added to a README-X
 file of the generated application skeleton or append a section to the host’s README.
