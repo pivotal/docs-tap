@@ -32,8 +32,8 @@ Jenkins task calls the Jenkins job with the `Workload` and `job-params` paramete
 if they are not declared in `Workload` or `job-params`.  The Jenkins tasks
 only pass these parameters if they are defined in the Jenkins job itself.
 
-- `SOURCE-URL` **string** The URL of source code to be tested. |Note: | This
-  is served by the `source-provider` resource in the supply chain and is only
+- `SOURCE_URL` **string** The URL of the source code to be tested.  The
+  `source-provider` resource in the supply chain provides this code and is only
   resolvable inside the Kubernetes cluster.  This URL is only useful if your
   Jenkins service is running inside the cluster or if there is ingress
   set up and the Jenkins service can make requests to services inside the
@@ -126,12 +126,12 @@ section.
 
 A secret must be created in the developer namespace with the following properties:
 
-- `URL` **required**: URL of the Jenkins instance that hosts the job, including
+
+- `url` **required**: URL of the Jenkins instance that hosts the job, including
   the scheme. For example: https://my-jenkins.com.
 - `username` **required**: User name of the user that has access to trigger a build on Jenkins.
 - `password` **required**: Password of the user that has access to trigger a build on Jenkins.
-- `ca-cert` **optional**: The PEM-encoded CA certificate to verify the Jenkins instance
-  identity.
+- `ca-cert` **optional**: The PEM-encoded CA certificate to verify the Jenkins instance identity.
 
 For example:
 
