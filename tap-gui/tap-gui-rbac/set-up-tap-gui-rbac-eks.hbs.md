@@ -1,4 +1,4 @@
-# View resoruces on remote EKS clusters
+# View resources on remote EKS clusters
 
 To add access-controlled visibility for a remote EKS cluster:
 
