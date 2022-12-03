@@ -64,7 +64,7 @@ you must update them to match the new pattern `<providerId>_<userId>`.
 
 ## `Workload` does not trust `AuthServer`
 
-If your `ClientRegistration` selects and `AuthServer` which serves a certificate from a custom CA, then your `Workload`
+If your `ClientRegistration` selects an `AuthServer` which serves a certificate from a custom CA, then your `Workload`
 will not trust it by default.
 
 A `ca-certificates` service binding `Secret` allows to configure trust for custom CAs. [Your _Service
