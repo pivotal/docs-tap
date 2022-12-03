@@ -39,7 +39,7 @@ To install the API Auto Registration package:
     tanzu package available get apis.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed in earlier.
+    Where `VERSION-NUMBER` is the version of the package listed in the previous step.
 
     For example:
 
@@ -48,21 +48,21 @@ To install the API Auto Registration package:
 
     Retrieving package details for apis.apps.tanzu.vmware.com/0.2.0...
     KEY                        DEFAULT                                       TYPE     DESCRIPTION
-    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS connections with a custom CA
-    cluster_name               dev                                           string   Name of the cluster that will be used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
-    sync_period                5m                                            string   Time period used for reconciling an APIDescriptor
-    tap_gui_url                http://server.tap-gui.svc.cluster.local:7000  string   FQDN URL for TAP GUI
-    replicas                   1                                             integer  Number of controller replicas to deploy
-    resources.limits.cpu       500m                                          string   CPU limit of the controller
-    resources.limits.memory    500Mi                                         string   Memory limit of the controller
-    resources.requests.cpu     20m                                           string   CPU request of the controller
-    resources.requests.memory  100Mi                                         string   Memory request of the controller
-    logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging
+    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS. connections with a custom CA
+    cluster_name               dev                                           string   Name of the cluster used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
+    sync_period                5m                                            string   Time period used for reconciling an APIDescriptor.
+    tap_gui_url                http://server.tap-gui.svc.cluster.local:7000  string   FQDN URL for TAP GUI.
+    replicas                   1                                             integer  Number of controller replicas to deploy.
+    resources.limits.cpu       500m                                          string   CPU limit of the controller.
+    resources.limits.memory    500Mi                                         string   Memory limit of the controller.
+    resources.requests.cpu     20m                                           string   CPU request of the controller.
+    resources.requests.memory  100Mi                                         string   Memory request of the controller.
+    logging_profile            production                                    string   Logging profile for controller. If set to development, use console logging with full stack traces, else use JSON logging.
     ```
 
 2. Locate the Tanzu Application Platform GUI URL.
 
-    When running on a full profile Tanzu Application Platform cluster, the default value of Tanzu Application Platform GUI URL is sufficient. You might want to edit this to match the externally available FQDN of Tanzu Application Platform GUI to display the entity URL in the externally accessible APIDescriptor status.
+    When running on a full profile Tanzu Application Platform cluster, the default value of Tanzu Application Platform GUI URL is sufficient. You can edit this to match the externally available FQDN of Tanzu Application Platform GUI to display the entity URL in the externally accessible APIDescriptor status.
 
     When installed in a run cluster or without a profile where Tanzu Application Platform GUI is not installed in the same cluster, you must set the `tap_gui_url` parameters correctly for successful entity registration with Tanzu Application Platform GUI.
 

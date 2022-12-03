@@ -127,6 +127,43 @@ The page also has a feature to download heap dump for analysis.
 
 ![Memory Page in the UI showing charts for Heap Memory, Garbage Collection Count by Generation 0, and Garbage Collection Count by Generation 1.](images/memory-page-steeltoe.png)
 
+## <a id="request-mappings-page"></a> Request Mappings page
+
+To access the **Request Mappings** page, select the **Request Mappings** option from the **Information Category**
+drop-down menu.
+
+This page provides information about the application’s request mappings.
+For each of the mapping, it displays the request handler method.
+The user can view more details of the request mapping such as header metadata of the application.
+That is, it produces, consumes and HTTP method by clicking on the mapping.
+
+The search feature enables the user to search on the request mapping or the method.
+The toggle **/actuator/\*\* Request Mappings** displays the actuator related mappings of the application.
+
+![Request Mappings Page in the UI showing Request Mapping Details for the application](images/request-mappings-steeltoe.png)
+
+## <a id="http-requests-page"></a> HTTP Requests page
+
+To access the **HTTP Requests** page, select the **HTTP Requests** option from the **Information Category**
+drop-down menu.
+
+The HTTP Requests page provides information about HTTP request-response exchanges to the application.
+
+The graph visualizes the requests per second indicating the response status of all the requests.
+The user can filter on the response statuses which include info, success, redirects, client-errors,
+server-errors.
+The trace data is captured in detail in a tabular format with metrics such as timestamp, method, path,
+status, content-type, length, time.
+
+The search feature on the table filters the traces based on the search field value.
+The user can view more details of the request such as method, headers, response of the application
+by clicking on the timestamp.
+The refresh icon above the graph loads the latest traces of the application.
+The toggle **/actuator/\*\*** on the top right corner of the page displays the actuator related
+traces of the application.
+
+![HTTP Requests Page in the UI showing HTTP Requests Details for the application](images/http-requests-steeltoe.png)
+
 ## <a id="metrics-page"></a> Metrics page
 
 To access the **Metrics** page, select the **Metrics** option from the
