@@ -33,14 +33,14 @@ Jenkins task calls the Jenkins job with the `Workload` and `job-params` paramete
 if they are not declared in `Workload` or `job-params`.  The Jenkins tasks
 only pass these parameters if they are defined in the Jenkins job itself.
 
-- `SOURCE-URL` **string** The URL of the source code to be tested.  The
+- `SOURCE_URL` **string** The URL of the source code to be tested.  The
   `source-provider` resource in the supply chain provides this code and is only
   resolvable inside the Kubernetes cluster.  This URL is only useful if your
   Jenkins service is running inside the cluster or if there is ingress
   set up and the Jenkins service can make requests to services inside the
   cluster.
 
-- `SOURCE-REVISION` **string** The revision of the source code to be tested.
+- `SOURCE_REVISION` **string** The revision of the source code to be tested.
   The format of this value can vary depending on the implementation of the
   `source_provider` resource.  If the `source-provider` is the FluxCD
   `GitRepository` resource, then the value of the `SOURCE_REVISION` is the
@@ -59,8 +59,8 @@ example.
 
 Add the following parameters to your Jenkins job:
 
-- `SOURCE-REVISION`  **string**
-- `GIT-URL`          **string**
+- `SOURCE_REVISION`  **string**
+- `GIT_URL`          **string**
 
 Use the following script in your pipeline:
 
@@ -127,12 +127,12 @@ section.
 
 A secret must be created in the developer namespace with the following properties:
 
-- `URL` **required**: URL of the Jenkins instance that hosts the job, including
+
+- `url` **required**: URL of the Jenkins instance that hosts the job, including
   the scheme. For example: https://my-jenkins.com.
 - `username` **required**: User name of the user that has access to trigger a build on Jenkins.
 - `password` **required**: Password of the user that has access to trigger a build on Jenkins.
-- `ca-cert` **optional**: The PEM-encoded CA certificate to verify the Jenkins instance
-  identity.
+- `ca-cert` **optional**: The PEM-encoded CA certificate to verify the Jenkins instance identity.
 
 For example:
 
