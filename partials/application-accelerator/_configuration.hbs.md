@@ -391,7 +391,7 @@ command and provide the name of the secret for that flag.
 
 #### <a id="ssh-example"></a> Example using SSH credentials
 
-To create an accelerator using a private Git repository,  create a secret with the SSH
+To create an accelerator using a private Git repository, create a secret with the SSH
 credentials such as this example:
 
 ```sh
