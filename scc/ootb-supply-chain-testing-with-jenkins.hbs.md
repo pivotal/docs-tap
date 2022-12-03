@@ -127,11 +127,11 @@ section.
 
 A secret must be created in the developer namespace with the following properties:
 
-- `URL` **required** URL of the Jenkins instance that hosts the job, including
-  the scheme. For example: "https://my-jenkins.com".
-- `username` **required** User name of the user that has access to trigger a build on Jenkins.
-- `password` **required** Password of the user that has access to trigger a build on Jenkins.
-- `ca-cert` **optional** The PEM-encoded CA certificate to verify the Jenkins instance
+- `URL` **required**: URL of the Jenkins instance that hosts the job, including
+  the scheme. For example: https://my-jenkins.com.
+- `username` **required**: User name of the user that has access to trigger a build on Jenkins.
+- `password` **required**: Password of the user that has access to trigger a build on Jenkins.
+- `ca-cert` **optional**: The PEM-encoded CA certificate to verify the Jenkins instance
   identity.
 
 For example:
