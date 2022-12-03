@@ -47,6 +47,12 @@ This release has the following breaking changes, listed by area and component.
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
 
+#### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
+- Deprecation notice:
+  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in TAP 1.7.0.
+  - The deprecation will impact the following components: Scan Controller, Grype Scanner and Snyk Scanner.
+  - See [troubleshooting](/scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images) documentation for the migration path.
+
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 
 The Image Policy Webhook component is removed in TAP 1.4 after being deprecated
