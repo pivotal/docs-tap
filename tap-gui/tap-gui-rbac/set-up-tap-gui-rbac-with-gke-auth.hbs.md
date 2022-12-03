@@ -1,4 +1,4 @@
-# Enable authorization on remote GKE clusters by using Google Auth
+# View resources on remote GKE clusters
 
 This section describes how to use Google Auth to add access-controlled visibility for a remote
 GKE cluster.
