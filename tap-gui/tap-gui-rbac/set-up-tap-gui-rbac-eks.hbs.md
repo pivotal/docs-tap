@@ -1,4 +1,4 @@
-# Enable authorization on remote EKS clusters
+# View resoruces on remote EKS clusters
 
 To add access-controlled visibility for a remote EKS cluster:
 
