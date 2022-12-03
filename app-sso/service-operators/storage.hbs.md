@@ -70,7 +70,7 @@ stringData:
   type: "redis"                      # required, must equal 'redis'
   ssl: "true"                        # required, must equal 'true'
   host: "redis01.prod.example.com"   # required
-  port: 6379                         # optional, must be an integer, defaults to 6379 if not specified
+  port: "6379"                         # optional, must be an integer, defaults to 6379 if not specified
   password: "!!veryStrongPassword!!" # optional
   username: "redis01-user"           # optional
 ```
