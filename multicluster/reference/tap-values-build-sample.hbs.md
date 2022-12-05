@@ -15,7 +15,7 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 shared:
   ingress_domain: "INGRESS-DOMAIN"
   kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
-  kubernetes_version: "1.23.x" or "1.24.x" #Eg. For openshift 4.10 - "1.23.3" and for 4.11 - "1.24.1". Please pass appropriate value for patch version x.
+  kubernetes_version: "K8S-VERSION"
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME" # To be used by Build Service by appending "/buildservice" and used by Supply chain by appending "/workloads".
     username: "KP-DEFAULT-REPO-USERNAME"
@@ -58,6 +58,9 @@ tap_telemetry:
 
 Where:
 
+- `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.23.x` or `1.24.x`, where `x` stands for the patch version. Examples:
+    - Red Hat OpenShift Container Platform v4.10 uses the Kubernetes version `1.23.3`.
+    - Red Hat OpenShift Container Platform v4.11 uses the Kubernetes version `1.24.1`.
 - `KP-DEFAULT-REPO` is a writable repository in your registry. Tanzu Build Service dependencies are written to this location. Examples:
     - Harbor has the form `kp_default_repository: "my-harbor.io/my-project/build-service"`
     - Docker Hub has the form `kp_default_repository: "my-dockerhub-user/build-service"` or `kp_default_repository: "index.docker.io/my-user/build-service"`
