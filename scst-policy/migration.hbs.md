@@ -1,11 +1,11 @@
 # Migration From Supply Chain Security Tools - Sign
 
-In TAP 1.4, the Image Policy Webhook is removed. If the Image Policy Webhook was actively
-used with the previous TAP versions in your cluster, you have to follow
-this section which explains how to migrate the `ClusterImagePolicy` resource
-from Image Policy Webhook to Policy Controller. For more information about
-additional features introduced in Policy Controller, see
-[Configuring Supply Chain Security Tools - Policy](configuring.md).
+In Tanzu Application Platform v1.4, the Image Policy Webhook is removed. If the
+Image Policy Webhook was used with the previous Tanzu Application Platform versions in your
+cluster, you must follow this topic which explains how to migrate the
+`ClusterImagePolicy` resource from Image Policy Webhook to Policy Controller.
+For information about additional features introduced in Policy Controller,
+see [Configuring Supply Chain Security Tools - Policy](configuring.md).
 
 ## <a id="enable-controller"></a> Enable Policy Controller on Namespaces
 
