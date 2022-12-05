@@ -50,19 +50,6 @@ This release has the following breaking changes, listed by area and component.
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
 
-#### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
-- Removed deprecated ScanTemplates:
-  - Deprecated Grype ScanTemplates shipped with versions prior to TAP 1.2.0 have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
-- Deprecation notice:
-  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in TAP 1.7.0.
-  - The deprecation will impact the following components: Scan Controller, Grype Scanner and Snyk Scanner.
-  - See [troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images) documentation for the migration path.
-
-#### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
-
-The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
-in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
-
 #### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
 
 Policy Controller no longer initializes TUF by default. TUF is required to
@@ -111,3 +98,43 @@ This release has the following known issues, listed by area and component.
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
+#### <a id="1-3-app-sso-deprecations"></a> Application Single Sign-On
+
+  - `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
+    to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
+  - `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
+   for removal in the next release.
+
+#### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
+
+The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
+in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
+
+#### <a id="1-4-0-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
+
+- Removed deprecated ScanTemplates:
+  - Deprecated Grype ScanTemplates shipped with versions prior to TAP 1.2.0 have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
+  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in TAP 1.7.0.
+    - The deprecation will impact the following components: Scan Controller, Grype Scanner and Snyk Scanner.
+    - See [troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images) documentation for the migration path.
+
+#### <a id="1-3-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
+
+- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
+
+#### <a id="1-3-tbs-deprecations"></a> Tanzu Build Service
+
+- The Ubuntu Bionic stack is deprecated:
+Ubuntu Bionic stops receiving support in April 2023.
+VMware recommends you migrate builds to Jammy stacks in advance.
+For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated:
+It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
+VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
+and remove support in Tanzu Application Platform v1.6.
+To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
+
+##### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
+
+- The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
+  - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
