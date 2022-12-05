@@ -2,12 +2,12 @@
 
 In this topic there is troubleshooting information to help resolve issues using Tanzu Application Platform.
 
-## <a id='use-events'></a> Use events to find possible culprits
+## <a id='use-events'></a> Use events to find possible causes
 
 Events can highlight issues with components in a supply chain. For example, high occurrences of `StampedObjectApplied`
 or `ResourceOutputChanged` can indicate problems with trashing on a component.
 
-To view the recent events for a workload run:
+To view the recent events for a workload, run:
 
 ```console
 kubectl describe workload.carto.run <workload-name> -n <workload-ns>
