@@ -26,6 +26,12 @@ This release has the following known issues, listed by area and component.
 
 This release does not support configuring trusted CA certs for an internal gitops server.
 
+### <a id='1-3-3-deprecations'></a> Deprecations
+
+The following features, listed by component, are deprecated.
+Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
+
+
 ## <a id='1-3-2'></a> v1.3.2
 
 **Release Date**: November 16, 2022
@@ -126,7 +132,7 @@ Known security vulnerability
     `Builder default is not ready`.
   - Clicking on the `Scan Template` link in the **Overview** section for a scanning stage causes a
     blank page to open in the browser.
-  - The image provider stage is not correctly reporting status failures and is instead showing a green status when it should not. This does, however,       stop the supply chain execution
+  - The image provider stage is not correctly reporting status failures and is instead showing a green status when it should not. This does, however, stop the supply chain execution.
   - Image Provider logs are not appearing in the Stage Details section if the build fails. The logs are, however, available through the cli.
 
 
@@ -152,6 +158,12 @@ Known security vulnerability
 - **Backend**
 
   - Override the catalog url for accelerator templates.
+
+### <a id='1-3-2-deprecations'></a> Deprecations
+
+The following features, listed by component, are deprecated.
+Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
+
 
 ## <a id='1-3-0'></a> v1.3.0
 
