@@ -73,9 +73,9 @@ By default, the public official Sigstore "The Update Framework (TUF) server" is 
 You can use an alternative Sigstore Stack by setting `policy.tuf_mirror` and `policy.tuf_root`.
 
 > **Note** In Tanzu Application Platform v1.4.0, Image Policy Webhook is removed. If this component was actively being used, follow
-[these steps](./scst-policy/migration.hbs.md) to migrate to Policy Controller.
+[these steps](scst-policy/migration.hbs.md) to migrate to Policy Controller.
 
-> **Note** In Tanzu Application Platform v1.4.0, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account.  Tanzu Application Platform v1.3.0 used a read-only service account. Follow [these steps](/tap-gui/plugins/scc-tap-gui.hbs.md#scan) to enable CVE results.
+> **Note** In Tanzu Application Platform v1.4.0, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account.  Tanzu Application Platform v1.3.0 used a read-only service account. Follow [these steps](tap-gui/plugins/scc-tap-gui.hbs.md#scan) to enable CVE results.
 
 #### Performing the upgrade
 
@@ -88,7 +88,7 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --
 When upgrading to Tanzu Application Platform v1.2, Tanzu Build Service image resources automatically run a build that fails due to a missing dependency.
 This error does not persist and any subsequent builds resolve this error.
 You can wait for the next build of the workloads that new source code changes trigger.
-If you do not want to wait for subsequent builds to run automatically, follow the instructions in 
+If you do not want to wait for subsequent builds to run automatically, follow the instructions in
 [Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
