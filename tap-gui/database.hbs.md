@@ -84,7 +84,7 @@ backend:
 Where `PG-SQL-DATABASE` is the database name for Tanzu Application Platform GUI to use
 
 For the complete list of these configuration options, see the
-[node-postgres documentation](https://node-postgres.com/api/client).
+[node-postgres documentation](https://node-postgres.com/apis/client).
 
 ### <a id="update-package-profile"></a> Update the package profile
 
