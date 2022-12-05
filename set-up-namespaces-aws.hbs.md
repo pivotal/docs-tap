@@ -16,40 +16,40 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
 
 1. Update the `YOUR-NAMESPACE` and `ROLE-ARN` and run the following command to add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace.
 
-  ```console
-  cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
-  apiVersion: v1
-  kind: ServiceAccount
-  metadata:
-    name: default
-    annotations:
-      eks.amazonaws.com/role-arn: ROLE-ARN
-  ---
-  apiVersion: rbac.authorization.k8s.io/v1
-  kind: RoleBinding
-  metadata:
-    name: default-permit-deliverable
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: deliverable
-  subjects:
-    - kind: ServiceAccount
+    ```console
+    cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
+    apiVersion: v1
+    kind: ServiceAccount
+    metadata:
       name: default
-  ---
-  apiVersion: rbac.authorization.k8s.io/v1
-  kind: RoleBinding
-  metadata:
-    name: default-permit-workload
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: workload
-  subjects:
-    - kind: ServiceAccount
-      name: default
-  EOF
-  ```
+      annotations:
+        eks.amazonaws.com/role-arn: ROLE-ARN
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: default-permit-deliverable
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: deliverable
+    subjects:
+      - kind: ServiceAccount
+        name: default
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+      name: default-permit-workload
+    roleRef:
+      apiGroup: rbac.authorization.k8s.io
+      kind: ClusterRole
+      name: workload
+    subjects:
+      - kind: ServiceAccount
+        name: default
+    EOF
+    ```
 
 ## <a id='additional-user-access'></a>Enable additional users access with Kubernetes RBAC
 
