@@ -121,6 +121,6 @@ Some examples of each of these ways are given in the [workload creation](create-
 
 Workload status can be checked with commands as `tanzu apps workload get` and `tanzu apps workload tail`.
 
-`workload get` is used to see the workload specification and the resources attached to it, while `workload tail` is used to see build and runtime logs.
+`tanzu apps workload get` is used to see the workload specification and the resources attached to it, while `tanzu apps workload tail` is used to see build and runtime logs.
 
 More info on the usage of these commands and common errors, can be found on [debugging workloads](debug-workload.hbs.md) page.

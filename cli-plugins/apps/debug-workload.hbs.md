@@ -52,7 +52,7 @@ There are known errors that will make the workload enter in an error or unknown 
 - *WorkloadLabelsMissing* / *SupplyChainNotFound*
 	- *Message*: No supply chain found where full selector is satisfied by `labels: map[app.kubernetes.io/part-of:spring-petclinic]`
 		- *Cause*: The labels and attributes in the workload object did not fully satisfy any installed supply chain on the cluster.
-		- *Resolution*: Use the `tanzu apps csc list` and `tanzu apps csc get <supply-chain>` commands to see the selector criterias for the supply chains. You can apply the missing labels to a workload by using `tanzu apps workload apply`
+		- *Resolution*: Use the `tanzu apps cluster-supply-chain list` (alias `csc`) and `tanzu apps csc get <supply-chain-name>` commands to see the workload selection criteria for the supply chain(s) available on the cluster. You can apply any missing labels to a workload by using `tanzu apps workload apply --label required-label-name=required-label-value`
 		- e.g. `tanzu apps workload apply workload-name —-type web`
 		- e.g. `tanzu apps workload apply workload-name --label apps.tanzu.vmware.com/workload-type=web`
 
@@ -73,7 +73,7 @@ There are known errors that will make the workload enter in an error or unknown 
 
 ## <a id="steps-failure"></a> Supply Chain steps
 
-After a workload is created, the steps it goes through in the supply chain are surfaced with `workload get` command.
+After a workload is created, the steps it goes through in the supply chain are surfaced with `tanzu apps workload get` command.
 The output looks like the following:
 
 ```bash
@@ -110,7 +110,7 @@ $ kubectl describe <resource-name>
 ```
 Where `resource-name` refers to the name of the stamped out resource, displayed in `RESOURCE` column.
 
-For example, if something like this is retrieved in `workload get` command
+For example, if something like this is retrieved in `tanzu apps workload get` command
 ```bash
 NAME               READY   HEALTHY   UPDATED   RESOURCE
 source-provider    False   False     3h12m     gitrepositories.source.toolkit.fluxcd.io/spring-petclinic
@@ -120,7 +120,7 @@ Whatever is going on with this resource can be checked with:
 kubectl describe gitrepositories.source.toolkit.fluxcd.io/spring-petclinic
 ```
 
-But also, `workload get` command notifies the top level issue in the `Messages` section, which could give a hint to what went wrong in the process.
+But also, `tanzu apps workload get` command notifies the top level issue in the `Messages` section, which could give a hint to what went wrong in the process.
 
 For example, a message like this could be shown:
 ```bash

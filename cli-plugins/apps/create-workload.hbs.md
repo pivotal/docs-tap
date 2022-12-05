@@ -36,7 +36,7 @@ Where:
 - `--git-branch` (optional) specifies which branch in the repository to pull the code from.
 - `--type` is used to distinguish the workload type.
 
-You can find the options available to add the workload specifications by running `tanzu apps workload apply --help`.
+View the full list of supported workload configuration options by running `tanzu apps workload apply --help`.
 
 ### <a id="workload-local-source"></a> Create a workload from local source code
 
@@ -61,18 +61,7 @@ Tanzu Application Platform supports creating a workload from an existing local p
 
     The file must contain a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`).
 
-    If the file contains files or directories that are not in the source code, they are ignored.
-
-    If a line in the file starts with a `#` hashtag , the line is ignored.
-
-    **Example of a .tanzuignore file**
-
-    ```
-    # This is a comment
-    this/is/a/folder/to/exclude
-
-    this-is-a-file.ext
-    ```
+    More info regarding .tanzuignore file can be found in the [how-to guide](how-to-guides.hbs.md#tanzuignore-file).
 
 ### <a id="workload-image"></a> Create workload from an existing image
 
@@ -157,21 +146,21 @@ spec:
     subPath: tanzu-java-web-app
 ```
 
-To create a workload from a file like the one just shown, run:
+To create a workload from a file like the example above:
 
 ```console
 tanzu apps workload create -f my-workload-file.yaml
 ```
 
-Another way to create a workload from `yaml` is passing the definition through `stdin`. For example, run:
+The workload yaml definition can also be passed in through stdin as follows:
 
 ```console
 tanzu apps workload create -f - --yes
 ```
 
-The console remains waiting for some input, and the content with a valid `yaml` definition for a workload can be either written or pasted, then press `ctrl`+D three times to start workload creation. This can also be done with `workload apply` command.
+The console remains waiting for some input, and the content with a valid `yaml` definition for a workload can be either written or pasted, then press **Ctrl-D** three times to start workload creation. This can also be done with `workload apply` command.
 
-**Note** to pass workload through `stdin`, `--yes` flag is needed. If not used, command will fail.
+**Note** to pass workload through `stdin`, the `--yes` flag is required. If not provided, the command will fail.
 
 ## <a id="bind-service"></a> Bind a service to a workload
 
