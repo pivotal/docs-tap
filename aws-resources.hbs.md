@@ -103,7 +103,7 @@ To simplify this walkthrough, use a script to create these policy documents and 
 Run:
 
 ```console
-oidcProvider=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
+export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
 cat << EOF > build-service-trust-policy.json
 {
     "Version": "2012-10-17",
@@ -111,15 +111,15 @@ cat << EOF > build-service-trust-policy.json
         {
             "Effect": "Allow",
             "Principal": {
-                "Federated": "arn:aws:iam::${AWS_ACCOUNT_ID}:oidc-provider/${oidcProvider}"
+                "Federated": "arn:aws:iam::${AWS_ACCOUNT_ID}:oidc-provider/${OIDCPROVIDER}"
             },
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "${oidcProvider}:aud": "sts.amazonaws.com"
+                    "${OIDCPROVIDER}:aud": "sts.amazonaws.com"
                 },
                 "StringLike": {
-                    "${oidcProvider}:sub": [
+                    "${OIDCPROVIDER}:sub": [
                         "system:serviceaccount:kpack:controller",
                         "system:serviceaccount:build-service:dependency-updater-controller-serviceaccount"
                     ]
@@ -274,13 +274,13 @@ cat << EOF > workload-trust-policy.json
         {
             "Effect": "Allow",
             "Principal": {
-                "Federated": "arn:aws:iam::${AWS_ACCOUNT_ID}:oidc-provider/${oidcProvider}"
+                "Federated": "arn:aws:iam::${AWS_ACCOUNT_ID}:oidc-provider/${OIDCPROVIDER}"
             },
             "Action": "sts:AssumeRoleWithWebIdentity",
             "Condition": {
                 "StringEquals": {
-                    "${oidcProvider}:sub": "system:serviceaccount:default:default",
-                    "${oidcProvider}:aud": "sts.amazonaws.com"
+                    "${OIDCPROVIDER}:sub": "system:serviceaccount:default:default",
+                    "${OIDCPROVIDER}:aud": "sts.amazonaws.com"
                 }
             }
         }
