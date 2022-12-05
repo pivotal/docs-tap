@@ -75,7 +75,7 @@ You can use an alternative Sigstore Stack by setting `policy.tuf_mirror` and `po
 > **Note** In Tanzu Application Platform v1.4.0, Image Policy Webhook is removed. If this component was actively being used, follow
 [these steps](scst-policy/migration.hbs.md) to migrate to Policy Controller.
 
-> **Note** In Tanzu Application Platform v1.4.0, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account.  Tanzu Application Platform v1.3.0 used a read-only service account. Follow [these steps](tap-gui/plugins/scc-tap-gui.hbs.md#scan) to enable CVE results.
+Tanzu Application Platform v1.3.0 uses a read-only service account. In Tanzu Application Platform v1.4.0, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account. For more information, see [Enable CVE scan results](tap-gui/plugins/scc-tap-gui.hbs.md#scan).
 
 #### Performing the upgrade
 
