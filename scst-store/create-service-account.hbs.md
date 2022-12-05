@@ -1,10 +1,10 @@
 # Create Service Accounts
 
-When you install Tanzu Application Platform, the included Supply Chain Security Tools (SCST) - Store deployment automatically comes with a read-write service account.
+When you install Tanzu Application Platform, the included Supply Chain Security Tools (SCST) - Store deployment automatically includes a read-write service account.
 This service account is already bound to the `metadata-store-read-write` role.
-Skip to the section [Getting the access token](#getting-access-token) to see how to retrive the access token for the default read-write service account.
+Skip to the section [Getting the access token](#getting-access-token) to retrive the access token for the default read-write service account.
 
-If you want to create another read-write service account, or if you want to create a read-only servie account, then follow the instructions in this guide.
+To create another read-write service account, or to create a read-only servie account, follow the instructions in this topic.
 
 ## Types of services accounts
 
@@ -15,7 +15,7 @@ You can create two types of SCST - Store service accounts:
 
 ## <a id='rw-serv-accts'></a> Read-write service account
 
-When you install Tanzu Application Platform, the included Supply Chain Security Tools (SCST) - Store deployment automatically comes with a read-write service account.
+When you install Tanzu Application Platform, the included SCST - Store deployment automatically includes a read-write service account.
 This service account is already bound to the `metadata-store-read-write` role.
 
 To create an *additional* read-write service account, run the following command.
@@ -70,13 +70,13 @@ EOF
 
 > **Note** For Kubernetes v1.24 and later, services account secrets are no
 > longer automatically created.
-> This is why we added a `Secret` resource in the above yaml.
+> This is why the example adds a `Secret` resource in the earlier YAML.
 
 ## <a id='ro-serv-accts'></a>Read-only service account
 
 ### With default cluster role
 
-As a part of the Store installation, the `metadata-store-read-only` cluster role
+During Store installation, the `metadata-store-read-only` cluster role
 is created by default. This cluster role allows the bound user to have `get`
 access to all resources. To bind to this cluster role, run the following command
 depending on the Kubernetes version:
@@ -120,11 +120,11 @@ EOF
 
 > **Note** For Kubernetes v1.24 and later, services account secrets are no
 > longer automatically created.
-> This is why we added a `Secret` resource in the above yaml.
+> This is why the example adds a `Secret` resource in the earlier YAML.
 
 ### With a custom cluster role
 
-If using the default role is not sufficient for your use case, follow the instructions in [Create a service account with a custom cluster role](custom-role.hbs.md).
+If using the default role is not sufficient, follow the instructions in [Create a service account with a custom cluster role](custom-role.hbs.md).
 
 ## <a id='getting-access-token'></a>Getting the access token
 
@@ -144,6 +144,6 @@ The access token is a "Bearer" token used in the http request header
 "Authorization." (ex. `Authorization: Bearer
 eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
 
-# Additional resources
+## Additional resources
 
 - [Create a service account with a custom cluster role](custom-role.hbs.md)
