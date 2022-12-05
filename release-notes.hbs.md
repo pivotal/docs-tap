@@ -60,8 +60,8 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 
-The Image Policy Webhook component is removed in TAP 1.4 after being deprecated
-in favor of the [Policy Controller](./scst-policy/overview.hbs.md)
+The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
+in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 
 #### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
 

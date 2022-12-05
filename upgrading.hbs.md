@@ -72,10 +72,10 @@ To support the keyless authorities in `ClusterImagePolicy`, Policy Controller no
 By default, the public official Sigstore "The Update Framework (TUF) server" is used.
 You can use an alternative Sigstore Stack by setting `policy.tuf_mirror` and `policy.tuf_root`.
 
-> **Note** In Tanzu Application Platform v1.4.0, Image Policy Webhook is removed. If this component was actively being used, follow
-[these steps](scst-policy/migration.hbs.md) to migrate to Policy Controller.
+Tanzu Application Platform v1.4.0 removes Image Policy Webhook. If you use Image Policy Webhook in the previous version of Tanzu Application Platform, you must migrate the `ClusterImagePolicy` resource
+from Image Policy Webhook to Policy Controller. For more information, see [Migration From Supply Chain Security Tools - Sign](scst-policy/migration.hbs.md).
 
-> **Note** In Tanzu Application Platform v1.4.0, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account.  Tanzu Application Platform v1.3.0 used a read-only service account. Follow [these steps](tap-gui/plugins/scc-tap-gui.hbs.md#scan) to enable CVE results.
+Tanzu Application Platform v1.3.0 uses a read-only service account. In Tanzu Application Platform v1.4.0, enabling CVE results for the Supply Chain Choreographer and Security Analysis GUI plug-ins requires a read-write service account. For more information, see [Enable CVE scan results](tap-gui/plugins/scc-tap-gui.hbs.md#scan).
 
 #### Performing the upgrade
 

@@ -94,7 +94,8 @@ Use the **Changes Only** toggle to display the changed log levels.
 Use the search feature to search by logger name.
 Click **Reset All** to reset all the loggers to the default state.
 
-> **Note** The UI allows the user to change the log levels and see the live changes on the application. These changes are temporary and will go away if the underlying pod gets restarted.
+> **Note** The UI allows the user to change the log levels and see the live changes on the application.
+> These changes are temporary and go away if the underlying pod is restarted.
 
 ![Screenshot of the Log Levels page. The log level WARN is selected for every logger except Default.](images/log-levels-steeltoe.png)
 
@@ -109,8 +110,8 @@ Navigating to a thread state displays all the information about a particular thr
 trace.
 
 - The refresh icon refreshes to the latest state of the threads.
-- To view more thread details, click the Thread ID.
-- The page also has a feature to download thread dump for analysis.
+- To view more thread details, click the thread ID.
+- The page also has a feature to download the thread dump for analysis.
 
 ![Threads Page in the UI showing Worker and IO Completion Port charts.](images/threads-page-steeltoe-1.png)
 
@@ -123,51 +124,54 @@ drop-down menu.
 
 This page displays all details related to used and committed memory of the application.
 This also displays the garbage collection count by generation (gen0/gen1).
-The page also has a feature to download heap dump for analysis.
+The page also has a feature to download the heap dump for analysis.
 
 ![Memory Page in the UI showing charts for Heap Memory, Garbage Collection Count by Generation 0, and Garbage Collection Count by Generation 1.](images/memory-page-steeltoe.png)
 
 ## <a id="request-mappings-page"></a> Request Mappings page
 
-To access the **Request Mappings** page, select the **Request Mappings** option from the **Information Category**
-drop-down menu.
+To access the **Request Mappings** page, select the **Request Mappings** option from the
+**Information Category** drop-down menu.
 
 This page provides information about the application’s request mappings.
-For each of the mapping, it displays the request handler method.
-The user can view more details of the request mapping such as header metadata of the application.
+For each mapping, the page displays the request handler method.
+The user can view more details of the request mapping, such as the header metadata of the application.
 That is, it produces, consumes and HTTP method by clicking on the mapping.
 
-The search feature enables the user to search on the request mapping or the method.
-The toggle **/actuator/\*\* Request Mappings** displays the actuator related mappings of the application.
+The search feature enables the user to search for the request mapping or the method.
+The toggle **/actuator/\*\* Request Mappings** displays the actuator-related mappings of the
+application.
 
-![Request Mappings Page in the UI showing Request Mapping Details for the application](images/request-mappings-steeltoe.png)
+![Request Mappings Page in the UI that is for showing Request Mapping Details for the application.](images/request-mappings-steeltoe.png)
 
 ## <a id="http-requests-page"></a> HTTP Requests page
 
-To access the **HTTP Requests** page, select the **HTTP Requests** option from the **Information Category**
-drop-down menu.
+To access the **HTTP Requests** page, select the **HTTP Requests** option from the
+**Information Category** drop-down menu.
 
-The HTTP Requests page provides information about HTTP request-response exchanges to the application.
+The **HTTP Requests** page provides information about HTTP request-response exchanges to the
+application.
 
-The graph visualizes the requests per second indicating the response status of all the requests.
-The user can filter on the response statuses which include info, success, redirects, client-errors,
-server-errors.
-The trace data is captured in detail in a tabular format with metrics such as timestamp, method, path,
-status, content-type, length, time.
+The graph visualizes the requests per second, which indicates the response status of all the requests.
+The user can filter by the response statuses, which include **info**, **success**, **redirects**,
+**client-errors**, and **server-errors**.
+The trace data is captured in detail in a tabular format with metrics, such as **timestamp**,
+**method**, **path**, **status**, **content-type**, **length**, and **time**.
 
-The search feature on the table filters the traces based on the search field value.
-The user can view more details of the request such as method, headers, response of the application
-by clicking on the timestamp.
+The search feature on the table filters the traces based on the search text box value.
+By clicking on the timestamp, the user can view more details of the request, such as method, headers,
+and the response of the application.
+
 The refresh icon above the graph loads the latest traces of the application.
-The toggle **/actuator/\*\*** on the top right corner of the page displays the actuator related
+The toggle **/actuator/\*\*** on the top-right corner of the page displays the actuator-related
 traces of the application.
 
-![HTTP Requests Page in the UI showing HTTP Requests Details for the application](images/http-requests-steeltoe.png)
+![HTTP Requests Page in the UI showing HTTP requests details for the application.](images/http-requests-steeltoe.png)
 
 ## <a id="metrics-page"></a> Metrics page
 
-To access the **Metrics** page, select the **Metrics** option from the
-**Information Category** drop-down menu.
+To access the **Metrics** page, select the **Metrics** option from the **Information Category**
+drop-down menu.
 
 The metrics page provides access to application metrics information.
 You can choose from the list of various metrics available for the application, such as
@@ -175,21 +179,21 @@ You can choose from the list of various metrics available for the application, s
 
 After you choose the metric, you can view the associated tags.
 You can choose the value of each of the tags based on filtering criteria.
-Click **Add Metric** to add the metric to the page, which is refreshed every 5 seconds by default.
+Click **Add Metric** to add the metric to the page. The page is refreshed every 5 seconds by default.
 
-The UI on the Metrics page includes the features that allow you to:
+The UI on the **Metrics** page includes features that enable you to:
 
 - Pause the auto refresh feature by deactivating the **Auto Refresh** toggle.
 - Refresh the metrics manually by clicking **Refresh All**.
 - Change the format of the metric value according to your needs.
-- Delete a particular metric by clicking the minus symbol in the same row.
+- Delete a particular metric by clicking the minus-sign button in the relevant row.
 
 ![Metrics Page in the UI. There are drop-down menus for Metrics and Area. An Add Metric button is at the far right.](images/metrics-steeltoe.png)
 
 ## <a id="actuator-page"></a> Actuator page
 
-To access the **Actuator** page, select the **Actuator** option from the
-**Information Category** drop-down menu.
+To access the **Actuator** page, select the **Actuator** option from the **Information Category**
+drop-down menu.
 The actuator page provides a tree view of the actuator data.
 You can choose from a list of actuator endpoints and parse through the raw actuator data.
 
@@ -198,6 +202,6 @@ You can choose from a list of actuator endpoints and parse through the raw actua
 ## <a id="troubleshooting"></a> Troubleshooting
 
 You might run into cases where a workload running on your cluster does not show up in the
-Application Live View overview, or the detail pages do not load any information while running, or
+Application Live View overview, or the Details pages do not load any information while running, or
 other similar issues.
-For more information, see [Troubleshooting](../../app-live-view/troubleshooting.md).
+For help with troubleshooting common issues, see [Troubleshooting](../../app-live-view/troubleshooting.hbs.md).
