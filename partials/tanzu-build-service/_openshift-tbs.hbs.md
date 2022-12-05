@@ -42,7 +42,7 @@ volumes:
   - secret
 ```
 
-It also applies the following RBAC to allow TBS services to use the SCC:
+It also applies the following RBAC to allow Tanzu Build Service services to use the SCC:
 
 ```yaml
 ---
