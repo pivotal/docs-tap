@@ -26,7 +26,7 @@ Before installing Supply Chain Security Tools - Scan:
     deployment is not required to communicate with Supply Chain Security Tools -
     Store.
 
-  For more information, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
+  For information about SCST - Store, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
 ## <a id='configure-scst-scan'></a> Configure properties
 
