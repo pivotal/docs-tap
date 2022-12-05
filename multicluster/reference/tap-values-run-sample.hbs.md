@@ -9,7 +9,7 @@ ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not s
 shared:
   ingress_domain: INGRESS-DOMAIN
   kubernetes_distribution: "openshift" # To be passed only for Openshift. Defaults to "".
-  kubernetes_version: "1.23.x" or "1.24.x" #Eg. For openshift 4.10 - "1.23.3" and for 4.11 - "1.24.1". Please pass appropriate value for patch version x.
+  kubernetes_version: "K8S-VERSION"
   ca_cert_data: | # To be passed if using custom certificates.
     -----BEGIN CERTIFICATE-----
     MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
@@ -34,6 +34,9 @@ Where:
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's external IP address.
+- `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.23.x` or `1.24.x`, where `x` stands for the patch version. Examples:
+    - Red Hat OpenShift Container Platform v4.10 uses the Kubernetes version `1.23.3`.
+    - Red Hat OpenShift Container Platform v4.11 uses the Kubernetes version `1.24.1`.
 - `VIEW-CLUSTER-INGRESS-DOMAIN` is the subdomain you setup on the View profile cluster. This matches the value key `appliveview.ingressDomain` or `shared.ingress_domain` on the view cluster. Include the default host name `appliveview.` ahead of the domain.
 - `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.
 
