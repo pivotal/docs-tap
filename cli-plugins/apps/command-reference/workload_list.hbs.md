@@ -10,16 +10,16 @@ For example, in the default namespace
 ```bash
 tanzu apps workload list
 
-NAME                TYPE      APP                READY                   AGE
-nginx4              web       <empty>            Ready                   7d9h
-petclinic2          web       <empty>            Ready                   29h
-rmq-sample-app      web       <empty>            Ready                   164m
-rmq-sample-app4     web       <empty>            WorkloadLabelsMissing   29d
-spring-pet-clinic   web       <empty>            Unknown                 166m
-spring-petclinic2   web       spring-petclinic   Unknown                 29d
-spring-petclinic3   <empty>   spring-petclinic   Ready                   29d
-tanzu-java-web-app  web       tanzu-java-web-app Ready                   40m
-tanzu-java-web-app2 web       tanzu-java-web-app Ready                   20m
+NAME                  TYPE      APP                  READY                   AGE
+nginx4                web       <empty>              Ready                   7d9h
+petclinic2            web       <empty>              Ready                   29h
+rmq-sample-app        web       <empty>              Ready                   164m
+rmq-sample-app4       web       <empty>              WorkloadLabelsMissing   29d
+spring-pet-clinic     web       <empty>              Unknown                 166m
+spring-petclinic2     web       spring-petclinic     Unknown                 29d
+spring-petclinic3     <empty>   spring-petclinic     Ready                   29d
+tanzu-java-web-app    web       tanzu-java-web-app   Ready                   40m
+tanzu-java-web-app2   web       tanzu-java-web-app   Ready                   20m
 ```
 
 ## >Workload List flags
@@ -31,18 +31,18 @@ Shows workloads in all namespaces in cluster.
 ```bash
 tanzu apps workload list -A
 
-NAMESPACE   TYPE   NAME                APP                READY                         AGE
-default     web    nginx4              <empty>            Ready                         7d9h
-default     web    petclinic2          <empty>            Ready                         30h
-default     web    rmq-sample-app      <empty>            Ready                         179m
-default     web    rmq-sample-app4     <empty>            WorkloadLabelsMissing         29d
-default     web    spring-pet-clinic   <empty>            Unknown                       3h1m
-default     web    spring-petclinic2   spring-petclinic   Unknown                       29d
-default     web    spring-petclinic3   spring-petclinic   Ready                         29d
-default     web    tanzu-java-web-app  tanzu-java-web-app Ready                         40m
-default     web    tanzu-java-web-app2 tanzu-java-web-app Ready                         20m
-nginx-ns    web    nginx2              <empty>            TemplateRejectedByAPIServer   8d
-nginx-ns    web    nginx4              <empty>            TemplateRejectedByAPIServer   8d
+NAMESPACE   TYPE   NAME                  APP                  READY                         AGE
+default     web    nginx4                <empty>              Ready                         7d9h
+default     web    petclinic2            <empty>              Ready                         30h
+default     web    rmq-sample-app        <empty>              Ready                         179m
+default     web    rmq-sample-app4       <empty>              WorkloadLabelsMissing         29d
+default     web    spring-pet-clinic     <empty>              Unknown                       3h1m
+default     web    spring-petclinic2     spring-petclinic     Unknown                       29d
+default     web    spring-petclinic3     spring-petclinic     Ready                         29d
+default     web    tanzu-java-web-app    tanzu-java-web-app   Ready                         40m
+default     web    tanzu-java-web-app2   tanzu-java-web-app   Ready                         20m
+nginx-ns    web    nginx2                <empty>              TemplateRejectedByAPIServer   8d
+nginx-ns    web    nginx4                <empty>              TemplateRejectedByAPIServer   8d
 ```
 
 ### <a id="list-app"></a> `--app`
