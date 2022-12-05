@@ -640,3 +640,8 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
   Deliverables incorrectly show a DeliveryNotFound error on build profile clusters even though the
   workload is working correctly. The message is typically:
   `No delivery found where full selector is satisfied by labels:`.
+
+### <a id='1-3-deprecations'></a> Deprecations
+
+The following features, listed by component, are deprecated.
+Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
