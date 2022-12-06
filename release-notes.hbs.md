@@ -44,16 +44,17 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped environments. Refer to our updated [instructions](./partials/scst-scan/_offline-airgap.hbs.md).
 
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
+
 This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-vscode-bc"></a> Tanzu Developer Tools for Visual Studio Code
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
-- Requires `tanzu` CLI `apps` plugin version >= 0.10.0
+- Requires the Tanzu CLI `apps` plug-in v0.10.0 or later.
 
 #### <a id="1-4-0-intellij-bc"></a> Tanzu Developer Tools for Intellij
 
-- Requires `tanzu` CLI `apps` plugin version >= 0.10.0
+- Requires the Tanzu CLI `apps` plug-in v0.10.0 or later.
 
 #### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
 
