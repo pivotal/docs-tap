@@ -330,27 +330,24 @@ The two options to resolve this issue are:
 
 1. Upgrade Grype Scanner to v1.2+ (preferably latest). This will automatically
    replace the old ScanTemplates with the upgraded ScanTemplates.
-2. Create a ScanTemplate using this [steps](create-scan-template.hbs.md).
-
+2. Create a ScanTemplate. See [Create a scan template](create-scan-template.hbs.md).
 
 #### <a id="incorrectly-configured-self-signed-cert"></a> Incorrectly configured self-signed cert
 
-If the pod logs show the following error:
+The following error in the pod logs indicate that the self-signed certificate might be incorrectly configured:
 
-```
+```console
 x509: certificate signed by unknown authority
 ```
-
-This indicates that the self-signed certificate might be incorrectly configured.
 
 To resolve this issue, follow this
 [example](../multicluster/reference/tap-values-build-sample.hbs.md) of how to
 set up the shared self-signed certificate.
 
-The shared.ca_cert_data installation value can contain a PEM-encoded CA bundle.
+The `shared.ca_cert_data` installation value can contain a PEM-encoded CA bundle.
 The scanning component trusts the CAs contained in the bundle. The self-signed
-certificate is configured through the [shared top level
-key](../partials/_view-package-config.hbs.md).
+certificate is configured by using the shared top level
+key.
 
 #### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
