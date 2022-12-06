@@ -26,7 +26,11 @@ Run the following to get error logs from a pod when scan pods are in a failing s
 ```console
 kubectl logs <scan-pod-name> -n <DEV-NAMESPACE>
 ```
-See [here](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/) for more details about debugging Kubernetes pods.
+
+Where `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+
+See [here](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/) for more details
+about debugging Kubernetes pods.
 
 The following is an example of a successful scan run output:
 
@@ -58,7 +62,12 @@ To inspect for a specific init container in a pod:
 ```console
 kubectl logs <scan-pod-name> -n <DEV-NAMESPACE> -c <init-container-name>
 ```
-See [Debug Init Containers](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/) in the Kubernetes documentation for debug init container tips.
+
+Where `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+
+See [Debug Init
+Containers](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/) in the
+Kubernetes documentation for debug init container tips.
 
 #### <a id="debug-source-image-scan"></a> Debugging SourceScan and ImageScan
 
@@ -68,11 +77,16 @@ To retrieve status conditions of an SourceScan and ImageScan, run:
 kubectl describe sourcescan <sourcescan> -n <DEV-NAMESPACE>
 ```
 
+Where `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+
 ```console
 kubectl describe imagescan <imagescan> -n <DEV-NAMESPACE>
 ```
 
-Under `Status.Conditions`, for a condition look at the "Reason", "Type", "Message" values that use the keyword "Error" to investigate issues.
+Where `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+
+Under `Status.Conditions`, for a condition look at the "Reason", "Type", "Message" values that use
+the keyword "Error" to investigate issues.
 
 #### <a id="debug-scanning-in-supplychain"></a> Debugging Scanning within a SupplyChain
 
@@ -156,7 +170,8 @@ for an example of a ScanPolicy formatted for SPDX JSON.
 
 #### <a id="ca-not-found-in-secret"></a> Could not find CA in Secret
 
-  If you encounter the following issue, it might be due to not exporting  `app-tls-cert` to the correct namespace:
+If you encounter the following issue, it might be due to not exporting
+`app-tls-cert` to the correct namespace:
 
   ```console
   {"level":"error","ts":"2022-06-08T15:20:48.43237873Z","logger":"setup","msg":"Could not find CA in Secret","err":"unable to set up connection to Supply Chain Security Tools - Store"}
@@ -188,6 +203,10 @@ The problem occurs if they are different URLs. For example:
 kubectl describe sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
 ```
 
+Where:
+
+- `SOURCE-SCAN-NAME` is the name of the source scan you want to configure.
+- `DEV-NAMESPACE` is the name of the developer namespace you want to use.
 And compare the output:
 
 ```console
@@ -212,7 +231,8 @@ status:
 
 #### <a id="supply-chain-stops"></a> Resolving a Supply Chain that is blocked by failing scans
 
-If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md).
+If the Supply Chain is not progressing due to CVEs found in either the SourceScan or ImageScan, see
+the CVE triage workflow in [Triaging and Remediating CVEs](triaging-and-remediating-cves.hbs.md.
 
 #### <a id="gui-miss-policy"></a> Policy not defined in the Tanzu Application Platform GUI
 
@@ -226,6 +246,8 @@ kubectl describe imagescan NAME -n DEV-NAMESPACE
 kubectl get scanpolicy NAME -n DEV-NAMESPACE
 ```
 
+Where `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+
 Add the `app.kubernetes.io/part-of` label to the Scan Policy. See [Enable Tanzu Application Platform
 GUI to view ScanPolicy
 Resource](policies.hbs.md#gui-view-scan-policy)
@@ -233,23 +255,22 @@ for more details.
 
 #### Lookup error when connecting to SCST - Store
 
-If your scan pod is failing, and in the logs you see this error:
+If your scan pod is failing, you might see the following connection error in the logs:
 
 ```console
 dial tcp: lookup metadata-store-app.metadata-store.svc.cluster.local on 10.100.0.10:53: no such host
 ```
 
-A connection error while attempting to connect to the local cluster URL causes
-this error. If this is a multicluster deployment, set the
-`grype.metadataStore.url` property in your Build profile `values.yaml`. It needs
-to be set to the ingress domain of SCST - Store which is deployed in the View
-cluster. See [SCST - Store - Multicluster setup - Install Build
-profile](../scst-store/multicluster-setup.hbs.md#install-build-profile) for more
-information on that configuration.
+This error is caused by a connection error while attempting to connect to the
+local cluster URL. If this is a multicluster deployment, set the
+`grype.metadataStore.url` property in your Build profile `values.yaml`. You must
+set the ingress domain of SCST - Store which is deployed in the View cluster.
+For information about this configuration, see [Install Build
+profile](../scst-store/multicluster-setup.hbs.md#install-build-profile).
 
 #### Sourcescan error with SCST - Store endpoint without a prefix
 
-If your Source Scan resource is failing, and the status shows this error:
+If your Source Scan resource is failing, the status might show this error:
 
 ```console
 Error: endpoint require 'http://' or 'https://' prefix
@@ -258,3 +279,61 @@ Error: endpoint require 'http://' or 'https://' prefix
 This is because the `grype.metadataStore.url` value in the Tanzu Application
 Platform profile `values.yaml` was not configured with the correct prefix.
 Verify that the URL starts with either `http://` or `https://`.
+
+#### <a id="deprecated-pre-v1.2-templates"></a> Deprecated pre-v1.2 templates
+
+If the scan phase is in `Error` and the status condition message shows this:
+
+```console
+Summary logs could not be retrieved: . error opening stream pod logs reader: container summary is not valid for pod scan-grypeimagescan-sample-public-zmj2g-hqv5g
+```
+
+One possible reason is due to using Grype Scanner ScanTemplates shipped with
+versions before Supply Chain Security Tools - Scan v1.2.0 which are now
+deprecated and are no longer supported in v1.4.0+.
+
+The two options to resolve this issue are:
+
+1. Upgrade Grype Scanner to v1.2+ (preferably latest). This will automatically
+   replace the old ScanTemplates with the upgraded ScanTemplates.
+2. Create a ScanTemplate using this [steps](create-scan-template.hbs.md).
+
+
+#### <a id="incorrectly-configured-self-signed-cert"></a> Incorrectly configured self-signed cert
+
+If the pod logs show the following error:
+
+```
+x509: certificate signed by unknown authority
+```
+
+This indicates that the self-signed certificate might be incorrectly configured.
+
+To resolve this issue, follow this
+[example](../multicluster/reference/tap-values-build-sample.hbs.md) of how to
+set up the shared self-signed certificate.
+
+The shared.ca_cert_data installation value can contain a PEM-encoded CA bundle.
+The scanning component trusts the CAs contained in the bundle. The self-signed
+certificate is configured through the [shared top level
+key](../partials/_view-package-config.hbs.md).
+
+#### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
+
+The `docker` text box and related text boxes by SCST - Scan Controller, Grype
+Scanner, or Snyk Scanner were deprecated in Tanzu Application Platform v1.4.0.
+Previously these text boxes might be used to populate the `registry-credentials`
+secret. If you encounter the following error during installation:
+
+```console
+UNAUTHORIZED: unauthorized to access repository
+```
+
+The recommended migration path for users who are setting up their namespaces
+manually is to add registry credentials to both the developer namespace and the
+`scan-link-system` namespace, using these
+[instructions](../partials/_set-up-namespaces.hbs.md).
+
+Note: This topic step does not apply to users who used
+`--export-to-all-namespaces` when setting up the Tanzu Application Platform
+package repository.
