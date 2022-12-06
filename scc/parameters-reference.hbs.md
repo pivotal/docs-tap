@@ -437,7 +437,7 @@ Parameters:
 For information about
 the integration with Tanzu Build Service, see [Tanzu Build Service (TBS) Integration](tbs.hbs.md).
 
-For information about `live-update`, see [Developer Conventions](../developer-conventions/about.hbs.md) and [About IntelliJ extension](intellij-extension/about.hbs.md.
+For information about `live-update`, see [Developer Conventions](../developer-conventions/about.hbs.md) and [Overview of Tanzu Developer Tools for IntelliJ](../intellij-extension/about.hbs.md).
 
 For information about using Kpack builders with `clusterBuilder`, see [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md).
 

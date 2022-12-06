@@ -1,7 +1,7 @@
 # Set up developer namespaces to use installed packages
 
-You can choose either one of the following two approaches to create a `Workload` 
-for your application by using the registry credentials specified, 
+You can choose either one of the following two approaches to create a `Workload`
+for your application by using the registry credentials specified,
 add credentials and Role-Based Access Control (RBAC) rules to the namespace
 that you plan to create the `Workload` in:
 
@@ -167,4 +167,4 @@ Follow these steps to enable additional users by using Kubernetes RBAC to submit
 
 ## <a id='next-steps'></a>Next steps
 
-- [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.html)
+- [Install Tanzu Developer Tools for VS Code](vscode-extension/install.html)

@@ -491,7 +491,7 @@ docs.vmware.com is built.
       - [Access Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md)
       - [Catalog operations](tap-gui/catalog/catalog-operations.md)
       - [View resources on multiple clusters](tap-gui/cluster-view-setup.md)
-      - [Authentication](tap-gui/auth.md)
+      - [Set up an authentication provider](tap-gui/auth.md)
       - [Manage role-based access control](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac.md)
           - [Enable authorization on remote clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac.md)
           - [Enable authorization on remote EKS clusters](tap-gui/tap-gui-rbac/set-up-tap-gui-rbac-eks.md)

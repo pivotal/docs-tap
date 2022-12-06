@@ -1,7 +1,7 @@
 # Use Tanzu Developer Tools for VS Code
 
 Ensure that the project you want to use the extension with has the required files specified in
-[Getting started with Tanzu Developer Tools for Visual Studio Code](../vscode-extension/getting-started.hbs.md).
+[Get started with Tanzu Developer Tools for Visual Studio Code](../vscode-extension/getting-started.hbs.md).
 
 The extension requires only one Tiltfile and one `workload.yaml` per project.
 The `workload.yaml` must be a single-document YAML file, not a multidocument YAML file.
@@ -71,7 +71,7 @@ Tanzu Application Platform.
 
 Debugging requires a `workload.yaml` file in your project.
 For information about creating a `workload.yaml` file, see
-[Getting Started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
+[Get Started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
 
 Debugging on the cluster and Live Update cannot be used simultaneously.
 If you use Live Update for the current project, ensure that you stop the
@@ -125,7 +125,7 @@ workload running on the cluster within seconds.
 
 Live Update requires a `workload.yaml` file and a Tiltfile in your project.
 For information about how to create a `workload.yaml` and a Tiltfile, see
-[Getting Started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
+[Get Started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
 
 Live Update and Debugging on the cluster cannot be used simultaneously.
 If you are debugging on the cluster, stop debugging before attempting to use Live Update.

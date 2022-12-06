@@ -167,7 +167,7 @@ The sample values file contains the necessary defaults for:
 
 ### <a id='full-profile'></a> Full profile (AWS)
 
-The following command generates the YAML file sample for the full-profile on AWS by using the ECR repositories you created earlier. 
+The following command generates the YAML file sample for the full-profile on AWS by using the ECR repositories you created earlier.
 The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run`, or `view`.
 Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
 
@@ -320,7 +320,7 @@ by following the procedure in [Install full dependencies](#tap-install-full-deps
 
 After installing the Full profile on your cluster, you can install the
 Tanzu Developer Tools for VS Code Extension to help you develop against it.
-For instructions, see [Installing Tanzu Developer Tools for VS Code](vscode-extension/install.md).
+For instructions, see [Install Tanzu Developer Tools for VS Code](vscode-extension/install.md).
 
 >**Note** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
@@ -384,7 +384,7 @@ To install the `full` dependencies package:
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
+To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
 You're now ready to start using Tanzu Application Platform GUI.
 Proceed to the [Getting Started](getting-started.md) topic or the

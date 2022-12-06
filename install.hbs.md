@@ -214,7 +214,7 @@ The sample values file contains the necessary defaults for:
     - Subordinate packages, or individual child packages.
 
     Keep the values file for future configuration use.
-    
+
     >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
 
 
@@ -228,7 +228,7 @@ Refer to [Install multicluster Tanzu Application Platform profiles](multicluster
 ```yaml
 shared:
   ingress_domain: "INGRESS-DOMAIN"
-  ingress_issuer: # Optional, can denote a cert-manager.io/v1/ClusterIssuer of your choice. Defaults to "tap-ingress-selfsigned". 
+  ingress_issuer: # Optional, can denote a cert-manager.io/v1/ClusterIssuer of your choice. Defaults to "tap-ingress-selfsigned".
 
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
@@ -422,8 +422,8 @@ Follow these steps to install the Tanzu Application Platform package:
 3. If you configured `full` dependencies in your `tap-values.yaml` file, install the `full` dependencies
 by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
->**Important** After installing the full profile on your cluster, you must set up developer namespaces. Otherwise, 
-creating a workload, a Knative service or other Tanzu Application Platform packages fails. 
+>**Important** After installing the full profile on your cluster, you must set up developer namespaces. Otherwise,
+creating a workload, a Knative service or other Tanzu Application Platform packages fails.
 For more information, see [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md).
 
 You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
@@ -490,7 +490,7 @@ To install the `full` dependencies package:
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Accessing Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
+To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
 
 You're now ready to start using Tanzu Application Platform GUI.
 Proceed to the [Getting Started](getting-started.md) topic or the

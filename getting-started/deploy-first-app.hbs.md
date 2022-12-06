@@ -19,7 +19,7 @@ Before you start, complete all [Getting started prerequisites](../getting-starte
 ## <a id="generate-project"></a>Generate a new project using an application accelerator
 
 In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanzu Application Platform GUI. For information about connecting to Tanzu Application Platform GUI, see
-   [Accessing Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
+   [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.md).
 
 1. From Tanzu Application Platform GUI portal, click **Create** located on the left side of the
    navigation pane to see the list of available accelerators.
