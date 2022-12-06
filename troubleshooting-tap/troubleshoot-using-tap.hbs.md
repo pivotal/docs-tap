@@ -60,7 +60,7 @@ container image for your workload).
 This message is typically encountered when the core component of the Builder (`kpack`) transitions
 into a bad state.
 
-Although this isn't the only scenario where this can happen, kpack can transition into a bad state
+Although this isn't the only scenario where this can happen, `kpack` can transition into a bad state
 when Tanzu Application Platform is deployed to a local `minikube` or `kind` cluster and especially
 when that `minikube` or `kind` cluster is restarted.
 
@@ -122,10 +122,9 @@ tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
 
 ### Explanation
 
-The `tap-telemetry` namespace misses a Role that allows the controller to list secrets in the
-`tap-telemetry` namespace. For more information about Roles, see
-[Role and ClusterRole](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
-in _Using RBAC Authorization_ in the Kubernetes documentation.
+The `tap-telemetry` namespace misses a role that allows the controller to list secrets in the
+`tap-telemetry` namespace. For more information about roles, see
+[Role and ClusterRole Kubernetes documentation](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole).
 
 ### Solution
 
@@ -253,8 +252,8 @@ Events:
 
 ## Solution
 
-Delete the MutatingWebhookConfiguration resource to resolve the deadlock and enable the system to
-restart. After the system is stable, restore the MutatingWebhookConfiguration resource to re-enable
+Delete the `MutatingWebhookConfiguration` resource to resolve the deadlock and enable the system to
+restart. After the system is stable, restore the `MutatingWebhookConfiguration` resource to re-enable
 image signing enforcement.
 
 >**Important** These steps temporarily deactivate signature verification in your cluster.
@@ -299,7 +298,7 @@ components to have their pods preempted or evicted instead.
 ### Solution
 
 - **Solution 1: Reduce the number of pods deployed by the Sign component:**
-    If your deployment of the Sign component runs more pods than necessary, scale down the deployment
+    If your deployment of the Sign component runs more pods than necessary, scale the deployment
     down as follows:
 
     1. Create a values file named `scst-sign-values.yaml` with the following contents:
@@ -351,7 +350,7 @@ data on the volume:
 
 1. Deploy `metadata-store app` with kapp.
 
-2. Verify that the `metadata-store-db-*` Pod fails.
+2. Verify that the `metadata-store-db-*` pod fails.
 
 3. Run:
 
@@ -376,7 +375,7 @@ data on the volume:
 ## <a id='pw-authentication-fails'></a> Password authentication fails
 
 SCST - Store does not start. You see the following error in the
-`metadata-store-app` Pod logs:
+`metadata-store-app` pod logs:
 
 ```console
 $ kubectl logs pod/metadata-store-app-* -n metadata-store -c metadata-store-app
@@ -420,21 +419,21 @@ data on the volume:
 ## <a id='md-store-db-fail-to-start'></a> `metadata-store-db` pod fails to start
 
 When SCST - Store is deployed, deleted, and then redeployed, the `metadata-store-db`
-Pod fails to start if the database password changed during redeployment.
+pod fails to start if the database password changed during redeployment.
 
 ### Explanation
 
-The persistent volume used by PostgreSQL retains old data, even though the retention policy is set
+The persistent volume used by `PostgreSQL` retains old data, even though the retention policy is set
 to `DELETE`.
 
 ### Solution
 
-Redeploy the app either with the original database password or follow the later steps  to erase the
+Redeploy the app either with the original database password or follow the later steps to erase the
 data on the volume:
 
 1. Deploy `metadata-store app` with kapp.
 
-2. Verify that the `metadata-store-db-*` Pod fails.
+2. Verify that the `metadata-store-db-*` pod fails.
 
 3. Run:
 
@@ -502,11 +501,11 @@ GitHub.
 ### Solution
 
 Follow these steps to update your `aws-cli` to a supported v2.7.35 or later, and update the
-kubeconfig entry for your EKS clusters:
+`kubeconfig` entry for your EKS clusters:
 
 1. Update `aws-cli` to the latest version. For more information see [AWS documentation](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
 
-2. Update the kubeconfig entry for your EKS clusters:
+2. Update the `kubeconfig` entry for your EKS clusters:
 
     ```console
     aws eks update-kubeconfig --name ${EKS_CLUSTER_NAME} --region ${REGION}
