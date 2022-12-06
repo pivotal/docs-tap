@@ -50,6 +50,21 @@ This release has the following breaking changes, listed by area and component.
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
 
+#### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
+
+- Removed deprecated ScanTemplates:
+  - Deprecated Grype ScanTemplates shipped with versions earlier than Tanzu Application Platform v1.2.0 were removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
+- Deprecation notice:
+  - The `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in Tanzu Application Platform v1.7.0.
+  - The deprecation will impact the following components: Scan Controller, Grype Scanner, and Snyk Scanner.
+  - For the migration path, see [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
+  - Carbon Black Scanner is not impacted.
+
+#### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
+
+The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
+in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
+
 #### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
 
 Policy Controller no longer initializes TUF by default. TUF is required to
