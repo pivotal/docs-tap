@@ -136,7 +136,10 @@ To access the **Request Mappings** page, select the **Request Mappings** option 
 This page provides information about the application’s request mappings.
 For each mapping, the page displays the request handler method.
 The user can view more details of the request mapping, such as the header metadata of the application.
-When a user clicks on the request mapping, a side panel is displayed. This panel contains info on mapping media types `Produces`, `Consumes` and the `Handler` class for the request.
+
+When a user clicks on the request mapping, a side panel appears.
+This panel contains information about the mapping-media types `Produces` and `Consumes`.
+The panel also displays the `Handler` class for the request.
 The search feature enables the user to search for the request mapping or the method.
 The toggle **/actuator/\*\* Request Mappings** displays the actuator-related mappings of the
 application.

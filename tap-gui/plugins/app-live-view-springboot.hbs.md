@@ -41,7 +41,8 @@ It displays the status, details associated with each of the components.
 To navigate to the **Environment** page, the user can select the **Environment** option from the
 **Information Category** drop-down menu.
 The Environment page contains details of the applications' environment.
-It contains properties including, but not limited to, system properties, environment variables, and configuration properties (such as application.properties) in a Spring Boot application.
+It contains properties including, but not limited to, system properties, environment variables, and
+configuration properties (such as application.properties) in a Spring Boot application.
 
 The page includes the following capabilities for `viewing` configured environment properties:
 
@@ -49,8 +50,8 @@ The page includes the following capabilities for `viewing` configured environmen
 - Each property has a search icon at the right corner which helps the user quickly see all the
   occurrences of a specific property key without manually typing in the search box.
   Clicking the search button locates the property name.
-- The **Refresh Scope** button on the top right corner of the page probes the application to refresh all the
-  environment properties.
+- The **Refresh Scope** button on the top right corner of the page probes the application to refresh
+  all the environment properties.
 
 The page also includes the following capabilities for `editing` configured environment properties:
 
@@ -91,7 +92,8 @@ The search feature enables the user to search by logger name.
 The **Reset** resets the log levels to the original state.
 The **Reset All** on top right corner of the page resets all the loggers to default state.
 
-> **Note** The UI allows the user to change the log levels and see the live changes on the application. These changes are temporary and will go away if the underlying pod gets restarted.
+> **Note** The UI allows the user to change the log levels and see the live changes on the application.
+> These changes are temporary and will go away if the underlying pod gets restarted.
 
 ![Log Levels Page in the UI showing many loggers.](images/log-levels.png)
 
@@ -115,10 +117,17 @@ The page also has a feature to download thread dump for analysis purposes.
 
 ## <a id="memory-page"></a> Memory page
 
-To navigate to the **Memory** page, the user can select the `Memory` option from the `Information Category` drop-down menu.
+To navigate to the **Memory** page, the user can select the **Memory** option from the
+**Information Category** drop-down menu.
 
-- The memory page highlights the memory use inside of the JVM. It displays a graphical representation of the different memory regions within heap and non-heap memory. This visualizes data from inside of the JVM (in case of Spring Boot apps running on a JVM) and therefore provides memory insights into the application in contrast to "outside" information about the Kubernetes pod level.
-- The real-time graphs displays a stacked overview of the different spaces in memory with the total memory used and total memory size. The page contains graphs to display the GC pauses and GC events. The **Heap Dump** on top right corner allows the user to download heap dump data.
+- The memory page highlights the memory use inside of the JVM. It displays a graphical representation
+  of the different memory regions within heap and non-heap memory.
+  This visualizes data from inside of the JVM (in case of Spring Boot apps running on a JVM) and
+  therefore provides memory insights into the application in contrast to "outside" information about
+  the Kubernetes pod level.
+- The real-time graphs displays a stacked overview of the different spaces in memory with the total
+  memory used and total memory size. The page contains graphs to display the GC pauses and GC events.
+- The **Heap Dump** at the top-right corner enables the user to download heap dump data.
 
 ![Memory Page in the UI showing four graphs. The top-left graph is selected.](images/memory.png)
 
@@ -134,13 +143,17 @@ the **Information Category** drop-down menu.
 This page provides information about the application’s request mappings.
 For each of the mapping, it displays the request handler method.
 The user can view more details of the request mapping such as header metadata of the application.
-When a user clicks on the request mapping, a side panel is displayed. This panel contains info on mapping media types `Produces`, `Consumes` and the `Handler` class for the request.
-The search feature enables the user to search on the request mapping or the method.
-The toggle **/actuator/\*\* Request Mappings** displays the actuator related mappings of the application.
 
->**Note** When application actuator endpoint is exposed on management.server.port, the application
-does not return any actuator request mappings data in the context.
-The application displays a message when the actuator toggle is enabled.
+When a user clicks on the request mapping, a side panel appears.
+This panel contains information about the mapping-media types `Produces` and `Consumes`.
+The panel also displays the `Handler` class for the request.
+The search feature enables the user to search on the request mapping or the method.
+The toggle **/actuator/\*\* Request Mappings** displays the actuator related mappings of the
+application.
+
+> **Note** When application actuator endpoint is exposed on `management.server.port`, the application
+> does not return any actuator request mappings data in the context.
+> The application displays a message when the actuator toggle is enabled.
 
 ![Request Mappings Page in the UI. A search text box is at the top right.](images/request-mappings-1.png)
 
@@ -275,5 +288,7 @@ The user can choose from a list of actuator endpoints and parse through the raw 
 ## <a id="troubleshooting"></a> Troubleshooting
 
 You might run into cases where a workload running on your cluster does not show up in the
-Application Live View overview, the detail pages do not load any information while running, or similar issues.
-See [Troubleshooting](../../app-live-view/troubleshooting.md) in the Application Live View documentation.
+Application Live View overview, the detail pages do not load any information while running, or similar
+issues.
+See [Troubleshooting](../../app-live-view/troubleshooting.md) in the Application Live View
+documentation.
