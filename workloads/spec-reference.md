@@ -2,8 +2,10 @@
 
 This reference topic describes:
 
-* The `workload.spec.params` parameters that are configured in workload objects. For more information, see [Workload Parameter Reference](#workload-parameter).
-* The `deliverable.spec.params` parameters that are configured in the deliverable object. For more information, see [Deliverable Parameter Reference](#deliverable-parameters).
+* The `workload.spec.params` parameters that are configured in workload objects. For more
+information, see [Workload Parameter Reference](#workload-parameter).
+* The `deliverable.spec.params` parameters that are configured in the deliverable object. For more
+information, see [Deliverable Parameter Reference](#deliverable-parameters).
 
 ## <a id="workload-parameter"></a> Workload Parameter Reference
 
@@ -86,11 +88,12 @@ Parameters:
   </tr>
 </table>
 
-> **Note** It might not be necessary to change the default Git
-> implementation, but some providers such as Azure DevOps, require you to use
-> `libgit2` due to the server-side implementation providing support
-> only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2). For information about the
-> features supported by each implementation, see [Git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux documentation.
+- It might not be necessary to change the default Git  implementation, but some providers such as
+Azure DevOps, require you to use `libgit2` as the server-side implementation provides support
+ only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
+
+For information about the features supported by each implementation, see
+[Git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux documentation.
 
 For information about how to create a workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
@@ -98,7 +101,6 @@ repository](../cli-plugins/apps/create-workload.hbs.md#workload-local-source).
 
 For more information about GitRepository objects, see
 [Git Repository](https://fluxcd.io/flux/components/source/gitrepositories/) in the Flux documentation.
-<a href = "https://fluxcd.io/flux/components/source/gitrepositories/" target = "_blank">Flux documentation</a>
 
 #### ImageRepository
 
@@ -134,15 +136,14 @@ Parameters:
 
 </table>
 
+> The `--service-account` flag sets the `spec.serviceAccountName` key in
+> the workload object. To configure the `serviceAccount` parameter, use
+> `--param serviceAccount=SERVICE-ACCOUNT`.
+
 For information about custom resource details, see [ImageRepository](../source-controller/reference.hbs.md#imagerepository) reference topic.
 
 For information about how to use ImageRepository with the Tanzu
 CLI, see [Create a workload](../cli-plugins/apps/create-workload.hbs.md#cli-plugins).
-
-> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the Workload object. To configure the `serviceAccount` parameter, use
-> `--param serviceAccount=...`.
-
 #### MavenArtifact
 
 When carrying pre-built Java artifacts, `MavenArtifact` makes the artifact available to
@@ -411,9 +412,8 @@ Parameters:
 
 </table>
 
-> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the workload object. To configure the `serviceAccount` parameter, use
-> `--param serviceAccount=...`.
+- The `--service-account` flag sets the `spec.serviceAccountName` key in  the workload object.
+To configure the `serviceAccount` parameter, use  `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For information about
 the integration with Tanzu Build Service, see [Tanzu Build Service (TBS) Integration](../scc/tbs.hbs.md).
@@ -429,11 +429,8 @@ Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md).
 
 #### Runnable (TaskRuns for Dockerfile-based builds)
 
-To perform Dockerfile-based builds, all the supply chains
-instantiate a Runnable object that, with changes to its inputs
-like a new source code revision, instantiates Tekton
-TaskRun objects to call the execution of
-[kaniko](https://github.com/GoogleContainerTools/kaniko)  builds.
+To perform Dockerfile-based builds, all the supply chains instantiate a Runnable object that
+instantiates Tekton TaskRun objects to call the execution of [kaniko](https://github.com/GoogleContainerTools/kaniko)  builds.
 
 Parameters:
 
@@ -502,9 +499,8 @@ Parameters:
   </tr>
 </table>
 
-> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the workload object. To configure the `serviceAccount` parameter, use
-> `--param serviceAccount=...`.
+- The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object. To
+configure the `serviceAccount` parameter, use  `--param serviceAccount=...`.
 
 For information about the
 ImageRepository resource, see [ImageRepository reference
@@ -645,9 +641,8 @@ Parameters:
   </tr>
 </table>
 
-> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the workload object. To configure the `serviceAccount` parameter, use
-> `--param serviceAccount=...`.
+- The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
+To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For more information about the controller behind `PodIntent`, see [Cartographer Conventions](../cartographer-conventions/about.hbs.md).
 
@@ -792,9 +787,8 @@ Parameters:
   </tr>
 </table>
 
-> **Note** The workload must include the
-> `apis.apps.tanzu.vmware.com/register-api: "true"` label to activate
-> this function.
+- The workload must include the `apis.apps.tanzu.vmware.com/register-api: "true"` label to activate
+ this function.
 
 For more details about API auto registration, see [Use API Auto Registration](../api-auto-registration/usage.hbs.md).
 
@@ -807,9 +801,8 @@ Kubernetes configuration generated throughout the supply chain.
 There are three methods:
 
 - publishing the configuration to a container image registry
-- publishing the configuration to a Git repository
-    - solely by using the push of a commit, or
-    - pushing a commit _and_ opening a pull request.
+- publishing the configuration to a Git repository by using the push of a commit, or
+- publishing the configuration to a Git repository by pushing a commit _and_ opening a pull request.
 
 For more information about the different modes of operation, see [Gitops vs
 RegistryOps](../scc/gitops-vs-regops.hbs.md).
@@ -846,30 +839,27 @@ Parameters:
   </tr>
 </table>
 
-> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the workload object. To configure the `serviceAccount` parameter, use
-> `--param serviceAccount=...`.
+- The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
+To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
-> **Note** On build clusters where a corresponding `ClusterDelivery` doesn't
-> exist, the deliverable takes no effect (similarly to a workload without a
-> SupplyChain, no action is taken).
+- On build clusters where a corresponding `ClusterDelivery` doesn't exist, the deliverable takes no
+effect (similarly to a workload without a SupplyChain, no action is taken).
 
-## <a id ="deliverable-parameters"></a>Deliverable Parameters reference
+## <a id ="deliverable-parameters"></a>Deliverable Parameters Reference
 
 The deliverable object applies the configuration produced by the resources defined by a
 ClusterSupplyChain to a Kubernetes cluster.
 
 This section describes the `deliverable.spec.params` parameters that can be configured in the
-deliverable object. The following section describes the two resources defined in the `basic`
-ClusterDelivery part of the `ootb-delivery-basic` package:
+deliverable object. The following section describes the two resources defined in the
+ClusterDelivery resources section. These are part of the `ootb-delivery-basic` package:
 
 ### List of Cluster Delivery Resources for Deliverable Object
 
-| Cluster Delivery Resource                 | Output Type                     | Purpose                                                                                           | Basic | Testing | Scanning |
-|---------------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------|-------|---------| --- |
-| [source provider](#source-provider-del)           | n/a       | Fetch Kubernetes config from Git repository or image registry | Yes | Yes | Yes |
-| [app deployer](#app-deployer)           | n/a       | Applies configuration produced by a supply chain to the cluster | Yes | Yes | Yes |
-
+| Cluster Delivery Resource                 | Output Type                     | Purpose                                                                                           |
+|---------------------------------------|---------------------------------|---------------------------------------------------------------------------------------------------|
+| [source provider](#source-provider-del)           | Source       | Fetches the Kubernetes configuration file from Git repository or image registry |
+| [app deployer](#app-deployer)           | Source       | Applies configuration produced by a supply chain to the cluster |
 
 For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
 and the templates used by it, see:
@@ -942,13 +932,13 @@ Parameters:
   </tr>
 </table>
 
-> **Note** It might not be necessary to change the default Git implementation
-> but some providers, such as Azure DevOps, require you to use `libgit2` due to
-> the server-side implementation providing support only for [git's v2
-> protocol](https://git-scm.com/docs/protocol-v2). For information about the
-> features supported by each implementation, see [git
-> implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux
-> documentation.
+- It might not be necessary to change the default Git implementation but some providers, such as
+Azure DevOps, require you to use `libgit2` as the server-side implementation provides support only
+for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
+
+For information about the features supported by each implementation, see [git
+implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux
+documentation.
 
 For information about how to create a Workload that uses a GitHub repository as the provider
 of source code, see [Create a workload from GitHub repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
@@ -987,12 +977,11 @@ Parameters:
 
 </table>
 
+- The `--service-account` flag sets the `spec.serviceAccountName` key in the deliverable object.
+To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
+
 For information about custom resource details, see [ImageRepository reference
 docs](../source-controller/reference.hbs.md#imagerepository).
-
-> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the deliverable object. To configure the `serviceAccount` parameter, use
-> `--param serviceAccount=...`.
 
 ### <a id="app-deployer"></a>app deployer
 
@@ -1046,12 +1035,13 @@ Parameters:
 
 </table>
 
-> **Note** The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
+- The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
 
-> **Note** `--service-account` flag sets the `spec.serviceAccountName` key in
-> the deliverable object. To configure the `serviceAccount` parameter, use
-> `--param serviceAccount=...`. For details about RBAC and how `kapp-controller`
-> makes use of the ServiceAccount provided to it using the `serviceAccount`
-> parameter in the `deliverable` object, see
-> [`kapp-controller`'s Security
-> Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/) in the Carvel documentation.
+- The `--service-account` flag sets the `spec.serviceAccountName` key in  the deliverable object.
+
+- To configure the `serviceAccount` parameter, use
+`--param serviceAccount=SERVICE-ACCOUNT`.
+
+For details about RBAC and how `kapp-controller` uses the ServiceAccount provided to it using the
+`serviceAccount` parameter in the `deliverable` object, see [`kapp-controller`'s Security
+Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/) in the Carvel documentation.
