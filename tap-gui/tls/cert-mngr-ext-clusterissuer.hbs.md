@@ -1,4 +1,4 @@
-# Configuring a TLS certificate by using cert-manager and an external ClusterIssuer
+# Configure a TLS certificate by using cert-manager and an external ClusterIssuer
 
 This topic describes how to use cert-manager to create a certificate issuer and then generate a
 certificate for Tanzu Application Platform GUI to use based on that issuer.

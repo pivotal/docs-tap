@@ -1,4 +1,4 @@
-# Adding Tanzu Application Platform GUI integrations
+# Add Tanzu Application Platform GUI integrations
 
 You can integrate Tanzu Application Platform GUI with several Git providers.
 To use an integration, you must enable it and provide the necessary token or credentials in

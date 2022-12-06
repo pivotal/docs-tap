@@ -1,4 +1,4 @@
-# Assigning roles and permissions on Kubernetes clusters
+# Assign roles and permissions on Kubernetes clusters
 
 This topic gives an overview of creating roles and permissions on Kubernetes clusters
 and assigning these roles to users. For more information, see

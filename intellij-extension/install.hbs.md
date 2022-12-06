@@ -1,4 +1,4 @@
-# Installing Tanzu Developer Tools for IntelliJ
+# Install Tanzu Developer Tools for IntelliJ
 
 This topic explains how to install the VMware Tanzu Developer Tools for IntelliJ IDE extension.
 The extension currently only supports Java applications on macOS and Windows.

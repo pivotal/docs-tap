@@ -1,4 +1,4 @@
-# Troubleshooting Tanzu Developer Tools for IntelliJ
+# Troubleshoot Tanzu Developer Tools for IntelliJ
 
 This topic describes what to do when encountering issues with Tanzu Developer Tools for IntelliJ.
 

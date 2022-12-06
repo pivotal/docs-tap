@@ -1,4 +1,4 @@
-# Troubleshooting Tanzu Developer Tools for VS Code
+# Troubleshoot Tanzu Developer Tools for VS Code
 
 This topic describes what to do when encountering issues with Tanzu Developer Tools for VS Code.
 

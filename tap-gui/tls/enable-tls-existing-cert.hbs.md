@@ -1,4 +1,4 @@
-# Configuring a TLS certificate by using an existing certificate
+# Configure a TLS certificate by using an existing certificate
 
 This topic describes how to use the certificate information from your external certificate authority
 to encrypt inbound traffic to Tanzu Application Platform GUI.
