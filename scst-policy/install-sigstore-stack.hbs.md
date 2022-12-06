@@ -54,7 +54,9 @@ corresponding image references.
 The following is a sample script that does this:
 
 ```bash
-TARGET_REGISTRY=<TARGET REGISTRY REGISTRY>
+TARGET_REGISTRY=TARGET-REGISTRY
+
+Where `TARGET-REGISTRY` is the name of the registry you want to migrate to.
 
 # Use yq to find all "image" keys from the release-*.yaml downloaded
 found_images=($(yq eval '.. | select(has("image")) | .image' release-*.yaml | grep --invert-match  -- '---'))
@@ -106,7 +108,7 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: tap-registry
-  namespace: <SERVICE>-system
+  namespace: SERVICE-system
   annotations:
     secretgen.carvel.dev/image-pull-secret: ""
 stringData:
@@ -114,9 +116,11 @@ stringData:
 type: kubernetes.io/dockerconfigjson
 EOF
 
-echo "Patch <SERVICE> service account"
-kubectl -n <SERVICE>-system patch serviceaccount <SERVICE> -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
+echo "Patch SERVICE service account"
+kubectl -n SERVICE-system patch serviceaccount SERVICE -p '{"imagePullSecrets": [{"name": "tap-registry"}]}'
 ```
+
+Where `SERVICE` is the name of the service you want to configure with your target namespace.
 
 ## <a id='sigstore-copy-files'></a> Copy Release Files to Cluster Accessible Machine
 
@@ -558,8 +562,10 @@ If Policy Controller was installed through Tanzu Application Profiles, update th
 policy:
   tuf_mirror: http://tuf.tuf-system.svc
   tuf_root: |
-    <Multi-line string content of root.json>
+    MULTI-LINE-ROOT-JSON
 ```
+
+Where `MULTI-LINE-ROOT-JSON` is a multi-line string content of from your root.json file.
 
 When updating the current Tanzu Application Platform installed through profiles with the updated values file, the previously failing Tanzu Application Platform `PackageInstall` has the following error:
 
@@ -588,8 +594,10 @@ If Policy Controller was installed standalone or updated manually, update the va
 ```yaml
 tuf_mirror: http://tuf.tuf-system.svc
 tuf_root: |
-  <Multi-line string content of root.json>
+  MULTI-LINE-ROOT-JSON
 ```
+
+Where `MULTI-LINE-ROOT-JSON` is a multi-line string content of from your root.json file.
 
 Run with the values file configured for Policy Controller only:
 
