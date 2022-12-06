@@ -101,6 +101,8 @@ Currently, the following set of objects are provided by `ootb-templates`:
 - ClusterImageTemplate/**image-provider-template**
 - ClusterImageTemplate/**image-scanner-template**
 - ClusterImageTemplate/**kpack-template**
+- ClusterTask/**kaniko-build**
+- ClusterImageTemplate/**kaniko-template**
 - ClusterRole/**ootb-templates-app-viewer**
 - ClusterRole/**ootb-templates-deliverable**
 - ClusterRole/**ootb-templates-workload**

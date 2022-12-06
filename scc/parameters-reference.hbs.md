@@ -478,6 +478,23 @@ Parameters:
     </td>
     <td><pre>- --build-arg=FOO=BAR</pre></td>
   </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account, in the same namespace as the Workload, to use
+      for providing docker credentials. The service account must have a secret
+      associated with said credentials. For more information, see Tekton
+      documentation on
+      [Configuring authentication for Docker](https://tekton.dev/docs/pipelines/auth/#configuring-authentication-for-docker)
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
 </table>
 
 For information about how to use Dockerfile-based builds and limitations associated with the function, see [Dockerfile-based builds](dockerfile-based-builds.hbs.md).
