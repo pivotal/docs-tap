@@ -334,7 +334,7 @@ that is sent to the Jenkins job.  The parameter are entered into the
 Watch the quoting of the `job-params` value closely. In the earlier `tanzu apps
 workload create` example, the `job-params` value is a string with a JSON
 structure in it.  The value of the `--param-yaml testing_pipeline_params`
-parameter is a JSON string. This is the reason for the backslash (`\`) escape
+parameter is a JSON string. So be sure to add backslash (`\`) escape
 characters before the double quote characters (`"`) in the `job-params` value.
 
 Example output form the `tanzu apps workload create` command:
