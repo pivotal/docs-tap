@@ -348,8 +348,7 @@ source](building-from-source.hbs.md), different semantics apply:
   `workload.spec.image`
 
 - building from source: an image builder object is created (either Kpack's
-  `Image` or a `Runnable` for creating Tekton TaskRuns for building images from
-  Dockerfiles)
+  `Image` or Tekton TaskRuns for building images from Dockerfiles)
 
 ### Kpack Image
 
@@ -445,12 +444,10 @@ For information about using Kpack builders with `clusterBuilder`, see [Builders]
 For information about `buildServiceBindings`, see [Service
 Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md).
 
-### Runnable (TaskRuns for Dockerfile-based builds)
+### TaskRuns for Dockerfile-based builds
 
 To perform Dockerfile-based builds, all the supply chains
-instantiate a Runnable object that, with changes to its inputs
-like a new source code revision, instantiates Tekton
-TaskRun objects to call the execution of
+instantiate Tekton TaskRun objects to call the execution of
 [kaniko](https://github.com/GoogleContainerTools/kaniko) builds.
 
 Parameters:
@@ -480,6 +477,23 @@ Parameters:
       List of flags to pass directly to Kaniko,such as providing arguments to a build.
     </td>
     <td><pre>- --build-arg=FOO=BAR</pre></td>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account, in the same namespace as the Workload, to use
+      for providing docker credentials. The service account must have a secret
+      associated with said credentials. For more information, see Tekton
+      documentation on
+      [Configuring authentication for Docker](https://tekton.dev/docs/pipelines/auth/#configuring-authentication-for-docker)
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
   </tr>
 </table>
 
