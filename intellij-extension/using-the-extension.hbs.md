@@ -1,4 +1,4 @@
-# Using Tanzu Developer Tools for IntelliJ
+# Use Tanzu Developer Tools for IntelliJ
 
 Ensure that the project you want to use the Tanzu Developer Tools for IntelliJ extension with has the
 required files specified in [Getting started](getting-started.hbs.md).

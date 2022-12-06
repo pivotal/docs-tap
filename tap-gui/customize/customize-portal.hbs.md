@@ -1,4 +1,4 @@
-# Customizing the Tanzu Application Platform GUI portal
+# Customize the Tanzu Application Platform GUI portal
 
 This section describes how to customize the Tanzu Application Platform GUI portal.
 

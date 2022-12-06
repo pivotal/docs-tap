@@ -1,4 +1,4 @@
-# Getting started with API documentation plug-in
+# Get started with API documentation plug-in
 
 This topic describes how to get started with the API documentation plug-in.
 

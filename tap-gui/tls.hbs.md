@@ -1,4 +1,4 @@
-# Configuring TLS Certificate for Tanzu Application Platform GUI
+# Configure TLS Certificate for Tanzu Application Platform GUI
 
 To configure a TLS certificate for Tanzu Application Platform GUI:
 

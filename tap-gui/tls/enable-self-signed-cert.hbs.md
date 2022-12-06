@@ -1,4 +1,4 @@
-# Configuring a TLS certificate by using a self-signed certificate
+# Configure a TLS certificate by using a self-signed certificate
 
 This topic describes how to use cert-manager to create a self-signed certificate issuer and then
 generate a certificate for Tanzu Application Platform GUI to use based on that issuer.

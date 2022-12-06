@@ -1,4 +1,4 @@
-# Customizing the Support menu
+# Customize the Support menu
 
 This topic describes how to customize the support menu.
 
