@@ -84,11 +84,12 @@ following [GitHub encrypted secrets](https://docs.github.com/en/actions/security
 To get this information, run the following commands:
 
 ```bash
-SECRET=$(kubectl get sa <sa-with-minimum-required-permissions> -oyaml -n <developer-namespace> | yq '.secrets[0].name')
+DEV_NAMESPACE=dev
+SECRET=$(kubectl get sa <sa-with-minimum-required-permissions> -oyaml -n $DEV_NAMESPACE | yq '.secrets[0].name')
 
-CA_CERT=$(kubectl get secret $SECRET -oyaml -n <developer-namespace> | yq '.data."ca.crt"')
-NAMESPACE=$(kubectl get secret $SECRET -oyaml -n <developer-namespace> | ksd | yq .stringData.namespace)
-TOKEN=$(kubectl get secret $SECRET -oyaml -n <developer-namespace> | ksd | yq .stringData.token)
+CA_CERT=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq '.data."ca.crt"')
+NAMESPACE=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq .data.namespace | base64 -d)
+TOKEN=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq .data.token | base64 -d)
 SERVER=$(kubectl config view --minify | yq '.clusters[0].cluster.server')
 ```
 
