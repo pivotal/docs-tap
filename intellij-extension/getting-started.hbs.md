@@ -168,35 +168,26 @@ You can use the file as it is or edit it for your needs.
 
 ## <a id="example-project"></a> View an example project
 
+Before you begin, you will need a container image registry to use the sample application.
 There are two ways to view a sample application that demonstrates the necessary configuration files.
 
-Before you begin, you will need a container image registry to use the sample application.
-
-### <a id="example-app-acc"></a>  Option 1: Application Accelerator
-
-If your company has configured
+Use Application Accelerator
+: If your company has configured
 [Application Accelerator](../application-accelerator/about-application-accelerator.md),
 you can obtain the sample application there if it was not removed.
-
 To view the example using Application Accelerator:
+  1. Open Application Accelerator. The Application Accelerator location varies based on where your
+     company placed it. Contact the appropriate team to determine its location.
+  2. Search for `Tanzu Java Web App` in the Application Accelerator.
+  3. Add the required configuration information and generate the application.
+  4. Unzip the application and open the directory in IntelliJ.
 
-1. Open Application Accelerator. The Application Accelerator location varies based on
-where your company placed it. Contact the appropriate team to determine its location.
-
-1. Search for “Tanzu Java Web App” in the Application Accelerator.
-
-1. Add the required configuration information and generate the application.
-
-1. Unzip the application and open the directory in IntelliJ.
-
-### <a id="example-github-clone"></a> Option 2: Clone from GitHub
-
-To clone the example from GitHub:
-
-1. Use `git clone` to clone the [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app)
-repository from GitHub.
-
-1. Open the `Tiltfile` and replace `your-registry.io/project` with your registry.
+Clone from GitHub
+: To clone the example from GitHub:
+  1. Use `git clone` to clone the
+     [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app)
+     repository from GitHub.
+  2. Open the `Tiltfile` and replace `your-registry.io/project` with your registry.
 
 ## <a id="whats-next"></a> Next steps
 
