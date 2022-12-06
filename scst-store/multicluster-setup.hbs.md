@@ -3,13 +3,13 @@
 Deploying Tanzu Application Platform in a multicluster setup includes installing
 multiple profiles such as, View, Build, Run, Iterate.
 
-Supply Chain Security Tools - Store is deployed with the View profile. After
+SCST - Store is deployed with the View profile. After
 installing the View profile, but before installing the Build profile, you must
 add configuration for SCST - Store to the Kubernetes cluster where you intend to install the Build profile.
 This topic explains how to add configuration which allows components in the Build
 cluster to communicate with SCST - Store in the View cluster.
 
-> **Note** If you already deployed the Build profile, you can still follow
+> **Note** If you already deployed the Build profile, you can follow
 > this procedure. However, in the [Install Build
 > profile](#install-build-profile) step, instead of deploying the Build profile
 > again, update your deployment using `tanzu package installed update`.
@@ -141,8 +141,7 @@ Where:
 
 - `METADATA-STORE-URL-ON-VIEW-CLUSTER` is the ingress URL of SCST - Store
   deployed to the View cluster. For example,
-  `https://metadata-store.example.com`. See [Ingress support](ingress.hbs.md)
-  for more information.
+  `https://metadata-store.example.com`. See [Ingress support](ingress.hbs.md).
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains
   the credentials to pull an image from the registry for scanning.
 - `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Scan deploys

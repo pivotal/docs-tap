@@ -293,7 +293,7 @@ grype:
 policy:
   tuf_enabled: false # By default, TUF initialization and keyless verification are deactivated.
 tap_telemetry:
-  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (optional) identify data for creation of TAP usage reports
+  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating Tanzu Application Platform usage reports.
 ```
 
 Where:

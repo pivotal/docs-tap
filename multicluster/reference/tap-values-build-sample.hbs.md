@@ -53,7 +53,7 @@ scanning:
   metadataStore:
     url: "" # Configuration is moved, so set this string to empty.
 tap_telemetry:
-  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for the creation of Tanzu Application Platform usage reports.
+  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating Tanzu Application Platform usage reports.
 ```
 
 Where:

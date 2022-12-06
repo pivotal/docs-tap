@@ -27,7 +27,7 @@ appliveview_connector:
     ingressEnabled: true
     host: appliveview.VIEW-CLUSTER-INGRESS-DOMAIN
 tap_telemetry:
-  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creation of Tanzu Application Platform usage reports.
+  customer_entitlement_account_number: "CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER" # (Optional) Identify data for creating Tanzu Application Platform usage reports.
 ```
 
 Where:
