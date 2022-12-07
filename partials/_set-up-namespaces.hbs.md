@@ -1,5 +1,3 @@
-# Set up developer namespaces to use installed packages
-
 You can choose either one of the following two approaches to create a `Workload`
 for your application by using the registry credentials specified,
 add credentials and Role-Based Access Control (RBAC) rules to the namespace
