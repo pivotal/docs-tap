@@ -15,6 +15,7 @@ The solution helps developers ensure that their APIs are more secure and robust,
 This topic describes how to install APIX package
 
 > Note:
+>
 > * The Installation of APIX package must be done on a new cluster without any existing TAP installations .
 > * Apix - 0.1.9 *(For the Bug Bash use the APIX - apix-release:0.1.6 )*
 
@@ -51,7 +52,6 @@ Step 6 : Set the Tanzu network account
 
 `export INSTALL_REGISTRY_PASSWORD=your_tanzu_password`
 
-
 ### **To Install the APIX package:**
 
 1. Create namespace in tap-install
@@ -73,7 +73,6 @@ Step 6 : Set the Tanzu network account
    `kubectl get packagemetadatas -n apix-install`
 
    `kubectl get packages -n apix-install`
-
 4. Install the package using the Tanzu CLI
 
    **APIX Install**
@@ -84,29 +83,22 @@ Step 6 : Set the Tanzu network account
 
    **Apply the below-mentioned apix-values.yaml**
 
-   ``apix:
+   ```apache
+   apix:
+     host: host is what you point at the nexus-proxy service's external IP address from apix-admin namespace . it is an optional field , keeping it empty will directly refer to the external IP.
 
-   `  `host: host is what you point at the nexus-proxy service's external IP address from apix-admin namespace . it is an optional field , keeping it empty will directly refer to the external IP.
+     connectorHost: host is what you point at the apis-envoy-proxy service's external IP address from apix namespace . it is an optional field , keeping it empty will directly refer to the external IP.
 
-   `  `connectorHost: host is what you point at the apis-envoy-proxy service's external IP address from apix namespace . it is an optional field , keeping it empty will directly refer to the external IP.
-
-   `  `backstage:
-
-   `    `host: host is TAP Catalog End Point
-
-   `    `port: TAP Catalog End Point port
-
-   `  `oidc:
-
-   `    `clientId: Client id from the IDP provider
-
-   `    `clientSecret: Client secret from the IDP provider
-
-   `    `oAuthIssuerUrl: This is the issuer url from IDP provider
-
-   `    `jwtClaimUsername: the JWT token claim key to uniquely identify a user.
-
-   `    `proxyRule: This is the issuer url from IDP provider
+     backstage:
+     	host: host is TAP Catalog End Point
+     	port: TAP Catalog End Point port
+     oidc:
+     	clientId: Client id from the IDP provider
+     	clientSecret: Client secret from the IDP provider
+   	oAuthIssuerUrl: This is the issuer url from IDP provider
+   	jwtClaimUsername: the JWT token claim key to uniquely identify a user.
+   	proxyRule: This is the issuer url from IDP provider
+   ```
 
    **Example** | apix-values.yaml
    **apix-values**
@@ -168,6 +160,7 @@ This topic describes how connect to the APIX Control Plane from the Data Plane
    `kubectl create namespace apix-connector-install`
 
    Output:
+
    ```apache
    namespace/apix-connector-install created
    ```
@@ -176,6 +169,7 @@ This topic describes how connect to the APIX Control Plane from the Data Plane
    `tanzu package repository add apix-connector-repo --url dev.registry.tanzu.vmware.com/apix/apix-connector:0.1.3 --namespace apix-connector-install`
 
    Output:
+
    ```apache
    tanzu package repository add apix-connector-repo --url dev.registry.tanzu.vmware.com/apix/apix-connector:0.1.3 --namespace apix-connector-install
     Adding package repository 'apix-connector-repo'
@@ -191,6 +185,7 @@ This topic describes how connect to the APIX Control Plane from the Data Plane
    `tanzu package install apix-connector -p apix-connector.apps.tanzu.vmware.com -v 0.1.3 -n apix-connector-install`
 
    Output:
+
    ```apache
    tanzu package install apix-connector -p apix-connector.apps.tanzu.vmware.com -v 0.1.3 -n apix-connector-install
      Installing package 'apix-connector.apps.tanzu.vmware.com'
@@ -217,6 +212,7 @@ Developers can use APIX API Scoring and Validation to see how the API is auto-re
 
    > Note
    > To create a TAP Workload refer [https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-api-auto-registration-usage.html](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-api-auto-registration-usage.html)
+   >
 
    `tanzu apps workload create -f filename -n namespace`
 
@@ -325,7 +321,6 @@ Developers can use APIX API Scoring and Validation to see how the API is auto-re
 To view further details on the Validation Analysis and to know where improvement is required for your API . Click on "**More Details**" link in the highlited section
 
 > *Clicking on the More Detail , will take you to the TANZU APIX UI*
-
 
 ![](assets/ui_apix_spec_details.png)
 
