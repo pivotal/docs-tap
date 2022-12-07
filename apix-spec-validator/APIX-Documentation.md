@@ -1,11 +1,22 @@
-﻿# **APIX Documentation**
+﻿# **Overview**
+
+The APIX solution aims to manage the end-to-end lifecycle of APIs.
+
+Please refer [to this blog for details.](https://blogs.vmware.com/security/2022/10/key-requirements-of-modern-apis-for-an-end-to-end-api-lifecycle-implementation.html)
+
+This specific feature of APIX focuses on scanning and validating an API specification. The API spec is generated from the API autoregistration feature in TAP. Once that is done, APIX scans, lints, and validates the API spec. Based on the validation, a scoring is provided that tells the dev / devops, the quality and health of their API specification as it related to Documentation, OpenAPI best practices, and Security. There is a card on the API detail page (on the TAP GUI) that displays the summary of the scores. If the user wants to get more details of the scores, they can click on the 'more details' link and can get a detailed view.
+
+The solution helps developers ensure that their APIs are more secure and robust, by providing feedback and recommendations early on in the software development lifecycle. Based on the feedback and recommendations, the dev can modify their API Specs and improve their scores, and hence improve the posture of their APIs. The solution also helps  DevOps / DevSecOps understand how well the APIs have been implemented.
+
+# **APIX Documentation**
 
 ## **Control Plane Installation**
 
 This topic describes how to install APIX package
 
 > Note:
-> The Installation of APIX package must be done on a new cluster without any existing TAP installations.
+> * The Installation of APIX package must be done on a new cluster without any existing TAP installations .
+> * Apix - 0.1.9 *(For the Bug Bash use the APIX - apix-release:0.1.6 )*
 
 **APIX Platform Prerequisites**
 
@@ -27,43 +38,38 @@ Step 4 : The Kubernetes CLI, see [Install Tools](https://kubernetes.io/docs/task
 
 Step 5 : OIDC - Bring your own IDP
 
+> Note
+> *However, if you do not have IDP, we can add you to the OKTA Org and you can use the username as [apix@vmware.com]() / Okta@2022*
+
 Step 6 : Set the Tanzu network account
 
-**Environment Variables**
+#### *Environment Variables*
 
-
----
+`export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com`
+`export INSTALL_REGISTRY_USERNAME=your_tanzu_username`
+`export INSTALL_REGISTRY_PASSWORD=your_tanzu_password`
 
 ### **To Install the APIX package:**
 
 1. Create namespace in tap-install
+   **Create Namespace**
    `kubectl create ns tap-install`
 2. Add the Tanzu Package Repository
-   `tanzu package repository add apix-repo --url dev.registry.tanzu.vmware.com/mazinger/apix-release:0.1.5 --namespace apix-install`
+   **Add Tanzu Repo**
+   `tanzu package repository add apix-repo --url dev.registry.tanzu.vmware.com/apix/apix-release:0.2.0 --namespace apix-install`
 3. Verify the Status of the package by running the following
-
-   ```apache
-   kubectl get packagerepository -n apix-install
-
-   kubectl get packagemetadatas -n apix-install
-
-   kubectl get packages -n apix-install
-   ```
+   **Check Status**
+   `kubectl get packagerepository -n apix-install`
+   `kubectl get packagemetadatas -n apix-install`
+   `kubectl get packages -n apix-install`
 4. Install the package using the Tanzu CLI
-
-   *Tanzu Install*
+   **APIX Install**
 
    tanzu package install anyDisplayName -n install-namespace -p tanzu-package-name -v package-version -f config-values-file
 
-   Example : `tanzu package install apix -n apix-install -p apix.apps.tanzu.vmware.com -v 0.1.6 -f apix-values.yaml`
-5. Verify the package installation by running:
+   Example : `tanzu package install apix -n apix-install -p apix.apps.tanzu.vmware.com -v 0.2.0 -f apix-values.yaml`
 
-   `Tanzu package available list -n tanzu-install`
-
-   If the package has installed, you should be able to view a similar message
-
-   ![](assets/20221201_192905_image2022-11-30_19-6-11.png)
-6. Apply the below mentioned apix-values.yaml
+   **Apply the below mentioned apix-values.yaml**
 
    apix:
 
@@ -90,6 +96,7 @@ Step 6 : Set the Tanzu network account
    `    `proxyRule: This is the issuer url from IDP provider
 
    **Example** | apix-values.yaml
+   **apix-values**
 
    ```apache
    apix:
@@ -105,14 +112,18 @@ Step 6 : Set the Tanzu network account
        jwtClaimUsername: sub
        proxyRule: https://tenant_id.okta.com/oauth2/default
    ```
+5. Verify the package installation by running:
 
-   Once the above yaml is applied , you should be able to see a similar message :
+   `Tanzu package available list -n tanzu-install`
 
-   ![](assets/20221201_193839_image2022-11-30_19-9-46.png)
-7. Verify that STATUS is Reconcile succeeded:
+   If the package has installed, you should be able to view a similar message
+
+   ![](assets/cli_tap_package_available_list.png)
+6. Verify that STATUS is Reconcile succeeded:
+
    `kubectl get pkgi -n apix-install`
 
-   ![](assets/20221201_193953_image2022-11-30_19-11-2.png)
+   ![](assets/cli_kubectl_get_pkgi.png)
 
 ---
 
@@ -120,7 +131,7 @@ Step 6 : Set the Tanzu network account
 
 To uninstall the APIX Control Plane package, the user should execute the following command
 
-`kubectl delete pkgi apix -n tanzu-install`
+`kubectl delete pkgi apix -n apix-install`
 
 > Note
 > To uninstall the APIX Control Plane package, you should delete the apix package
@@ -133,7 +144,8 @@ This topic describes how connect to the APIX Control Plane from the Data Plane
 
 > Note:
 >
-> Any flavour of the Data Plane Kubernetes Cluster can be used with TAP components installation
+> * Any flavour of the Data Plane Kubernetes Cluster can be used with TAP components installation
+> * Apix-Connector 0.1.2 **(For the Bug Bash use Apix-Connector 0.1.0 )**
 
 1. Create a new namespace where the apix-connector shouldl be installed
 
@@ -143,27 +155,16 @@ This topic describes how connect to the APIX Control Plane from the Data Plane
    `kubectl create namespace apix-connector-install`
 
    Output:
-
    ```apache
    namespace/apix-connector-install created
-   tanzu package repository add apix-connector-repo --urldev.registry.tanzu.vmware.com/mazinger/apix-connector:0.1.0 --namespace apix-connector-install
-     Adding package repository 'apix-connector-repo'
-     Validating provided settings for the package repository
-     Creating package repository resource
-     Waiting for 'PackageRepository' reconciliation for 'apix-connector-repo'
-     'PackageRepository' resource install status: Reconciling
-     'PackageRepository' resource install status: ReconcileSucceeded
-     'PackageRepository' resource successfully reconciled
-     Added package repository 'apix-connector-repo' in namespace 'apix-connector-install'
    ```
 2. Add package repository
 
-   `tanzu package repository add apix-connector-repo --url dev.registry.tanzu.vmware.com/mazinger/apix-connector:0.1.0 --namespace apix-connector-install`
+   `tanzu package repository add apix-connector-repo --url dev.registry.tanzu.vmware.com/apix/apix-connector:0.1.3 --namespace apix-connector-install`
 
    Output:
-
    ```apache
-   tanzu package repository add apix-connector-repo --url dev.registry.tanzu.vmware.com/mazinger/apix-connector:0.1.0 --namespace apix-connector-install
+   tanzu package repository add apix-connector-repo --url dev.registry.tanzu.vmware.com/apix/apix-connector:0.1.3 --namespace apix-connector-install
     Adding package repository 'apix-connector-repo'
     Validating provided settings for the package repository
     Creating package repository resource
@@ -174,12 +175,11 @@ This topic describes how connect to the APIX Control Plane from the Data Plane
    Added package repository 'apix-connector-repo' in namespace 'apix-connector-install'
    ```
 3. Install the APIX-connector package in the apix-connector-install namespace
-   `tanzu package install apix-connector -p apix-connector.apps.tanzu.vmware.com -v 0.1.0 -n apix-connector-install`
+   `tanzu package install apix-connector -p apix-connector.apps.tanzu.vmware.com -v 0.1.3 -n apix-connector-install`
 
    Output:
-
    ```apache
-   tanzu package install apix-connector -p apix-connector.apps.tanzu.vmware.com -v 0.1.0 -n apix-connector-install
+   tanzu package install apix-connector -p apix-connector.apps.tanzu.vmware.com -v 0.1.3 -n apix-connector-install
      Installing package 'apix-connector.apps.tanzu.vmware.com'
      Getting package metadata for 'apix-connector.apps.tanzu.vmware.com'
      Creating service account 'apix-connector-apix-connector-install-sa'
@@ -194,29 +194,127 @@ This topic describes how connect to the APIX Control Plane from the Data Plane
 
 ## **Usage**
 
-Developers can use APIX API Scoring and Validation to see how the the API to be auto-registered in TAP GUI and scored . The scoring is also accompanied by recommendations of how to improve the scoring.
+###### Use the APIX API Scoring and Validation to score the auto-registered API in TAP GUI, to know how my changes have affected the API quality
 
-### **Example :**
+Developers can use APIX API Scoring and Validation to see how the API is auto-registered in TAP GUI and scored. The scoring is also accompanied by recommendations on how to improve the scoring.
 
-1. Create a [workload](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-api-auto-registration-usage.html) as shown below for your application![](assets/20221201_195907_image2022-12-1_12-8-49.png)
+###### **Example :**
+
+1. Create a [workload](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-api-auto-registration-usage.html) as shown below for your application
+
+   > Note
+   > To create a TAP Workload refer [https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-api-auto-registration-usage.html](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-api-auto-registration-usage.html)
+
+   `tanzu apps workload create -f filename -n namespace`
+
+   ```apache
+   tanzu apps workload create -f petclininc-knative.yaml -n my-apps
+   Create workload:
+         1 + |---
+         2 + |apiVersion: carto.run/v1alpha1
+         3 + |kind: Workload
+         4 + |metadata:
+         5 + |  labels:
+         6 + |    apis.apps.tanzu.vmware.com/register-api: "true"
+         7 + |    app.kubernetes.io/part-of: petclinic-gk
+         8 + |    apps.kubernetes.io/name: petclinic-gk
+         9 + |    apps.tanzu.vmware.com/has-tests: "true"
+        10 + |    apps.tanzu.vmware.com/workload-type: web
+        11 + |  name: petclinic-gk
+        12 + |  namespace: my-apps
+        13 + |spec:
+        14 + |  params:
+        15 + |  - name: api_descriptor
+        16 + |    value:
+        17 + |      description: A set of API endpoints to manage the resources within the petclinic
+        18 + |        app.
+        19 + |      location:
+        20 + |        path: /v3/api-docs
+        21 + |      owner: team-petclinic
+        22 + |      system: pet-clinics
+        23 + |      type: openapi
+        24 + |  source:
+        25 + |    git:
+        26 + |      ref:
+        27 + |        branch: accelerator
+        28 + |      url: https://github.com/LittleBaiBai/spring-petclinic.git
+
+   ? Do you want to create this workload? Yes
+   Created workload "petclinic-gk"
+
+   To see logs:   "tanzu apps workload tail petclinic-gk --namespace my-apps"
+   To get status: "tanzu apps workload get petclinic-gk --namespace my-apps"
+   ```
 2. Verify if the workload is **READY**
 
-   ![](assets/20221201_200014_image2022-12-1_12-10-47.png)
+   `tanzu apps workload list -n <namespace>`
+
+   ```apache
+   tanzu apps workload get petclinic-gk --namespace my-apps
+   Overview
+      name:   petclinic-gk
+      type:   web
+
+    Source
+      type:     git
+      url:      https://github.com/LittleBaiBai/spring-petclinic.git
+      branch:   accelerator
+
+   Supply Chain
+      name:   source-test-scan-to-url
+
+      RESOURCE           READY   HEALTHY   TIME    OUTPUT
+      source-provider    True    True      6m57s   GitRepository/petclinic-gk
+      source-tester      True    True      6m41s   Runnable/petclinic-gk
+      source-scanner     True    True      6m14s   SourceScan/petclinic-gk
+      image-provider     True    True      4m11s   Image/petclinic-gk
+      image-scanner      True    True      3m32s   ImageScan/petclinic-gk
+      config-provider    True    True      3m26s   PodIntent/petclinic-gk
+      app-config         True    True      3m26s   ConfigMap/petclinic-gk
+      service-bindings   True    True      3m26s   ConfigMap/petclinic-gk-with-claims
+      api-descriptors    True    True      3m26s   ConfigMap/petclinic-gk-with-api-descriptors
+      config-writer      True    True      3m17s   Runnable/petclinic-gk-config-writer
+
+   Delivery
+      name:   delivery-basic
+
+      RESOURCE          READY   HEALTHY   TIME    OUTPUT
+      source-provider   True    True      2m57s   ImageRepository/petclinic-gk-delivery
+      deployer          True    True      2m51s   App/petclinic-gk
+
+    Messages
+      No messages found.
+
+   Pods
+      NAME                                   READY   STATUS      RESTARTS   AGE
+      petclinic-gk-build-1-build-pod         0/1     Completed   0          6m15s
+      petclinic-gk-config-writer-9gd2r-pod   0/1     Completed   0          3m27s
+      petclinic-gk-xvv4d-test-pod            0/1     Completed   0          6m56s
+      scan-petclinic-gk-fh5r8-h9vcx          0/1     Completed   0          4m12s
+      scan-petclinic-gk-r79bb-45pk4          0/1     Completed   0          6m42s
+
+   Knative Services
+      NAME           READY   URL
+      petclinic-gk   Ready   http://petclinic-gk.my-apps.tap.maz-0212-dp.tapdemo.vmware.com
+
+   To see logs: "tanzu apps workload tail petclinic-gk --namespace my-apps"
+   ```
 3. Navigate to the TAP GUI, you will be able to view the newly created workload
 
-   ![](assets/20221201_200104_image2022-12-1_12-15-21.png)
+   ![](assets/tap_list_workload.png)
 4. Navigate to API in TAP GUI, Click on the API
 
-   ![](assets/20221201_200128_image2022-12-1_12-17-57.png)
+   ![](assets/tap_list_apis.png)
 5. The Overview Tab of your API in TAP GUI , will now show the API Scoring and Validation
 
-   ![](assets/20221201_200225_image2022-12-1_18-34-15.png)
+   ![](assets/tap_desc_api.png)
 
 To view further details on the Validation Analysis and to know where improvement is required for your API . Click on "**More Details**" link in the highlited section
 
 > *Clicking on the More Detail , will take you to the TANZU APIX UI*
 
-![](assets/20221201_200353_image2022-12-1_12-23-32.png)
+
+![](assets/ui_apix_spec_details.png)
 
 ### **Demo Video**
 
