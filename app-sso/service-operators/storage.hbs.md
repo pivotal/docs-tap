@@ -48,6 +48,9 @@ To configure Redis as authorization server storage, you must have the following 
 <strong>Caution:</strong>
 AppSSO takes _secure-by-default_ approach and will not establish non-encrypted communication channels.
 The `AuthServer` resource will enter an error state should a non-encrypted connection be attempted.
+
+<strong>Note:</strong>
+mTLS is not supported.
 </p>
 
 The following steps introduce the path to configuring Redis with AppSSO:
