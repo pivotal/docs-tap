@@ -46,13 +46,12 @@ It is strongly recommended to keep the name and namespace part of the template t
 
 ## default_authserver_clusterissuer
 
-You can denote a `cert-manager.io/v1/ClusterIssuer` as a default for `AuthServer.spec.tls.issuerRef`. If
-set, `AuthServer.spec.tls` can be omitted. When its value is the empty string, i.e `""`, no default issuer will be
+You can denote a `cert-manager.io/v1/ClusterIssuer` as a default for `AuthServer.spec.tls.issuerRef`. 
+If set, `AuthServer.spec.tls` can be omitted. When its value is the empty string `""`, no default issuer is 
 assumed and `AuthServer.spec.tls` is required.
 
-> ℹ️ If your TAP installation is configured with `shared.ingress_issuer`, and `default_authserver_clusterissuer` is
-> omitted, then AppSSO will use TAP's ingress issuer, and `default_authserver_clusterissuer` will be set
-> to `shared.ingress_issuer`.
+If you configured `shared.ingress_issuer` and omitted `default_authserver_clusterissuer` while installing Tanzu Application Platform, 
+AppSSO uses the ingress issuer of Tanzu Application Platform and sets `default_authserver_clusterissuer` to `shared.ingress_issuer`.
 
 ## ca_cert_data
 
