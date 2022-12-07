@@ -115,13 +115,27 @@ spec:
         name: redis-credentials
 ```
 
-Once `AuthServer` is applied, ensure that its `Status` is equivalent to `Ready`, and you may query the status of the
-configured storage as follows:
+Once `AuthServer` is applied, ensure that its `Status` is equivalent to `Ready`.
+
+### Inspecting storage of an AuthServer
+
+You can inspect the status of an `AuthServer`'s storage as follows:
 
 ```bash
 kubectl get authserver <authserver-name> \
   --namespace <authserver-namespace> \
   --output jsonpath="{.status.storage.redis}" | jq
+```
+
+And you will the see its actual Redis host and port, for example:
+
+```json
+{
+  "redis": {
+    "host": "ci-redis.authservers.svc.cluster.local",
+    "port": "6379"
+  }
+}
 ```
 
 ## Storage provided by default
