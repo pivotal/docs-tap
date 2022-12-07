@@ -21,7 +21,7 @@ To configure Redis as authorization server storage, you must have the following 
 * **Server CA certificate** (optional) - the Certificate Authority (CA) certificate used to verify Redis TLS
   connections. If Redis Server certificate is signed by a public CA, providing this certificate is not required.
 * **host** (required) - the domain name, IP address, or host name of your Redis server.
-* **port** (optional) - the port number of your Redis server (default: `6379`). Must be of type string.
+* **port** (optional) - the port number of your Redis server (default: `6379`). Must be a string.
 * **username** (optional) - the username used to authenticate against your Redis server.
 * **password** (optional) - the password used to authenticate against your Redis server.
 
@@ -70,7 +70,7 @@ stringData:
   type: "redis"                      # required, must equal 'redis'
   ssl: "true"                        # required, must equal 'true'
   host: "redis01.prod.example.com"   # required
-  port: "6379"                       # optional, must be a string, defaults to "6379" if not specified
+  port: "6379"                       # optional, must be a string, defaults to "6379" if left empty
   password: "!!veryStrongPassword!!" # optional
   username: "redis01-user"           # optional
 ```
