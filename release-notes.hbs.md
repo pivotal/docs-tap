@@ -114,6 +114,10 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
+#### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for Intellij
+
+- If a Workload is deployed via Live Update onto namespace `myNamespace`, then the user needs to set `myNamespace` as the namespace of the current context of their kubeconfig. Otherwise if the user Tanzu Debug, then it will re-deploy the Workload.
+
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
