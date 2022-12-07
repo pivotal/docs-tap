@@ -73,8 +73,8 @@ spec:
       name: ""
     secretRef:
       name: ""
-    deactivated: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`
-    disabled: false # DEPRECATED use 'deactivated' instead; if true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`
+    deactivated: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
+    disabled: false # Deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
   tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""

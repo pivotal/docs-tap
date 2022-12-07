@@ -4,8 +4,8 @@ An `AuthServer` entry point for its clients and their end-users is called _issue
 URI and create a TLS-enabled `Ingress` for it. For this purpose, your platform operator configures the domain name and
 template. Once you created and `AuthServer` you can find the actual URL in `.status.issuerURI`.
 
-You can configure how and if to obtain a TLS certificate for the issuer URI via `.spec.tls`. Unless TLS is deactivated
-HTTPS is enforced, i.e. requests for `http://` will be redirected to `https://`. You can observe the actual TLS
+You can configure whether and how to obtain a TLS certificate for the issuer URI by using `.spec.tls`. Unless TLS is deactivated, 
+HTTPS is enforced. For example, requests for `http://` are redirected to `https://`. You can observe the TLS
 configuration in `.status.tls`.
 
 > ℹ️ If AppSSO is installed
@@ -180,8 +180,7 @@ spec:
 
 ## Deactivate TLS (unsafe)
 
-You can deactivate TLS autoconfiguration. Keep in mind that your `AuthServer` will then only work over plain HTTP. TLS
-can only be deactivated in the presence of the `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""` annotation.
+If you deactivate TLS autoconfiguration, `AuthServer` only works over plain HTTP. You must deactivate TLS with the `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""` annotation.
 
 ```yaml
 ---
@@ -198,7 +197,7 @@ spec:
     deactivated: true
 ```
 
-> ⚠️ Deactivating TLS is unsafe and strongly discouraged for production!
+>**Caution** Deactivating TLS is unsafe and not recommended for production.
 
 ## Allow `Workloads` to trust a custom CA `AuthServer`
 

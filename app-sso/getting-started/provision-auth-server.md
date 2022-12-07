@@ -165,8 +165,8 @@ spec:
     deactivated: true
 ```
 
-The `tls` field configures how and if to obtain a certificate for an `AuthServer` as to secure its issuer URI. In this
-case we have deactivated it. As a result we will get an issuer URI which uses plain HTTP.
+The `tls` field configures whether and how to obtain a certificate for an `AuthServer` to secure its issuer URI. 
+If you deactivate `tls`, the issuer URI uses plain HTTP.
 
 __Note:__ Plain HTTP access is for getting-started development
 only! [Learn more about a production readiness with TLS](../service-operators/issuer-uri-and-tls.md)
