@@ -46,7 +46,9 @@ investigation.
 ![Screenshot of Spring Boot Dashboard Memory View Garbage Collections.](../images/vscode-garbage-collection-example.png)
 
 The graphs show only real-time data. You can configure the number of data points to view and the
-interval by changing the settings. To access the settings, go to
-**Code** > **Preferences** > **Settings** > **Extensions** > **Spring Boot Dashboard** > **Memory View Settings**.
+interval by changing the settings. To access the settings on macOS, go to
+**Code** > **Preferences** > **Settings** > **Extensions** > **Spring Boot Dashboard** >
+**Memory View Settings**.
+The navigation path might differ on other operating systems, such as Windows and Linux.
 
 ![Screenshot of Spring Boot Dashboard Memory View Settings.](../images/vscode-memory-view-settings.png)
