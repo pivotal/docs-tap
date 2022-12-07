@@ -316,7 +316,7 @@ set up the shared self-signed certificate.
 The shared.ca_cert_data installation value can contain a PEM-encoded CA bundle.
 The scanning component trusts the CAs contained in the bundle. The self-signed
 certificate is configured through the [shared top level
-key](../partials/_view-package-config.hbs.md).
+key](../view-package-config.hbs.md).
 
 #### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
@@ -332,7 +332,7 @@ UNAUTHORIZED: unauthorized to access repository
 The recommended migration path for users who are setting up their namespaces
 manually is to add registry credentials to both the developer namespace and the
 `scan-link-system` namespace, using these
-[instructions](../partials/_set-up-namespaces.hbs.md).
+[instructions](../set-up-namespaces.hbs.md).
 
 Note: This topic step does not apply to users who used
 `--export-to-all-namespaces` when setting up the Tanzu Application Platform
