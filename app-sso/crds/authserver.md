@@ -82,7 +82,7 @@ spec:
       - name: ""
   storage: # optional
     redis: # required if 'storage' is defined
-      serviceRef: # Reference to a provisioned service within same namespace as this AuthServer. Currently supports Secret reference only.
+      serviceRef: # Reference to a provisioned service within the same namespace as this AuthServer. Currently supports Secret reference only.
         apiVersion: "v1"
         kind: "Secret"
         name: ""
