@@ -171,3 +171,59 @@ To update your demo API entry:
     `spec.paths.parameters.example` from `type_any_name` to `Tanzu` and save your changes.
 
 2. After you made the edits, Tanzu Application Platform GUI re-renders the API entry with the next refresh cycle.
+
+## <a id="validation-api"></a> Validation Analysis of API specifications
+
+### <a id="about-validation"></a> About Validation Analysis card
+
+The API Overview page contains the Validation Analysis card that displays the health of an API through various scoring parameters.
+
+![Validation Analysis card in bottom right](../images/../../images/getting-started-tap-gui-9.png)
+
+In order to display the health scores, an API entity should contain the following metadata structure
+
+```yaml
+apiVersion: backstage.io/v1alpha1
+kind: API
+metadata:
+  name: sample-spec
+  description: Sample API
+  apiscores:
+    scores:
+    - id: documentationReport
+      label: "Documentation Health"
+      value: 34.375
+      valueType: percentage
+      status: failed
+    - id: securityReport
+      label: "Security Score"
+      value: 70.0
+      valueType: percentage
+      status: warning
+    - id: openApiHealthReport
+      label: "OpenAPI Health"
+      value: 89.0625
+      valueType: percentage
+      status: passed
+    scoreDetailsURL:  <validation-report-url-for-more-details>
+# Other API Entity params
+```
+
+As long as an API entity follows this schema, the Validation Analysis card will display helpful info about the API.
+
+```yaml
+    - id:        # Unique Id
+      label:     # Descriptive Label
+      value:     # Any numerical value
+      valueType: # percentage or other
+      status:    # One of the following: passed, warning or failed
+```
+
+### <a id="automatic-validation"></a> Automatic OpenAPI specification Validation
+
+You can receive automatic validation analysis for OpenAPI specs using APIx.
+Follow the installation using the APIx docs. (TODO insert links to their doc).
+In addition, you will need to use either [API Auto Registration](../../api-auto-registration/about.hbs.md) or
+APIx Design GitOps to automatically generate the API entities in TAP GUI.
+
+Note: The automatic scoring will not be able to score or replace API entities created through other methods like regular GitOps or manual registration.
