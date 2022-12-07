@@ -39,12 +39,9 @@ The following steps introduce the path to configuring Redis with AppSSO:
 
 ### Configuring Redis Server CA certificate
 
-If your Redis comes with a custom or non-public Server CA certificate, you will need to instruct AppSSO to
-trust the CA certificate. This is required in order for the authorization server to communicate with your
-Redis over TLS successfully.
-
-There are multiple ways of configuring a CA certificate with AppSSO, please refer to
-[CA certificates page](./ca-certs.md) for instructions.
+If your Redis includes a custom or non-public Server CA certificate, you must instruct AppSSO to
+trust the CA certificate. This is required for the authorization server to communicate with your
+Redis over TLS. See [CA certificates](ca-certs.md) for more information about configuring a CA certificate with AppSSO.
 
 ### Configuring a Redis Secret
 
