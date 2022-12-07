@@ -1,5 +1,3 @@
-# Using Grype in offline and air-gapped environments
-
 The `grype` CLI attempts to perform two over the Internet calls: one to verify for newer versions of the CLI and another to update the vulnerability database before scanning.
 
 You must deactivate both of these external calls. For the `grype` CLI to function in an offline or air-gapped environment, the vulnerability database must be hosted within the environment. You must configure the `grype` CLI with the internal URL.
