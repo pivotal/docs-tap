@@ -1,5 +1,3 @@
-# Installing individual packages
-
 You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [About Tanzu Application Platform components and profiles](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-about-package-profiles.html).
 
 Installing individual Tanzu Application Platform packages

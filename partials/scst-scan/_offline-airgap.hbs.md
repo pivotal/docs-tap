@@ -1,5 +1,3 @@
-# Using Grype in offline and air-gapped environments
-
 The `grype` CLI attempts to perform two over the Internet calls: 
 
 - One to verify for later versions of the CLI.

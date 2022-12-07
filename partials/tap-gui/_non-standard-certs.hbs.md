@@ -1,5 +1,3 @@
-# Configuring custom certificate authorities for Tanzu Application Platform GUI
-
 This topic describes how to configure Tanzu Application Platform GUI to trust unusual certificate
 authorities (CA) when making outbound connections.
 Tanzu Application Platform GUI might require custom certificates when connecting to persistent
