@@ -46,32 +46,45 @@ Step 6 : Set the Tanzu network account
 #### *Environment Variables*
 
 `export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com`
+
 `export INSTALL_REGISTRY_USERNAME=your_tanzu_username`
+
 `export INSTALL_REGISTRY_PASSWORD=your_tanzu_password`
+
 
 ### **To Install the APIX package:**
 
 1. Create namespace in tap-install
+
    **Create Namespace**
+
    `kubectl create ns tap-install`
 2. Add the Tanzu Package Repository
+
    **Add Tanzu Repo**
+
    `tanzu package repository add apix-repo --url dev.registry.tanzu.vmware.com/apix/apix-release:0.2.0 --namespace apix-install`
 3. Verify the Status of the package by running the following
+
    **Check Status**
+
    `kubectl get packagerepository -n apix-install`
+
    `kubectl get packagemetadatas -n apix-install`
+
    `kubectl get packages -n apix-install`
+
 4. Install the package using the Tanzu CLI
+
    **APIX Install**
 
    tanzu package install anyDisplayName -n install-namespace -p tanzu-package-name -v package-version -f config-values-file
 
    Example : `tanzu package install apix -n apix-install -p apix.apps.tanzu.vmware.com -v 0.2.0 -f apix-values.yaml`
 
-   **Apply the below mentioned apix-values.yaml**
+   **Apply the below-mentioned apix-values.yaml**
 
-   apix:
+   ``apix:
 
    `  `host: host is what you point at the nexus-proxy service's external IP address from apix-admin namespace . it is an optional field , keeping it empty will directly refer to the external IP.
 
