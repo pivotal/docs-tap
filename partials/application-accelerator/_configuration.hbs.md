@@ -195,11 +195,10 @@ Application Accelerator install.
 
 ## <a id="creating-git-credentials"></a> Configuring `tap-values.yaml` with Git credentials secret
 
-Use when deploying accelerators using Git repositories that require authentication or are installed
-with custom CA certificates to provide additional authentication values in a secret.
-The examples in the next section provide more details. In this section
-VMware describes how to configure Git credentials secret that is used in later
-Git-based examples.
+When deploying accelerators using Git repositories that need authentication or are installed with custom CA certificates,
+you need to provide some additional authentication values in a secret.
+The examples in the next section provide more details. This section describes
+how to configure a Git credentials secret that is used in later Git-based examples.
 
 You can specify the following accelerator configuration properties when installing Application
 Accelerator. The same properties are provided in the `accelerator` section of the `tap-values.yaml` file:
