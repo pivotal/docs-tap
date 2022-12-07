@@ -1,18 +1,18 @@
 # Install Cloud Native Runtimes
 
-This document describes how to install Cloud Native Runtimes
+This topic describes how to install Cloud Native Runtimes
 from the Tanzu Application Platform package repository.
 
->**Note** Use the instructions on this page if you do not want to use a profile to install packages.
+>**Note** Use the instructions in this topic if you do not want to use a profile to install packages.
 The `full`, `iterate`, and `run` profiles include Cloud Native Runtimes.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+For information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='cnr-prereqs'></a>Prerequisites
 
 Before installing Cloud Native Runtimes:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
-- Ensure Contour v1.22.0 or greater is installed. Tanzu Application Platform comes with a correctly versioned package of Contour if you do not have it installed already.
+- Complete all prerequisites to install Tanzu Application Platform. See [Prerequisites](../prerequisites.hbs.md).
+- Ensure that Contour v1.22.0 or later is installed. Tanzu Application Platform includes a correctly versioned package of Contour if you do not have it installed already.
 
 ## <a id='cnr-install'></a> Install
 
@@ -60,9 +60,6 @@ To install Cloud Native Runtimes:
 
     1. Create a `cnr-values.yaml` by using the following sample as a guide:
 
-        Sample `cnr-values.yaml` for Cloud Native Runtimes:
-
-
         ```console
         ---
         domain_name: example.com
@@ -76,13 +73,13 @@ To install Cloud Native Runtimes:
         >**Note** For most installations, you can leave the `cnr-values.yaml` empty, and use the default values.
 
         If you are running on a single-node cluster, such as kind or minikube, set the `lite.enable: true`
-        option. This option reduces resources requests for CNR deployments.
+        option. This option reduces resources requests for Cloud Native Runtimes deployments.
 
         Cloud Native Runtimes uses the existing Contour installation in the  `tanzu-system-ingress` namespace by default for external and internal access.
 
-        If your environment has Contour installed already, and it is not the TAP provided Contour, you can configure CNR to use it. See [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-contour.html) in the Cloud Native Runtimes documentation for more information.
+        If your environment has Contour installed already, and it is not the Tanzu Application Platform provided Contour, you can configure Cloud Native Runtimes to use it. See [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-contour.html) in the Cloud Native Runtimes documentation.
 
-1. Install the package by running:
+2. Install the package by running:
 
     ```console
     tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.0.1 -n tap-install -f cnr-values.yaml --poll-timeout 30m
@@ -103,9 +100,9 @@ To install Cloud Native Runtimes:
      Added installed package 'cloud-native-runtimes' in namespace 'tap-install'
     ```
 
-    Use an empty file for `cnr-values.yaml` if you want the default installation configuration. Otherwise, see the previous step to learn more about setting installation configuration values.
+    Use an empty file for `cnr-values.yaml` if you want the default installation configuration. Otherwise, see the earlier step to learn more about setting installation configuration values.
 
-1. Verify the package install by running:
+3. Verify the package install by running:
 
     ```console
     tanzu package installed get cloud-native-runtimes -n tap-install
@@ -126,7 +123,7 @@ To install Cloud Native Runtimes:
 
     Verify that `STATUS` is `Reconcile succeeded`
 
-1. Configure a namespace to use Cloud Native Runtimes:
+4. Configure a namespace to use Cloud Native Runtimes:
 
    >**Note** This step covers configuring a namespace to run Knative services.
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
@@ -140,7 +137,7 @@ To install Cloud Native Runtimes:
 
     1. Create an image pull secret in the current namespace and fill it from the `tap-registry`
     secret mentioned in [Add the Tanzu Application Platform package repository](../install.hbs.md#add-tap-package-repo).
-       Run the following commands to create an empty secret and annotate it as a target of the secretgen
+       Run these commands to create an empty secret and annotate it as a target of the secretgen
        controller:
 
         ```console
