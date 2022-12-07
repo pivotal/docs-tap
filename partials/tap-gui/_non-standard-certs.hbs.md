@@ -1,5 +1,3 @@
-# Configuring custom certificate authorities for Tanzu Application Platform GUI
-
 This topic describes how to configure Tanzu Application Platform GUI to trust unusual certificate
 authorities (CA) when making outbound connections.
 You do this by using overlays with PackageInstalls. There are two ways to implement this workaround:

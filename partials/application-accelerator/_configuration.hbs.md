@@ -1,5 +1,3 @@
-# Configure Application Accelerator
-
 This topic describes how to configure Application Accelerator for use in air-gapped environments or other
 customized installations.
 
