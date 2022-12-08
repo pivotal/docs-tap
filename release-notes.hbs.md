@@ -42,6 +42,10 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped environments. Refer to our updated [instructions](./partials/scst-scan/_offline-airgap.hbs.md).
 
+#### <a id="1-4-0-services-toolkit-new-features"></a> Services Toolkit
+- Added new `ClassClaim` API that allows claims for service instances to be created by referring to a `ClusterInstanceClass`. See [Services Toolkit documentation](./services-toolkit/about.hbs.md) for more information.
+- Added corresponding `tanzu services class-claims` CLI plug-in command
+
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
@@ -169,3 +173,9 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 - The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
   - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
+
+#### <a id="1-4-services-toolkit"></a> Services Toolkit
+
+  - The `tanzu services claims` CLI plug-in command is now considered to be deprecated.
+    - It has been hidden from help text output, but will still continue to work until officially removed after the deprecation period.
+    - The new `tanzu services resource-claims` command provides the same functionality.
