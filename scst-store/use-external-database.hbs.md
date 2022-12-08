@@ -1,19 +1,19 @@
-# User External postgres database
+# User External PostgreSQL database
 
 ## <a id='prereqExtrenalDB'></a>Prerequisites
 
-* Setup your external postgres database. Once the database instance starts, retrieve the following information:
+- Set up your external PostgreSQL database. After the database instance starts, retrieve the following information:
 
-   1. DB Instance Endpoint
-   1. Master Username
-   1. Master Password
-   1. Database Name
+   1. Database Instance Endpoint
+   2. Main User name
+   3. Main Password
+   4. Database Name
 
-## Setup certificate and configuration
+## Set up certificate and configuration
 
-1. Create a security group to allow inbound connections from the cluster to the Postgres DB
+1. Create a security group to allow inbound connections from the cluster to the PostgreSQL database.
 
-2. Retrieve the corresponding CA Certificate that signed the Postgres TLS Certificate.
+2. Retrieve the corresponding CA Certificate that signed the PostgreSQL TLS Certificate.
 
 3. In the `metadata-store-values.yaml` fill the following settings:
 
@@ -35,8 +35,8 @@
    deploy_internal_db: "false"
    ```
 
-> **Note:** If `deploy_internal_db` is set to `false,` an instance of Postgres will not be deployed in the cluster.
+> **Note** If `deploy_internal_db` is set to `false,` an instance of PostgreSQL is not deployed in the cluster.
 
 ## Validation
 
-Verification was done using bitnami postgres. You can get more information from the [bitnami documentation](https://github.com/bitnami/charts/tree/main/bitnami/postgresql).
+Verification was done using bitnami PostgreSQL. You can get more information from the [bitnami documentation](https://github.com/bitnami/charts/tree/main/bitnami/postgresql).
