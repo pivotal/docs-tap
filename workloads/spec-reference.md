@@ -39,8 +39,8 @@ For information about supply chains, see:
 ### <a id="source-provider"></a>source-provider
 
 The `source-provider` resource in the supply chain creates objects that fetch either source code or
-pre-compiled Java applications depending on how the workload is configured. For more information,
-see [Building from Source](../scc/building-from-source.hbs.md).
+pre-compiled Java applications depending on how the workload is configured.
+For more information, see [Building from Source](../scc/building-from-source.hbs.md).
 
 #### GitRepository
 
@@ -88,7 +88,7 @@ Parameters:
   </tr>
 </table>
 
-- It might not be necessary to change the default Git  implementation, but some providers such as
+It might not be necessary to change the default Git  implementation, but some providers such as
 Azure DevOps, require you to use `libgit2` as the server-side implementation provides support
  only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
 
@@ -107,7 +107,8 @@ For more information about GitRepository objects, see
 Use the ImageRepository when fetching source code from container images. It
 makes the contents of the container image available as a tarball to further
 resources in the supply chain. The contents of the container image
-are fetched by using Git or Maven. For more information, see [Create a workload
+are fetched by using Git or Maven.
+For more information, see [Create a workload
 from local source code](../cli-plugins/apps/create-workload.hbs.md#workload-local-source).
 
 Parameters:
@@ -136,9 +137,8 @@ Parameters:
 
 </table>
 
-> The `--service-account` flag sets the `spec.serviceAccountName` key in
-> the workload object. To configure the `serviceAccount` parameter, use
-> `--param serviceAccount=SERVICE-ACCOUNT`.
+The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object. To
+configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For information about custom resource details, see [ImageRepository](../source-controller/reference.hbs.md#imagerepository) reference topic.
 
@@ -338,8 +338,8 @@ Use the Kpack Image object to build a
 container image out of source code or pre-built Java artifact. This makes the
 container image available to further resources in the supply chain through a
 content addressable image reference that's carried to the final
-deployment objects unchanged. For more information, see [Tanzu Build
-Service](../tanzu-build-service/tbs-about.hbs.md).
+deployment objects unchanged.
+For more information, see [Tanzu Build Service](../tanzu-build-service/tbs-about.hbs.md).
 
 Parameters:
 
@@ -412,7 +412,7 @@ Parameters:
 
 </table>
 
-- The `--service-account` flag sets the `spec.serviceAccountName` key in  the workload object.
+The `--service-account` flag sets the `spec.serviceAccountName` key in  the workload object.
 To configure the `serviceAccount` parameter, use  `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For information about
@@ -499,7 +499,7 @@ Parameters:
   </tr>
 </table>
 
-- The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object. To
+The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object. To
 configure the `serviceAccount` parameter, use  `--param serviceAccount=...`.
 
 For information about the
@@ -641,7 +641,7 @@ Parameters:
   </tr>
 </table>
 
-- The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
+The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
 To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For more information about the controller behind `PodIntent`, see [Cartographer Conventions](../cartographer-conventions/about.hbs.md).
@@ -787,8 +787,8 @@ Parameters:
   </tr>
 </table>
 
-- The workload must include the `apis.apps.tanzu.vmware.com/register-api: "true"` label to activate
- this function.
+The workload must include the `apis.apps.tanzu.vmware.com/register-api: "true"` label to activate
+this function.
 
 For more details about API auto registration, see [Use API Auto Registration](../api-auto-registration/usage.hbs.md).
 
@@ -839,10 +839,10 @@ Parameters:
   </tr>
 </table>
 
-- The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
+The `--service-account` flag sets the `spec.serviceAccountName` key in the workload object.
 To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
-- On build clusters where a corresponding `ClusterDelivery` doesn't exist, the deliverable takes no
+On build clusters where a corresponding `ClusterDelivery` doesn't exist, the deliverable takes no
 effect (similarly to a workload without a SupplyChain, no action is taken).
 
 ## <a id ="deliverable-parameters"></a>Deliverable Parameters Reference
@@ -932,7 +932,7 @@ Parameters:
   </tr>
 </table>
 
-- It might not be necessary to change the default Git implementation but some providers, such as
+It might not be necessary to change the default Git implementation but some providers, such as
 Azure DevOps, require you to use `libgit2` as the server-side implementation provides support only
 for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
 
@@ -977,7 +977,7 @@ Parameters:
 
 </table>
 
-- The `--service-account` flag sets the `spec.serviceAccountName` key in the deliverable object.
+The `--service-account` flag sets the `spec.serviceAccountName` key in the deliverable object.
 To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For information about custom resource details, see [ImageRepository reference
@@ -1035,12 +1035,11 @@ Parameters:
 
 </table>
 
-- The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
+The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
 
-- The `--service-account` flag sets the `spec.serviceAccountName` key in  the deliverable object.
+The `--service-account` flag sets the `spec.serviceAccountName` key in  the deliverable object.
 
-- To configure the `serviceAccount` parameter, use
-`--param serviceAccount=SERVICE-ACCOUNT`.
+To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For details about RBAC and how `kapp-controller` uses the ServiceAccount provided to it using the
 `serviceAccount` parameter in the `deliverable` object, see [`kapp-controller`'s Security
