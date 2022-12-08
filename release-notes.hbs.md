@@ -18,6 +18,13 @@ This topic contains release notes for Tanzu Application Platform v1.3
 - The UI now shows the same message as the CLI, `Builder default is not ready`, when the Image Builder is not available or not configured.
 - The `Scan Template` link in the **Overview** section for a scanning stage is now disabled.
 
+##### <a id="1-3-3-tap-gui"></a> Tanzu Application Platform GUI plug-in
+
+- Supply Chain plug-in
+  - Fixed an issue where the Source Scanner stage was showing a non-functioning link to the Scan
+    Template used
+  - Improved error-handling when the builder is failing
+
 ### <a id='1-3-3-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
@@ -58,11 +65,6 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 - The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
   - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
-
-##### <a id="1-3-3-tap-gui"></a> Tanzu Application Platform GUI plug-in
-- Supply Chain Plugin
-  - Fixes a bug where the Source Scanner stage was showing a non-functioning link to the Scan Template used.
-  - Improves error handling when the builder is failing
 
 ## <a id='1-3-2'></a> v1.3.2
 
