@@ -412,28 +412,29 @@ paused. To persist the changes, follow the steps outlined in the earlier section
 ## <a id="add-tekton-behavior"></a> Adding custom behavior to Supply Chains
 
 Most behaviors in supply chains are supplied by Kubernetes controllers. For example,
-cloud native buildpacks are created by the kpack controller when a kpack Image object
+Cloud Native Buildpacks are created by the kpack controller when a kpack Image object
 is created. Sometimes there is need for behavior and no controller for it exists.
-In these instances, you might want to write a script that uses a CLI tool, or to interact
+In these instances, you might want to write a script that uses a CLI tool, or interact
 with an external API. To do this, you can bring the behavior to the supply chain
 by using Tekton.
 
-You can look at the kaniko image building as an example. You create a Tekton
-ClusterTask `kaniko-build` with instructions for how to build a Docker image using Kaniko
-given a set of parameters. The ClusterTask has a set of steps. Each step refers to a
-container image and a set of instructions to run on the image. For example, a linux
-image against which a set of bash instructions are run. The ClusterTask is installed
-on the cluster.
+You can look at the kaniko image-building as an example. You create a Tekton
+ClusterTask `kaniko-build` with instructions for how to build a Docker image using kaniko
+given a set of parameters.
+The ClusterTask has a set of steps. Each step refers to a container image and a set of instructions
+to run on the image.
+For example, it can be a Linux image against which a set of bash instructions are run.
+The ClusterTask is installed on the cluster.
 
-You create the ClusterImageTemplate `kaniko-template` to create Tekton taskruns. Taskruns
-are immutable, so you add the `lifecycle: tekton` text box to the template's specifications. This ensures
-two things:
+You create the ClusterImageTemplate `kaniko-template` to create Tekton TaskRuns. TaskRuns
+are immutable, so you add the `lifecycle: tekton` field to the template's specifications.
+This ensures two things:
 
-1. When inputs to the template change, rather than updating the taskrun, a new
-   taskrun is created.
-2. Only the values from the most recently created taskrun that is successful are
-   propagated forward in the supply chain.
+- When inputs to the template change, rather than updating the TaskRun, a new
+  TaskRun is created.
+- Only the values from the most recently created TaskRun that is successful are
+  propagated forward in the supply chain.
 
-To learn more about the `lifecycle: tekton` text box, see the Cartographer tutorial
+To learn more about the `lifecycle: tekton` field, see the Cartographer tutorial
 [Lifecycle: Templating Objects That Cannot Update](https://cartographer.sh/docs/v0.6.0/tutorials/lifecycle/).
 To learn more about Tekton, see the [Tekton documentation](https://tekton.dev/docs/).

@@ -248,7 +248,7 @@ storage:
    port: "" # the port of the configured Redis
 tls:
   deactivated: false
-  # One of issuerRef, certificateRef or secretRef will be set if TLS is enabled 
+  # One of issuerRef, certificateRef or secretRef is set if TLS is enabled 
   issuerRef:
     name: ""
     kind: ""
