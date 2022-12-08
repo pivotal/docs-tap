@@ -18,7 +18,7 @@ This topic contains release notes for Tanzu Application Platform v1.3
 - The UI now shows the same message as the CLI, `Builder default is not ready`, when the Image Builder is not available or not configured.
 - The `Scan Template` link in the **Overview** section for a scanning stage is now disabled.
 
-##### <a id="1-3-3-tap-gui"></a> Tanzu Application Platform GUI plug-in
+##### <a id="1-3-3-tap-gui-plug-ri"></a> Tanzu Application Platform GUI plug-ins
 
 - Supply Chain plug-in
   - Fixed an issue where the Source Scanner stage was showing a non-functioning link to the Scan
