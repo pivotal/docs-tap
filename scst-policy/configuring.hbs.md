@@ -138,6 +138,9 @@ You can use `match` to filter resources using group, version, kind, or labels in
 selected namespace to enforce the defined policy.
 If the list of matching resources is empty, it defaults to all core resources.
 
+For example, you can filter all `v1 cronjobs` with the label `app: tap` in a namespace that
+is labeled for policy enforcement:
+
 ```yaml
 spec:
   match:
@@ -148,9 +151,6 @@ spec:
       matchLabels:
         app: tap
 ```
-
-The above earlier example filters all `v1 cronjobs` with label `app: tap` in a namespace that
-is labeled for policy enforcement
 
 ### <a id="cip-authorities"></a> `authorities`
 
@@ -178,6 +178,8 @@ spec:
     - key:
         kms: KMSPATH
 ```
+
+Where `KMSPATH` is the name of the KMS path you want to configure in your key authority.
 
 > **Note** The secret referenced in `key.secretRef.name` must be created
 in the `cosign-system` namespace or the namespace where the Policy Controller
@@ -301,14 +303,16 @@ spec:
       source:
         - oci: registry.example.com/project/signature-location
           signaturePullSecrets:
-            - name: mysecret
+            - name: MY-SECRET
     - keyless:
         url: https://fulcio.example.com
       source:
         - oci: registry.example.com/project/signature-location
           signaturePullSecrets:
-            - name: mysecret
+            - name: MY-SECRET
 ```
+
+Where `MY-SECRET` is the name of the secret you want to use with your credentials.
 
 VMware recommends using a set of credentials with the least amount of
 privilege that allows reading the signature stored in your registry.

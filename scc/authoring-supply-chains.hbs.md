@@ -14,7 +14,7 @@ installations.
 
 ## <a id="own-sup-chain"></a> Providing your own supply chain
 
-To create a new supply chain and make it available for workloads, ensure the supply chain does not conflict with those installed on the cluster, as those objects are cluster-scoped.
+To create a new supply chain and make it available for workloads, ensure that the supply chain does not conflict with those installed on the cluster, as those objects are cluster-scoped.
 
 If this is your first time creating a supply chain, follow the tutorials from
 the [Cartographer documentation](https://cartographer.sh/docs/v0.3.0/tutorials/first-supply-chain/).
@@ -46,14 +46,14 @@ supply chains of the corresponding packages:
 - _ootb-supply-chain-basic_
   - ClusterSupplyChain/**basic-image-to-url**
      - label `apps.tanzu.vmware.com/workload-type: web`
-     - `workload.spec.image` field set
+     - `workload.spec.image` text box set
   - ClusterSupplyChain/**source-to-url**
      - label `apps.tanzu.vmware.com/workload-type: web`
 
 - _ootb-supply-chain-testing_
   - ClusterSupplyChain/**testing-image-to-url**
      - label `apps.tanzu.vmware.com/workload-type: web`
-     - `workload.spec.image` field set
+     - `workload.spec.image` text box set
   - ClusterSupplyChain/**source-test-to-url**
      - label `apps.tanzu.vmware.com/workload-type: web`
      - label `apps.tanzu.vmware.com/has-test: true`
@@ -61,7 +61,7 @@ supply chains of the corresponding packages:
 - _ootb-supply-chain-testing-scanning_
   - ClusterSupplyChain/**scanning-image-scan-to-url**
      - label `apps.tanzu.vmware.com/workload-type: web`
-     - `workload.spec.image` field set
+     - `workload.spec.image` text box set
   - ClusterSupplyChain/**source-test-scan-to-url**
      - label `apps.tanzu.vmware.com/workload-type: web`
      - label `apps.tanzu.vmware.com/has-test: true`
@@ -85,7 +85,6 @@ prevent the conflicts mentioned earlier, by using the
 # supply_chain: ""
 ```
 
-
 ## <a id="templates"></a> Providing your own templates
 
 Similar to supply chains, Cartographer templates (`Cluster*Template` resources)
@@ -93,7 +92,7 @@ are cluster-scoped, so you must ensure that the new templates submitted
 to the cluster do not conflict with those installed by the `ootb-templates`
 package.
 
-Currently, the following set of objects are provided by `ootb-templates`:
+The following set of objects are provided by `ootb-templates`:
 
 - ClusterConfigTemplate/**config-template**
 - ClusterConfigTemplate/**convention-template**
@@ -137,16 +136,15 @@ For details about how to edit an existing template, see
 [Modifying an Out of the Box Supply template](#modifying-an-out-of-the-box-template)
 section.
 
-
 ## <a id="modify-sc"></a> Modifying an Out of the Box Supply Chain
 
 To change the shape of a supply chain or the template that it points to, do the following:
 
 1. Copy one of the reference supply chains.
-1. Remove the old supply chain. See [preventing Tanzu Application Platform supply chains from being
+2. Remove the old supply chain. See [preventing Tanzu Application Platform supply chains from being
    installed](#preventing-tap-supply-chains-from-being-installed).
-1. Edit the supply chain object.
-1. Submit the modified supply chain to the cluster.
+3. Edit the supply chain object.
+4. Submit the modified supply chain to the cluster.
 
 ### <a id="example-ootb-sc"></a> Example
 
@@ -168,7 +166,7 @@ modification to is `source-to-url` provided by the
     registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:f2ad401bb3e850940...
     ```
 
-1. Pull the contents of the bundle into a directory named `ootb-supply-chain-basic`:
+2. Pull the contents of the bundle into a directory named `ootb-supply-chain-basic`:
 
     ```bash
     imgpkg pull \
@@ -186,7 +184,7 @@ modification to is `source-to-url` provided by the
     Succeeded
     ```
 
-1. Inspect the files obtained:
+3. Inspect the files obtained:
 
     ```bash
     tree ./ootb-supply-chain-basic/
@@ -200,7 +198,7 @@ modification to is `source-to-url` provided by the
     └── values.yaml
     ```
 
-1. Edit the desired supply chain to exchange the template with another:
+4. Edit the supply chain that you want to exchange the template with another:
 
     ```diff
     --- a/supply-chain.yaml
@@ -216,7 +214,7 @@ modification to is `source-to-url` provided by the
              value: #@ data.values.service_account
     ```
 
-4. Submit the supply chain to Kubernetes:
+5. Submit the supply chain to Kubernetes:
 
     The supply chain definition found in the bundle expects the values you provided
     by using `tap-values.yaml` to be interpolated by using YTT before
@@ -233,7 +231,6 @@ modification to is `source-to-url` provided by the
     ```
 
     >**Note** The modified supply chain does not outlive the destruction of the cluster. VMware recommends that you save it, for example, in a Git repository to install on every cluster where you expect the supply chain to exist.
-
 
 ## <a id="modify-ootb-sc"></a> Modifying an Out of the Box Supply template
 
@@ -256,7 +253,6 @@ The workflow for updating a template is as follows:
 >**Note** You don't need to change anything related to supply
 chains, because you're preserving the name of the object referenced
 by the supply chain.
-
 
 ### <a id="example-ootb-st"></a> Example
 
@@ -302,7 +298,7 @@ installs by upating `tap-values.yaml`:
     Succeeded
     ```
 
-1. Confirm that you've downloaded all the templates:
+2. Confirm that you downloaded all the templates:
 
     ```bash
     tree ./ootb-templates
@@ -319,7 +315,7 @@ installs by upating `tap-values.yaml`:
     └── values.yaml
     ```
 
-1. Change the property you want to change:
+3. Change the property you want to change:
 
     ```diff
     --- a/config/kpack-template.yaml
@@ -335,7 +331,7 @@ installs by upating `tap-values.yaml`:
              #@ if/end param("live-update"):
     ```
 
-1. Submit the template.
+4. Submit the template.
 
 
 The name of the template is preserved but the contents are changed.
@@ -366,7 +362,7 @@ Because the installation is based on Kubernetes primitives, `PackageInstall` tri
 
 This is great but presents challenges for modifying the
 contents of some of the objects that the installation submits to the cluster.
-Namely, such modifications result in the original definition
+Namely, such modifications cause the original definition
 persisting instead of the changes.
 
 For this reason, before you perform any customization to
@@ -392,7 +388,7 @@ spec:
 # ...
 ```
 
-With the installation of Tanzu Application Platform paused, all of the currently installed components
+With the installation of Tanzu Application Platform paused, all of the installed components
 are still there, but changes to those children `PackageInstall` objects
 are not overwritten.
 
@@ -416,28 +412,28 @@ paused. To persist the changes, follow the steps outlined in the earlier section
 ## <a id="add-tekton-behavior"></a> Adding custom behavior to Supply Chains
 
 Most behaviors in supply chains are supplied by Kubernetes controllers. For example,
-cloudnative buildpacks are created by the kpack controller when a kpack Image object
-is created. But sometimes there is need for behavior and no controller for it exists.
-In these instances we may wish to write a script that uses a CLI tool, or to interact
-with an external API. In these cases, we can bring the behavior to the supply chain
-through Tekton.
+cloud native buildpacks are created by the kpack controller when a kpack Image object
+is created. Sometimes there is need for behavior and no controller for it exists.
+In these instances, you might want to write a script that uses a CLI tool, or to interact
+with an external API. To do this, you can bring the behavior to the supply chain
+by using Tekton.
 
-We can look at the kaniko image building as an example of this pattern. We create a Tekton
-ClusterTask `kaniko-build` with instructions for how to build a docker image using Kaniko
+You can look at the kaniko image building as an example. You create a Tekton
+ClusterTask `kaniko-build` with instructions for how to build a Docker image using Kaniko
 given a set of parameters. The ClusterTask has a set of steps. Each step refers to a
-container image and a set of instructions to run on the image. (For example, a linux
-image against which a set of bash instructions are run). The ClusterTask is installed
+container image and a set of instructions to run on the image. For example, a linux
+image against which a set of bash instructions are run. The ClusterTask is installed
 on the cluster.
 
-We then create the ClusterImageTemplate `kaniko-template` to create Tekton taskruns. Taskruns
-are immutable, so to the template's spec we add the `lifecycle: tekton` field. This ensures
+You create the ClusterImageTemplate `kaniko-template` to create Tekton taskruns. Taskruns
+are immutable, so you add the `lifecycle: tekton` text box to the template's specifications. This ensures
 two things:
 
-1. When inputs to the template change, rather than trying to update the taskrun, a new
-   taskrun will be created.
-2. Only the values from the most recently created taskrun that is successful will be
+1. When inputs to the template change, rather than updating the taskrun, a new
+   taskrun is created.
+2. Only the values from the most recently created taskrun that is successful are
    propagated forward in the supply chain.
 
-To learn more about the `lifecycle: tekton` field, refer to the Cartographer tutorial
+To learn more about the `lifecycle: tekton` text box, see the Cartographer tutorial
 [Lifecycle: Templating Objects That Cannot Update](https://cartographer.sh/docs/v0.6.0/tutorials/lifecycle/).
-To learn more about Tekton, refer to [Tekton documentation](https://tekton.dev/docs/).
+To learn more about Tekton, see the [Tekton documentation](https://tekton.dev/docs/).

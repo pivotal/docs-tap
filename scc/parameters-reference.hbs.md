@@ -484,9 +484,9 @@ Parameters:
     <td>
       Name of the service account, in the same namespace as the Workload, to use
       for providing docker credentials. The service account must have a secret
-      associated with said credentials. For more information, see Tekton
-      documentation on
-      [Configuring authentication for Docker](https://tekton.dev/docs/pipelines/auth/#configuring-authentication-for-docker)
+      associated with the credentials. See 
+      [Configuring authentication for Docker](https://tekton.dev/docs/pipelines/auth/#configuring-authentication-for-docker) in the Tekton
+      documentation.
     </td>
     <td>
       <pre>
