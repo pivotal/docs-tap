@@ -539,7 +539,7 @@ docs.vmware.com is built.
       - [Dependencies](tanzu-build-service/dependencies.md)
       - [Security Context Constraint for OpenShift](tanzu-build-service/openshift.md)
       - [Troubleshoot Tanzu Build Service](tanzu-build-service/troubleshooting.md)
-      - [GitHub Action for Tanzu Build Service Build](tanzu-build-service/build-image-action.md)
+      - [Create a GitHub Action](tanzu-build-service/build-image-action.md)
     - [Tekton](tekton/tekton-about.md)
       - [Tekton overview](tekton/tekton-about.md)
       - [Install Tekton](tekton/install-tekton.md)
