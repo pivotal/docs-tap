@@ -12,7 +12,7 @@ API Auto Registration requires that the following is present:
 1. A location exposing a dynamic or static API specification.
 
 2. An APIDescriptor CR with that location created in the cluster.
-You might additionally must set up different install values for api-auto-registration package or
+You might additionally set up different install values for api-auto-registration package or
 CORS for OpenAPI specifications.
 
 How to configure:
@@ -65,12 +65,12 @@ How to create APIDescriptor CR:
     ```
 
 >**Note** You can also update API Auto Registration as part of upgrading Tanzu Application Platform
- as a whole. For more information see [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
+ as a whole. For more information, see [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
 
 ## <a id='using-app-acc-template'></a>Using App Accelerator Template
 
-If you are creating a new application exposing an API, you might use the ["java-rest-service"](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service).
-App Accelerator template to get an pre-built app that includes an already written
+If you are creating a new application exposing an API, you might use the ["java-rest-service"](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
+App Accelerator template to get a pre-built app that includes an already written
 workload.yaml with a basic REST API.
 From your Tanzu Application Platform GUIs Accelerators tab, you can search for the accelerator and
 scaffold it according to your needs.
@@ -78,7 +78,7 @@ scaffold it according to your needs.
 ## <a id='using-ootb-supply-chain'></a>Using Out-Of-The-Box (OOTB) supply chains
 
 All the Out-Of-The-Box (OOTB) supply chains are modified so that they can use API Auto Registration.
-If you want your Workload to be auto registered, you must make a couple of modifications to your
+If you want your workload to be auto registered, you must make a couple of modifications to your
 workload YAML as described in later steps.
 
 1. Add the label `apis.apps.tanzu.vmware.com/register-api: "true"`.
@@ -154,19 +154,19 @@ spec:
         description: "A set of API endpoints to manage the resources within the petclinic app."
 ```
 
-After the supply chain runs it creates an `APIDescriptor` custom resource. This resource is what
+After the supply chain runs, it creates an `APIDescriptor` custom resource. This resource is what
 Tanzu Application Platform uses to auto register your API.
 See [APIDescriptor explained](#api-descriptor).
 
 ## <a id='using-custom-supply-chain'></a>Using Custom Supply Chains
 
 If you are creating custom supply chains, you can still use API Auto Registration. To write a
-supply chain pipeline, you can use `ClusterConfigTemplate` by the name of `config-template` in
-your pipeline. To write a custom task, you can verify how the template is written to read parameters,
-interpret baseURL from Knative Services and construct APIDescriptor CRs.
+supply chain pipeline, use `ClusterConfigTemplate` by the name of `config-template` in
+your pipeline. To write a custom task, verify how the template is written to read parameters,
+interpret baseURL from Knative Services, and construct APIDescriptor CRs.
 
 In the Delivery pipeline, you must directly create an APIDescriptor custom resource. You must grant
-some permissions to create the CR from the Delivery pipeline.
+some permissions to create the CR from the delivery pipeline.
 For more information about APIDescriptors, see [Key Concepts](key-concepts.md).
 
 ## <a id='using-gitops-manually'></a>Using other GitOps processes or Manually
