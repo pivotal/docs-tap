@@ -1,6 +1,6 @@
 # Install Sigstore Stack
 
->**Note:** VMware does not support Sigstore stack deployments. However, a sample version 0.4.8 deployment that uses keyless signing and verification in air-gapped environments is shown in this section.
+>**Note:** VMware does not support Sigstore stack deployments. However, a sample v0.4.8 deployment that uses keyless signing and verification in air-gapped environments is shown in this section.
 
 [Sigstore/scaffolding](https://github.com/sigstore/scaffolding) is used for
 bringing up the Sigstore Stack.
