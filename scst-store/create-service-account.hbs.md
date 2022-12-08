@@ -1,72 +1,32 @@
-# Create Service Accounts
+# Retreive and create service accounts
 
-When you install Tanzu Application Platform, the included Supply Chain Security Tools (SCST) - Store deployment automatically includes a read-write service account.
-This service account is already bound to the `metadata-store-read-write` role.
-Skip to the section [Getting the access token](#getting-access-token) to retrive the access token for the default read-write service account.
+When you install Tanzu Application Platform, the included Supply Chain Security Tools (SCST) - Store deployment automatically includes a read-write service account.  This service account is already bound to the `metadata-store-read-write` role.
 
-To create another read-write service account, or to create a read-only servie account, follow the instructions in this topic.
+There are two types of SCST - Store service accounts:
 
-## Types of services accounts
+1. Read-write service account - full access to the `POST` and `GET` API requests
+1. Read-only service account - can only use `GET` API requests
+2. Read-write service account - full access to the API requests
 
-You can create two types of SCST - Store service accounts:
+## <a id='getting-access-token'></a>Getting the access token
 
-1. Read-only service account - only able to use `GET` API requests
-1. Read-write service account - full access to the API requests
+To retrieve the read-write access token, run:
 
-## <a id='ro-serv-accts'></a>Read-only service account
+```console
+kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d
+```
 
-### With default cluster role
+To retrieve the read-only access token, run:
 
-As a part of the Store installation, the `metadata-store-read-only` cluster role
-is created by default. This cluster role allows the bound user to have `get`
-access to all resources. To bind to this cluster role, run the following command
-depending on the Kubernetes version:
+```console
+kubectl get secrets metadata-store-read-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d
+```
 
-  ```console
-  kubectl apply -f - -o yaml << EOF
-  ---
-  apiVersion: rbac.authorization.k8s.io/v1
-  kind: ClusterRoleBinding
-  metadata:
-    name: metadata-store-read-only
-  roleRef:
-    apiGroup: rbac.authorization.k8s.io
-    kind: ClusterRole
-    name: metadata-store-read-only
-  subjects:
-  - kind: ServiceAccount
-    name: metadata-store-read-client
-    namespace: metadata-store
-  ---
-  apiVersion: v1
-  kind: ServiceAccount
-  metadata:
-    name: metadata-store-read-client
-    namespace: metadata-store
-    annotations:
-      kapp.k14s.io/change-group: "metadata-store.apps.tanzu.vmware.com/service-account"
-  automountServiceAccountToken: false
-  ---
-  apiVersion: v1
-  kind: Secret
-  type: kubernetes.io/service-account-token
-  metadata:
-    name: metadata-store-read-client
-    namespace: metadata-store
-    annotations:
-      kapp.k14s.io/change-rule: "upsert after upserting metadata-store.apps.tanzu.vmware.com/service-account"
-      kubernetes.io/service-account.name: "metadata-store-read-client"
-  EOF
-  ```
+The access token is a "Bearer" token used in the http request header
+"Authorization." (ex. `Authorization: Bearer
+eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
 
-> **Note** For Kubernetes v1.24 and later, services account secrets are no longer automatically created.
-> This is why we added a `Secret` resource in the above yaml.
-
-### With a custom cluster role
-
-If using the default role is not sufficient for your use case, follow the instructions in [Create a service account with a custom cluster role](custom-role.hbs.md).
-
-## Read-write service account
+## <a id='rw-serv-accts'></a> Create read-write service account
 
 When you install Tanzu Application Platform, the included SCST - Store deployment automatically includes a read-write service account.
 This service account is already bound to the `metadata-store-read-write` role.
@@ -125,9 +85,9 @@ EOF
 > longer automatically created.
 > This is why the example adds a `Secret` resource in the earlier YAML.
 
-## <a id='ro-serv-accts'></a>Read-only service account
+## <a id='ro-serv-accts'></a>Create read-only service account
 
-### With default cluster role
+### With a default cluster role
 
 During Store installation, the `metadata-store-read-only` cluster role
 is created by default. This cluster role allows the bound user to have `get`
@@ -178,61 +138,3 @@ EOF
 ### With a custom cluster role
 
 If using the default role is not sufficient, follow the instructions in [Create a service account with a custom cluster role](custom-role.hbs.md).
-
-## <a id='getting-access-token'></a>Getting the access token
-
-To retrieve the read-only access token, run:
-
-```console
-kubectl apply -f - -o yaml << EOF
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: metadata-store-read-write
-  namespace: metadata-store
-rules:
-- resources: ["all"]
-  verbs: ["get", "create", "update"]
-  apiGroups: [ "metadata-store/v1" ]
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: RoleBinding
-metadata:
-  name: metadata-store-read-write
-  namespace: metadata-store
-roleRef:
-  apiGroup: rbac.authorization.k8s.io
-  kind: Role
-  name: metadata-store-read-write
-subjects:
-- kind: ServiceAccount
-  name: metadata-store-read-write-client
-  namespace: metadata-store
----
-apiVersion: v1
-kind: ServiceAccount
-metadata:
-  name: metadata-store-read-write-client
-  namespace: metadata-store
-automountServiceAccountToken: false
-EOF
-```
-
-## <a id='get-access-token'></a>Getting the Access Token
-To retrieve the read-only access token, run the following command:
-
-```console
-kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
-```
-
-To retrieve the read-write access token run the following command:
-
-```console
-kubectl get secret $(kubectl get sa -n metadata-store metadata-store-read-write-client -o json | jq -r '.secrets[0].name') -n metadata-store -o json | jq -r '.data.token' | base64 -d
-```
-
-The access token is a "Bearer" token used in the http request header "Authorization." (ex. `Authorization: Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`)
-
-## Additional resources
-
-- [Create a service account with a custom cluster role](custom-role.hbs.md)
