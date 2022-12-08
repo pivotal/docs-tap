@@ -87,12 +87,14 @@ be `https://appsso.company.example.com:1234/login/oauth2/code/my-provider`.
 
 ### Supported token signing algorithms
 
-AppSSO only supports the `RS256` algorithm for token signature. See [OpenID Connect > 3.1.3.7 ID Token validation](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation).
+AppSSO only supports the `RS256` algorithm for token signature. For more information, see [OpenID Connect documentation](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation).
 
-You can find out the signing algorithms your OpenID Provider supports by looking at the `id_token_signing_alg_values_supported` response parameter in the [OpenID Provider Configuration document](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig) at `.well-known/openid-configuration`. For example by running:
+You can find out the signing algorithms your OpenID provider supports by referring to the `id_token_signing_alg_values_supported` response parameter in the [OpenID Connect documentation](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig) at `.well-known/openid-configuration`. 
+
+For example, you can run:
 
 ```shell
-curl -s "<ISSUER-URI>/.well-known/openid-configuration" | jq ".id_token_signing_alg_values_supported"
+curl -s "ISSUER-URI/.well-known/openid-configuration" | jq ".id_token_signing_alg_values_supported"
 ```
 
 ## LDAP

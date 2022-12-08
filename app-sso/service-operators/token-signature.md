@@ -19,11 +19,11 @@ Learn about token signatures and how to manage keys of an `AuthServer`:
 
 ## Token signature 101
 
-Token signature keys are used by an `AuthServer` to sign JSON Web Tokens (JWTs) - producing
-a [JWS Signature](https://www.rfc-editor.org/rfc/rfc7515) and attaching it to
-the [JOSE Header](https://www.rfc-editor.org/rfc/rfc7515#section-4) of a JWT. The client application later is
-able to verify the JWT signature. A private key is used to sign a JWT, and a public key is used to verify the signature
-of a signed JWT.
+Token signature keys are used by an `AuthServer` to sign JSON Web Tokens (JWTs), produce
+a [JWS Signature](https://www.rfc-editor.org/rfc/rfc7515) and attach it to
+the [JOSE Header](https://www.rfc-editor.org/rfc/rfc7515#section-4) of a JWT. The client application can then verify the JWT signature.
+
+A private key signs a JWT. A public key verifies the signature of a signed JWT.
 
 The sign-and-verify mechanism serves multiple security purposes:
 
@@ -33,7 +33,7 @@ The sign-and-verify mechanism serves multiple security purposes:
 - **Non-repudiation**: signature verification ensures that the authorization server that signed the JWT cannot deny that
   they have signed it after its issuance (granted that the signing key that signed the JWT is available).
 
-> AppSSO only supports the `RS256` algorithm for signing tokens, see [JSON Web Algorithms (JWA) spec](https://www.rfc-editor.org/rfc/rfc7518#section-3).
+AppSSO only supports the `RS256` algorithm for signing tokens. For more information, see [JSON Web Algorithms (JWA) documentation](https://www.rfc-editor.org/rfc/rfc7518#section-3).
 
 ## Token signature of an `AuthServer`
 

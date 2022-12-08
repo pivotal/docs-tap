@@ -103,17 +103,21 @@ It does not refer to the URI of the AuthServer.
 ### Problem:
 
 When trying to log in with an OpenID Connect `identityProvider`, you are unable to sign in
-and you see, in the logs: `[invalid_id_token] An error occurred while attempting to decode the Jwt: Signed JWT rejected: Another algorithm expected, or no matching key(s) found`.
+and you see the following error in the logs: 
+
+```console
+[invalid_id_token] An error occurred while attempting to decode the Jwt: Signed JWT rejected: Another algorithm expected, or no matching key(s) found.
+```
 
 ### Solution:
 
-Check the `identityProvider`'s discovery endpoint, at `<ISSUER-URI>/.well-known/openid-configuration`, when `<ISSUER-URI>` is the value set at `spec.identityProviders.openid.issuerURI`.
+Verify the `identityProvider`'s discovery endpoint at `ISSUER-URI/.well-known/openid-configuration` where `ISSUER-URI` is the value set at `spec.identityProviders.openid.issuerURI`.
 
-There should be a `id_token_signing_alg_values_supported` key. The only value AppSSO supports is `RS256`. If it is not in the list, then your identity configuration may not support AppSSO.
+The only value of `id_token_signing_alg_values_supported` key that AppSSO supports is `RS256`. If it is not in the list, your identity configuration might not support AppSSO.
 
-If `RS256` is present, in the discovery endpoint, there should be a `jwks_uri` key. Visit the URL that is stored in th this key. That URI should return at least one RSA key. Otherwise, your identity provider may be misconfigured.
+If `RS256` is present, in the discovery endpoint, expect to see a `jwks_uri` key. Visit the URL that is stored in this key. At least one RSA key must be returned. Otherwise, your identity provider might be misconfigured.
 
-Please refer to your identity provider's documentation, and enable `RS256` token signing.
+Refer to your identity provider's documentation and enable `RS256` token signing.
 
 ## Misconfigured identity provider clientSecret
 
@@ -148,11 +152,11 @@ Add the required scopes into your `ClientRegistration` yaml under `spec.scopes`.
 
 ### Problem:
 
-The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern.
+The `sub` claims in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern.
 The previous `<providerId>/<userId>` pattern might cause bugs in URLs without proper URL-encoding in client
 applications.
 
 ### Solution:
 
-If your client application has stored `sub` claims,
-you must update them to match the new pattern `<providerId>_<userId>`.
+If your client application stores `sub` claims,
+you must update the `sub` claims to match the new pattern `<providerId>_<userId>`.
