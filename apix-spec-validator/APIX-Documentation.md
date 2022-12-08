@@ -1,12 +1,14 @@
 ﻿# **Overview**
 
-The APIX solution aims to manage the end-to-end lifecycle of APIs.
-
-Please refer [to this blog for details.](https://blogs.vmware.com/security/2022/10/key-requirements-of-modern-apis-for-an-end-to-end-api-lifecycle-implementation.html)
+The APIX solution aims to manage the end-to-end lifecycle of APIs. Please refer to this blog for details.
 
 This specific feature of APIX focuses on scanning and validating an API specification. The API spec is generated from the API autoregistration feature in TAP. Once that is done, APIX scans, lints, and validates the API spec. Based on the validation, a scoring is provided that tells the dev / devops, the quality and health of their API specification as it related to Documentation, OpenAPI best practices, and Security. There is a card on the API detail page (on the TAP GUI) that displays the summary of the scores. If the user wants to get more details of the scores, they can click on the 'more details' link and can get a detailed view.
 
 The solution helps developers ensure that their APIs are more secure and robust, by providing feedback and recommendations early on in the software development lifecycle. Based on the feedback and recommendations, the dev can modify their API Specs and improve their scores, and hence improve the posture of their APIs. The solution also helps  DevOps / DevSecOps understand how well the APIs have been implemented.
+
+When a workload is applied , an automated workflow using the supply chain leverages the API Auto Registration . The API Auto Registration Controller reconciles the APIx CR and updates the API entity in Tanzu Application Platform GUI to achieve the  automated API Scoring and validation of the API Specification.
+
+![](assets/20221208_192420_image2022-12-8_17-29-45.png)
 
 # **APIX Documentation**
 
@@ -17,7 +19,6 @@ This topic describes how to install APIX package
 > Note:
 >
 > * The Installation of APIX package must be done on a new cluster without any existing TAP installations .
-> * Apix - 0.1.9 *(For the Bug Bash use the APIX - apix-release:0.1.6 )*
 
 **APIX Platform Prerequisites**
 
@@ -37,12 +38,7 @@ Step 4 : [Install kapp](https://carvel.dev/kapp/docs/v0.54.0/install/)
 
 Step 4 : The Kubernetes CLI, see [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
-Step 5 : OIDC - Bring your own IDP
-
-> Note
-> *However, if you do not have IDP, we can add you to the OKTA Org and you can use the username as [apix@vmware.com]() / Okta@2022*
-
-Step 6 : Set the Tanzu network account
+Step 5 : Setup the Tanzu network account
 
 #### *Environment Variables*
 
@@ -123,12 +119,20 @@ Step 6 : Set the Tanzu network account
 
    If the package has installed, you should be able to view a similar message
 
-   ![](assets/cli_tap_package_available_list.png)
+   ```apache
+   NAME                         DISPLAY-NAME         SHORT_DESCRIPTION                  LATEST-VERSION
+   apix.apps.tanxu.vmware.com   apix                 apix.apps.tanxu.vmware.com         0.2.2
+
+   ```
 6. Verify that STATUS is Reconcile succeeded:
 
    `kubectl get pkgi -n apix-install`
 
-   ![](assets/cli_kubectl_get_pkgi.png)
+   ```apache
+   NAME        PACKAGE NAME                  PACKAGE VERSION           DESCRIPTION             AGE
+   apix        apix.apps.tanxu.vmware.com    0.2.2                     Reconcile succeeded     28m
+
+   ```
 
 ---
 
@@ -139,66 +143,14 @@ To uninstall the APIX Control Plane package, the user should execute the followi
 `kubectl delete pkgi apix -n apix-install`
 
 > Note
-> To uninstall the APIX Control Plane package, you should delete the apix package
+>
+> * To uninstall the APIX Control Plane package, you should delete the apix package
+
+
 
 ---
 
-## **Data Plane Installtion**
 
-This topic describes how connect to the APIX Control Plane from the Data Plane
-
-> Note:
->
-> * Any flavour of the Data Plane Kubernetes Cluster can be used with TAP components installation
-> * Apix-Connector 0.1.2 **(For the Bug Bash use Apix-Connector 0.1.0 )**
-
-1. Create a new namespace where the apix-connector shouldl be installed
-
-   `kubectl create namespace namepsace-name`
-
-   for example:
-   `kubectl create namespace apix-connector-install`
-
-   Output:
-
-   ```apache
-   namespace/apix-connector-install created
-   ```
-2. Add package repository
-
-   `tanzu package repository add apix-connector-repo --url dev.registry.tanzu.vmware.com/apix/apix-connector:0.1.3 --namespace apix-connector-install`
-
-   Output:
-
-   ```apache
-   tanzu package repository add apix-connector-repo --url dev.registry.tanzu.vmware.com/apix/apix-connector:0.1.3 --namespace apix-connector-install
-    Adding package repository 'apix-connector-repo'
-    Validating provided settings for the package repository
-    Creating package repository resource
-    Waiting for 'PackageRepository' reconciliation for 'apix-connector-repo'
-    'PackageRepository' resource install status: Reconciling
-    'PackageRepository' resource install status: ReconcileSucceeded
-    'PackageRepository' resource successfully reconciled
-   Added package repository 'apix-connector-repo' in namespace 'apix-connector-install'
-   ```
-3. Install the APIX-connector package in the apix-connector-install namespace
-   `tanzu package install apix-connector -p apix-connector.apps.tanzu.vmware.com -v 0.1.3 -n apix-connector-install`
-
-   Output:
-
-   ```apache
-   tanzu package install apix-connector -p apix-connector.apps.tanzu.vmware.com -v 0.1.3 -n apix-connector-install
-     Installing package 'apix-connector.apps.tanzu.vmware.com'
-     Getting package metadata for 'apix-connector.apps.tanzu.vmware.com'
-     Creating service account 'apix-connector-apix-connector-install-sa'
-     Creating cluster admin role 'apix-connector-apix-connector-install-cluster-role'
-     Creating cluster role binding 'apix-connector-apix-connector-install-cluster-rolebinding'
-     Creating package resource
-     Waiting for 'PackageInstall' reconciliation for 'apix-connector'
-     'PackageInstall' resource install status: Reconciling
-     'PackageInstall' resource install status: ReconcileSucceeded
-     `Added installed package 'apix-connector'
-   ```
 
 ## **Usage**
 
@@ -323,7 +275,3 @@ To view further details on the Validation Analysis and to know where improvement
 > *Clicking on the More Detail , will take you to the TANZU APIX UI*
 
 ![](assets/ui_apix_spec_details.png)
-
-### **Demo Video**
-
-![](20221201_200500_E2E-Discovery-flow.mov)
