@@ -81,19 +81,10 @@ Step 5 : Setup the Tanzu network account
 
    ```apache
    apix:
-     host: host is what you point at the nexus-proxy service's external IP address from apix-admin namespace . it is an optional field , keeping it empty will directly refer to the external IP.
-
-     connectorHost: host is what you point at the apis-envoy-proxy service's external IP address from apix namespace . it is an optional field , keeping it empty will directly refer to the external IP.
-
+     host: An optional value, host is what you point at the nexus-proxy service's external IP address from apix-admin namespace . it is an optional field , keeping it empty will directly refer to the external IP.
      backstage:
      	host: host is TAP Catalog End Point
      	port: TAP Catalog End Point port
-     oidc:
-     	clientId: Client id from the IDP provider
-     	clientSecret: Client secret from the IDP provider
-   	oAuthIssuerUrl: This is the issuer url from IDP provider
-   	jwtClaimUsername: the JWT token claim key to uniquely identify a user.
-   	proxyRule: This is the issuer url from IDP provider
    ```
 
    **Example** | apix-values.yaml
@@ -101,17 +92,10 @@ Step 5 : Setup the Tanzu network account
 
    ```apache
    apix:
-     host: ""	        #optional
-     connectorHost: ""     #optional
+     host: ""      #optional
      backstage:
-       host: https://tap-gui.tap.<clusterName>.tapdemo.vmware.com
+       host: https://tap-gui.tap.<clusterName>.tapdemo.vmware.com # OR any other valid TAP catalog endpoint
        port: 443
-     oidc:
-       clientId: xx-xx-xx-xx
-       clientSecret: xx-xx-xx-xx--xx-xx-xx-xx
-       oAuthIssuerUrl: https://<tenant_id>.okta.com/oauth2/default
-       jwtClaimUsername: sub
-       proxyRule: https://tenant_id.okta.com/oauth2/default
    ```
 5. Verify the package installation by running:
 
