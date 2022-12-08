@@ -82,7 +82,7 @@ the default. See [AWS RDS Postgres Configuration](use-aws-rds.hbs.md).
 
 #### Using external PostgreSQL database
 
-Users can also configure the deployment to use any other PostgreSQL database.
+Users can configure the deployment to use any other PostgreSQL database.
 See [Use external postgres database](use-external-database.hbs.md).
 
 #### <a id='cust-data-pass'></a>Custom database password
