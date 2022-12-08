@@ -351,7 +351,7 @@ key.
 
 #### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
-The `docker` text box and related text boxes by SCST - Scan Controller, Grype
+The `docker` field, and related sub-fields by SCST - Scan Controller, Grype
 Scanner, or Snyk Scanner were deprecated in Tanzu Application Platform v1.4.0.
 Previously these text boxes might be used to populate the `registry-credentials`
 secret. If you encounter the following error during installation:
