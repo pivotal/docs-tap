@@ -37,8 +37,7 @@ are using this issuer to secure ingress. In upcoming releases all components wil
   This allows better alignment between the data in the Supply Chain Choreographer plug-in and the
   Security Analysis plug-in.
 - **View Approvals** is relocated to the `Config Writer` stage, instead of being a stage by itself.
-- Added an **Impacted Workloads** column to the **Stage Details** section of scanning stages, so that
-  it is now easier to see how many workloads are impacted by the CVE that the scan detected.
+
 
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped environments. Refer to our updated [instructions](./partials/scst-scan/_offline-airgap.hbs.md).
@@ -119,6 +118,11 @@ The following issues, listed by area and component, are resolved in this release
 ### <a id='1-4-0-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
+
+#### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
+#### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer Plug-In
+- The `Generation` field in the **Overview** section is not updated when a scan policy is amended, however clicking on the `Scan Policy` link will show the most current scan policy details applied to the stage.
+- Customizing the `Source Tester` stage in an OOTB supply chain will not show details in the **Stage Details** section.
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 

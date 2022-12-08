@@ -85,6 +85,16 @@ accessible user URI for the `AuthServer`, including scheme and port is `spec.iss
 accessible on `https://appsso.company.example.com:1234/`, the redirect URI registered with the identity provider should
 be `https://appsso.company.example.com:1234/login/oauth2/code/my-provider`.
 
+### Supported token signing algorithms
+
+AppSSO only supports the `RS256` algorithm for token signature. See [OpenID Connect > 3.1.3.7 ID Token validation](https://openid.net/specs/openid-connect-core-1_0.html#IDTokenValidation).
+
+You can find out the signing algorithms your OpenID Provider supports by looking at the `id_token_signing_alg_values_supported` response parameter in the [OpenID Provider Configuration document](https://openid.net/specs/openid-connect-discovery-1_0.html#ProviderConfig) at `.well-known/openid-configuration`. For example by running:
+
+```shell
+curl -s "<ISSUER-URI>/.well-known/openid-configuration" | jq ".id_token_signing_alg_values_supported"
+```
+
 ## LDAP
 
 **At most one** `ldap` identity provider can be configured.
