@@ -11,89 +11,124 @@ Use this GitHub Action to creates a Tanzu Build Service Build on a cluster.
 
 ## Procedure
 
+### Developer Namespace
+
 1. Create a developer namespace where the build resource will be created.
 
     ```bash
     kubectl create namespace DEVELOPER-NAMESPACE
     ```
 
-2. Create a secret that uses `secretgen` to get the registry credentials and update the default
-Service Account:
+2. Create a service account in the `DEVELOPER-NAMESPACE` that has access to the registry credentials. This service
+   account name will be used in the action.
+
+### Access to Kubernetes API server
+
+The GitHub action talks directly to the kubernetes API server, so if you are running this on github.com with the default
+action runners
+you'll need to ensure your API server is accessible from
+GitHubs [IP ranges](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses).
+Alternatively, it may be possible to runner the action on a custom runner within your firewall (with access to the TAP
+cluster).
+
+#### Permissions Required
+
+The minimum permissions required on the TBS cluster are documented below:
+
+    ```bash
+    ClusterRole
+     └ kpack.io
+       └ clusterbuilders verbs=[get]
+    Role (DEVELOPER NAMESPACE)
+     ├ ''
+     │ ├ pods verbs=[get watch list] ✔
+     │ └ pods/log verbs=[get] ✔
+     └ kpack.io
+       └ builds verbs=[get watch list create delete] ✔
+    ```
+
+Here is an example that contains the minimum required permissions:
 
     ```yaml
+    apiVersion: v1
+    kind: Namespace
+    metadata:
+       name: DEVELOPER_NAMESPACE
     ---
     apiVersion: v1
     kind: ServiceAccount
     metadata:
-      name: default
-      namespace: <developer-namespace>
-    secrets:
-      - name: image-secret
-    imagePullSecrets:
-      - name: image-secret
+       namespace: DEVELOPER_NAMESPACE
+       name: github-actions
     ---
-    apiVersion: v1
-    kind: Secret
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRoleBinding
     metadata:
-      name: image-secret
-      namespace: <developer-namespace>
-      annotations:
-        secretgen.carvel.dev/image-pull-secret: ""
-    type: kubernetes.io/dockerconfigjson
-    data:
-      .dockerconfigjson: e30K
-    ```
-
-3. Create a service account in the developer namespace and bind it to the following roles:
-
-    ```yaml
+       name: github-actions
+    subjects:
+       - kind: ServiceAccount
+         namespace: DEVELOPER_NAMESPACE
+         name: github-actions
+    roleRef:
+       kind: ClusterRole
+       name: github-actions
+       apiGroup: rbac.authorization.k8s.io
+    ---
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: RoleBinding
+    metadata:
+       name: github-actions
+       namespace: DEVELOPER_NAMESPACE
+    subjects:
+       - kind: ServiceAccount
+         namespace: DEVELOPER_NAMESPACE
+         name: github-actions
+    roleRef:
+       kind: Role
+       name: github-actions
+       apiGroup: rbac.authorization.k8s.io
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: ClusterRole
     metadata:
-      name: github-actions
+       name: github-actions
     rules:
-      - apiGroups: [ 'kpack.io' ]
-        resources:
-          - clusterbuilders
-        verbs: [ 'get' ]
+       - apiGroups: ['kpack.io']
+         resources:
+            - clusterbuilders
+         verbs: ['get']
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: Role
     metadata:
-      name: github-actions
-      namespace: <developer-namespace>
+       name: github-actions
+       namespace: DEVELOPER_NAMESPACE
     rules:
-      - apiGroups: [ '' ]
-        resources: [ 'pods', 'pods/log' ]
-        verbs: [ 'get', 'watch', 'list' ]
-      - apiGroups: [ 'kpack.io' ]
-        resources:
-          - builds
-        verbs: [ 'get', 'watch', 'list', 'create', 'delete' ]
+       - apiGroups: ['']
+         resources: ['pods']
+         verbs: ['get', 'watch', 'list']
+       - apiGroups: ['']
+         resources: ['pods/log']
+         verbs: ['get']
+       - apiGroups: ['kpack.io']
+         resources:
+            - builds
+         verbs: ['get', 'watch', 'list', 'create', 'delete']
     ```
 
-4. This action needs access to the cluster, using the Kubernetes service account created, with the
-following [GitHub encrypted secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets) set:
+Then to access the values (on GKE, if using another IAAS, this may be different):
 
-    - CA_CERT
-    - NAMESPACE
-    - TOKEN
-    - SERVER
+```
+DEV_NAMESPACE=DEVELOPER_NAMESPACE
+SECRET=$(kubectl get sa github-actions -oyaml -n $DEV_NAMESPACE | yq '.secrets[0].name')
 
-    To get this information, run the following commands:
+CA_CERT=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq '.data."ca.crt"')
+NAMESPACE=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq .data.namespace | base64 -d)
+TOKEN=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq .data.token | base64 -d)
+SERVER=$(kubectl config view --minify | yq '.clusters[0].cluster.server')
+```
 
-    ```bash
-    DEV_NAMESPACE=dev
-    SECRET=$(kubectl get sa <sa-with-minimum-required-permissions> -oyaml -n $DEV_NAMESPACE | yq '.secrets[0].name')
-
-    CA_CERT=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq '.data."ca.crt"')
-    NAMESPACE=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq .data.namespace | base64 -d)
-    TOKEN=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq .data.token | base64 -d)
-    SERVER=$(kubectl config view --minify | yq '.clusters[0].cluster.server')
-    ```
-
-5. Create the required secrets on the repository
+Create the required secrets on the repository
 through [GitHub.com](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)
 or through the `gh` CLI:
 
@@ -104,7 +139,9 @@ or through the `gh` CLI:
     gh secret set SERVER --app actions --body "$SERVER"
     ```
 
-6. To use the action in a workflow, run the following YAML:
+### Use the action
+
+To use the action in a workflow, run the following YAML:
 
     ```yaml
     - uses: vmware-tanzu/build-image-action@v1-alpha
@@ -133,7 +170,7 @@ or through the `gh` CLI:
         timeout:
     ```
 
-    For example:
+For example:
 
     ```yaml
     - name: Build Image
@@ -147,15 +184,22 @@ or through the `gh` CLI:
         namespace: ${{ secrets.NAMESPACE }}
         # Image configuration
         destination: gcr.io/project-id/name-for-image
+        serviceAccountName: my-sa-that-has-access-to-reg-credentials
         env: |
           BP_JAVA_VERSION=17
     ```
 
-7. The previous step should output the full name, including the SHA of the built image. To use the
-output in a subsequent step:
+The previous step should output the full name, including the SHA of the built image. To use the output in a subsequent
+step:
 
     ```yaml
     - name: Do something with image
       run:
         echo "${{ steps.build.outputs.name }}"
     ```
+
+## Debugging
+
+To run this action in "debug" mode, add a secret called `ACTIONS_STEP_DEBUG` with the value set to `true` as documented
+in the [GitHub Action Docs](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging).
+
