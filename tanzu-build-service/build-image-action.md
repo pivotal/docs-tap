@@ -154,8 +154,8 @@ or through the `gh` CLI:
 7. The previous step should output the full name, including the SHA of the built image. To use the
 output in a subsequent step:
 
-  ```yaml
-  - name: Do something with image
-    run:
-      echo "${{ steps.build.outputs.name }}"
-  ```
+    ```yaml
+    - name: Do something with image
+      run:
+        echo "${{ steps.build.outputs.name }}"
+    ```
