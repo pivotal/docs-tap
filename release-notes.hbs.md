@@ -62,7 +62,7 @@ This release has the following breaking changes, listed by area and component.
     Application Platform v1.2.0 were removed and are no longer supported. Ensure
     that you are using Grype ScanTemplates v1.2 and later moving forward.
 - Deprecation notice:
-  - The `docker` field, and related sub-fields, by Supply Chain Security Tools -
+  - The `docker` field and related sub-fields, by Supply Chain Security Tools -
     Scan are deprecated and marked for removal in Tanzu Application Platform
     v1.7.0.
   - The deprecation impacts the following components: Scan Controller, Grype
