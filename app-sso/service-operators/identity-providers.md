@@ -133,6 +133,8 @@ Where:
 - `bind.dn` is the DN used to perform the bind.
 - `bind.passwordRef` must be a Secret with the entry `password`. That entry is the password used to perform the bind.
 - `user.searchBase` is the branch of tree where the users are located. Search is also performed in nested entries.
+- `user.seachFilter` is the filter used when running an LDAP search. It must contain the string `{0}` which is replaced
+by the dn of the user when performing a search, e.g. `member=cn=marie,ou=Users,dc=example,dc=org`.
 - `group` (optional, defaults to unset) configures how LDAP groups will be mapped to user roles in the `id_token` claims.
   If not set, then the user will have no roles. Group to roles mapping is discussed in detail in the following section.
   - `group.roleAttriubte` selects which attribute of the group entry will be mapped to a user role. If an attribute has multiple
@@ -246,8 +248,8 @@ spec:
 
 Where:
 
-- `search.base` is the base used when runnning an LDAP search for groups.
-- `search.filter` is the filter used when runnning an LDAP search for groups. It must contain the string `{0}` which
+- `search.base` is the base used when running an LDAP search for groups.
+- `search.filter` is the filter used when running an LDAP search for groups. It must contain the string `{0}` which
   is replaced by the dn of the user when performing group search, e.g. `member=cn=marie,ou=Users,dc=example,dc=org`.
 - `search.depth` (optional, defaults to unset) the depth at which to perform nested group search (see below)
 - `search.searchSubTree` (optional, defaults to unset) whether to look for groups in sub-trees of the `search.base`.
