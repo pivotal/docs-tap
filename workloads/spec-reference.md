@@ -194,7 +194,7 @@ The `source-tester` resource is in `ootb-supply-chain-testing` and
 `ootb-supply-chain-testing-scanning`. This resource is responsible for instantiating a
 Tekton [PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) object that
 calls the execution of a Tekton Pipeline, in the same namespace as the
-Workload, whenever its inputs change. For example, the source code revision that you want to test changes.
+workload, whenever its inputs change. For example, the source code revision that you want to test changes.
 
 A [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/)
 object is instantiated to ensure that there's always a run for a particular set
@@ -215,7 +215,7 @@ Parameters:
     <td><code>testing_pipeline_matching_labels</code></td>
     <td>
       The set of labels to use when searching for Tekton Pipeline objects in the
-      same namespace as the Workload. By default, a Pipeline labeled as
+      same namespace as the workload. By default, a Pipeline labeled as
       `apps.tanzu.vmware.com/pipeline: test` is selected, but when using
       this parameter, it's possible to override the behavior.
     </td>
@@ -322,7 +322,7 @@ container image carrying the application already built to further resources.
 
 Different semantics apply, depending on how the workload is configured, for example, if using [pre-built
 images](../scc/pre-built-image.hbs.md) or [building from
-source](../scc/building-from-source.hbs.md), :
+source](../scc/building-from-source.hbs.md):
 
 - pre-built: an `ImageRepository` object is created aiming at providing a
   reference to the latest image found matching the name as specified in
@@ -940,7 +940,7 @@ For information about the features supported by each implementation, see [git
 implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation) in the Flux
 documentation.
 
-For information about how to create a Workload that uses a GitHub repository as the provider
+For information about how to create a workload that uses a GitHub repository as the provider
 of source code, see [Create a workload from GitHub repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
 
 For information about GitRepository objects, see [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
