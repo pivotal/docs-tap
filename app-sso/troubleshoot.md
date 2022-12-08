@@ -113,11 +113,11 @@ and you see the following error in the logs:
 
 Verify the `identityProvider`'s discovery endpoint at `ISSUER-URI/.well-known/openid-configuration` where `ISSUER-URI` is the value set at `spec.identityProviders.openid.issuerURI`.
 
-The only value of `id_token_signing_alg_values_supported` key that AppSSO supports is `RS256`. If it is not in the list, your identity configuration might not support AppSSO.
+The value of `id_token_signing_alg_values_supported` must include `RS256`. If it is not in the list, your identity configuration might not support AppSSO.
 
-If `RS256` is present, in the discovery endpoint, expect to see a `jwks_uri` key. Visit the URL that is stored in this key. At least one RSA key must be returned. Otherwise, your identity provider might be misconfigured.
+If `RS256` is present, expect to see a `jwks_uri` key in the discovery endpoint. If you visit the URL stored in this key, it must return at least one RSA key. Otherwise, your identity provider might be misconfigured.
 
-Refer to your identity provider's documentation and enable `RS256` token signing.
+Refer to your identity provider's documentation to enable `RS256` token signing.
 
 ## Misconfigured identity provider clientSecret
 
