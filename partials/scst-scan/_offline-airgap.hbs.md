@@ -33,6 +33,8 @@ For information about setting up an offline vulnerability database, see the [Anc
 
 ### ERROR failed to fetch latest cli version
 
+**Note**: This message is only a warning and the grype scan will still run with this message.
+
 The Grype CLI is checking for later versions of the CLI by contacting the anchore endpoint over the Internet.
 
 ```
@@ -96,11 +98,15 @@ default, it fails to run if the local database was not built in the last 5 days.
 
 #### Solution
 
-The data staleness check is configurable by using the environment variable
+Two options to resolve this:
+
+1. Stale databases weaken your security posture. VMware recommends updating the database daily which is the first recommended solution.
+
+2. If updating the database daily is not an option, the data staleness check is configurable by using the environment variable
 `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` and is addressed using a package overlay with
 the following steps:
 
-1. Create a secret that contains the ytt overlay to add the Grype environment variable to the ScanTemplates.
+   1. Create a secret that contains the ytt overlay to add the Grype environment variable to the ScanTemplates.
 
     ```yaml
     apiVersion: v1
@@ -128,22 +134,21 @@ the following steps:
 
     > **Note** The default maximum allowed built age of Grype's vulnerability
     > database is 5 days. This means that scanning with a 6 day old database
-    > causes the scan to fail. Stale databases weaken your security posture.
-    > VMware recommends updating the database daily. You can use the
+    > causes the scan to fail. You can use the
     > `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` parameter to override the default in
     > accordance with your security posture.
 
-2. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
+   2. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
 
-    ```yaml
-    package_overlays:
-      - name: "grype"
-        secrets:
-            - name: "grype-airgap-override-stale-db-overlay"
-    ```
+       ```yaml
+       package_overlays:
+         - name: "grype"
+           secrets:
+               - name: "grype-airgap-override-stale-db-overlay"
+       ```
 
-3. Update Tanzu Application Platform:
+   3. Update Tanzu Application Platform:
 
-    ```console
-    tanzu package installed update tap -f tap-values.yaml -n tap-install
-    ```
+       ```console
+       tanzu package installed update tap -f tap-values.yaml -n tap-install
+       ```
