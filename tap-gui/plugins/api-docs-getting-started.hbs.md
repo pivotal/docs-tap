@@ -174,13 +174,15 @@ To update your demo API entry:
 
 ## <a id="validation-api"></a> Validation Analysis of API specifications
 
+This section describes the Validation Analysis card, the data format needed to populate the card and how to get automatic scores for your OpenAPI entities.
+
 ### <a id="about-validation"></a> About Validation Analysis card
 
-The API Overview page contains the Validation Analysis card that displays the health of an API through various scoring parameters.
+When viewing entities of kind "API" on the Overview tab, it contains the Validation Analysis card that displays the health of an API through various scoring parameters.
 
 ![Validation Analysis card in bottom right](../images/../../images/getting-started-tap-gui-9.png)
 
-In order to display the health scores, an API entity should contain the following metadata structure
+In order to display the health scores, an API entity must contain the following metadata structure
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
@@ -213,17 +215,20 @@ As long as an API entity follows this schema, the Validation Analysis card will 
 
 ```yaml
     - id:        # Unique Id
-      label:     # Descriptive Label
-      value:     # Any numerical value
-      valueType: # percentage or other
-      status:    # One of the following: passed, warning or failed
+      label:     # Descriptive label displayed as a title over the numerical value
+      value:     # Any number value
+      valueType: # One of (percentage, other). Displays the % symbol or none
+      status:    # One of (passed, warning, failed). Displays the number in green, yellow or red.
 ```
 
 ### <a id="automatic-validation"></a> Automatic OpenAPI specification Validation
 
 You can receive automatic validation analysis for OpenAPI specs using APIx.
-Follow the installation using the APIx docs. (TODO insert links to their doc).
+Follow the installation using the APIx docs.
 In addition, you will need to use either [API Auto Registration](../../api-auto-registration/about.hbs.md) or
 APIx Design GitOps to automatically generate the API entities in TAP GUI.
 
 Note: The automatic scoring will not be able to score or replace API entities created through other methods like regular GitOps or manual registration.
+You might see the following message signaling that the OpenAPI spec was registered with regular GitOps methods or manual registration.
+
+![Validation Analysis not available message](../images/../../images/getting-started-tap-gui-10.png)
