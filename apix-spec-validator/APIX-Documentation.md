@@ -262,16 +262,16 @@ Developers can use APIX API Scoring and Validation to see how the API is auto-re
    ```
 3. Navigate to the TAP GUI, you will be able to view the newly created workload
 
-   ![](assets/tap_list_workload.png)
+   ![Screenshot of 'TAP workload List' ](assets/tap_list_workload.png)
 4. Navigate to API in TAP GUI, Click on the API
 
-   ![](assets/tap_list_apis.png)
+   ![Screenshot of 'TAP API specifications catalog'](assets/tap_list_apis.png)
 5. The Overview Tab of your API in TAP GUI , will now show the API Scoring and Validation
 
-   ![](assets/tap_desc_api.png)
+   ![Screenshot of 'TAP API spec details' page](assets/tap_desc_api.png)
 
 To view further details on the Validation Analysis and to know where improvement is required for your API . Click on "**More Details**" link in the highlited section
 
 > *Clicking on the More Detail , will take you to the TANZU APIX UI*
 
-![](assets/ui_apix_spec_details.png)
+![Screenshot of 'APIX API Specification details' page](assets/ui_apix_spec_details.png)
