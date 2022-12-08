@@ -13,14 +13,15 @@ Learn about token signatures and how to manage keys of an `AuthServer`:
 > "Token signature key" or just "key" is AppSSO's wording for a public/private key pair that is tasked with signing and
 > verifying JSON Web Tokens (JWTs). For more information, please refer to the following resources:
 >
-> - [JSON Web Token (JWT) spec](https://datatracker.ietf.org/doc/html/rfc7519)
-> - [JSON Web Signature (JWS) spec](https://www.rfc-editor.org/rfc/rfc7515.txt)
+> - [JSON Web Signature (JWS) spec](https://www.rfc-editor.org/rfc/rfc7515)
+> - [JSON Web Algorithms (JWA) spec](https://www.rfc-editor.org/rfc/rfc7518)
+> - [JSON Web Token (JWT) spec](https://www.rfc-editor.org/rfc/rfc7519)
 
 ## Token signature 101
 
 Token signature keys are used by an `AuthServer` to sign JSON Web Tokens (JWTs) - producing
-a [JWS Signature](https://datatracker.ietf.org/doc/html/rfc7515) and attaching it to
-the [JOSE Header](https://datatracker.ietf.org/doc/html/rfc7515#section-4) of a JWT. The client application later is
+a [JWS Signature](https://www.rfc-editor.org/rfc/rfc7515) and attaching it to
+the [JOSE Header](https://www.rfc-editor.org/rfc/rfc7515#section-4) of a JWT. The client application later is
 able to verify the JWT signature. A private key is used to sign a JWT, and a public key is used to verify the signature
 of a signed JWT.
 
@@ -31,6 +32,8 @@ The sign-and-verify mechanism serves multiple security purposes:
   lifetime. [Integrity is a foundational pillar of the CIA triad concept in Information Security.](https://www.nccoe.nist.gov/publication/1800-25/VolA/index.html)
 - **Non-repudiation**: signature verification ensures that the authorization server that signed the JWT cannot deny that
   they have signed it after its issuance (granted that the signing key that signed the JWT is available).
+
+> AppSSO only supports the `RS256` algorithm for signing tokens, see [JSON Web Algorithms (JWA) spec](https://www.rfc-editor.org/rfc/rfc7518#section-3).
 
 ## Token signature of an `AuthServer`
 
@@ -52,7 +55,7 @@ actively issued JWTs in circulation, whereas token verification keys are used to
 verification keys are thought to be previous token signing keys but have been rotated into verify only mode as a
 rotation mechanism measure, and can potentially be slated for eviction at a predetermined time.
 
-As per OAuth2 spec, `AuthServer` serves its public keys at `{spec.issuerURI}/oauth2/jwks`. For example:
+The `AuthServer` serves its public keys at `{spec.issuerURI}/oauth2/jwks`. For example:
 
 ```shell
 ❯ curl -s authserver-sample.default/oauth2/jwks | jq
@@ -321,5 +324,6 @@ key is provided. In the example above, "key-3" would be removed; the system will
 
 ## References and further reading
 
-- [JSON Web Token (JWT) - rfc7519 (ietf.org)](https://datatracker.ietf.org/doc/html/rfc7519)
-- [JSON Web Signature (JWS) - rfc7515 (ietf.org)](https://datatracker.ietf.org/doc/html/rfc7515)
+- [JSON Web Signature (JWS) - rfc7515 (ietf.org)](https://www.rfc-editor.org/rfc/rfc7515)
+- [JSON Web Algorithms (JWA) spec](https://www.rfc-editor.org/rfc/rfc7518)
+- [JSON Web Token (JWT) - rfc7519 (ietf.org)](https://www.rfc-editor.org/rfc/rfc7519)
