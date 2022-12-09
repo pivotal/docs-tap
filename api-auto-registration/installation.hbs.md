@@ -9,7 +9,7 @@ This topic describes how to install API Auto Registration from the Tanzu Applica
 ## <a id='prereqs'></a>Tanzu Application Platform prerequisites
 
 Before installing API Auto Registration, complete all prerequisites to install Tanzu Application Platform.
-For more information, see [Tanzu Application Platform Prerequisites](../prerequisites.md).
+See [Tanzu Application Platform Prerequisites](../prerequisites.md).
 
 ## <a id='install'></a>Install
 
@@ -31,7 +31,7 @@ To install the API Auto Registration package:
       apis.apps.tanzu.vmware.com  0.1.0        2022-08-30 19:00:00 -0500 -05
     ```
 
-1. (Optional) Gather values schema:
+1. (Optional) Gather values schema.
 
     Display values schema of the package:
 
@@ -39,7 +39,7 @@ To install the API Auto Registration package:
     tanzu package available get apis.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed in the previous step.
+    Where `VERSION-NUMBER` is the version of the package listed in the earlier step.
 
     For example:
 
@@ -73,8 +73,7 @@ To install the API Auto Registration package:
 
 3. (Optional) VMware recommends creating `api-auto-registration-values.yaml`.
 
-    If you would like to overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file as follows:
-
+    To overwrite the default values when installing the package, create a `api-auto-registration-values.yaml` file:
 
     ```yaml
     tap_gui_url: https://tap-gui.view-cluster.com
