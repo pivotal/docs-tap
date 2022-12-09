@@ -121,8 +121,6 @@ With the SCC created and the ServiceAccount bound to the role that permits the
 use of the SCC, OpenShift accepts the pods created to run Kaniko to build
 the container images.
 
-Another option is to extend the `Namespace Provisioner` to automatically apply the RoleBinding.
-
 
 > **Note** Such restrictions are due to well-known limitations in how Kaniko
 > performs the image builds, and there is currently no solution. For more information, see [kaniko#105].

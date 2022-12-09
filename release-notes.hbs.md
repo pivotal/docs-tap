@@ -53,11 +53,6 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="1-4-0-vscode-bc"></a> Tanzu Developer Tools for Visual Studio Code
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
-- Requires the Tanzu CLI `apps` plug-in v0.10.0 or later.
-
-#### <a id="1-4-0-intellij-bc"></a> Tanzu Developer Tools for Intellij
-
-- Requires the Tanzu CLI `apps` plug-in v0.10.0 or later.
 
 #### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
 
@@ -122,6 +117,23 @@ The following issues, listed by area and component, are resolved in this release
 ### <a id='1-4-0-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
+
+#### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
+
+**Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
+
+For most languages, Source Code Scanning only scans files present in the source code repository.
+Except for support added for Java projects using Maven, no network calls are made to fetch
+dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+lock files to check dependencies for vulnerabilities.
+
+For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies
+present in the built binaries, such as `.jar` or `.war` files.
+
+Because VMware does not recommend committing binaries to source code repositories, Grype fails to
+find vulnerabilities during a source scan.
+The vulnerabilities are still found during the image scan after the binaries are built and packaged
+as images.
 
 #### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
 #### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer Plug-In
