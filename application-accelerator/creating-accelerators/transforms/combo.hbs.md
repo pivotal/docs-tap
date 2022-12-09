@@ -31,6 +31,7 @@ chain:                     # See Chain.
   - <c1-transform>
   - <c2-transform>
   - ...
+applyTo: [<ant pattern>]   # See Chain
 onConflict: <conflict resolution> # See UniquePath.
 ```
 
@@ -62,8 +63,9 @@ When you configure the `Combo` transform with all properties, it behaves as foll
    block "win" against results appearing earlier.
 
 5. Passes that result as the input to the [chain](chain.md) defined by the `chain` property.
-   Put another way, the chain is prolonged with the elements defined in `chain`.
+   Put another way, the combo chain is prolonged with the elements defined in `chain`.
    If there are no elements in `chain`, it's as if the previous result was used directly.
+   If the `applyTo` property is set, it applies to the sub-chain (and that sub-chain only)
 
 6. If the `let` property is defined in the `Combo`, the whole execution
    is wrapped inside a [Let](let.md) that exposes its derived symbols.
@@ -76,7 +78,7 @@ Let(symbols, in:
         include,
         exclude,
         Chain(Merge(<m1-transform>, <m2-transform>, ...), UniquePath(onConflict)),
-        Chain(<c1-transform>, <c2-transform>, ...)
+        Chain(<applyTo>, <c1-transform>, <c2-transform>, ...)
     )
 )
 ```
