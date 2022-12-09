@@ -285,7 +285,7 @@ There are two ways to obtain the sample application.
 
 Application Accelerator
 : If your company has configured
-[Application Accelerator](../application-accelerator/about-application-accelerator.md),
+[Application Accelerator](../application-accelerator/app-accelerator-overview.hbs.md),
 you can obtain the sample application from there if it was not removed.
 
   1. Open Application Accelerator.
