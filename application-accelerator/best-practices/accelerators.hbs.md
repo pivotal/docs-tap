@@ -13,7 +13,7 @@ organization.
 
 Each accelerator must have only one base technology stack (combined with related tooling) and one
 target architecture. For example, if you use both Spring Boot and C# .NET Core applications in your
-target environment you must set up two separate accelerators.
+target environment, you must set up two separate accelerators.
 Mixing multiple technology stacks and multiple target architectures makes both the directory structure
 and acceleratory.YAML unreadable.
 
@@ -40,13 +40,13 @@ use lowercase letters, consist of [a-z0-9+#] separated by [-], and not exceed 63
 characters.
 - Accelerators must expose options to allow configuring an accelerator for different use cases instead
   of creating multiple very similar accelerators.
-- Options must be straightforward having a description that states the role it plays in the
+- Options must be straightforward, having a description that states the role it plays in the
 accelerator. Options must have the default value when appropriate.
-- Options must be designed so that they are not too long which makes it difficult to navigate.
-Make options conditional on others where appropriate.
-- Free text options that have certain limitations on their values must ensure that these
-limitations are met by providing a regular expression-based validation. This ensures early feedback
-on invalid user input.
+- Options must be short for ease of navigation. Options must also be conditional on other options
+when it's appropriate.
+- Free text options that have limitations on their values must ensure that these
+limitations are met by providing a regular expression-based validation. This validation ensures
+early feedback on invalid user input.
 - Generated application skeletons must have a detailed README file that describes the function and
 structure of a generated application. It must provide detailed information about how developers
 can build and deploy a generated application of the accelerator and how to use it.
