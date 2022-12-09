@@ -79,7 +79,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 Tanzu CLI packages are available on repositories. Adding the Tanzu Application Platform package repository makes Tanzu Application Platform and its packages available for installation.
 
->**Note** [Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:
+[Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:
 
 - `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
 - `INSTALL_REPO` is `tanzu-application-platform`
