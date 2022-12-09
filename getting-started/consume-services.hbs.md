@@ -10,7 +10,7 @@ Before starting this procedure, be sure that the service operator and applicatio
 - Created a service instance.
 - Claimed the service instance.
 
-For more information about these prerequisites, see [Set up services for consumption by developers](set-up-services.md). Also, for important background, see [About consuming services on Tanzu Application Platform](about-consuming-services.md).
+For more information about these prerequisites, see [Set up services for consumption by developers](set-up-services.md). Also, for important background, see [Consume services on Tanzu Application Platform](about-consuming-services.md).
 
 ## <a id="you-will"></a>What you will do
 

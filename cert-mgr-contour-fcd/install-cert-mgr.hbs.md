@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include cert-manager, contour, and FluxCD Source Controller.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
 ## <a id='cnr-prereqs'></a>Prerequisites
 
@@ -198,9 +198,10 @@ To install Contour from the Tanzu Application Platform package repository:
     kubectl apply -f contour-rbac.yaml
     ```
 
-4. Create a file named `contour-install.yaml` using the following sample and apply the configuration.
-    The following configuration installs the Contour package with default options.
-    If you want to make changes to the default installation settings, go to the next step.
+4. Create a file named `contour-install.yaml` by using the following sample and apply the configuration:
+
+    >**Note** The following configuration installs the Contour package with default options.
+    To make changes to the default installation settings, go to the next step.
 
     ```yaml
     apiVersion: packaging.carvel.dev/v1alpha1

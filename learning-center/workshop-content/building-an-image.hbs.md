@@ -1,4 +1,4 @@
-# Building an image
+# Build an image
 
 This topic explains how to include an extra system, third-party tool, or configuration in your image by bundling workshop content from the Learning Center workshop base image. The following sample workshop template provides a `Dockerfile`.
 

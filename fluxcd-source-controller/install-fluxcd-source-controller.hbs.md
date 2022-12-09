@@ -1,4 +1,8 @@
-# Install FluxCD source-controller
+# Install FluxCD Source Controller
+
+> **Note** Use the instructions on this page if you do not want to use a profile to install packages.
+> All profiles include FluxCD Source Controller. For more information about profiles,
+> see [Components and installation profiles](../about-package-profiles.md).
 
 ## <a id='sc-prereqs'></a>Prerequisites
 

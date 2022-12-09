@@ -1,4 +1,4 @@
-# Source Controller  Reference
+# Source Controller reference
 
 The following reference documentation exists.
 

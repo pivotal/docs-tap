@@ -1,4 +1,4 @@
-# Iterate on your new application
+# Iterate on your new app
 
 This how-to guide walks you through starting to iterate on your first application on Tanzu Application Platform, which you deployed in the previous how-to, [Deploy your first application](deploy-first-app.md).
 

@@ -10,7 +10,7 @@ This how-to guide walks service operators and application operators through sett
 
 This enables the application developer to bind an application workload to the service instance, as described in [Consume services on Tanzu Application Platform](consume-services.md).
 
-Before you begin, for important background, see [About consuming services on Tanzu Application Platform](about-consuming-services.md).
+Before you begin, for important background, see [Consume services on Tanzu Application Platform](about-consuming-services.md).
 
 ## <a id="overview"></a>Overview
 

@@ -12,7 +12,7 @@ into this Tanzu Application Platform documentation site.
 
 - [Application Accelerator for VMware Tanzu](application-accelerator/about-application-accelerator.md)
 
-- [Application Live View for VMware Tanzu](app-live-view/about-app-live-view.md)
+- [Application Live View](app-live-view/about-app-live-view.md)
 
 - [Application Live View Convention Service for VMware Tanzu](app-live-view/configuring-apps/convention-server.md)
 

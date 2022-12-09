@@ -1,4 +1,4 @@
-# Deploy your first air-gapped workload
+# Deploy an air-gapped workload
 
 This how-to guide walks developers through deploying your first workload on Tanzu Application Platform in an air-gapped environment.
 

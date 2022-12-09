@@ -1,4 +1,4 @@
-# Getting started with the Tanzu Application Platform
+# Get started with Tanzu Application Platform
 
 Welcome to the Tanzu Application Platform. The guides in this section offer hands-on instruction to help get developers and operators started on Tanzu Application Platform. Before you start, be sure to complete all of the prerequisites in the following section.
 
@@ -45,7 +45,7 @@ When you have completed these prerequisites, you are ready to get started.
 
 For developers:
 
-- [Deploy your first application on Tanzu Application Platform](getting-started/deploy-first-app.md)
+- [Deploy an app on Tanzu Application Platform](getting-started/deploy-first-app.md)
 
 For operators:
 
