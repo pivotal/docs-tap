@@ -50,25 +50,22 @@ To configure VMware Tanzu Developer Tools for Visual Studio Code:
 
 ## <a id="quick-start"></a> Quick Start
 
-To quickly get you started, use the sample application with the necessary configuration files.
+To quickly get started, use the sample application with the necessary configuration files.
+There are two ways to get the sample application:
 
-**Option 1: Application Accelerator**
+Application Accelerator
+: To get the sample application by using Application Accelerator:
 
-1. Set up [Application Accelerator](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html).
+   1. Set up [Application Accelerator](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html).
+   2. Search for the Tanzu Java Web App.
+   3. Add the required configuration information and generate the application.
+   4. Unzip and open in VSCode.
 
-2. Search for the Tanzu Java Web App.
+Clone from GitHub
+: To clone the sample application from GitHub:
 
-3. Add the required configuration information and generate the application.
-
-4. Unzip and open in VSCode.
-
-**Option 2: Sample repository**
-
-1. Use `git clone` to clone the [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) repository from GitHub.
-
-2. Go to the `Tiltfile` and replace `your-registry.io/project` with your registry server and repository.
-
----
+   1. Use `git clone` to clone the [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) repository from GitHub.
+   2. Go to the `Tiltfile` and replace `your-registry.io/project` with your registry server and repository.
 
 >**Note:** To start with existing applications, see [Code Snippets](usage-getting-started.md#snippets) in the Tanzu Dev Tools Usage documentation.
 
