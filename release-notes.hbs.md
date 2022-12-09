@@ -61,19 +61,19 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
 
-- Removed deprecated ScanTemplates:
-  - Deprecated Grype ScanTemplates shipped with versions earlier than Tanzu
-    Application Platform v1.2.0 were removed and are no longer supported. Ensure
-    that you are using Grype ScanTemplates v1.2 and later moving forward.
-- Deprecation notice:
-  - The `docker` field and related sub-fields, by Supply Chain Security Tools -
-    Scan are deprecated and marked for removal in Tanzu Application Platform
-    v1.7.0.
-  - The deprecation impacts the following components: Scan Controller, Grype
-    Scanner, and Snyk Scanner.
-  - For information about the migration path, see
-    [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
-  - Carbon Black Scanner is not impacted.
+- **Deprecated and removed ScanTemplates:**
+
+  Deprecated Grype ScanTemplates shipped with Tanzu Application Platform v1.1 and earlier were
+  removed and are no longer supported. Please use Grype ScanTemplates v1.2 and later.
+
+- **Deprecation notice for `docker` field and related sub-fields:**
+
+  The `docker` field and related sub-fields used in Supply Chain Security Tools - Scan are
+  deprecated and marked for removal in Tanzu Application Platform v1.7.0.
+  The deprecation impacts the following components: Scan Controller, Grype Scanner, and Snyk Scanner.
+  Carbon Black Scanner is not impacted.
+  For information about the migration path, see
+  [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
 
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 
