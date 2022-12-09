@@ -81,7 +81,9 @@ media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the
     [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-images.html#image-signing-with-cosign).
 
 1. To enable Cosign signing, create or modify the service account resource that is
-referenced in the image resource so that it includes the Cosign key pair secret created earlier.
+referenced in the image resource so that it includes the Cosign key pair secret created earlier. The
+service account is in the same namespace as the image resource and is directly referenced by the
+image or default if there isn't one.
 
     ```yaml
     apiVersion: v1
