@@ -51,7 +51,11 @@ This section covers the following:
 
 For this part of the walkthrough, you assume the role of the **service operator**.
 
->**Note** Although this walkthrough uses the example of RabbitMQ Cluster Kubernetes operator, the setup steps remain largely the same for any compatible operator. Also, this walkthrough uses the open source RabbitMQ Cluster operator for Kubernetes. For most real-world deployments, VMware recommends using the official, supported version provided by VMware. For more information, see [VMware Tanzu RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
+Although this walkthrough uses the example of RabbitMQ Cluster Kubernetes operator, the setup
+steps remain largely the same for any compatible operator. Also, this walkthrough uses the
+open source RabbitMQ Cluster operator for Kubernetes. For most real-world deployments, VMware
+recommends using the official, supported version provided by VMware. For more information,
+see [VMware Tanzu RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
 
 To set up a service:
 
@@ -123,7 +127,7 @@ To set up a service:
         #   kind: MySQL
         ```
 
-    1. Apply `rmq-class.yaml` by running:
+    2. Apply `rmq-class.yaml` by running:
 
         ```console
         kubectl apply -f rmq-class.yaml
@@ -273,7 +277,7 @@ You have set the scene for the application developer to inspect the claim and to
 
 ## <a id="stk-use-cases"></a> Further use cases and reading
 
-There are more service use cases not covered in this getting started guide. See the following:
+There are more service use cases not covered in this Getting started guide. See the following:
 
 <table class="nice">
   <th><strong>Use Case</strong></th>
