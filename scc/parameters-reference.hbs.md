@@ -1,13 +1,18 @@
 # Workload Parameters reference
 
-The supply chains and templates provided by the Out of the Box packages contain
-a series of parameters that customize supply chain behavior. This topic describes the `workload.spec.params` parameters that are configured in Workload
-objects to change their behavior, organized by the resource in the
+The supply chains and templates provided by the out of the box packages contain
+a series of parameters that customize supply chain behavior. This topic
+describes the `workload.spec.params` parameters that are configured in Workload
+objects to change their behavior. They are organized by the resource in the
 supply chain where they are used.
 
-> **Note** This topic describes parameters you can use to customize the scan policy for scanning source code that are related to a resource only available in the `ootb-supply-chain-testing-scanning`, but not `ootb-supply-chain-basic` or `ootb-supply-chain-testing` supply chains.
+> **Note** This topic describes parameters you can use to customize the scan
+> policy for scanning source code that are related to a resource available in
+> the `ootb-supply-chain-testing-scanning`. This topic does not cover parameters
+> for the `ootb-supply-chain-basic` or `ootb-supply-chain-testing` supply
+> chains.
 
-```
+```console
 source-provider                     fetches source code
     |
     |  source
@@ -56,7 +61,7 @@ For information about supply chains, see:
 - [Out of the Box Supply Chain Testing](ootb-supply-chain-testing.hbs.md)
 - [Out of the Box Supply Chain Testing Scanning](ootb-supply-chain-testing-scanning.hbs.md)
 
-## source provider
+## Source provider
 
 The `source-provider` resource in the supply chain creates
 objects that fetch either source code or pre-compiled Java applications
@@ -65,7 +70,9 @@ Source](building-from-source.hbs.md).
 
 ### GitRepository
 
-Use `gitrepository` when fetching source code from Git repositories. This resource makes further resources available in the supply chain, such as the contents of the Git repository as a tarball available in the cluster.
+Use `gitrepository` when fetching source code from Git repositories. This
+resource makes further resources available in the supply chain, such as the
+contents of the Git repository as a tarball available in the cluster.
 
 Parameters:
 
@@ -79,8 +86,8 @@ Parameters:
   <tr>
     <td><code>gitImplementation<code></td>
     <td>
-      VMware recommends that you use the underlying library for fetching the source code.
-      Either <code>libggit2</code>, required for Azure DevOps, or
+      VMware recommends that you use the underlying library to fetch the source code.
+      Use either <code>libggit2</code>, required for Azure DevOps, or
       <code>go-git</code>.
     </td>
     <td>
@@ -95,8 +102,8 @@ Parameters:
     <td><code>gitops_ssh_secret<code></td>
     <td>
       Name of the secret in the same namespace as the <code>Workload</code> used for
-      providing credentials for fetching source code from the Git repository.
-      For more information, see <a href="git-auth.html">Git authentication</a>.
+      providing credentials to fetch source code from the Git repository.
+      See <a href="git-auth.html">Git authentication</a>.
     </td>
     <td>
       <pre>
@@ -117,7 +124,7 @@ For information about how to create a Workload that uses a GitHub
 repository as the provider of source code, see [Create a workload from GitHub
 repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
 
-For reference documentation on GitRepository objects, see
+For information about GitRepository objects, see
 [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
 
 ### ImageRepository
@@ -184,7 +191,7 @@ Parameters:
   <tr>
     <td><code>maven<code></td>
     <td>
-      Points to the maven artifact to fetch and the polling interval.
+      Points to the Maven artifact to fetch and the polling interval.
     </td>
     <td>
       <pre>
@@ -474,7 +481,7 @@ Parameters:
   <tr>
     <td><code>docker_build_extra_args<code></td>
     <td>
-      List of flags to pass directly to Kaniko,such as providing arguments to a build.
+      List of flags to pass directly to kaniko,such as providing arguments to a build.
     </td>
     <td><pre>- --build-arg=FOO=BAR</pre></td>
   </tr>
@@ -497,7 +504,7 @@ Parameters:
   </tr>
 </table>
 
-For information about how to use Dockerfile-based builds and limitations associated with the function, see [Dockerfile-based builds](dockerfile-based-builds.hbs.md).
+For information about how to use Dockerfile-based builds and limits associated with the function, see [Dockerfile-based builds](dockerfile-based-builds.hbs.md).
 
 ### Pre-built image (ImageRepository)
 
@@ -777,7 +784,7 @@ for an example and [Consume services on
 Tanzu Application Platform](../getting-started/consume-services.hbs.md) for an overview of the
 function.
 
-## api-descriptors
+## apidescriptors
 
 The `api-descriptor` resource takes care of adding an
 [APIDescriptor](../api-auto-registration/key-concepts.hbs.md) to the set of
@@ -821,7 +828,7 @@ Parameters:
           type: openapi
           location:
             baseURL: http://petclinic-hard-coded.my-apps.tapdemo.vmware.com/
-            path: "/v3/api"
+            path: "/v3/api
           owner: team-petclinic
           system: pet-clinics
           description: "example"
@@ -897,7 +904,7 @@ Parameters:
 ## Deliverable Parameters reference
 
 This section describes the parameters that are provided to the
-Deliverable object, such as what can be set on `deliverable.spec.params`.
+Deliverable object, such as what is set on `deliverable.spec.params`.
 
 The Deliverable is relevant in the context of deploying to a Kubernetes cluster
 that the configuration that is produced through the resources defined by
@@ -954,7 +961,7 @@ that continuously fetches Kubernetes configuration files from a Git repository
 or container image registry so that it can apply those to the cluster.
 
 Regardless of where it fetches that Kubernetes configuration from, Git
-repository or image registry, it exposes those files to further resources along
+repository or container image registry, it exposes those files to further resources along
 the ClusterDelivery as a tarball.
 
 ### GitRepository
