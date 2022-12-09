@@ -48,7 +48,6 @@ docs.vmware.com is built.
   - [Ingress certificates](security-and-compliance/ingress-certificates.hbs.md)
   - [Custom CA certificates](security-and-compliance/custom-ca-certificates.hbs.md)
   - [NIST](security-and-compliance/tap-nist-matrix.hbs.md)
-  - [Whitepaper](security-and-compliance/security-whitepaper.hbs.md)
 - [Multicluster topology](multicluster/about.hbs.md)
   - [Multicluster overview](multicluster/about.md)
   - [Install](multicluster/installing-multicluster.md)
