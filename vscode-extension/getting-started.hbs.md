@@ -297,29 +297,29 @@ in GitHub.
 
 ### <a id="example-project"></a> Example project
 
-You can view a sample application that demonstrates the necessary configuration files.
-There are two ways to obtain the sample application.
-
 Before you begin, you need a container registry for the sample application.
 
-#### Option 1: Application Accelerator
+You can view a sample application that demonstrates the necessary configuration files.
+There are two ways to obtain the sample application:
 
-If your company has configured
-[Application Accelerator](../application-accelerator/about-application-accelerator.md),
-you can obtain the sample application there if it was not removed.
+Application Accelerator
+: If your company has configured
+[Application Accelerator](../application-accelerator/about-application-accelerator.hbs.md),
+you can obtain the sample application there if it was not removed. To do so:
 
-1. Open Application Accelerator.
-2. Search for `Tanzu Java Web App` in Application Accelerator.
-3. Add the required configuration information and generate the application.
-4. Unzip the file and open the project in a VS Code workspace.
+  1. Open Application Accelerator.
+  2. Search for `Tanzu Java Web App` in Application Accelerator.
+  3. Add the required configuration information and generate the application.
+  4. Unzip the file and open the project in a VS Code workspace.
 
-#### Option 2: Clone from GitHub
+Clone from GitHub
+: To clone the sample application from GitHub:
 
-1. Run `git clone` to clone the
-   [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples) repository
-   from GitHub.
-2. Change into the `tanzu-java-web-app` directory.
-3. Open the Tiltfile and replace `your-registry.io/project` with your container registry.
+  1. Run `git clone` to clone the
+     [tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples) repository
+     from GitHub.
+  2. Change into the `tanzu-java-web-app` directory.
+  3. Open the Tiltfile and replace `your-registry.io/project` with your container registry.
 
 ## <a id="next-steps"></a> Next steps
 
