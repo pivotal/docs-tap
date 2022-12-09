@@ -188,10 +188,10 @@ To create a service instance:
 
 3. Create a resource claim policy to define the namespaces the instance can be claimed and bound from.
 
-    > **Note** By default, you can only claim and bind to service instances that
-    > are running in the _same_ namespace as the application workloads.
-    > To claim service instances running in a different namespace, you must
-    > create a resource claim policy.
+    By default, you can only claim and bind to service instances that
+    are running in the _same_ namespace as the application workloads.
+    To claim service instances running in a different namespace, you must
+    create a resource claim policy.
 
     1. Create a file named `rmq-claim-policy.yaml` as follows:
 
