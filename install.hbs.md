@@ -79,11 +79,12 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 Tanzu CLI packages are available on repositories. Adding the Tanzu Application Platform package repository makes Tanzu Application Platform and its packages available for installation.
 
->**Note** [Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. If you've skipped this step you can use the following values:
->`export INSTALL_REGISTRY_HOSTNAME=registry.tanzu.vmware.com`
->`export INSTALL_REPO=tanzu-application-platform`
->For `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSSWORD` use the credentials you use for running `docker login registry.tanzu.vmware.com`
->For `TAP_VERSION`, see step 4 in the previous section on this page
+>**Note** [Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:
+
+- `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
+- `INSTALL_REPO` is `tanzu-application-platform`
+- `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
+- `TAP_VERSION`is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 To add the Tanzu Application Platform package repository to your cluster:
 
