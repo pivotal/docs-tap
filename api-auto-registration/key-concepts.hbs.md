@@ -1,10 +1,13 @@
 # Key Concepts
 
+This topic explains key concepts related to API Auto Registration.
+
 ## <a id='api-descriptor'></a>APIDescriptor Custom Resource Explained
 
-For API Auto Registration to take place, a custom resource of type `APIDescriptor` needs to be created.
-The information from this CR is then used to construct an API entity in TAP GUI.
-Here are all the fields exposed by this custom resource.
+To use API Auto Registration, you must create a custom resource of type `APIDescriptor`.
+The information from this custom resource is then used to construct an API entity in Tanzu Application Platform GUI.
+
+This custom resource exposes the following text boxes:
 
 ```yaml
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
@@ -28,16 +31,16 @@ spec:
         namespace:
 ```
 
-Many of the above fields will result in specific behavior within TAP GUI.
+Many of the earlier text boxes cause specific behavior in Tanzu Application Platform GUI.
 
-- The system and owner are copied to the API entity created. You may have to separately create and add to the catalog the [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) and [Group](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group) kind.
-- The namespace where the APIDescriptor CR is applied gets used as the namespace for API entity in TAP GUI. This results in the API entity's name, system and owner to all be under that namespace.
-- To explicitly use a system or owner in a different namespace, you can specify that in the respective field `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team`.
-- If the system or owner you are trying to link doesn't have explicit namespace specified, you can qualify them with `default` namespace, e.g.: `system: default/my-default-system`
+- The system and owner are copied to the API entity. You might have to separately create and add the [System](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system) and [Group](https://backstage.io/docs/features/software-catalog/descriptor-format#kind-group) kind to the catalog.
+- The namespace where the APIDescriptor CR is applied is used as the namespace for API entity in Tanzu Application Platform GUI. This causes the API entity's name, system, and owner to all be under that namespace.
+- To explicitly use a system or owner in a different namespace, you can specify that in the `system: my-namespace/my-other-system` or `owner: my-namespace/my-other-team` text boxes.
+- If the system or owner you are trying to link doesn't have a namespace specified, you can qualify them with the `default` namespace. For example, `system: default/my-default-system`
 
 ## <a id='absolute-url'></a>With an Absolute URL
 
-To create an APIDescriptor with a static `baseURL.url`, you need to apply the following yaml to your cluster.
+To create an APIDescriptor with a static `baseURL.url`, you must apply the following YAML to your cluster.
 
 ```yaml
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
@@ -57,11 +60,11 @@ spec:
 
 ## <a id='with-ref'></a>With an Object Ref
 
-You can also use an object reference instead of hard coding the url. This can point to a HTTPProxy, Knative Service, or Ingress.
+You can use an object reference instead of hard coding the URL. This can point to a HTTPProxy, Knative Service, or Ingress.
 
 ### <a id='with-httpproxy-ref'></a>With an HTTPPRoxy Object Ref
 
-Below is an example yaml that points to an HTTPProxy from which our controller extracts the `.spec.virtualhost.fqdn` as the baseURL.
+Below is an example YAML that points to an HTTPProxy from which the controller extracts the `.spec.virtualhost.fqdn` as the baseURL.
 
 ```yaml
 apiVersion: apis.apps.tanzu.vmware.com/v1alpha1
@@ -85,7 +88,7 @@ spec:
 
 ### <a id='with-knative-ref'></a>With a Knative Service Object Ref
 
-If you want to use a Knative Service instead, here is an example from which our controller reads the `status.url` as the baseURL
+To use a Knative Service instead, here is an example from which your controller reads the `status.url` as the baseURL.
 
 ```yaml
 # all other fields similar to the above example
@@ -99,7 +102,7 @@ If you want to use a Knative Service instead, here is an example from which our 
 
 ### <a id='with-ingress-ref'></a>With an Ingress Object Ref
 
-If you want to use an Ingress instead, here is an example from which our controller reads the URL from the jsonPath specified. When jsonPath is left empty, our controller will read the `"{.spec.rules[0].host}"` as the URL
+To use an Ingress instead, here is an example from which your controller reads the URL from the jsonPath specified. When jsonPath is left empty, your controller reads the `"{.spec.rules[0].host}"` as the URL.
 
 ```yaml
 # all other fields similar to the above example
