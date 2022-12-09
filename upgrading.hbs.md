@@ -33,8 +33,6 @@ Follow these steps to update the new package repository:
         --namespace tap-install
         ```
 
-        Where `NEW-TANZU-TAP-REPOSITORY` is the new repository name. Do not use the existing Tanzu package repository name with the previous version of Tanzu Application Platform packages.
-
     - If you are using Cluster Essentials 1.1 or 1.0, run:
 
         ```console
