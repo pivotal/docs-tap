@@ -4,7 +4,7 @@ This document describes how to install the Eventing package from the Tanzu Appli
 
 >**Note** Use the instructions on this page if you do not want to use a profile to install packages.
 The `full`, `iterate`, and `run` profiles include Eventing.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 
 ## <a id='eventing-prereqs'></a>Prerequisites
 

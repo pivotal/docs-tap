@@ -2,7 +2,7 @@
 
 > **Note** Use the instructions on this page if you do not want to use a profile to install packages.
 > All profiles include cert-manager. For more information about profiles,
-> see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+> see [Components and installation profiles](../about-package-profiles.md).
 
 To install Contour from the Tanzu Application Platform package repository:
 
@@ -62,9 +62,9 @@ To install Contour from the Tanzu Application Platform package repository:
     kubectl apply -f contour-rbac.yaml
     ```
 
-4. Create a file named `contour-install.yaml` by using the following sample and apply the configuration: 
+4. Create a file named `contour-install.yaml` by using the following sample and apply the configuration:
 
-    >**Note** The following configuration installs the Contour package with default options. 
+    >**Note** The following configuration installs the Contour package with default options.
     To make changes to the default installation settings, go to the next step.
 
     ```yaml

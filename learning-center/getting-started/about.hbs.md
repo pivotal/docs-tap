@@ -1,4 +1,4 @@
-# Getting started with Learning Center
+# Get started with Learning Center
 
 To view information about Learning Center, see [Learning Center for Tanzu Application Platform](../../learning-center/about.md).
 Before deploying workshops, install a Kubernetes Operator for Learning Center.

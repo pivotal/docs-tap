@@ -1,4 +1,4 @@
-# Supporting polyglot apps
+# Support polyglot apps
 
 Application Live View currently supports Spring Boot, Spring Cloud Gateway, and Steeltoe apps.
 

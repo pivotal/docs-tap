@@ -2,7 +2,7 @@
 
 > **Note** Use the instructions on this page if you do not want to use a profile to install packages.
 > All profiles include FluxCD Source Controller. For more information about profiles,
-> see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+> see [Components and installation profiles](../about-package-profiles.md).
 
 ## <a id='sc-prereqs'></a>Prerequisites
 

@@ -1,6 +1,6 @@
 # Supply chains on Tanzu Application Platform
 
-Supply chains provide a way of codifying all of the steps of your path to production, more commonly known as continuous integration/Continuous Delivery (CI/CD). CI/CD is a method to frequently deliver applications by introducing automation into the stages of application development. The main concepts attributed to CI/CD are continuous integration, continuous delivery, and continuous deployment. 
+Supply chains provide a way of codifying all of the steps of your path to production, more commonly known as continuous integration/Continuous Delivery (CI/CD). CI/CD is a method to frequently deliver applications by introducing automation into the stages of application development. The main concepts attributed to CI/CD are continuous integration, continuous delivery, and continuous deployment.
 
 CI/CD is the method used by supply chains to deliver applications through automation. Tanzu Application Platform supply chains allow you to use CI/CD and add any other steps necessary for an application to reach production or a different environment, such as staging.
 
@@ -177,7 +177,7 @@ The following table and diagrams provide descriptions for each of the supply cha
 
 Apply what you have learned:
 
-- [Add testing and security scanning to your application](add-test-and-security.md)
+- [Add testing and scanning to your application](add-test-and-security.md)
 
 Or learn about:
 

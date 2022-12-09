@@ -12,4 +12,4 @@ To install Tanzu Application Platform on your OpenShift clusters with internet a
 |6.| Set up developer namespaces to use installed packages. |[Setting up developer namespaces to use installed packages](set-up-namespaces-openshift.hbs.md)|
 |7.| Install developer tools into your integrated development environment (IDE). |[Installing Tanzu Developer Tools for VS Code](vscode-install-openshift.hbs.md)|
 
-After installing Tanzu Application Platform on to your OpenShift clusters, proceed with [Getting started with the Tanzu Application Platform](getting-started.hbs.md).
+After installing Tanzu Application Platform on to your OpenShift clusters, proceed with [Get started with Tanzu Application Platform](getting-started.hbs.md).

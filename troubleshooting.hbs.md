@@ -1,4 +1,4 @@
-# Troubleshooting Tanzu Application Platform
+# Troubleshoot Tanzu Application Platform
 
 These topics provide troubleshooting information to help resolve issues with Tanzu Application Platform:
 

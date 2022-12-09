@@ -1,4 +1,4 @@
-# Add testing and security scanning to your application
+# Add testing and scanning to your application
 
 This how-to guide walks you through installing the optional OOTB Supply Chain with Testing and the optional OOTB Supply Chain with Testing and Scanning.
 

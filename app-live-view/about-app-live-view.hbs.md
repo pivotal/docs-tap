@@ -1,4 +1,4 @@
-# Application Live View for VMware Tanzu
+# Application Live View
 
 >**Note** To view the Application Live View documentation for v1.0 and v1.1, see the previous
 [Application Live View site](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/index.html).
