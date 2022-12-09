@@ -10,7 +10,7 @@ Before installing API scoring and validation, complete the following prerequisit
 
 - [Tanzu Network](https://network.tanzu.vmware.com/) account to download Tanzu Application Platform packages.
 - Kubernetes cluster v1.22, v1.23 or v1.24 on Amazon Elastic Kubernetes Service.
-- [Install Tanzu CLI](install-tanzu-cli.hbs.md#cli-and-plugin).
+- [Install Tanzu CLI](../install-tanzu-cli.hbs.md#cli-and-plugin).
 - [Install kapp](https://carvel.dev/kapp/docs/v0.54.0/install/).
 - [Install Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/).
 
