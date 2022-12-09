@@ -214,7 +214,7 @@ metadata_store:
 ```
 
 Where `DEV-NAMESPACE` is the name of the developer namespace you want to use.
- 
+
 If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"`.
 
 #### <a id="reporting-wrong-blob-url"></a> Blob Source Scan is reporting wrong source URL
@@ -316,38 +316,41 @@ Verify that the URL starts with either `http://` or `https://`.
 
 #### <a id="deprecated-pre-v1.2-templates"></a> Deprecated pre-v1.2 templates
 
-If the scan phase is in `Error` and the status condition message shows this:
+If the scan phase is in `Error` and the status condition message is
 
 ```console
 Summary logs could not be retrieved: . error opening stream pod logs reader: container summary is not valid for pod scan-grypeimagescan-sample-public-zmj2g-hqv5g
 ```
 
-One possible reason is due to using Grype Scanner ScanTemplates shipped with
-versions before Supply Chain Security Tools - Scan v1.2.0 which are now
-deprecated and are no longer supported in v1.4.0+.
+it might be a consequence of using Grype Scanner ScanTemplates shipped with
+Supply Chain Security Tools - Scan v1.1 or earlier. These ScanTemplates are deprecated and are not
+supported in Tanzu Application Platform v1.4.0 and later.
 
-The two options to resolve this issue are:
+There are two options to resolve this issue:
 
-1. Upgrade Grype Scanner to v1.2+ (preferably latest). This will automatically
-   replace the old ScanTemplates with the upgraded ScanTemplates.
-2. Create a ScanTemplate. See [Create a scan template](create-scan-template.hbs.md).
+Upgrade
+: Upgrade to the latest Grype Scanner version. This automatically replaces the old ScanTemplates with
+  the upgraded ScanTemplates.
 
-#### <a id="incorrectly-configured-self-signed-cert"></a> Incorrectly configured self-signed cert
+Create a ScanTemplate
+: Follow the steps in [Create a scan template](create-scan-template.hbs.md).
 
-The following error in the pod logs indicate that the self-signed certificate might be incorrectly configured:
+#### <a id="inc-cnfg-self-signed-cert"></a> Incorrectly configured self-signed cert
+
+The following error in the pod logs indicate that the self-signed certificate might be incorrectly
+configured:
 
 ```console
 x509: certificate signed by unknown authority
 ```
 
 To resolve this issue, follow this
-[example](../multicluster/reference/tap-values-build-sample.hbs.md) of how to
-set up the shared self-signed certificate.
+[example](../multicluster/reference/tap-values-build-sample.hbs.md) of how to set up the shared
+self-signed certificate.
 
 The `shared.ca_cert_data` installation value can contain a PEM-encoded CA bundle.
-The scanning component trusts the CAs contained in the bundle. The self-signed
-certificate is configured by using the shared top level
-key.
+The scanning component trusts the CAs contained in the bundle.
+The self-signed certificate is configured by [using the shared top-level key](../view-package-config.hbs.md).
 
 #### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
