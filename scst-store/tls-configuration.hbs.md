@@ -4,9 +4,7 @@ This topic describes TLS configuration for Supply Chain Security Tools (SCST) - 
 
 > **Note** SCST - Store only supports TLS v1.2.
 
-## Change server TLS ciphers
-
-### Setting up custom ingress TLS ciphers
+## Setting up custom ingress TLS ciphers
 
 In the `tap-values.yaml` file, `tls.server.rfcCiphers` are set as shown in the following YAML:
 
@@ -23,7 +21,10 @@ metadata_store:
         - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 ```
 
-`tls.server.rfcCiphers`: List of cipher suites for the server. Values are from the [Go TLS package constants](https://golang.org/pkg/crypto/tls/#pkg-constants). If you omit values, the default Go cipher suites are used. These are the default values:
+Where `tls.server.rfcCiphers` is a list of cipher suites for the server. Values
+are from the [Go TLS package
+constants](https://golang.org/pkg/crypto/tls/#pkg-constants). If you omit
+values, the default Go cipher suites are used. These are the default values:
 
 - `TLS_AES_128_GCM_SHA256`
 - `TLS_AES_256_GCM_SHA384`
@@ -32,15 +33,15 @@ metadata_store:
 - `TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256`
 - `TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384`
 
-### Example custom TLS settings
+## Example custom TLS settings
 
 The following is a complete example of TLS configuration:
 
 ```yaml
 metadata_store:
   tls:
-    namespace: "namespace"
-    secretName: "secretName"
+    namespace: NAMESPACE
+    secretName: SECRET-NAME
     server:
       rfcCiphers:
         - TLS_AES_128_GCM_SHA256
@@ -50,6 +51,11 @@ metadata_store:
         - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
         - TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
 ```
+
+Where:
+
+- `NAMESPACE` is the name of the namespace you want to configure TLS with.
+- `SECRET-NAME` is the name of the secret you want to configure TLS with.
 
 ## Additional resources
 
