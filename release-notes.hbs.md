@@ -33,7 +33,7 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="1-3-3-ootb-ki"></a>Out of the Box Supply Chains
 
-This release does not support configuring trusted CA certificates for an internal gitops server.
+This release does not support configuring trusted CA certificates for an internal GitOps server.
 
 ### <a id='1-3-3-deprecations'></a> Deprecations
 
