@@ -176,6 +176,7 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 #### <a id="1-4-services-toolkit"></a> Services Toolkit
 
-  - The `tanzu services claims` CLI plug-in command is now considered to be deprecated.
-    - It has been hidden from help text output, but will still continue to work until officially removed after the deprecation period.
-    - The new `tanzu services resource-claims` command provides the same functionality.
+- The `tanzu services claims` CLI plug-in command is deprecated.
+  It is hidden from help text output, but continues to work until it is officially removed after the
+  deprecation period. The new `tanzu services resource-claims` command provides the same
+  functionality.
