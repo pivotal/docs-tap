@@ -278,27 +278,28 @@ you can remove the entire `allow_k8s_contexts` line. For more information, see t
 
 ### <a id="example-project"></a> Example project
 
+Before you begin, you need a container registry for the sample application.
+
 You can view a sample application that demonstrates the necessary configuration files.
 There are two ways to obtain the sample application.
 
-Before you begin, you need a container registry for the sample application.
+Application Accelerator
+: If your company has configured
+[Application Accelerator](../application-accelerator/about-application-accelerator.md),
+you can obtain the sample application from there if it was not removed.
 
-**Option 1: Application Accelerator**
+  1. Open Application Accelerator.
+  2. Search for `Tanzu Java Web App` in Application Accelerator.
+  3. Add the required configuration information and generate the application.
+  4. Unzip the file and open the project in a VS Code workspace.
 
-If your company has configured
-[Application Accelerator](https://docs.vmware.com/en/Application-Accelerator-for-VMware-Tanzu/index.html),
-you can obtain the sample application there if it was not removed.
+Clone from GitHub
+: To clone the sample application from GitHub:
 
-1. Open Application Accelerator.
-2. Search for `Tanzu Java Web App` in Application Accelerator.
-3. Add the required configuration information and generate the application.
-4. Unzip the file and open the project in a VS Code workspace.
-
-**Option 2: Clone from GitHub**
-
-1. Run `git clone` to clone the
-[tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) repository from GitHub.
-1. Open the Tiltfile and replace `your-registry.io/project` with your container registry.
+  1. Run `git clone` to clone the
+     [tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app) repository from
+     GitHub.
+  1. Open the Tiltfile and replace `your-registry.io/project` with your container registry.
 
 ## <a id="next-steps"></a> Next steps
 
