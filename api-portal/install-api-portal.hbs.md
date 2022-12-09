@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 >**Note** Use the instructions in this topic if you do not want to use the full profile to install packages.
 Only the full profile includes API portal.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+For more information about profiles, see [](../about-package-profiles.md).
 
 ## <a id='prereqs'></a>Prerequisites
 

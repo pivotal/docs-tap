@@ -1,4 +1,4 @@
-# Deleting Learning Center
+# Delete Learning Center
 
 Follow these steps to delete Learning Center:
 

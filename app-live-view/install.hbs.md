@@ -16,7 +16,7 @@ Application Live View installs three packages for `view`, `run`, and `build` pro
 
 
 >**Note** Use the instructions on this page if you do not want to use a profile to install packages.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
 
 ## <a id='prereqs'></a>Prerequisites

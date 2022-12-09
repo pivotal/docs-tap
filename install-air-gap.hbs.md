@@ -173,7 +173,7 @@ For more information about how to set up the Sigstore Stack, see [Install Sigsto
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials.
 
-For more information about profiles, see [About Tanzu Application Platform components and profiles](about-package-profiles.md).
+For more information about profiles, see [Components and installation profiles](about-package-profiles.md).
 
 To prepare to install a profile:
 

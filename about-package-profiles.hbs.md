@@ -1,4 +1,4 @@
-# About Tanzu Application Platform components and profiles
+# Components and installation profiles
 
 Tanzu Application Platform is a modular, composable platform that comprises the following components.
 
@@ -38,7 +38,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   configurations and enable fleets of developers to use them. This helps ease operator concerns about
   whether developers are implementing their best practices.
 
-- **[Application Live View for VMware Tanzu](app-live-view/about-app-live-view.md)**
+- **[Application Live View](app-live-view/about-app-live-view.md)**
 
   Application Live View is a lightweight insight and troubleshooting tool that helps application
   developers and application operators look inside running applications.
@@ -720,8 +720,8 @@ The following table lists the packages contained in each profile:
   <tr>
 </table>
 
->**Note** Only one supply chain can be installed at any given time. For information on switching
-supply chains, see [Add testing and security scanning to your application](getting-started/add-test-and-security.md).
+>**Note** You can only install one supply chain at any given time. For information about switching
+supply chains, see [Add testing and scanning to your application](getting-started/add-test-and-security.md).
 
 ## <a id='language-support'></a> Language and framework support in Tanzu Application Platform
 
@@ -738,7 +738,7 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Tanzu Developer Tooling \*\*</strong>
    </td>
-   <td><strong>Application Live View for VMware Tanzu</strong>
+   <td><strong>Application Live View</strong>
    </td>
    <td><strong>Functions</strong>
    </td>

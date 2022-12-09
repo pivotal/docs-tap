@@ -1,4 +1,4 @@
-# Uninstalling Application Live View for VMware Tanzu
+# Uninstall Application Live View
 
 This topic describes how to uninstall Application Live View for VMware Tanzu in Tanzu Application Platform.
 
