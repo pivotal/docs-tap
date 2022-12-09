@@ -1,6 +1,6 @@
 ﻿# **Overview**
 
-The APIX solution aims to manage the end-to-end lifecycle of APIs. Please refer to this blog for details.
+The APIX solution aims to manage the end-to-end lifecycle of APIs.
 
 This specific feature of APIX focuses on scanning and validating an API specification. The API spec is generated from the API autoregistration feature in TAP. Once that is done, APIX scans, lints, and validates the API spec. Based on the validation, a scoring is provided that tells the dev / devops, the quality and health of their API specification as it related to Documentation, OpenAPI best practices, and Security. There is a card on the API detail page (on the TAP GUI) that displays the summary of the scores. If the user wants to get more details of the scores, they can click on the 'more details' link and can get a detailed view.
 
@@ -8,7 +8,7 @@ The solution helps developers ensure that their APIs are more secure and robust,
 
 When a workload is applied , an automated workflow using the supply chain leverages the API Auto Registration . The API Auto Registration Controller reconciles the APIx CR and updates the API entity in Tanzu Application Platform GUI to achieve the  automated API Scoring and validation of the API Specification.
 
-![](assets/20221208_192420_image2022-12-8_17-29-45.png)
+![overview_workflow.png](assets/overview_workflow.png)
 
 # **APIX Documentation**
 
@@ -38,7 +38,7 @@ Step 4 : [Install kapp](https://carvel.dev/kapp/docs/v0.54.0/install/)
 
 Step 4 : The Kubernetes CLI, see [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
-Step 5 : Setup the Tanzu network account
+Step 5 : Set up the Tanzu network account
 
 #### *Environment Variables*
 
@@ -59,7 +59,7 @@ Step 5 : Setup the Tanzu network account
 
    **Add Tanzu Repo**
 
-   `tanzu package repository add apix-repo --url dev.registry.tanzu.vmware.com/apix/apix-release:0.2.0 --namespace apix-install`
+   `tanzu package repository add apix-repo --url dev.registry.tanzu.vmware.com/apix/apix-release:0.2.3 --namespace apix-install`
 3. Verify the Status of the package by running the following
 
    **Check Status**
@@ -75,7 +75,7 @@ Step 5 : Setup the Tanzu network account
 
    tanzu package install anyDisplayName -n install-namespace -p tanzu-package-name -v package-version -f config-values-file
 
-   Example : `tanzu package install apix -n apix-install -p apix.apps.tanzu.vmware.com -v 0.2.0 -f apix-values.yaml`
+   Example : `tanzu package install apix -n apix-install -p apix.apps.tanzu.vmware.com -v 0.2.3 -f apix-values.yaml`
 
    **Apply the below-mentioned apix-values.yaml**
 
@@ -105,7 +105,7 @@ Step 5 : Setup the Tanzu network account
 
    ```apache
    NAME                         DISPLAY-NAME         SHORT_DESCRIPTION                  LATEST-VERSION
-   apix.apps.tanxu.vmware.com   apix                 apix.apps.tanxu.vmware.com         0.2.2
+   apix.apps.tanxu.vmware.com   apix                 apix.apps.tanxu.vmware.com         0.2.3
 
    ```
 6. Verify that STATUS is Reconcile succeeded:
@@ -114,7 +114,7 @@ Step 5 : Setup the Tanzu network account
 
    ```apache
    NAME        PACKAGE NAME                  PACKAGE VERSION           DESCRIPTION             AGE
-   apix        apix.apps.tanxu.vmware.com    0.2.2                     Reconcile succeeded     28m
+   apix        apix.apps.tanxu.vmware.com    0.2.3                     Reconcile succeeded     28m
 
    ```
 
@@ -133,7 +133,6 @@ To uninstall the APIX Control Plane package, the user should execute the followi
 
 
 ---
-
 
 
 ## **Usage**
