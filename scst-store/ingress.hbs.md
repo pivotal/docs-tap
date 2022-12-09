@@ -42,7 +42,7 @@ set `ingress_domain` to Envoy service's external IP address.
 
 DNS setup example:
 
-```bash
+```console
 $ kubectl describe svc envoy -n tanzu-system-ingress
 > ...
   Type:                     LoadBalancer
@@ -76,7 +76,7 @@ $ curl https://metadata-store.example.com/api/health -k -v
 To get SCST - Store's TLS CA certificate, use `kubectl get secret`. In this
 example, you save the certificate to the environment variable to a file.
 
-```bash
+```console
 kubectl get secret CERT-NAME -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > OUTPUT_FILE
 ```
 
@@ -88,13 +88,13 @@ Where:
 
 For example:
 
-```bash
+```console
 $ kubectl get secret ingress-cert -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > insight-ca.crt
 $ cat insight-ca.crt
 ```
 
 ## Additional Resources
 
-* [Custom certificate configuration](custom-cert.hbs.md)
-* [TLS configuration](tls-configuration.hbs.md)
-* [Configure target endpoint and certificate](using-encrypted-connection.hbs.md)
+- [Custom certificate configuration](custom-cert.hbs.md)
+- [TLS configuration](tls-configuration.hbs.md)
+- [Configure target endpoint and certificate](using-encrypted-connection.hbs.md)
