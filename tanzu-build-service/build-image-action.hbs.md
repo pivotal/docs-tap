@@ -148,13 +148,13 @@ To use the action in a workflow, run the following YAML:
       with:
         ## Authorization
         # Host of the API server
-        server: `${{ secrets.SERVER }}`
+        server: `$\{{ secrets.SERVER }}`
         # CA Certificate of the API Server
-        ca_cert: `${{ secrets.CA_CERT }}`
+        ca_cert: `$\{{ secrets.CA_CERT }}`
         # Service Account token to access Kubernetes
-        token: `${{ secrets.TOKEN }}`
+        token: `$\{{ secrets.TOKEN }}`
         # _(required)_ The namespace to create the build resource in
-        namespace: `${{ secrets.NAMESPACE }}`
+        namespace: `$\{{ secrets.NAMESPACE }}`
 
         ## Image configuration
         # _(required)_ Destination for the built image
@@ -178,10 +178,10 @@ For example:
       uses: vmware-tanzu/build-image-action@v1-alpha
       with:
         # Authorization
-        server: ${{ secrets.SERVER }}
-        token: ${{ secrets.TOKEN }}
-        ca_cert: ${{ secrets.CA_CERT }}
-        namespace: ${{ secrets.NAMESPACE }}
+        server: $\{{ secrets.SERVER }}
+        token: $\{{ secrets.TOKEN }}
+        ca_cert: $\{{ secrets.CA_CERT }}
+        namespace: $\{{ secrets.NAMESPACE }}
         # Image configuration
         destination: gcr.io/project-id/name-for-image
         serviceAccountName: my-sa-that-has-access-to-reg-credentials
@@ -195,7 +195,7 @@ step:
     ```yaml
     - name: Do something with image
       run:
-        echo "${{ steps.build.outputs.name }}"
+        echo "$\{{ steps.build.outputs.name }}"
     ```
 
 ## Debugging
