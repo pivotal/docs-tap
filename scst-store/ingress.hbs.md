@@ -30,8 +30,8 @@ SCST - Store installation creates an HTTPProxy entry with host routing by using
 the qualified name `metadata-store.<ingress_domain>`. For example,
 `metadata-store.example.com`. The route supports HTTPS communication using a
 certificate. By default, a self-signed certificate is used with the same subject
-`alternative name`. See [Custom certificate configuration](custom-cert.hbs.md)
-for information about how to configure custom certificates.
+`alternative name`.
+For more information, see [Custom certificate configuration](custom-cert.hbs.md).
 
 Contour and DNS setup are not part of SCST - Store installation. Access to SCST
 - Store using Contour depends on the correct configuration of these two
