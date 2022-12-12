@@ -16,4 +16,4 @@ To install, take the following steps.
 |7.| Set up developer namespaces to use installed packages |[Setting up developer namespaces to use installed packages](set-up-namespaces-aws.hbs.md)|
 |8.| Install developer tools into your integrated development environment (IDE) |[Installing Tanzu Developer Tools for VS Code](vscode-install-aws.hbs.md)|
 
-After installing Tanzu Application Platform on to your Kubernetes clusters, proceed with [Get started with Tanzu Application Platform](getting-started.hbs.md).
+After installing Tanzu Application Platform on to your Kubernetes clusters, proceed with [Get started with Tanzu Application Platform](getting-started.hbs.md).  But don't forget to create your ECR repositories for your workload (.e.g. tanzu-application-platform/tanzu-java-web-app-default, tanzu-application-platform/tanzu-java-web-app-default-bundle, and tanzu-application-platform/tanzu-java-web-app-default-source).
