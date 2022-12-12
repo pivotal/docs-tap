@@ -103,7 +103,7 @@ To simplify this walkthrough, use a script to create these policy documents and 
 Run:
 
 ```console
-export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
+export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION --output json | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
 cat << EOF > build-service-trust-policy.json
 {
     "Version": "2012-10-17",
