@@ -86,6 +86,18 @@ workload is clicked in the Workloads table and that supply chain is no longer pr
   - Fixed issue in the image provider step when the user attempts to view a workload that was created
     by using a pre-built image.
 
+- **Supply Chain Choregrapher plug-in:**
+
+  - The UI shows the error message `Unable to retrieve details from Image Provider Stage` when the
+    Builder is not available or configured. However, the CLI shows the correct error message
+    `Builder default is not ready`.
+  - Clicking on the `Scan Template` link in the **Overview** section for a scanning stage causes a
+    blank page to open in the browser.
+  - The image provider stage is not correctly reporting status failures. It is incorrectly showing
+    a green status instead. This does, however, stop the supply chain execution.
+  - Image Provider logs are not appearing in the Stage Details section when a build fails.
+    The logs are, however, available through the CLI.
+
 - **Kubernetes ORM:**
 
   - Fixed issue in the image provider step when the user attempts to view a workload that was created
