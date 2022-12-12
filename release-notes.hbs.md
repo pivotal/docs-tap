@@ -20,8 +20,8 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 - Supply Chain plug-in
   - Fixed an issue where the Source Scanner stage was showing a non-functioning link to the Scan
-    Template used
-  - Improved error-handling when the builder is failing
+    Template used.
+  - Improved error-handling when the builder is failing.
 
 ### <a id='1-3-3-known-issues'></a> Known issues
 
@@ -125,7 +125,7 @@ The following issues, listed by area and component, are resolved in this release
 #### <a id="1-3-2-supplychain-resolved"></a>Supply Chain Choreographer
 
 - On a Build profile cluster, a `ConfigMap` containing the `Deliverable` is now produced. Previously a `Deliverable` was
-  created directly on the cluster. 
+  created directly on the cluster.
   For more information, see [Getting started with multicluster Tanzu Application Platform](multicluster/getting-started.hbs.md)
 
 #### <a id="1-3-2-supplychainplugin-resolved"></a>Supply Chain Choreographer plug-in
@@ -209,7 +209,7 @@ Known security vulnerability
 
 - **Kubernetes orm**
 
-  - fixes an error in the "image provider" step when the user attempts to view a workload that was created using a pre-built image.
+  - Fixes an error in the "image provider" step when the user attempts to view a workload that was created using a pre-built image.
 
 - **Backend**
 
@@ -269,7 +269,7 @@ This release includes the following changes to Tanzu Application Platform and it
 #### <a id="api-auto-registration-features"></a> API Auto Registration
 
 - API Auto Registration is a new package that supports dynamic registration of API from workloads into Tanzu Application Platform GUI.
-- Supports Async API, GraphQL, gRPC and OpenAPI.
+- Supports Async API, GraphQL, gRPC, and OpenAPI.
 - Enhanced support for OpenAPI 3 to validate the specification and update the servers URL section.
 - Custom Certificate Authority (CA) certificates are supported.
 
@@ -518,7 +518,7 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="tap-gui-resolved"></a>Tanzu Application Platform GUI
 
-- Supply Chain Plug-in
+- Supply Chain plug-in
 
   - Deliverable link in Runtime Resources no longer takes a user to a blank page instead of to the
     supply chain delivery.
@@ -534,7 +534,7 @@ This release has the following known issues, listed by area and component.
 - New default Contour configuration causes ingress on Kind cluster on Mac to break. The config value `contour.envoy.service.type` now defaults to `LoadBalancer`. For more information, see [Troubleshooting Install Guide](troubleshooting-tap/troubleshoot-install-tap.hbs.md#contour-error-kind).
 - The key shared.image_registry.project_path, which takes input as "SERVER-NAME/REPO-NAME", cannot take "/" at the end. For more information, see [Troubleshoot using Tanzu Application Platform](troubleshooting-tap/troubleshoot-using-tap.hbs.md#invalid-repo-paths).
 
-#### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/Plug-ins
+#### <a id="tanzu-cli-known-issues"></a>Tanzu CLI/plug-ins
 
 **Failure to connect to AWS EKS clusters:**
 
@@ -658,7 +658,7 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
 - **Unable to view workloads on the panel when connected to GKE cluster:**
 
   When connecting to Google's GKE clusters, an error might appear with the text
-  `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
+  `WARNING: the gcp auth plug-in is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
   To fix this, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 - **Warning notification when canceling an action:**
@@ -680,7 +680,7 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
 - **Unable to view workloads on the panel when connected to GKE cluster:**
 
   When connecting to Google's GKE clusters, an error might appear with the text
-  `WARNING: the gcp auth plugin is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
+  `WARNING: the gcp auth plug-in is deprecated in v1.22+, unavailable in v1.25+; use gcloud instead.`
   To fix this, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#cannot-view-workloads).
 
 - **Starting debug and live update sessions is synchronous:**
@@ -735,7 +735,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 Ubuntu Bionic stops receiving support in April 2023.
 VMware recommends you migrate builds to Jammy stacks in advance.
 For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
-- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated:
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
 It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
 VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
 and remove support in Tanzu Application Platform v1.6.
