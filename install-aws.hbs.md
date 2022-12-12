@@ -352,7 +352,7 @@ To install the `full` dependencies package:
     tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create ECR Repository for full TBS dependencies by running:
+1. Create an ECR repository for Tanzu Build Service full dependencies by running:
 
     ```console
     aws ecr create-repository --repository-name tbs-full-deps --region ${AWS_REGION}
