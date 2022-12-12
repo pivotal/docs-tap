@@ -23,6 +23,13 @@ This topic contains release notes for Tanzu Application Platform v1.3
     Template used
   - Improved error-handling when the builder is failing
 
+### <a id="1-3-3-supplychain-resolved"></a>Supply Chain Choreographer
+
+- On a Build profile cluster, a `ConfigMap` containing the `Deliverable` is now produced.
+  Previously a `Deliverable` was created directly on the cluster.
+  For more information, see
+  [Getting started with multicluster Tanzu Application Platform](multicluster/getting-started.hbs.md)
+
 ### <a id='1-3-3-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
@@ -121,12 +128,6 @@ This release has the following security fixes, listed by area and component.
 ### <a id='1-3-2-resolved-issues'></a> Resolved issues
 
 The following issues, listed by area and component, are resolved in this release.
-
-#### <a id="1-3-2-supplychain-resolved"></a>Supply Chain Choreographer
-
-- On a Build profile cluster, a `ConfigMap` containing the `Deliverable` is now produced. Previously a `Deliverable` was
-  created directly on the cluster. 
-  For more information, see [Getting started with multicluster Tanzu Application Platform](multicluster/getting-started.hbs.md)
 
 #### <a id="1-3-2-supplychainplugin-resolved"></a>Supply Chain Choreographer plug-in
 
