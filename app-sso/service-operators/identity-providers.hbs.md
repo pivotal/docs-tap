@@ -141,26 +141,24 @@ stringData:
 
 Where:
 
-- `url` is the URL of the LDAP server. It must be `ldaps`, and must contain a port.
-- `bind.dn` is the DN used to perform the bind.
-- `bind.passwordRef` must be a Secret with the entry `password`. That entry is the password used to perform the bind.
-- `user.searchBase` is the branch of tree where the users are located. Search is also performed in nested entries.
-- `group` (optional, defaults to unset) configures how LDAP groups will be mapped to user roles in the `id_token` claims.
-  If not set, then the user will have no roles. Group to roles mapping is discussed in detail in the following section.
-  - `group.roleAttriubte` selects which attribute of the group entry will be mapped to a user role. If an attribute has multiple
-    values, the first value will be selected.
-  - `group.search` (optional) toggles "Active Directory" search, and uses recursive search to find groups for a given user.
+- `url` is the URL of the LDAP server. It must be `ldaps` and must contain a port.
+- `bind.dn` is the DN to perform the bind.
+- `bind.passwordRef` must be a secret with the entry `password`. That entry is the password to perform the bind.
+- `user.searchBase` is the branch of tree where the users are located at. Search is performed in nested entries.
+- `group` (optional) defaults to unset. It configures how LDAP groups are mapped to user roles in the `id_token` claims.
+  If not set, the user has no roles. For more information about group to roles mapping, see the following section.
+  - `group.roleAttriubte` selects which attribute of the group entry are mapped to a user role. If an attribute has multiple
+    values, the first value is selected.
+  - `group.search` (optional) toggles "Active Directory" search and uses recursive search to find groups for a given user.
 
-
-Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and log in with username and password from LDAP.
-
+Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and log in with the username and password from LDAP.
 
 ### Groups to roles mapping
 
 ### ActiveDirectory group search
 
 In ActiveDirectory groups, user entries have a multi-value `memberOf` attribute, which contains the DNs pointing to the
-groups of a particular user. To enable this search mode, make sure `group.roleAttribute` is set, and `group.search` is NOT set.
+groups of a particular user. To enable this search mode, make sure `group.roleAttribute` is set and `group.search` is not set.
 
 For example:
 
@@ -181,7 +179,7 @@ spec:
           roleAttribute: sAMAccountName
 ```
 
-And the following LDIF definition:
+The LDIF definition is as follows:
 
 ```ldif
 dn: CN=appsso-user,OU=Cloud,DC=ad,DC=example,DC=com
@@ -218,19 +216,20 @@ sAMAccountName: Developers
 # ...
 ```
 
-The user `appsso-user` has two values for `memberOf`, pointing to two groups. Given the configuration given above,
-`sAMAccountName` is used for the role, therefore that user will have `SSO Group` and `Developers` as roles. Notice that
-the group does not need to have `member` attribute pointing to the user for the role to be mapped.
+The user `appsso-user` has two values for `memberOf`, pointing to two groups. Given the configuration earlier,
+`sAMAccountName` is used for the role, so the user has `SSO Group` and `Developers` as roles. 
+The group is not required to have `member` attribute point to the user for the role to be mapped.
 
 
 ### "Classic" group search
 
 In non-ActiveDirectory LDAP, users generally do not have a `memberOf` attribute. Group search is performed by looking
-up groups in a base branch, and filtering based on the groups `member` attribute.
+up groups in a base branch and filtering based on the groups `member` attribute.
 
-An AuthServer can optionally perform group search in sub-branches.
+An AuthServer can optionally perform: 
 
-An AuthServer can optionally perform nested group search, that is, find a hierarchy of groups, in which a group
+- group search in sub-branches.
+- nested group search, that is, find a hierarchy of groups, in which a group
 is a member of another group.
 
 The complete configuration is as follows:
@@ -258,16 +257,16 @@ spec:
 
 Where:
 
-- `search.base` is the base used when runnning an LDAP search for groups.
-- `search.filter` is the filter used when runnning an LDAP search for groups. It must contain the string `{0}` which
-  is replaced by the dn of the user when performing group search, e.g. `member=cn=marie,ou=Users,dc=example,dc=org`.
-- `search.depth` (optional, defaults to unset) the depth at which to perform nested group search (see below)
-- `search.searchSubTree` (optional, defaults to unset) whether to look for groups in sub-trees of the `search.base`.
+- `search.base` is the base for runnning an LDAP search for groups.
+- `search.filter` is the filter for runnning an LDAP search for groups. It must contain the string `{0}`, which
+  is replaced by the dn of the user when performing group search. For example, `member=cn=marie,ou=Users,dc=example,dc=org`.
+- `search.depth` (optional) is the depth at which to perform nested group search. It defaults to unset if left empty.
+- `search.searchSubTree` (optional) controls whether to look for groups in sub-trees of the `search.base`. It defaults to unset if left empty.
 
 
 #### Direct group search only
 
-Given the minimal configuration below:
+Given the following minimal configuration:
 
 ```yaml
 ---
@@ -291,7 +290,7 @@ spec:
   # ...
 ```
 
-And the following LDIF definition:
+The LDIF definition is as follows:
 
 ```ldif
 ######################
@@ -316,12 +315,12 @@ description: Nobel Prizes
 member: cn=marie,ou=Users,dc=example,dc=org
 ```
 
-User `marie` will have roles `Nobel Prizes`
+User `marie` has roles `Nobel Prizes`.
 
 #### Groups in sub-trees
 
-AppSSO can perform group search in sub-trees of the base used for group search. This is enabled when
-`group.search.searchSubTree` is explicitly set to `true`, e.g. :
+AppSSO can perform group search in sub-trees of the base for group search. This is enabled when
+`group.search.searchSubTree` is explicitly set to `true`. For example:
 
 ```yaml
 ---
@@ -343,7 +342,7 @@ spec:
   # ...
 ```
 
-With the following LDIF definition:
+The LDIF definition is as follows:
 
 ```ldif
 ######################
@@ -374,15 +373,14 @@ description: Chief Commanders
 member: cn=corazon,ou=Users,dc=example,dc=com
 ```
 
-User `corazon` will have roles `Presidents` and `Chief Commanders`, retrieved from `ou=LegionHonor,ou=Users,dc=example,dc=com`,
+User `corazon` has roles `Presidents` and `Chief Commanders`, which are retrieved from `ou=LegionHonor,ou=Users,dc=example,dc=com`,
 a subtree of the search base.
 
 #### Nested group search
 
-AppSSO can perform _nested_ group search, that is go up a chain where a user is a member of a group, which is itself a member
-of a group, and so on. This is enabled by setting `group.search.depth` is configured to > 1, which sets the number of "levels"
-that AppSSO will fetch to get the groups of a user. For example:
-
+AppSSO can perform nested group search by going up a chain where a user is a member of a group, which is itself a member
+of a group, and so on. This is enabled by setting `group.search.depth` to greater than `1`. `group.search.depth` controls 
+the number of "levels" that AppSSO fetches to get the groups of a user. For example:
 
 ```yaml
 ---
@@ -407,7 +405,7 @@ spec:
   # ...
 ```
 
-With the following LDIF defintion:
+The LDIF definition is as follows:
 
 ```ldif
 ######################
@@ -447,8 +445,8 @@ member: cn=corazon,ou=Users,dc=example,dc=com
 ```
 
 
-User `corazon` will have roles `Presidents` and `Politicians`. However, the search stops at depth 2, so they
-will not have the role `Citizens`, which would require a depth >= 3.
+User `corazon` has roles `Presidents` and `Politicians`. However, the search stops at depth 2, so they
+do not have the role `Citizens`, which requires a depth greater or equal to 3.
 
 
 ## SAML (experimental)
