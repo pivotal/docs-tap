@@ -1,5 +1,7 @@
-On OpenShift clusters, Application Accelerator must run with a custom SecurityContextConstraint (SCC) to enable compliance with
-restricted Kubernetes Pod Security Standards. Tanzu Application Platform configures the following SCC for Application Accelerator when you configure the `kubernetes_distribution: openshift` key in the `tap-values.yaml` file.
+On OpenShift clusters, Application Accelerator must run with a custom SecurityContextConstraint
+(SCC) to enable compliance with restricted Kubernetes pod security standards. Tanzu Application
+Platform configures the following SCC for Application Accelerator when you configure the
+`kubernetes_distribution: openshift` key in the `tap-values.yaml` file.
 
 Specification follows:
 
