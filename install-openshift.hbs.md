@@ -397,8 +397,6 @@ excluded_packages:
 
 See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
 
-See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
-
 ## <a id="install-package"></a>Install your Tanzu Application Platform package
 
 Follow these steps to install the Tanzu Application Platform package:
