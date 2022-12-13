@@ -117,7 +117,7 @@ This example contains the minimum required permissions:
 
 To access the values (on Google Kubernetes Engine, if using another IAAS, this might be different):
 
-      ```
+      ```console
       DEV_NAMESPACE=DEVELOPER_NAMESPACE
       SECRET=$(kubectl get sa github-actions -oyaml -n $DEV_NAMESPACE | yq '.secrets[0].name')
 
