@@ -116,7 +116,7 @@ The following option properties are for UI purposes only.
   Ensure that the value matches the dataType of the `dependsOn` option.
   For example, a multi-value option (`dataType = [string]`) such as a `checkbox` uses `[matched-value]`
   to trigger another option when `matched-value` (and only `matched-value`) is selected. See the
-  following section for more clarifications about `dependsOn`.
+  following section for more information about `dependsOn`.
 
 #### <a id="depends-on-multi-value"></a> DependsOn and multi-value dataType
 
