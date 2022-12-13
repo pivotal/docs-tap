@@ -5,8 +5,8 @@
 Before installing multicluster Tanzu Application Platform profiles, you must meet the following prerequisites:
 
 - All clusters must satisfy all the requirements to install Tanzu Application Platform. See [Prerequisites](../prerequisites.md).
-- Install Tanzu CLI on all clusters. For more information, see [Installing the Tanzu CLI](../install-tanzu-cli.md).
-- Install Tanzu Cluster Essentials on all clusters. For more information, see [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html).
+- Install Tanzu CLI on all clusters. For more information, see [Install the Tanzu CLI](../install-tanzu-cli.md).
+- Install Tanzu Cluster Essentials on all clusters. For more information, see [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.1/cluster-essentials/GUID-deploy.html).
 
 ## <a id='order-of-operations'></a> Multicluster Installation Order of Operations
 
@@ -45,7 +45,7 @@ To install the Build profile cluster:
 
 To install the Run profile cluster:
 
-1. Follow the steps for installing the Full profile in [Installing the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the Run profile, as shown in [Run profile](./reference/tap-values-run-sample.md).
+1. Follow the steps for installing the Full profile in [Install the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the Run profile, as shown in [Run profile](./reference/tap-values-run-sample.md).
 2. To use Application Live View, set the `INGRESS-DOMAIN` for `appliveview_connector` to match the value you set on the View profile for the `appliveview` in the values file.
 
     >**Note** The default configuration of `shared.ingress_domain` points to the local Run cluster, rather than the View cluster, as a result, `shared.ingress_domain` must be set explicitly.
@@ -54,7 +54,7 @@ To install the Run profile cluster:
 
 To install the Iterate profile cluster:
 
--  Follow the steps for installing the Full profile in [Installing the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the Iterate profile, as shown in [Iterate profile](reference/tap-values-iterate-sample.md).
+-  Follow the steps for installing the Full profile in [Install the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the Iterate profile, as shown in [Iterate profile](reference/tap-values-iterate-sample.md).
 
 ## <a id='add-view'></a> Add Build, Run and Iterate clusters to Tanzu Application Platform GUI
 
@@ -63,4 +63,4 @@ To install the Iterate profile cluster:
 
 ## Next steps
 
-After setting up the four profiles, you're ready to run a workload by using the supply chain. See [Getting started with multicluster Tanzu Application Platform](getting-started.md).
+After setting up the four profiles, you're ready to run a workload by using the supply chain. See [Get started with multicluster Tanzu Application Platform](getting-started.md).
