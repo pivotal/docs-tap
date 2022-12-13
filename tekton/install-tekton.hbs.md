@@ -2,9 +2,11 @@
 
 This topic describes how to install Tekton from the Tanzu Application Platform package repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install Tekton.
-> For more information about profiles, see
-> [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+Use the instructions on this page if you do not want to install Tekton by using a
+Tanzu Application Platform profile.
+The Full, Iterate, and Build profiles include the Tekton Pipelines package.
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.html).
+
 
 ## <a id='prereqs'></a>Prerequisites
 
