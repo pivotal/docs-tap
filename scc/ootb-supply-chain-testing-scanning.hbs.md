@@ -368,5 +368,3 @@ The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning
 ## <a id="scan-image-using-snyk"></a> Scan Image using Snyk
 
 [Supply Chain Security Tools - Scan](../scst-scan/install-scst-scan.md) includes additional integrations for running an image scan using Snyk and VMware Carbon Black.
-
-<!-- Commented out because this xref from PR #1768 because it does not exist: For information about how to install these integrations and how to edit the supply chain template, see [Available Scanners for Supply Chain Security Tools - Sca](../scst-scan/available-scanners.hbs.md). -->
