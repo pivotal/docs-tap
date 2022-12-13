@@ -28,10 +28,10 @@ resource configured.
 
 To configure Tanzu Build Service to sign your image builds:
 
-1. Ensure you are in a Kubernetes context where you are authenticated and authorized to
+1. Ensure that you are in a Kubernetes context where you are authenticated and authorized to
 create and edit secret and service account resources.
 
-1. Generate a Cosign key pair and store it as a Kubernetes secret by running:
+1. Generate a Cosign keypair and store it as a Kubernetes secret by running:
 
     ```bash
     cosign generate-key-pair k8s://NAMESPACE/COSIGN-KEYPAIR-NAME
@@ -49,7 +49,7 @@ create and edit secret and service account resources.
     ```
 
 1. Enter a password for the private key. Enter any password you want.
-After the command has completed successfully, you will see the following output:
+After the command has completed, you will see the following output:
 
     ```bash
     Successfully created secret tutorial-cosign-key-pair in namespace default
@@ -80,8 +80,8 @@ media types, add the annotation `kpack.io/cosign.docker-media-types: "1"` to the
     For more information about configuring Cosign key pairs, see the
     [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-images.html#image-signing-with-cosign).
 
-1. To enable Cosign signing, create or modify the service account resource that is
-referenced in the image resource so that it includes the Cosign key pair secret created earlier. The
+1. To enable Cosign signing, create or edit the service account resource that is
+referenced in the image resource so that it includes the Cosign keypair secret created earlier. The
 service account is in the same namespace as the image resource and is directly referenced by the
 image or default if there isn't one.
 
@@ -102,7 +102,7 @@ image or default if there isn't one.
 
     - `SERVICE-ACCOUNT-NAME` is the name of your service account resource.
     For example, `tutorial-cosign-service-account`.
-    - `COSIGN-KEYPAIR-NAME` is the name of the Cosign key pair secret generated earlier.
+    - `COSIGN-KEYPAIR-NAME` is the name of the Cosign keypair secret generated earlier.
     For example, `tutorial-cosign-key-pair`.
     - `REGISTRY-CREDENTIALS` is the secret that provides credentials for the
     container registry where application container images are pushed to.
@@ -113,7 +113,7 @@ image or default if there isn't one.
     kubectl apply -f cosign-service-account.yaml
     ```
 
-1. Create an image resource file named `image-cosign.yaml`. For example:
+2. Create an image resource file named `image-cosign.yaml`. For example:
 
     ```yaml
     apiVersion: kpack.io/v1alpha2
@@ -142,7 +142,7 @@ image or default if there isn't one.
       - Docker Hub has the form `"my-dockerhub-user/my-repo"` or `"index.docker.io/my-user/my-repo"`
       - Google Cloud Registry has the form `"gcr.io/my-project/my-repo"`
 
-1. If you are using Out of the Box Supply Chains, modify the respective `ClusterImageTemplate`
+3. If you are using Out of the Box Supply Chains, edit the respective `ClusterImageTemplate`
 to enable signing in your supply chain. For more information, see [Authoring supply chains](../scc/authoring-supply-chains.md).
 
     > **Important** VMware discourages referencing the service account using the `service_account` value
@@ -155,7 +155,7 @@ to enable signing in your supply chain. For more information, see [Authoring sup
     kubectl apply -f image-cosign.yaml
     ```
 
-1. After the image resource finishes building, you can get the fully resolved and built OCI image by running:
+2. After the image resource finishes building, you can get the fully resolved and built OCI image by running:
 
     ```bash
     kubectl -n default get image tutorial-cosign-image
@@ -168,7 +168,7 @@ to enable signing in your supply chain. For more information, see [Authoring sup
     tutorial-cosign-image index.docker.io/your-project/app@sha256:6744b...   True
     ```
 
-1. Verify image signature by running:
+3. Verify image signature by running:
 
     ```bash
     cosign verify --key cosign.pub LATEST-IMAGE-WITH-DIGEST
@@ -187,6 +187,6 @@ to enable signing in your supply chain. For more information, see [Authoring sup
     - Any certificates were verified against the Fulcio roots.
     ```
 
-1. Configure Supply Chain Security Tools for VMware Tanzu - Policy Controller
+4. Configure Supply Chain Security Tools for VMware Tanzu - Policy Controller
 to ensure that only signed images are allowed in your cluster.
 For more information, see the [Supply Chain Security Tools for VMware Tanzu - Policy Controller](../scst-policy/overview.md) documentation.
