@@ -85,7 +85,7 @@ To install a new scanner, follow these steps:
     targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry.
     ```
 
-1. Define the `--values-file` flag to customize the default configuration:
+2. Define the `--values-file` flag to customize the default configuration:
 
     The `values.yaml` file you created earlier is referenced with the `--values-file` flag when running your Tanzu install command:
 
@@ -134,7 +134,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
   ```
 
-  > **Note** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For more information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
+  > **Note** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
 
 1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed:
 
@@ -302,7 +302,7 @@ In order to scan your images with the new scanner installed in the [Out of the B
 
 Add the `ootb_supply_chain_testing_scanning.scanning` section to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
 
-In this file you can define which `ScanTemplates` is used for both `SourceScan` and `ImageScan`. The default values are the Grype Scanner `ScanTemplates`, but it can be overwritten by any other `ScanTemplate` present in your `DEV-NAMESPACE`. The same applies to the `ScanPolicies` applied to each kind of scan.
+In this file you can define which `ScanTemplates` is used for both `SourceScan` and `ImageScan`. The default values are the Grype Scanner `ScanTemplates`, but they are overwritten by any other `ScanTemplate` present in your `DEV-NAMESPACE`. The same applies to the `ScanPolicies` applied to each kind of scan.
 
 ```yaml
 ootb_supply_chain_testing_scanning:
