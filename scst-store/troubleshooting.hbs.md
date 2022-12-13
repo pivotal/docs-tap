@@ -8,7 +8,7 @@ This topic contains troubleshooting and known issues for Supply Chain Security T
 
 When attempting to look up CVE and affected packages, querying `insight source get` (or other `insight source` commands) might return zero results due to supply chain configuration and repository URL.
 
-### <a id='source-scan-no-cves-solution'></a>Solution
+### <a id='source-scan-no-cves-solution'></a> Solution
 
 You might have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM). For more information see [Query vulnerabilities, images, and packages](https://github.com/pivotal/docs-tap/blob/main/cli-plugins/insight/query-data.md#example-2-what-packages--cves-does-my-source-code-contain) in GitHub.
 
@@ -46,7 +46,7 @@ To redeploy the app, either use the same database password or follow the followi
 ### Symptom
 
 After Store is deployed, `metadata-store-db` pod might fail for missing volume while
-`postgres-db-pv-claim` pvc is in `PENDING` state. 
+`postgres-db-pv-claim` pvc is in `PENDING` state.
 
 This is because the cluster where Store is deployed does not have `storageclass` defined. `storageclass`'s provisioner is responsible for creating the persistent volume after `metadata-store-db` attaches `postgres-db-pv-claim`.
 
@@ -75,12 +75,7 @@ running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for
 
 ### Explanation
 
-This is due to the [CSIMigrationAWS in this Kubernetes
-version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/)
-which requires that users install the Amazon Elastic Block Store (EBS) CSI
-Driver to use EBS volumes. See the [Amazon Elastic Block Store (EBS) CSI
-Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) topic in
-the Amazon documentation.
+This is due to the [CSIMigrationAWS in this Kubernetes version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the [Amazon Elastic Block Store (EBS) CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to use EBS volumes.
 
 Store uses the default storage class which uses EBS volumes by default on EKS.
 
