@@ -21,6 +21,10 @@ TAP is introducing a [shared ingress issuer](security-and-compliance/ingress-cer
 default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md), and [TAP GUI](tap-gui/about.hbs.md)
 are using this issuer to secure ingress. In upcoming releases all components will support it eventually.
 
+#### <a id="1-4-0-cert-manager"></a> cert-manager
+
+- `cert-manager.tap.tanzu.vmware.com` can optionally install a number of self-signed `ClusterIssuer`s
+
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
 
 #### <a id='scc-plug-in-new-features'></a>Supply Chain Choreographer Plug-in
