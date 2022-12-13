@@ -11,16 +11,18 @@ Before installing a new scanner, install [Supply Chain Security Tools - Scan](in
 ## <a id="installation"></a> Install
 
 To install a new scanner, follow these steps:
+
 1. Complete scanner specific prerequisites for the scanner you're trying to install. For example, creating an API token to connect to the scanner.
+
    - [Snyk Scanner (Beta)](install-snyk-integration.hbs.md) is available for image scanning.
    - [Carbon Black Scanner (Beta)](install-carbonblack-integration.hbs.md) is available for image scanning.
-2. List the available packages to discover what scanners you can use by running:
+1. List the available packages to discover what scanners you can use by running:
 
     ```console
     tanzu package available list --namespace tap-install
     ```
 
-    For example:
+  For example:
 
     ```console
     $ tanzu package available list --namespace tap-install
@@ -31,12 +33,14 @@ To install a new scanner, follow these steps:
       carbonblack.scanning.apps.tanzu.vmware.com           Carbon Black Scanner for Supply Chain Security Tools - Scan               Default scan templates using Carbon Black
     ```
 
-3. List version information for the scanner package by running:
+1. List version information for the scanner package by running:
+
     ```console
     tanzu package available list SCANNER-NAME --namespace tap-install
     ```
 
-    For example:
+  For example:
+
     ```console
     $ tanzu package available list snyk.scanning.apps.tanzu.vmware.com --namespace tap-install
     / Retrieving package versions for snyk.scanning.apps.tanzu.vmware.com...
@@ -44,9 +48,9 @@ To install a new scanner, follow these steps:
       snyk.scanning.apps.tanzu.vmware.com   1.0.0-beta.2
     ```
 
-4. (Optional) Create the secrets the scanner package relies on:
+1. (Optional) Create the secrets the scanner package relies on:
 
-5. Create a `values.yaml` to apply custom configurations to the scanner:
+1. Create a `values.yaml` to apply custom configurations to the scanner:
 
     > **Note** This step might be required for some scanners but optional for others.
 
@@ -81,7 +85,7 @@ To install a new scanner, follow these steps:
     targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry.
     ```
 
-6. Define the `--values-file` flag to customize the default configuration:
+1. Define the `--values-file` flag to customize the default configuration:
 
     The `values.yaml` file you created earlier is referenced with the `--values-file` flag when running your Tanzu install command:
 
@@ -95,10 +99,10 @@ To install a new scanner, follow these steps:
 
     Where:
 
-    * `REFERENCE-NAME` is the name referenced by the installed package. For example, `grype-scanner`, `snyk-scanner`.
-    * `SCANNER-NAME` is the name of the scanner package you retrieved earlier. For example, `snyk.scanning.apps.tanzu.vmware.com`.
-    * `VERSION` is your package version number. For example, `1.0.0-beta.2`.
-    * `PATH-TO-VALUES-YAML` is the path that points to the `values.yaml` file created earlier.
+    - `REFERENCE-NAME` is the name referenced by the installed package. For example, `grype-scanner`, `snyk-scanner`.
+    - `SCANNER-NAME` is the name of the scanner package you retrieved earlier. For example, `snyk.scanning.apps.tanzu.vmware.com`.
+    - `VERSION` is your package version number. For example, `1.0.0-beta.2`.
+    - `PATH-TO-VALUES-YAML` is the path that points to the `values.yaml` file created earlier.
 
     For example:
 
@@ -125,9 +129,11 @@ To install a new scanner, follow these steps:
 To verify the installation create an `ImageScan` or `SourceScan` referencing one of the newly added `ScanTemplates` for the scanner.
 
 1. (Optional) Create a `ScanPolicy` formatted for the output specific to the scanner you are installing, to reference in the `ImageScan` or `SourceScan`.
+
    ```console
     kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
   ```
+
 > **Note** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For more information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
 
 1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed:
@@ -139,6 +145,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
     For example:
+
     ```console
     $ kubectl get scantemplates
     NAME                               AGE
@@ -150,7 +157,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     snyk-public-image-scan-template    10d
     ```
 
-2. Create the following ImageScan YAML:
+1. Create the following ImageScan YAML:
 
     > **Note** Some scanners do not support both `ImageScan` and `SourceScan`.
 
@@ -185,7 +192,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
       scanPolicy: snyk-scan-policy
     ```
 
-3. Create the following SourceScan YAML:
+1. Create the following SourceScan YAML:
 
     > **Note** Some scanners do not support both `ImageScan` and `SourceScan`.
 
@@ -222,7 +229,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
       scanPolicy: scan-policy
     ```
 
-4. Apply the ImageScan and SourceScan YAMLs:
+1. Apply the ImageScan and SourceScan YAMLs:
 
     To run the scans, apply them to the cluster by running these commands:
 
@@ -241,6 +248,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     Where `PATH-TO-SOURCE-SCAN-YAML` is the path to the YAML file created earlier.
 
     For example:
+
     ```console
     $ kubectl apply -f imagescan.yaml -n my-apps
     imagescan.scanning.apps.tanzu.vmware.com/sample-snyk-public-image-scan created
@@ -249,9 +257,10 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     sourcescan.scanning.apps.tanzu.vmware.com/sample-grype-public-source-scan created
     ```
 
-5. To verify the integration, get the scan to see if it completed by running:
+1. To verify the integration, get the scan to see if it completed by running:
 
     For `ImageScan`:
+
     ```console
     kubectl get imagescan IMAGE-SCAN-NAME -n DEV-NAMESPACE
     ```
@@ -279,7 +288,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
     > **Note** If you define a `ScanPolicy` for the scans and the evaluation finds a violation, the `Phase` is `Failed` instead of `Completed`. In both cases the scan finished.
 
-6. Clean up:
+1. Clean up:
 
     ```console
     kubectl delete -f PATH-TO-SCAN-YAML -n DEV-NAMESPACE

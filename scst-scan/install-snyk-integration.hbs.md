@@ -59,7 +59,7 @@ This topic describes the prerequisites for installing Supply Chain Security Tool
 
 The Grype and Snyk Scanner Integrations both enable the Metadata Store. To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform is installed using the Full Profile, the Grype Scanner Integration is installed, unless it is explicitly excluded.
 
-* If the Grype Scanner Integration is installed in the same `dev-namespace` Snyk Scanner is installed:
+- If the Grype Scanner Integration is installed in the same `dev-namespace` Snyk Scanner is installed:
 
     ```yaml
     #! ...
@@ -79,7 +79,7 @@ The Grype and Snyk Scanner Integrations both enable the Metadata Store. To preve
         importFromNamespace: "" #! since both Snyk and Grype both enable store, one must leave importFromNamespace blank
     ```
 
-* If the Grype Scanner Integration is not installed in the same `dev-namespace` Snyk Scanner is installed:
+- If the Grype Scanner Integration is not installed in the same `dev-namespace` Snyk Scanner is installed:
 
     ```yaml
     #! ...
