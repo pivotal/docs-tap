@@ -186,13 +186,13 @@ accomplish this varies based on the programming language and framework you are u
 If you are using Spring, see [CORS support in spring framework](https://spring.io/blog/2015/06/08/cors-support-in-spring-framework).
 
 At a high level, the Tanzu Application Platform GUI domain must be accepted as valid cross-origin by
-your API. 
+your API.
 
 Verify the following:
 
-- **Origins allowed** header: `Access-Control-Allow-Origin`: a list of comma-separated values.
+- **Origins allowed** header: `Access-Control-Allow-Origin`: A list of comma-separated values.
 This list must include your Tanzu Application Platform GUI host.
-- **Methods allowed** header: `Access-Control-Allow-Method`: must allow the method used by your API.
+- **Methods allowed** header: `Access-Control-Allow-Method`: Must allow the method used by your API.
 Also confirm that your API supports preflight requests, a valid response to the OPTIONS HTTP method.
-- **Headers allowed** header: `Access-Control-Allow-Headers`: if the API requires any header, you
+- **Headers allowed** header: `Access-Control-Allow-Headers`: If the API requires any header, you
 must include it in the API configuration or your authorization server.
