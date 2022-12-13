@@ -52,7 +52,7 @@ You can see the "Builder default is not ready" message in two places:
 1. The "Messages" section of the `tanzu apps workload get my-app` command.
 2. The Supply Chain section of Tanzu Application Platform GUI.
 
-This message indicates there is something wrong with the Builder (the component which builds the
+This message indicates there is something wrong with the Builder (the component that builds the
 container image for your workload).
 
 ### Explanation
@@ -61,13 +61,13 @@ This message is typically encountered when the core component of the Builder (`k
 into a bad state.
 
 Although this isn't the only scenario where this can happen, `kpack` can transition into a bad state
-when Tanzu Application Platform is deployed to a local `minikube` or `kind` cluster and especially
+when Tanzu Application Platform is deployed to a local `minikube` or `kind` cluster, and especially
 when that `minikube` or `kind` cluster is restarted.
 
 ### Solution
 
 1. Restart `kpack` by deleting the `kpack-controller` and `kpack-webhook` pods in the `kpack` namespace.
-   Deleting these resources trigger their recreation:
+   Deleting these resources triggers their recreation:
    - `kubectl delete pods --all --namespace kpack`
 2. Verify status of the replacement pods:
    - `kubectl get pods --namespace kpack`
