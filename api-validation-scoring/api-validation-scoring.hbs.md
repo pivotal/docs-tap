@@ -1,12 +1,8 @@
 ﻿# **Overview**
 
-The APIX solution aims to manage the end-to-end lifecycle of APIs.
+This specific feature of API Validation and Scoring focuses on scanning and validating an API specification. The API spec is generated from the API autoregistration feature in TAP. Once that is done, API specification goes through static scan analysis and is validated. Based on the validation, a scoring is provided that tells the dev / devops, the quality and health of their API specification as it related to Documentation, OpenAPI best practices, and Security. There is a card on the API detail page (on the TAP GUI) that displays the summary of the scores. If the user wants to get more details of the scores, they can click on the ‘more details’ link and can get a detailed view.
 
-This specific feature of APIX focuses on scanning and validating an API specification. The API spec is generated from the API autoregistration feature in TAP. Once that is done, APIX scans, lints, and validates the API spec. Based on the validation, a scoring is provided that tells the dev / devops, the quality and health of their API specification as it related to Documentation, OpenAPI best practices, and Security. There is a card on the API detail page (on the TAP GUI) that displays the summary of the scores. If the user wants to get more details of the scores, they can click on the 'more details' link and can get a detailed view.
-
-The solution helps developers ensure that their APIs are more secure and robust, by providing feedback and recommendations early on in the software development lifecycle. Based on the feedback and recommendations, the dev can modify their API Specs and improve their scores, and hence improve the posture of their APIs. The solution also helps  DevOps / DevSecOps understand how well the APIs have been implemented.
-
-When a workload is applied , an automated workflow using the supply chain leverages the API Auto Registration . The API Auto Registration Controller reconciles the APIx CR and updates the API entity in Tanzu Application Platform GUI to achieve the  automated API Scoring and validation of the API Specification.
+The solution helps developers ensure that their APIs are more secure and robust, by providing feedback and recommendations early on in the software development lifecycle. Based on the feedback and recommendations, the dev can modify their API Specs and improve their scores, and hence improve the posture of their APIs. The solution also helps DevOps / DevSecOps understand how well the APIs have been implemented.
 
 ![overview_workflow.png](assets/overview_workflow.png)
 
@@ -59,7 +55,7 @@ Step 5 : Set up the Tanzu network account
 
    **Add Tanzu Repo**
 
-   `tanzu package repository add apix-repo --url dev.registry.tanzu.vmware.com/apix/apix-release:0.2.3 --namespace apix-install`
+   `tanzu package repository add apix-repo --url dev.registry.tanzu.vmware.com/apix/apix-release:0.2.4 --namespace apix-install`
 3. Verify the Status of the package by running the following
 
    **Check Status**

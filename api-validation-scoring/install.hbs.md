@@ -35,7 +35,7 @@ To install API scoring and validation:
 1. Add the Tanzu package repository by running:
 
     ```console
-    tanzu package repository add apix-repo --url dev.registry.tanzu.vmware.com/apix/apix-release:0.2.3 --namespace apix-install
+    tanzu package repository add apix-repo --url dev.registry.tanzu.vmware.com/apix/apix-release:0.2.4 --namespace apix-install
     ```
 
 1. Verify the status of the package by running:
