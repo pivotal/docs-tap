@@ -39,14 +39,13 @@ When you install the Supply Chain Security Tools - Scan (Scan controller), you c
 | resources.requests.cpu | 100m | integer/string | Requests describes the minimum amount of CPU resources required. | n/a |
 | resources.requests.memory | 128Mi | integer/string | Requests describes the minimum amount of memory resources required. | n/a |
 | namespace | scan-link-system | string | Deployment namespace for the Scan Controller | n/a |
-| metadataStore.caSecret.importFromNamespace | metadata-store | string | Namespace from which you import the Insight Metadata Store CA Cert | <1.2.0 |
-| metadataStore.caSecret.name | app-tls-cert | string | Name of deployed secret with key ca.crt holding the CA Cert of the Insight Metadata Store | <1.2.0 |
-| metadataStore.clusterRole | metadata-store-read-write | string | Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster | <1.2.0 |
-| metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | URL of the Insight Metadata Store | <1.2.0 |
-| metadataStore.authSecret.importFromNamespace | | string | Namespace from which to import the Insight Metadata Store auth_token | <1.2.0 |
-| metadataStore.authSecret.name | n/a | string | Name of deployed secret with key auth_token | <1.2.0 |
-| retryScanJobsSecondsAfterError | 60 | integer | Seconds to wait before retrying errored scans | >1.3.2 |
-
+| metadataStore.caSecret.importFromNamespace | metadata-store | string | Namespace from which you import the Insight Metadata Store CA Cert | earlier than 1.2.0 |
+| metadataStore.caSecret.name | app-tls-cert | string | Name of deployed secret with key ca.crt holding the CA Cert of the Insight Metadata Store | earlier than 1.2.0 |
+| metadataStore.clusterRole | metadata-store-read-write | string | Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster | earlier than 1.2.0 |
+| metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | URL of the Insight Metadata Store | earlier than 1.2.0 |
+| metadataStore.authSecret.importFromNamespace | | string | Namespace from which to import the Insight Metadata Store auth_token | earlier than 1.2.0 |
+| metadataStore.authSecret.name | n/a | string | Name of deployed secret with key auth_token | earlier than 1.2.0 |
+| retryScanJobsSecondsAfterError | 60 | integer | Seconds to wait before retrying errored scans | 1.3.1 and later |
 
 When you install the Supply Chain Security Tools - Scan (Grype scanner), you can configure the following optional properties:
 
