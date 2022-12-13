@@ -6,17 +6,15 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 **Release Date**: December 13, 2022
 
-### <a id='1-3-3-security-fixes'></a> Security fixes
-
 ### <a id='1-3-3-new-features'></a> Resolved issues
 
-#### <a id="1-3-3-scc-plugin-resolved"></a>Supply Chain Choreographer plug-in
+#### <a id="1-3-3-scc-plugin-resolved"></a> Supply Chain Choreographer plug-in
 
 - The UI now shows the same message as the CLI, `Builder default is not ready`, when the Image Builder
   is not available or not configured.
 - The `Scan Template` link in the **Overview** section for a scanning stage is now deactivated.
 
-##### <a id="1-3-3-tap-gui-plug-ri"></a> Tanzu Application Platform GUI plug-ins
+#### <a id="1-3-3-tap-gui-plug-ri"></a> Tanzu Application Platform GUI plug-ins
 
 - Supply Chain plug-in
   - Fixed an issue where the Source Scanner stage was showing a non-functioning link to the Scan
@@ -55,9 +53,9 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 #### <a id="1-3-app-sso-deprecations"></a> Application Single Sign-On
 
-  - `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
-    to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
-  - `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
+- `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
+  to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
+- `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
    for removal in the next release.
 
 #### <a id="1-3-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
@@ -76,7 +74,7 @@ VMware plans to deactivate this format by default in Tanzu Application Platform 
 and remove support in Tanzu Application Platform v1.6.
 To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
 
-##### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
+#### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
 - The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
   - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
