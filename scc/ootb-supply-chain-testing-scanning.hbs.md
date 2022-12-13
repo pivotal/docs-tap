@@ -244,7 +244,9 @@ to the properties you want to change. For example:
 
 #### <a id="storing-scan-results"></a>Enable storing scan results
 
-To enable SCST - Scan to store scan results to SCST - Store, see the [Developer namespace setup](../scst-store/developer-namespace-setup.hbs.md) topic to export the SCST - Store CA certificate and authentication token to the developer namespace.
+To enable SCST - Scan to store scan results by using SCST - Store, see
+[Developer namespace setup](../scst-store/developer-namespace-setup.hbs.md) for exporting the
+SCST - Store CA certificate and authentication token to the developer namespace.
 
 
 #### <a id="multiple-pl"></a> Allow multiple Tekton pipelines in a namespace
