@@ -1,4 +1,4 @@
-# Create a GitHub Build Action (Alpha)
+# Create a GitHub build action (Alpha)
 
 Use this GitHub Action to create a Tanzu Build Service build on a cluster.
 

@@ -1,4 +1,4 @@
-# Parameter Reference
+# Parameter reference
 
 This reference topic describes:
 
