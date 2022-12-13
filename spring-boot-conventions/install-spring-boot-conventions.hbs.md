@@ -3,10 +3,10 @@
 This topic describes how to install Spring Boot conventions from the Tanzu Application Platform
 package repository.
 
-Use the instructions in this topic if you do not want to use a profile to install packages.
-Both the full and light profiles include Spring Boot conventions.
-For more information about profiles, see
-[Components and installation profiles](../about-package-profiles.hbs.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> Spring Boot conventions.
+> For more information about profiles, see
+> [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
