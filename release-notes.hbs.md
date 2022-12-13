@@ -23,7 +23,7 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 
 #### <a id="1-4-0-cert-manager"></a> cert-manager
 
-- `cert-manager.tap.tanzu.vmware.com` can optionally install a number of self-signed `ClusterIssuer`s
+- `cert-manager.tap.tanzu.vmware.com` can optionally install self-signed `ClusterIssuer`s.
 
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
 
