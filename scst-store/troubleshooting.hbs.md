@@ -77,7 +77,7 @@ running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for
 
 ### Explanation
 
-This is due to the [CSIMigrationAWS in this Kubernetes version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to use EBS volumes.
+This is due to the [CSIMigrationAWS in this Kubernetes version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the [Amazon Elastic Block Store (EBS) CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to use EBS volumes.
 
 Store uses the default storage class which uses EBS volumes by default on EKS.
 
