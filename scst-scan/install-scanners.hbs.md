@@ -134,7 +134,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
   ```
 
-> **Note** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For more information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
+  > **Note** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For more information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
 
 1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed:
 
