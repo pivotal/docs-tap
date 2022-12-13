@@ -392,7 +392,7 @@ server. For example, for `https://github.com/vmware-tanzu/cartographer`,
 <p class="note important">
 <strong>Note:</strong>
 To use the pull request approach, the password text box must contain a token.
-See [Pull Requests](#pull-requests).
+See [Pull Requests](#prs).
 </p>
 
 >**Note:** If you want to use the pull request approach, the password field must be filled with a token.
