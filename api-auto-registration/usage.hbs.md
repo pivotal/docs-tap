@@ -12,7 +12,7 @@ API Auto Registration requires that the following is present:
 1. A location exposing a dynamic or static API specification.
 
 2. An APIDescriptor CR with that location created in the cluster.
-You might additionally set up different install values for api-auto-registration package or
+You might additionally set up different install values for `api-auto-registration` package or
 CORS for OpenAPI specifications.
 
 To configure:

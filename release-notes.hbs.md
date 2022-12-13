@@ -15,10 +15,10 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id="1-4-0-tap-new-features"></a> TAP
+#### <a id="1-4-0-tap-new-features"></a> Tanzu Application Platform
 
-TAP is introducing a [shared ingress issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress communication by
-default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md), and [TAP GUI](tap-gui/about.hbs.md)
+Tanzu Application Platform is introducing a [shared ingress issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress communication by
+default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md), and [Tanzu Application Platform GUI](tap-gui/about.hbs.md)
 are using this issuer to secure ingress. In upcoming releases all components will support it eventually.
 
 #### <a id="1-4-0-cert-manager"></a> cert-manager
@@ -97,6 +97,7 @@ This release has the following security fixes, listed by area and component.
 - `python` has been updated to `3.7.5-22.ph3`
 
 #### <a id="1-4-0-api-auto-registration-fixes"></a> API Auto Registration
+
 - Base image updated to use the latest Paketo Jammy Base image.
 
 ### <a id='1-4-0-resolved-issues'></a> Resolved issues
@@ -105,13 +106,13 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-4-0-api-auto-registration-ri"></a> API Auto Registration
 
-- Now periodically checks the original API specification from the defined location to find changes, and registers any changes into the `API Descriptor`, triggering also the reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or frequency is configurable through the new value `sync_period`. The default value is 5 minutes.
+- API Auto Registration periodically checks the original API specification from the defined location to find changes, and registers any changes into the `API Descriptor`. This triggers reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or frequency is configurable through the new value `sync_period`. The default value is 5 minutes.
 
 #### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
 
 - **Immediate entity provider backend Plug-in**
 
-  - The entity provider (used mainly by API Auto Registration) now allows a body size of `5Mb` (increased from `100Kb`) to accept larger API specs.
+  - The entity provider, used mainly by API Auto Registration, now allows a body size of `5Mb` to accept larger API specifications.
   - Respecting the restriction of Backstage for [Entity Provider mutations](https://backstage.io/docs/features/software-catalog/external-integrations#provider-mutations), whenever an existing entity is intended for a mutation through this plugin, and its origin is a different entity provider, a `409 Conflict` error is returned.
 
 #### <a id="supply-chain-plugin-ri"></a> Supply Chain Choreographer Plug-In
@@ -166,8 +167,8 @@ in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 #### <a id="1-4-0-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
 
 - Removed deprecated ScanTemplates:
-  - Deprecated Grype ScanTemplates shipped with versions prior to TAP 1.2.0 have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
-  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in TAP 1.7.0.
+  - Deprecated Grype ScanTemplates shipped with versions prior to Tanzu Application Platform 1.2.0 have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
+  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in Tanzu Application Platform 1.7.0.
     - The deprecation will impact the following components: Scan Controller, Grype Scanner and Snyk Scanner.
     - See [troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images) documentation for the migration path.
 
