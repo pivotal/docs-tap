@@ -1,13 +1,9 @@
 # Install Tanzu Application Platform GUI
 
-This topic describes how to install Tanzu Application Platform GUI if you have not done so by
-installing Tanzu Application Platform through a Full or View profile.
-
-Use the instructions on this page if you do not want to use a profile to install packages.
-
-For more information about profiles, see
-[Components and installation profiles](../about-package-profiles.md).
-
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> Tanzu Application Platform GUI.
+> For more information about profiles, see
+> [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
