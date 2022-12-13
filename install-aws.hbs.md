@@ -1,4 +1,4 @@
-# Installing Tanzu Application Platform package and profiles on AWS
+# Install Tanzu Application Platform package and profiles on AWS
 
 This topic describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository on to AWS.
@@ -419,5 +419,5 @@ To exclude packages from a Tanzu Application Platform profile:
 
 ## <a id='next-steps'></a>Next steps
 
-- (Optional) [Installing Individual Packages](install-components.html)
-- [Setting up developer namespaces to use installed packages](set-up-namespaces-aws.html)
+- (Optional) [Install Individual Packages](install-components.html)
+- [Set up developer namespaces to use installed packages](set-up-namespaces-aws.html)

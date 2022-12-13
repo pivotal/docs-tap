@@ -1,4 +1,4 @@
-# Upgrading Tanzu Application Platform
+# Upgrade Tanzu Application Platform
 
 This document describes how to upgrade Tanzu Application Platform.
 
@@ -90,8 +90,8 @@ If you do not want to wait for subsequent builds to run automatically, follow th
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
-For information about upgrading Tanzu Application Platform GUI, see [upgrading Tanzu Application Platform GUI](tap-gui/upgrades.html).
-For information about upgrading Supply Chain Security Tools - Scan, see [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
+For information about upgrading Tanzu Application Platform GUI, see [Upgrade Tanzu Application Platform GUI](tap-gui/upgrades.html).
+For information about upgrading Supply Chain Security Tools - Scan, see [Upgrade Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
 
 ## <a id="verify"></a> Verify the upgrade
 
