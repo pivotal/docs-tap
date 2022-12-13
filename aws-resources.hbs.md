@@ -1,4 +1,4 @@
-# Creating AWS Resources for Tanzu Application Platform
+# Create AWS Resources for Tanzu Application Platform
 
 To install Tanzu Application Platform within the Amazon Web Services (AWS) Ecosystem, you must create several AWS resources. This guide walks you through creating:
 

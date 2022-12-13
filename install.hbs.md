@@ -1,4 +1,4 @@
-# Installing Tanzu Application Platform package and profiles
+# Install Tanzu Application Platform package and profiles
 
 This topic describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
@@ -349,7 +349,7 @@ contour:
 
 Tanzu Application Platform is part of [VMware's CEIP program](https://www.vmware.com/solutions/trustvmware/ceip-products.html) where data is collected to help improve the customer experience. By setting `ceip_policy_disclosed` to `true` (not a string), you acknowledge the program is disclosed to you and you are aware data collection is happening. This field must be set for the installation to be completed.
 
-See [Opting out of telemetry collection](opting-out-telemetry.hbs.md) for more information.
+See [Opt out of telemetry collection](opting-out-telemetry.hbs.md) for more information.
 
 ### <a id='additional-build-service-config'></a> (Optional) Additional Build Service configurations
 
@@ -532,5 +532,5 @@ To exclude packages from a Tanzu Application Platform profile:
 
 ## <a id='next-steps'></a>Next steps
 
-- (Optional) [Installing Individual Packages](install-components.html)
-- [Setting up developer namespaces to use installed packages](set-up-namespaces.html)
+- (Optional) [Install individual packages](install-components.html)
+- [Set up developer namespaces to use installed packages](set-up-namespaces.html)

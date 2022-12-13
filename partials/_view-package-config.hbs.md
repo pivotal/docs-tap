@@ -1,5 +1,3 @@
-# Viewing possible configuration settings for your package
-
 To view possible configuration settings for a package, run:
 
 ```console
