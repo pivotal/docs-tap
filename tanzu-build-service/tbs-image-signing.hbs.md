@@ -1,4 +1,4 @@
-# Creating a signed container image with Tanzu Build Service
+# Create a signed container image with Tanzu Build Service
 
 This topic describes how to create a Tanzu Build Service
 [image](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-images.html)
