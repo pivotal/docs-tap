@@ -25,7 +25,7 @@ This release includes the following changes, listed by component and area.
 
 #### <a id="1-2-2-scst-store-new-features"></a>Supply Chain Security Tools - Store
 
-* Modified the vulnerability response in the `tanzu insight` CLI plug-in to only return the highest severity rating for a given CVE.
+- Modified the vulnerability response in the `tanzu insight` CLI plug-in to only return the highest severity rating for a CVE.
 
 ### <a id='1-2-2-resolved-issues'></a> Resolved issues
 
@@ -37,8 +37,8 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-2-2-scst-store-issues"></a>Supply Chain Security Tools - Store
 
-* Resolved an issue where Store could not handle new method types.
-* Resolved an issue where Store could not handle blob URLS in component names.
+- Resolved an issue where Store could not handle new method types.
+- Resolved an issue where Store could not handle blob URLs in component names.
 
 #### <a id="1-2-2-tap-gui-resolved"></a>Tanzu Application Platform GUI
 
