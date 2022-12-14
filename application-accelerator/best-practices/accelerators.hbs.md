@@ -42,10 +42,10 @@ characters.
   of creating multiple very similar accelerators.
 - Options must be straightforward, having a description that states the role it plays in the
 accelerator. Options must have the default value when appropriate.
-- Options must be short for ease of navigation. Options must also be conditional on other options
-when it's appropriate.
-- Free text options that have limitations on their values must ensure that these
-limitations are met by providing a regular expression-based validation. This validation ensures
+- Options must be short so that they are easy to navigate. Options must be conditional on other options
+if appropriate.
+- Options that have limitations on their values must validate these
+limitations with a regular expression-based validation. This validation ensures
 early feedback on invalid user input.
 - Generated application skeletons must have a detailed README file that describes the function and
 structure of a generated application. It must provide detailed information about how developers
@@ -61,8 +61,7 @@ running in production without testing.
 
 It is a good habit to have tests for the application skeleton:
 
-- You must have an overall application test that bootstraps the application and sees if it comes
-  online such as the application [`smoke`](https://en.wikipedia.org/wiki/Smoke_testing_(software)).
+- You must test the application to confirm it comes online.
 - A test per layer of the Application is needed. For example, presentation layer, business layer, or
 data layer. These tests can be unit-tests leveraging stubbing or mocking frameworks.
 - An integration test per layer of the Application is also needed. Especially the presentation
