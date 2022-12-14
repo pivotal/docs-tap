@@ -2,7 +2,7 @@
 
 This topic describes how an [Auto Registered API](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-api-auto-registration-about.html) is scored.
 
-See [Use API Auto Registration](api-auto-registration/usage.hbs.md) to deploy the workload. 
+See [Use API Auto Registration](../api-auto-registration/usage.hbs.md) to deploy the workload. 
 
 Navigate to the Tanzu Application Platform GUI to view the API .
 
