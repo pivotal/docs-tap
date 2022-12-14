@@ -146,14 +146,12 @@ Where:
 - `bind.passwordRef` must be a secret with the entry `password`. That entry is the password to perform the bind.
 - `user.searchBase` is the branch of tree where the users are located at. Search is performed in nested entries.
 - `group` (optional) defaults to unset. It configures how LDAP groups are mapped to user roles in the `id_token` claims.
-  If not set, the user has no roles. For more information about group to roles mapping, see the following section.
+  If not set, the user has no roles.
   - `group.roleAttriubte` selects which attribute of the group entry are mapped to a user role. If an attribute has multiple
     values, the first value is selected.
   - `group.search` (optional) toggles "Active Directory" search and uses recursive search to find groups for a given user.
 
 Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and log in with the username and password from LDAP.
-
-### Groups to roles mapping
 
 ### ActiveDirectory group search
 
