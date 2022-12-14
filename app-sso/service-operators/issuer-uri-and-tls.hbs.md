@@ -104,6 +104,8 @@ spec:
 
 Confirm that your `AuthServer` serves a TLS certificate from the specified issuer by visiting its `{.status.issuerURI}`.
 
+> 👉 Learn more about [different TLS Scenarios](./tls-scenario-guides.hbs.md).
+
 > 👉 Learn more about [cert-manager and its APIs](https://cert-manager.io/).
 
 ## Configure TLS by using a Certificate
