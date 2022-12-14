@@ -123,11 +123,11 @@ To install the API Validation and Scoring package:
 1. To overwrite the default values when installing the package, create apix-values.yaml  file:
 
    ```yaml
-   apix:
-      host: "HOST"          #optional
-      backstage:
-        host: "BACKSTAGE-HOST"
-        port: "BACKSTAGE-PORT"
+    apix:
+     host: "HOST"          #optional
+     backstage:
+      host: "BACKSTAGE-HOST"
+      port: "BACKSTAGE-PORT"
    ```
 
    Where
