@@ -2,6 +2,35 @@
 
 This topic describes what to do when encountering issues with Tanzu Developer Tools for IntelliJ.
 
+## <a id="debug-reapplies-apply"></a> Tanzu Debug re-applies the workload when namespace field is empty
+
+### Symptoms
+
+If the `namespace` field of the debug launch configration is empty, it will re-apply the workload even if it exists on the cluster.
+
+### Cause
+
+Internally we gather Workloads in the cluster in the current namespace and compare it with the info specified by the user.
+If the `namespace` field is empty, it will be considered `null` and our internal checks fail.
+
+### Solution
+
+Do not leave the `namespace` field blank.
+
+## <a id="debug-config-from-dropdown"></a> Debug configurations created from launch configurations dropdown re-applies workload
+
+### Symptoms
+
+If your debug configuration is created from the launch configurations dropdown, it will re-apply the workload, even if it exists on the cluster.
+
+### Cause
+
+There is internal logic that is not run when a debug configuration is created from the dropdown. However, it is run when a debug configuration is created from the right-click context menu.
+
+### Solution
+
+Create a debug configuration from the right-click context menu.
+
 ## <a id="cannot-view-workloads"></a> Unable to view workloads on the panel when connected to GKE cluster
 
 {{> 'partials/ext-tshoot/cannot-view-workloads' }}
