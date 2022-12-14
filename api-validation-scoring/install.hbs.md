@@ -140,17 +140,20 @@ To install the API Validation and Scoring package:
    tanzu package install apix -n apix-install -p apix.apps.tanzu.vmware.com -v ${APIX_VERSION} -f apix-values.yaml
    ```
 
-3. Verify that DESCRIPTION is `Reconcile succeeded`:
+3. Verify that STATUS is `Reconcile succeeded`:
    ```console
    tanzu package installed get apix -n apix-install
    ```
    If your package has successfully reconciled, you should see a similar message as below
-
    ```console
-   NAME        PACKAGE NAME                  PACKAGE VERSION           DESCRIPTION             AGE
-   apix        apix.apps.tanxu.vmware.com    0.2.4                     Reconcile succeeded     28m
-   ```
-
+      ~ %    tanzu package repository get apix-repository --namespace apix-install
+      NAME:          apix-repository
+      VERSION:       796582
+      REPOSITORY:    projects.registry.vmware.com/mazinger/apix
+      TAG:           0.2.4
+      STATUS:        Reconcile succeeded
+      REASON:
+      ```
 ## Uninstall
 
 Uninstall the API Validation and Scoring package , by running :
