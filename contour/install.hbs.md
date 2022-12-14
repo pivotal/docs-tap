@@ -1,10 +1,8 @@
 # Install Contour
 
-> **Note** Use the instructions on this page if you do not want to use a profile to install packages.
-> All profiles include cert-manager. For more information about profiles,
-> see [Components and installation profiles](../about-package-profiles.md).
+> **Note** You will need to install cert-manager first, see [cert-manager's install instrucitons](../cert-manager/install.hbs.md).
 
-To install Contour from the Tanzu Application Platform package repository:
+To install Contour from the Tanzu Application Platform package repository without a profile:
 
 1. List version information for the package by running:
 
