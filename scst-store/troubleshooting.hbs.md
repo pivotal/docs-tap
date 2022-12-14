@@ -67,7 +67,7 @@ This is because the cluster where Store is deployed does not have `storageclass`
 
 ### Symptom
 
-When installing Store on or upgrading an existing EKS cluster to Kubernetes v1.23, the database pod shows:
+When installing Store on or upgrading an existing EKS cluster to Kubernetes v1.23, the satabase pod shows:
 
 ```console
 running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for PVC "postgres-db-pv-claim"
