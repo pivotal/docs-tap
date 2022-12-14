@@ -43,7 +43,7 @@ The `tap-values.yaml` is the file used to customize the profile in `Tanzu packag
     Where:
 
     - `SERVER-NAME` is the name of your server.
-    - `REPO-NAME` is the name of the Git repository with the `tap-values.yaml` file.
+    - `REPO-NAME` is the name of the image repository that hosts the container images.
 
 2. Update the installed profile by running:
 
