@@ -95,15 +95,15 @@ To add the API Validation and Scoring package repository to your cluster:
    --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/apix:${APIX_VERSION} \
    --namespace apix-install
    ```
-3. Verify the package installation by running:
-   ```console
-   tanzu package available list -n apix-install
-   ```
-   If the package has installed , you should be able to view a similar message :
-   ```console
-   NAME                         DISPLAY-NAME         SHORT_DESCRIPTION                  LATEST-VERSION
-   apix.apps.tanxu.vmware.com   apix                 apix.apps.tanxu.vmware.com         0.2.4
-   ```
+   3. Verify the package installation by running:
+      ```console
+      tanzu package available list -n apix-install
+      ```
+      If the package has installed , you should be able to view a similar message :
+      ```console
+      NAME                         DISPLAY-NAME     SHORT_DESCRIPTION               LATEST-VERSION
+      apix.apps.tanzu.vmware.com   apix             apix.apps.tanzu.vmware.com      0.2.4 
+      ```
 
 4. Get the status of the API Validation and Scoring package repository, and ensure the status updates to Reconcile succeeded by running:
    ```console
