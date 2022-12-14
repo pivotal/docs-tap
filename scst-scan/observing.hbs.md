@@ -325,7 +325,7 @@ set up the shared self-signed certificate.
 The shared.ca_cert_data installation value can contain a PEM-encoded CA bundle.
 The scanning component trusts the CAs contained in the bundle. The self-signed
 certificate is configured through the [shared top level
-key](../partials/_view-package-config.hbs.md).
+key](../view-package-config.hbs.md).
 
 #### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
