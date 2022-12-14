@@ -111,10 +111,14 @@ To add the API Validation and Scoring package repository to your cluster:
    ```
    For example:
    ```console
-   NAME        PACKAGE NAME                  PACKAGE VERSION           DESCRIPTION             AGE
-   apix        apix.apps.tanxu.vmware.com    0.2.4                     Reconcile succeeded     28m
+      ~ %    tanzu package repository get apix-repository --namespace apix-install
+      NAME:          apix-repository
+      VERSION:       796582
+      REPOSITORY:    projects.registry.vmware.com/mazinger/apix
+      TAG:           0.2.4
+      STATUS:        Reconcile succeeded
+      REASON:
    ```
-
 
 ## Install
 
@@ -124,14 +128,14 @@ To install the API Validation and Scoring package:
 
    ```yaml
     apix:
-     host: "HOST"          #optional
+     host: "HOST"
      backstage:
       host: "BACKSTAGE-HOST"
       port: "BACKSTAGE-PORT"
    ```
 
    Where
-   - HOST is an optional but recommended hostname, you must allocate if you decide to use the API Validation and Scoring GUI. e.g., localhost
+   - HOST is the hostname of the 'API Validation and Scoring GUI', can be left empty("") to use default value.
    - BACKSTAGE-HOST is TAP GUI or Backstage host that you want to point to, e.g., https://tap-gui.view-cluster.com
    - BACKSTAGE-PORT is a TAP GUI or Backstage port that you want to point to e.g., 443
    
@@ -146,14 +150,16 @@ To install the API Validation and Scoring package:
    ```
    If your package has successfully reconciled, you should see a similar message as below
    ```console
-      ~ %    tanzu package repository get apix-repository --namespace apix-install
-      NAME:          apix-repository
-      VERSION:       796582
-      REPOSITORY:    projects.registry.vmware.com/mazinger/apix
-      TAG:           0.2.4
-      STATUS:        Reconcile succeeded
-      REASON:
-      ```
+   tanzu package installed get apix -n apix-install
+   
+   NAME:                    apix
+   PACKAGE-NAME:            apix.apps.tanzu.vmware.com
+   PACKAGE-VERSION:         0.2.4
+   STATUS:                  Reconcile succeeded
+   CONDITIONS:              [{ReconcileSucceeded True  }]
+   USEFUL-ERROR-MESSAGE:
+   ```
+
 ## Uninstall
 
 Uninstall the API Validation and Scoring package , by running :
