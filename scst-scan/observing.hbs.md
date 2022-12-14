@@ -367,3 +367,17 @@ manually is to add registry credentials to both the developer namespace and the
 Note: This topic step does not apply to users who used
 `--export-to-all-namespaces` when setting up the Tanzu Application Platform
 package repository.
+
+#### <a id="grype-db-not-available"></a> Grype database not available
+
+Prior to running a scan, the Grype scanner will download a copy of its database. If the database fails to download, the following log message may appear.
+
+```
+Vulnerability DB [no update available] New version of grype is available: 0.50.2 [0000] WARN unable to check for vulnerability database update 1 error occurred: * failed to load vulnerability db: vulnerability database is corrupt (run db update to correct): database metadata not found: ~/Library/Caches/grype/db/3
+```
+
+To resolve this issue, ensure that Grype has access to its vulnerability database:
+* If you have set up a [mirror](../partials/scst-scan/_offline-airgap.hbs.md) of the vulnerability database, check that it is populated and reachable.
+* If you did not set up a mirror, Grype manages its database behind the scenes. Check that the cluster has access to https://anchore.com/.
+
+Note: This issue is unrelated to the Supply Chain Security Tools for Tanzu – Store.
