@@ -235,6 +235,7 @@ docs.vmware.com is built.
                 - [Conflict resolution](application-accelerator/creating-accelerators/transforms/conflict-resolution.hbs.md)
             - [Introduction to SpEL expressions](application-accelerator/creating-accelerators/spel-samples.hbs.md)
             - [Accelerator custom resource](application-accelerator/creating-accelerators/accelerator-crd.hbs.md)
+            - [Testing accelerators](application-accelerator/creating-accelerators/testing-accelerators.hbs.md)
         - [VS Code extension](application-accelerator/vscode.hbs.md))
         - [Best practices](application-accelerator/best-practices/about-best-practices.hbs.md)
             - [About best practices](application-accelerator/best-practices/about-best-practices.hbs.md)
