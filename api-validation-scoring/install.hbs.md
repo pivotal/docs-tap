@@ -35,19 +35,19 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. Install Docker if it is not already installed.
 2. Log in to your image registry by running:
-   ```
+   ```console
    docker login MY-REGISTRY
    ```
 
    Where `MY-REGISTRY` is your own container registry.
 3. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
 
-   ```
+   ```console
    docker login registry.tanzu.vmware.com
    ```
 4. Set up environment variables for installation use by running:
 
-   ```
+   ```console
    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
    export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
    export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
@@ -63,11 +63,11 @@ To relocate images from the VMware Tanzu Network registry to your registry:
    * `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location for the installation files for API Validation and Scoring.
 5. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
    To query for the available `imgpkg` CLI versions on VMWare Tanzu Network Registry, run:
-   ```
+   ```console
    imgpkg tag list -i registry.tanzu.vmware.com/tanzu-application-platform/apix | grep -v sha | sort -V
    ```
 6. Relocate the images with the `imgpkg` CLI by running:
-   ```
+   ```console
    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/apix:${APIX_VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/apix
    ```
 
@@ -85,13 +85,13 @@ Tanzu CLI packages are available on repositories. Adding the API Validation and 
 To add the API Validation and Scoring package repository to your cluster:
 
 1. Create a namespace called `apix-install` for deploying API Validation and Scoring package by running:
-   ```
+   ```console
    kubectl create ns apix-install
    ```
    This namespace keeps the objects grouped together logically.
 
 2. Add the API Validation and Scoring package repository to the cluster by running:
-   ```
+   ```console
    tanzu package repository add apix-repository \
    --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/apix:${APIX_VERSION} \
    --namespace apix-install
@@ -107,11 +107,11 @@ To add the API Validation and Scoring package repository to your cluster:
    ```
 
 4. Get the status of the API Validation and Scoring package repository, and ensure the status updates to Reconcile succeeded by running:
-   ```
+   ```console
       tanzu package repository get apix-repository --namespace apix-install
    ```
    For example:
-   ```
+   ```console
    NAME        PACKAGE NAME                  PACKAGE VERSION           DESCRIPTION             AGE
    apix        apix.apps.tanxu.vmware.com    0.2.4                     Reconcile succeeded     28m
    ```
@@ -155,11 +155,11 @@ To install the API Validation and Scoring package:
 ## Uninstall
 
 Uninstall the API Validation and Scoring package , by running :
-   ```
+   ```console
    tanzu package installed delete apix -n apix-install
    ```
    For example,
-   ```
+   ```console
     % tanzu package installed delete apix -n apix-install
     Deleting installed package 'apix' in namespace 'apix-install'. Are you sure? [y/N]: y
     Uninstalling package 'apix' from namespace 'apix-install'
