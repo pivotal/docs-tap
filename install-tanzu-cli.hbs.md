@@ -2,9 +2,15 @@
 
 This topic describes how to:
 
-- [Accept Tanzu Application Platform EULAs](#accept-eulas)
-- [Set the Kubernetes cluster context](#cluster-context)
-- [Install or update the Tanzu CLI and plug-ins](#cli-and-plugin)
+- [Accept Tanzu Application Platform EULAs and installing Tanzu CLI](#accept-tanzu-application-platform-eulas-and-installing-tanzu-cli)
+  - [ Accept the End User License Agreements](#-accept-the-end-user-license-agreements)
+    - [ Example of accepting the Tanzu Application Platform EULA](#-example-of-accepting-the-tanzu-application-platform-eula)
+  - [ Set the Kubernetes cluster context](#-set-the-kubernetes-cluster-context)
+  - [ Install or update the Tanzu CLI and plug-ins](#-install-or-update-the-tanzu-cli-and-plug-ins)
+    - [ Install Tanzu CLI: Linux or macOS](#-install-tanzu-cli-linux-or-macos)
+    - [ Install Tanzu CLI: Windows](#-install-tanzu-cli-windows)
+  - [ Install/Update Tanzu CLI plug-ins](#-installupdate-tanzu-cli-plug-ins)
+  - [Next steps](#next-steps)
 
 
 ## <a id='accept-eulas'></a> Accept the End User License Agreements
@@ -74,6 +80,10 @@ To set the Kubernetes cluster context:
 
 You use the Tanzu CLI and plug-ins to install and use the Tanzu Application Platform functions
 and features.
+
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform
+> components and profiles](../about-package-profiles.hbs.md).
 
 To install the Tanzu CLI and plug-ins:
 

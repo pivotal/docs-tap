@@ -3,9 +3,9 @@
 This topic describes how to install Application Accelerator
 from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-Both the full and light profiles include Application Accelerator.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform
+> components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='app-acc-prereqs'></a>Prerequisites
 
@@ -37,8 +37,8 @@ When you install the Application Accelerator, you can configure the following op
 | domain | tap.example.com | Top-level domain to use for ingress configuration, defaults to `shared.ingress_domain` |
 | tls.secret_n_ame | tls | The name of the secret |
 | tls.namespace | tanzu-system-ingress | The namespace for the secret |
-| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.                         
-| telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?  
+| telemetry.retain_invocation_events_for_no_days | 30 | The number of days to retain recorded invocation events resources.
+| telemetry.record_invocation_events | true | Should the system record each engine invocation when generating files for an accelerator?
 
 VMware recommends that you do not override the defaults for `registry.secret_ref`,
 `server.engine_invocation_url`, or `engine.service_type`.
