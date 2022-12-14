@@ -341,7 +341,7 @@ UNAUTHORIZED: unauthorized to access repository
 The recommended migration path for users who are setting up their namespaces
 manually is to add registry credentials to both the developer namespace and the
 `scan-link-system` namespace, using these
-[instructions](../partials/_set-up-namespaces.hbs.md).
+[instructions](../set-up-namespaces.hbs.md).
 
 Note: This topic step does not apply to users who used
 `--export-to-all-namespaces` when setting up the Tanzu Application Platform
