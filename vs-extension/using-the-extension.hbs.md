@@ -18,7 +18,6 @@
 * Click "Apply Workload".
 * Output can be seen in the "Tanzu Output" pane of Visual Studio's Output tool window.
 
-More info in our [Wiki](https://github.com/vmware-tanzu/tanzu-developer-tools-for-visual-studio/wiki/Deploying-workloads-to-TAP)!
 
 ### Delete Workload
 
@@ -70,10 +69,10 @@ Get-Process "tilt" | ForEach-Object { $_.kill() }
 
 ###### Getting a workload running in TAP:
 * The `tanzu` cli `apps` plugin facilitates pushing workloads to TAP via `workload apply` ([read all about it here](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-cli-plugins-apps-command-reference-commands-details-workload_create_update_apply.html?)).
-* The [`steeltoe-weatherforecast` accelerator](https://github.com/sample-accelerators/steeltoe-weatherforecast) provides a sample .NET app which is ready to be deployed to TAP out-of-the-box.
-  * Clone `https://github.com/sample-accelerators/steeltoe-weatherforecast.git`
+* The [`steeltoe-weatherforecast` accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/weatherforecast-steeltoe) provides a sample .NET app which is ready to be deployed to TAP out-of-the-box.
+  * Clone the project and go to the `weatherforecast-steeltoe`
   * From the project's root directory, invoke `tanzu apps workload apply -f config/workload.yaml`
-    * NOTE: by default this will create workload from the code in the GitHub repo. More info on deploying from your local source can be found in the [docs](https://github.com/sample-accelerators/steeltoe-weatherforecast#deploying-to-kubernetes-as-a-tap-workload-with-tanzu-cli).
+    * NOTE: by default this will create workload from the code in the GitHub repo. More info on deploying from your local source can be found in the repo's README.
 
 ###### Starting Remote Debug:
 * Right click on a project in the Solution Explorer, select _Tanzu: Remote Debug_.
