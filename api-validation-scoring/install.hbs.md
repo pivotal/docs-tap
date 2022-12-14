@@ -49,7 +49,6 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
    ```console
    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
-   export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
    export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
    export APIX_VERSION=VERSION-NUMBER
    export INSTALL_REPO=TARGET-REPOSITORY
