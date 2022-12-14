@@ -1,7 +1,7 @@
 # Observability and troubleshooting
 
 This section outlines observability and troubleshooting methods and issues for using the Supply
-Chain Security Tools - Scan components.
+Chain Security Tools - Scan> components.
 
 ## <a id="observability"></a> Observability
 
@@ -284,8 +284,7 @@ Where `DEV-NAMESPACE` is the name of the developer namespace you want to use.
 
 Add the `app.kubernetes.io/part-of` label to the Scan Policy. See [Enable Tanzu Application Platform
 GUI to view ScanPolicy
-Resource](policies.hbs.md#gui-view-scan-policy)
-for more details.
+Resource](policies.hbs.md#gui-view-scan-policy).
 
 #### Lookup error when connecting to SCST - Store
 
@@ -295,8 +294,8 @@ If your scan pod is failing, you might see the following connection error in the
 dial tcp: lookup metadata-store-app.metadata-store.svc.cluster.local on 10.100.0.10:53: no such host
 ```
 
-This error is caused by a connection error while attempting to connect to the
-local cluster URL. If this is a multicluster deployment, set the
+A connection error while attempting to connect to the
+local cluster URL causes this error. If this is a multicluster deployment, set the
 `grype.metadataStore.url` property in your Build profile `values.yaml`. You must
 set the ingress domain of SCST - Store which is deployed in the View cluster.
 For information about this configuration, see [Install Build
@@ -316,26 +315,23 @@ Verify that the URL starts with either `http://` or `https://`.
 
 #### <a id="deprecated-pre-v1.2-templates"></a> Deprecated pre-v1.2 templates
 
-If the scan phase is in `Error` and the status condition message is
+If the scan phase is in `Error` and the status condition message is:
 
 ```console
 Summary logs could not be retrieved: . error opening stream pod logs reader: container summary is not valid for pod scan-grypeimagescan-sample-public-zmj2g-hqv5g
 ```
 
-it might be a consequence of using Grype Scanner ScanTemplates shipped with
-Supply Chain Security Tools - Scan v1.1 or earlier. These ScanTemplates are deprecated and are not
+This error might be a consequence of using Grype Scanner ScanTemplates shipped with
+SCST - Scan v1.1 or earlier. These ScanTemplates are deprecated and are not
 supported in Tanzu Application Platform v1.4.0 and later.
 
 There are two options to resolve this issue:
 
-Upgrade
-: Upgrade to the latest Grype Scanner version. This automatically replaces the old ScanTemplates with
-  the upgraded ScanTemplates.
+1. Upgrade to the latest Grype Scanner version. This automatically replaces the old ScanTemplates with the upgraded ScanTemplates.
 
-Create a ScanTemplate
-: Follow the steps in [Create a scan template](create-scan-template.hbs.md).
+1. Create a ScanTemplate. Follow the steps in [Create a scan template](create-scan-template.hbs.md).
 
-#### <a id="inc-cnfg-self-signed-cert"></a> Incorrectly configured self-signed cert
+#### <a id="inc-cnfg-self-signed-cert"></a> Incorrectly configured self-signed certificate
 
 The following error in the pod logs indicate that the self-signed certificate might be incorrectly
 configured:
@@ -354,7 +350,7 @@ The self-signed certificate is configured by [using the shared top-level key](..
 
 #### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
-The `docker` field and related sub-fields by SCST - Scan Controller, Grype
+The `docker` fieldand related sub-fields by SCST - Scan Controller, Grype
 Scanner, or Snyk Scanner were deprecated in Tanzu Application Platform v1.4.0.
 Previously these text boxes might be used to populate the `registry-credentials`
 secret. If you encounter the following error during installation:
