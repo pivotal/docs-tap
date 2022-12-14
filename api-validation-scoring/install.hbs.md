@@ -89,7 +89,7 @@ Tanzu CLI packages are available on repositories. Adding the API Validation and 
 * `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
 * `INSTALL_REPO` is `tanzu-application-platform`
 * `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
-* `APIX_VERSION` is your 'API Validation and Scoring' package version. For example, `0.2.4`
+* `APIX_VERSION` is your API Validation and Scoring package version. For example, `0.2.4`
 
 To add the API Validation and Scoring package repository to your cluster:
 
