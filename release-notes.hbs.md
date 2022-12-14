@@ -53,6 +53,9 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 #### <a id="1-4-0-vscode-new-features"></a> Tanzu Developer Tools for Visual Studio Code
 - Developer sandbox: allows developers to live update their code — as well as simultaneously debug the updated code — without having to turn off Live Update when debugging
 
+#### <a id="1-4-0-intellij-new-features"></a> Tanzu Developer Tools for Intellij
+- Developer sandbox: allows developers to live update their code — as well as simultaneously debug the updated code — without having to turn off Live Update when debugging
+
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
