@@ -24,14 +24,25 @@ Choose OpenRewrite-based transformation over ReplaceText-based transformation wh
 
 VMware has found that the following rules keep our set of Accelerators clear and findable for our end users.
 
-- Accelerators to have an intuitive name and short description that reflects their purpose. Do not include the word ‘accelerator’ in the name.
-- Accelerators to have an appropriate and intuitive icon.
-- Accelerators to have tags that reflect language, framework, and type of service. For example, database, messaging, and so on. This helps in searching for an accelerator by tags. For tag names use lowercase letters. Tag values need to consist of [a-z0-9+#] separated by [-] and at most 63 characters
-- Accelerators expose options to allow configuring an accelerator for different use cases instead of creating multiple, yet very similar accelerators.
-- Options to be straightforward, each having a description that states the role it plays in the accelerator. Options having the default value when appropriate.
-- Options to be designed in a way that they do not become too long making it difficult to navigate. Make options conditional on others where appropriate.
-- Free text options which have certain limitations on their values must ensure that these limitations are met by providing a regular expression-based validation. This ensures early feedback on invalid user input.
-- Generated application skeletons must have a detailed README that describes the function and structure of a generated application. It also must provide detailed information about how developers can build and deploy a generated application of the accelerator and how to use it.
+- Have an intuitive name and short description that reflects the accelerators purpose. The word ‘accelerator’
+  must not be in the name.
+- Have an appropriate and intuitive icon.
+- Have tags that reflect language, framework, and type of service. For example,
+database, messaging, and so on. This helps when searching for an accelerator by tags. Tag names must
+use lowercase letters, consist of [a-z0-9+#] separated by [-], and not exceed 63
+characters.
+- Accelerators must expose options to allow configuring an accelerator for different use cases instead
+  of creating multiple very similar accelerators.
+- Options must be straightforward, having a description that states the role it plays in the
+accelerator. Options must have the default value when appropriate.
+- Options must be short so that they are easy to navigate. Options must be conditional on other options
+if appropriate.
+- Options that have limitations on their values must validate these
+limitations with a regular expression-based validation. This validation ensures
+early feedback on invalid user input.
+- Generated application skeletons must have a detailed README file that describes the function and
+structure of a generated application. It must provide detailed information about how developers
+can build and deploy a generated application of the accelerator and how to use it.
 
 ## <a id="tests"></a> Tests
 
@@ -41,8 +52,7 @@ Having an Accelerator that generates an Application Skeleton without having a go
 
 It is a good habit to have tests for the Application Skeleton:
 
-- You must have an overall application test that bootstraps the application and sees if it comes
-  online such as the application [`smoke`](https://en.wikipedia.org/wiki/Smoke_testing_(software)).
+- You must test the application to confirm it comes online.
 - A test per layer of the Application is needed. For example, presentation layer, business layer, or
 data layer. These tests can be unit-tests leveraging stubbing or mocking frameworks.
 - An integration test per layer of the Application is also needed. Especially the presentation
