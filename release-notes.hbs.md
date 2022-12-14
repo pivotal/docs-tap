@@ -98,7 +98,8 @@ target an alternative Sigstore stack, specify `policy.tuf_mirror` and
 This release has the following security fixes, listed by area and component.
 
 #### <a id='1-4-0-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
-- `python` has been updated to `3.7.5-22.ph3`
+
+- `python` is updated to `3.7.5-22.ph3`.
 
 #### <a id="1-4-0-api-auto-registration-fixes"></a> API Auto Registration
 
