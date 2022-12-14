@@ -1,5 +1,7 @@
 # Troubleshooting
 
+## How to debug API Auto Registration
+
 This topic includes commands for debugging or troubleshooting the APIDescriptor CR.
 
 1. Get the details of APIDescriptor CR.
@@ -33,3 +35,21 @@ This topic includes commands for debugging or troubleshooting the APIDescriptor 
 
 5. If using OpenAPI v2 specifications with `schema.$ref`, the specifications fail validation due to a known issue.
 To pass the validation, you can convert the specifications to OpenAPI v3 by pasting your specifications into https://editor.swagger.io/ and selecting "Edit > Convert to OpenAPI 3".
+
+## APIDescriptor CRD issues
+
+This topic includes some issues users may find and how to solve them.
+
+### APIDescriptor CRD shows message of `connection refused` but service is up and running
+
+If your APIDescription CRD shows status and message similar to this:
+
+```
+    Message:               Get "https://spring-petclinic.example.com/v3/api-docs": dial tcp 12.34.56.78:443: connect: connection refused
+    Reason:                FailedToRetrieve
+    Status:                False
+    Type:                  APISpecResolved
+    Last Transition Time:  2022-11-28T09:59:13Z
+```
+
+Addionally, you are able to access "https://spring-petclinic.example.com/v3/api-docs", and you are using TAP 1.4.x, you may be encontering a problem with the way TLS is configured. Workloads may be using ClusterIssuer for their TLS configuration but API Auto Registration does not yet support it. Full support for ClusterIssuer in API Auto Registration is planned. To solve this issue you can either deactivate TLS by setting `shared.ingress_issuer: ""`, or inform `shared.ca_cert_data` key as mentioned in [our installation guide](installation.md).
