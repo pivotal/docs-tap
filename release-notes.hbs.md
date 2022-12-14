@@ -50,9 +50,9 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 - Added new `ClassClaim` API that allows claims for service instances to be created by referring to a `ClusterInstanceClass`. See [Services Toolkit documentation](./services-toolkit/about.hbs.md) for more information.
 - Added corresponding `tanzu services class-claims` CLI plug-in command
 
-#### <a id="1-4-0-api-validation-and-scoring"></a> API Validation And Scoring Toolkit
-  - API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API Specification is generated from the API Auto Registration feature in TAP .
-  There is a Validation Analysis card  on the API Overview page on the TAP GUI that displays the summary of the scores. If the user wants to get more details of the scores, they can click on the 'More Details' link and can get a detailed view.
+#### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
+
+- API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API specification is generated from the API Auto Registration of Tanzu Application Platform. See [API Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
 
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
 
