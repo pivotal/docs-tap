@@ -152,6 +152,17 @@ as images.
 - The `Generation` field in the **Overview** section is not updated when a scan policy is amended, however clicking on the `Scan Policy` link will show the most current scan policy details applied to the stage.
 - Customizing the `Source Tester` stage in an OOTB supply chain will not show details in the **Stage Details** section.
 
+#### <a id="1-4-0-intellij-known-issues"></a> Intellij Extension
+
+- The context menu `Describe` action  in the Activity panel fails when used on PodIntent resources with an error:
+  ```kubectl describe PodIntent my-app -n my-apps-namespace
+  Warning: conventions.apps.tanzu.vmware.com/v1alpha1 PodIntent is deprecated; use conventions.carto.run/v1alpha1 PodIntent instead
+  Error from server (NotFound): podintents.conventions.apps.tanzu.vmware.com "my-app" not found
+
+  Process finished with exit code 1
+  ```
+  When there multiple resource types with the same kind, attempting to describe a resource of that kind without fully qualifying the api version causes this error.
+
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
