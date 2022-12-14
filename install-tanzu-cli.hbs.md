@@ -149,6 +149,11 @@ Choose the install scenario that is right for you:
    + [Cleanly Install Tanzu CLI](#tanzu-cli-clean-install)
    + [Updating Tanzu CLI Installed for a Previous Tanzu Application Platform Release](#update-prev-tap-tanzu-cli)
 
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform
+> components and profiles](../about-package-profiles.hbs.md).
+
+To install the Tanzu CLI and plug-ins:
 
 ### <a id='tanzu-cli-clean-install'></a> Cleanly Install Tanzu CLI
 
