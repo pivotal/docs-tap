@@ -1,11 +1,5 @@
-# API scoring and validation
+# API Validation and Scoring
 
-The APIX solution aims to manage the end-to-end lifecycle of APIs.
+This specific feature of API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API Specification is generated from the [API Auto Registration](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-api-auto-registration-about.html) feature in TAP. Once an API is registered, the API Specification goes through static scan analysis and is validated. Based on the validation, a scoring is provided that indicates to  developers / DevOps, the quality and health of their API Specification as it relates to Documentation, OpenAPI best practices, and Security. There is a Validation Analysis card  on the API Overview page on the TAP GUI that displays the summary of the scores. If the user wants to get more details of the scores, they can click on the 'More Details' link and can get a detailed view.
 
-This specific feature of APIX focuses on scanning and validating an API specification. The API spec is generated from the API autoregistration feature in TAP. Once that is done, APIX scans, lints, and validates the API spec. Based on the validation, a scoring is provided that tells the dev / devops, the quality and health of their API specification as it related to Documentation, OpenAPI best practices, and Security. There is a card on the API detail page (on the TAP GUI) that displays the summary of the scores. If the user wants to get more details of the scores, they can click on the 'more details' link and can get a detailed view.
-
-The solution helps developers ensure that their APIs are more secure and robust, by providing feedback and recommendations early on in the software development lifecycle. Based on the feedback and recommendations, the dev can modify their API Specs and improve their scores, and hence improve the posture of their APIs. The solution also helps  DevOps / DevSecOps understand how well the APIs have been implemented.
-
-When a workload is applied , an automated workflow using the supply chain leverages the API Auto Registration. The API Auto Registration Controller reconciles the APIx CR and updates the API entity in Tanzu Application Platform GUI to achieve the  automated API Scoring and validation of the API Specification.
-
-![overview_workflow.png](assets/overview_workflow.png)
+The solution helps developers ensure that their APIs are more secure and robust, by providing feedback and recommendations early on in the software development lifecycle. Based on the feedback and recommendations, the developers can modify their API Specifications and improve their scores, and hence improve the posture of their APIs. The solution also helps  DevOps / DevSecOps understand how well the APIs have been implemented.
