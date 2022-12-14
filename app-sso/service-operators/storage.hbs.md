@@ -14,6 +14,25 @@ encrypted client-server communication -- AppSSO enforces TLS by default.
 `.spec.storage` is not set.
 </p>
 
+<p class="note">
+<strong>Note:</strong>
+While data in motion is encrypted through TLS, data at rest is _not_ encrypted by default through `AuthServer`. Each
+storage provider is responsible for encrypting their own data. Please see the [data types section](#data-types) for more
+info on what is stored.
+</p>
+
+<p>
+<strong>Best Practice for Securing Data at Rest:</strong>
+In order to be compliant with, for example, HIPAA, FISMA, PCI, GDPR, it is necessary to encrypt data at rest. Securing
+the underlying infrastructure that Redis utilizes is crucial to protect against a potential attack.
+The National Institute for Standards and Technology – Federal Information Processing Standards (NIST-FIPS) sets the
+standard for best practice when it comes to data security in the US.
+Symmetric cryptography can be utilized to protect data at rest. This basically means that the same key encrypts and
+decrypts the data, so there is no need for a different private and public key. The [Advanced Encryption Standard (AES)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf)
+encryption algorithm is an industry standard for securing data at rest. For the highest level security, it is recommended
+to use a 256-bit key.
+</p>
+
 ## Configuring Redis
 
 To configure Redis as authorization server storage, you must have the following details about your Redis server:
@@ -127,3 +146,26 @@ kubectl get authserver <authserver-name> \
   --namespace <authserver-namespace> \
   --output jsonpath="{.status.storage.redis}" | jq
 ```
+
+## Data types
+The following data gets stored in Redis
+
+### Client information
+- Authorization grant type
+- Client id
+
+### User session
+- Session token
+- Refresh token
+
+### Identity and access tokens
+_This is the data that carries the highest level risk._
+- Authentication token (includes the principal)
+  - Personally identifying information such as for example:
+    - email
+    - name
+
+### Approved or rejected consents
+- A client identifier
+- A reference to the user
+- A list of the Authorities that the user has granted to this client
