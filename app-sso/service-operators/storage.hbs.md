@@ -48,6 +48,12 @@ To configure Redis as authorization server storage, you must have the following 
 <strong>Caution:</strong>
 AppSSO takes _secure-by-default_ approach and will not establish non-encrypted communication channels.
 The `AuthServer` resource will enter an error state should a non-encrypted connection be attempted.
+
+<strong>Note:</strong>
+_mTLS_ is not supported.
+
+Vanilla Redis uses _mTLS_ by default. It can be turned off by setting `tls-auth-clients no`.
+See [Redis' docs on _Client certificate authentication_](https://redis.io/docs/management/security/encryption/#client-certificate-authentication).
 </p>
 
 The following steps introduce the path to configuring Redis with AppSSO:
@@ -60,7 +66,7 @@ The following steps introduce the path to configuring Redis with AppSSO:
 
 If your Redis includes a custom or non-public Server CA certificate, you must instruct AppSSO to
 trust the CA certificate. This is required for the authorization server to communicate with your
-Redis over TLS. See [CA certificates](ca-certs.md) for more information about configuring a CA certificate with AppSSO.
+Redis over TLS. See [CA certificates](./ca-certs.hbs.md) for more information about configuring a CA certificate with AppSSO.
 
 ### Configuring a Redis Secret
 
@@ -112,13 +118,27 @@ spec:
         name: redis-credentials
 ```
 
-Once `AuthServer` is applied, ensure that its `Status` is equivalent to `Ready`, and you may query the status of the
-configured storage as follows:
+Once `AuthServer` is applied, ensure that its `Status` is equivalent to `Ready`.
+
+### Inspecting storage of an AuthServer
+
+You can inspect the status of an `AuthServer`'s storage as follows:
 
 ```bash
 kubectl get authserver <authserver-name> \
   --namespace <authserver-namespace> \
   --output jsonpath="{.status.storage.redis}" | jq
+```
+
+And you will the see its actual Redis host and port, for example:
+
+```json
+{
+  "redis": {
+    "host": "ci-redis.authservers.svc.cluster.local",
+    "port": "6379"
+  }
+}
 ```
 
 ## Storage provided by default
@@ -148,24 +168,58 @@ kubectl get authserver <authserver-name> \
 ```
 
 ## Data types
+
 The following data gets stored in Redis
 
 ### Client information
+
 - Authorization grant type
 - Client id
 
 ### User session
+
 - Session token
 - Refresh token
 
 ### Identity and access tokens
+
 _This is the data that carries the highest level risk._
+
 - Authentication token (includes the principal)
   - Personally identifying information such as for example:
     - email
     - name
 
 ### Approved or rejected consents
+
 - A client identifier
 - A reference to the user
 - A list of the Authorities that the user has granted to this client
+
+## Known limitations of storage providers 
+
+### Redis Cluster
+
+When your storage is provided by _Redis Cluster_, then you may require additional settings.
+
+In particular the nodes and the maximum number of redirects should be set in your _Service Bindings_ `Secret`.
+For example, in addition to the entries described by [how to configure a Redis `Secret`](#configuring-a-redis-secret),
+you need to provide `cluster` settings:
+
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: redis-cluster-credentials
+  namespace: authservers
+type: servicebinding.io/redis
+stringData:
+  #...
+  cluster.max-redirects: 5
+  cluster.nodes: 100.90.1.10:6379,100.90.1.11:6379,100.90.1.12:6379
+```
+
+<p class="note">
+<strong>Note:</strong>
+`cluster.nodes` must be a comma-separated list of `<ip>:<port>`.
+</p>
