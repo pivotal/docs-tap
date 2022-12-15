@@ -2,12 +2,8 @@
 
 The AppSSO package is currently published as part of the Tanzu Application Platform package repository.
 
----
-
-👉 If you are already running TAP with `run`, `iterate`, or `full` profiles, AppSSO is installed already. However, you
-may want to review its configuration.
-
----
+>**Note** Follow the steps in this topic if you do not want to use a profile to install Application Single Sign-On. 
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../../about-package-profiles.hbs.md).
 
 ## What's inside
 
