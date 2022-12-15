@@ -96,6 +96,10 @@ To install Cluster Essentials, see [Deploying Cluster Essentials](https://docs.v
 You use the Tanzu CLI and plug-ins to install and use the Tanzu Application Platform functions
 and features.
 
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> the Tanzu CLI and plug-ins. For more information about profiles, see [About Tanzu Application Platform
+> components and profiles](about-package-profiles.hbs.md).
+
 To install the Tanzu CLI and plug-ins:
 
 1. Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com).
