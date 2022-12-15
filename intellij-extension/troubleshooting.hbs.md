@@ -90,3 +90,23 @@ If that doesn't work for you, delete the old corrupted launch configuration and 
 ## <a id="live-update-timeout"></a> Timeout error when Live Updating
 
 {{> 'partials/ext-tshoot/timeout-err-live-updating' }}
+
+## <a id="panel-empty-gke"></a> Tanzu Panel empty when using a GKE cluster on MacOS
+
+### Symptom
+
+Tanzu Panel doesn't show workloads or any other resources when using a GKE cluster on MacOS. Other tools like the [Tanzu CLI Apps plug-in](../cli-plugins/apps/overview.hbs.md) show resources correctly
+
+### Cause
+
+To properly authenticate to a GKE cluster the [gke-cloud-auth-plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke) is required, but when starting IntelliJ from Dock/Spotlight environment variables set via `.profile`, `.bash_profile` or `.zshrc` are not available. See IntelliJ [issue](https://youtrack.jetbrains.com/issue/IDEA-99154).
+
+This may cause the `gke-cloud-auth-plugin` to be missing from the `PATH` when launching IntelliJ and will prevent the Tanzu Panel from reaching the cluster
+
+### Solution
+
+Open IntelliJ from command line e.g.
+
+```
+open /Applications/IntelliJ\ IDEA.app
+```
