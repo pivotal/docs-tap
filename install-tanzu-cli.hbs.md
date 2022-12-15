@@ -144,6 +144,10 @@ If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
 
 ## <a id='cli-and-plugin'></a> Install or update the Tanzu CLI and plug-ins
 
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> the Tanzu CLI and plug-ins. For more information about profiles, see [About Tanzu Application Platform
+> components and profiles](about-package-profiles.hbs.md).
+
 Choose the install scenario that is right for you:
 
    + [Cleanly Install Tanzu CLI](#tanzu-cli-clean-install)
