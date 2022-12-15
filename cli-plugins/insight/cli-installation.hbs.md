@@ -8,7 +8,7 @@
 This topic explains how to install the Tanzu Insight plug-in by itself, after the user has installed the Tanzu CLI.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
-> PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform
+> the Tanzu Insight CLI plug-in. For more information about profiles, see [About Tanzu Application Platform
 > components and profiles](../../about-package-profiles.hbs.md).
 
 1. From your `tanzu` directory, install the local version of the Tanzu Insight plug-in you downloaded by running:

@@ -4,7 +4,7 @@ This document describes how to install Service Bindings
 from the Tanzu Application Platform package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
-> Services Toolkit.
+> Service Bindings.
 > For more information about profiles, see
 > [About Tanzu Application Platform components and profiles](../overview.hbs.md#about-package-profiles).
 
