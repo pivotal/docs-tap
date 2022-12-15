@@ -10,7 +10,7 @@ Before starting this procedure, ensure that the service operator and application
 - Created a service instance.
 - Claimed the service instance.
 
-For more information about these prerequisites, see [Set up services for consumption by developers](set-up-services.md). Also, for important background, see [About consuming services on Tanzu Application Platform](about-consuming-services.md).
+For more information about these prerequisites, see [Set up services for consumption by developers](set-up-services.md). Also, for important background, see [Consume services on Tanzu Application Platform](about-consuming-services.md).
 
 ## <a id="you-will"></a>What you will do
 
@@ -129,13 +129,13 @@ This is the value to pass to `--service-ref` to create the application workload.
 
     Using the `--service-ref` flag instructs Tanzu Application Platform to bind the application workload to the service provided in the `ref`.
 
-    > **Note** You are not passing a service ref to the `RabbitmqCluster` service instance directly,
-    > but rather to the claim that has claimed the `RabbitmqCluster` service instance.
-    > See the [consuming services diagram](#overview) at the beginning of this walkthrough.
+    You are not passing a service ref to the `RabbitmqCluster` service instance directly,
+    but rather to the claim that has claimed the `RabbitmqCluster` service instance.
+    See the [consuming services diagram](#overview) at the beginning of this walkthrough.
 
-    > **Note** The Deliverable produced will eventually fail if the referenced resource in `--service-ref` consistently does not exist.
-    > This behaviour is encoded in the OOTB Supply Chains via the use of the [OOTB templates](../scc/ootb-templates.md).
-    > The `service-bindings` OOTB template can be used to replicate the same behaviour in bespoke Supply Chains.
+    > **Note** The Deliverable produced eventually fails if the referenced resource in `--service-ref` consistently does not exist.
+    > This behavior is encoded in the OOTB supply chains through the use of the [OOTB templates](../scc/ootb-templates.md).
+    > The `service-bindings` OOTB template can be used to replicate the same behavior in bespoke supply chains.
 
 2. After the workloads are ready, visit the URL of the `spring-sensors-consumer-web` app.
 Confirm that sensor data, passing from the `spring-sensors-producer` workload to

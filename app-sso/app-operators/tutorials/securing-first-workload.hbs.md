@@ -8,9 +8,9 @@ using AppSSO service, running on Tanzu Application Platform (TAP).
 Before starting the tutorial, please ensure that the following items are addressed:
 
 - **RECOMMENDED** Familiarity with [Workloads and AppSSO](../register-an-app-with-app-sso.md#workloads)
-- Tanzu Application Platform (TAP) `v{{ vars.tap_version }}` or above is available and fully reconciled in your cluster.
+- Tanzu Application Platform (TAP) `v1.2.0` or above is available and fully reconciled in your cluster.
     - Please ensure that you are using one of the following TAP Profiles: `run`, `iterate`, or `full`.
-- AppSSO package `v{{ vars.app-sso.version }}` or above is available and reconciled successfully on your cluster.
+- AppSSO package is available and reconciled successfully on your cluster.
 - AppSSO has at least one [identity provider configured](../../service-operators/identity-providers.md).
 - Access to [AppSSO Starter Java](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java)
 accelerator used in this tutorial.

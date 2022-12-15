@@ -1,4 +1,4 @@
-# Using Server workloads
+# Use server workloads
 
 This topic describes how to use the `server` workload type.
 

@@ -1,4 +1,4 @@
-# Security Context Constraint for OpenShift
+# Security context constraint for OpenShift
 
 <!-- The below partial is in the docs-tap/partials directory -->
 

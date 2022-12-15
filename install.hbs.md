@@ -1,4 +1,4 @@
-# Installing Tanzu Application Platform package and profiles
+# Install Tanzu Application Platform package and profiles
 
 This topic describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository.
@@ -79,7 +79,12 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 Tanzu CLI packages are available on repositories. Adding the Tanzu Application Platform package repository makes Tanzu Application Platform and its packages available for installation.
 
->**Note** [Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. For simplicity, this section assumes you have relocated images to a registry. Refer to that section to fill in the stubbed out variables.
+[Relocate images to a registry](#relocate-images) is strongly recommended but not required for installation. If you skip this step, you can use the following values to replace the corresponding variables:
+
+- `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
+- `INSTALL_REPO` is `tanzu-application-platform`
+- `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
+- `TAP_VERSION`is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 To add the Tanzu Application Platform package repository to your cluster:
 
@@ -195,7 +200,7 @@ To add the Tanzu Application Platform package repository to your cluster:
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials.
 
-For more information about profiles, see [About Tanzu Application Platform components and profiles](about-package-profiles.md).
+For more information about profiles, see [Components and installation profiles](about-package-profiles.md).
 
 To prepare to install a profile:
 
@@ -349,7 +354,7 @@ contour:
 
 Tanzu Application Platform is part of [VMware's CEIP program](https://www.vmware.com/solutions/trustvmware/ceip-products.html) where data is collected to help improve the customer experience. By setting `ceip_policy_disclosed` to `true` (not a string), you acknowledge the program is disclosed to you and you are aware data collection is happening. This field must be set for the installation to be completed.
 
-See [Opting out of telemetry collection](opting-out-telemetry.hbs.md) for more information.
+See [Opt out of telemetry collection](opting-out-telemetry.hbs.md) for more information.
 
 ### <a id='additional-build-service-config'></a> (Optional) Additional Build Service configurations
 
@@ -519,6 +524,6 @@ To exclude packages from a Tanzu Application Platform profile:
 
 ## <a id='next-steps'></a>Next steps
 
-- (Optional) [Installing Individual Packages](install-components.html)
-- [Setting up developer namespaces to use installed packages](set-up-namespaces.html)
+- (Optional) [Install individual packages](install-components.html)
+- [Set up developer namespaces to use installed packages](set-up-namespaces.html)
 - [Replace the default ingress issuer](security-and-compliance/ingress-certificates.hbs.md#replacing-the-default-ingress-issuer)

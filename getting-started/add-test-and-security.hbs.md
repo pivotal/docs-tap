@@ -1,4 +1,4 @@
-# Add testing and security scanning to your application
+# Add testing and scanning to your application
 
 This how-to guide walks you through installing the optional OOTB Supply Chain with Testing and the optional OOTB Supply Chain with Testing and Scanning.
 
@@ -16,7 +16,9 @@ For more information about available supply chains, see [Supply chains on Tanzu 
 
 The default Out of the Box (OOTB) Supply Chain Basic and its dependencies were installed on your cluster during the Tanzu Application Platform install. As demonstrated in this guide, you can add testing and security scanning to your application.
 
-The following installations also provide a sample Tekton pipeline that tests your sample application.  The pipeline is configurable. Therefore, you can customize the steps to perform
+>**Note** When you activate OOTB Supply Chain with Testing, it deactivates OOTB Supply Chain Basic.
+
+The following installations also provide a sample Tekton pipeline that tests your sample application. The pipeline is configurable. Therefore, you can customize the steps to perform
 either additional testing or other tasks with Tekton Pipelines.
 
 >**Important** You can only have one Tekton pipeline per namespace.
@@ -43,9 +45,9 @@ The `tap-values.yaml` is the file used to customize the profile in `Tanzu packag
     Where:
 
     - `SERVER-NAME` is the name of your server.
-    - `REPO-NAME` is the name of the Git repository with the `tap-values.yaml` file.
+    - `REPO-NAME` is the name of the image repository that hosts the container images.
 
-2. Update the installed profile by running:
+1. Update the installed profile by running:
 
     ```console
     tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yaml -n tap-install

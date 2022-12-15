@@ -3,8 +3,8 @@
 This package contains Cartographer Supply Chains that tie together a series of
 Kubernetes resources that drive a developer-provided workload from source code
 to a Kubernetes configuration ready to be deployed to a cluster.
-It contains supply chains that not only pass the source code through testing and vulnerability
-scanning, but also the container image produced.
+It contains supply chains that pass the source code through testing and vulnerability
+scanning, and also the container image.
 
 This package includes all the capabilities of the Out of the Box Supply Chain With
 Testing, but adds source and image scanning using Grype.
@@ -30,7 +30,7 @@ perform the following:
 
 ## <a id="prerequisites"></a> Prerequisites
 
-To make use this supply chain, verify that:
+To use this supply chain, verify that:
 
 - Tanzu Application Platform GUI is configured to
   [enable CVE scan results](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
@@ -45,8 +45,7 @@ To make use this supply chain, verify that:
   Basic](ootb-delivery-basic.html), if you are willing to deploy the application to the
 same cluster as the workload and supply chains.
 
-To verify you have the right set of supply chains installed (that is, the
-one with scanning and _not_ the one with testing), run:
+Verify that you have the supply chains with scanning, not with testing, installed. Run:
 
 ```console
 tanzu apps cluster-supply-chain list
@@ -62,10 +61,9 @@ If you see `source-test-to-url` in the list, the setup is wrong. You **must not
 have the _source-test-to-url_ installed** at the same time as
 _source-test-scan-to-url_.
 
-
 ## <a id="developer-namespace"></a> Developer namespace
 
-As mentioned in the prerequisites section, this example builds on the previous
+This example builds on the previous
 Out of the Box Supply Chain examples, so only additions are included here.
 
 To ensure that you configured the namespace correctly, it is important that
@@ -89,7 +87,7 @@ the namespace has the objects that you configured in the other supply chain setu
 
   For more information, see [Out of the Box Supply Chain Testing](ootb-supply-chain-testing.md).
 
-And the new ones, that you create here:
+And the new objects, that you create here:
 
 - **scan policy**: Defines what to do with the results taken from scanning the source code and
 image produced. For more information, see [ScanPolicy section](#scan-policy).
@@ -103,7 +101,6 @@ produced by the supply chain. For more information, see [ScanTemplate section](#
 The following section includes details about the new objects, compared to Out of the Box
 Supply Chain With Testing.
 
-
 ### <a id="updates-to-developer-namespace"></a> Updates to the developer namespace
 
 For source and image scans, scan templates and scan policies
@@ -116,7 +113,7 @@ must exist in the same namespace as the workload. These define:
   For example, allowing one to be either very strict, or restrictive about particular
 vulnerabilities found.
 
-The names of the objects **must** match the ones in the example with default installation configurations. This is overriden either by using the `ootb_supply_chain_testing_scanning` package configuration in the `tap-values.yaml` file or by using workload parameters:
+The names of the objects **must** match the names in the example with default installation configurations. This is overriden either by using the `ootb_supply_chain_testing_scanning` package configuration in the `tap-values.yaml` file or by using workload parameters:
 
 - To override by using the `ootb_supply_chain_testing_scanning` package configuration, make the following modification to your `tap-values.yaml` file and perform a [Tanzu Application Platform update](../upgrading.hbs.md#upgrading-tanzu-application-platform).
 
@@ -133,9 +130,9 @@ The names of the objects **must** match the ones in the example with default ins
 
     Where `SCAN-POLICY` and `SCAN-TEMPLATE` are the names of the `ScanPolicy` and `ScanTemplate`.
 
-- To override through workload parameters, use the following commands. For more details, see [Tanzu apps workload commands](../cli-plugins/apps/command-reference/tanzu-apps-workload-update.hbs.md).
+- To override through workload parameters, use the following commands. See [Tanzu apps workload commands](../cli-plugins/apps/command-reference/tanzu-apps-workload-update.hbs.md).
 
-    ```
+    ```console
     tanzu apps workload update WORKLOAD --param "scanning_source_policy=SCAN-POLICY" -n DEV-NAMESPACE
     tanzu apps workload update WORKLOAD --param "scanning_source_template=SCAN-TEMPLATE" -n DEV-NAMESPACE
     ```
@@ -152,7 +149,7 @@ The ScanPolicy defines a set of rules to evaluate for a particular scan to
 consider the artifacts (image or source code) either compliant or not.
 
 When a ImageScan or SourceScan is created to run a scan, those reference a
-policy whose name **must** match the following sample (`scan-policy`):
+policy whose name **must** match the following sample `scan-policy`:
 
 ```console
 ---
@@ -199,8 +196,7 @@ spec:
     }
 ```
 
-See [Writing Policy Templates](../scst-scan/policies.md) for more details.
-
+See [Writing Policy Templates](../scst-scan/policies.md).
 
 #### <a id="scan-template"></a> ScanTemplate
 
@@ -244,16 +240,17 @@ to the properties you want to change. For example:
 
 #### <a id="storing-scan-results"></a>Enable storing scan results
 
-To enable SCST - Scan to store scan results to SCST - Store, see the [Developer namespace setup](../scst-store/developer-namespace-setup.hbs.md) topic to export the SCST - Store CA certificate and authentication token to the developer namespace.
-
+To enable SCST - Scan to store scan results by using SCST - Store, see
+[Developer namespace setup](../scst-store/developer-namespace-setup.hbs.md) for exporting the
+SCST - Store CA certificate and authentication token to the developer namespace.
 
 #### <a id="multiple-pl"></a> Allow multiple Tekton pipelines in a namespace
 
 You can configure your developer namespace to include more than one pipeline using either of the following methods:
 
-  - Use a single pipeline running on a container image that includes testing tools and runs a common script to execute tests. This allows you to accommodate multiple workloads based in different languages in the same namespace that use a common make test script, as shown in the following example:
+  - Use a single pipeline running on a container image that includes testing tools and runs a common script to execute tests. This allows you to accommodate multiple workloads based in different languages in the same namespace that use a common make test script. For example:
 
-    ```
+    ```console
     apiVersion: tekton.dev/v1beta1
     kind: Pipeline
     metadata:
@@ -271,9 +268,9 @@ You can configure your developer namespace to include more than one pipeline usi
                   make test
     ```
 
-  - Update the template to include labels that differentiate the pipelines. Then configure the labels to differentiate between pipelines, as shown in the following example:
+  - Update the template to include labels that differentiate the pipelines. Then configure the labels to differentiate between pipelines. For example:
 
-    ```
+    ```console
       selector:
          resource:
            apiVersion: tekton.dev/v1beta1
@@ -286,7 +283,7 @@ You can configure your developer namespace to include more than one pipeline usi
 
     The following example shows one namespace per-language pipeline:
 
-    ```
+    ```console
     apiVersion: tekton.dev/v1beta1
     kind: Pipeline
     metadata:
@@ -325,7 +322,7 @@ You can configure your developer namespace to include more than one pipeline usi
 With the ScanPolicy and ScanTemplate objects, with the required names set,
 submitted to the same namespace where the workload are submitted, you are ready to submit your workload.
 
-Regardless of the workflow being targeted (local development or gitops), the
+Regardless of the workflow being targeted, such as local development or gitops, the
 workload configuration details are the same as in Out of the Box Supply Chain
 Basic, except that you mark the workload as having tests enabled.
 
@@ -361,6 +358,7 @@ Create workload:
      16 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
      17 + |    subPath: tanzu-java-web-app
 ```
+
 ## <a id="cve-triage-workflow"></a> CVE triage workflow
 
 The Supply Chain halts progression if either a SourceScan (`sourcescans.scanning.apps.tanzu.vmware.com`) or an ImageScan (`imagescans.scanning.apps.tanzu.vmware.com`) fails policy enforcement through the [ScanPolicy](../scst-scan/policies.hbs.md#define-a-rego-file-for-policy-enforcement) (`scanpolicies.scanning.apps.tanzu.vmware.com`). This can prevent source code from building or images deploying that contain vulnerabilities that are in violation of the user-defined scan policy.

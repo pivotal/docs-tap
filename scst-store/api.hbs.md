@@ -333,7 +333,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-image-packages-default"></span> Default Response
 ErrorMessage
@@ -374,7 +374,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-image-packages-query-default"></span> Default Response
 ErrorMessage
@@ -414,7 +414,7 @@ Status: OK
    
   
 
-[][Vulnerability](#vulnerability)
+[[]Vulnerability](#vulnerability)
 
 ##### <span id="get-image-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -535,7 +535,7 @@ Status: OK
    
   
 
-[][Image](#image)
+[[]Image](#image)
 
 ##### <span id="get-package-images-default"></span> Default Response
 ErrorMessage
@@ -574,7 +574,7 @@ Status: OK
    
   
 
-[][Source](#source)
+[[]Source](#source)
 
 ##### <span id="get-package-sources-default"></span> Default Response
 ErrorMessage
@@ -583,7 +583,7 @@ ErrorMessage
 
   
 
-[ErrorMessage](#error-message)
+[[]ErrorMessage](#error-message)
 
 ### <span id="get-package-vulnerabilities"></span> List vulnerabilities from the given package. (*GetPackageVulnerabilities*)
 
@@ -614,7 +614,7 @@ Status: OK
    
   
 
-[][Vulnerability](#vulnerability)
+[[]Vulnerability](#vulnerability)
 
 ##### <span id="get-package-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -655,7 +655,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-packages-default"></span> Default Response
 ErrorMessage
@@ -743,7 +743,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-source-packages-default"></span> Default Response
 ErrorMessage
@@ -784,7 +784,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-source-packages-query-default"></span> Default Response
 ErrorMessage
@@ -823,7 +823,7 @@ Status: OK
    
   
 
-[][Vulnerability](#vulnerability)
+[[]Vulnerability](#vulnerability)
 
 ##### <span id="get-source-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -865,7 +865,7 @@ Status: OK
    
   
 
-[][Vulnerability](#vulnerability)
+[[]Vulnerability](#vulnerability)
 
 ##### <span id="get-source-vulnerabilities-query-default"></span> Default Response
 ErrorMessage
@@ -907,7 +907,7 @@ Status: OK
    
   
 
-[][Source](#source)
+[[]Source](#source)
 
 ##### <span id="get-sources-default"></span> Default Response
 ErrorMessage
@@ -947,7 +947,7 @@ Status: OK
    
   
 
-[][Vulnerability](#vulnerability)
+[[]Vulnerability](#vulnerability)
 
 ##### <span id="get-vulnerabilities-default"></span> Default Response
 ErrorMessage
@@ -1035,7 +1035,7 @@ Status: OK
    
   
 
-[][Image](#image)
+[[]Image](#image)
 
 ##### <span id="get-vulnerability-images-default"></span> Default Response
 ErrorMessage
@@ -1074,7 +1074,7 @@ Status: OK
    
   
 
-[][Package](#package)
+[[]Package](#package)
 
 ##### <span id="get-vulnerability-packages-default"></span> Default Response
 ErrorMessage
@@ -1113,7 +1113,7 @@ Status: OK
    
   
 
-[][Source](#source)
+[[]Source](#source)
 
 ##### <span id="get-vulnerability-sources-default"></span> Default Response
 ErrorMessage
@@ -1705,7 +1705,7 @@ ErrorMessage
 
 | Name | Type | Go type | Required | Default | Description | Example |
 |------|------|---------|:--------:| ------- |-------------|---------|
-| Entities | [][Entity](#entity)| `[]*Entity` |  | | Entities associated with the Artifact Group |  |
+| Entities | [[]Entity](#entity)| `[]*Entity` |  | | Entities associated with the Artifact Group |  |
 | Labels | map of string| `map[string]string` |  | | Key-Value pair of labels associated with the Artifact Group | `{"env":"production","namespace":"default"}` |
 | UID | string| `string` |  | | Unique identifier for the Artifact Group such as workload UID | `8b1cc5da-fabe-45a6-ab8c-49260bbeef99` |
 
@@ -1812,7 +1812,7 @@ ErrorMessage
 | ID | uint64 (formatted integer)| `uint64` | ✓ | | The database ID of the source or image | `24` |
 | Name | string| `string` |  | | The name of the image entity. Only visible if the entity is of image type. | `checkr/flagr` |
 | Org | string| `string` |  | | The organization name of the source entity. Only visible if the entity type is of source type | `my-organization` |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
 | Registry | string| `string` |  | | The DNS name of the registry that stores the image entity. Only visible if the entity is of image type | `docker.io` |
 | Repo | string| `string` |  | | The repository name of the source entity. Only visible if the entity type is of source type | `my-sample-repo` |
 | Sha | string| `string` |  | | The commit sha of the source entity. Only visible if the entity type is of source type | `d6cd1e2bd19e03a81132a23b2025920577f84e37` |
@@ -1853,9 +1853,9 @@ marshalled as a JSON object.
 | Digest | string| `string` | ✓ | |  | `9n38274ods897fmay487gsdyfga678wr82` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
 | Name | string| `string` | ✓ | |  | `myorg/application` |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
 | Registry | string| `string` | ✓ | |  | `docker.io` |
-| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
 
 
 
@@ -1874,7 +1874,7 @@ marshalled as a JSON object.
 | DeletedAt | [DeletedAt](#deleted-at)| `DeletedAt` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
 | Name | string| `string` |  | |  |  |
-| Rating | [][Rating](#rating)| `[]*Rating` |  | |  |  |
+| Rating | [[]Rating](#rating)| `[]*Rating` |  | |  |  |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 
 
@@ -1937,12 +1937,12 @@ it can be used as a scan destination, similar to NullString.
 |------|------|---------|:--------:| ------- |-------------|---------|
 | Homepage | string| `string` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [][Image](#image)| `[]*Image` |  | |  |  |
+| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
 | Name | string| `string` |  | |  |  |
 | PackageManager | string| `string` |  | |  |  |
-| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
 | Version | string| `string` |  | |  |  |
-| Vulnerabilities | [][Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
+| Vulnerabilities | [[]Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
 
 
 
@@ -1961,7 +1961,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][ArtifactGroupVulnReachPostResponse](#artifact-group-vuln-reach-post-response)| `[]*ArtifactGroupVulnReachPostResponse` |  | |  |  |
+| Results | [[]ArtifactGroupVulnReachPostResponse](#artifact-group-vuln-reach-post-response)| `[]*ArtifactGroupVulnReachPostResponse` |  | |  |  |
 
 
 
@@ -1980,7 +1980,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][interface{}](#interface)| `[]interface{}` |  | |  |  |
+| Results | [[]interface{}](#interface)| `[]interface{}` |  | |  |  |
 
 
 
@@ -2036,9 +2036,9 @@ it can be used as a scan destination, similar to NullString.
 | DeletedAt | [DeletedAt](#deleted-at)| `DeletedAt` |  | |  |  |
 | Host | string| `string` |  | |  | `gitlab.com` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [][Image](#image)| `[]*Image` |  | |  |  |
+| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
 | Organization | string| `string` |  | |  | `vmware` |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
 | Repository | string| `string` | ✓ | |  | `myproject` |
 | Sha | string| `string` | ✓ | |  | `0eb5fcd1` |
 
@@ -2066,7 +2066,7 @@ it can be used as a scan destination, similar to NullString.
 | CVEID | string| `string` |  | | CVE ID of the vulnerability | `CVE-7467-2020` |
 | Description | string| `string` |  | | Description of the vulnerability | `IBM Datapower Gateway 10.0.2.0 through 10.0.4.0, 10.0.1.0 through 10.0.1.5, and 2018.4.1.0 through 2018.4.1.18 could allow unauthorized viewing of logs and files due to insufficient authorization checks. IBM X-Force ID: 218856.` |
 | ID | uint64 (formatted integer)| `uint64` |  | | Vulnerability ID | `12` |
-| Ratings | [][RatingResponse](#rating-response)| `[]*RatingResponse` |  | | Rating information |  |
+| Ratings | [[]RatingResponse](#rating-response)| `[]*RatingResponse` |  | | Rating information |  |
 | References | []string| `[]string` |  | | Additional external links | `https://github.com/example/repo/issues/11` |
 | URL | string| `string` |  | | Related url to the vulnerability | `https://nvd.nist.gov/vuln/detail/CVE-7467-2020` |
 
@@ -2087,8 +2087,8 @@ it can be used as a scan destination, similar to NullString.
 | CVEID | string| `string` | ✓ | |  | `CVE-7467-2020` |
 | Description | string| `string` |  | |  | `A description of CVE-7467-2020` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
-| Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
+| Ratings | [[]Rating](#rating)| `[]*Rating` |  | |  |  |
 | References | [StringArray](#string-array)| `StringArray` |  | |  |  |
 | URL | string| `string` |  | |  | `https://nvd.nist.gov/vuln/detail/CVE-7467-2020` |
 
@@ -2121,7 +2121,7 @@ it can be used as a scan destination, similar to NullString.
 
 | Name | Type | Go type | Required | Default | Description | Example |
 |------|------|---------|:--------:| ------- |-------------|---------|
-| Entities | [][ArtifactGroupPostEntity](#artifact-group-post-entity)| `[]*ArtifactGroupPostEntity` |  | | Entities associated with the Artifact Group |  |
+| Entities | [[]ArtifactGroupPostEntity](#artifact-group-post-entity)| `[]*ArtifactGroupPostEntity` |  | | Entities associated with the Artifact Group |  |
 | Labels | map of string| `map[string]string` |  | | Key-Value pair of labels associated with the Artifact Group | `{"env":"production","namespace":"default"}` |
 | UID | string| `string` |  | | Unique identifier for the Artifact Group such as workload UID | `8b1cc5da-fabe-45a6-ab8c-49260bbeef99` |
 
@@ -2138,7 +2138,7 @@ it can be used as a scan destination, similar to NullString.
 
 | Name | Type | Go type | Required | Default | Description | Example |
 |------|------|---------|:--------:| ------- |-------------|---------|
-| Entities | [][ArtifactGroupVulnEntity](#artifact-group-vuln-entity)| `[]*ArtifactGroupVulnEntity` |  | | Entities associated with the Artifact Group |  |
+| Entities | [[]ArtifactGroupVulnEntity](#artifact-group-vuln-entity)| `[]*ArtifactGroupVulnEntity` |  | | Entities associated with the Artifact Group |  |
 | Labels | map of string| `map[string]string` |  | | Key-Value pair of labels associated with the Artifact Group | `{"env":"production","namespace":"default"}` |
 | UID | string| `string` |  | | Unique identifier for the Artifact Group such as workload UID | `8b1cc5da-fabe-45a6-ab8c-49260bbeef99` |
 
@@ -2180,12 +2180,12 @@ it can be used as a scan destination, similar to NullString.
 |------|------|---------|:--------:| ------- |-------------|---------|
 | Homepage | string| `string` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [][Image](#image)| `[]*Image` |  | | This field will always be empty | `[]` |
+| Images | [[]Image](#image)| `[]*Image` |  | | This field will always be empty | `[]` |
 | Name | string| `string` |  | |  |  |
 | PackageManager | string| `string` |  | |  |  |
-| Sources | [][Source](#source)| `[]*Source` |  | | This field will always be empty | `[]` |
+| Sources | [[]Source](#source)| `[]*Source` |  | | This field will always be empty | `[]` |
 | Version | string| `string` |  | |  |  |
-| Vulnerabilities | [][Vulnerability](#vulnerability)| `[]*Vulnerability` |  | | This field will always be empty | `[]` |
+| Vulnerabilities | [[]Vulnerability](#vulnerability)| `[]*Vulnerability` |  | | This field will always be empty | `[]` |
 
 
 
@@ -2200,13 +2200,13 @@ it can be used as a scan destination, similar to NullString.
 
 | Name | Type | Go type | Required | Default | Description | Example |
 |------|------|---------|:--------:| ------- |-------------|---------|
-| ArtifactGroups | [][ArtifactGroupVulnArtifactGroup](#artifact-group-vuln-artifact-group)| `[]*ArtifactGroupVulnArtifactGroup` |  | |  |  |
+| ArtifactGroups | [[]ArtifactGroupVulnArtifactGroup](#artifact-group-vuln-artifact-group)| `[]*ArtifactGroupVulnArtifactGroup` |  | |  |  |
 | CNA | string| `string` |  | |  | `GitHub, Inc.` |
 | CVEID | string| `string` | ✓ | |  | `CVE-7467-2020` |
 | Description | string| `string` |  | |  | `A description of CVE-7467-2020` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Packages | [][ArtifactGroupVulnPackage](#artifact-group-vuln-package)| `[]*ArtifactGroupVulnPackage` |  | |  |  |
-| Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
+| Packages | [[]ArtifactGroupVulnPackage](#artifact-group-vuln-package)| `[]*ArtifactGroupVulnPackage` |  | |  |  |
+| Ratings | [[]Rating](#rating)| `[]*Rating` |  | |  |  |
 | References | [StringArray](#string-array)| `StringArray` |  | |  |  |
 | URL | string| `string` |  | |  | `https://nvd.nist.gov/vuln/detail/CVE-7467-2020` |
 
@@ -2227,7 +2227,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][ArtifactGroupResponse](#artifact-group-response)| `[]*ArtifactGroupResponse` |  | |  |  |
+| Results | [[]ArtifactGroupResponse](#artifact-group-response)| `[]*ArtifactGroupResponse` |  | |  |  |
 
 
 
@@ -2246,7 +2246,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][ArtifactGroupVulnResult](#artifact-group-vuln-result)| `[]*ArtifactGroupVulnResult` |  | |  |  |
+| Results | [[]ArtifactGroupVulnResult](#artifact-group-vuln-result)| `[]*ArtifactGroupVulnResult` |  | |  |  |
 
 
 
@@ -2265,7 +2265,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][ResponseImage](#response-image)| `[]*ResponseImage` |  | |  |  |
+| Results | [[]ResponseImage](#response-image)| `[]*ResponseImage` |  | |  |  |
 
 
 
@@ -2284,7 +2284,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][ResponsePackage](#response-package)| `[]*ResponsePackage` |  | |  |  |
+| Results | [[]ResponsePackage](#response-package)| `[]*ResponsePackage` |  | |  |  |
 
 
 
@@ -2303,7 +2303,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][ResponseSource](#response-source)| `[]*ResponseSource` |  | |  |  |
+| Results | [[]ResponseSource](#response-source)| `[]*ResponseSource` |  | |  |  |
 
 
 
@@ -2322,7 +2322,7 @@ it can be used as a scan destination, similar to NullString.
 | CurrentPage | int64 (formatted integer)| `int64` |  | |  | `1` |
 | LastPage | int64 (formatted integer)| `int64` |  | |  | `2` |
 | PageSize | int64 (formatted integer)| `int64` |  | |  | `20` |
-| Results | [][ResponseVulnerability](#response-vulnerability)| `[]*ResponseVulnerability` |  | |  |  |
+| Results | [[]ResponseVulnerability](#response-vulnerability)| `[]*ResponseVulnerability` |  | |  |  |
 
 
 
@@ -2341,9 +2341,9 @@ it can be used as a scan destination, similar to NullString.
 | Digest | string| `string` | ✓ | |  | `9n38274ods897fmay487gsdyfga678wr82` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
 | Name | string| `string` | ✓ | |  | `myorg/application` |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
 | Registry | string| `string` | ✓ | |  | `docker.io` |
-| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 
 
@@ -2362,13 +2362,13 @@ it can be used as a scan destination, similar to NullString.
 | CreatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 | Homepage | string| `string` |  | |  |  |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [][Image](#image)| `[]*Image` |  | |  |  |
+| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
 | Name | string| `string` |  | |  |  |
 | PackageManager | string| `string` |  | |  |  |
-| Sources | [][Source](#source)| `[]*Source` |  | |  |  |
+| Sources | [[]Source](#source)| `[]*Source` |  | |  |  |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 | Version | string| `string` |  | |  |  |
-| Vulnerabilities | [][Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
+| Vulnerabilities | [[]Vulnerability](#vulnerability)| `[]*Vulnerability` |  | |  |  |
 
 
 
@@ -2387,9 +2387,9 @@ it can be used as a scan destination, similar to NullString.
 | DeletedAt | [DeletedAt](#deleted-at)| `DeletedAt` |  | |  |  |
 | Host | string| `string` |  | |  | `gitlab.com` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Images | [][Image](#image)| `[]*Image` |  | |  |  |
+| Images | [[]Image](#image)| `[]*Image` |  | |  |  |
 | Organization | string| `string` |  | |  | `vmware` |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
 | Repository | string| `string` | ✓ | |  | `myproject` |
 | Sha | string| `string` | ✓ | |  | `0eb5fcd1` |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
@@ -2412,8 +2412,8 @@ it can be used as a scan destination, similar to NullString.
 | CreatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |
 | Description | string| `string` |  | |  | `A description of CVE-7467-2020` |
 | ID | uint64 (formatted integer)| `uint64` |  | |  |  |
-| Packages | [][Package](#package)| `[]*Package` |  | |  |  |
-| Ratings | [][Rating](#rating)| `[]*Rating` |  | |  |  |
+| Packages | [[]Package](#package)| `[]*Package` |  | |  |  |
+| Ratings | [[]Rating](#rating)| `[]*Rating` |  | |  |  |
 | References | [StringArray](#string-array)| `StringArray` |  | |  |  |
 | URL | string| `string` |  | |  | `https://nvd.nist.gov/vuln/detail/CVE-7467-2020` |
 | UpdatedAt | date-time (formatted string)| `strfmt.DateTime` |  | |  |  |

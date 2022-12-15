@@ -1,4 +1,4 @@
-# Installing Tanzu Application Platform on OpenShift clusters
+# Install Tanzu Application Platform on OpenShift clusters
 
 This topic describes how to install Tanzu Application Platform packages
 on your OpenShift clusters.
@@ -181,7 +181,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials.
 
-For more information about profiles, see [About Tanzu Application Platform components and profiles](about-package-profiles.md).
+For more information about profiles, see [Components and installation profiles](about-package-profiles.md).
 
 To prepare to install a profile:
 
@@ -310,7 +310,7 @@ This field is only required if you use a private repository, otherwise, leave it
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 
-Tanzu Application Platform is part of [VMware's CEIP program](https://www.vmware.com/solutions/trustvmware/ceip-products.html) where data is collected to help improve the customer experience. By setting `ceip_policy_disclosed` to `true` (not a string), you acknowledge the program is disclosed to you and you are aware data collection is happening. This field must be set for the installation to be completed. See [Opting out of telemetry collection](opting-out-telemetry.hbs.md) for more information.
+Tanzu Application Platform is part of [VMware's CEIP program](https://www.vmware.com/solutions/trustvmware/ceip-products.html) where data is collected to help improve the customer experience. By setting `ceip_policy_disclosed` to `true` (not a string), you acknowledge the program is disclosed to you and you are aware data collection is happening. This field must be set for the installation to be completed. See [Opt out of telemetry collection](opting-out-telemetry.hbs.md) for more information.
 
 If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
 
@@ -371,19 +371,17 @@ you can install Tanzu Application Platform without the Bionic stack and all work
 
 To install Tanzu Application Platform with Jammy as the only available stack, include the `stack_configuration: jammy-only` field under the `buildservice:` section in `tap-values.yaml`.
 
-### <a id='custom-scc'></a> Custom Security Context Constraints
+### <a id='custom-scc'></a> Security Context Constraints
 
->**Important** This section only applies when you install Tanzu Application Platform v1.4 on Red Hat OpenShift Container Platform v4.10.
+Security Context Constraints (SCC) define a set of rules that a pod must satisfy to be created. Tanzu
+Application Platform components use the built-in [nonroot-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-nonroot-v2.yaml) or [restricted-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-restricted-v2.yaml)
+SCC.
 
-In Red Hat OpenShift, Security Context Constraints (SCC) are used to restrict privileges for pods.
-SCCs define a set of rules that a pod must satisfy to be created.
-SCCs are more restrictive by default and can prevent applications from running as root in pods and escalating privileges `allowPrivilegeEscalation`.
+In Red Hat OpenShift, SCC are used to restrict privileges for pods. In Tanzu
+Application Platform v1.4 there is no custom SCC.
 
-Some Tanzu Application Platform components run on Pod Security Standards (PSS) with Restricted policy. The OpenShift implementation assumes that these components need privileged SCC. Seccomp stands for secure computing mode and is a security feature in the Linux kernel. It can be used to restrict the privileges of a process, restricting the calls it can make from userspace into the kernel. Kubernetes allows you to apply seccomp profiles loaded onto a node to your pods and containers. This restricts installation of certain components to complete and blocks Tanzu Application Platform installation in OpenShift.
-
-OpenShift v4.11 includes restricted-v2 or nonroot-v2 with which Tanzu Application Platform packages reconcile without any issues. The components in Tanzu Application Platform v1.3.0 use custom SCC that is a mirror of [restricted-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-restricted-v2.yaml) or [nonroot-v2](https://github.com/openshift/cluster-kube-apiserver-operator/blob/d373b65cf454fd594b6affd202e5cedb48d88964/bindata/bootkube/scc-manifests/0000_20_kube-apiserver-operator_00_scc-nonroot-v2.yaml) and are built by using restricted-v1 or nonroot-v1. The custom SCCs used in Tanzu Application Platform v1.4.0 to support OpenShift v4.10 are similar to the nonroot-v2 and restricted-v2 in OpenShift v4.11.
-
-See [Custom SCC details](scc-details.hbs.md) for more information.
+Tanzu Application Platform packages reconcile without any issues when using
+OpenShift v4.11 with restricted-v2 or nonroot-v2.
 
 #### <a id='exclude-custom-scc'></a> (Optional) Exclude components that require RedHat OpenShift privileged SCC
 
@@ -396,8 +394,6 @@ excluded_packages:
   - workshops.learningcenter.tanzu.vmware.com
 ...
 ```
-
-See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
 
 See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
 

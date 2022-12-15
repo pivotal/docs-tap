@@ -1,4 +1,4 @@
-# Configuring Tanzu Build Service properties on a workload
+# Configure Tanzu Build Service properties on a workload
 
 This topic describes how to configure your workload with Tanzu Build Service properties.
 

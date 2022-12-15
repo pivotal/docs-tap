@@ -1,10 +1,16 @@
-# Accepting Tanzu Application Platform EULAs and installing Tanzu CLI
+# Accept Tanzu Application Platform EULAs and installing Tanzu CLI
 
 This topic describes how to:
 
-- [Accept Tanzu Application Platform EULAs](#accept-eulas)
-- [Set the Kubernetes cluster context](#cluster-context)
-- [Install or update the Tanzu CLI and plug-ins](#cli-and-plugin)
+- [Accept Tanzu Application Platform EULAs and installing Tanzu CLI](#accept-tanzu-application-platform-eulas-and-installing-tanzu-cli)
+  - [ Accept the End User License Agreements](#-accept-the-end-user-license-agreements)
+    - [ Example of accepting the Tanzu Application Platform EULA](#-example-of-accepting-the-tanzu-application-platform-eula)
+  - [ Set the Kubernetes cluster context](#-set-the-kubernetes-cluster-context)
+  - [ Install or update the Tanzu CLI and plug-ins](#-install-or-update-the-tanzu-cli-and-plug-ins)
+    - [ Install Tanzu CLI: Linux or macOS](#-install-tanzu-cli-linux-or-macos)
+    - [ Install Tanzu CLI: Windows](#-install-tanzu-cli-windows)
+  - [ Install/Update Tanzu CLI plug-ins](#-installupdate-tanzu-cli-plug-ins)
+  - [Next steps](#next-steps)
 
 ## <a id='accept-eulas'></a> Accept the End User License Agreements
 
@@ -72,6 +78,10 @@ To set the Kubernetes cluster context:
 
 You use the Tanzu CLI and plug-ins to install and use the Tanzu Application Platform functions
 and features.
+
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> the Tanzu CLI and plug-ins. For more information about profiles, see [About Tanzu Application Platform
+> components and profiles](about-package-profiles.hbs.md).
 
 To install the Tanzu CLI and plug-ins:
 
@@ -239,12 +249,12 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
 For online installation:
 
-- [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html)*
-- [Installing the Tanzu Application Platform package and profiles](install.html)
+- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html)*
+- [Install the Tanzu Application Platform package and profiles](install.html)
 
 For air-gapped installation:
 
-- [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html)*
+- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html)*
 - [Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._

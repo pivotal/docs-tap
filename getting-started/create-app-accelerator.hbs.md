@@ -1,4 +1,4 @@
-# Create your application accelerator
+# Create an application accelerator
 
 This is the first in a series of Getting started how-to guides for operators. It walks you through creating an application accelerator by using Tanzu Application Platform GUI and CLI.
 
@@ -132,4 +132,4 @@ You can also create a separate manifest file and apply it to the cluster by usin
 
 ## Next steps
 
-- [Add testing and security scanning to your application](add-test-and-security.md)
+- [Add testing and scanning to your application](add-test-and-security.md)

@@ -1,8 +1,8 @@
 # Services Toolkit
 
-The Services Toolkit comprises the following Kubernetes native components, which support the management,
-lifecycle, discoverability and connectivity of Service Resources (databases, message queues,
-DNS records, and so on) on Kubernetes:
+Services Toolkit comprises the following Kubernetes-native components, which support the management,
+lifecycle, discoverability, and connectivity of service resources on Kubernetes, such as databases,
+message queues, DNS records, and more:
 
 - Service offering
 - Service API projection
@@ -10,4 +10,4 @@ DNS records, and so on) on Kubernetes:
 - Service resource claims
 
 To learn more about Services Toolkit, see the
-[Services Toolkit for VMware Tanzu documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-overview.html)
+[Services Toolkit documentation](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/GUID-overview.html)

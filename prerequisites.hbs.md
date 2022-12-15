@@ -75,7 +75,7 @@ For Tanzu Application Platform GUI, you must have:
           Tanzu Application Platform packaging.
           The PostgreSQL database stores all the catalog data persistently both from the Git locations
           and the UI manual entity registrations. For more information, see
-          [Configuring the Tanzu Application Platform GUI database](tap-gui/database.md)
+          [Configure the Tanzu Application Platform GUI database](tap-gui/database.md)
 
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
@@ -148,4 +148,4 @@ Installation requires:
 
 ## <a id='next-steps'></a>Next steps
 
-- [Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)
+- [Accept Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)

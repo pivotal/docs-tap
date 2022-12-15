@@ -1,7 +1,7 @@
 # Multicluster setup
 
 Deploying Tanzu Application Platform in a multicluster setup includes installing
-multiple profiles such as, View, Build, Run, Iterate.
+multiple profiles such as, View, Build, Run, and Iterate.
 
 SCST - Store is deployed with the View profile. After
 installing the View profile, but before installing the Build profile, you must
@@ -16,7 +16,7 @@ cluster to communicate with SCST - Store in the View cluster.
 
 ## Prerequisites
 
-You must have already installed the View profile. See [Install View profile](../multicluster/installing-multicluster.hbs.md#install-view).
+You must install the View profile. See [Install View profile](../multicluster/installing-multicluster.hbs.md#install-view).
 
 ## Procedure summary
 
@@ -87,13 +87,13 @@ certificate and authentication token.
     kubectl create ns metadata-store-secrets
     ```
 
-1. Apply the CA certificate `store_ca.yaml` secret YAML generated earlier.
+1. Apply the CA certificate `store_ca.yaml` secret YAML you generated earlier.
 
     ```bash
     kubectl apply -f store_ca.yaml
     ```
 
-1. Create a secret to store the access stoken. This uses the `AUTH_TOKEN` environment variable from before.
+1. Create a secret to store the access token. This uses the `AUTH_TOKEN` environment variable.
 
     ```bash
     kubectl create secret generic store-auth-token \
@@ -112,7 +112,7 @@ profile](../multicluster/installing-multicluster.hbs.md#install-build).
 
 The Build profile `values.yaml` contains configuration that references the
 secrets in the `metadata-store-secrets` namespace you created in this guide. The
-names of these secrets are already hard coded in the example `values.yaml`.
+names of these secrets are hard coded in the example `values.yaml`.
 
 ### More information about how Build profile uses the configuration
 

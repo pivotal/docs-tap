@@ -1,4 +1,4 @@
-# About Tanzu Application Platform components and profiles
+# Components and installation profiles
 
 Tanzu Application Platform is a modular, composable platform that comprises the following components.
 
@@ -30,15 +30,15 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   The Application Accelerator component helps app developers and app operators create application
   accelerators.
 
-  Accelerators are templates that codify best practices and ensure important configurations and
-  structures are in place from the start. Developers can bootstrap their applications and get
+  Accelerators are templates that codify best practices and ensure that important configurations and
+  structures are in place. Developers can bootstrap their applications and get
   started with feature development right away.
 
   Application operators can create custom accelerators that reflect their desired architectures and
   configurations and enable fleets of developers to use them. This helps ease operator concerns about
   whether developers are implementing their best practices.
 
-- **[Application Live View for VMware Tanzu](app-live-view/about-app-live-view.md)**
+- **[Application Live View](app-live-view/about-app-live-view.md)**
 
   Application Live View is a lightweight insight and troubleshooting tool that helps application
   developers and application operators look inside running applications.
@@ -55,7 +55,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   straightforward approach for developers and operators to manage access across all workloads in the
   enterprise.
 
-- **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VM<ware-Tanzu/index.html)**
+- **[Cloud Native Runtimes for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based on
   Knative and runs on a single Kubernetes cluster. For information about Knative, see the
@@ -271,7 +271,7 @@ The following table lists the packages contained in each profile:
   </tr>
   <tr>
   <tr>
-   <td>API Portal
+   <td>API portal
    </td>
    <td>&check;
    </td>
@@ -606,7 +606,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Supply Chain Security Tools - Policy Controller
+   <td>SCST - Policy Controller
   </td>
    <td>&check;
    </td>
@@ -620,7 +620,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Supply Chain Security Tools - Scan</td>
+   <td>SCST - Scan</td>
   </td>
    <td>&check;
    </td>
@@ -634,7 +634,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Supply Chain Security Tools - Sign (deprecated)
+   <td>SCST - Sign (deprecated)
    </td>
    <td>&check;
    </td>
@@ -648,7 +648,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Supply Chain Security Tools - Store</td>
+   <td>SCST - Store</td>
    </td>
    <td>&check;
    </td>
@@ -720,8 +720,8 @@ The following table lists the packages contained in each profile:
   <tr>
 </table>
 
->**Note** Only one supply chain can be installed at any given time. For information on switching
-supply chains, see [Add testing and security scanning to your application](getting-started/add-test-and-security.md).
+>**Note** You can only install one supply chain at any given time. For information about switching
+supply chains, see [Add testing and scanning to your application](getting-started/add-test-and-security.md).
 
 ## <a id='language-support'></a> Language and framework support in Tanzu Application Platform
 
@@ -738,7 +738,7 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Tanzu Developer Tooling \*\*</strong>
    </td>
-   <td><strong>Application Live View for VMware Tanzu</strong>
+   <td><strong>Application Live View</strong>
    </td>
    <td><strong>Functions</strong>
    </td>
@@ -842,7 +842,7 @@ Tanzu Application Platform components.
    </td>
   </tr>
   <tr>
-   <td>Golang
+   <td>golang
    </td>
    <td>&check;
    </td>

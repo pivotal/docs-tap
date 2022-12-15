@@ -1,4 +1,4 @@
-# Upgrading Tanzu Application Platform
+# Upgrade Tanzu Application Platform
 
 This document describes how to upgrade Tanzu Application Platform.
 
@@ -19,7 +19,7 @@ Before you upgrade Tanzu Application Platform:
 
 Follow these steps to update the new package repository:
 
-1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 4 in [Relocate images to a registry](install.html#add-tap-package-repo).
+1. Relocate the latest version of Tanzu Application Platform images by following step 1 through step 6 in [Relocate images to a registry](install.html#add-tap-package-repo).
 
     >**Important** Make sure to update the `TAP_VERSION` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`.
 
@@ -28,12 +28,10 @@ Follow these steps to update the new package repository:
     - If you are using Cluster Essentials 1.2 or above, run:
 
         ```console
-        tanzu package repository add NEW-TANZU-TAP-REPOSITORY \
-        --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:${TAP_VERSION} \
+        tanzu package repository add tanzu-tap-repository \
+        --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages:$TAP_VERSION \
         --namespace tap-install
         ```
-
-        Where `NEW-TANZU-TAP-REPOSITORY` is the new repository name. Do not use the existing Tanzu package repository name with the previous version of Tanzu Application Platform packages.
 
     - If you are using Cluster Essentials 1.1 or 1.0, run:
 
@@ -92,8 +90,8 @@ If you do not want to wait for subsequent builds to run automatically, follow th
 
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
-For information about upgrading Tanzu Application Platform GUI, see [upgrading Tanzu Application Platform GUI](tap-gui/upgrades.html).
-For information about upgrading Supply Chain Security Tools - Scan, see [Upgrading Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
+For information about upgrading Tanzu Application Platform GUI, see [Upgrade Tanzu Application Platform GUI](tap-gui/upgrades.html).
+For information about upgrading Supply Chain Security Tools - Scan, see [Upgrade Supply Chain Security Tools - Scan](scst-scan/upgrading.md).
 
 ## <a id="verify"></a> Verify the upgrade
 

@@ -15,11 +15,15 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id="1-4-0-tap-new-features"></a> TAP
+#### <a id="1-4-0-tap-new-features"></a> Tanzu Application Platform
 
-TAP is introducing a [shared ingress issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress communication by
-default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md), and [TAP GUI](tap-gui/about.hbs.md)
+Tanzu Application Platform is introducing a [shared ingress issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress communication by
+default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md), and [Tanzu Application Platform GUI](tap-gui/about.hbs.md)
 are using this issuer to secure ingress. In upcoming releases all components will support it eventually.
+
+#### <a id="1-4-0-cert-manager"></a> cert-manager
+
+- `cert-manager.tap.tanzu.vmware.com` can optionally install self-signed `ClusterIssuer`s.
 
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
 
@@ -37,11 +41,18 @@ are using this issuer to secure ingress. In upcoming releases all components wil
   This allows better alignment between the data in the Supply Chain Choreographer plug-in and the
   Security Analysis plug-in.
 - **View Approvals** is relocated to the `Config Writer` stage, instead of being a stage by itself.
-- Added an **Impacted Workloads** column to the **Stage Details** section of scanning stages, so that
-  it is now easier to see how many workloads are impacted by the CVE that the scan detected.
+
 
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
-- Users no longer need to create a package overlay to enable Grype in offline and air-gapped environments. Refer to our updated [instructions](./partials/scst-scan/_offline-airgap.hbs.md).
+- Users no longer need to create a package overlay to enable Grype in offline and air-gapped environments. Refer to our updated [instructions](scst-scan/offline-airgap.hbs.md).
+
+#### <a id="1-4-0-services-toolkit-new-features"></a> Services Toolkit
+- Added new `ClassClaim` API that allows claims for service instances to be created by referring to a `ClusterInstanceClass`. See [Services Toolkit documentation](./services-toolkit/about.hbs.md) for more information.
+- Added corresponding `tanzu services class-claims` CLI plug-in command
+
+#### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
+
+- API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API specification is generated from the API Auto Registration of Tanzu Application Platform. See [API Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
 
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
 
@@ -50,21 +61,22 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="1-4-0-vscode-bc"></a> Tanzu Developer Tools for Visual Studio Code
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
-- Requires the Tanzu CLI `apps` plug-in v0.10.0 or later.
-
-#### <a id="1-4-0-intellij-bc"></a> Tanzu Developer Tools for Intellij
-
-- Requires the Tanzu CLI `apps` plug-in v0.10.0 or later.
 
 #### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
 
-- Removed deprecated ScanTemplates:
-  - Deprecated Grype ScanTemplates shipped with versions earlier than Tanzu Application Platform v1.2.0 were removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
-- Deprecation notice:
-  - The `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in Tanzu Application Platform v1.7.0.
-  - The deprecation will impact the following components: Scan Controller, Grype Scanner, and Snyk Scanner.
-  - For the migration path, see [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
-  - Carbon Black Scanner is not impacted.
+- **Deprecated and removed ScanTemplates:**
+
+  Deprecated Grype ScanTemplates shipped with Tanzu Application Platform v1.1 and earlier were
+  removed and are no longer supported. Please use Grype ScanTemplates v1.2 and later.
+
+- **Deprecation notice for `docker` field and related sub-fields:**
+
+  The `docker` field and related sub-fields used in Supply Chain Security Tools - Scan are
+  deprecated and marked for removal in Tanzu Application Platform v1.7.0.
+  The deprecation impacts the following components: Scan Controller, Grype Scanner, and Snyk Scanner.
+  Carbon Black Scanner is not impacted.
+  For information about the migration path, see
+  [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
 
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 
@@ -86,7 +98,12 @@ target an alternative Sigstore stack, specify `policy.tuf_mirror` and
 This release has the following security fixes, listed by area and component.
 
 #### <a id='1-4-0-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
-- `python` has been updated to `3.7.5-22.ph3`
+
+- `python` is updated to `3.7.5-22.ph3`.
+
+#### <a id="1-4-0-api-auto-registration-fixes"></a> API Auto Registration
+
+- Base image updated to use the latest Paketo Jammy Base image.
 
 ### <a id='1-4-0-resolved-issues'></a> Resolved issues
 
@@ -94,14 +111,13 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-4-0-api-auto-registration-ri"></a> API Auto Registration
 
-- Now periodically checks the original API specification from the defined location to find changes, and registers any changes into the `API Descriptor`, triggering also the reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or frequency is configurable through the new value `sync_period`. The default value is 5 minutes.
-- Base image updated to resolve [CVE-2022-3786](https://nvd.nist.gov/vuln/detail/CVE-2022-3786) and [CVE-2022-3602](https://nvd.nist.gov/vuln/detail/CVE-2022-3602).
+- API Auto Registration periodically checks the original API specification from the defined location to find changes, and registers any changes into the `API Descriptor`. This triggers reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or frequency is configurable through the new value `sync_period`. The default value is 5 minutes.
 
 #### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
 
 - **Immediate entity provider backend Plug-in**
 
-  - The entity provider (used mainly by API Auto Registration) now allows a body size of `5Mb` (increased from `100Kb`) to accept larger API specs.
+  - The entity provider, used mainly by API Auto Registration, now allows a body size of `5Mb` to accept larger API specifications.
   - Respecting the restriction of Backstage for [Entity Provider mutations](https://backstage.io/docs/features/software-catalog/external-integrations#provider-mutations), whenever an existing entity is intended for a mutation through this plugin, and its origin is a different entity provider, a `409 Conflict` error is returned.
 
 #### <a id="supply-chain-plugin-ri"></a> Supply Chain Choreographer Plug-In
@@ -114,9 +130,43 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
+
 #### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for Intellij
 
 - If a Workload is deployed via Live Update onto namespace `myNamespace`, then the user needs to set `myNamespace` as the namespace of the current context of their kubeconfig. Otherwise if the user Tanzu Debug, then it will re-deploy the Workload.
+
+#### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
+
+**Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
+
+For most languages, Source Code Scanning only scans files present in the source code repository.
+Except for support added for Java projects using Maven, no network calls are made to fetch
+dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+lock files to check dependencies for vulnerabilities.
+
+For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies
+present in the built binaries, such as `.jar` or `.war` files.
+
+Because VMware does not recommend committing binaries to source code repositories, Grype fails to
+find vulnerabilities during a source scan.
+The vulnerabilities are still found during the image scan after the binaries are built and packaged
+as images.
+
+#### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
+#### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer Plug-In
+- The `Generation` field in the **Overview** section is not updated when a scan policy is amended, however clicking on the `Scan Policy` link will show the most current scan policy details applied to the stage.
+- Customizing the `Source Tester` stage in an OOTB supply chain will not show details in the **Stage Details** section.
+
+#### <a id="1-4-0-intellij-known-issues"></a> Intellij Extension
+
+- The context menu `Describe` action  in the Activity panel fails when used on PodIntent resources with an error:
+  ```kubectl describe PodIntent my-app -n my-apps-namespace
+  Warning: conventions.apps.tanzu.vmware.com/v1alpha1 PodIntent is deprecated; use conventions.carto.run/v1alpha1 PodIntent instead
+  Error from server (NotFound): podintents.conventions.apps.tanzu.vmware.com "my-app" not found
+
+  Process finished with exit code 1
+  ```
+  When there multiple resource types with the same kind, attempting to describe a resource of that kind without fully qualifying the api version causes this error.
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
@@ -138,8 +188,8 @@ in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 #### <a id="1-4-0-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
 
 - Removed deprecated ScanTemplates:
-  - Deprecated Grype ScanTemplates shipped with versions prior to TAP 1.2.0 have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
-  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in TAP 1.7.0.
+  - Deprecated Grype ScanTemplates shipped with versions prior to Tanzu Application Platform 1.2.0 have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
+  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in Tanzu Application Platform 1.7.0.
     - The deprecation will impact the following components: Scan Controller, Grype Scanner and Snyk Scanner.
     - See [troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images) documentation for the migration path.
 
@@ -163,3 +213,10 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 - The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
   - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
+
+#### <a id="1-4-services-toolkit"></a> Services Toolkit
+
+- The `tanzu services claims` CLI plug-in command is deprecated.
+  It is hidden from help text output, but continues to work until it is officially removed after the
+  deprecation period. The new `tanzu services resource-claims` command provides the same
+  functionality.

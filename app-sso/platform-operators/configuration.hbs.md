@@ -5,9 +5,9 @@
 Most commonly, the AppSSO package installation is configured through TAP's meta package installation. The TAP package
 has a `shared` top-level configuration key for sharing common configuration between the packages it installs.
 
-AppSSO inherits TAP's `shared.{ingress_domain, ingress_issuer, ca_cert_data, kubernetes_distribution}` configuration
-values. Furthermore, AppSSO-specific configuration can be specified under `appsso`. AppSSO-specific configuration has
-precedence over TAP's shared values.
+AppSSO inherits the `shared.{ingress_domain, ingress_issuer, ca_cert_data, kubernetes_distribution}` configuration
+values from Tanzu Application Platform. You can configure the AppSSO-specific parameters under `appsso`.
+AppSSO-specific configuration has precedence over the shared values of Tanzu Application Platform.
 
 For example:
 
@@ -32,25 +32,24 @@ installation is configured with `shared.ingress_domain`, then AppSSO will inheri
 ## domain_template
 
 You can customize how AppSSO template's issuerURIs with the `domain_template` configuration. This is a
-Golang [text/template](https://pkg.go.dev/text/template). The default is `"{{.Name}}.{{.Namespace}}.{{.Domain}}"`.
+Golang [text/template](https://pkg.go.dev/text/template). The default is `"\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"`.
 
 The domain template will be applied with the given `domain_name` and the `AuthServer`'s name and namespace:
 
-- `{{.Domain}}` will evaluate to the configured `domain_name`
-- `{{.Name}}` will evaluate to `AuthServer.metadata.name`
-- `{{.Namespace}}` will evaluate to `AuthServer.metadata.namespace`
+- `\{{.Domain}}` will evaluate to the configured `domain_name`
+- `\{{.Name}}` will evaluate to `AuthServer.metadata.name`
+- `\{{.Namespace}}` will evaluate to `AuthServer.metadata.namespace`
 
-To be able to use a wild-card certificate, consider `"{{.Name}}-{{.Namespace}}.{{.Domain}}"`.
+To be able to use a wild-card certificate, consider `"\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"`.
 
 It is strongly recommended to keep the name and namespace part of the template to avoid domain name collisions.
 
 ## default_authserver_clusterissuer
 
-You can denote a `cert-manager.io/v1/ClusterIssuer` as a default for `AuthServer.spec.tls.issuerRef`. 
-If set, `AuthServer.spec.tls` can be omitted. When its value is the empty string `""`, no default issuer is 
-assumed and `AuthServer.spec.tls` is required.
+You can denote a `cert-manager.io/v1/ClusterIssuer` as a default issuer for `AuthServer.spec.tls.issuerRef` and omit `AuthServer.spec.tls`.
+When the value of `AuthServer.spec.tls.issuerRef` is the empty string `""`, no default issuer is assumed and `AuthServer.spec.tls` is required.
 
-If you configured `shared.ingress_issuer` and omitted `default_authserver_clusterissuer` while installing Tanzu Application Platform, 
+If you configured `shared.ingress_issuer` and omitted `default_authserver_clusterissuer` while installing Tanzu Application Platform,
 AppSSO uses the ingress issuer of Tanzu Application Platform and sets `default_authserver_clusterissuer` to `shared.ingress_issuer`.
 
 ## ca_cert_data
@@ -86,7 +85,7 @@ kubernetes_distribution: ""
 domain_name: "example.com"
 
 #@schema/desc "Optional: Golang template/text string for constructing AuthServer FQDNs"
-domain_template: "{{.Name}}.{{.Namespace}}.{{.Domain}}"
+domain_template: "\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"
 
 #@schema/desc "Optional: PEM-encoded certificate data for AuthServers to trust TLS connections with a custom CA"
 ca_cert_data: ""

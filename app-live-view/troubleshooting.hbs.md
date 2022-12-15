@@ -1,4 +1,4 @@
-# Troubleshooting
+# Troubleshoot Application Live View
 
 This topic provides information to help you troubleshoot Application Live View.
 

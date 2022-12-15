@@ -35,4 +35,4 @@ spec:
 
 ## <a id="internet-dependencies"></a>Internet dependencies
 
-If the workshop requires the installation of any Internet dependency, such as a Linux Tool or any other tool, it must be done in the workshop image. See [building an image](./workshop-content/building-an-image.md)
+If the workshop requires the installation of any Internet dependency, such as a Linux Tool or any other tool, it must be done in the workshop image. See [Build an image](./workshop-content/building-an-image.md)

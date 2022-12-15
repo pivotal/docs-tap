@@ -11,12 +11,7 @@ To prepare the Carbon Black Scanner configuration before you install any scanner
 
 1. Obtain a Carbon Black API Token from Carbon Black Cloud.
 
-2. Create a Carbon Black secret YAML file and insert the Carbon Black API configuration key where:
-
-    - `cbc_api_id` - The API ID obtained from CBC
-    - `cbc_api_key` - The API Key obtained from CBC
-    - `cbc_org_key` - The Org Key of your CBC organization
-    - `cbc_saas_url` - The CBC Backend URL
+2. Create a Carbon Black secret YAML file and insert the Carbon Black API configuration key:
 
     > **Note** Obtain all values from your CBC console.
 
@@ -33,6 +28,13 @@ To prepare the Carbon Black Scanner configuration before you install any scanner
       cbc_saas_url: CBC-SAAS-URL
     ```
 
+    Where:
+
+    - `CBC-API-ID` is the API ID obtained from CBC.
+    - `CBC-API-KEY` is the API Key obtained from CBC.
+    - `CBC-ORG-KEY` is the Org Key of your CBC organization.
+    - `CBC-SAAS-URL` is the CBC Backend URL.
+  
 3. Apply the Carbon Black secret YAML file by running:
 
     ```console

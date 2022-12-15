@@ -2,6 +2,35 @@
 
 This topic describes what to do when encountering issues with Tanzu Developer Tools for IntelliJ.
 
+## <a id="debug-reapplies-apply"></a> Tanzu Debug re-applies the workload when namespace field is empty
+
+### Symptoms
+
+If the `namespace` field of the debug launch configration is empty, it will re-apply the workload even if it exists on the cluster.
+
+### Cause
+
+Internally we gather Workloads in the cluster in the current namespace and compare it with the info specified by the user.
+If the `namespace` field is empty, it will be considered `null` and our internal checks fail.
+
+### Solution
+
+Do not leave the `namespace` field blank.
+
+## <a id="debug-config-from-dropdown"></a> Debug configurations created from launch configurations dropdown re-applies workload
+
+### Symptoms
+
+If your debug configuration is created from the launch configurations dropdown, it will re-apply the workload, even if it exists on the cluster.
+
+### Cause
+
+There is internal logic that is not run when a debug configuration is created from the dropdown. However, it is run when a debug configuration is created from the right-click context menu.
+
+### Solution
+
+Create a debug configuration from the right-click context menu.
+
 ## <a id="cannot-view-workloads"></a> Unable to view workloads on the panel when connected to GKE cluster
 
 {{> 'partials/ext-tshoot/cannot-view-workloads' }}
@@ -19,7 +48,7 @@ the same time.
 These controls are reactivated when the launch configuration is started.
 As such, starting multiple Tanzu debug and live update sessions is a synchronous activity.
 
-## <a id='dbg-fail-crrpt-lnch-conf'>Starting a Tanzu Debug session fails with `Unable to open debugger port`
+## <a id='dbg-fail-crrpt-lnch-conf'></a> Starting a Tanzu Debug session fails with `Unable to open debugger port`
 
 ### Symptom
 
@@ -57,3 +86,18 @@ the plug-in when the plug-in is hot-swapped into an active session instead of lo
 
 Closing and restarting IntelliJ typically fixes this problem.
 If that doesn't work for you, delete the old corrupted launch configuration and recreate it.
+
+## <a id="live-update-timeout"></a> Timeout error when Live Updating
+
+### Sympton
+When a user attempts to Live Update their workload, they may get the following error in the logs: 
+
+`ERROR: Build Failed: apply command timed out after 30s - see }}{{https://docs.tilt.dev/api.html#api.update_settings{{ for how to increase}}`
+
+### Cause
+
+Kubernetes times out on upserts over 30 seconds.
+
+### Solution
+
+Add `update_settings (k8s_upsert_timeout_secs = 300)` to the Tiltfile. See Tiltfile [docs](https://docs.tilt.dev/api.html#api.update_settings).

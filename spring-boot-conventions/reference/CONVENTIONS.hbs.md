@@ -31,7 +31,7 @@ The property value that you provide is used for the pod specification mutation.
 
 Do one of the following actions to set `JAVA_TOOL_OPTIONS` property and values:
 
-Use the Tanzu CLI `apps` plug-in
+Use the Tanzu CLI apps plug-in
 : When creating or updating a workload, set a `JAVA_TOOL_OPTIONS` property using the `--env` flag by
 running:
 
@@ -46,7 +46,7 @@ running:
   tanzu apps workload create APP-NAME --env JAVA_TOOL_OPTIONS="-Dmanagement.server.port=8080"
   ```
 
-Use `workload.yaml`
+Use workload.yaml
 : Follow these steps:
 
   1. Provide one or more values for the `JAVA_TOOL_OPTIONS` property in the `workload.yaml`. For example:

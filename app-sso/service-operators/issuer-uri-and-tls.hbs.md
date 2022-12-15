@@ -8,10 +8,8 @@ You can configure whether and how to obtain a TLS certificate for the issuer URI
 HTTPS is enforced. For example, requests for `http://` are redirected to `https://`. You can observe the TLS
 configuration in `.status.tls`.
 
-> ℹ️ If AppSSO is installed
-> with [a default issuer](../platform-operators/configuration.md#default_authserver_clusterissuer),
-> then `AuthServer.spec.tls` can be omitted and a TLS certificate will be obtained automatically. This is the
-> recommended approach for TLS.
+If AppSSO is installed with [a default issuer](../platform-operators/configuration.md#default_authserver_clusterissuer), 
+you can omit `AuthServer.spec.tls` and a TLS certificate is obtained automatically. This is the recommended approach for TLS.
 
 For example:
 

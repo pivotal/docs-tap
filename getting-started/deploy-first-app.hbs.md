@@ -1,4 +1,4 @@
-# Deploy your first application on Tanzu Application Platform
+# Deploy an app on Tanzu Application Platform
 
 This is the first in a series of Getting started how-to guides for developers. It walks you through deploying your first application on Tanzu Application Platform by using Tanzu Application Platform GUI.
 
@@ -141,4 +141,4 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 ## Next steps
 
-- [Iterate on your new application](iterate-new-app.md)
+- [Iterate on your new app](iterate-new-app.md)

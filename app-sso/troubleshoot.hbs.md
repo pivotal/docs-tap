@@ -49,19 +49,6 @@ client secret of an identity provider is misconfigured.
 
 Validate the `spec.OpenId.clientSecretRef`.
 
-## <a id="sub-claim"></a>Misconfigured `sub` claim
-
-### Problem:
-
-The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern.
-The previous `<providerId>/<userId>` pattern might cause bugs in URLs without proper URL-encoding in client
-applications.
-
-### Solution:
-
-If your client application has stored `sub` claims,
-you must update them to match the new pattern `<providerId>_<userId>`.
-
 ## `Workload` does not trust `AuthServer`
 
 If your `ClientRegistration` selects an `AuthServer` which serves a certificate from a custom CA, then your `Workload`
@@ -111,6 +98,27 @@ You see `Error: [invalid_request] OAuth 2.0 Parameter: redirect_uri` when signin
 The `redirectUri` of this `ClientRegistration` must refer to the URI of the registered Workload.
 It does not refer to the URI of the AuthServer.
 
+## Unsupported `id_token_signed_response_alg` with openid `identityProviders`
+
+### Problem:
+
+When trying to log in with an OpenID Connect `identityProvider`, you are unable to sign in
+and you see the following error in the logs: 
+
+```console
+[invalid_id_token] An error occurred while attempting to decode the Jwt: Signed JWT rejected: Another algorithm expected, or no matching key(s) found.
+```
+
+### Solution:
+
+Verify the `identityProvider`'s discovery endpoint at `ISSUER-URI/.well-known/openid-configuration` where `ISSUER-URI` is the value set at `spec.identityProviders.openid.issuerURI`.
+
+The value of `id_token_signing_alg_values_supported` must include `RS256`. If it is not in the list, your identity configuration might not support AppSSO.
+
+If `RS256` is present, expect to see a `jwks_uri` key in the discovery endpoint. If you visit the URL stored in this key, it must return at least one RSA key. Otherwise, your identity provider might be misconfigured.
+
+Refer to your identity provider's documentation to enable `RS256` token signing.
+
 ## Misconfigured identity provider clientSecret
 
 ### Problem:
@@ -139,3 +147,16 @@ Add the required scopes into your `ClientRegistration` yaml under `spec.scopes`.
 > **Note** Changes to the secret do not propagate to the `ClientRegistration`. If you recreated the `Secret` that
 > contains the
 `clientSecret`, re-deploy the `ClientRegistration`.
+
+## <a id="sub-claim"></a>Misconfigured `sub` claim
+
+### Problem:
+
+The `sub` claims in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern.
+The previous `<providerId>/<userId>` pattern might cause bugs in URLs without proper URL-encoding in client
+applications.
+
+### Solution:
+
+If your client application stores `sub` claims,
+you must update the `sub` claims to match the new pattern `<providerId>_<userId>`.

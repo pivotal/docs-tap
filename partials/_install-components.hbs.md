@@ -1,4 +1,4 @@
-You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [About Tanzu Application Platform components and profiles](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-about-package-profiles.html).
+You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [Components and installation profiles](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-about-package-profiles.html).
 
 Installing individual Tanzu Application Platform packages
 is useful if you do not want to use a profile to install packages
@@ -18,7 +18,7 @@ For more information, see [Prerequisites](https://docs.vmware.com/en/VMware-Tanz
 - [Install cert-manager](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-cert-manager-install.html)
 - [Install Cloud Native Runtimes](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-cloud-native-runtimes-install-cnrt.html)
 - [Install Contour](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-contour-install.html)
-- [Install default roles for Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-authn-authz-install.html)  
+- [Install default roles for Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-authn-authz-install.html)
 - [Install Developer Conventions](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-developer-conventions-install-dev-conventions.html)
 - [Install Eventing](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-eventing-install-eventing.html)
 - [Install FluxCD Source Controller](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-fluxcd-source-controller-install.html)
