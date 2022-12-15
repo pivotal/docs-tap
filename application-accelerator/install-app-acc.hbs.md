@@ -4,9 +4,8 @@ This topic describes how to install Application Accelerator
 from the Tanzu Application Platform package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
-> Services Toolkit.
-> For more information about profiles, see
-> [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+> Application Accelerator. For more information about profiles, see [About Tanzu Application Platform
+> components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='app-acc-prereqs'></a>Prerequisites
 
