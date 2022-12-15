@@ -1,4 +1,7 @@
-# Install FluxCD source-controller
+# Install FluxCD Source Controller
+
+>**Note** Follow the steps in this topic if you do not want to use a profile to install FluxCD Source Controller. 
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='sc-prereqs'></a>Prerequisites
 
