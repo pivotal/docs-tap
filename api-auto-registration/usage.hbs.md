@@ -5,7 +5,7 @@ This topic describes how to use API Auto Registration.
 >**Note** The run profile requires you to [update the install values](#update-values) before
 >proceeding. For iterate and full profiles, the default values work but you
 >might prefer to update them. For information about profiles,
->see [About Tanzu Application Platform profiles](../about-package-profiles.md#profiles-and-packages).
+>see [About Tanzu Application Platform profiles](../about-package-profiles.hbs.md#profiles-and-packages).
 
 API Auto Registration requires the following:
 
@@ -165,14 +165,14 @@ interpret baseURL from Knative Services and construct APIDescriptor CRs.
 
 In the Delivery pipeline, you must directly create an APIDescriptor custom resource. You must grant
 permissions to create the CR from the delivery pipeline.
-For information about APIDescriptors, see [Key Concepts](key-concepts.md).
+For information about APIDescriptors, see [Key Concepts](key-concepts.hbs.md).
 
 ## <a id='using-gitops-manually'></a>Using other GitOps processes or Manually
 
 Using your GitOps process, or manually, you must stamp out an APIDescriptor CR and apply it in the
 cluster you choose. The APIDescriptor needs all the required text boxes to reconcile.
 
-For information about APIDescriptors, see [Key Concepts](key-concepts.md).
+For information about APIDescriptors, see [Key Concepts](key-concepts.hbs.md).
 
 ## <a id='cors'></a>Setting up CORS for OpenAPI specifications
 
