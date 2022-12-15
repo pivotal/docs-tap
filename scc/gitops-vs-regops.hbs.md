@@ -1,4 +1,4 @@
-# GitOps vs. RegistryOps
+# GitOps versus RegistryOps
 
 Regardless of the supply chain that a workload goes through, in the end,
 some Kubernetes configuration is pushed to an external entity, either to a Git
@@ -48,7 +48,7 @@ respected.
 
 In the repository, files are located in the `./config/{workload-namespace}/{workload-name}` directory. This allows multiple workloads to commit configuration to the same repository.
 
-#### Examples
+#### <a id="examples-1"></a> Examples
 
 ---
 `tap-values.yaml`
@@ -285,7 +285,7 @@ deprecated value repository_prefix is ignored because suggested values are prese
 
 ### <a id="prs"></a> Pull Requests
 
-In the standard git-ops approach, configuration is pushed to a repository and is
+In the standard `git-ops` approach, configuration is pushed to a repository and is
 immediately applied to a cluster by any deliverable watching that repository.
 Operators might want to manually review configuration before applying it to the
 cluster. To do this, operators must specify a `pull_request` commit strategy.

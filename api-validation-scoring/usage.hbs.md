@@ -1,13 +1,10 @@
 ## Use API Validation and Scoring to score an auto-registered API
 
-This topic describes how an [Auto Registered API](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-api-auto-registration-about.html) is scored.
+This topic describes how an [Auto Registered API](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-api-auto-registration-about.html) is scored:
 
-Refer [API Auto Registration usage](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-api-auto-registration-usage.html) to deploy the workload. Navigate to the TAP GUI to view the API .
-
-The Overview Tab of your API in TAP GUI will now show the API scores.
-
-![](assets/tap-api-score-page.png)
-
-To view further details on the Validation Analysis and to know where improvement is required for your API. Click on **More Details**
-
-![](assets/apix-api-score-page.png)
+- See [Use API Auto Registration](../api-auto-registration/usage.hbs.md) to deploy the workload. 
+- Navigate to the Tanzu Application Platform GUI to view the API .
+- The **Overview** tab of your API in Tanzu Application Platform GUI shows the API scores.
+    ![Screenshot of the overview tab showing the API scores](assets/tap-api-score-page.png)
+- To view more details about the Validation Analysis and the required improvements for your API, click **MORE DETAILS**.
+    ![Screenshot of the API details page that includes the Validation Analysis and the required improvements for your API](assets/apix-api-score-page.png)

@@ -18,7 +18,7 @@ It is also visible on the overview page of specific components on the home page.
 APIs are a definition of the interface between components.
 
 Their definition is provided in machine-readable ("raw") and human-readable formats.
-For more information, see [API plugin documentation](api-docs.html).
+For more information, see [API plugin documentation](api-docs.hbs.md).
 
 ### <a id="deploy-your-app"></a> Add a demo API entity to Tanzu Application Platform GUI software catalog
 
@@ -28,7 +28,7 @@ other software catalog entity:
 1. Navigate to the home page of Tanzu Application Platform GUI. Click **Home** on the left-side
    navigation bar. Click **REGISTER ENTITY**.
 
-    ![REGISTER button on the right side of the header](../images/../../images/getting-started-tap-gui-5.png)
+    ![REGISTER button on the right side of the header](../../images/getting-started-tap-gui-5.png)
 
 2. **Register an existing component** prompts you to type a repository URL.
    Type the link to the `catalog-info.yaml` file of your choice or use the following sample
@@ -150,46 +150,49 @@ other software catalog entity:
 3. Paste the link to the `catalog-info.yaml` and click **ANALYZE**. Review the catalog entities and
    click **IMPORT**.
 
-    ![Screenshot of the stage for reviewing the entities to be added to the catalog.](./tap-gui/images/../../../images/api-plugin-7.png)
+    ![Screenshot of the stage for reviewing the entities to be added to the catalog.](../images/api-plugin-7.png)
 
 4. Navigate to the **API** page by clicking **APIs** on the left-hand side navigation panel.
    The catalog changes and entries are visible for further inspection.
    If you select the system **demo-app**, the diagram appears as follows:
 
-    ![Screenshot of the APIs page. It shows the system diagram for demo dash app.](./tap-gui/images/../../../images/api-plugin-8.png)
+    ![Screenshot of the APIs page. It shows the system diagram for the demo dash app.](../images/api-plugin-8.png)
 
 ### <a id="deploy-your-app"></a> Update your demo API entry
 
 To update your demo API entry:
 
-1. To update your demo API entity, select **demo-api** from the list of available APIs in your
+1. To update your demo API entity, click on **demo-api** from the list of available APIs in your
    software catalog and click the **Edit** icon on the **Overview** page.
 
-    ![Screenshot of the overview of demo dash api. The edit button on the card labeled About is framed in red.](./tap-gui/images/../../../images/api-plugin-9.png)
+    ![Screenshot of the overview of demo dash api. The edit button on the card labeled About is framed in red.](../images/api-plugin-9.png)
 
     It opens the source `catalog-info.yaml` file that you can edit. For example, change the
     `spec.paths.parameters.example` from `type_any_name` to `Tanzu` and save your changes.
 
-2. After you made the edits, Tanzu Application Platform GUI re-renders the API entry with the next refresh cycle.
+2. After you made the edits, Tanzu Application Platform GUI re-renders the API entry with the next
+   refresh cycle.
 
 ## <a id="validation-api"></a> Validation Analysis of API specifications
 
-This section describes the Validation Analysis card, the data format needed to populate the card and how to get automatic scores for your OpenAPI entities.
+This section describes the Validation Analysis card, the data format needed to populate the card, and
+how to get automatic scores for your OpenAPI entities.
 
 ### <a id="about-validation"></a> About Validation Analysis card
 
-When viewing entities of kind "API" on the Overview tab, it contains the Validation Analysis card that displays the health of an API through various scoring parameters.
+When viewing entities of the kind `API` on the Overview tab, you see the Validation Analysis card
+that displays the health of an API through various scoring parameters.
 
-![Validation Analysis card in bottom right](../images/../../images/getting-started-tap-gui-9.png)
+![Screenshot of the Validation Analysis card, which is shown at the bottom-right of the Overview tab.](../../images/getting-started-tap-gui-9.png)
 
-In order to display the health scores, an API entity must contain the following metadata structure
+To display the health scores, an API entity must contain the following metadata structure:
 
 ```yaml
 apiVersion: backstage.io/v1alpha1
 kind: API
 metadata:
-  name: sample-spec
-  description: Sample API
+  name: NAME
+  description: DESCRIPTION
   apiscores:
     scores:
     - id: documentationReport
@@ -207,28 +210,31 @@ metadata:
       value: 89.0625
       valueType: percentage
       status: passed
-    scoreDetailsURL:  <validation-report-url-for-more-details>
-# Other API Entity params
+    scoreDetailsURL:  VALIDATION-REPORT-URL-FOR-MORE-DETAILS
+# Other API Entity parameters
 ```
 
-As long as an API entity follows this schema, the Validation Analysis card will display helpful info about the API.
+If an API entity follows this schema, the Validation Analysis card displays helpful information
+about the API.
 
 ```yaml
-    - id:        # Unique Id
+    - id:        # Unique ID
       label:     # Descriptive label displayed as a title over the numerical value
       value:     # Any number value
-      valueType: # One of (percentage, other). Displays the % symbol or none
-      status:    # One of (passed, warning, failed). Displays the number in green, yellow or red.
+      valueType: # One of the types (percentage or other). Displays the % symbol or none.
+      status:    # One of the statuses (passed, warning, or failed). Displays the number in green, yellow, or red.
 ```
 
-### <a id="automatic-validation"></a> Automatic OpenAPI specification Validation
+### <a id="automatic-validation"></a> Automatic OpenAPI specification validation
 
-You can receive automatic validation analysis for OpenAPI specs using APIx.
-Follow the installation using the APIx docs.
-In addition, you will need to use either [API Auto Registration](../../api-auto-registration/about.hbs.md) or
-APIx Design GitOps to automatically generate the API entities in TAP GUI.
+You can receive automatic validation analysis for OpenAPI specifications by using APIx.
+Follow the installation using the APIx documentation.
+In addition, you must use either [API Auto Registration](../../api-auto-registration/about.hbs.md)
+or APIx Design GitOps to automatically generate the API entities in Tanzu Application Platform GUI.
 
-Note: The automatic scoring will not be able to score or replace API entities created through other methods like regular GitOps or manual registration.
-You might see the following message signaling that the OpenAPI spec was registered with regular GitOps methods or manual registration.
+The automatic scoring cannot score or replace API entities created through other methods like regular
+GitOps or manual registration.
+You might see the following message signaling that the OpenAPI specification was registered with
+regular GitOps methods or manual registration:
 
-![Validation Analysis not available message](../images/../../images/getting-started-tap-gui-10.png)
+**Validation analysis is currently unavailable for APIs registered via TAP GUI without being attached to a workload.**

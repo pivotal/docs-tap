@@ -1,95 +1,158 @@
-## Documentation
+# Use Tanzu Developer Tools for Visual Studio
 
-### Apply Workload
+This topic describes how to use Tanzu Developer Tools for Visual Studio.
 
-###### Requirements:
-* `tanzu` command in `PATH`.
-* A valid `workload.yaml` file in the project ([spec](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-cli-plugins-apps-command-reference-commands-details-workload_create_update_apply.html)).
-* A functional TAP environment.
-* Kube config is properly configured for TAP workload deployments (e.g. preferred `namespace` is set, etc.).
-* An image repository where source code can be staged before being built.
+## <a id="apply-workload"> Apply a workload
 
-###### Applying a Workload:
-* Right-click the Project node or any file node in the Solution Explorer.
-* Click "Tanzu: Apply Workload".
-* Specify an address to your image repository in the confirmation pop-up.
-* Optionally adjust additional settings for the `apply`: path to your local source code, k8s namespace, and path to `workload.yaml`.
-  * If a `workload.yaml` file exists somewhere in the project file structure, it will be used by default.
-* Click "Apply Workload".
-* Output can be seen in the "Tanzu Output" pane of Visual Studio's Output tool window.
+To apply a workload:
 
-More info in our [Wiki](https://github.com/vmware-tanzu/tanzu-developer-tools-for-visual-studio/wiki/Deploying-workloads-to-TAP)!
+1. Ensure that you have the following prerequisites:
 
-### Delete Workload
+   - `tanzu` command in `PATH`.
+   - A valid `workload.yaml` file in the project. For more information, see the specification for
+     [Tanzu apps workload apply](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md).
+   - A functional Tanzu Application Platform environment.
+   - Kube config modified for Tanzu Application Platform workload deployments.
+     There must be a preferred `namespace`, for example.
+   - An image repository where source code can be staged before being built.
 
-###### Requirements:
-* `tanzu` command in `PATH`.
-* A running TAP workload.
-* A valid `workload.yaml` file in the project, describing the workload to delete.
+2. Right-click the project node or any file node in the Solution Explorer.
+3. Click **Tanzu: Apply Workload**.
+4. Specify an address to your image repository in the confirmation pop-up.
+5. (Optional) adjust additional settings for the `apply` path to your local source code, Kubernetes
+   namespace, and path to `workload.yaml`.
+   If a `workload.yaml` file exists somewhere in the project file structure, it is used by default.
+6. Click **Apply Workload**.
+7. Verify that output appears in the Tanzu Output pane of the Visual Studio Output tool window.
 
-###### Deleting a Workload:
-* Right-click the Project node or any file node in the Solution Explorer.
-* Click "Tanzu: Delete Workload".
-* If a `workload.yaml` exists somewhere in the project file structure, it will be used to delete the workload via `tanzu apps workload delete --file={workload_path} --yes`
+## <a id="delete-workload"> Delete a workload
 
-### Live Update
+To delete a workload:
 
-###### Requirements:
-* Project with a `Tiltfile` in the project root.
-* `tilt` command in `PATH`.
-* `tanzu` command in `PATH`.
+1. Ensure that you have the following prerequisites:
 
-###### Starting Live Update:
-* Right click on `Tiltfile`, select _Tanzu: Start Live Update_.
+   - `tanzu` command in `PATH`
+   - A running Tanzu Application Platform workload
+   - A valid `workload.yaml` file in the project that describes the workload to delete
 
-###### Stopping Live Update:
-* Right click on `Tiltfile`, select _Tanzu: Stop Live Update_.
+2. Right-click the project node or any file node in the Solution Explorer.
+3. Click **Tanzu: Delete Workload**.
+4. If a `workload.yaml` exists somewhere in the project file structure, delete the
+   workload by running:
 
+    ```console
+    tanzu apps workload delete --file={workload_path} --yes
+    ```
 
-#### Rogue tilt Processes
+## <a id="use-live-update"> Use Live Update
 
-If a `tilt` process is already running and you try to start Live Update, you'll get a message in the Tanzu Output window like:
+To use Live Update:
 
+1. Ensure that you have the following prerequisites:
+
+   - A project with a `Tiltfile` in the project root
+   - `tilt` command in `PATH`
+   - `tanzu` command in `PATH`
+
+2. Start Live Update by right-clicking on **Tiltfile** and then selecting **Tanzu: Start Live Update**.
+3. Stop Live Update by right-clicking on **Tiltfile** and then selecting **Tanzu: Stop Live Update**.
+
+### <a id="stop-rogues"> Stop rogue tilt processes
+
+If a `tilt` process is already running and you try to start Live Update, a message in the Tanzu Output
+window appears similar to:
+
+```console
+Error: listen tcp 127.0.0.1:10350: bind: Only one usage of each socket address \
+(protocol/network address/port) is normally permitted.
 ```
-Error: listen tcp 127.0.0.1:10350: bind: Only one usage of each socket address (protocol/network address/port) is normally permitted.
 
-```
+To resolve this, stop any running `tilt` processes. The following example is a PowerShell snippet,
+but you can get a similar result by using Task Manager.
 
-To resolve, kill any running `tilt` processes.  The following is a PowerShell snippet, but a similar result can be obtained using Task Manager.
-
-```
+```console
 Get-Process "tilt" | ForEach-Object { $_.kill() }
 ```
 
-### Remote Debug
+## <a id="use-remote-debug"> Use Remote Debug
 
-###### Requirements:
-* A running .NET workload in TAP.
-* `tanzu` command in `PATH`.
-* `kubectl` command in `PATH`.
+To use Remote Debug:
 
-###### Getting a workload running in TAP:
-* The `tanzu` cli `apps` plugin facilitates pushing workloads to TAP via `workload apply` ([read all about it here](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-cli-plugins-apps-command-reference-commands-details-workload_create_update_apply.html?)).
-* The [`steeltoe-weatherforecast` accelerator](https://github.com/sample-accelerators/steeltoe-weatherforecast) provides a sample .NET app which is ready to be deployed to TAP out-of-the-box.
-  * Clone `https://github.com/sample-accelerators/steeltoe-weatherforecast.git`
-  * From the project's root directory, invoke `tanzu apps workload apply -f config/workload.yaml`
-    * NOTE: by default this will create workload from the code in the GitHub repo. More info on deploying from your local source can be found in the [docs](https://github.com/sample-accelerators/steeltoe-weatherforecast#deploying-to-kubernetes-as-a-tap-workload-with-tanzu-cli).
+1. Ensure that you have the following prerequisites:
 
-###### Starting Remote Debug:
-* Right click on a project in the Solution Explorer, select _Tanzu: Remote Debug_.
-* If no workload pods are running, you will be prompted to deploy a new workload. If you'd like to, click 'OK' on the prompt and proceed with the directions in [Applying a Workload](#Applying-a-Workload).
-  * Once the workload is finished deploying, click the _Tanzu: Remote Debug_ button again to start debugging.
-* If just 1 workload pod is running, the debugger should attach to your running app process automatically (see disclaimer below for an important caveat).
-* If more than 1 workload pod is running, you will be prompted to select which one corresponds to the project you'd like to debug. Select the relevant pod name & click "Begin Debugging". You should see the pod confirmation window close and the Output window open to the "Debug Adapter Host Log" pane as Visual Studio enters debug mode. 
-> _**NOTE:** Visual Studio will prompt the debugging agent to attach to a running app process with a particular name: `/workspace/{DotNetProjectName}`. By default this should succeed without issue, but if for some reason the name of your running app process (i.e. that of the app DLL) does not match the name of your .NET project as shown in the Visual Studio Solution Explorer, the remote debugging agent may fail to attach._  
+   - A running .NET workload in Tanzu Application Platform
+   - `tanzu` command in `PATH`
+   - `kubectl` command in `PATH`
 
-> _**NOTE:** A file named `.tanzu-vs-launch-config.json` will be created at the root directory of your project. This file specifies the configuration needed to attach Visual Studio's debugger to the agent running in your workload's container; it is only needed to initiate remote debugging & can be safely deleted at any time. This file location is temporary and will be moved in future versions._
+### <a id="run-workload"> Run a workload in Tanzu Application Platform
 
-###### Stopping Remote Debug:
-***CAREFUL:** Using the red square "stop" button in Visual Studio's top toolbar can cause the TAP workload to either crash or hand indefinitely. We're working on a fix, but in the meantime you should:*
-* Open the **Debug** menu and click **Detach All**.
+To run a workload in Tanzu Application Platform:
 
-##### Troubleshooting:
-This extension records logs in a `.log` file whose name starts with "tanzu-dev-tools" and ends with a string of numbers representing the date (e.g. `tanzu-dev-tools20221202.log`).
-A new log file is created for each day and retained for a maximum of 31 days. These log files can be found in the installation directory of the `.vsix` file
-(by default this is "C:\Users\\\{name}\AppData\Local\Microsoft\VisualStudio\\\{version}\Extensions\VMware\Tanzu Developer Tools\\\{vsix version}").
+1. Use the Tanzu CLI `apps` plug-in to push workloads to Tanzu Application Platform by running:
+
+   ```console
+   workload apply
+   ```
+
+  For more information, see
+  [Tanzu apps workload apply](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md).
+
+1. Clone the project
+   [`steeltoe-weatherforecast` accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/weatherforecast-steeltoe),
+   which provides a sample .NET app that is ready to be immediately deployed to
+   Tanzu Application Platform.
+2. Go to `weatherforecast-steeltoe`.
+3. From the project's root directory, run:
+
+   ```console
+   tanzu apps workload apply -f config/workload.yaml
+   ```
+
+   By default, this creates a workload from the code in the GitHub repository.
+   For more information about deploying from your local source, see the repository README file.
+
+### <a id="start-remote-debug"> Start Remote Debug
+
+To start a remote debug:
+
+1. Right-click on a project in the Solution Explorer and then click on **Tanzu: Remote Debug**.
+
+   - If no workload pods are running, you are prompted to deploy a new workload.
+     If you want to do so, click on **OK** in the dialog box and proceed with the steps in
+     [Apply a Workload](#Apply-a-Workload).
+     After the workload is deployed, click **Tanzu: Remote Debug** again to start debugging.
+
+   - If just one workload pod is running, the debugger attaches to your running app process
+     automatically.
+
+   - If more than one workload pod is running, you are prompted to select which one corresponds to the
+     project you want to debug. Select the relevant pod name and then click **Begin Debugging**.
+     The pod confirmation window then closes and the Output window opens to the Debug Adapter Host Log
+     pane as Visual Studio enters debug mode.
+
+Visual Studio prompts the debugging agent to attach to a running app process with the name
+`/workspace/{DotNetProjectName}`.
+Typically this succeeds without issue, but if for some reason the name of your running app process
+(the app DLL process), does not match the name of your .NET project as shown in the Visual Studio
+Solution Explorer, the remote debugging agent might fail to attach.
+
+A file named `.tanzu-vs-launch-config.json` is created at the root directory of your project.
+This file specifies the configuration needed to attach Visual Studio's debugger to the agent running
+in your workload's container.
+It is only needed to initiate remote debugging and can be safely deleted at any time.
+This file location is temporary and will change in future versions.
+
+### <a id="stop-remote-debug"> Stop Remote Debug
+
+Using the red square stop button in Visual Studio's top toolbar can cause the Tanzu Application Platform
+workload to either crash or hang indefinitely.
+A fix is planned for a future release. In the meantime, open the **Debug** menu and click **Detach All**.
+
+## <a id="troubleshoot"> Troubleshooting
+
+This extension records logs in a `.log` file whose name starts with `tanzu-dev-tools` and ends with
+a string of numbers representing the date, such as `tanzu-dev-tools20221202.log`.
+A new log file is created for each day and retained for a maximum of 31 days.
+These log files are in the installation directory of the `.vsix` file.
+By default, this is
+`"C:\Users\\\{name}\AppData\Local\Microsoft\VisualStudio\\\{version}\Extensions\VMware\Tanzu Developer Tools\\\{vsix version}"`.

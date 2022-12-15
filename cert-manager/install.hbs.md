@@ -1,8 +1,7 @@
 # Install cert-manager
 
-> **Note** Use the instructions on this page if you do not want to use a profile to install packages.
-> All profiles include cert-manager. For more information about profiles,
-> see [Components and installation profiles](../about-package-profiles.md).
+>**Note** Follow the steps in this topic if you do not want to use a profile to install cert-manager. 
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 The cert-manager package installs cert-manager and, optionally, a number of `ClusterIssuer`.
 
@@ -178,4 +177,3 @@ To install cert-manager with a self-signed `ClusterIssuer` from the Tanzu Applic
     tap-ingress-selfsigned-bootstrap   True    5m
     ...
     ```
-

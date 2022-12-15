@@ -10,6 +10,8 @@ into this Tanzu Application Platform documentation site.
 
 - [API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)
 
+- [API Validation and Scoring](api-validation-scoring/about.hbs.md)
+
 - [Application Accelerator for VMware Tanzu](application-accelerator/about-application-accelerator.md)
 
 - [Application Live View](app-live-view/about-app-live-view.md)

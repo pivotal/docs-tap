@@ -44,12 +44,11 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 
 
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
-- Users no longer need to create a package overlay to enable Grype in offline and air-gapped environments. Refer to our updated [instructions](./partials/scst-scan/_offline-airgap.hbs.md).
+- Users no longer need to create a package overlay to enable Grype in offline and air-gapped environments. Refer to our updated [instructions](scst-scan/offline-airgap.hbs.md).
 
 #### <a id="1-4-0-services-toolkit-new-features"></a> Services Toolkit
 - Added new `ClassClaim` API that allows claims for service instances to be created by referring to a `ClusterInstanceClass`. See [Services Toolkit documentation](./services-toolkit/about.hbs.md) for more information.
 - Added corresponding `tanzu services class-claims` CLI plug-in command
-
 
 #### <a id="1-4-0-vscode-new-features"></a> Tanzu Developer Tools for Visual Studio Code
 - Developer sandbox: allows developers to live update their code — as well as simultaneously debug the updated code — without having to turn off Live Update when debugging
@@ -61,6 +60,9 @@ are using this issuer to secure ingress. In upcoming releases all components wil
   - API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API Specification is generated from the API Auto Registration feature in TAP .
   There is a Validation Analysis card  on the API Overview page on the TAP GUI that displays the summary of the scores. If the user wants to get more details of the scores, they can click on the 'More Details' link and can get a detailed view.
 
+#### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
+
+- API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API specification is generated from the API Auto Registration of Tanzu Application Platform. See [API Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
 
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
 
@@ -106,7 +108,8 @@ target an alternative Sigstore stack, specify `policy.tuf_mirror` and
 This release has the following security fixes, listed by area and component.
 
 #### <a id='1-4-0-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
-- `python` has been updated to `3.7.5-22.ph3`
+
+- `python` is updated to `3.7.5-22.ph3`.
 
 #### <a id="1-4-0-api-auto-registration-fixes"></a> API Auto Registration
 
@@ -137,6 +140,11 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
+
+#### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for Intellij
+
+- If a Workload is deployed via Live Update onto namespace `myNamespace`, then the user needs to set `myNamespace` as the namespace of the current context of their kubeconfig. Otherwise if the user Tanzu Debug, then it will re-deploy the Workload.
+
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
 **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
@@ -158,6 +166,17 @@ as images.
 #### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer Plug-In
 - The `Generation` field in the **Overview** section is not updated when a scan policy is amended, however clicking on the `Scan Policy` link will show the most current scan policy details applied to the stage.
 - Customizing the `Source Tester` stage in an OOTB supply chain will not show details in the **Stage Details** section.
+
+#### <a id="1-4-0-intellij-known-issues"></a> Intellij Extension
+
+- The context menu `Describe` action  in the Activity panel fails when used on PodIntent resources with an error:
+  ```kubectl describe PodIntent my-app -n my-apps-namespace
+  Warning: conventions.apps.tanzu.vmware.com/v1alpha1 PodIntent is deprecated; use conventions.carto.run/v1alpha1 PodIntent instead
+  Error from server (NotFound): podintents.conventions.apps.tanzu.vmware.com "my-app" not found
+
+  Process finished with exit code 1
+  ```
+  When there multiple resource types with the same kind, attempting to describe a resource of that kind without fully qualifying the api version causes this error.
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
