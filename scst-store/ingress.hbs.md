@@ -27,14 +27,13 @@ metadata_store:
 ```
 
 SCST - Store installation creates an HTTPProxy entry with host routing by using
-the qualified name `metadata-store.<ingress_domain>`. For example,
+the qualified name `METADATA-STORE.INGRESS-DOMAIN`. For example,
 `metadata-store.example.com`. The route supports HTTPS communication using a
 certificate. By default, a self-signed certificate is used with the same subject
 `alternative name`.
 For more information, see [Custom certificate configuration](custom-cert.hbs.md).
 
-Contour and DNS setup are not part of SCST - Store installation. Access to SCST
-- Store using Contour depends on the correct configuration of these two
+Contour and DNS setup are not part of SCST - Store installation. Access to SCST - Store using Contour depends on the correct configuration of these two
 components.
 
 Make the proper DNS record available to clients to resolve `metadata-store` and
@@ -66,7 +65,7 @@ $ curl https://metadata-store.example.com/api/health -k -v
   ...
 ```
 
->**Note** The preceding `curl` example uses the not secure (`-k`) flag to skip
+>**Note** The preceding `curl` example uses the not secure `-k` flag to skip
 >TLS verification because the Store installs a self-signed certificate. The
 >following section shows how to access the CA certificate to enable TLS
 >verification for HTTP clients.
@@ -74,17 +73,17 @@ $ curl https://metadata-store.example.com/api/health -k -v
 ## <a id="tls"></a>Get the TLS CA certificate
 
 To get SCST - Store's TLS CA certificate, use `kubectl get secret`. In this
-example, you save the certificate to the environment variable to a file.
+example, you save the certificate for the environment variable to a file.
 
 ```console
-kubectl get secret CERT-NAME -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > OUTPUT_FILE
+kubectl get secret CERT-NAME -n metadata-store -o json | jq -r '.data."ca.crt"' | base64 -d > OUTPUT-FILE
 ```
 
 Where:
 
-- `CERT-NAME` is the name of the certificate, this must be `ingress-cert` if no
+- `CERT-NAME` is the name of the certificate. This must be `ingress-cert` if no
   custom certificate is used.
-- `OUTPUT_FILE` is the file you want to create to store the certificate
+- `OUTPUT-FILE` is the file you want to create to store the certificate.
 
 For example:
 
