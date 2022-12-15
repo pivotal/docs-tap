@@ -2,9 +2,8 @@
 
 This document describes how to install default roles for Tanzu Application Platform without deploying a Tanzu Application Platform profile.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-The full profile includes the defaults roles package.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+>**Note** Follow the steps in this topic if you do not want to use a profile to install default roles. 
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
