@@ -4,7 +4,7 @@ This document describes how to install the Apps CLI plug-in.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install Apps CLI plug-in.
 > For more information about profiles, see [About Tanzu Application Platform components and
-> profiles](../../about-package-profiles.hbs.md).
+> profiles](../../overview.hbs.md#about-package-profiles).
 
 ## <a id='prereqs'></a>Prerequisites
 
