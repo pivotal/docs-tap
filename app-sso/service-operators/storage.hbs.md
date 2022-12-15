@@ -50,7 +50,10 @@ AppSSO takes _secure-by-default_ approach and will not establish non-encrypted c
 The `AuthServer` resource will enter an error state should a non-encrypted connection be attempted.
 
 <strong>Note:</strong>
-mTLS is not supported.
+_mTLS_ is not supported.
+
+Vanilla Redis uses _mTLS_ by default. It can be turned off by setting `tls-auth-clients no`.
+See [Redis' docs on _Client certificate authentication_](https://redis.io/docs/management/security/encryption/#client-certificate-authentication).
 </p>
 
 The following steps introduce the path to configuring Redis with AppSSO:
