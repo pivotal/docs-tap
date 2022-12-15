@@ -82,8 +82,9 @@ You use the Tanzu CLI and plug-ins to install and use the Tanzu Application Plat
 and features.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
-> PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform
-> components and profiles](../about-package-profiles.hbs.md).
+> Services Toolkit.
+> For more information about profiles, see
+> [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 To install the Tanzu CLI and plug-ins:
 
