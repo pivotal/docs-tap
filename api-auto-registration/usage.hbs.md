@@ -7,7 +7,7 @@ This topic describes how to use API Auto Registration.
 >might prefer to update them. For information about profiles,
 >see [About Tanzu Application Platform profiles](../about-package-profiles.md#profiles-and-packages).
 
-API Auto Registration requires that the following is present:
+API Auto Registration requires the following:
 
 1. A location exposing a dynamic or static API specification.
 
@@ -68,8 +68,8 @@ To create APIDescriptor CR:
 
 ## <a id='using-app-acc-template'></a>Using App Accelerator Template
 
-If you are creating a new application exposing an API, you might use the ["java-rest-service"](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
-App Accelerator template to get a pre-built app that includes an already written
+If you are creating a new application exposing an API, you might use the [java-rest-service](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
+App Accelerator template to get a pre-built app that includes a
 workload.yaml with a basic REST API.
 From your Tanzu Application Platform GUI Accelerators tab, search for the accelerator and
 scaffold it according to your needs.
@@ -78,7 +78,7 @@ scaffold it according to your needs.
 
 All the Out-Of-The-Box (OOTB) supply chains are modified so that they can use API Auto Registration.
 If you want your workload to be auto registered, you must make modifications to your
-workload YAML as described in later steps.
+workload YAML:
 
 1. Add the label `apis.apps.tanzu.vmware.com/register-api: "true"`.
 2. Add a parameter of `type api_descriptor`:
@@ -127,7 +127,7 @@ spec:
 
 ```
 
-Example of a workload with a hardcoded URL to the API documentation
+Example of a workload with a hardcoded URL to the API documentation:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
