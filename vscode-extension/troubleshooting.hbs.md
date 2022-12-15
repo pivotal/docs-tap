@@ -71,3 +71,18 @@ Kubernetes times out on upserts over 30 seconds.
 ### Solution
 
 Add `update_settings (k8s_upsert_timeout_secs = 300)` to the Tiltfile. See Tiltfile [docs](https://docs.tilt.dev/api.html#api.update_settings).
+
+## <a id="deprecated-task"></a> Task related error when using launch configs
+
+### Sympton
+When a user attempts to use a launch config, they may get a task related error: 
+
+`Could not find the task 'tanzuManagement: Kill Port Forward my-app`
+
+### Cause
+
+Some previous tasks are no longer supported.
+
+### Solution
+
+Delete that task in the launch config.
