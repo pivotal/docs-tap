@@ -5,7 +5,7 @@ from the Tanzu Application Platform package repository.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install
 > PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform
-> components and profiles](../about-package-profiles.hbs.md).
+> components and profiles](../overview.hbs.md#about-package-profiles).
 
 ## <a id='app-acc-prereqs'></a>Prerequisites
 
@@ -51,7 +51,6 @@ The following table is the resource usage configurations for the components of A
 | acc-controller | cpu: 100m <br> memory: 20Mi| cpu: 100m <br> memory: 30Mi |
 | acc-server | cpu: 100m <br> memory:20Mi | cpu: 100m <br> memory: 30Mi |
 | acc-engine | cpu: 500m <br> memory: 1Gi | cpu: 500m <br> memory: 2Gi |
-
 
 ## <a id='app-acc-install'></a> Install
 
