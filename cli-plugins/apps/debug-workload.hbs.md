@@ -69,11 +69,12 @@ There are known errors that will make the workload enter in an error or unknown 
 - *TemplateRejectedByAPIServer*
 	- *Message*: Unable to apply object `[ns/workload-name]` for resource `[source-provider]` in supply chain `[source-to-url]`: failed to get unstructured `[ns/workload-name]` from api server: imagerepositories.source.apps.tanzu.vmware.com "workload-name" is forbidden: User "system:serviceaccount:ns:default" cannot get resource "imagerepositories" in API group "source.apps.tanzu.vmware.com" in the namespace "ns"
 	- *Cause*: This error happens when the service account in the workload object does not have permissions to create objects that are stamped out by the supply chain.
-		- *Resolution*: This can be fixed by setting up the [Set up developer namespaces to use installed packages](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-set-up-namespaces.html) with the required service account and permissions.
+		- *Resolution*: This can be fixed by setting up the [Set up developer namespaces to use installed packages](../../scst-store/developer-namespace-setup.hbs.md) with the required service account and permissions.
 
 ## <a id="steps-failure"></a> Supply Chain steps
 
-After a workload is created, the steps it goes through in the supply chain are surfaced with `tanzu apps workload get` command.
+After a workload is created via `tanzu apps workload create (or) apply`, the supply chain steps that it goes through, and the current condition of each, can be reviewed in the output from `tanzu apps workload get`.
+
 The output looks like the following:
 
 ```bash
@@ -102,7 +103,7 @@ The output looks like the following:
 ...
 ```
 
-In the `Supply Chain` section, the resources of the supply chain related to the workload are displayed, alongside their reconcile state. In case of failure, the `READY` column will show `Unknown` or `False`, and the `HEALTHY` column will surface, as its name implies, if the resource is healthy or not.
+In the `Supply Chain` section, the supply chain steps associated with the workload are displayed in a table, alongside their reconcile state. In the event there's a failure for a given step, the `READY` column value will be `Unknown` or `False`, and the `HEALTHY` column value will be `False`.
 
 In case there is a resource in `Unknown` or `False` status, it can be inspected with:
 ```
@@ -120,7 +121,7 @@ Whatever is going on with this resource can be checked with:
 kubectl describe gitrepositories.source.toolkit.fluxcd.io/spring-petclinic
 ```
 
-But also, `tanzu apps workload get` command notifies the top level issue in the `Messages` section, which could give a hint to what went wrong in the process.
+In addition, the `Messages` section of the `tanzu apps workload get` command output notifies could give a hint as to what went wrong in the process.
 
 For example, a message like this could be shown:
 ```bash

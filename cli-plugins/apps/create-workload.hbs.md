@@ -22,7 +22,7 @@ Tanzu Application Platform supports creating a workload from an existing git rep
 To create a named workload and specify a git source code location, run:
 
  ```bash
-tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web
+tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.4.0 --type web
 ```
 
 Respond `Y` to prompts to complete process.
@@ -61,11 +61,11 @@ Tanzu Application Platform supports creating a workload from an existing local p
 
     The file must contain a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`).
 
-    More info regarding .tanzuignore file can be found in the [how-to guide](how-to-guides.hbs.md#tanzuignore-file).
+    More info regarding .tanzuignore file can be found in the [.tanzuignore file](how-to-guides.hbs.md#tanzuignore-file) section of the how-to-guides.
 
 ### <a id="workload-image"></a> Create workload from an existing image
 
-Tanzu Application Platform supports creating a workload from an existing image by setting the flag `--image`. This will allow the out of the box [supply chain](../../scc/about.hbs.md) to get the given image from the registry to deploy the application.
+Tanzu Application Platform supports creating a workload from an existing registry image by providing the reference to that image via the `--image` flag. When provided, the out of the box [supply chain](../../scc/about.hbs.md) will reference the provided registry image when the workload is deployed.
 
 An example on how to create a workload from image is as follows:
 
@@ -118,13 +118,11 @@ tanzu apps workload create petclinic-image --param-yaml maven="{"artifactId":"he
 
 ## <a id='yaml-files'></a> Working with YAML files
 
-In many cases, you can manage workload life cycles through CLI commands.
-However, you might find cases where you want to manage a workload by using a `yaml` file.
-The Apps CLI plug-in supports using `yaml` files.
+In many cases, workload life cycles can be managed through CLI commands.
+However, there may be cases where managing the workload through direct interactions and edits of a `yaml` file is preferred.
+The Apps CLI plug-in supports using `yaml` files to meet that need.
 
-The plug-in is designed to manage one workload at a time.
-When you manage a workload using a `yaml` file, that file must contain a single workload definition.
-Plug-in commands support only one file per command.
+When a workload is managed using a `yaml` file, that file **must contain a single workload definition**.
 
 For example, a valid file looks similar to the following example:
 
@@ -142,25 +140,27 @@ spec:
     git:
       url: https://github.com/vmware-tanzu/application-accelerator-samples
       ref:
-        tag: tap-1.3
+        tag: tap-1.4.0
     subPath: tanzu-java-web-app
 ```
 
 To create a workload from a file like the example above:
 
 ```console
-tanzu apps workload create -f my-workload-file.yaml
+tanzu apps workload create --file my-workload-file.yaml
 ```
+
+**Note:** when flags are passed in combination with `--file my-workload-file.yaml` the flag/values take precedence over the associated property/values included in the yaml.
 
 The workload yaml definition can also be passed in through stdin as follows:
 
 ```console
-tanzu apps workload create -f - --yes
+tanzu apps workload create --file - --yes
 ```
 
 The console remains waiting for some input, and the content with a valid `yaml` definition for a workload can be either written or pasted, then press **Ctrl-D** three times to start workload creation. This can also be done with `workload apply` command.
 
-**Note** to pass workload through `stdin`, the `--yes` flag is required. If not provided, the command will fail.
+**Note:** to pass workload through `stdin`, the `--yes` flag is required. If not provided, the command will fail.
 
 ## <a id="bind-service"></a> Bind a service to a workload
 
@@ -185,7 +185,11 @@ Check [services consumption documentation](../../getting-started/consume-service
 
 You can check workload details and status, add environment variables, export definitions or bind services.
 
-1. To check workload status and details, use `workload get` command and to get workload logs, use `workload tail` command. For more info about these, refer to [debug workload section](debug-workload.hbs.md).
+1. To check workload status and details, use `tanzu apps workload get`. 
+   
+   To get workload logs, use `tanzu apps workload tail`. 
+   
+   For more info about these, refer to [debug workload section](debug-workload.hbs.md).
 
 
 2. To add environment variables, run:

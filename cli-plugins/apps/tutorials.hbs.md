@@ -68,7 +68,7 @@ To uninstall Apps CLI plug-in by using:
 tanzu plugin delete apps
 ```
 
-## <a id='changing-clusters'></a> Changing clusters
+## <a id='changing-clusters'></a>Changing clusters
 
 The Apps CLI plug-in refers to the default kubeconfig file to access a Kubernetes cluster.
 When a `tanzu apps` command is run, the plug-in uses the default context that's defined in that kubeconfig file (located by default at `$HOME/.kube/config`).
@@ -76,51 +76,65 @@ When a `tanzu apps` command is run, the plug-in uses the default context that's 
 There are two ways to change the target cluster:
 
 1. Use `kubectl config use-context <context-name>` to change the default context. All subsequent `tanzu apps` commands will target the cluster defined in the new default kubeconfig context.
-2. Include the `--context <context-name>` flag when running any `tanzu apps` command. All subsequent `tanzu apps` commands without the `--context <context-name>` flag will continue to use the default context set in the kubeconfig.
 
-There are also two ways to override the default kubeconfig:
+2. Include the `--context <context-name>` flag when running any `tanzu apps` command. 
+   
+   **Note:** Any subsequent `tanzu apps` commands that do not include the `--context <context-name>` flag will continue to use the default context set in the kubeconfig.
 
-3. Set the env var `KUBECONFIG=<path>` to change the kubeconfig the Apps CLI plug-in should reference. All subsequent `tanzu apps` commands will reference the non-default kubeconfig assigned to the env var.
-4. Include the  `--kubeconfig <path>` flag when running any `tanzu apps` command. All subsequent `tanzu apps` commands without the `--kubeconfig <path>` flag will continue to use the default kubeconfig.
+## <a id='override-kubeconfig'></a>Overriding the default kubeconfig
+
+There are two approaches to achieving this:
+
+1. Set the env var `KUBECONFIG=<path>` to change the kubeconfig the Apps CLI plug-in should reference. 
+
+   All subsequent `tanzu apps` commands will reference the non-default kubeconfig assigned to the env var.
+
+2. Include the  `--kubeconfig <path>` flag when running any `tanzu apps` command. 
+
+   **Note:** Any subsequent `tanzu apps` commands that do not include the `--context <context-name>` flag will continue to use the default context set in the kubeconfig.
 
 For more information about kubeconfig, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
 
-## <a id='autocompletion'></a> Autocompletion
+## <a id='autocompletion'></a>Autocompletion
 
-To enable command autocompletion, the Tanzu CLI offers the `tanzu completion` command.
+Use of autocomplete greatly optimizes usage of any CLI and the apps plugin has provided robust autocompletion support so that users do not need to struggle to remember the correct spellings and or possible entries required.
+
+The plugin supports autocompletion for commands, positional arguments, flags and flag values and enabling this feature is highly recommended.
 
 Add the following command to the shell config file according to the current setup. Use one of the following options:
 
-### <a id='bash'></a> Bash
+### <a id='bash'></a>Bash
 
 ```bash
 tanzu completion bash >  $HOME/.tanzu/completion.bash.inc
 ```
 
-### <a id='zsh'></a> Zsh
+### <a id='zsh'></a>Zsh
 
 ```bash
 echo "autoload -U compinit; compinit" >> ~/.zshrc
 tanzu completion zsh > "${fpath[1]}/_tanzu"
 ```
 
-## <a id='about-workloads'> About workloads
+## <a id='about-workloads'>About workloads
 
-### <a id='creating-workloads'> Creating workloads
+### <a id='creating-workloads'>Creating workloads
 
-There are various ways to create workloads. These are:
+Workloads can be created via references to four different sources as follows:
 
-- Using URL to git repo. Source code can be read from either git branch, git tag or git commit.
-- Creating from an existing local project as source. 
-- Using an image that will be pulled from a registry to deploy the application.
-- Setting a Maven repository artifact.
+1. Using URL to git repo. Source code can be read from either git branch, git tag or git commit.
+2. Creating from an existing local project as source. 
+3. Using an image that will be pulled from a registry to deploy the application.
+4. Setting a Maven repository artifact.
 
 Some examples of each of these ways are given in the [workload creation](create-workload.hbs.md) page.
 
-### <a id='debugging-workloads'> Debugging and troubleshooting workloads
+### <a id='debugging-workloads'>Debugging and troubleshooting workloads
 
 Workload status can be checked with commands as `tanzu apps workload get` and `tanzu apps workload tail`.
 
-`tanzu apps workload get` is used to see the workload specification and the resources attached to it, while `tanzu apps workload tail` is used to see build and runtime logs.
+`tanzu apps workload get` is used to see the workload specification, the resources attached to it, their status and any associated high-level error messages (should they exist).
+
+`tanzu apps workload tail` is used to see testing, scanning, build, configuration, deployment, and runtime logs associated with a workload and its progression through the supply chain.
 
 More info on the usage of these commands and common errors, can be found on [debugging workloads](debug-workload.hbs.md) page.

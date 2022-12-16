@@ -2,12 +2,12 @@
 
 `tanzu apps workload get` is a command used to retrieve information and status about a workload.
 
-You can view workload details at whenever. Some details are:
+Some of the workload details in the command output are as follows:
 
  - Workload name, type and namespace.
- - The source of the workload application.
- - The supply chain which took care of the workload.
- - The supply chain resources which interact with the workload. It also has the output of the resource stamped out by the supply chain
+ - The source code used to build the workload.
+ - The supply chain which processed the workload.
+ - The specific resources within the supply chain which interacted with the workload and the stamped out resources associated with each of those interactions.
  - The delivery workflow that the application follows.
  - If there is any issue while deploying the workload and finally which *pods* the workload generates and the knative services related to the workload.
  - if the supply chain is using knative.
@@ -24,6 +24,8 @@ There are multiple sections in workload get command output. Following data is di
 - Workload related resource information and status like services claims, related pods, knative services.
 
 At the very end of the command output, a hint to follow up commands is also displayed.
+
+**Note:** the `Supply Chain` and `Delivery` sections will be conditionally included in the command output depending on whether those resources are present on the target cluster (e.g. If the target includes only build components, there would be no `Delivery` resources available and therefore the `Delivery` section would not be included in the command output.).
 
 ```bash
 tanzu apps workload get rmq-sample-app
