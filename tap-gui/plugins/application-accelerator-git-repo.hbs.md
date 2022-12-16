@@ -1,12 +1,13 @@
 # Creating an Application Accelerator Git repository in Tanzu Application Platform GUI
 
-This topic describes how to enable and use Git repository creation in the Application Accelerator
-plug-in.
+This topic describes how to enable and use the GitHub repository creation in the Application
+Accelerator plug-in.
 
 ## <a id="overview"></a> Overview
 
-The Application Accelerator plug-in uses Backstage Git providers integration and the authentication
-mechanism to retrieve an access token and interact with the provider API to create Git repositories.
+The Application Accelerator plug-in uses the backstage GitHub provider integration and the
+authentication mechanism to retrieve an access token. Then it can interact with the provider API to
+create GitHub repositories.
 
 ## <a id="supported-providers"></a> Supported Providers
 
@@ -14,7 +15,7 @@ In Tanzu Application Platform v1.3 the supported Git providers are GitHub and Gi
 
 ## <a id="configuration"></a> Configure
 
-These steps describe an example configuration that uses GitHub:
+The following steps describe an example configuration that uses GitHub:
 
 1. Create an OAuth App in GitHub based on the configuration described in this
    [Backstage documentation](https://backstage.io/docs/auth/github/provider).
@@ -58,7 +59,7 @@ To use Kubernetes secrets to set the values for `clientId` and `clientSecret`:
    --from-literal=clientId=GITHUB-CLIENT-ID
    ```
 
-2. Edit the `app-config.yaml` by using the environment variables, as in the following example:
+2. Edit the `app-config.yaml` by using the environment variables. For example:
 
    ```yaml
    app_config:
