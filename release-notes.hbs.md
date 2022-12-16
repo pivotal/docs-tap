@@ -165,7 +165,7 @@ present in the built binaries, such as `.jar` or `.war` files.
 
 Because VMware does not recommend committing binaries to source code repositories, Grype fails to
 find vulnerabilities during a source scan.
-The vulnerabilities are still found during the image scan after the binaries are built and packaged
+The vulnerabilities are found during the image scan after the binaries are built and packaged
 as images.
 
 #### <a id="1-3-2-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI
