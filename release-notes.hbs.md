@@ -66,21 +66,29 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 - Added corresponding `tanzu services class-claims` CLI plug-in command
 
 #### <a id="1-4-0-vscode-new-features"></a> Tanzu Developer Tools for Visual Studio Code
-- Developer sandbox: allows developers to live update their code — as well as simultaneously debug the updated code — without having to turn off Live Update when debugging
 
-#### <a id="1-4-0-intellij-new-features"></a> Tanzu Developer Tools for Intellij
-- Developer sandbox: allows developers to live update their code — as well as simultaneously debug the updated code — without having to turn off Live Update when debugging
+- **Developer sandbox:** The developer sandbox enables developers to Live Update their code, and
+  simultaneously debug the updated code, without having to deactivate Live Update when debugging.
+
+#### <a id="1-4-0-intellij-new-features"></a> Tanzu Developer Tools for IntelliJ
+
+- **Developer sandbox:** The developer sandbox enables developers to Live Update their code, and
+  simultaneously debug the updated code, without having to deactivate Live Update when debugging.
 
 #### <a id="1-4-0-api-validation-and-scoring"></a> API Validation And Scoring Toolkit
-  - API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API Specification is generated from the API Auto Registration feature in TAP .
-  There is a Validation Analysis card  on the API Overview page on the TAP GUI that displays the summary of the scores. If the user wants to get more details of the scores, they can click on the 'More Details' link and can get a detailed view.
+
+- API Validation and Scoring focuses on scanning and validating an OpenAPI specification.
+  The API Specification is generated from the API Auto Registration feature in Tanzu Application Platform.
+  A Validation Analysis card on the API Overview page in Tanzu Application Platform GUI displays the
+  summary of the scores.
+  The user can click on the **More Details** link to see more details about the scores.
 
 #### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
 
 - API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API specification is generated from the API Auto Registration of Tanzu Application Platform. See [API Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
 
 #### <a id="1-4-0-intellij-new-features"></a> Tanzu Developer Tools for IntelliJ
-- IntelliJ IDEA v2022.2 to v2022.3 is required to install the extension. 
+- IntelliJ IDEA v2022.2 to v2022.3 is required to install the extension.
 - Developer sandbox has been enabled which allows developers to Live Update their code — as well as simultaneously debug the updated code — without having to turn off Live Update when debugging.
 - An Activity pane has been added in the Tanzu Panel which allows developers to visualize the supply chain, delivery and running application pods, displays detailed error messages on each resource and enables developers to describe and view logs on these resources from within their IDE.
 - Tanzu workload apply and delete actions have been added to ​IntelliJ.
