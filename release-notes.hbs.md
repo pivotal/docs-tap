@@ -54,6 +54,13 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 
 - API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API specification is generated from the API Auto Registration of Tanzu Application Platform. See [API Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
 
+#### <a id="1-4-0-intellij-new-features"></a> Tanzu Developer Tools for IntelliJ
+- IntelliJ IDEA v2022.2 to v2022.3 is required to install the extension. 
+- Developer sandbox has been enabled which allows developers to Live Update their code — as well as simultaneously debug the updated code — without having to turn off Live Update when debugging.
+- An Activity pane has been added in the Tanzu Panel which allows developers to visualize the supply chain, delivery and running application pods, displays detailed error messages on each resource and enables developers to describe and view logs on these resources from within their IDE.
+- Tanzu workload apply and delete actions have been added to ​IntelliJ.
+- Code snippets to create `workload.yaml` and `catalog-info.yaml` files have been added to IntelliJ.
+
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
@@ -168,6 +175,8 @@ as images.
   Process finished with exit code 1
   ```
   When there multiple resource types with the same kind, attempting to describe a resource of that kind without fully qualifying the API version causes this error.
+
+- When switching Kubernetes context, the activity pane doesn't automatically update the namespace, but the workload pane picks up the new namespace. Therefore, the Tanzu panel will show workloads but will not show Kubernetes resources in the center panel of the activity pane. To fix this please restart IntelliJ to properly pick up the context change.
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
