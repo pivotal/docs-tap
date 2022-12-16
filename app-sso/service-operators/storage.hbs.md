@@ -16,20 +16,20 @@ encrypted client-server communication -- AppSSO enforces TLS by default.
 
 <p class="note">
 <strong>Note:</strong>
-While data in motion is encrypted through TLS, data at rest is _not_ encrypted by default through `AuthServer`. Each
-storage provider is responsible for encrypting their own data. Please see the [data types section](#data-types) for more
-info on what is stored.
+Although data in motion is encrypted by using TLS, data at rest is not encrypted by default through `AuthServer`. Each
+storage provider is responsible for encrypting their own data. See [data types](#data-types) for more
+information about storage.
 </p>
 
 <p>
 <strong>Best Practice for Securing Data at Rest:</strong>
-In order to be compliant with, for example, HIPAA, FISMA, PCI, GDPR, it is necessary to encrypt data at rest. Securing
-the underlying infrastructure that Redis utilizes is crucial to protect against a potential attack.
+To be compliant with HIPAA, FISMA, PCI and GDPR, you must encrypt data at rest. Securing
+the underlying infrastructure that Redis uses is crucial to protect against a potential attack.
 The National Institute for Standards and Technology – Federal Information Processing Standards (NIST-FIPS) sets the
 standard for best practice when it comes to data security in the US.
-Symmetric cryptography can be utilized to protect data at rest. This basically means that the same key encrypts and
+Symmetric cryptography can be used to protect data at rest. This means that the same key encrypts and
 decrypts the data, so there is no need for a different private and public key. The [Advanced Encryption Standard (AES)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf)
-encryption algorithm is an industry standard for securing data at rest. For the highest level security, it is recommended
+encryption algorithm is an industry standard for securing data at rest. For the highest level security, VMware recommends
 to use a 256-bit key.
 </p>
 
@@ -167,34 +167,29 @@ kubectl get authserver <authserver-name> \
   --output jsonpath="{.status.storage.redis}" | jq
 ```
 
-## Data types
+## <a id='data-types'></a>Data types
 
-The following data gets stored in Redis
+The following data is stored in Redis:
 
-### Client information
+- Client information
+    - Authorization grant type
+    - Client id
 
-- Authorization grant type
-- Client id
+- User session
+    - Session token
+    - Refresh token
 
-### User session
+- Identity and access tokens
 
-- Session token
-- Refresh token
+    >**Note** This is the data that carries the highest level risk.
 
-### Identity and access tokens
+    - Authentication token includeing the principal
+        - Personally identifying information such as email and name
 
-_This is the data that carries the highest level risk._
-
-- Authentication token (includes the principal)
-  - Personally identifying information such as for example:
-    - email
-    - name
-
-### Approved or rejected consents
-
-- A client identifier
-- A reference to the user
-- A list of the Authorities that the user has granted to this client
+- Approved or rejected consents
+    - A client identifier
+    - A reference to the user
+    - A list of the Authorities that the user has granted to this client
 
 ## Known limitations of storage providers 
 
