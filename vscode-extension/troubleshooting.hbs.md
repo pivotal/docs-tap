@@ -18,4 +18,6 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 
 {{> 'partials/ext-tshoot/lu-not-working-wl-types' }}
 
+## <a id="live-update-timeout"></a> Timeout error when Live Updating
+
 {{> 'partials/ext-tshoot/timeout-err-live-updating' }}
