@@ -167,7 +167,7 @@ as images.
 
   Process finished with exit code 1
   ```
-  When there multiple resource types with the same kind, attempting to describe a resource of that kind without fully qualifying the api version causes this error.
+  When there multiple resource types with the same kind, attempting to describe a resource of that kind without fully qualifying the API version causes this error.
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
