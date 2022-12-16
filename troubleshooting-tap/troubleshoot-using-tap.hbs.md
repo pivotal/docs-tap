@@ -138,7 +138,8 @@ This type of error is frequently thrown when the url set for `source image` (IDE
    docker login -u USER-NAME
    ```
 2. Check your --source-image url to make sure it's compliant with Docker.
-  * The url in this example (`index.docker.io/shaileshp2922/build-service/tanzu-java-web-app`) includes nesting.</br>Docker registry, unlike many other registry solutions, doesn't support nesting.
+   * The url in this example (`index.docker.io/shaileshp2922/build-service/tanzu-java-web-app`) includes nesting.</br>
+   Docker registry, unlike many other registry solutions, doesn't support nesting.
 3. Providing an unnested url (e.g. `index.docker.io/shaileshp2922/tanzu-java-web-app`) should resolve the issue.
 
 ---
