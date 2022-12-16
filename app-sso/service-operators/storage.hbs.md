@@ -44,17 +44,12 @@ To configure Redis as authorization server storage, you must have the following 
 * **username** (optional) - the username used to authenticate against your Redis server.
 * **password** (optional) - the password used to authenticate against your Redis server.
 
-<p class="note caution">
-<strong>Caution:</strong>
-AppSSO takes _secure-by-default_ approach and will not establish non-encrypted communication channels.
-The `AuthServer` resource will enter an error state should a non-encrypted connection be attempted.
+AppSSO takes _secure-by-default_ approach and does not establish non-encrypted communication channels.
+The `AuthServer` resource enters an error state if a non-encrypted connection is attempted.
 
-<strong>Note:</strong>
-_mTLS_ is not supported.
+_mTLS_ is not supported, however Vanilla Redis uses _mTLS_ by default. It can be turned off by setting `tls-auth-clients no`.
+For more information, see [Redis documentation](https://redis.io/docs/management/security/encryption/#client-certificate-authentication).
 
-Vanilla Redis uses _mTLS_ by default. It can be turned off by setting `tls-auth-clients no`.
-See [Redis' docs on _Client certificate authentication_](https://redis.io/docs/management/security/encryption/#client-certificate-authentication).
-</p>
 
 The following steps introduce the path to configuring Redis with AppSSO:
 
@@ -66,9 +61,9 @@ The following steps introduce the path to configuring Redis with AppSSO:
 
 If your Redis includes a custom or non-public Server CA certificate, you must instruct AppSSO to
 trust the CA certificate. This is required for the authorization server to communicate with your
-Redis over TLS. See [CA certificates](./ca-certs.hbs.md) for more information about configuring a CA certificate with AppSSO.
+Redis over TLS. See [CA certificates](ca-certs.hbs.md) for more information about configuring a CA certificate with AppSSO.
 
-### Configuring a Redis Secret
+### <a id='configuring-a-redis-secret'></a>Configuring a Redis Secret
 
 To provide _coordinates_ (the location details) of your Redis server, you have to create a `Secret` resource that
 follows well-known Secret entries conventions specified
@@ -118,7 +113,7 @@ spec:
         name: redis-credentials
 ```
 
-Once `AuthServer` is applied, ensure that its `Status` is equivalent to `Ready`.
+After `AuthServer` is applied, ensure its `Status` is `Ready`.
 
 ### Inspecting storage of an AuthServer
 
@@ -130,7 +125,7 @@ kubectl get authserver <authserver-name> \
   --output jsonpath="{.status.storage.redis}" | jq
 ```
 
-And you will the see its actual Redis host and port, for example:
+Expect to see the following output with actual Redis host and port:
 
 ```json
 {
@@ -195,11 +190,11 @@ The following data is stored in Redis:
 
 ### Redis Cluster
 
-When your storage is provided by _Redis Cluster_, then you may require additional settings.
+When your storage is provided by _Redis Cluster_, additional settings might be required.
 
-In particular the nodes and the maximum number of redirects should be set in your _Service Bindings_ `Secret`.
+The nodes and the maximum number of redirects must be set in your _Service Bindings_ `Secret`.
 For example, in addition to the entries described by [how to configure a Redis `Secret`](#configuring-a-redis-secret),
-you need to provide `cluster` settings:
+you must provide `cluster` settings:
 
 ```yaml
 apiVersion: v1
