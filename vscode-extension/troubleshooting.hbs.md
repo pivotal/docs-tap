@@ -57,17 +57,4 @@ Force the VS Code Java tooling to re-read and synchronize information from the P
 This causes the internal compiler level to be set correctly based on the information from `pom.xml`.
 For example, Java 11 in `tanzu-java-web-app`.
 
-## <a id="live-update-timeout"></a> Timeout error when Live Updating
-
-### Sympton
-When a user attempts to Live Update their workload, they may get the following error in the logs: 
-
-`ERROR: Build Failed: apply command timed out after 30s - see }}{{https://docs.tilt.dev/api.html#api.update_settings{{ for how to increase}}`
-
-### Cause
-
-Kubernetes times out on upserts over 30 seconds.
-
-### Solution
-
-Add `update_settings (k8s_upsert_timeout_secs = 300)` to the Tiltfile. See Tiltfile [docs](https://docs.tilt.dev/api.html#api.update_settings).
+{{> 'partials/ext-tshoot/timeout-err-live-updating' }}
