@@ -97,7 +97,7 @@ For example, you can run:
 curl -s "ISSUER-URI/.well-known/openid-configuration" | jq ".id_token_signing_alg_values_supported"
 ```
 
-## LDAP
+## <a id='ldap-experimental'></a>LDAP (experimental)
 
 **At most one** `ldap` identity provider can be configured.
 

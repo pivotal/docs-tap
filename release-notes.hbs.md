@@ -23,18 +23,18 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 
 #### <a id="1-4-0-appsso-nf"></a> Application Single Sign-On (AppSSO)
 
-* Added ability to configure custom Redis storage for an `AuthServer`, using a ProvisionedService-style API.
-  See [configuring storage](./app-sso/service-operators/storage.hbs.md) docs for more info.
-* Added package field `default_authserver_clusterissuer` that inherits TAP's `shared.ingress_issuer` value if not set.
-  See [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md) docs for more info.
-* Added `AuthServer.spec.tls.deactivated` (deprecating `AuthServer.spec.tls.disabled`).
-* `AuthServer.spec.tokenSignatures` is now a required field.
-* In addition to globally trusted CA certificates, granular trust can be extended with `AuthServer.spec.caCerts`.
-* LDAP is now a _supported_ identity provider protocol. Learn [more](app-sso/service-operators/identity-providers.hbs.md#ldap-experimental).
-  * LDAP bind validated on `AuthServer` creation, when an LDAP identity provider is defined.
-  * Introduced `identityProviders.ldap.url` in `AuthServer.spec`
-  * Introduced `identityProviders.ldap.group.search`
-  * `identityProviders.ldap.group` now optional in `AuthServer.spec`
+- Added ability to configure custom Redis storage for an `AuthServer` by using a ProvisionedService-style API.
+  For more information, see [Storage](app-sso/service-operators/storage.hbs.md).
+- Added package field `default_authserver_clusterissuer` that inherits the `shared.ingress_issuer` value from Tanzu Application Platform if not set.
+  For more information, see [IssuerURI and TLS](app-sso/service-operators/issuer-uri-and-tls.hbs.md).
+- Added `AuthServer.spec.tls.deactivated` to deprecate `AuthServer.spec.tls.disabled`.
+- `AuthServer.spec.tokenSignatures` is now a required field.
+- In addition to globally trusted CA certificates, granular trust can be extended with `AuthServer.spec.caCerts`.
+- LDAP is now a supported identity provider protocol. For more information, see [LDAP (experimental)](app-sso/service-operators/identity-providers.hbs.md#ldap-experimental).
+  - LDAP bind is validated on `AuthServer` creation when an LDAP identity provider is defined.
+  - Introduced `identityProviders.ldap.url` in `AuthServer.spec`.
+  - Introduced `identityProviders.ldap.group.search`.
+  - `identityProviders.ldap.group` is now optional in `AuthServer.spec`.
 
 #### <a id="1-4-0-cert-manager"></a> cert-manager
 
@@ -92,16 +92,13 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-appsso-bc"></a> Application Single Sign-On (AppSSO)
 
-- Removed `AuthServer.spec.identityProvider.ldap.group.search{Filter,Base,Depth,SubTree}`.
-  Introduce `ldap.group.search: {}` instead. If `ldap.group` is defined, and `ldap.group.search` is not defined, then
-  the LDAP will be considered to be an ActiveDirectory style LDAP, and groups will be loaded from the user's `memberOf`
-  attribute. If `ldap.group` is defined, and `ldap.group.search` is also defined, then it will be considered a Classic
-  LDAP, and group search will be done through searching in the `ldap.group.search.base`. Before, there used to be a
-  mixed mode, when both searches were attempted every time.
+- Removed `AuthServer.spec.identityProvider.ldap.group.search{Filter,Base,Depth,SubTree}` and introduced `ldap.group.search: {}`: 
+    - If `ldap.group` is defined, and `ldap.group.search` is not defined, the LDAP is considered as an ActiveDirectory style LDAP, and groups are loaded from the user's `memberOf` attribute. 
+    - If `ldap.group` is defined, and `ldap.group.search` is also defined, the LDAP is considered as a Classic LDAP, and group search is done by searching in the `ldap.group.search.base`. 
+    There used to be a mixed mode, when both searches were attempted every time.
 - Removed `AuthServer.spec.identityProviders.ldap.server` field.
-- Removed field `AuthServer.status.deployments.authServer.lastParentGenerationWithRestart`
-- Removed deprecated field `AuthServer.spec.issuerURI`.
-  See [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md) docs for more info.
+- Removed `AuthServer.status.deployments.authServer.lastParentGenerationWithRestart` field.
+- Removed deprecated field `AuthServer.spec.issuerURI`. For more information, see [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md).
 
 #### <a id="1-4-0-vscode-bc"></a> Tanzu Developer Tools for Visual Studio Code
 
@@ -161,10 +158,10 @@ The following issues, listed by area and component, are resolved in this release
 #### <a id="1-4-0-appsso-ri"></a> Application Single Sign-On (AppSSO)
 
 - Fixed infinite redirect loops for an `AuthServer` configured with a single OIDC or SAML identity provider.
-- Authorization Code request rejected audit event from anonymous users log proper IP address.
-- `AuthServer` now longer attempts to configure Redis event listeners.
+- Authorization Code request rejected audit event from anonymous users logging proper IP address.
+- `AuthServer` no longer attempts to configure Redis event listeners.
 - OpenShift: custom `SecurityContextConstraint` resource is created for Kubernetes platforms versions 1.23.x and below.
-- LDAP error logging now contains proper error message.
+- LDAP error log now contains proper error message.
 
 #### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
 
@@ -231,8 +228,8 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 #### <a id="1-4-0-app-sso-deprecations"></a> Application Single Sign-On (AppSSO)
 
-- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the next release.  Please, migrate
-  to `AuthServer.spec.tls.deactivated` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
+- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the next release. For more information about how to migrate
+  to `AuthServer.spec.tls.deactivated`, see [Migration guides](app-sso/upgrades/index.md#migration-guides).
 
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 
