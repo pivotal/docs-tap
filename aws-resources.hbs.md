@@ -289,7 +289,7 @@ cat << EOF > workload-trust-policy.json
 EOF
 
 
-# Create the Build Service Role
+# Create the Tanzu Build Service Role
 aws iam create-role --role-name tap-build-service --assume-role-policy-document file://build-service-trust-policy.json
 # Attach the Policy to the Build Role
 aws iam put-role-policy --role-name tap-build-service --policy-name tapBuildServicePolicy --policy-document file://build-service-policy.json

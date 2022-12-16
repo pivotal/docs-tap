@@ -416,7 +416,7 @@ The `--service-account` flag sets the `spec.serviceAccountName` key in  the work
 To configure the `serviceAccount` parameter, use  `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For information about
-the integration with Tanzu Build Service, see [Tanzu Build Service (TBS) Integration](../scc/tbs.hbs.md).
+the integration with Tanzu Build Service, see [Tanzu Build Service Integration](../scc/tbs.hbs.md).
 
 For information about `live-update`, see [Developer Conventions](../developer-conventions/about.hbs.md)
 and [Overview of Tanzu Developer Tools for IntelliJ](../intellij-extension/about.hbs.md).

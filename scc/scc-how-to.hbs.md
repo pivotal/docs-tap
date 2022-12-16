@@ -12,6 +12,6 @@ The following how-to guides apply to Supply Chain Choreographer for Tanzu:
 - [Install Out of the Box Supply Chain with Testing](install-ootb-sc-wtest.hbs.md)
 - [Install Out of the Box Supply Chain with Testing and Scanning](ootb-supply-chain-testing-scanning.hbs.md)
 - [Install Out of the Box Templates](ootb-templates.hbs.md)
-- [Tanzu Build Service (TBS) Integration](tbs.hbs.md)
+- [Tanzu Build Service Integration](tbs.hbs.md)
 - [Building from source](building-from-source.hbs.md)
 - [Git authentication](git-auth.hbs.md)

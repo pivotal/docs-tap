@@ -167,7 +167,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Tanzu Build Service uses the open-source Cloud Native Build packs project to turn application
   source code into container images.
 
-  Build Service executes reproducible builds that align with modern container standards and keeps
+  Tanzu Build Service executes reproducible builds that align with modern container standards and keeps
   images up to date. It does so by leveraging Kubernetes infrastructure with kpack, a Cloud Native
   Build packs Platform, to orchestrate the image life cycle.
 

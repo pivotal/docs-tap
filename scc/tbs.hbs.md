@@ -1,7 +1,7 @@
-# Tanzu Build Service (TBS) Integration
+# Tanzu Build Service Integration
 
 By default, the Out of the Box supply chains (`ootb-supply-chain-*`) in Tanzu Application Platform
-make use of Tanzu Build Service (TBS) for building container images out of
+make use of Tanzu Build Service for building container images out of
 source code.
 
 You can configure a **platform operator** by using

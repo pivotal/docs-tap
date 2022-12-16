@@ -302,7 +302,7 @@ To install `full` Tanzu Build Service dependencies:
     - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
-1. Add the TBS `full` dependencies package repository by running:
+1. Add the Tanzu Build Service  `full` dependencies package repository by running:
 
     ```console
     tanzu package repository add tbs-full-deps-repository \
@@ -336,7 +336,7 @@ For more information about automatic dependency updates, see [About automatic de
 
 To configure automatic dependency updates, add the following to the contents of your `tbs-values.yaml`:
 
->**Note** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
+>**Note** If you are installing Tanzu Build Service as part of a Tanzu Application Platform
 >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
 ```yaml
