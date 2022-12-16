@@ -75,14 +75,6 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 - **Developer sandbox:** The developer sandbox enables developers to Live Update their code, and
   simultaneously debug the updated code, without having to deactivate Live Update when debugging.
 
-#### <a id="1-4-0-api-validation-and-scoring"></a> API Validation And Scoring Toolkit
-
-- API Validation and Scoring focuses on scanning and validating an OpenAPI specification.
-  The API Specification is generated from the API Auto Registration feature in Tanzu Application Platform.
-  A Validation Analysis card on the API Overview page in Tanzu Application Platform GUI displays the
-  summary of the scores.
-  The user can click on the **More Details** link to see more details about the scores.
-
 #### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
 
 - API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API specification is generated from the API Auto Registration of Tanzu Application Platform. See [API Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
