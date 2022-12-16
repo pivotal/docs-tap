@@ -6,7 +6,7 @@ to help you develop with Tanzu Application Platform.
 This plug-in extends Microsoft Visual Studio 2022 only. It is incompatible with Visual Studio Code
 and Visual Studio for Mac.
 
-> **Note** This extension is currently in development.
+> **Note** This extension is currently in the beta stage of development.
 
 ## Extension Features
 
