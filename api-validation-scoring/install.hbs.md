@@ -63,7 +63,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     * `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`
     * `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`
     * `MY-REGISTRY` is your own container registry.
-    * `VERSION-NUMBER` is your 'API Validation and Scoring' package version. For example, `0.2.4`
+    * `VERSION-NUMBER` is your API Validation and Scoring package version. For example, `0.2.5`
     * `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location for the installation files for API Validation and Scoring.
 
 1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
@@ -89,7 +89,7 @@ Tanzu CLI packages are available on repositories. Adding the API Validation and 
 * `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
 * `INSTALL_REPO` is `tanzu-application-platform`
 * `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
-* `APIX_VERSION` is your API Validation and Scoring package version. For example, `0.2.4`
+* `APIX_VERSION` is your API Validation and Scoring package version. For example, `0.2.5`
 
 To add the API Validation and Scoring package repository to your cluster:
 
@@ -119,7 +119,7 @@ To add the API Validation and Scoring package repository to your cluster:
 
     ```console
     NAME                         DISPLAY-NAME     SHORT_DESCRIPTION               LATEST-VERSION
-    apix.apps.tanzu.vmware.com   apix             apix.apps.tanzu.vmware.com      0.2.4 
+    apix.apps.tanzu.vmware.com   apix             apix.apps.tanzu.vmware.com      0.2.5 
     ```
 
 1. Get the status of the API Validation and Scoring package repository by running:
@@ -135,7 +135,7 @@ To add the API Validation and Scoring package repository to your cluster:
     NAME:          apix-repository
     VERSION:       796582
     REPOSITORY:    projects.registry.vmware.com/mazinger/apix
-    TAG:           0.2.4
+    TAG:           0.2.5
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -179,7 +179,7 @@ Follow these steps to install the API Validation and Scoring package:
     ```console
     NAME:                    apix
     PACKAGE-NAME:            apix.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         0.2.4
+    PACKAGE-VERSION:         0.2.5
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:

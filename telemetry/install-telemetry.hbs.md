@@ -3,7 +3,8 @@
 This topic describes how to install Tanzu Application Platform Telemetry
 from the Tanzu Application Platform package repository.
 
->**Note** VMware recommends installing Tanzu Application Platform Telemetry by using Tanzu Application Platform Profiles.  See [Components and installation profiles](../about-package-profiles.hbs.md) and [Install the Tanzu Application Platform Package and Profiles](../install.hbs.md) for more information.  Use the following instructions if you do not want to use a profile to install the Tap Telemetry package.
+>**Note** Follow the steps in this topic if you do not want to use a profile to install Telemetry. 
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 

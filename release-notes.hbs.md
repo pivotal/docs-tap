@@ -130,6 +130,12 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
+#### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
+
+- If a workload is deployed onto a namespace by using Live Update, the user must
+  set that namespace as the namespace of the current context of their kubeconfig file.
+  Otherwise, if the user runs Tanzu Debug it causes the workload to re-deploy.
+
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
 **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
