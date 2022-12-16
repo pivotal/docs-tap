@@ -23,18 +23,18 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 
 #### <a id="1-4-0-appsso-nf"></a> Application Single Sign-On (AppSSO)
 
-* Added ability to configure custom Redis storage for an `AuthServer`, using a ProvisionedService-style API.
-  See [configuring storage](./app-sso/service-operators/storage.hbs.md) docs for more info.
-* Added package field `default_authserver_clusterissuer` that inherits TAP's `shared.ingress_issuer` value if not set.
-  See [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md) docs for more info.
-* Added `AuthServer.spec.tls.deactivated` (deprecating `AuthServer.spec.tls.disabled`).
-* `AuthServer.spec.tokenSignatures` is now a required field.
-* In addition to globally trusted CA certificates, granular trust can be extended with `AuthServer.spec.caCerts`.
-* LDAP is now a _supported_ identity provider protocol. Learn [more](app-sso/service-operators/identity-providers.hbs.md#ldap-experimental).
-  * LDAP bind validated on `AuthServer` creation, when an LDAP identity provider is defined.
-  * Introduced `identityProviders.ldap.url` in `AuthServer.spec`
-  * Introduced `identityProviders.ldap.group.search`
-  * `identityProviders.ldap.group` now optional in `AuthServer.spec`
+- Added ability to configure custom Redis storage for an `AuthServer` by using a ProvisionedService-style API.
+  For more information, see [Storage](app-sso/service-operators/storage.hbs.md).
+- Added package field `default_authserver_clusterissuer` that inherits the `shared.ingress_issuer` value from Tanzu Application Platform if not set.
+  For more information, see [IssuerURI and TLS](app-sso/service-operators/issuer-uri-and-tls.hbs.md).
+- Added `AuthServer.spec.tls.deactivated` to deprecate `AuthServer.spec.tls.disabled`.
+- `AuthServer.spec.tokenSignatures` is now a required field.
+- In addition to globally trusted CA certificates, granular trust can be extended with `AuthServer.spec.caCerts`.
+- LDAP is now a supported identity provider protocol. For more information, see [LDAP (experimental)](app-sso/service-operators/identity-providers.hbs.md#ldap-experimental).
+  - LDAP bind is validated on `AuthServer` creation when an LDAP identity provider is defined.
+  - Introduced `identityProviders.ldap.url` in `AuthServer.spec`.
+  - Introduced `identityProviders.ldap.group.search`.
+  - `identityProviders.ldap.group` is now optional in `AuthServer.spec`.
 
 #### <a id="1-4-0-cert-manager"></a> cert-manager
 
@@ -65,12 +65,22 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 - Added new `ClassClaim` API that allows claims for service instances to be created by referring to a `ClusterInstanceClass`. See [Services Toolkit documentation](./services-toolkit/about.hbs.md) for more information.
 - Added corresponding `tanzu services class-claims` CLI plug-in command
 
+#### <a id="1-4-0-vscode-new-features"></a> Tanzu Developer Tools for Visual Studio Code
+
+- **Developer sandbox:** The developer sandbox enables developers to Live Update their code, and
+  simultaneously debug the updated code, without having to deactivate Live Update when debugging.
+
+#### <a id="1-4-0-intellij-new-features"></a> Tanzu Developer Tools for IntelliJ
+
+- **Developer sandbox:** The developer sandbox enables developers to Live Update their code, and
+  simultaneously debug the updated code, without having to deactivate Live Update when debugging.
+
 #### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
 
 - API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API specification is generated from the API Auto Registration of Tanzu Application Platform. See [API Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
 
 #### <a id="1-4-0-intellij-new-features"></a> Tanzu Developer Tools for IntelliJ
-- IntelliJ IDEA v2022.2 to v2022.3 is required to install the extension. 
+- IntelliJ IDEA v2022.2 to v2022.3 is required to install the extension.
 - Developer sandbox has been enabled which allows developers to Live Update their code — as well as simultaneously debug the updated code — without having to turn off Live Update when debugging.
 - An Activity pane has been added in the Tanzu Panel which allows developers to visualize the supply chain, delivery and running application pods, displays detailed error messages on each resource and enables developers to describe and view logs on these resources from within their IDE.
 - Tanzu workload apply and delete actions have been added to ​IntelliJ.
@@ -82,16 +92,13 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-appsso-bc"></a> Application Single Sign-On (AppSSO)
 
-- Removed `AuthServer.spec.identityProvider.ldap.group.search{Filter,Base,Depth,SubTree}`.
-  Introduce `ldap.group.search: {}` instead. If `ldap.group` is defined, and `ldap.group.search` is not defined, then
-  the LDAP will be considered to be an ActiveDirectory style LDAP, and groups will be loaded from the user's `memberOf`
-  attribute. If `ldap.group` is defined, and `ldap.group.search` is also defined, then it will be considered a Classic
-  LDAP, and group search will be done through searching in the `ldap.group.search.base`. Before, there used to be a
-  mixed mode, when both searches were attempted every time.
+- Removed `AuthServer.spec.identityProvider.ldap.group.search{Filter,Base,Depth,SubTree}` and introduced `ldap.group.search: {}`
+    - If `ldap.group` is defined and `ldap.group.search` is not defined, the LDAP is considered as an ActiveDirectory style LDAP and groups are loaded from the user's `memberOf` attribute.
+    - If `ldap.group` and `ldap.group.search` are both defined, the LDAP is considered as a Classic LDAP and group search is done by searching in the `ldap.group.search.base`.
+    - There used to be a mixed mode, when both searches were attempted every time.
 - Removed `AuthServer.spec.identityProviders.ldap.server` field.
-- Removed field `AuthServer.status.deployments.authServer.lastParentGenerationWithRestart`
-- Removed deprecated field `AuthServer.spec.issuerURI`.
-  See [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md) docs for more info.
+- Removed `AuthServer.status.deployments.authServer.lastParentGenerationWithRestart` field.
+- Removed deprecated field `AuthServer.spec.issuerURI`. For more information, see [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md).
 
 #### <a id="1-4-0-vscode-bc"></a> Tanzu Developer Tools for Visual Studio Code
 
@@ -151,10 +158,10 @@ The following issues, listed by area and component, are resolved in this release
 #### <a id="1-4-0-appsso-ri"></a> Application Single Sign-On (AppSSO)
 
 - Fixed infinite redirect loops for an `AuthServer` configured with a single OIDC or SAML identity provider.
-- Authorization Code request rejected audit event from anonymous users log proper IP address.
-- `AuthServer` now longer attempts to configure Redis event listeners.
+- Authorization Code request rejected audit event from anonymous users logging proper IP address.
+- `AuthServer` no longer attempts to configure Redis event listeners.
 - OpenShift: custom `SecurityContextConstraint` resource is created for Kubernetes platforms versions 1.23.x and below.
-- LDAP error logging now contains proper error message.
+- LDAP error log now contains proper error message.
 
 #### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
 
@@ -201,18 +208,15 @@ as images.
 - The `Generation` field in the **Overview** section is not updated when a scan policy is amended, however clicking on the `Scan Policy` link will show the most current scan policy details applied to the stage.
 - Customizing the `Source Tester` stage in an OOTB supply chain will not show details in the **Stage Details** section.
 
-#### <a id="1-4-0-intellij-known-issues"></a> Intellij Extension
+#### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
 
-- The context menu `Describe` action  in the Activity panel fails when used on PodIntent resources with an error:
-  ```kubectl describe PodIntent my-app -n my-apps-namespace
-  Warning: conventions.apps.tanzu.vmware.com/v1alpha1 PodIntent is deprecated; use conventions.carto.run/v1alpha1 PodIntent instead
-  Error from server (NotFound): podintents.conventions.apps.tanzu.vmware.com "my-app" not found
+- The **Describe** action in the pop-up menu in the Activity panel can fail when used on PodIntent
+  resources. For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#describe-action-fail).
 
-  Process finished with exit code 1
-  ```
-  When there multiple resource types with the same kind, attempting to describe a resource of that kind without fully qualifying the API version causes this error.
-
-- When switching Kubernetes context, the activity pane doesn't automatically update the namespace, but the workload pane picks up the new namespace. Therefore, the Tanzu panel will show workloads but will not show Kubernetes resources in the center panel of the activity pane. To fix this please restart IntelliJ to properly pick up the context change.
+- The Tanzu panel might show workloads without showing Kubernetes resources in the center panel of the
+  activity pane. For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#tnz-panel-k8s-rsrc-fail).
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
@@ -221,8 +225,8 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 #### <a id="1-4-0-app-sso-deprecations"></a> Application Single Sign-On (AppSSO)
 
-- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the next release.  Please, migrate
-  to `AuthServer.spec.tls.deactivated` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
+- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the next release. For more information about how to migrate
+  to `AuthServer.spec.tls.deactivated`, see [Migration guides](app-sso/upgrades/index.md#migration-guides).
 
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 
