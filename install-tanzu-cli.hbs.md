@@ -150,8 +150,15 @@ If using Linux, download `tanzu-cluster-essentials-linux-amd64-1.0.0.tgz`.
 
 Choose the install scenario that is right for you:
 
-   + [Cleanly Install Tanzu CLI](#tanzu-cli-clean-install)
-   + [Updating Tanzu CLI Installed for a Previous Tanzu Application Platform Release](#update-prev-tap-tanzu-cli)
+1. Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com).
+2. Go to the [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+3. Select **Release {{ vars.tap_version }}** from the release drop-down menu.
+4. Click **tanzu-cli-tap-{{ vars.tap_version }}** to list the Tanzu framework bundles.
+5. Click and download the Tanzu framework bundle for your operating system.
+6. (Optional) If an earlier upgrade attempt failed, you can uninstall the previous version of the
+   Tanzu CLI and associated plug-ins and files.
+   See [Remove Tanzu CLI, plug-ins, and associated files](uninstall.html#remove-tanzu-cli) for more
+   information.
 
 To install the Tanzu CLI and plug-ins:
 
