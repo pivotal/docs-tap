@@ -11,7 +11,7 @@ Use this GitHub Action to create a Tanzu Build Service build on a cluster.
 
 ## Procedure
 
-### Developer Namespace
+### Developer namespace
 
 1. Create a developer namespace where the build resource will be created.
 
@@ -26,7 +26,7 @@ credentials. This service account name will be used in the action.
 
 The GitHub action talks directly to the Kubernetes API server, if you are running this on github.com
 with the default action runners, ensure that your API server is accessible from
-GitHubs [IP ranges](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses).
+GitHub's [IP ranges](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses).
 Alternatively, it might be possible to run the action on a custom runner within your firewall
 (with access to the Tanzu Application Platform cluster).
 
@@ -115,7 +115,7 @@ This example contains the minimum required permissions:
          verbs: ['get', 'watch', 'list', 'create', 'delete']
     ```
 
-To access the values (on Google Kubernetes Engine, if using another IAAS, this might be different):
+To access the values on Google Kubernetes Engine (steps might vary on other IaaS providers):
 
       ```console
       DEV_NAMESPACE=DEVELOPER_NAMESPACE

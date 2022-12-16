@@ -6,4 +6,4 @@ This topic describes the reference guides available for Supply Chain Choreograph
 
 The following reference guides apply to Supply Chain Choreographer for Tanzu:
 
-- [Tanzu Build Service (TBS) Integration](tbs.hbs.md)
+- [Tanzu Build Service Integration](tbs.hbs.md)

@@ -21,6 +21,21 @@ Tanzu Application Platform is introducing a [shared ingress issuer](security-and
 default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md), and [Tanzu Application Platform GUI](tap-gui/about.hbs.md)
 are using this issuer to secure ingress. In upcoming releases all components will support it eventually.
 
+#### <a id="1-4-0-appsso-nf"></a> Application Single Sign-On (AppSSO)
+
+* Added ability to configure custom Redis storage for an `AuthServer`, using a ProvisionedService-style API.
+  See [configuring storage](./app-sso/service-operators/storage.hbs.md) docs for more info.
+* Added package field `default_authserver_clusterissuer` that inherits TAP's `shared.ingress_issuer` value if not set.
+  See [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md) docs for more info.
+* Added `AuthServer.spec.tls.deactivated` (deprecating `AuthServer.spec.tls.disabled`).
+* `AuthServer.spec.tokenSignatures` is now a required field.
+* In addition to globally trusted CA certificates, granular trust can be extended with `AuthServer.spec.caCerts`.
+* LDAP is now a _supported_ identity provider protocol. Learn [more](app-sso/service-operators/identity-providers.hbs.md#ldap-experimental).
+  * LDAP bind validated on `AuthServer` creation, when an LDAP identity provider is defined.
+  * Introduced `identityProviders.ldap.url` in `AuthServer.spec`
+  * Introduced `identityProviders.ldap.group.search`
+  * `identityProviders.ldap.group` now optional in `AuthServer.spec`
+
 #### <a id="1-4-0-cert-manager"></a> cert-manager
 
 - `cert-manager.tap.tanzu.vmware.com` can optionally install self-signed `ClusterIssuer`s.
@@ -54,9 +69,29 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 
 - API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API specification is generated from the API Auto Registration of Tanzu Application Platform. See [API Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
 
+#### <a id="1-4-0-intellij-new-features"></a> Tanzu Developer Tools for IntelliJ
+- IntelliJ IDEA v2022.2 to v2022.3 is required to install the extension. 
+- Developer sandbox has been enabled which allows developers to Live Update their code — as well as simultaneously debug the updated code — without having to turn off Live Update when debugging.
+- An Activity pane has been added in the Tanzu Panel which allows developers to visualize the supply chain, delivery and running application pods, displays detailed error messages on each resource and enables developers to describe and view logs on these resources from within their IDE.
+- Tanzu workload apply and delete actions have been added to ​IntelliJ.
+- Code snippets to create `workload.yaml` and `catalog-info.yaml` files have been added to IntelliJ.
+
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
+
+#### <a id="1-4-0-appsso-bc"></a> Application Single Sign-On (AppSSO)
+
+- Removed `AuthServer.spec.identityProvider.ldap.group.search{Filter,Base,Depth,SubTree}`.
+  Introduce `ldap.group.search: {}` instead. If `ldap.group` is defined, and `ldap.group.search` is not defined, then
+  the LDAP will be considered to be an ActiveDirectory style LDAP, and groups will be loaded from the user's `memberOf`
+  attribute. If `ldap.group` is defined, and `ldap.group.search` is also defined, then it will be considered a Classic
+  LDAP, and group search will be done through searching in the `ldap.group.search.base`. Before, there used to be a
+  mixed mode, when both searches were attempted every time.
+- Removed `AuthServer.spec.identityProviders.ldap.server` field.
+- Removed field `AuthServer.status.deployments.authServer.lastParentGenerationWithRestart`
+- Removed deprecated field `AuthServer.spec.issuerURI`.
+  See [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md) docs for more info.
 
 #### <a id="1-4-0-vscode-bc"></a> Tanzu Developer Tools for Visual Studio Code
 
@@ -113,6 +148,14 @@ The following issues, listed by area and component, are resolved in this release
 
 - API Auto Registration periodically checks the original API specification from the defined location to find changes, and registers any changes into the `API Descriptor`. This triggers reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or frequency is configurable through the new value `sync_period`. The default value is 5 minutes.
 
+#### <a id="1-4-0-appsso-ri"></a> Application Single Sign-On (AppSSO)
+
+- Fixed infinite redirect loops for an `AuthServer` configured with a single OIDC or SAML identity provider.
+- Authorization Code request rejected audit event from anonymous users log proper IP address.
+- `AuthServer` now longer attempts to configure Redis event listeners.
+- OpenShift: custom `SecurityContextConstraint` resource is created for Kubernetes platforms versions 1.23.x and below.
+- LDAP error logging now contains proper error message.
+
 #### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
 
 - **Immediate entity provider backend Plug-in**
@@ -167,19 +210,19 @@ as images.
 
   Process finished with exit code 1
   ```
-  When there multiple resource types with the same kind, attempting to describe a resource of that kind without fully qualifying the api version causes this error.
+  When there multiple resource types with the same kind, attempting to describe a resource of that kind without fully qualifying the API version causes this error.
+
+- When switching Kubernetes context, the activity pane doesn't automatically update the namespace, but the workload pane picks up the new namespace. Therefore, the Tanzu panel will show workloads but will not show Kubernetes resources in the center panel of the activity pane. To fix this please restart IntelliJ to properly pick up the context change.
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
-#### <a id="1-3-app-sso-deprecations"></a> Application Single Sign-On
+#### <a id="1-4-0-app-sso-deprecations"></a> Application Single Sign-On (AppSSO)
 
-  - `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
-    to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
-  - `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
-   for removal in the next release.
+- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the next release.  Please, migrate
+  to `AuthServer.spec.tls.deactivated` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
 
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 

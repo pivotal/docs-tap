@@ -57,4 +57,6 @@ Force the VS Code Java tooling to re-read and synchronize information from the P
 This causes the internal compiler level to be set correctly based on the information from `pom.xml`.
 For example, Java 11 in `tanzu-java-web-app`.
 
+## <a id="live-update-timeout"></a> Timeout error when Live Updating
+
 {{> 'partials/ext-tshoot/timeout-err-live-updating' }}
