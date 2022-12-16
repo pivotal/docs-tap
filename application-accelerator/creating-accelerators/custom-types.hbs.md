@@ -51,7 +51,7 @@ accelerator:
 
 whereby UIs would render something similar to the following:
 
-![SimpleTask form is open with my first task sample title and task details.](simple-task.png)
+![SimpleTask form is open with my first task sample title and task details.](../images/simple-task.png)
 
 Associate the entered
 values to the `myTask` top-level name, resulting in the following example
