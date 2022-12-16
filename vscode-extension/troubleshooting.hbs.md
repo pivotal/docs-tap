@@ -60,3 +60,18 @@ For example, Java 11 in `tanzu-java-web-app`.
 ## <a id="live-update-timeout"></a> Timeout error when Live Updating
 
 {{> 'partials/ext-tshoot/timeout-err-live-updating' }}
+
+## <a id="deprecated-task"></a> Task related error when running Tanzu Debug launch configs
+
+### Sympton
+When a user attempts to run a Tanzu Debug launch config, they may get a task related error. For example: 
+
+`Could not find the task 'tanzuManagement: Kill Port Forward my-app`
+
+### Cause
+
+Some previous tasks are no longer supported.
+
+### Solution
+
+Delete that launch configuration from your `launch.json` file your `.vscode` directory.
