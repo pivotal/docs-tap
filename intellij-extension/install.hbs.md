@@ -30,7 +30,8 @@ To install VMware Tanzu Developer Tools for IntelliJ:
 
 ## <a id="update"></a> Update
 
-To update to a newer version, follow the same steps as install. You do not need to uninstall the previous version.
+To update to a later version, repeat the steps in the [Install](#install) section.
+You do not need to uninstall the current version.
 
 ## <a id="uninstall"></a> Uninstall
 
