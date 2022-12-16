@@ -11,29 +11,28 @@ API Auto Registration requires the following:
 
 1. A location exposing a dynamic or static API specification.
 
-2. An APIDescriptor CR with that location created in the cluster.
-You might additionally set up different install values for `api-auto-registration` package or
-CORS for OpenAPI specifications.
+2. An APIDescriptor Custom Resource (CR) with that location created in the cluster.
+You might additionally set up different install values for `api-auto-registration` package or Cross-Origin Resource Sharing (CORS) for OpenAPI specifications.
 
 To configure:
 
-- [different cluster name, Tanzu Application Platform GUI url or CA Cert values for api-auto-registration](#update-values)
+- [Different cluster name, Tanzu Application Platform GUI url or CA Cert values for api-auto-registration](#update-values)
 
 - [CORS for viewing OpenAPI Spec in TAP GUI](#cors)
 
 To generate OpenAPI Spec:
 
-- [by scaffolding a new project using App Accelerator Template](#using-app-accelerator-template)
+- [By scaffolding a new project using App Accelerator Template](#using-app-accelerator-template)
 
-- [in an existing Spring Boot project using springdoc](https://springdoc.org/#getting-started)
+- [In an existing Spring Boot project using springdoc](https://springdoc.org/#getting-started)
 
 To create APIDescriptor CR:
 
-- [using Out Of The Box Supply Chains](#using-ootb-supply-chain)
+- [Using Out Of The Box Supply Chains](#using-ootb-supply-chain)
 
-- [using Custom Supply Chains](#using-custom-supply-chain)
+- [Using Custom Supply Chains](#using-custom-supply-chain)
 
-- [using other GitOps processes or Manually](#using-gitops-manually)
+- [Using other GitOps processes or Manually](#using-gitops-manually)
 
 ## <a id='update-values'></a>Update install values for api-auto-registration package
 
@@ -70,7 +69,7 @@ To create APIDescriptor CR:
 
 If you are creating a new application exposing an API, you might use the [java-rest-service](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
 App Accelerator template to get a pre-built app that includes a
-workload.yaml with a basic REST API.
+`workload.yaml` with a basic REST API.
 From your Tanzu Application Platform GUI Accelerators tab, search for the accelerator and
 scaffold it according to your needs.
 
@@ -83,26 +82,26 @@ workload YAML:
 1. Add the label `apis.apps.tanzu.vmware.com/register-api: "true"`.
 2. Add a parameter of `type api_descriptor`:
 
-```yaml
-  params:
-    - name: api_descriptor
-      value:
-        type: openapi   # We currently support any of openapi, aysncapi, graphql, grpc
-        location:
-          path: "/v3/api-docs"  # The path to the api documentation
-        owner: team-petclinic   # The team that owns this
-        description: "A set of API endpoints to manage the resources within the petclinic app."
-```
+    ```yaml
+      params:
+        - name: api_descriptor
+          value:
+            type: openapi   # We currently support any of openapi, aysncapi, graphql, grpc
+            location:
+              path: "/v3/api-docs"  # The path to the api documentation
+            owner: team-petclinic   # The team that owns this
+            description: "A set of API endpoints to manage the resources within the petclinic app."
+    ```
 
 There are 2 different options for the location:
 
-- The default supply chains use knative to deploy your applications. In this
+- The default supply chains use Knative to deploy your applications. In this
   event the only location information you must send is the path to the API
   documentation. The controller can figure out the base URL for you.
 - You can hardcode the URL using the baseURL property. The controller uses a
 combination of this baseURL and your path to retrieve the YAML.
 
-Example workload that exposes a knative service:
+Example workload that exposes a Knative service:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
