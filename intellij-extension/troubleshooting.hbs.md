@@ -99,18 +99,19 @@ If that doesn't work for you, delete the old corrupted launch configuration and 
 
 ### Symptom
 
-On macOS, the Tanzu Panel doesn't display workloads or any other resources when using a GKE cluster. 
-Other tools, such as the [Tanzu CLI Apps plug-in](../cli-plugins/apps/overview.hbs.md), display resources correctly.
+On macOS, the Tanzu Panel doesn't display workloads or any other resources when using a GKE cluster.
+Other tools, such as the [Tanzu CLI Apps plug-in](../cli-plugins/apps/overview.hbs.md), display
+resources correctly.
 
 ### Cause
 
-[gke-cloud-auth-plugin](https://cloud.google.com/blog/products/containers-kubernetes/kubectl-auth-changes-in-gke) 
-is required to properly authenticate to a GKE cluster. However, when starting IntelliJ from Dock or Spotlight, environment variables 
-set by using `.profile`, `.bash_profile`, or `.zshrc` are not available. For more information, see this 
+`gke-cloud-auth-plugin` is required to properly authenticate to a GKE cluster.
+However, when starting IntelliJ from Dock or Spotlight, environment variables set by using
+`.profile`, `.bash_profile`, or `.zshrc` are not available. For more information, see this
 [YouTrack issue](https://youtrack.jetbrains.com/issue/IDEA-99154).
 
-This might cause `gke-cloud-auth-plugin` to be missing from `PATH` when launching IntelliJ and prevent the Tanzu Panel from 
-reaching the cluster.
+This might cause `gke-cloud-auth-plugin` to be missing from `PATH` when launching IntelliJ and prevent
+the Tanzu Panel from reaching the cluster.
 
 ### Solution
 
