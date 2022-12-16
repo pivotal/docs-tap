@@ -94,3 +94,45 @@ If that doesn't work for you, delete the old corrupted launch configuration and 
 ## <a id="live-update-timeout"></a> Timeout error when Live Updating
 
 {{> 'partials/ext-tshoot/timeout-err-live-updating' }}
+
+## <a id="describe-action-fail"></a> The Describe action in the Activity panel fails when used on PodIntent resources
+
+### Symptom
+
+The pop-up menu **Describe** action in the Activity panel fails when used on PodIntent resources.
+The error message is similar to the following:
+
+   ```console
+   Warning: conventions.apps.tanzu.vmware.com/v1alpha1 PodIntent is deprecated; \
+   use conventions.carto.run/v1alpha1 PodIntent instead
+   Error from server (NotFound): podintents.conventions.apps.tanzu.vmware.com "my-app" not found
+
+   Process finished with exit code 1
+   ```
+
+### Cause
+
+When there are multiple resource types with the same kind, attempting to describe a resource of that
+kind without fully qualifying the API version causes this error.
+
+### Solution
+
+Fully qualify the API version of each resource.
+
+## <a id="tnz-panel-k8s-rsrc-fail"></a> Tanzu panel shows workloads but doesn't show Kubernetes resources
+
+### Symptom
+
+The Tanzu panel shows workloads but doesn't show Kubernetes resources in the center panel of the
+activity pane.
+
+### Cause
+
+When switching the Kubernetes context, the activity pane doesn't automatically update the namespace,
+but the workload pane detects the new namespace.
+Therefore, the Tanzu panel shows workloads but doesn't show Kubernetes resources in the center panel
+of the activity pane.
+
+### Solution
+
+Restart IntelliJ to properly detect the context change.

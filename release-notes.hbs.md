@@ -208,18 +208,15 @@ as images.
 - The `Generation` field in the **Overview** section is not updated when a scan policy is amended, however clicking on the `Scan Policy` link will show the most current scan policy details applied to the stage.
 - Customizing the `Source Tester` stage in an OOTB supply chain will not show details in the **Stage Details** section.
 
-#### <a id="1-4-0-intellij-known-issues"></a> Intellij Extension
+#### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
 
-- The context menu `Describe` action  in the Activity panel fails when used on PodIntent resources with an error:
-  ```kubectl describe PodIntent my-app -n my-apps-namespace
-  Warning: conventions.apps.tanzu.vmware.com/v1alpha1 PodIntent is deprecated; use conventions.carto.run/v1alpha1 PodIntent instead
-  Error from server (NotFound): podintents.conventions.apps.tanzu.vmware.com "my-app" not found
+- The **Describe** action in the pop-up menu in the Activity panel can fail when used on PodIntent
+  resources. For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#describe-action-fail).
 
-  Process finished with exit code 1
-  ```
-  When there multiple resource types with the same kind, attempting to describe a resource of that kind without fully qualifying the API version causes this error.
-
-- When switching Kubernetes context, the activity pane doesn't automatically update the namespace, but the workload pane picks up the new namespace. Therefore, the Tanzu panel will show workloads but will not show Kubernetes resources in the center panel of the activity pane. To fix this please restart IntelliJ to properly pick up the context change.
+- The Tanzu panel might show workloads without showing Kubernetes resources in the center panel of the
+  activity pane. For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#tnz-panel-k8s-rsrc-fail).
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
