@@ -62,4 +62,6 @@ the plug-in when the plug-in is hot-swapped into an active session instead of lo
 Closing and restarting IntelliJ typically fixes this problem.
 If that doesn't work for you, delete the old corrupted launch configuration and recreate it.
 
+## <a id="live-update-timeout"></a> Timeout error when Live Updating
+
 {{> 'partials/ext-tshoot/timeout-err-live-updating' }}

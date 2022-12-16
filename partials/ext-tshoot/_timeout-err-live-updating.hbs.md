@@ -1,5 +1,3 @@
-## <a id="live-update-timeout"></a> Timeout error when Live Updating
-
 ### Symptom
 
 When you attempt to Live Update your workload, the following error message appears in the log:
