@@ -182,9 +182,22 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
 
-- If a workload is deployed onto a namespace by using Live Update, the user must
-  set that namespace as the namespace of the current context of their kubeconfig file.
-  Otherwise, if the user runs Tanzu Debug it causes the workload to re-deploy.
+- If a workload is deployed onto a namespace by using Live Update, you must set that namespace as
+  the namespace of the current context of your kubeconfig file.
+  Otherwise, if you run Tanzu Debug it causes the workload to re-deploy.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#debug-reapplies-apply).
+
+- On macOS, Tanzu Panel might be empty when using a GKE cluster. For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#panel-empty-gke).
+
+- The **Describe** action in the pop-up menu in the Activity panel can fail when used on PodIntent
+  resources. For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#describe-action-fail).
+
+- The Tanzu panel might show workloads without showing Kubernetes resources in the center panel of the
+  activity pane. For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#tnz-panel-k8s-rsrc-fail).
 
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
@@ -207,16 +220,6 @@ as images.
 #### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer Plug-In
 - The `Generation` field in the **Overview** section is not updated when a scan policy is amended, however clicking on the `Scan Policy` link will show the most current scan policy details applied to the stage.
 - Customizing the `Source Tester` stage in an OOTB supply chain will not show details in the **Stage Details** section.
-
-#### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
-
-- The **Describe** action in the pop-up menu in the Activity panel can fail when used on PodIntent
-  resources. For more information, see
-  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#describe-action-fail).
-
-- The Tanzu panel might show workloads without showing Kubernetes resources in the center panel of the
-  activity pane. For more information, see
-  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#tnz-panel-k8s-rsrc-fail).
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 

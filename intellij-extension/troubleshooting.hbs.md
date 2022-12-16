@@ -12,7 +12,7 @@ if it exists on the cluster.
 ### Cause
 
 Internally, workloads are gathered in the cluster in the current namespace and compared with the
-information that the user specifies.
+information that you specify.
 If the `namespace` field is empty, it is considered `null` and the internal checks fail.
 
 ### Solution
@@ -43,12 +43,12 @@ Select debug configuration from the right-click pop-up menu.
 
 ### Symptom
 
-When a user runs or debugs a launch configuration, IntelliJ deactivates the launch controls.
+When you run or debug a launch configuration, IntelliJ deactivates the launch controls.
 
 ### Cause
 
-IntelliJ deactivates the launch controls to prevent other launch configurations from being launched at
-the same time.
+IntelliJ deactivates the launch controls to prevent other launch configurations from being launched
+at the same time.
 These controls are reactivated when the launch configuration is started.
 As such, starting multiple Tanzu debug and live update sessions is a synchronous activity.
 
