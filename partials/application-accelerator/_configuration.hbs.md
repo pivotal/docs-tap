@@ -40,7 +40,7 @@ Where:
   repository that contains manifest YAML files for the accelerators that you want to have managed.
   See the following for manifest examples. You can specify a `sub_path` if necessary and also a
   `secret_ref` if the repository requires authentication. If not needed, then leave these additional
-  properties out. See the following for the configuration of [Git credentials secret](_configuration.hbs.md#creating-git-credentials).
+  properties out. See the following for the configuration of [Git credentials secret](#creating-git-credentials).
 
 ### <a id="functional-considerations"></a> Functional and Organizational Considerations
 
