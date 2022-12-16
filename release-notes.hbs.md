@@ -57,34 +57,35 @@ are using this issuer to secure ingress. In upcoming releases all components wil
   Security Analysis plug-in.
 - **View Approvals** is relocated to the `Config Writer` stage, instead of being a stage by itself.
 
-
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped environments. Refer to our updated [instructions](scst-scan/offline-airgap.hbs.md).
 
-#### <a id="1-4-0-services-toolkit-new-features"></a> Services Toolkit
-- Added new `ClassClaim` API that allows claims for service instances to be created by referring to a `ClusterInstanceClass`. See [Services Toolkit documentation](./services-toolkit/about.hbs.md) for more information.
-- Added corresponding `tanzu services class-claims` CLI plug-in command
+#### <a id="1-4-0-stk-new-features"></a> Services Toolkit
+
+- Added new `ClassClaim` API that allows claims for service instances to be created by referring to
+  a `ClusterInstanceClass`. For more information, see the
+  [Services Toolkit documentation](./services-toolkit/about.hbs.md).
+- Added corresponding `tanzu services class-claims` CLI plug-in command.
 
 #### <a id="1-4-0-vscode-new-features"></a> Tanzu Developer Tools for Visual Studio Code
 
-- **Developer sandbox:** The developer sandbox enables developers to Live Update their code, and
-  simultaneously debug the updated code, without having to deactivate Live Update when debugging.
-
-#### <a id="1-4-0-intellij-new-features"></a> Tanzu Developer Tools for IntelliJ
-
-- **Developer sandbox:** The developer sandbox enables developers to Live Update their code, and
+- The developer sandbox enables developers to Live Update their code, and
   simultaneously debug the updated code, without having to deactivate Live Update when debugging.
 
 #### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
 
 - API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API specification is generated from the API Auto Registration of Tanzu Application Platform. See [API Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
 
-#### <a id="1-4-0-intellij-new-features"></a> Tanzu Developer Tools for IntelliJ
-- IntelliJ IDEA v2022.2 to v2022.3 is required to install the extension.
-- Developer sandbox has been enabled which allows developers to Live Update their code — as well as simultaneously debug the updated code — without having to turn off Live Update when debugging.
-- An Activity pane has been added in the Tanzu Panel which allows developers to visualize the supply chain, delivery and running application pods, displays detailed error messages on each resource and enables developers to describe and view logs on these resources from within their IDE.
-- Tanzu workload apply and delete actions have been added to ​IntelliJ.
-- Code snippets to create `workload.yaml` and `catalog-info.yaml` files have been added to IntelliJ.
+#### <a id="1-4-0-intellij-new-feat"></a> Tanzu Developer Tools for IntelliJ
+
+- The developer sandbox enables developers to Live Update their code, and
+  simultaneously debug the updated code, without having to deactivate Live Update when debugging.
+- An Activity pane was added in the Tanzu Panel which allows developers to visualize the supply
+  chain, delivery, and running application pods.
+  It displays detailed error messages on each resource and enables developers to describe and view 
+  logs on these resources from within their IDE.
+- Tanzu workload `apply` and `delete` actions were added to ​IntelliJ.
+- Code snippets to create `workload.yaml` and `catalog-info.yaml` files were added to IntelliJ.
 
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
 
@@ -99,6 +100,10 @@ This release has the following breaking changes, listed by area and component.
 - Removed `AuthServer.spec.identityProviders.ldap.server` field.
 - Removed `AuthServer.status.deployments.authServer.lastParentGenerationWithRestart` field.
 - Removed deprecated field `AuthServer.spec.issuerURI`. For more information, see [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md).
+
+#### <a id="1-4-0-intellij-bc"></a> Tanzu Developer Tools for IntelliJ
+
+- IntelliJ IDEA v2022.2 to v2022.3 is required to install the extension.
 
 #### <a id="1-4-0-vscode-bc"></a> Tanzu Developer Tools for Visual Studio Code
 
