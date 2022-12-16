@@ -377,7 +377,7 @@ Vulnerability DB [no update available] New version of grype is available: 0.50.2
 ```
 
 To resolve this issue, ensure that Grype has access to its vulnerability database:
-* If you have set up a [mirror](../partials/scst-scan/_offline-airgap.hbs.md) of the vulnerability database, check that it is populated and reachable.
+* If you have set up a [mirror](offline-airgap.hbs.md) of the vulnerability database, check that it is populated and reachable.
 * If you did not set up a mirror, Grype manages its database behind the scenes. Check that the cluster has access to https://anchore.com/.
 
 Note: This issue is unrelated to the Supply Chain Security Tools for Tanzu – Store.
