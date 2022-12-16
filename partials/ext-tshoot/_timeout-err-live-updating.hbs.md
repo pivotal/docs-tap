@@ -4,7 +4,7 @@
 
 When you attempt to Live Update your workload, the following error message appears in the log:
 
-`ERROR: Build Failed: apply command timed out after 30s - see }}{{https://docs.tilt.dev/api.html#api.update_settings{{ for how to increase}}`
+`ERROR: Build Failed: apply command timed out after 30s - see }}\{{https://docs.tilt.dev/api.html#api.update_settings\{{ for how to increase}}`
 
 ### Cause
 
