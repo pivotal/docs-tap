@@ -92,10 +92,10 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-appsso-bc"></a> Application Single Sign-On (AppSSO)
 
-- Removed `AuthServer.spec.identityProvider.ldap.group.search{Filter,Base,Depth,SubTree}` and introduced `ldap.group.search: {}`: 
-    - If `ldap.group` is defined, and `ldap.group.search` is not defined, the LDAP is considered as an ActiveDirectory style LDAP, and groups are loaded from the user's `memberOf` attribute. 
-    - If `ldap.group` is defined, and `ldap.group.search` is also defined, the LDAP is considered as a Classic LDAP, and group search is done by searching in the `ldap.group.search.base`. 
-    There used to be a mixed mode, when both searches were attempted every time.
+- Removed `AuthServer.spec.identityProvider.ldap.group.search{Filter,Base,Depth,SubTree}` and introduced `ldap.group.search: {}`
+    - If `ldap.group` is defined and `ldap.group.search` is not defined, the LDAP is considered as an ActiveDirectory style LDAP and groups are loaded from the user's `memberOf` attribute.
+    - If `ldap.group` and `ldap.group.search` are both defined, the LDAP is considered as a Classic LDAP and group search is done by searching in the `ldap.group.search.base`.
+    - There used to be a mixed mode, when both searches were attempted every time.
 - Removed `AuthServer.spec.identityProviders.ldap.server` field.
 - Removed `AuthServer.status.deployments.authServer.lastParentGenerationWithRestart` field.
 - Removed deprecated field `AuthServer.spec.issuerURI`. For more information, see [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md).
