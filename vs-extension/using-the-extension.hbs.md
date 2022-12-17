@@ -40,8 +40,10 @@ To delete a workload:
 4. If a `workload.yaml` exists somewhere in the project file structure, delete the workload by running:
 
     ```console
-    tanzu apps workload delete --file={workload_path} --yes
+    tanzu apps workload delete --file=WORKLOAD-PATH --yes
     ```
+
+    Where `WORKLOAD-PATH` is your workload path
 
 ## <a id="use-live-update"></a> Use Live Update
 
@@ -128,7 +130,7 @@ To start a remote debug, right-click on a project in the Solution Explorer and t
   pane as Visual Studio enters debug mode.
 
 Visual Studio prompts the debugging agent to attach to a running app process with the name
-`/workspace/{DotNetProjectName}`.
+`/workspace/DOT-NET-PROJECT-NAME`.
 
 > **Caution** If the name of your running app process (the app DLL process), does not match the name
 > of your .NET project as shown in the Visual Studio Solution Explorer, the remote debugging agent
@@ -153,4 +155,9 @@ a string of numbers representing the date, such as `tanzu-dev-tools20221202.log`
 A new log file is created for each day and retained for a maximum of 31 days.
 These log files are in the installation directory of the `.vsix` file.
 By default, this is
-`"C:\Users\\\{name}\AppData\Local\Microsoft\VisualStudio\\\{version}\Extensions\VMware\Tanzu Developer Tools\\\{vsix version}"`.
+
+```text
+C:\Users\NAME\AppData\Local\Microsoft\VisualStudio\VERSION\Extensions\VMware\Tanzu Developer Tools\VSIX-VERSION
+```
+
+Where `NAME`, `VERSION`, and `VSIX-VERSION` are placeholders.
