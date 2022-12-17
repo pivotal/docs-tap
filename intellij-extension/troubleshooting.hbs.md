@@ -143,7 +143,7 @@ kind without fully qualifying the API version causes this error.
 
 ### Solution
 
-Fully qualify the API version of each resource.
+There is no workaround for this issue at present. A fix is planned for this issue in the next version.
 
 ## <a id="tnz-panel-k8s-rsrc-fail"></a> Tanzu panel shows workloads but doesn't show Kubernetes resources
 
