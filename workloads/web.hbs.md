@@ -1,4 +1,4 @@
-# Using web workloads
+# Use web workloads
 
 This topic describes how to use the `web` workload type.
 

@@ -22,13 +22,13 @@ This repo contains the content for Tanzu Application Platform docs.
 </tr>
 <tr>
 <td>1-3-3</td>
-<td><a href="https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3.3/tap/GUID-overview.html">Staging</a></td>
-<td><em>n/a</em></td>
+<td><a href="https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html">Staging</a></td>
+<td><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html">Production</a></td>
 </tr>
 <tr>
 <td>1-3-2</td>
-<td><a href="https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html">Staging</a></td>
-<td><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html">Production</a></td>
+<td>Not in use. Do not PR to this branch.</td>
+<td>Not in use. Do not PR to this branch.</td>
 </tr>
 <tr>
 <td>1-3-1</td>

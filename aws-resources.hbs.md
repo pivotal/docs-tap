@@ -1,4 +1,4 @@
-# Creating AWS Resources for Tanzu Application Platform
+# Create AWS Resources for Tanzu Application Platform
 
 To install Tanzu Application Platform within the Amazon Web Services (AWS) Ecosystem, you must create several AWS resources. This guide walks you through creating:
 
@@ -103,7 +103,7 @@ To simplify this walkthrough, use a script to create these policy documents and 
 Run:
 
 ```console
-export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
+export OIDCPROVIDER=$(aws eks describe-cluster --name $EKS_CLUSTER_NAME --region $AWS_REGION --output json | jq '.cluster.identity.oidc.issuer' | tr -d '"' | sed 's/https:\/\///')
 cat << EOF > build-service-trust-policy.json
 {
     "Version": "2012-10-17",
@@ -289,7 +289,7 @@ cat << EOF > workload-trust-policy.json
 EOF
 
 
-# Create the Build Service Role
+# Create the Tanzu Build Service Role
 aws iam create-role --role-name tap-build-service --assume-role-policy-document file://build-service-trust-policy.json
 # Attach the Policy to the Build Role
 aws iam put-role-policy --role-name tap-build-service --policy-name tapBuildServicePolicy --policy-document file://build-service-policy.json

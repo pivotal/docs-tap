@@ -25,8 +25,13 @@ To install VMware Tanzu Developer Tools for IntelliJ:
 1. Open IntelliJ.
 1. Open the **Preferences** pane and then go to **Plugins**.
 1. Click the gear icon and then click **Install Plugin from disk...**.
-![Gear icon inside the Plugins Preferences pane.](../images/intellij-gearIconPrefs.png)
+![Gear icon inside the Plugins Preferences pane.](../images/intellij-install.png)
 1. Use the file picker to select the ZIP file downloaded from the VMware Tanzu Network.
+
+## <a id="update"></a> Update
+
+To update to a later version, repeat the steps in the [Install](#install) section.
+You do not need to uninstall the current version.
 
 ## <a id="uninstall"></a> Uninstall
 

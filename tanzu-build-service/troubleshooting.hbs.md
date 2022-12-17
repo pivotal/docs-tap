@@ -1,4 +1,4 @@
-# Troubleshooting Tanzu Build Service
+# Troubleshoot Tanzu Build Service
 
 This topic provides information to help troubleshoot Tanzu Build Service when used with
 Tanzu Application Platform.

@@ -1,4 +1,4 @@
-# Setting up authentication for Tanzu Application Platform
+# Set up authentication for Tanzu Application Platform
 
 There are multiple ways to set up authentication for your Tanzu Application Platform deployment.
 You can manage authentication at the infrastructure level with your Kubernetes provider,

@@ -1,4 +1,4 @@
-# Using worker workloads
+# Use worker workloads
 
 This topic describes how to create and install a supply chain for the `worker` workload type.
 

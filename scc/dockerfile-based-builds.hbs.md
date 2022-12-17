@@ -77,7 +77,7 @@ $ tanzu apps workload create foo \
   --param docker_build_context=./src
 ```
 
-> **Note** this feature has no platform operator configurations to be passed
+> **Note** This feature has no platform operator configurations to be passed
 > through `tap-values.yaml`, but if `ootb-supply-chain-*.registry.ca_cert_data` or
 `shared.ca_cert_data` is configured in `tap-values`, the certificates
 > are considered when pushing the container image.
@@ -93,29 +93,29 @@ require the use of:
 - The root user.
 
 To overcome such limitations imposed by the default unprivileged
-SecurityContextConstraints (SCC), TAP has installed:
+SecurityContextConstraints (SCC), Tanzu Application Platform installs:
 
-- `SecurityContextConstraints/ootb-templates-kaniko-restricted-v2-with-anyuid` with just enough extra privileges for
-  Kaniko to properly operate
+- `SecurityContextConstraints/ootb-templates-kaniko-restricted-v2-with-anyuid` with enough extra privileges for
+  Kaniko to operate.
 - `ClusterRole/ootb-templates-kaniko-restricted-v2-with-anyuid` to permit the use of such SCC to any actor binding to
-  that cluster role
+  that cluster role.
 
-Each developer namespace will need a role binding that binds the role to an actor (ServiceAccount). This is instructed
-in [Set up developer namespaces to use installed packages ](../set-up-namespaces.hbs.md):
+Each developer namespace needs a role binding that binds the role to an actor: `ServiceAccount`. 
+For more information, see [Set up developer namespaces to use installed packages ](../set-up-namespaces.hbs.md).
 
-    ```yaml
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: RoleBinding
-    metadata:
-      name: workload-kaniko-scc
-    roleRef:
-      apiGroup: rbac.authorization.k8s.io
-      kind: ClusterRole
-      name: ootb-templates-kaniko-restricted-v2-with-anyuid
-    subjects:
-      - kind: ServiceAccount
-        name: default
-    ```
+```yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: workload-kaniko-scc
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: ootb-templates-kaniko-restricted-v2-with-anyuid
+subjects:
+  - kind: ServiceAccount
+    name: default
+```
 
 With the SCC created and the ServiceAccount bound to the role that permits the
 use of the SCC, OpenShift accepts the pods created to run Kaniko to build
@@ -124,7 +124,6 @@ the container images.
 
 > **Note** Such restrictions are due to well-known limitations in how Kaniko
 > performs the image builds, and there is currently no solution. For more information, see [kaniko#105].
-
 
 [kaniko#105]: https://github.com/GoogleContainerTools/kaniko/issues/105
 

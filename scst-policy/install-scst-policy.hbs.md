@@ -17,10 +17,10 @@ Platform's Full, Iterate, and Run profiles. Use the instructions in this topic t
 
 - If you are installing in an air-gapped environment and require keyless
   authorities, you must deploy a Sigstore Stack on the cluster or be accessible
-  from the air-gapped environment. For more information, see [Install Sigstore
+  from the air-gapped environment. For information, see [Install Sigstore
   Stack](./install-sigstore-stack.hbs.md).
 
-- During configuration for this component, you are asked to provide a cosign
+- During configuration, you provide a cosign
 public key to validate signed images. The Policy Controller only supports
 ECDSA public keys. An example cosign public key is provided that can validate an
 image from the public cosign registry. To provide your own key and images,
@@ -100,7 +100,7 @@ To install Supply Chain Security Tools - Policy Controller:
     tuf_mirror                                string   TUF mirror address
     ```
 
-1. Create a file named `scst-policy-values.yaml` and add the settings you want to customize:
+2. Create a file named `scst-policy-values.yaml` and add the settings you want to customize:
 
     - `custom_ca_secrets`:
       If your container registries are secured by self-signed certificates, this setting controls which secrets are added to the application
@@ -158,11 +158,11 @@ To install Supply Chain Security Tools - Policy Controller:
 
     - `limits_cpu`:
       This setting controls the maximum CPU resource allocated to the Policy
-      admission controller. The default value is "200m". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu) for more details.
+      admission controller. The default value is "200m". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-cpu).
 
     - `limits_memory`:
       This setting controls the maximum memory resource allocated to the Policy
-      admission controller. The default value is "200Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory) for more details.
+      admission controller. The default value is "200Mi". See [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/#meaning-of-memory).
 
     - `quota.pod_number`:
       This setting controls the maximum number of pods that are allowed in the
@@ -175,7 +175,7 @@ To install Supply Chain Security Tools - Policy Controller:
 
       >**Note** VMware recommends to run this component with a critical priority
       >level to prevent the cluster from rejecting all admission requests if the
-      >component's `pod`s are evicted due to resource limitations.
+      >component's `pod`s are evicted due to resource limits.
 
     - `replicas`:
       This setting controls the default amount of replicas deployed by this
@@ -210,7 +210,7 @@ To install Supply Chain Security Tools - Policy Controller:
     - `fail_on_empty_authorities`:
       Failing or allowing empty authorities when adding a new `ClusterImagePolicy`. Default value is `true`.
 
-2. Install the package:
+3. Install the package:
 
     ```console
     tanzu package install policy-controller \

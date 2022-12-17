@@ -1,4 +1,4 @@
-# Installing Tanzu Application Platform on OpenShift clusters
+# Install Tanzu Application Platform on OpenShift clusters
 
 This topic describes how to install Tanzu Application Platform packages
 on your OpenShift clusters.
@@ -310,7 +310,7 @@ This field is only required if you use a private repository, otherwise, leave it
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 
-Tanzu Application Platform is part of [VMware's CEIP program](https://www.vmware.com/solutions/trustvmware/ceip-products.html) where data is collected to help improve the customer experience. By setting `ceip_policy_disclosed` to `true` (not a string), you acknowledge the program is disclosed to you and you are aware data collection is happening. This field must be set for the installation to be completed. See [Opting out of telemetry collection](opting-out-telemetry.hbs.md) for more information.
+Tanzu Application Platform is part of [VMware's CEIP program](https://www.vmware.com/solutions/trustvmware/ceip-products.html) where data is collected to help improve the customer experience. By setting `ceip_policy_disclosed` to `true` (not a string), you acknowledge the program is disclosed to you and you are aware data collection is happening. This field must be set for the installation to be completed. See [Opt out of telemetry collection](opting-out-telemetry.hbs.md) for more information.
 
 If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
 
@@ -394,8 +394,6 @@ excluded_packages:
   - workshops.learningcenter.tanzu.vmware.com
 ...
 ```
-
-See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
 
 See [Exclude packages from a Tanzu Application Platform profile](#exclude-packages) for more information.
 

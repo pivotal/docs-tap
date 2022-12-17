@@ -1,6 +1,6 @@
-# Create a GitHub Build Action (Alpha)
+# Create a GitHub build action (Alpha)
 
-Use this GitHub Action to creates a Tanzu Build Service Build on a cluster.
+Use this GitHub Action to create a Tanzu Build Service build on a cluster.
 
 > **Important** Alpha features are experimental and are not ready for production use. Configuration
 > and behavior is likely to change, and functionality might be removed in a future release.
@@ -11,7 +11,7 @@ Use this GitHub Action to creates a Tanzu Build Service Build on a cluster.
 
 ## Procedure
 
-### Developer Namespace
+### Developer namespace
 
 1. Create a developer namespace where the build resource will be created.
 
@@ -19,21 +19,20 @@ Use this GitHub Action to creates a Tanzu Build Service Build on a cluster.
     kubectl create namespace DEVELOPER-NAMESPACE
     ```
 
-2. Create a service account in the `DEVELOPER-NAMESPACE` that has access to the registry credentials. This service
-   account name will be used in the action.
+2. Create a service account in the `DEVELOPER-NAMESPACE` that has access to the registry
+credentials. This service account name will be used in the action.
 
 ### Access to Kubernetes API server
 
-The GitHub action talks directly to the kubernetes API server, so if you are running this on github.com with the default
-action runners
-you'll need to ensure your API server is accessible from
-GitHubs [IP ranges](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses).
-Alternatively, it may be possible to runner the action on a custom runner within your firewall (with access to the TAP
-cluster).
+The GitHub action talks directly to the Kubernetes API server, if you are running this on github.com
+with the default action runners, ensure that your API server is accessible from
+GitHub's [IP ranges](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses).
+Alternatively, it might be possible to run the action on a custom runner within your firewall
+(with access to the Tanzu Application Platform cluster).
 
 #### Permissions Required
 
-The minimum permissions required on the TBS cluster are documented below:
+These are the minimum permissions required on the Tanzu Build Service cluster:
 
     ```bash
     ClusterRole
@@ -47,7 +46,7 @@ The minimum permissions required on the TBS cluster are documented below:
        └ builds verbs=[get watch list create delete] ✔
     ```
 
-Here is an example that contains the minimum required permissions:
+This example contains the minimum required permissions:
 
     ```yaml
     apiVersion: v1
@@ -116,17 +115,17 @@ Here is an example that contains the minimum required permissions:
          verbs: ['get', 'watch', 'list', 'create', 'delete']
     ```
 
-Then to access the values (on GKE, if using another IAAS, this may be different):
+To access the values on Google Kubernetes Engine (steps might vary on other IaaS providers):
 
-```
-DEV_NAMESPACE=DEVELOPER_NAMESPACE
-SECRET=$(kubectl get sa github-actions -oyaml -n $DEV_NAMESPACE | yq '.secrets[0].name')
+      ```console
+      DEV_NAMESPACE=DEVELOPER_NAMESPACE
+      SECRET=$(kubectl get sa github-actions -oyaml -n $DEV_NAMESPACE | yq '.secrets[0].name')
 
-CA_CERT=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq '.data."ca.crt"')
-NAMESPACE=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq .data.namespace | base64 -d)
-TOKEN=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq .data.token | base64 -d)
-SERVER=$(kubectl config view --minify | yq '.clusters[0].cluster.server')
-```
+      CA_CERT=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq '.data."ca.crt"')
+      NAMESPACE=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq .data.namespace | base64 -d)
+      TOKEN=$(kubectl get secret $SECRET -oyaml -n $DEV_NAMESPACE | yq .data.token | base64 -d)
+      SERVER=$(kubectl config view --minify | yq '.clusters[0].cluster.server')
+      ```
 
 Create the required secrets on the repository
 through [GitHub.com](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository)
@@ -141,7 +140,7 @@ or through the `gh` CLI:
 
 ### Use the action
 
-To use the action in a workflow, run the following YAML:
+1. To use the action in a workflow, run the following YAML:
 
     ```yaml
     - uses: vmware-tanzu/build-image-action@v1-alpha
@@ -170,7 +169,7 @@ To use the action in a workflow, run the following YAML:
         timeout:
     ```
 
-For example:
+      For example:
 
     ```yaml
     - name: Build Image
@@ -189,8 +188,8 @@ For example:
           BP_JAVA_VERSION=17
     ```
 
-The previous step should output the full name, including the SHA of the built image. To use the output in a subsequent
-step:
+2. The previous step should output the full name, including the SHA of the built image. To use the
+output in a subsequent step:
 
     ```yaml
     - name: Do something with image
@@ -200,6 +199,5 @@ step:
 
 ## Debugging
 
-To run this action in "debug" mode, add a secret called `ACTIONS_STEP_DEBUG` with the value set to `true` as documented
-in the [GitHub Action Docs](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging).
-
+To run this action in "debug" mode, add a secret called `ACTIONS_STEP_DEBUG` with the value set to
+`true` as documented in the [GitHub Action Docs](https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows/enabling-debug-logging).

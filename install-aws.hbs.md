@@ -1,4 +1,4 @@
-# Installing Tanzu Application Platform package and profiles on AWS
+# Install Tanzu Application Platform package and profiles on AWS
 
 This topic describes how to install Tanzu Application Platform packages
 from the Tanzu Application Platform package repository on to AWS.
@@ -355,11 +355,17 @@ To install the `full` dependencies package:
     tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
     ```
 
+1. Create an ECR repository for Tanzu Build Service full dependencies by running:
+
+    ```console
+    aws ecr create-repository --repository-name tbs-full-deps --region ${AWS_REGION}
+    ```
+
 1. Relocate the Tanzu Build Service full dependencies package repository by running:
 
     ```console
     imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
-      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps
+      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/tbs-full-deps
     ```
 
     Where `VERSION` is the version of the `buildservice` package you retrieved in the previous step.
@@ -413,5 +419,5 @@ To exclude packages from a Tanzu Application Platform profile:
 
 ## <a id='next-steps'></a>Next steps
 
-- (Optional) [Installing Individual Packages](install-components.html)
-- [Setting up developer namespaces to use installed packages](set-up-namespaces-aws.html)
+- (Optional) [Install Individual Packages](install-components.html)
+- [Set up developer namespaces to use installed packages](set-up-namespaces-aws.html)

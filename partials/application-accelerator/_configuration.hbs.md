@@ -36,20 +36,21 @@ managed_resources:
 
 Where:
 
-- `GIT-REPO-URL` is the URL (must include `https://` or `git@` at the beginning) of a Git repository
-  that contains manifest YAML files for the accelerators that you want to have managed
-  (see below for manifest examples). You can specify a `sub_path` if necessary and also a
+- `GIT-REPO-URL` is the URL, it must include `https://` or `git@` at the beginning, of a Git
+  repository that contains manifest YAML files for the accelerators that you want to have managed.
+  See the following for manifest examples. You can specify a `sub_path` if necessary and also a
   `secret_ref` if the repository requires authentication. If not needed, then leave these additional
-  properties out. See the following for the configuration of a [Git credentials secret](#creating-git-credentials).
+  properties out. See the following for the configuration of [Git credentials secret](#creating-git-credentials).
 
 ### <a id="functional-considerations"></a> Functional and Organizational Considerations
 
-Any accelerator manifest that is defined under the `GIT-REPO-URL` (and optional `sub_path`) is
+Any accelerator manifest that is defined under the `GIT-REPO-URL`, and optional `sub_path`, is
 picked up by the kapp-controller App. If there are multiple manifests at the defined `GIT-REPO-URL`,
 they are all watched for changes and displayed to the user as a merged catalog.
 
-As an example of this, say you have two manifests containing multiple accelerator/fragment definitions,
-`manifest-1.yaml` and `manifest-2.yaml`, are on the same path in the organizational considerations.
+As an example of this, say you have two manifests containing multiple accelerator or fragment
+definitions, `manifest-1.yaml` and `manifest-2.yaml`, are on the same path in the organizational
+considerations. The resulting catalog is (`manifest-1.yaml` + `manifest-2.yaml`)
 
 ## <a id="examples-creating-acc"></a> Examples for creating accelerators
 
@@ -73,7 +74,7 @@ spec:
 ```
 
 This example creates an accelerator named `spring-cloud-serverless`. The `displayName`, `description`,
-`iconUrl`, and `tags` fields are populated based on the content under the `accelerator` key in the
+`iconUrl`, and `tags` text boxes are populated based on the content under the `accelerator` key in the
 `accelerator.yaml` file found in the `main` branch of the Git repository
 at [Application Accelerator Samples](https://github.com/vmware<-tanzu</application-accelerator-samples)
 under the sub-path `spring-cloud-serverless`. For example:
@@ -97,21 +98,21 @@ accelerator:
 
 To create this accelerator with kubectl run:
 
-```sh
+```console
 kubectl apply --namespace --accelerator-system --filename spring-cloud-serverless.yaml
 ```
 
 Or, you can use the Tanzu CLI and run:
 
-```sh
+```console
 tanzu accelerator create spring-cloud-serverless --git-repo https://github.com/vmware-tanzu/application-accelerator-samples.git --git-branch main --git-sub-path spring-cloud-serverless
 ```
 
 ### <a id="examples-custom"></a> An example for creating an accelerator with customized properties
 
-You can specify the `displayName`, `description`, `iconUrl`, and `tags` fields and
+You can specify the `displayName`, `description`, `iconUrl`, and `tags` text boxes and
 this overrides any values provided in the accelerator's Git repository. The following example
-explicitly sets those fields and the `ignore` field:
+explicitly sets those text boxes and the `ignore` text box:
 
 > my-spring-cloud-serverless.yaml
 
@@ -139,13 +140,13 @@ spec:
 
 To create this accelerator with kubectl run:
 
-```sh
+```console
 kubectl apply --namespace --accelerator-system --filename my-spring-cloud-serverless.yaml
 ```
 
 To use the Tanzu CLI and run:
 
-```sh
+```console
 tanzu accelerator create my-spring-cloud-serverless --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --git-branch main --git-sub-path spring-cloud-serverless \
   --description "My own Spring Cloud Function serverless app" \
   --display-name "My Spring Cloud Serverless" \
@@ -193,10 +194,10 @@ Application Accelerator install.
 
 ## <a id="creating-git-credentials"></a> Configuring `tap-values.yaml` with Git credentials secret
 
-When deploying accelerators using Git repositories that need authentication or are installed with custom CA certificates,
-you need to provide some additional authentication values in a secret.
-The examples in the next section provide more details. This section describes
-how to configure a Git credentials secret that is used in later Git-based examples.
+When deploying accelerators using Git repositories that requires authentication or are installed
+with custom CA certificates, you must provide some additional authentication values in a secret. The
+examples in the next section provide more details. This section describes how to configure a Git
+credentials secret that is used in later Git-based examples.
 
 You can specify the following accelerator configuration properties when installing Application
 Accelerator. The same properties are provided in the `accelerator` section of the `tap-values.yaml` file:
@@ -259,17 +260,17 @@ accelerator:
 
 ## <a id="non-public-repos"></a> Using non-public repositories
 
-For Git repositories that aren't accessible anonymously, you need to provide credentials in a Secret.
+For GitHub repositories that aren't accessible anonymously, you need to provide credentials in a Secret.
 
 - For HTTPS repositories the secret must contain user name and password fields. The password field
   can contain a personal access token instead of an actual password.
   See [Fluxcd/source-controller basic access authentication](https://fluxcd.io/docs/components/source/gitrepositories/#basic-access-authentication)
 - For HTTPS with self-signed certificates, you can add a `.data.caFile` value to the secret created
   for HTTPS authentication. See [fluxcd/source-controller HTTPS Certificate Authority](https://fluxcd.io/docs/components/source/gitrepositories/#https-certificate-authority)
-- For SSH repositories, the secret must contain identity, identity.pub, and known_hosts fields.
+- For SSH repositories, the secret must contain identity, identity.pub, and known_hosts text boxes.
   See [fluxcd/source-controller SSH authentication](https://fluxcd.io/docs/components/source/gitrepositories/#ssh-authentication).
 - For Image repositories that aren't publicly available, an image pull secret can be provided.
-  For more information, see [Kubernetes document on using imagePullSecrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
+  For more information, see [Kubernetes documentation on using imagePullSecrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
 
 ### <a id="private-git-repo-example"></a> Examples for a private Git repository
 
@@ -279,7 +280,7 @@ To create an accelerator using a private Git repository, first create a secret w
 
 >**Note** For better security, use an access token as the password.
 
-```sh
+```console
 kubectl create secret generic https-credentials \
     --namespace accelerator-system \
     --from-literal=username=<user> \
@@ -335,7 +336,7 @@ a secret with the HTTP credentials and the certificate.
 
 >**Note** For better security, use an access token as the password.
 
-```sh
+```console
 kubectl create secret generic https-ca-credentials \
     --namespace accelerator-system \
     --from-literal=username=<user> \
@@ -391,7 +392,7 @@ command and provide the name of the secret for that flag.
 To create an accelerator using a private Git repository, create a secret with the SSH
 credentials such as this example:
 
-```sh
+```console
 ssh-keygen -q -N "" -f ./identity
 ssh-keyscan github.com > ./known_hosts
 kubectl create secret generic ssh-credentials \
@@ -448,7 +449,7 @@ spec:
 
 When using SSH credentials, the `REPOSITORY-URL` must include the user name as part of
 the URL. For example: `ssh://user@example.com:22/repository.git`.
-See the [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for
+See [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for
 more detail.
 
 If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create`
@@ -480,7 +481,7 @@ source_controller:
 To create an accelerator using a private source-image repository, create a secret with the
 image-pull credentials:
 
-```sh
+```console
 create secret generic registry-credentials \
     --namespace accelerator-system \
     --from-literal=username=<user> \

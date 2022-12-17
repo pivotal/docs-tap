@@ -359,7 +359,7 @@ source](building-from-source.hbs.md), different semantics apply:
 
 ### Kpack Image
 
-The Kpack Image object provides means for building a
+The Kpack Image object provides a means for building a
 container image out of source code or pre-built Java artifact. This makes the
 container image available to further resources in the supply chain through a
 content addressable image reference that's carried to the final
@@ -442,7 +442,7 @@ Parameters:
 > `--param serviceAccount=...`.
 
 For information about
-the integration with Tanzu Build Service, see [Tanzu Build Service (TBS) Integration](tbs.hbs.md).
+the integration with Tanzu Build Service, see [Tanzu Build Service Integration](tbs.hbs.md).
 
 For information about `live-update`, see [Developer Conventions](../developer-conventions/about.hbs.md) and [Overview of Tanzu Developer Tools for IntelliJ](../intellij-extension/about.hbs.md).
 

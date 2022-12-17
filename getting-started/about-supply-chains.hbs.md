@@ -30,7 +30,7 @@ work with the Tanzu Application Platform components. They include:
 The default **OOTB Basic** supply chain and its dependencies were installed on your cluster during the Tanzu Application Platform install.
 The following table and diagrams provide descriptions for each of the supply chains and dependencies provided with the Tanzu Application Platform.
 
-![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-to-url-chain-new.png)
+![Diagram depicting the Source-to-URL chain: Watch Repo (Flux) to Build Image (Tanzu Build Service) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-to-url-chain-new.png)
 
 <table>
   <tr>
@@ -87,7 +87,7 @@ The following table and diagrams provide descriptions for each of the supply cha
 
 **OOTB Testing** supply chain runs a Tekton pipeline within the supply chain.
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-and-test-to-url-chain-new.png)
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (Tanzu Build Service) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-and-test-to-url-chain-new.png)
 
 <table>
   <tr>
@@ -130,7 +130,7 @@ The following table and diagrams provide descriptions for each of the supply cha
 
 **OOTB Testing+Scanning** supply chain includes integrations for secure scanning tools.
 
-![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (TBS) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-test-scan-to-url-new.png)
+![Diagram depicting the Source-and-Test-to-URL chain: Watch Repo (Flux) to Test Code (Tekton) to Build Image (Tanzu Build Service) to Apply Conventions to Deploy to Cluster (CNR).](../images/source-test-scan-to-url-new.png)
 
 <table>
   <tr>

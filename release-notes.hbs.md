@@ -15,11 +15,30 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 This release includes the following changes, listed by component and area.
 
-#### <a id="1-4-0-tap-new-features"></a> TAP
+#### <a id="1-4-0-tap-new-features"></a> Tanzu Application Platform
 
-TAP is introducing a [shared ingress issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress communication by
-default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md), and [TAP GUI](tap-gui/about.hbs.md)
+Tanzu Application Platform is introducing a [shared ingress issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress communication by
+default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md), and [Tanzu Application Platform GUI](tap-gui/about.hbs.md)
 are using this issuer to secure ingress. In upcoming releases all components will support it eventually.
+
+#### <a id="1-4-0-appsso-nf"></a> Application Single Sign-On (AppSSO)
+
+- Added ability to configure custom Redis storage for an `AuthServer` by using a ProvisionedService-style API.
+  For more information, see [Storage](app-sso/service-operators/storage.hbs.md).
+- Added package field `default_authserver_clusterissuer` that inherits the `shared.ingress_issuer` value from Tanzu Application Platform if not set.
+  For more information, see [IssuerURI and TLS](app-sso/service-operators/issuer-uri-and-tls.hbs.md).
+- Added `AuthServer.spec.tls.deactivated` to deprecate `AuthServer.spec.tls.disabled`.
+- `AuthServer.spec.tokenSignatures` is now a required field.
+- In addition to globally trusted CA certificates, granular trust can be extended with `AuthServer.spec.caCerts`.
+- LDAP is now a supported identity provider protocol. For more information, see [LDAP (experimental)](app-sso/service-operators/identity-providers.hbs.md#ldap-experimental).
+  - LDAP bind is validated on `AuthServer` creation when an LDAP identity provider is defined.
+  - Introduced `identityProviders.ldap.url` in `AuthServer.spec`.
+  - Introduced `identityProviders.ldap.group.search`.
+  - `identityProviders.ldap.group` is now optional in `AuthServer.spec`.
+
+#### <a id="1-4-0-cert-manager"></a> cert-manager
+
+- `cert-manager.tap.tanzu.vmware.com` can optionally install self-signed `ClusterIssuer`s.
 
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
 
@@ -38,17 +57,53 @@ are using this issuer to secure ingress. In upcoming releases all components wil
   Security Analysis plug-in.
 - **View Approvals** is relocated to the `Config Writer` stage, instead of being a stage by itself.
 
-
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
-- Users no longer need to create a package overlay to enable Grype in offline and air-gapped environments. Refer to our updated [instructions](./partials/scst-scan/_offline-airgap.hbs.md).
+- Users no longer need to create a package overlay to enable Grype in offline and air-gapped environments. Refer to our updated [instructions](scst-scan/offline-airgap.hbs.md).
 
-#### <a id="1-4-0-services-toolkit-new-features"></a> Services Toolkit
-- Added new `ClassClaim` API that allows claims for service instances to be created by referring to a `ClusterInstanceClass`. See [Services Toolkit documentation](./services-toolkit/about.hbs.md) for more information.
-- Added corresponding `tanzu services class-claims` CLI plug-in command
+#### <a id="1-4-0-stk-new-features"></a> Services Toolkit
+
+- Added new `ClassClaim` API that allows claims for service instances to be created by referring to
+  a `ClusterInstanceClass`. For more information, see the
+  [Services Toolkit documentation](./services-toolkit/about.hbs.md).
+- Added corresponding `tanzu services class-claims` CLI plug-in command.
+
+#### <a id="1-4-0-vscode-new-features"></a> Tanzu Developer Tools for Visual Studio Code
+
+- The developer sandbox enables developers to Live Update their code, and
+  simultaneously debug the updated code, without having to deactivate Live Update when debugging.
+
+#### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
+
+- API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API specification is generated from the API Auto Registration of Tanzu Application Platform. See [API Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
+
+#### <a id="1-4-0-intellij-new-feat"></a> Tanzu Developer Tools for IntelliJ
+
+- The developer sandbox enables developers to Live Update their code, and
+  simultaneously debug the updated code, without having to deactivate Live Update when debugging.
+- An Activity pane was added in the Tanzu Panel which allows developers to visualize the supply
+  chain, delivery, and running application pods.
+  It displays detailed error messages on each resource and enables developers to describe and view 
+  logs on these resources from within their IDE.
+- Tanzu workload `apply` and `delete` actions were added to ​IntelliJ.
+- Code snippets to create `workload.yaml` and `catalog-info.yaml` files were added to IntelliJ.
 
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
+
+#### <a id="1-4-0-appsso-bc"></a> Application Single Sign-On (AppSSO)
+
+- Removed `AuthServer.spec.identityProvider.ldap.group.search{Filter,Base,Depth,SubTree}` and introduced `ldap.group.search: {}`
+    - If `ldap.group` is defined and `ldap.group.search` is not defined, the LDAP is considered as an ActiveDirectory style LDAP and groups are loaded from the user's `memberOf` attribute.
+    - If `ldap.group` and `ldap.group.search` are both defined, the LDAP is considered as a Classic LDAP and group search is done by searching in the `ldap.group.search.base`.
+    - There used to be a mixed mode, when both searches were attempted every time.
+- Removed `AuthServer.spec.identityProviders.ldap.server` field.
+- Removed `AuthServer.status.deployments.authServer.lastParentGenerationWithRestart` field.
+- Removed deprecated field `AuthServer.spec.issuerURI`. For more information, see [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md).
+
+#### <a id="1-4-0-intellij-bc"></a> Tanzu Developer Tools for IntelliJ
+
+- IntelliJ IDEA v2022.2 to v2022.3 is required to install the extension.
 
 #### <a id="1-4-0-vscode-bc"></a> Tanzu Developer Tools for Visual Studio Code
 
@@ -90,7 +145,12 @@ target an alternative Sigstore stack, specify `policy.tuf_mirror` and
 This release has the following security fixes, listed by area and component.
 
 #### <a id='1-4-0-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
-- `python` has been updated to `3.7.5-22.ph3`
+
+- `python` is updated to `3.7.5-22.ph3`.
+
+#### <a id="1-4-0-api-auto-registration-fixes"></a> API Auto Registration
+
+- Base image updated to use the latest Paketo Jammy Base image.
 
 ### <a id='1-4-0-resolved-issues'></a> Resolved issues
 
@@ -98,14 +158,21 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-4-0-api-auto-registration-ri"></a> API Auto Registration
 
-- Now periodically checks the original API specification from the defined location to find changes, and registers any changes into the `API Descriptor`, triggering also the reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or frequency is configurable through the new value `sync_period`. The default value is 5 minutes.
-- Base image updated to resolve [CVE-2022-3786](https://nvd.nist.gov/vuln/detail/CVE-2022-3786) and [CVE-2022-3602](https://nvd.nist.gov/vuln/detail/CVE-2022-3602).
+- API Auto Registration periodically checks the original API specification from the defined location to find changes, and registers any changes into the `API Descriptor`. This triggers reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or frequency is configurable through the new value `sync_period`. The default value is 5 minutes.
+
+#### <a id="1-4-0-appsso-ri"></a> Application Single Sign-On (AppSSO)
+
+- Fixed infinite redirect loops for an `AuthServer` configured with a single OIDC or SAML identity provider.
+- Authorization Code request rejected audit event from anonymous users logging proper IP address.
+- `AuthServer` no longer attempts to configure Redis event listeners.
+- OpenShift: custom `SecurityContextConstraint` resource is created for Kubernetes platforms versions 1.23.x and below.
+- LDAP error log now contains proper error message.
 
 #### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
 
 - **Immediate entity provider backend Plug-in**
 
-  - The entity provider (used mainly by API Auto Registration) now allows a body size of `5Mb` (increased from `100Kb`) to accept larger API specs.
+  - The entity provider, used mainly by API Auto Registration, now allows a body size of `5Mb` to accept larger API specifications.
   - Respecting the restriction of Backstage for [Entity Provider mutations](https://backstage.io/docs/features/software-catalog/external-integrations#provider-mutations), whenever an existing entity is intended for a mutation through this plugin, and its origin is a different entity provider, a `409 Conflict` error is returned.
 
 #### <a id="supply-chain-plugin-ri"></a> Supply Chain Choreographer Plug-In
@@ -117,6 +184,25 @@ The following issues, listed by area and component, are resolved in this release
 ### <a id='1-4-0-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
+
+#### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
+
+- If a workload is deployed onto a namespace by using Live Update, you must set that namespace as
+  the namespace of the current context of your kubeconfig file.
+  Otherwise, if you run Tanzu Debug it causes the workload to re-deploy.
+  For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#debug-reapplies-apply).
+
+- On macOS, Tanzu Panel might be empty when using a GKE cluster. For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#panel-empty-gke).
+
+- The **Describe** action in the pop-up menu in the Activity panel can fail when used on PodIntent
+  resources. For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#describe-action-fail).
+
+- The Tanzu panel might show workloads without showing Kubernetes resources in the center panel of the
+  activity pane. For more information, see
+  [Troubleshooting](intellij-extension/troubleshooting.hbs.md#tnz-panel-k8s-rsrc-fail).
 
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
@@ -145,12 +231,10 @@ as images.
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
-#### <a id="1-3-app-sso-deprecations"></a> Application Single Sign-On
+#### <a id="1-4-0-app-sso-deprecations"></a> Application Single Sign-On (AppSSO)
 
-  - `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
-    to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
-  - `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
-   for removal in the next release.
+- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the next release. For more information about how to migrate
+  to `AuthServer.spec.tls.deactivated`, see [Migration guides](app-sso/upgrades/index.md#migration-guides).
 
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 
@@ -160,8 +244,8 @@ in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 #### <a id="1-4-0-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
 
 - Removed deprecated ScanTemplates:
-  - Deprecated Grype ScanTemplates shipped with versions prior to TAP 1.2.0 have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
-  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in TAP 1.7.0.
+  - Deprecated Grype ScanTemplates shipped with versions prior to Tanzu Application Platform 1.2.0 have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates v1.2+ moving forward.
+  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and marked for removal in Tanzu Application Platform 1.7.0.
     - The deprecation will impact the following components: Scan Controller, Grype Scanner and Snyk Scanner.
     - See [troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images) documentation for the migration path.
 

@@ -1,53 +1,52 @@
 # Install Supply Chain Security Tools - Scan
 
-This document describes how to install Supply Chain Security Tools - Scan
+This topic describes how to install Supply Chain Security Tools - Scan
 from the Tanzu Application Platform package repository.
 
->**Note** Use the instructions on this page if you do not want to use a profile to install packages.
-The full profile includes Supply Chain Security Tools - Scan.
+>**Note** Use the instructions in this topic if you do not want to use a profile to install packages.
+The full profile includes SCST - Scan.
 For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
 ## <a id='scst-scan-prereqs'></a> Prerequisites
 
-Before installing Supply Chain Security Tools - Scan:
+Before installing SCST - Scan:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more
   information, see [Prerequisites](../prerequisites.md).
 - Install [Supply Chain Security Tools -
   Store](../scst-store/install-scst-store.md) for scan results to persist. The
-  integration with Supply Chain Security Tools - Store are handled in:
-  - **Single Cluster:** The Supply Chain Security Tools - Store is present in
-    the same cluster where Supply Chain Security Tools - Scan and the
+  integration with SCST - Store are handled in:
+  - **Single Cluster:** The SCST - Store is present in
+    the same cluster where SCST - Scan and the
     `ScanTemplates` are present.
-  - **Multi-Cluster:** The Supply Chain Security Tools - Store is present in a
-    different cluster (e.g.: view cluster) where the Supply Chain Security Tools
-    - Scan and `ScanTemplates` are present.
-  - **Integration Deactivated:** The Supply Chain Security Tools - Scan
-    deployment is not required to communicate with Supply Chain Security Tools -
+  - **Multi-Cluster:** The SCST - Store is present in a
+    different cluster (e.g.: view cluster) where the SCST - Scan and `ScanTemplates` are present.
+  - **Integration Deactivated:** The SCST - Scan
+    deployment is not required to communicate with SCST -
     Store.
 
   For information about SCST - Store, see [Using the Supply Chain Security Tools - Store](../scst-store/overview.md).
 
 ## <a id='configure-scst-scan'></a> Configure properties
 
-When you install the Supply Chain Security Tools - Scan (Scan controller), you can configure the following optional properties:
+When you install the SCST - Scan (Scan controller), you can configure the following optional properties:
 
 | Key | Default | Type | Description | ScanTemplate Version |
 | --- | --- | --- | --- | --- |
-| resources.limits.cpu | 250m | integer/string | Limits describes the maximum amount of CPU resources allowed. | n/a |
-| resources.limits.memory | 256Mi | integer/string | Limits describes the maximum amount of memory resources allowed. | n/a |
-| resources.requests.cpu | 100m | integer/string | Requests describes the minimum amount of CPU resources required. | n/a |
-| resources.requests.memory | 128Mi | integer/string | Requests describes the minimum amount of memory resources required. | n/a |
-| namespace | scan-link-system | string | Deployment namespace for the Scan Controller | n/a |
-| metadataStore.caSecret.importFromNamespace | metadata-store | string | Namespace from which you import the Insight Metadata Store CA Cert | earlier than 1.2.0 |
-| metadataStore.caSecret.name | app-tls-cert | string | Name of deployed secret with key ca.crt holding the CA Cert of the Insight Metadata Store | earlier than 1.2.0 |
-| metadataStore.clusterRole | metadata-store-read-write | string | Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster | earlier than 1.2.0r |
-| metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | URL of the Insight Metadata Store | earlier than 1.2.0 |
-| metadataStore.authSecret.importFromNamespace | | string | Namespace from which to import the Insight Metadata Store auth_token | earlier than 1.2.0 |
-| metadataStore.authSecret.name | n/a | string | Name of deployed secret with key auth_token | earlier than 1.2.0 |
-| retryScanJobsSecondsAfterError | 60 | integer | Seconds to wait before retrying errored scans | 1.3.1 and later |
+| resources.limits.cpu | 250m | integer/string | Limits describes the maximum amount of CPU resources allowed. | _n/a_ |
+| resources.limits.memory | 256Mi | integer/string | Limits describes the maximum amount of memory resources allowed. | _n/a_ |
+| resources.requests.cpu | 100m | integer/string | Requests describes the minimum amount of CPU resources required. | _n/a_ |
+| resources.requests.memory | 128Mi | integer/string | Requests describes the minimum amount of memory resources required. | _n/a_ |
+| namespace | scan-link-system | string | Deployment namespace for the Scan Controller | _n/a_ |
+| metadataStore.caSecret.importFromNamespace | metadata-store | string | Namespace from which you import the Insight Metadata Store CA Cert | earlier than v1.2.0 |
+| metadataStore.caSecret.name | app-tls-cert | string | Name of deployed secret with key ca.crt holding the CA Cert of the Insight Metadata Store | earlier than v1.2.0 |
+| metadataStore.clusterRole | metadata-store-read-write | string | Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster | earlier than v1.2.0 |
+| metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | URL of the Insight Metadata Store | earlier than v1.2.0 |
+| metadataStore.authSecret.importFromNamespace | _n/a_ | string | Namespace from which to import the Insight Metadata Store auth_token | earlier than v1.2.0 |
+| metadataStore.authSecret.name | _n/a_ | string | Name of deployed secret with key auth_token | earlier than v1.2.0 |
+| retryScanJobsSecondsAfterError | 60 | integer | Seconds to wait before retrying errored scans | v1.3.1 and later |
 
-When you install the Supply Chain Security Tools - Scan (Grype scanner), you can configure the following optional properties:
+When you install the SCST - Scan (Grype scanner), you can configure the following optional properties:
 
 | Key | Default | Type | Description | ScanTemplate Version |
 | --- | --- | --- | --- | --- |
@@ -56,15 +55,15 @@ When you install the Supply Chain Security Tools - Scan (Grype scanner), you can
 | resources.limits.cpu | 1000m | integer/string | Limits describes the maximum amount of CPU resources allowed. |
 | scanner.serviceAccount | grype-scanner | string | Name of scan pod's service ServiceAccount |
 | scanner.serviceAccountAnnotations | nil | object | Annotations added to ServiceAccount |
-| targetImagePullSecret | n/a | string | Reference to the secret used for pulling images from private registry |
-| targetSourceSshSecret | n/a | string | Reference to the secret containing SSH credentials for cloning private repositories |
-| namespace | default | string | Deployment namespace for the Scan Templates | n/a |
-| metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | URL of the Insight Metadata Store | 1.2.0 and earlier |
-| metadataStore.authSecret.name | n/a | string | Name of deployed secret with key auth_token | 1.2.0 and earlier |
-| metadataStore.authSecret.importFromNamespace | n/a | string | Namespace from which to import the Insight Metadata Store auth_token | 1.2.0 and earlier |
-| metadataStore.caSecret.importFromNamespace | metadata-store | string | Namespace from which to import the Insight Metadata Store CA Cert | 1.2.0 and earlier |
-| metadataStore.caSecret.name | app-tls-cert | string | Name of deployed secret with key ca.crt holding the CA Cert of the Insight Metadata Store | 1.2.0 and earlier |
-| metadataStore.clusterRole | metadata-store-read-write | string | Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster | 1.2.0 |
+| targetImagePullSecret | _n/a_ | string | Reference to the secret used for pulling images from private registry |
+| targetSourceSshSecret | _n/a_ | string | Reference to the secret containing SSH credentials for cloning private repositories |
+| namespace | default | string | Deployment namespace for the Scan Templates | _n/a_ |
+| metadataStore.url | https://metadata-store-app.metadata-store.svc.cluster.local:8443 | string | URL of the Insight Metadata Store | v1.2.0 and earlier |
+| metadataStore.authSecret.name | _n/a_ | string | Name of deployed secret with key auth_token | v1.2.0 and earlier |
+| metadataStore.authSecret.importFromNamespace | _n/a_ | string | Namespace from which to import the Insight Metadata Store auth_token | v1.2.0 and earlier |
+| metadataStore.caSecret.importFromNamespace | metadata-store | string | Namespace from which to import the Insight Metadata Store CA Cert | v1.2.0 and earlier |
+| metadataStore.caSecret.name | app-tls-cert | string | Name of deployed secret with key ca.crt holding the CA Cert of the Insight Metadata Store | v1.2.0 and earlier |
+| metadataStore.clusterRole | metadata-store-read-write | string | Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster | v1.2.0 |
 
 ## <a id='install-scst-scan'></a> Install
 
@@ -74,9 +73,9 @@ The installation for Supply Chain Security Tools – Scan involves installing tw
 - Grype scanner
 
 The Scan controller enables you to use a scanner, in this case, the Grype
-scanner. Ensure both the Grype scanner and the Scan controller are installed.
+scanner. Ensure that both the Grype scanner and the Scan controller are installed.
 
-To install Supply Chain Security Tools - Scan (Scan controller):
+To install SCST - Scan (Scan controller):
 
 1. List version information for the package by running:
 
@@ -93,7 +92,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
       scanning.apps.tanzu.vmware.com   1.1.0
     ```
 
-1. (Optional) Make changes to the default installation settings:
+2. (Optional) Make changes to the default installation settings:
 
     If you're using the Grype Scanner `v1.2.0 and earlier`, or the Snyk Scanner, the
     following scanning configuration might deactivate the embedded SCST - Store integration with a `scan-values.yaml` file.
@@ -118,7 +117,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
     Where `VERSION` is your package version number. For example, `1.1.0`.
 
-2. Install the package by running:
+3. Install the package by running:
 
     ```console
     tanzu package install scan-controller \
@@ -130,7 +129,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
     Where `VERSION` is your package version number. For example, `1.1.0`.
 
-<a id="install-grype"></a> To install Supply Chain Security Tools - Scan (Grype scanner):
+<a id="install-grype"></a> To install SCST - Scan (Grype scanner):
 
 1. List version information for the package by running:
 
@@ -147,9 +146,9 @@ To install Supply Chain Security Tools - Scan (Scan controller):
       grype.scanning.apps.tanzu.vmware.com  1.1.0
     ```
 
-1. (Optional) Make changes to the default installation settings:
+2. (Optional) Make changes to the default installation settings:
 
-    To define the configuration for the Supply Chain Security Tools - Store
+    To define the configuration for the SCST - Store
     integration in the `grype-values.yaml` file for the Grype Scanner:
 
     ```yaml
@@ -172,7 +171,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
     - `DEV-NAMESPACE` is the namespace where you want to deploy the
     `ScanTemplates`. This is the namespace where the scanning feature runs.
     - `METADATA-STORE-URL` is the base URL where the Supply Chain Security Tools
-      (SCST) - Store deployment can be reached, for example,
+      (SCST) - Store deployment is reached, for example,
       `https://metadata-store-app.metadata-store.svc.cluster.local:8443`.
     - `CA-SECRET-NAME` is the name of the secret containing the ca.crt to
       connect to the SCST - Store deployment.
@@ -212,7 +211,7 @@ To install Supply Chain Security Tools - Scan (Scan controller):
 
     >**Note** If `targetSourceSshSecret` is not set, the private source scan template is not installed.
 
-1. Install the package by running:
+3. Install the package by running:
 
     ```console
     tanzu package install grype-scanner \

@@ -1,4 +1,4 @@
-# Configuring custom certificate authorities for Tanzu Application Platform GUI
+# Configure custom certificate authorities for Tanzu Application Platform GUI
 
 <!-- The below partial is in the docs-tap/partials directory -->
 

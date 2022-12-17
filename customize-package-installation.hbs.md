@@ -1,4 +1,4 @@
-# Customizing Package Installation
+# Customize package installation
 
 You can customize a package configuration that is not exposed through data values by using
 annotations and ytt overlays.
