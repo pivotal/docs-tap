@@ -13,6 +13,8 @@ To view the recent events for a workload, run:
 kubectl describe workload.carto.run <workload-name> -n <workload-ns>
 ```
 
+---
+
 ## <a id='missing-build-logs'></a> Missing build logs after creating a workload
 
 You create a workload, but no logs appear when you run:
@@ -44,6 +46,7 @@ kubectl get image.kpack.io <workload-name> -o yaml
 ```console
 kubectl get build.kpack.io -o yaml
 ```
+---
 
 ## <a id='builder-not-ready'></a> Workload creation stops responding with "Builder default is not ready" message
 
@@ -73,6 +76,8 @@ when that `minikube` or `kind` cluster is restarted.
    - `kubectl get pods --namespace kpack`
 3. Verify the workload status after the new kpack pods `STATUS` are `Running`:
    - `tanzu apps workload get YOUR-WORKLOAD-NAME`
+
+---
 
 ## <a id='error-update'></a> "Workload already exists" error after updating the workload
 
@@ -111,6 +116,34 @@ The app is running before performing a Live Update using the same app name.
 
 To resolve this issue, either delete the app or use a different name for the app.
 
+---
+
+## <a id='workload-fails-docker-auth'></a>Workload creation fails due to authentication failure in Docker Registry
+
+You may encounter an error message similar to the following when creating or updating a workload via IDE or `apps` CLI plugin:
+
+```
+Error: Writing 'index.docker.io/shaileshp2922/build-service/tanzu-java-web-app:latest': Error while preparing a transport to talk with the registry: Unable to create round tripper: GET https://auth.ipv6.docker.com/token?scope=repository%3Ashaileshp2922%2Fbuild-service%2Ftanzu-java-web-app%3Apush%2Cpull&service=registry.docker.io: unexpected status code 401 Unauthorized: {"details":"incorrect username or password"}
+```
+
+### Explanation
+
+This type of error is frequently thrown when the url set for `source image` (IDE) or `--source-image` flag (`apps` CLI plugin) is not Docker registry compliant.
+
+
+### Solution
+
+1. First, validate that you can authenticate directly against the Docker registry and resolve any failures:
+   ```
+   docker login -u USER-NAME
+   ```
+2. Check your --source-image url to make sure it's compliant with Docker.
+   * The url in this example (`index.docker.io/shaileshp2922/build-service/tanzu-java-web-app`) includes nesting.</br>
+   Docker registry, unlike many other registry solutions, doesn't support nesting.
+3. Providing an unnested url (e.g. `index.docker.io/shaileshp2922/tanzu-java-web-app`) should resolve the issue.
+
+---
+
 ## <a id='telem-fails-fetch-secret'></a> Telemetry component logs show errors fetching the "reg-creds" secret
 
 When you view the logs of the `tap-telemetry` controller by running `kubectl logs -n
@@ -134,6 +167,8 @@ To resolve this issue, run:
 kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='[{"op": "add", "path": "/rules/-", "value": {"apiGroups": [""],"resources": ["secrets"],"verbs": ["get", "list", "watch"]} }]'
 ```
 
+---
+
 ## <a id='debug-convention'></a> Debug convention might not apply
 
 If you upgrade from Tanzu Application Platform v0.4, the debug convention can not apply to the app
@@ -146,6 +181,8 @@ The Tanzu Application Platform v0.4 lacks SBOM data.
 ### Solution
 
 Delete existing app images that were built using Tanzu Application Platform v0.4.
+
+---
 
 ## <a id='build-scripts-lack-ex-bit'></a> Execute bit not set for App Accelerator build scripts
 
@@ -172,6 +209,8 @@ For example, for a project generated from the "Spring PetClinic" accelerator, ru
 chmod +x ./mvnw
 ```
 
+---
+
 ## <a id='no-live-information'></a> "No live information for pod with ID" error
 
 After deploying Tanzu Application Platform workloads, Tanzu Application Platform GUI shows a "No
@@ -193,6 +232,8 @@ kubectl -n app-live-view delete pods -l=name=application-live-view-connector
 This allows the connector to discover the application instances and render the details in Tanzu
 Application Platform GUI.
 
+---
+
 ## <a id='image-pol-wh-serv-not-fnd'></a> "image-policy-webhook-service not found" error
 
 When installing a Tanzu Application Platform profile, you receive the following error:
@@ -209,6 +250,8 @@ The "image-policy-webhook-service" service cannot be found.
 
 Redeploy the `trainingPortal` resource.
 
+---
+
 ## <a id='increase-clus-resources'></a> "Increase your cluster resources" error
 
 You receive an "Increase your cluster's resources" error.
@@ -221,6 +264,8 @@ necessary to deploy the workloads.
 ### Solution
 
 Follow instructions from your cloud provider to scale out or scale up your cluster.
+
+---
 
 ## <a id='pod-admission-prevented'></a> MutatingWebhookConfiguration prevents pod admission
 
@@ -279,6 +324,8 @@ image signing enforcement.
     kubectl apply -f image-policy-mutating-webhook-configuration.yaml
     ```
 
+---
+
 ## <a id='priority-class-preempts'></a> Priority class of webhook's pods preempts less privileged pods
 
 When viewing the output of `kubectl get events`, you see events similar to:
@@ -328,6 +375,8 @@ components to have their pods preempted or evicted instead.
     necessary to deploy the workloads. Follow instructions from your cloud provider
     to scale out or scale up your cluster.
 
+---
+
 ## <a id='pw-authentication-fails'></a> CrashLoopBackOff from password authentication fails
 
 SCST - Store does not start. You see the following error in the
@@ -371,6 +420,8 @@ data on the volume:
 5. Delete the `metadata-store` app with kapp.
 
 6. Deploy the `metadata-store` app with kapp.
+
+---
 
 ## <a id='pw-authentication-fails'></a> Password authentication fails
 
@@ -416,6 +467,8 @@ data on the volume:
 
 6. Deploy the `metadata-store` app with kapp.
 
+---
+
 ## <a id='md-store-db-fail-to-start'></a> `metadata-store-db` pod fails to start
 
 When SCST - Store is deployed, deleted, and then redeployed, the `metadata-store-db`
@@ -455,6 +508,8 @@ data on the volume:
 
 6. Deploy the `metadata-store` app with kapp.
 
+---
+
 ## <a id='missing-persistent-volume'></a> Missing persistent volume
 
 After SCST - Store is deployed, `metadata-store-db` pod fails for missing volume
@@ -483,6 +538,8 @@ defined. The provisioner of `storageclass` is responsible for creating the persi
     # set the storage class as default
     kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
      ```
+
+---
 
 ## <a id='connect-aws-eks-clusters'></a> Failure to connect Tanzu CLI to AWS EKS clusters
 
@@ -519,6 +576,8 @@ Follow these steps to update your `aws-cli` to a supported v2.7.35 or later, and
     ```
 
     Expect the command to execute without error.
+
+---
 
 ## <a id='invalid-repo-paths'></a> Invalid repository paths are propagated
 
