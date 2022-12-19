@@ -17,7 +17,7 @@ This repo contains the content for Tanzu Application Platform docs.
 <tbody>
 <tr>
 <td>main</td>
-<td><a href="https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4/tap/GUID-overview.html">Staging</a> (Pre-release v1.4 docs)</td>
+<td><a href="https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4/tap/overview.html">Staging</a> (Pre-release v1.4 docs)</td>
 <td><em>n/a</em></td>
 </tr>
 <tr>
