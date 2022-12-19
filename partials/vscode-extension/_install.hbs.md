@@ -56,7 +56,7 @@ set the following:
     - **Confirm Delete**: This controls whether the extension asks for confirmation when deleting a
     workload.
     - **Enable Live Hover**: For more information, see
-    [Integrating Live Hover by using Spring Boot Tools](/docs-tap/vscode-extension-live-hover.hbs.md).
+    [Integrating Live Hover by using Spring Boot Tools](/docs-tap/vscode-extension/live-hover.hbs.md).
     Reload VS Code for this change to take effect.
     - **Source Image**: (Required) The registry location for publishing local source code. For example,
     `registry.io/yourapp-source`. This must include both a registry and a project name.
