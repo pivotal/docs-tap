@@ -136,3 +136,7 @@ For example, a message like this could be shown:
 ```
 
 This could mean that the given commit does not belong to the specified branch or does not exist in the repo.
+
+## <a id="additional-troubleshooting"></a>Additional Troubleshooting References
+
+Additional Workload troubleshooting tips can be found on the [Troubleshoot using Tanzu Application Platform page](../../troubleshooting-tap/troubleshoot-using-tap.hbs.md).

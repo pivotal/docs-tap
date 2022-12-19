@@ -12,6 +12,12 @@ The following prerequisites are required to use workloads with Tanzu Application
 - Install Tanzu CLI. See [Install or update the Tanzu CLI and plug-ins](../../install-tanzu-cli.hbs.md#cli-and-plugin).
 - Install the apps plug-in. See the [Install Apps plug-in](tutorials.hbs.md#install).
 - [Set up developer namespaces to use installed packages](../../set-up-namespaces.hbs.md).
+- As you familiarize yourself with creating and managing the lifecycle of workloads on the platform, you may want to review the full `Cartographer Workload spec` to learn more about the fields/values that can be provided.
+  
+  There are two methods for doing so:
+
+    1. On the [Cartographer](https://cartographer.sh/docs/v0.6.0/reference/workload/) docs website - detailed with comments
+    2. Via the terminal by running `kubectl explain workload.spec` - specific to the version running on the target cluster
 
 ## <a id="example"></a> Get started with an example workload
 
@@ -57,11 +63,12 @@ Tanzu Application Platform supports creating a workload from an existing local p
     - `--source-image` is the registry path where the local source code will be uploaded as an image.
 
     **Exclude Files**
-    When working with local source code, you can exclude files from the source code to be uploaded within the image by creating a file `.tanzuignore` at the root of the source code.
+
+    When working with local source code, you can exclude files from the source code to be uploaded within the image by creating a `.tanzuignore` file at the root of the source code.
 
     The file must contain a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`).
 
-    More info regarding .tanzuignore file can be found in the [.tanzuignore file](how-to-guides.hbs.md#tanzuignore-file) section of the how-to-guides.
+    More info regarding `.tanzuignore` file can be found in the [.tanzuignore file](how-to-guides.hbs.md#tanzuignore-file) section of the how-to-guides.
 
 ### <a id="workload-image"></a> Create workload from an existing image
 
