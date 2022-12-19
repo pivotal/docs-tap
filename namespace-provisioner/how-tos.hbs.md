@@ -1,7 +1,9 @@
 # Namespace Provisioner How-to Guide
+
 This page provides guidance for more advanced use-cases associated with Namespace Provisioner.
 
 The available guides are as follows:
+
 * [Data values templating](#data-values-templating)
 * [GitOps customizations](#gitops-customizations):
    1. [Extending the default resources that get provisioned](#extending-default-resources)
@@ -10,6 +12,7 @@ The available guides are as follows:
    4. [Control the desired-namespace ConfigMap via GitOps](#control-desired-namespaces)
 
 ## <a id="data-values-templating"></a>Data values templating guide
+
 Customize your custom resources with data values from TAP values and data from `desired-namespaces` ConfigMap.
 
 Namespace provisioner inherits all of the configuration in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) as well as the tap values under the key `tap_values` making it available for Platform Operators to use as ytt `data.values` when [extending the resources via GitOps](#extending-default-resources).
@@ -67,17 +70,18 @@ This allows Platform Operators to extend the out of the box setup with additiona
 
 In the example `namespace_provisioner` ([snippet from tap-values yaml below](#example-additional-resources)) we add 4 additional sources as follows:</br></br>
 
-* The first additional source points to an example of a [workload service account yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/workload-sa/workload-sa-with-secrets.yaml) with no ytt templating or overlay.
-   * After importing this source, Namespace provisioner will create the following resources in all namespaces mentioned in “desired-namespaces” ConfigMap.</br></br>
-* The second additional source points to examples of [ytt templated testing and scanpolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain).
-   * After importing this source, Namespace provisioner will create a **scan-policy** as well as a **developer-defined-tekton-pipeline-java** in all namespaces in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap with the default setup in [Install OOTB Supply Chain with Testing and Scanning](../getting-started/add-test-and-security.hbs.md#install-OOTB-test-scan) documentation.</br></br>
-* The third additional source points to an example of a [ytt templated scanpolicy yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/scanpolicies/snyk-scanpolicies.yaml).
-   * After importing this source, Namespace provisioner will create a **snyk-scan-policy** in all namespaces in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap that has an additional parameter **scanpolicy: snyk**.</br></br>
-* The fourth additional source points to [examples of ytt templated tekton pipelines](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines).
-   * After importing this source, Namespace Provisioner will create a **developer-defined-tekton-pipeline-python** and **developer-defined-tekton-pipeline-angular** for namespaces in  the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap that has an additional parameter **language: python** and **language: angular** respectively.</br></br>
+- The first additional source points to an example of a [workload service account yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/workload-sa/workload-sa-with-secrets.yaml) with no ytt templating or overlay.
+   - After importing this source, Namespace provisioner will create the following resources in all namespaces mentioned in “desired-namespaces” ConfigMap.</br></br>
+- The second additional source points to examples of [ytt templated testing and scanpolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain).
+   - After importing this source, Namespace provisioner will create a **scan-policy** as well as a **developer-defined-tekton-pipeline-java** in all namespaces in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap with the default setup in [Install OOTB Supply Chain with Testing and Scanning](../getting-started/add-test-and-security.hbs.md#install-OOTB-test-scan) documentation.</br></br>
+- The third additional source points to an example of a [ytt templated scanpolicy yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/scanpolicies/snyk-scanpolicies.yaml).
+   - After importing this source, Namespace provisioner will create a **snyk-scan-policy** in all namespaces in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap that has an additional parameter **scanpolicy: snyk**.</br></br>
+- The fourth additional source points to [examples of ytt templated tekton pipelines](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines).
+   - After importing this source, Namespace Provisioner will create a **developer-defined-tekton-pipeline-python** and **developer-defined-tekton-pipeline-angular** for namespaces in  the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap that has an additional parameter **language: python** and **language: angular** respectively.</br></br>
 
 
 <a id="example-additional-resources"></a>Example TAP values snippet configuration for namespace_provisioner with additional_sources:
+
 ```yaml
 namespace_provisioner:
   additional_sources:
@@ -106,6 +110,7 @@ namespace_provisioner:
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     path: _ytt_lib/tektonpipelines
 ```
+
 </br>
 
 ---
@@ -190,6 +195,7 @@ kctrl app kick --app provisioner -n tap-namespace-provisioning -y
 ### <a id="control-desired-namespaces"></a>Control the `desired-namespaces` ConfigMap via GitOps
 
 Prerequisites:
+
 - Namespace Provisioner package is installed and successfully reconciled.
 - [**`controller`** tap value key](install.hbs.md#customized-installation) is set to “false” (Default is “true”).
 - The registry-credentials secret referred by the Tanzu Build Service is added to tap-install and exported to all namespaces. If you don’t want to export this secret to all namespaces for any reason, you will have to go through an additional step to create this secret in the namespace.
@@ -240,8 +246,9 @@ When this change is applied, the provisioner app will start the reconcile proces
 ---
 
 ### Links to additional Namespace Provisioner documentation:
-* [Overview](about.hbs.md)
-* [Installation](install.hbs.md) 
-* [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
-* [Troubleshooting](troubleshooting.hbs.md)
-* [Reference Materials](reference.hbs.md)
+
+- [Overview](about.hbs.md)
+- [Installation](install.hbs.md) 
+- [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
+- [Troubleshooting](troubleshooting.hbs.md)
+- [Reference Materials](reference.hbs.md)

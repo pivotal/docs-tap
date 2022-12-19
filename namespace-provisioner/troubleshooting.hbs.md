@@ -10,7 +10,6 @@ kubectl -n tap-namespace-provisioning logs deployments/controller-manager
 
 Use `-f` to follow the log output
 
-
 ## <a id="carvel-kapp-application-error"></a>Kapp Application error
 
 After the namespace provisioner is installed in the TAP cluster, the main resource to check is the **[provisioner](about.hbs.md#nsp-component-carvel-app)** Kapp App in the `tap-namespace-provisioning` *`namespace`*.
@@ -50,7 +49,6 @@ This is *malformed* due to the operator must be `Exist` instead of `exist`, then
 ```
 
 **Note:** The Kapp App won’t show any error as the controller was not able to update the `desire-namespaces`
-
 
 ### <a id="carvel-ytt-error-additional-sources"></a>Carvel-YTT error in additional_sources
 
@@ -130,8 +128,9 @@ When the provisioned namespace is deleted and there is a workload already create
 ---
 
 ### Links to additional Namespace Provisioner documentation:
-* [Overview](about.hbs.md)
-* [Installation](install.hbs.md)
-* [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
-* [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
-* [Reference Materials](reference.hbs.md)
+
+- [Overview](about.hbs.md)
+- [Installation](install.hbs.md)
+- [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
+- [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
+- [Reference Materials](reference.hbs.md)

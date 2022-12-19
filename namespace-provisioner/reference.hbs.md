@@ -9,7 +9,6 @@
   - If using the controller to manage `desired-namespaces` ConfigMap, Un-label all the namespaces provisioned by namespace provisioner
   - If using GitOps to manage `desired-namespaces` ConfigMap, set the list of namespaces to an empty list.
 
-
 ## <a id="default-resources-mapping"></a>TAP profile - default resources mapping
 
 The following table shows the list of resources that are templated in the `default-resources` Secret for a given TAP installation profile and supply chain value combination:
@@ -23,7 +22,6 @@ The following table shows the list of resources that are templated in the `defau
 | Developer Namespace  | RoleBinding | default-permit-deliverable | --- | full, iterate, run | Yes  |
 | Developer Namespace  | RoleBinding | default-permit-workload | --- | full, iterate, build | Yes  |
 
-
 Note: For Install OOTB Supply Chain with Testing and Scanning check the section Extend the OOTB default-resources
 
 </br>
@@ -31,8 +29,9 @@ Note: For Install OOTB Supply Chain with Testing and Scanning check the section 
 ---
 
 ### Links to additional Namespace Provisioner documentation:
-* [Overview](about.hbs.md)
-* [Installation](install.hbs.md)
-* [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
-* [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
-* [Troubleshooting](troubleshooting.hbs.md)
+
+- [Overview](about.hbs.md)
+- [Installation](install.hbs.md)
+- [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
+- [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
+- [Troubleshooting](troubleshooting.hbs.md)
