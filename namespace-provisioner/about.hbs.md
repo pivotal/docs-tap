@@ -11,15 +11,21 @@ Namespace provisioner for Tanzu Application Platform provides an easy, secure, a
 ## <a id="nsp-motivation"></a>Motivation
 Provisioning multiple developer namespaces in a shared cluster is a core value proposition of TAP. TAP should provide a way out of the box for users to automate provisioning of resources for development teams by operators. TAP should provide operators new to Kubernetes a simple way to provision developer namespaces which is also compatible with existing tooling for organizations which have already adopted Kubernetes solutions. Following diagram shows important components installed as part of the Namespace Provisioner package and how they work together to automate resource creation in developer namespaces.
 
-**Diagram goes here...**
-
 ## <a id="nsp-component-overview"></a>Component Overview 
 Here is a brief overview of the Namespace Provisioner components.
 
+![Namespace Provisioner Overview](../images/namespace-provisioner-overview-2.svg)
+
 ### <a id="nsp-component-carvel-app"></a>Provisioner Carvel App 
+
+![Namespace Provisioner - Provisioner Carvel App](../images/namespace-provisioner-overview-2-c.svg)
+
 A single Carvel App named **`provisioner`** is installed in the **`tap-namespace-provisioning`** namespace as part of the Namespace Provisioner package. The App resource provides a mechanism for expanding a set of resources into installations in many namespaces using ytt to iterate over and substitute namespace-specific customization into a template. The “provisioner” Carvel App references a ConfigMap and a Secret which are explained in more detail below.
 
 ### <a id="nsp-component-desired-namespaces-configmap"></a>Desired Namespaces ConfigMap
+
+![Namespace Provisioner - Desired Namespaces ConfigMap](../images/namespace-provisioner-overview-2-a.svg)
+
 The **`desired-namespaces`** ConfigMap in the **`tap-namespace-provisioning`** namespace provides a declarative way to indicate which namespaces should be populated with resources. The ConfigMap can be managed directly by the customer via [GitOps](#nsp-using-gitops), or via the [Namespace Provisioner Controller](#nsp-controller) described below. This will be a simple list of namespace objects, with a required `name` parameter, with the option to provide additional parameters which can be used as `data.values` for customizing platform-operator defined resources.
 
 **Example:**
@@ -59,4 +65,5 @@ The **`expansion-template`** ConfigMap will contain the ytt logic to expand the 
 * [Installation](installation.hbs.md)
 * [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
 * [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
+* [Troubleshooting](troubleshooting.hbs.md)
 * [Reference Materials](reference.hbs.md)

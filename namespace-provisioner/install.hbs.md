@@ -15,7 +15,7 @@ To see a list of what resources are created for different profile/supply chain c
 ## <a id="customized-install"></a>Customized Installation
 For getting valid schema values to set in the `namespace_provisioner` run the following command: 
 
-```
+```bash
 $ tanzu package available get namespace-provisioner.apps.tanzu.vmware.com/0.1.2 --values-schema -n tap-install
 ```
 The following values are configurable:
@@ -29,7 +29,7 @@ The following values are configurable:
 * **namespace_selector**: The [label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors) used by the controller to determine which namespaces should be added to the [desired-namespace ConfigMap](about.hbs.md#desired-namespaces-configmap).
 
 Example snippet of tap-values.yaml:
-```
+```yaml
 ...
 namespace_provisioner:
   controller: yes
