@@ -27,9 +27,8 @@ other software catalog entity:
 
     ![REGISTER button on the right side of the header.](../../images/getting-started-tap-gui-5.png)
 
-1. **Register an existing component** prompts you to type a repository URL.
-   Type the link to the `catalog-info.yaml` file of your choice or use the following sample
-   definition.
+1. In the repository URL text box, type the link to the `catalog-info.yaml` file of your choice or use
+   the following sample definition.
 
 1. Save this code block as `catalog-info.yaml`.
 
@@ -158,7 +157,7 @@ other software catalog entity:
 
     ![Screenshot of the APIs page. It shows the system diagram for the demo dash app.](../images/api-plugin-8.png)
 
-## <a id="deploy-your-app"></a> Update your demo API entry
+### <a id="deploy-your-app"></a> Update your demo API entry
 
 To update your demo API entry:
 
