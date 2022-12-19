@@ -2,15 +2,16 @@
 
 `tanzu apps workload get` is a command used to retrieve information and status about a workload.
 
-You can view workload details at whenever. Some details are:
+Some of the workload details in the command output are as follows:
 
- - Workload name and type.
- - The source of the workload application.
- - The supply chain which took care of the workload.
- - The supply chain resources which interact with the workload. It also has the output of the resource stamped out by the supply chain
+ - Workload name, type and namespace.
+ - The source code used to build the workload (or the pre-built OCI image).
+ - The supply chain which processed the workload.
+ - The specific resources within the supply chain which interacted with the workload and the stamped out resources associated with each of those interactions.
  - The delivery workflow that the application follows.
- - If there is any issue while deploying the workload and finally which *pods* the workload generates and the knative services related to the workload.
- - if the supply chain is using knative.
+ - Any issues associated with deploying the workload
+ - The *pods* the workload generates.
+ - And when applicable, the knative services related to the workload.
 
 ## Default view
 
@@ -25,11 +26,14 @@ There are multiple sections in workload get command output. Following data is di
 
 At the very end of the command output, a hint to follow up commands is also displayed.
 
+**Note:** the `Supply Chain` and `Delivery` sections will be conditionally included in the command output depending on whether those resources are present on the target cluster (e.g. If the target includes only build components, there would be no `Delivery` resources available and therefore the `Delivery` section would not be included in the command output.).
+
 ```bash
 tanzu apps workload get rmq-sample-app
 📡 Overview
-   name:   rmq-sample-app
-   type:   web
+   name:        rmq-sample-app
+   type:        web
+   namespace:   default
 
 💾 Source
    type:     git
@@ -39,19 +43,21 @@ tanzu apps workload get rmq-sample-app
 📦 Supply Chain
    name:   source-to-url
 
-   RESOURCE          READY   HEALTHY   TIME   OUTPUT
-   source-provider   True    True      27h    GitRepository/rmq-sample-app
-   image-builder     True    True      22h    Image/rmq-sample-app
-   config-provider   True    True      56d    PodIntent/rmq-sample-app
-   app-config        True    True      56d    ConfigMap/rmq-sample-app
-   config-writer     True    True      22h    Runnable/rmq-sample-app-config-writer
+   NAME               READY   HEALTHY   UPDATED   RESOURCE
+   source-provider    True    True      7d11h     gitrepositories.source.toolkit.fluxcd.io/rmq-sample-app
+   image-provider     True    True      2d18h     images.kpack.io/rmq-sample-app
+   config-provider    True    True      7d11h     podintents.conventions.carto.run/rmq-sample-app
+   app-config         True    True      7d11h     configmaps/rmq-sample-app
+   service-bindings   True    True      7d11h     configmaps/rmq-sample-app-with-claims
+   api-descriptors    True    True      7d11h     configmaps/rmq-sample-app-with-api-descriptors
+   config-writer      True    True      2d18h     runnables.carto.run/rmq-sample-app-config-writer
 
 🚚 Delivery
    name:   delivery-basic
 
-   RESOURCE          READY   HEALTHY   TIME   OUTPUT
-   source-provider   True    True      56d    ImageRepository/rmq-sample-app-delivery
-   deployer          True    True      22h    App/rmq-sample-app
+   NAME              READY     HEALTHY   UPDATED   RESOURCE
+   source-provider   True      True      7d11h     imagerepositories.source.apps.tanzu.vmware.com/rmq-sample-app-delivery
+   deployer          True      True      6m25s     apps.kappctrl.k14s.io/rmq-sample-app
 
 💬 Messages
    No messages found.
@@ -74,7 +80,7 @@ tanzu apps workload get rmq-sample-app
    NAME             READY   URL
    rmq-sample-app   Ready   http://rmq-sample-app.default.127.0.0.1.nip.io
 
-To see logs: "tanzu apps workload tail rmq-sample-app"
+To see logs: "tanzu apps workload tail rmq-sample-app --timestamp --since 1h"
 
 ```
 
@@ -239,8 +245,9 @@ Specifies the namespace where the workload is deployed.
 tanzu apps workload get tanzu-java-web-app -n development
 
 📡 Overview
-   name:   tanzu-java-web-app
-   type:   web
+   name:        tanzu-java-web-app
+   type:        web
+   namespace:   development
 
 💾 Source
    type:     git
@@ -251,19 +258,21 @@ tanzu apps workload get tanzu-java-web-app -n development
 📦 Supply Chain
    name:   source-to-url
 
-   RESOURCE          READY   HEALTHY   TIME   OUTPUT
-   source-provider   True    True      27h    GitRepository/tanzu-java-web-app
-   image-builder     True    True      22h    Image/tanzu-java-web-app
-   config-provider   True    True      60d    PodIntent/tanzu-java-web-app
-   app-config        True    True      60d    ConfigMap/tanzu-java-web-app
-   config-writer     True    True      22h    Runnable/tanzu-java-web-app-config-writer
+   NAME               READY   HEALTHY   UPDATED   RESOURCE
+   source-provider    True    True      31m       gitrepositories.source.toolkit.fluxcd.io/tanzu-java-web-app
+   image-provider     True    True      30m       images.kpack.io/tanzu-java-web-app
+   config-provider    True    True      30m       podintents.conventions.carto.run/tanzu-java-web-app
+   app-config         True    True      30m       configmaps/tanzu-java-web-app
+   service-bindings   True    True      30m       configmaps/tanzu-java-web-app-with-claims
+   api-descriptors    True    True      30m       configmaps/tanzu-java-web-app-with-api-descriptors
+   config-writer      True    True      30m       runnables.carto.run/tanzu-java-web-app-config-writer
 
 🚚 Delivery
    name:   delivery-basic
 
-   RESOURCE          READY   HEALTHY   TIME   OUTPUT
-   source-provider   True    True      60d    ImageRepository/tanzu-java-web-app-delivery
-   deployer          True    True      22h    App/tanzu-java-web-app
+   NAME              READY   HEALTHY   UPDATED   RESOURCE
+   source-provider   True    True      30m       imagerepositories.source.apps.tanzu.vmware.com/tanzu-java-web-app-delivery
+   deployer          True    True      30m       apps.kappctrl.k14s.io/tanzu-java-web-app
 
 💬 Messages
    No messages found.
@@ -282,6 +291,6 @@ tanzu apps workload get tanzu-java-web-app -n development
    NAME                READY   URL
    tanzu-java-web-app  Ready   http://tanzu-java-web-app.default.127.0.0.1.nip.io
 
-To see logs: "tanzu apps workload tail tanzu-java-web-app"
+To see logs: "tanzu apps workload tail tanzu-java-web-app --namespace development --timestamp --since 1h"
 
 ```
