@@ -4,8 +4,9 @@ Namespace provisioner for Tanzu Application Platform provides an easy, secure, a
 
 ## Links to additional Namespace Provisioner documentation:
 * [Installation](installation.hbs.md)
-* [Tutorials](tutorials.hbs.md) 
-* [How-To Guides](how-tos.hbs.md)
+* [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
+* [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
+* [Troubleshooting](troubleshooting.hbs.md)
 * [Reference Materials](reference.hbs.md)
 
 ## <a id="nsp-motivation"></a>Motivation
