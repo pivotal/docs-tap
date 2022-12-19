@@ -55,6 +55,10 @@ namespace_provisioner:
 ...
 ```
 
+</br>
+
+---
+
 ### Links to additional Namespace Provisioner documentation:
 * [Overview](about.hbs.md)
 * [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 

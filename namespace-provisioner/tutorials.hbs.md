@@ -7,7 +7,7 @@ Two approaches to provisioning namespaced resources are supported:
 
 ## <a id="controller-ns-provisioning"></a>Using Namespace Provisioner Controller
 
----
+
 
 ### <a id="nps-controller-prerequisites"></a>Prerequisites:</br>
 * The Namespace Provisioner package is installed and successfully reconciled
@@ -21,9 +21,8 @@ Two approaches to provisioning namespaced resources are supported:
     ```bash
     tanzu secret registry add tbs-registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --yes --namespace YOUR-NEW-DEVELOPER-NAMESPACE
     ```
-  
 
---- 
+</br>
 
 ### <a id="provision-dev-namespace"></a>Steps to provision a new developer namespace:
 
@@ -56,7 +55,6 @@ This section is for those who choose not to use the built-in controller in favor
 
 >**WARNING**: if there is a namespace in your GitOps repo desired-namespace list that does not exist on the cluster, the “provisioner” app will fail to reconcile and will not be able to create resources. Creation of the namespaces themselves is out of the scope for the namespace provisioner package.
 
----
 
 ### <a id="gitops-prerequisites"></a>Prerequisites:</br>
 
@@ -64,9 +62,11 @@ The prerequisites for using GitOps are the same as those specified in the [contr
 
 * The [`controller` tap value key](install.hbs.md#customized-installation) is set to **`false`** (Default is `true`)
 
----
-
 Please go to the  [**Control the `desired-namespaces` ConfigMap via GitOps**](how-tos.hbs.md#control-desired-namespaces) section of the [How-to Guide](how-tos.hbs.md) for detailed instructions for provisinging namespaces via GitOps. 
+
+</br>
+
+---
 
 ### Links to additional Namespace Provisioner documentation:
 * [Overview](about.hbs.md)

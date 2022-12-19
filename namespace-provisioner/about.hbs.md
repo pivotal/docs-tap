@@ -59,6 +59,8 @@ The **`default-resources`** Secret is templated by tap-values.yaml to contain th
 ### <a id="nsp-component-expansion-template"></a>Expansion Template ConfigMap
 The **`expansion-template`** ConfigMap will contain the ytt logic to expand the **`default-resources`** Secret and any additional sources added into tap-values pointing to the platform-operator-defined resources into per-namespace resources as per the list of namespaces in the **`desired-namespaces`** ConfigMap. The intent is to only allow definition of Cluster-scoped or namespaced resources, but for TAP 1.4 we allow installation of the grype package in the tap-install namespace.
 
+</br>
+
 ---
 
 ### Links to additional Namespace Provisioner documentation:

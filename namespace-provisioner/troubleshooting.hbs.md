@@ -125,7 +125,11 @@ When the provisioned namespace is deleted and there is a workload already create
 - Other possible cause is when the controller is used to manage the **desired-namespaces** *`ConfigMap`* and it fails removing the custom *`finalizer`* added to the namespace (`namespace-provisioner.apps.tanzu.vmware.com/finalizer`)
 **Solution:** Remove the *`finalizer`* in the *`namespace`*
 
-# Links to additional Namespace Provisioner documentation:
+</br>
+
+---
+
+### Links to additional Namespace Provisioner documentation:
 * [Overview](about.hbs.md)
 * [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
 * [Installation](install.hbs.md)

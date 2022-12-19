@@ -4,12 +4,12 @@ This page provides guidance for more advanced use-cases associated with Namespac
 The available guides are as follows:
 * [Data values templating](#data-values-templating)
 * [GitOps customizations](#gitops-customizations):
-   1. [Extending the default resources provisioned](#extending-ootb-resources)
-   2. [Customizing OOTB default resources](#customizing-ootb-resources)
+   1. [Extending the default resources that get provisioned](#extending-default-resources)
+   2. [Customizing OOTB default resources](#customizing-default-resources)
    3. [Control reconcile behavior of namespace provisioner for certain resources](#control-reconcile-behavior)
    4. [Control the desired-namespace ConfigMap via GitOps](#control-desired-namespaces)
 
-## <a id="data-values-templating"></a>Data Values Templating Guide
+## <a id="data-values-templating"></a>Data values templating guide
 Customize your custom resources with data values from TAP values and data from `desired-namespaces` ConfigMap.
 
 Namespace provisioner inherits all of the configuration in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) as well as the tap values under the key `tap_values` making it available for Platform Operators to use as ytt `data.values` when [extending the resources via GitOps](#extending-ootb-resources).
@@ -112,7 +112,7 @@ namespace_provisioner:
 
 </br>
 
-### <a id="customizing-default-resources"></a>Customizing the default provisioned resources
+### <a id="customizing-default-resources"></a>Customizing the default resources that get provisioned
 
 The Out-Of-The-box [`default-resources`](reference.hbs.md#tap-profile---default-resources-mapping) can be customized by using GitOps with some specific characteristics:
 
@@ -235,6 +235,9 @@ When this change is applied, the provisioner app will start the reconcile proces
 
 >**WARNING:** If there is a namespace in your GitOps repo `desired-namespaces` list that does not exist on the cluster, the `provisioner` app will fail to reconcile and will not be able to create resources. Additionally, the creation of the namespaces themselves is out of the scope for the namespace provisioner package.
 
+</br>
+
+---
 
 ### Links to additional Namespace Provisioner documentation:
 * [Overview](about.hbs.md)
