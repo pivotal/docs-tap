@@ -10,4 +10,4 @@ message queues, DNS records, and more:
 - Service resource claims
 
 To learn more about Services Toolkit, see the
-[Services Toolkit documentation](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/GUID-overview.html)
+[Services Toolkit documentation](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/overview.html)

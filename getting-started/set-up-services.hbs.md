@@ -284,7 +284,7 @@ There are more service use cases not covered in this Getting started guide. See 
   <th><strong>Short Description</strong></th>
   <tr>
     <td>
-      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/GUID-usecases-introducing_different_service_implementations_in_different_environments.html">Introducing Different Service Implementatations in Different Environments</a>
+      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-introducing_different_service_implementations_in_different_environments.html">Introducing Different Service Implementatations in Different Environments</a>
     </td>
     <td>
       Using classes to have a claim resolve to a different backing service resource depending on which environment it is in.<br>
