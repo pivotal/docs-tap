@@ -241,7 +241,7 @@ When this change is applied, the provisioner app will start the reconcile proces
 
 ### Links to additional Namespace Provisioner documentation:
 * [Overview](about.hbs.md)
-* [Installation](install.hbs.md)
+* [Installation](install.hbs.md) 
 * [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
 * [Troubleshooting](troubleshooting.hbs.md)
 * [Reference Materials](reference.hbs.md)
