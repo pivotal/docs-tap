@@ -2,42 +2,41 @@
 
 This topic describes how to get started with the API documentation plug-in.
 
-## <a id="dev-first-app"></a> Add your API entry to the Tanzu Application Platform GUI software catalog
+## <a id="dev-first-app"></a> API entries
 
-In this section, you will:
-
-- [Learn about API entities of the Software Catalog](#about-app-accs)
-- [Add a demo API entity and its related Catalog objects to Tanzu Application Platform GUI](#deploy-your-app)
-- [Update your demo API entry](#deploy-your-app)
+This section describes API entities, how to add them, and how to update them.
 
 ### <a id="about-app-accs"></a> About API entities
 
-The list of API entities is visible on the left-hand side navigation panel of
-Tanzu Application Platform GUI.
-It is also visible on the overview page of specific components on the home page.
+The list of API entities is visible on the left side navigation pane of Tanzu Application Platform GUI.
+It is also visible on the Overview page of specific components on the home page.
 APIs are a definition of the interface between components.
 
-Their definition is provided in machine-readable ("raw") and human-readable formats.
-For more information, see [API plugin documentation](api-docs.hbs.md).
+Their definition is provided in raw machine-readable and human-readable formats.
+For more information, see the [API plug-in documentation](api-docs.hbs.md).
 
-### <a id="deploy-your-app"></a> Add a demo API entity to Tanzu Application Platform GUI software catalog
+### <a id="deploy-your-app"></a> Add a demo API entity to the Tanzu Application Platform GUI software catalog
 
-To add a demo API entity and its related Catalog objects, follow the same steps as registering any
+To add a demo API entity and its related Catalog objects, follow the steps used for registering any
 other software catalog entity:
 
-1. Navigate to the home page of Tanzu Application Platform GUI. Click **Home** on the left-side
-   navigation bar. Click **REGISTER ENTITY**.
+1. Navigate to the Home page of Tanzu Application Platform GUI by clicking **Home** on the left-side
+   navigation pane.
 
-    ![REGISTER button on the right side of the header](../../images/getting-started-tap-gui-5.png)
+1. Click **REGISTER ENTITY**.
 
-2. **Register an existing component** prompts you to type a repository URL.
+    ![REGISTER button on the right side of the header.](../../images/getting-started-tap-gui-5.png)
+
+1. **Register an existing component** prompts you to type a repository URL.
    Type the link to the `catalog-info.yaml` file of your choice or use the following sample
-   definition. Save this code block as `catalog-info.yaml`, upload it to the Git repository of your
-   choice, and copy the link to `catalog-info.yaml`.
+   definition.
 
-   This demo setup includes a domain called `demo-domain` with a single system called `demo-system`.
-   This systems consists of two microservices - `demo-app-ms-1` and `demo-app-ms-1` - and one API
-   called `demo-api` that `demo-app-ms-1` provides and `demo-app-ms-2` consumes.
+1. Save this code block as `catalog-info.yaml`.
+
+1. Upload it to the Git repository of your choice and copy the link to `catalog-info.yaml`.
+   This demo setup includes a domain named `demo-domain` with a single system named `demo-system`.
+   This systems consists of two microservices (`demo-app-ms-1` and `demo-app-ms-1`) and one API
+   named `demo-api` that `demo-app-ms-1` provides and that `demo-app-ms-2` consumes.
 
     ```yaml
     apiVersion: backstage.io/v1alpha1
@@ -147,30 +146,31 @@ other software catalog entity:
                       examples: {}
     ```
 
-3. Paste the link to the `catalog-info.yaml` and click **ANALYZE**. Review the catalog entities and
-   click **IMPORT**.
+1. Paste the link to `catalog-info.yaml` and click **ANALYZE**.
+
+1. Review the catalog entities and click **IMPORT**.
 
     ![Screenshot of the stage for reviewing the entities to be added to the catalog.](../images/api-plugin-7.png)
 
-4. Navigate to the **API** page by clicking **APIs** on the left-hand side navigation panel.
+1. Navigate to the **API** page by clicking **APIs** on the left side navigation pane.
    The catalog changes and entries are visible for further inspection.
    If you select the system **demo-app**, the diagram appears as follows:
 
     ![Screenshot of the APIs page. It shows the system diagram for the demo dash app.](../images/api-plugin-8.png)
 
-### <a id="deploy-your-app"></a> Update your demo API entry
+## <a id="deploy-your-app"></a> Update your demo API entry
 
 To update your demo API entry:
 
 1. To update your demo API entity, click on **demo-api** from the list of available APIs in your
-   software catalog and click the **Edit** icon on the **Overview** page.
+   software catalog and click the **Edit** icon on the Overview page.
 
     ![Screenshot of the overview of demo dash api. The edit button on the card labeled About is framed in red.](../images/api-plugin-9.png)
 
-    It opens the source `catalog-info.yaml` file that you can edit. For example, change the
-    `spec.paths.parameters.example` from `type_any_name` to `Tanzu` and save your changes.
+    It opens the source `catalog-info.yaml` file that you can edit. For example, you can change the
+    `spec.paths.parameters.example` from `type_any_name` to `Tanzu` and then save your changes.
 
-2. After you made the edits, Tanzu Application Platform GUI re-renders the API entry with the next
+   After making any edits, Tanzu Application Platform GUI re-renders the API entry with the next
    refresh cycle.
 
 ## <a id="validation-api"></a> Validation Analysis of API specifications
@@ -221,20 +221,25 @@ about the API.
     - id:        # Unique ID
       label:     # Descriptive label displayed as a title over the numerical value
       value:     # Any number value
-      valueType: # One of the types (percentage or other). Displays the % symbol or none.
+      valueType: # One of the types (percentage or other). Displays the % symbol or displays nothing.
       status:    # One of the statuses (passed, warning, or failed). Displays the number in green, yellow, or red.
 ```
 
 ### <a id="automatic-validation"></a> Automatic OpenAPI specification validation
 
-You can receive automatic validation analysis for OpenAPI specifications by using APIx.
-Follow the installation using the APIx documentation.
-In addition, you must use either [API Auto Registration](../../api-auto-registration/about.hbs.md)
-or APIx Design GitOps to automatically generate the API entities in Tanzu Application Platform GUI.
+To receive automatic validation analysis for OpenAPI specifications by using API Validation Scoring:
 
-The automatic scoring cannot score or replace API entities created through other methods like regular
-GitOps or manual registration.
+1. [Install API Validation and Scoring](../../api-validation-scoring/install.hbs.md).
+2. Use [API Auto Registration](../../api-auto-registration/about.hbs.md) or
+   API Validation Scoring Design GitOps to automatically generate the API entities in
+   Tanzu Application Platform GUI.
+
+The automatic scoring cannot score or replace API entities created through other methods, such as
+regular GitOps or manual registration.
 You might see the following message signaling that the OpenAPI specification was registered with
-regular GitOps methods or manual registration:
+regular GitOps methods or manual registration.
 
-**Validation analysis is currently unavailable for APIs registered via TAP GUI without being attached to a workload.**
+```console
+Validation analysis is currently unavailable for APIs registered via TAP GUI without being attached \
+to a workload.
+```
