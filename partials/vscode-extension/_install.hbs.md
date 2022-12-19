@@ -7,8 +7,8 @@ Before installing the extension, you must have:
 - [VS Code](https://code.visualstudio.com/download)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
 - [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later
-- [Tanzu CLI and plug-ins](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-install-tanzu-cli.html#cli-and-plugin)
-- [A cluster with the Tanzu Application Platform Full profile or Iterate profile](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-install.html)
+- [Tanzu CLI and plug-ins](/docs-tap/install-tanzu-cli.hbs.md#cli-and-plugin)
+- [A cluster with the Tanzu Application Platform Full profile or Iterate profile](/docs-tap/install.hbs.md)
 
 If you are an app developer, someone else in your organization might have already set up the
 Tanzu Application Platform environment.
@@ -56,8 +56,8 @@ set the following:
     - **Confirm Delete**: This controls whether the extension asks for confirmation when deleting a
     workload.
     - **Enable Live Hover**: For more information, see
-    [Integrating Live Hover by using Spring Boot Tools](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-vscode-extension-live-hover.html). Reload VS Code for this change to
-    take effect.
+    [Integrating Live Hover by using Spring Boot Tools](/docs-tap/vscode-extension-live-hover.hbs.md).
+    Reload VS Code for this change to take effect.
     - **Source Image**: (Required) The registry location for publishing local source code. For example,
     `registry.io/yourapp-source`. This must include both a registry and a project name.
     - **Local Path**: (Optional) The path on the local file system to a directory of source code to
@@ -74,4 +74,4 @@ To uninstall VMware Tanzu Developer Tools for VS Code:
 
 ## <a id="next-steps"></a> Next steps
 
-Proceed to [Getting started with Tanzu Developer Tools for Visual Studio Code](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-vscode-extension-getting-started.html).
+Proceed to [Getting started with Tanzu Developer Tools for Visual Studio Code](/docs-tap/vscode-extension/getting-started.hbs.md).

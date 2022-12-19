@@ -17,7 +17,7 @@ To see the Memory View in Spring Boot Dashboard you need:
 ## <a id="deploy-workload"></a> Deploy a workload
 
 Deploy the workload for an app to a cluster by following the steps in
-[Deploy a Workload to the Cluster](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4/tap/GUID-vscode-extension-live-hover.html#deploy-workload).
+[Deploy a Workload to the Cluster](live-hover.hbs.md#deploy-workload).
 
 ## <a id="view-memory"></a> View memory use in Spring Boot Dashboard
 

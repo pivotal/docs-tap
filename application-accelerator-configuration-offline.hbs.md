@@ -6,4 +6,4 @@
 
 ## <a id='next-steps'></a>Next steps
 
-- [Using Grype in offline and air-gapped environments](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-scan-offline-airgap.html)
+- [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md)

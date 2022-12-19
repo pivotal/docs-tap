@@ -6,4 +6,4 @@
 
 ## <a id='next-steps'></a>Next steps
 
-- [Deploy an air-gapped workload](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-getting-started-air-gap-workload.html)
+- [Deploy an air-gapped workload](getting-started/air-gap-workload.hbs.md)
