@@ -3,7 +3,7 @@
 Namespace provisioner for Tanzu Application Platform provides an easy, secure, automated way for Platform Operators to provision namespaces with the resources and proper namespace-level privileges required for their workloads to function as intended. In addition, this component has been designed to be extended by customers who wish to add additional namespace-scoped resources as per the bespoke requirements of their organization.
 
 ## Links to additional Namespace Provisioner documentation:
-* [Installation](installation.hbs.md)
+* [Installation](install.hbs.md)
 * [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
 * [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
 * [Troubleshooting](troubleshooting.hbs.md)
@@ -65,7 +65,7 @@ The **`expansion-template`** ConfigMap will contain the ytt logic to expand the 
 ---
 
 ### Links to additional Namespace Provisioner documentation:
-* [Installation](installation.hbs.md)
+* [Installation](install.hbs.md)
 * [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
 * [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
 * [Troubleshooting](troubleshooting.hbs.md)

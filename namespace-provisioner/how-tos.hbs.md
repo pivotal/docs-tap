@@ -71,7 +71,7 @@ In the example `namespace_provisioner` ([snippet from tap-values yaml below](#ex
    * After importing this source, Namespace provisioner will create the following resources in all namespaces mentioned in “desired-namespaces” ConfigMap.</br></br>
 * The second additional source points to examples of [ytt templated testing and scanpolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain).
    * After importing this source, Namespace provisioner will create a **scan-policy** as well as a **developer-defined-tekton-pipeline-java** in all namespaces in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap with the default setup in [Install OOTB Supply Chain with Testing and Scanning](../getting-started/add-test-and-security.hbs.md#install-OOTB-test-scan) documentation.</br></br>
-* The third additional source points to an example of a [ytt templated scanpolicy yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/scanpolicies/scanpolicies.yaml).
+* The third additional source points to an example of a [ytt templated scanpolicy yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/scanpolicies/snyk-scanpolicies.yaml).
    * After importing this source, Namespace provisioner will create a **snyk-scan-policy** in all namespaces in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap that has an additional parameter **scanpolicy: snyk**.</br></br>
 * The fourth additional source points to [examples of ytt templated tekton pipelines](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines).
    * After importing this source, Namespace Provisioner will create a **developer-defined-tekton-pipeline-python** and **developer-defined-tekton-pipeline-angular** for namespaces in  the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap that has an additional parameter **language: python** and **language: angular** respectively.</br></br>
@@ -121,7 +121,7 @@ The Out-Of-The-box [`default-resources`](reference.hbs.md#tap-profile---default-
 - The GitOps repo folder should have a file with an extension [`lib.yaml`](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-library/#instanceexport) to be recognized as a ytt library with members to be exported
 - The library file in the GitOps repo folder should have a function called `customize` with the overlays to be applied to the resources, it can contain one or more overlays
 
-The sample file [`sa-secrets.lib.yaml`](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examplesdefault-resources-overrides/overlays//sa-secrets.lib.yaml) shows how Platform/App Operators can completely override the `secrets` and `imagePullSecrets` sections of the default ServiceAccount to add custom created secrets by using other additional resources. 
+The sample file [`sa-secrets.lib.yaml`](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/default-resources-overrides/overlays/sa-secrets.lib.yaml) shows how Platform/App Operators can completely override the `secrets` and `imagePullSecrets` sections of the default ServiceAccount to add custom created secrets by using other additional resources. 
 
 Sample tap-values change to pull this ytt customization overlay:
 
@@ -241,7 +241,7 @@ When this change is applied, the provisioner app will start the reconcile proces
 
 ### Links to additional Namespace Provisioner documentation:
 * [Overview](about.hbs.md)
-* [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
 * [Installation](install.hbs.md)
+* [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
 * [Troubleshooting](troubleshooting.hbs.md)
 * [Reference Materials](reference.hbs.md)

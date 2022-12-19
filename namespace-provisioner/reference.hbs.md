@@ -32,7 +32,7 @@ Note: For Install OOTB Supply Chain with Testing and Scanning check the section 
 
 ### Links to additional Namespace Provisioner documentation:
 * [Overview](about.hbs.md)
-* [Installation](installation.hbs.md)
+* [Installation](install.hbs.md)
 * [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
 * [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
 * [Troubleshooting](troubleshooting.hbs.md)

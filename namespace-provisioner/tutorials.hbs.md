@@ -70,7 +70,7 @@ Please go to the  [**Control the `desired-namespaces` ConfigMap via GitOps**](ho
 
 ### Links to additional Namespace Provisioner documentation:
 * [Overview](about.hbs.md)
-* [Installation](installation.hbs.md)
+* [Installation](install.hbs.md)
 * [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
 * [Troubleshooting](troubleshooting.hbs.md)
 * [Reference Materials](reference.hbs.md)
