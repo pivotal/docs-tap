@@ -204,7 +204,7 @@ This release has the following known issues, listed by area and component.
   activity pane. For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#tnz-panel-k8s-rsrc-fail).
 
-- The Details table and Messages pane in the activity panel nay show stale data. The reason 
+- The Details table and Messages pane in the activity panel may show stale data. The reason 
   is that these views only refresh when the selection in the Resource tree is changed. 
   As a workaround simply click in the Resource tree changing the current selection.
 
