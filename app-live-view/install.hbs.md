@@ -10,16 +10,14 @@ Application Live View installs three packages for `full`, `light`, and `iterate`
 
 - For the `build` profile, Application Live View installs Application Live View Conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View Convention Service in `app-live-view-conventions` namespace.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
-
+>**Note** Follow the steps in this topic if you do not want to use a profile to install PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
 Before installing Application Live View, complete all prerequisites to install Tanzu Application Platform.
 For more information, see [Prerequisites](../prerequisites.md).
 
-In addition, install Cartographer Conventions which is bundled with Supply Chain Choreographer as of the v0.4.0 release. To install, see [Installing Supply Chain Choreographer](../scc/install-scc.md). For more information, see [Cartographer Conventions](../cartographer-conventions/about.md). 
+In addition, install Cartographer Conventions which is bundled with Supply Chain Choreographer as of the v0.4.0 release. To install, see [Installing Supply Chain Choreographer](../scc/install-scc.md). For more information, see [Cartographer Conventions](../cartographer-conventions/about.md).
 
 ## <a id='install-app-live-view'></a> Install Application Live View
 
@@ -45,7 +43,7 @@ To install Application Live View back end:
     ```console
     $ tanzu package available list backend.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for backend.appliveview.tanzu.vmware.com...
-      NAME                                  VERSION        RELEASED-AT           
+      NAME                                  VERSION        RELEASED-AT
       backend.appliveview.tanzu.vmware.com  1.2.0-build.2  2022-06-01T00:00:10Z
     ```
 
@@ -139,7 +137,7 @@ To install Application Live View back end:
     For example:
 
     ```console
-    tanzu package installed get appliveview -n tap-install            
+    tanzu package installed get appliveview -n tap-install
     \ Retrieving installation details for appliveview...
     NAME:                    appliveview
     PACKAGE-NAME:            backend.appliveview.tanzu.vmware.com
@@ -166,7 +164,7 @@ To install Application Live View connector:
     ```console
     $ tanzu package available list connector.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for connector.appliveview.tanzu.vmware.com...
-      NAME                                    VERSION        RELEASED-AT           
+      NAME                                    VERSION        RELEASED-AT
       connector.appliveview.tanzu.vmware.com  1.2.0-build.2  2022-06-01T00:00:10Z
     ```
 
@@ -211,7 +209,7 @@ To install Application Live View connector:
 
     >**Note:** The `backend.sslDisabled` is set to `false` by default. If TLS is not enabled for the `INGRESS-DOMAIN` in the Application Live View back end, set the `backend.sslDisabled` to `true`.
 
-    >**Note:** If it is a Tanzu Application Platform profile installation and top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the Application Live View connector is automatically configured to use the `shared.ingress_domain` to reach the Application Live View back end.    
+    >**Note:** If it is a Tanzu Application Platform profile installation and top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the Application Live View connector is automatically configured to use the `shared.ingress_domain` to reach the Application Live View back end.
 
 
     You can edit the values to suit your project needs or leave the default values as is.
@@ -281,7 +279,7 @@ To install Application Live View Conventions:
     ```console
     $ tanzu package available list conventions.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for conventions.appliveview.tanzu.vmware.com...
-      NAME                                      VERSION        RELEASED-AT           
+      NAME                                      VERSION        RELEASED-AT
       conventions.appliveview.tanzu.vmware.com  1.2.0-build.2  2022-06-01T00:00:00Z
     ```
 
