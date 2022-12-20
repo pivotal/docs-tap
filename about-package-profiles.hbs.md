@@ -104,6 +104,10 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 - **[Grype](https://github.com/anchore/grype)**
 
   Grype is a vulnerability scanner for container images and file systems.
+  
+- **[Namespace Provisioner](namespace-provisioner/about.hbs.md)**
+
+  Namespace provisioner provides an easy, secure, automated way for Platform Operators to provision namespaces with the resources and proper namespace-level privileges needed for developer workloads to function as intended.
 
 - **[Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html)**
 
