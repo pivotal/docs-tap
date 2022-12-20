@@ -777,12 +777,11 @@ Parameters:
   </tr>
 </table>
 
-
-See [use of `--service-ref` in Tanzu
-CLI](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
-for an example and [Consume services on
-Tanzu Application Platform](../getting-started/consume-services.hbs.md) for an overview of the
-function.
+For an example, see
+[`--service-ref`](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#apply-service-ref)
+in the Tanzu CLI documentation.
+For an overview of the function, see
+[Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md).
 
 ## apidescriptors
 
