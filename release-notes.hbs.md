@@ -2,6 +2,17 @@
 
 This topic contains release notes for Tanzu Application Platform v1.3
 
+## <a id='1-3-4'></a> v1.3.4
+
+**Release Date**: December 13, 2022
+
+### <a id='1-3-4-new-features'></a> Resolved issues
+
+#### <a id="1-3-4-tap-gui-fix"></a> Tanzu Application Platform GUI
+Fixes for the following vulnerabilities
+* CVE-2022-32215: Bumps the version of node used to run TAP GUI from 14.20.0 to 14.20.1
+* GHSA-hrpp-h998-j3pp: Bumps the versions of express and qs
+
 ## <a id='1-3-3'></a> v1.3.3
 
 **Release Date**: December 13, 2022
