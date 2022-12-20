@@ -106,7 +106,6 @@ docs.vmware.com is built.
                     - [Workload get](cli-plugins/apps/command-reference/workload_get.hbs.md)
                     - [Workload list](cli-plugins/apps/command-reference/workload_list.hbs.md)
                     - [Workload tail](cli-plugins/apps/command-reference/workload_tail.hbs.md)
-                    - [Tanzu Apps workload](cli-plugins/apps/command-reference/tanzu-apps-workload.hbs.md)
           - [Accelerator](cli-plugins/accelerator/overview.hbs.md)
                 - [Application Accelerator CLI plug-in overview](cli-plugins/accelerator/overview.hbs.md)
                 - [Install Accelerator CLI plug-in](cli-plugins/accelerator/install-accelerator-cli.hbs.md)
