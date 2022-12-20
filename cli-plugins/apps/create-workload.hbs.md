@@ -13,7 +13,7 @@ The following prerequisites are required to use workloads with Tanzu Application
 - Install the apps plug-in. See the [Install Apps plug-in](tutorials.hbs.md#install).
 - [Set up developer namespaces to use installed packages](../../set-up-namespaces.hbs.md).
 - As you familiarize yourself with creating and managing the lifecycle of workloads on the platform, you may want to review the full `Cartographer Workload spec` to learn more about the fields/values that can be provided.
-  
+
   There are two methods for doing so:
 
     1. On the [Cartographer](https://cartographer.sh/docs/v0.6.0/reference/workload/) docs website - detailed with comments
@@ -178,7 +178,7 @@ The intent of these bindings is to provide information from a service resource t
 - To bind a database service to a workload, run:
 
     ```bash
-    tanzu apps workload update pet-clinic --service-ref "database=services.tanzu.vmware.com/v1alpha1:MySQL:my-prod-db"
+    tanzu apps workload apply pet-clinic --service-ref "database=services.tanzu.vmware.com/v1alpha1:MySQL:my-prod-db"
     ```
 
     Where:
@@ -192,17 +192,17 @@ Check [services consumption documentation](../../getting-started/consume-service
 
 You can check workload details and status, add environment variables, export definitions or bind services.
 
-1. To check workload status and details, use `tanzu apps workload get`. 
-   
-   To get workload logs, use `tanzu apps workload tail`. 
-   
+1. To check workload status and details, use `tanzu apps workload get`.
+
+   To get workload logs, use `tanzu apps workload tail`.
+
    For more info about these, refer to [debug workload section](debug-workload.hbs.md).
 
 
 2. To add environment variables, run:
 
     ```bash
-    tanzu apps workload update pet-clinic --env foo=bar
+    tanzu apps workload apply pet-clinic --env foo=bar
     ```
 
 3. To export the workload definition into git, or to migrate to another environment, run:

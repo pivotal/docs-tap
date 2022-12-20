@@ -44,7 +44,7 @@ You can experiment with the differences between the `web` and [`server` workload
 by changing the workload type by running:
 
 ```console
-tanzu apps workload update tanzu-java-web-app --type=server
+tanzu apps workload apply tanzu-java-web-app --type=server
 ```
 
 After changing the workload type to `server`, the app will no longer autoscale and
@@ -52,7 +52,7 @@ no longer expose an external URL.
 You can switch back to the `web` workload by running:
 
 ```console
-tanzu apps workload update tanzu-java-web-app --type=web
+tanzu apps workload apply tanzu-java-web-app --type=web
 ```
 
 You can use this to test which applications can function well as serverless web applications,

@@ -134,8 +134,8 @@ The names of the objects **must** match the names in the example with default in
   For more information, see [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
     ```console
-    tanzu apps workload update WORKLOAD --param "scanning_source_policy=SCAN-POLICY" -n DEV-NAMESPACE
-    tanzu apps workload update WORKLOAD --param "scanning_source_template=SCAN-TEMPLATE" -n DEV-NAMESPACE
+    tanzu apps workload apply WORKLOAD --param "scanning_source_policy=SCAN-POLICY" -n DEV-NAMESPACE
+    tanzu apps workload apply WORKLOAD --param "scanning_source_template=SCAN-TEMPLATE" -n DEV-NAMESPACE
     ```
 
     Where:
