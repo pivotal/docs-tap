@@ -67,9 +67,9 @@ kubectl get --namespace login authserver sso --output=jsonpath='{.status.issuerU
 approach. It appeals best to the split the responsibilities of _platform operators_ and _service operators_.
 > In this case, the `Authserver.spec.tls` field can be omitted entirely.
 
-> If you need to verify whether `AppSSO` was installed with a default issuer, you can run
-> `kctrl package installed get --namespace tap-install --package-install tap --values-file-output tap-values.yaml`.
-> Then check your `tap-values.yaml` file. If there is a `shared.ingress_issuer`, you have a default issuer.
+If you need to verify whether `AppSSO` was installed with a default issuer, you can run
+`kctrl package installed get --namespace tap-install --package-install tap --values-file-output tap-values.yaml`.
+Then check your `tap-values.yaml` file. If there is a `shared.ingress_issuer`, you have a default issuer.
 > Prerequisite: Ensure [kctrl](https://carvel.dev/blog/kctrl-release-blog/) is installed.
 
 ```yaml
@@ -118,10 +118,11 @@ spec:
 A `ClusterIssuer` is a cluster-scoped API provided by [cert-manager](https://cert-manager.io) from which certificates
 can be obtained programmatically.
 
-For purposes of completeness and simplicity, puts all resources into a single YAML file and
+For purposes of completeness and simplicity, this scenario puts all resources into a single YAML file and
 uses [Let's Encrypt](https://letsencrypt.org/)'s production API. It is likely, however, that the `ClusterIssuer` is
 provided to you by your _platform operators_.
 
+> Learn more about [Let's Encrypt with Cert Manager](https://cert-manager.io/docs/configuration/acme/)
 > ⚠️ Caveat: [Let's Encrypt](https://letsencrypt.org/)'s production
 > API [rate limits](https://letsencrypt.org/docs/rate-limits/) apply.
 
@@ -423,7 +424,8 @@ spec:
 
 ## I have an existing TLS certificate
 
-If you have an existing TLS certificate and private key, then this scenario is yours.
+If you have an existing TLS certificate and private key, you can apply it directly.
+For example, if your TLS certificate was created outside the cluster.
 
 > ℹ️ If you don't have a TLS certificate, but you would like to try this, there is an almost endless array of
 > possibilities for obtaining TLS certificates. The easiest way is to use a tool
@@ -431,6 +433,9 @@ If you have an existing TLS certificate and private key, then this scenario is y
 > or [openssl](https://www.openssl.org/).
 
 ### … in the same `Namespace` as I want to install the AuthServer
+
+> _Note:_ The TLS certificate `tls.crt` and its corresponding private key `tls.key` _must_ be stored in a secret with
+> these keys.
 
 ```yaml
 ---
@@ -499,6 +504,9 @@ spec:
 ```
 
 ### … in another `Namespace`
+
+> _Note:_ The TLS certificate `tls.crt` and its corresponding private key `tls.key` _must_ be stored in a secret with
+> these keys.
 
 Pay attention to the use of `SecretExport` and `SecretImport` to facilitate the transfer across namespaces.
 
