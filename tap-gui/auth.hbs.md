@@ -29,20 +29,11 @@ Configure a supported authentication provider or a custom OpenID Connect (OIDC) 
   shared:
     ingress_domain: "INGRESS-DOMAIN"
 
+  # ... any existing values
+
   tap_gui:
-    service_type: ClusterIP
+    # ... any other TAP GUI values
     app_config:
-      app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-      catalog:
-        locations:
-          - type: url
-            target: https://GIT-CATALOG-URL/catalog-info.yaml
-      backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-          origin: http://tap-gui.INGRESS-DOMAIN
-  #Existing values file above
       auth:
         environment: development
         session:

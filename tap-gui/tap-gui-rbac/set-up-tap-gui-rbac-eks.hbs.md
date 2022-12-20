@@ -28,7 +28,7 @@ choice.
 1. Under **Application URIs > Allowed Callback URLs**, add
 
     ```console
-    http://tap-gui.INGRESS-DOMAIN/api/auth/auth0/handler/frame
+    https://tap-gui.INGRESS-DOMAIN/api/auth/auth0/handler/frame
     ```
 
     Where `INGRESS-DOMAIN` is the domain you chose for your Tanzu Application Platform GUI in
