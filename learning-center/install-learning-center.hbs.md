@@ -4,7 +4,7 @@ This document describes how to install Learning Center
 from the Tanzu Application Platform package repository.
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install Learning Center.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+For more information about profiles, see [About Tanzu Application Platform components and profiles](../overview.hbs.md#about-package-profiles).
 
 To install Tanzu Learning Center, see the following sections.
 
