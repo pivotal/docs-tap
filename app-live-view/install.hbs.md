@@ -15,7 +15,7 @@ Application Live View installs three packages for `view`, `run`, and `build` pro
 - For the `full` profile, Application Live View installs the Application Live View back-end package, Application Live View connector package, and Application Live View Conventions package.
 
 
->**Note** Follow the steps in this topic if you do not want to use a profile to install PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+>**Note** Follow the steps in this topic if you do not want to use a profile to install Application Live View. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 
 ## <a id='prereqs'></a>Prerequisites
