@@ -15,7 +15,7 @@ Use `-f` to follow the log output
 After the namespace provisioner is installed in the TAP cluster, the main resource to check is the **[provisioner](about.hbs.md#nsp-component-carvel-app)** Kapp App in the `tap-namespace-provisioning` *`namespace`*.
 
 ```bash
-kubectl -n tap-namespace-provisioning get app/provisioner --template={{.status.usefulErrorMessage}}
+kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
 ```
 
 Please refer to [Control reconcile behavior of namespace provisioner for certain resources](how-tos.hbs.md#control-reconcile-behavior) to understand why certain resources are not reconciled automatically, and might need some manual intervention.
@@ -23,7 +23,7 @@ Please refer to [Control reconcile behavior of namespace provisioner for certain
 **Note:** Any error with the Kapp App will be reported in the Carvel Package Install as a high level message.
 
 ```bash
-kubectl -n tap-install get packageinstalls.packaging.carvel.dev/namespace-provisioner --template={{.status.usefulErrorMessage}}
+kubectl -n tap-install get packageinstalls.packaging.carvel.dev/namespace-provisioner --template=\{{.status.usefulErrorMessage}}
 ```
 
 ## <a id="common-errors"></a>Common errors
@@ -88,7 +88,7 @@ stringData:
 Where the used `data.values` does not exist, and after adding it as an `additional_source` in the `witherror` library, the Kapp App will show an error as follows:
 
 ```bash
-$ kubectl -n tap-namespace-provisioning get app/provisioner --template={{.status.usefulErrorMessage}}
+$ kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
 
 ytt: Error:
 - library.eval: Evaluating library 'witherror':
@@ -131,6 +131,6 @@ When the provisioned namespace is deleted and there is a workload already create
 
 - [Overview](about.hbs.md)
 - [Installation](install.hbs.md)
-- [Tutorial - Provisioning Namespaces](tutorials.hbs.md) 
+- [Tutorial - Provisioning Namespaces](tutorials.hbs.md)
 - [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
 - [Reference Materials](reference.hbs.md)
