@@ -8,7 +8,7 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 ### <a id='1-3-4-security-fix'></a> Security fixes
 
-The following security issue is resolved in this release.
+The following security issues are resolved in this release.
 
 #### <a id="1-3-4-tap-gui-resolved"></a> Tanzu Application Platform GUI
 
