@@ -328,7 +328,7 @@ For instructions about using Carbon Black Cloud Scanner with Tanzu Application P
   - auto-complete now works for all sub-command names and their positional argument values, flag names, and flag values.
 - `tanzu apps workload create/apply` improvements:
   - Apps plug-in users can now pass in registry flags to override the default registry options configured on the platform.
-    - These flags can be leveraged when an application developer iterating on their code on their file system needs to push their code to a private registry. For example, this may be required when developing an application in an air-gapped environment.
+    - These flags can be leveraged when an application developer, iterating on  code on their file system, needs to push their code to a private registry. For example, this may be required when developing an application in an air-gapped environment.
     - To mitigate the risk of exposing sensitive information in the terminal, each registry flag/value can be specified by environment variables.
     - Refer to [workload apply > registry flags](./cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#---registry-ca-cert) for a more detailed explanation about these flags and how to use them.
   - Provided first-class support for creating workloads from Maven artifacts through Maven flags. Previously, this could only be achieved by passing the desired values through the `--complex-param` flag.
@@ -341,11 +341,11 @@ For instructions about using Carbon Black Cloud Scanner with Tanzu Application P
   - Added a Delivery section that provides visibility to the delivery steps and the health, status, and stamped out resource associated with each delivery step.
     - The Delivery section content might be conditionally displayed depending on whether the targeted environment includes the Deliverable object. Delivery is present on environments created using the Iterate and Build installation profiles.
   - Added a `Healthy` column to the Supply Chain resources table.
-    - The column values are color coded to indicate the health of each resource at-a-glance.
+    - The column values are color coded to indicate the health of each resource at a glance.
   - Added an Overview section to show workload name and type.
   - Added Emojis to, and indentation under, each section header in the command output to better distinguish each section.
-  - Updated the STATUS column in the table within the Pods section so that it displays the `Init` status when there are init containers (instead of displaying a less helpful/accurate `pending` value).
-    - In fact, all column values in the Pods table have been updated so the output is equivalent to the output from `kubectl get pod/pod-name`.
+  - Updated the STATUS column in the table within the Pods section so that it displays the `Init` status when there are init containers, instead of displaying a less helpful/accurate `pending` value.
+    - All column values in the Pods table have been updated so the output is equivalent to the output from `kubectl get pod/pod-name`.
 - Updated Go to its latest version (v1.19).
 
 #### <a id="src-cont-features"></a>Source Controller
