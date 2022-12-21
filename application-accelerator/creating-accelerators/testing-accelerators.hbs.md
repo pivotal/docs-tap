@@ -16,10 +16,10 @@ To do so ensure you have the following prerequisites on your machine:
   - The Tanzu CLI is installed, with the Application Accelerator plugin. For details on installing the Tanzu CLI and plugins, see [Tanzu CLI](../../cli-plugins/tanzu-cli.md)
   - The server URL is pointing to the TAP cluster you want to test with. For details on setting the server URL, see [Application Accelerator CLI plug-in overview](../../cli-plugins/accelerator/overview.md)
 
-> *Note:* No changes will be made to the TAP cluster that is provided via the server URL. 
-> No new accelerators/fragments will be registered or modified. A TAP cluster is 
-> required in order to ensure consistency between the version that is used for testing 
-> and the version that is used when the accelerator is registered. Furthermore, it allows 
+> *Note:* No changes will be made to the TAP cluster that is provided via the server URL.
+> No new accelerators/fragments will be registered or modified. A TAP cluster is
+> required in order to ensure consistency between the version that is used for testing
+> and the version that is used when the accelerator is registered. Furthermore, it allows
 > using registered fragments and accelerators as dependencies for the local accelerator/fragment.
 
 For example, to use the accelerator that is located at the path `workspace/java-rest` your command will look something like:
@@ -40,11 +40,11 @@ tanzu accelerator generate-from-local --accelerator-name java-rest --fragment-pa
 ```
 
 This will generate the project in the local directory `generated-project` on your machine,
-using the accelerator `java-rest` and the fragment `tap-workload` which are assumed to be 
-already registered in the TAP cluster, the fragment named `java-version` located at 
+using the accelerator `java-rest` and the fragment `tap-workload` which are assumed to be
+already registered in the TAP cluster, the fragment named `java-version` located at
 `workspace/version` on your machine and the option `projectName` set to `test`.
 
-For the full documentation for the `generate-from-local` command see the reference [tanzu accelerator generate-from-local](../../cli-plugins/accelerator/command-reference/tanzu_accelerator_generate-from-local.md)
+<!-- For the full documentation for the `generate-from-local` command see the reference [tanzu accelerator generate-from-local](../../cli-plugins/accelerator/command-reference/tanzu_accelerator_generate.hbs.md). Commented out because this xref does not exist and I cannot find any generate-from-local content to reference. -->
 
 ## <a id="creating-accelerators-ci-cd-pipeline"></a>CI/CD Pipeline
 As you iterate on an accelerator, you may wish to have some automated assertions that run before any changes to the accelerator are accepted.
@@ -71,10 +71,10 @@ options for each and running different assertions on each generated project.
 
 If the Tanzu CLI is already available in your CI/CD pipeline you can skip this section.
 
-We provide an example script that is agnostic to the CI/CD system it is running on. 
-The script below requires a variable named `TANZU_REFRESH_TOKEN` which holds a personal 
-Tanzu Network refresh token. To generate such a token see 
-[How to Authenticate](https://network.tanzu.vmware.com/docs/api#how-to-authenticate). 
+We provide an example script that is agnostic to the CI/CD system it is running on.
+The script below requires a variable named `TANZU_REFRESH_TOKEN` which holds a personal
+Tanzu Network refresh token. To generate such a token see
+[How to Authenticate](https://network.tanzu.vmware.com/docs/api#how-to-authenticate).
 The script also uses `curl` and `jq`.
 
 The script below downloads artifacts compatible with TAP version 1.3 and a Linux operating

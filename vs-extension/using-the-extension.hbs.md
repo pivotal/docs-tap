@@ -12,7 +12,7 @@ To apply a workload:
 
    - A `tanzu` command in `PATH`.
    - A valid `workload.yaml` file in the project. For more information, see the specification for
-     [Tanzu apps workload apply](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md).
+     [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
    - A functional Tanzu Application Platform environment.
    - Your kubeconfig file is modified for Tanzu Application Platform workload deployments.
      There must be a preferred `namespace`, for example.
@@ -96,7 +96,7 @@ To run a workload in Tanzu Application Platform:
    ```
 
   For more information, see
-  [Tanzu apps workload apply](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md).
+  [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
 1. Clone the project
    [`steeltoe-weatherforecast` accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/weatherforecast-steeltoe),
