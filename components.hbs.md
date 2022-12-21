@@ -42,6 +42,10 @@ into this Tanzu Application Platform documentation site.
 
 - [Supply Chain Security Tools - Store](scst-store/overview.md)
 
+- [Tanzu Developer Tools for IntelliJ](intellij-extension/about.hbs.md)
+
+- [Tanzu Developer Tools for Visual Studio](vs-extension/about.hbs.md)
+
 - [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
 
 - [Tanzu Application Platform GUI](tap-gui/about.md)
