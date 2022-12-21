@@ -30,7 +30,7 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 - Added `AuthServer.spec.tls.deactivated` to deprecate `AuthServer.spec.tls.disabled`.
 - `AuthServer.spec.tokenSignatures` is now a required field.
 - In addition to globally trusted CA certificates, granular trust can be extended with `AuthServer.spec.caCerts`.
-- LDAP is now a supported identity provider protocol. For more information, see [LDAP (experimental)](app-sso/service-operators/identity-providers.hbs.md#ldap-experimental).
+- LDAP is now a supported identity provider protocol. For more information, see [LDAP](app-sso/service-operators/identity-providers.hbs.md#ldap).
   - LDAP bind is validated on `AuthServer` creation when an LDAP identity provider is defined.
   - Introduced `identityProviders.ldap.url` in `AuthServer.spec`.
   - Introduced `identityProviders.ldap.group.search`.
