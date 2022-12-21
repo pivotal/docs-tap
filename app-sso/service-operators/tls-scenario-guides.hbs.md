@@ -42,7 +42,7 @@ domain. Therefore, the _AppSSO_ configuration values look as follows:
 domain_name: "my-tap.example.com"
 ```
 
-The default `domain_template: "{{.Name}}.{{.Namespace}}.{{.Domain}}"` works for almost all scenarios. If a scenario
+The default `domain_template: "\{{.Name}}.\{{.Namespace}}.\{{.Domain}}"` works for almost all scenarios. If a scenario
 requires a bespoke `domain_template` it contains the relevant instructions.
 
 After applying each scenario, wait for your `AuthServer` to become ready and then test it like so:
@@ -612,7 +612,7 @@ The following _AppSSO_ configuration values would accommodate a wild-card certif
 ```yaml
 #! AppSSO values
 domain_name: "my-tap.example.com"
-domain_template: "{{.Name}}-{{.Namespace}}.{{.Domain}}"
+domain_template: "\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"
 #!                         ^ note the dash
 ```
 
