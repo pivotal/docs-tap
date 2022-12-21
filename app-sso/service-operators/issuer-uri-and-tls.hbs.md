@@ -42,13 +42,16 @@ Learn how to configure TLS for your `AuthServer`:
 - [Configure TLS by using a Secret](#configure-tls-by-using-a-secret)
 - [Deactivate TLS](#deactivate-tls-unsafe)
 
+> 👉 There are many use-cases that pertain to TLS use. To find out which scenario applies to you and how to configure it,
+[view the TLS scenario guides](./tls-scenario-guides.hbs.md).
+
 > ℹ️ If your `AuthServer` obtains a certificate from a custom CA, then [help _App
 > Operators_ to trust it](#allow-workloads-to-trust-a-custom-ca-authserver).
 
 ## Configure TLS by using a (Cluster)Issuer
 
 You can obtain a TLS certificate for your `AuthServer` by referencing a `cert-manager.io/v1/Issuer`
-or `cert-manager.io/v1/ClusterIssuer`. The AppSSO will then an `cert-manager.io/v1/Certificate` from that issuer and
+or `cert-manager.io/v1/ClusterIssuer`. The AppSSO will then get a `cert-manager.io/v1/Certificate` from that issuer and
 configure `Ingress` with it.
 
 The composition of an `AuthServer` and a _self-signed_ `Issuer` looks as follows:
