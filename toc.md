@@ -463,7 +463,7 @@ docs.vmware.com is built.
           - [Create a service account with a custom cluster role](scst-store/custom-role.hbs.md)
     - [Tanzu Developer Tools for Visual Studio](vs-extension/about.hbs.md)
       - [Tanzu Developer Tools for Visual Studio overview](vs-extension/about.hbs.md)
-      - [Dependencies](vs-extension/dependencies.hbs.md)
+      - [Install Tanzu Developer Tools for Visual Studio](vs-extension/install.hbs.md)
       - [Use Tanzu Developer Tools for Visual Studio](vs-extension/using-the-extension.hbs.md)
     - [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.hbs.md)
       - [Tanzu Developer Tools for VS Code overview](vscode-extension/about.hbs.md)

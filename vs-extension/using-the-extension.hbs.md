@@ -2,6 +2,8 @@
 
 This topic describes how to use Tanzu Developer Tools for Visual Studio.
 
+> **Note** This extension is currently in the beta stage of development.
+
 ## <a id="apply-workload"></a> Apply a workload
 
 To apply a workload:
@@ -77,13 +79,11 @@ Get-Process "tilt" | ForEach-Object { $_.kill() }
 
 ## <a id="use-remote-debug"></a> Use Remote Debug
 
-To use Remote Debug:
+Before using Remote Debug, ensure that you have the following prerequisites:
 
-1. Ensure that you have the following prerequisites:
-
-   - A running .NET workload in Tanzu Application Platform
-   - A `tanzu` command in `PATH`
-   - A `kubectl` command in `PATH`
+- A running .NET workload in Tanzu Application Platform
+- A `tanzu` command in `PATH`
+- A `kubectl` command in `PATH`
 
 ### <a id="run-workload"></a> Run a workload in Tanzu Application Platform
 
@@ -101,8 +101,8 @@ To run a workload in Tanzu Application Platform:
 1. Clone the project
    [`steeltoe-weatherforecast` accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/weatherforecast-steeltoe),
    which provides a sample .NET app that is ready for immediate deployment to Tanzu Application Platform.
-2. Go to `weatherforecast-steeltoe`.
-3. From the project's root directory, run:
+1. Go to `weatherforecast-steeltoe`.
+1. From the project's root directory, run:
 
    ```console
    tanzu apps workload apply -f config/workload.yaml
