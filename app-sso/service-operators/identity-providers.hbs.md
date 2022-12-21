@@ -15,7 +15,7 @@ End-users will be able to log in with these providers when they go to `{spec.iss
 Learn how to configure identity providers for an `AuthServer`:
 
 - [OpenID Connect providers](#openid-connect-providers)
-- [LDAP (experimental)](#ldap-experimental)
+- [LDAP](#ldap)
 - [SAML (experimental)](#saml-experimental)
 - [Internal, static user](#internal-users)
 - [Restrictions](#restrictions)
@@ -97,7 +97,7 @@ For example, you can run:
 curl -s "ISSUER-URI/.well-known/openid-configuration" | jq ".id_token_signing_alg_values_supported"
 ```
 
-## <a id='ldap-experimental'></a>LDAP (experimental)
+## <a id='ldap'></a>LDAP
 
 **At most one** `ldap` identity provider can be configured.
 
