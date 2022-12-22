@@ -72,6 +72,16 @@ are using this issuer to secure ingress. In upcoming releases all components wil
 - The developer sandbox enables developers to Live Update their code, and
   simultaneously debug the updated code, without having to deactivate Live Update when debugging.
 
+#### <a id="1-4-0-vs-new-features"></a> Tanzu Developer Tools for Visual Studio
+
+- See code updates running on-cluster in seconds
+
+With the use of Live Update facilitated by Tilt, deploy your workload once, save changes to the code and then, seconds later, see those changes reflected in the workload running on the cluster. All Live Update output is filtered to it's own output pane window withing Visual Studio.
+
+- Debug workloads directly on the cluster
+
+Debug your application in a production-like environment by debugging on your Kubernetes cluster that has Tanzu Application Platform. An environment’s similarity to production relies on keeping dependencies updated, among other variables.
+
 #### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
 
 - API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API specification is generated from the API Auto Registration of Tanzu Application Platform. See [API Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
