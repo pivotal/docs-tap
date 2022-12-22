@@ -34,12 +34,13 @@ These steps describe an example configuration that uses GitHub:
            clientSecret: GITHUB-CLIENT-SECRET
    ```
 
-2. Add a GitHub integration in your configuration. For example:
+2. Add a GitHub integration in your `app-config.yaml` configuration. For example:
 
    ```yaml
-   integrations:
-     github:
-       - host: github.com
+   app_config:
+      integrations:
+         github:
+            - host: github.com
    ```
 
    For more information, see the
@@ -60,13 +61,14 @@ To use Kubernetes secrets to set the values for `clientId` and `clientSecret`:
 2. Edit the `app-config.yaml` by using the environment variables, as in the following example:
 
    ```yaml
-   auth:
-        environment: development
-        providers:
-          github:
-            development:
-              clientId: ${clientId}
-              clientSecret: ${clientSecret}
+   app_config:
+      auth:
+         environment: development
+         providers:
+            github:
+               development:
+               clientId: ${clientId}
+               clientSecret: ${clientSecret}
    ```
 
 ## <a id="creating-project"></a> Create a Project
@@ -78,7 +80,7 @@ To create a project:
 
 2. Fill in the accelerator options and click **Next**.
 
-3. Select the **create git repo?** check box.
+3. Select the **Create Git repo?** check box.
 
 4. Fill in the **Owner**, **Repository**, and **Default Branch** text boxes.
 
