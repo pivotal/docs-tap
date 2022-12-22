@@ -13,14 +13,14 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 ### <a id="1-4-0-tap-net-new-features"></a> Tanzu Application Platform net-new features
 
-- [Shared Ingress Issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress 
-  communication by default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md), 
-  and [Tanzu Application Platform GUI](tap-gui/about.hbs.md) are using this issuer to secure 
-  ingress. Over the course of future TAP releases, all TAP components will be incrementally updated 
+- [Shared Ingress Issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress
+  communication by default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md),
+  and [Tanzu Application Platform GUI](tap-gui/about.hbs.md) use this issuer to secure
+  ingress. In future releases, all Tanzu Application Platform components will be incrementally updated
   to support the shared ingress issuer.
-- [Namespace Provisioner](namespace-provisioner/about.hbs.md) provides an easy, secure, automated 
-  way for Platform Operators to provision namespaces with the resources and proper namespace-level 
-  privileges required for their workloads to function as intended. 
+- [Namespace Provisioner](namespace-provisioner/about.hbs.md) provides a secure, automated
+  way for Platform Operators to provision namespaces with the resources and proper namespace-level
+  privileges required for their workloads to function as intended.
 
 </br>
 
@@ -32,10 +32,10 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-appsso-nf"></a> Application Single Sign-On (AppSSO)
 
-- Added ability to configure custom Redis storage for an `AuthServer` by 
-  using a ProvisionedService-style API. For more information, see 
+- Added ability to configure custom Redis storage for an `AuthServer` by
+  using a ProvisionedService-style API. For more information, see
   [Storage](app-sso/service-operators/storage.hbs.md).
-- Added package field `default_authserver_clusterissuer` that inherits 
+- Added package field `default_authserver_clusterissuer` that inherits
   the `shared.ingress_issuer` value from Tanzu Application Platform if not set.
   For more information, see [IssuerURI and TLS](app-sso/service-operators/issuer-uri-and-tls.hbs.md).
 - Added `AuthServer.spec.tls.deactivated` to deprecate `AuthServer.spec.tls.disabled`.
@@ -59,7 +59,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id='scc-plug-in-new-features'></a>Supply Chain Choreographer Plug-in
 
-- Events are now emitted when resources are applied and when their output or health status changes. 
+- Events are now emitted when resources are applied and when their output or health status changes.
   See [Events reference](scc/events.hbs.md).
 - Source Tester stage now includes a link to the Jenkins job when Jenkins is configured for use
   in the supply chain.
@@ -76,8 +76,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
 
-- Users no longer need to create a package overlay to enable Grype in offline and air-gapped 
-  environments. Refer to our updated [instructions](scst-scan/offline-airgap.hbs.md).
+- Users no longer need to create a package overlay to enable Grype in offline and air-gapped
+  environments. Refer to the updated [instructions](scst-scan/offline-airgap.hbs.md).
 </br></br>
 
 #### <a id="1-4-0-stk-new-features"></a> Services Toolkit
@@ -96,8 +96,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
 
-- API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API 
-  specification is generated from the API Auto Registration of Tanzu Application Platform. See [API 
+- API Validation and Scoring focuses on scanning and validating an OpenAPI specification. The API
+  specification is generated from the API Auto Registration of Tanzu Application Platform. See [API
   Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
 </br></br>
 
@@ -115,18 +115,18 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plugin for Tanzu CLI
 
-- added `--update-strategy` flag to allow users to change `tanzu apps workload apply` behavior when 
-  contents from file is applied
-- added ability for users to pass URL for `--file` flag.
-- added show fully qualified resource name in the resources column of Supply chain and Delivery 
+- Added `--update-strategy` flag to allow users to change `tanzu apps workload apply` behavior when
+  contents from file is applied.
+- Added ability for users to pass URL for `--file` flag.
+- Added show fully qualified resource name in the resources column of Supply chain and Delivery
   sections of the `tanzu apps workload get` command.
-- added new short hand flag alias `-a` for `--app`, `-e` for `--env`, `-i` for `--image`, 
-  `-l` for `label`, `-p` for `--param` and `-t` for `--type`.
-- added emojis to `tanzu apps workload create/apply/delete` commands.
-- added do not print Emojis when `--no-color` flag  is set.
-- added namespace to `tanzu apps workload get` command's overview section.
-- added progress bar to provide feedback to users when uploading source code to registry.
-- added remove color from tail command output when `--no-color` flag is passed.
+- Added new shorthand flag aliases: `-a` for `--app`, `-e` for `--env`, `-i` for `--image`,
+  `-l` for `label`, `-p` for `--param`, and `-t` for `--type`.
+- Added emojis to `tanzu apps workload create/apply/delete` commands.
+- Added do not print emojis when `--no-color` flag  is set.
+- Added namespace to `tanzu apps workload get` command's overview section.
+- Added progress bar to provide feedback to users when uploading source code to registry.
+- Added remove color from tail command output when `--no-color` flag is passed.
 
 </br>
 
@@ -140,11 +140,11 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-appsso-bc"></a> Application Single Sign-On (AppSSO)
 
-- Removed `AuthServer.spec.identityProvider.ldap.group.search{Filter,Base,Depth,SubTree}` and 
-  introduced `ldap.group.search: {}`
-  - If `ldap.group` is defined and `ldap.group.search` is not defined, the LDAP is considered as 
+- Removed `AuthServer.spec.identityProvider.ldap.group.search{Filter,Base,Depth,SubTree}` and
+  introduced `ldap.group.search: {}`.
+  - If `ldap.group` is defined and `ldap.group.search` is not defined, the LDAP is considered
       an ActiveDirectory style LDAP and groups are loaded from the user's `memberOf` attribute.
-  - If `ldap.group` and `ldap.group.search` are both defined, the LDAP is considered as a Classic 
+  - If `ldap.group` and `ldap.group.search` are both defined, the LDAP is considered a Classic
       LDAP and group search is done by searching in the `ldap.group.search.base`.
   - There used to be a mixed mode, when both searches were attempted every time.
 - Removed `AuthServer.spec.identityProviders.ldap.server` field.
@@ -226,9 +226,9 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-4-0-api-auto-registration-ri"></a> API Auto Registration
 
-- API Auto Registration periodically checks the original API specification from the defined 
-  location to find changes, and registers any changes into the `API Descriptor`. This triggers 
-  reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or 
+- API Auto Registration periodically checks the original API specification from the defined
+  location to find changes and registers any changes into the `API Descriptor`. This triggers
+  reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or
   frequency is configurable through the new value `sync_period`. The default value is 5 minutes.
 </br></br>
 
@@ -237,25 +237,25 @@ The following issues, listed by area and component, are resolved in this release
 - Fixed infinite redirect loops for an `AuthServer` configured with a single OIDC or SAML identity provider.
 - Authorization Code request rejected audit event from anonymous users logging proper IP address.
 - `AuthServer` no longer attempts to configure Redis event listeners.
-- OpenShift: custom `SecurityContextConstraint` resource is created for Kubernetes platforms 
-  versions 1.23.x and below.
+- OpenShift: custom `SecurityContextConstraint` resource is created for Kubernetes platforms
+  versions 1.23.x and lower.
 - LDAP error log now contains proper error message.
 </br></br>
 
 #### <a id="1-4-0-apps-cli-plugin-ri"></a> Tanzu CLI Apps Plug-in
 
-- Fixed `tanzu apps workload tail` command output which was displaying extra init container log lines.
+- Fixed `tanzu apps workload tail` command output, which was displaying extra init container log lines.
 - Fixed `tanzu apps workload tail` command not including all logs.
 </br></br>
 
-#### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
+#### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI plug-ins
 
-- **Immediate entity provider backend Plug-in**
+- **Immediate entity provider backend plug-in**
 
-  - The entity provider, used mainly by API Auto Registration, now allows a body size of `5Mb` to 
+  - The entity provider, used mainly by API Auto Registration, now allows a body size of `5Mb` to
     accept larger API specifications.
-  - Respecting the restriction of Backstage for [Entity Provider mutations](https://backstage.io/docs/features/software-catalog/external-integrations#provider-mutations), 
-    whenever an existing entity is intended for a mutation through this plugin, and its origin is 
+  - Considering the restriction of Backstage for [Entity Provider mutations](https://backstage.io/docs/features/software-catalog/external-integrations#provider-mutations),
+    whenever an existing entity is intended for a mutation through this plug-in, and its origin is
     a different entity provider, a `409 Conflict` error is returned.
 </br></br>
 
@@ -321,10 +321,10 @@ as images.
 
 ##### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer Plug-In
 
-- The `Generation` field in the **Overview** section is not updated when a scan policy is amended, 
-  however clicking on the `Scan Policy` link will show the most current scan policy details applied 
+- The `Generation` field in the **Overview** section is not updated when a scan policy is amended.
+  However, clicking the `Scan Policy` link shows the most current scan policy details applied
   to the stage.
-- Customizing the `Source Tester` stage in an OOTB supply chain will not show details in the 
+- Customizing the `Source Tester` stage in an OOTB supply chain does not show details in the
   **Stage Details** section.
 
 </br>
@@ -340,7 +340,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 #### <a id="1-4-0-app-sso-deprecations"></a> Application Single Sign-On (AppSSO)
 
-- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the next release. For more 
+- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the next release. For more
   information about how to migrate
   to `AuthServer.spec.tls.deactivated`, see [Migration guides](app-sso/upgrades/index.md#migration-guides).
 </br></br>
@@ -354,19 +354,19 @@ in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 #### <a id="1-4-0-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
 
 - Removed deprecated ScanTemplates:
-  - Deprecated Grype ScanTemplates shipped with versions prior to Tanzu Application Platform 1.2.0 
-    have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates 
+  - Deprecated Grype ScanTemplates shipped with versions prior to Tanzu Application Platform 1.2.0
+    have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates
     v1.2+ moving forward.
-  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and 
+  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and
     marked for removal in Tanzu Application Platform 1.7.0.
-    - The deprecation will impact the following components: Scan Controller, Grype Scanner and Snyk Scanner.
-    - See [troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images) 
+    - The deprecation will impact the following components: Scan Controller, Grype Scanner, and Snyk Scanner.
+    - See [troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images)
       documentation for the migration path.
 </br></br>
 
 #### <a id="1-3-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
 
-- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration 
+- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration
   information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
 </br></br>
 
@@ -385,10 +385,10 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 #### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
-- The default value for the `--update-strategy` flag will change from `merge` to `replace` in 
+- The default value for the `--update-strategy` flag will change from `merge` to `replace` in
   Tanzu Application Platform v1.7.0.
-- The `tanzu apps workload update` command is deprecated marked for removal in Tanzu Application 
-  Platform 1.5.0. Please use `tanzu apps workload apply` instead.
+- The `tanzu apps workload update` command is deprecated and marked for removal in Tanzu Application
+  Platform 1.5.0. Use `tanzu apps workload apply` instead.
 </br></br>
 
 #### <a id="1-4-services-toolkit"></a> Services Toolkit
