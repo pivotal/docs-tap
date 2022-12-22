@@ -11,7 +11,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 **Release Date**: January 10, 2023
 
-### <a id="1-4-0-tap-net-new-features"></a> Tanzu Application Platform net-new features
+### <a id="1-4-0-tap-new-features"></a> Tanzu Application Platform new features
 
 - [Shared Ingress Issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress
   communication by default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md),
