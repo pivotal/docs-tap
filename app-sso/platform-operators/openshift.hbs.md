@@ -1,4 +1,4 @@
-# Application Single Sign-On for OpenShift cluster
+# Application Single Sign-On for OpenShift clusters
 
 <!-- The below partial is in the docs-tap/partials directory -->
 
