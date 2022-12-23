@@ -15,3 +15,25 @@ Tanzu Developer Tools for Visual Studio:
   Download Tanzu Application Platform from [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
   For more information about the profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
 - [Visual Studio](https://visualstudio.microsoft.com/vs/)
+
+## <a id="install"></a> Install
+
+To install the extension:
+
+1. Sign in to VMware Tanzu Network and [download Tanzu Developer Tools for Visual Studio](https://network.pivotal.io/products/tanzu-application-platform/).
+2. Download the artifact titled `Tanzu Developer Tools for Visual Studio`
+3. Click on the installed `.vsix` file and go through the prompts.
+4. Open Visual Studio and the extension should be installed and enabled.
+
+## <a id="next-steps"></a> Next steps
+
+Proceed to [Using Tanzu Developer Tools for Visual Studio](/docs-tap/vs-extension/using-the-extension.hbs.md) for steps on how to utilize the extension.
+
+
+## <a id="uninstall"></a> Uninstall
+
+To uninstall VMware Tanzu Developer Tools for Visual Studio:
+
+1. Go to the `Extensions` tab and click on `Manage Extensions`
+1. Clicki on the `Installed` section and then proceed to click on the `Uninstall` button for this extension.
+

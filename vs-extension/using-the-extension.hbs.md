@@ -148,6 +148,10 @@ Using the red square stop button in Visual Studio's top toolbar can cause the Ta
 workload to fail or become unresponsive indefinitely.
 A fix is planned for a future release. In the meantime, open the **Debug** menu and click **Detach All**.
 
+#### Known Issues:
+- In versions `0.1.0` and earlier, "Tanzu: Delete Workload" may throw an error saying **`Invalid transition DeleteWorkload from state WorkloadNotRunningState`**, even when a workload is running.
+  - **Workaround**: re-applying your workload (either via "Tanzu: Workload Apply" or "Tanzu: Start Live Update") should realign the extension's internal state with the proper workload state. The delete operation will be enabled again once the extension correctly recognizes the workload is running.
+
 ## <a id="troubleshoot"></a> Troubleshooting
 
 This extension records logs in a `.log` file whose name starts with `tanzu-dev-tools` and ends with
