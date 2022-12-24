@@ -1,11 +1,7 @@
 # Deploy an application with Application Single Sign-On
 
----
-
-👉 This article assumes that you have completed the previous step in this Getting Started
+> **Note** 👉 This article assumes that you have completed the previous step in this Getting Started
 guide. If not, please refer to instructions in [Provision a client registration](client-registration.md).
-
----
 
 In this tutorial, you are going to deploy a minimal Kubernetes application that uses the credentials created through 
 the [ClientRegistration](client-registration.md) and be protected through SSO.
@@ -18,13 +14,9 @@ For more information about how a Client application uses an AuthServer to authen
 
 You are going to deploy a two-container pod, as a test application.
 
----
-
-✋ Note that we used `HTTPProxy.spec.virtualhost.fqdn` = `test-app.example.com`, but you should customize the URL to
+> **Important** ✋ Note that we used <code>HTTPProxy.spec.virtualhost.fqdn` = `test-app.example.com`</code>, but you should customize the URL to
 match the domain of your TAP cluster. This URL should match what was set up in `ClientRegistration.spec.redirectURIs[0]`
 in the [Previous section](client-registration.md)
-
----
 
 ```yaml
 ---

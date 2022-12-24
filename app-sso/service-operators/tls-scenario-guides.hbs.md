@@ -1,4 +1,4 @@
-# Authserver TLS Scenario Guides
+# TLS scenario guides
 
 `AuthServer` is a piece of security infrastructure. It is imperative to configure TLS for it, so that its _issuer
 URI_'s scheme is `https://`.
@@ -6,32 +6,28 @@ URI_'s scheme is `https://`.
 `AuthServer.spec.tls` accommodates different scenarios for how to obtain a TLS certificate. Pick the scenario that
 matches your case.
 
-<p class="note">
-<strong>Note:</strong>
-The recommended path is to install AppSSO with a [default issuer](#i-have-a-default-issuer-_recommended_). In that case,
+> **Note** The recommended path is to install AppSSO with a [default issuer](#default-issuer). In that case,
 you can omit `AuthServer.spec.tls` entirely and a TLS certificate is obtained automatically.
-</p>
 
 <!-- TOC -->
 
-* [`AuthServer` & TLS](#authserver--tls)
-    * [Prerequisites](#prerequisites)
-    * [I have a default issuer _(recommended)_](#i-have-a-default-issuer-_recommended_)
-    * [I have a `ClusterIssuer`](#i-have-a-clusterissuer)
-    * [I have an `Issuer`](#i-have-an-issuer)
-    * [I have an existing `Certificate`](#i-have-an-existing-certificate)
-        * [… in the same `Namespace`](#-in-the-same-namespace-as-i-want-to-install-the-authserver)
-        * [… in another `Namespace`](#-in-another-namespace)
-    * [I have an existing TLS certificate](#i-have-an-existing-tls-certificate)
-        * [… in the same `Namespace`](#-in-the-same-namespace-as-i-want-to-install-the-authserver)
-        * [… in another `Namespace`](#-in-another-namespace)
-    * [I have an existing wild-card TLS certificate / `Certificate`](#i-have-an-existing-wild-card-tls-certificate--certificate)
-        * [… in the same `Namespace`](#-in-the-same-namespace-as-i-want-to-install-the-authserver)
-        * [… in another `Namespace`](#-in-another-namespace)
+* [Prerequisites](#prereqs)
+* [I have a default issuer _(recommended)_](#default-issuer)
+* [I have a `ClusterIssuer`](#cluster-issuer)
+* [I have an `Issuer`](#issuer)
+* [I have an existing `Certificate`](#existing-certificate)
+    * [… in the same `Namespace`](#existing-certificate-same-ns)
+    * [… in another `Namespace`](#existing-certificate-diff-ns)
+* [I have an existing TLS certificate](#existing-tls-certificate)
+    * [… in the same `Namespace`](#existing-tls-certificate-same-ns)
+    * [… in another `Namespace`](#existing-tls-certificate-diff-ns)
+* [I have an existing wild-card TLS certificate / `Certificate`](#existing-wildcard-tls-certificate)
+    * [… in the same `Namespace`](#existing-wildcard-tls-certificate-same-ns)
+    * [… in another `Namespace`](#existing-wildcard-tls-certificate-diff-ns)
 
 <!-- TOC -->
 
-## Prerequisites
+## <a id='prereqs'></a>Prerequisites
 
 Each of the scenarios assumes that the _AppSSO_ package is installed and configured. In particular, its `domain_name`
 must match the ingress domain of your cluster. The presented YAML resources assume `my-tap.example.com` as the ingress
@@ -58,10 +54,10 @@ Alternatively, visit the `AuthServer` with your browser. You can obtain its issu
 kubectl get --namespace login authserver sso --output=jsonpath='{.status.issuerURI}'
 ```
 
-> ⚠️ Before applying each scenario make sure that your _AppSSO_ package installation is configured correctly, and
-> that all certificates and DNS names comply with your setup.
+> **Caution** Before applying each scenario make sure that your _AppSSO_ package installation is configured correctly, and
+that all certificates and DNS names comply with your setup.
 
-## I have a default issuer _(recommended)_
+## <a id='default-issuer'></a> I have a default issuer _(recommended)_
 
 > Using [a default issuer](../platform-operators/configuration.md#default_authserver_clusterissuer) is the recommended
 approach. It appeals best to the split the responsibilities of _platform operators_ and _service operators_.
@@ -113,7 +109,7 @@ spec:
       pub.pem: $(publicKey)
 ```
 
-## I have a `ClusterIssuer`
+## <a id='cluster-issuer'></a> I have a `ClusterIssuer`
 
 A `ClusterIssuer` is a cluster-scoped API provided by [cert-manager](https://cert-manager.io) from which certificates
 can be obtained programmatically.
@@ -122,9 +118,10 @@ For purposes of completeness and simplicity, this scenario puts all resources in
 uses [Let's Encrypt](https://letsencrypt.org/)'s production API. It is likely, however, that the `ClusterIssuer` is
 provided to you by your _platform operators_.
 
-> Learn more about [Let's Encrypt with Cert Manager](https://cert-manager.io/docs/configuration/acme/)
-> ⚠️ Caveat: [Let's Encrypt](https://letsencrypt.org/)'s production
-> API [rate limits](https://letsencrypt.org/docs/rate-limits/) apply.
+> **Note** Learn more about [Let's Encrypt with Cert Manager](https://cert-manager.io/docs/configuration/acme/)
+
+> **Caution** Caveat: [Let's Encrypt](https://letsencrypt.org/)'s production API
+[rate limits](https://letsencrypt.org/docs/rate-limits/) apply.
 
 ```yaml
 ---
@@ -188,7 +185,7 @@ spec:
       pub.pem: $(publicKey)
 ```
 
-## I have an `Issuer`
+## <a id='issuer'></a> I have an `Issuer`
 
 This scenario is almost exactly the same as with a `ClusterIssuer`, but `Issuer` is Namespace-scoped and needs to be
 collocated with the `AuthServer`.
@@ -255,7 +252,7 @@ spec:
       pub.pem: $(publicKey)
 ```
 
-## I have an existing `Certificate`
+## <a id='existing-certificate'></a> I have an existing `Certificate`
 
 A `Certificate` is a Namespace-scoped API provided by [cert-manager](https://cert-manager.io) which represents a TLS
 certificate obtained from a `(Cluster)Issuer`. To create `Certificate`, you need to know the name and kind of your
@@ -263,12 +260,12 @@ issuer.
 
 These scenarios use [Let's Encrypt](https://letsencrypt.org/)'s production API and assume that a
 `ClusterIssuer` by the name `letsencrypt-production` exists.
-See [the `ClusterIssuer` scenario](#i-have-a-clusterissuer-_recommended_) for how to set the issuer up.
+See [the `ClusterIssuer` scenario](#cluster-issuer) for how to set the issuer up.
 
 When using `Certificate`, its `.spec.dnsNames` must contain the FQDN of the templated issuer URI. Make sure that your
 AppSSO package installation's `domain_name` and `domain_template` are compatible with your DNS name.
 
-### … in the same `Namespace` as I want to install the AuthServer
+### <a id='existing-certificate-same-ns'></a> … in the same `Namespace` as I want to install the AuthServer
 
 ```yaml
 ---
@@ -330,7 +327,7 @@ spec:
       pub.pem: $(publicKey)
 ```
 
-### … in another `Namespace`
+### <a id='existing-certificate-diff-ns'></a> … in another `Namespace`
 
 Thanks to [secretgen-controller](https://github.com/vmware-tanzu/carvel-secretgen-controller) we can export and
 import `Secrets` across namespaces. When our `Certificate` is located in another namespace - because maybe it's
@@ -422,20 +419,20 @@ spec:
       pub.pem: $(publicKey)
 ```
 
-## I have an existing TLS certificate
+## <a id='existing-tls-certificate'></a> I have an existing TLS certificate
 
 If you have an existing TLS certificate and private key, you can apply it directly.
 For example, if your TLS certificate was created outside the cluster.
 
-> ℹ️ If you don't have a TLS certificate, but you would like to try this, there is an almost endless array of
-> possibilities for obtaining TLS certificates. The easiest way is to use a tool
-> like [mkcert](https://github.com/FiloSottile/mkcert), [step](https://smallstep.com/docs/step-cli)
-> or [openssl](https://www.openssl.org/).
+> **Note** If you don't have a TLS certificate, but you would like to try this, there is an almost endless array of
+possibilities for obtaining TLS certificates. The easiest way is to use a tool
+like [mkcert](https://github.com/FiloSottile/mkcert), [step](https://smallstep.com/docs/step-cli)
+or [openssl](https://www.openssl.org/).
 
-### … in the same `Namespace` as I want to install the AuthServer
+### <a id='existing-tls-certificate-same-ns'></a> … in the same `Namespace` as I want to install the AuthServer
 
-> _Note:_ The TLS certificate `tls.crt` and its corresponding private key `tls.key` _must_ be stored in a secret with
-> these keys.
+> **Note** The TLS certificate `tls.crt` and its corresponding private key `tls.key` _must_ be stored in a secret with
+these keys.
 
 ```yaml
 ---
@@ -503,10 +500,10 @@ spec:
 
 ```
 
-### … in another `Namespace`
+### <a id='existing-tls-certificate-diff-ns'></a> … in another `Namespace`
 
-> _Note:_ The TLS certificate `tls.crt` and its corresponding private key `tls.key` _must_ be stored in a secret with
-> these keys.
+> **Note** The TLS certificate `tls.crt` and its corresponding private key `tls.key` _must_ be stored in a secret with
+these keys.
 
 Pay attention to the use of `SecretExport` and `SecretImport` to facilitate the transfer across namespaces.
 
@@ -599,7 +596,7 @@ spec:
       pub.pem: $(publicKey)
 ```
 
-## I have an existing wild-card TLS certificate / `Certificate`
+## <a id='existing-wildcard-tls-certificate'></a> I have an existing wild-card TLS certificate / `Certificate`
 
 To use wild-card certificates for DNS names like `*.my-tap.example.com`, _AppSSO_'s `domain_template` needs to be
 adjusted so that templated issuer URIs for `AuthServer` match the wild-card. For example:
@@ -618,16 +615,14 @@ domain_template: "\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"
 
 The following scenarios assume use of TLS Secrets, but the same concept carries over to `Certificate`.
 
-> Caveat: When using a `(Cluster)Issuer` for [Let's Encrypt](https://letsencrypt.org/), you cannot request wild-card
-> certificates when it uses
->
+> **Important** Caveat: When using a `(Cluster)Issuer` for [Let's Encrypt](https://letsencrypt.org/), you cannot request wild-card
+certificates when it uses
 the [`http01` challenge solver](https://cert-manager.io/docs/reference/api-docs/#acme.cert-manager.io/v1.ACMEChallengeSolver)
-> .
 
-### … in the same `Namespace` as I want to install the AuthServer
+### <a id='existing-wildcard-tls-certificate-same-ns'></a> … in the same `Namespace` as I want to install the AuthServer
 
 This scenario is exactly the same as
-when [you have an existing TLS certificate in the same namespace](#i-have-an-existing-tls-certificate),
+when [you have an existing TLS certificate in the same namespace](#existing-tls-certificate),
 but the certificate is a wild-card.
 
 ```yaml
@@ -696,10 +691,10 @@ spec:
 
 ```
 
-### … in another `Namespace`
+### <a id='existing-wildcard-tls-certificate-diff-ns'></a> … in another `Namespace`
 
 This scenario is exactly the same as
-when [you have an existing TLS certificate in the another namespace](#i-have-an-existing-tls-certificate),
+when [you have an existing TLS certificate in the another namespace](#existing-tls-certificate),
 but the certificate is a wild-card.
 
 ```yaml

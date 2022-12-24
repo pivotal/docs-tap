@@ -45,12 +45,8 @@ applications may verify their validity using the AuthServer's public keys.
 
 ## Getting started
 
----
-
-👉 This section assumes AppSSO is installed on your TAP cluster. To install AppSSO, refer to the instructions
-in [Install AppSSO](../platform-operators/installation.md).
-
----
+> **Important** **This section assumes AppSSO is installed on your TAP cluster. To install AppSSO, refer to the instructions
+in [Install AppSSO](../platform-operators/installation.md).**
 
 In this section, you will:
 
@@ -58,15 +54,9 @@ In this section, you will:
 1. [Provision a ClientRegistration](client-registration.md), and validate it is working
 1. [Deploy an application](application.md) that uses the provisioned ClientRegistration to enable SSO
 
----
 
-✅ Once you have completed the above steps, you can continue
-by [securing a Workload](../app-operators/tutorials/securing-first-workload.md).
-
----
-
----
+✅ Once you have completed the above steps, you can continue by 
+[securing a Workload](../app-operators/tutorials/securing-first-workload.md).
 
 ⏩ Move on to [Provision your first AuthServer](provision-auth-server.md)
 
----

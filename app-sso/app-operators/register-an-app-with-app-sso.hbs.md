@@ -21,7 +21,7 @@ kubectl describe clientregistrations.sso.apps.tanzu.vmware.com <client-name>
 
 It is also possible, but not recommended, to register clients statically while deploying AppSSO.
 
-> *Note:* It is recommended to register clients dynamically after AppSSO has been deployed. When registering a client
+> **Note** It is recommended to register clients dynamically after AppSSO has been deployed. When registering a client
 > statically, properties cannot be changed without triggering a rollout of AppSSO itself.
 
 [Grant Types](grant-types.md)

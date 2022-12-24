@@ -8,18 +8,12 @@ security policies.
 AppSSO currently only supports Redis `v6.0` or above as a storage solution. Version 6.0 introduced TLS support to ensure
 encrypted client-server communication -- AppSSO enforces TLS by default.
 
-<p class="note">
-<strong>Note:</strong>
-[Storage provided by default](#storage-provided-by-default) refers to an `AuthServer` resource in which the field
+> **Note** [Storage provided by default](#storage-provided-by-default) refers to an `AuthServer` resource in which the field
 `.spec.storage` is not set.
-</p>
 
-<p class="note">
-<strong>Note:</strong>
-Although data in motion is encrypted by using TLS, data at rest is not encrypted by default through `AuthServer`. Each
+> **Note** Although data in motion is encrypted by using TLS, data at rest is not encrypted by default through `AuthServer`. Each
 storage provider is responsible for encrypting their own data. See [data types](#data-types) for more
 information about storage.
-</p>
 
 <p>
 <strong>Best Practice for Securing Data at Rest:</strong>
@@ -50,7 +44,6 @@ The `AuthServer` resource enters an error state if a non-encrypted connection is
 _mTLS_ is not supported, however Vanilla Redis uses _mTLS_ by default. It can be turned off by setting `tls-auth-clients no`.
 For more information, see [Redis documentation](https://redis.io/docs/management/security/encryption/#client-certificate-authentication).
 
-
 The following steps introduce the path to configuring Redis with AppSSO:
 
 1. [Configuring Redis Server CA certificate](#configuring-redis-server-ca-certificate)
@@ -71,10 +64,7 @@ in [Service Bindings 1.0.0 specification](https://github.com/servicebinding/spec
 
 Here is an example of a properly formatted `Secret` resource:
 
-<p class="note">
-<strong>Note:</strong>
-The Secret **must** be created in the same namespace as your `AuthServer`
-</p>
+> **Important** The Secret **must** be created in the same namespace as your `AuthServer`
 
 ```yaml
 apiVersion: v1
@@ -142,11 +132,8 @@ If no storage is defined, an `AuthServer` provides its own short-lived ephemeral
 Redis. The provided Redis is configured to never flush any data to any volume that may be attached to the Pods operating
 the authorization server.
 
-<p class="note caution">
-<strong>Caution:</strong>
-The default storage configuration is most useful in prototyping or testing environments, and **should not be relied on
+> **Caution** The default storage configuration is most useful in prototyping or testing environments, and **should not be relied on
 in production environments.**
-</p>
 
 To view details for Redis of an `AuthServer`:
 
@@ -209,7 +196,4 @@ stringData:
   cluster.nodes: 100.90.1.10:6379,100.90.1.11:6379,100.90.1.12:6379
 ```
 
-<p class="note">
-<strong>Note:</strong>
-`cluster.nodes` must be a comma-separated list of `<ip>:<port>`.
-</p>
+> **Note** `cluster.nodes` must be a comma-separated list of `<ip>:<port>`.

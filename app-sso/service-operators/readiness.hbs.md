@@ -24,8 +24,7 @@ However, you are encouraged to verify your `AuthServer` with the following check
 ## Client registration check
 
 It is helpful to verify an `AuthServer` by executing a test run with a test `ClientRegistration`. This check also
-ensures that
-app developers will also be able to register clients with the `AuthServer` successfully.
+ensures that app developers will also be able to register clients with the `AuthServer` successfully.
 
 Follow the steps below to ensure that your installation can:
 
@@ -58,7 +57,7 @@ spec:
   clientAuthenticationMethod: basic
 ```
 
-> Check out the [ClientRegistration API reference](../crds/clientregistration.md) for more field definitions.
+> **Note** Check out the [ClientRegistration API reference](../crds/clientregistration.md) for more field definitions.
 
 This defines a test `ClientRegistration` with the `client_credentials` OAuth grant type.
 

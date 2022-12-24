@@ -83,7 +83,7 @@ The `AuthServer` serves its public keys at `{spec.issuerURI}/oauth2/jwks`. For e
 }
 ```
 
-⚠️ Changes to `spec.tokenSignature.signAngVerifyKeyRef` have immediate effect.
+> **Caution** Changes to `spec.tokenSignature.signAngVerifyKeyRef` have immediate effect.
 
 As a _service operator_, you have control over which keys are used for certain purposes. Navigate to the next few
 sections for more information.
@@ -97,7 +97,7 @@ An RSA key can be created multiple ways. Below are two recommended approaches --
 
 ### Using secretgen-controller
 
-> NOTE: This section assumes you have TAP running in your cluster, with `secretgen-controller` installed.
+> **Note** This section assumes you have TAP running in your cluster, with `secretgen-controller` installed.
 
 An [`RSAKey` CR](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/rsa_key.md) allows for
 expedited creation of a Secret resource containing PEM-encoded public and private keys required by an `AuthServer`.
@@ -161,8 +161,8 @@ expedited creation of a Secret resource containing PEM-encoded public and privat
    curl -s authserver-sample.default/oauth2/jwks | jq
    ```
 
-> If you encounter any issues with this approach, be sure to check
-> out [Carvel Secretgen Controller documentation](https://github.com/vmware-tanzu/carvel-secretgen-controller)
+> **Note** If you encounter any issues with this approach, be sure to check
+out [Carvel Secretgen Controller documentation](https://github.com/vmware-tanzu/carvel-secretgen-controller)
 
 ### Using OpenSSL
 
