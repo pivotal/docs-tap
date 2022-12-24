@@ -11,7 +11,7 @@ create GitHub repositories.
 
 ## <a id="supported-providers"></a> Supported Providers
 
-In Tanzu Application Platform v1.3 the supported Git providers are GitHub and GitLab.
+In Tanzu Application Platform v1.4 the supported Git providers are GitHub and GitLab.
 
 ## <a id="configuration"></a> Configure
 
@@ -31,8 +31,8 @@ The following steps describe an example configuration that uses GitHub:
      providers:
        github:
          development:
-           clientId: GITHUB-CLIENT-ID
-           clientSecret: GITHUB-CLIENT-SECRET
+           clientId: GITHUB_CLIENT_ID
+           clientSecret: GITHUB_CLIENT_SECRET
    ```
 
 2. Add a GitHub integration in your `app-config.yaml` configuration. For example:

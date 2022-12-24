@@ -4,7 +4,7 @@ The application Accelerator Visual Studio Code extension lets you explore and ge
 from the defined accelerators in Tanzu Application Platform using VS Code.
 
 ## <a id="dependencies"></a> Dependencies
-
+<!-- TODO Is this still needed for this section?? -->
 To use the VS Code extension, you must interact with the `acc-server`. For more
 information, see [How to expose this server follow the instructions](../cli-plugins/accelerator/overview.md#server-api-connections).
 
@@ -20,7 +20,7 @@ Use the following steps to install the Application Accelerator Visual Studio ext
 
     1. From the Command Palette (cmd + shift + P), run "Extensions: Install from VSIX...".
 
-    2. Select the extension file **tanzu-app-accelerator-0.1.2.vsix**.
+    2. Select the extension file **tanzu-app-accelerator-<VERSION>.vsix**.
 
         ![The Command palette is open and Extensions: Install from VSIX appears in the drop-down menu.](../images/vscode-install1.png).
 
@@ -32,22 +32,24 @@ Use the following steps to install the Application Accelerator Visual Studio ext
 
         ![The VS Code interface extensions page overflow menu is open with Install from VSIX... highlighted.](../images/vscode-install3.png).
 
-## <a id="configure-the-extention"></a> Configure the extension
+## <a id="configure-the-extension"></a> Configure the extension
 
 Before using the extension, you need follow the next steps:
 
 1. Go to VS Code settings - click **Code > Preferences > Settings > Extensions > Tanzu App Accelerator**.
 
-2. Look for the setting `Acc Server Url`.
+2. Look for the setting `Tap Gui Url`.
 
-3. Add the `acc-server` URL.
+3. Add the `Tanzu Application Platform GUI` URL.
 
    ![The Server Configure Setting page is open with the acc server URL highlighted](../images/acc-server-config.png)
 
+    An example URL could look something like the following: `https://tap-gui.myclusterdomain.myorg.com`
+
 ## <a id="using-the-extension"></a> Using the extension
 
-After adding the `acc-server` URL you can explore the defined accelerators
-accessing the new added icon:
+After adding the `Tap Gui Url` you can explore the defined accelerators
+accessing the Application Accelerater extension icon:
 
 ![The explorer panel is open, the TIMELINE drop-down is selected, and the Demo Types icon is highlighted.](../images/app-accelerators-vscode-icon.png)
 
