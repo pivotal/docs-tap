@@ -36,27 +36,27 @@ managed_resources:
 
 Where:
 
-- `GIT-REPO-URL` is the URL, it must include `https://` or `git@` at the beginning, of a Git
-  repository that contains manifest YAML files for the accelerators that you want to have managed.
+- `GIT-REPO-URL` is the URL of a Git
+  repository that contains manifest YAML files for the accelerators that you want to have managed. The URL must start with `https://` or `git@`.
   See the following for manifest examples. You can specify a `sub_path` if necessary and also a
   `secret_ref` if the repository requires authentication. If not needed, then leave these additional
   properties out. See the following for the configuration of [Git credentials secret](#creating-git-credentials).
 
 ### <a id="functional-considerations"></a> Functional and Organizational Considerations
 
-Any accelerator manifest that is defined under the `GIT-REPO-URL`, and optional `sub_path`, is
-picked up by the kapp-controller App. If there are multiple manifests at the defined `GIT-REPO-URL`,
+Any accelerator manifest that is defined under the `GIT-REPO-URL` and optional `sub_path` is
+picked up by the kapp-controller app. If there are multiple manifests at the defined `GIT-REPO-URL`,
 they are all watched for changes and displayed to the user as a merged catalog.
 
-As an example of this, say you have two manifests containing multiple accelerator or fragment
-definitions, `manifest-1.yaml` and `manifest-2.yaml`, are on the same path in the organizational
-considerations. The resulting catalog is (`manifest-1.yaml` + `manifest-2.yaml`)
+For example: Say you have two manifests containing multiple accelerator or fragment
+definitions, `manifest-1.yaml` and `manifest-2.yaml`, on the same path in the organizational
+considerations. The resulting catalog is (`manifest-1.yaml` + `manifest-2.yaml`).
 
 ## <a id="examples-creating-acc"></a> Examples for creating accelerators
 
 ### <a id="examples-minimal"></a> A minimal example for creating an accelerator
 
-A minimal example might look as the following manifest:
+A minimal example might look like the following manifest:
 
 > spring-cloud-serverless.yaml
 
@@ -96,7 +96,7 @@ accelerator:
 ...
 ```
 
-To create this accelerator with kubectl run:
+To create this accelerator with kubectl, run:
 
 ```console
 kubectl apply --namespace --accelerator-system --filename spring-cloud-serverless.yaml
@@ -138,13 +138,13 @@ spec:
       branch: test
 ```
 
-To create this accelerator with kubectl run:
+To create this accelerator with kubectl, run:
 
 ```console
 kubectl apply --namespace --accelerator-system --filename my-spring-cloud-serverless.yaml
 ```
 
-To use the Tanzu CLI and run:
+To use the Tanzu CLI, run:
 
 ```console
 tanzu accelerator create my-spring-cloud-serverless --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --git-branch main --git-sub-path spring-cloud-serverless \
