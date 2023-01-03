@@ -4,12 +4,13 @@ This topic explains how to install VMware Tanzu Developer Tools for Visual Studi
 
 ## <a id="prereqs"></a> Prerequisites
 
-Ensure you have the following installed on your workstation before installing
+Ensure that you have the following installed on your workstation before installing
 Tanzu Developer Tools for Visual Studio:
 
-- [kubectl CLI](https://kubernetes.io/docs/tasks/tools/)
+- [kubectl](https://kubernetes.io/docs/tasks/tools/)
 - [Tilt](https://docs.tilt.dev/install.html)
-- [Tanzu CLI](../cli-plugins/tanzu-cli.hbs.md#tanzu-cli-install) and [plug-ins](../cli-plugins/tanzu-cli-plugin.hbs.md).
+- [Tanzu CLI](../cli-plugins/tanzu-cli.hbs.md#tanzu-cli-install) and
+  [plug-ins](../cli-plugins/tanzu-cli-plugin.hbs.md).
 - A supported Kubernetes cluster with the Tanzu Application Platform Iterate profile or Full profile
   installed.
   Download Tanzu Application Platform from [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
@@ -20,20 +21,18 @@ Tanzu Developer Tools for Visual Studio:
 
 To install the extension:
 
-1. Sign in to VMware Tanzu Network and [download Tanzu Developer Tools for Visual Studio](https://network.pivotal.io/products/tanzu-application-platform/).
-2. Download the artifact titled `Tanzu Developer Tools for Visual Studio`
-3. Click on the installed `.vsix` file and go through the prompts.
-4. Open Visual Studio and the extension should be installed and enabled.
+1. Sign in to VMware Tanzu Network and
+   [download Tanzu Developer Tools for Visual Studio](https://network.pivotal.io/products/tanzu-application-platform/).
+2. Click the installed `.vsix` file and go through the prompts.
+3. Open Visual Studio and verify that the extension is installed and enabled.
 
 ## <a id="next-steps"></a> Next steps
 
-Proceed to [Using Tanzu Developer Tools for Visual Studio](/docs-tap/vs-extension/using-the-extension.hbs.md) for steps on how to utilize the extension.
-
+See [Use Tanzu Developer Tools for Visual Studio](using-the-extension.hbs.md).
 
 ## <a id="uninstall"></a> Uninstall
 
 To uninstall VMware Tanzu Developer Tools for Visual Studio:
 
-1. Go to the `Extensions` tab and click on `Manage Extensions`
-1. Clicki on the `Installed` section and then proceed to click on the `Uninstall` button for this extension.
-
+1. Go to the **Extensions** tab and click **Manage Extensions**.
+2. Click on the **Installed** section and then click the **Uninstall** button for this extension.

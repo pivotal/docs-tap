@@ -96,13 +96,15 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-vs-new-features"></a> Tanzu Developer Tools for Visual Studio
 
-- See code updates running on-cluster in seconds
+- **See code updates running on-cluster in seconds:**
+  By using Live Update facilitated by Tilt, deploy your workload once, save changes to the code
+  and then, seconds later, see those changes reflected in the workload running on the cluster.
+  All Live Update output is filtered to its own output pane window within Visual Studio.
 
-With the use of Live Update facilitated by Tilt, deploy your workload once, save changes to the code and then, seconds later, see those changes reflected in the workload running on the cluster. All Live Update output is filtered to it's own output pane window withing Visual Studio.
-
-- Debug workloads directly on the cluster
-
-Debug your application in a production-like environment by debugging on your Kubernetes cluster that has Tanzu Application Platform. An environment’s similarity to production relies on keeping dependencies updated, among other variables.
+- **Debug workloads directly on the cluster:**
+  Debug your application in a production-like environment by debugging on your Kubernetes cluster that
+  has Tanzu Application Platform. An environment’s similarity to production relies on keeping
+  dependencies updated, among other variables.
 
 #### <a id="1-4-0-api-validation-and-scoring"></a> API Validation and Scoring Toolkit
 
@@ -164,7 +166,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-supply-chain-templates"></a> OOTB Supply Chain Templates
 
-In a [multi-cluster setup](./multicluster/about.hbs.md), when a Deliverable is created on a Build profile cluster, 
+In a [multi-cluster setup](./multicluster/about.hbs.md), when a Deliverable is created on a Build profile cluster,
 the ConfigMap it is placed in has been renamed from `<workload-name>` to `<workload-name>-deliverable`.  Any automation
 depending on obtaining the Deliverable content by the former name must be updated to use the new name.
 
@@ -264,7 +266,7 @@ The following issues, listed by area and component, are resolved in this release
 Issues fixed with deliverable content written into ConfigMaps in
 [multi-cluster setup](./multicluster/about.hbs.md):
 - ConfigMap is renamed to avoid conflict with `config-template`;
-- Labels to attribute the Deliverable content with the supply chain and template used are now added just as 
+- Labels to attribute the Deliverable content with the supply chain and template used are now added just as
   the would when written into an ordinary Delivery on a non-Build profile cluster.
 
 #### <a id="1-4-0-apps-cli-plugin-ri"></a> Tanzu CLI Apps Plug-in
@@ -323,6 +325,12 @@ This release has the following known issues, listed by area and component.
   only refresh when the selection in the Resource tree is changed.
   As a workaround, make the views refresh by clicking somewhere in the Resource tree to change the
   current selection.
+
+#### <a id="1-4-0-vs-ki"></a> Tanzu Developer Tools for Visual Studio
+
+- The `Tanzu: Delete Workload` command can fail with the extension erroneously reporting that the
+  workload isn't running. For more information, see
+  [Troubleshooting](vs-extension/troubleshooting.hbs.md#del-wrkld-not-running).
 
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
