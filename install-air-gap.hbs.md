@@ -293,13 +293,13 @@ tap_gui:
     #Example Integration for custom GitLab:
     integrations:
       gitlab:
-        - host: GITLABURL
-          token: <GITLAB-TOKEN>
+        - host: GITLAB-URL
+          token: GITLAB-TOKEN
           apiBaseUrl: https://GITLABURL/api/v4/
     backend:
       reading:
         allow:
-          - host: GITLABURL # e.g. gitlab.example.com
+          - host: GITLAB-URL # Example URL: gitlab.example.com
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
