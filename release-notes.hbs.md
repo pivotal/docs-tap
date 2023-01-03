@@ -164,11 +164,12 @@ This release has the following breaking changes, listed by area and component.
 - Removed deprecated field `AuthServer.spec.issuerURI`. For more information, see [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md).
 </br></br>
 
-#### <a id="1-4-0-supply-chain-templates"></a> OOTB Supply Chain Templates
+#### <a id="1-4-0-supply-chain-templates"></a> Out of the Box Supply Chain Templates
 
-In a [multi-cluster setup](multicluster/about.hbs.md), when a Deliverable is created on a Build profile cluster, 
+In a multi-cluster setup, when a Deliverable is created on a Build profile cluster, 
 the ConfigMap it is placed in is renamed from `<workload-name>` to `<workload-name>-deliverable`. Any automation
-depending on obtaining the Deliverable content by the former name must be updated to use the new name.
+depending on obtaining the Deliverable content by the former name must be updated to use the new name. 
+For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 #### <a id="1-4-0-intellij-bc"></a> Tanzu Developer Tools for IntelliJ
 
@@ -261,12 +262,14 @@ The following issues, listed by area and component, are resolved in this release
 </br></br>
 
 
-#### <a id="1-4-0-supply-chain-templates-resolved"></a> OOTB Supply Chain Templates
+#### <a id="1-4-0-supply-chain-templates-resolved"></a> Out of the Box Supply Chain Templates
 
-Fixed deliverable content written into ConfigMaps in
-[multi-cluster setup](multicluster/about.hbs.md):
+Fixed deliverable content written into ConfigMaps in multi-cluster setup:
+
 - ConfigMap is renamed to avoid conflict with `config-template`.
 - Labels to attribute the Deliverable content with the supply chain and template are now added to be consistent with the ordinary Delivery on a non-Build profile cluster.
+
+For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 #### <a id="1-4-0-apps-cli-plugin-ri"></a> Tanzu CLI Apps Plug-in
 
