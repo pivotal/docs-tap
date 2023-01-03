@@ -161,6 +161,8 @@ spec:
 ``` 
 
 The advantage of this model is that applications can be deployed or uninstalled from a cluster by managing the contents of the deliverable resources from within the GitOps repository, and enabling a GitOps workflow for application and service change control.
+
+**Note:** Tanzu Application Platform Build cluster support for Tanzu Service Mesh is limited to basic and testing supply chains. Supply Chains with scanning are not currently supported.
 <br></br>
 <br></br>
 ## Deployment use case: Hungryman
