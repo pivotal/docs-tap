@@ -44,7 +44,10 @@ Before using the extension, you need follow the next steps:
 
    ![The Server Configure Setting page is open with the acc server URL highlighted](../images/acc-server-config.png)
 
-    An example URL could look something like the following: `https://tap-gui.myclusterdomain.myorg.com`
+    An example URL could look something like the following: `https://tap-gui.myclusterdomain.myorg.com`. If you have access to the Tanzu Application Platform cluster that is running the Tanzu Application Platform GUI, you can run the following command to determine the fully-qualified domain name:
+    ```
+    kubectl get httpproxy tap-gui -n tap-gui
+    ```
 
 ## <a id="using-the-extension"></a> Using the extension
 

@@ -117,7 +117,7 @@ To install Application Accelerator:
       >   include: true
       > ```
     
-    >**Note** When working instead with a `tap-values.yaml` file, ensure that the top level parameter is `acclerator:`. Using the example above as reference:
+    >**Note** When working instead with a `tap-values.yaml` file, ensure that the top level parameter is `accelerator:`. Using the example above as reference:
       > ```yaml
       > accelerator:
       >   server:

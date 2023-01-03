@@ -182,11 +182,11 @@ spec:
   displayName: Select Java Version
   git:
     ref:
-      tag: <TAP_VERSION>
+      tag: TAP_VERSION
     url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     subPath: fragments/java-version
 ```
-Where `TAP_VERSION` is the current version the Tanzu Application Platform. As an example, this will take the form: `tap-X.Y.Z`, where `X.Y.Z` are version numbers.
+Where `TAP_VERSION` is the current version the Tanzu Application Platform. As an example, this will take the form: `tap-X.Y.Z`, where `X.Y.Z` are version numbers. (e.g. `tap-1.4`)
 
 To create the fragment (we can save the above manifest in a `java-version.yaml` file) and use:
 
@@ -205,7 +205,7 @@ tanzu accelerator fragment create java-version \
   --git-sub-path fragments/java-version
 ```
 
-Where `TAP_VERSION` is the `tag` value in `java-version.yaml`.
+Where `TAP_VERSION` is the `spec.git.ref.tag` value that is located in the `java-version.yaml`. (e.g. `tap-1.4`)
 
 Now you can use this `java-version` fragment in an accelerator:
 
