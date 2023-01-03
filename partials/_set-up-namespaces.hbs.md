@@ -1,21 +1,16 @@
 Follow the [Namespace Provisioner tutorials](/docs-tap/namespace-provisioner/tutorials.hbs.md) to
 automatically set up your developer namespaces.
 
-Go to the [Namespace Provisioner Overview](/docs-tap/namespace-provisioner/about.hbs.md) page to learn more
-about the feature functionality of Namespace Provisioner.
+For more information about Namespace Provisioner, see [Overview of Namespace Provisioner](/docs-tap/namespace-provisioner/about.hbs.md).
 
-## Additional configuration for testing and scanning
+## <a id="config-test-scan"></a> Additional configuration for testing and scanning
 
-If you plan to install (or have already installed) Out of the Box Supply Chains with Testing and
-Scanning, [use Namespace Provisioner to set up the required resources](/docs-tap/namespace-provisioner/how-tos.hbs.md#add-test-scan).
+If you plan to install or have already installed Out of the Box Supply Chains with Testing and
+Scanning, you can use Namespace Provisioner to set up the required resources. 
+See [Add the resources required by the Out of the Box Testing and Scanning Supply Chain](/docs-tap/namespace-provisioner/how-tos.hbs.md#add-test-scan) 
+for more information.
 
-</br>
+### <a id="legacy-setup"></a>Legacy namespace setup
 
----
-
-</br>
-
-### Legacy namespace set up
-
-If you would prefer to use the legacy, manual, process for setting up developer namespaces, those
-instructions can be found [here](/docs-tap/namespace-provisioner/legacy-manual-namespace-setup.hbs.md).
+To use the legacy manual process for setting up developer namespaces, 
+see [Legacy manual developer namespace setup instructions](/docs-tap/namespace-provisioner/legacy-manual-namespace-setup.hbs.md).
