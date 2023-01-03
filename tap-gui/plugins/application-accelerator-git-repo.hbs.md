@@ -47,6 +47,18 @@ The following steps describe an example configuration that uses GitHub:
    For more information, see the
    [Backstage documentation](https://backstage.io/docs/integrations/github/locations).
 
+From TAP v1.5, the vscode extension uses TAP GUI to interact with the accelerator system.
+There's a new plugin called `gitProviders` that can be configured to disable the git
+repository creation.
+
+An example of TAP GUI's config would be:
+
+```yaml
+   app_config:
+      gitProviders:
+         active: false
+```
+
 ### <a id="k8s-secrets"></a> Using Kubernetes secrets
 
 To use Kubernetes secrets to set the values for `clientId` and `clientSecret`:
