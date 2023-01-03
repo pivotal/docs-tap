@@ -53,6 +53,41 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - `cert-manager.tap.tanzu.vmware.com` can optionally install self-signed `ClusterIssuer`s.
 </br></br>
 
+#### <a id="1-4-0-tap-gui-nf"></a> Tanzu Application Platform GUI
+
+- As mentioned in the [Tanzu Application Platform new features
+  section](#1-4-0-tap-new-features) Tanzu Application Platform GUI participates
+  in the shared ingress issuer feature. As such if you have explicitly set the
+  fields `tap_gui.app_config.app.baseUrl`, `tap_gui.app_config.backend.baseUrl`,
+  `tap_gui.app_config.backend.cors.origin` with the scheme `http` then you MUST
+  update the scheme to `https` in order to have a functional Tanzu Application
+  Platform GUI For example
+
+  ```yaml
+  # tap-values.yaml
+  # old
+  tap_gui:
+    app_config:
+      app:
+        baseUrl: http://tap-gui.INGRESS-DOMAIN/
+      backend:
+        baseUrl: http://tap-gui.INGRESS-DOMAIN/
+        cors:
+          origin: http://tap-gui.INGRESS-DOMAIN/
+
+  # new
+  tap_gui:
+    app_config:
+      app:
+        baseUrl: https://tap-gui.INGRESS-DOMAIN/
+      backend:
+        baseUrl: https://tap-gui.INGRESS-DOMAIN/
+        cors:
+          origin: https://tap-gui.INGRESS-DOMAIN/
+  ```
+  where:
+    - `INGRESS-DOMAIN` is the ingress domain you have configured for TAP
+
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
 
 </br></br>
@@ -119,7 +154,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
   simultaneously debug the updated code, without having to deactivate Live Update when debugging.
 - An Activity pane was added in the Tanzu Panel which allows developers to visualize the supply
   chain, delivery, and running application pods.
-  It displays detailed error messages on each resource and enables developers to describe and view 
+  It displays detailed error messages on each resource and enables developers to describe and view
   logs on these resources from within their IDE.
 - Tanzu workload `apply` and `delete` actions were added to ​IntelliJ.
 - Code snippets to create `workload.yaml` and `catalog-info.yaml` files were added to IntelliJ.
@@ -166,7 +201,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-supply-chain-templates"></a> OOTB Supply Chain Templates
 
-In a [multi-cluster setup](multicluster/about.hbs.md), when a Deliverable is created on a Build profile cluster, 
+In a [multi-cluster setup](multicluster/about.hbs.md), when a Deliverable is created on a Build profile cluster,
 the ConfigMap it is placed in is renamed from `<workload-name>` to `<workload-name>-deliverable`. Any automation
 depending on obtaining the Deliverable content by the former name must be updated to use the new name.
 
