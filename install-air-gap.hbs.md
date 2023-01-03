@@ -295,7 +295,7 @@ tap_gui:
     backend:
       reading:
         allow:
-          - host: https://GIT-CATALOG-URL/catalog-info.yaml
+          - host: GITLABURL # e.g. gitlab.example.com
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
