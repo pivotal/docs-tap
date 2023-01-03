@@ -22,7 +22,7 @@ contour:
         - 'ECDHE-RSA-AES256-GCM-SHA384'
 ```
 
-Expect to see the following data about Cipher Suites and TLS version in the Contour configmap:
+Expect to see the following Cipher Suites and TLS version data in the Contour configmap:
 
 ```console
 $ kubectl -n tanzu-system-ingress get configmap contour -oyaml
@@ -41,4 +41,5 @@ metadata:
 ...
 ```
 
-To update the configmap, you must configure it through tap-values. If you change it directly, kapp-controller reverts all the changes you made.
+> **Important** To update the configmap, you must configure it through Tanzu Application Platform values file. 
+If you change it directly in the configmap, kapp-controller reverts all the changes you made.
