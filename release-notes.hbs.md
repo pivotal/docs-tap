@@ -166,8 +166,8 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-supply-chain-templates"></a> OOTB Supply Chain Templates
 
-In a [multi-cluster setup](./multicluster/about.hbs.md), when a Deliverable is created on a Build profile cluster,
-the ConfigMap it is placed in has been renamed from `<workload-name>` to `<workload-name>-deliverable`.  Any automation
+In a [multi-cluster setup](multicluster/about.hbs.md), when a Deliverable is created on a Build profile cluster, 
+the ConfigMap it is placed in is renamed from `<workload-name>` to `<workload-name>-deliverable`. Any automation
 depending on obtaining the Deliverable content by the former name must be updated to use the new name.
 
 #### <a id="1-4-0-intellij-bc"></a> Tanzu Developer Tools for IntelliJ
@@ -263,11 +263,10 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-4-0-supply-chain-templates-resolved"></a> OOTB Supply Chain Templates
 
-Issues fixed with deliverable content written into ConfigMaps in
-[multi-cluster setup](./multicluster/about.hbs.md):
-- ConfigMap is renamed to avoid conflict with `config-template`;
-- Labels to attribute the Deliverable content with the supply chain and template used are now added just as
-  the would when written into an ordinary Delivery on a non-Build profile cluster.
+Fixed deliverable content written into ConfigMaps in
+[multi-cluster setup](multicluster/about.hbs.md):
+- ConfigMap is renamed to avoid conflict with `config-template`.
+- Labels to attribute the Deliverable content with the supply chain and template are now added to be consistent with the ordinary Delivery on a non-Build profile cluster.
 
 #### <a id="1-4-0-apps-cli-plugin-ri"></a> Tanzu CLI Apps Plug-in
 
