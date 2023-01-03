@@ -34,6 +34,7 @@ kubectl get image.kpack.io <workload-name> -o yaml
 kubectl get build.kpack.io -o yaml
 ```
 
+---
 
 ## <a id='error-update'></a> "Workload already exists" error after updating the workload
 
@@ -71,8 +72,38 @@ The app is running before performing a live update using the same app name.
 
 To resolve this issue, either delete the app or use a different name for the app.
 
+---
 
-## <a id='telemetry-fails-fetching-secret'></a> Telemetry component logs show errors fetching the "reg-creds" secret
+## <a id='workload-fails-docker-auth'></a>Workload creation fails due to authentication failure in Docker Registry
+
+You might encounter an error message similar to the following when creating or updating a workload by using IDE or `apps` CLI plug-in:
+
+```console
+Error: Writing 'index.docker.io/shaileshp2922/build-service/tanzu-java-web-app:latest': Error while preparing a transport to talk with the registry: Unable to create round tripper: GET https://auth.ipv6.docker.com/token?scope=repository%3Ashaileshp2922%2Fbuild-service%2Ftanzu-java-web-app%3Apush%2Cpull&service=registry.docker.io: unexpected status code 401 Unauthorized: {"details":"incorrect username or password"}
+```
+
+### Explanation
+
+This type of error frequently occurs when the URL set for `source image` (IDE) or `--source-image` flag (`apps` CLI plug-in) is not Docker registry compliant.
+
+### Solution
+
+1. Verify that you can authenticate directly against the Docker registry and resolve any failures by running:
+
+    ```console
+    docker login -u USER-NAME
+    ```
+
+2. Verify your `--source-image` URL is compliant with Docker.
+
+    The URL in this example `index.docker.io/shaileshp2922/build-service/tanzu-java-web-app` includes nesting. 
+    Docker registry, unlike many other registry solutions, does not support nesting.
+
+3. To resolve this issue, you must provide an unnested URL. For example, `index.docker.io/shaileshp2922/tanzu-java-web-app`
+
+---
+
+## <a id='telem-fails-fetch-secret'></a> Telemetry component logs show errors fetching the "reg-creds" secret
 
 When you view the logs of the `tap-telemetry` controller by running `kubectl logs -n
 tap-telemetry <tap-telemetry-controller-<hash> -f`, you see the following error:
@@ -96,6 +127,8 @@ To resolve this issue, run:
 kubectl patch roles -n tap-telemetry tap-telemetry-controller --type='json' -p='[{"op": "add", "path": "/rules/-", "value": {"apiGroups": [""],"resources": ["secrets"],"verbs": ["get", "list", "watch"]} }]'
 ```
 
+---
+
 ## <a id='debug-convention'></a> Debug convention may not apply
 
 If you upgrade from Tanzu Application Platform v0.4, the debug convention may not apply to the app run image.
@@ -107,6 +140,8 @@ The Tanzu Application Platform v0.4 lacks SBOM data.
 **Solution**
 
 Delete existing app images that were built using Tanzu Application Platform v0.4.
+
+---
 
 ## <a id='build-scripts-lack-execute-bit'></a> Execute bit not set for App Accelerator build scripts
 
@@ -133,6 +168,8 @@ For example, for a project generated from the "Spring PetClinic" accelerator, ru
 chmod +x ./mvnw
 ```
 
+---
+
 ## <a id='no-live-information'></a> "No live information for pod with ID" error
 
 After deploying Tanzu Application Platform workloads, Tanzu Application Platform GUI shows a "No live information for pod with ID" error.
@@ -151,6 +188,8 @@ kubectl -n app-live-view delete pods -l=name=application-live-view-connector
 
 This allows the connector to discover the application instances and render the details in Tanzu Application Platform GUI.
 
+---
+
 ## <a id='image-policy-webhook-service-not-found'></a> "image-policy-webhook-service not found" error
 
 When installing a Tanzu Application Platform profile, you receive the following error:
@@ -167,6 +206,8 @@ The "image-policy-webhook-service" service cannot be found.
 
 Redeploy the `trainingPortal` resource.
 
+---
+
 ## <a id='increase-cluster-resources'></a> "Increase your cluster resources" error
 
 You receive an "Increase your cluster's resources" error.
@@ -179,6 +220,8 @@ necessary to deploy the workloads that you have.
 **Solution**
 
 Follow instructions from your cloud provider to scale out or scale up your cluster.
+
+---
 
 ## <a id='pod-admission-prevented'></a> MutatingWebhookConfiguration prevents pod admission
 
@@ -237,6 +280,8 @@ image signing enforcement.
     kubectl apply -f image-policy-mutating-webhook-configuration.yaml
     ```
 
+---
+
 ## <a id='priority-class-preempts'></a> Priority class of webhook's pods preempts less privileged pods
 
 When viewing the output of `kubectl get events`, you see events similar to the following:
@@ -283,6 +328,8 @@ their pods preempted or evicted instead.
     necessary to deploy the workloads that you have. Follow instructions from your cloud provider
     to scale out or scale up your cluster.
 
+---
+
 ## <a id='password-authentication-fails'></a> CrashLoopBackOff from password authentication fails
 
 Supply Chain Security Tools - Store does not start. You see the following error in the
@@ -323,6 +370,7 @@ data on the volume:
 
 1. Deploy the `metadata-store` app with kapp.
 
+---
 
 ## <a id='password-authentication-fails'></a> Password authentication fails
 
@@ -365,6 +413,7 @@ data on the volume:
 
 1. Deploy the `metadata-store` app with kapp.
 
+---
 
 ## <a id='metadata-store-db-fails-to-start'></a> `metadata-store-db` pod fails to start
 
@@ -400,6 +449,7 @@ data on the volume:
 
 1. Deploy the `metadata-store` app with kapp.
 
+---
 
 ## <a id='missing-persistent-volume'></a> Missing persistent volume
 
@@ -428,6 +478,8 @@ defined. The provisioner of `storageclass` is responsible for creating the persi
     kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
      ```
 
+---
+
 ## <a id="scst-sign-reject-imgs"></a>Supply Chain Security Tools - Sign rejects images
 
 Supply Chain Security Tools - Sign rejects images from private registries.
@@ -439,6 +491,8 @@ The image is deployed to a non-default namespace.
 **Solution**
 
 Make the private registry secret available to the `default` namespace.
+
+---
 
 ## <a id="scst-scan-cyclonedx"></a> Supply Chain Security Tools - Scan unable to decode CycloneDX
 
