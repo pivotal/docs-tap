@@ -396,7 +396,7 @@ as images.
 
 ##### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer Plug-In
 
-- The `Generation` field in the **Overview** section is not updated when a scan policy is amended.
+- The `Generation` field in the **Overview** section does not update when a scan policy is amended.
   However, clicking the `Scan Policy` link shows the most current scan policy details applied
   to the stage.
 - Customizing the `Source Tester` stage in an OOTB supply chain does not show details in the
