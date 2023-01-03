@@ -341,14 +341,14 @@ This release has the following known issues, listed by area and component.
 **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
 For most languages, Source Code Scanning only scans files present in the source code repository.
-Except for support added for Java projects using Maven, no network calls are made to fetch
+Except for support added for Java projects using Maven, no network calls fetch
 dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
 lock files to check dependencies for vulnerabilities.
 
 For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies
 present in the built binaries, such as `.jar` or `.war` files.
 
-Because VMware does not recommend committing binaries to source code repositories, Grype fails to
+Because VMware discourages committing binaries to source code repositories, Grype fails to
 find vulnerabilities during a source scan.
 The vulnerabilities are still found during the image scan after the binaries are built and packaged
 as images.
