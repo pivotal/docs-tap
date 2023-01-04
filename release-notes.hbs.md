@@ -218,14 +218,14 @@ As such, if you have explicitly set the fields `tap_gui.app_config.app.baseUrl`,
 
 - **Deprecated and removed ScanTemplates:**
 
-  Deprecated Grype ScanTemplates shipped with Tanzu Application Platform v1.1 and earlier were
-  removed and are no longer supported. Please use Grype ScanTemplates v1.2 and later.
+  Deprecated Grype ScanTemplates shipped with Tanzu Application Platform v1.1 and earlier are
+  removed and no longer supported. Use Grype ScanTemplates v1.2 and later.
 
 - **Deprecation notice for `docker` field and related sub-fields:**
 
   The `docker` field and related sub-fields used in Supply Chain Security Tools - Scan are
   deprecated and marked for removal in Tanzu Application Platform v1.7.0.
-  The deprecation impacts the following components: Scan Controller, Grype Scanner, and Snyk Scanner.
+  The deprecation impacts Scan Controller, Grype Scanner, and Snyk Scanner.
   Carbon Black Scanner is not impacted.
   For information about the migration path, see
   [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
