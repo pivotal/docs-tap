@@ -13,6 +13,8 @@ To view the recent events for a workload run:
 kubectl describe workload.carto.run <workload-name> -n <workload-ns>
 ```
 
+---
+
 ## <a id='missing-build-logs'></a> Missing build logs after creating a workload
 
 You create a workload, but no logs appear when you run:
