@@ -45,6 +45,7 @@ When you install the SCST - Scan (Scan controller), you can configure the follow
 | metadataStore.authSecret.importFromNamespace | _n/a_ | string | Namespace from which to import the Insight Metadata Store auth_token | earlier than v1.2.0 |
 | metadataStore.authSecret.name | _n/a_ | string | Name of deployed secret with key auth_token | earlier than v1.2.0 |
 | retryScanJobsSecondsAfterError | 60 | integer | Seconds to wait before retrying errored scans | v1.3.1 and later |
+| caCertData | "" | string | The custom certificates to be trusted by the scans connections. | v1.4.0 and later |
 
 When you install the SCST - Scan (Grype scanner), you can configure the following optional properties:
 
