@@ -201,9 +201,9 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-supply-chain-templates"></a> Out of the Box Supply Chain Templates
 
-In a multi-cluster setup, when a Deliverable is created on a Build profile cluster, 
+In a multi-cluster setup, when a Deliverable is created on a Build profile cluster,
 the ConfigMap it is placed in is renamed from `<workload-name>` to `<workload-name>-deliverable`. Any automation
-depending on obtaining the Deliverable content by the former name must be updated to use the new name. 
+depending on obtaining the Deliverable content by the former name must be updated to use the new name.
 For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 #### <a id="1-4-0-intellij-bc"></a> Tanzu Developer Tools for IntelliJ
@@ -369,10 +369,11 @@ This release has the following known issues, listed by area and component.
   workload isn't running. For more information, see
   [Troubleshooting](vs-extension/troubleshooting.hbs.md#del-wrkld-not-running).
 
-#### <a id="1-4-0-vs-app-acc"></a> Tanzu Application Accelerator for Visual Studio
+#### <a id="1-4-0-vscode-ki"></a> Tanzu Developer Tools for Visual Studio Code
 
-- When using custom types, if there is a checkbox in the list of attributes, the re ordering
-  of the inputs won't work
+- **Application Accelerator:**
+  When using custom types, if there is a check box in the list of attributes then the re-ordering
+  of the inputs doesn't work.
 
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
