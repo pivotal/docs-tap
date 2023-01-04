@@ -59,3 +59,6 @@ accessing the Application Accelerater extension icon:
 Choose any of the defined accelerators, fill the options and click  the `generate project`
 
 ![The accelerator tab is open to the Hello Fun accelerator form. The text boxes display example text and the Generate Project button is highlighted.](../images/acc-form.png)
+
+## <a id="app-acclerator-known-issues"></a> Known Issues
+In version 1.5 of the Application Accelerator extension for VS Code, if an accelerator with [`custom types`](creating-accelerators/custom-types.hbs.md) is used _and_ the custom type form contains checkboxes, reprioritizing the custom types entries will cause the data to not properly reorder. This is a known bug and will be resolved in an upcoming release.
