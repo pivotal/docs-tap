@@ -21,6 +21,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - [Namespace Provisioner](namespace-provisioner/about.hbs.md) provides a secure, automated
   way for Platform Operators to provision namespaces with the resources and proper namespace-level
   privileges required for their workloads to function as intended.
+- [TAP Telemetry Reports](telemetry/overview.hbs.md#tanzu-application-platform-usage-reports) VMware offers the option to enroll in a usage reporting program that offers a summary of usage of your Tanzu Application Platform.
 
 </br>
 
