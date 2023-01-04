@@ -1,6 +1,6 @@
 # Retreive and create service accounts
 
-When you install Tanzu Application Platform, the included Supply Chain Security
+When you install Tanzu Application Platform, the Supply Chain Security
 Tools (SCST) - Store deployment automatically includes a read-write service
 account. This service account is bound to the `metadata-store-read-write` role.
 
@@ -24,12 +24,12 @@ kubectl get secrets metadata-store-read-client -n metadata-store -o jsonpath="{.
 ```
 
 The access token is a Bearer token used in the http request header
-"Authorization". For example, `Authorization: Bearer
+`Authorization`. For example, `Authorization: Bearer
 eyJhbGciOiJSUzI1NiIsImtpZCI6IjhMV0...`.
 
 ## <a id='rw-serv-accts'></a> Create read-write service account
 
-When you install Tanzu Application Platform, the included SCST - Store deployment automatically includes a read-write service account.
+When you install Tanzu Application Platform, the SCST - Store deployment automatically includes a read-write service account.
 This service account is already bound to the `metadata-store-read-write` role.
 
 To create an *additional* read-write service account, run the following command.
