@@ -61,6 +61,11 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
     for the installation files for Tanzu Application Platform.
 
+   > **Note** When using Google Container Registry it is best to use a JSON key file to authenticate with the registry.  
+   > See the [Google Container Registry authentication documentation](https://cloud.google.com/container-registry/docs/advanced-authentication) 
+   > for details on how to generate the JSON key file.  The value of `INSTALL_REGISTRY_USERNAME` will be `_json_key` and
+   > the value of `INSTALL_REGISTRY_PASSWORD` will be the contents of the JSON key file.
+
 5. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
 
     To query for the available `imgpkg` CLI versions on VMWare Tanzu Network Registry, run:
