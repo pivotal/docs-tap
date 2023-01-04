@@ -21,7 +21,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - [Namespace Provisioner](namespace-provisioner/about.hbs.md) provides a secure, automated
   way for Platform Operators to provision namespaces with the resources and proper namespace-level
   privileges required for their workloads to function as intended.
-- [Tanzu Application Platform Telemetry Reports](telemetry/overview.hbs.md#tanzu-application-platform-usage-reports) 
+- [Tanzu Application Platform Telemetry Reports](telemetry/overview.hbs.md#tanzu-application-platform-usage-reports)
 offers the option to enroll in a usage reporting program that provides a usage summary of your Tanzu Application Platform.
 
 </br>
@@ -52,7 +52,7 @@ offers the option to enroll in a usage reporting program that provides a usage s
 
 #### <a id="1-4-0-app-live-view"></a> Application Live View
 
-- Users can now enable or disable the automatic configuration of Spring Boot actuators on the TAP platform and on workloads.
+- Users can now activate or deactivate the automatic configuration of Spring Boot actuators on Tanzu Application Platform and on workloads.
   For more information, see [Configure and access Spring Boot actuators in Tanzu Application Platform](spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
 - Added support for Spring Boot 3
 - Added new App Live View pages `HTTP Requests` and `Request Mappings` for Steeltoe workloads.
@@ -428,7 +428,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 #### <a id="1-4-0-app-live-view-deprecations"></a> Application Live View
 
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in Tanzu Application Platform 1.7.0.
-  For more information on the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key)
+  For more information on the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
 </br></br>
 
 #### <a id="1-4-0-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook
