@@ -127,7 +127,8 @@ tanzu apps workload create petclinic-image --param-yaml maven="{"artifactId":"he
 
 In many cases, workload life cycles can be managed through CLI commands.
 However, there may be cases where managing the workload through direct interactions and edits of a `yaml` file is preferred.
-The Apps CLI plug-in supports using `yaml` files to meet that need.
+The Apps CLI plug-in supports using `yaml` files to meet that need, and these can be located either 
+locally or upstream, since this flag also accepts an URL containing a raw file with a workload definition.
 
 When a workload is managed using a `yaml` file, that file **must contain a single workload definition**.
 
@@ -157,7 +158,8 @@ To create a workload from a file like the example above:
 tanzu apps workload create --file my-workload-file.yaml
 ```
 
-**Note:** when flags are passed in combination with `--file my-workload-file.yaml` the flag/values take precedence over the associated property/values included in the yaml.
+**Note:** when flags are passed in combination with `--file my-workload-file.yaml` the flag/values 
+take precedence over the associated property/values included in the yaml.
 
 The workload yaml definition can also be passed in through stdin as follows:
 
@@ -165,9 +167,20 @@ The workload yaml definition can also be passed in through stdin as follows:
 tanzu apps workload create --file - --yes
 ```
 
-The console remains waiting for some input, and the content with a valid `yaml` definition for a workload can be either written or pasted, then press **Ctrl-D** three times to start workload creation. This can also be done with `workload apply` command.
+The console remains waiting for some input, and the content with a valid `yaml` definition for a 
+workload can be either written or pasted, then press **Ctrl-D** three times to start workload creation. 
+This can also be done with `workload apply` command.
 
 **Note:** to pass workload through `stdin`, the `--yes` flag is required. If not provided, the command will fail.
+
+Another way to pass a workload with the `--file` flag is using a URL, which, as mentioned before,
+needs to contain a raw file with the workload definition.
+
+For example:
+
+```console
+tanzu apps workload apply --file https://raw.githubusercontent.com/vmware-tanzu/apps-cli-plugin/main/pkg/commands/testdata/workload.yaml
+```
 
 ## <a id="bind-service"></a> Bind a service to a workload
 
