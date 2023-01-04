@@ -53,41 +53,6 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - `cert-manager.tap.tanzu.vmware.com` can optionally install self-signed `ClusterIssuer`s.
 </br></br>
 
-#### <a id="1-4-0-tap-gui-nf"></a> Tanzu Application Platform GUI
-
-- As mentioned in the [Tanzu Application Platform new features
-  section](#1-4-0-tap-new-features) Tanzu Application Platform GUI participates
-  in the shared ingress issuer feature. As such if you have explicitly set the
-  fields `tap_gui.app_config.app.baseUrl`, `tap_gui.app_config.backend.baseUrl`,
-  `tap_gui.app_config.backend.cors.origin` with the scheme `http` then you MUST
-  update the scheme to `https` in order to have a functional Tanzu Application
-  Platform GUI For example
-
-  ```yaml
-  # tap-values.yaml
-  # old
-  tap_gui:
-    app_config:
-      app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN/
-      backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN/
-        cors:
-          origin: http://tap-gui.INGRESS-DOMAIN/
-
-  # new
-  tap_gui:
-    app_config:
-      app:
-        baseUrl: https://tap-gui.INGRESS-DOMAIN/
-      backend:
-        baseUrl: https://tap-gui.INGRESS-DOMAIN/
-        cors:
-          origin: https://tap-gui.INGRESS-DOMAIN/
-  ```
-  where:
-    - `INGRESS-DOMAIN` is the ingress domain you have configured for TAP
-
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
 
 </br></br>
@@ -215,6 +180,28 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
 </br></br>
+
+#### <a id="1-4-0-tap-gui-bc"></a> Tanzu Application Platform GUI
+
+As mentioned in the [new features section](#1-4-0-tap-new-features), Tanzu Application Platform GUI
+participates in the shared ingress issuer feature.
+As such, if you have explicitly set the fields `tap_gui.app_config.app.baseUrl`,
+`tap_gui.app_config.backend.baseUrl`, or `tap_gui.app_config.backend.cors.origin` with the scheme
+`http` then you must change the scheme to `https`, as in this example:
+
+  ```yaml
+  # tap-values.yaml
+  tap_gui:
+    app_config:
+      app:
+        baseUrl: https://tap-gui.INGRESS-DOMAIN/
+      backend:
+        baseUrl: https://tap-gui.INGRESS-DOMAIN/
+        cors:
+          origin: https://tap-gui.INGRESS-DOMAIN/
+  ```
+
+  Where `INGRESS-DOMAIN` is the ingress domain you have configured for Tanzu Application Platform.
 
 #### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
 
