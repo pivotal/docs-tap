@@ -317,11 +317,7 @@ If the pod logs show the following error:
 x509: certificate signed by unknown authority
 ```
 
-This indicates that the self-signed certificate might be incorrectly configured.
-
-The `shared.ca_cert_data` installation value can contain a PEM-encoded CA bundle.
-The scanning component trusts the CAs contained in the bundle.
-You configure the self-signed certificate by [using the shared top-level key](../view-package-config.hbs.md).
+This indicates that the self-signed certificate might be incorrectly configured. Confirm that the certificate has been configured in the [airgap overlay](offline-airgap.hbs.md)
 
 #### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
