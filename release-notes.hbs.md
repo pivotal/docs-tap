@@ -51,7 +51,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-app-live-view"></a> Application Live View
 
-- Users can now enable or disable the automatic configuration of Spring Boot actuators on the TAP platform and on workloads. 
+- Users can now enable or disable the automatic configuration of Spring Boot actuators on the TAP platform and on workloads.
   For more information, see [Configure and access Spring Boot actuators in Tanzu Application Platform](spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
 - Added support for Spring Boot 3
 - Added new App Live View pages `HTTP Requests` and `Request Mappings` for Steeltoe workloads.
@@ -336,6 +336,11 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 This release has the following known issues, listed by area and component.
 
+#### <a id="1-4-0-app-acc-vscode-ki"></a> Application Accelerator for Visual Studio Code
+
+- When using custom types, if there is a check box in the list of attributes then the re-ordering
+  of the inputs doesn't work.
+
 #### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
 
 - If a workload is deployed onto a namespace by using Live Update, you must set that namespace as
@@ -365,12 +370,6 @@ This release has the following known issues, listed by area and component.
 - The `Tanzu: Delete Workload` command can fail with the extension erroneously reporting that the
   workload isn't running. For more information, see
   [Troubleshooting](vs-extension/troubleshooting.hbs.md#del-wrkld-not-running).
-
-#### <a id="1-4-0-vscode-ki"></a> Tanzu Developer Tools for Visual Studio Code
-
-- **Application Accelerator:**
-  When using custom types, if there is a check box in the list of attributes then the re-ordering
-  of the inputs doesn't work.
 
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
@@ -420,7 +419,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 #### <a id="1-4-0-app-live-view-deprecations"></a> Application Live View
 
-- `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in Tanzu Application Platform 1.7.0. 
+- `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in Tanzu Application Platform 1.7.0.
   For more information on the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key)
 </br></br>
 
