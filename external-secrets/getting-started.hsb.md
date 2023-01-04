@@ -1,4 +1,4 @@
-# External Secrets 
+# External Secrets Operator ALPHA
 
 The [External Secrets Operator](https://external-secrets.io) is a Kubernetes
 operator that integrates with external secret management systems (e.g.: Google
@@ -8,8 +8,11 @@ automatically injects the values into a Kubernetes Secret.
 Starting with TAP 1.4.0, Tanzu Application Platform (TAP) repackages this open
 source Kubernetes operator into a Carvel bundle that ships with TAP releases.
 
-TAP's External Secrets package is BETA software.  TAP 1.4.0 packages External
-Secrets Operator 0.6.1.
+TAP's External Secrets package is ALPHA software and does not constitute an
+entire solution.  Subsequent TAP releases will have a more comprehensive secret
+management solution.
+
+TAP 1.4.0 packages External Secrets Operator 0.6.1.
 
 ### Installing the External Secrets Operator 
 
