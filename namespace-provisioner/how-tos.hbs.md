@@ -109,6 +109,39 @@ namespace_provisioner:
     path: _ytt_lib/tektonpipelines
 ```
 
+### <a id="add-test-scan"></a> Add the resources required by the **Out of the Box Testing and Scanning Supply Chain**
+
+Follow these instructions to install the Java scan policy and Tekton pipeline resources required by
+the OOTB Testing and Scanning Supply Chain.
+
+
+1. Add or update tap-values.yaml with the following `namespace_provisioner.additional_resources`
+configuration</br>
+(The ytt templated testing and scanpolicy files that will be mounted can be found [**here**](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain)).</br></br>
+
+
+   ```yaml
+   namespace_provisioner:
+     additional_sources:
+     # Add templated java scan policy and tekton pipeline
+     - git:
+         ref: origin/main
+         subPath: namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain
+         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+       path: _ytt_lib/testingscanning
+   ```
+   </br>
+1. Apply your updated tap-values.yaml to the target cluster
+
+   ```terminal
+   tanzu package installed update tap -f tap-values.yaml --namespace tap-install
+   ```
+
+   - Once the tap-values changes have been applied and the
+`namespace_provisioner.additional_resources` have been imported, Namespace Provisioner will create
+the defined `scan-policy` and `developer-defined-tekton-pipeline-java` in all namespaces
+defined in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap.</br></br>
+
 ### <a id="customizing-default-resources"></a>Customizing the default resources that get provisioned
 
 The Out-Of-The-box [`default-resources`](reference.hbs.md#tap-profile---default-resources-mapping)
