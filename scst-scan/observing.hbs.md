@@ -317,7 +317,7 @@ If the pod logs show the following error:
 x509: certificate signed by unknown authority
 ```
 
-This indicates that the self-signed certificate might be incorrectly configured. Confirm that the certificate has been configured in the [airgap overlay](offline-airgap.hbs.md)
+This indicates that the self-signed certificate might be incorrectly configured. Confirm that the certificate is configured in the airgap overlay. See [Using Grype in offline and air-gapped environments](offline-airgap.hbs.md).
 
 #### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
