@@ -402,6 +402,13 @@ as images.
 
 </br>
 
+##### <a id="security-analysis-plugin-ki"></a> Security Analysis Plug-In
+
+- No Associated Policy tab in Workload Build Vulnerabilities does not show workloads with no associated scan policies.
+- CVEs bar graph in Workload Build Vulnerabilities can sometimes cut numbers off.
+
+</br>
+
 ---
 
 </br>
