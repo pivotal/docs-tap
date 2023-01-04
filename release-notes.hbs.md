@@ -88,7 +88,7 @@ offers the option to enroll in a usage reporting program that provides a usage s
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
 
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
-  environments. Refer to the updated [instructions](scst-scan/offline-airgap.hbs.md).
+  environments. See [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md).
 </br></br>
 
 #### <a id="1-4-0-stk-new-features"></a> Services Toolkit
