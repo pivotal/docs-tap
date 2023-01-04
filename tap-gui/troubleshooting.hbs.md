@@ -3,17 +3,6 @@
 This topic describes troubleshooting information for problems with installing
 Tanzu Application Platform GUI.
 
-## <a id='safari-not-working'></a> Tanzu Application Platform GUI does not work in Safari
-
-### Symptom
-
-Tanzu Application Platform GUI does not work in the Safari web browser.
-
-### Solution
-
-Currently there is no way to use Tanzu Application Platform GUI in Safari. Please use a different
-web browser.
-
 ## <a id='port-range-invalid'></a> Tanzu Application Platform GUI reports Port range is not valid
 
 ### Symptom
