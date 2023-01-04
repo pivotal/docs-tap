@@ -190,11 +190,11 @@ The changes from the `Workload` must be propagated up through the supply chain f
 
 **Symptom**
 
-This might be because `sslDisabled` flag in the values YAML file does not accept values without quotes.
+This might be because `sslDeactivated` flag in the values YAML file does not accept values without quotes.
 
 **Cause**
 
-The `sslDisabled` Boolean flag is treated as a string in the Kubernetes YAML file.
+The `sslDeactivated` Boolean flag is treated as a string in the Kubernetes YAML file.
 
 **Solution**
 

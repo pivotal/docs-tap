@@ -48,6 +48,15 @@ This topic contains release notes for Tanzu Application Platform v1.4.
   - `identityProviders.ldap.group` is now optional in `AuthServer.spec`.
 </br></br>
 
+#### <a id="1-4-0-app-live-view"></a> Application Live View
+
+- Users can now enable or disable the automatic configuration of Spring Boot actuators on the TAP platform and on workloads. 
+  For more information, see [Configure and access Spring Boot actuators in Tanzu Application Platform](spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
+- Added support for Spring Boot 3
+- Added new App Live View pages `HTTP Requests` and `Request Mappings` for Steeltoe workloads.
+- Added `appliveview_connnector.backend.sslDeactivated` to deprecate `appliveview_connnector.backend.sslDisabled`.
+</br></br>
+
 #### <a id="1-4-0-cert-manager"></a> cert-manager
 
 - `cert-manager.tap.tanzu.vmware.com` can optionally install self-signed `ClusterIssuer`s.
@@ -368,6 +377,12 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the next release. For more
   information about how to migrate
   to `AuthServer.spec.tls.deactivated`, see [Migration guides](app-sso/upgrades/index.md#migration-guides).
+</br></br>
+
+#### <a id="1-4-0-app-live-view-deprecations"></a> Application Live View
+
+- `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in Tanzu Application Platform 1.7.0. 
+  For more information on the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key)
 </br></br>
 
 #### <a id="1-4-0-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook

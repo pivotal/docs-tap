@@ -34,7 +34,7 @@ To install Spring Boot conventions:
    / Retrieving package versions for spring-boot-conventions.tanzu.vmware.com...
    NAME                                       VERSION           RELEASED-AT
    ...
-   spring-boot-conventions.tanzu.vmware.com   1.4.0-build.1     2022-11-11T00:00:00Z
+   spring-boot-conventions.tanzu.vmware.com   1.4.0             2022-12-08T00:00:00Z
    ...
    ```
 
@@ -44,12 +44,12 @@ To install Spring Boot conventions:
     tanzu package available get spring-boot-conventions.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed. For example: `1.4.0-build.1`.
+    Where `VERSION-NUMBER` is the version of the package listed. For example: `1.4.0`.
 
     For example:
 
     ```console
-    $ tanzu package available get spring-boot-conventions.tanzu.vmware.com/1.4.0-build.1 --values-schema --namespace tap-install
+    $ tanzu package available get spring-boot-conventions.tanzu.vmware.com/1.4.0 --values-schema --namespace tap-install
       KEY                               DEFAULT             TYPE     DESCRIPTION
         autoConfigureActuators          false               boolean  Enable or disable the automatic configuration of actuators on the TAP platform level
         kubernetes_distribution                             string   Kubernetes distribution that this package is being installed on. Accepted
@@ -62,7 +62,7 @@ To install Spring Boot conventions:
    ```console
    tanzu package install spring-boot-conventions \
    --package-name spring-boot-conventions.tanzu.vmware.com \
-   --version 1.4.0-build.1 \
+   --version 1.4.0 \
    --namespace tap-install
    ```
 
@@ -79,7 +79,7 @@ To install Spring Boot conventions:
    | Retrieving installation details for spring-boot-conventions...
    NAME:                    spring-boot-conventions
    PACKAGE-NAME:            spring-boot-conventions.tanzu.vmware.com
-   PACKAGE-VERSION:         1.4.0-build.1
+   PACKAGE-VERSION:         1.4.0
    STATUS:                  Reconcile succeeded
    CONDITIONS:              [{ReconcileSucceeded True  }]
    USEFUL-ERROR-MESSAGE:
