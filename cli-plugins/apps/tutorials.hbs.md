@@ -77,19 +77,19 @@ There are two ways to change the target cluster:
 
 1. Use `kubectl config use-context <context-name>` to change the default context. All subsequent `tanzu apps` commands will target the cluster defined in the new default kubeconfig context.
 
-2. Include the `--context <context-name>` flag when running any `tanzu apps` command. 
-   
+2. Include the `--context <context-name>` flag when running any `tanzu apps` command.
+
    **Note:** Any subsequent `tanzu apps` commands that do not include the `--context <context-name>` flag will continue to use the default context set in the kubeconfig.
 
 ## <a id='override-kubeconfig'></a>Overriding the default kubeconfig
 
 There are two approaches to achieving this:
 
-1. Set the env var `KUBECONFIG=<path>` to change the kubeconfig the Apps CLI plug-in should reference. 
+1. Set the env var `KUBECONFIG=<path>` to change the kubeconfig the Apps CLI plug-in should reference.
 
    All subsequent `tanzu apps` commands will reference the non-default kubeconfig assigned to the env var.
 
-2. Include the  `--kubeconfig <path>` flag when running any `tanzu apps` command. 
+2. Include the  `--kubeconfig <path>` flag when running any `tanzu apps` command.
 
    **Note:** Any subsequent `tanzu apps` commands that do not include the `--context <context-name>` flag will continue to use the default context set in the kubeconfig.
 
@@ -123,7 +123,7 @@ tanzu completion zsh > "${fpath[1]}/_tanzu"
 Workloads can be created via references to four different sources as follows:
 
 1. Using URL to git repo. Source code can be read from either git branch, git tag or git commit.
-2. Creating from an existing local project as source. 
+2. Creating from an existing local project as source.
 3. Using an image that will be pulled from a registry to deploy the application.
 4. Setting a Maven repository artifact.
 

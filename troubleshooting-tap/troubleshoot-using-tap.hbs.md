@@ -120,27 +120,30 @@ To resolve this issue, either delete the app or use a different name for the app
 
 ## <a id='workload-fails-docker-auth'></a>Workload creation fails due to authentication failure in Docker Registry
 
-You may encounter an error message similar to the following when creating or updating a workload via IDE or `apps` CLI plugin:
+You might encounter an error message similar to the following when creating or updating a workload by using IDE or `apps` CLI plug-in:
 
-```
+```console
 Error: Writing 'index.docker.io/shaileshp2922/build-service/tanzu-java-web-app:latest': Error while preparing a transport to talk with the registry: Unable to create round tripper: GET https://auth.ipv6.docker.com/token?scope=repository%3Ashaileshp2922%2Fbuild-service%2Ftanzu-java-web-app%3Apush%2Cpull&service=registry.docker.io: unexpected status code 401 Unauthorized: {"details":"incorrect username or password"}
 ```
 
 ### Explanation
 
-This type of error is frequently thrown when the url set for `source image` (IDE) or `--source-image` flag (`apps` CLI plugin) is not Docker registry compliant.
-
+This type of error frequently occurs when the URL set for `source image` (IDE) or `--source-image` flag (`apps` CLI plug-in) is not Docker registry compliant.
 
 ### Solution
 
-1. First, validate that you can authenticate directly against the Docker registry and resolve any failures:
-   ```
-   docker login -u USER-NAME
-   ```
-2. Check your --source-image url to make sure it's compliant with Docker.
-   * The url in this example (`index.docker.io/shaileshp2922/build-service/tanzu-java-web-app`) includes nesting.</br>
-   Docker registry, unlike many other registry solutions, doesn't support nesting.
-3. Providing an unnested url (e.g. `index.docker.io/shaileshp2922/tanzu-java-web-app`) should resolve the issue.
+1. Verify that you can authenticate directly against the Docker registry and resolve any failures by running:
+
+    ```console
+    docker login -u USER-NAME
+    ```
+
+2. Verify your `--source-image` URL is compliant with Docker.
+
+    The URL in this example `index.docker.io/shaileshp2922/build-service/tanzu-java-web-app` includes nesting. 
+    Docker registry, unlike many other registry solutions, does not support nesting.
+
+3. To resolve this issue, you must provide an unnested URL. For example, `index.docker.io/shaileshp2922/tanzu-java-web-app`
 
 ---
 

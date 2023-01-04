@@ -85,7 +85,7 @@ spec:
     # ...
 ```
 
-> 👉 Learn more about [secretgen-controller and its APIs](https://github.com/vmware-tanzu/carvel-secretgen-controller).
+> **Note** 👉 Learn more about [secretgen-controller and its APIs](https://github.com/vmware-tanzu/carvel-secretgen-controller).
 
 ## Misconfigured redirect URI
 
@@ -145,8 +145,7 @@ see `[invalid_scope] OAuth 2.0 Parameter: scope`.
 Add the required scopes into your `ClientRegistration` yaml under `spec.scopes`.
 
 > **Note** Changes to the secret do not propagate to the `ClientRegistration`. If you recreated the `Secret` that
-> contains the
-`clientSecret`, re-deploy the `ClientRegistration`.
+> contains the `clientSecret`, re-deploy the `ClientRegistration`.
 
 ## <a id="sub-claim"></a>Misconfigured `sub` claim
 

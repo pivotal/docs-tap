@@ -4,11 +4,17 @@
 
 For getting the logs when using the controller to manage the `desire-namespaces`
 
-```bash
+```terminal
 kubectl -n tap-namespace-provisioning logs deployments/controller-manager
 ```
 
 Use `-f` to follow the log output
+
+</br>
+
+---
+
+</br>
 
 ## <a id="carvel-kapp-application-error"></a>Kapp Application error
 
@@ -16,7 +22,7 @@ After the Namespace Provisioner is installed in the Tanzu Application Platform c
 resource to check is the **[Provisioner Carvel App](about.hbs.md#nsp-component-carvel-app)** in the
 `tap-namespace-provisioning` namespace.
 
-```bash
+```terminal
 kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
 ```
 
@@ -26,9 +32,15 @@ and might need some manual intervention.
 **Note:** Any error with the Kapp App will be reported in the Carvel Package Install as a high level
 message.
 
-```bash
+```terminal
 kubectl -n tap-install get packageinstalls.packaging.carvel.dev/namespace-provisioner --template=\{{.status.usefulErrorMessage}}
 ```
+
+</br>
+
+---
+
+</br>
 
 ## <a id="common-errors"></a>Common errors
 
@@ -57,7 +69,14 @@ as follows, (followed from some reconciliation messages)
 {"level":"error","ts":"2022-12-14T15:41:44.639402794Z","logger":".0.1.NamespaceSelectorReconciler","msg":"unable to sync","controller":"namespace","controllerGroup":"","controllerKind":"Namespace","Namespace":{"name":"ns2"},"namespace":"","name":"ns2","reconcileID":"26395d34-418b-446d-9b5e-a4a73cc657ed","resourceType":"/v1, Kind=Namespace","error":"\"exists\" is not a valid pod selector operator","stacktrace":"..."}
 ```
 
-**Note:** The Kapp App won’t show any error as the controller was not able to update the `desire-namespaces`
+>**Note:** The Kapp App won’t show any error as the controller was not able to update the
+`desired-namespaces` ConfigMap.
+
+</br>
+
+---
+
+</br>
 
 ### <a id="carvel-ytt-error-additional-sources"></a>Carvel-YTT error in additional_sources
 
@@ -95,9 +114,10 @@ stringData:
 ---
 ```
 
-Where the used `data.values` does not exist, and after adding it as an `additional_source` in the `witherror` library, the Kapp App will show an error as follows:
+Where the used `data.values` does not exist, and after adding it as an `additional_source` in the
+`witherror` library, the Kapp App will show an error as follows:
 
-```bash
+```terminal
 $ kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
 
 ytt: Error:
@@ -113,7 +133,14 @@ ytt: Error:
 
 This will show any error coming from the Carvel-YTT template resolution.
 
-Another common error is defining resources several times (like adding a resource which is created as default instead of ovelaying it), that will be reported in the Kapp App as well
+Another common error is defining resources several times (like adding a resource which is created
+as default instead of ovelaying it), that will be reported in the Kapp App as well
+
+</br>
+
+---
+
+</br>
 
 ### <a id="unable-to-delete-namespace"></a>Unable to delete namespace
 

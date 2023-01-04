@@ -1,10 +1,12 @@
-# Configuring Cipher Suites and TLS Version in Contour
+# Configure Cipher Suites and TLS version in Contour
 
-Contour provides some configuration options for TLS Version and Cipher Suites, though they are not directly exposed via a top level key in the Pacakge. They fall into the category of advanced Contour configurations that are configured via the `contour.configFileContents` key.
+Contour provides configuration options for TLS Version and Cipher Suites. Rather than directly exposed through a top level key in the pacakge, 
+they fall into the category of advanced Contour configurations by using the `contour.configFileContents` key.
 
-For reference on these configuration options, see [Contour's Configuration Reference Documentation](https://projectcontour.io/docs/v1.23.1/configuration/). For this guide, we care about the TLS Configuration section.
+For more information about these configuration options, see [Contour documentation](https://projectcontour.io/docs/v1.23.1/configuration/). 
+This topic is focused on the TLS Configuration section.
 
-To configure TLS options for Contour in TAP, edit the `contour` section of your TAP values file to look like this:
+To configure TLS options for Contour in Tanzu Application Platform, edit the `contour` section of your Tanzu Application Platform values file as follows:
 
 ```yaml
 contour:
@@ -20,7 +22,7 @@ contour:
         - 'ECDHE-RSA-AES256-GCM-SHA384'
 ```
 
-Once you deploy, you should see that data show up in the contour configmap:
+Expect to see the following Cipher Suites and TLS version data in the Contour configmap:
 
 ```console
 $ kubectl -n tanzu-system-ingress get configmap contour -oyaml
@@ -39,4 +41,5 @@ metadata:
 ...
 ```
 
-If you ever want to update that configmap, you always have to do it through tap-values. If you change it directly, kapp-controller will revert anything you added in there.
+> **Important** To update the configmap, you must configure it through Tanzu Application Platform values file. 
+If you change it directly in the configmap, kapp-controller reverts all the changes you made.

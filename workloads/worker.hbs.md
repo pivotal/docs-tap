@@ -37,7 +37,7 @@ If you have followed the Services Toolkit example, you can update the `spring-se
 to use the `worker` supply chain by changing the workload type by running:
 
 ```console
-tanzu apps workload update spring-sensors-producer --type=worker
+tanzu apps workload apply spring-sensors-producer --type=worker
 ```
 
 This shows a diff in the workload label, and prompts you to accept the change.

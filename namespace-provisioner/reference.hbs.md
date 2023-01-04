@@ -6,8 +6,10 @@
 - The Creation of the namespaces themselves is out of the scope for the namespace provisioner package.
 - Removing namespace provisioner package removes all the components created by it
 - **Before uninstalling the namespace provisioner**, Platform/App Operators are required to
-  - If using the controller to manage `desired-namespaces` ConfigMap, Un-label all the namespaces provisioned by namespace provisioner
-  - If using GitOps to manage `desired-namespaces` ConfigMap, set the list of namespaces to an empty list.
+  - If using the controller to manage `desired-namespaces` ConfigMap, Un-label all the namespaces
+    provisioned by namespace provisioner
+  - If using GitOps to manage `desired-namespaces` ConfigMap, set the list of namespaces to an
+    empty list.
 
 ## <a id="default-resources-mapping"></a>TAP profile - default resources mapping
 

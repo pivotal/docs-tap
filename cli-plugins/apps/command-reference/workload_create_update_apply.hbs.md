@@ -328,8 +328,7 @@ tanzu apps workload apply tanzu-java-web-app --env NAME-
 Sets the workload specification file to create the workload. This comes from any other workload
 specification passed by flags to the command set or overrides what is in the file. Another way to
 use this flag is by using `-` in the command to receive workload definition through stdin.
-See [Working with YAML Files](../../usage.md#yaml-files) section for
-an example.
+See [Working with YAML Files](../create-workload.hbs.md#yaml-files) for an example.
 
 <details><summary>Example</summary>
 
@@ -626,7 +625,7 @@ An example with a Spring Boot application:
    The files and directories listed in the .tanzuignore file are being excluded from the uploaded source code.
    Publishing source in "." to "gcr.io/my-project/tanzu-java-web-app-live-update"...
    📥 Published source
-   
+
    🔎 Create workload:
        1 + |---
        2 + |apiVersion: carto.run/v1alpha1
@@ -930,8 +929,8 @@ Refers to the path of the self-signed certificate needed for the custom/private 
 This is also populated with a default value through environment variables. If the environment
 variable `TANZU_APPS_REGISTRY_CA_CERT` is set, it's not necessary to use it in the command.
 
-See [Environment variables with default values](../tanzu-apps-workload.hbs.md#envvars)
-to know the currently supported environment variables.
+See [Custom registry credentials](../how-to-guides.hbs.md#custom-registry) to know the currently
+supported environment variables.
 
 <details><summary>Example</summary>
 
@@ -1190,7 +1189,7 @@ Defines which path is used as the root path to create and update the workload.
       ❓ Publish source in "." to "gcr.io/my-registry/my-workload-image"? It may be visible to others who can pull images from that repository Yes
       Publishing source in "." to "gcr.io/my-registry/my-workload-image"...
       📥 Published source
-      
+
       🔎 Create workload:
             1 + |---
             2 + |apiVersion: carto.run/v1alpha1
@@ -1366,7 +1365,7 @@ tanzu apps workload apply -f ./spring-petclinic.yaml # defaulting to merge
 Workload is unchanged, skipping update
 ```
 
-The other, with `replace` update strategy, which will completely overwrite the workload in the cluster according to the new specifications in the file. 
+The other, with `replace` update strategy, which will completely overwrite the workload in the cluster according to the new specifications in the file.
 
 ```bash
 tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy replace

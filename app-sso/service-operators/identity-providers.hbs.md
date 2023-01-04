@@ -1,21 +1,21 @@
 # Identity providers
 
 An `AuthServer` does not manage users internally. Instead, users log in through external identity providers (IdPs).
-Currently, `AuthServer` supports OpenID Connect providers, as well a list of "static" hard-coded users for development
-purposes. `AuthServer` also has limited, experimental support for LDAP and SAML providers.
+Currently, `AuthServer` supports OpenID Connect providers, LDAP providers, as well as a list of "static" hard-coded
+users for development purposes only. `AuthServer` also has limited, experimental support for SAML providers.
 
 Identity providers are configured under `spec.identityProviders`, learn more
 from [the API reference](../crds/authserver.md).
 
-> ⚠️ Changes to `spec.identityProviders` take some time to be effective as the operator will roll out a new deployment
-> of the authorization server.
+> **Caution** Changes to `spec.identityProviders` take some time to be effective as the operator will roll out a new deployment
+of the authorization server.
 
 End-users will be able to log in with these providers when they go to `{spec.issuerURI}` in their browser.
 
 Learn how to configure identity providers for an `AuthServer`:
 
 - [OpenID Connect providers](#openid-connect-providers)
-- [LDAP (experimental)](#ldap-experimental)
+- [LDAP](#ldap)
 - [SAML (experimental)](#saml-experimental)
 - [Internal, static user](#internal-users)
 - [Restrictions](#restrictions)
@@ -56,7 +56,7 @@ stringData:
   clientSecret: very-secr3t
 ```
 
-Where:
+where:
 
 - `openID` is the issuer identifier. You can define as many OpenID providers as you like. If the provider supports OpenID Connect Discovery, 
 the value of `openID` is used to auto-configure the provider by using information from `https://openid.example.com/.well-known/openid-configuration`.
@@ -97,9 +97,9 @@ For example, you can run:
 curl -s "ISSUER-URI/.well-known/openid-configuration" | jq ".id_token_signing_alg_values_supported"
 ```
 
-## <a id='ldap-experimental'></a>LDAP (experimental)
+## <a id='ldap'></a>LDAP
 
-**At most one** `ldap` identity provider can be configured.
+> **Important** **At most one** `ldap` identity provider can be configured.
 
 For example:
 
@@ -139,12 +139,15 @@ stringData:
   password: confidential-password-value
 ```
 
-Where:
+where:
 
 - `url` is the URL of the LDAP server. It must be `ldaps` and must contain a port.
 - `bind.dn` is the DN to perform the bind.
 - `bind.passwordRef` must be a secret with the entry `password`. That entry is the password to perform the bind.
 - `user.searchBase` is the branch of tree where the users are located at. Search is performed in nested entries.
+- `user.seachFilter` is the filter used when running an LDAP search. It must contain the string `{0}` which is replaced
+  by the dn of the user when performing a search, e.g., when logging in with username marie, the filter used in the LDAP
+  search will be `cn=marie`.
 - `group` (optional) defaults to unset. It configures how LDAP groups are mapped to user roles in the `id_token` claims.
   If not set, the user has no roles.
   - `group.roleAttriubte` selects which attribute of the group entry are mapped to a user role. If an attribute has multiple
@@ -255,8 +258,8 @@ spec:
 
 Where:
 
-- `search.base` is the base for runnning an LDAP search for groups.
-- `search.filter` is the filter for runnning an LDAP search for groups. It must contain the string `{0}`, which
+- `search.base` is the base for running an LDAP search for groups.
+- `search.filter` is the filter for running an LDAP search for groups. It must contain the string `{0}`, which
   is replaced by the dn of the user when performing group search. For example, `member=cn=marie,ou=Users,dc=example,dc=org`.
 - `search.depth` (optional) is the depth at which to perform nested group search. It defaults to unset if left empty.
 - `search.searchSubTree` (optional) controls whether to look for groups in sub-trees of the `search.base`. It defaults to unset if left empty.
@@ -449,7 +452,7 @@ do not have the role `Citizens`, which requires a depth greater or equal to 3.
 
 ## SAML (experimental)
 
-> *WARNING:* Support for SAML providers is considered "experimental".
+> **Caution** Support for SAML providers is considered "experimental".
 
 For SAML providers only autoconfiguration through `metadataURI` is supported.
 
@@ -487,7 +490,7 @@ provider should be `https://appsso.company.example.com:1234/login/saml2/sso/my-p
 
 ## Internal users
 
-> ⛔️ *WARNING:* `InternalUnsafe` considered **unsafe**, and **not** recommended for production!
+> **Caution** `InternalUnsafe` considered **unsafe**, and **not** recommended for production!
 
 During development, static users may be useful for testing purposes. **At most one** `internalUnsafe` identity
 provider can be configured.

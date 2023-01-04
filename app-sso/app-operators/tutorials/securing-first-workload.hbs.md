@@ -17,10 +17,8 @@ accelerator used in this tutorial.
 
 ## Getting started
 
----
-> 👟 Skip to [step-by-step instructions](#deploying-the-sample-application-as-a-workload) if you are already familiar
-> with the accelerator used in this tutorial.
----
+> **Note** 👟 Skip to [step-by-step instructions](#deploying-the-sample-application-as-a-workload) if you are already familiar
+with the accelerator used in this tutorial.
 
 ### Understanding the sample application
 
@@ -40,11 +38,9 @@ The application, once launched, has two pages:
 The security configuration for the above is located
 at `com.vmware.tanzu.apps.sso.sampleworkload.config.WebSecurityConfig`.
 
----
-> For more in-depth details about how apps are configured with Spring Security OAuth2 Client library, be sure to check
-> out the
-> official [Spring Boot and OAuth2 tutorial](https://spring.io/guides/tutorials/spring-boot-oauth2/).
----
+> **Note** For more in-depth details about how apps are configured with Spring Security OAuth2 Client library, be sure to check
+out the
+official [Spring Boot and OAuth2 tutorial](https://spring.io/guides/tutorials/spring-boot-oauth2/).
 
 By default, there is no application properties file in our sample application and this is by design: even the simplest
 application can be deployed with AppSSO, you can even go to [start.spring.io](https://start.spring.io) and download a
@@ -75,10 +71,8 @@ The `ClientRegistration` resource definition contains a few critical pieces in i
   is [required by OpenID Connect specification](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) in
   order to issue identity tokens which designate a user as 'signed in'.
 
----
-> For more details about `ClientRegistration` custom resource,
-> see [ClientRegistration CRD](../../crds/clientregistration.md).
----
+> **Note** For more details about `ClientRegistration` custom resource,
+see [ClientRegistration CRD](../../crds/clientregistration.md).
 
 The `client.yaml` file is using [ytt templating](https://carvel.dev/ytt/) conventions. If you have
 the [Tanzu Cluster Essentials](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) installed, you
@@ -137,7 +131,7 @@ as described.
 
 Apply the `client.yaml` definition file (described [above](#the-sample-applications-clientregistration))
 
-⚠️ Make sure to set `auth_server_name` field to the name of the AuthServer custom resource.
+> **Caution** Make sure to set `auth_server_name` field to the name of the AuthServer custom resource.
 
 ```shell
 ytt \
@@ -174,11 +168,9 @@ You should see the `ClientRegistration` entry listed.
 
 Using Tanzu Services plugin CLI, create a service resource claim for the workload:
 
----
-> ⚠️ Name of the claim must be the same as the value of `claim_name` from previous step.
->
-> ⚠️ Resource name must be the same name as the workload name.
----
+> **Caution** Name of the claim must be the same as the value of `claim_name` from previous step.
+
+> **Caution** Resource name must be the same name as the workload name.
 
 ```shell
 tanzu service claim create appsso-starter-java \
@@ -228,8 +220,7 @@ To query the latest status of the Workload, run:
 tanzu apps workload get appsso-starter-java --namespace workloads
 ```
 
----
-> ⚠️ You may see the status of the workload at first:
+> **Caution** You may see the status of the workload at first:
 >
 > **message**: waiting to read value [.status.latestImage] from resource [image.kpack.io/appsso-starter-java]
 > in namespace [workloads]
@@ -237,9 +228,8 @@ tanzu apps workload get appsso-starter-java --namespace workloads
 > **reason**: `MissingValueAtPath`
 >
 > **status**: `Unknown`
->
+> 
 > This is NOT an error, this is normal operation of a pending workload. Watch the status for changes.
----
 
 Follow the `Workload` logs:
 

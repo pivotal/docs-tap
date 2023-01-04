@@ -91,7 +91,7 @@ In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanz
 
     Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
-    For more information, see [Tanzu Apps Workload Create](../cli-plugins/apps/command-reference/tanzu-apps-workload-create.md).
+    For more information, see [Tanzu Apps Workload Apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
     > **Note** This deployment uses an accelerator source from Git, but in later steps you use the VS Code extension
     to debug and live-update this application.

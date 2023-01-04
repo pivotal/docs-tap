@@ -265,7 +265,7 @@ appliveview:
 appliveview_connector:
   backend:
     ingressEnabled: true
-    sslDisabled: false
+    sslDeactivated: false
 
 tap_gui:
   service_type: ClusterIP
@@ -289,13 +289,13 @@ tap_gui:
     #Example Integration for custom GitLab:
     integrations:
       gitlab:
-        - host: GITLABURL
-          token: <GITLAB-TOKEN>
+        - host: GITLAB-URL
+          token: GITLAB-TOKEN
           apiBaseUrl: https://GITLABURL/api/v4/
     backend:
       reading:
         allow:
-          - host: https://GIT-CATALOG-URL/catalog-info.yaml
+          - host: GITLAB-URL # Example URL: gitlab.example.com
 
 metadata_store:
   ns_for_export_app_cert: "MY-DEV-NAMESPACE"
@@ -335,6 +335,8 @@ service's External IP address.
 credentials to pull an image from the registry for scanning.
 - `SECRET-NAME` is the name of the TLS secret for the domain consumed by HTTPProxy.
 - `APP-LIVE-VIEW-NAMESPACE` is the targeted namespace for the TLS secret for the domain.
+
+>**Note** The `appliveview_connector.backend.sslDisabled` key is deprecated and has been renamed to `appliveview_connector.backend.sslDeactivated`.
 
 If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
 

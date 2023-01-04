@@ -4,12 +4,15 @@ This topic describes advanced use-cases associated with Namespace Provisioner.
 
 The available guides are as follows:
 
-* [Data values templating](#data-values-templating)
-* [GitOps customizations](#gitops-customizations):
-   1. [Extending the default resources that get provisioned](#extending-default-resources)
-   2. [Customizing OOTB default resources](#customizing-default-resources)
-   3. [Control reconcile behavior of namespace provisioner for certain resources](#control-reconcile-behavior)
-   4. [Control the desired-namespace ConfigMap via GitOps](#control-desired-namespaces)
+- [Namespace Provisioner How-to Guide](#namespace-provisioner-how-to-guide)
+  - [Data values templating guide](#data-values-templating-guide)
+  - [GitOps Customizations](#gitops-customizations)
+    - [Extending the default provisioned resources](#extending-the-default-provisioned-resources)
+    - [ Add the resources required by the **Out of the Box Testing and Scanning Supply Chain**](#-add-the-resources-required-by-the-out-of-the-box-testing-and-scanning-supply-chain)
+    - [Customizing the default resources that get provisioned](#customizing-the-default-resources-that-get-provisioned)
+    - [Controlling the Namespace Provisioner reconcile behavior for specific resources](#controlling-the-namespace-provisioner-reconcile-behavior-for-specific-resources)
+    - [Control the `desired-namespaces` ConfigMap via GitOps](#control-the-desired-namespaces-configmap-via-gitops)
+    - [Links to additional Namespace Provisioner documentation:](#links-to-additional-namespace-provisioner-documentation)
 
 ## <a id="data-values-templating"></a>Data values templating guide
 
@@ -229,7 +232,8 @@ overridden with your  tool of choice for GitOps. The method for overriding the [
 kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/namespace-provisioner-gitops-examples/desired-namespaces/gitops-managed-desired-namespaces.yaml
 ```
 
-When this change is applied, the provisioner application will start the reconcile process and provision the resources on the given namespaces.
+When this change is applied, the provisioner application will start the reconcile process and provision
+the resources on the given namespaces.
 
 >**WARNING:** If there is a namespace in your GitOps repo `desired-namespaces` list that does not
 exist on the cluster, the `provisioner` application will fail to reconcile and will not be able to

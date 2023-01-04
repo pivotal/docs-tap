@@ -33,11 +33,11 @@ For information about setting up an offline vulnerability database, see the [Anc
 
 ### ERROR failed to fetch latest cli version
 
-**Note**: This message is only a warning and the grype scan will still run with this message.
+**Note**: This message is a warning and the grype scan still runs with this message.
 
-The Grype CLI is checking for later versions of the CLI by contacting the anchore endpoint over the Internet.
+The Grype CLI checks for later versions of the CLI by contacting the anchore endpoint over the Internet.
 
-```
+```console
 ERROR failed to fetch latest version: Get "https://toolbox-data.anchore.io/grype/releases/latest/VERSION": dial tcp: lookup toolbox-data.anchore.io on [::1]:53: read udp [::1]:65010->[::1]:53: read: connection refused
 ```
 
@@ -100,7 +100,7 @@ default, it fails to run if the local database was not built in the last 5 days.
 
 Two options to resolve this:
 
-1. Stale databases weaken your security posture. VMware recommends updating the database daily which is the first recommended solution.
+1. Stale databases weaken your security posture. VMware recommends updating the database daily as the first recommended solution.
 
 2. If updating the database daily is not an option, the data staleness check is configurable by using the environment variable
 `GRYPE_DB_MAX_ALLOWED_BUILT_AGE` and is addressed using a package overlay with

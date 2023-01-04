@@ -329,7 +329,7 @@ There are two options to resolve this issue:
 
 1. Upgrade to the latest Grype Scanner version. This automatically replaces the old ScanTemplates with the upgraded ScanTemplates.
 
-1. Create a ScanTemplate. Follow the steps in [Create a scan template](create-scan-template.hbs.md).
+2. Create a ScanTemplate. Follow the steps in [Create a scan template](create-scan-template.hbs.md).
 
 #### <a id="inc-cnfg-self-signed-cert"></a> Incorrectly configured self-signed certificate
 
@@ -346,7 +346,7 @@ self-signed certificate.
 
 The `shared.ca_cert_data` installation value can contain a PEM-encoded CA bundle.
 The scanning component trusts the CAs contained in the bundle.
-The self-signed certificate is configured by [using the shared top-level key](../view-package-config.hbs.md).
+You configure the self-signed certificate by [using the shared top-level key](../view-package-config.hbs.md).
 
 #### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
@@ -370,14 +370,17 @@ package repository.
 
 #### <a id="grype-db-not-available"></a> Grype database not available
 
-Prior to running a scan, the Grype scanner will download a copy of its database. If the database fails to download, the following log message may appear.
+Prior to running a scan, the Grype scanner downloads a copy of its database. If the database fails to download, the following log message might appear.
 
-```
+```console
 Vulnerability DB [no update available] New version of grype is available: 0.50.2 [0000] WARN unable to check for vulnerability database update 1 error occurred: * failed to load vulnerability db: vulnerability database is corrupt (run db update to correct): database metadata not found: ~/Library/Caches/grype/db/3
 ```
 
 To resolve this issue, ensure that Grype has access to its vulnerability database:
-* If you have set up a [mirror](offline-airgap.hbs.md) of the vulnerability database, check that it is populated and reachable.
-* If you did not set up a mirror, Grype manages its database behind the scenes. Check that the cluster has access to https://anchore.com/.
 
-Note: This issue is unrelated to the Supply Chain Security Tools for Tanzu – Store.
+- If you have set up a [mirror](offline-airgap.hbs.md) of the vulnerability
+  database, verify that it is populated and reachable.
+- If you did not set up a mirror, Grype manages its database behind the scenes.
+  Verify that the cluster has access to https://anchore.com/.
+
+Note: This issue is unrelated to Supply Chain Security Tools for Tanzu – Store.

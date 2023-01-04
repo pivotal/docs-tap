@@ -42,13 +42,15 @@ Learn how to configure TLS for your `AuthServer`:
 - [Configure TLS by using a Secret](#configure-tls-by-using-a-secret)
 - [Deactivate TLS](#deactivate-tls-unsafe)
 
-> ℹ️ If your `AuthServer` obtains a certificate from a custom CA, then [help _App
-> Operators_ to trust it](#allow-workloads-to-trust-a-custom-ca-authserver).
+> **Note** 👉 There are many use-cases that pertain to TLS use. To find out which scenario applies to you and how to configure it,
+[view the TLS scenario guides](./tls-scenario-guides.hbs.md).
+
+> **Note** If your `AuthServer` obtains a certificate from a custom CA, then [help _App Operators_ to trust it](#allow-workloads-to-trust-a-custom-ca-authserver).
 
 ## Configure TLS by using a (Cluster)Issuer
 
 You can obtain a TLS certificate for your `AuthServer` by referencing a `cert-manager.io/v1/Issuer`
-or `cert-manager.io/v1/ClusterIssuer`. The AppSSO will then an `cert-manager.io/v1/Certificate` from that issuer and
+or `cert-manager.io/v1/ClusterIssuer`. The AppSSO will then get a `cert-manager.io/v1/Certificate` from that issuer and
 configure `Ingress` with it.
 
 The composition of an `AuthServer` and a _self-signed_ `Issuer` looks as follows:
@@ -104,7 +106,7 @@ spec:
 
 Confirm that your `AuthServer` serves a TLS certificate from the specified issuer by visiting its `{.status.issuerURI}`.
 
-> 👉 Learn more about [cert-manager and its APIs](https://cert-manager.io/).
+> **Note** 👉 Learn more about [cert-manager and its APIs](https://cert-manager.io/).
 
 ## Configure TLS by using a Certificate
 
@@ -142,7 +144,7 @@ spec:
 
 Confirm that your `AuthServer` serves the specified Certificate by visiting its `{.status.issuerURI}`.
 
-> 👉 Learn more about [cert-manager and its APIs](https://cert-manager.io/).
+> **Note** 👉 Learn more about [cert-manager and its APIs](https://cert-manager.io/).
 
 ## Configure TLS by using a Secret
 
@@ -178,7 +180,8 @@ spec:
 
 ## Deactivate TLS (unsafe)
 
-If you deactivate TLS autoconfiguration, `AuthServer` only works over plain HTTP. You must deactivate TLS with the `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""` annotation.
+If you deactivate TLS autoconfiguration, `AuthServer` only works over plain HTTP. You must deactivate TLS with
+the `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""` annotation.
 
 ```yaml
 ---
@@ -195,7 +198,7 @@ spec:
     deactivated: true
 ```
 
->**Caution** Deactivating TLS is unsafe and not recommended for production.
+> **Caution** Deactivating TLS is unsafe and not recommended for production.
 
 ## Allow `Workloads` to trust a custom CA `AuthServer`
 
@@ -242,4 +245,5 @@ not contain the CA's private and is generally safe to share.
 However, be careful, this example exports to all namespace on the cluster. If this does not comply with your policies,
 then adjust the target namespaces if required.
 
-> 👉 Learn more about [secretgen-controller and its APIs](https://github.com/vmware-tanzu/carvel-secretgen-controller).
+> **Note** 👉 Learn more about [secretgen-controller and its APIs](https://github.com/vmware-tanzu/carvel-secretgen-controller).
+
