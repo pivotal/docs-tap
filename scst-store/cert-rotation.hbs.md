@@ -33,11 +33,12 @@ metadata_store:
 ```
 
 Where `ca_cert_duration` is the duration that the ca certificate will be valid for. Must be given in h, m, or s. Default value is 8760h
+
 Where `ca_cert_renew_before` is the time when to renew the ca certificate before the expiration time. Must be given in h, m, or s. Default value is 1h
+
 Where `api_cert_duration` is the duration that the api certificate will be valid for. Must be given in h, m, or s. Default value is 2160h
+
 Where `api_cert_renew_before` is the time when to renew the api certificate before the expiration time. Must be given in h, m, or s. Default value is 24h
 
 Note: Then above setting Only takes effect when `use_cert_manager` is `true`. If the `use_cert_manager` is not set, it will default to `true`
 
-- [Custom certificate configuration](custom-cert.hbs.md)
-- [Ingress support](ingress.hbs.md)%s
