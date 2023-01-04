@@ -14,6 +14,46 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
 Currently there is no way to use Tanzu Application Platform GUI in Safari. Please use a different
 web browser.
 
+## <a id='port-range-invalid'></a> Tanzu Application Platform GUI reports Port range is not valid
+
+### Symptom
+
+You have provided a full URL in a `backend.reading.allow` entry.
+
+For example
+```yaml
+# tap-values.yaml
+
+tap_gui:
+  app_config:
+    backend:
+      reading:
+        allow:
+          - host: http://gitlab.example.com/some-group/some-repo/-/blob/main/catalog-info.yaml
+```
+
+Then you receive the error message:
+```
+Backend failed to start up, Error: Port range is not valid: //gitlab.example.com/some-group/some-repo/-/blob/main/catalog-info.yaml
+```
+
+### Solution
+
+TAP GUI expects a hostname to be passed into the field `backend.reading.allow[].host`
+
+For example
+```yaml
+# tap-values.yaml
+
+tap_gui:
+  app_config:
+    backend:
+      reading:
+        allow:
+          - host: gitlab.example.com
+            paths: ['/some-group/some-repo/']
+```
+
 ## <a id='update-sc-err'></a> Updating a supply chain causes an error (`Can not create edge...`)
 
 ### Symptom
