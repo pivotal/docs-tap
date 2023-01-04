@@ -75,7 +75,7 @@ To install Application Accelerator:
     $ tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for accelerator.apps.tanzu.vmware.com...
       NAME                               VERSION  RELEASED-AT
-      accelerator.apps.tanzu.vmware.com  1.4.0    2023-01-10 13:00:00 -0400 EDT
+      accelerator.apps.tanzu.vmware.com  1.4.0    2022-12-08 12:00:00 -0500 EST 
     ```
 
 2. (Optional) To make changes to the default installation settings, run:

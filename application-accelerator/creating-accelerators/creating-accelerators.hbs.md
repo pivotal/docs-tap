@@ -10,7 +10,7 @@ The following prerequisites are required to create an accelerator:
   - You can access Tanzu Application Platform GUI from a browser OR have configured the Application Accelerator extension for VS Code. 
       - For more information on the Tanzu Application Platform GUI, see the corresponding section in the most recent release of the [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html). 
       - For more information on the Application Accelerator extension for VS Code, see the latest on the [Application Accelerator Visual Studio Code extension page](../vscode.md)
-  - kubectl v1.20 and later. The Kubernetes command line tool (kubectl) is installed and authenticated with admin rights for your target cluster.
+  - kubectl is installed. The Kubernetes command line tool (kubectl) is installed and authenticated with admin rights for your target cluster.
 
 ## <a id="creating-accelerators-getting-started"></a>Getting started
 
@@ -182,11 +182,11 @@ spec:
   displayName: Select Java Version
   git:
     ref:
-      tag: TAP_VERSION
+      tag: GIT_TAG_VERSION
     url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     subPath: fragments/java-version
 ```
-Where `TAP_VERSION` is the current version the Tanzu Application Platform. As an example, this will take the form: `tap-X.Y.Z`, where `X.Y.Z` are version numbers. (e.g. `tap-1.4`)
+Where `GIT_TAG_VERSION` is the git tag of the `java-version` fragment. As an example, `tap-1.4.0` is a valid git tag for the `java-version` fragment.
 
 To create the fragment (we can save the above manifest in a `java-version.yaml` file) and use:
 
@@ -201,11 +201,11 @@ To avoid having to create a separate manifest file, you can use the following co
 ```
 tanzu accelerator fragment create java-version \
   --git-repo https://github.com/vmware-tanzu/application-accelerator-samples.git \
-  --git-tag ${TAP_VERSION} \
+  --git-tag ${GIT_TAG_VERSION} \
   --git-sub-path fragments/java-version
 ```
 
-Where `TAP_VERSION` is the `spec.git.ref.tag` value that is located in the `java-version.yaml`. (e.g. `tap-1.4`)
+Where `GIT_TAG_VERSION` is the git tag of the `java-version` fragment. As an example, `tap-1.4.0` is a valid git tag for the `java-version` fragment.
 
 Now you can use this `java-version` fragment in an accelerator:
 
