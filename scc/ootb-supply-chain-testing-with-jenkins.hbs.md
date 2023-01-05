@@ -282,7 +282,7 @@ parameters:
   - name: testing_pipeline_matching_labels
     value:
       #! This label must match the label on the pipeline created earlier
-      apps.tanzu.com/pipeline: jenkins-pipeline
+      apps.tanzu.vmware.com/pipeline: jenkins-pipeline
 
   #! Required: Passes parameters to pipeline
   - name: testing_pipeline_params
