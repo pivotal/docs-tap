@@ -1,8 +1,8 @@
 # Identity providers
 
 An `AuthServer` does not manage users internally. Instead, users log in through external identity providers (IdPs).
-Currently, `AuthServer` supports OpenID Connect providers, LDAP providers, as well as a list of "static" hard-coded
-users for development purposes only. `AuthServer` also has limited, experimental support for SAML providers.
+Currently, `AuthServer` supports OpenID Connect providers, LDAP providers and a list of static hard-coded
+users for development purposes only. `AuthServer` also has limited beta support for SAML providers.
 
 Identity providers are configured under `spec.identityProviders`, learn more
 from [the API reference](../crds/authserver.md).
