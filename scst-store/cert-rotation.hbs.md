@@ -4,7 +4,7 @@ This topic describes TLS Certificate Rotation for Supply Chain Security Tools (S
 
 ## Certificates
 
-By default the `use_cert_manager` setting is set to `"true"`.
+By default, the `use_cert_manager` setting is set to `"true"`.
 When the setting `use_cert_manager` is `"true"` the Store uses `cert-manager` to generate a CA certificate, an API certificate, and a DB Certificate.
 
 To see these certificates, run the following:
@@ -34,11 +34,16 @@ metadata_store:
 
 Where `ca_cert_duration` is the duration that the ca certificate will be valid for. Must be given in h, m, or s. Default value is 8760h
 
-Where `ca_cert_renew_before` is the time when to renew the ca certificate before the expiration time. Must be given in h, m, or s. Default value is 1h
+Where `ca_cert_renew_before` is how long before the expiry of the ca certificate is renewed. Must be given in h, m, or s. Default value is 1h
 
 Where `api_cert_duration` is the duration that the api certificate will be valid for. Must be given in h, m, or s. Default value is 2160h
 
-Where `api_cert_renew_before` is the time when to renew the api certificate before the expiration time. Must be given in h, m, or s. Default value is 24h
+Where `api_cert_renew_before` is how long before the expiry of the api certificate is renewed. Must be given in h, m, or s. Default value is 24h
 
-Note: The above settings only take effect when `use_cert_manager` is `"true"`. If the `use_cert_manager` is not set, it will default to `"true"`
+Note:
+ - The `*_cert_duration` and the corresonding `*_renew_before` settings should not be ["very close"](https://cert-manager.io/docs/usage/certificate/#renewal). This may lead to a renewal loop.
+
+ - The `*_cert_duration` must be greater than the corresponding `*_renew_before`.
+
+ - The above settings only take effect when `use_cert_manager` is `"true"`. If the `use_cert_manager` is not set, it will default to `"true"`
 
