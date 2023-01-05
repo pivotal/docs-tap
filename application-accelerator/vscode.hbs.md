@@ -5,8 +5,9 @@ from the defined accelerators in Tanzu Application Platform using VS Code.
 
 ## <a id="dependencies"></a> Dependencies
 <!-- TODO Is this still needed for this section?? -->
-To use the VS Code extension, you must interact with the `acc-server`. For more
-information, see [How to expose this server follow the instructions](../cli-plugins/accelerator/overview.md#server-api-connections).
+To use the VS Code extension, the extension must be able to access the Tanzu Application Platform GUI URL.
+
+For information on how to retrieve the Tanzu Application Platform GUI URL, please see the section below entitled [Retrieving the URL for the Tanzu Application Platform GUI](#fqdn-tap-gui-url)
 
 ## <a id="vs-code-app-accel-install"></a> Installation
 
@@ -20,7 +21,7 @@ Use the following steps to install the Application Accelerator Visual Studio ext
 
     1. From the Command Palette (cmd + shift + P), run "Extensions: Install from VSIX...".
 
-    2. Select the extension file **tanzu-app-accelerator-<VERSION>.vsix**.
+    2. Select the extension file **tanzu-app-accelerator-<EXTENSION_VERSION>.vsix**.
 
         ![The Command palette is open and Extensions: Install from VSIX appears in the drop-down menu.](../images/vscode-install1v2.png)
 
@@ -60,5 +61,19 @@ Choose any of the defined accelerators, fill the options and click  the `generat
 
 ![The accelerator tab is open to the Hello Fun accelerator form. The text boxes display example text and the Generate Project button is highlighted.](../images/app-accelerators-vscode-form.png)
 
+
+## <a id="fqdn-tap-gui-url"></a> Retrieving the URL for the Tanzu Application Platform GUI
+If you have access to the Tanzu Application Platform cluster that is running the Tanzu Application Platform GUI, you can run the following command to determine the fully-qualified domain name:
+```
+kubectl get httpproxy tap-gui -n tap-gui
+```
+
+With an expected response of something similar to:
+```
+NAME      FQDN                                      TLS SECRET     STATUS   STATUS DESCRIPTION
+tap-gui   tap-gui.tap.tapdemo.myorg.com             tap-gui-cert   valid    Valid HTTPProxy
+```
+
 ## <a id="app-acclerator-known-issues"></a> Known Issues
 In version 0.1.5 of the Application Accelerator extension for VS Code, if an accelerator with [`custom types`](creating-accelerators/custom-types.hbs.md) is used _and_ the custom type form contains checkboxes, reprioritizing the custom types entries will cause the data to not properly reorder. This is a known bug and will be resolved in an upcoming release.
+

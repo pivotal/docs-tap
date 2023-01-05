@@ -47,6 +47,19 @@ The following steps describe an example configuration that uses GitHub:
    For more information, see the
    [Backstage documentation](https://backstage.io/docs/integrations/github/locations).
 
+### <a id="disable-git-repo-creation"></a> Disable optional git repo creation
+
+From version 1.4 of the Tanzu Application Platform, the Application Accelerator extension for VS Code leverages the Tanzu Application GUI URL to interact with the accelerator system.
+There is a new plugin called `gitProviders` that can be optionally configured to disable the git repository creation system-wide. 
+
+To disable optional git repo creation, set `app_config.gitProviders.active` to `false` in the `tap-values.yaml` as shown in the example below:
+
+```yaml
+   app_config:
+      gitProviders:
+         active: false
+```
+
 ### <a id="k8s-secrets"></a> Using Kubernetes secrets
 
 To use Kubernetes secrets to set the values for `clientId` and `clientSecret`:
