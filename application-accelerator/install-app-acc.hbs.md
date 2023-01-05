@@ -117,15 +117,6 @@ To install Application Accelerator:
       >   include: true
       > ```
     
-    >**Note** When working instead with a `tap-values.yaml` file, ensure that the top level parameter is `accelerator:`. Using the example above as reference:
-      > ```yaml
-      > accelerator:
-      >   server:
-      >     service_type: "ClusterIP"
-      >     watched_namespace: "accelerator-system"
-      >   samples:
-      >     include: true
-      > ```
 
 
 4. Install the package by running:
