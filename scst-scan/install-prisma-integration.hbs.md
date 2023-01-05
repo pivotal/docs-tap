@@ -1,5 +1,4 @@
 # Installation Guide for Prisma Scanner
-# Prerequisites for Carbon Black Scanner (Beta)
 
 <p style="color:red"><b>
 Note: This integration is being released as an Alpha, which means that it is still in active development by the Tanzu Practices Global Tech Team and may be subject to change at any point. Users may encounter unexpected behavior, but we would love to hear your feedback if you do try out this integration.</b></p>
