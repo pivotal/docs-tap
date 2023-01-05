@@ -317,6 +317,8 @@ controlled by another team, you can import its `Secret` to other namespaces.
 If you have an existing `Certificate` in another `Namespace`, 
 use the following AppSSO configuration values:
 
+> **Caution** Be cautious when using `SecretExport` and `SecretImport` to facilitate the transfer across namespaces.
+
 ```yaml
 ---
 apiVersion: v1
@@ -401,8 +403,6 @@ spec:
       pub.pem: $(publicKey)
 ```
 
-Be cautious when using `SecretExport` and `SecretImport` to facilitate the transfer across namespaces.
-
 ## <a id='existing-tls-certificate'></a> Using an existing TLS certificate
 
 If you have an existing TLS certificate and private key, you can apply it directly.
@@ -485,10 +485,12 @@ spec:
 
 ```
 
-If you have an existing TLS certificate in another `Namespace`, use the following AppSSO configuration values::
+If you have an existing TLS certificate in another `Namespace`, use the following AppSSO configuration values:
 
 > **Important** The TLS certificate `tls.crt` and its corresponding private key `tls.key` must be stored in a secret with
 these keys.
+
+> **Caution** Be cautious when using `SecretExport` and `SecretImport` to facilitate the transfer across namespaces.
 
 ```yaml
 ---
@@ -579,8 +581,6 @@ spec:
       pub.pem: $(publicKey)
 ```
 
-Be cautious when using `SecretExport` and `SecretImport` to facilitate the transfer across namespaces.
-
 ## <a id='existing-wildcard-tls-certificate'></a> Using an existing wild-card TLS certificate
 
 To use wild-card certificates for DNS names like `*.my-tap.example.com`, AppSSO's `domain_template` must be
@@ -605,6 +605,10 @@ certificates when it uses the [`http01` challenge solver](https://cert-manager.i
 
 If you have an existing wild-card TLS certificate in the same `Namespace` where the AuthServer is installed, 
 use the following AppSSO configuration values:
+
+> **Note** This scenario is exactly the same as
+when using an existing TLS certificate in the same namespace, 
+but the certificate is a wild-card.
 
 ```yaml
 ---
@@ -672,12 +676,12 @@ spec:
 
 ```
 
+If you have an existing wild-card TLS certificate in another `Namespace`, use the following AppSSO configuration values:
+
 > **Note** This scenario is exactly the same as
-when using an existing TLS certificate in the same namespace, 
+when using an existing TLS certificate in the another namespace,
 but the certificate is a wild-card.
 
-
-If you have an existing wild-card TLS certificate in another `Namespace`, use the following AppSSO configuration values:
 
 ```yaml
 ---
@@ -768,7 +772,3 @@ spec:
       pub.pem: $(publicKey)
 
 ```
-
-> **Note** This scenario is exactly the same as
-when using an existing TLS certificate in the another namespace,
-but the certificate is a wild-card.
