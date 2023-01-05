@@ -205,7 +205,7 @@ The following is the YAML file sample for the full-profile:
 
 >**Important** Tanzu Build Service is installed by default with `lite` depndencies. 
 When installing Tanzu Build Service in an air-gapped environment, the lite dependencies are not available because they require Internet access. 
-You must install the full dependencies by setting `exclude_dependencies: true` as in the following YAML file sample. 
+You must install the `full` dependencies by setting `exclude_dependencies` to `true`. 
 
 ```yaml
 shared:
