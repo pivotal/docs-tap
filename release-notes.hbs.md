@@ -1,10 +1,5 @@
 # Release notes
 
-{{#unless vars.hide_content}}
-This Handlebars condition is used to hide content.
-In release notes, this condition hides content that describes an unreleased patch for a released minor.
-{{/unless}}
-
 This topic contains release notes for Tanzu Application Platform v1.4.
 
 ## <a id='1-4-0'></a> v1.4.0
