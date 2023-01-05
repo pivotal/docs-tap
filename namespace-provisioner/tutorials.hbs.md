@@ -105,8 +105,7 @@ tap value key's value as follows:
   (Default is `true`)
 
 Please go to the  [**Control the `desired-namespaces` ConfigMap via GitOps**](how-tos.hbs.md#control-desired-namespaces)
-section of the [How-to Guide](how-tos.hbs.md) for detailed instructions for provisinging namespaces
-via GitOps.
+section of the [How-to Guide](how-tos.hbs.md) for detailed instructions for provisioning namespaces via GitOps.
 
 </br>
 

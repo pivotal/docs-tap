@@ -6,7 +6,7 @@ Before installing the packages, ensure that you have completed the following tas
 
 - Review the [Prerequisites](prerequisites.html) to ensure that you have set up everything required before beginning the installation.
 - [Accept Tanzu Application Platform EULA and install Tanzu CLI](install-tanzu-cli.html).
-- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html). This step is optional if you are using VMware Tanzu Kubernetes Grid cluster.
+- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/GUID-deploy.html). This step is optional if you are using VMware Tanzu Kubernetes Grid cluster.
 
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
@@ -203,8 +203,9 @@ and input it as `B64_ENCODED_CA` in the `tap-values.yaml`.
 
 The following is the YAML file sample for the full-profile:
 
->**Note** Tanzu Build Service is installed by default with `lite` depndencies. When installing Tanzu Build Service on an air-gapped environment, the lite dependencies cannot be used as they require Internet access. You must install the full dependencies. This means you must set `exclude_dependencies: true` as the YAML file sample specifies. 
-
+>**Important** Tanzu Build Service is installed by default with `lite` depndencies. 
+When installing Tanzu Build Service in an air-gapped environment, the lite dependencies are not available because they require Internet access. 
+You must install the `full` dependencies by setting `exclude_dependencies` to `true`. 
 
 ```yaml
 shared:

@@ -6,9 +6,9 @@ This topic describes known limitations and default resource mapping.
 - If there is a namespace in your GitOp's repository [**`desired-namespaces`**](about.hbs.md#desired-ns-configmap)
 ConfigMap that does not exist on the cluster, the `provisioner` application fails to reconcile
 and cannot create resources.
-- The creation of the namespaces is out of scope for the Namespace Provisioner package.
+- The creation of the namespaces is out of scope for Namespace Provisioner.
 - Removing the Namespace Provisioner package removes all the components created by it.
-- **Before uninstalling the namespace provisioner**, you must:
+- Before uninstalling the Namespace Provisioner, you must:
   - If you are using the controller to manage `desired-namespaces` ConfigMap, un-label all the
     namespaces provisioned by Namespace Provisioner
   - If you are using GitOps to manage `desired-namespaces` ConfigMap, set the list of namespaces to an

@@ -28,7 +28,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. Install Docker if it is not already installed.
 
-2. Log in to your image registry by running:
+1. Log in to your image registry by running:
 
     ```console
     docker login MY-REGISTRY
@@ -36,13 +36,13 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
     Where `MY-REGISTRY` is your own container registry.
 
-3. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
+1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
 
     ```console
     docker login registry.tanzu.vmware.com
     ```
 
-4. Set up environment variables for installation use by running:
+1. Set up environment variables for installation use by running:
 
     ```console
     export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
@@ -61,12 +61,13 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
     for the installation files for Tanzu Application Platform.
 
-   > **Note** When using Google Container Registry it is best to use a JSON key file to authenticate with the registry.  
-   > See the [Google Container Registry authentication documentation](https://cloud.google.com/container-registry/docs/advanced-authentication) 
-   > for details on how to generate the JSON key file.  The value of `INSTALL_REGISTRY_USERNAME` will be `_json_key` and
-   > the value of `INSTALL_REGISTRY_PASSWORD` will be the contents of the JSON key file.
+    VMware recommends using a JSON key file to authenticate with Google Container Registry. 
+    In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and 
+    the value of `INSTALL_REGISTRY_PASSWORD` is the content of the JSON key file.
+    For more information about how to generate the JSON key file, 
+    see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).  
 
-5. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
+1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path).
 
     To query for the available `imgpkg` CLI versions on VMWare Tanzu Network Registry, run:
 
