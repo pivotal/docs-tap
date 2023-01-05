@@ -30,7 +30,7 @@ accelerator:
   managed_resources:
     enable: true
     git:
-      url: GIT_REPO_URL
+      url: GIT-REPO-URL
       ref: origin/main
       sub_path: null
       secret_ref: git-credentials
@@ -38,7 +38,7 @@ accelerator:
 
 Where:
 
-- `GIT_REPO_URL` is the URL of a Git
+- `GIT-REPO-URL` is the URL of a Git
   repository that contains manifest YAML files for the accelerators that you want to have managed. The URL must start with `https://` or `git@`.
   See the following for [manifest examples](#examples-multi-manifest). You can specify a `sub_path` if necessary and also a
   `secret_ref` if the repository requires authentication. If not needed, then leave these additional
@@ -46,8 +46,8 @@ Where:
 
 ### <a id="functional-considerations"></a> Functional and Organizational Considerations
 
-Any accelerator manifest that is defined under the `GIT_REPO_URL` and optional `sub_path` is
-picked up by the kapp-controller app. If there are multiple manifests at the defined `GIT_REPO_URL`,
+Any accelerator manifest that is defined under the `GIT-REPO-URL` and optional `sub_path` is
+picked up by the kapp-controller app. If there are multiple manifests at the defined `GIT-REPO-URL`,
 they are all watched for changes and displayed to the user as a merged catalog.
 
 For example: Say you have two manifests containing multiple accelerator or fragment
@@ -208,17 +208,17 @@ Accelerator. The same properties are provided in the `accelerator` section of th
 accelerator:
   git_credentials:
     secret_name: git-credentials
-    username: GIT_USERNAME
-    password: GIT_CREDENTIALS
-    ca_file: CUSTOM_CA_CERT
+    username: GIT-USER-NAME
+    password: GIT-CREDENTIALS
+    ca_file: CUSTOM-CA-CERT
 ```
 
 Where:
 
-- `GIT_USERNAME` is the user name for authenticating with the Git repository.
-- `GIT_CREDENTIALS` is the password or access token used for authenticating with the
+- `GIT-USER-NAME` is the user name for authenticating with the Git repository.
+- `GIT-CREDENTIALS` is the password or access token used for authenticating with the
   Git repository. VMware recommends using an access token for this.
-- `CUSTOM_CA_CERT` is the certificate data needed when accessing the Git repository.
+- `CUSTOM-CA-CERT` is the certificate data needed when accessing the Git repository.
 
 This is an example of this part of a `tap-values.yaml` configuration:
 
@@ -323,14 +323,14 @@ spec:
   displayName: private
   description: Accelerator using a private repository
   git:
-    url: REPOSITORY_URL
+    url: REPOSITORY-URL
     ref:
       branch: main
     secretRef:
       name: https-credentials
 ```
 
-For https credentials, the `REPOSITORY_URL` must use `https://` as the URL scheme.
+For https credentials, the `REPOSITORY-URL` must use `https://` as the URL scheme.
 
 If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create`
 command and provide the name of the secret for that flag.
@@ -385,14 +385,14 @@ spec:
   displayName: private
   description: Accelerator using a private repository
   git:
-    url: REPOSITORY_URL
+    url: REPOSITORY-URL
     ref:
       branch: main
     secretRef:
       name: https-ca-credentials
 ```
 
-> **Important** For https credentials, the `REPOSITORY_URL` must use `https://` as the URL scheme.
+> **Important** For https credentials, the `REPOSITORY-URL` must use `https://` as the URL scheme.
 
 If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create`
 command and provide the name of the secret for that flag.
@@ -455,14 +455,14 @@ spec:
   displayName: private
   description: Accelerator using a private repository
   git:
-    url: REPOSITORY_URL
+    url: REPOSITORY-URL
     ref:
       branch: main
     secretRef:
       name: ssh-credentials
 ```
 
-When using SSH credentials, the `REPOSITORY_URL` must include the user name as part of
+When using SSH credentials, the `REPOSITORY-URL` must include the user name as part of
 the URL. For example: `ssh://user@example.com:22/repository.git`.
 See [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for
 more detail.
@@ -639,14 +639,14 @@ the `accelerator` section of the `tap-values.yaml` file:
 server:
   tls:
     enabled: true
-    key: SERVER_PRIVATE_KEY
-    crt: SERVER_CERTIFICATE
+    key: SERVER-PRIVATE-KEY
+    crt: SERVER-CERTIFICATE
 ```
 
 Where:
 
-- `SERVER_PRIVATE_KEY` is the pem encoded server private key.
-- `SERVER_CERTIFICATE` is the pem encoded server certificate.
+- `SERVER-PRIVATE-KEY` is the pem encoded server private key.
+- `SERVER-CERTIFICATE` is the pem encoded server certificate.
 
 Here is a sample `tap-values.yaml` configuration with TLS enabled for Accelerators Server:
 
@@ -688,14 +688,14 @@ To enable TLS for the Accelerator Engine, the following properties are provided 
 engine:
   tls:
     enabled: true
-    key: ENGINE_PRIVATE_KEY
-    crt: ENGINE_CERTIFICATE
+    key: ENGINE-PRIVATE-KEY
+    crt: ENGINE-CERTIFICATE
 ```
 
 Where:
 
-- `ENGINE_PRIVATE_KEY` is the pem encoded acc-engine private key.
-- `ENGINE_CERTIFICATE` is the pem encoded acc-engine certificate.
+- `ENGINE-PRIVATE-KEY` is the pem encoded acc-engine private key.
+- `ENGINE-CERTIFICATE` is the pem encoded acc-engine certificate.
 
 Here is a sample `tap-values.yaml` configuration with TLS enabled for Accelerators Engine:
 
