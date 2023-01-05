@@ -480,7 +480,7 @@ docs.vmware.com is built.
     - [Tanzu Developer Tools for IntelliJ](intellij-extension/about.hbs.md)
       - [Tanzu Developer Tools for IntelliJ overview](intellij-extension/about.hbs.md)
       - [Install Tanzu Developer Tools for IntelliJ](intellij-extension/install.hbs.md)
-      - [Get Started](intellij-extension/getting-started.hbs.md)
+      - [Get Started with Tanzu Developer Tools for IntelliJ](intellij-extension/getting-started.hbs.md)
       - [Use Tanzu Developer Tools for IntelliJ](intellij-extension/using-the-extension.hbs.md)
       - [Glossary](intellij-extension/glossary.hbs.md)
       - [Troubleshoot Tanzu Developer Tools for IntelliJ](intellij-extension/troubleshooting.hbs.md)
