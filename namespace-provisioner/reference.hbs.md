@@ -14,6 +14,7 @@
 ## <a id="default-resources-mapping"></a>TAP profile - default resources mapping
 
 The following table shows the list of resources that are templated in the `default-resources` Secret for an installation profile and supply chain value combination:
+
 | Namespace  | Kind | Name | supply_chain | Install Profile | Reconcile? |
 | ------------- | ------------- | ------------- | ------------- | ------------- | ------------- |
 | tap-install  | PackageInstall | grype-scanner-{ns} | testing_scanning | full, build | Yes  |
