@@ -234,7 +234,7 @@ Follow these steps to enable additional users in your namespace by using Kuberne
         provider's user groups system to grant access to a group of developers.
 
         For an example of how to set up Azure Active Directory (AD) with your cluster, see
-        [Integrate Azure Active Directory](/authn-authz/azure-ad.html).
+        [Integrate Azure Active Directory](/authn-authz/azure-ad.hbs.md).
 
 1. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the
    role bindings are applied.
