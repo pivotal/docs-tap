@@ -218,9 +218,9 @@ As such, if you have explicitly set the fields `tap_gui.app_config.app.baseUrl`,
 
 ##### Communication with Supply Chain Security Tools - Store
 
-In previous versions of installation guide, users were asked to configure the TAP GUI to use the read-only access token to communicate with Supply Chain Security Tools - Store.
-In v1.4, users need to use the read-write access token.
-The change is necessary to enable the use of new APIs to support the Security Analysis GUI plugin.
+In previous version of TAP, users were asked to configure the TAP GUI to use the read-only access token to communicate with Supply Chain Security Tools - Store.
+In v1.4, users need to use the read-write access token in order to use new features in the Security Analysis GUI plugin.
+Users upgrading from v1.3 should update their TAP GUI configuration.
 See the updated instructions in [Enable CVE scan results](tap-gui/plugins/scc-tap-gui.hbs.md#scan).
 
 #### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
