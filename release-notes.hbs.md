@@ -394,6 +394,11 @@ This release has the following known issues, listed by area and component.
 - The `Tanzu: Start Live Update` command can fail because the specified path was not found.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#lv-update-path-not-found).
 
+#### <a id="1-4-0-vs-app-acc"></a> Tanzu Application Accelerator for VS Code
+
+- When using custom types, if there is a checkbox in the list of attributes, the re ordering
+  of the inputs won't work
+
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
 **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
