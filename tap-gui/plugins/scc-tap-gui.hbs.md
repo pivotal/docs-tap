@@ -49,10 +49,11 @@ To enable CVE scan results:
 
 > **Important** The `Authorization` value must start with the word `Bearer`.
 
-## <a id="view-approvals"></a> Enabling GitOps PR Flow
+## <a id="view-approvals"></a> Enable GitOps Pull Request Flow
 
-To enable the supply chain box-and-line diagram to show **Approve a Request** in the **Config Writer** stage, set up for GitOps and
-pull requests. For more information, see [GitOps vs. RegistryOps](../../scc/gitops-vs-regops.hbs.md).
+To enable the supply chain box-and-line diagram to show **Approve a Request** in the **Config Writer**
+stage, set up for GitOps and pull requests. For more information, see
+[GitOps vs. RegistryOps](../../scc/gitops-vs-regops.hbs.md).
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 
@@ -103,8 +104,7 @@ supply chain by clicking **APPROVE A REQUEST**. This button is displayed after y
 In the following example, the merge request is approved, which causes **Pull Config** and **Delivery**
 boxes to appear in the supply chain diagram.
 
-<img width="697" alt="Screenshot 2023-01-04 at 8 55 47 AM" src="https://user-images.githubusercontent.com/94395371/210595819-45754379-3f5f-44d3-812b-d7a03c97003f.png">
-
+![Screenshot of the pull request flow diagram. The APPROVE A REQUEST button is at the bottom middle of the screenshot.](images/pr-flow-diagram.png)
 
 ## <a id="sc-view-scan-results"></a> View Vulnerability Scan Results
 
