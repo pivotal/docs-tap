@@ -203,6 +203,9 @@ and input it as `B64_ENCODED_CA` in the `tap-values.yaml`.
 
 The following is the YAML file sample for the full-profile:
 
+>**Note** Tanzu Build Service is installed by default with `lite` depndencies. When installing Tanzu Build Service on an air-gapped environment, the lite dependencies cannot be used as they require Internet access. You must install the full dependencies. This means you must set `exclude_dependencies: true` as the YAML file sample specifies. 
+
+
 ```yaml
 shared:
   ingress_domain: "INGRESS-DOMAIN"
