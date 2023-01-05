@@ -65,7 +65,13 @@ When you install the SCST - Scan (Grype scanner), you can configure the followin
 | metadataStore.caSecret.name | app-tls-cert | string | Name of deployed secret with key ca.crt holding the CA Cert of the Insight Metadata Store | v1.2.0 and earlier |
 | metadataStore.clusterRole | metadata-store-read-write | string | Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster | v1.2.0 |
 
-## <a id='install-scst-scan'></a> Install
+## <a id='install-scst-scan-namespace-provisioner'></a> Install with Namespace Provisioner
+
+The Namespace Provisioner enables operators to securely automate the provisioning of multiple developer namespaces in a shared cluster. To install Supply Chain Security Tools – Scan via the Namespace Provisioner, follow this [tutorial](../namespace-provisioner/tutorials.hbs.md)
+
+Additionally, the Namespace Provisioner can also create scan policies across multiple developer namespaces. See [Extending the default provisioned resources](../namespace-provisioner/how-tos.hbs.md#extending-the-default-provisioned-resources) for configuration steps.
+
+## <a id='install-scst-scan'></a> Install Manually
 
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
 
