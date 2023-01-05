@@ -382,6 +382,9 @@ This release has the following known issues, listed by area and component.
   workload isn't running. For more information, see
   [Troubleshooting](vs-extension/troubleshooting.hbs.md#del-wrkld-not-running).
 
+- The `Tanzu: Start Live Update` command can fail because the specified path was not found.
+  For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#lv-update-path-not-found).
+
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
 **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**

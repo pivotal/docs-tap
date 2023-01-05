@@ -19,17 +19,34 @@ Re-apply your workload by running `Tanzu: Workload Apply` or `Tanzu: Start Live 
 This realigns the extension's internal state with the proper workload state.
 The delete operation is enabled again after the extension detects that the workload is running.
 
-## <a id='null-error'></a> Erroneous `Live Update Error` error message
+## <a id='lv-update-path-not-found'></a> Live Update failure because the system cannot find the path specified
 
 ### Symptom
 
-In v0.1.0 and earlier, the `Tanzu: Start Live Update` command might give the following error message
+In v0.1.0 and earlier, the `Tanzu: Start Live Update` command gives the following error message
 when first run:
 
 ```console
 The system cannot find the path specified
 ```
 
+### Cause
+
+One cause for a path not being discoverable is the Tiltfile using `OUTPUT_TO_NULL_COMMAND` instead of
+`OUTPUT_TO_NULL_COMMAND_WINDOWS`.
+
 ### Solution
 
-In your Tiltfile, change the line `OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > /dev/null ')` to `OUTPUT_TO_NULL_COMMAND_WINDOWS = os.getenv("OUTPUT_TO_NULL_COMMAND_WINDOWS", default=' > NUL ')`. This should allow the path to be found and should execute Live Update successfully.
+In your Tiltfile, change the line
+
+```text
+OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > /dev/null ')
+```
+
+to
+
+```text
+OUTPUT_TO_NULL_COMMAND_WINDOWS = os.getenv("OUTPUT_TO_NULL_COMMAND_WINDOWS", default=' > NUL ')
+```
+
+This makes the path discoverable and enables Live Update to run.
