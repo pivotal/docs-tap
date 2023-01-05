@@ -45,5 +45,5 @@ Note:
 
  - The `*_cert_duration` must be greater than the corresponding `*_renew_before`.
 
- - The above settings only take effect when `use_cert_manager` is `"true"`. If the `use_cert_manager` is not set, it will default to `"true"`
+ - The above settings only take effect when `use_cert_manager` is `"true"`. If the `use_cert_manager` is not set, it will default to `"true"`.
 
