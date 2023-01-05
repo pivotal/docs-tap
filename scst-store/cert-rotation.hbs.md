@@ -5,7 +5,7 @@ This topic describes TLS Certificate Rotation for Supply Chain Security Tools (S
 ## Certificates
 
 By default the `use_cert_manager` setting is set to `"true"`.
-When the setting the `use_cert_manager` is `"true"` the Store uses `cert-manager` to generate a CA certificate, a API certificate, and a DB Certificate.
+When the setting `use_cert_manager` is `"true"` the Store uses `cert-manager` to generate a CA certificate, an API certificate, and a DB Certificate.
 
 To see these certificates, run the following:
 
@@ -17,12 +17,12 @@ app-tls-cert            True    app-tls-cert            38d
 postgres-db-tls-cert    True    postgres-db-tls-cert    38d
 ```
 
-The following certificates are automatically rotated by `cert-manager`.
+Those above certificates are automatically rotated by `cert-manager`.
 The Store is able to load these certificates automatically once `cert-manager` rotates them.
 
 ## Certificate duration setting
  
-In the `tap-values.yaml` file, `api_cert_duration`, `api_cert_renew_before`, `ca_cert_duration`, and `ca_cert_renew_before`  are set as shown in the following YAML:
+In the `tap-values.yaml` file, `api_cert_duration`, `api_cert_renew_before`, `ca_cert_duration`, and `ca_cert_renew_before`  are configurable as shown in the following YAML:
 
 ```yaml
 metadata_store:
@@ -40,5 +40,5 @@ Where `api_cert_duration` is the duration that the api certificate will be valid
 
 Where `api_cert_renew_before` is the time when to renew the api certificate before the expiration time. Must be given in h, m, or s. Default value is 24h
 
-Note: Then above setting Only takes effect when `use_cert_manager` is `true`. If the `use_cert_manager` is not set, it will default to `true`
+Note: The above settings only take effect when `use_cert_manager` is `"true"`. If the `use_cert_manager` is not set, it will default to `"true"`
 
