@@ -86,6 +86,15 @@ offers the option to enroll in a usage reporting program that provides a usage s
 - **View Approvals** is relocated to the `Config Writer` stage, instead of being a stage by itself.
 </br></br>
 
+#### <a id='sagui-plug-in-new-features'></a>Security Analysis Plug-in
+
+- Vulnerabilities by Severity widget and CVEs column will count all CVEs across all packages
+- In the CVE details page, there is now an Impacted Workload Builds table listing out all workloads
+  that are affected by the CVE.
+- In the Package details page, there is now a Workload Builds using Package listing out all workloads
+  that are using the package.
+</br></br>
+
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
 
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
