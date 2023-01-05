@@ -10,7 +10,7 @@ To apply a workload:
 
 1. Ensure that you have the following prerequisites:
 
-   - A `tanzu` command in `PATH`.
+   - you should have the tanzu CLI installed in a location included in your PATH environment variable.
    - A valid `workload.yaml` file in the project. For more information, see the specification for
      [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
    - A functional Tanzu Application Platform environment.
@@ -39,13 +39,7 @@ To delete a workload:
 
 2. Right-click the project node or any file node in the Solution Explorer.
 3. Click **Tanzu: Delete Workload**.
-4. If a `workload.yaml` exists somewhere in the project file structure, delete the workload by running:
-
-    ```console
-    tanzu apps workload delete --file=WORKLOAD-PATH --yes
-    ```
-
-    Where `WORKLOAD-PATH` is your workload path
+4. If a workload.yaml exists somewhere in the project file structure, it will be used to delete the workload via `tanzu apps workload delete --file={workload_path} --yes`
 
 ## <a id="use-live-update"></a> Use Live Update
 
@@ -57,8 +51,8 @@ To use Live Update:
    - A `tilt` command in `PATH`
    - A `tanzu` command in `PATH`
 
-2. Start Live Update by right-clicking on **Tiltfile** and then selecting **Tanzu: Start Live Update**.
-3. Stop Live Update by right-clicking on **Tiltfile** and then selecting **Tanzu: Stop Live Update**.
+2. Start Live Update by right-clicking on any project/file node in the solution explorer and then selecting **Tanzu: Start Live Update**.
+3. Stop Live Update by right-clicking on any project/file node in the solution explorer and then selecting **Tanzu: Stop Live Update**.
 
 ### <a id="stop-rogues"></a> Stop rogue Tilt processes
 
@@ -89,11 +83,7 @@ Before using Remote Debug, ensure that you have the following prerequisites:
 
 To run a workload in Tanzu Application Platform:
 
-1. Use the Tanzu CLI `apps` plug-in to push workloads to Tanzu Application Platform by running:
-
-   ```console
-   workload apply
-   ```
+1. Right-click on the project node and then select **Tanzu: Apply Workload**
 
   For more information, see
   [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
