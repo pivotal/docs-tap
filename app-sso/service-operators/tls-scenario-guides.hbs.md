@@ -490,7 +490,7 @@ If you have an existing TLS certificate in another `Namespace`, use the followin
 > **Important** The TLS certificate `tls.crt` and its corresponding private key `tls.key` must be stored in a secret with
 these keys.
 
-> **Caution** Be cautious when using `SecretExport` and `SecretImport` to facilitate the transfer across namespaces.
+> Be cautious when using `SecretExport` and `SecretImport` to facilitate the transfer across namespaces.
 
 ```yaml
 ---
