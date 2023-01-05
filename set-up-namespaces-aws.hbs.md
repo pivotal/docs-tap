@@ -12,7 +12,7 @@ that you plan to create the `Workload` in:
 
 Follow these steps to enable your current user to submit jobs to the Supply Chain:
 
-1. If the variable `AWS_ACCOUNT_ID environment` is not set during the [install](install-aws.hbs.md) process, export the AWS Account ID.
+1. (Optional) If the variable `AWS_ACCOUNT_ID environment` is not set during the [installation](install-aws.hbs.md) process, export the AWS Account ID.
 
     ```console
     export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
