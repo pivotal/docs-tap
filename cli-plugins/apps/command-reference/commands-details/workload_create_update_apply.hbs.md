@@ -757,12 +757,12 @@ This group identifies the project across all other Maven projects.
 
 ### <a id="apply-maven-type"></a> `--maven-type`
 
-This specifies the type of artifact that the Maven project produces. This flag is optional,
+This specifies the type of artifact that the Maven project produces. This flag is optional
 and is set by default as `jar` by the supply chain.
 
 ### <a id="apply-maven-version"></a> `--maven-version`
 
-Definition of the the current version of the Maven project.
+Definition of the current version of the Maven project.
 
 ### <a id="apply-source-image"></a> `--source-image`, `-s`
 
@@ -955,7 +955,7 @@ This is also populated with a default value through environment variables. If th
 variable `TANZU_APPS_REGISTRY_CA_CERT` is set, it's not necessary to use it in the command.
 
 See [Environment variables with default values](../tanzu-apps-workload.hbs.md#envvars)
-to know the currently supported environment variables.
+for the currently supported environment variables.
 
 <details><summary>Example</summary>
 
@@ -999,7 +999,7 @@ Often used with `--registry-password` to set private registry credentials. Can b
 
 ### <a id="apply-request-cpu"></a> `--request-cpu`
 
-Refers to the minimum CPU the workload pods are requesting to use.
+Refers to the minimum CPU the workload pods request to use.
 
 <details><summary>Example</summary>
 

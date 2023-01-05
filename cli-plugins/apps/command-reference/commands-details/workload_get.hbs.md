@@ -6,11 +6,11 @@ You can view workload details at whenever. Some details are:
 
  - Workload name and type.
  - The source of the workload application.
- - The supply chain which took care of the workload.
- - The supply chain resources which interact with the workload. It also has the output of the resource stamped out by the supply chain
+ - The supply chain that took care of the workload.
+ - The supply chain resources that interact with the workload. It also has the output of the resource stamped out by the supply chain
  - The delivery workflow that the application follows.
  - If there is any issue while deploying the workload and finally which *pods* the workload generates and the knative services related to the workload.
- - if the supply chain is using knative.
+ - If the supply chain is using knative.
 
 ## Default view
 
