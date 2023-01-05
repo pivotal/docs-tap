@@ -96,6 +96,13 @@ offers the option to enroll in a usage reporting program that provides a usage s
   environments. See [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md).
 </br></br>
 
+#### <a id="1-4-0-scst-policy-new-features"></a> Supply Chain Security Tools - Policy
+
+- Added ability to [configure action when no policy matches the admitting image digest](./scst-policy/install-scst-policy.hbs.md#install-scst-policy)
+- Added ability to [allow empty authorities for ClusterImagePolicies](./scst-policy/install-scst-policy.hbs.md#install-scst-policy)
+- Added ability to [specify which resources a ClusterImagePolicy should enforce](./scst-policy/configuring.hbs.md#cip-match)
+</br></br>
+
 #### <a id="1-4-0-stk-new-features"></a> Services Toolkit
 
 - Added new `ClassClaim` API that allows claims for service instances to be created by referring to
