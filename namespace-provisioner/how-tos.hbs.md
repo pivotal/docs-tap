@@ -12,7 +12,7 @@ The available guides are as follows:
     - [Customizing the default resources that get provisioned](#customizing-the-default-resources-that-get-provisioned)
     - [Controlling the Namespace Provisioner reconcile behavior for specific resources](#controlling-the-namespace-provisioner-reconcile-behavior-for-specific-resources)
     - [Control the `desired-namespaces` ConfigMap via GitOps](#control-the-desired-namespaces-configmap-via-gitops)
-    - [Links to additional Namespace Provisioner documentation:](#links-to-additional-namespace-provisioner-documentation)
+      - [Prerequisites](#prerequisites)
 
 ## <a id="data-values-templating"></a>Data values templating guide
 
@@ -83,7 +83,7 @@ for additional_sources:
 ```yaml
 namespace_provisioner:
   additional_sources:
-  # Add a custom workload service account and a bunch of git secrets
+  # Add a custom workload service account and some secrets
   - git:
       ref: origin/main
       subPath: namespace-provisioner-gitops-examples/custom-resources/workload-sa
@@ -177,8 +177,8 @@ namespace_provisioner:
     path: _ytt_lib/workload-sa
 ```
 
-Sample customization (`.lib.yaml`) file for overriding regoFile of the default ScanPolicy
-- [Link to the Sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/default-resources-overrides/overlays/scanpolicy-rego.lib.yaml)
+Sample customization (`.lib.yaml`) file for overriding the `secrets` and `imagePullSecrets` of the default ServiceAccount
+- [Link to the Sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/default-resources-overrides/overlays/sa-secrets.lib.yaml)
 
 ```yaml
 #@ load("@ytt:overlay", "overlay")
@@ -199,11 +199,11 @@ imagePullSecrets:
 
 ### <a id="control-reconcile-behavior"></a>Controlling the Namespace Provisioner reconcile behavior for specific resources
 
-There are certain OOTB [`default-resources`](reference.hbs.md#tap-profile---default-resources-mapping) like the Tekton Pipeline and Scan Policy that comes annotated with a special annotation **`namespace-provisioner.apps.tanzu.vmware.com/no-overwrite`**.
+There are certain OOTB [`default-resources`](reference.hbs.md#tap-profile---default-resources-mapping) like the `ServiceAccount` that comes annotated with a special annotation **`namespace-provisioner.apps.tanzu.vmware.com/no-overwrite`**.
 
 Any changes to the resources that have the `...no-overwrite` annotation are not overwritten by the
 [provisioner application](about.hbs.md#provisioner-carvel-app) that controls resource provision.
-If you want to restore the default state of those resources, they can delete them and the
+If you want to restore the default state of those resources, you can delete them and the
 provisioner application re-creates them in their initial default state.
 
 The provisioner application has a synchronization interval of 10 minutes. To manually force the
