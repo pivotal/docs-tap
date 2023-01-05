@@ -94,6 +94,7 @@ offers the option to enroll in a usage reporting program that provides a usage s
 
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
   environments. See [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md).
+- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) via the tap-values.yml for both Grype and Snyk scanners.
 </br></br>
 
 #### <a id="1-4-0-stk-new-features"></a> Services Toolkit
