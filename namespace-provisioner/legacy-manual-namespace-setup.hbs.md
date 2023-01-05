@@ -123,7 +123,7 @@ Follow these steps to enable additional users in your namespace by using Kuberne
 2. Choose either of the following options to give developers namespace-level access and view access
    to the appropriate cluster-level resources:
 
-    - **Option 1:** Use the [Tanzu Application Platform RBAC CLI plug-in (beta)](/authn-authz/binding.hbs.md#install).
+    - **Option 1:** Use the [Tanzu Application Platform RBAC CLI plug-in (beta)](../authn-authz/binding.hbs.md#install).
 
         To use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity
         provider group, run:
@@ -144,7 +144,7 @@ Follow these steps to enable additional users in your namespace by using Kuberne
         </br>
 
         For more information about `tanzu rbac`, see
-        [Bind a user or group to a default role](/authn-authz/binding.hbs.md)
+        [Bind a user or group to a default role](../authn-authz/binding.hbs.md)
 
         VMware recommends creating a user group in your identity provider's grouping system for each
         developer namespace and then adding the users accordingly.
@@ -152,7 +152,7 @@ Follow these steps to enable additional users in your namespace by using Kuberne
         Depending on your identity provider, you might need to take further action to
         federate user groups appropriately with your cluster.
         For an example of how to set up Azure Active Directory (AD) with your cluster, see
-        [Integrate Azure Active Directory](/authn-authz/azure-ad.hbs.md).
+        [Integrate Azure Active Directory](../authn-authz/azure-ad.hbs.md).
 
     - **Option 2:** Use the native Kubernetes YAML.
 
@@ -241,4 +241,4 @@ Follow these steps to enable additional users in your namespace by using Kuberne
 
 ## Additional configuration for testing and scanning
 
-If you plan to install Out of the Box Supply Chains with Testing and Scanning, see [Developer Namespace](/scc/ootb-supply-chain-testing.hbs.md#developer-namespace).
+If you plan to install Out of the Box Supply Chains with Testing and Scanning, see [Developer Namespace](../scc/ootb-supply-chain-testing.hbs.md#developer-namespace).
