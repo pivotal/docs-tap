@@ -297,10 +297,10 @@ You can use this strategy with the following Git providers:
 #### <a id="auth"></a> Authentication
 
 The pull request approach requires HTTP(S) authentication with a token.
-This is because a pull request is not a part of the git specification,
-it is functionality layered on top by nearly all git server providers.
-As such, you need to authenticate with those providers,
-which we do with a token.
+
+Pull request functionality is not a part of the Git specification, but is
+included by most Git server providers. You must authenticate with those
+providers using a token.
 
 In the [Kubernetes secret](#http-auth)
 that holds the Git credentials, the password text box must be filled with a token.
