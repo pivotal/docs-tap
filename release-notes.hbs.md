@@ -287,6 +287,18 @@ This release has the following security fixes, listed by area and component.
 
 </br>
 
+#### <a id="1-4-0-vulnerabilities-remediated"></a> Remediated Vulnerabilities
+
+Here is a list of vulnerabilities that have been remediated with this release:</br>
+GHSA-7hfm-57qf-j43q, GHSA-crv7-7245-f45f, GHSA-mc84-pj99-q6hh, GHSA-xqfj-vm6h-2x34, CVE-2022-42003, CVE-2022-42004, GHSA-jjjh-jjxp-wpff, 
+GHSA-rgv9-q543-rqg4, GHSA-3mc7-4q67-w48m, GHSA-36p3-wjmg-h94x, CVE-2022-23960, CVE-2022-43945, GHSA-crp2-qrr5-8pq7, GHSA-7qw8-847f-pggm, 
+GHSA-c3xm-pvg7-gh7r, GHSA-f524-rf33-2jjr, CVE-2022-2509, CVE-2022-3171, CVE-2022-3509, CVE-2022-3510, GHSA-4gg5-vx3j-xwc7, GHSA-g5ww-5jh7-63cx, 
+GHSA-66x3-6cw3-v5gj, CVE-2022-3515, CVE-2022-2602, CVE-2022-41222, CVE-2022-32212, CVE-2022-35255, CVE-2021-27478, CVE-2021-27482, 
+CVE-2021-27498, CVE-2021-27500, CVE-2019-12900, CVE-2021-28861, CVE-2021-3737, CVE-2022-0391, GHSA-4w2j-2rg4-5mjw, CVE-2022-2586,
+CVE-2022-2588, CVE-2022-34918, GHSA-4wf5-vphf-c2xc, CVE-2022-42916, CVE-2022-43551, CVE-2022-43552, CVE-2021-3999, GHSA-m974-647v-whv7
+
+</br>
+
 ---
 
 </br>
