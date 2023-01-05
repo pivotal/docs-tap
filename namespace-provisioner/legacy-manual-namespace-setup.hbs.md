@@ -1,15 +1,15 @@
 # Legacy manual developer namespace setup instructions
 
-Using [Namespace Provisioner](about.hbs.md) is the recommended best practice for setting up 
-developer namespaces on TAP.
+Using [Namespace Provisioner](about.hbs.md) is the recommended best practice for setting up
+developer namespaces on Tanzu Application Platform.
 
-However, if you would rather provision namespaces manually you may follow the steps below.
+To provision namespaces manually, complete the following steps:
 
-[**Enable single user access**](#single-user-access) first.
+1. [Enable single user access](#single-user-access).
 
-Then, if desired, you may [**enable additional users with Kubernetes RBAC**](#additional-user-access).
+2. (Optional) [Enable additional users with Kubernetes RBAC](#additional-user-access).
 
-## <a id='single-user-access'></a>Directions for enabling single user access
+## <a id='single-user-access'></a>Enable single user access
 
 1. To add read/write registry credentials to the developer namespace, run the following command [1]:
 
@@ -21,35 +21,35 @@ Then, if desired, you may [**enable additional users with Kubernetes RBAC**](#ad
     - **`YOUR-NAMESPACE`** is the name you give to the developer namespace.
     For example, use `default` for the default namespace.
     - **`REGISTRY-SERVER`** is the URL of the registry.
-      - Based on the information used in [Installing the Tanzu Application Platform Package and 
-        Profiles](<https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/>{{ vars.url_version }}/tap/GUID-install.html), 
+      - Based on the information used in [Installing the Tanzu Application Platform Package and
+        Profiles](<https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/>{{ vars.url_version }}/tap/GUID-install.html),
         you can use the same registry server as in `ootb_supply_chain_basic` - `registry` - `server`.
-      - *-For Docker Hub-* the value should be `https://index.docker.io/v1/`.
-        - Specifically, it must have the leading `https://`, the `v1` path, and the trailing `/`. 
-      - *-For Google Container Registry (GCR)-* the value should be `gcr.io`.
+      - *-For Docker Hub-* the value is `https://index.docker.io/v1/`.
+        - Specifically, it must have the leading `https://`, the `v1` path, and the trailing `/`.
+      - *-For Google Container Registry (GCR)-* the value is `gcr.io`.
     - **`REGISTRY-PASSWORD`** is the password of the registry.
       - *-For GCR or Google Artifact Registry-* this must be the concatenated version of the JSON key.</br>
       For example: `"$(cat ~/gcp-key.json)"`
-  
+
    </br>
    [1] If you observe the following issue when you run the command above:
-    
+
     ```console
-    panic: runtime error: invalid memory address or nil pointer dereference 
+    panic: runtime error: invalid memory address or nil pointer dereference
    [signal SIGSEGV: segmentation violation code=0x1 addr=0x128 pc=0x2bcce00]
     ```
 
-    Use `kubectl` to create the secret instead:
+    Use kubectl to create the secret instead:
 
    ```console
     kubectl create secret docker-registry registry-credentials --docker-server=REGISTRY-SERVER --docker-username=REGISTRY-USERNAME --docker-password=REGISTRY-PASSWORD -n YOUR-NAMESPACE
     ```
 
-    >**Note** This step is not required if you install Tanzu Application Platform on AWS with EKS 
-    and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) instead of secrets. 
+    >**Note** This step is not required if you install Tanzu Application Platform on AWS with EKS
+    and use [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) instead of secrets.
     You can specify the Role Amazon Resource Name (ARN) in the next step.
 
-2. Run the following to add secrets, a service account to execute the supply chain, and RBAC rules 
+2. Run the following to add secrets, a service account to execute the supply chain, and RBAC rules
    to authorize the service account to the developer namespace:
 
     ```console
@@ -100,11 +100,11 @@ Then, if desired, you may [**enable additional users with Kubernetes RBAC**](#ad
     EOF
     ```
 
-    >**Note** If you install Tanzu Application Platform on AWS with EKS and use 
-    [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html), 
-    you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret. Your 
+    >**Note** If you install Tanzu Application Platform on AWS with EKS and use
+    [IAM Roles for Kubernetes Service Accounts](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html),
+    you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret. Your
     service account entry then looks like the following:
-    
+
     ```
     apiVersion: v1
     kind: ServiceAccount
@@ -120,13 +120,13 @@ Then, if desired, you may [**enable additional users with Kubernetes RBAC**](#ad
 
 Follow these steps to enable additional users in your namespace by using Kubernetes RBAC:
 
-1. This assumes you've already [enabled single user access](#single-user-access) instructed above.
-2. Choose either of the following options to give developers namespace-level access and view access 
+1. Before you begin, ensure that you have [enabled single user access](#single-user-access).
+2. Choose either of the following options to give developers namespace-level access and view access
    to the appropriate cluster-level resources:
 
     - **Option 1:** Use the [Tanzu Application Platform RBAC CLI plug-in (beta)](<https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/>{{ vars.url_version }}/tap/GUID-authn-authz-binding.html#install-the-tanzu-application-platform-rbac-cli-plugin-1).
 
-        To use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity 
+        To use the `tanzu rbac` plug-in to grant `app-viewer` and `app-editor` roles to an identity
         provider group, run:
 
         ```console
@@ -137,11 +137,11 @@ Follow these steps to enable additional users in your namespace by using Kuberne
         Where:
 
         - **`YOUR-NAMESPACE`** is the name you give to the developer namespace.
-        - **`GROUP-FOR-APP-VIEWER`** is the user group from the upstream identity provider that 
+        - **`GROUP-FOR-APP-VIEWER`** is the user group from the upstream identity provider that
           requires access to `app-viewer` resources on the current namespace and cluster.
-        - **`GROUP-FOR-APP-EDITOR`** is the user group from the upstream identity provider that 
+        - **`GROUP-FOR-APP-EDITOR`** is the user group from the upstream identity provider that
           requires access to `app-editor` resources on the current namespace and cluster.
-        
+
         </br>
 
         For more information about `tanzu rbac`, see
@@ -218,14 +218,14 @@ Follow these steps to enable additional users in your namespace by using Kuberne
         Where:
 
         - **`YOUR-NAMESPACE`** is the name you give to the developer namespace.
-        - **`GROUP-FOR-APP-VIEWER`** is the user group from the upstream identity provider that 
+        - **`GROUP-FOR-APP-VIEWER`** is the user group from the upstream identity provider that
           requires access to `app-viewer` resources on the current namespace and cluster.
-        - **`GROUP-FOR-APP-EDITOR`** is the user group from the upstream identity provider that 
+        - **`GROUP-FOR-APP-EDITOR`** is the user group from the upstream identity provider that
           requires access to `app-editor` resources on the current namespace and cluster.
-        
+
         </br>
 
-        VMware recommends creating a user group in your identity provider's grouping system for 
+        VMware recommends creating a user group in your identity provider's grouping system for
         each developer namespace and then adding the users accordingly.
 
         Depending on your identity provider, you might need to take further action to
@@ -233,17 +233,17 @@ Follow these steps to enable additional users in your namespace by using Kuberne
         For an example of how to set up Azure Active Directory (AD) with your cluster, see
         [Integrating Azure Active Directory](<https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/>{{ vars.url_version }}/tap/GUID-authn-authz-azure-ad.html).
 
-        Rather than granting roles directly to individuals, VMware recommends using your identity 
+        Rather than granting roles directly to individuals, VMware recommends using your identity
         provider's user groups system to grant access to a group of developers.
 
         For an example of how to set up Azure AD with your cluster, see
         [Integrating Azure Active Directory](<https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/>{{ vars.url_version }}/tap/GUID-authn-authz-azure-ad.html).
 
-1. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the 
+1. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the
    role bindings have been applied.
 
 ## Additional configuration for testing and scanning
 
-If you plan to install Out of the Box Supply Chains with Testing and Scanning, see the 
-[Developer Namespace](<https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/>{{ vars.url_version }}/tap/GUID-scc-ootb-supply-chain-testing.html#developer-namespace-1) 
+If you plan to install Out of the Box Supply Chains with Testing and Scanning, see the
+[Developer Namespace](<https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/>{{ vars.url_version }}/tap/GUID-scc-ootb-supply-chain-testing.html#developer-namespace-1)
 section.
