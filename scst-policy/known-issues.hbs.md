@@ -1,4 +1,4 @@
-# Supply Chain Security Store - Policy Known Issues
+# Supply Chain Security Tools - Policy Controller Known Issues
 
 ## TUF key is not valid
 
@@ -17,7 +17,7 @@ go-tuf when using the Official Sigstore TUF root. See [go-tuf](https://github.co
 
 ### Solution
 
-The Policy Controller's dependency on go-tuf must be updated to the later version.
+Policy Controller v1.1.3 contains a fix with the updated go-tuf.
 
 ### Workarounds
 
