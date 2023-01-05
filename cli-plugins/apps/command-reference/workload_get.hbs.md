@@ -4,10 +4,10 @@
 
 Some of the workload details in the command output are as follows:
 
- - Workload name, type and namespace.
+ - Workload name, type, and namespace.
  - The source code used to build the workload (or the pre-built OCI image).
- - The supply chain which processed the workload.
- - The specific resources within the supply chain which interacted with the workload and the stamped out resources associated with each of those interactions.
+ - The supply chain that processed the workload.
+ - The specific resources within the supply chain that interacted with the workload, and the stamped out resources associated with each of those interactions.
  - The delivery workflow that the application follows.
  - Any issues associated with deploying the workload
  - The *pods* the workload generates.
