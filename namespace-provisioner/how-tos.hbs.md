@@ -65,7 +65,7 @@ Here's a [sample of a templated Tekton pipeline.](https://github.com/vmware-tanz
 To customize and extend the default out of box configuration for the Namespace Provisioner
 that is templated in the  [`default-resources`](about.hbs.md#nsp-component-default-resources) Secret,
 add [additional sources](install.hbs.md#customized-install) in the `tap-values.yaml` configuration
-file. For example,to adjust quota allocation or to create other namespace resources. For details of
+file. For example, to adjust quota allocation or to create other namespace resources. For details of
 the list of resources that are templated in the `default-resources` Secret, see [Default Resource Mapping](reference.hbs.md#default-resources-mapping).
 
 This [example](#example-additional-resources) adds four additional sources:
