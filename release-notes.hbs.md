@@ -417,9 +417,9 @@ The vulnerabilities are still found during the image scan after the binaries are
 as images.
 </br></br>
 
-#### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
+#### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI plug-ins
 
-##### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer Plug-In
+##### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer plug-in
 
 - The `Generation` field in the **Overview** section does not update when a scan policy is amended.
   However, clicking the `Scan Policy` link shows the most current scan policy details applied
@@ -429,10 +429,11 @@ as images.
 
 </br>
 
-##### <a id="security-analysis-plugin-ki"></a> Security Analysis Plug-In
+##### <a id="sec-analysis-plugin-ki"></a> Security Analysis plug-in
 
-- No Associated Policy tab in Workload Build Vulnerabilities does not show workloads with no associated scan policies.
-- CVEs bar graph in Workload Build Vulnerabilities can sometimes cut numbers off.
+- The **No Associated Policy** tab in Workload Build Vulnerabilities does not show workloads that lack
+  associated scan policies.
+- The CVEs bar graph in Workload Build Vulnerabilities sometimes cuts numbers off.
 
 </br>
 
