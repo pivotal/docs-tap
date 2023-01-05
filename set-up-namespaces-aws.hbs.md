@@ -12,9 +12,13 @@ that you plan to create the `Workload` in:
 
 Follow these steps to enable your current user to submit jobs to the Supply Chain:
 
-1. Gather the ARN created for workloads in the [Create AWS Resources](aws-resources.html).
+1. If the AWS_ACCOUNT_ID environment variable is not set from the [install](install-aws.html) still, export the AWS Account ID.
 
-1. Update the `YOUR-NAMESPACE` and `ROLE-ARN` and run the following command to add secrets, a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace.
+    ```console
+    export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
+    ```
+
+1. Update the `YOUR-NAMESPACE` variable to your developer namespace and run the following command to add a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace.
 
     ```console
     cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
@@ -23,7 +27,7 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
     metadata:
       name: default
       annotations:
-        eks.amazonaws.com/role-arn: ROLE-ARN
+        eks.amazonaws.com/role-arn: "arn:aws:iam::${AWS_ACCOUNT_ID}:role/tap-workload"
     ---
     apiVersion: rbac.authorization.k8s.io/v1
     kind: RoleBinding
