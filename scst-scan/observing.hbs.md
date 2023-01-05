@@ -350,21 +350,21 @@ You configure the self-signed certificate by [using the shared top-level key](..
 
 #### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
-The `docker` fieldand related sub-fields by SCST - Scan Controller, Grype
-Scanner, or Snyk Scanner were deprecated in Tanzu Application Platform v1.4.0.
+The `docker` field and related sub-fields by SCST - Scan Controller, Grype
+Scanner, or Snyk Scanner are deprecated in Tanzu Application Platform v1.4.0.
 Previously these text boxes might be used to populate the `registry-credentials`
-secret. If you encounter the following error during installation:
+secret. You might encounter the following error during installation:
 
 ```console
 UNAUTHORIZED: unauthorized to access repository
 ```
 
-The recommended migration path for users who are setting up their namespaces
+The recommended migration path for users setting up their namespaces
 manually is to add registry credentials to both the developer namespace and the
 `scan-link-system` namespace, using these
 [instructions](../set-up-namespaces.hbs.md).
 
-Note: This topic step does not apply to users who used
+>**Note** This step does not apply to users who used
 `--export-to-all-namespaces` when setting up the Tanzu Application Platform
 package repository.
 

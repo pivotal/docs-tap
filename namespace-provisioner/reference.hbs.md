@@ -10,6 +10,9 @@
     provisioned by namespace provisioner
   - If using GitOps to manage `desired-namespaces` ConfigMap, set the list of namespaces to an
     empty list.
+- The namespace selector label to provision resources cannot be applied to the developer namespace
+  which is configured at deployment time under the grype package values as it causes the provisioner
+  kapp to crash due to ownership issues.
 
 ## <a id="default-resources-mapping"></a>TAP profile - default resources mapping
 

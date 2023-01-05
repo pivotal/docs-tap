@@ -21,7 +21,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - [Namespace Provisioner](namespace-provisioner/about.hbs.md) provides a secure, automated
   way for Platform Operators to provision namespaces with the resources and proper namespace-level
   privileges required for their workloads to function as intended.
-- [TAP Telemetry Reports](telemetry/overview.hbs.md#tanzu-application-platform-usage-reports) VMware offers the option to enroll in a usage reporting program that offers a summary of usage of your Tanzu Application Platform.
+- [Tanzu Application Platform Telemetry Reports](telemetry/overview.hbs.md#tanzu-application-platform-usage-reports)
+offers the option to enroll in a usage reporting program that provides a usage summary of your Tanzu Application Platform.
 
 </br>
 
@@ -51,7 +52,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-app-live-view"></a> Application Live View
 
-- Users can now enable or disable the automatic configuration of Spring Boot actuators on the TAP platform and on workloads.
+- Users can now activate or deactivate the automatic configuration of Spring Boot actuators on Tanzu Application Platform and on workloads.
   For more information, see [Configure and access Spring Boot actuators in Tanzu Application Platform](spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
 - Added support for Spring Boot 3
 - Added new App Live View pages `HTTP Requests` and `Request Mappings` for Steeltoe workloads.
@@ -87,7 +88,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
 
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
-  environments. Refer to the updated [instructions](scst-scan/offline-airgap.hbs.md).
+  environments. See [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md).
 </br></br>
 
 #### <a id="1-4-0-stk-new-features"></a> Services Toolkit
@@ -193,6 +194,8 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 #### <a id="1-4-0-tap-gui-bc"></a> Tanzu Application Platform GUI
 
+##### Ingress URL
+
 As mentioned in the [new features section](#1-4-0-tap-new-features), Tanzu Application Platform GUI
 participates in the shared ingress issuer feature.
 As such, if you have explicitly set the fields `tap_gui.app_config.app.baseUrl`,
@@ -213,18 +216,25 @@ As such, if you have explicitly set the fields `tap_gui.app_config.app.baseUrl`,
 
   Where `INGRESS-DOMAIN` is the ingress domain you have configured for Tanzu Application Platform.
 
+##### Communication with Supply Chain Security Tools - Store
+
+In previous version of TAP, users were asked to configure the TAP GUI to use the read-only access token to communicate with Supply Chain Security Tools - Store.
+In v1.4, users need to use the read-write access token in order to use new features in the Security Analysis GUI plugin.
+Users upgrading from v1.3 should update their TAP GUI configuration.
+See the updated instructions in [Enable CVE scan results](tap-gui/plugins/scc-tap-gui.hbs.md#scan).
+
 #### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
 
 - **Deprecated and removed ScanTemplates:**
 
-  Deprecated Grype ScanTemplates shipped with Tanzu Application Platform v1.1 and earlier were
-  removed and are no longer supported. Please use Grype ScanTemplates v1.2 and later.
+  Deprecated Grype ScanTemplates shipped with Tanzu Application Platform v1.1 and earlier are
+  removed and no longer supported. Use Grype ScanTemplates v1.2 and later.
 
 - **Deprecation notice for `docker` field and related sub-fields:**
 
   The `docker` field and related sub-fields used in Supply Chain Security Tools - Scan are
   deprecated and marked for removal in Tanzu Application Platform v1.7.0.
-  The deprecation impacts the following components: Scan Controller, Grype Scanner, and Snyk Scanner.
+  The deprecation impacts Scan Controller, Grype Scanner, and Snyk Scanner.
   Carbon Black Scanner is not impacted.
   For information about the migration path, see
   [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
@@ -401,6 +411,13 @@ as images.
 
 </br>
 
+##### <a id="security-analysis-plugin-ki"></a> Security Analysis Plug-In
+
+- No Associated Policy tab in Workload Build Vulnerabilities does not show workloads with no associated scan policies.
+- CVEs bar graph in Workload Build Vulnerabilities can sometimes cut numbers off.
+
+</br>
+
 ---
 
 </br>
@@ -420,7 +437,7 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 #### <a id="1-4-0-app-live-view-deprecations"></a> Application Live View
 
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in Tanzu Application Platform 1.7.0.
-  For more information on the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key)
+  For more information on the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
 </br></br>
 
 #### <a id="1-4-0-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook
