@@ -1,10 +1,5 @@
 # Release notes
 
-{{#unless vars.hide_content}}
-This Handlebars condition is used to hide content.
-In release notes, this condition hides content that describes an unreleased patch for a released minor.
-{{/unless}}
-
 This topic contains release notes for Tanzu Application Platform v1.4.
 
 ## <a id='1-4-0'></a> v1.4.0
@@ -187,7 +182,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-supply-chain-templates"></a> Out of the Box Supply Chain Templates
 
-In a multi-cluster setup, when a Deliverable is created on a Build profile cluster,
+In a multicluster setup, when a Deliverable is created on a Build profile cluster,
 the ConfigMap it is placed in is renamed from `<workload-name>` to `<workload-name>-deliverable`. Any automation
 depending on obtaining the Deliverable content by the former name must be updated to use the new name.
 For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
@@ -287,6 +282,18 @@ This release has the following security fixes, listed by area and component.
 
 </br>
 
+#### <a id="1-4-0-vulnerabilities-remediated"></a> Remediated Vulnerabilities
+
+Here is a list of vulnerabilities that have been remediated with this release:</br>
+GHSA-7hfm-57qf-j43q, GHSA-crv7-7245-f45f, GHSA-mc84-pj99-q6hh, GHSA-xqfj-vm6h-2x34, CVE-2022-42003, CVE-2022-42004, GHSA-jjjh-jjxp-wpff, 
+GHSA-rgv9-q543-rqg4, GHSA-3mc7-4q67-w48m, GHSA-36p3-wjmg-h94x, CVE-2022-23960, CVE-2022-43945, GHSA-crp2-qrr5-8pq7, GHSA-7qw8-847f-pggm, 
+GHSA-c3xm-pvg7-gh7r, GHSA-f524-rf33-2jjr, CVE-2022-2509, CVE-2022-3171, CVE-2022-3509, CVE-2022-3510, GHSA-4gg5-vx3j-xwc7, GHSA-g5ww-5jh7-63cx, 
+GHSA-66x3-6cw3-v5gj, CVE-2022-3515, CVE-2022-2602, CVE-2022-41222, CVE-2022-32212, CVE-2022-35255, CVE-2021-27478, CVE-2021-27482, 
+CVE-2021-27498, CVE-2021-27500, CVE-2019-12900, CVE-2021-28861, CVE-2021-3737, CVE-2022-0391, GHSA-4w2j-2rg4-5mjw, CVE-2022-2586,
+CVE-2022-2588, CVE-2022-34918, GHSA-4wf5-vphf-c2xc, CVE-2022-42916, CVE-2022-43551, CVE-2022-43552, CVE-2021-3999, GHSA-m974-647v-whv7
+
+</br>
+
 ---
 
 </br>
@@ -316,7 +323,7 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-4-0-supply-chain-templates-resolved"></a> Out of the Box Supply Chain Templates
 
-Fixed deliverable content written into ConfigMaps in multi-cluster setup:
+Fixed deliverable content written into ConfigMaps in multicluster setup:
 
 - ConfigMap is renamed to avoid conflict with `config-template`.
 - Labels to attribute the Deliverable content with the supply chain and template are now added to be consistent with the ordinary Delivery on a non-Build profile cluster.
@@ -417,9 +424,9 @@ The vulnerabilities are still found during the image scan after the binaries are
 as images.
 </br></br>
 
-#### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI Plug-ins
+#### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI plug-ins
 
-##### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer Plug-In
+##### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer plug-in
 
 - The `Generation` field in the **Overview** section does not update when a scan policy is amended.
   However, clicking the `Scan Policy` link shows the most current scan policy details applied
@@ -429,10 +436,11 @@ as images.
 
 </br>
 
-##### <a id="security-analysis-plugin-ki"></a> Security Analysis Plug-In
+##### <a id="sec-analysis-plugin-ki"></a> Security Analysis plug-in
 
-- No Associated Policy tab in Workload Build Vulnerabilities does not show workloads with no associated scan policies.
-- CVEs bar graph in Workload Build Vulnerabilities can sometimes cut numbers off.
+- The **No Associated Policy** tab in Workload Build Vulnerabilities does not show workloads that lack
+  associated scan policies.
+- The CVEs bar graph in Workload Build Vulnerabilities sometimes cuts numbers off.
 
 </br>
 

@@ -12,13 +12,13 @@ that you plan to create the `Workload` in:
 
 Follow these steps to enable your current user to submit jobs to the Supply Chain:
 
-1. If the AWS_ACCOUNT_ID environment variable is not set from the [install](install-aws.html) still, export the AWS Account ID.
+1. (Optional) If the variable `AWS_ACCOUNT_ID environment` is not set during the [installation](install-aws.hbs.md) process, export the AWS Account ID.
 
     ```console
     export AWS_ACCOUNT_ID=MY-AWS-ACCOUNT-ID
     ```
 
-1. Update the `YOUR-NAMESPACE` variable to your developer namespace and run the following command to add a service account to execute the supply chain, and RBAC rules to authorize the service account to the developer namespace.
+1. Add a service account to execute the supply chain and RBAC rules to authorize the service account to the developer namespace.
 
     ```console
     cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
@@ -54,6 +54,8 @@ Follow these steps to enable your current user to submit jobs to the Supply Chai
         name: default
     EOF
     ```
+
+    Where `YOUR-NAMESPACE` is your developer namespace.
 
 ## <a id='additional-user-access'></a>Enable additional users access with Kubernetes RBAC
 
