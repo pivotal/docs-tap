@@ -18,7 +18,11 @@ postgres-db-tls-cert    True    postgres-db-tls-cert    38d
 ```
 
 Those above certificates are automatically rotated by `cert-manager`.
+
 The Store is able to load these certificates automatically once `cert-manager` rotates them.
+
+If the environment is a [multi-cluster](multicluster-setup.hbs.md) setup, the operator will need to manually copy over the new ca certificate to the build cluster.
+
 
 ## Certificate duration setting
  
