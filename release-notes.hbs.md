@@ -52,6 +52,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Users can now enable or disable the automatic configuration of Spring Boot actuators on the TAP platform and on workloads. 
   For more information, see [Configure and access Spring Boot actuators in Tanzu Application Platform](spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
+- Added App Live View Memory View panel in Visual Studio Code as part of Spring Boot Dashboard extension
 - Added support for Spring Boot 3
 - Added new App Live View pages `HTTP Requests` and `Request Mappings` for Steeltoe workloads.
 - Added `appliveview_connnector.backend.sslDeactivated` to deprecate `appliveview_connnector.backend.sslDisabled`.
