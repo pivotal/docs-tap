@@ -194,6 +194,8 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 #### <a id="1-4-0-tap-gui-bc"></a> Tanzu Application Platform GUI
 
+##### Ingress URL
+
 As mentioned in the [new features section](#1-4-0-tap-new-features), Tanzu Application Platform GUI
 participates in the shared ingress issuer feature.
 As such, if you have explicitly set the fields `tap_gui.app_config.app.baseUrl`,
@@ -213,6 +215,13 @@ As such, if you have explicitly set the fields `tap_gui.app_config.app.baseUrl`,
   ```
 
   Where `INGRESS-DOMAIN` is the ingress domain you have configured for Tanzu Application Platform.
+
+##### Communication with Supply Chain Security Tools - Store
+
+In previous version of TAP, users were asked to configure the TAP GUI to use the read-only access token to communicate with Supply Chain Security Tools - Store.
+In v1.4, users need to use the read-write access token in order to use new features in the Security Analysis GUI plugin.
+Users upgrading from v1.3 should update their TAP GUI configuration.
+See the updated instructions in [Enable CVE scan results](tap-gui/plugins/scc-tap-gui.hbs.md#scan).
 
 #### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
 
