@@ -17,7 +17,10 @@ This topic contains release notes for Tanzu Application Platform v1.4.
   way for Platform Operators to provision namespaces with the resources and proper namespace-level
   privileges required for their workloads to function as intended.
 - [Tanzu Application Platform Telemetry Reports](telemetry/overview.hbs.md#tanzu-application-platform-usage-reports)
-offers the option to enroll in a usage reporting program that provides a usage summary of your Tanzu Application Platform.
+  offers the option to enroll in a usage reporting program that provides a usage summary of your
+  Tanzu Application Platform.
+- [Tanzu Developer Tools for Visual Studio](vs-extension/about.hbs.md) is an IDE extension for
+  Visual Studio to help you develop with Tanzu Application Platform.
 
 </br>
 
@@ -63,7 +66,7 @@ offers the option to enroll in a usage reporting program that provides a usage s
 #### <a id="1-4-0-eventing"></a> Eventing
 
 - Upgraded Knative Eventing version from 1.6 to 1.8.
-- Added a Kubernetes tracing attribute to ApiServerSource. 
+- Added a Kubernetes tracing attribute to ApiServerSource.
 - The ApiServerSource is a Knative Eventing Kubernetes custom resource that listens for events emitted by the Kubernetes API server (eg. pod creation, deployment updates, etc...) and forwards them as CloudEvents to a sink.
 
 
