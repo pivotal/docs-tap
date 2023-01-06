@@ -464,6 +464,8 @@ docs.vmware.com is built.
           - [Ingress support](scst-store/ingress.hbs.md)
           - [Multicluster setup](scst-store/multicluster-setup.hbs.md)
           - [Developer namespace setup](scst-store/developer-namespace-setup.hbs.md)
+          - [Retrieve access tokens](scst-store/retrieve-access-tokens.hbs.md)
+          - [Create service accounts](scst-store/create-service-account.hbs.md)
           - [Create a service account with a custom cluster role](scst-store/custom-role.hbs.md)
     - [Tanzu Developer Tools for Visual Studio](vs-extension/about.hbs.md)
       - [Tanzu Developer Tools for Visual Studio overview](vs-extension/about.hbs.md)
