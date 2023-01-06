@@ -460,6 +460,7 @@ docs.vmware.com is built.
           - [Failover, redundancy, and backups](scst-store/failover.hbs.md)
           - [Custom certificate configuration](scst-store/custom-cert.hbs.md)
           - [TLS configuration](scst-store/tls-configuration.hbs.md)
+          - [Cert rotation](scst-store/cert-rotation.hbs.md)
           - [Ingress support](scst-store/ingress.hbs.md)
           - [Multicluster setup](scst-store/multicluster-setup.hbs.md)
           - [Developer namespace setup](scst-store/developer-namespace-setup.hbs.md)
