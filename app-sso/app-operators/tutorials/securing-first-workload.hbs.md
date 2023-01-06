@@ -131,7 +131,8 @@ as described.
 
 Apply the `client.yaml` definition file (described [above](#the-sample-applications-clientregistration))
 
-> **Caution** Make sure to set `auth_server_name` field to the value of the label "name" on the AuthServer custom resource (this may differ from the name of the AuthServer custom resource).
+> **Caution** Make sure to set `auth_server_name` field to the value of the label "name" on the AuthServer custom resource. 
+This might differ from the name of the AuthServer custom resource.
 
 ```shell
 ytt \
@@ -151,7 +152,7 @@ A bit more detail on the above YTT data values:
 - **domain** - the domain name under which the workload will be deployed. The workload instance will use a subdomain to
   distinguish itself from other workloads. If working locally, `127.0.0.1.nip.io` is the easiest approach to get a
   working DNS route on a local cluster.
-- **auth_server_name** - the value of the label "name" on the AuthServer resource that you have installed and want to use with your Workload (this may differ from the name of the AuthServer custom resource).
+- **auth_server_name** - the value of the label "name" on the AuthServer resource that you installed and want to use with your workload. This may differ from the name of the AuthServer custom resource.
 - **claim_name** - the service resource claim name being assigned for this workload, this is the binding between the
   workload and AppSSO. You may choose any reasonably descriptive name for this, it will be used in the next step.
 
