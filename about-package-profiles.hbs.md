@@ -214,7 +214,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 >**Note** You can opt out of telemetry collection by following the
 >instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).
 
-## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v1.3
+## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v{{ vars.url_version }}
 
 You can deploy Tanzu Application Platform through predefined profiles, each containing various packages,
 or you can install  the packages individually. The profiles allow Tanzu Application Platform to scale

@@ -287,7 +287,7 @@ Your Kind cluster was created with port mappings, as described in the [Kind inst
 
 **Explanation**
 
-In Tanzu Application Platform v1.3.0, the default configuration for `contour.envoy.service.type`
+In Tanzu Application Platform v{{ vars.tap_version }}, the default configuration for `contour.envoy.service.type`
 is `LoadBalancer`. However, for the Envoy pods to be accessed by using the port mappings on your Kind cluster,
 the service must be of type `NodePort`.
 
