@@ -1,16 +1,18 @@
-# tanzu apps workload get
+# Tanzu apps workload get
 
-`tanzu apps workload get` is a command used to retrieve information and status about a workload.
+The `tanzu apps workload get` retrieves information and status about a workload.
 
 You can view workload details at whenever. Some details are:
 
- - Workload name and type.
- - The source of the workload application.
- - The supply chain that took care of the workload.
- - The supply chain resources that interact with the workload. It also has the output of the resource stamped out by the supply chain
- - The delivery workflow that the application follows.
- - If there is any issue while deploying the workload and finally which *pods* the workload generates and the knative services related to the workload.
- - If the supply chain is using knative.
+- Workload name and type.
+- The source of the workload application.
+- The supply chain that took care of the workload.
+- The supply chain resources that interact with the workload. It also has the output of the resource
+  stamped out by the supply chain.
+- The delivery workflow that the application follows.
+- If there is any issue while deploying the workload and which *pods* the workload generates
+  and the knative services related to the workload.
+- If the supply chain is using knative.
 
 ## Default view
 
@@ -19,13 +21,13 @@ There are multiple sections in workload get command output. Following data is di
 - Name of the workload and its status.
 - Display source information of workload.
 - If the workload was matched with a supply chain, the information of its name and the status is displayed.
-- Information and status of the individual steps that's defined in the supply chain for workload.
+- Information and status of the individual steps that is defined in the supply chain for workload.
 - Any issue with the workload: the name and corresponding message.
 - Workload related resource information and status like services claims, related pods, knative services.
 
 At the very end of the command output, a hint to follow up commands is also displayed.
 
-```bash
+```console
 tanzu apps workload get rmq-sample-app
 📡 Overview
    name:   rmq-sample-app
@@ -80,9 +82,10 @@ To see logs: "tanzu apps workload tail rmq-sample-app"
 
 ### <a id="get-export"></a> `--export`
 
-Exports the submitted workload in `yaml` format. This flag can also be used with `--output` flag. With export, the output is shortened because some fields are removed.
+Exports the submitted workload in `yaml` format. This flag can also be used with `--output` flag.
+With export, the output is shortened because some text boxes are removed.
 
-```bash
+```console
 tanzu apps workload get tanzu-java-web-app --export
 
 ---
@@ -105,7 +108,8 @@ source:
 
 ### <a id="get-output"></a> `--output`/`-o`
 
-Configures how the workload is being shown. This supports the values `yaml`, `yml` and `json`, where `yaml` and `yml` are equal. It shows the actual workload in the cluster.
+Configures how the workload is being shown. This supports the values `yaml`, `yml`, and `json`,
+where `yaml` and `yml` are equal. It shows the actual workload in the cluster.
 
 - `yaml/yml`
 
@@ -235,7 +239,7 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
 
 Specifies the namespace where the workload is deployed.
 
-```bash
+```console
 tanzu apps workload get tanzu-java-web-app -n development
 
 📡 Overview
