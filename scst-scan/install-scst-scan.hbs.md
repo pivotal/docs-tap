@@ -67,7 +67,15 @@ When you install the SCST - Scan (Grype scanner), you can configure the followin
 | metadataStore.clusterRole | metadata-store-read-write | string | Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster | v1.2.0 |
 
 ## <a id='install-scst-scan'></a> Install
+There are two options for installing Supply Chain Security Tools – Scan
 
+### <a id='install-scst-scan-namespace-provisioner'></a> Option 1: Install easily to multiple namespaces with the Namespace Provisioner
+
+The Namespace Provisioner enables operators to securely automate the provisioning of multiple developer namespaces in a shared cluster. To install Supply Chain Security Tools – Scan via the Namespace Provisioner, follow this [tutorial](../namespace-provisioner/tutorials.hbs.md).
+
+Additionally, the Namespace Provisioner can also create scan policies across multiple developer namespaces. See [Add the resources required by the Out of the Box Testing and Scanning Supply Chain](../namespace-provisioner/how-tos.hbs.md#add-the-resources-required-by-the-out-of-the-box-testing-and-scanning-supply-chain) for configuration steps.
+
+### <a id='install-scst-scan-manually'></a> Option 2: Install manually to each individual namespace
 The installation for Supply Chain Security Tools – Scan involves installing two packages:
 
 - Scan controller
