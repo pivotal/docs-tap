@@ -32,8 +32,7 @@ The system cannot find the path specified
 
 ### Cause
 
-One cause for a path not being discoverable is the Tiltfile using `OUTPUT_TO_NULL_COMMAND` instead of
-`OUTPUT_TO_NULL_COMMAND_WINDOWS`.
+`/dev/null` is used by Unix OSes and will not work for a Windows machine, which uses the `NUL` var.
 
 ### Solution
 
@@ -46,7 +45,7 @@ OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > /dev/nu
 to
 
 ```text
-OUTPUT_TO_NULL_COMMAND_WINDOWS = os.getenv("OUTPUT_TO_NULL_COMMAND_WINDOWS", default=' > NUL ')
+OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > NUL ')
 ```
 
 This makes the path discoverable and enables Live Update to run.

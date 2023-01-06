@@ -120,6 +120,8 @@ offers the option to enroll in a usage reporting program that provides a usage s
 
 #### <a id="1-4-0-vs-new-features"></a> Tanzu Developer Tools for Visual Studio
 
+- **This is a new extension in 1.4 that provides the rapid iteration experience for .Net Core apps in Tanzu Application Platform**
+
 - **See code updates running on-cluster in seconds:**
   By using Live Update facilitated by Tilt, deploy your workload once, save changes to the code
   and then, seconds later, see those changes reflected in the workload running on the cluster.

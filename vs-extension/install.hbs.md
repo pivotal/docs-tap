@@ -23,7 +23,7 @@ To install the extension:
 
 1. Sign in to VMware Tanzu Network and
    [download Tanzu Developer Tools for Visual Studio](https://network.pivotal.io/products/tanzu-application-platform/).
-2. Click the installed `.vsix` file and go through the prompts.
+2. Double-click on the .vsix install file and click through the prompts.
 3. Open Visual Studio and verify that the extension is installed and enabled.
 
 ## <a id="next-steps"></a> Next steps
