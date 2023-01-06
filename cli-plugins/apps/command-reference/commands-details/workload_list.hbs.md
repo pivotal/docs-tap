@@ -1,13 +1,17 @@
-# tanzu apps workload list
+# Tanzu apps workload list
 
-`tanzu apps workload list` gets the workloads present in the cluster, either in the current namespace, in another namespace or in all namespaces.
+The `tanzu apps workload list` command lists the workloads present in the cluster, either in the
+current namespace, in another namespace, or in all namespaces.
 
 ## Default view
 
-The default view for workload list is a table with the workloads present in the cluster in the specified namespace. This table has, in each row, the name of the workload, the app it is related to, its status and how long it's been in the cluster.
+The default view for workload list is a table with the workloads present in the cluster in the
+specified namespace. This table has, in each row, the name of the workload, the app it is related
+to, its status and how long it's been in the cluster.
 
-For example, in the default namespace
-```bash
+For example, in the default namespace:
+
+```Console
 tanzu apps workload list
 
 NAME                TYPE      APP                READY                   AGE
@@ -22,13 +26,13 @@ tanzu-java-web-app  web       tanzu-java-web-app Ready                   40m
 tanzu-java-web-app2 web       tanzu-java-web-app Ready                   20m
 ```
 
-## >Workload List flags
+## Workload List flags
 
 ### <a id="list-all-namespaces"></a> `--all-namespaces`, `-A`
 
 Shows workloads in all namespaces in cluster.
 
-```bash
+```console
 tanzu apps workload list -A
 
 NAMESPACE   TYPE   NAME                APP                READY                         AGE
@@ -49,7 +53,7 @@ nginx-ns    web    nginx4              <empty>            TemplateRejectedByAPIS
 
 Shows workloads which app is the one specified in the command.
 
-```bash
+```console
 tanzu apps workload list --app spring-petclinic
 
 NAME                TYPE   READY     AGE
@@ -61,7 +65,7 @@ spring-petclinic3   web    Ready     29d
 
 Lists all the workloads present in the specified namespace.
 
-```bash
+```console
 tanzu apps workload list -n my-namespace
 
 NAME   TYPE   APP       READY                         AGE
@@ -72,9 +76,10 @@ app3   web    <empty>   Unknown                       8d
 
 ### <a id="list-output"></a> `--output`, `-o`
 
-Allows to list all workloads in the specified namespace in yaml, yml or json format.
+Allows to list all workloads in the specified namespace in YAML, YML, or JSON format.
 
-- yaml/yml
+- YAML/YML
+
     ```yaml
     ---
     - apiVersion: carto.run/v1alpha1
@@ -134,7 +139,8 @@ Allows to list all workloads in the specified namespace in yaml, yml or json for
     ...
     ```
 
-- json
+- JSON
+
     ```json
     [
         {
