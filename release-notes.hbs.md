@@ -454,11 +454,10 @@ as images.
 
 ##### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer plug-in
 
-- The `Generation` field and scan policy link in the **Overview** section does not update when a scan policy is amended.
-  However, the correct version and details of the policy are shown in the CLI
+- The `Generation` field and scan policy link in the **Overview** section does not update when you amend a scan policy. The correct version and details of the policy are shown in the CLI.
 - Customizing the `Source Tester` stage in an OOTB supply chain does not show details in the
   **Stage Details** section.
-- When GitOps PR flow has been configured, the **Approve a Request** link no longer appears in the supply chain graph
+- When a GitOps PR flow is configured, the **Approve a Request** link no longer appears in the supply chain graph.
 </br>
 
 ##### <a id="sec-analysis-plugin-ki"></a> Security Analysis plug-in
