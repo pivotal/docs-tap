@@ -1,12 +1,12 @@
-# tanzu apps workload tail
+# Tanzu apps workload tail
 
-`tanzu apps workload tail` checks the runtime logs of a workload.
+The `tanzu apps workload tail` command checks the runtime logs of a workload.
 
 ## Default view
 
-Without timestamp set, workload tail will show the stage where it is and the log related.
+Without timestamp set, workload tail shows the stage where it is and the log related.
 
-```bash
+```console
 + spring-pet-clinic-build-1-build-pod › prepare
 + spring-pet-clinic-build-1-build-pod › detect
 + spring-pet-clinic-build-1-build-pod › analyze
@@ -35,13 +35,15 @@ spring-pet-clinic-build-1-build-pod[detect] paketo-buildpacks/image-labels      
 ...
 ```
 
-## >Workload Tail flags
+## Workload Tail flags
 
 ### <a id="tail-component"></a> `--component`
 
-Set the component from which the tail command should stream the logs, the values that the flag can take depends on the final deployed pods label `app.kubernetes.io/component`, for example, `build`, `run` and `config-writer`
+Set the component from which the tail command should stream the logs, the values that the flag can
+take depends on the final deployed pods label `app.kubernetes.io/component`, for example, `build`,
+`run` and `config-writer`
 
-```bash
+```console
 tanzu apps workload tail pet-clinic --component build
 
 pet-clinic-build-1-build-pod[export] Adding label 'io.buildpacks.project.metadata'
@@ -65,7 +67,7 @@ pet-clinic-build-1-build-pod[export] Adding cache layer 'cache.sbom'
 
 Specifies the namespace where the workload was deployed to get logs from.
 
-```bash
+```console
 tanzu apps workload tail pet-clinic -n development
 
 pet-clinic-00004-deployment-6445565f7b-ts8l5[workload] 2022-06-14 16:28:52.684  INFO 1 --- [           main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.63]
@@ -82,9 +84,12 @@ pet-clinic-00004-deployment-6445565f7b-ts8l5[workload] 2022-06-14 16:28:53.231  
 
 ### <a id="tail-since"></a> `--since`
 
-Sets the time duration to start reading logs from, this is set in seconds (`s`), minutes(`m`) or hours (`h`) in the format `0h0m0s`, when the duration is `0` it is net necessary to be written for example, for 1 hour, 0 minutes and 1 seconds is `1h1s`. The default value for this flag is 1 second `1s`
+Sets the time duration to start reading logs from, this is set in seconds (`s`), minutes(`m`), or
+hours (`h`) in the format `0h0m0s`. When the duration is `0` it is not necessary to be written. For
+example, for 1 hour, 0 minutes, and 1 seconds is `1h1s`. The default value for this flag is 1 second
+`1s`
 
-```bash
+```console
 tanzu apps workload tail pet-clinic --since 1h1s
 
 pet-clinic-config-writer-9fbk6-pod[place-tools] 2022/06/14 16:28:04 Copied /ko-app/entrypoint to /tekton/bin/entrypoint
@@ -100,7 +105,7 @@ pet-clinic-config-writer-9fbk6-pod[step-main] ++ jq -r 'to_entries | .[] | @sh "
 + pet-clinic-config-writer-kpmc6-pod › step-main
 + pet-clinic-config-writer-kpmc6-pod › step-init
 + pet-clinic-config-writer-kpmc6-pod › place-scripts
-pet-clinic-config-writer-9fbk6-pod[step-main] + eval 'mkdir -p $(dirname '\''delivery.yml'\'') && echo '\''apiVersion: serving.knative.dev/v1'
+pet-clinic-config-writer-9fbk6-pod[step-main] + eval 'mkdir -p $(dirname '\''delivery.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->'\'') && echo '\''apiVersion: serving.knative.dev/v1'
 pet-clinic-config-writer-9fbk6-pod[step-main] kind: Service
 pet-clinic-config-writer-9fbk6-pod[step-main] metadata:
 pet-clinic-config-writer-9fbk6-pod[step-main]   name: pet-clinic
@@ -117,7 +122,6 @@ Adds the timestamp to the beginning of each log message
 
 ```bash
 tanzu apps workload tail pet-clinic -t
-
 pet-clinic-00002-deployment-5cc69cfdc8-t45sc[workload] 2022-06-09T18:10:07.645910625-05:00
 pet-clinic-00002-deployment-5cc69cfdc8-t45sc[workload] 2022-06-09T18:10:07.645942876-05:00
 pet-clinic-00002-deployment-5cc69cfdc8-t45sc[workload] 2022-06-09T18:10:07.645951930-05:00               |\      _,,,--,,_
