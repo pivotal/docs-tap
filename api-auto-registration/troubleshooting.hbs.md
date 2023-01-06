@@ -58,4 +58,52 @@ configuration. Workloads might be using ClusterIssuer for their TLS
 configuration, but API Auto Registration does not support it. To solve this
 issue, you can either deactivate TLS by setting `shared.ingress_issuer: ""`, or
 inform `shared.ca_cert_data` key as mentioned in [our installation
-guide](installation.md).
+guide](installation.md).  You can obtain the PEM Encoded crt file using the steps below:
+
+1. Create a Certificate object where the issuerRef refers to the ClusterIssuer referenced
+in the `shared.ingress_issuer` field.
+
+```console
+# create the cert
+cat <<EOF | kubectl apply -f -
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: ca-extractor
+  namespace: default
+spec:
+  dnsNames:
+  - tap.example.com
+  issuerRef:
+    group: cert-manager.io
+    kind: ClusterIssuer
+    name: tap-ingress-selfsigned
+  secretName: ca-extractor
+EOF
+```
+
+2. Extract the CA cert data from the secret that is generated as part of the previous command.
+The name of the secret can be found in the `secretName: ca-extractor` field. The command below
+will extract PEM encoded CA certificate and store it in the file `ca.crt`
+
+```console
+kubectl get secret -n default ca-extractor -ojsonpath="{.data.ca\.crt}" | base64 -d > ca.crt
+```
+
+3. Now that you have the cert data you can delete both the certificate and the secret that were 
+generated from step 1.
+
+```console
+kubectl delete certificate -n default ca-extractor
+kubectl delete secret -n default ca-extractor
+```
+
+4. Get the PEM encoded cert that was stored in a file
+
+```console
+cat ca.crt
+```
+
+5. Place the PEM encoded cert into `shared.ca_cert_data` key as mentioned 
+in [our installation guide](installation.md).
+
