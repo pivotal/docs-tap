@@ -463,6 +463,8 @@ docs.vmware.com is built.
           - [TLS configuration](scst-store/tls-configuration.hbs.md)
           - [Cert rotation](scst-store/cert-rotation.hbs.md)
           - [Ingress support](scst-store/ingress.hbs.md)
+          - [Using LoadBalancer](scst-store/use-load-balancer.hbs.md)
+          - [Using NodePort](scst-store/use-node-port.hbs.md)
           - [Multicluster setup](scst-store/multicluster-setup.hbs.md)
           - [Developer namespace setup](scst-store/developer-namespace-setup.hbs.md)
           - [Retrieve access tokens](scst-store/retrieve-access-tokens.hbs.md)

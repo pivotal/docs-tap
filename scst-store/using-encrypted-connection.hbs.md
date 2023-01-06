@@ -23,5 +23,5 @@ namespace.
 
 For information about deploying SCST - Store **without** Ingress, see:
 
-- [Using LoadBalancer](configuration/use-load-balancer.hbs.md)
-- [Using NodePort](configuration/use-node-port.hbs.md)
+- [Using LoadBalancer](use-load-balancer.hbs.md)
+- [Using NodePort](use-node-port.hbs.md)

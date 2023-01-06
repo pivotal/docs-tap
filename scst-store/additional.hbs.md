@@ -13,6 +13,8 @@ This section includes the following topics:
 - [Troubleshooting upgrading](upgrading.hbs.md)
 - [Failover, redundancy, and backups](failover.hbs.md)
 - [Ingress support](ingress.hbs.md)
+- [Using LoadBalancer](use-load-balancer.hbs.md)
+- [Using NodePort](use-node-port.hbs.md)
 - [Custom certificate configuration](custom-cert.hbs.md)
 - [TLS configuration](tls-configuration.hbs.md)
 - [Certificate rotation](cert-rotation.hbs.md)
