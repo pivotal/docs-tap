@@ -470,6 +470,21 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
+    <tr>
+   <td>Namespace Provisioner
+  </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>&check;
+   </td>
+   <td>
+   </td>
+  </tr>
+  <tr>
    <td>Out of the Box Delivery - Basic
    </td>
    <td>&check;
