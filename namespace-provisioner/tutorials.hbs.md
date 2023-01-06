@@ -49,9 +49,9 @@ There are two approaches to provisioning namespace-scoped resources supported:
    kubectl label namespaces YOUR-NEW-DEVELOPER-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
    ```
 
-   \* This label tells the controller to add this namespace to the
+   - This label tells the controller to add this namespace to the
    [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap.</br>
-   - The label's value can be anything you wish, including "".
+   - The label's value can be anything you wish, including "". </br>
    - If required, you can change the default label selector by configuring the
      [`namespace_selector`](install.hbs.md#customized-installation) property/value in tap-values
      for namespace provisioner.
@@ -73,7 +73,7 @@ There are two approaches to provisioning namespace-scoped resources supported:
    kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap -n YOUR-NEW-DEVELOPER-NAMESPACE
    ```
 
-   \* Refer to the [TAP Profile Resource Mapping table](reference.hbs.md#profile-resource-mapping)
+   - Refer to the [TAP Profile Resource Mapping table](reference.hbs.md#profile-resource-mapping)
    on the [Namespace Provisioner reference materials](reference.hbs.md) page to see the list of
    resources you should expect to be provisioned in your namespace based on TAP installation
    profile and supply chain values configured in your `tap-values.yaml` file.
