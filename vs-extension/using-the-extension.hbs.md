@@ -1,8 +1,8 @@
 # Use Tanzu Developer Tools for Visual Studio
 
-This topic describes how to use Tanzu Developer Tools for Visual Studio.
+> **Note** This extension is in the beta stage of development.
 
-> **Note** This extension is currently in the beta stage of development.
+This topic describes how to use Tanzu Developer Tools for Visual Studio.
 
 ## <a id="apply-workload"></a> Apply a workload
 
@@ -10,13 +10,14 @@ To apply a workload:
 
 1. Ensure that you meet the following prerequisites:
 
-   - Tanzu CLI is installed in a location included in your PATH environment variable.
+   - Tanzu CLI is installed in a location included in your `PATH` environment variable.
    - A valid `workload.yaml` file is in the project. For more information, see the specification for
      [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
    - You have a functional Tanzu Application Platform environment.
    - Your kubeconfig file is modified for Tanzu Application Platform workload deployments.
      There must be a preferred `namespace`, for example.
-   - You have an image repository where source code located in local file system can be uploaded to before being built by Build Service.
+   - You have an image repository to which source code in the local file system can be uploaded
+     before Build Service builds it.
 
 2. Right-click the project node or any file node in the Solution Explorer.
 3. Click **Tanzu: Apply Workload**.
@@ -36,10 +37,11 @@ To delete a workload:
    - A `tanzu` command in `PATH`
    - A running Tanzu Application Platform workload
    - A valid `workload.yaml` file in the project that describes the workload to delete
-   - The `namespace` set in `Kube config/Kubecontext` must match with where the workload was deployed either via `Workload Apply` or `Live Update`
+   - A `namespace` set in `Kube config/Kubecontext` that matches with where the workload was deployed
+     either by using `Workload Apply` or `Live Update`.
 
-2. Right-click the project node or any file node in the Solution Explorer.
-3. Click **Tanzu: Delete Workload**. If a `workload.yaml` file exists somewhere in the project file
+1. Right-click the project node or any file node in the Solution Explorer.
+1. Click **Tanzu: Delete Workload**. If a `workload.yaml` file exists somewhere in the project file
    structure, the extension uses it to delete the workload by running
    `tanzu apps workload delete --file={workload_path} --yes`.
 
@@ -52,9 +54,10 @@ To use Live Update:
    - A project with a `Tiltfile` in the project root
    - A `tilt` command in `PATH`
    - A `tanzu` command in `PATH`
-   - The `namespace` you use must match the `namespace` where the workload is running, if it was deployed already using `Apply Workload`
-   - `Build` the code within Visual Studio
-   - Include the `Debug` sub folder folder in the output folder
+   - The `namespace` you use matches the `namespace` where the workload is running, if it was
+     deployed already by using `Apply Workload`
+   - You can `Build` the code within Visual Studio
+   - The `Debug` sub folder is in the output folder
 
 2. Start Live Update by right-clicking on any project or file node in the solution explorer and then
    clicking **Tanzu: Start Live Update**.
@@ -77,6 +80,7 @@ but you can get a similar result by using Task Manager.
 ```console
 Get-Process "tilt" | ForEach-Object { $_.kill() }
 ```
+
 ## <a id='lv-update-path-not-found'></a> Live Update failure because the system cannot find the path specified
 
 ### Symptom
@@ -109,7 +113,6 @@ OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > NUL ')
 
 This makes the path discoverable and enables Live Update to run.
 
-
 ## <a id="use-remote-debug"></a> Use Remote Debug
 
 Before using Remote Debug, ensure that you have the following prerequisites:
@@ -127,9 +130,8 @@ To run a workload in Tanzu Application Platform:
    which provides a sample .NET app that is ready for immediate deployment to Tanzu Application Platform.
 1. Go to `weatherforecast-steeltoe`.
 1. Right-click on the project node and then click **Tanzu: Apply Workload**.
-
-For more information, see
-  [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
+   For more information, see
+   [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
 ### <a id="start-remote-debug"></a> Start Remote Debug
 

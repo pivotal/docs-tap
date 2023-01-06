@@ -19,8 +19,6 @@ Re-apply your workload by running `Tanzu: Workload Apply` or `Tanzu: Start Live 
 This realigns the extension's internal state with the proper workload state.
 The delete operation is enabled again after the extension detects that the workload is running.
 
-
-
 ## <a id='lv-update-app-not-updated'></a> Live Update fails to update remote app
 
 ### Symptom
@@ -29,7 +27,7 @@ In v0.1.0 and earlier, the `Tanzu: Start Live Update` command does not update th
 
 ### Cause
 
-`Tiltfile` may be specifying an incorrect local path.
+The Tiltfile might be specifying an incorrect local path.
 
 ### Solution
 
@@ -50,5 +48,5 @@ to
 ```
 
 This copies the correct portion of the local workspace to the remote app.
-Note that the actual path `bin/Debug/net6.0` may be different depending on your VS configuration and target.
-
+The actual path `bin/Debug/net6.0` might be different depending on your Visual Studio configuration
+and target.

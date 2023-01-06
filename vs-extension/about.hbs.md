@@ -6,7 +6,7 @@ to help you develop with Tanzu Application Platform.
 This plug-in extends Microsoft Visual Studio 2022 only. It is incompatible with Visual Studio Code
 and Visual Studio for Mac.
 
-> **Note** This extension is currently in the beta stage of development.
+> **Note** This extension is in the beta stage of development.
 
 ## Extension Features
 
@@ -25,7 +25,8 @@ The extension has the following features:
   The similarity of an environment to production relies on keeping dependencies updated, among other
   variables.
 
-- **Deploy a workload to a K8s cluster**
-  
-  Deploy your workload straight to your Kubernetes cluster and, once your finished using it, you can delete it! All the output for deleting a workload is filtered to its own output pane window within Visual Studio.
+- **Deploy a workload to a Kubernetes cluster**
 
+  Deploy your workload straight to your Kubernetes cluster and, after you're finished using it, you
+  can delete it. All the output for deleting a workload is filtered to its own output pane window
+  within Visual Studio.
