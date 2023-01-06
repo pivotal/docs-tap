@@ -16,3 +16,9 @@ Service Accounts](create-service-account.hbs.md).
 ## Setting the Access Token
 
 {{> 'partials/insight-set-access-token' }}
+
+## Additional Resources
+
+- [Retrieve access tokens](retrieve-access-tokens.hbs.md)
+- [Create service accounts](create-service-account.hbs.md)
+- [Create a service account with a custom cluster role](custom-role.hbs.md)
