@@ -1,6 +1,6 @@
 # Tanzu apps workload apply
 
-`tanzu apps workload apply` is a command used to create and update workloads that are deployed in a
+The `tanzu apps workload apply` command creates and updates workloads that are deployed in a
 cluster through a supply chain.
 
 ## Default view
@@ -30,7 +30,7 @@ Create workload:
    14 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
    15 + |    subPath: tanzu-java-web-app
 
-? Do you want to create this workload? Yes
+Do you want to create this workload? Yes
 Created workload "tanzu-java-web-app"
 
 To see logs:   "tanzu apps workload tail tanzu-java-web-app"
@@ -338,8 +338,7 @@ Update workload:
 Sets the workload specification file to create the workload. This comes from any other workload
 specification passed by flags to the command set or overrides what is in the file. Another way to
 use this flag is by using `-` in the command to receive workload definition through stdin.
-See [Working with YAML Files](../../usage.md#yaml-files) section for
-an example.
+See [Working with YAML Files](../../usage.md#yaml-files) section for an example.
 
 <details><summary>Example</summary>
 
@@ -632,7 +631,7 @@ An example with a Spring Boot application:
    allow_k8s_contexts('your-cluster-name')
    ```
 
-1. Inside the directory, run:
+2. Inside the directory, run:
 
    ```bash
    tanzu apps workload apply tanzu-java-web-app --live-update --local-path . -s
@@ -666,7 +665,7 @@ An example with a Spring Boot application:
 
    ```
 
-1. Run Tilt to deploy the workload.
+3. Run Tilt to deploy the workload.
 
     ```bash
     tilt up
@@ -709,7 +708,7 @@ An example with a Spring Boot application:
 ### <a id="apply-local-path"></a> `--local-path`
 
 Sets the path to a source in the local machine from where the workload creates an image to use as an
-application source. The local path may be a directory, a JAR, a ZIP, or a WAR file. Java/Spring Boot
+application source. The local path can be a directory, a JAR, a ZIP, or a WAR file. Java/Spring Boot
 compiled binaries are also supported. This flag must be used with `--source-image` flag.
 
 >**Note:**If Java/Spring compiled binary is passed instead of source code, the command will take
@@ -955,7 +954,7 @@ This is also populated with a default value through environment variables. If th
 variable `TANZU_APPS_REGISTRY_CA_CERT` is set, it's not necessary to use it in the command.
 
 See [Environment variables with default values](../tanzu-apps-workload.hbs.md#envvars)
-for the currently supported environment variables.
+for the updated supported environment variables.
 
 <details><summary>Example</summary>
 
