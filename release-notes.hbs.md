@@ -20,7 +20,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
   offers the option to enroll in a usage reporting program that provides a usage summary of your
   Tanzu Application Platform.
 - [Tanzu Developer Tools for Visual Studio](vs-extension/about.hbs.md) is an IDE extension for
-  Visual Studio to help you develop with Tanzu Application Platform.
+  Visual Studio to help you develop, providing the rapid iteration experience for .NET Core apps in
+  Tanzu Application Platform.
 
 </br>
 
@@ -150,8 +151,6 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 </br></br>
 
 #### <a id="1-4-0-vs-new-features"></a> Tanzu Developer Tools for Visual Studio
-
-- **This is a new extension in 1.4 that provides the rapid iteration experience for .Net Core apps in Tanzu Application Platform**
 
 - **See code updates running on-cluster in seconds:**
   By using Live Update facilitated by Tilt, deploy your workload once, save changes to the code

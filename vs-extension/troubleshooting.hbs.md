@@ -32,7 +32,8 @@ The system cannot find the path specified
 
 ### Cause
 
-`/dev/null` is used by Unix OSes and will not work for a Windows machine, which uses the `NUL` var.
+The Tiltfile is configured to direct output to the location that Unix operating systems use for
+discarding output, `/dev/null`. This doesn't work on Windows machines, which use `NUL` instead.
 
 ### Solution
 

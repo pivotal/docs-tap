@@ -8,15 +8,15 @@ This topic describes how to use Tanzu Developer Tools for Visual Studio.
 
 To apply a workload:
 
-1. Ensure that you have the following prerequisites:
+1. Ensure that you meet the following prerequisites:
 
-   - you should have the tanzu CLI installed in a location included in your PATH environment variable.
-   - A valid `workload.yaml` file in the project. For more information, see the specification for
+   - Tanzu CLI is installed in a location included in your PATH environment variable.
+   - A valid `workload.yaml` file is in the project. For more information, see the specification for
      [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
-   - A functional Tanzu Application Platform environment.
+   - You have a functional Tanzu Application Platform environment.
    - Your kubeconfig file is modified for Tanzu Application Platform workload deployments.
      There must be a preferred `namespace`, for example.
-   - An image repository where source code can be staged before being built.
+   - You have an image repository where source code can be staged before being built.
 
 2. Right-click the project node or any file node in the Solution Explorer.
 3. Click **Tanzu: Apply Workload**.
@@ -38,8 +38,9 @@ To delete a workload:
    - A valid `workload.yaml` file in the project that describes the workload to delete
 
 2. Right-click the project node or any file node in the Solution Explorer.
-3. Click **Tanzu: Delete Workload**.
-4. If a workload.yaml exists somewhere in the project file structure, it will be used to delete the workload via `tanzu apps workload delete --file={workload_path} --yes`
+3. Click **Tanzu: Delete Workload**. If a `workload.yaml` file exists somewhere in the project file
+   structure, the extension uses it to delete the workload by running
+   `tanzu apps workload delete --file={workload_path} --yes`.
 
 ## <a id="use-live-update"></a> Use Live Update
 
@@ -51,8 +52,10 @@ To use Live Update:
    - A `tilt` command in `PATH`
    - A `tanzu` command in `PATH`
 
-2. Start Live Update by right-clicking on any project/file node in the solution explorer and then selecting **Tanzu: Start Live Update**.
-3. Stop Live Update by right-clicking on any project/file node in the solution explorer and then selecting **Tanzu: Stop Live Update**.
+2. Start Live Update by right-clicking on any project or file node in the solution explorer and then
+   clicking **Tanzu: Start Live Update**.
+3. Stop Live Update by right-clicking on any project or file node in the solution explorer and then
+   clicking **Tanzu: Stop Live Update**.
 
 ### <a id="stop-rogues"></a> Stop rogue Tilt processes
 
@@ -83,7 +86,7 @@ Before using Remote Debug, ensure that you have the following prerequisites:
 
 To run a workload in Tanzu Application Platform:
 
-1. Right-click on the project node and then select **Tanzu: Apply Workload**
+1. Right-click on the project node and then click **Tanzu: Apply Workload**.
 
   For more information, see
   [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
