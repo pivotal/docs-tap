@@ -222,7 +222,7 @@ metadataStore:
   url: "" # Configuration is moved, so set this string to empty
 ```
 ### Sample ScanPolicy for CycloneDX Format
-
+```
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
@@ -264,6 +264,7 @@ spec:
       not isSafe(vuln)
       msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
     }
+```
 
 Apply the YAML:
 
