@@ -104,7 +104,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 - **[Grype](https://github.com/anchore/grype)**
 
   Grype is a vulnerability scanner for container images and file systems.
-  
+
 - **[Namespace Provisioner](namespace-provisioner/about.hbs.md)**
 
   Namespace provisioner provides an easy, secure, automated way for Platform Operators to provision namespaces with the resources and proper namespace-level privileges needed for developer workloads to function as intended.
@@ -913,7 +913,7 @@ Tanzu Application Platform components.
 **Tanzu Developer Tooling:** refers to the developer conventions that enable debugging
 and Live Update function in the inner loop.
 
-**Extended Scanning Coverage:** When building container images with the Tanzu Build Service, the Cloud Native Build Packs used in the build process for the specified languages produce a Software Bill of Materials (SBOM).  Some scan engines support the enhanced ability to use this SBOM as a source for the scan.  The out-of-box test and scan supply chain leverages Anchore's Grype for the image scan, which suppports this capability.  In addition, users have the ability to leverage Carbon Black Container image scans, which also supports this enhanced scan coverage.
+**Extended Scanning Coverage:** When building container images with the Tanzu Build Service, the Cloud Native Build Packs used in the build process for the specified languages produce a Software Bill of Materials (SBOM).  Some scan engines support the enhanced ability to use this SBOM as a source for the scan. Out of the Box Supply Chain - Testing and Scanning leverages Anchore's Grype for the image scan, which suppports this capability.  In addition, users have the ability to leverage Carbon Black Container image scans, which also supports this enhanced scan coverage.
 
 ## <a id='install'></a> Installing Tanzu Application Platform
 
