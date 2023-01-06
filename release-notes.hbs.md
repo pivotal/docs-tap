@@ -89,8 +89,12 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - Upgraded Knative Eventing version from 1.6 to 1.8.
 - Added a Kubernetes tracing attribute to ApiServerSource.
 - The ApiServerSource is a Knative Eventing Kubernetes custom resource that listens for events emitted by the Kubernetes API server (eg. pod creation, deployment updates, etc...) and forwards them as CloudEvents to a sink.
+</br></br>
 
+#### <a id="1-4-0-tap-gui-plugin-nf"></a> External Secrets Operator (alpha)
 
+- The External Secrets Operator is a Kubernetes operator that integrates with external secret management systems.
+  With this release, Tanzu Application Platform repackages this open source Kubernetes operator into a Carvel bundle that ships with Tanzu Application Platform. External Secrets Operator is currently in alpha and is intended for evaluation and test purposes only. Do not use in a production environment.
 
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
 
