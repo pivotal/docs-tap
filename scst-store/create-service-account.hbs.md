@@ -10,7 +10,7 @@ There are two types of SCST - Store service accounts:
 1. Read-write service account - full access to the `POST` and `GET` API requests
 2. Read-only service account - can only use `GET` API requests
 
-This document shows how to create service accounts.
+This topic explains how to create service accounts.
 
 ## <a id='rw-serv-accts'></a> Create read-write service account
 
