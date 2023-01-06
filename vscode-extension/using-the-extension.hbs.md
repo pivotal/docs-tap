@@ -125,8 +125,8 @@ Live Update requires a `workload.yaml` file and a Tiltfile in your project.
 For information about how to create a `workload.yaml` and a Tiltfile, see
 [Get Started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
 
-Live Update and Debugging on the cluster cannot be used simultaneously.
-If you are debugging on the cluster, stop debugging before attempting to use Live Update.
+The developer sandbox experience allows developers to Live Update their code, and simultaneously 
+debug the updated code, without having to deactivate Live Update when debugging.
 
 ### <a id="start-live-update"></a> Start Live Update
 
