@@ -33,13 +33,8 @@ This section includes the following topics:
 - [Custom certificate configuration](custom-cert.hbs.md)
 - [TLS configuration](tls-configuration.hbs.md)
 - [Certificate rotation](cert-rotation.hbs.md)
-
-### Database
-
-- [Use external postgres database](use-external-database.hbs.md)
-- [AWS RDS postgres configuration](use-aws-rds.hbs.md)
-- [Database backup recommendations](backups.hbs.md)
-
-## Other
-
-- [Install SCST - Store independent from TAP profiles](install-scst-store.hbs.md)
+- [Multicluster setup](multicluster-setup.hbs.md)
+- [Developer namespace setup](developer-namespace-setup.hbs.md)
+- [Retrieve access tokens](retrieve-access-tokens.hbs.md)
+- [Create service accounts](create-service-account.hbs.md)
+- [Create a service account with a custom cluster role](custom-role.hbs.md)

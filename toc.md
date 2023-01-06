@@ -452,6 +452,8 @@ docs.vmware.com is built.
           - [Using NodePort](scst-store/use-node-port.hbs.md)
           - [Multicluster setup](scst-store/multicluster-setup.hbs.md)
           - [Developer namespace setup](scst-store/developer-namespace-setup.hbs.md)
+          - [Retrieve access tokens](scst-store/retrieve-access-tokens.hbs.md)
+          - [Create service accounts](scst-store/create-service-account.hbs.md)
           - [Create a service account with a custom cluster role](scst-store/custom-role.hbs.md)
     - [Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.md)
       - [Tanzu Developer Tools for VS Code overview](vscode-extension/about.md)

@@ -52,3 +52,8 @@ EOF
 
 > **Note** For Kubernetes v1.24 and later, service account secrets are no longer automatically created.
 > This is why the example adds a `Secret` resource in the earlier YAML.
+
+## Additional Resources
+
+- [Retrieve access tokens](retrieve-access-tokens.hbs.md)
+- [Create service accounts](create-service-account.hbs.md)
