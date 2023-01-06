@@ -110,7 +110,6 @@ This topic contains release notes for Tanzu Application Platform v1.4.
   per ID as opposed to each CVE per package.
   This allows better alignment between the data in the Supply Chain Choreographer plug-in and the
   Security Analysis plug-in.
-- **View Approvals** is relocated to the `Config Writer` stage, instead of being a stage by itself.
 </br></br>
 
 #### <a id='1-4-0-sagui-new-feats'></a>Security Analysis Plug-in
@@ -131,9 +130,9 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-scst-policy-new-features"></a> Supply Chain Security Tools - Policy
 
-- Added ability to [configure action when no policy matches the admitting image digest](./scst-policy/install-scst-policy.hbs.md#install-scst-policy).
-- Added ability to [allow empty authorities for ClusterImagePolicies](./scst-policy/install-scst-policy.hbs.md#install-scst-policy).
-- Added ability to [specify which resources a ClusterImagePolicy should enforce](./scst-policy/configuring.hbs.md#cip-match).
+- Added ability to [configure action when no policy matches the admitting image digest](./scst-policy/install-scst-policy.hbs.md#install-scst-policy)
+- Added ability to [allow empty authorities for ClusterImagePolicies](./scst-policy/install-scst-policy.hbs.md#install-scst-policy)
+- Added ability to [specify which resources a ClusterImagePolicy should enforce](./scst-policy/configuring.hbs.md#cip-match)
 </br></br>
 
 #### <a id="1-4-0-stk-new-features"></a> Services Toolkit
@@ -453,12 +452,11 @@ as images.
 
 ##### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer plug-in
 
-- The `Generation` field in the **Overview** section does not update when a scan policy is amended.
-  However, clicking the `Scan Policy` link shows the most current scan policy details applied
-  to the stage.
+- The `Generation` field and scan policy link in the **Overview** section does not update when a scan policy is amended.
+  However, the correct version and details of the policy are shown in the CLI
 - Customizing the `Source Tester` stage in an OOTB supply chain does not show details in the
   **Stage Details** section.
-
+- When GitOps PR flow has been configured, the **Approve a Request** link no longer appears in the supply chain graph
 </br>
 
 ##### <a id="sec-analysis-plugin-ki"></a> Security Analysis plug-in
