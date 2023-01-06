@@ -24,3 +24,8 @@ The extension has the following features:
   that has Tanzu Application Platform.
   The similarity of an environment to production relies on keeping dependencies updated, among other
   variables.
+
+- **Deploy a workload to a K8s cluster**
+  
+  Deploy your workload straight to your Kubernetes cluster and, once your finished using it, you can delete it! All the output for deleting a workload is filtered to its own output pane window within Visual Studio.
+
