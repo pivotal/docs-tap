@@ -16,11 +16,14 @@ The available guides are as follows:
 
 ## <a id="data-values-templating"></a>Data values templating guide
 
-Customize your custom resources with data values from the `tap-values.yaml` file values and data from `desired-namespaces` ConfigMap.
+Customize your custom resources with data values from:
+  1. The `tap-values.yaml` file
+  2. The `desired-namespaces` ConfigMap.
 
-Namespace Provisioner inherits all of the configuration in both the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) and the `tap-values.yaml` under the key `tap_values` making it available for Platform Operators to use as ytt `data.values` when [extending the resources via GitOps](#extending-default-resources).
+Namespace Provisioner inherits all of the configuration in **both** the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) and the `tap-values.yaml` under the key `tap_values` making it available to
+use as ytt `data.values` when [extending the resources via GitOps](#extending-default-resources).
 
-Let's assume that the `desired-namespaces` ConfigMap has a namespace `dev-ns1` with an additional
+For example, if the `desired-namespaces` ConfigMap has a namespace `dev-ns1` with an additional
 parameter `language: java`.
 
 The `data.values` config that is available to Platform Operators for templating their custom resource

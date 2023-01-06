@@ -32,7 +32,7 @@ ConfigMap and a Secret which are explained in more detail below.
 The **`desired-namespaces`** ConfigMap in the **`tap-namespace-provisioning`** namespace provides
 a declarative way to indicate which namespaces should be populated with resources. The ConfigMap
 consists of a list of namespace objects, with a required `name` parameter, and optional additional
-parameters which are used as `data.values` for customizing platform-operator defined resources.
+parameters which are used as `data.values` for customizing defined resources.
 Manage the ConfigMap directly with [GitOps](how-tos.hbs#control-desired-namespaces), or the [Namespace Provisioner Controller](#nsp-controller) described below.
 
 **Example:**
