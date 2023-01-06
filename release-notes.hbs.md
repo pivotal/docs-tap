@@ -94,9 +94,9 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
 
-</br></br>
 
-#### <a id='scc-plug-in-new-features'></a>Supply Chain Choreographer Plug-in
+
+##### <a id='scc-plug-in-new-features'></a>Supply Chain Choreographer Plug-in
 
 - Events are now emitted when resources are applied and when their output or health status changes.
   See [Events reference](scc/events.hbs.md).
@@ -113,13 +113,10 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - **View Approvals** is relocated to the `Config Writer` stage, instead of being a stage by itself.
 </br></br>
 
-#### <a id='1-4-0-sagui-new-feats'></a>Security Analysis Plug-in
+##### <a id='1-4-0-sagui-new-feats'></a>Security Analysis Plug-in
 
-- The Vulnerabilities by Severity widget and the CVEs column count all CVEs across all packages
-- On the CVE details page, there is now an Impacted Workload Builds table listing all workloads
-  that are affected by the CVE.
-- On the Package details page, there is now a table named Workload Builds using Package.
-  This table lists all workloads that are using the package.
+- **Understand the total number of affected packages and vulnerabilities on the Security Analysis Dashboard:** The Vulnerabilities by Severity widget and the Workload Build Vulnerabilities table have updated logic to count the all CVEs and all packages, providing a better idea of the discrete, affected packages (previously, the logic counted unique CVEs, even if a particular CVE affected multiple packages)
+- **Quickly identify all affected workloads for a specific CVE or package / dependency:** The CVE and Package details pages (accessed on the source or image scan stage on the Supply Chain Choreographer Plug-in) include a new table which shows all affected workloads for a specific CVE or package.
 </br></br>
 
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
@@ -127,6 +124,12 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
   environments. See [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md).
 - Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) by using the `tap-values.yml` for both Grype and Snyk scanners.
+</br></br>
+
+#### <a id="1-4-0-scst-store-new-features"></a> Supply Chain Security Tools - Store
+
+- **Avoid invalid certificate issues with automatic certificate rotation:** The SCST - Store now supports automatic certificate rotation, which avoids the need to restart the Metadata Store and a lost connection to the scanning functionality. Learn how to set up at [Certificate Rotation](scst-store/cert-rotation.hbs.md).
+- **Improved documentation for multi-cluster set-up:** Easier-to-understand steps at [Multicluster Setup](scst-store/multicluster-setup.hbs.md)
 </br></br>
 
 #### <a id="1-4-0-scst-policy-new-features"></a> Supply Chain Security Tools - Policy
