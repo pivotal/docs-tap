@@ -746,7 +746,7 @@ Tanzu Application Platform components.
    </td>
    <td><strong>Functions</strong>
    </td>
-   <td><strong>Extended Scanning Coverage using Anchore Grype \*\*\*</strong>
+   <td><strong>Extended Scanning Coverage using Buildpack SBOM's\*\*\*</strong>
    </td>
   </tr>
   <tr>
@@ -898,12 +898,7 @@ Tanzu Application Platform components.
 **Tanzu Developer Tooling:** refers to the developer conventions that enable debugging
 and Live Update function in the inner loop.
 
-**Extended Scanning Coverage:** SCST - Scan and Store using Anchore Grype.
-Out of the Box Tanzu Application Platform scanning leverages a tool by Anchore called Grype.
-Grype provides standard CVE scanning support for a wide variety of languages.
-However, if you use Tanzu Build Service to build application images by using a buildpack
-that produces a Bill of Materials in the Syft format,
-Tanzu Application Platform scanning can provide a more comprehensive scan of the application image.
+**Extended Scanning Coverage:** When building container images with the Tanzu Build Service, the Cloud Native Build Packs used in the build process for the specified languages produce a Software Bill of Materials (SBOM).  Some scan engines support the enhanced ability to use this SBOM as a source for the scan.  The out-of-box test and scan supply chain leverages Anchore's Grype for the image scan, which suppports this capability.  In addition, users have the ability to leverage Carbon Black Container image scans, which also supports this enhanced scan coverage.
 
 ## <a id='install'></a> Installing Tanzu Application Platform
 
