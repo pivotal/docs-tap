@@ -93,6 +93,8 @@ tap_gui:
         origin: https://tap-gui.INGRESS-DOMAIN/
 ```
 
+Where `INGRESS-DOMAIN` is the ingress domain you have configured for Tanzu Application Platform.
+
 The installer determines acceptable values based on your `tap_gui.ingressDomain` or
 `shared.ingress_domain` and the TLS status of the installation.
 
