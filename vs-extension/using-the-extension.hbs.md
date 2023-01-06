@@ -16,7 +16,7 @@ To apply a workload:
    - You have a functional Tanzu Application Platform environment.
    - Your kubeconfig file is modified for Tanzu Application Platform workload deployments.
      There must be a preferred `namespace`, for example.
-   - You have an image repository where source code can be staged before being built.
+   - You have an image repository where source code located in local file system can be uploaded to before being built by Build Service.
 
 2. Right-click the project node or any file node in the Solution Explorer.
 3. Click **Tanzu: Apply Workload**.
@@ -36,6 +36,7 @@ To delete a workload:
    - A `tanzu` command in `PATH`
    - A running Tanzu Application Platform workload
    - A valid `workload.yaml` file in the project that describes the workload to delete
+   - The `namespace` set in `Kube config/Kubecontext` must match with where the workload was deployed either via `Workload Apply` or `Live Update`
 
 2. Right-click the project node or any file node in the Solution Explorer.
 3. Click **Tanzu: Delete Workload**. If a `workload.yaml` file exists somewhere in the project file
@@ -51,6 +52,9 @@ To use Live Update:
    - A project with a `Tiltfile` in the project root
    - A `tilt` command in `PATH`
    - A `tanzu` command in `PATH`
+   - The `namespace` you use must match the `namespace` where the workload is running, if it was deployed already using `Apply Workload`
+   - `Build` the code within Visual Studio
+   - Include the `Debug` sub folder folder in the output folder
 
 2. Start Live Update by right-clicking on any project or file node in the solution explorer and then
    clicking **Tanzu: Start Live Update**.
@@ -73,6 +77,38 @@ but you can get a similar result by using Task Manager.
 ```console
 Get-Process "tilt" | ForEach-Object { $_.kill() }
 ```
+## <a id='lv-update-path-not-found'></a> Live Update failure because the system cannot find the path specified
+
+### Symptom
+
+In v0.1.0 and earlier, the `Tanzu: Start Live Update` command gives the following error message
+when first run:
+
+```console
+The system cannot find the path specified
+```
+
+### Cause
+
+The Tiltfile is configured to direct output to the location that Unix operating systems use for
+discarding output, `/dev/null`. This doesn't work on Windows machines, which use `NUL` instead.
+
+### Solution
+
+In your Tiltfile, change the line
+
+```text
+OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > /dev/null ')
+```
+
+to
+
+```text
+OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > NUL ')
+```
+
+This makes the path discoverable and enables Live Update to run.
+
 
 ## <a id="use-remote-debug"></a> Use Remote Debug
 
@@ -86,23 +122,14 @@ Before using Remote Debug, ensure that you have the following prerequisites:
 
 To run a workload in Tanzu Application Platform:
 
-1. Right-click on the project node and then click **Tanzu: Apply Workload**.
-
-  For more information, see
-  [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
-
 1. Clone the project
    [`steeltoe-weatherforecast` accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/weatherforecast-steeltoe),
    which provides a sample .NET app that is ready for immediate deployment to Tanzu Application Platform.
 1. Go to `weatherforecast-steeltoe`.
-1. From the project's root directory, run:
+1. Right-click on the project node and then click **Tanzu: Apply Workload**.
 
-   ```console
-   tanzu apps workload apply -f config/workload.yaml
-   ```
-
-   By default, this creates a workload from the code in the GitHub repository.
-   For more information about deploying from your local source, see the repository README file.
+For more information, see
+  [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
 ### <a id="start-remote-debug"></a> Start Remote Debug
 
