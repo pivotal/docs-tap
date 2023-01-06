@@ -122,13 +122,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
   environments. See [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md).
-- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) by using the `tap-values.yml` for both Grype and Snyk scanners.
-</br></br>
-
-#### <a id="1-4-0-scst-store-new-features"></a> Supply Chain Security Tools - Store
-
-- **Avoid invalid certificate issues with automatic certificate rotation:** The SCST - Store now supports automatic certificate rotation, which avoids the need to restart the Metadata Store and a lost connection to the scanning functionality. Learn how to set up at [Certificate Rotation](scst-store/cert-rotation.hbs.md).
-- **Improved documentation for multi-cluster set-up:** Easier-to-understand steps at [Multicluster Setup](scst-store/multicluster-setup.hbs.md)
+- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) via the tap-values.yml for both Grype and Snyk scanners.
+- Alpha release of Prisma Scanner integration.
 </br></br>
 
 #### <a id="1-4-0-scst-policy-new-features"></a> Supply Chain Security Tools - Policy
