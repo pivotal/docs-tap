@@ -393,6 +393,11 @@ This release has the following known issues, listed by area and component.
 - When using custom types, if there is a check box in the list of attributes then re-ordering
   the inputs doesn't work.
 
+#### <a id="1-4-0-cnr-ki"></a> Cloud Native Runtimes for VMware Tanzu
+
+- Knative Serving: Certain app name, namespace, and domain combinations produce invalid HTTPProxy resources. See [CNR Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.1/tanzu-cloud-native-runtimes/GUID-troubleshooting.html#invalid-httpproxy).
+- Knative Serving and Cert Manager: When auto-tls is enabled, default in Tanzu Application Platform v1.4.0, Knative services fail with `certificateNotReady` if workload name, namespace, and domain is more than 64 bytes. See [CNR Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.1/tanzu-cloud-native-runtimes/GUID-troubleshooting.html#certificate-not-ready).
+
 #### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
 
 - If a workload is deployed onto a namespace by using Live Update, you must set that namespace as
