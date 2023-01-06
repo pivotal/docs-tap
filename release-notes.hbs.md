@@ -60,6 +60,14 @@ offers the option to enroll in a usage reporting program that provides a usage s
 - `cert-manager.tap.tanzu.vmware.com` can optionally install self-signed `ClusterIssuer`s.
 </br></br>
 
+#### <a id="1-4-0-eventing"></a> Eventing
+
+- Upgraded Knative Eventing version from 1.6 to 1.8.
+- Added a Kubernetes tracing attribute to ApiServerSource. 
+- The ApiServerSource is a Knative Eventing Kubernetes custom resource that listens for events emitted by the Kubernetes API server (eg. pod creation, deployment updates, etc...) and forwards them as CloudEvents to a sink.
+
+
+
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
 
 </br></br>
