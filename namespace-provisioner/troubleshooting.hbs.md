@@ -144,8 +144,8 @@ as default instead of ovelaying it), that will be reported in the Kapp App as we
 
 ### <a id="unable-to-delete-namespace"></a>Unable to delete namespace
 
-When a namespaces is provisioned in the `desired-namespaces` (via controller or GitOps), then it can
-be deleted in a common way by `kubectl` command:
+When a namespaces is provisioned and listed in the `desired-namespaces` (via controller or GitOps),
+then it can be deleted in a common way by `kubectl` command:
 
 ```bash
 kubectl delete namespace {namespace-name}
@@ -157,11 +157,11 @@ When the provisioned namespace is deleted and there is a workload already create
 very likely that the *`namespace`* will remain in the `Terminating` state because some resources can
 not be deleted.
 
-- One of the causes of this behavior is because the workload creates a Carvel Kapp App to manage the
-workload referencing the `ServiceAccount` in the *`namespace`* and the `kubectl` command does not
-take precedence of the `ServiceAccount` over the Kapp App then it can be deleted first, and then the
-workload Kapp App will block the namespace termination failing itself while waiting the `ServiceAccount`
-to exist with a *`finalizer`* (`finalizers.kapp-ctrl.k14s.io/delete`).
+One of the causes of this behavior is because the workload creates a Carvel Kapp App that references
+the ServiceAccount in the namespace. Kubectl does not adhere to Carvel kapp-controller delete order
+and the ServiceAccount is deleted before the workload Carvel App. As a result, the Carvel App will
+block the namespace termination while waiting for the ServiceAccount to exist with a
+*`finalizer`* (`finalizers.kapp-ctrl.k14s.io/delete`) message.
 
 **Solution:** Remove the Kapp App *`finalizer`* in the Kapp App
 
@@ -170,14 +170,4 @@ and it fails to remove the custom *`finalizer`* added to the namespace (`namespa
 
 **Solution:** Remove the *`finalizer`* in the *`namespace`*
 
-</br>
 
----
-
-### Links to additional Namespace Provisioner documentation:
-
-- [Overview](about.hbs.md)
-- [Installation](install.hbs.md)
-- [Tutorial - Provisioning Namespaces](tutorials.hbs.md)
-- [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
-- [Reference Materials](reference.hbs.md)

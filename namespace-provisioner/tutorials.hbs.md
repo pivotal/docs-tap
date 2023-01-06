@@ -21,7 +21,7 @@ There are two approaches to provisioning namespace-scoped resources supported:
   (Default is `true`)
 - The `registry-credentials` secret referenced by the Tanzu Build Service is added to tap-install
   and exported to all namespaces. If you don’t want to export this secret to all namespaces for any
-  reason, you will have to complete an additional step to create this secret in each namespace
+  reason, you must complete an additional step to create this secret in each namespace
   you want to provision.
   - Example secret creation, exported to all namespaces
 
@@ -85,13 +85,13 @@ manage the list of namespaces in the [`desired-namespaces`](about.hbs.md#nsp-com
 ConfigMap.
 
 >**WARNING**: if there is a namespace in your GitOps repo desired-namespace list that does not
-exist on the cluster, the provisioner applicatin will fail to reconcile and will not be able to create
+exist on the cluster, the provisioner application will fail to reconcile and will not be able to create
 resources. Creation of the namespaces themselves is out of the scope for the namespace provisioner package.
 
 ### <a id="gitops-prerequisites"></a>Prerequisites:</br>
 
 The prerequisites for using GitOps are the same as those specified in the
-[controller prerequisites](#nps-controller-prerequisites) above with the exception of the `controller`
+[controller prerequisites](#nps-controller-prerequisites) above except for the `controller`
 tap value key's value as follows:
 
 - The [`controller` tap value key](install.hbs.md#customized-installation) is set to **`false`**
@@ -101,13 +101,3 @@ Please go to the  [**Control the `desired-namespaces` ConfigMap via GitOps**](ho
 section of the [How-to Guide](how-tos.hbs.md) for detailed instructions for provisioning namespaces via GitOps.
 
 </br>
-
----
-
-### Links to additional Namespace Provisioner documentation
-
-- [Overview](about.hbs.md)
-- [Installation](install.hbs.md)
-- [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
-- [Troubleshooting](troubleshooting.hbs.md)
-- [Reference Materials](reference.hbs.md)

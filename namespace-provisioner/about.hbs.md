@@ -75,8 +75,8 @@ list of resources that are created for different profiles, see [Namespace Provis
 
 ### <a id="expansion-template"></a>Expansion Template ConfigMap
 
-The **`expansion-template`** ConfigMap contains the ytt logic to expand the **`default-resources`**
-Secret and any additional sources added into `tap-values.yaml` that point the
-platform-operator-defined resources into per-namespace resources as per the list of namespaces in
-the **`desired-namespaces`** ConfigMap. You can also install the Grype package in the tap-install
-namespace.
+The expansion-template ConfigMap contains the ytt logic to expand the resources defined in the
+default-resources Secret and any additional_sources (configured in `tap-values.yaml` pointing to the
+platform-operator-defined resources ) into each of the listed namespaces in the desired-namespaces
+ConfigMap. The intent is to only support definition of cluster-scoped or namespaced resources,
+but currently, we also support installation of the Grype package in the tap-install namespace.
