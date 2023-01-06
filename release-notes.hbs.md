@@ -126,7 +126,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
   environments. See [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md).
-- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) via the tap-values.yml for both Grype and Snyk scanners.
+- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) by using the `tap-values.yml` for both Grype and Snyk scanners.
 </br></br>
 
 #### <a id="1-4-0-scst-policy-new-features"></a> Supply Chain Security Tools - Policy

@@ -340,9 +340,9 @@ configured:
 x509: certificate signed by unknown authority
 ```
 
-To resolve this issue, ensure that the `shared.ca_cert_data` contains the needed certificate. Refer to this [example](../multicluster/reference/tap-values-build-sample.hbs.md) of how to set up the shared self-signed certificate.
+To resolve this issue, ensure that `shared.ca_cert_data` contains the required certificate. For an example of setting up the shared self-signed certificate, see [Build profile](../multicluster/reference/tap-values-build-sample.hbs.md).
 
-For more information on `shared.ca_cert_data`, see the [shared top-level key](../view-package-config.hbs.md).
+For information about `shared.ca_cert_data`, see [View possible configuration settings for your package](../view-package-config.hbs.md).
 
 #### <a id="unable-to-pull-scanner-controller-images"></a> Unable to pull scan controller and scanner images from a specified registry
 
