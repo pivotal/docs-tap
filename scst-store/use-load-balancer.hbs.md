@@ -2,7 +2,7 @@
 
 >**Note** `LoadBalancer` is not the recommended service type.
 >Consider the recommended configuration of enabling
->[Ingress](../ingress.hbs.md).
+>[Ingress](ingress.hbs.md).
 
 For a `LoadBalancer` configuration, you must edit `/etc/hosts/` to use the
 external IP address of the `metadata-store-app` service.
