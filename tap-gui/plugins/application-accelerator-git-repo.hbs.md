@@ -11,9 +11,7 @@ create GitHub repositories.
 
 ## <a id="supported-providers"></a> Supported Providers
 
-In the currently suppoteded Git providers are
-* GitHub
-* GitLab
+The currently supported Git providers are GitHub and GitLab.
 
 ## <a id="configuration"></a> Configure
 
@@ -49,12 +47,15 @@ The following steps describe an example configuration that uses GitHub:
    For more information, see the
    [Backstage documentation](https://backstage.io/docs/integrations/github/locations).
 
-### <a id="disable-git-repo-creation"></a> Disable optional git repo creation in the Application Accelerator extension for VS Code
+### <a id="deactiv-git-repo-creation"></a> (Optional) Deactivate Git repository creation in the Application Accelerator extension for VS Code
 
-From version 1.4 of the Tanzu Application Platform, the Application Accelerator extension for VS Code leverages the Tanzu Application GUI URL to interact with the accelerator system.
-There is a new plugin called `gitProviders` that can be optionally configured to disable the git repository creation in the VS Code extension. 
+From Tanzu Application Platform v1.4, the Application Accelerator extension for VS Code uses the
+Tanzu Application Platform GUI URL to interact with the accelerator system.
+There is a new plug-in called `gitProviders` that you can configure to deactivate Git repository
+creation in the VS Code extension.
 
-To disable optional git repo creation, set `app_config.gitProviders.active` to `false` in the `tap-values.yaml` as shown in the example below:
+To deactivate Git repository creation, set `app_config.gitProviders.active` to `false` in
+`tap-values.yaml` as shown in the following example:
 
 ```yaml
    app_config:
@@ -62,7 +63,7 @@ To disable optional git repo creation, set `app_config.gitProviders.active` to `
          active: false
 ```
 
-### <a id="k8s-secrets"></a> Using Kubernetes secrets
+### <a id="k8s-secrets"></a> Use Kubernetes secrets
 
 To use Kubernetes secrets to set the values for `clientId` and `clientSecret`:
 

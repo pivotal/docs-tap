@@ -61,7 +61,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 #### <a id="1-4-0-app-accelerator"></a> Application Accelerator
 
 - Optional git repo creation during project generation is now supported in the Application Accelerator extension for VS Code.
-  - The parameter [`.app_config.gitProviders.active` in `tap-values.yaml`](tap-gui/plugins/application-accelerator-git-repo.hbs.md#disable-git-repo-creation) has been added to turn off optional git repo creation in the VS Code extension during project creation.
+  - The parameter [`.app_config.gitProviders.active` in `tap-values.yaml`](tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation) has been added to turn off optional git repo creation in the VS Code extension during project creation.
 - Added [custom `types`](application-accelerator/creating-accelerators/custom-types.hbs.md) which allows for 1-N number of repeating sets of options in an accelerator's form during project creation.
 - Added the [Loop transform](application-accelerator/creating-accelerators/transforms/loop.hbs.md) to allow for transforms to be applied on list options.
 - Added [`generate-from-local`](cli-plugins/accelerator/command-reference/tanzu_accelerator_generate_from_local.hbs.md) command to the Application Accelerator plugin for the Tanzu CLI to generate accelerators using local assets without needing to commit code.
