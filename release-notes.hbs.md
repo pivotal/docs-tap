@@ -391,8 +391,8 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="1-4-0-app-acc-vscode-ki"></a> Application Accelerator for Visual Studio Code
 
-- When using custom types, if there is a check box in the list of attributes then the re-ordering
-  of the inputs doesn't work.
+- When using custom types, if there is a check box in the list of attributes then re-ordering
+  the inputs doesn't work.
 
 #### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
 
@@ -426,11 +426,6 @@ This release has the following known issues, listed by area and component.
 
 - The `Tanzu: Start Live Update` command can fail because the specified path was not found.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#lv-update-path-not-found).
-
-#### <a id="1-4-0-vs-app-acc"></a> Tanzu Application Accelerator for VS Code
-
-- When using custom types, if there is a checkbox in the list of attributes, the re ordering
-  of the inputs won't work
 
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
