@@ -12,7 +12,8 @@ The following procedure explains how to use CURL to POST an image report.
     kubectl port-forward service/metadata-store-app 8443:8443 -n metadata-store
     ```
 
-2. Retrieve the `metadata-store-read-write-client` access token. Ensure that the Service Account is created. See[Create Service Accounts](create-service-account.hbs.md). Run:
+2. Retrieve the `metadata-store-read-write-client` access token.
+    See [Retrieve access tokens](retrieve-access-tokens.hbs.md). Run:
 
     ```console
     export METADATA_STORE_ACCESS_TOKEN=$(kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpath="{.data.token}" | base64 -d)

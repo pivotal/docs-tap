@@ -18,4 +18,6 @@ This section includes the following topics:
 - [Certificate rotation](cert-rotation.hbs.md)
 - [Multicluster setup](multicluster-setup.hbs.md)
 - [Developer namespace setup](developer-namespace-setup.hbs.md)
+- [Retrieve access tokens](retrieve-access-tokens.hbs.md)
+- [Create service accounts](create-service-account.hbs.md)
 - [Create a service account with a custom cluster role](custom-role.hbs.md)
