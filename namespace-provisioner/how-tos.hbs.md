@@ -7,7 +7,7 @@ The available guides are as follows:
   - [Data values templating guide](#data-values-templating-guide)
   - [GitOps Customizations](#gitops-customizations)
     - [Extending the default provisioned resources](#extending-the-default-provisioned-resources)
-    - [Add the resources required by the **Out of the Box Testing and Scanning Supply Chain**](#add-the-resources-required-by-the-out-of-the-box-testing-and-scanning-supply-chain)
+    - [Add the resources required by the Out of the Box Testing and Scanning Supply Chain](#add-the-resources-required-by-the-out-of-the-box-testing-and-scanning-supply-chain)
     - [Customizing the default resources that get provisioned](#customizing-the-default-resources-that-get-provisioned)
     - [Controlling the Namespace Provisioner reconcile behavior for specific resources](#controlling-the-namespace-provisioner-reconcile-behavior-for-specific-resources)
     - [Control the `desired-namespaces` ConfigMap via GitOps](#control-the-desired-namespaces-configmap-via-gitops)
