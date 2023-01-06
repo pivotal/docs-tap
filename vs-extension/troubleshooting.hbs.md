@@ -19,34 +19,36 @@ Re-apply your workload by running `Tanzu: Workload Apply` or `Tanzu: Start Live 
 This realigns the extension's internal state with the proper workload state.
 The delete operation is enabled again after the extension detects that the workload is running.
 
-## <a id='lv-update-path-not-found'></a> Live Update failure because the system cannot find the path specified
+
+
+## <a id='lv-update-app-not-updated'></a> Live Update fails to update remote app
 
 ### Symptom
 
-In v0.1.0 and earlier, the `Tanzu: Start Live Update` command gives the following error message
-when first run:
-
-```console
-The system cannot find the path specified
-```
+In v0.1.0 and earlier, the `Tanzu: Start Live Update` command does not update the remote app.
 
 ### Cause
 
-The Tiltfile is configured to direct output to the location that Unix operating systems use for
-discarding output, `/dev/null`. This doesn't work on Windows machines, which use `NUL` instead.
+`Tiltfile` may be specifying an incorrect local path.
 
 ### Solution
 
-In your Tiltfile, change the line
+In your Tiltfile, change the lines
 
 ```text
-OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > /dev/null ')
+  live_update=[
+    sync('./bin', '/workspace')
+  ]
 ```
 
 to
 
 ```text
-OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > NUL ')
+  live_update=[
+    sync('./bin/Debug/net6.0', '/workspace')
+  ]
 ```
 
-This makes the path discoverable and enables Live Update to run.
+This copies the correct portion of the local workspace to the remote app.
+Note that the actual path `bin/Debug/net6.0` may be different depending on your VS configuration and target.
+
