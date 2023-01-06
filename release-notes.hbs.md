@@ -118,8 +118,17 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 ##### <a id='1-4-0-sagui-new-feats'></a>Security Analysis Plug-in
 
-- **Understand the total number of affected packages and vulnerabilities on the Security Analysis Dashboard:** The Vulnerabilities by Severity widget and the Workload Build Vulnerabilities table have updated logic to count the all CVEs and all packages, providing a better idea of the discrete, affected packages (previously, the logic counted unique CVEs, even if a particular CVE affected multiple packages)
-- **Quickly identify all affected workloads for a specific CVE or package / dependency:** The CVE and Package details pages (accessed on the source or image scan stage on the Supply Chain Choreographer Plug-in) include a new table which shows all affected workloads for a specific CVE or package.
+- **Understand the total number of affected packages and vulnerabilities on the
+  Security Analysis Dashboard:** The Vulnerabilities by Severity widget and the
+  Workload Build Vulnerabilities table have updated logic to count all CVEs and
+  packages, providing a better idea of the discrete, affected packages.
+  Previously, the logic counted unique CVEs, even if a particular CVE affected
+  multiple packages.
+- **Quickly identify all affected workloads for a specific CVE, package or
+  dependency:** The CVE and Package details pages include a new table which
+  shows all affected workloads for a specific CVE or package. You access the CVE
+  and Package details page on the source or image scan stage in the Supply Chain
+  Choreographer Plug-in.
 </br></br>
 
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
