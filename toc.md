@@ -74,6 +74,8 @@ docs.vmware.com is built.
       - [Supply chains](getting-started/about-supply-chains.hbs.md)
       - [Vulnerability scan and metadata storage](getting-started/about-vulnerability-scan-store.hbs.md)
       - [Consume services](getting-started/about-consuming-services.hbs.md)
+- [Integrations](integrations/tsm-tap-integration.hbs.md)
+  - [Set up Tanzu Service Mesh](integrations/tsm-tap-integration.hbs.md)
 - [Workloads](workloads/workload-types.hbs.md)
   - [Workload types](workloads/workload-types.hbs.md)
   - [Use web workloads](workloads/web.hbs.md)
