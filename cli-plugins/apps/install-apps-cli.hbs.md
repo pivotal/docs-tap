@@ -1,10 +1,9 @@
 # Install Apps CLI plug-in
 
-This document describes how to install the Apps CLI plug-in.
+This topic describes how to install the Apps CLI plug-in.
 
 > **Note** Follow the steps in this topic if you do not want to use a profile to install Apps CLI plug-in.
-> For more information about profiles, see [About Tanzu Application Platform components and
-> profiles](../../about-package-profiles.hbs.md).
+> For more information about profiles, see [About Tanzu Application Platform components and profiles](../../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -14,7 +13,7 @@ Before you install the Apps CLI plug-in:
 
 ## <a id='Install'></a>Install
 
-### <a id=”from-tap-net”></a>From Tanzu Network
+### <a id=”from-tap-net”></a>From VMWare Tanzu Network
 
 To install the Apps CLI plug-in:
 
@@ -30,7 +29,7 @@ To install the Apps CLI plug-in:
     tanzu apps version
     ```
 
-    A version should be displayed in the output.
+    A version is displayed in the output.
 
     If the following error is displayed during installation:
 
@@ -40,7 +39,7 @@ To install the Apps CLI plug-in:
     ✖  could not find plug-in "apps" in any known repositories
     ```
 
-    Verify that there is an `apps` entry in the `cli/manifest.yaml` file. It should look like this:
+    Verify that there is an `apps` entry in the `cli/manifest.yaml` file. It looks like this:
 
     ```yaml
     plugins:
@@ -52,14 +51,17 @@ To install the Apps CLI plug-in:
 
 ### <a id=”from-release”></a>From Release
 
-The latest release can be found in the [repository release page](https://github.com/vmware-tanzu/apps-cli-plugin/releases/). Each of these releases has the *Assets* section where the packages for each *system-architecture* are placed.
+The latest release is found in the [repository release page](https://github.com/vmware-tanzu/apps-cli-plugin/releases/).
+Each of these releases has the *Assets* section where the packages for each *system-architecture*
+are placed.
 
 To install the Apps CLI plug-in:
 
-Download binary executable `tanzu-apps-plugin-{OS_ARCH}-{version}.tar.gz`
-Run the following commands(for example for macOS and plugin version v0.7.0)
+Download the executable file  `tanzu-apps-plugin-{OS_ARCH}-{version}.tar.gz`
 
-```bash
+Run these commands(for example for macOS and plugin version v0.7.0)
+
+```console
 tar -xvf tanzu-apps-plugin-darwin-amd64-v0.7.0.tar.gz
 tanzu plugin install apps --local ./tanzu-apps-plugin-darwin-amd64-v0.7.0 --version v0.7.0
 ```
