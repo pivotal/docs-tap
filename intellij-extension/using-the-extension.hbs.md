@@ -15,9 +15,8 @@ Debugging requires a single-document `workload.yaml` file in your project.
 For how to create `workload.yaml`, see
 [Set up Tanzu Developer Tools](getting-started.hbs.md#set-up-tanzu-dev-tools).
 
-The developer sandbox experience allows developers to Live Update their code, 
-and simultaneously debug the updated code, without having to deactivate 
-Live Update when debugging.
+The developer sandbox experience enables developers to Live Update their code, and simultaneously
+debug the updated code, without having to deactivate Live Update when debugging.
 
 ### <a id="apply-workload"></a> Apply a workload
 
@@ -109,9 +108,9 @@ The current state of the workloads is visible on the Tanzu Panel in the bottom o
 The panel shows the current status of each workload, namespace, and cluster.
 It also shows whether Live Update and Debug is running, stopped, or deactivated.
 
-As each workload is deployed on the cluster, activity pane on the right in Tanzu Panel allows 
-developers to visualize the supply chain, delivery, and running application pods. It displays 
-detailed error messages on each resource and enables developers to describe and view logs on 
+As each workload is deployed on the cluster, activity pane on the right in Tanzu Panel allows
+developers to visualize the supply chain, delivery, and running application pods. It displays
+detailed error messages on each resource and enables developers to describe and view logs on
 these resources from within their IDE.
 
 ![Screenshot of Tanzu Workloads Panel.](../images/intellij-activity-panel.png)
