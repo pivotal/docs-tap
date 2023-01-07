@@ -196,6 +196,8 @@ Application Accelerator install.
 
 ## <a id="creating-git-credentials"></a> Configuring `tap-values.yaml` with Git credentials secret
 
+>**Note**: for information on how to create a new OAuth Token for optional git repository creation, please see the [linked documentation](/tap-gui/plugins/application-accelerator-git-repo.hbs.md).
+
 When deploying accelerators using Git repositories that requires authentication or are installed
 with custom CA certificates, you must provide some additional authentication values in a secret. The
 examples in the next section provide more details. This section describes how to configure a Git

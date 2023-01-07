@@ -17,9 +17,9 @@ The currently supported Git providers are GitHub and GitLab.
 
 The following steps describe an example configuration that uses GitHub:
 
-1. Create an OAuth App in GitHub based on the configuration described in this
+1. Create an **OAuth App** (GitHub Apps are not yet supported) in GitHub based on the configuration described in this
    [Backstage documentation](https://backstage.io/docs/auth/github/provider).
-   For more information about creating an OAuth app, see the
+   For more information about creating an OAuth App in GitHub, see the
    [GitHub documentation](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app).
 
    These values appear in your `app-config.yaml` or `app-config.local.yaml` for local development.
