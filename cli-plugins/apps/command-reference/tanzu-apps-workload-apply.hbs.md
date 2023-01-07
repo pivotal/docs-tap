@@ -8,11 +8,13 @@ Apply configurations to a new or existing workload. If the resource does not exi
 
 Workload configuration options include:
 
-- Source code to build (if there is a `.tanzuignore` file, file paths listed there will be ignored in the build)
-- runtime resource limits
-- environment variables
-- services to bind
-- Set complex params with `--param-yaml` (use `$` as prefix in value when escape characters `\` within)
+- Source code to build (if there is a `.tanzuignore` file, file paths listed there will be ignored
+  in the build)
+- Runtime resource limits
+- Environment variables
+- Services to bind
+- Set complex parameters with `--param-yaml` (use `$` as prefix in value when escape characters `\`
+  within)
 
 ```console
 tanzu apps workload apply [name] [flags]
@@ -82,4 +84,4 @@ tanzu apps workload apply my-workload --param-yaml maven=$"artifactId:hello-worl
 
 ## <a id="see-also"></a> See also
 
-- [Tanzu Apps Workload](tanzu-apps-workload.md) - Workload life cycle management
+- [Tanzu Apps Workload](tanzu-apps-workload.md) - Workload life cycle management.
