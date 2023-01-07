@@ -66,11 +66,9 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - Added [custom `types`](application-accelerator/creating-accelerators/custom-types.hbs.md) which allows for 1-N number of repeating sets of options in an accelerator's form during project creation.
 - Added the [Loop transform](application-accelerator/creating-accelerators/transforms/loop.hbs.md) to allow for transforms to be applied on list options.
 - Added [`generate-from-local`](cli-plugins/accelerator/command-reference/tanzu_accelerator_generate_from_local.hbs.md) command to the Application Accelerator plugin for the Tanzu CLI to generate accelerators using local assets without needing to commit code.
-- Added new telemetry fields to InvocationEvent CRD
 - Additional Application Accelerator plugin for Tanzu CLI improvements
-  - Added source image support for fragments
-  - Added `--local-path` and `--source-image` support for `fragment create`
-  - Added `--source-image` support for `fragment update`
+  - `fragment create` now supports `--local-path` and `--source-image`
+  - `fragment update` now supports `--source-image`
 - Application Accelerator Samples
   - **Accelerators** - the following accelerators have been added:
     - [Angular Frontend Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/angular-frontend) - quickly bootstrap an Angular-based Single Page App

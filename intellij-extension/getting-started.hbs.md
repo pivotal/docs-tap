@@ -29,6 +29,20 @@ For more information, see the [Supply Chain Choreographer](../scc/about.md) docu
 The Tanzu Developer Tools for IntelliJ extension requires only one `workload.yaml` file per project.
 The `workload.yaml` must be a single-document YAML file, not a multi-document YAML file.
 
+### <a id="create-workload-yaml-snippet"></a>Set up using code snippets
+
+Code snippets enable you to quickly add the files necessary to develop against the 
+Tanzu Application Platform to existing projects. This is done by creating a template 
+in an empty file that you then fill in with the required information.
+
+To create a `workload.yaml` file by using the code snippets:
+
+1. Right click on IntelliJ project explorer and select New
+2. Select the Tanzu Workload
+3. Add the filename as "workload"
+4. Fill in the template 
+
+
 ### <a id="example-workload-yaml"></a> Example workload.yaml
 
 The following is an example `workload.yaml`:
@@ -68,6 +82,13 @@ In your project, you must include a file named `catalog-info.yaml`, for example,
 The `catalog-info.yaml` file enables the workloads created with the
 Tanzu Developer Tools for IntelliJ extension to be visible in the Tanzu Application Platform GUI.
 For more information, see the [Tanzu Application Platform GUI](../tap-gui/about.md) documentation.
+
+To create a catalog-info.yaml file by using the code snippets:
+
+1. Right click on IntelliJ project explorer and select New
+2. Select the Tanzu Catalog
+3. Add the file name as "catalog-info"
+4. Fill in the template 
 
 ### <a id="example-catalog-info-yaml"></a> Example catalog-info.yaml
 
