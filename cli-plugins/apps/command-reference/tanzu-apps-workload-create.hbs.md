@@ -2,17 +2,18 @@
 
 This topic helps you create a workload with the specified configuration.
 
-### <a id="synopsis"></a> Synopsis
+## <a id="synopsis"></a> Synopsis
 
 Create a workload with the specified configuration.
 
 Workload configuration options include:
 
-- Source code to build (if there is a `.tanzuignore` file, filepaths listed there will be ignored in the build)
+- Source code to build (if there is a `.tanzuignore` file, filepaths listed there will be ignored in
+  the build)
 - Runtime resource limits
 - Environment variables
 - Services to bind
-- Set complex params with `--param-yaml` (use `$` as prefix in value when escape characters `\` within)
+- Set complex parameters with `--param-yaml` (use `$` as prefix in value when escape characters `\` within)
 
 ```console
 tanzu apps workload create [name] [flags]
