@@ -73,10 +73,9 @@ Debugging requires a `workload.yaml` file in your project.
 For information about creating a `workload.yaml` file, see
 [Get Started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
 
-Debugging on the cluster and Live Update cannot be used simultaneously.
-If you use Live Update for the current project, ensure that you stop the
-Tanzu Live Update Run Configuration before attempting to debug on the cluster.
-For more information, see [Stop Live Update](#stop-live-update).
+The developer sandbox experience allows developers to Live Update their code, 
+and simultaneously debug the updated code, without having to deactivate 
+Live Update when debugging.
 
 ### <a id="start-debugging"></a> Start debugging on the cluster
 
