@@ -10,7 +10,7 @@ Application Accelerator pulls content from accelerator source repositories by us
 If the repository used is accessible anonymously from a public server, you do not have to
 configure anything additional. Otherwise, provide authentication as explained in
 [Using non-public repositories](#non-public-repos). There are also options for making these
-configurations easier explained in [Configuring `tap-values.yaml` with Git credentials secret](#creating-git-credentials)
+configurations easier explained in [Configuring tap-values.yaml with Git credentials secret](#creating-git-credentials)
 
 ## <a id="using-git-ops"></a> Using a Git-Ops style configuration for deploying a set of managed accelerators
 
