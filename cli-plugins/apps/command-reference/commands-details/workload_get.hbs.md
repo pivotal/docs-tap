@@ -1,31 +1,36 @@
 # Tanzu apps workload get
 
-The `tanzu apps workload get` retrieves information and status about a workload.
+The `tanzu apps workload get` command retrieves information and status about a workload.
 
 You can view workload details at whenever. Some details are:
 
-- Workload name and type.
-- The source of the workload application.
-- The supply chain that took care of the workload.
-- The supply chain resources that interact with the workload. It also has the output of the resource
-  stamped out by the supply chain.
+- Workload name, type, and namespace.
+- The source code used to build the workload (or the pre-built OCI image).
+- The supply chain that processed the workload.
+- The specific resources within the supply chain that interacted with the workload, and the stamped
+  out resources associated with each of those interactions.
 - The delivery workflow that the application follows.
-- If there is any issue while deploying the workload and which *pods* the workload generates
-  and the knative services related to the workload.
-- If the supply chain is using knative.
+- Any issues associated with deploying the workload.
+- The *pods* the workload generates.
+- And when applicable, the knative services related to the workload.
 
 ## Default view
 
-There are multiple sections in workload get command output. Following data is displayed:
+There are multiple sections in the workload get command output. The following data is displayed:
 
 - Name of the workload and its status.
-- Display source information of workload.
+- Displays source information of workload.
 - If the workload was matched with a supply chain, the information of its name and the status is displayed.
-- Information and status of the individual steps that is defined in the supply chain for workload.
+- Information and status of the individual steps that is defined in the supply chain for the workload.
 - Any issue with the workload: the name and corresponding message.
 - Workload related resource information and status like services claims, related pods, knative services.
 
 At the very end of the command output, a hint to follow up commands is also displayed.
+
+**Note** the `Supply Chain` and `Delivery` sections are included in the command output depending on
+>whether those resources are present on the target cluster (e.g. If the target includes only build
+>components, there would be no `Delivery` resources available and therefore the `Delivery` section
+>would not be included in the command output.).
 
 ```console
 tanzu apps workload get rmq-sample-app
@@ -82,8 +87,8 @@ To see logs: "tanzu apps workload tail rmq-sample-app"
 
 ### <a id="get-export"></a> `--export`
 
-Exports the submitted workload in `yaml` format. This flag can also be used with `--output` flag.
-With export, the output is shortened because some text boxes are removed.
+Exports the submitted workload in `yaml` format. This flag can also be used with the `--output`
+flag. With export, the output is shortened because some text boxes are removed.
 
 ```console
 tanzu apps workload get tanzu-java-web-app --export
