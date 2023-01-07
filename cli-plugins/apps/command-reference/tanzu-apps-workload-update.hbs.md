@@ -2,17 +2,18 @@
 
 This topic helps you update the configuration of an existing workload.
 
-### <a id="synopsis"></a> Synopsis
+## <a id="synopsis"></a> Synopsis
 
 Update the configuration of an existing workload.
 
 Workload configuration options include:
 
-- Source code to build (if there is a `.tanzuignore` file, file paths listed there are ignored in the build)
-- runtime resource limits
-- environment variables
-- services to bind
-- Set complex params with `--param-yaml` (use `$` as prefix in value when escape characters `\` within)
+- Source code to build (if there is a `.tanzuignore` file, file paths listed there are ignored in
+  the build)
+- Runtime resource limits
+- Environment variables
+- Services to bind
+- Set complex parameters with `--param-yaml` (use `$` as prefix in value when escape characters `\` within)
 
 ```console
 tanzu apps workload update [name] [flags]
