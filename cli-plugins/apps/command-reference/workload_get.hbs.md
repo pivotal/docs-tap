@@ -1,34 +1,38 @@
-# tanzu apps workload get
+# Tanzu apps workload get
 
-`tanzu apps workload get` is a command used to retrieve information and status about a workload.
+The `tanzu apps workload get` command retrieves information and status about a workload.
 
 Some of the workload details in the command output are as follows:
 
- - Workload name, type, and namespace.
- - The source code used to build the workload (or the pre-built OCI image).
- - The supply chain that processed the workload.
- - The specific resources within the supply chain that interacted with the workload, and the stamped out resources associated with each of those interactions.
- - The delivery workflow that the application follows.
- - Any issues associated with deploying the workload
- - The *pods* the workload generates.
- - And when applicable, the knative services related to the workload.
+- Workload name, type, and namespace.
+- The source code used to build the workload (or the pre-built OCI image).
+- The supply chain that processed the workload.
+- The specific resources within the supply chain that interacted with the workload, and the stamped
+  out resources associated with each of those interactions.
+- The delivery workflow that the application follows.
+- Any issues associated with deploying the workload.
+- The *pods* the workload generates.
+- And when applicable, the knative services related to the workload.
 
 ## Default view
 
-There are multiple sections in workload get command output. Following data is displayed:
+There are multiple sections in the workload get command output. The following data is displayed:
 
 - Name of the workload and its status.
-- Display source information of workload.
+- Displays source information of workload.
 - If the workload was matched with a supply chain, the information of its name and the status is displayed.
-- Information and status of the individual steps that's defined in the supply chain for workload.
+- Information and status of the individual steps that is defined in the supply chain for the workload.
 - Any issue with the workload: the name and corresponding message.
 - Workload related resource information and status like services claims, related pods, knative services.
 
 At the very end of the command output, a hint to follow up commands is also displayed.
 
-**Note:** the `Supply Chain` and `Delivery` sections will be conditionally included in the command output depending on whether those resources are present on the target cluster (e.g. If the target includes only build components, there would be no `Delivery` resources available and therefore the `Delivery` section would not be included in the command output.).
+**Note** the `Supply Chain` and `Delivery` sections are included in the command output depending on
+>whether those resources are present on the target cluster (e.g. If the target includes only build
+>components, there would be no `Delivery` resources available and therefore the `Delivery` section
+>would not be included in the command output.).
 
-```bash
+```console
 tanzu apps workload get rmq-sample-app
 📡 Overview
    name:        rmq-sample-app
@@ -86,9 +90,10 @@ To see logs: "tanzu apps workload tail rmq-sample-app --timestamp --since 1h"
 
 ### <a id="get-export"></a> `--export`
 
-Exports the submitted workload in `yaml` format. This flag can also be used with `--output` flag. With export, the output is shortened because some fields are removed.
+Exports the submitted workload in `yaml` format. This flag can also be used with the `--output`
+flag. With export, the output is shortened because some text boxes are removed.
 
-```bash
+```console
 tanzu apps workload get tanzu-java-web-app --export
 
 ---
@@ -111,7 +116,8 @@ source:
 
 ### <a id="get-output"></a> `--output`/`-o`
 
-Configures how the workload is being shown. This supports the values `yaml`, `yml` and `json`, where `yaml` and `yml` are equal. It shows the actual workload in the cluster.
+Configures how the workload is being shown. This supports the values `yaml`, `yml`, and `json`,
+where `yaml` and `yml` are equal. It shows the actual workload in the cluster.
 
 - `yaml/yml`
 
@@ -241,7 +247,7 @@ Configures how the workload is being shown. This supports the values `yaml`, `ym
 
 Specifies the namespace where the workload is deployed.
 
-```bash
+```console
 tanzu apps workload get tanzu-java-web-app -n development
 
 📡 Overview
