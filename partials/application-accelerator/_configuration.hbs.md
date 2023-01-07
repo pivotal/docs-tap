@@ -194,9 +194,10 @@ see [Sample Accelerators Main](https://github.com/vmware-tanzu/application-accel
 that is optionally used to create an initial catalog of accelerators and fragments during a fresh
 Application Accelerator install.
 
-## <a id="creating-git-credentials"></a> Configuring `tap-values.yaml` with Git credentials secret
+## <a id="creating-git-credentials"></a> Configure `tap-values.yaml` with Git credentials secret
 
->**Note**: for information on how to create a new OAuth Token for optional git repository creation, please see the [linked documentation](/tap-gui/plugins/application-accelerator-git-repo.hbs.md).
+> **Note** For how to create a new OAuth Token for optional git repository creation, see the
+> [Creating an Application Accelerator Git repository during project creation](/docs-tap/tap-gui/plugins/application-accelerator-git-repo.hbs.md).
 
 When deploying accelerators using Git repositories that requires authentication or are installed
 with custom CA certificates, you must provide some additional authentication values in a secret. The
