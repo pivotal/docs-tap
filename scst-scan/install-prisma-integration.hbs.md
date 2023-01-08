@@ -182,7 +182,7 @@ The values.yaml file is slightly different for each configuration.
 
 ### Supply Chain Security Tools - Store integration
 
-Using Supply Chain Security Tools - Store Integration: To persist the results found by the Prisma Scanner, you can enable the Supply Chain Security Tools - Store integration by appending the fields to the values.yaml file.
+Using Supply Chain Security Tools - Store Integration: To persist the results found by the Prisma Scanner, you can enable the Supply Chain Security Tools - Store integration by appending the fields to the `values.yaml` file.
 
 The Grype, Snyk, and Prisma Scanner Integrations enable the Metadata Store. To prevent conflicts, the configuration values are slightly different based on whether the Grype Scanner Integration is installed or not. If Tanzu Application Platform is installed using the Full Profile, the Grype Scanner Integration is installed, unless it is explicitly excluded.
 
@@ -528,7 +528,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     Where:
 
     * `SCAN-TEMPLATE` is the name of the installed ScanTemplate in the `DEV-NAMESPACE` you retrieved earlier.
-    * `SCAN-POLICY` it’s an optional reference to an existing ScanPolicy in the same `DEV-NAMESPACE`.
+    * `SCAN-POLICY` is an optional reference to an existing ScanPolicy in the same `DEV-NAMESPACE`.
 
     For example:
 
@@ -542,11 +542,11 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
         url: "https://github.com/houndci/hound.git"
         revision: "5805c650"
       scanTemplate: prisma-public-source-scan-template
-      scanPolicy: scan-policy
+      scanPolicy: prisma-scan-policy
     ```
 
 
-2. Apply the ImageScan and Source YAMLs:
+1. Apply the ImageScan and Source YAMLs:
 
     To run the scans, apply them to the cluster by running these commands:
 
@@ -592,7 +592,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     kubectl get sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
     ```
 
-    Where SOURCE-SCAN-NAME is the name of the SourceScan as defined in the YAML file created earlier.
+    Where `SOURCE-SCAN-NAME` is the name of the SourceScan as defined in the YAML file created earlier.
 
     For example:
 
@@ -649,7 +649,7 @@ ootb_supply_chain_testing_scanning:
       policy: prisma-scan-policy
     source:
       template: prisma-blob-source-scan-template
-      policy: scan-policy
+      policy: prisma-scan-policy
 ```
 
 ### Uninstall Scanner
