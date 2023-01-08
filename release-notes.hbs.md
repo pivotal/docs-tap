@@ -99,10 +99,13 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 #### <a id="1-4-0-stk-new-features"></a> Services Toolkit
 
 - Added new `ClassClaim` API that allows claims for service instances to be created by referring to
-  a `ClusterInstanceClass`. For more information, see the
-  [Services Toolkit documentation](./services-toolkit/about.hbs.md).
+  a `ClusterInstanceClass`. For more information, see
+  [When to use ClassClaim vs ResourceClaim](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/GUID-resource_claims-which_claim.html)
+  and [Introducing different service implementations in different environments](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/GUID-usecases-introducing_different_service_implementations_in_different_environments.html).
 - Added corresponding `tanzu services class-claims` CLI plug-in command.
-</br></br>
+- Added support for OpenShift v4.11.
+- Added support for Kubernetes v1.25.
+- All containers are now configured with read-only root file systems.
 
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
 
@@ -497,10 +500,10 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   For more information on the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
 </br></br>
 
-#### <a id="1-4-services-toolkit"></a> Services Toolkit
+#### <a id="1-4-0-stk-deprecations"></a> Services Toolkit
 
-- The `tanzu services claims` CLI plug-in command is deprecated.
-  It is hidden from help text output, but continues to work until it is officially removed after the
+- The `tanzu services claims` CLI plug-in command is now deprecated.
+  It is hidden from help text output, but continues to work until officially removed after the
   deprecation period. The new `tanzu services resource-claims` command provides the same functionality.
 
 #### <a id="1-4-0-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook
