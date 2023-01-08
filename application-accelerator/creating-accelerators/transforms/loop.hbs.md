@@ -1,6 +1,6 @@
 # Loop transform
 
-The `Loop` transform iterates over elements in a list,and apply the provided transform for every
+The `Loop` transform iterates over elements in a list,and applies the provided transform for every
 element in that list.
 
 When `doAsMerge` is used, a copy of the `Loop` transform's input is passed to each transform and the
