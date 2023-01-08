@@ -11,11 +11,10 @@ The following prerequisites are required to use workloads with Tanzu Application
   documentation.
 - Install Tanzu Application Platform components on a Kubernetes cluster. See [Installing Tanzu
   Application Platform](../../install-intro.hbs.md).
-- [Set your kubeconfig context](tutorials.hbs.md#changing-clusters) to the prepared cluster `kubectl
-  config use-context CONTEXT_NAME`.
+- Set your kubeconfig context to the prepared cluster `kubectl config use-context CONTEXT_NAME`.
 - Install Tanzu CLI. See [Install or update the Tanzu CLI and
   plug-ins](../../install-tanzu-cli.hbs.md#cli-and-plugin).
-- Install the apps plug-in. See the [Install Apps plug-in](tutorials.hbs.md#install).
+- Install the apps plug-in. See the [Install Apps plug-in](install-apps-cli.md).
 - [Set up developer namespaces to use installed packages](../../set-up-namespaces.hbs.md).
 - As you familiarize yourself with creating and managing the life cycle of workloads on the
   platform, you might want to review the full `Cartographer Workload spec` to learn more about the
@@ -86,8 +85,15 @@ and push it to the given registry to be used in the workload.
     The file must contain a list of file paths to exclude from the image including the file itself
     and the directories must not end with the system path separator (`/` or `\`).
 
-    For more info regarding the `.tanzuignore` file
-    see [.tanzuignorefile](how-to-guides.hbs.md#tanzuignore-file) section of the how-to-guides.
+   If a line in the file starts with a `#` hashtag , the line is ignored.
+
+    **Example**
+
+    ```console
+    # This is a comment
+    this/is/a/folder/to/exclude
+    this-is-a-file.ext
+    ```
 
 ### <a id="workload-image"></a> Create workload from an existing image
 
