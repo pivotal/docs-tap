@@ -2,17 +2,16 @@
 
 This topic explains how to configure the Tanzu Insight plug-in.
 
-## <a id='set-tar-cert'></a>Set the target and certificate authority (CA) certificate
+> **Note:** All [required setup](cli-overview.md) must be completed in addition to configuring the CLI.
 
-**Note** These instructions are for the recommended configuration where ingress is enabled. For
-instructions on non-ingress setups,
-see [Configure target endpoint and certificate](../../scst-store/using-encrypted-connection.hbs.md#additional-resources)
-for more details.
+
+## <a id='set-tar-cert'></a>Set the target and certificate authority certificate
+
+Set the target endpoint and CA certificate by running:
 
 ```console
 tanzu insight config set-target https://metadata-store-app.metadata-store.svc.cluster.local:PORT --ca-cert PATH
 ```
-
 Where
 
 - `PORT` is the target endpoint port
@@ -29,13 +28,13 @@ $ tanzu insight config set-target https://metadata-store-app.metadata-store.svc.
 ✔  Success: Set Metadata Store endpoint
 ```
 
-## <a id='check-con'></a>Verify the connection
+## <a id='check-con'></a>Check the connection
 
-Verify that your configuration is correct and you can make a connection using `tanzu insight health`.
+Check that your configuration is correct and you are able to make a connection.
 
-> **Important** The `tanzu insight health` command tests the configured endpoint and CA certificate.
-> However, it does not test whether the access token is correct.
-> For that you must use the plug-in to [add](add-data.hbs.md) and [query](query-data.hbs.md) data.
+```console
+tanzu insight health
+```
 
 For example:
 
