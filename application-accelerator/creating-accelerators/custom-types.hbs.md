@@ -1,7 +1,7 @@
 # Using Custom Types
 
 Application Accelerators can declare new types to be used for options declaration,
-in addition to the built-in types `string`, `number`, and `boolean<!--฿ |Boolean| is preferred unless it is in programming documentation as a primitive. ฿-->`.
+in addition to the built-in types `string`, `number`, and `boolean`.
 
 ## Introducing the Types Section
 
