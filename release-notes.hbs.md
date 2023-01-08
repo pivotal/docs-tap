@@ -96,9 +96,15 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - The External Secrets Operator is a Kubernetes operator that integrates with external secret management systems.
   With this release, Tanzu Application Platform repackages this open source Kubernetes operator into a Carvel bundle that ships with Tanzu Application Platform. **External Secrets Operator is currently in alpha and is intended for evaluation and test purposes only. Do not use in a production environment.**
 
+#### <a id="1-4-0-stk-new-features"></a> Services Toolkit
+
+- Added new `ClassClaim` API that allows claims for service instances to be created by referring to
+  a `ClusterInstanceClass`. For more information, see the
+  [Services Toolkit documentation](./services-toolkit/about.hbs.md).
+- Added corresponding `tanzu services class-claims` CLI plug-in command.
+</br></br>
+
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> Tanzu Application Platform GUI Plug-ins
-
-
 
 ##### <a id='scc-plug-in-new-features'></a>Supply Chain Choreographer Plug-in
 
@@ -144,14 +150,6 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - Added ability to [configure action when no policy matches the admitting image digest](./scst-policy/install-scst-policy.hbs.md#install-scst-policy).
 - Added ability to [allow empty authorities for ClusterImagePolicies](./scst-policy/install-scst-policy.hbs.md#install-scst-policy).
 - Added ability to [specify which resources a ClusterImagePolicy should enforce](./scst-policy/configuring.hbs.md#cip-match).
-</br></br>
-
-#### <a id="1-4-0-stk-new-features"></a> Services Toolkit
-
-- Added new `ClassClaim` API that allows claims for service instances to be created by referring to
-  a `ClusterInstanceClass`. For more information, see the
-  [Services Toolkit documentation](./services-toolkit/about.hbs.md).
-- Added corresponding `tanzu services class-claims` CLI plug-in command.
 </br></br>
 
 #### <a id="1-4-0-vscode-new-features"></a> Tanzu Developer Tools for Visual Studio Code
@@ -499,6 +497,12 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   For more information on the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
 </br></br>
 
+#### <a id="1-4-services-toolkit"></a> Services Toolkit
+
+- The `tanzu services claims` CLI plug-in command is deprecated.
+  It is hidden from help text output, but continues to work until it is officially removed after the
+  deprecation period. The new `tanzu services resource-claims` command provides the same functionality.
+
 #### <a id="1-4-0-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook
 
 The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
@@ -544,10 +548,3 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 - The `tanzu apps workload update` command is deprecated and marked for removal in Tanzu Application
   Platform 1.5.0. Use `tanzu apps workload apply` instead.
 </br></br>
-
-#### <a id="1-4-services-toolkit"></a> Services Toolkit
-
-- The `tanzu services claims` CLI plug-in command is deprecated.
-  It is hidden from help text output, but continues to work until it is officially removed after the
-  deprecation period. The new `tanzu services resource-claims` command provides the same
-  functionality.
