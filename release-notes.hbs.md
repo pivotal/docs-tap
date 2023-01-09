@@ -11,7 +11,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - [Shared Ingress Issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress
   communication by default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md),
   and [Tanzu Application Platform GUI](tap-gui/about.hbs.md) use this issuer to secure
-  ingress. In future releases, all Tanzu Application Platform components will be incrementally updated
+  ingress. Over future releases, VMware plans to incrementally update all Tanzu Application Platform components
   to support the shared ingress issuer.
 - [Namespace Provisioner](namespace-provisioner/about.hbs.md) provides a secure, automated
   way for Platform Operators to provision namespaces with the resources and proper namespace-level
@@ -63,16 +63,16 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Optional Git repository creation during project generation is supported in the Application Accelerator extension for VS Code.
   - The parameter [`.app_config.gitProviders.active` in `tap-values.yaml`](tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation) was added to deactivate optional Git repository creation in the VS Code extension during project creation.
-- Added [custom `types`](application-accelerator/creating-accelerators/custom-types.hbs.md) which allows for 1-N number of repeating sets of options in an accelerator's form during project creation.
+- Added [custom `types`](application-accelerator/creating-accelerators/custom-types.hbs.md), which allows for 1-N number of repeating sets of options in an accelerator's form during project creation.
 - Added the [Loop transform](application-accelerator/creating-accelerators/transforms/loop.hbs.md) to allow for transforms to be applied on list options.
 - Added [`generate-from-local`](cli-plugins/accelerator/command-reference/tanzu_accelerator_generate_from_local.hbs.md) command to the Application Accelerator plug-in for the Tanzu CLI to generate projects from local assets without needing to commit code.
 - Additional Application Accelerator plug-ins for Tanzu CLI improvements:
-  - `fragment create` now supports `--local-path` and `--source-image`
-  - `fragment update` now supports `--source-image`
+  - `fragment create` now supports `--local-path` and `--source-image`.
+  - `fragment update` now supports `--source-image`.
 - Application Accelerator Samples:
   - **Accelerators** - the following accelerators were added:
-    - [Angular Frontend Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/angular-frontend) - quickly bootstrap an Angular-based Single Page App
-    - [React Frontend Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/react-frontend) - quickly bootstrap a React-based Single Page App
+    - [Angular Frontend Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/angular-frontend) - Quickly bootstrap an Angular-based Single Page App.
+    - [React Frontend Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/react-frontend) - Quickly bootstrap a React-based Single Page App.
   - **Fragments** - the following fragments were added:
     - [Spring Boot H2 Fragment](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/fragments/spring-boot-h2)
     - [Spring Boot MySQL Fragment](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/fragments/spring-boot-mysql)
@@ -88,7 +88,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Upgraded Knative Eventing version from 1.6 to 1.8.
 - Added a Kubernetes tracing attribute to ApiServerSource.
-- The ApiServerSource is a Knative Eventing Kubernetes custom resource that listens for events emitted by the Kubernetes API server (eg. pod creation, deployment updates, etc...) and forwards them as CloudEvents to a sink.
+- The ApiServerSource is a Knative Eventing Kubernetes custom resource that listens for events emitted by the Kubernetes API server. For example, pod creation, deployment updates, and so on. It then forwards them as CloudEvents to a sink.
 </br></br>
 
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> External Secrets Operator (alpha)
@@ -133,8 +133,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
   packages, providing a better idea of the discrete, affected packages.
   Previously, the logic counted unique CVEs, even if a particular CVE affected
   multiple packages.
-- **Quickly identify all affected workloads for a specific CVE, package or
-  dependency:** The CVE and Package details pages include a new table which
+- **Quickly identify all affected workloads for a specific CVE, package, or
+  dependency:** The CVE and Package details pages include a new table that
   shows all affected workloads for a specific CVE or package. You access the CVE
   and Package details page on the source or image scan stage in the Supply Chain
   Choreographer Plug-in.
@@ -144,7 +144,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
   environments. See [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md).
-- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) via the tap-values.yml for both Grype and Snyk scanners.
+- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) through the tap-values.yml for both Grype and Snyk scanners.
 - Alpha release of Prisma Scanner integration. The installation guide is available [here](scst-scan/install-prisma-integration.hbs.md).
 </br></br>
 
@@ -164,8 +164,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 #### <a id="1-4-0-vs-new-features"></a> Tanzu Developer Tools for Visual Studio
 
 - **See code updates running on-cluster in seconds:**
-  By using Live Update facilitated by Tilt, deploy your workload once, save changes to the code
-  and then, seconds later, see those changes reflected in the workload running on the cluster.
+  By using Live Update facilitated by Tilt, deploy your workload once, save changes to the code,
+  and then in seconds see those changes reflected in the workload running on the cluster.
   All Live Update output is filtered to its own output pane window within Visual Studio.
 
 - **Debug workloads directly on the cluster:**
@@ -182,9 +182,9 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-intellij-new-feat"></a> Tanzu Developer Tools for IntelliJ
 
-- The developer sandbox enables developers to Live Update their code, and
+- The developer sandbox enables developers to Live Update their code and
   simultaneously debug the updated code, without having to deactivate Live Update when debugging.
-- An Activity pane was added in the Tanzu Panel which allows developers to visualize the supply
+- An Activity pane was added in the Tanzu Panel that allows developers to visualize the supply
   chain, delivery, and running application pods.
   It displays detailed error messages on each resource and enables developers to describe and view
   logs on these resources from within their IDE.
