@@ -24,15 +24,14 @@ To provision namespaces manually, complete the following steps:
     - `REGISTRY-SERVER` is the URL of the registry. You can use the same registry server as in
      `ootb_supply_chain_basic` - `registry` - `server`. For more information, see
      [Install Tanzu Application Platform package and profiles](../install.hbs.md).
-      - -For Docker Hub, the value is `https://index.docker.io/v1/`. It must have the leading
+      - For Docker Hub, the value is `https://index.docker.io/v1/`. It must have the leading
       `https://`, the `v1` path, and the trailing `/`.
-      - -For Google Container Registry (GCR), the value is `gcr.io`.
+      - For Google Container Registry (GCR), the value is `gcr.io`.
     - `REGISTRY-PASSWORD` is the password of the registry.
       - -For GCR or Google Artifact Registry, this must be the concatenated version of the JSON key.</br>
       For example: `"$(cat ~/gcp-key.json)"`
 
-   </br>
-   [1] If you observe the following issue when you run the command above:
+    If you observe the following issue when you run the command above:
 
     ```console
     panic: runtime error: invalid memory address or nil pointer dereference
