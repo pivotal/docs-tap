@@ -3,7 +3,7 @@
 This topic describes advanced use-cases associated with Namespace Provisioner.
 [Extend](#extending-the-default-provisioned-resources)
 The available guides are as follows:
-
+<!-- no toc -->
   - [Data values templating guide](#data-values-templating-guide)
   - [GitOps Customizations](#gitops-customizations)
     - [Extending the default provisioned resources](#extending-the-default-provisioned-resources)
