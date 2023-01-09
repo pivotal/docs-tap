@@ -291,7 +291,7 @@ in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 Policy Controller no longer initializes TUF by default. TUF is required to
 support the keyless authorities in `ClusterImagePolicy`. To continue to use
 keyless authorities, provide the value `policy.tuf_enabled:
-true` by using the `tap-values.yaml` while upgrading. By default,
+true` by using the `tap-values.yaml` file while upgrading. By default,
 the public Sigstore The Update Framework (TUF) server is used. To
 target an alternative Sigstore stack, specify `policy.tuf_mirror` and
 `policy.tuf_root`.
