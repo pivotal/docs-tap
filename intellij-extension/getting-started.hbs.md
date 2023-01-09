@@ -20,32 +20,30 @@ Before you get started, ensure you have completed [Installing Tanzu Developer To
 
 ## <a id="create-workload-yaml"></a> Create the workload.yaml file
 
-In your project, you must include a file named `workload.yaml`, for example, `my-project/config/workload.yaml`.
+You must include a file named `workload.yaml` in your project.
+For example, `my-project/config/workload.yaml`.
 
-The `workload.yaml` file provides instructions to the Supply Chain Choreographer
-about how to build and manage a workload.
-For more information, see the [Supply Chain Choreographer](../scc/about.md) documentation.
+`workload.yaml` provides instructions to Supply Chain Choreographer about how to build and manage
+a workload.
+For more information, see [Supply Chain Choreographer for Tanzu](../scc/about.hbs.md).
 
 The Tanzu Developer Tools for IntelliJ extension requires only one `workload.yaml` file per project.
-The `workload.yaml` must be a single-document YAML file, not a multi-document YAML file.
+`workload.yaml` must be a single-document YAML file, not a multi-document YAML file.
 
-### <a id="create-workload-yaml-snippet"></a>Set up using code snippets
+### <a id="create-wrkld-yaml-snippet"></a>Set up using code snippets
 
-Code snippets enable you to quickly add the files necessary to develop against the 
-Tanzu Application Platform to existing projects. This is done by creating a template 
-in an empty file that you then fill in with the required information.
+Code snippets enable you to quickly add the files necessary to develop against the
+Tanzu Application Platform in existing projects.
+You do this by creating a template in an empty file and then filling it with the required information.
 
-To create a `workload.yaml` file by using the code snippets:
+To create a `workload.yaml` file by using code snippets:
 
-1. Right click on IntelliJ project explorer and select New
-2. Select the Tanzu Workload
-3. Add the filename as "workload"
-4. Fill in the template 
+1. Right-click on the IntelliJ project explorer and then click **New**.
+2. Select the Tanzu workload.
+3. Add the filename `workload`.
+4. Fill in the template.
 
-
-### <a id="example-workload-yaml"></a> Example workload.yaml
-
-The following is an example `workload.yaml`:
+See the following `workload.yaml` example:
 
 ```yaml
 apiVersion: carto.run/v1alpa1
@@ -67,32 +65,31 @@ Where:
 
 - `APP-NAME` is the name of your application. For example, `my app`.
 - `WORKLOAD-TYPE` is the type of workload for your app. For example, `web`.
-For more information, see [Workload types](../workloads/workload-types.md).
+  For more information, see [Workload types](../workloads/workload-types.hbs.md).
 - `GIT-SOURCE-URL` is the Git source code URL for your app. For example, `github.com/mycompany/myapp`.
 - `GIT-BRANCH-NAME` is the branch of the Git source code you want to use. For example, `main`.
 
 Alternatively you can use the Tanzu CLI to create a `workload.yaml` file.
-For more information about the Tanzu CLI command, see [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md)
-in the Tanzu CLI documentation.
+For more information about the relevant Tanzu CLI command, see
+[Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
 ## <a id="create-catalog-info-yaml"></a> Create the catalog-info.yaml file
 
-In your project, you must include a file named `catalog-info.yaml`, for example, `my-project/catalog/catalog-info.yaml`.
+You must include a file named `catalog-info.yaml` in your project.
+For example, `my-project/catalog/catalog-info.yaml`.
 
-The `catalog-info.yaml` file enables the workloads created with the
-Tanzu Developer Tools for IntelliJ extension to be visible in the Tanzu Application Platform GUI.
-For more information, see the [Tanzu Application Platform GUI](../tap-gui/about.md) documentation.
+`catalog-info.yaml` enables the workloads created with Tanzu Developer Tools for IntelliJ to be visible
+in Tanzu Application Platform GUI.
+For more information, see [Overview of Tanzu Application Platform GUI](../tap-gui/about.hbs.md).
 
-To create a catalog-info.yaml file by using the code snippets:
+To create a `catalog-info.yaml` file by using the code snippets:
 
-1. Right click on IntelliJ project explorer and select New
-2. Select the Tanzu Catalog
-3. Add the file name as "catalog-info"
-4. Fill in the template 
+1. Right-click on the IntelliJ project explorer and then click **New**.
+2. Select the Tanzu Catalog.
+3. Add the filename `catalog-info`.
+4. Fill in the template.
 
-### <a id="example-catalog-info-yaml"></a> Example catalog-info.yaml
-
-The following is an example `catalog-info.yaml`:
+See the following `workload.yaml` example:
 
 ```yaml
 apiVersion: backstage.io/v1alpha1

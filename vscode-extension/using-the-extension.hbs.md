@@ -73,9 +73,8 @@ Debugging requires a `workload.yaml` file in your project.
 For information about creating a `workload.yaml` file, see
 [Get Started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
 
-The developer sandbox experience allows developers to Live Update their code,
-and simultaneously debug the updated code, without having to deactivate
-Live Update when debugging.
+The developer sandbox experience enables developers to Live Update their code, and simultaneously
+debug the updated code, without having to deactivate Live Update when debugging.
 
 ### <a id="start-debugging"></a> Start debugging on the cluster
 
@@ -132,12 +131,12 @@ debug the updated code, without having to deactivate Live Update when debugging.
 You can start Live Update by right-clicking anywhere in the VS Code project explorer and then clicking
 **Tanzu: Live Update Start** in the pop-up menu.
 
-   ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
+![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
 
-Alternatively, you can press `⇧⌘P` to open the Command Palette and run the `Tanzu: Live Update Start`
-command.
+Alternatively, you can press `⇧⌘P` to open the Command Palette and then run the
+`Tanzu: Live Update Start` command.
 
-   ![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
+![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
 
 ### <a id="stop-live-update"></a> Stop Live Update
 
