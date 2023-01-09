@@ -48,7 +48,7 @@ To install a new scanner, follow these steps:
       snyk.scanning.apps.tanzu.vmware.com   1.0.0-beta.2
     ```
 
-1. (Optional) Create the secrets the scanner package relies on:
+1. (Optional) Confirm that the secret created in Step 1 scanner specific prerequisites have been created.
 
 1. Create a `values.yaml` to apply custom configurations to the scanner:
 
@@ -130,7 +130,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 1. (Optional) Create a `ScanPolicy` formatted for the output specific to the scanner you are installing, to reference in the `ImageScan` or `SourceScan`.
 
-   ```console
+  ```console
     kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
   ```
 
@@ -298,9 +298,9 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 ## <a id="configure-supply-chain"></a> Configure Tanzu Application Platform Supply Chain to use new scanner
 
-In order to scan your images with the new scanner installed in the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.md), you must update your Tanzu Application Platform installation.
+In order to scan your images with the new scanner installed in the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md), you must update your Tanzu Application Platform installation.
 
-Add the `ootb_supply_chain_testing_scanning.scanning` section to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
+Add the `ootb_supply_chain_testing_scanning.scanning` section to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.hbs.md#perform-the-upgrade-of-tanzu-application-platform).
 
 In this file you can define which `ScanTemplates` is used for both `SourceScan` and `ImageScan`. The default values are the Grype Scanner `ScanTemplates`, but they are overwritten by any other `ScanTemplate` present in your `DEV-NAMESPACE`. The same applies to the `ScanPolicies` applied to each kind of scan.
 
