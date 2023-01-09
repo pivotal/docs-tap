@@ -5,15 +5,19 @@ Namespace Provisioner is packaged and distributed using the Carvel set of tools.
 The Namespace Provisioner Carvel package is  published to the Tanzu Application Platform package
 repository and two installation approaches are supported:
 
-1. [Default TAP Profile-based Installation](#tap-profile-based-install)
-2. [Customized Installation](#customized-install)
+1. [Profile-based installation](#tap-profile-based-install)
+2. [Customized installation](#customized-install)
 
 ## <a id="tap-profile-based-install"></a>Profile-based Installation
 
-To install it as part of a wider Tanzu Application Platform profile based installation, see [**Installing Tanzu Application Platform**](../install-intro.hbs.md).</br>
-The Namespace Provisioner package is installed as part of the standard installation profiles (i.e. Full, Iterate, Build and Run) and the default set of resources provisioned in a namespace is based on a combination of the Tanzu Application Platform installation profile employed and the supply chain that is installed on the cluster.
+To install Namespace Provisioner as part of a wider Tanzu Application Platform profile based
+installation, see [Installing Tanzu Application Platform](../install-intro.hbs.md).</br>
+The Namespace Provisioner package is installed as part of the standard installation profiles
+(i.e. Full, Iterate, Build and Run) and the default set of resources provisioned in a namespace is
+based on a combination of the Tanzu Application Platform installation profile employed and the supply
+chain that is installed on the cluster.
 
-To see a list of what resources are created for different profile/supply chain combinations, see [**Profile Resource Mapping table**](reference.hbs.md#profile-resource-mapping) on the [Namespace Provisioner reference page](reference.hbs.md).
+To see a list of what resources are created for different profile/supply chain combinations, see [default resource mapping table](reference.hbs.md#profile-resource-mapping),
 
 ## <a id="customized-install"></a>Customized Installation
 

@@ -61,8 +61,8 @@ data:
 ### <a id="nsp-controller"></a>Namespace Provisioner Controller
 
 If you prefer to have the **`desired-namespaces`** ConfigMap automatically managed by a controller
-on the cluster, use the namespace provisioner controller.  It is installed as part of Namespace
-Provisioner package installation. It watches namespaces in the cluster and updates the
+on the cluster, use the Namespace Provisioner controller.  It is installed as part of Namespace
+Provisioner.. It watches namespaces in the cluster and updates the
 **`desired-namespaces`** ConfigMap in the **`tap-namespace-provisioning`** namespace with a list of
 namespaces that match the namespace_selector label selector in `tap-values.yaml`. The default label
 selector is configurable in `tap-values.yaml`.
@@ -71,12 +71,14 @@ selector is configurable in `tap-values.yaml`.
 
 The **`default-resources`** Secret is templated by `tap-values.yaml` to contain the appropriate
 resources for the given profile, set of supply chains installed, and other similar values. For the full
-list of resources that are created for different profiles, see [Namespace Provisioner Reference](reference.hbs.md).
+list of resources that are created for different profiles, see [Default resources mapping](reference.hbs.md#default-resources-mapping).
 
 ### <a id="expansion-template"></a>Expansion Template ConfigMap
 
 The expansion-template ConfigMap contains the ytt logic to expand the resources defined in the
-default-resources Secret and any additional_sources (configured in `tap-values.yaml` pointing to the
-platform-operator-defined resources ) into each of the listed namespaces in the desired-namespaces
-ConfigMap. The intent is to only support definition of cluster-scoped or namespaced resources,
+following locations into each of the  namespaces listed in the desired-namespaces ConfigMap:
+- Default-resources Secret
+- the `tap-values.yaml` file under additional_sources
+
+The intent is to only support definition of cluster-scoped or namespaced resources,
 but currently, we also support installation of the Grype package in the tap-install namespace.

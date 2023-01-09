@@ -1,31 +1,21 @@
-# Namespace Provisioner How-to Guide
+# Configure Namespace Provisioner
 
 This topic describes advanced use-cases associated with Namespace Provisioner.
 [Extend](#extending-the-default-provisioned-resources)
-The available guides are as follows:
-<!-- no toc -->
-  - [Data values templating guide](#data-values-templating-guide)
-  - [GitOps Customizations](#gitops-customizations)
-    - [Extending the default provisioned resources](#extending-the-default-provisioned-resources)
-    - [Add the resources required by the Out of the Box Testing and Scanning Supply Chain](#add-the-resources-required-by-the-out-of-the-box-testing-and-scanning-supply-chain)
-    - [Customizing the default resources that get provisioned](#customizing-the-default-resources-that-get-provisioned)
-    - [Controlling the Namespace Provisioner reconcile behavior for specific resources](#controlling-the-namespace-provisioner-reconcile-behavior-for-specific-resources)
-    - [Control the `desired-namespaces` ConfigMap via GitOps](#control-the-desired-namespaces-configmap-via-gitops)
 
 ## <a id="data-values-templating"></a>Data values templating guide
 
 Customize your custom resources with data values from:
-  1. The `tap-values.yaml` file
-  2. The `desired-namespaces` ConfigMap.
+
+1. The `tap-values.yaml` file
+2. The `desired-namespaces` ConfigMap.
 
 Namespace Provisioner inherits all of the configuration in **both** the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) and the `tap-values.yaml` under the key `tap_values` making it available to
 use as ytt `data.values` when [extending the resources via GitOps](#extending-default-resources).
 
 For example, if the `desired-namespaces` ConfigMap has a namespace `dev-ns1` with an additional
-parameter `language: java`.
-
-The `data.values` config that is available to Platform Operators for templating their custom resource
-looks as follows:
+`language: java` parameter, the `data.values` config that is available for templating custom resources is
+as follows:
 
 ```yaml
 # data.values map that can be used for templating custom resources
@@ -53,7 +43,7 @@ name: dev-ns1
 language: java
 ```
 
-You can use this config while creating custom resources to [extend the OOTB default-resources](#extending-default-resources).
+You can use this config while creating custom resources to extend the default provisioned resources.
 
 Here's a [sample of a templated Tekton pipeline.](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines/python-test.yaml)
 
@@ -76,7 +66,7 @@ This [example](#example-additional-resources) adds four additional sources:
 - <a id="add-test-scan"></a>The second additional source points to examples of [ytt templated testing and scanpolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain).
    - After importing this source, Namespace Provisioner will create a **scan-policy** as well as a **developer-defined-tekton-pipeline-java** in all namespaces in the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap with the default setup in [Install OOTB Supply Chain with Testing and Scanning](../getting-started/add-test-and-security.hbs.md#install-OOTB-test-scan) documentation.</br></br>
 - The third additional source points to an example of a [ytt templated scanpolicy yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/scanpolicies/snyk-scanpolicies.yaml).
-   - After importing this source, Namespace provisioner will create a **snyk-scan-policy** in all namespaces in the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap that has an additional parameter **scanpolicy: snyk**.</br></br>
+   - After importing this source, Namespace Provisioner will create a **snyk-scan-policy** in all namespaces in the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap that has an additional parameter **scanpolicy: snyk**.</br></br>
 - The fourth additional source points to [examples of ytt templated tekton pipelines](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines).
    - After importing this source, Namespace Provisioner will create a **developer-defined-tekton-pipeline-python** and **developer-defined-tekton-pipeline-angular** for namespaces in  the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap that has an additional parameter **language: python** and **language: angular** respectively.</br></br>
 
@@ -118,7 +108,7 @@ Follow these instructions to install the Java scan policy and Tekton pipeline re
 the OOTB Testing and Scanning Supply Chain.
 
 
-1. Add or update tap-values.yaml with the following `namespace_provisioner.additional_resources`
+1. Add or update `tap-values.yaml` with the following `namespace_provisioner.additional_resources`
 configuration</br>
 (The ytt templated testing and scanpolicy files that will be mounted can be found [**here**](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain)).</br></br>
 
@@ -134,7 +124,7 @@ configuration</br>
        path: _ytt_lib/testingscanning
    ```
    </br>
-1. Apply your updated tap-values.yaml to the target cluster
+1. Apply your updated `tap-values.yaml` to the target cluster
 
    ```terminal
    tanzu package installed update tap -f tap-values.yaml --namespace tap-install
@@ -150,7 +140,7 @@ defined in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespa
 The Out-Of-The-box [`default-resources`](reference.hbs.md#tap-profile---default-resources-mapping)
 can be customized by using GitOps with some specific characteristics:
 
-- The GitOps customization should be done by using the [ytt overlay](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-overlay/) feature and should be set in the tap-values under [additional_sources](install.hbs.md#customized-installation)
+- The GitOps customization should be done by using the [ytt overlay](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-overlay/) feature and should be set in the `tap-values.yaml` under [additional_sources](install.hbs.md#customized-installation)
 - The additional git resource should be mounted in the **path** `_ytt_lib/customize`, otherwise
 the customization will not be applied
 - The GitOps repo folder must have a file with an extension [`lib.yaml`](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-library/#instanceexport) to be recognized as a ytt library with members to be exported
@@ -158,7 +148,7 @@ the customization will not be applied
 overlays to be applied to the resources, it can contain one or more overlays
 
 The sample file [`sa-secrets.lib.yaml`](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/default-resources-overrides/overlays/sa-secrets.lib.yaml)
-shows how Platform/App Operators can completely override the `secrets` and `imagePullSecrets`
+shows how to completely override the `secrets` and `imagePullSecrets`
 sections of the default ServiceAccount to add custom created secrets by using other additional resources.
 
 Sample tap-values change to pull this ytt customization overlay:
@@ -200,9 +190,11 @@ imagePullSecrets:
 #@  end
 ```
 
-### <a id="control-reconcile-behavior"></a>Controlling the Namespace Provisioner reconcile behavior for specific resources
+### <a id="control-reconcile-behavior"></a>Control the Namespace Provisioner reconcile behavior for specific resources
 
-There are certain OOTB [`default-resources`](reference.hbs.md#tap-profile---default-resources-mapping) like the `ServiceAccount` that comes annotated with a special annotation **`namespace-provisioner.apps.tanzu.vmware.com/no-overwrite`**.
+There are certain OOTB [`default-resources`](reference.hbs.md#tap-profile---default-resources-mapping)
+like the `ServiceAccount` that are annotated with a special annotation
+**`namespace-provisioner.apps.tanzu.vmware.com/no-overwrite`**.
 
 Any changes to the resources that have the `...no-overwrite` annotation are not overwritten by the
 [provisioner application](about.hbs.md#provisioner-carvel-app) that controls resource provision.
@@ -223,7 +215,7 @@ kctrl app kick --app provisioner -n tap-namespace-provisioning -y
 ### <a id="control-desired-namespaces"></a>Control the `desired-namespaces` ConfigMap via GitOps
 
 You can maintain the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap in your Git
-repository instead of using the namespace provisioner controller. You can use different GitOps tools
+repository instead of using the Namespace Provisioner controller. You can use different GitOps tools
 to override the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap in the
 tap-namespace-provisioning namespace. If the controller is installed as part of the package, when it
 reconciles, it will remove all namespaces that are not properly labeled with the
