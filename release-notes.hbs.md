@@ -233,7 +233,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-supply-chain-templates"></a> Out of the Box Supply Chain Templates
 
-In a multicluster setup, when a Deliverable is created on a Build profile cluster,
+- In a multicluster setup, when a Deliverable is created on a Build profile cluster,
 the ConfigMap it is placed in is renamed from `<workload-name>` to `<workload-name>-deliverable`. Any automation
 depending on obtaining the Deliverable content by the former name must be updated to use the new name.
 For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
@@ -282,13 +282,13 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 
-The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
+- The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
 in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 </br></br>
 
 #### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
 
-Policy Controller no longer initializes TUF by default. TUF is required to
+- Policy Controller no longer initializes TUF by default. TUF is required to
 support the keyless authorities in `ClusterImagePolicy`. To continue to use
 keyless authorities, provide the value `policy.tuf_enabled:
 true` by using the `tap-values.yaml` file while upgrading. By default,
@@ -331,11 +331,12 @@ CVE-2022-2588, CVE-2022-34918, GHSA-4wf5-vphf-c2xc, CVE-2022-42916, CVE-2022-435
 </br>
 
 #### <a id="1-4-0-cve-2022-4378"></a> Note about CVE-2022-4378
-[CVE-2022-4378](https://nvd.nist.gov/vuln/detail/CVE-2022-4378) is a high severity, exploitable stack overflow flaw found in the Linux kernel's SYSCTL subsystem. At this time, there is no available patch from Canonical in their upstream Ubuntu distribution. Once there is a patch available for the 22.04 release line, Tanzu Application Platform will release a patched base stack image. The current status for patching this vulnerability in the Jammy stack is available on [Ubuntu’s security page](https://ubuntu.com/security/CVE-2022-4378). <br />
 
-It is important for customers to understand CVE-2022-4378 is a kernel exploit, and the kernel runs on the customers’ container host VM, not the Tanzu Application Platform container image. Even with a patched image, the vulnerability will not be mitigated until customers deploy their containers on a host with a patched OS. An unpatched host OS may be exploitable if the base image is deployed allowing users to modify SYSCTL parameters. <br />
+- [CVE-2022-4378](https://nvd.nist.gov/vuln/detail/CVE-2022-4378) is a high severity, exploitable stack overflow flaw found in the Linux kernel's SYSCTL subsystem. At this time, there is no available patch from Canonical in their upstream Ubuntu distribution. Once there is a patch available for the 22.04 release line, Tanzu Application Platform will release a patched base stack image. The current status for patching this vulnerability in the Jammy stack is available on [Ubuntu’s security page](https://ubuntu.com/security/CVE-2022-4378). <br />
 
-RedHat has published a [potential mitigation](https://access.redhat.com/security/cve/cve-2022-4378) preventing regular users from accessing sysctl files and increasing privileges until a patch becomes available.
+  It is important for customers to understand CVE-2022-4378 is a kernel exploit, and the kernel runs on the customers’ container host VM, not the Tanzu Application Platform container image. Even with a patched image, the vulnerability will not be mitigated until customers deploy their containers on a host with a patched OS. An unpatched host OS may be exploitable if the base image is deployed allowing users to modify SYSCTL parameters. <br />
+
+  RedHat has published a [potential mitigation](https://access.redhat.com/security/cve/cve-2022-4378) preventing regular users from accessing sysctl files and increasing privileges until a patch becomes available.
 
 </br>
 ---
@@ -407,10 +408,6 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 This release has the following known issues, listed by area and component.
 
-#### <a id="1-4-0-nsp-ki"></a> Namespace Provisioner
-
-- Applying the label selector used by the namespace provisioner controller to the developer namespace which is configured at deployment time under the `grype` package values will cause the [`provisioner` Carvel app](namespace-provisioner/about.hbs.md#nsp-component-carvel-app) to crash due to ownership issues (because it's trying to install Grype in a namespace where it's already been installed).
-
 #### <a id="1-4-0-app-acc-vscode-ki"></a> Application Accelerator for Visual Studio Code
 
 - When using custom types, if there is a check box in the list of attributes then re-ordering
@@ -463,21 +460,26 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
-**Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
+- **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
-For most languages, Source Code Scanning only scans files present in the source code repository.
-Except for support added for Java projects using Maven, no network calls fetch
-dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
-lock files to check dependencies for vulnerabilities.
+  For most languages, Source Code Scanning only scans files present in the source code repository.
+  Except for support added for Java projects using Maven, no network calls fetch
+  dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+  lock files to check dependencies for vulnerabilities.
 
-For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies
-present in the built binaries, such as `.jar` or `.war` files.
+  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies
+  present in the built binaries, such as `.jar` or `.war` files.
 
-Because VMware discourages committing binaries to source code repositories, Grype fails to
-find vulnerabilities during a source scan.
-The vulnerabilities are still found during the image scan after the binaries are built and packaged
-as images.
+  Because VMware discourages committing binaries to source code repositories, Grype fails to
+  find vulnerabilities during a source scan.
+  The vulnerabilities are still found during the image scan after the binaries are built and packaged
+  as images.
 </br></br>
+
+#### <a id="1-4-0-nsp-ki"></a> Namespace Provisioner
+
+- Applying the label selector used by the namespace provisioner controller to the developer namespace, which is configured at deployment time under the `grype` package values, will cause the [`provisioner` Carvel app](namespace-provisioner/about.hbs.md#nsp-component-carvel-app) to crash due to ownership issues. This is because it's trying to install Grype in a namespace where it's already been installed.
+</br>
 
 #### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI plug-ins
 
@@ -527,9 +529,9 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 #### <a id="1-4-0-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook
 
-The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
+- The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
 in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
-</br></br>
+
 
 #### <a id="1-4-0-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
 
