@@ -380,9 +380,9 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 - Fixed `tanzu apps workload tail` command not including all logs.
 </br></br>
 
-#### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI plug-ins
+#### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
 
-- **Immediate entity provider backend plug-in**
+- **Immediate entity provider back-end plug-in**
 
   - The entity provider, used mainly by API Auto Registration, now allows a body size of `5Mb` to
     accept larger API specifications.
@@ -421,7 +421,7 @@ This release has the following known issues, listed by area and component.
 
 - If a workload is deployed onto a namespace by using Live Update, you must set that namespace as
   the namespace of the current context of your kubeconfig file.
-  Otherwise, if you run Tanzu Debug it causes the workload to re-deploy.
+  Otherwise, if you run Tanzu Debug, it causes the workload to re-deploy.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#debug-reapplies-apply).
 
@@ -480,7 +480,7 @@ as images.
 ##### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer plug-in
 
 - The `Generation` field and scan policy link in the **Overview** section does not update when you amend a scan policy. The correct version and details of the policy are shown in the CLI.
-- Customizing the `Source Tester` stage in an OOTB supply chain does not show details in the
+- Customizing the `Source Tester` stage in an Out Of the Box supply chain does not show details in the
   **Stage Details** section.
 - When a GitOps PR flow is configured, the **Approve a Request** link no longer appears in the supply chain graph.
 </br>
@@ -552,7 +552,7 @@ in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 Ubuntu Bionic stops receiving support in April 2023.
 VMware recommends you migrate builds to Jammy stacks in advance.
 For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
-- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated:
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
 It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
 VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
 and remove support in Tanzu Application Platform v1.6.
