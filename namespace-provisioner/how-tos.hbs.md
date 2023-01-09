@@ -1,7 +1,6 @@
 # Configure Namespace Provisioner
 
 This topic describes advanced use-cases associated with Namespace Provisioner.
-[Extend](#extending-the-default-provisioned-resources)
 
 ## <a id="data-values-templating"></a>Data values templating guide
 
