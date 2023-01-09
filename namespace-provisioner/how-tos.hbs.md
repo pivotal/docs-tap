@@ -1,7 +1,6 @@
 # Configure Namespace Provisioner
 
 This topic describes advanced use-cases associated with Namespace Provisioner.
-[Extend](#extending-the-default-provisioned-resources)
 
 ## <a id="data-values-templating"></a>Data values templating guide
 
@@ -212,7 +211,7 @@ Run the following command to initiate the "kick":
 kctrl app kick --app provisioner -n tap-namespace-provisioning -y
 ```
 
-### <a id="control-desired-namespaces"></a>Control the `desired-namespaces` ConfigMap via GitOps
+### <a id="control-desired-namespaces"></a>Control the `desired-namespaces` ConfigMap with GitOps
 
 You can maintain the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap in your Git
 repository instead of using the Namespace Provisioner controller. You can use different GitOps tools

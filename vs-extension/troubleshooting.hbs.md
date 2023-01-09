@@ -51,11 +51,11 @@ This copies the correct portion of the local workspace to the remote app.
 The actual path `bin/Debug/net6.0` might be different depending on your Visual Studio configuration
 and target.
 
-## <a id='delete-workload-fails'></a> Delete workload fails to delete workload
+## <a id='delete-workload-fails'></a> Delete workload command fails to delete workload
 
 ### Symptom
 
-In v0.1.0 and earlier, the `Tanzu: Delete Workload` command appears to complete successfully but does not delete the workload.
+In v0.1.0 and earlier, the `Tanzu: Delete Workload` command appears to run but does not delete the workload.
 
 ### Cause
 
@@ -64,10 +64,9 @@ The workload is running in a namespace other than `default`.
 ### Solution
 
 Only deploy workloads to the `default` namespace.
+Alternatively, set the default Kubernetes namespace to the one where your workload is running.
+To do so, run:
 
-Alternatively, set the default Kubernetes namespace to that where your workload is running.
-
-```
-$ kubectl config set-context --current --namespace=NAMESPACE
-
+```console
+kubectl config set-context --current --namespace=NAMESPACE
 ```

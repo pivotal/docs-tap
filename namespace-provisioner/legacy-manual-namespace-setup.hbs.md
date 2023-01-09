@@ -18,6 +18,7 @@ To provision namespaces manually, complete the following steps:
     ```
 
     Where:
+
     - `YOUR-NAMESPACE` is the name you give to the developer namespace. For example, use
      `default` for the default namespace.
     - `REGISTRY-SERVER` is the URL of the registry. You can use the same registry server as in

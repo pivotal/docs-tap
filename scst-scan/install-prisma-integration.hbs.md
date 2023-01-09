@@ -46,7 +46,7 @@ Where:
  * MY-REGISTRY-USER is the user with write access to MY-REGISTRY.
  * MY-REGISTRY-PASSWORD is the password for MY-REGISTRY-USER.
  * MY-REGISTRY is your own container registry.
- * VERSION is your Prisma Scanner version. For example, 0.1.0-beta.4
+ * VERSION is your Prisma Scanner version. For example, 0.1.0-beta.8
  * TARGET-REPOSITORY is your target repository, a folder/repository on MY-REGISTRY that serves as the location for the installation files for Prisma Scanner.
 
 5. Install the Carvel tool imgpkg CLI.
@@ -89,7 +89,7 @@ $ tanzu package repository get prisma-scanning-repository --namespace tap-instal
 NAME:          prisma-scanner-repository
 VERSION:       71091125
 REPOSITORY:    index.docker.io/tapsme/prisma-repo-scanning-bundle
-TAG:           0.1.0-beta.4
+TAG:           0.1.0-beta.8
 STATUS:        Reconcile succeeded
 REASON:
 ```
@@ -434,13 +434,12 @@ For example:
 
 ```
 $ kubectl get scantemplates
-NAME                               AGE
-blob-source-scan-template          10d
-private-image-scan-template        10d
-public-image-scan-template         10d
-public-source-scan-template        10d
-prisma-private-image-scan-template 10d
-prisma-public-image-scan-template  10d
+NAME                                AGE
+prisma-blob-source-scan-template    10d
+primsa-public-source-scan-template  10d
+prisma-private-image-scan-template  10d
+prisma-public-image-scan-template   10d
+prisma-private-source-scan-template 10d
 ```
 
 3. Create the following ImageScan YAML:
@@ -479,7 +478,45 @@ spec:
   scanPolicy: scan-policy
 ```
 
-5. Apply the ImageScan YAMLs:
+4. Create the following SourceScan YAML:
+
+> **Note:**
+> Some scanners do not support both ImageScan and SourceScan.
+
+```
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+kind: SourceScan
+metadata:
+  name: sample-scanner-public-source-scan
+spec:
+  registry:
+    image: "nginx:1.16"
+  scanTemplate: SCAN-TEMPLATE
+  scanPolicy: SCAN-POLICY # Optional
+```
+
+Where:
+
+* SCAN-TEMPLATE is the name of the installed ScanTemplate in the DEV-NAMESPACE you retrieved earlier.
+* SCAN-POLICY it’s an optional reference to an existing ScanPolicy in the same DEV-NAMESPACE.
+
+For example:
+
+```
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+kind: SourceScan
+metadata:
+  name: sample-prisma-public-source-scan
+spec:
+  git:
+    url: "https://github.com/houndci/hound.git"
+    revision: "5805c650"
+  scanTemplate: prisma-public-source-scan-template
+  scanPolicy: scan-policy
+```
+
+
+5. Apply the ImageScan and Source YAMLs:
 
 To run the scans, apply them to the cluster by running these commands:
 
@@ -491,6 +528,23 @@ kubectl apply -f PATH-TO-IMAGE-SCAN-YAML -n DEV-NAMESPACE
 
 Where PATH-TO-IMAGE-SCAN-YAML is the path to the YAML file created earlier.
 
+**SourceScan:**
+
+```
+kubectl apply -f PATH-TO-SOURCE-SCAN-YAML -n DEV-NAMESPACE
+```
+
+Where PATH-TO-SOURCE-SCAN-YAML is the path to the YAML file created earlier.
+
+For example:
+
+```
+$ kubectl apply -f imagescan.yaml -n my-apps
+imagescan.scanning.apps.tanzu.vmware.com/sample-prisma-public-image-scan created
+
+$ kubectl apply -f sourcescan.yaml -n my-apps
+sourcescan.scanning.apps.tanzu.vmware.com/sample-prisma-public-source-scan created
+```
 
 6. To verify the integration, get the scan to see if it completed by running:
 
@@ -502,6 +556,23 @@ kubectl get imagescan IMAGE-SCAN-NAME -n DEV-NAMESPACE
 
 Where IMAGE-SCAN-NAME is the name of the ImageScan as defined in the YAML file created earlier.
 
+**For SourceScan:**
+
+```
+kubectl get sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
+```
+
+Where SOURCE-SCAN-NAME is the name of the SourceScan as defined in the YAML file created earlier.
+
+For example:
+
+$ kubectl get imagescan sample-prisma-public-image-scan -n my-apps
+NAME                            PHASE       SCANNEDIMAGE   AGE   CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+sample-primsa-public-image-scan   Completed   nginx:1.16     26h   0          114    58       314   0         486
+
+$ kubectl get sourcescan sample-prisma-public-source-scan -n my-apps
+NAME                                                                      PHASE       SCANNEDREVISION   SCANNEDREPOSITORY                      AGE     CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+sourcescan.scanning.apps.tanzu.vmware.com/prisma-sourcescan-sample-public   Completed   5805c650          https://github.com/houndci/hound.git   8m34s   21         121    112      9  
 
 > **Note:**
 > If you define a ScanPolicy for the scans and the evaluation finds a violation, the Phase is Failed instead of Completed. In both cases the scan finished successfully.
@@ -544,7 +615,7 @@ ootb_supply_chain_testing_scanning:
       template: prisma-private-image-scan-template
       policy: prisma-scan-policy
     source:
-      template: blob-source-scan-template
+      template: prisma-blob-source-scan-template
       policy: scan-policy
 ```
 

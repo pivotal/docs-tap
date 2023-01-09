@@ -1,4 +1,4 @@
-# Tutorial: Provisioning new developer namespaces
+# Provision namespace resources
 
 There are two approaches to provisioning namespace-scoped resources supported:
 
@@ -50,10 +50,10 @@ There are two approaches to provisioning namespace-scoped resources supported:
    ```
 
    - This label tells the controller to add this namespace to the
-   [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap.</br>
+   [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap.</br>
    - The label's value can be anything you wish, including "". </br>
    - If required, you can change the default label selector by configuring the
-     [`namespace_selector`](install.hbs.md#customized-installation) property/value in tap-values
+     [`namespace_selector`](install.hbs.md#customized-install) property/value in tap-values
      for namespace provisioner.
 
 1. **Optional** - this step is only required if the `registry-credentials` secret that was created
@@ -73,15 +73,13 @@ There are two approaches to provisioning namespace-scoped resources supported:
    kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap -n YOUR-NEW-DEVELOPER-NAMESPACE
    ```
 
-   - Refer to the [TAP Profile Resource Mapping table](reference.hbs.md#profile-resource-mapping)
-   on the [Namespace Provisioner reference materials](reference.hbs.md) page to see the list of
-   resources you should expect to be provisioned in your namespace based on TAP installation
-   profile and supply chain values configured in your `tap-values.yaml` file.
+   - To see the list of resources that are provisioned in your namespace based on the installation
+     profile and supply chain values configured in your `tap-values.yaml` file, see [Default resources mapping](reference.hbs.md#default-resources-mapping).
 
 ## <a id="using-gitops"></a>Using GitOps
 
 This section describes how to use the built-in controller instead of using GitOps to
-manage the list of namespaces in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap)
+manage the list of namespaces in the [`desired-namespaces`](about.hbs.md#desired-ns-configmap)
 ConfigMap.
 
 >**WARNING**: if there is a namespace in your GitOps repo desired-namespace list that does not
@@ -94,10 +92,7 @@ The prerequisites for using GitOps are the same as those specified in the
 [controller prerequisites](#nps-controller-prerequisites) above except for the `controller`
 tap value key's value as follows:
 
-- The [`controller` tap value key](install.hbs.md#customized-installation) is set to **`false`**
+- The [`controller` tap value key](install.hbs.md#customized-install) is set to **`false`**
   (Default is `true`)
 
-Please go to the  [**Control the `desired-namespaces` ConfigMap via GitOps**](how-tos.hbs.md#control-desired-namespaces)
-section of the [How-to Guide](how-tos.hbs.md) for detailed instructions for provisioning namespaces via GitOps.
-
-</br>
+For more information about provisioning namespaces with GitOps, see [**Control the `desired-namespaces` ConfigMap with GitOps**](how-tos.hbs.md#control-desired-namespaces).

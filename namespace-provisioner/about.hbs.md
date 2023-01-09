@@ -33,7 +33,8 @@ The **`desired-namespaces`** ConfigMap in the **`tap-namespace-provisioning`** n
 a declarative way to indicate which namespaces should be populated with resources. The ConfigMap
 consists of a list of namespace objects, with a required `name` parameter, and optional additional
 parameters which are used as `data.values` for customizing defined resources.
-Manage the ConfigMap directly with [GitOps](tutorials.hbs.md#using-gitops), or the [Namespace Provisioner Controller](tutorials.hbs.md#using-namespace-provisioner-controller).
+Manage the ConfigMap directly with [GitOps](tutorials.hbs.md#using-gitops), or the
+[Namespace Provisioner Controller](tutorials.hbs.md#controller-ns-provisioning).
 
 **Example:**
 
@@ -76,9 +77,9 @@ list of resources that are created for different profiles, see [Default resource
 ### <a id="expansion-template"></a>Expansion Template ConfigMap
 
 The expansion-template ConfigMap contains the ytt logic to expand the resources defined in the
-following locations into each of the  namespaces listed in the desired-namespaces ConfigMap:
-- Default-resources Secret
-- the `tap-values.yaml` file under additional_sources
+following locations into each of the  namespaces listed in the desired-namespaces ConfigMap:</br>
+- Default-resources Secret</br>
+- the `tap-values.yaml` file under additional_sources</br>
 
 The intent is to only support definition of cluster-scoped or namespaced resources,
 but currently, we also support installation of the Grype package in the tap-install namespace.

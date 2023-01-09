@@ -311,7 +311,7 @@ docs.vmware.com is built.
       - [Install Eventing](eventing/install-eventing.hbs.md)
     - [Namespace Provisioner](namespace-provisioner/about.hbs.md)
       - [Install Namespace Provisioner](namespace-provisioner/install.hbs.md)
-      - [Tutorials](namespace-provisioner/tutorials.hbs.md)
+      - [Provision namespace resources](namespace-provisioner/tutorials.hbs.md)
       - [Configure Namespace Provisioner](namespace-provisioner/how-tos.hbs.md)
       - [Troubleshoot Namespace Provisioner](namespace-provisioner/troubleshooting.hbs.md)
       - [Namespace Provisioner Reference Guide](namespace-provisioner/reference.hbs.md)

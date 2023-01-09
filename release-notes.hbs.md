@@ -65,7 +65,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
   - The parameter [`.app_config.gitProviders.active` in `tap-values.yaml`](tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation) was added to deactivate optional Git repository creation in the VS Code extension during project creation.
 - Added [custom `types`](application-accelerator/creating-accelerators/custom-types.hbs.md) which allows for 1-N number of repeating sets of options in an accelerator's form during project creation.
 - Added the [Loop transform](application-accelerator/creating-accelerators/transforms/loop.hbs.md) to allow for transforms to be applied on list options.
-- Added [`generate-from-local`](cli-plugins/accelerator/command-reference/tanzu_accelerator_generate_from_local.hbs.md) command to the Application Accelerator plug-in for the Tanzu CLI to generate accelerators using local assets without needing to commit code.
+- Added [`generate-from-local`](cli-plugins/accelerator/command-reference/tanzu_accelerator_generate_from_local.hbs.md) command to the Application Accelerator plug-in for the Tanzu CLI to generate projects from local assets without needing to commit code.
 - Additional Application Accelerator plug-ins for Tanzu CLI improvements:
   - `fragment create` now supports `--local-path` and `--source-image`
   - `fragment update` now supports `--source-image`
@@ -408,6 +408,10 @@ This release has the following known issues, listed by area and component.
 
 - Knative Serving: Certain app name, namespace, and domain combinations produce invalid HTTPProxy resources. See [Cloud Native Runtimes Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.1/tanzu-cloud-native-runtimes/GUID-troubleshooting.html#invalid-httpproxy).
 - Knative Serving and Cert Manager: When auto-tls is enabled, the default in Tanzu Application Platform v1.4.0, Knative services fail with `certificateNotReady` if workload name, namespace, and domain are more than 64 bytes. See [Cloud Native Runtimes Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.1/tanzu-cloud-native-runtimes/GUID-troubleshooting.html#certificate-not-ready).
+
+#### <a id="1-4-0-vscode-ki"></a> Tanzu Developer Tools for Visual Studio Code
+
+- `Could not find the task 'tanzuManagement: Kill Port Forward fortune-service'`. Users may see this error message if an app was deployed with a previous version of the Visual Studio Code extension. To resolve, delete the launch configuration in the `launch.json` file that references that task. For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#deprecated-task).
 
 #### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
 

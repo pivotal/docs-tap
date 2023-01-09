@@ -44,7 +44,7 @@ Example snippet of `tap-values.yaml`:
 ```yaml
 ...
 namespace_provisioner:
-  controller: yes
+  controller: true
   namespace_selector:
     matchExpressions:
     - key: apps.tanzu.vmware.com/tap-ns

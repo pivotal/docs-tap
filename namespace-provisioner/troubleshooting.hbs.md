@@ -2,7 +2,7 @@
 
 ## <a id="controller-logs"></a>Controller logs
 
-For getting the logs when using the controller to manage the `desire-namespaces`
+To get the logs when using the controller to manage the `desired-namespaces` Configmap
 
 ```terminal
 kubectl -n tap-namespace-provisioning logs deployments/controller-manager
@@ -66,7 +66,7 @@ similar to the following, (followed by some reconciliation messages)
 
 When working with ytt, it is easy to miswrite the template, as a result, the Namespace Provisioner
 will fail when the `additional_sources` is provided with errors. To check the problem in the
-provisoner application, see [Provisioner application error](#provisioner-application-error).
+provisioner application, see [Provisioner application error](#carvel-kapp-application-error).
 
 For example, let's assume that the following file is used as `additional_sources`
 
