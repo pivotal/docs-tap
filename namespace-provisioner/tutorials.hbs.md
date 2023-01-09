@@ -97,7 +97,4 @@ tap value key's value as follows:
 - The [`controller` tap value key](install.hbs.md#customized-installation) is set to **`false`**
   (Default is `true`)
 
-Please go to the  [**Control the `desired-namespaces` ConfigMap via GitOps**](how-tos.hbs.md#control-desired-namespaces)
-section of the [How-to Guide](how-tos.hbs.md) for detailed instructions for provisioning namespaces via GitOps.
-
-</br>
+For more information about provisioning namespaces with GitOps, see [**Control the `desired-namespaces` ConfigMap with GitOps**](how-tos.hbs.md#control-desired-namespaces).
