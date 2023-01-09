@@ -15,7 +15,7 @@ Testing](ootb-supply-chain-testing.html) or [Out of the Box Supply Chain With
 Testing and Scanning](ootb-supply-chain-testing-scanning.html) to
 install the required packages. You only need to set up only one of these packages.
 
-These supply chains can use the Jenkins service during the `source-tester`
+Either of these Supply Chains is able to use the Jenkins service during the `source-tester`
 phase of the pipeline.
 
 ### <a id="using-the-ootb-jenkins-task"></a> Using the Out of the Box Jenkins Task
@@ -27,7 +27,7 @@ their Jenkins services.
  
 The Out of the Box Jenkins task user ideally
 1. Makes use of Jenkins Jobs to run their source code test suites 
-2. Has a Jenkins pipeloine already configured.
+2. Has a Jenkins pipeline already configured.
 
 #### 1. Configuring a Jenkins job in an existing Jenkins Pipeline
 
@@ -114,7 +114,7 @@ The following fields will also be required in the Jenkins Job definition
 
 To configure your `Workload` to pass the `GIT-URL` parameter into the Jenkins task:
 
-```console
+```bash
 tanzu apps workload create workload \
   --namespace your-test-namespace \
   --git-branch main \
@@ -142,7 +142,7 @@ A secret must be created in the developer namespace to contain the credentials r
 
 Use the Kubernetes CLI tool (kubectl) to create the above secret. You can provide the optional PEM-encoded CA certificate as a file using the the `--from-file` flag as shown below:  
 
-```console
+```bash
 kubectl create secret generic my-secret \
   --from-literal=url=https://jenkins.instance \
   --from-literal=username=literal-username \
@@ -239,7 +239,33 @@ spec:
 EOF 
 ```
 
-#### 4.  <a id="developer-workload"></a> Create a Developer Workload
+#### <a id="patch-the-service-account"></a> 4. Patching the default Service Account
+
+The `jenkins-task` `ClusterTask` resource uses a container image with the
+Jenkins Adapter application to trigger the Jenkins job and wait for it to complete.
+This container image is distributed with Tanzu Application Platform on VMware
+Tanzu Network, but it is not installed at the same time as the other packages.
+It is pulled at the time that the supply chain executes the job. As a result, it
+does not implicitly have access to the `imagePullSecrets` with the required credentials.
+
+> **Important** The `ServiceAccount` that a developer can configure with their
+`Workload` is *not* passed to the task and is not used to pull the Jenkins
+Adapter container image.  If you  followed the Tanzu Application Platform
+Install Guide, then you have a `Secret` named `tap-registry` in each of your
+cluster's namespaces. You can patch the default Service Account in your
+workload's namespace so that your supply chain can pull the Jenkins Adapter
+image. For example:
+```bash
+kubectl patch serviceaccount default \
+  --patch '{"imagePullSecrets": [{"name": "tap-registry"}]}' \
+  --namespace developer-namespace
+```
+
+<!-- These tasks are run by Tekton.  Tekton has other methods for configuring the
+[custom service account credentials](https://tekton.dev/docs/pipelines/pipelineruns/#specifying-custom-serviceaccount-credentials)
+used by running tasks, if you prefer. -->
+
+#### 5.  <a id="developer-workload"></a> Create a Developer Workload
 
 Submit your `Workload` to the same namespace as the Tekton `Pipeline`
 defined earlier.
@@ -274,7 +300,7 @@ parameters:
 ```
 
 You can create the workload by using the `apps` CLI plug-in as shown below:
-```console
+```bash
 readonly GIT_BRANCH="my-git-branch"
 readonly WORKLOAD_NAME="my-workload-name"
 readonly GITHUB_REPO="github-repository-url"
