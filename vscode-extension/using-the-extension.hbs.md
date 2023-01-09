@@ -25,14 +25,6 @@ To apply a workload:
 
 2. Run `Tanzu: Apply Workload`.
 
-   Context Menu screenshot:
-
-   ![Context menu open showing text Tanzu: Apply Workload.](../images/vscode-applyworkload1.png)
-
-   Command Palette screenshot:
-
-   ![Command palette open showing text Tanzu: Apply Workload.](../images/vscode-applyworkload2.png)
-
 3. If there are multiple projects with workloads, select the workload to apply.
 
    ![Apply Workload menu open showing workloads available to apply.](../images/vscode-applyworkload3.png)
@@ -86,12 +78,6 @@ To start debugging on the cluster:
 2. Right-click anywhere in the VS Code project explorer or open the Command Palette by pressing ⇧⌘P
    (Ctrl+Shift+P on Windows).
 3. Click **Tanzu: Java Debug Workload** from either menu.
-
-   Context Menu screenshot:
-   ![The VS Code interface showing the Explorer tab with the Workload YAML file pop-up menu open and the Tanzu: Java Debug Start option highlighted.](../images/vscode-startdebug1.png)
-
-   Command Palette screenshot:
-   ![Command palette open showing text Tanzu: Java Debug Start.](../images/vscode-startdebug2.png)
 
 ### <a id="stop-debugging"></a> Stop Debugging on the cluster
 
@@ -211,12 +197,6 @@ To delete a workload:
    (Ctrl+Shift+P on Windows).
 
 2. Run `Tanzu: Delete Workload`.
-
-   Context Menu screenshot:
-   ![Context menu open showing text Tanzu: Delete Workload.](../images/vscode-deleteworkload1.png)
-
-   Command Palette screenshot:
-   ![Command palette open showing text Tanzu: Delete Workload.](../images/vscode-deleteworkload2.png)
 
 3. Select the workload to delete.
 
