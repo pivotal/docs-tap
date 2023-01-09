@@ -76,9 +76,9 @@ list of resources that are created for different profiles, see [Default resource
 ### <a id="expansion-template"></a>Expansion Template ConfigMap
 
 The expansion-template ConfigMap contains the ytt logic to expand the resources defined in the
-following locations into each of the  namespaces listed in the desired-namespaces ConfigMap:
-- Default-resources Secret
-- the `tap-values.yaml` file under additional_sources
+following locations into each of the  namespaces listed in the desired-namespaces ConfigMap:</br>
+- Default-resources Secret</br>
+- the `tap-values.yaml` file under additional_sources</br>
 
 The intent is to only support definition of cluster-scoped or namespaced resources,
 but currently, we also support installation of the Grype package in the tap-install namespace.
