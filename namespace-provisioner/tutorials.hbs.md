@@ -1,4 +1,4 @@
-# Tutorial: Provisioning new developer namespaces
+# Provision namespace resources
 
 There are two approaches to provisioning namespace-scoped resources supported:
 
