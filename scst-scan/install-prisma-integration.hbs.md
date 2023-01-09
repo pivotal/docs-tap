@@ -484,7 +484,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ImageScan
     metadata:
-      name: sample-scanner-public-image-scan
+      name: sample-prisma-public-image-scan
     spec:
       registry:
         image: "nginx:1.16"
@@ -517,7 +517,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: SourceScan
     metadata:
-      name: sample-scanner-public-source-scan
+      name: sample-prisma-public-source-scan
     spec:
       registry:
         image: "nginx:1.16"
