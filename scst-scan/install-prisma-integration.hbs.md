@@ -50,13 +50,11 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
   Where:
 
-  - MY-REGISTRY-USER is the user with write access to MY-REGISTRY.
-  - MY-REGISTRY-PASSWORD is the password for MY-REGISTRY-USER.
-  - MY-REGISTRY is your own container registry.
-  - VERSION is your Prisma Scanner version. For example, 0.1.0-beta.8
-  - TARGET-REPOSITORY is your target repository, a folder/repository on
-    MY-REGISTRY that serves as the location for the installation files for Prisma
-    Scanner.
+ * MY-REGISTRY-USER is the user with write access to MY-REGISTRY.
+ * MY-REGISTRY-PASSWORD is the password for MY-REGISTRY-USER.
+ * MY-REGISTRY is your own container registry.
+ * VERSION is your Prisma Scanner version. For example, 0.1.0-beta.8
+ * TARGET-REPOSITORY is your target repository, a folder/repository on MY-REGISTRY that serves as the location for the installation files for Prisma Scanner.
 
 5. Install the Carvel tool imgpkg CLI.
 
@@ -99,22 +97,16 @@ VMware recommends installing the Prisma Scanner objects in the existing `tap-ins
 
 1. Get the status of the Prisma Scanner package repository, and ensure the status updates to Reconcile succeeded by running:
 
-  ```
-  tanzu package repository get prisma-scanning-repository --namespace tap-install
-  ```
-
-  For example:
-
-  ```console
-  $ tanzu package repository get prisma-scanning-repository --namespace tap-install
-  - Retrieving repository prisma-scanner-repository...
-  NAME:          prisma-scanner-repository
-  VERSION:       71091125
-  REPOSITORY:    index.docker.io/tapsme/prisma-repo-scanning-bundle
-  TAG:           0.1.0-beta.8
-  STATUS:        Reconcile succeeded
-  REASON:
-  ```
+```
+$ tanzu package repository get prisma-scanning-repository --namespace tap-install
+- Retrieving repository prisma-scanner-repository...
+NAME:          prisma-scanner-repository
+VERSION:       71091125
+REPOSITORY:    index.docker.io/tapsme/prisma-repo-scanning-bundle
+TAG:           0.1.0-beta.8
+STATUS:        Reconcile succeeded
+REASON:
+```
 
 3. List the available packages by running:
 
@@ -571,7 +563,7 @@ spec:
 ```
 
 
-1. Apply the ImageScan and Source YAMLs:
+5. Apply the ImageScan and Source YAMLs:
 
 To run the scans, apply them to the cluster by running these commands:
 
