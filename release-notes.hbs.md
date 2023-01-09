@@ -330,6 +330,13 @@ CVE-2022-2588, CVE-2022-34918, GHSA-4wf5-vphf-c2xc, CVE-2022-42916, CVE-2022-435
 
 </br>
 
+#### <a id="1-4-0-cve-2022-4378"></a> Note about CVE-2022-4378
+[CVE-2022-4378](https://nvd.nist.gov/vuln/detail/CVE-2022-4378) is a high severity, exploitable stack overflow flaw found in the Linux kernel's SYSCTL subsystem. At this time, there is no available patch from Canonical in their upstream Ubuntu distribution. Once there is a patch available for the 22.04 release line, TAP will release a patched base stack image. The current status for patching this vulnerability in the Jammy stack is available on [Ubuntu’s security page](https://ubuntu.com/security/CVE-2022-4378). <br />
+
+It is important for customers to understand CVE-2022-4378 is a kernel exploit and the kernel runs on the customers’s container host VM, not the TAP container image. Even with a patched image, the vulnerability will not be mitigated until customers deploy their containers on a host with a patched OS. An unpatched host OS may be exploitable if the base image is deployed allowing users to modify SYSCTL parameters. <br />
+
+RedHat has published a [potential mitigation](https://access.redhat.com/security/cve/cve-2022-4378) preventing regular users from accessing sysctl files and increasing privileges until a patch becomes available.
+</br>
 ---
 
 </br>
