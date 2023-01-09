@@ -73,10 +73,8 @@ There are two approaches to provisioning namespace-scoped resources supported:
    kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap -n YOUR-NEW-DEVELOPER-NAMESPACE
    ```
 
-   - Refer to the [TAP Profile Resource Mapping table](reference.hbs.md#profile-resource-mapping)
-   on the [Namespace Provisioner reference materials](reference.hbs.md) page to see the list of
-   resources you should expect to be provisioned in your namespace based on TAP installation
-   profile and supply chain values configured in your `tap-values.yaml` file.
+   - To see the list of resources that are provisioned in your namespace based on the installation
+     profile and supply chain values configured in your `tap-values.yaml` file, see [Default resources mapping](reference.hbs.md#default-resources-mapping).
 
 ## <a id="using-gitops"></a>Using GitOps
 
