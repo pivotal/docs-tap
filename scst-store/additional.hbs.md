@@ -32,7 +32,6 @@ This section includes the following topics:
 - [Using NodePort](use-node-port.hbs.md)
 - [Custom certificate configuration](custom-cert.hbs.md)
 - [TLS configuration](tls-configuration.hbs.md)
-- [Certificate rotation](cert-rotation.hbs.md)
 - [Multicluster setup](multicluster-setup.hbs.md)
 - [Developer namespace setup](developer-namespace-setup.hbs.md)
 - [Retrieve access tokens](retrieve-access-tokens.hbs.md)
