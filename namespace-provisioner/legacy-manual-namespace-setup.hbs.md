@@ -28,8 +28,7 @@ To provision namespaces manually, complete the following steps:
       `https://`, the `v1` path, and the trailing `/`.
       - For Google Container Registry (GCR), the value is `gcr.io`.
     - `REGISTRY-PASSWORD` is the password of the registry.
-      - -For GCR or Google Artifact Registry, this must be the concatenated version of the JSON key.</br>
-      For example: `"$(cat ~/gcp-key.json)"`
+      - For GCR or Google Artifact Registry, this must be the concatenated version of the JSON key. For example: `"$(cat ~/gcp-key.json)"`
 
     If you observe the following issue when you run the command above:
 
