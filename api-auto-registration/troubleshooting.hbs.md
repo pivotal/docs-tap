@@ -60,12 +60,6 @@ issue, you can either deactivate TLS by setting `shared.ingress_issuer: ""`, or
 inform `shared.ca_cert_data` key as mentioned in [our installation
 guide](installation.md).  You can obtain the PEM Encoded crt file using the steps below:
 
-- lastTransitionTime: "2023-01-06T21:32:21Z"
-  message: 'Put "https://tap-gui.tap.joels-cluster.tapdemo.vmware.com/api/catalog/immediate/entities": x509: certificate signed by unknown authority'
-  reason: Error
-  status: "False"
-  type: Ready
-
 1. Create a Certificate object where the issuerRef refers to the ClusterIssuer referenced
 in the `shared.ingress_issuer` field.
 
