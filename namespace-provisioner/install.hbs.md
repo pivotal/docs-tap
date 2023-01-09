@@ -32,7 +32,7 @@ The following values are configurable:
 - **controller**:  Whether to install the namespace provisioner controller that is part of the package.
   - Set to `true` (Default) to manage the `desired-namespaces` ConfigMap automatically using a
     controller on the cluster.
-  - Set to `false` to populate the  `desired-namespaces` ConfigMap using an external mechanism such as GitOps, see [GitOps Customizations](how-tos.hbs.md#gitops-customizations).
+  - Set to `false` to populate the  `desired-namespaces` ConfigMap using an external mechanism such as GitOps, see [Control the `desired-namespaces` ConfigMap via GitOps](how-tos.hbs.md#control-the-desired-namespaces-configmap-via-gitops).
 - **aws_iam_role_arn**: If the installation is on AWS with EKS, use the selected IAM Role for Kubernetes Service Accounts.
 - **additional_sources**: Add additional sources which contain Platform Operator templated resources to be set on the provisioned namespaces using GitOps in addition to the default-resources that are shipped with Tanzu Application Platform.
   - See the `fetch` section of the [kapp App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/) specification section for the format. Only the Git type fetch is supported.
