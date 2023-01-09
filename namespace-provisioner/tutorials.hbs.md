@@ -92,7 +92,7 @@ The prerequisites for using GitOps are the same as those specified in the
 [controller prerequisites](#nps-controller-prerequisites) above except for the `controller`
 tap value key's value as follows:
 
-- The [`controller` tap value key](install.hbs.md#customized-installation) is set to **`false`**
+- The [`controller` tap value key](install.hbs.md#customized-install) is set to **`false`**
   (Default is `true`)
 
 For more information about provisioning namespaces with GitOps, see [**Control the `desired-namespaces` ConfigMap with GitOps**](how-tos.hbs.md#control-desired-namespaces).
