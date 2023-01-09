@@ -407,6 +407,10 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 This release has the following known issues, listed by area and component.
 
+#### <a id="1-4-0-nsp-ki"></a> Namespace Provisioner
+
+- Applying the label selector used by the namespace provisioner controller to the developer namespace which is configured at deployment time under the `grype` package values will cause the [`provisioner` Carvel app](namespace-provisioner/about.hbs.md#nsp-component-carvel-app) to crash due to ownership issues (because it's trying to install Grype in a namespace where it's already been installed).
+
 #### <a id="1-4-0-app-acc-vscode-ki"></a> Application Accelerator for Visual Studio Code
 
 - When using custom types, if there is a check box in the list of attributes then re-ordering
