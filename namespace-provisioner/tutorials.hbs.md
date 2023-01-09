@@ -50,10 +50,10 @@ There are two approaches to provisioning namespace-scoped resources supported:
    ```
 
    - This label tells the controller to add this namespace to the
-   [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap.</br>
+   [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap.</br>
    - The label's value can be anything you wish, including "". </br>
    - If required, you can change the default label selector by configuring the
-     [`namespace_selector`](install.hbs.md#customized-installation) property/value in tap-values
+     [`namespace_selector`](install.hbs.md#customized-install) property/value in tap-values
      for namespace provisioner.
 
 1. **Optional** - this step is only required if the `registry-credentials` secret that was created
@@ -79,7 +79,7 @@ There are two approaches to provisioning namespace-scoped resources supported:
 ## <a id="using-gitops"></a>Using GitOps
 
 This section describes how to use the built-in controller instead of using GitOps to
-manage the list of namespaces in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap)
+manage the list of namespaces in the [`desired-namespaces`](about.hbs.md#desired-ns-configmap)
 ConfigMap.
 
 >**WARNING**: if there is a namespace in your GitOps repo desired-namespace list that does not
