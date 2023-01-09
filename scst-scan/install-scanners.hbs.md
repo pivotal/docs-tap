@@ -6,7 +6,7 @@ Follow the instructions in this topic to install a scanner other than the out of
 
 ## <a id="prerecs"></a> Prerequisites
 
-Before installing a new scanner, install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan are also required.
+Before installing a new scanner, install [Supply Chain Security Tools - Scan](./install-scst-scan.hbs.md). It must be present on the same cluster. The prerequisites for Scan are also required.
 
 ## <a id="installation"></a> Install
 
@@ -22,7 +22,7 @@ To install a new scanner, follow these steps:
     tanzu package available list --namespace tap-install
     ```
 
-  For example:
+    For example:
 
     ```console
     $ tanzu package available list --namespace tap-install
@@ -39,7 +39,7 @@ To install a new scanner, follow these steps:
     tanzu package available list SCANNER-NAME --namespace tap-install
     ```
 
-  For example:
+    For example:
 
     ```console
     $ tanzu package available list snyk.scanning.apps.tanzu.vmware.com --namespace tap-install
@@ -85,7 +85,7 @@ To install a new scanner, follow these steps:
     targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry.
     ```
 
-2. Define the `--values-file` flag to customize the default configuration:
+1. Define the `--values-file` flag to customize the default configuration:
 
     The `values.yaml` file you created earlier is referenced with the `--values-file` flag when running your Tanzu install command:
 
@@ -130,11 +130,11 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 1. (Optional) Create a `ScanPolicy` formatted for the output specific to the scanner you are installing, to reference in the `ImageScan` or `SourceScan`.
 
-  ```console
-    kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
-  ```
+    ```console
+      kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
+    ```
 
-  > **Note** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
+    > **Note** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
 
 1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed:
 
@@ -352,4 +352,4 @@ $ tanzu package installed delete snyk-scanner \
 In addition to providing the above supported integrations, VMware encourages the broader community (both internal and external to VMware) to also support us in our goal of integrating with customers' preferred CVE scanners.
 
 Refer below to some of these additional integrations that are currently available.
-- [Prisma Scanner (Alpha)](install-prisma-integration.md) is available for source and image scanning. **Note: This integration is being released as an Alpha, which means that it is still in active development by the Tanzu Practices Global Tech Team and may be subject to change at any point. Users may encounter unexpected behavior, but we would love to hear your feedback if you do try out this integration.**
+- [Prisma Scanner (Alpha)](install-prisma-integration.hbs.md) is available for source and image scanning. **Note: This integration is being released as an Alpha, which means that it is still in active development by the Tanzu Practices Global Tech Team and may be subject to change at any point. Users may encounter unexpected behavior, but we would love to hear your feedback if you do try out this integration.**
