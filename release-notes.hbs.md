@@ -409,6 +409,10 @@ This release has the following known issues, listed by area and component.
 - Knative Serving: Certain app name, namespace, and domain combinations produce invalid HTTPProxy resources. See [Cloud Native Runtimes Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.1/tanzu-cloud-native-runtimes/GUID-troubleshooting.html#invalid-httpproxy).
 - Knative Serving and Cert Manager: When auto-tls is enabled, the default in Tanzu Application Platform v1.4.0, Knative services fail with `certificateNotReady` if workload name, namespace, and domain are more than 64 bytes. See [Cloud Native Runtimes Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.1/tanzu-cloud-native-runtimes/GUID-troubleshooting.html#certificate-not-ready).
 
+#### <a id="1-4-0-vscode-ki"></a> Tanzu Developer Tools for Visual Studio Code
+
+- `Could not find the task 'tanzuManagement: Kill Port Forward fortune-service'`. Users may see this error message if an app was deployed with a previous version of the Visual Studio Code extension. To resolve, delete the launch configuration in the `launch.json` file that references that task. For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#deprecated-task).
+
 #### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
 
 - If a workload is deployed onto a namespace by using Live Update, you must set that namespace as
