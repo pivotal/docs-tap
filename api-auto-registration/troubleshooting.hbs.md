@@ -60,6 +60,12 @@ issue, you can either deactivate TLS by setting `shared.ingress_issuer: ""`, or
 inform `shared.ca_cert_data` key as mentioned in [our installation
 guide](installation.md).  You can obtain the PEM Encoded crt file using the steps below:
 
+- lastTransitionTime: "2023-01-06T21:32:21Z"
+  message: 'Put "https://tap-gui.tap.joels-cluster.tapdemo.vmware.com/api/catalog/immediate/entities": x509: certificate signed by unknown authority'
+  reason: Error
+  status: "False"
+  type: Ready
+
 1. Create a Certificate object where the issuerRef refers to the ClusterIssuer referenced
 in the `shared.ingress_issuer` field.
 
@@ -104,6 +110,41 @@ kubectl delete secret -n default ca-extractor
 cat ca.crt
 ```
 
-5. Place the PEM encoded cert into `shared.ca_cert_data` key as mentioned 
-in [our installation guide](installation.md).
+Once you have obtained the cert you will need to update the `api-auto-registration` installation to use it by following 
+these steps:
+ 
+1. Place the PEM encoded cert into the `ca_cert_data` key of a values file as mentioned in [our installation guide](installation.md).
 
+2. Pause the meta package's reconciliation. This will prevent TAP from reverting to the original values. 
+```console
+kctrl package installed pause --yes --namespace tap-install --package-install tap
+```
+
+3. Update the `api-auto-registration` installation to use the values file from the first step. 
+replacing <VERSION> with the api-auto-registration versions (i.e. `0.2.1`) and the VALUES_FILE with name of values file. 
+```console
+tanzu package installed update api-auto-registration --version <VERSION> --namespace tap-install --values-file <VALUES_FILE>
+```
+NOTE: You can find the available api-auto-registration volumes by running the following command:
+```console
+tanzu package available list -n tap-install | grep 'API Auto Registration'
+```
+
+4. Unpause the meta package's reconciliation
+```console
+ctrl package installed kick --yes --namespace tap-install --package-install tap
+```
+
+### APIDescriptor CRD shows message of `x509: certificate signed by unknown authority` but service is up and running
+
+Your APIDescription CRD shows a status and message similar to:
+
+```
+    Message:               Put "https://tap-gui.tap.my-cluster.tapdemo.vmware.com/api/catalog/immediate/entities": x509: certificate signed by unknown authority
+    Reason:                Error
+    Status:                False
+    Type:                  Ready
+    Last Transition Time:  2022-11-28T09:59:13Z
+```
+
+This is the same issue as `connection refused` described above. Please see those instructions for how to fix it.
