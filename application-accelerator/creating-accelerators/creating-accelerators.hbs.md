@@ -7,12 +7,14 @@ This topic describes how to create an accelerator in Tanzu Application Platform 
 The following prerequisites are required to create an accelerator:
 
   - Application Accelerator is installed. For information about installing Application Accelerator, see [Installing Application Accelerator for VMware Tanzu](../install-app-acc.md)
-  - You can access Tanzu Application Platform GUI from a browser. For more information, see the "Tanzu Application Platform GUI" section in the most recent release for [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html)
-  - kubectl v1.20 and later. The Kubernetes command line tool (kubectl) is installed and authenticated with admin rights for your target cluster.
+  - You can access Tanzu Application Platform GUI from a browser OR have configured the Application Accelerator extension for VS Code. 
+      - For more information on the Tanzu Application Platform GUI, see the corresponding section in the most recent release of the [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html). 
+      - For more information on the Application Accelerator extension for VS Code, see the latest on the [Application Accelerator Visual Studio Code extension page](../vscode.md)
+  - kubectl is installed. The Kubernetes command line tool (kubectl) is installed and authenticated with admin rights for your target cluster.
 
 ## <a id="creating-accelerators-getting-started"></a>Getting started
 
-You can use any Git repository to create an accelerator. You need the URL for the repository to create an accelerator.
+You can use any Git repository to create an accelerator. You need the URL of the repository to create an accelerator.
 
 For this example, the Git repository is `public` and contains a `README.md` file. These are options available when you create repositories on GitHub.
 
@@ -43,21 +45,21 @@ Use the following procedure to create an accelerator based on this Git repositor
 1. To publish your new accelerator, run this command in your terminal:
 
     ```sh
-    tanzu accelerator create simple --git-repository YOUR-GIT-REPOSITORY-URL --git-branch YOUR-GIT-BRANCH
+    tanzu accelerator create simple --git-repository ${GIT_REPOSITORY_URL} --git-branch ${GIT_REPOSITORY_BRANCH}
     ```
 
     Where:
 
-    - `YOUR-GIT-REPOSITORY-URL` is the URL for your Git repository.
-    - `YOUR-GIT-BRANCH` is the name of the branch where you pushed the new `accelerator.yaml` file.
+    - `GIT_REPOSITORY_URL` is the URL for your Git repository where the accelerator is located.
+    - `GIT_REPOSITORY_BRANCH` is the name of the branch where you pushed the new `accelerator.yaml` file.
 
-2. Refresh Tanzu Application Platform GUI to reveal the newly published accelerator.
+2. Refresh Tanzu Application Platform GUI or the Application Accelerator extension in VS Code to reveal the newly published accelerator.
 
-    ![Screenshot of another accelerator in Tanzu Application Platform GUI](../images/new-accelerator-deployed-v1-1.png)
+    ![Screenshot showing the new Simple Accelerator included in Tanzu Application Platform GUI.](../images/new-accelerator-deployed-v1-1.png)
 
-    >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for your new accelerator.
+    >**Note** It might take a few seconds to refresh the catalog and add an entry for your new accelerator.
 
-An alternative to using the Tanzu CLI is to create a separate manifest file and apply it to the cluster:
+An alternative is to use the Tanzu CLI to create a separate manifest file and apply it to the cluster:
 
 1. Create a `simple-manifest.yaml` file and add the following content, filling in with your Git repository and branch values.
 
@@ -82,30 +84,32 @@ An alternative to using the Tanzu CLI is to create a separate manifest file and 
 
 ## <a id="using-local-path"></a>Using local-path for publishing accelerators
 
-You can publish an accelerator directly from a local directory on your system. This helps when authoring accelerators and allows you to avoid having to commit every small change to a remote Git repository. Note that we can also specify `--interval` so the accelerator will be reconciled quicker when we push new changes.
+You can publish an accelerator directly from a local directory on your system. This helps when authoring accelerators and allows you to avoid having to commit every small change to a remote Git repository.
+
+>**Note** You can also specify `--interval` so the accelerator is reconciled quicker when we push new changes.
 
 ```sh
-tanzu accelerator create simple --local-path PATH-TO-THE-ACCELERATOR --source-image YOUR-SOURCE-IMAGE-REPO --interval 10s
+tanzu accelerator create simple --local-path ${ACCELERATOR_PATH} --source-image ${SOURCE_IMAGE_REPO} --interval 10s
 ```
 
 Where:
 
-- `PATH-TO-THE-ACCELERATOR` is the path to the accelerator source, it can be fully qualified or a relative path. If your current directory is already the directory where your source is,than simply use ".".
-- `YOUR-SOURCE-IMAGE-REPO` is the name of the OCI image repository where you want to push the new accelerator source. If using DockerHub you could use something like `docker.io/YOUR-DOCKER_ID/simple-accelerator-source` where `YOUR-DOCKER_ID` is of course the Docker ID you want to use.
+- `ACCELERATOR_PATH` is the path to the accelerator source. It can be fully qualified or a relative path. If your current directory is already the directory where your source is, then use ".".
+- `SOURCE_IMAGE_REPO` is the name of the OCI image repository where you want to push the new accelerator source. If using Docker Hub, use something such as `docker.io/YOUR_DOCKER_ID/simple-accelerator-source`.
 
-Once you have made some additional changes you can push the latest to the same OCI image repository using:
+After you have made any additional changes you can push the latest to the same OCI image repository using:
 
 ```sh
-tanzu accelerator push --local-path PATH-TO-THE-ACCELERATOR --source-image YOUR-SOURCE-IMAGE-REPO
+tanzu accelerator push --local-path ${ACCELERATOR_PATH} --source-image ${SOURCE_IMAGE_REPO}
 ```
 
-The accelerator should now reflect the new content after ~10s wait since we specified that as the interval when we created the accelerator above.
+The accelerator now reflects the new content after approximately a 10 second wait since we specified that as the interval when we created the accelerator above.
 
 ## <a id="using-accelerator-fragments"></a>Using accelerator fragments
 
 Accelerator fragments are reusable accelerator components that can provide options, files or transforms. They may be imported to accelerators using an `import` entry and the transforms from the fragment may be referenced in an `InvokeFragment` transform in the accelerator that is declaring the import. For additional details see [InvokeFragment transform](transforms/invoke-fragment.md).
 
-The accelerator samples include three fragments - `java-version`, `tap-initialize`, and `live-update`. See the [sample-accelerators/fragments](https://github.com/sample-accelerators/fragments/tree/tap-1.2) Git repository for the content of these fragments.
+The accelerator samples include three fragments - `java-version`, `tap-initialize`, and `live-update`. See the [vmware-tanzu/application-accelerator-samples/fragments](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.3/fragments) Git repository for the content of these fragments.
 
 To discover what fragments are available to use, you can run the following command:
 
@@ -162,6 +166,8 @@ This fragment contributes the following to any accelerator that imports it:
     - if the accelerator has a `build.gradle` file then what is specified for `sourceCompatibility` is replaced with the chosen version.
     - if the accelerator has a `config/workload.yaml` file and the user selected "Java 17" then a build environment entry of BP_JVM_VERSION is inserted into the `spec:` section.
 
+## <a id="deploy-accelerator-frags"></a>Deploying accelerator fragments
+
 To deploy new fragments to the accelerator system you can use the new `tanzu accelerator fragment create` CLI command or you can apply a custom resource manifest file with either `kubectl apply` or the `tanzu accelerator apply` commands.
 
 The resource manifest for the `java-version` fragment looks like this:
@@ -176,10 +182,11 @@ spec:
   displayName: Select Java Version
   git:
     ref:
-      branch: tap-1.2
-    url: https://github.com/sample-accelerators/fragments.git
-    subPath: java-version
+      tag: GIT_TAG_VERSION
+    url: https://github.com/vmware-tanzu/application-accelerator-samples.git
+    subPath: fragments/java-version
 ```
+Where `GIT_TAG_VERSION` is the git tag of the `java-version` fragment. As an example, `tap-1.4.0` is a valid git tag for the `java-version` fragment.
 
 To create the fragment (we can save the above manifest in a `java-version.yaml` file) and use:
 
@@ -187,17 +194,18 @@ To create the fragment (we can save the above manifest in a `java-version.yaml` 
 tanzu accelerator apply -f ./java-version.yaml
 ```
 
->**Note:** The `accelerator apply` command can be used to apply both Accelerator and Fragment resources.
+>**Note** The `accelerator apply` command can be used to apply both Accelerator and Fragment resources.
 
 To avoid having to create a separate manifest file, you can use the following command instead:
 
 ```
 tanzu accelerator fragment create java-version \
-  --git-repo https://github.com/sample-accelerators/fragments.git \
-  --git-branch main \
-  --git-tag tap-1.2 \
-  --git-sub-path java-version
+  --git-repo https://github.com/vmware-tanzu/application-accelerator-samples.git \
+  --git-tag ${GIT_TAG_VERSION} \
+  --git-sub-path fragments/java-version
 ```
+
+Where `GIT_TAG_VERSION` is the git tag of the `java-version` fragment. As an example, `tap-1.4.0` is a valid git tag for the `java-version` fragment.
 
 Now you can use this `java-version` fragment in an accelerator:
 

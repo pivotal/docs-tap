@@ -16,7 +16,7 @@ Apply what you have learned:
 
 Developers:
 
-- [Deploy your first application on Tanzu Application Platform](deploy-first-app.md)
+- [Deploy an app on Tanzu Application Platform](deploy-first-app.md)
 
 Operators:
 

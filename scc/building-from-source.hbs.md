@@ -19,9 +19,9 @@ Regardless of the out of the box Supply Chain Package you've installed, you can 
 
 This document provides details about each approach.
 
->**Note:** To provide a prebuilt container image instead of
+>**Note** To provide a prebuilt container image instead of
 building the application from the beginning by using the supply chain, see
-[Using a prebuilt image](pre-built-image.md).
+[Using an existing image](pre-built-image.md).
 
 ## <a id="git-source"></a>Git source
 
@@ -35,13 +35,15 @@ you must fill `workload.spec.source.git`. With the `tanzu` CLI, you can do so by
 
 For example, after installing `ootb-supply-chain-basic`, to create a
 `Workload` the source code for which comes from the `main` branch of the
-`github.com/sample-accelerators/tanzu-java-web-app` Git repository, run:
+`github.com/vmware-tanzu/application-accelerator-samples` Git repository,
+and the subdirectory `tanzu-java-web-app` run:
 
   ```bash
   tanzu apps workload create tanzu-java-web-app \
     --app tanzu-java-web-app \
     --type web \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
     --git-branch main
   ```
 
@@ -63,28 +65,29 @@ Expect to see the following output:
       12 + |    git:
       13 + |      ref:
       14 + |        branch: main
-      15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+      16 + |    subPath: tanzu-java-web-app
   ```
 
->**Note:** The Git repository URL must include the scheme: `http://`,
+>**Note** The Git repository URL must include the scheme: `http://`,
 `https://`, or `ssh://`.
 
 
 ### <a id="private-git-repo"></a>Private `GitRepository`
 
 To fetch source code from a repository that requires credentials, you must
-provide those by using a Kubernetes secret object that the `GitRepository` object created for that workload references. 
+provide those by using a Kubernetes secret object that the `GitRepository` object created for that workload references.
 See [How It Works](#how-it-works)
 to learn more about detecting changes to the repository.
 
 ```scala
 Workload/tanzu-java-web-app
-└─GitRepository/tanzu-java-web-app  
+└─GitRepository/tanzu-java-web-app
                    └───────> secretRef: {name: GIT-SECRET-NAME}
                                                    |
                                       either a default from TAP installation or
                                            gitops_ssh_secret Workload parameter
-``` 
+```
 
 Platform operators who install the Out of the Box Supply Chain packages
 by using Tanzu Application Platform profiles can customize the default name of
@@ -115,7 +118,8 @@ is installed. You can use the `--param` flag in Tanzu CLI. For example:
   tanzu apps workload create tanzu-java-web-app \
     --app tanzu-java-web-app \
     --type web \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
     --git-branch main \
     --param gitops_ssh_secret=SECRET-NAME
   ```
@@ -141,10 +145,11 @@ Expect to see the following output:
       15 + |    git:
       16 + |      ref:
       17 + |        branch: main
-      18 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      18 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+      19 + |    subPath: tanzu-java-web-app
   ```
 
->**Note:** A secret reference is only provided to `GitRepository` if
+>**Note** A secret reference is only provided to `GitRepository` if
 `gitops_ssh_secret` is set to a non-empty string in some fashion,
 either by a package property or a workload parameter. To force a `GitRepository` to
 not reference a secret, set the value to an empty string (`""`).
@@ -268,7 +273,7 @@ The digest of the latest commit:
     interval: 1m0s
     ref: {branch: main}
     timeout: 20s
-    url: https://github.com/sample-accelerators/tanzu-java-web-app
+    url: https://github.com/vmware-tanzu/application-accelerator-samples
   status:
     artifact:
       checksum: 375c2daee5fc8657c5c5b49711a8e94d400994d7
@@ -482,9 +487,21 @@ spec:
       classifier: sources   # optional
 ```
 
-The `tanzu` CLI is used for creating workloads that define Maven artifacts as source.
+There are two ways to create a workload that defines a specific version of a Maven artifact as source in the `tanzu` CLI.
 
-To create a workload that defines a specific version of a maven artifact as source, run:
+The first way is to define the source through CLI flags. For example:
+
+```bash
+tanzu apps workload apply my-workload \
+      --maven-artifact springboot-initial \
+      --maven-version 2.6.0 \
+      --maven-group com.example \
+      --type web --app spring-boot-initial -y
+```
+
+Another flag that can be used alongside the others in this type of command is `--maven-type`, which refers to the Maven packaging type and defaults to `jar` if not specified.
+
+The second one is through complex params (in JSON or YAML format). To specify the Maven info with this method, run:
 
 ```bash
 tanzu apps workload apply my-workload \
@@ -501,8 +518,7 @@ tanzu apps workload apply my-workload \
 ```
 
 The Maven repository URL and required credentials are defined in the supply
-chain, not the workload. For more information, see [Installing OOTB
-Basic](install-ootb-sc-basic.md).
+chain, not the workload. For more information, see [Installing OOTB Basic](./install-ootb-sc-basic.hbs.md).
 
 ### <a id="maven-repository-secret"></a> Maven Repository Secret
 
@@ -524,11 +540,11 @@ type: Opaque
 data:
   username: <BASE64>  # basic auth user name
   password: <BASE64>  # basic auth password
-  caFile: <BASE64>    # PEM Encoded certificate data for custom CA 
+  caFile: <BASE64>    # PEM Encoded certificate data for custom CA
 ```
 
 You cannot use the `tanzu` CLI to create secrets such as this, but
-you can use the kubectl CLI instead.  
+you can use the kubectl CLI instead.
 
 For example:
 

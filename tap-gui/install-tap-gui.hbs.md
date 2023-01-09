@@ -1,13 +1,12 @@
 # Install Tanzu Application Platform GUI
 
-This topic describes how to install Tanzu Application Platform GUI if you have not done so by
-installing Tanzu Application Platform through a Full or View profile.
+This topic describes how to install Tanzu Application Platform GUI from the Tanzu Application Platform
+package repository.
 
-Use the instructions on this page if you do not want to use a profile to install packages.
-
-For more information about profiles, see
-[About Tanzu Application Platform components and profiles](../about-package-profiles.md).
-
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> Tanzu Application Platform GUI.
+> For more information about profiles, see
+> [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a> Prerequisites
 
@@ -62,16 +61,10 @@ To install Tanzu Application Platform GUI on a compliant Kubernetes cluster:
     ingressEnabled: true
     ingressDomain: "INGRESS-DOMAIN"
     app_config:
-      app:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
       catalog:
         locations:
           - type: url
             target: https://GIT-CATALOG-URL/catalog-info.yaml
-      backend:
-        baseUrl: http://tap-gui.INGRESS-DOMAIN
-        cors:
-          origin: http://tap-gui.INGRESS-DOMAIN
     ```
 
     Where:

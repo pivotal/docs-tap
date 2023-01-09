@@ -27,9 +27,9 @@ substitutions:
 condition: SPEL-EXPRESSION
 ```
 
-Syntax reference for defining the replacement behavior using a _single_ regular expression: 
+Syntax reference for defining the replacement behavior using a _single_ regular expression:
 
-  >**Note:** Regex is used to match the entire document. To match on a per line basis, enable multiline mode by including `(?m)` in the regex.
+  >**Note** Regex is used to match the entire document. To match on a per line basis, enable multiline mode by including `(?m)` in the regex.
 
 ```yaml
 type: ReplaceText
@@ -40,7 +40,7 @@ condition: SPEL-EXPRESSION
 ```
 
 In both cases, the SpEL expression can use the special `#files` helper object.
-This enables the replacement string to consist of the contents of an accelerator file.  
+This enables the replacement string to consist of the contents of an accelerator file.
 See the following [example](#examples).
 
 Another set of helper objects are functions of the form `xxx2Yyyy()` where `xxx` and `yyy` can take

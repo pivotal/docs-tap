@@ -70,7 +70,7 @@ to gathering the result of the invocation though, all resulting files are re-int
 with a prefix prepended to their `path` (this applies to **all** files produced by
 the fragment, not just the ones originating from the accelerator).
 
-**Note:** the value of the `anchor` property must not start nor end with a slash (`/`) character.
+**Note** the value of the `anchor` property must not start nor end with a slash (`/`) character.
 
 ## <a id="examples"></a>Examples
 
@@ -177,4 +177,4 @@ using a filter on `*.xml` files.
 ## See also
 
 - [Let](let.md)
-- [RewritePath](rewrite-path.md)   
+- [RewritePath](rewrite-path.md)

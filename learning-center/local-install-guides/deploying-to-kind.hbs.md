@@ -1,8 +1,8 @@
-# Installing on Kind
+# Install on Kind
 
 Kind was developed as a means to support development and testing of Kubernetes. Though it exists primarily for that purpose, Kind clusters are often used for local development of user applications as well. For Learning Center, you can use a local Kind cluster to develop workshop content or self-learning when deploying other people's workshops.
 
-Because you are deploying to a local machine, you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you can be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. Kind uses `containerd`, which lacks certain features that allow you to trust any image registries hosted within a subnet. This means you cannot readily run workshops that use a local container image registry for each workshop session. If you must run workshops on your local computer that uses an image registry for each session, VMware recommends you use minikube with `dockerd` instead. For more information, see [Installing on Minikube](deploying-to-minikube.md).
+Because you are deploying to a local machine, you are unlikely to have access to your own custom domain name and certificate you can use with the cluster. If you don't, you can be restricted as to the sorts of workshops you can develop or run using the Learning Center in Kind. Kind uses `containerd`, which lacks certain features that allow you to trust any image registries hosted within a subnet. This means you cannot readily run workshops that use a local container image registry for each workshop session. If you must run workshops on your local computer that uses an image registry for each session, VMware recommends you use minikube with `dockerd` instead. For more information, see [Install on Minikube](deploying-to-minikube.md).
 
 Also, since Kind has limited memory resources available, you may be prohibited from running workshops that have large memory requirements. Workshops that demonstrate the use of third-party applications requiring a multinode cluster also do not work unless the Kind cluster is specifically configured to be multinode rather than single node.
 
@@ -12,10 +12,10 @@ Requirements and setup instructions specific to Kind are detailed in this docume
 
 You must complete the following installation prerequisites as a user prior to installation:
 
-  - Create a tanzunet account and have access to your tanzunet credentials.
+  - Create a VMware Tanzu Network account and have access to your Tanzu Network credentials.
   - Install Kind on your local machine.
-  - Install tanzuCLI on your local machine.
-  - Install kubectlCLI on your local machine.
+  - Install Tanzu CLI on your local machine.
+  - Install Kubernetes command-line tool (kubectl)  on your local machine.
 
 ## <a id="kind-cluster-creation"></a> Kind cluster creation
 
@@ -59,7 +59,8 @@ If you have created a contour ingress controller, verify all pods have a running
 kubectl get pods -n projectcontour -o wide
 ```
 
-For information on installing Contour, which comes with Tanzu Application Platform, see [Install cert-manager, Contour](../../cert-mgr-contour-fcd/install-cert-mgr.hbs.md#a-idinstall-contourainstall-contour).
+For information about installing Contour, which comes with Tanzu Application Platform,
+see [Install cert-manager, Contour](../../cert-manager/install.hbs.md).
 
 ## <a id="install-carvel-tools"></a> Install carvel tools
 
@@ -77,7 +78,7 @@ To install secret-gen controller, run:
 kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/latest/download/release.yml
 ```
 
->**Note:** Type "y" and enter to continue when prompted during installation of both kapp and secret-gen controllers.
+>**Note** Type "y" and enter to continue when prompted during installation of both kapp and secret-gen controllers.
 
 ## <a id="install-tanzu-pkg-repo"></a> Install Tanzu package repository
 
@@ -112,7 +113,7 @@ Follow these steps to install the Tanzu package repository:
 
   Where `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
 
-  >**Note:** We are currently on build 7. If this changes, we need to update the command with the correct build version after the --url flag.
+  >**Note** We are currently on build 7. If this changes, we need to update the command with the correct build version after the --url flag.
 
 1. To check the package repository install status, run:
 
@@ -162,7 +163,7 @@ kubectl set env deployment/learningcenter-operator -n eduk8s INGRESS_DOMAIN=192.
 
 This causes the Learning Center operator to redeploy with the new configuration. You can now deploy workshops.
 
->**Note:** Some home Internet gateways implement what is called rebind protection. These gateways do not allow DNS names from the public Internet bind to local IP address ranges inside the home network. If your home Internet gateway has such a feature and it is enabled, it blocks `nip.io` addresses from working. In this case, you must configure your home Internet gateway to allow `*.nip.io` names to be bound to local addresses. Also, you cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This causes a failure, because when internal services need to connect to each other, they connect to themselves instead.  This happens because the address resolves to the host loopback address of `127.0.0.1`.
+>**Note** Some home Internet gateways implement what is called rebind protection. These gateways do not allow DNS names from the public Internet bind to local IP address ranges inside the home network. If your home Internet gateway has such a feature and it is enabled, it blocks `nip.io` addresses from working. In this case, you must configure your home Internet gateway to allow `*.nip.io` names to be bound to local addresses. Also, you cannot use an address of form `127.0.0.1.nip.io` or `subdomain.localhost`. This causes a failure, because when internal services need to connect to each other, they connect to themselves instead.  This happens because the address resolves to the host loopback address of `127.0.0.1`.
 
 ## <a id="install-lc-pkg-k8s-clust"></a> Install Learning Center package onto a Kubernetes cluster
 
@@ -256,4 +257,4 @@ This allows you to run five workshop sessions before you have to delete the trai
 
 If you use this, you can use the feature of the training portal to automatically update when a workshop definition is changed. This is because the `wMM` value identifying the workshop environment changes any time you update the workshop definition.
 
-There is no other known workaround for this limitation of `containerd`. As such, VMware recommends you use minikube with `dockerd` instead. For more information, see [Installing on Minikube](deploying-to-minikube.md).
+There is no other known workaround for this limitation of `containerd`. As such, VMware recommends you use minikube with `dockerd` instead. For more information, see [Install on Minikube](deploying-to-minikube.md).

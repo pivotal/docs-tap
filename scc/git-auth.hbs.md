@@ -1,10 +1,10 @@
 # Git authentication
 
 To either fetch or push source code from or to a repository that requires
-credentials, you must provide those through a Kubernetes secret object 
+credentials, you must provide those through a Kubernetes secret object
 referenced by the intended Kubernetes object created for performing the action.
 
-The following sections provide details about how to appropriately set up 
+The following sections provide details about how to appropriately set up
 Kubernetes secrets for carrying those credentials forward to the proper resources.
 
 
@@ -44,9 +44,9 @@ as follows:
     password: GITHUB-ACCESS-TOKEN
   ```
 
->**Note**: In this example, you use an access token because GitHub deprecates 
-basic authentication with plain user name and password. 
-For more information, see [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token) 
+>**Note** In this example, you use an access token because GitHub deprecates
+basic authentication with plain user name and password.
+For more information, see [Creating a personal access token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
 on GitHub.
 
 After you create the secret, attach it to the `ServiceAccount` configured for the
@@ -69,9 +69,9 @@ workload by including it in its set of secrets. For example:
 ## <a id="ssh"></a>SSH
 
 Aside from using HTTP(S) as a transport, the supply chains also allow you to
-use SSH. 
+use SSH.
 
->**Note:** If you want to use the pull request feature, you must use 
+>**Note** If you want to use the pull request feature, you must use
 HTTP(S) authentication with an access token.
 
 1. To provide the credentials for any Git operations with SHH,
@@ -98,12 +98,12 @@ create the Kubernetes secret as follows:
     ssh-keygen -t ecdsa -b 521 -C "" -f "identity" -N ""
     ```
 
-1. Go to your Git provider and add the `identity.pub` as a deployment key for 
-the repository of interest or add to an account that has access to it. 
-For example, for GitHub, 
+1. Go to your Git provider and add the `identity.pub` as a deployment key for
+the repository of interest or add to an account that has access to it.
+For example, for GitHub,
 visit `https://github.com/<repository>/settings/keys/new`.
 
-    >**Note:** Keys of type SHA-1/RSA are recently deprecated by GitHub.
+    >**Note** Keys of type SHA-1/RSA are recently deprecated by GitHub.
 
 1. Gather public keys from the provider, for example, GitHub:
 

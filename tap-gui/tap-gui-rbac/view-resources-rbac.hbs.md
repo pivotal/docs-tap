@@ -4,7 +4,7 @@ To visualize runtime resources on authorization-enabled clusters in Tanzu Applic
 proceed to the software catalog component of choice and click the **Runtime Resources** tab on
 the top of ribbon.
 
-![Screenshot of Runtime Resources](../images/tap-gui-multiple-clusters.png)
+![Screenshot of Runtime Resources showing a table of 36 resources.](../images/tap-gui-multiple-clusters.png)
 
 After you click **Runtime Resources**, Tanzu Application Platform GUI uses your credentials to
 query the clusters for the respective runtime resources.

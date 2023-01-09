@@ -1,4 +1,4 @@
-# Integrating Live Hover by using Spring Boot Tools
+# Integrate Live Hover by using Spring Boot Tools
 
 For more information about this feature, see the **Live application information hovers** section of
 [VS Code documentation for Spring Boot Tools](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot).
@@ -8,10 +8,9 @@ For more information about this feature, see the **Live application information 
 To integrate Live Hover by using Spring Boot Tools you need:
 
 - A Tanzu Spring Boot application, such as
-[tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app)
-- Spring Boot Tools
-[extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-spring-boot) v1.33 or
-later
+[tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app)
+- Spring Boot Extension Pack (includes Spring Boot Dashboard)
+[extension](https://marketplace.visualstudio.com/items?itemName=Pivotal.vscode-boot-dev-pack)
 
 ## <a id="activate-feature"></a> Activate the Live Hover feature
 
@@ -22,7 +21,7 @@ Activate the Live Hover feature by enabling it in
 
 Follow these steps to deploy the workload for an app to a cluster, making live hovers appear.
 The examples in some steps reference the sample
-[tanzu-java-web-app](https://github.com/sample-accelerators/tanzu-java-web-app).
+[tanzu-java-web-app](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app).
 
 1. Clone the repository by running:
 
@@ -31,7 +30,7 @@ The examples in some steps reference the sample
     ```
 
     Where `REPOSITORY-ADDRESS` is your repository address.
-    For example, `https://github.com/sample-accelerators/tanzu-java-web-app`.
+    For example, `https://github.com/vmware-tanzu/application-accelerator-samples`.
 
 1. Open the project in VS Code, with the Live Hover feature enabled, by running:
 
@@ -40,7 +39,7 @@ The examples in some steps reference the sample
     ```
 
     Where `PROJECT-DIRECTORY` is your project directory.
-    For example, `./tanzu-java-web-app`.
+    For example, `./application-accelerator-samples/tanzu-java-web-app`.
 
 1. Verify that you are targeting the cluster on which you want to run the workload by running:
 
@@ -89,6 +88,11 @@ run:
 1. Open a Java file, such as `HelloController.java`.
 After a delay of up to 30 seconds, because of a 30-second polling loop, green highlights appear in
 your code.
-![Live Hover example showing @RestController and @RequestMapping in the code highlighted in green.](../images/vscode-live-hover-example.png)
+![Live Hover example showing at sign RestController and at sign RequestMapping in the code highlighted in green.](../images/vscode-live-hover-example.png)
 
 1. Hover over any of the bubbles to see live information about the corresponding element.
+
+1. The `Live Beans` and `Live Endpoint Mapping` information are displayed in Spring Boot Dashboard.
+   To view the Spring Boot Dashboard, run `View: Show Spring Boot Dashboard` from the Command Palette.
+
+   ![Spring Boot Dashboard showing Live Beans and Live Endpoint Mapping information.](../images/vscode-beansmapping-example.png)

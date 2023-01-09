@@ -18,11 +18,9 @@ spec:
   scanTemplate: private-image-scan-template
 ```
 
-Where:
+Where `IMAGE_URL` is the URL of an image in a private registry.
 
-- `IMAGE_URL` is the url of an image in a private registry.
-
-> **NOTE:** The private image scan assumes that the target image secret was configured during Tanzu Application Platform installation.
+> **Note** The private image scan assumes that the target image secret was configured during Tanzu Application Platform installation.
 
 ## <a id="set-up-watch"></a>(Optional) Set up a watch
 

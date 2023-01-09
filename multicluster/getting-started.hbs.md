@@ -1,4 +1,4 @@
-# Getting started with multicluster Tanzu Application Platform
+# Get started with multicluster Tanzu Application Platform
 
 In this topic, you will validate the implementation of a multicluster topology by taking a sample workload and passing it through the supply chains on the Build and Run clusters. You can take various approaches to configuring the supply chain in this topology, but the following procedures validate the most basic capabilities.
 
@@ -10,7 +10,7 @@ Before implementing a multicluster topology, complete the following:
 
 1. Complete all [installation steps for the four profiles](installing-multicluster.md): Build, Run, View and Iterate.
 
-1. For the sample workload, VMware uses the same Application Accelerator - Tanzu Java Web App in the non-multicluster [Getting Started](../getting-started.md) guide. You can download this accelerator to your own Git infrastructure of choice. You might need to configure additional permissions. Alternatively, you can also use the [sample-accelerators GitHub repository](https://github.com/sample-accelerators/tanzu-java-web-app).
+1. For the sample workload, VMware uses the same Application Accelerator - Tanzu Java Web App in the non-multicluster [Get Started](../getting-started.md) guide. You can download this accelerator to your own Git infrastructure of choice. You might need to configure additional permissions. Alternatively, you can also use the [application-accelerator-samples GitHub repository](https://github.com/vmware-tanzu/application-accelerator-samples).
 
 1. The two supply chains are `ootb-supply-chain-basic` on the Build/Iterate profile and `ootb-delivery-basic` on the Run profile. For the Build/Iterate and Run profiled clusters, perform the steps described in [Setup Developer Namespace](../set-up-namespaces.md). This guide assumes that you use the `default` namespace.
 
@@ -33,7 +33,8 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
     ```bash
     tanzu apps workload create tanzu-java-web-app \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
     --git-branch main \
     --type web \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
@@ -49,59 +50,43 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
 1. To exit the monitoring session, press **CTRL** + **C**.
 
-1. Verify that your supply chain has produced the necessary `Deliverable` for the `Workload` by running:
+1. Verify that your supply chain has produced the necessary `ConfigMap` containing `Deliverable` content produced by the `Workload`:
 
     ```bash
-    kubectl get deliverable --namespace ${DEVELOPER_NAMESPACE}
+    kubectl get configmap tanzu-java-web-app-deliverable --namespace ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}'
     ```
 
-    The output should look simiar to the following:
-
-    ```bash
-    kubectl get deliverable --namespace default
-    NAME                 SOURCE                                                                                                                DELIVERY   READY   REASON             AGE
-    tanzu-java-web-app   tapmulticluster.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-xxxxx              False   DeliveryNotFound   28h
-    ```
-
-    The `Deliverable` contains the reference to the `source`. In this case, it is a bundle on the image registry you specified for the supply chain. The supply chains can also leverage Git repositories instead of ImageRepositories, but that's beyond the scope of this tutorial. 
-
-1. Create a `Deliverable` after verifying there's a `Deliver` on the build cluster. Copy its content to a file that you can take to the Run profile clusters:
-
-    ```bash
-    kubectl get deliverable tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -oyaml > deliverable.yaml
-    ```
-
-1. Delete the `ownerReferences` and `status` sections from the `deliverable.yaml`.
-
-    After editing, the file will look like the following:
+    The output resembles the following:
 
     ```yaml
     apiVersion: carto.run/v1alpha1
     kind: Deliverable
     metadata:
-      creationTimestamp: "2022-03-10T14:35:52Z"
-      generation: 1
+      name: tanzu-java-web-app-deliverable
       labels:
-        app.kubernetes.io/component: deliverable
+        apis.apps.tanzu.vmware.com/register-api: "true"
         app.kubernetes.io/part-of: tanzu-java-web-app
-        app.tanzu.vmware.com/deliverable-type: web
         apps.tanzu.vmware.com/workload-type: web
-        carto.run/cluster-template-name: deliverable-template
-        carto.run/resource-name: deliverable
-        carto.run/supply-chain-name: source-to-url
-        carto.run/template-kind: ClusterTemplate
-        carto.run/workload-name: tanzu-java-web-app
-        carto.run/workload-namespace: default
-      name: tanzu-java-web-app
-      namespace: default
-      resourceVersion: "635368"
-      uid: xxxx-xxxx-xxxx-xxxx-xxxx
+        app.kubernetes.io/component: deliverable
+        app.tanzu.vmware.com/deliverable-type: web
     spec:
+      params:
+      - name: gitops_ssh_secret
+        value: ""
       source:
-        image: tapmulticluster.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-xxxx
+        git:
+          url: http://git-server.default.svc.cluster.local/app-namespace/tanzu-java-web-app
+          ref:
+            branch: main
     ```
 
-1. Take this `Deliverable` file to the **Run** profile clusters by running:
+1. Store the `Deliverable` content, which you can take to the Run profile clusters from the `ConfigMap` by running:
+
+   ```console
+   kubectl get configmap tanzu-java-web-app-deliverable -n ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}' > deliverable.yaml
+   ```
+
+1. Take this `Deliverable` file to the Run profile clusters by running:
 
     ```bash
     kubectl apply -f deliverable.yaml --namespace ${DEVELOPER_NAMESPACE}
@@ -140,4 +125,4 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
     Select the URL that corresponds to the domain you specified in your Run cluster's profile and enter it into a browser. Expect to see the message "Greetings from Spring Boot + Tanzu!".
 
-1. View the component in Tanzu Application Platform GUI, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/sample-accelerators/tanzu-java-web-app/blob/main/catalog/catalog-info.yaml) from the sample accelerator in GitHub.
+1. View the component in Tanzu Application Platform GUI, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/catalog/catalog-info.yaml) from the sample accelerator in GitHub.

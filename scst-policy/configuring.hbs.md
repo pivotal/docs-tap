@@ -22,7 +22,7 @@ that have chosen to opt-in. This is done by adding the label
 kubectl label namespace my-secure-namespace policy.sigstore.dev/include=true
 ```
 
->**Caution:** Without a Policy Controller ClusterImagePolicy applied, there are
+> **Caution** Without a Policy Controller ClusterImagePolicy applied, there are
 fallback behaviors where images are validated against the public Sigstore
 Rekor and Fulcio servers by using a keyless authority flow. Therefore, if the
 deploying image is signed publicly by a third-party using the keyless
@@ -43,9 +43,12 @@ The cluster image policy is a custom resource containing the following propertie
   - If `*` is specified, the `glob` matching behavior is `index.docker.io/library/*`.
   - If `*/*` is specified, the `glob` matching behavior is `index.docker.io/*/*`.
   With these defaults, you require the `glob` pattern `**` to match against all images.
-  If your image is hosted on DockerHub, include `index.docker.io` as the host for the glob.
+  If your image is hosted on Docker Hub, include `index.docker.io` as the host for the glob.
 
-* `authorities`: The authorities block defines the rules for discovering and validating signatures. Discovery is done by using the `sources` text box, and is specified on any entry. Signatures are cryptographically verified using one of the `key` or `keyless` text boxes.
+* `authorities`: The authorities block defines the rules for discovering and
+  validating signatures. Discovery is done by using the `sources` text box, and
+  is specified on any entry. Signatures are cryptographically verified using one
+  of the `key` or `keyless` text boxes.
 
 When a policy is selected to be evaluated against the matched image, the
 authorities are used to validate signatures. If at least one authority is
@@ -70,20 +73,24 @@ spec:
   mode: warn
 ```
 
+Where `POLICY-NAME` is the name of the policy you want to configure your ClusterImagePolicy with.
+
 When `enforce` mode rejects an image, the image is not admitted.
 
 Sample output message:
-```
+
+```console
 error: failed to patch: admission webhook "policy.sigstore.dev" denied the request: validation failed: failed policy: POLICY-NAME: spec.template.spec.containers[0].image
 IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
-failed policy: <POLICY_NAME>: spec.template.spec.containers[1].image
+failed policy: POLICY-NAME: spec.template.spec.containers[1].image
 IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
 ```
 
 When `warn` mode rejects an image, the image is admitted.
 
 Sample output message:
-```
+
+```console
 Warning: failed policy: POLICY-NAME: spec.template.spec.containers[0].image
 Warning: IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
 Warning: failed policy: POLICY-NAME: spec.template.spec.containers[1].image
@@ -91,7 +98,7 @@ Warning: IMAGE-REFERENCE signature key validation failed for authority authority
 ```
 
 If a namespace contains both signed and unsigned images, utilizing two ClusterImagePolicies can address this.
-One policy can be configured with `enforce` for images that are signed and the other policy can be configured with `warn` to allow expected unsigned images.
+You can configure one policy with `enforce` for images that are signed and configure the other policy with `warn` to allow expected unsigned images.
 
 For example, allowing unsigned `tap-packages` images required for the platform through a `warn` policy.
 However, the signed images produced from Tanzu Build Service are verified with an `enforce` policy.
@@ -106,11 +113,12 @@ These patterns are matched against the image digest in `PodSpec` for resources
 attempting deployment.
 
 Policy Controller defines the following globs by default:
+
 - If `*` is specified, the `glob` matching behavior is `index.docker.io/library/*`.
 - If `*/*` is specified, the `glob` matching behavior is `index.docker.io/*/*`.
 
 With these defaults, you require the `glob` pattern `**` to match against all images.
-If your image is hosted on DockerHub, include `index.docker.io` as the host for the glob.
+If your image is hosted on Docker Hub, include `index.docker.io` as the host for the glob.
 
 A sample of a ClusterImagePolicy which matches against all images using glob:
 
@@ -124,15 +132,37 @@ spec:
   - glob: "**"
 ```
 
+### <a id="cip-match"></a> `match`
+
+You can use `match` to filter resources using group, version, kind, or labels in a
+selected namespace to enforce the defined policy.
+If the list of matching resources is empty, all core resources are used by default.
+
+For example, you can filter all `v1 cronjobs` with the label `app: tap` in a namespace that
+is labeled for policy enforcement:
+
+```yaml
+spec:
+  match:
+  - group: batch
+    resource: cronjobs
+    version: v1
+    selector:
+      matchLabels:
+        app: tap
+```
+
 ### <a id="cip-authorities"></a> `authorities`
 
 Authorities listed in the `authorities` block of the ClusterImagePolicy are
 `key` or `keyless` specifications.
 
+> **Note** Keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](./install-scst-policy.hbs.md).
+
 Each `key` authority can contain a PEM-encoded ECDSA public key, a `secretRef`,
 or a `kms` path.
 
->**Note:** Only ECDSA public keys are supported.
+> **Note** Only ECDSA public keys are supported.
 
 ```yaml
 spec:
@@ -148,6 +178,12 @@ spec:
     - key:
         kms: KMSPATH
 ```
+
+Where `KMSPATH` is the name of the KMS path you want to configure in your key authority.
+
+> **Note** The secret referenced in `key.secretRef.name` must be created
+in the `cosign-system` namespace or the namespace where the Policy Controller
+is installed. Such secret must only contain one `data` entry with the public key.
 
 Each keyless authority can contain a Fulcio URL, a Rekor URL, a certificate, or
 an array of identities.
@@ -198,20 +234,31 @@ spec:
       action: fail
 ```
 
+Where `POLICY-NAME` is the name of the policy you want to configure your ClusterImagePolicy with.
+
 A sample output of static action `fail`:
 
-```
+```console
 error: failed to patch: admission webhook "policy.sigstore.dev" denied the request: validation failed: failed policy: POLICY-NAME: spec.template.spec.containers[0].image
 IMAGE-REFERENCE disallowed by static policy
 failed policy: POLICY-NAME: spec.template.spec.containers[1].image
 IMAGE-REFERENCE disallowed by static policy
 ```
 
-Images that are unsigned in a namespace with validation enabled are admitted with an authority with static action `pass`.
+Images that are unsigned in a namespace with validation enabled are admitted
+with an authority with static action `pass`.
 
-A scenario where this is desirable is configuring a policy with `static.action` `pass` for `tap-packages` images. Another policy is then configured to validate signed images produced by Tanzu Build Service. This allows images from `tap-packages`, which are unsigned and required by the platform, to be admitted while still validating signed built images from Tanzu Build Service. See [Configure your supply chain to sign and verify your image builds](../getting-started/config-supply-chain.md#config-sc-to-img-builds) for an example.
+A scenario where this applies is configuring a policy with `static.action`
+`pass` for `tap-packages` images. Another policy is then configured to validate
+signed images produced by Tanzu Build Service. This allows images from
+`tap-packages`, which are unsigned and required by the platform, to be admitted
+while still validating signed built images from Tanzu Build Service. See
+[Configure your supply chain to sign and verify your image
+builds](../getting-started/config-supply-chain.md#config-sc-to-img-builds) for
+an example.
 
-If `Warning` messages are desirable for admitted images where validation failed, you can configure a policy with `warn` mode and valid authorities.
+If `Warning` messages are desirable for admitted images where validation failed,
+you can configure a policy with `warn` mode and valid authorities.
 For information about ClusterImagePolicy modes, see the [Mode](#cip-mode) documentation.
 
 ## <a id='provide-creds-for-package'></a> Provide credentials for the package
@@ -237,8 +284,8 @@ Authentication can fail for the following scenarios:
 You can provide secrets for authentication as part of the policy
 configuration. The `oci` location is the image location or a remote location
 where signatures are configured to be stored during signing.
-The `signaturePullSecrets` must be found in the namespace of the
-deploying pod resource.
+The `signaturePullSecrets` is available in the `cosign-system` namespace
+or the namespace where the Policy Controller is installed.
 
 By default, `imagePullSecrets` from the resource or service account is used
 while the default `oci` location is the image location.
@@ -256,14 +303,16 @@ spec:
       source:
         - oci: registry.example.com/project/signature-location
           signaturePullSecrets:
-            - name: mysecret
+            - name: MY-SECRET
     - keyless:
         url: https://fulcio.example.com
       source:
         - oci: registry.example.com/project/signature-location
           signaturePullSecrets:
-            - name: mysecret
+            - name: MY-SECRET
 ```
+
+Where `MY-SECRET` is the name of the secret you want to use with your credentials.
 
 VMware recommends using a set of credentials with the least amount of
 privilege that allows reading the signature stored in your registry.
@@ -271,6 +320,7 @@ privilege that allows reading the signature stored in your registry.
 ## <a id="verify-configuration"></a> Verify your configuration
 
 A sample policy:
+
 ```yaml
 apiVersion: policy.sigstore.dev/v1beta1
 kind: ClusterImagePolicy

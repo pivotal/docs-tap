@@ -1,46 +1,7 @@
-# Troubleshooting Tanzu Build Service
+# Troubleshoot Tanzu Build Service
 
 This topic provides information to help troubleshoot Tanzu Build Service when used with
 Tanzu Application Platform.
-
-## <a id="tbs-1-2-breaking-change"></a> Builds fail after upgrading to Tanzu Application Platform v1.2
-
-### Symptom
-
-After upgrading to Tanzu Application Platform v1.2, you see failing builds.
-
-### Explanation
-
-After the upgrade, Tanzu Build Service image resources automatically run a build
-that fails due to a missing dependency.
-
-This error does not persist and any subsequent builds will resolve this error.
-
-### Solution
-
-You can safely wait for the next build of the workloads, which is triggered by new source code changes.
-
-If you do not want to wait for subsequent builds to run automatically, you can use the open source
-[kp](https://github.com/vmware-tanzu/kpack-cli) CLI to re-run failing builds:
-
-1. List the image resources in the developer namespace by running:
-
-    ```console
-    kp image list -n DEVELOPER-NAMESPACE
-    ```
-
-    Where `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
-
-1. Manually trigger the image resources to re-run builds for each failing image by running:
-
-    ```console
-    kp image trigger IMAGE-NAME -n DEVELOPER-NAMESPACE
-    ```
-
-    Where:
-
-    - `IMAGE-NAME` is the name of the failing image.
-    - `DEVELOPER-NAMESPACE` is the namespace where workloads are created.
 
 ## <a id="eks-1-23-volume"></a> Builds fail due to volume errors on EKS running Kubernetes v1.23
 
@@ -98,19 +59,50 @@ For instructions, refer to the following documentation for your Kubernetes clust
 
 For AWS, see:
 
-* The [Amazon blog](https://aws.amazon.com/blogs/containers/amazon-eks-1-21-released/)
-* The [eksctl CLI documentation](https://eksctl.io/usage/container-runtime/)
+- The [Amazon blog](https://docs.aws.amazon.com/eks/latest/userguide/dockershim-deprecation.html)
+- The [eksctl CLI documentation](https://eksctl.io/usage/container-runtime/)
 
 For AKS, see:
 
-* The [Microsoft Azure documentation](https://docs.microsoft.com/en-us/azure/aks/cluster-configuration#container-runtime-configuration)
-* The [Microsoft Azure blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/dockershim-deprecation-and-aks/ba-p/3055902)
+- The [Microsoft Azure documentation](https://docs.microsoft.com/en-us/azure/aks/cluster-configuration#container-runtime-configuration)
+- The [Microsoft Azure blog](https://techcommunity.microsoft.com/t5/apps-on-azure-blog/dockershim-deprecation-and-aks/ba-p/3055902)
 
 For GKE, see:
 
-* The [GKE documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/using-containerd)
+- The [GKE documentation](https://cloud.google.com/kubernetes-engine/docs/concepts/using-containerd)
 
 For OpenShift, see:
 
-* The [Red Hat Hybrid Cloud blog](https://cloud.redhat.com/blog/containerd-support-for-windows-containers-in-openshift)
-* The [Red Hat Openshift documentation](https://docs.openshift.com/container-platform/3.11/crio/crio_runtime.html)
+- The [Red Hat Hybrid Cloud blog](https://cloud.redhat.com/blog/containerd-support-for-windows-containers-in-openshift)
+- The [Red Hat Openshift documentation](https://docs.openshift.com/container-platform/3.11/crio/crio_runtime.html)
+
+## <a id="max-message-size"></a> Nodes fail due to "trying to send message larger than max" error
+
+### Symptom
+
+You see the following error, or similar, in a node status:
+
+```console
+Warning ContainerGCFailed 119s (x2523 over 42h) kubelet rpc error: code = ResourceExhausted desc = grpc: trying to send message larger than max (16779959 vs. 16777216)
+```
+
+### Explanation
+
+This is due to the way that the container runtime interface (CRI) handles garbage
+collection for unused images and containers.
+
+### Solution
+
+Do not use Docker as the CRI because it is not supported. Some versions of EKS
+default to Docker as the runtime.
+
+## <a id="old-build-cache-used"></a> Build platform uses the old build cache after upgrade to new stack
+
+### Symptom
+
+While upgrading apps to a newer stack, you might encounter the build platform
+erroneously reusing the old build cache.
+
+### Solution
+
+If you encounter this issue, delete and recreate the workload in Tanzu Application Platform, or delete and recreate the image in Tanzu Build Service.

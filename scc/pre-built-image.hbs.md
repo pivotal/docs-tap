@@ -1,4 +1,4 @@
-# Using a prebuilt image
+# Using an existing image
 
 For apps that build container images in a predefined way, the supply chains
 in the Out of the Box packages enable you to specify a prebuilt image.
@@ -204,7 +204,7 @@ You can use Spring Boot's `build-image` target to build a container image that r
 The `build-image` target must use a Dockerfile.
 
 For example, using the same sample repository as mentioned before
-(https://github.com/sample-accelerators/tanzu-java-web-app):
+(https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app):
 
 1. Build the image by running the following command from the root of the repository:
 
@@ -343,7 +343,7 @@ keep track of images named
 
 ```scala
 Workload/tanzu-java-web-app
-├─ImageRepository/tanzu-java-web-app        
+├─ImageRepository/tanzu-java-web-app
 ├─PodIntent/tanzu-java-web-app
 ├─ConfigMap/tanzu-java-web-app
 └─Runnable/tanzu-java-web-app-config-writer
@@ -392,4 +392,4 @@ The image found by the `ImageRepository` object is carried through the
 supply chain to the final configuration. This is pushed to either
 a Git repository or image registry so that it is deployed in a run cluster.
 
->**Note:** The image name matches the image name supplied in the `spec.image` field in the `workload.yaml`, but also includes the digest of the latest image found under the tag. If a new image is pushed to the same tag, you see the `ImageRepository` resolving the name to a different digest corresponding to the new image pushed.
+>**Note** The image name matches the image name supplied in the `spec.image` field in the `workload.yaml`, but also includes the digest of the latest image found under the tag. If a new image is pushed to the same tag, you see the `ImageRepository` resolving the name to a different digest corresponding to the new image pushed.

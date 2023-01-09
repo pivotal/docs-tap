@@ -22,7 +22,7 @@ You can use the example blank catalog described in the Tanzu Application Platfor
 and main component YAML files.
 
 Relationship Diagram:
-![Tanzu Application Platform GUI Relationships](../images/tap-gui-relationships.jpg)
+![Relationships box-and-line diagram. User 1 is within Group 1, which is within Organization. Component 2 is within System. User 1 owns Component 2. Group 1 owns System.](../images/tap-gui-relationships.jpg)
 
 ### <a id='users-and-groups'></a> Users and groups
 
@@ -151,63 +151,86 @@ To deregister an entity:
 
 ### <a id='add-or-change'></a> Add or change organization catalog locations
 
-To add or change organization catalog locations:
+To add or change organization catalog locations, you can use static configuration or you can use
+`GitLabDiscoveryProcessor` to discover and register catalog entities that match the configured path.
 
-1. Use static configuration to add or change catalog locations.
+Use static configuration
+: To use static configuration to add or change catalog locations:
 
-   - Update components by changing the catalog location in either the `app_config` section of
-   `tap-gui-values.yaml` or the custom values file you used when installing. For example:
+   1. Update components by changing the catalog location in either the `app_config` section of
+      `tap-gui-values.yaml` or the custom values file you used when installing. For example:
 
-     ```yaml
-     catalog:
-     locations:
-       - type: url
-         target: UPDATED-CATALOG-LOCATION
-     ```
+        ```yaml
+        catalog:
+        locations:
+          - type: url
+            target: UPDATED-CATALOG-LOCATION
+        ```
 
-   - Register components by adding the new catalog location in either the `app_config` section of
-   `tap-gui-values.yaml` or the custom values file you used when installing. For example:
+   2. Register components by adding the new catalog location in either the `app_config` section of
+      `tap-gui-values.yaml` or the custom values file you used when installing. For example:
 
-     ```yaml
-     catalog:
-     locations:
-       - type: url
-         target: EXISTING-CATALOG-LOCATION
-       - type: url
-         target: EXTRA-CATALOG-LOCATION
-     ```
+        ```yaml
+        catalog:
+        locations:
+          - type: url
+            target: EXISTING-CATALOG-LOCATION
+          - type: url
+            target: EXTRA-CATALOG-LOCATION
+        ```
 
-   When targeting GitHub, don't write the raw URL. Instead, use the URL that you see when you
-   navigate to the file in the browser. The catalog processor cannot set up the files properly if
-   you use the raw URL.
+      When targeting GitHub, don't write the raw URL. Instead, use the URL that you see when you
+      navigate to the file in the browser. The catalog processor cannot set up the files properly if
+      you use the raw URL.
 
-   - Example raw URL: `https://raw.githubusercontent.com/user/repo/catalog.yaml`
-   - Example target URL: `https://github.com/user/repo/blob/main/catalog.yaml`
+      - Example raw URL: `https://raw.githubusercontent.com/user/repo/catalog.yaml`
+      - Example target URL: `https://github.com/user/repo/blob/main/catalog.yaml`
 
-   When targeting GitLab, use a
-   [scoped route](https://docs.gitlab.com/ee/development/routing.html#project-routes) to the
-   catalog file. This is a route with the `/-/` separator after the project name.
-   If you don't use a scoped route, your entity fails to appear in the catalog.
+      When targeting GitLab, use a
+      [scoped route](https://docs.gitlab.com/ee/development/routing.html#project-routes) to the
+      catalog file. This is a route with the `/-/` separator after the project name.
+      If you don't use a scoped route, your entity fails to appear in the catalog.
 
-   - Example unscoped URL: `https://gitlab.com/group/project/blob/main/catalog.yaml`
-   - Example target URL: `https://gitlab.com/group/project/-/blob/main/catalog.yaml`
+      - Example unscoped URL: `https://gitlab.com/group/project/blob/main/catalog.yaml`
+      - Example target URL: `https://gitlab.com/group/project/-/blob/main/catalog.yaml`
 
-   For more information about static catalog configuration, see the
-   [Backstage documentation](https://backstage.io/docs/features/software-catalog/configuration#static-location-configuration).
+      For more information about static catalog configuration, see the
+      [Backstage documentation](https://backstage.io/docs/features/software-catalog/configuration#static-location-configuration).
 
-2. Update the package to include the catalog by running:
+Use GitLabDiscoveryProcessor
+: To use `GitLabDiscoveryProcessor` to discover and register catalog entities:
 
-   ```console
-   tanzu package installed update backstage \
-     --version PACKAGE-VERSION \
-     -f VALUES-FILE
-   ```
+   1. Use `type: gitlab-discovery` to make `GitLabDiscoveryProcessor` crawl the GitLab
+      instance to discover and register catalog entities that match the configured path.
+      For more information, see the [Backstage documentation](https://backstage.io/docs/integrations/gitlab/discovery#alternative-processor).
 
-3. Verify the status of this update by running:
+   2. Update the package to include the catalog:
 
-   ```console
-   tanzu package installed list
-   ```
+      - If you installed Tanzu Application Platform GUI by using a profile, run:
+
+        ```console
+        tanzu package installed update tap \
+          --package-name tap.tanzu.vmware.com \
+          --version PACKAGE-VERSION \
+          --values-file tap-values.yaml \
+          --namespace tap-install
+        ```
+
+      - If you installed Tanzu Application Platform GUI as an individual package, run:
+
+        ```console
+        tanzu package installed update tap-gui \
+          --package-name tap-gui.tanzu.vmware.com \
+          --version PACKAGE-VERSION \
+          --values-file tap-gui-values.yaml \
+          --namespace tap-install
+        ```
+
+   3. Verify the status of this update by running:
+
+      ```console
+      tanzu package installed list -n tap-install
+      ```
 
 ## <a id='install-demo'></a> Install demo apps and their catalogs
 

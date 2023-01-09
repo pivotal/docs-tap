@@ -1,4 +1,4 @@
-# Installing Pinniped on Tanzu Application Platform
+# Install Pinniped on Tanzu Application Platform
 
 [Pinniped](https://pinniped.dev/) is used to support authentication on Tanzu Application Platform.
 This topic introduces how to install Pinniped on a single cluster of Tanzu Application Platform.
@@ -31,7 +31,7 @@ When running a multicluster setup you must decide which cluster to deploy the Su
 In contrast, the `Pinniped Concierge` must be deployed to every cluster that you want to enable authentication for, including the `view cluster` itself.
 
 See the following diagram showing a possible deployment model.
-![Diagram showing the multicluster topology.](../images/auth-pinniped-multi-cluster.jpg)
+![Diagram showing the multicluster topology, where Pinniped Supervisor is deployed to View Cluster, and Pinniped Concierge instances are deployed across View, Build, and Run cluster.](../images/auth-pinniped-multi-cluster.jpg)
 
 For more information about the Pinniped architecture and deployment model, see the [Pinniped Documentation](https://pinniped.dev/docs/background/architecture/).
 

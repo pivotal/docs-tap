@@ -2,9 +2,9 @@
 
 This package contains Cartographer Supply Chains that tie together a series of
 Kubernetes resources that drive a developer-provided workload from source code
-to a Kubernetes configuration ready to be deployed to a cluster.
-It passes the source code forward to image building only if the testing
-pipeline supplied by the developers runs successfully.
+to a Kubernetes configuration ready to be deployed to a cluster. It passes the
+source code forward to image building only if the testing pipeline supplied by
+the developers runs successfully.
 
 This package includes all the capabilities of the Out of the Box Supply Chain Basic, but
 adds testing with Tekton.
@@ -56,8 +56,6 @@ If you see `source-test-scan-to-url` in the list, the setup is wrong: you
 **must not have the _source-test-scan-to-url_ installed** at the same time as
 _source-test-to-url_.
 
-
-
 ## <a id="developer-namespace"></a> Developer Namespace
 
 As mentioned in the prerequisites section, this supply chain builds on the
@@ -79,7 +77,6 @@ the namespace has the following objects in it (including the ones marked with
 
   For more information, see [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.md).
 
-
 - **rolebinding**: Grant to the identity the necessary roles
   for creating the resources prescribed by the supply chain.
 
@@ -91,10 +88,9 @@ the namespace has the following objects in it (including the ones marked with
 Below you will find details about the new objects compared to Out of the Box
 Supply Chain Basic.
 
-
 ### <a id="updates-to-developer-namespace"></a> Updates to the developer Namespace
 
-In order for source code testing to be present in the supply chain, a Tekton
+For source code testing to be present in the supply chain, a Tekton
 Pipeline must exist in the same namespace as the Workload so that, at the right
 moment, the Tekton PipelineRun object that gets created to run the tests can
 reference such developer-provided Pipeline.
@@ -105,10 +101,13 @@ Chain Basic section, you need to include one more:
 - `tekton/Pipeline`: the definition of a series of tasks to run against the
   source code that has been found by earlier resources in the Supply Chain.
 
-
 #### <a id="tekton-pipeline"></a> Tekton/Pipeline
 
-By default, the workload is matched to the corresponding pipeline to run using labels.  Pipelines must have the label `apps.tanzu.vmware.com/pipeline: test` at a minimum, but you can add additional labels for granularity.  This provides a default match in the event that no other labels are provided. The pipeline expects two parameters:
+By default, the workload is matched to the corresponding pipeline to run using
+labels.  Pipelines must have the label `apps.tanzu.vmware.com/pipeline: test` at
+a minimum, but you can add additional labels for granularity.  This provides a
+default match in the event that no other labels are provided. The pipeline
+expects two parameters:
 
 - `source-url`, an HTTP address where a `.tar.gz` file containing all the
   source code to be tested can be found
@@ -156,11 +155,16 @@ which triggers a re-run.
 
 #### <a id="multiple-pl"></a> Allow multiple Tekton pipelines in a namespace
 
-You can configure your developer namespace to include more than one pipeline using either of the following methods:
+You can configure your developer namespace to include more than one pipeline
+using either of the following methods:
 
-  - Use a single pipeline running on a container image that includes testing tools and runs a common script to execute tests. This allows you to accommodate multiple workloads based in different languages in the same namespace that use a common make test script, as shown in the following example:
+- Use a single pipeline running on a container image that includes testing
+  tools and runs a common script to execute tests. This allows you to
+  accommodate multiple workloads based in different languages in the same
+  namespace that use a common make test script, as shown in the following
+  example:
 
-    ```
+    ```console
     apiVersion: tekton.dev/v1beta1
     kind: Pipeline
     metadata:
@@ -178,9 +182,11 @@ You can configure your developer namespace to include more than one pipeline usi
                   make test
     ```
 
-  - Update the pipeline resources to include labels that differentiate between the pipelines. For example, differentiate between Java and Go pipelines by adding labels for Java and Go:
+- Update the pipeline resources to include labels that differentiate between
+  the pipelines. For example, differentiate between Java and Go pipelines by
+  adding labels for Java and Go:
 
-    ```
+    ```console
     apiVersion: tekton.dev/v1beta1
     kind: Pipeline
     metadata:
@@ -214,28 +220,30 @@ You can configure your developer namespace to include more than one pipeline usi
                   go test -v ./...
     ```
 
-  To match the correct pipeline, you add a `testing_pipeline_matching_labels` parameter to the workload. For example, if you want to match to the Java pipeline, you have the following workload.yaml:
+To match the correct pipeline, you add a `testing_pipeline_matching_labels`
+parameter to the workload. For example, if you want to match to the Java
+pipeline, you have the following `workload.yaml`:
 
-  ```
-  apiVersion: carto.run/v1alpha1
-  kind: Workload
-  metadata:
-    name: sample-java-app
-    labels:
-      apps.tanzu.vmware.com/has-tests: true
-      apps.tanzu.vmware.com/workload-type: web
-      app.kubernetes.io/part-of: sample-java-app
-  spec:
-    params:
-      - name: testing_pipeline_matching_labels 
-        value:
-          apps.tanzu.vmware.com/pipeline: test
-          apps.tanzu.vmware.com/language: java
-    ...
-  ```
+```console
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: sample-java-app
+  labels:
+    apps.tanzu.vmware.com/has-tests: true
+    apps.tanzu.vmware.com/workload-type: web
+    app.kubernetes.io/part-of: sample-java-app
+spec:
+  params:
+    - name: testing_pipeline_matching_labels
+      value:
+        apps.tanzu.vmware.com/pipeline: test
+        apps.tanzu.vmware.com/language: java
+  ...
+```
 
-  This will match the workload to the pipeline with the `apps.tanzu.vmware.com/language: java` label.
-  
+This matches the workload to the pipeline with the `apps.tanzu.vmware.com/language: java` label.
+
 ## <a id="developer-workload"></a> Developer Workload
 
 With the Tekton Pipeline object
@@ -252,7 +260,8 @@ For example:
 ```console
 tanzu apps workload create tanzu-java-web-app \
   --git-branch main \
-  --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+  --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+  --sub-path tanzu-java-web-app \
   --label apps.tanzu.vmware.com/has-tests=true \
   --label app.kubernetes.io/part-of=tanzu-java-web-app \
   --type web
@@ -275,5 +284,6 @@ Create workload:
      13 + |    git:
      14 + |      ref:
      15 + |        branch: main
-     16 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+     16 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+     17 + |    subPath: tanzu-java-web-app
 ```

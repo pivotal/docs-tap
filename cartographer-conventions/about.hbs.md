@@ -1,8 +1,8 @@
-# Cartographer Conventions 
+# Cartographer Conventions
 
 ## <a id="overview"></a> Overview
 
->**Note:** This component is replacing the [Convention Controller](../convention-service/about.md).
+>**Note** This component is replacing the [Convention Controller](../convention-service/about.md).
 
 Cartographer Conventions provides a means for operators to express
 their knowledge about how applications should run on Kubernetes as a convention.
@@ -39,7 +39,7 @@ Targeted conventions can ensure uniformity across specific workload types deploy
 
 You can use all the metadata details of an image when evaluating workloads. To see the metadata details, use the Docker CLI command `docker image inspect IMAGE`.
 
->**Note:** Depending on how the image was built, metadata might not be available to reliably identify
+>**Note** Depending on how the image was built, metadata might not be available to reliably identify
 the image type and match the criteria for a convention server.
 Images built with Cloud Native Buildpacks reliably include rich descriptive metadata.
 Images built by some other process can not include the same metadata.
@@ -52,6 +52,6 @@ adding environment variables, or adding cached volumes.
 Such conventions are a great way to ensure infrastructure uniformity
 across workloads deployed on the cluster while reducing developer toil.
 
->**Note:** Adding a sidecar alone does not make the log or metrics collection work.
+>**Note** Adding a sidecar alone does not make the log or metrics collection work.
   This requires having collector agents deployed and accessible from the Kubernetes cluster,
 and configuring required access by using role-based access control (RBAC) policy.

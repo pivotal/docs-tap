@@ -1,11 +1,16 @@
-# Accepting Tanzu Application Platform EULAs and installing Tanzu CLI
+# Accept Tanzu Application Platform EULAs and installing Tanzu CLI
 
 This topic describes how to:
 
-  - [Accept Tanzu Application Platform EULAs](#accept-eulas)
-  - [Set the Kubernetes cluster context](#cluster-context)
-  - [Install or update the Tanzu CLI and plug-ins](#cli-and-plugin)
-
+- [Accept Tanzu Application Platform EULAs and installing Tanzu CLI](#accept-tanzu-application-platform-eulas-and-installing-tanzu-cli)
+  - [ Accept the End User License Agreements](#-accept-the-end-user-license-agreements)
+    - [ Example of accepting the Tanzu Application Platform EULA](#-example-of-accepting-the-tanzu-application-platform-eula)
+  - [ Set the Kubernetes cluster context](#-set-the-kubernetes-cluster-context)
+  - [ Install or update the Tanzu CLI and plug-ins](#-install-or-update-the-tanzu-cli-and-plug-ins)
+    - [ Install Tanzu CLI: Linux or macOS](#-install-tanzu-cli-linux-or-macos)
+    - [ Install Tanzu CLI: Windows](#-install-tanzu-cli-windows)
+  - [ Install/Update Tanzu CLI plug-ins](#-installupdate-tanzu-cli-plug-ins)
+  - [Next steps](#next-steps)
 
 ## <a id='accept-eulas'></a> Accept the End User License Agreements
 
@@ -25,14 +30,14 @@ To accept the Tanzu Application Platform EULA:
 
 1. Go to [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 
-2. Select the ***Click here to sign the EULA*** link in the yellow warning box under the release drop-down menu. If the yellow warning box is not visible, the EULA has already been accepted.
+2. Select the ***Click here to sign the EULA*** link in the yellow warning box under the release
+   drop-down menu. If the yellow warning box is not visible, the EULA has already been accepted.
 
-    ![Screenshot of a VMware Tanzu Network download page.](images/install-tanzu-cli-eulas1.png)
+    ![Screenshot of a VMware Tanzu Network download page with notice stating user must sign EULA before downloading.](images/install-tanzu-cli-eulas1.png)
 
 3. Select ***Agree*** in the bottom-right of the dialog box as seen in the following screenshot.
 
-    ![Screenshot of a dialog box inviting the reader to accept the EULA. The AGREE button is framed.](images/install-tanzu-cli-eulas2.png)
-
+    ![Screenshot of a dialog box inviting the reader to accept the EULA. The Agree button is framed.](images/install-tanzu-cli-eulas2.png)
 
 ## <a id='cluster-context'></a> Set the Kubernetes cluster context
 
@@ -53,7 +58,8 @@ To set the Kubernetes cluster context:
     *       aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
     ```
 
-2. Set the context to the cluster that you want to use for the Tanzu Application Platform packages installation by running:
+2. Set the context to the cluster that you want to use for the Tanzu Application Platform packages
+   installation by running:
 
     ```console
     kubectl config use-context CONTEXT
@@ -73,13 +79,20 @@ To set the Kubernetes cluster context:
 You use the Tanzu CLI and plug-ins to install and use the Tanzu Application Platform functions
 and features.
 
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> the Tanzu CLI and plug-ins. For more information about profiles, see [About Tanzu Application Platform
+> components and profiles](about-package-profiles.hbs.md).
+
 To install the Tanzu CLI and plug-ins:
 
 1. Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com).
-2. Go to the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform).
-3. Select `Release 1.3.0` from the release dropdown menu.
-4. Click and download the Tanzu framework bundle for your operating system.
-5. (Optional) If an earlier upgrade attempt failed, you can uninstall the previous version of the Tanzu CLI and associated plug-ins and files. See [Remove Tanzu CLI, plug-ins, and associated files](uninstall.html#remove-tanzu-cli) for more information.
+2. Go to the [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+3. Select **Release {{ vars.tap_version }}** from the release drop-down menu.
+4. Click **tanzu-cli-tap-{{ vars.tap_version }}** to list the Tanzu framework bundles.
+5. Click and download the Tanzu framework bundle for your operating system.
+6. (Optional) If an earlier upgrade attempt failed, you can uninstall the previous version of the
+   Tanzu CLI and associated plug-ins and files.
+   See [Remove Tanzu CLI, plug-ins, and associated files](uninstall.html#remove-tanzu-cli) for more information.
 
 For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows-tanzu-cli).
 
@@ -100,8 +113,8 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
      tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
      ```
 
-3. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure the local downloaded versions of
-the CLI core and plug-ins are installed by running:
+3. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure the local downloaded
+versions of the CLI core and plug-ins are installed by running:
 
     ```console
     export TANZU_CLI_NO_INIT=true
@@ -109,13 +122,15 @@ the CLI core and plug-ins are installed by running:
 
 4. Install or update the CLI core by running:
 
->**Note:** Replace v0.11.6 with the version you've downloaded.
+  >**Note** Replace v0.25.4 with the version you downloaded which is found by inspecting the
+   >directory name under `$HOME/tanzu/cli/core/`. For example, if the directory name under
+   >`$HOME/tanzu/cli/core/` is v0.25.4, then set the following `VERSION` to `v0.25.4`.
 
    - **For Linux:**
 
      ```console
      cd $HOME/tanzu
-     export VERSION=v0.25.0
+     export VERSION=v0.25.4
      sudo install cli/core/$VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
      ```
 
@@ -123,7 +138,7 @@ the CLI core and plug-ins are installed by running:
 
      ```console
      cd $HOME/tanzu
-     export VERSION=v0.25.0
+     export VERSION=v0.25.4
      install cli/core/$VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
      ```
 
@@ -136,7 +151,7 @@ the CLI core and plug-ins are installed by running:
     Expected outcome:
 
     ```console
-    version: v0.25.0
+    version: v0.25.4
     ...
     ```
 
@@ -148,12 +163,14 @@ the CLI core and plug-ins are installed by running:
 
 2. Create a `Program Files\tanzu` directory on your local machine.
 
-3. From the `Downloads` directory, right-click the `tanzu-framework-windows.amd64.zip` file, select the **Extract All...** menu option, enter `C:\Program files\tanzu` in the **Files are extracted to this directory:** text box, and click the **Extract**.
+3. From the `Downloads` directory, right-click the `tanzu-framework-windows.amd64.zip` file, select
+   the **Extract All...** menu option, enter `C:\Program files\tanzu` in the
+   **Files are extracted to this directory:** text box, and click the **Extract**.
 
 4. From the `Program Files\tanzu` directory, move and rename; the executable file from
 
     ```console
-    Program Files\tanzu\cli\core\v0.25.0\tanzu-core-windows_amd64.exe
+    Program Files\tanzu\cli\core\v0.25.4\tanzu-core-windows_amd64.exe
     ```
 
     to
@@ -166,7 +183,8 @@ the CLI core and plug-ins are installed by running:
 
 6. Ensure that your user account has the **Full Control** permission.
 
-7. Use Windows Search to search for `env`, select **Edit the system environment variables**, click **Environment Variables** on the bottom right of the dialogue box.
+7. Use Windows Search to search for `env`, select **Edit the system environment variables**, click
+   **Environment Variables** on the bottom right of the dialogue box.
 
 8. Find and select the **Path** row under **System variables**, click **Edit**.
 
@@ -174,7 +192,8 @@ the CLI core and plug-ins are installed by running:
 
     >**Note:** The path value must not include **tanzu.exe**. For example, `C:\Program Files\tanzu`.
 
-10. Click **New** following the **System Variables** section, add a new environmental variable named `TANZU_CLI_NO_INIT` with a variable value `true`, click **OK**.
+10. Click **New** following the **System Variables** section, add a new environmental variable named
+    `TANZU_CLI_NO_INIT` with a variable value `true`, click **OK**.
 
 11. Use Windows Search to search for `cmd`, select **Command Prompt** to open the command line terminal.
 
@@ -187,18 +206,18 @@ the CLI core and plug-ins are installed by running:
     Expected outcome:
 
     ```console
-    version: v0.25.0
+    version: v0.25.4
     ...
     ```
 
 13. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
 
-
 ## <a id='cli-plugin-install'></a> Install/Update Tanzu CLI plug-ins
 
 To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
-1. Install plug-ins from the `$HOME/tanzu` directory (if on Linux or macOS) or `Program Files\tanzu` directory (if on Windows) by running:
+1. Install plug-ins from the `$HOME/tanzu` directory (if on Linux or macOS) or `Program Files\tanzu`
+   directory (if on Windows) by running:
 
     ```console
     tanzu plugin install --local cli all
@@ -206,37 +225,36 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
 2. Verify that you installed the plug-ins by running:
 
-    ```console
-    tanzu plugin list
-    ```
+   ```console
+   tanzu plugin list
+   ```
 
-    Expected outcome:
+   Expected outcome:
 
-    ```console
-      NAME                DESCRIPTION                                                                       SCOPE       DISCOVERY  VERSION  STATUS         
-  login               Login to the platform                                                             Standalone  default    v0.25.0  not installed  
-  management-cluster  Kubernetes management-cluster operations                                          Standalone  default    v0.25.0  not installed  
-  package             Tanzu package management                                                          Standalone  default    v0.25.0  installed      
-  pinniped-auth       Pinniped authentication operations (usually not directly invoked)                 Standalone  default    v0.25.0  not installed  
-  secret              Tanzu secret management                                                           Standalone  default    v0.25.0  installed      
-  telemetry           Configure cluster-wide telemetry settings                                         Standalone  default    v0.25.0  not installed  
-  services            Explore Service Instance Classes, discover claimable Service Instances and        Standalone             v0.4.0   installed      
-                      manage Resource Claims                                                                                                           
-  accelerator         Manage accelerators in a Kubernetes cluster                                       Standalone             v1.3.0   installed      
-  apps                Applications on Kubernetes                                                        Standalone             v0.9.0   installed      
-  insight             post & query image, package, source, and vulnerability data                       Standalone             v1.3.3   installed 
-    ```
+   ```console
+   NAME                DESCRIPTION                                                        SCOPE       DISCOVERY                                VERSION  STATUS
+   login               Login to the platform                                              Standalone  default                                  v0.25.4  not installed
+   management-cluster  Kubernetes management-cluster operations                           Standalone  default                                  v0.25.4  not installed
+   package             Tanzu package management                                           Standalone  default                                  v0.25.4  installed
+   pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default                                  v0.25.4  not installed
+   secret              Tanzu secret management                                            Standalone  default                                  v0.25.4  installed
+   telemetry           Configure cluster-wide telemetry settings                          Standalone  default                                  v0.25.4  not installed
+   services            Commands for working with service instances, classes and claims    Standalone                                           v0.5.0   installed
+   accelerator         Manage accelerators in a Kubernetes cluster                        Standalone                                           v1.4.0   installed
+   apps                Applications on Kubernetes                                         Standalone                                           v0.10.0  installed
+   insight             post & query image, package, source, and vulnerability data        Standalone                                           v1.4.2   installed
+  ```
 
 ## <a id='next-steps'></a>Next steps
 
 For online installation:
 
-- [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)*
-- [Installing the Tanzu Application Platform package and profiles](install.html)
+- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/GUID-deploy.html)
+- [Install the Tanzu Application Platform package and profiles](install.html)
 
 For air-gapped installation:
 
-- [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.2/cluster-essentials/GUID-deploy.html)*
-- [Install Tanzu Application Platform in an air-gapped environment (beta)](install-air-gap.html)
+- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/GUID-deploy.html)
+- [Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._

@@ -3,11 +3,11 @@
 This document describes how to install Supply Chain Choreographer
 from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+>**Note** Use the instructions on this page if you do not want to use a profile to install packages.
 Both the full and light profiles include Supply Chain Choreographer.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
->**Note:** The Supply Chain Choreographer is now bundled with the Cartographer Conventions.
+>**Note** The Supply Chain Choreographer is now bundled with the Cartographer Conventions.
 For information on configuring and using Cartographer Conventions, see [Creating conventions](../cartographer-conventions/creating-conventions.md).
 
 Supply Chain Choreographer provides the custom resource definitions the supply chain uses.
@@ -33,7 +33,7 @@ To install Supply Chain Choreographer:
 
     ```console
     tanzu package available get cartographer.tanzu.vmware.com/0.4.0 --values-schema --namespace tap-install
-    
+
     KEY                  DEFAULT  TYPE    DESCRIPTION
     aws_iam_role_arn              string  Optional: Arn role that has access to pull images from ECR container registry
     ca_cert_data                  string  Optional: PEM Encoded certificate data for image registries with private CA.

@@ -1,4 +1,4 @@
-# Enable Authorization on Remote GKE Clusters
+# View resources on remote GKE clusters
 
 This section describes two supported options to add access-controlled visibility for a remote GKE cluster:
 
@@ -35,7 +35,7 @@ choice.
 1. Under **Application URIs** > **Allowed Callback URLs**, add
 
     ```url
-    http://tap-gui.INGRESS-DOMAIN/api/auth/auth0/handler/frame
+    https://tap-gui.INGRESS-DOMAIN/api/auth/auth0/handler/frame
     ```
 
     Where `INGRESS-DOMAIN` is the domain you chose for your Tanzu Application Platform GUI in

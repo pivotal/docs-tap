@@ -1,4 +1,4 @@
-# Add testing and security scanning to your application
+# Add testing and scanning to your application
 
 This how-to guide walks you through installing the optional OOTB Supply Chain with Testing and the optional OOTB Supply Chain with Testing and Scanning.
 
@@ -16,10 +16,12 @@ For more information about available supply chains, see [Supply chains on Tanzu 
 
 The default Out of the Box (OOTB) Supply Chain Basic and its dependencies were installed on your cluster during the Tanzu Application Platform install. As demonstrated in this guide, you can add testing and security scanning to your application.
 
-The following installations also provide a sample Tekton pipeline that tests your sample application.  The pipeline is configurable. Therefore, you can customize the steps to perform
+>**Note** When you activate OOTB Supply Chain with Testing, it deactivates OOTB Supply Chain Basic.
+
+The following installations also provide a sample Tekton pipeline that tests your sample application. The pipeline is configurable. Therefore, you can customize the steps to perform
 either additional testing or other tasks with Tekton Pipelines.
 
->**Important:** You can only have one Tekton pipeline per namespace.
+>**Important** You can only have one Tekton pipeline per namespace.
 
 ## <a id="install-OOTB-test"></a>Install OOTB Supply Chain with Testing
 
@@ -43,9 +45,9 @@ The `tap-values.yaml` is the file used to customize the profile in `Tanzu packag
     Where:
 
     - `SERVER-NAME` is the name of your server.
-    - `REPO-NAME` is the name of the Git repository with the `tap-values.yaml` file.
+    - `REPO-NAME` is the name of the image repository that hosts the container images.
 
-2. Update the installed profile by running:
+1. Update the installed profile by running:
 
     ```console
     tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION-NUMBER --values-file tap-values.yaml -n tap-install
@@ -58,7 +60,7 @@ The `tap-values.yaml` is the file used to customize the profile in `Tanzu packag
 In this section, a Tekton pipeline is added to the cluster. In the next section,
 the workload is updated to point to the pipeline and resolve any current errors.
 
->**Note:** Developers can perform this step because they know how their application must be tested. The operator can also add the Tekton supply chain to a cluster before the developer get access.
+>**Note** Developers can perform this step because they know how their application must be tested. The operator can also add the Tekton supply chain to a cluster before the developer get access.
 
 To add the Tekton supply chain to the cluster, apply the following YAML to the cluster:
 
@@ -114,7 +116,8 @@ the workload must be updated to point at your Tekton pipeline.
 
     ```console
     tanzu apps workload create tanzu-java-web-app \
-      --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+      --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+      --sub-path tanzu-java-web-app \
       --git-branch main \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
@@ -138,7 +141,8 @@ the workload must be updated to point at your Tekton pipeline.
        12 + |    git:
        13 + |      ref:
        14 + |        branch: main
-       15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+       15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+       16 + |    subPath: tanzu-java-web-app
 
     ? Do you want to create this workload? Yes
     Created workload "tanzu-java-web-app"
@@ -156,8 +160,8 @@ the workload must be updated to point at your Tekton pipeline.
     NAME                                    AGE
     workload.carto.run/tanzu-java-web-app   109s
 
-    NAME                                                        URL                                                         READY   STATUS                                                            AGE
-    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+    NAME                                                        URL                                                               READY   STATUS                                                            AGE
+    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/vmware-tanzu/application-accelerator-samples   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
 
     NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
     pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
@@ -182,9 +186,12 @@ the workload must be updated to point at your Tekton pipeline.
 - Before installing OOTB Supply Chain with Testing and Scanning, you must first install OOTB Supply Chain with Testing.
 - Both the Scan Controller and the default Grype scanner must be installed for scanning. Refer to the verify installation steps later in the topic.
 
-  > **Note:** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for the languages and frameworks with check marks in the column "Extended Scanning Coverage using Anchore Grype" on the [Language and Framework Support Table](../about-package-profiles.hbs.md#language-support).
+  > **Note** When leveraging both Tanzu Build Service and Grype in your Tanzu Application Platform supply chain, you can receive enhanced scanning coverage for the languages and frameworks with check marks in the column "Extended Scanning Coverage using Anchore Grype" on the [Language and Framework Support Table](../about-package-profiles.hbs.md#language-support).
 
-- [Enable CVE scan results in the Tanzu Application Platform GUI](../tap-gui/plugins/scc-tap-gui.md#scan).
+- Add the necessary configuration to
+  [enable CVE scan results in the Tanzu Application Platform GUI](../tap-gui/plugins/scc-tap-gui.hbs.md#scan).
+  This configuration allows the Supply Chain Choreographer Tanzu Application Platform GUI plug-in to
+  retrieve metadata about project packages and their vulnerabilities.
 
 To install OOTB Supply Chain with Testing and Scanning:
 
@@ -200,7 +207,7 @@ Verify that both Scan Controller and Grype Scanner are installed by running:
 
     During installation of the Grype Scanner, sample ScanTemplates are installed into the `default` namespace. If the workload is deployed into another namespace, these sample ScanTemplates must also be present in the other namespace. One way to accomplish this is to install Grype Scanner again and provide the namespace in the values file.
 
-    A ScanPolicy is required and must be in the required namespace. A sample ScanPolicy is provided as follows to block a supply chain when CVEs with critical, high, and unknown ratings are found using `notAllowedSeverities := ["Critical","High","UnknownSeverity"]`. You can also configure the supply chain to use your own custom policies and apply exceptions when you want to ignore certain CVEs. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#updates-to-developer-namespace). To apply the sample ScanPolicy, you can either add the namespace flag to the kubectl<!--฿ Missing code tags? ฿--> command or add the namespace text box to the template by running:
+    A ScanPolicy is required and must be in the required namespace. A sample ScanPolicy is provided as follows to block a supply chain when CVEs with critical, high, and unknown ratings are found using `notAllowedSeverities := ["Critical","High","UnknownSeverity"]`. You can also configure the supply chain to use your own custom policies and apply exceptions when you want to ignore certain CVEs. See [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#updates-to-developer-namespace). To apply the sample ScanPolicy, you can either add the namespace flag to the kubectl command or add the namespace text box to the template by running:
 
     ```console
     kubectl apply -f - -o yaml << EOF
@@ -291,7 +298,8 @@ pipeline:
 
     ```console
     tanzu apps workload create tanzu-java-web-app \
-      --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+      --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+      --sub-path tanzu-java-web-app \
       --git-branch main \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
@@ -317,7 +325,8 @@ pipeline:
         12 + |    git:
         13 + |      ref:
         14 + |        branch: main
-        15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+        15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+        16 + |    subPath: tanzu-java-web-app
 
     ? Do you want to create this workload? Yes
     Created workload "tanzu-java-web-app"
@@ -335,11 +344,11 @@ pipeline:
     NAME                                    AGE
     workload.carto.run/tanzu-java-web-app   109s
 
-    NAME                                                        URL                                                         READY   STATUS                                                            AGE
-    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/sample-accelerators/tanzu-java-web-app   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
+    NAME                                                        URL                                                               READY   STATUS                                                            AGE
+    gitrepository.source.toolkit.fluxcd.io/tanzu-java-web-app   https://github.com/vmware-tanzu/application-accelerator-samples   True    Fetched revision: main/872ff44c8866b7805fb2425130edb69a9853bfdf   109s
 
-    NAME                                                           PHASE       SCANNEDREVISION                            SCANNEDREPOSITORY                                           AGE    CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
-    sourcescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   187850b39b754e425621340787932759a0838795   https://github.com/sample-accelerators/tanzu-java-web-app   90s
+    NAME                                                           PHASE       SCANNEDREVISION                            SCANNEDREPOSITORY                                                 AGE    CRITICAL   HIGH   MEDIUM   LOW   UNKNOWN   CVETOTAL
+    sourcescan.scanning.apps.tanzu.vmware.com/tanzu-java-web-app   Completed   187850b39b754e425621340787932759a0838795   https://github.com/vmware-tanzu/application-accelerator-samples   90s
 
     NAME                                              SUCCEEDED   REASON      STARTTIME   COMPLETIONTIME
     pipelinerun.tekton.dev/tanzu-java-web-app-4ftlb   True        Succeeded   104s        77s
@@ -360,7 +369,7 @@ pipeline:
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
 
-    > **Important**: If the source or image scan has a "Failed" phase this means that the scan failed due to a scan policy violation and the supply chain stops. For information about the CVE triage workflow, see [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow).
+    > **Important** If the source or image scan has a "Failed" phase this means that the scan failed due to a scan policy violation and the supply chain stops. For information about the CVE triage workflow, see [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow).
 
 ### <a id="query-for-vuln"></a> Query for vulnerabilities
 

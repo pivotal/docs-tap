@@ -1,6 +1,6 @@
-# Application Live View for VMware Tanzu
+# Application Live View
 
->**Note:** To view our documentation for v1.0 and v1.1, see our previous
+>**Note** To view the Application Live View documentation for v1.0 and v1.1, see the previous
 [Application Live View site](https://docs.vmware.com/en/Application-Live-View-for-VMware-Tanzu/index.html).
 
 Application Live View is a lightweight insights and troubleshooting tool that
@@ -41,8 +41,4 @@ which accelerates developer productivity and reduces time-to-market.
 
 ## <a id="deployment"></a> Deployment
 
-Here is the mode of deployment for registering apps with the Application Live View
-running on a Kubernetes cluster:
-
-- **Connector**: A component responsible for discovering multiple apps running on
-a Kubernetes cluster. The connector is installed as a DaemonSet by default.
+Use a connector as the mode of deployment for registering apps with the Application Live View running on a Kubernetes cluster. A connector is a component responsible for discovering multiple apps running on a Kubernetes cluster and is installed as a DaemonSet by default.

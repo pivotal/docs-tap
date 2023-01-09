@@ -6,7 +6,7 @@ and registry that are air-gapped from external traffic.
 Use this topic if you do not want to use a Tanzu Application Platform profile that includes
 Tanzu Build Service.
 The Full, Iterate, and Build profiles include Tanzu Build Service.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
 To install Tanzu Build Service on an air-gapped environment, you must:
 
@@ -24,6 +24,11 @@ For more information, see [Prerequisites](../prerequisites.md).
 Approximately 10&nbsp;GB of registry space is required when using the `full` dependencies.
 
 - Your Docker registry must be accessible with user name and password credentials.
+
+## <a id='deprecated-features'></a> Deprecated Features
+
+**The Cloud Native Buildpack Bill of Materials (CNB BOM) format:** For more information, see
+[Deactivate the CNB BOM format](install-tbs.md#deactivate-cnb-bom).
 
 ## <a id='tbs-offline-install-package'></a> Install the Tanzu Build Service package
 
@@ -67,7 +72,7 @@ To install the Tanzu Build Service package on an air-gapped environment:
     - `REPO-USERNAME` and `REPO-PASSWORD` are the user name and password for the user that can
     write to `REPO-NAME`.
 
-        >**Note:** If you do not want to use plaintext for these credentials, you can
+        >**Note** If you do not want to use plaintext for these credentials, you can
         >instead configure these credentials by using a Secret reference.
         >For more information, see [Use Secret references for registry credentials](#install-secret-refs).
 

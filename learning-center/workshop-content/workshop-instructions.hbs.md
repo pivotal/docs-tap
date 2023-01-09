@@ -55,7 +55,7 @@ In most cases, a command the user executes completes immediately. To run a comma
 
 When the user clicks on this code block, the command running in the corresponding terminal is interrupted.
 
->**Note:** Using the special string `<ctrl+c>` is deprecated, and you must use the `terminal:interrupt` clickable action instead.
+>**Note** Using the special string `<ctrl+c>` is deprecated, and you must use the `terminal:interrupt` clickable action instead.
 
 ## <a id="annotation-of-text"></a>Annotation of text to be copied
 
@@ -685,7 +685,7 @@ description: Description
 
 The banner of the action block in this example displays "Prefix: Title", with the body showing "Description".
 
->**Note:** The description is always displayed as pre-formatted text within the rendered page.
+>**Note** The description is always displayed as pre-formatted text within the rendered page.
 
 ## <a id="escape-code-block-content"></a>Escaping of code block content
 
@@ -732,7 +732,7 @@ When the workshop environment is hosted in Kubernetes and provides access to the
 * `kubernetes_ca_crt`: The contents of the public certificate required when accessing the Kubernetes API URL.
 * `kubernetes_api_url`: The URL for accessing the Kubernetes API. This is only valid when used from the workshop terminal.
 
->**Note:** An older version of the rendering engine required that data variables be surrounded on each side with the character `%`. This is still supported for backwards compatibility, but VMware recommends you use matched pairs of brackets instead.
+>**Note** An older version of the rendering engine required that data variables be surrounded on each side with the character `%`. This is still supported for backwards compatibility, but VMware recommends you use matched pairs of brackets instead.
 
 ## <a id="add-custom-data-variables"></a>Adding custom data variables
 

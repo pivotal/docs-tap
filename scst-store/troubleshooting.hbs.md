@@ -8,7 +8,7 @@ This topic contains troubleshooting and known issues for Supply Chain Security T
 
 When attempting to look up CVE and affected packages, querying `insight source get` (or other `insight source` commands) might return zero results due to supply chain configuration and repository URL.
 
-### <a id='source-scan-no-cves-solution'></a>Solution
+### <a id='source-scan-no-cves-solution'></a> Solution
 
 You might have to include different combinations of `--repo`, `--org`, `--commit` due to how the scan-controller populates the software bill of materials (SBOM). For more information see [Query vulnerabilities, images, and packages](https://github.com/pivotal/docs-tap/blob/main/cli-plugins/insight/query-data.md#example-2-what-packages--cves-does-my-source-code-contain) in GitHub.
 
@@ -16,13 +16,13 @@ You might have to include different combinations of `--repo`, `--org`, `--commit
 
 ### Symptom
 
-If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the `metadata-store-db` pod fails to start. The persistent volume used by PostgreSQL retaining old data, even though the retention policy is set to `DELETE`,  causes this.
+If **Supply Chain Security Tools - Store** is deployed, deleted, redeployed, and the database password is changed during the redeployment, the `metadata-store-db` pod fails to start. This is caused by the persistent volume used by postgres retaining old data, even though the retention policy is set to `DELETE`.
 
 ### <a id='persistent-volume-retains-data-solution'></a>Solution
 
->**Caution:** Changing the database password deletes your Supply Chain Security Tools - Store data.
+>**Caution** Changing the database password deletes your Supply Chain Security Tools - Store data.
 
-To redeploy the app, either use the same database password or follow the following steps to erase the data on the volume:
+To redeploy the app, either use the same database password or follow these steps to erase the data on the volume:
 
 1. Deploy metadata-store app by using `kapp`.
 2. Verify that the `metadata-store-db-*` pod fails.
@@ -46,7 +46,7 @@ To redeploy the app, either use the same database password or follow the followi
 ### Symptom
 
 After Store is deployed, `metadata-store-db` pod might fail for missing volume while
-`postgres-db-pv-claim` pvc is in `PENDING` state. 
+`postgres-db-pv-claim` pvc is in `PENDING` state.
 
 This is because the cluster where Store is deployed does not have `storageclass` defined. `storageclass`'s provisioner is responsible for creating the persistent volume after `metadata-store-db` attaches `postgres-db-pv-claim`.
 
@@ -67,9 +67,7 @@ This is because the cluster where Store is deployed does not have `storageclass`
 
 ### Symptom
 
-Installing Store on or upgrading an existing EKS cluster to Kubernetes v1.23
-
-Database pod is showing:
+When installing Store on or upgrading an existing EKS cluster to Kubernetes v1.23, the satabase pod shows:
 
 ```console
 running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for PVC "postgres-db-pv-claim"
@@ -77,7 +75,7 @@ running PreBind plugin "VolumeBinding": binding volumes: provisioning failed for
 
 ### Explanation
 
-This is due to the [CSIMigrationAWS in this K8s version version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to use EBS volumes.
+This is due to the [CSIMigrationAWS in this Kubernetes version](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) which requires users to install the [Amazon Elastic Block Store (EBS) CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) to use EBS volumes.
 
 Store uses the default storage class which uses EBS volumes by default on EKS.
 
@@ -129,3 +127,11 @@ If you see `could not accept SSL connection` in the metadata-store-db logs, dele
 ```
 kubectl delete pod metadata-store-db-0 -n metadata-store
 ```
+
+## Troubleshooting errors from Tanzu Application Platform GUI related to SCST - Store
+
+Different Tanzu Application Platform GUI plug-ins use SCST - Store to display information about
+vulnerabilities and packages.
+Some errors visible in Tanzu Application Platform GUI are related to this connection.
+
+{{> 'partials/tap-gui/ts-err-load-metadata-store' }}

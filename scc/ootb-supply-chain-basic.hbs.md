@@ -82,7 +82,7 @@ run pods using images from the installation of Tanzu Application Platform.
     - `YOUR-NAMESPACE` is the name you want to use for the developer
       namespace. For example, use `default` for the default namespace.
 
-    - `REGISTRY-SERVER` is the URL of the registry. For Dockerhub, this must be
+    - `REGISTRY-SERVER` is the URL of the registry. For Docker Hub, this must be
       `https://index.docker.io/v1/`. Specifically, it must have the leading
       `https://`, the `v1` path, and the trailing `/`. For GCR, this is
       `gcr.io`.  Based on the information used in [Installing the Tanzu
@@ -141,7 +141,7 @@ imagePullSecrets:
   - name: tap-registry
 ```
 
-> **Note:** The ServiceAccount must have the secrets created earlier linked to it. If
+> **Note** The ServiceAccount must have the secrets created earlier linked to it. If
 > it does not, services like Tanzu Build Service (used in the supply chain)
 > lack the necessary credentials for pushing the images it builds for that
 > workload.
@@ -221,7 +221,7 @@ of the supply chains), see the following sections:
   different ways of creating a workload where the application is built from
   source code.
 
-- [Using a prebuilt image](pre-built-image.md), for more information about how to
+- [Using an existing image](pre-built-image.md), for more information about how to
   leverage prebuilt images in the supply chains.
 
 - [GitOps vs RegistryOps](gitops-vs-regops.md), for a description of the

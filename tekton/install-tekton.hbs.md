@@ -2,11 +2,9 @@
 
 This topic describes how to install Tekton from the Tanzu Application Platform package repository.
 
-Use the instructions on this page if you do not want to install Tekton by using a
-Tanzu Application Platform profile.
-The Full, Iterate, and Build profiles include the Tekton Pipelines package.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.html).
-
+> **Note** Follow the steps in this topic if you do not want to use a profile to install Tekton.
+> For more information about profiles, see
+> [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -132,7 +130,7 @@ secret to the service account by running:
     Events:              <none>
     ```
 
-    > **Note:** The service account has access to the `pull-secret` image pull secret.
+    > **Note** The service account has access to the `pull-secret` image pull secret.
 
 For more details about Tekton Pipelines, see the [Tekton documentation](https://tekton.dev/docs/) and
 the [GitHub repository](https://github.com/tektoncd/pipeline).
@@ -141,4 +139,4 @@ For information about getting started with Tekton, see the Tekton
 [tutorial](https://github.com/tektoncd/pipeline/blob/main/docs/tutorial.md) in GitHub and the
 [getting started guide](https://tekton.dev/docs/getting-started/) in the Tekton documentation.
 
-> **Note:** Windows workloads are deactivated and cause an error if any Tasks try to use Windows scripts.
+> **Note** Windows workloads are deactivated and cause an error if any Tasks try to use Windows scripts.

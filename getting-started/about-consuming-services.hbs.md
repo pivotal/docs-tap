@@ -1,4 +1,4 @@
-# About consuming services on Tanzu Application Platform
+# Consume services on Tanzu Application Platform
 
 As part of Tanzu Application Platform, you can work with backing services such as
 RabbitMQ, PostgreSQL, and MySQL among others. Binding application workloads to service instances
@@ -29,14 +29,14 @@ on a cluster, while also decoupling the life cycle of application workloads and 
 
 The following list of Kubernetes operators expose APIs that integrate well with Tanzu Application Platform:
 
-1. RabbitMQ Cluster Operator for Kubernetes. For more information, see the [RabbitMQ documentation](https://www.rabbitmq.com/kubernetes/operator/operator-overview.html).
+1. RabbitMQ Cluster Operator for Kubernetes. For more information, see the [RabbitMQ documentation](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
 1. [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html).
 1. [VMware Tanzu SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html).
 
 Compatibility of a service with Tanzu Application Platform ranges on a scale
 between fully compatible and incompatible. The minimum requirement for compatibility is that there must be a declarative,
 Kubernetes-based API on which at least one API resource type adheres to the
-[Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) 
+[Provisioned Service](https://github.com/servicebinding/spec#provisioned-service)
 duck type defined by the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec) in GitHub. This duck type includes any resource type with the following schema:
 
 ```yaml
@@ -57,8 +57,8 @@ For services that do not provide a resource adhering to the Service Binding Spec
 be possible to provide configurations allowing such services to integrate with Tanzu Application Platform. See the following
 for examples of how to do this for Amazon AWS RDS.
 
-* [Consuming AWS RDS on Tanzu Application Platform (TAP) with AWS Controllers for Kubernetes (ACK)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html)
-* [Consuming AWS RDS on Tanzu Application Platform (TAP) with Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.7/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html)
+* [Consuming AWS RDS on Tanzu Application Platform (TAP) with AWS Controllers for Kubernetes (ACK)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html)
+* [Consuming AWS RDS on Tanzu Application Platform (TAP) with Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html)
 
 ## <a id="stk-user-roles"></a> User roles and responsibilities
 

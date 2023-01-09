@@ -1,4 +1,4 @@
-# Installing Tanzu Build Service
+# Install Tanzu Build Service
 
 This topic describes how to install Tanzu Build Service from the Tanzu Application Platform
 package repository by using the Tanzu CLI.
@@ -6,11 +6,11 @@ package repository by using the Tanzu CLI.
 Use this topic if you do not want to use a Tanzu Application Platform profile that includes
 Tanzu Build Service.
 The Full, Iterate, and Build profiles include Tanzu Build Service.
-For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.md).
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
->**Note:** The following procedure might not include some configurations required for your environment.
->For advanced information about installing Tanzu Build Service, see the
->[Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
+The following procedure might not include some configurations required for your environment.
+For advanced information about installing Tanzu Build Service, see the
+[Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
 
 ## <a id='tbs-prereqs'></a> Prerequisites
 
@@ -23,6 +23,11 @@ For more information, see [Prerequisites](../prerequisites.md).
 Approximately 10&nbsp;GB of registry space is required when using the `full` dependencies.
 
 - Your Docker registry must be accessible with user name and password credentials.
+
+## <a id='deprecated-features'></a> Deprecated Features
+
+- **Automatic dependency updates:** For more information, see [Configure automatic dependency updates](#auto-updates-config).
+- **The Cloud Native Buildpack Bill of Materials (CNB BOM) format:** For more information, see [Deactivate the CNB BOM format](#deactivate-cnb-bom).
 
 ## <a id='tbs-tcli-install'></a> Install the Tanzu Build Service package
 
@@ -58,23 +63,23 @@ To install Tanzu Build Service by using the Tanzu CLI:
       - Harbor has the form `"my-harbor.io/my-project/build-service"`.
       - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
-    - `REPO-USERNAME` and `REPO-PASSWORD` are the user name
+    - `REPO-USERNAME` and `REPO-PASSWORD` are the username
     and password for the user that can write to `REPO-NAME`.
-    For Google Cloud Registry, use `_json_key` as the user name and the contents
+    For Google Cloud Registry, use `_json_key` as the username and the contents
     of the service account JSON file for the password.
 
-        >**Note:** If you do not want to use plaintext for these credentials, you can configure them
+        >**Note** If you do not want to use plaintext for these credentials, you can configure them
         by using a secret reference or by using AWS IAM authentication.
         >For more information, see [Use Secret References for registry credentials](#install-secret-refs)
         >or [Use AWS IAM authentication for registry credentials](#tbs-tcli-install-ecr).
 
-        >**Note:** If you are running on Openshift add `kubernetes_distribution: openshift`
+1. If you are running on Openshift, add `kubernetes_distribution: openshift` to your `tbs-values.yaml` file.
 
 1. (Optional) Under the `ca_cert_data` key in the `tbs-values.yaml` file,
 provide a PEM-encoded CA certificate for Tanzu Build Service.
 This certificate is used for accessing the container image registry and is also provided to the build process.
 
-    > **Note:** If `shared.ca_cert_data` is configured in the `tap-values.yaml` file,
+    > **Note** If `shared.ca_cert_data` is configured in the `tap-values.yaml` file,
     > Tanzu Build Service inherits that value.
     >
     > Configuring `ca_cert_data` key in the `tbs-values.yaml` file adds the CA certificates at build time.
@@ -96,7 +101,7 @@ This certificate is used for accessing the container image registry and is also 
 
 1. (Optional) Tanzu Build Service is bootstrapped with the `lite` set of dependencies.
 To configure `full` dependencies, add the key-value pair `exclude_dependencies: true`
-to your `tbs-values.yaml` file. For example:
+to your `tbs-values.yaml` file. This is to exclude the default `lite` dependencies from the installation. For example:
 
     ```yaml
     ---
@@ -158,45 +163,53 @@ in your `tbs-values.yaml` or `tap-values.yaml`.
 
 ### <a id='install-secret-refs'></a> Use Secret references for registry credentials
 
-To use secret references:
+You might not want to install Tanzu Build Service with passwords saved in plaintext in the `tbs-values.yaml`.
 
-1. Create a secret of type `kubernetes.io/dockerconfigjson` containing
-credentials for the writable repository in your registry (`kp_default_repository`)
-and the VMware Tanzu Network registry.
+To store these credentials in `Secrets` and reference them in the `tbs-values.yaml`:
+
+1. Using the Tanzu CLI, create a secret of type `kubernetes.io/dockerconfigjson` containing
+credentials for the writable repository in your registry (`kp_default_repository`):
+
+    ```console
+    tanzu secret registry add kp-default-repository-creds \
+      --username "${USERNAME}" \
+      --password "${PASSWORD}" \
+      --server "${SERVER-NAME}" \
+      --namespace tap-install
+    ```
+
+   Where:
+
+   - `USERNAME` and `PASSWORD` are the user name and password for the user that can write to the `kp_default_repository`.
+   For Google Cloud Registry, use `_json_key` as the user name, and the contents of
+   the service account JSON file for the password.
+   - `SERVER-NAME` is the host name of the registry server for the `kp_default_repository`. Examples:
+       - Harbor has the form `server: "my-harbor.io"`.
+       - Docker Hub has the form `server: "index.docker.io"`.
+       - Google Cloud Registry has the form `server: "gcr.io"`.
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
-    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
+    >**Note** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
     ---
-    kp_default_repository: "REPO-NAME"
+    kp_default_repository: "KP-DEFAULT-REPOSITORY"
     kp_default_repository_secret:
-      name: "REPO-SECRET-NAME"
-      namespace: "REPO-SECRET-NAMESPACE"
-    tanzunet_secret:
-      name: "TANZU-NET-SECRET-NAME"
-      namespace: "TANZU-NET-SECRET-NAMESPACE"
+      name: kp-default-repository-creds
+      namespace: tap-install
     ```
 
     Where:
 
-    - `REPO-NAME` is a writable repository in your registry.
+    - `KP-DEFAULT-REPOSITORY` is a writable repository in your registry.
     Tanzu Build Service dependencies are written to this location. Examples:
-      - Harbor has the form `"my-harbor.io/my-project/build-service"`
-      - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`
-      - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`
-    - `REPO-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson`
-    Secret containing credentials for `REPO-NAME`. You can write to this location with this credential.
-    - `REPO-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson`
-    Secret containing credentials for `REPO-NAME`. You can write to this location with this credential.
-    - `TANZU-NET-SECRET-NAME` is the name of the `kubernetes.io/dockerconfigjson`
-    Secret containing credentials for VMware Tanzu Network registry.
-    - `TANZU-NET-SECRET-NAMESPACE` is the namespace of the `kubernetes.io/dockerconfigjson`
-    Secret containing credentials for the VMware Tanzu Network registry.
+      - Harbor has the form `"my-harbor.io/my-project/build-service"`.
+      - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
+      - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
 
-1. Apply this configuration by continuing the steps in [Install the Tanzu Build Service package](#tbs-tcli-install).
+1. To apply this configuration, continue the installation steps.
 
 ### <a id='tbs-tcli-install-ecr'></a> Use AWS IAM authentication for registry credentials
 
@@ -210,7 +223,7 @@ registry used when installing Tanzu Application Platform.
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
-    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
+    >**Note** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
@@ -228,8 +241,7 @@ registry used when installing Tanzu Application Platform.
 
 1. The developer namespace requires configuration for Tanzu Application Platform
 to use AWS IAM authentication for ECR.
-Configure an AWS IAM role that has read and write access to the registry location
-where workload images will be stored.
+Configure an AWS IAM role that has read and write access to the registry for storing workload images.
 
 1. Using the supply chain service account, add an annotation including the role
 ARN configured earlier by running:
@@ -260,7 +272,7 @@ To install `full` Tanzu Build Service dependencies:
 1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
  to your `tbs-values.yaml` file. For example:
 
-    >**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
+    >**Note** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
     >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
     ```yaml
@@ -290,7 +302,7 @@ To install `full` Tanzu Build Service dependencies:
     - `INSTALL-REGISTRY-HOSTNAME` is your container image registry.
     - `TARGET-REPOSITORY` is your target repository.
 
-1. Add the TBS `full` dependencies package repository by running:
+1. Add the Tanzu Build Service  `full` dependencies package repository by running:
 
     ```console
     tanzu package repository add tbs-full-deps-repository \
@@ -314,7 +326,7 @@ To install `full` Tanzu Build Service dependencies:
 
 ## <a id="auto-updates-config"></a> (Optional) Configure automatic dependency updates
 
->**Important:** The automatic updates feature is being deprecated.
+>**Important** The automatic updates feature is being deprecated.
 >The recommended way to patch dependencies is by upgrading Tanzu Application Platform
 >to the latest patch version. For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
 
@@ -324,7 +336,7 @@ For more information about automatic dependency updates, see [About automatic de
 
 To configure automatic dependency updates, add the following to the contents of your `tbs-values.yaml`:
 
->**Note:** if you installed Tanzu Build Service as part of a Tanzu Application Platform
+>**Note** If you are installing Tanzu Build Service as part of a Tanzu Application Platform
 >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
 
 ```yaml
@@ -345,3 +357,10 @@ For more information, see [Descriptors](dependencies.md#descriptors).
 Available options are:
   - `lite` is the default if not set. It has a smaller footprint, which enables faster installations.
   - `full` is optimized to speed up builds and includes dependencies for all supported workload types.
+
+## <a id='deactivate-cnb-bom'></a> (Optional) Deactivate the CNB BOM format
+
+The legacy CNB BOM format is deprecated, but is enabled by default in Tanzu Application Platform.
+
+To manually deactivate the format, add `include_legacy_bom=false` to either the `tbs-values.yaml` file,
+or to the `tap-values.yaml` file under the `buildservice` section.

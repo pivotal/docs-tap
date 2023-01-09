@@ -13,7 +13,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
 2. Create a `values.yaml` file, and install the Supply Chain Security Tools - Policy Controller. For instructions, see [Install Supply Chain Security Tools - Policy Controller](../scst-policy/install-scst-policy.md).
 
-3. Create a `ClusterImagePolicy` that will pass on Tanzu Application Platform images. In the future, these will be signed and verifiable, but for now we recommend creating a policy to pass them:
+3. Create a `ClusterImagePolicy` that passes Tanzu Application Platform images. It is planned for a future release for these to be signed and verifiable, but currently we recommend creating a policy to pass them:
 
     For example:
 
@@ -33,6 +33,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
           action: pass
     EOF
     ```
+
     Where:
 
     - `REPO-NAME` is the repository in your registry where Tanzu Build Service dependencies are stored. This is the exact same value conigured in the `kp_default_repository` inside your `tap-values.yaml` or `tbs-values.yaml` files. Examples:
@@ -40,9 +41,9 @@ This how-to guide walks you through configuring your supply chain to sign and ve
       - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
 
-    >**Note:** Add any unsigned image that must run in your namespace to the previous policy.
+    >**Note** Add any unsigned image that must run in your namespace to the previous policy.
     For example, if you add a Tekton pipeline that runs a gradle image for testing, you need
-    to add `glob: index.docker.io/library/gradle*` to `spec.images.glob` above. If you relocated
+    to add `glob: index.docker.io/library/gradle*` to `spec.images.glob` in the preceding code. If you relocated
     the Tanzu Application Platform images to your own registry,
     replace `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages`
     with the new target repository.
@@ -81,7 +82,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
     Where `YOUR-NAMESPACE` is the name of your secure namespace.
 
->**Note:** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
+>**Note** Supply Chain Security Tools - Policy Controller only validates resources in namespaces
 that have chosen to opt in.
 
 When you apply the `ClusterImagePolicy` resource, your cluster requires valid signatures for all images that match the `spec.images.glob[]` you define in the configuration. For more information about configuring an image policy, see [Configuring Supply Chain Security Tools - Policy](../scst-policy/configuring.md).

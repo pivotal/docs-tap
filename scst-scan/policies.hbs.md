@@ -1,4 +1,4 @@
-# Enforce compliance policy using Open Policy Agent 
+# Enforce compliance policy using Open Policy Agent
 
 ## <a id="writing-pol-temp"></a>Writing a policy template
 
@@ -20,17 +20,18 @@ To define a Rego file for an image scan or source scan, you must comply with the
 
 Follow these steps to define a Rego file for policy enforcement that you can reuse across image scan and source scan CRs that output in the CycloneDX XML format.
 
->**Note:** The Snyk Scanner outputs SPDX JSON. See [Install Snyk Scanner](install-snyk-integration.md#a-idverifya-verify-integration-with-snyk) for an example of a ScanPolicy formatted for SPDX JSON output.
+>**Note** The Snyk Scanner outputs SPDX JSON. See [Sample ScanPolicy for Snyk in SPDX JSON format](install-snyk-integration.md#snyk-scan-policy) for an example of a ScanPolicy formatted for SPDX JSON output.
 
 1. Create a scan policy with a Rego file. Here is a sample scan policy resource:
 
     ```yaml
+    ---
     apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
     kind: ScanPolicy
     metadata:
       name: scan-policy
       labels:
-        'app.kubernetes.io/part-of': 'enable-in-gui'
+        app.kubernetes.io/part-of: enable-in-gui
     spec:
       regoFile: |
         package main
@@ -68,9 +69,9 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
         }
     ```
 
-    You can modify the following fields of the Rego file as part of the [CVE triage workflow](../scc/ootb-supply-chain-testing-scanning.hbs.md#cve-triage-workflow):
-    
-    - `notAllowedSeverities` contains the categories of CVEs that result in the SourceScan or ImageScan failing policy enforcement. Below is an example of how an `app-operator` might decide to only block "Critical", "High" and "UnknownSeverity" CVEs.
+    You can edit the following text boxes of the Rego file as part of the [CVE triage workflow](../scst-scan/triaging-and-remediating-cves.hbs.md#amend-scan-policy):
+
+    - `notAllowedSeverities` contains the categories of CVEs that cause the SourceScan or ImageScan failing policy enforcement. The following is an example of how an `app-operator` might decide to only block "Critical", "High" and "UnknownSeverity" CVEs.
 
       ```yaml
       ...
@@ -84,7 +85,7 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
       ...
       ```
 
-    - `ignoreCves` contains individual ignored CVEs when determining policy enforcement. Below is an example of how an `app-operator` might decide to ignore `CVE-2018-14643` and `GHSA-f2jv-r9rf-7988` if they are false positives. See [A Note on Vulnerability Scanners](overview.hbs.md#scst-scan-note) for more details.
+    - `ignoreCves` contains individual ignored CVEs when determining policy enforcement. The following is an example of how an `app-operator` might decide to ignore `CVE-2018-14643` and `GHSA-f2jv-r9rf-7988` if they are false positives. See [A Note on Vulnerability Scanners](overview.hbs.md#scst-scan-note) for more details.
 
       ```yaml
       ...
@@ -103,25 +104,153 @@ Follow these steps to define a Rego file for policy enforcement that you can reu
     kubectl apply -f <path_to_scan_policy>/<scan_policy_filename>.yaml -n <desired_namespace>
     ```
 
-See how scan policies are used in the CVE triage workflow in the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md#a-idcve-triage-workflowa-cve-triage-workflow)
+See how scan policies are used in the CVE triage workflow in the [Triaging and Remediating CVEs](../scst-scan/triaging-and-remediating-cves.hbs.md#amend-scan-policy)
 
-## <a id="gui-view-scan-policy"></a>Enable Tanzu Application Platform GUI to view ScanPolicy Resource
+## <a id="more-detail"></a>Further refine the Scan Policy for use
 
-In order for the Tanzu Application Platform GUI to view the ScanPolicy resource, it must have a matching `kubernetes-label-selector` with a `part-of` prefix.
+The scan policy earlier is provided to demonstrate how vulnerabilities are ignored during a compliance check. It has a lack of auditability as to why a vulnerability is ignored. You might want to allow an exception, where a build with a failing vulnerability is allowed to progress through a supply chain. You can allow this exception for a certain period of time, requiring an expiration date. Vulnerability Exploitability Exchange (VEX) documents are gaining popularity to capture security advisory information pertaining to vulnerabilities. You can express these use cases with Rego.
 
-Here is an example of a ScanPolicy that is viewable by the TAP GUI:
+For example, the following scan policy includes an additional text box to capture comments regarding why a vulnerability is ignored. The `notAllowedSeverities` array remains an array of strings, but the `ignoreCves` array was updated from an array of strings to an array of objects. This causes a change to the `contains` function, splitting it into separate functions for each array.
+
 ```yaml
+---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
   name: scan-policy
   labels:
-    'app.kubernetes.io/part-of': 'enable-in-gui'
+    app.kubernetes.io/part-of: enable-in-gui
+spec:
+  regoFile: |
+    package main
+
+    # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+    notAllowedSeverities := ["Critical", "High", "UnknownSeverity"]
+
+    # List of known vulnerabilities to ignore when deciding whether to fail compliance. Example:
+    # ignoreCves := [
+    #   {
+    #     "id": "CVE-2018-14643",
+    #     "detail": "Determined affected code is not in the execution path."
+    #   }
+    # ]
+    ignoreCves := []
+
+    containsSeverity(array, elem) = true {
+      array[_] = elem
+    } else = false { true }
+
+    isSafe(match) {
+      severities := { e | e := match.ratings.rating.severity } | { e | e := match.ratings.rating[_].severity }
+      some i
+      fails := containsSeverity(notAllowedSeverities, severities[i])
+      not fails
+    }
+
+    containsCve(array, elem) = true {
+      array[_].id = elem
+    } else = false { true }
+
+    isSafe(match) {
+      ignore := containsCve(ignoreCves, match.id)
+      ignore
+    }
+
+    deny[msg] {
+      comps := { e | e := input.bom.components.component } | { e | e := input.bom.components.component[_] }
+      some i
+      comp := comps[i]
+      vulns := { e | e := comp.vulnerabilities.vulnerability } | { e | e := comp.vulnerabilities.vulnerability[_] }
+      some j
+      vuln := vulns[j]
+      ratings := { e | e := vuln.ratings.rating.severity } | { e | e := vuln.ratings.rating[_].severity }
+      not isSafe(vuln)
+      msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
+    }
+```
+
+Including an expiration text box and only allowing the vulnerability to be ignored for a period of time is shown in the following example:
+
+```yaml
+---
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+kind: ScanPolicy
+metadata:
+  name: scan-policy
+  labels:
+    app.kubernetes.io/part-of: enable-in-gui
+spec:
+  regoFile: |
+    package main
+
+    # Accepted Values: "Critical", "High", "Medium", "Low", "Negligible", "UnknownSeverity"
+    notAllowedSeverities := ["Critical", "High", "UnknownSeverity"]
+
+    # List of known vulnerabilities to ignore when deciding whether to fail compliance. Example:
+    # ignoreCves := [
+    #   {
+    #     "id": "CVE-2018-14643",
+    #     "detail": "Determined affected code is not in the execution path.",
+    #     "expiration": "2022-Dec-31"
+    #   }
+    # ]
+    ignoreCves := []
+
+    containsSeverity(array, elem) = true {
+      array[_] = elem
+    } else = false { true }
+
+    isSafe(match) {
+      severities := { e | e := match.ratings.rating.severity } | { e | e := match.ratings.rating[_].severity }
+      some i
+      fails := containsSeverity(notAllowedSeverities, severities[i])
+      not fails
+    }
+
+    containsCve(array, elem) = true {
+      array[_].id = elem
+      curr_time := time.now_ns()
+      date_format := "2006-Jan-02"
+      expire_time := time.parse_ns(date_format, array[_].expiration)
+      curr_time < expire_time
+    } else = false { true }
+
+    isSafe(match) {
+      ignore := containsCve(ignoreCves, match.id)
+      ignore
+    }
+
+    deny[msg] {
+      comps := { e | e := input.bom.components.component } | { e | e := input.bom.components.component[_] }
+      some i
+      comp := comps[i]
+      vulns := { e | e := comp.vulnerabilities.vulnerability } | { e | e := comp.vulnerabilities.vulnerability[_] }
+      some j
+      vuln := vulns[j]
+      ratings := { e | e := vuln.ratings.rating.severity } | { e | e := vuln.ratings.rating[_].severity }
+      not isSafe(vuln)
+      msg = sprintf("CVE %s %s %s", [comp.name, vuln.id, ratings])
+    }
+```
+
+## <a id="gui-view-scan-policy"></a>Enable Tanzu Application Platform GUI to view ScanPolicy Resource
+
+For the Tanzu Application Platform GUI to view the ScanPolicy resource, it must have a matching `kubernetes-label-selector` with a `part-of` prefix.
+
+Here is a portion of a ScanPolicy that is viewable by the Tanzu Application Platform GUI:
+```yaml
+---
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+kind: ScanPolicy
+metadata:
+  name: scan-policy
+  labels:
+    app.kubernetes.io/part-of: enable-in-gui
 spec:
   regoFile: |
     ...
 ```
->**Note:** The value for the label can be anything. The Tanzu Application Platform GUI is looking for the existence of the `part-of` prefix string and doesn't match for anything else specific.
+>**Note** The value for the label can be anything. The Tanzu Application Platform GUI is looking for the existence of the `part-of` prefix string and doesn't match for anything else specific.
 
 ## <a id="deprecated-rego-file"></a> Deprecated Rego file Definition
 
@@ -137,14 +266,14 @@ kind: ScanPolicy
 metadata:
   name: v1alpha1-scan-policy
   labels:
-    'app.kubernetes.io/part-of': 'enable-in-gui'
+    app.kubernetes.io/part-of: enable-in-gui
 spec:
   regoFile: |
     package policies
 
     default isCompliant = false
 
-    ignoreSeverities := ["Low","Medium","High","Critical"]
+    ignoreSeverities := ["Critical", "High"]
 
     contains(array, elem) = true {
       array[_] = elem

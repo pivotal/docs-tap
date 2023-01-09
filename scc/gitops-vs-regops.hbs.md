@@ -1,4 +1,4 @@
-# GitOps vs. RegistryOps
+# GitOps versus RegistryOps
 
 Regardless of the supply chain that a workload goes through, in the end,
 some Kubernetes configuration is pushed to an external entity, either to a Git
@@ -21,9 +21,9 @@ This topic dives into the specifics of that last phase of the supply chains
 by pushing configuration to a Git repository or an
 image registry.
 
->**Note:** For more information about providing source code either from a
+>**Note** For more information about providing source code either from a
 local directory or Git repository,
-see [Building from Source](building-from-source.md).  
+see [Building from Source](building-from-source.md).
 
 ## <a id="gitops"></a>GitOps
 
@@ -35,28 +35,28 @@ environments by using GitOps principles.
 Typically associated with an outerloop workflow, the GitOps approach is only activated if a
 collection of parameters are set:
 
-- `gitops.server_address` during the Out of the Box Supply Chains package installation or `gitops_server_address` 
+- `gitops.server_address` during the Out of the Box Supply Chains package installation or `gitops_server_address`
   configured as a workload parameter.
-- `gitops.repository_owner` during the Out of the Box Supply Chains package installation or `gitops_repository_owner` 
+- `gitops.repository_owner` during the Out of the Box Supply Chains package installation or `gitops_repository_owner`
   configured as a workload parameter.
-- `gitops.repository_name` during the Out of the Box Supply Chains package installation or `gitops_repository_name` 
+- `gitops.repository_name` during the Out of the Box Supply Chains package installation or `gitops_repository_name`
   configured as a workload parameter.
 
-With all three values set, Kubernetes configuration is written to the specified repository. If a 
-value is set at installation and the corresponding workload parameter is also set, the value of the workload parameter is 
+With all three values set, Kubernetes configuration is written to the specified repository. If a
+value is set at installation and the corresponding workload parameter is also set, the value of the workload parameter is
 respected.
 
 In the repository, files are located in the `./config/{workload-namespace}/{workload-name}` directory. This allows multiple workloads to commit configuration to the same repository.
 
-#### Examples
+#### <a id="examples-1"></a> Examples
 
 ---
 `tap-values.yaml`
 ```yaml
 gitops:
-  server_address: 
-  repository_owner: 
-  repository_name: 
+  server_address:
+  repository_owner:
+  repository_name:
 ```
 
 `workload`
@@ -125,7 +125,7 @@ Directory containing configuration: `./config/awesomeTeam/superApp`
 gitops:
   server_address:
   repository_owner:
-  repository_name: 
+  repository_name:
 ```
 
 `workload`
@@ -143,7 +143,7 @@ Resulting gitops repository: Fails to resolve as some, but not all, of the three
 
 ---
 
-### Deprecated parameters
+### <a id="dep-params"></a> Deprecated parameters
 
 The following parameters are deprecated and no longer recommended for specifying gitops repositories:
 
@@ -189,7 +189,6 @@ for example, `https://github.com/my-org/$(workload.metadata.name).git`.
     `git push` to GIT-REPO-PREFIX/workload-n.git
   ```
 
-
 Alternatively, you can force a workload to publish the configuration
 in a Git repository by providing the `gitops_repository` parameter
 to the workload:
@@ -198,7 +197,8 @@ to the workload:
   tanzu apps workload create tanzu-java-web-app \
     --app tanzu-java-web-app \
     --type web \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app \
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
     --git-branch main \
     --param gitops_ssh_secret=GIT-SECRET-NAME \
     --param gitops_repository=https://github.com/my-org/config-repo
@@ -208,14 +208,16 @@ In this case, at the end of the supply chain, the configuration for this
 workload is published to the repository provided under the `gitops_repository`
 parameter.
 
-If you use deprecated parameters, kubernetes configuration is committed to the `./config` directory in the 
-repository. This can lead to collisions if two workloads specify the same repository, or two workloads in different 
-namespaces have the same name and the `gitops.repository_prefix` is set in `tap-values.yaml`.
+If you use deprecated parameters, Kubernetes configuration is committed to the
+`./config` directory in the repository. This can lead to collisions if two
+workloads specify the same repository, or two workloads in different namespaces
+have the same name and the `gitops.repository_prefix` is set in
+`tap-values.yaml`.
 
-If the deprecated values are set and any of the suggested gitops values are set, the deprecated values are 
-ignored.
+If the deprecated values are set and any of the suggested gitops values are set,
+the deprecated values are ignored.
 
-#### Examples
+#### <a id="examples"></a> Examples
 
 ---
 `tap-values.yaml`
@@ -253,7 +255,7 @@ gitops:
       value: https://github.com/pivotal/kpack
 ```
 
-Resulting gitops repository: `https://github.com/vmware-tanzu/cartographer` (The deprecated param 
+Resulting gitops repository: `https://github.com/vmware-tanzu/cartographer` (The deprecated param
 `gitops_repository` is ignored.)
 
 Directory containing configuration: `./config/awesomeTeam/superApp`
@@ -276,26 +278,33 @@ gitops:
       value: kpack
 ```
 
-Resulting gitops repository: Fails to resolve as some, but not all, of the three gitops values are provided. (The 
+Resulting gitops repository: Fails to resolve as some, but not all, of the three gitops values are provided. (The
 deprecated value repository_prefix is ignored because suggested values are present)
 
 ---
 
-### Pull Requests
+### <a id="prs"></a> Pull Requests
 
-In the standard git-ops approach, configuration is pushed to a repository and is immediately applied 
-to a cluster by any deliverable watching that repository. Operators might want to manually review configuration before 
-applying it to the cluster. To do this, operators must specify a `pull_request` commit strategy. You can use this
-strategy with the following Git providers:
+In the standard `git-ops` approach, configuration is pushed to a repository and is
+immediately applied to a cluster by any deliverable watching that repository.
+Operators might want to manually review configuration before applying it to the
+cluster. To do this, operators must specify a `pull_request` commit strategy.
+You can use this strategy with the following Git providers:
 
 - GitHub
 - GitLab
 
-#### Authentication
+#### <a id="auth"></a> Authentication
 
-The pull request approach requires HTTP(S) authentication with a token. In the
-[kuberenetes secret](#a-idhttp-authahttps-basic-auth--token-based-authentication) that holds the Git credentials, the
-password text box must be filled with a token. When generating a token, ensure that it is given proper scope:
+The pull request approach requires HTTP(S) authentication with a token.
+
+Pull request functionality is not a part of the Git specification, but is
+included by most Git server providers. You must authenticate with those
+providers using a token.
+
+In the [Kubernetes secret](#http-auth)
+that holds the Git credentials, the password text box must be filled with a token.
+When generating a token, ensure that it is given proper scope:
 
 - On GitHub, the token must have a
   [Repo scope](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token).
@@ -318,9 +327,10 @@ To use the `pull_request` commit strategy, set the following parameters:
 
 If a value is set at both installation and in a workload parameter, the workload parameter is respected.
 
-The recommended value for commit_branch is an empty string. This generates a new branch for each commit based 
-on a hash of the time when the commit is created. This prevents collisions between multiple workloads using a single
-Git repository.
+The recommended value for commit_branch is an empty string. This generates a new
+branch for each commit based on a hash of the time when the commit is created.
+This prevents collisions between multiple workloads using a single Git
+repository.
 
 For example, using the following Tanzu Application Platform values:
 
@@ -341,8 +351,9 @@ ootb_supply_chain_basic:
 
 And a workload with the name `app` in the `dev` namespace, you find:
 
-A commit to the `https://github.com/vmware-tanzu/cartographer` repository on a branch with a random name (e.g. 
-`MTY1MTYxMzE0NQo=`). There is a pull request open to merge this branch into the base branch `main`.
+A commit to the `https://github.com/vmware-tanzu/cartographer` repository on a branch
+with a random name, for example, `MTY1MTYxMzE0NQo=`.
+There is a pull request open to merge this branch into the base branch `main`.
 
 ### <a id="auth"></a>Authentication
 
@@ -378,15 +389,15 @@ provide the credentials for that repository as follows:
     password: GIT-PASSWORD
   ```
 
->**Note:** Both the Tekton annotation and the `basic-auth` secret type must be
+>**Note** Both the Tekton annotation and the `basic-auth` secret type must be
 set. `GIT-SERVER` must be prefixed with the appropriate URL scheme and the Git
-server. For example, for https://github.com/vmware-tanzu/cartographer,
-https://github.com must be provided as the GIT-SERVER.
+server. For example, for `https://github.com/vmware-tanzu/cartographer`,
+`https://github.com` must be provided as the `GIT-SERVER`.
 
 <p class="note important">
 <strong>Note:</strong>
 To use the pull request approach, the password text box must contain a token.
-See [Pull Requests](#pull-requests).
+See [Pull Requests](#prs).
 </p>
 
 After the `Secret` is created, attach it to the `ServiceAccount` used by the
@@ -454,7 +465,6 @@ workload. For example:
 For more information about the credentials and setting up the Kubernetes
 secret, see [Git Authentication's SSH section](git-auth.md#sh).
 
-
 ### <a id="gitops-params"></a>GitOps workload parameters
 
 While installing `ootb-*`, operators can configure `gitops.repository_prefix` to
@@ -473,7 +483,8 @@ create a workload as follows:
   ```console
   tanzu apps workload create tanzu-java-web-app \
     --git-branch main \
-    --git-repo https://github.com/sample-accelerators/tanzu-java-web-app
+    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --sub-path tanzu-java-web-app \
     --label app.kubernetes.io/part-of=tanzu-java-web-app \
     --type web
   ```
@@ -496,7 +507,8 @@ Expect to see the following output:
       12 + |    git:
       13 + |      ref:
       14 + |        branch: main
-      15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
+      15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
+      16 + |    subPath: tanzu-java-web-app
   ```
 
 As a result, the Kubernetes configuration is pushed to
@@ -526,7 +538,6 @@ where configuration is pushed to by tweaking the following parameters:
 
 -  `gitops_user_email`: User email address to use in the commits.
    Example: `alice@example.com`
-
 
 ## <a id="registryops"></a>RegistryOps
 
@@ -564,4 +575,5 @@ to an image named after `REGISTRY-SERVER/REGISTRY-REPOSITORY` including
 the workload name.
 
 In this scenario, no extra credentials must be set up, because the secret
-containing the credentials for the container image registry were already configured during the setup of the workload namespace.
+containing the credentials for the container image registry were already
+configured during the setup of the workload namespace.

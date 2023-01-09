@@ -46,7 +46,6 @@ This indicates that the accelerator resource requested is not in a `READY` state
 Review the instructions in the [When Accelerator ready column is false](#ts-ready-false) section or
 contact your system admin.
 
-
 ## <a id="authorship-issues"></a> Accelerator authorship issues
 
 ### <a id="tips"></a>General tips
@@ -224,7 +223,7 @@ cause of failure. For example:
       address:
         url: http://accelerator-engine.accelerator-system.svc.cluster.local/invocations
       artifact:
-        message: 'unable to clone ''https://github.com/sample-accelerators/hello-fun'',
+        message: 'unable to clone ''https://github.com/vmware-tanzu/application-accelerator-samples'',
           error: couldn''t find remote ref "refs/heads/test"'
         ready: false
         url: ""
@@ -232,7 +231,7 @@ cause of failure. For example:
       - lastTransitionTime: "2021-11-18T21:05:47Z"
         message: |-
           failed to resolve GitRepository
-          unable to clone 'https://github.com/sample-accelerators/hello-fun', error: couldn't find remote ref "refs/heads/test"
+          unable to clone 'https://github.com/vmware-tanzu/application-accelerator-samples', error: couldn't find remote ref "refs/heads/test"
         reason: GitRepositoryResolutionFailed
         status: "False"
         type: Ready
@@ -251,7 +250,7 @@ cause of failure. For example:
       address:
         url: http://accelerator-engine.accelerator-system.svc.cluster.local/invocations
       artifact:
-        message: 'unable to clone ''https://github.com/sample-accelerators/hello-funk'',
+        message: 'unable to clone ''https://github.com/vmware-tanzu/application-accelerator-sampl'',
           error: authentication required'
         ready: false
         url: ""
@@ -259,7 +258,7 @@ cause of failure. For example:
       - lastTransitionTime: "2021-11-18T21:09:52Z"
         message: |-
           failed to resolve GitRepository
-          unable to clone 'https://github.com/sample-accelerators/hello-funk', error: authentication required
+          unable to clone 'https://github.com/vmware-tanzu/application-accelerator-sampl', error: authentication required
         reason: GitRepositoryResolutionFailed
         status: "False"
         type: Ready
@@ -271,7 +270,7 @@ cause of failure. For example:
     exist. For example:
 
     ```console
-    unable to clone 'https://github.com/sample-accelerators/hello-funk', error: authentication required
+    unable to clone 'https://github.com/vmware-tanzu/application-accelerator-sampl', error: authentication required
     ```
 
 #### <a id="reason-GitRepositoryResolutionPending"></a> REASON: `GitRepositoryResolutionPending`

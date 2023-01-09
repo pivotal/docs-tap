@@ -2,21 +2,25 @@
 
 ## <a id='overview'></a> Overview
 
-API Auto Registration automates the registration of API specification defined in a workload's configuration. The registered 
-API specification will then be accessible in TAP GUI without any additional manual steps. API Auto Registration is leveraged 
-by an automated workflow using a supply chain to create and manage a Kubernetes Custom Resource (CR) of kind `APIDescriptor`. 
-A Kubernetes controller will reconcile the CR and update the API entity in TAP GUI to achieve automated API specification 
-registration from origin workloads. You may also use API Auto Registration without supply chain automation with other GitOps 
-processes or by directly applying an `APIDescriptor` CR to the cluster.
+API Auto Registration automates the registration of API specification defined in
+a workload's configuration. The registered API specification is accessible in
+Tanzu Application Platform GUI without any additional steps. An automated
+workflow using a supply chain, leverages API Auto Registration to create and
+manage a Kubernetes Custom Resource (CR) of kind `APIDescriptor`. A Kubernetes
+controller periodically reconciles the CR and updates the API entity in Tanzu
+Application Platform GUI to achieve automated API specification registration
+from origin workloads. You might also use API Auto Registration without supply
+chain automation, with other GitOps processes, or by directly applying an
+`APIDescriptor` CR to the cluster.
 
-![API Auto Registration](./images/autoregistering-api-entities-stages.png)
+![Flow chart with boxes for each element of the API Auto Registration process.](./images/autoregistering-api-entities-stages.png)
 
-## <a id='getting-started'></a> Getting Started
+## <a id='getting-started'></a> Getting started
 
-Learn more about APIDescriptor CR and API entities in TAP GUI in the [Key Concepts section](key-concepts.md)
+For information about the architecture of API Auto Registration, or the APIDescriptor CR and API entities in Tanzu Application Platform GUI, see [Key Concepts section](key-concepts.md).
 
-For "iterate", "run" and "full" TAP cluster profiles, start at the [Usage section](usage.md)
+For information about the iterate, run, and full Tanzu Application Platform cluster profiles, see [Usage section](usage.md).
 
-For other profiles, install the api-auto-registration package using the [Installation section](installation.md)
+For information about other profiles, install the `api-auto-registration` package. See [Install API Auto Registration](installation.md).
 
-Troubleshoot and debug problems using the tips mentioned in the [Troubleshooting section](troubleshooting.md)
+Troubleshoot and debug problems using the tips in [Troubleshooting](troubleshooting.md).

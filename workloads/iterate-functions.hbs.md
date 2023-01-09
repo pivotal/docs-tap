@@ -5,14 +5,14 @@ VMware Tanzu Developer Tools extension for Visual Studio Code.
 This extension enables live updates of your application while running on the
 cluster, and allows you to debug your application directly on the cluster.
 
+> **Important** The Tanzu Developer Tools extension currently only supports Java Functions.
+
 ## <a id="prereqs"></a> Prerequisites
 
 Before you can iterate on your function, you must have:
 
 - [Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.md)
 - [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later.
-
-> **Note:** The Tanzu Developer Tools extension currently only supports Java Functions.
 
 ## <a id="configuration"></a> Configure the Tanzu Developer Tools extension
 
@@ -53,12 +53,12 @@ the container is being built and deployed.
 
 1. Depending on the type of cluster you use, you might see an error message similar to the following:
 
-    >`ERROR: Stop! cluster-name might be production. If you're sure you want to deploy there,
-    >add allow_k8s_contexts('cluster-name') to your Tiltfile. Otherwise, switch k8scontexts
-    >and restart Tilt.`
+   `ERROR: Stop! cluster-name might be production. If you're sure you want to deploy there,
+   add allow_k8s_contexts('cluster-name') to your Tiltfile. Otherwise, switch k8scontexts
+   and restart Tilt.`
 
-    If you see this error, add the line `allow_k8s_contexts('CLUSTER-NAME')` to your Tiltfile,
-    where `CLUSTER-NAME` is the name of your cluster.
+   If you see this error, add the line `allow_k8s_contexts('CLUSTER-NAME')` to your Tiltfile,
+   where `CLUSTER-NAME` is the name of your cluster.
 
 1. When the Live Update status in the status bar is visible and says
 `Live Update Started`, navigate to `http://localhost:8080` in your browser
@@ -70,7 +70,7 @@ and view your running application.
 
 1. View the changes to your workload running on the cluster.
 
-    > **Note:** When using Live Update, hot reload of your function on your cluster might not
+    > **Note** When using Live Update, hot reload of your function on your cluster might not
     > display changes made to your function.
     > To manually push changes to the cluster, run the `tilt up` command.
 

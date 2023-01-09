@@ -1,4 +1,4 @@
-# Accessing Tanzu Application Platform GUI
+# Access Tanzu Application Platform GUI
 
 Use one of the following methods to access Tanzu Application Platform GUI:
 

@@ -25,7 +25,7 @@ Installation requires:
         - 10 GB of available storage if installing Tanzu Build Service with the `full` set of dependencies, which are suitable for offline
         environments.
 
-        >**Note:** For production environments, `full` dependencies are recommended to
+        >**Note** For production environments, `full` dependencies are recommended to
         >optimize security and performance. For more information about Tanzu Build Service
         >dependencies, see [About lite and full dependencies](tanzu-build-service/dependencies.md#lite-vs-full).
 
@@ -54,7 +54,7 @@ The default host name consists of `tap-gui` and the `shared.ingress_domain` valu
 
 ### <a id='tap-gui'></a>Tanzu Application Platform GUI
 
-For Tanzu Applicatiop Platform GUI, you must have:
+For Tanzu Application Platform GUI, you must have:
 
 - Latest version of Chrome, Firefox, or Edge. Tanzu Application Platform GUI currently does not support Safari browser.
 - Git repository for Tanzu Application Platform GUI's software catalogs, with a token allowing read access. For more information about how to use your Git repository, see [Create an application accelerator](getting-started/create-app-accelerator.html#create-an-app-acc).
@@ -75,12 +75,12 @@ For Tanzu Applicatiop Platform GUI, you must have:
           Tanzu Application Platform packaging.
           The PostgreSQL database stores all the catalog data persistently both from the Git locations
           and the UI manual entity registrations. For more information, see
-          [Configuring the Tanzu Application Platform GUI database](tap-gui/database.md)
+          [Configure the Tanzu Application Platform GUI database](tap-gui/database.md)
 
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires Kubernetes cluster v1.22 or v1.23 on one of the following Kubernetes
+Installation requires Kubernetes cluster v1.23, v1.24 or v1.25 on one of the following Kubernetes
 providers:
 
 - Azure Kubernetes Service.
@@ -96,11 +96,11 @@ providers:
 - Minikube.
     - Reference the [resource requirements](#resource-requirements) in the following section.
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
-- Red Hat OpenShift Container Platform v4.10
+- Red Hat OpenShift Container Platform v4.10 or v4.11.
     - vSphere
     - Baremetal
 - Tanzu Kubernetes Grid multicloud.
-- vSphere with Tanzu v7.0 U3a (not compatible with Tanzu Application Platform v1.0.0 or earlier).<br>
+- vSphere with Tanzu v7.0 U3e or later. Not compatible with Tanzu Application Platform v1.0.0 or earlier.<br>
 For vSphere with Tanzu, pod security policies must be configured so that Tanzu Application Platform controller pods can run as root.
 For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
 
@@ -117,31 +117,35 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
 
 - To deploy Tanzu Application Platform packages iterate profile on local Minikube cluster, your cluster must have at least:
     - 8&nbsp;vCPUs for i9 (or equivalent) available to Tanzu Application Platform components on Mac OS.
-    - 12&nbsp;vCPUs for i7 (or equivalent) available to Tanzu Application Platform components on Mac OS. 
+    - 12&nbsp;vCPUs for i7 (or equivalent) available to Tanzu Application Platform components on Mac OS.
     - 8&nbsp;vCPUs available to Tanzu Application Platform components on Linux and Windows.
-    - 12&nbsp;GB of RAM available to Tanzu Application Platform components on Mac OS, Linux and Windows. 
+    - 12&nbsp;GB of RAM available to Tanzu Application Platform components on Mac OS, Linux and Windows.
     - 70&nbsp;GB of disk space available per node.
-- To deploy Tanzu Application Platform packages full profile, your cluster must have at least:    
+- To deploy Tanzu Application Platform packages full profile, your cluster must have at least:
     - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
     - 16&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
     - 100&nbsp;GB of disk space available per node.
-- To deploy Tanzu Application Platform packages build, run and iterate (shared) profile, your cluster must have at least:    
+- To deploy Tanzu Application Platform packages build, run and iterate (shared) profile, your cluster must have at least:
     - 8&nbsp;GB of RAM available per node to Tanzu Application Platform.
     - 12&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
     - 100&nbsp;GB of disk space available per node.
 
 - For the [`full` profile](install.html#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
-- Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root.
-See [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/) for more information.
+- Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in the following optional configurations:
+    - Tanzu Build Service, in which CustomStacks require root privileges. For more information, see [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-custom-stacks.html).
+    - Supply Chain, in which Kaniko usage requires root privileges to build containers.
+    - Tanzu Learning Center, which requires root privileges.
+
+    For more information about pod security policies, see [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
 
 
 ## <a id='tools-and-cli-reqs'></a>Tools and CLI requirements
 
 Installation requires:
 
-- The Kubernetes CLI, kubectl, v1.22 or v1.23, installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
+- The Kubernetes CLI (kubectl) v1.23, v1.24, or v1.25 installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 ## <a id='next-steps'></a>Next steps
 
-- [Accepting Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)
+- [Accept Tanzu Application Platform EULAs and installing the Tanzu CLI](install-tanzu-cli.html)

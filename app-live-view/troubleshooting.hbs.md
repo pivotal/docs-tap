@@ -1,4 +1,4 @@
-# Troubleshooting
+# Troubleshoot Application Live View
 
 This topic provides information to help you troubleshoot Application Live View.
 
@@ -118,8 +118,8 @@ management.endpoint.health.show-details: "always"
 
 **Symptom**
 
-You can find your app in the UI, but it is an old instance that no longer exists
-while the new instance doesn't show up yet.
+You can find your app in the UI, but it is an old instance that no longer exists while the new
+instance doesn't show up yet.
 
 **Solution**
 
@@ -127,11 +127,33 @@ To troubleshoot:
 
 1. View the App Live View connector pod logs to see if the connector is sending updates to the back end.
 
-1. Try deleting the connector pod so it is re-created by running:
+2. Delete the connector pod to recreate it by running:
 
     ```bash
     kubectl -n app-live-view-connector delete pods -l=name=application-live-view-connector
     ```
+
+## <a id="missing-cert-requests"></a> Unable to find CertificateRequests in App Live View Convention
+
+**Symptom**
+
+The certificate request is missing for certificate `app-live-view-conventions/appliveview-webhook-cert`.
+
+**Solution**
+
+To troubleshoot:
+
+1. Run `kubectl get certificaterequest -A` to see if the certificate request is missing for
+   App Live View Convention.
+
+2. Delete the secret `appliveview-webhook-cert` that corresponds to the certificate in the
+   `app-live-view-conventions` namespace by running:
+
+    ```bash
+    kubectl delete secret appliveview-webhook-cert -n app-live-view-conventions
+    ```
+
+    This recreates the certificate request and updates the corresponding certificate.
 
 ## <a id="no-live-info"></a> No live information for pod with ID
 
@@ -141,8 +163,8 @@ In Tanzu Application Platform GUI, you receive the error `No live information fo
 
 **Cause**
 
-This might happen because of stale information in App Live View because it is an
-old instance that no longer exists while the new instance doesn't show up yet.
+This might happen because of stale information in App Live View because it is an old instance that
+no longer exists while the new instance doesn't show up yet.
 
 **Solution**
 
@@ -168,11 +190,11 @@ The changes from the `Workload` must be propagated up through the supply chain f
 
 **Symptom**
 
-This might be because `sslDisabled` flag in the values YAML file does not accept values without quotes.
+This might be because `sslDeactivated` flag in the values YAML file does not accept values without quotes.
 
 **Cause**
 
-The `sslDisabled` Boolean flag is treated as a string in the Kubernetes YAML file.
+The `sslDeactivated` Boolean flag is treated as a string in the Kubernetes YAML file.
 
 **Solution**
 

@@ -1,4 +1,4 @@
-# Iterate on your new application
+# Iterate on your new app
 
 This how-to guide walks you through starting to iterate on your first application on Tanzu Application Platform, which you deployed in the previous how-to, [Deploy your first application](deploy-first-app.md).
 
@@ -20,9 +20,9 @@ It helps you develop and receive fast feedback on your workloads running on the 
 The VS Code extension enables live updates of your application while running on the cluster
 and allows you to debug your application directly on the cluster.
 For information about installing the prerequisites and the Tanzu Developer Tools for VS Code extension, see
-[Install Tanzu Dev Tools for VS Code](../vscode-extension/install.md).
+[Install Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.md).
 
->**Important:** Use Tilt v0.27.2 or a later version for the sample application.
+>**Important** Use Tilt v0.27.2 or a later version for the sample application.
 
 1. Open the Tanzu Java Web App as a project within your VS Code IDE.
 
@@ -46,7 +46,7 @@ You can view output from Tanzu Application Platform and from Tilt indicating tha
     - You see "Live Update starting..." in the status bar at the bottom right.
     - Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
 
-    >**Note:** Depending on the type of cluster you use, you might see an error similar to the following:
+    >**Note** Depending on the type of cluster you use, you might see an error similar to the following:
 
     >`ERROR: Stop! cluster-name might be production.
     >If you're sure you want to deploy there, add:

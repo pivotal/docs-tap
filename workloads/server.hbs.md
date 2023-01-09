@@ -1,4 +1,4 @@
-# Using Server workloads
+# Use server workloads
 
 This topic describes how to use the `server` workload type.
 
@@ -44,13 +44,13 @@ If you have followed the Services Toolkit example, you can update the `spring-se
 to use the `server` supply chain by changing the workload type by running:
 
 ```console
-tanzu apps workload update spring-sensors-consumer-web --type=server
+tanzu apps workload apply spring-sensors-consumer-web --type=server
 ```
 
 This shows the change in the workload label, and prompts you to accept the change.
-After the workload completes the new deployment, there will be a few differences:
+After the workload completes the new deployment, there are a few differences:
 
-* The workload no longer advertises a URL. It's available within the cluster as
+- The workload no longer advertises a URL. It's available within the cluster as
 `spring-sensors-consumer-web` within the namespace, but you must use
 `kubectl port-forward service/spring-sensors-consumer-web 8080` to access the web service on port 8080.
 
@@ -58,7 +58,7 @@ After the workload completes the new deployment, there will be a few differences
     Using an ingress rule, you can specify that specific host names or paths must be routed to the application.
     For more information about ingress rules, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
-* The workload no longer autoscales based on request traffic.
+- The workload no longer autoscales based on request traffic.
 For the `spring-sensors-consumer-web` workload, this means that it never spawns
 a second instance that consumes part of the request queue.
 Also, it does not scale down to zero instances.
@@ -66,9 +66,10 @@ Also, it does not scale down to zero instances.
 ## <a id="params"></a> `server`-specific workload parameters
 
 In addition to the common supply chain parameters, `server` workloads can expose one or more network
-ports from the application to the Kubernetes cluster using the `ports` parameter.
+ports from the application to the Kubernetes cluster by using the `ports` parameter.
 This parameter is a list of port objects, similar to a Kubernetes service specification.
-If not set, the applied container conventions in the cluster establishes the set of exposed ports.
+If you do not configure the `ports` parameter, the applied container conventions in the cluster
+establishes the set of exposed ports.
 
 The following configuration exposes two ports on the Kubernetes cluster under the `my-app` host name:
 
@@ -92,8 +93,8 @@ spec:
 
 This snippet configures:
 
-* One service on port 25, which is redirected to port 2025 on the application.
-* One service on port 8080, which is routed to port 8080 on the application.
+- One service on port 25, which is redirected to port 2025 on the application.
+- One service on port 8080, which is routed to port 8080 on the application.
 
 You can set the `ports` parameter from the `tanzu apps workload create` command line as `--param-yaml 'ports=[{"port": 8080}]'`.
 

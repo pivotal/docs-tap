@@ -5,7 +5,7 @@
 * AWS Account
 
 
-### <a id='aws-rds'></a>AWS RDS
+## <a id='aws-rds'></a>Setup certificate and configuration
 
 1. Create an Amazon RDS Postgres using the [Amazon RDS Getting Started Guide](https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/CHAP_GettingStarted.CreatingConnecting.PostgreSQL.html#CHAP_GettingStarted.Creating.PostgreSQL)
 
@@ -40,4 +40,4 @@
    deploy_internal_db: "false"
    ```
 
-> **Note:** If `deploy_internal_db` is set to `false,` an instance of Postgres will not be deployed in the cluster.
+> **Note** If `deploy_internal_db` is set to `false,` an instance of Postgres will not be deployed in the cluster.
