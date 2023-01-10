@@ -239,7 +239,7 @@ EOF
 ```
 
 #### <a id="patch-the-service-account"></a> 4. Patching the default Service Account
-Tanzu Application Platform includes a [Namespace Provisioner](/namespace-provisioner/about.hbs.md) which is not enabled by default.
+Tanzu Application Platform includes a [Namespace Provisioner](../namespace-provisioner/about.hbs.md) which is not enabled by default.
 This section of the guide assumes that the user is not using the Namespace Provisioner.
 
 The `jenkins-task` `ClusterTask` resource uses a container image with the
