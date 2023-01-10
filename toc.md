@@ -312,7 +312,7 @@ docs.vmware.com is built.
     - [Namespace Provisioner](namespace-provisioner/about.hbs.md)
       - [Install Namespace Provisioner](namespace-provisioner/install.hbs.md)
       - [Provision namespace resources](namespace-provisioner/tutorials.hbs.md)
-      - [Configure Namespace Provisioner](namespace-provisioner/how-tos.hbs.md)
+      - [Customize Namespace Provisioner](namespace-provisioner/how-tos.hbs.md)
       - [Troubleshoot Namespace Provisioner](namespace-provisioner/troubleshooting.hbs.md)
       - [Namespace Provisioner Reference Guide](namespace-provisioner/reference.hbs.md)
     - [Spring Boot conventions](spring-boot-conventions/about.hbs.md)
