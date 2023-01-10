@@ -5,18 +5,18 @@ There are two approaches to provisioning namespace-scoped resources supported:
 1. [**Using Namespace Provisioner Controller**](#controller-ns-provisioning) - recommended for Tanzu
    Application Platform clusters that:
    - include [Out of the Box Supply Chain Basic](../scc/ootb-supply-chain-basic.hbs.md)
-   - require only the default, out of the box namespace-scoped resources to be provisioned
+   - require only the default namespace-scoped resources to be provisioned
 2. [**Using GitOps**](#using-gitops) - required for Tanzu Application Platform clusters that
-   have any of the following:
+   meet any of the following:
    - include [Out of the Box Supply Chain - Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md)
-   - require customization and/or extension of the default namespace-scoped resources that are provisioned
-   - would be best to control which namespaces get provisioned via GitOps
+   - require customization or extension of the default namespace-scoped resources that are provisioned
+   - prefer to control which namespaces get provisioned with GitOps
 
 ## <a id="controller-ns-provisioning"></a>Using Namespace Provisioner Controller
 
 ### <a id="nps-controller-prerequisites"></a>Prerequisites</br>
 
-- The Namespace Provisioner package is installed and successfully reconciled
+- The Namespace Provisioner package is installed and reconciled
 - The [`controller` tap value key](install.hbs.md#customized-installation) is set to **`true`**
   (Default is `true`)
 - The `registry-credentials` secret referenced by the Tanzu Build Service is added to tap-install
@@ -37,7 +37,7 @@ There are two approaches to provisioning namespace-scoped resources supported:
 
 ### <a id="provision-dev-namespace"></a>Provision a new developer namespace
 
-1. Create a namespace using `kubectl` or any other means
+1. Create a namespace using kubectl or any other means
 
    ```bash
    kubectl create namespace YOUR-NEW-DEVELOPER-NAMESPACE
@@ -51,7 +51,7 @@ There are two approaches to provisioning namespace-scoped resources supported:
 
    - This label tells the controller to add this namespace to the
    [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap.</br>
-   - The label's value can be anything you wish, including "". </br>
+   - The label's value can be anything, including "". </br>
    - If required, you can change the default label selector by configuring the
      [`namespace_selector`](install.hbs.md#customized-install) property/value in tap-values
      for namespace provisioner.
@@ -83,7 +83,7 @@ manage the list of namespaces in the [`desired-namespaces` ConfigMap](about.hbs.
 .
 
 >**WARNING**: if there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the [provisioner application](about.hbs.md#nsp-component-carvel-app)
-will fail to reconcile and will not be able to create resources. Creation of the namespaces
+fails to reconcile and will not be able to create resources. Creation of the namespaces
 is out of the scope for the Namespace Provisioner package.
 
 ### <a id="gitops-prerequisites"></a>Prerequisites</br>
