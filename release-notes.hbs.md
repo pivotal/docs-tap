@@ -342,6 +342,7 @@ CVE-2022-2588, CVE-2022-34918, GHSA-4wf5-vphf-c2xc, CVE-2022-42916, CVE-2022-435
   RedHat has published a [potential mitigation](https://access.redhat.com/security/cve/cve-2022-4378) preventing regular users from accessing sysctl files and increasing privileges until a patch becomes available.
 
 </br>
+
 ---
 
 </br>
