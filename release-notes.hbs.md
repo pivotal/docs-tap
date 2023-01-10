@@ -192,18 +192,18 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - Code snippets to create `workload.yaml` and `catalog-info.yaml` files were added to IntelliJ.
 </br></br>
 
-#### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plugin for Tanzu CLI
+#### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plug-in for Tanzu CLI
 
 - Added `--update-strategy` flag to allow users to change `tanzu apps workload apply` behavior when
-  contents from file is applied. Check [How-to-guides](./cli-plugins/apps/how-to-guides.hbs.md#update-strategy) 
-  section for usage and examples.
+  contents from file is applied. See [How-to-guides](./cli-plugins/apps/how-to-guides.hbs.md#update-strategy)
+  section for use and examples.
 - Added ability for users to pass URL for `--file` flag.
 - Show fully qualified resource name in the resources column of Supply chain and Delivery
-  sections of the `tanzu apps workload get` command. Example output can be found in 
+  sections of the `tanzu apps workload get` command. Example output is found in
   [tanzu apps workload get](./cli-plugins/apps/command-reference/workload_get.hbs.md) command description.
 - Added new shorthand flag aliases: `-a` for `--app`, `-e` for `--env`, `-i` for `--image`,
-  `-l` for `label`, `-p` for `--param`, and `-t` for `--type`. All flags usage and shorthands (if apply)
-  can be found in [tanzu apps workload apply](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md) flags list.
+  `-l` for `label`, `-p` for `--param`, and `-t` for `--type`. All flags use and shorthands (if apply)
+  are found in [tanzu apps workload apply](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md) flags list.
 - Added emojis to `tanzu apps workload create/apply/delete` commands.
 - Do not print emojis when `--no-color` flag  is set.
 - Added namespace to `tanzu apps workload get` command's overview section.
