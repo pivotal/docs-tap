@@ -128,8 +128,8 @@ that as the interval when VMware created the earlier accelerator.
 ## <a id="using-acc-fragments"></a>Using accelerator fragments
 
 Accelerator fragments are reusable accelerator components that can provide options, files, or
-transforms. They might be imported from accelerators using an `import` entry and the transforms from
-the fragment can be referenced in an `InvokeFragment` transform in the accelerator that is declaring
+transforms. They may be imported from accelerators using an `import` entry and the transforms from
+the fragment may be referenced in an `InvokeFragment` transform in the accelerator that is declaring
 the import. For additional details see [InvokeFragment transform](transforms/invoke-fragment.md).
 
 The accelerator samples include three fragments - `java-version`, `tap-initialize`, and
@@ -137,7 +137,7 @@ The accelerator samples include three fragments - `java-version`, `tap-initializ
 [vmware-tanzu/application-accelerator-samples/fragments](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.3/fragments)
 Git repository for the content of these fragments.
 
-To discover what fragments are available to use, you can run the following command:
+To discover what fragments are available to use, you can run:
 
 ```console
 tanzu accelerator fragment list
@@ -227,9 +227,9 @@ To create the fragment (we can save the above manifest in a `java-version.yaml` 
 tanzu accelerator apply -f ./java-version.yaml
 ```
 
->**Note** The `accelerator apply` command can be used to apply both Accelerator and Fragment resources.
+>**Note** The `accelerator apply` command may be used to apply both Accelerator and Fragment resources.
 
-To avoid having to create a separate manifest file, you can use the following command instead:
+To avoid having to create a separate manifest file, run:
 
 ```console
 tanzu accelerator fragment create java-version \
