@@ -1,4 +1,4 @@
-# Tanzu Application Platform v1.4
+# Tanzu Application Platform v{{ vars.url_version }}
 
 ## <a id='overview'></a> Overview of Tanzu Application Platform
 
