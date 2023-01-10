@@ -195,11 +195,11 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 #### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plugin for Tanzu CLI
 
 - Added `--update-strategy` flag to allow users to change `tanzu apps workload apply` behavior when
-  contents from file is applied. Check [How-to-guides](./cli-plugins/apps/how-to-guides.hbs.md#update-strategy) 
+  contents from file is applied. Check [How-to-guides](./cli-plugins/apps/how-to-guides.hbs.md#update-strategy)
   section for usage and examples.
 - Added ability for users to pass URL for `--file` flag.
 - Show fully qualified resource name in the resources column of Supply chain and Delivery
-  sections of the `tanzu apps workload get` command. Example output can be found in 
+  sections of the `tanzu apps workload get` command. Example output can be found in
   [tanzu apps workload get](./cli-plugins/apps/command-reference/workload_get.hbs.md) command description.
 - Added new shorthand flag aliases: `-a` for `--app`, `-e` for `--env`, `-i` for `--image`,
   `-l` for `label`, `-p` for `--param`, and `-t` for `--type`. All flags usage and shorthands (if apply)
