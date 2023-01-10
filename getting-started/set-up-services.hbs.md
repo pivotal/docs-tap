@@ -238,7 +238,7 @@ For this part of the walkthrough, you assume the role of the **application opera
 Claims in Tanzu Application Platform are a powerful concept that serve many purposes.
 Arguably their most important role is to enable application operators to request
 services to use with their application workloads without having
-to create and manage the services themselves. For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-resource_claims-api_docs.html).
+to create and manage the services themselves. For more information, see [Resource Claims](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/resource_claims-api_docs.html).
 
 In cases where service instances are running in the same namespace as
 application workloads, you do not have to create a claim. You can bind to the service instance directly.
@@ -284,7 +284,7 @@ There are more service use cases not covered in this Getting started guide. See 
   <th><strong>Short Description</strong></th>
   <tr>
     <td>
-      <a href="https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-introducing_different_service_implementations_in_different_environments.html">Introducing Different Service Implementatations in Different Environments</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-introducing_different_service_implementations_in_different_environments.html">Introducing Different Service Implementatations in Different Environments</a>
     </td>
     <td>
       Using classes to have a claim resolve to a different backing service resource depending on which environment it is in.<br>
@@ -292,7 +292,7 @@ There are more service use cases not covered in this Getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html">Consuming AWS RDS on Tanzu Application Platform</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_ack.html">Consuming AWS RDS on Tanzu Application Platform</a>
     </td>
     <td>
       Using the Controllers for Kubernetes (ACK) to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
@@ -300,7 +300,7 @@ There are more service use cases not covered in this Getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html">Consuming AWS RDS on Tanzu Application Platform with Crossplane</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_crossplane.html">Consuming AWS RDS on Tanzu Application Platform with Crossplane</a>
     </td>
     <td>
       Using <a href="https://crossplane.io/">Crossplane</a> to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
@@ -308,7 +308,7 @@ There are more service use cases not covered in this Getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_config_connector.html">Consuming Google Cloud SQL on Tanzu Application Platform with Config Connector</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_gcp_sql_with_config_connector.html">Consuming Google Cloud SQL on Tanzu Application Platform with Config Connector</a>
     </td>
     <td>
       Using GCP Config Connector to provision a Cloud SQL instance and consume it from a Tanzu Application Platform workload.<br>
@@ -316,7 +316,7 @@ There are more service use cases not covered in this Getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html">Consuming Google Cloud SQL on Tanzu Application Platform with Crossplane</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_gcp_sql_with_crossplane.html">Consuming Google Cloud SQL on Tanzu Application Platform with Crossplane</a>
     </td>
     <td>
       Using <a href="https://crossplane.io/">Crossplane</a> to provision a Cloud SQL instance and consume it from a Tanzu Application Platform workload.<br>
@@ -324,7 +324,7 @@ There are more service use cases not covered in this Getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-direct_secret_references.html">Direct Secret References</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-direct_secret_references.html">Direct Secret References</a>
     </td>
     <td>
       Binding to services running external to the cluster, for example, an in-house oracle database.<br>
@@ -333,14 +333,14 @@ There are more service use cases not covered in this Getting started guide. See 
   </tr>
   <tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a> (Experimental)
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a> (Experimental)
     </td>
     <td>Separates application workloads from service instances across dedicated clusters.</td>
   </tr>
 </table>
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
-[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-overview.html)
+[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/overview.html)
 
 ## Next steps
 

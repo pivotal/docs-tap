@@ -1,4 +1,4 @@
-# Namespace Provisioner Reference
+# Namespace Provisioner
 
 This topic describes known limitations and default resource mapping.
 ## <a id="known-limitations"></a>Known Limitations/Issues
@@ -9,9 +9,9 @@ and cannot create resources.
 - The creation of the namespaces is out of scope for Namespace Provisioner.
 - Removing the Namespace Provisioner package removes all the components created by it.
 - Before uninstalling the Namespace Provisioner, you must:
-  - If you are using the controller to manage `desired-namespaces` ConfigMap, un-label all the
+  - If you are using the [controller](about.hbs.md#nsp-controller) to manage [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap), un-label all the
     namespaces provisioned by Namespace Provisioner
-  - If you are using GitOps to manage `desired-namespaces` ConfigMap, set the list of namespaces to an
+  - If you are using GitOps to manage [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap), set the list of namespaces to an
     empty list.
 - The namespace selector label to provision resources cannot be applied to the developer namespace
   which is configured at deployment time under the Grype package values as it causes the provisioner
@@ -20,7 +20,7 @@ and cannot create resources.
 ## <a id="default-resources-mapping"></a>Default resources mapping
 
 Namespace Provisioner is installed as part of the standard installation profiles
-(i.e. Full, Iterate, Build and Run) and the default set of resources provisioned in a namespace is
+(i.e. Full, Iterate, Build, and Run) and the default set of resources provisioned in a namespace is
 based on a combination of the installation profile employed and the supply chain that is installed
 on the cluster. The following table shows the list of resources that are templated in the
 `default-resources` Secret for an installation profile and supply chain value combination:

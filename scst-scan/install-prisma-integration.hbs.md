@@ -1,17 +1,24 @@
-# Installation Guide for Prisma Scanner
+# Install Prisma Scanner
 
-<p style="color:red"><b>
-Note: This integration is being released as an Alpha, which means that it is still in active development by the Tanzu Practices Global Tech Team and may be subject to change at any point. Users may encounter unexpected behavior, but we would love to hear your feedback if you do try out this integration.</b></p>
+>**Note** This integration is in Alpha, which means that it is still in active
+>development by the Tanzu Practices Global Tech Team and may be subject to
+>change at any point. Users may encounter unexpected behavior. VMware would like
+>to hear your feedback if you use this integration.
 
 ## Relocate images to a registry
 
-VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before attempting installation. If you don’t relocate the images, Prisma Scanner Installation depends on VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no uptime guarantees. The option to skip relocation is documented for evaluation and proof-of-concept only.
+VMware recommends relocating the images from VMware Tanzu Network registry to
+your own container image registry before installing. If you don’t relocate the
+images, Prisma Scanner Installation depends on VMware Tanzu Network for
+continued operation, and VMware Tanzu Network offers no uptime guarantees. The
+option to skip relocation is documented for evaluation and proof-of-concept
+only.
 
-The supported registries are Harbor, Azure Container Registry, Google Container Registry, and Quay.io. See the following documentation for a registry to learn how to set it up:
+The supported registries are Harbor, Azure Container Registry, Google Container Registry, and Quay.io. For information about how to set up a registry, see:
 
-* [Harbor documentation](https://goharbor.io/docs/2.5.0/)
-* [Google Container Registry documentation](https://cloud.google.com/container-registry/docs)
-* [Quay.io documentation](https://docs.projectquay.io/welcome.html)
+- [Harbor documentation](https://goharbor.io/docs/2.5.0/)
+- [Google Container Registry documentation](https://cloud.google.com/container-registry/docs)
+- [Quay.io documentation](https://docs.projectquay.io/welcome.html)
 
 To relocate images from the VMware Tanzu Network registry to your registry:
 
@@ -19,99 +26,114 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 2. Log in to your image registry by running:
 
-```
-docker login MY-REGISTRY
-```
+  ```console
+  docker login MY-REGISTRY
+  ```
 
-Where MY-REGISTRY is your own container registry.
+  Where MY-REGISTRY is your own container registry.
 
 3. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
 
-```
-docker login registry.tanzu.vmware.com
-```
+  ```console
+  docker login registry.tanzu.vmware.com
+  ```
 
-4. Set up environment variables for installation use by running:
+4. Set up environment variables for installation by running:
 
-```
-export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
-export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
-export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
-export VERSION=VERSION-NUMBER
-export INSTALL_REPO=TARGET-REPOSITORY
-```
+  ```console
+  export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
+  export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
+  export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
+  export VERSION=VERSION-NUMBER
+  export INSTALL_REPO=TARGET-REPOSITORY
+  ```
 
-Where:
+  Where:
 
- * MY-REGISTRY-USER is the user with write access to MY-REGISTRY.
- * MY-REGISTRY-PASSWORD is the password for MY-REGISTRY-USER.
- * MY-REGISTRY is your own container registry.
- * VERSION is your Prisma Scanner version. For example, 0.1.0-beta.8
- * TARGET-REPOSITORY is your target repository, a folder/repository on MY-REGISTRY that serves as the location for the installation files for Prisma Scanner.
+  - MY-REGISTRY-USER is the user with write access to MY-REGISTRY.
+  - MY-REGISTRY-PASSWORD is the password for MY-REGISTRY-USER.
+  - MY-REGISTRY is your own container registry.
+  - VERSION is your Prisma Scanner version. For example, 0.1.0-beta.8
+  - TARGET-REPOSITORY is your target repository, a folder/repository on
+    MY-REGISTRY that serves as the location for the installation files for Prisma
+    Scanner.
 
 5. Install the Carvel tool imgpkg CLI.
 
-6. Relocate the images with the imgpkg CLI by running:
+6. Relocate the images with the imgpkg CLI:
 
-```
-imgpkg copy -b projects.registry.vmware.com/tap-scanners-package/prisma-repo-scanning-bundle:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/prisma-repo-scanning-bundle
-```
+  ```console
+  imgpkg copy -b projects.registry.vmware.com/tap-scanners-package/prisma-repo-scanning-bundle:${VERSION} --to-repo ${INSTALL-REGISTRY-HOSTNAME}/${INSTALL-REPO}/prisma-repo-scanning-bundle
+  ```
+
+  Where:
+
+  - `INSTALL-REGISTRY-HOSTNAME` is the name of the registry host where you want to install the integration.
+  - `INSTALL-REPO` is the name of the Prisma Scanner package repository.
+  - `VERSION` is your Prisma Scanner version. For example, 0.1.0-beta.8.
 
 ## Add the Prisma Scanner package repository
 
-Tanzu CLI packages are available on repositories. Adding the Prisma Scanning package repository makes Prisma Scanning bundle and its packages available for installation.
+Tanzu CLI packages are available on repositories. Adding the Prisma Scanning
+package repository makes the Prisma Scanning bundle and its packages available
+for installation.
 
 > **Note**
-> Relocate images to a registry is strongly recommended but not required for installation. For simplicity, this section assumes you have relocated images to a registry. Refer to that section to fill in the stubbed out variables.
+> VMware recommends, but does not require, relocating images to a registry for installation. This section assumes you relocated images to a registry. Refer to the earlier section to fill in the variables.
 
-
-It's recommended to install the Prisma Scanner objects in the existing tap-install namespace to keep the Prisma Scanner grouped logically with the other TAP components.
+VMware recommends installing the Prisma Scanner objects in the existing `tap-install` namespace to keep the Prisma Scanner grouped logically with the other Tanzu Application Platform components.
 
 1. Add the Prisma Scanner package repository to the cluster by running:
 
-```
-tanzu package repository add prisma-scanner-repository \
-  --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/prisma-repo-scanning-bundle:$VERSION \
-  --namespace tap-install
-```
+  ```console
+  tanzu package repository add prisma-scanner-repository \
+    --url ${INSTALL-REGISTRY-HOSTNAME}/${INSTALL-REPO}/prisma-repo-scanning-bundle:$VERSION \
+    --namespace tap-install
+  ```
 
-2. Get the status of the Prisma Scanner package repository, and ensure the status updates to Reconcile succeeded by running:
+  Where:
 
-```
-tanzu package repository get prisma-scanning-repository --namespace tap-install
-```
+  - `INSTALL-REGISTRY-HOSTNAME` is the name of the registry host where you want to install the integration.
+  - `INSTALL-REPO` is the name of the Prisma Scanner package repository.
+  - `VERSION` is your Prisma Scanner version. For example, 0.1.0-beta.8.
 
-For example:
+1. Get the status of the Prisma Scanner package repository, and ensure the status updates to Reconcile succeeded by running:
 
-```
-$ tanzu package repository get prisma-scanning-repository --namespace tap-install
-- Retrieving repository prisma-scanner-repository...
-NAME:          prisma-scanner-repository
-VERSION:       71091125
-REPOSITORY:    index.docker.io/tapsme/prisma-repo-scanning-bundle
-TAG:           0.1.0-beta.8
-STATUS:        Reconcile succeeded
-REASON:
-```
+  ```
+  tanzu package repository get prisma-scanning-repository --namespace tap-install
+  ```
+
+  For example:
+
+  ```console
+  $ tanzu package repository get prisma-scanning-repository --namespace tap-install
+  - Retrieving repository prisma-scanner-repository...
+  NAME:          prisma-scanner-repository
+  VERSION:       71091125
+  REPOSITORY:    index.docker.io/tapsme/prisma-repo-scanning-bundle
+  TAG:           0.1.0-beta.8
+  STATUS:        Reconcile succeeded
+  REASON:
+  ```
 
 3. List the available packages by running:
 
-```
-tanzu package available list --namespace tap-install
-```
+  ```console
+  tanzu package available list --namespace tap-install
+  ```
 
-For example:
+  For example:
 
-```
-$ tanzu package available list --namespace tap-install
-/ Retrieving available packages...
-  NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
-  prisma.scanning.apps.tanzu.vmware.com                Prisma for Supply Chain Security Tools - Scan                             Default scan templates using Prisma                                              
-```
+  ```console
+  $ tanzu package available list --namespace tap-install
+  / Retrieving available packages...
+    NAME                                                 DISPLAY-NAME                                                              SHORT-DESCRIPTION
+    prisma.scanning.apps.tanzu.vmware.com                Prisma for Supply Chain Security Tools - Scan                             Default scan templates using Prisma                                              
+  ```
 
-## Prequisites for Prisma Scanner (Beta)
+## Prerequisites for Prisma Scanner (Beta)
 
-This document describes prerequisites for installing Supply Chain Security Tools - Scan (Prisma) from the VMware package repository.
+This topic describes prerequisites for installing Supply Chain Security Tools - Scan (Prisma) from the VMware package repository.
 
 ### Prepare the Prisma Scanner configuration
 
@@ -121,49 +143,55 @@ To prepare the Prisma configuration before you install any scanners:
 
 2. Create a Prisma secret YAML file and insert the base64 encoded Prisma API token into the prisma_token:
 
-```
-apiVersion: v1
-kind: Secret
-metadata:
-  name: prisma-token-secret
-  namespace: my-apps
-data:
-  prisma_token: BASE64-PRISMA-API-TOKEN
-```
+  ```console
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: PRISMA-TOKEN-SECRET
+    namespace: MY-APPS
+  data:
+    prisma_token: BASE64-PRISMA-API-TOKEN
+  ```
 
-3. Apply the Prisma secret YAML file by running:
+  Where:
 
-```
-kubectl apply -f YAML-FILE
-```
+  - `PRISMA-TOKEN-SECRET` is the name of your Prisma token secret.
+  - `MY-APPS` is the namespace you want to use.
+  - `BASE64-PRISMA-API-TOKEN` is the name of your base64 encoded Prisma API token.
+
+1. Apply the Prisma secret YAML file by running:
+
+  ```console
+  kubectl apply -f YAML-FILE
+  ```
 
 Where YAML-FILE is the name of the Prisma secret YAML file you created.
 
 4. Define the --values-file flag to customize the default configuration. You must define the following fields in the values.yaml file for the Prisma Scanner configuration. You can add fields as needed to activate or deactivate behaviors. You can append the values to this file as shown later in this document. Create a values.yaml file by using the following configuration:
 
-```
----
-namespace: DEV-NAMESPACE
-targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
-prisma:
-  url: PRISMA-URL
-  tokenSecret:
-    name: PRISMA-CONFIG-SECRET
-```
-Where: 
+  ```console
+  namespace: DEV-NAMESPACE
+  targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
+  prisma:
+    url: PRISMA-URL
+    tokenSecret:
+      name: PRISMA-CONFIG-SECRET
+  ```
 
-* DEV-NAMESPACE is your developer namespace.
+  Where: 
 
-> **Note:**
-> To use a namespace other than the default namespace, ensure that the namespace exists before you install. If the namespace does not exist, the scanner installation fails.
+  - `DEV-NAMESPACE` is your developer namespace.
+    > **Note:** To use a namespace other than the default namespace, ensure that
+    > the namespace exists before you install. If the namespace does not exist,
+    > the scanner installation fails.
+  - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
+    credentials to pull an image from a private registry for scanning.
+  - `PRISMA-URL` is the FQDN of your Twistlock server.
+  - `PRISMA-CONFIG-SECRET` is the name of the secret you created that contains the
+    Prisma configuration to connect to Prisma. This field is required.
 
-* TARGET-REGISTRY-CREDENTIALS-SECRET is the name of the secret that contains the credentials to pull an image from a private registry for scanning.
-
-* PRISMA-URL is the FQDN of your Twistlock server.
-
-* PRISMA-CONFIG-SECRET is the name of the secret you created that contains the Prisma configuration to connect to Prisma. This field is required.
-
-The Prisma integration can work with or without the SCST - Store integration. The values.yaml file is slightly different for each configuration.
+The Prisma integration can work with or without the SCST - Store integration.
+The values.yaml file is slightly different for each configuration.
 
 ### Supply Chain Security Tools - Store integration
 
@@ -173,56 +201,73 @@ The Grype, Snyk, and Prisma Scanner Integrations enable the Metadata Store. To p
 
 If the Grype or Snyk Scanner Integration is installed in the same dev-namespace Prisma Scanner is installed:
 
-```
+```console
 #! ...
 metadataStore:
-  #! The url where the Store deployment is accesible.
+  #! The url where the Store deployment is accessible.
   #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
-  url: "<STORE-URL>"
+  url: "STORE-URL"
   caSecret:
     #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
     #! Default value is: "app-tls-cert"
-    name: "<CA-SECRET-NAME>"
+    name: "CA-SECRET-NAME"
     importFromNamespace: "" #! since both Prisma and Grype/Snyk both enable store, one must leave importFromNamespace blank
   #! authSecret is for multicluster configurations.
   authSecret:
     #! The name of the secret that contains the auth token to authenticate to the Store Deployment.
-    name: "<AUTH-SECRET-NAME>"
+    name: "AUTH-SECRET-NAME"
     importFromNamespace: "" #! since both Prisma and Grype/Snyk both enable store, one must leave importFromNamespace blank
 ```
+
+Where:
+
+- `STORE-URL` is the URL where the Store deployment is accessible.
+- `CA-SECRET-NAME` is the name of the secret that contains the ca.crt to connect
+  to the Store Deployment. Default is `app-tls-cert`.
+- `AUTH-SECRET-NAME` is the name of the secret that contains the auth token to
+  authenticate to the Store Deployment.
 
 If the Grype/Snyk Scanner Integration is not installed in the same dev-namespace Prisma Scanner is installed:
 
-```
+```console
 #! ...
 metadataStore:
-  #! The url where the Store deployment is accesible.
+  #! The url where the Store deployment is accessible.
   #! Default value is: "https://metadata-store-app.metadata-store.svc.cluster.local:8443"
-  url: "<STORE-URL>"
+  url: "STORE-URL"
   caSecret:
     #! The name of the secret that contains the ca.crt to connect to the Store Deployment.
     #! Default value is: "app-tls-cert"
-    name: "<CA-SECRET-NAME>"
+    name: "CA-SECRET-NAME"
     #! The namespace where the secrets for the Store Deployment live.
     #! Default value is: "metadata-store"
-    importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
+    importFromNamespace: "STORE-SECRETS-NAMESPACE"
   #! authSecret is for multicluster configurations.
   authSecret:
     #! The name of the secret that contains the auth token to authenticate to the Store Deployment.
-    name: "<AUTH-SECRET-NAME>"
+    name: "AUTH-SECRET-NAME"
     #! The namespace where the secrets for the Store Deployment live.
-    importFromNamespace: "<STORE-SECRETS-NAMESPACE>"
+    importFromNamespace: "STORE-SECRETS-NAMESPACE"
 ```
+
+Where:
+
+- `STORE-URL` is the url where the Store deployment is accessible.
+- `CA-SECRET-NAME` is the name of the secret that contains the ca.crt to connect to the Store Deployment. Default is `app-tls-cert`.
+- `STORE-SECRETS-NAMESPACE` is the namespace where the secrets for the Store Deployment live. Default is `metadata-store`.
+- `AUTH-SECRET-NAME` is the name of the secret that contains the auth token to authenticate to the Store Deployment.
 
 **Without Supply Chain Security Tools - Store Integration:** If you don’t want to enable the Supply Chain Security Tools - Store integration, explicitly deactivate the integration by appending the following fields to the values.yaml file that is enabled by default:
 
-```
+```console
 # ...
 metadataStore:
   url: "" # Configuration is moved, so set this string to empty
 ```
+
 ### Sample ScanPolicy for CycloneDX Format
-```
+
+```console
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
 metadata:
@@ -268,9 +313,14 @@ spec:
 
 Apply the YAML:
 
+```console
+kubectl apply -n $DEV-NAMESPACE -f SCAN-POLICY-YAML
 ```
-kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
-```
+
+Where:
+
+- `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+- `SCAN-POLICY-YAML` is the name of your SCST - Scan YAML.
 
 After all prerequisites have been completed, follow the steps in Install another scanner for Supply Chain Security Tools - Scan to install the Prisma Scanner.
 
@@ -305,24 +355,24 @@ $ tanzu package available list --namespace tap-install
   prisma.scanning.apps.tanzu.vmware.com                Prisma for Supply Chain Security Tools - Scan                             Default scan templates using Prisma
 ```
 
-2. List version information for the scanner package by running:
+1. List version information for the scanner package by running:
 
-```
+```console
 tanzu package available list SCANNER-NAME --namespace tap-install
 ```
 
 For example:
 
-```
+```console
 $ tanzu package available list prisma.scanning.apps.tanzu.vmware.com --namespace tap-install
 / Retrieving package versions for prisma.scanning.apps.tanzu.vmware.com...
   NAME                                  VERSION           RELEASED-AT
   prisma.scanning.apps.tanzu.vmware.com   0.1.0-beta.4
 ```
 
-3. (Optional) Create the secrets the scanner package relies on:
+1. (Optional) Create the secrets the scanner package relies on:
 
-4. Create a values.yaml to apply custom configurations to the scanner:
+2. Create a values.yaml to apply custom configurations to the scanner:
 
 > **Note:**
 > This step might be required for some scanners but optional for others.
@@ -340,7 +390,7 @@ Where:
 
 For example:
 
-```
+```console
 $ tanzu package available get prisma.scanning.apps.tanzu.vmware.com/0.1.0-beta.4 --values-schema -n tap-install
 
   KEY                                           DEFAULT                                                           TYPE    DESCRIPTION
@@ -384,14 +434,14 @@ tanzu package install REFERENCE-NAME \
 
 Where:
 
-* REFERENCE-NAME is the name referenced by the installed package. For example, grype-scanner, snyk-scanner, prisma-scanner.
-* SCANNER-NAME is the name of the scanner package you retrieved earlier. For example, prisma.scanning.apps.tanzu.vmware.com.
-* VERSION is your package version number. For example, 0.1.0-beta.4.
-* PATH-TO-VALUES-YAML is the path that points to the values.yaml file created earlier.
+- REFERENCE-NAME is the name referenced by the installed package. For example, grype-scanner, snyk-scanner, prisma-scanner.
+- SCANNER-NAME is the name of the scanner package you retrieved earlier. For example, prisma.scanning.apps.tanzu.vmware.com.
+- VERSION is your package version number. For example, 0.1.0-beta.4.
+- PATH-TO-VALUES-YAML is the path that points to the values.yaml file created earlier.
 
 For example:
 
-```
+```console
 $ tanzu package install prisma-scanner \
   --package-name primsa.scanning.apps.tanzu.vmware.com \
   --version 0.1.0-beta.4 \
@@ -415,14 +465,19 @@ To verify the installation create an ImageScan or SourceScan referencing one of 
 
 1. (Optional) Create a ScanPolicy formatted for the output specific to the scanner you are installing, to reference in the ImageScan or SourceScan.
 
-```
+```console
 kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
 ```
+
+Where:
+
+- `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+- `SCAN-POLICY-YAML` is the name of your SCST - Scan YAML.
 
 > **Note:**
 > As vulnerability scanners output different formats, the ScanPolicies can vary. For more information about policies and samples, see Enforce compliance policy using Open Policy Agent.
 
-2. Retrieve available ScanTemplates from the namespace where the scanner is installed:
+1. Retrieve available ScanTemplates from the namespace where the scanner is installed:
 
 ```
 kubectl get scantemplates -n DEV-NAMESPACE
@@ -432,7 +487,7 @@ Where DEV-NAMESPACE is the developer namespace where the scanner is installed.
 
 For example:
 
-```
+```console
 $ kubectl get scantemplates
 NAME                                AGE
 prisma-blob-source-scan-template    10d
@@ -447,7 +502,7 @@ prisma-private-source-scan-template 10d
 > **Note:**
 > Some scanners do not support both ImageScan and SourceScan.
 
-```
+```console
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ImageScan
 metadata:
@@ -466,7 +521,7 @@ Where:
 
 For example:
 
-```
+```console
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ImageScan
 metadata:
@@ -483,7 +538,7 @@ spec:
 > **Note:**
 > Some scanners do not support both ImageScan and SourceScan.
 
-```
+```console
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: SourceScan
 metadata:
@@ -502,7 +557,7 @@ Where:
 
 For example:
 
-```
+```console
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: SourceScan
 metadata:
@@ -516,13 +571,13 @@ spec:
 ```
 
 
-5. Apply the ImageScan and Source YAMLs:
+1. Apply the ImageScan and Source YAMLs:
 
 To run the scans, apply them to the cluster by running these commands:
 
 **ImageScan:**
 
-```
+```console
 kubectl apply -f PATH-TO-IMAGE-SCAN-YAML -n DEV-NAMESPACE
 ```
 
@@ -530,7 +585,7 @@ Where PATH-TO-IMAGE-SCAN-YAML is the path to the YAML file created earlier.
 
 **SourceScan:**
 
-```
+```console
 kubectl apply -f PATH-TO-SOURCE-SCAN-YAML -n DEV-NAMESPACE
 ```
 
@@ -538,7 +593,7 @@ Where PATH-TO-SOURCE-SCAN-YAML is the path to the YAML file created earlier.
 
 For example:
 
-```
+```console
 $ kubectl apply -f imagescan.yaml -n my-apps
 imagescan.scanning.apps.tanzu.vmware.com/sample-prisma-public-image-scan created
 
@@ -558,7 +613,7 @@ Where IMAGE-SCAN-NAME is the name of the ImageScan as defined in the YAML file c
 
 **For SourceScan:**
 
-```
+```console
 kubectl get sourcescan SOURCE-SCAN-NAME -n DEV-NAMESPACE
 ```
 
@@ -579,7 +634,7 @@ sourcescan.scanning.apps.tanzu.vmware.com/prisma-sourcescan-sample-public   Comp
 
 Clean up:
 
-```
+```console
 kubectl delete -f PATH-TO-SCAN-YAML -n DEV-NAMESPACE
 ```
 
@@ -592,7 +647,7 @@ Add the ootb_supply_chain_testing_scanning.scanning section to your tap-values.y
 
 In this file you can define which ScanTemplates is used for both SourceScan and ImageScan. The default values are the Grype Scanner ScanTemplates, but it can be overwritten by any other ScanTemplate present in your DEV-NAMESPACE. The same applies to the ScanPolicies applied to each kind of scan.
 
-```
+```console
 ootb_supply_chain_testing_scanning:
   scanning:
     image:
@@ -632,7 +687,7 @@ Where REFERENCE-NAME is the name you identified the package with, when installin
 
 For example:
 
-```
+```console
 $ tanzu package installed delete prisma-scanner \
     --namespace tap-install
 ```

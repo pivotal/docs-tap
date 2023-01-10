@@ -5,7 +5,7 @@ There are two approaches to provisioning namespace-scoped resources supported:
 1. [**Using Namespace Provisioner Controller**](#controller-ns-provisioning) - recommended for Tanzu
    Application Platform clusters that:
    - include [Out of the Box Supply Chain Basic](../scc/ootb-supply-chain-basic.hbs.md)
-   - require only the default, out of the box namespace-scoped, resources to be provisioned
+   - require only the default, out of the box namespace-scoped resources to be provisioned
 2. [**Using GitOps**](#using-gitops) - required for Tanzu Application Platform clusters that
    have any of the following:
    - include [Out of the Box Supply Chain - Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md)
@@ -14,7 +14,7 @@ There are two approaches to provisioning namespace-scoped resources supported:
 
 ## <a id="controller-ns-provisioning"></a>Using Namespace Provisioner Controller
 
-### <a id="nps-controller-prerequisites"></a>Prerequisites:</br>
+### <a id="nps-controller-prerequisites"></a>Prerequisites</br>
 
 - The Namespace Provisioner package is installed and successfully reconciled
 - The [`controller` tap value key](install.hbs.md#customized-installation) is set to **`true`**
@@ -79,14 +79,14 @@ There are two approaches to provisioning namespace-scoped resources supported:
 ## <a id="using-gitops"></a>Using GitOps
 
 This section describes how to use the built-in controller instead of using GitOps to
-manage the list of namespaces in the [`desired-namespaces`](about.hbs.md#desired-ns-configmap)
-ConfigMap.
+manage the list of namespaces in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+.
 
->**WARNING**: if there is a namespace in your GitOps repo desired-namespace list that does not
-exist on the cluster, the provisioner application will fail to reconcile and will not be able to create
-resources. Creation of the namespaces themselves is out of the scope for the namespace provisioner package.
+>**WARNING**: if there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the [provisioner application](about.hbs.md#nsp-component-carvel-app)
+will fail to reconcile and will not be able to create resources. Creation of the namespaces
+is out of the scope for the Namespace Provisioner package.
 
-### <a id="gitops-prerequisites"></a>Prerequisites:</br>
+### <a id="gitops-prerequisites"></a>Prerequisites</br>
 
 The prerequisites for using GitOps are the same as those specified in the
 [controller prerequisites](#nps-controller-prerequisites) above except for the `controller`

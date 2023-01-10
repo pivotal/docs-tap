@@ -11,7 +11,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - [Shared Ingress Issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress
   communication by default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md),
   and [Tanzu Application Platform GUI](tap-gui/about.hbs.md) use this issuer to secure
-  ingress. In future releases, all Tanzu Application Platform components will be incrementally updated
+  ingress. Over future releases, VMware plans to incrementally update all Tanzu Application Platform components
   to support the shared ingress issuer.
 - [Namespace Provisioner](namespace-provisioner/about.hbs.md) provides a secure, automated
   way for Platform Operators to provision namespaces with the resources and proper namespace-level
@@ -63,16 +63,16 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Optional Git repository creation during project generation is supported in the Application Accelerator extension for VS Code.
   - The parameter [`.app_config.gitProviders.active` in `tap-values.yaml`](tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation) was added to deactivate optional Git repository creation in the VS Code extension during project creation.
-- Added [custom `types`](application-accelerator/creating-accelerators/custom-types.hbs.md) which allows for 1-N number of repeating sets of options in an accelerator's form during project creation.
+- Added [custom `types`](application-accelerator/creating-accelerators/custom-types.hbs.md), which allows for 1-N number of repeating sets of options in an accelerator's form during project creation.
 - Added the [Loop transform](application-accelerator/creating-accelerators/transforms/loop.hbs.md) to allow for transforms to be applied on list options.
 - Added [`generate-from-local`](cli-plugins/accelerator/command-reference/tanzu_accelerator_generate_from_local.hbs.md) command to the Application Accelerator plug-in for the Tanzu CLI to generate projects from local assets without needing to commit code.
 - Additional Application Accelerator plug-ins for Tanzu CLI improvements:
-  - `fragment create` now supports `--local-path` and `--source-image`
-  - `fragment update` now supports `--source-image`
+  - `fragment create` now supports `--local-path` and `--source-image`.
+  - `fragment update` now supports `--source-image`.
 - Application Accelerator Samples:
   - **Accelerators** - the following accelerators were added:
-    - [Angular Frontend Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/angular-frontend) - quickly bootstrap an Angular-based Single Page App
-    - [React Frontend Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/react-frontend) - quickly bootstrap a React-based Single Page App
+    - [Angular Frontend Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/angular-frontend) - Quickly bootstrap an Angular-based Single Page App.
+    - [React Frontend Accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/react-frontend) - Quickly bootstrap a React-based Single Page App.
   - **Fragments** - the following fragments were added:
     - [Spring Boot H2 Fragment](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/fragments/spring-boot-h2)
     - [Spring Boot MySQL Fragment](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/fragments/spring-boot-mysql)
@@ -88,7 +88,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Upgraded Knative Eventing version from 1.6 to 1.8.
 - Added a Kubernetes tracing attribute to ApiServerSource.
-- The ApiServerSource is a Knative Eventing Kubernetes custom resource that listens for events emitted by the Kubernetes API server (eg. pod creation, deployment updates, etc...) and forwards them as CloudEvents to a sink.
+- The ApiServerSource is a Knative Eventing Kubernetes custom resource that listens for events emitted by the Kubernetes API server. For example, pod creation, deployment updates, and so on. It then forwards them as CloudEvents to a sink.
 </br></br>
 
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> External Secrets Operator (alpha)
@@ -100,8 +100,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Added new `ClassClaim` API that allows claims for service instances to be created by referring to
   a `ClusterInstanceClass`. For more information, see
-  [When to use ClassClaim vs ResourceClaim](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/GUID-resource_claims-which_claim.html)
-  and [Introducing different service implementations in different environments](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/GUID-usecases-introducing_different_service_implementations_in_different_environments.html).
+  [When to use ClassClaim vs ResourceClaim](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/resource_claims-which_claim.html)
+  and [Introducing different service implementations in different environments](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-introducing_different_service_implementations_in_different_environments.html).
 - Added corresponding `tanzu services class-claims` CLI plug-in command.
 - Added support for OpenShift v4.11.
 - Added support for Kubernetes v1.25.
@@ -133,8 +133,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
   packages, providing a better idea of the discrete, affected packages.
   Previously, the logic counted unique CVEs, even if a particular CVE affected
   multiple packages.
-- **Quickly identify all affected workloads for a specific CVE, package or
-  dependency:** The CVE and Package details pages include a new table which
+- **Quickly identify all affected workloads for a specific CVE, package, or
+  dependency:** The CVE and Package details pages include a new table that
   shows all affected workloads for a specific CVE or package. You access the CVE
   and Package details page on the source or image scan stage in the Supply Chain
   Choreographer Plug-in.
@@ -144,8 +144,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
   environments. See [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md).
-- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) via the tap-values.yml for both Grype and Snyk scanners.
-- Alpha release of Prisma Scanner integration. The installation guide is available [here](scst-scan/install-prisma-integration.hbs.md).
+- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) by using the `tap-values.yml` for both Grype and Snyk scanners.
+- Alpha release of Prisma Scanner integration. See [Install Prisma Scanner](scst-scan/install-prisma-integration.hbs.md).
 </br></br>
 
 #### <a id="1-4-0-scst-policy-new-features"></a> Supply Chain Security Tools - Policy
@@ -164,8 +164,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 #### <a id="1-4-0-vs-new-features"></a> Tanzu Developer Tools for Visual Studio
 
 - **See code updates running on-cluster in seconds:**
-  By using Live Update facilitated by Tilt, deploy your workload once, save changes to the code
-  and then, seconds later, see those changes reflected in the workload running on the cluster.
+  By using Live Update facilitated by Tilt, deploy your workload once, save changes to the code,
+  and then in seconds see those changes reflected in the workload running on the cluster.
   All Live Update output is filtered to its own output pane window within Visual Studio.
 
 - **Debug workloads directly on the cluster:**
@@ -182,9 +182,9 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-intellij-new-feat"></a> Tanzu Developer Tools for IntelliJ
 
-- The developer sandbox enables developers to Live Update their code, and
+- The developer sandbox enables developers to Live Update their code and
   simultaneously debug the updated code, without having to deactivate Live Update when debugging.
-- An Activity pane was added in the Tanzu Panel which allows developers to visualize the supply
+- An Activity pane was added in the Tanzu Panel that allows developers to visualize the supply
   chain, delivery, and running application pods.
   It displays detailed error messages on each resource and enables developers to describe and view
   logs on these resources from within their IDE.
@@ -192,20 +192,23 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - Code snippets to create `workload.yaml` and `catalog-info.yaml` files were added to IntelliJ.
 </br></br>
 
-#### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plugin for Tanzu CLI
+#### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plug-in for Tanzu CLI
 
 - Added `--update-strategy` flag to allow users to change `tanzu apps workload apply` behavior when
-  contents from file is applied.
+  contents from file is applied. See [How-to-guides](./cli-plugins/apps/how-to-guides.hbs.md#update-strategy)
+  section for use and examples.
 - Added ability for users to pass URL for `--file` flag.
-- Added show fully qualified resource name in the resources column of Supply chain and Delivery
-  sections of the `tanzu apps workload get` command.
+- Show fully qualified resource name in the resources column of Supply chain and Delivery
+  sections of the `tanzu apps workload get` command. Example output is found in
+  [tanzu apps workload get](./cli-plugins/apps/command-reference/workload_get.hbs.md) command description.
 - Added new shorthand flag aliases: `-a` for `--app`, `-e` for `--env`, `-i` for `--image`,
-  `-l` for `label`, `-p` for `--param`, and `-t` for `--type`.
+  `-l` for `label`, `-p` for `--param`, and `-t` for `--type`. All flags use and shorthands (if apply)
+  are found in [tanzu apps workload apply](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md) flags list.
 - Added emojis to `tanzu apps workload create/apply/delete` commands.
-- Added do not print emojis when `--no-color` flag  is set.
+- Do not print emojis when `--no-color` flag  is set.
 - Added namespace to `tanzu apps workload get` command's overview section.
 - Added progress bar to provide feedback to users when uploading source code to registry.
-- Added remove color from tail command output when `--no-color` flag is passed.
+- Removed color from tail command output when `--no-color` flag is passed.
 
 </br>
 
@@ -233,7 +236,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-supply-chain-templates"></a> Out of the Box Supply Chain Templates
 
-In a multicluster setup, when a Deliverable is created on a Build profile cluster,
+- In a multicluster setup, when a Deliverable is created on a Build profile cluster,
 the ConfigMap it is placed in is renamed from `<workload-name>` to `<workload-name>-deliverable`. Any automation
 depending on obtaining the Deliverable content by the former name must be updated to use the new name.
 For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
@@ -282,16 +285,16 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 
-The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
+- The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
 in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 </br></br>
 
 #### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
 
-Policy Controller no longer initializes TUF by default. TUF is required to
+- Policy Controller no longer initializes TUF by default. TUF is required to
 support the keyless authorities in `ClusterImagePolicy`. To continue to use
 keyless authorities, provide the value `policy.tuf_enabled:
-true` by using the `tap-values.yaml` while upgrading. By default,
+true` by using the `tap-values.yaml` file while upgrading. By default,
 the public Sigstore The Update Framework (TUF) server is used. To
 target an alternative Sigstore stack, specify `policy.tuf_mirror` and
 `policy.tuf_root`.
@@ -319,7 +322,7 @@ This release has the following security fixes, listed by area and component.
 
 #### <a id="1-4-0-vulnerabilities-remediated"></a> Remediated vulnerabilities
 
-Here is a list of vulnerabilities that are remediated with this release:</br>
+The following is a list of vulnerabilities remediated with this release:</br>
 
 - GHSA-7hfm-57qf-j43q, GHSA-crv7-7245-f45f, GHSA-mc84-pj99-q6hh, GHSA-xqfj-vm6h-2x34, CVE-2022-42003, CVE-2022-42004, GHSA-jjjh-jjxp-wpff,
 GHSA-rgv9-q543-rqg4, GHSA-3mc7-4q67-w48m, GHSA-36p3-wjmg-h94x, CVE-2022-23960, CVE-2022-43945, GHSA-crp2-qrr5-8pq7, GHSA-7qw8-847f-pggm,
@@ -327,6 +330,16 @@ GHSA-c3xm-pvg7-gh7r, GHSA-f524-rf33-2jjr, CVE-2022-2509, CVE-2022-3171, CVE-2022
 GHSA-66x3-6cw3-v5gj, CVE-2022-3515, CVE-2022-2602, CVE-2022-41222, CVE-2022-32212, CVE-2022-35255, CVE-2021-27478, CVE-2021-27482,
 CVE-2021-27498, CVE-2021-27500, CVE-2019-12900, CVE-2021-28861, CVE-2021-3737, CVE-2022-0391, GHSA-4w2j-2rg4-5mjw, CVE-2022-2586,
 CVE-2022-2588, CVE-2022-34918, GHSA-4wf5-vphf-c2xc, CVE-2022-42916, CVE-2022-43551, CVE-2022-43552, CVE-2021-3999, GHSA-m974-647v-whv7
+
+</br>
+
+#### <a id="1-4-0-cve-2022-4378"></a> Note about CVE-2022-4378
+
+- [CVE-2022-4378](https://nvd.nist.gov/vuln/detail/CVE-2022-4378) is a high severity, exploitable stack overflow flaw found in the Linux kernel's SYSCTL subsystem. At this time, there is no available patch from Canonical in their upstream Ubuntu distribution. Once there is a patch available for the 22.04 release line, Tanzu Application Platform will release a patched base stack image. The current status for patching this vulnerability in the Jammy stack is available on [Ubuntu’s security page](https://ubuntu.com/security/CVE-2022-4378). <br />
+
+  It is important for customers to understand CVE-2022-4378 is a kernel exploit, and the kernel runs on the customers’ container host VM, not the Tanzu Application Platform container image. Even with a patched image, the vulnerability will not be mitigated until customers deploy their containers on a host with a patched OS. An unpatched host OS may be exploitable if the base image is deployed allowing users to modify SYSCTL parameters. <br />
+
+  RedHat has published a [potential mitigation](https://access.redhat.com/security/cve/cve-2022-4378) preventing regular users from accessing sysctl files and increasing privileges until a patch becomes available.
 
 </br>
 
@@ -372,9 +385,9 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 - Fixed `tanzu apps workload tail` command not including all logs.
 </br></br>
 
-#### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI plug-ins
+#### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
 
-- **Immediate entity provider backend plug-in**
+- **Immediate entity provider back-end plug-in**
 
   - The entity provider, used mainly by API Auto Registration, now allows a body size of `5Mb` to
     accept larger API specifications.
@@ -409,15 +422,11 @@ This release has the following known issues, listed by area and component.
 - Knative Serving: Certain app name, namespace, and domain combinations produce invalid HTTPProxy resources. See [Cloud Native Runtimes Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.1/tanzu-cloud-native-runtimes/GUID-troubleshooting.html#invalid-httpproxy).
 - Knative Serving and Cert Manager: When auto-tls is enabled, the default in Tanzu Application Platform v1.4.0, Knative services fail with `certificateNotReady` if workload name, namespace, and domain are more than 64 bytes. See [Cloud Native Runtimes Troubleshooting](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.1/tanzu-cloud-native-runtimes/GUID-troubleshooting.html#certificate-not-ready).
 
-#### <a id="1-4-0-vscode-ki"></a> Tanzu Developer Tools for Visual Studio Code
-
-- `Could not find the task 'tanzuManagement: Kill Port Forward fortune-service'`. Users may see this error message if an app was deployed with a previous version of the Visual Studio Code extension. To resolve, delete the launch configuration in the `launch.json` file that references that task. For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#deprecated-task).
-
 #### <a id="1-4-0-intellij-ki"></a> Tanzu Developer Tools for IntelliJ
 
 - If a workload is deployed onto a namespace by using Live Update, you must set that namespace as
   the namespace of the current context of your kubeconfig file.
-  Otherwise, if you run Tanzu Debug it causes the workload to re-deploy.
+  Otherwise, if you run Tanzu Debug, it causes the workload to re-deploy.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#debug-reapplies-apply).
 
@@ -446,30 +455,42 @@ This release has the following known issues, listed by area and component.
 - The `Tanzu: Start Live Update` command can fail because the specified path was not found.
   For more information, see [Troubleshooting](vs-extension/troubleshooting.hbs.md#lv-update-path-not-found).
 
+#### <a id="1-4-0-vscode-ki"></a> Tanzu Developer Tools for Visual Studio Code
+
+- `Could not find the task 'tanzuManagement: Kill Port Forward fortune-service'`.
+  You might see this error message if an app was deployed with a previous version of the
+  Visual Studio Code extension.
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#deprecated-task).
+
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
-**Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
+- **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
-For most languages, Source Code Scanning only scans files present in the source code repository.
-Except for support added for Java projects using Maven, no network calls fetch
-dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
-lock files to check dependencies for vulnerabilities.
+  For most languages, Source Code Scanning only scans files present in the source code repository.
+  Except for support added for Java projects using Maven, no network calls fetch
+  dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+  lock files to check dependencies for vulnerabilities.
 
-For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies
-present in the built binaries, such as `.jar` or `.war` files.
+  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies
+  present in the built binaries, such as `.jar` or `.war` files.
 
-Because VMware discourages committing binaries to source code repositories, Grype fails to
-find vulnerabilities during a source scan.
-The vulnerabilities are still found during the image scan after the binaries are built and packaged
-as images.
+  Because VMware discourages committing binaries to source code repositories, Grype fails to
+  find vulnerabilities during a source scan.
+  The vulnerabilities are still found during the image scan after the binaries are built and packaged
+  as images.
 </br></br>
+
+#### <a id="1-4-0-nsp-ki"></a> Namespace Provisioner
+
+- Applying the label selector used by the namespace provisioner controller to the developer namespace, which is configured at deployment time under the `grype` package values, will cause the [`provisioner` Carvel app](namespace-provisioner/about.hbs.md#nsp-component-carvel-app) to crash due to ownership issues. This is because it's trying to install Grype in a namespace where it's already been installed.
+</br>
 
 #### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI plug-ins
 
 ##### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer plug-in
 
 - The `Generation` field and scan policy link in the **Overview** section does not update when you amend a scan policy. The correct version and details of the policy are shown in the CLI.
-- Customizing the `Source Tester` stage in an OOTB supply chain does not show details in the
+- Customizing the `Source Tester` stage in an Out Of the Box supply chain does not show details in the
   **Stage Details** section.
 - When a GitOps PR flow is configured, the **Approve a Request** link no longer appears in the supply chain graph.
 </br>
@@ -512,9 +533,9 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 #### <a id="1-4-0-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook
 
-The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
+- The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
 in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
-</br></br>
+
 
 #### <a id="1-4-0-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
 
@@ -541,7 +562,7 @@ in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 Ubuntu Bionic stops receiving support in April 2023.
 VMware recommends you migrate builds to Jammy stacks in advance.
 For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
-- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated:
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
 It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
 VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
 and remove support in Tanzu Application Platform v1.6.
@@ -550,7 +571,8 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 #### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
-- The default value for the `--update-strategy` flag will change from `merge` to `replace` in
+- The default value for the [`--update-strategy`](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
+  flag will change from `merge` to `replace` in
   Tanzu Application Platform v1.7.0.
 - The `tanzu apps workload update` command is deprecated and marked for removal in Tanzu Application
   Platform 1.5.0. Use `tanzu apps workload apply` instead.
