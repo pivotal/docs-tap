@@ -9,7 +9,7 @@ and cannot create resources.
 - The creation of the namespaces is out of scope for Namespace Provisioner.
 - Removing the Namespace Provisioner package removes all the components created by it.
 - Before uninstalling the Namespace Provisioner, you must:
-  - If you are using the controller to manage [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap), un-label all the
+  - If you are using the [controller](about.hbs.md#nsp-controller) to manage [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap), un-label all the
     namespaces provisioned by Namespace Provisioner
   - If you are using GitOps to manage [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap), set the list of namespaces to an
     empty list.

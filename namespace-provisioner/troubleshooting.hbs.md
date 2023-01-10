@@ -2,7 +2,7 @@
 
 ## <a id="controller-logs"></a>Controller logs
 
-To get the logs when using the controller to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+To get the logs when using the [controller](about.hbs.md#nsp-controller) to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
 
 ```terminal
 kubectl -n tap-namespace-provisioning logs deployments/controller-manager
@@ -35,7 +35,7 @@ kubectl -n tap-install get packageinstalls.packaging.carvel.dev/namespace-provis
 
 ### <a id="namespace-selector-malformed"></a>Namespace selector malformed
 
-When using the controller to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) and customizing the
+When using the [controller](about.hbs.md#nsp-controller) to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) and customizing the
 `namespace_selector` from `tap_values.yaml`, the match expression must be compliant with the [Kubernetes label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors).
 If it is not compliant when labeling a namespace, the Namespace Provisioner won't create any object
 in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) and the controller will output a [log](#controller-logs) message.
@@ -51,8 +51,8 @@ namespace_provisioner:
 ```
 
 This is not compliant as the operator must be `Exist` instead of `exists`, then when labeling the
-namespace `ns2` with `apps.tanzu.vmware.com/tap-ns`, the controller will produce an error message
-similar to the following, (followed by some reconciliation messages)
+namespace `ns2` with `apps.tanzu.vmware.com/tap-ns`, the [controller](about.hbs.md#nsp-controller)
+will produce an error message similar to the following, (followed by some reconciliation messages)
 
 ```json
 {"level":"error","ts":"2022-12-14T15:41:44.639402794Z","logger":".0.1.NamespaceSelectorReconciler","msg":"unable to sync","controller":"namespace","controllerGroup":"","controllerKind":"Namespace","Namespace":{"name":"ns2"},"namespace":"","name":"ns2","reconcileID":"26395d34-418b-446d-9b5e-a4a73cc657ed","resourceType":"/v1, Kind=Namespace","error":"\"exists\" is not a valid pod selector operator","stacktrace":"..."}
@@ -66,7 +66,7 @@ as the controller was not able to update the [`desired-namespaces` ConfigMap](ab
 
 When working with ytt, it is easy to miswrite the template, as a result, the Namespace Provisioner
 will fail when the `additional_sources` is provided with errors. To check the problem in the
-provisioner application, see [Provisioner application error](#carvel-kapp-application-error).
+[provisioner application](about.hbs.md#nsp-component-carvel-app), see [Provisioner application error](#carvel-kapp-application-error).
 
 For example, let's assume that the following file is used as `additional_sources`
 
@@ -123,7 +123,7 @@ default instead of overlaying it), this is reported in the [provisioner applicat
 
 ### <a id="unable-to-delete-namespace"></a>Unable to delete namespace
 
-When a namespaces is provisioned and listed in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) (via controller or GitOps), then it can be deleted in a common way by `kubectl` command:
+When a namespaces is provisioned and listed in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) (via [controller](about.hbs.md#nsp-controller) or GitOps), then it can be deleted in a common way by `kubectl` command:
 
 ```bash
 kubectl delete namespace {namespace-name}
@@ -143,7 +143,7 @@ block the namespace termination while waiting for the ServiceAccount to exist wi
 
 **Solution:** Remove the Kapp App *`finalizer`* in the Kapp App
 
-- Another possible cause is when the controller is used to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+- Another possible cause is when the [controller](about.hbs.md#nsp-controller) is used to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
 and it fails to remove the custom *`finalizer`* added to the namespace (`namespace-provisioner.apps.tanzu.vmware.com/finalizer`)
 
 **Solution:** Remove the *`finalizer`* in the *`namespace`*
