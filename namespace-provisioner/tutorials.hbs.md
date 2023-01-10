@@ -14,7 +14,7 @@ There are two approaches to provisioning namespace-scoped resources supported:
 
 ## <a id="controller-ns-provisioning"></a>Using Namespace Provisioner Controller
 
-### <a id="nps-controller-prerequisites"></a>Prerequisites:</br>
+### <a id="nps-controller-prerequisites"></a>Prerequisites</br>
 
 - The Namespace Provisioner package is installed and successfully reconciled
 - The [`controller` tap value key](install.hbs.md#customized-installation) is set to **`true`**
@@ -86,7 +86,7 @@ ConfigMap.
 exist on the cluster, the provisioner application will fail to reconcile and will not be able to create
 resources. Creation of the namespaces themselves is out of the scope for the namespace provisioner package.
 
-### <a id="gitops-prerequisites"></a>Prerequisites:</br>
+### <a id="gitops-prerequisites"></a>Prerequisites</br>
 
 The prerequisites for using GitOps are the same as those specified in the
 [controller prerequisites](#nps-controller-prerequisites) above except for the `controller`
