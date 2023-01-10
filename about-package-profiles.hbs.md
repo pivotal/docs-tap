@@ -803,6 +803,7 @@ Tanzu Application Platform components.
    </td>
    <td>
    </td>
+   <td>&check;
    <td>
    </td>
    <td>
@@ -818,6 +819,7 @@ Tanzu Application Platform components.
    <td>
    </td>
    <td>
+   <td>&check;
    </td>
    <td>
    </td>

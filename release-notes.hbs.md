@@ -144,8 +144,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
   environments. See [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md).
-- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) through the tap-values.yml for both Grype and Snyk scanners.
-- Alpha release of Prisma Scanner integration. The installation guide is available [here](scst-scan/install-prisma-integration.hbs.md).
+- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) by using the `tap-values.yml` for both Grype and Snyk scanners.
+- Alpha release of Prisma Scanner integration. See [Install Prisma Scanner](scst-scan/install-prisma-integration.hbs.md).
 </br></br>
 
 #### <a id="1-4-0-scst-policy-new-features"></a> Supply Chain Security Tools - Policy
@@ -195,17 +195,20 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 #### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plugin for Tanzu CLI
 
 - Added `--update-strategy` flag to allow users to change `tanzu apps workload apply` behavior when
-  contents from file is applied.
+  contents from file is applied. Check [How-to-guides](./cli-plugins/apps/how-to-guides.hbs.md#update-strategy) 
+  section for usage and examples.
 - Added ability for users to pass URL for `--file` flag.
-- Added show fully qualified resource name in the resources column of Supply chain and Delivery
-  sections of the `tanzu apps workload get` command.
+- Show fully qualified resource name in the resources column of Supply chain and Delivery
+  sections of the `tanzu apps workload get` command. Example output can be found in 
+  [tanzu apps workload get](./cli-plugins/apps/command-reference/workload_get.hbs.md) command description.
 - Added new shorthand flag aliases: `-a` for `--app`, `-e` for `--env`, `-i` for `--image`,
-  `-l` for `label`, `-p` for `--param`, and `-t` for `--type`.
+  `-l` for `label`, `-p` for `--param`, and `-t` for `--type`. All flags usage and shorthands (if apply)
+  can be found in [tanzu apps workload apply](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md) flags list.
 - Added emojis to `tanzu apps workload create/apply/delete` commands.
-- Added do not print emojis when `--no-color` flag  is set.
+- Do not print emojis when `--no-color` flag  is set.
 - Added namespace to `tanzu apps workload get` command's overview section.
 - Added progress bar to provide feedback to users when uploading source code to registry.
-- Added remove color from tail command output when `--no-color` flag is passed.
+- Removed color from tail command output when `--no-color` flag is passed.
 
 </br>
 
@@ -233,7 +236,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id="1-4-0-supply-chain-templates"></a> Out of the Box Supply Chain Templates
 
-In a multicluster setup, when a Deliverable is created on a Build profile cluster,
+- In a multicluster setup, when a Deliverable is created on a Build profile cluster,
 the ConfigMap it is placed in is renamed from `<workload-name>` to `<workload-name>-deliverable`. Any automation
 depending on obtaining the Deliverable content by the former name must be updated to use the new name.
 For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
@@ -282,13 +285,13 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 
-The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
+- The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
 in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 </br></br>
 
 #### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
 
-Policy Controller no longer initializes TUF by default. TUF is required to
+- Policy Controller no longer initializes TUF by default. TUF is required to
 support the keyless authorities in `ClusterImagePolicy`. To continue to use
 keyless authorities, provide the value `policy.tuf_enabled:
 true` by using the `tap-values.yaml` file while upgrading. By default,
@@ -331,11 +334,12 @@ CVE-2022-2588, CVE-2022-34918, GHSA-4wf5-vphf-c2xc, CVE-2022-42916, CVE-2022-435
 </br>
 
 #### <a id="1-4-0-cve-2022-4378"></a> Note about CVE-2022-4378
-[CVE-2022-4378](https://nvd.nist.gov/vuln/detail/CVE-2022-4378) is a high severity, exploitable stack overflow flaw found in the Linux kernel's SYSCTL subsystem. At this time, there is no available patch from Canonical in their upstream Ubuntu distribution. Once there is a patch available for the 22.04 release line, Tanzu Application Platform will release a patched base stack image. The current status for patching this vulnerability in the Jammy stack is available on [Ubuntu’s security page](https://ubuntu.com/security/CVE-2022-4378). <br />
 
-It is important for customers to understand CVE-2022-4378 is a kernel exploit, and the kernel runs on the customers’ container host VM, not the Tanzu Application Platform container image. Even with a patched image, the vulnerability will not be mitigated until customers deploy their containers on a host with a patched OS. An unpatched host OS may be exploitable if the base image is deployed allowing users to modify SYSCTL parameters. <br />
+- [CVE-2022-4378](https://nvd.nist.gov/vuln/detail/CVE-2022-4378) is a high severity, exploitable stack overflow flaw found in the Linux kernel's SYSCTL subsystem. At this time, there is no available patch from Canonical in their upstream Ubuntu distribution. Once there is a patch available for the 22.04 release line, Tanzu Application Platform will release a patched base stack image. The current status for patching this vulnerability in the Jammy stack is available on [Ubuntu’s security page](https://ubuntu.com/security/CVE-2022-4378). <br />
 
-RedHat has published a [potential mitigation](https://access.redhat.com/security/cve/cve-2022-4378) preventing regular users from accessing sysctl files and increasing privileges until a patch becomes available.
+  It is important for customers to understand CVE-2022-4378 is a kernel exploit, and the kernel runs on the customers’ container host VM, not the Tanzu Application Platform container image. Even with a patched image, the vulnerability will not be mitigated until customers deploy their containers on a host with a patched OS. An unpatched host OS may be exploitable if the base image is deployed allowing users to modify SYSCTL parameters. <br />
+
+  RedHat has published a [potential mitigation](https://access.redhat.com/security/cve/cve-2022-4378) preventing regular users from accessing sysctl files and increasing privileges until a patch becomes available.
 
 </br>
 ---
@@ -380,9 +384,9 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 - Fixed `tanzu apps workload tail` command not including all logs.
 </br></br>
 
-#### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI plug-ins
+#### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
 
-- **Immediate entity provider backend plug-in**
+- **Immediate entity provider back-end plug-in**
 
   - The entity provider, used mainly by API Auto Registration, now allows a body size of `5Mb` to
     accept larger API specifications.
@@ -421,7 +425,7 @@ This release has the following known issues, listed by area and component.
 
 - If a workload is deployed onto a namespace by using Live Update, you must set that namespace as
   the namespace of the current context of your kubeconfig file.
-  Otherwise, if you run Tanzu Debug it causes the workload to re-deploy.
+  Otherwise, if you run Tanzu Debug, it causes the workload to re-deploy.
   For more information, see
   [Troubleshooting](intellij-extension/troubleshooting.hbs.md#debug-reapplies-apply).
 
@@ -459,28 +463,33 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="1-4-0-grype-scan-known-issues"></a>Grype scanner
 
-**Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
+- **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
-For most languages, Source Code Scanning only scans files present in the source code repository.
-Except for support added for Java projects using Maven, no network calls fetch
-dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
-lock files to check dependencies for vulnerabilities.
+  For most languages, Source Code Scanning only scans files present in the source code repository.
+  Except for support added for Java projects using Maven, no network calls fetch
+  dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+  lock files to check dependencies for vulnerabilities.
 
-For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies
-present in the built binaries, such as `.jar` or `.war` files.
+  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies
+  present in the built binaries, such as `.jar` or `.war` files.
 
-Because VMware discourages committing binaries to source code repositories, Grype fails to
-find vulnerabilities during a source scan.
-The vulnerabilities are still found during the image scan after the binaries are built and packaged
-as images.
+  Because VMware discourages committing binaries to source code repositories, Grype fails to
+  find vulnerabilities during a source scan.
+  The vulnerabilities are still found during the image scan after the binaries are built and packaged
+  as images.
 </br></br>
+
+#### <a id="1-4-0-nsp-ki"></a> Namespace Provisioner
+
+- Applying the label selector used by the namespace provisioner controller to the developer namespace, which is configured at deployment time under the `grype` package values, will cause the [`provisioner` Carvel app](namespace-provisioner/about.hbs.md#nsp-component-carvel-app) to crash due to ownership issues. This is because it's trying to install Grype in a namespace where it's already been installed.
+</br>
 
 #### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI plug-ins
 
 ##### <a id="supply-chain-plugin-ki"></a> Supply Chain Choreographer plug-in
 
 - The `Generation` field and scan policy link in the **Overview** section does not update when you amend a scan policy. The correct version and details of the policy are shown in the CLI.
-- Customizing the `Source Tester` stage in an OOTB supply chain does not show details in the
+- Customizing the `Source Tester` stage in an Out Of the Box supply chain does not show details in the
   **Stage Details** section.
 - When a GitOps PR flow is configured, the **Approve a Request** link no longer appears in the supply chain graph.
 </br>
@@ -523,9 +532,9 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 #### <a id="1-4-0-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook
 
-The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
+- The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
 in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
-</br></br>
+
 
 #### <a id="1-4-0-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
 
@@ -552,7 +561,7 @@ in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 Ubuntu Bionic stops receiving support in April 2023.
 VMware recommends you migrate builds to Jammy stacks in advance.
 For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
-- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated:
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
 It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
 VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
 and remove support in Tanzu Application Platform v1.6.
@@ -561,7 +570,8 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 #### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
-- The default value for the `--update-strategy` flag will change from `merge` to `replace` in
+- The default value for the [`--update-strategy`](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
+  flag will change from `merge` to `replace` in
   Tanzu Application Platform v1.7.0.
 - The `tanzu apps workload update` command is deprecated and marked for removal in Tanzu Application
   Platform 1.5.0. Use `tanzu apps workload apply` instead.
