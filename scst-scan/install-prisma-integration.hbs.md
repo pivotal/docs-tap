@@ -26,7 +26,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. Log in to your image registry by running:
 
-    ```
+    ```console
     docker login MY-REGISTRY
     ```
 
@@ -34,13 +34,13 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
 
-    ```
+    ```console
     docker login registry.tanzu.vmware.com
     ```
 
 4. Set up environment variables for installation by running:
 
-    ```
+    ```console
     export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
     export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
     export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
@@ -60,7 +60,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. Relocate the images with the imgpkg CLI by running:
 
-    ```
+    ```console
     imgpkg copy -b projects.registry.vmware.com/tap-scanners-package/prisma-repo-scanning-bundle:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/prisma-repo-scanning-bundle
     ```
 
