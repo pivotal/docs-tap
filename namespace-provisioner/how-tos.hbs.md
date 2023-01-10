@@ -9,7 +9,7 @@ Customize your custom resources with data values from:
 1. The `tap-values.yaml` file
 2. The `desired-namespaces` ConfigMap.
 
-Namespace Provisioner inherits all of the configuration in **both** the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) and the `tap-values.yaml` under the key `tap_values` making it available to
+Namespace Provisioner inherits all of the configuration in **both** the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) and the tap config under the key `tap_values` making it available to
 use as ytt `data.values` when [extending the resources via GitOps](#extending-default-resources).
 
 For example, if the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) has a namespace `dev-ns1` with an additional
@@ -81,7 +81,7 @@ namespace_provisioner:
       subPath: namespace-provisioner-gitops-examples/custom-resources/workload-sa
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     path: _ytt_lib/workload-sa
-  # Add templated java scan policy and tekton pipeline
+  # Add templated Grype scan policy and java Tekton pipeline
   - git:
       ref: origin/main
       subPath: namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain
