@@ -3,9 +3,7 @@
 This document describes how to install Out of the Box Supply Chain with Testing
 from the Tanzu Application Platform package repository.
 
->**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
-Both the full and light profiles include Out of the Box Supply Chain with Testing.
-For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 The Out of the Box Supply Chain with Testing package provides a
 ClusterSupplyChain that brings an application from source code to a deployed
