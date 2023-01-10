@@ -17,7 +17,7 @@ The Namespace Provisioner package is installed as part of the standard installat
 based on a combination of the Tanzu Application Platform installation profile employed and the supply
 chain that is installed on the cluster.
 
-To see a list of what resources are created for different profile/supply chain combinations, see [default resource mapping table](reference.hbs.md#profile-resource-mapping),
+For a list of what resources are created for different profile/supply chain combinations, see [default resource mapping table](reference.hbs.md#profile-resource-mapping),
 
 ## <a id="customized-install"></a>Customized Installation
 

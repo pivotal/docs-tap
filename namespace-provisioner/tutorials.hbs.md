@@ -84,7 +84,7 @@ manage the list of namespaces in the [`desired-namespaces` ConfigMap](about.hbs.
 
 >**WARNING**: if there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the [provisioner application](about.hbs.md#nsp-component-carvel-app)
 will fail to reconcile and will not be able to create resources. Creation of the namespaces
-themselves is out of the scope for the Namespace Provisioner package.
+is out of the scope for the Namespace Provisioner package.
 
 ### <a id="gitops-prerequisites"></a>Prerequisites</br>
 

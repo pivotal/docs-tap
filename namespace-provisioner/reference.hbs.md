@@ -20,7 +20,7 @@ and cannot create resources.
 ## <a id="default-resources-mapping"></a>Default resources mapping
 
 Namespace Provisioner is installed as part of the standard installation profiles
-(i.e. Full, Iterate, Build and Run) and the default set of resources provisioned in a namespace is
+(i.e. Full, Iterate, Build, and Run) and the default set of resources provisioned in a namespace is
 based on a combination of the installation profile employed and the supply chain that is installed
 on the cluster. The following table shows the list of resources that are templated in the
 `default-resources` Secret for an installation profile and supply chain value combination:

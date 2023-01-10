@@ -37,7 +37,7 @@ kubectl -n tap-install get packageinstalls.packaging.carvel.dev/namespace-provis
 
 When using the controller to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) and customizing the
 `namespace_selector` from `tap_values.yaml`, the match expression must be compliant with the [Kubernetes label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors).
-If it is not compliant, when labeling a namespace, the Namespace Provisioner won't create any object
+If it is not compliant when labeling a namespace, the Namespace Provisioner won't create any object
 in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) and the controller will output a [log](#controller-logs) message.
 
 For example, if the configured `namespace_selector` is
@@ -135,7 +135,7 @@ When the provisioned namespace is deleted and there is a workload already create
 *`namespace`* will likely remain in the `Terminating` state because some resources can
 not be deleted.
 
-One of the causes of this behavior is because the workload creates a Carvel Kapp App that references
+One of the causes of this behavior is that the workload creates a Carvel Kapp App that references
 the ServiceAccount in the namespace. Kubectl does not adhere to Carvel kapp-controller delete order
 and the ServiceAccount is deleted before the workload Carvel App. As a result, the Carvel App will
 block the namespace termination while waiting for the ServiceAccount to exist with a
