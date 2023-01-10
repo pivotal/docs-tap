@@ -2,9 +2,12 @@
 
 This topic explains how to configure the Tanzu Insight plug-in.
 
-## <a id='set-tar-cert'></a>Set the target and certificate authority certificate
+## <a id='set-tar-cert'></a>Set the target and certificate authority (CA) certificate
 
-Note: These instructions are for the recommended configuration where ingress is enabled. For instructions on non-ingress setups, see [Configure target endpoint and certificate](../../scst-store/using-encrypted-connection.hbs.md#additional-resources) for more details.
+**Note** These instructions are for the recommended configuration where ingress is enabled. For
+instructions on non-ingress setups,
+see [Configure target endpoint and certificate](../../scst-store/using-encrypted-connection.hbs.md#additional-resources)
+for more details.
 
 {{> 'partials/insight-ingress-configuration' }}
 
@@ -12,13 +15,13 @@ Note: These instructions are for the recommended configuration where ingress is 
 
 {{> 'partials/insight-set-access-token' }}
 
-## <a id='check-con'></a>Check the connection
+## <a id='check-con'></a>Verify the connection
 
-Check that your configuration is correct and you are able to make a connection using `tanzu insight health`.
+Verify that your configuration is correct and you can make a connection using `tanzu insight health`.
 
-> **Important** The `tanzu insight health` command will test the configured endpoint and CA certificate.
+> **Important** The `tanzu insight health` command tests the configured endpoint and CA certificate.
 > However, it does not test whether the access token is correct.
-> <!--For that you need to use the plug-in to [add](add-data.hbs.md) and [query](query-data.hbs.md) data.-->
+> For that you must use the plug-in to [add](add-data.hbs.md) and [query](query-data.hbs.md) data.
 
 For example:
 

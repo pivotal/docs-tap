@@ -19,7 +19,7 @@ Before installing Application Accelerator:
 
 ## <a id='app-acc-config'></a> Configure properties and resource use
 
-When you install the Application Accelerator, you can configure the following optional properties:
+When you install the Application Accelerator, you can configure the following optional properties from within your `.yaml` configuration file:
 
 | Property | Default | Description |
 | --- | --- | --- |
@@ -75,21 +75,21 @@ To install Application Accelerator:
     $ tanzu package available list accelerator.apps.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for accelerator.apps.tanzu.vmware.com...
       NAME                               VERSION  RELEASED-AT
-      accelerator.apps.tanzu.vmware.com  1.3.1    2022-09-30 13:00:00 -0400 EDT
+      accelerator.apps.tanzu.vmware.com  1.4.0    2022-12-08 12:00:00 -0500 EST 
     ```
 
 2. (Optional) To make changes to the default installation settings, run:
 
     ```console
-    tanzu package available get accelerator.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get "accelerator.apps.tanzu.vmware.com/${ACCELERATOR_VERSION_NUMBER}" --values-schema --namespace tap-install
     ```
 
-    Where `VERSION-NUMBER` is the version of the package listed earlier.
+    Where `ACCELERATOR_VERSION_NUMBER` is the version of the Accelerator package that was listed earlier.
 
     For example:
 
     ```console
-    tanzu package available get accelerator.apps.tanzu.vmware.com/1.2.1 --values-schema --namespace tap-install
+    tanzu package available get accelerator.apps.tanzu.vmware.com/1.4.0 --values-schema --namespace tap-install
     ```
 
     For more information about values schema options, see the properties listed earlier.
@@ -109,26 +109,28 @@ To install Application Accelerator:
     >**Note** For clusters that do not support the `LoadBalancer` service type, override the default
     >value for `server.service_type`. For example:
 
-      >```yaml
+      > ```yaml
       > server:
       >   service_type: "ClusterIP"
       >   watched_namespace: "accelerator-system"
       > samples:
       >   include: true
-      >```.
+      > ```
+    
+
 
 4. Install the package by running:
 
     ```console
-    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-accelerator-values.yaml
+    tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v ${ACCELERATOR_VERSION_NUMBER} -n tap-install -f app-accelerator-values.yaml
     ```
 
-    If `VERSION-NUMBER` is the version included in the Tanzu Application Platform installation.
+    Where `ACCELERATOR_VERSION_NUMBER` is the version of the Application Accelerator package included with the Tanzu Application Platform installation.
 
     For example:
 
     ```console
-    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 1.2.1 -n tap-install -f app-accelerator-values.yaml
+    $ tanzu package install app-accelerator -p accelerator.apps.tanzu.vmware.com -v 1.4.0 -n tap-install -f app-accelerator-values.yaml
     - Installing package 'accelerator.apps.tanzu.vmware.com'
     | Getting package metadata for 'accelerator.apps.tanzu.vmware.com'
     | Creating service account 'app-accelerator-tap-install-sa'
@@ -154,7 +156,7 @@ To install Application Accelerator:
     | Retrieving installation details for cc...
     NAME:                    app-accelerator
     PACKAGE-NAME:            accelerator.apps.tanzu.vmware.com
-    PACKAGE-VERSION:         1.2.1
+    PACKAGE-VERSION:         1.4.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -169,8 +171,7 @@ To install Application Accelerator:
     kubectl get service -n accelerator-system
     ```
 
-    This lists an external IP address for use with the `--server-url` Tanzu CLI flag for the
-    Accelerator plug-in `generate` command.
+    This lists an external IP address for use with the `--server-url` Tanzu CLI flag for the Accelerator plug-in `generate` & `generate-from-local` command.
 
 ## <a id='troubleshooting'></a> Troubleshooting
 
@@ -198,7 +199,7 @@ It displays the output:
 ```console
 NAME                       READY   REASON     AGE
 appsso-starter-java        True    Ready      5h2m
-hungryman                  True    Ready      5h2m
+where-for-dinner           True    Ready      5h2m
 java-function              True    Ready      5h2m
 java-rest-service          True    Ready      5h2m
 java-server-side-ui        True    Ready      5h2m

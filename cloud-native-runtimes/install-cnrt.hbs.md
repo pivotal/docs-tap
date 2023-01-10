@@ -30,7 +30,7 @@ To install Cloud Native Runtimes:
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  2.0.1    2022-10-11T00:00:00Z
+      cnrs.tanzu.vmware.com  2.1.0    2022-12-08 16:00:00 -0800 PST
     ```
 
 1. (Optional) Make changes to the default installation settings:
@@ -38,24 +38,30 @@ To install Cloud Native Runtimes:
     1. Gather values schema.
 
         ```console
-        tanzu package available get cnrs.tanzu.vmware.com/2.0.1 --values-schema -n tap-install
+        tanzu package available get cnrs.tanzu.vmware.com/2.1.0 --values-schema -n tap-install
         ```
 
         For example:
 
         ```console
-        $ tanzu package available get cnrs.tanzu.vmware.com/2.0.1 --values-schema -n tap-install
-        | Retrieving package details for cnrs.tanzu.vmware.com/2.0.1...
+        $ tanzu package available get cnrs.tanzu.vmware.com/2.1.0 --values-schema -n tap-install
+        | Retrieving package details for cnrs.tanzu.vmware.com/2.1.0...
           KEY                         DEFAULT                               TYPE     DESCRIPTION
-          provider                    <nil>                                 string   Optional: Kubernetes cluster provider. To be specified if deploying CNR on a local Kubernetes cluster provider.
-          default_tls_secret          <nil>                                 string   Optional: Overrides the config-contour configmap in namespace knative-serving.
-          domain_config               <nil>                                 object   Optional: Overrides the config-domain configmap in namespace knative-serving. Must be valid YAML.
-          domain_name                 <nil>                                 string   Optional: Default domain name for Knative Services.
-          domain_template             \{{.Name}}.\{{.Namespace}}.\{{.Domain}}  string   Optional: specifies the golang text template string to use when constructing the Knative service's DNS name.
-          ingress.external.namespace  tanzu-system-ingress                  string   Required: Specify a namespace where an existing Contour is installed on your cluster. CNR will use this Contour instance for external services.
-          ingress.internal.namespace  tanzu-system-ingress                  string   Required: Specify a namespace where an existing Contour is installed on your cluster. CNR will use this Contour instance for internal services.
-          lite.enable                 false                                 boolean  Optional: Not recommended for production. Set to "true" to reduce CPU and Memory resource requests for all CNR Deployments, Daemonsets, and Statefulsets by half. On by default when "provider" is set to "local".
-          pdb.enable                  true                                  boolean  Optional: Set to true to enable Pod Disruption Budget. If provider local is set to "local", the PDB will be disabled automatically.
+          https_redirection           true                                  boolean  CNRs ingress will send a 301 redirect for all http connections, asking the clients to use HTTPS
+          ingress.internal.namespace  tanzu-system-ingress                  string   Required. Specify a namespace where an existing Contour is installed on your cluster. CNR will use this Contour instance for internal services.
+          ingress.external.namespace  tanzu-system-ingress                  string   Required. Specify a namespace where an existing Contour is installed on your cluster. CNR will use this Contour instance for external services.
+          ingress_issuer                                                    string   Cluster issuer to be used in CNRs. To use this property the domain_name or domain_config must be set. Under the hood, when this property is set auto-tls is Enabled.
+          namespace_selector                                                string   Specifies a LabelSelector which determines which namespaces should have a wildcard certificate provisioned. Set this property only if the Cluster issuer is type DNS-01 challenge.
+          domain_config               <nil>                                 <nil>    Optional. Overrides the Knative Serving "config-domain" ConfigMap, allowing you to map Knative Services to specific domains. Must be valid YAML and conform to the "config-domain" specification.
+          domain_template             \{{.Name}}.\{{.Namespace}}.\{{.Domain}}  string   Optional. Specifies the golang text template string to use when constructing the DNS name for a Knative Service.
+          lite.enable                 false                                 <nil>    Optional. Set to "true" to enable lite mode. Reduces CPU and Memory resource requests for all cnrs Deployments, Daemonsets, and StatefulSets by half. Not recommended for production.
+          pdb.enable                  true                                  <nil>    Optional. Set to true to enable a PodDisruptionBudget for the Knative Serving activator and webhook deployments.
+          default_tls_secret                                                string   Optional. Specify a fallback TLS Certificate for use by Knative Services if autoTLS is disabled. Will set default exterenal scheme for Knative Service URLs to "https". Requires either "domain_name" or "domain_config" to be set.
+          kubernetes_version          0.0.0                                 <nil>    Optional. Version of K8s infrastructure being used. Supported Values: valid Kubernetes major.minor.patch versions
+          ca_cert_data                                                      string   Optional. PEM Encoded certificate data to trust TLS connections with a private CA.
+          provider                    <nil>                                 <nil>    Deprecated. Instead, use "lite.enable" and "pdb.enable" options combined. Supported Values: local
+          domain_name                                                       string   Optional. Default domain name for Knative Services.
+          kubernetes_distribution     <nil>                                 <nil>    Optional. Type of K8s infrastructure being used. Supported Values: openshift
         ```
 
     1. Create a `cnr-values.yaml` by using the following sample as a guide:
@@ -77,18 +83,18 @@ To install Cloud Native Runtimes:
 
         Cloud Native Runtimes uses the existing Contour installation in the  `tanzu-system-ingress` namespace by default for external and internal access.
 
-        If your environment has Contour installed already, and it is not the Tanzu Application Platform provided Contour, you can configure Cloud Native Runtimes to use it. See [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.0/tanzu-cloud-native-runtimes/GUID-contour.html) in the Cloud Native Runtimes documentation.
+        If your environment has Contour installed already, and it is not the Tanzu Application Platform provided Contour, you can configure Cloud Native Runtimes to use it. See [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.1/tanzu-cloud-native-runtimes/GUID-contour.html) in the Cloud Native Runtimes documentation.
 
 2. Install the package by running:
 
     ```console
-    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.0.1 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.1.0 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
     ```console
-    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.0.1 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.1.0 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
     | Creating service account 'cloud-native-runtimes-tap-install-sa'
@@ -115,7 +121,7 @@ To install Cloud Native Runtimes:
     | Retrieving installation details for cc...
     NAME:                    cloud-native-runtimes
     PACKAGE-NAME:            cnrs.tanzu.vmware.com
-    PACKAGE-VERSION:         2.0.1
+    PACKAGE-VERSION:         2.1.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:

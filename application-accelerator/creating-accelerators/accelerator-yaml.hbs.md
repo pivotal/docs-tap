@@ -362,3 +362,9 @@ multiple files at the same path:
     - `UseFirst` keeps the contents of the first file.
     - `UseLast` keeps the contents of the last file.
     - `Append` keeps both by using `cat <first-file> <second-file>`.
+
+
+### <a id="advanced-accelerator-usage"></a> Advanced accelerator usage
+
+There are additional advanced features that can be leveraged when writing an `accelerator.yaml`. Please see the following references for additional information:
+* [Creating dynamic parameters using custom types](custom-types.md)

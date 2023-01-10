@@ -3,16 +3,100 @@
 This topic describes troubleshooting information for problems with installing
 Tanzu Application Platform GUI.
 
-## <a id='safari-not-working'></a> Tanzu Application Platform GUI does not work in Safari
+## <a id='port-range-invalid'></a> Tanzu Application Platform GUI reports that the port range is not valid
 
 ### Symptom
 
-Tanzu Application Platform GUI does not work in the Safari web browser.
+You provided a full URL in a `backend.reading.allow` entry, as in this example `tap-values.yaml` snippet:
+
+```yaml
+tap_gui:
+  app_config:
+    backend:
+      reading:
+        allow:
+          - host: http://gitlab.example.com/some-group/some-repo/-/blob/main/catalog-info.yaml
+```
+
+and you see the following error message:
+
+```console
+Backend failed to start up, Error: Port range is not valid: //gitlab.example.com/some-group/some-repo/-/blob/main/catalog-info.yaml
+```
+
+### Cause
+
+Tanzu Application Platform GUI expects a host name to be passed into the field
+`backend.reading.allow[].host`.
 
 ### Solution
 
-Currently there is no way to use Tanzu Application Platform GUI in Safari. Please use a different
-web browser.
+Edit your `tap-values.yaml` file as in the following example:
+
+```yaml
+tap_gui:
+  app_config:
+    backend:
+      reading:
+        allow:
+          - host: gitlab.example.com
+            paths: ['/some-group/some-repo/']
+```
+
+## <a id='catalog-not-loading'></a> Tanzu Application Platform GUI does not load the catalog
+
+### Symptom
+
+You are able to visit Tanzu Application Platform GUI, but it does not load the catalog and you see
+the following error message.
+
+```console
+> Error: Could not fetch catalog entities.
+> TypeError: Failed to fetch
+```
+
+When viewing your network tab you see that your browser has not downloaded mixed content.
+This might look different on different browsers.
+
+Chrome
+: In the **Status** column you see **(blocked:mixed-content)**
+  ![Screenshot of the blocked content status in the Chrome web browser.](images/invalid-tls-chrome-network-tab.png)
+
+Firefox
+: In the **Transferred** column you see **Mixed Block**
+  ![Screenshot of the blocked content status in the Firefox web browser.](images/invalid-tls-firefox-network-tab.png)
+
+### Cause
+
+As of Tanzu Application Platform v1.4, Tanzu Application Platform GUI provides TLS connections by
+default. Because of this, if you visit a Tanzu Application Platform GUI site your connection is
+automatically upgraded to https.
+
+You might have manually set the fields `app.baseUrl`, `backend.baseUrl`, and
+`backend.cors.origin` in your `tap-values.yaml` file.
+Tanzu Application Platform GUI uses the `baseUrl` to determine how to create links to fetch from its
+APIs. The combination of these two factors causes your browser to attempt to fetch mixed content.
+
+### Solution
+
+The solution is to delete these fields or update your values in `tap-values.yaml` to reflect that your
+Tanzu Application Platform GUI instance is serving https, as in the following example:
+
+```yaml
+tap_gui:
+  app_config:
+    app:
+      baseUrl: https://tap-gui.INGRESS-DOMAIN/
+    backend:
+      baseUrl: https://tap-gui.INGRESS-DOMAIN/
+      cors:
+        origin: https://tap-gui.INGRESS-DOMAIN/
+```
+
+Where `INGRESS-DOMAIN` is the ingress domain you have configured for Tanzu Application Platform.
+
+The installer determines acceptable values based on your `tap_gui.ingressDomain` or
+`shared.ingress_domain` and the TLS status of the installation.
 
 ## <a id='update-sc-err'></a> Updating a supply chain causes an error (`Can not create edge...`)
 

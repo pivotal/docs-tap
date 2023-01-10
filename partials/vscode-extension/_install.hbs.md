@@ -24,7 +24,7 @@ To install the extension:
 3. Press cmd+shift+P to open the Command Palette and run `Extensions: Install from VSIX...`.
 4. Select the extension file **tanzu-vscode-extension.vsix**.
 
-    ![Command palette open showing text Extensions: INSTALL FROM VSIX...](/docs-tap/images/vscode-install1.png)
+    ![Command palette open showing text Extensions: INSTALL FROM VSIX...](/docs-tap/images/vscode-install1v2.png)
 
 5. If you do not have the following extensions, and they do not automatically install, install them
 from VS Code Marketplace:

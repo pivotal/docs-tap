@@ -15,7 +15,7 @@ Tanzu Developer Tools for Visual Studio:
   installed.
   Download Tanzu Application Platform from [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
   For more information about the profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
-- [Visual Studio](https://visualstudio.microsoft.com/vs/)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
 
 ## <a id="install"></a> Install
 
@@ -23,7 +23,7 @@ To install the extension:
 
 1. Sign in to VMware Tanzu Network and
    [download Tanzu Developer Tools for Visual Studio](https://network.pivotal.io/products/tanzu-application-platform/).
-2. Click the installed `.vsix` file and go through the prompts.
+2. Double-click the `.vsix` install file and click through the prompts.
 3. Open Visual Studio and verify that the extension is installed and enabled.
 
 ## <a id="next-steps"></a> Next steps

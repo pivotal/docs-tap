@@ -88,6 +88,18 @@ You can wait for the next build of the workloads that new source code changes tr
 If you do not want to wait for subsequent builds to run automatically, follow the instructions in
 [Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
 
+### <a id="upgrade-order"></a> Multicluster upgrade order
+
+Upgrading a [multicluster deployment](multicluster/installing-multicluster.hbs.md) requires updating multiple clusters with different profiles.
+If upgrades are not performed at the exact same time, different clusters have different versions of profiles installed temporarily.
+This might cause a temporary API mismatch that leads to errors. 
+Those errors eventually disappear when the versions are consistent across all clusters.
+
+To reduce the likelihood of temporary failures, follow these steps to upgrade your multicluster deployment:
+
+1. Upgrade the view-profile cluster.
+1. Upgrade the remaining clusters in any order.
+
 ### <a id="comp-specific-instruct"></a> Upgrade instructions for component-specific installation
 
 For information about upgrading Tanzu Application Platform GUI, see [Upgrade Tanzu Application Platform GUI](tap-gui/upgrades.html).

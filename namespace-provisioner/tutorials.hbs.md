@@ -1,12 +1,14 @@
-# Tutorial: Provisioning new developer namespaces
+# Provision namespace resources
 
-Two approaches to provisioning namespace-scoped resources are supported:
+There are two approaches to provisioning namespace-scoped resources supported:
 
-1. [**Using Namespace Provisioner Controller**](#controller-ns-provisioning) - recommended for TAP clusters that: 
-   - include the ["Out of the Box Supply Chain - Basic"](../about-package-profiles.hbs.md#installation-profiles-in-tanzu-application-platform-v13)
+1. [**Using Namespace Provisioner Controller**](#controller-ns-provisioning) - recommended for Tanzu
+   Application Platform clusters that:
+   - include [Out of the Box Supply Chain Basic](../scc/ootb-supply-chain-basic.hbs.md)
    - require only the default, out of the box namespace-scoped, resources to be provisioned
-2. [**Using GitOps**](#using-gitops) - required for TAP clusters that (have any of the following):
-   - include the "Out of the Box Supply Chain - Testing and Scanning"
+2. [**Using GitOps**](#using-gitops) - required for Tanzu Application Platform clusters that
+   have any of the following:
+   - include [Out of the Box Supply Chain - Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md)
    - require customization and/or extension of the default namespace-scoped resources that are provisioned
    - would be best to control which namespaces get provisioned via GitOps
 
@@ -15,12 +17,12 @@ Two approaches to provisioning namespace-scoped resources are supported:
 ### <a id="nps-controller-prerequisites"></a>Prerequisites:</br>
 
 - The Namespace Provisioner package is installed and successfully reconciled
-- The [`controller` tap value key](install.hbs.md#customized-installation) is set to **`true`** 
+- The [`controller` tap value key](install.hbs.md#customized-installation) is set to **`true`**
   (Default is `true`)
-- The `registry-credentials` secret referenced by the Tanzu Build Service is added to tap-install 
-  and exported to all namespaces. If you don’t want to export this secret to all namespaces for any 
-  reason, you will have to go through an additional step to create this secret in each namespace 
-  you wish to provision.
+- The `registry-credentials` secret referenced by the Tanzu Build Service is added to tap-install
+  and exported to all namespaces. If you don’t want to export this secret to all namespaces for any
+  reason, you must complete an additional step to create this secret in each namespace
+  you want to provision.
   - Example secret creation, exported to all namespaces
 
     ```terminal
@@ -33,10 +35,7 @@ Two approaches to provisioning namespace-scoped resources are supported:
     tanzu secret registry add tbs-registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --yes --namespace YOUR-NEW-DEVELOPER-NAMESPACE
     ```
 
-</br>
-
-
-### <a id="provision-dev-namespace"></a>Steps to provision a new developer namespace:
+### <a id="provision-dev-namespace"></a>Provision a new developer namespace
 
 1. Create a namespace using `kubectl` or any other means
 
@@ -50,72 +49,50 @@ Two approaches to provisioning namespace-scoped resources are supported:
    kubectl label namespaces YOUR-NEW-DEVELOPER-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
    ```
 
-   \* This label tells the controller to add this namespace to the 
-   [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) ConfigMap.</br>
-   - The label's value can be anything you wish, including "".
-   - If desired, you can change the default label selector by configuring the  
-     [`namespace_selector`](install.hbs.md#customized-installation) property/value in tap-values 
+   - This label tells the controller to add this namespace to the
+   [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap.</br>
+   - The label's value can be anything you wish, including "". </br>
+   - If required, you can change the default label selector by configuring the
+     [`namespace_selector`](install.hbs.md#customized-install) property/value in tap-values
      for namespace provisioner.
-  
-1. **Optional** - this step is only required if the `registry-credentials` secret that was created 
-   during TAP Installation **_was not_** exported to all namespaces (see the 
+
+1. **Optional** - this step is only required if the `registry-credentials` secret that was created
+   during Tanzu Application Platform Installation **_was not_** exported to all namespaces (see the
    [Prerequisites](#nps-controller-prerequisites) section above for details).
-   
-   - Add the registry-credentials secret referrenced by the Tanzu Build Service to the new 
+
+   - Add the registry-credentials secret referenced by the Tanzu Build Service to the new
      namespace and patch the service account that will be used by the workload to refer to this new secret.
 
      ```terminal
      tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --yes --namespace YOUR-NEW-DEVELOPER-NAMESPACE
      ```
 
-1. Run the following command to verify the correct resources have been created in the namespace *
+1. Run the following command to verify the correct resources have been created in the namespace:
 
    ```bash
    kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap -n YOUR-NEW-DEVELOPER-NAMESPACE
    ```
 
-   \* Refer to the [TAP Profile Resource Mapping table](reference.hbs.md#profile-resource-mapping) 
-   on the [Namespace Provisioner reference materials](reference.hbs.md) page to see the list of 
-   resources you should expect to be provisioned in your namespace based on TAP installation 
-   profile and supply chain values configured in your tap-values.yaml file.
-
-</br>
-
----
-
-</br>
+   - To see the list of resources that are provisioned in your namespace based on the installation
+     profile and supply chain values configured in your `tap-values.yaml` file, see [Default resources mapping](reference.hbs.md#default-resources-mapping).
 
 ## <a id="using-gitops"></a>Using GitOps
 
-This section is for those who choose not to use the built-in controller in favor of using GitOps to 
-manage the list of namespaces in the [`desired-namespaces`](about.hbs.md#nsp-component-desired-namespaces-configmap) 
+This section describes how to use the built-in controller instead of using GitOps to
+manage the list of namespaces in the [`desired-namespaces`](about.hbs.md#desired-ns-configmap)
 ConfigMap.
 
->**WARNING**: if there is a namespace in your GitOps repo desired-namespace list that does not 
-exist on the cluster, the “provisioner” app will fail to reconcile and will not be able to create 
+>**WARNING**: if there is a namespace in your GitOps repo desired-namespace list that does not
+exist on the cluster, the provisioner application will fail to reconcile and will not be able to create
 resources. Creation of the namespaces themselves is out of the scope for the namespace provisioner package.
 
 ### <a id="gitops-prerequisites"></a>Prerequisites:</br>
 
-The prerequisites for using GitOps are the same as those specified in the 
-[controller prerequisites](#nps-controller-prerequisites) above with the exception of the `controller` 
+The prerequisites for using GitOps are the same as those specified in the
+[controller prerequisites](#nps-controller-prerequisites) above except for the `controller`
 tap value key's value as follows:
 
-- The [`controller` tap value key](install.hbs.md#customized-installation) is set to **`false`** 
+- The [`controller` tap value key](install.hbs.md#customized-install) is set to **`false`**
   (Default is `true`)
 
-Please go to the  [**Control the `desired-namespaces` ConfigMap via GitOps**](how-tos.hbs.md#control-desired-namespaces) 
-section of the [How-to Guide](how-tos.hbs.md) for detailed instructions for provisinging namespaces 
-via GitOps. 
-
-</br>
-
----
-
-### Links to additional Namespace Provisioner documentation
-
-- [Overview](about.hbs.md)
-- [Installation](install.hbs.md)
-- [How-To Provision and Customize Namespaces via GitOps](how-tos.hbs.md)
-- [Troubleshooting](troubleshooting.hbs.md)
-- [Reference Materials](reference.hbs.md)
+For more information about provisioning namespaces with GitOps, see [**Control the `desired-namespaces` ConfigMap with GitOps**](how-tos.hbs.md#control-desired-namespaces).

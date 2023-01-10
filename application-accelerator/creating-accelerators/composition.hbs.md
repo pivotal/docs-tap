@@ -3,9 +3,9 @@
 
 ## <a id="composition-intro"></a> Introduction
 
-Despite their benefits, writing and maintaining accelerators can become repetitive and
-verbose as new accelerators are added: some create a project different from the next but
-with similar aspects, which requires some form of copy-paste.
+Despite their benefits, writing and maintaining, accelerators can become repetitive and
+verbose as new accelerators are added. Some create a project different from the next
+with similar aspects, requiring some form of copy-paste.
 
 To alleviate this concern, Application Accelerators support a feature named _Composition_
 that allows the re-use of parts of an accelerator, called **fragments**.
@@ -15,19 +15,18 @@ that allows the re-use of parts of an accelerator, called **fragments**.
 A **fragment** looks exactly the same as an accelerator:
 
 - It is made of a set of files.
-- It contains an `accelerator.yaml` descriptor, with options declarations and a root transform.
+- It contains an `accelerator.yaml` descriptor with options, declarations, and a root transform.
 
 There are differences however. Namely:
 
-- Fragments are declared to the system differently. That is, they are
-filed as **fragments** custom resources.
-- They deal with files differently. Because fragments deal with their own files and files from the accelerator using them,
-they typically use dedicated conflict resolution [strategies](transforms/conflict-resolution.md)
-(more on this later).
+- Fragments are declared to the system differently. They are filed as **fragment** custom resources.
+- They deal with files differently. Because fragments deal with their own files and files from the
+accelerator using them, they use dedicated conflict resolution
+[strategies](transforms/conflict-resolution.md) (more on this later).
 
-Fragments can be thought of as "functions" in programming languages. After being defined and
-referenced, they can be "called" at various points in the main accelerator.
-The composition feature is designed with ease of use and "common use case first"
+Fragments may be thought of as "functions" in programming languages. After being defined and
+referenced, they are "called" at various points in the main accelerator.
+The composition feature is designed with ease of use and "common use first"
 in mind, so these "functions" are typically called with as little noise as possible.
 You can also call them complex or different values.
 
@@ -58,7 +57,7 @@ engine:
 The effect of importing a fragment this way is twofold:
 
 - It makes its files available to the engine (therefore importing a fragment is required).
-- It exposes all its options as options of the accelerator as if they were defined
+- It exposes all of its options as options of the accelerator as if they were defined
   by the accelerator itself.
 
 So in the earlier example, if the `my-first-fragment` fragment had the following `accelerator.yaml` file:
@@ -92,29 +91,30 @@ engine:
   ...
 ```
 
-All the metadata about options (type, default value, description, choices if applicable, _etc._)
-is coming along when being imported.
+All the metadata about options (type, default value, description, choices if applicable, _etc._) come
+along when imported.
 
 Because of this, users are prompted for a value for those options that come
 from fragments, as if they were options of the accelerator.
 
-## <a id="using-invokefragment-transform"></a> Using the `InvokeFragment` Transform
+## <a id="using-invokfrag-transform"></a> Using the `InvokeFragment` Transform
 
 The second part at play in the composition is the `InvokeFragment` Transform.
 
-As with any other transform, it can be used anywhere in the `engine` tree and
+As with any other transform, it may be used anywhere in the `engine` tree and
 receives files that are "visible" at that point. Those files, alongside those
 that make up the fragment, are made available to the fragment logic. If the fragment
-wants to choose between two versions of a file for a path, two new
-conflict resolution [strategies](transforms/conflict-resolution.md) are available: `FavorForeign` and `FavorOwn`.
+wants to choose between two versions of a file for a path, two new conflict
+resolution [strategies](transforms/conflict-resolution.md) are available: `FavorForeign` and `FavorOwn`.
 
-The behavior of the `InvokeFragment` Transform is very straightforward: after having validated
+The behavior of the `InvokeFragment` transform is very straightforward: after having validated
 options that the fragment expects (and maybe after having set default values for
-options that support one), it executes the whole Transform of the fragment _as if
+options that support one), it executes the whole transform of the fragment _as if
 it was written in place of `InvokeFragment`_.
 
-See the `InvokeFragment` [reference page](transforms/invoke-fragment.md) for more explanations, examples, and configuration options. This topic now focuses on additional features of the `imports` section that are seldom used but still
-available to cover more complex use cases.
+See the `InvokeFragment` [reference page](transforms/invoke-fragment.md) for more explanations,
+examples, and configuration options. This topic now focuses on additional features of the `imports`
+section that are seldom used but still available to cover more complex use cases.
 
 ## <a id="back-to-imports"></a> Back to the `imports` section
 
@@ -177,7 +177,7 @@ The semantics of the `expose` block are as follows:
 - As soon as a single remap rule appears, the default is overridden. For example,
   to override some names AND expose the others unchanged, the `*` must
   be explicitly re-added.
-- To explicitly un-expose ALL options from an imported fragment, an empty array can
+- To explicitly un-expose ALL options from an imported fragment, an empty array may
   be used and overrides the default: `expose: []`.
 
 Similarly, you can also select which [custom types](custom-types.hbs.md) of the fragment
@@ -188,7 +188,7 @@ The semantics of the `exposeTypes` block are as follows:
 
 - For every `name`/`as` pair, don't use the original (`name`) of the
   type but instead, use the alias (`as`). Options that used the original
-  name are automatically 'rewritten' to use the new name.
+  name are automatically "rewritten" to use the new name.
 - If the special `name: "*"` appears, which is NOT usually a legit type name,
   all imported other type names that are not remapped are exposed
   with their original name. The index at which the
@@ -198,12 +198,13 @@ The semantics of the `exposeTypes` block are as follows:
 - As soon as a single remap rule appears, the default is overridden. For example,
   to override some names AND expose the others unchanged, the `*` must
   be explicitly re-added.
-- To explicitly un-expose ALL types from an imported fragment, an empty array can
+- To explicitly un-expose ALL types from an imported fragment, an empty array may
   be used, which overrides the default: `exposeTypes: []`.
 
-### <a id="using-dependsOn-in-imports"></a> Using `dependsOn` in the `imports` section
+### <a id="using-dependsOn-in-import"></a> Using `dependsOn` in the `imports` section
 
-Lastly, as a convenience for the conditional use of fragments, you can make an exposed imported option _depend on_ another option, as in the following example:
+Lastly, as a convenience for the conditional use of fragments, you can make an exposed imported
+option _depend on_ another option, as in the following example:
 
 ```yaml
   imports:
@@ -236,13 +237,13 @@ engine:
 
 Using the accelerator plug-in for Tanzu CLI, you can view a list of available fragments. Run:
 
-```sh
+```console
 tanzu accelerator fragment list
 ```
 
 To see a list of available accelerator fragments. For example:
 
-```sh
+```console
 NAME                                 READY   REPOSITORY
 app-sso-client                       true    source-image: dev.registry.tanzu.vmware.com/app-accelerator/fragments/app-sso-client@sha256:ed5cf5544477d52d4c7baf3a76f71a112987856e77558697112e46947ada9241
 java-version                         true    source-image: dev.registry.tanzu.vmware.com/app-accelerator/fragments/java-version@sha256:df99a5ace9513dc8d083fb5547e2a24770dfb08ec111b6591e98497a329b969d
@@ -252,15 +253,16 @@ tap-initialize                       true    source-image: dev.registry.tanzu.vm
 tap-workload                         true    source-image: dev.registry.tanzu.vmware.com/app-accelerator/fragments/tap-workload@sha256:8056ad9f05388883327d9bbe457e6a0122dc452709d179f683eceb6d848338d0
 ```
 
-The `tanzu accelerator fragment get <fragment-name>` command shows all the options defined for the fragment and also any accelerators or other fragments that import this fragment. Run:
+The `tanzu accelerator fragment get <fragment-name>` command shows all the options defined for the
+fragment and also any accelerators or other fragments that import this fragment. Run:
 
-```sh
+```console
 tanzu accelerator fragment get java-version
 ```
 
 The following output is displayed:
 
-```sh
+```console
 name: java-version
 namespace: accelerator-system
 displayName: Select Java Version
@@ -292,15 +294,16 @@ importedBy:
 
 This shows the `options` and `importedBy` with a list of three accelerators that import this fragment.
 
-Correspondingly, the `tanzu accelerator get <accelerator-name>` shows the fragments that an accelerator imports. Run:
+Correspondingly, the `tanzu accelerator get <accelerator-name>` shows the fragments that an
+accelerator imports. Run:
 
-```sh
+```console
 tanzu accelerator get java-rest-service
 ```
 
 The following output is shown:
 
-```sh
+```console
 name: java-rest-service
 namespace: accelerator-system
 description: A Spring Boot Restful web application including OpenAPI v3 document generation and database persistence, based on a three-layer architecture.
@@ -417,4 +420,7 @@ imports:
   tap-workload
 ```
 
-The `imports` section at the end shows the fragments that this accelerator imports. The `options` section shows all options defined for this accelerator. This includes all options defined in the imported fragments, for example, the options for the Java version imported from the `java-version` fragment.
+The `imports` section at the end shows the fragments that this accelerator imports. The `options`
+section shows all options defined for this accelerator. This includes all options defined in the
+imported fragments, for example, the options for the Java version imported from the `java-version`
+fragment.

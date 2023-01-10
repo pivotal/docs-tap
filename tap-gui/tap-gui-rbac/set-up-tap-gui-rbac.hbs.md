@@ -1,9 +1,12 @@
 # View resources on remote clusters
 
+> **Caution** Setting up role-based access control (RBAC) might impact the user's ability to view
+> workloads in the Security Analysis GUI and the Workloads table of the Supply Chain Choreographer
+> plug-in GUI.
+
 You can control the access to Kubernetes runtime resources on Tanzu Application Platform GUI based
 on user roles and permissions for each of the visible remote clusters.
-Role-based Access Control (RBAC) is currently supported for the following Kubernetes cluster
-providers:
+RBAC is currently supported for the following Kubernetes cluster providers:
 
 - [EKS](set-up-tap-gui-rbac-eks.html) (Elastic Kubernetes Service) on AWS
 - [GKE](set-up-tap-gui-rbac-gke.html) (Google Kubernetes Engine) on GCP

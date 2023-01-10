@@ -1,7 +1,7 @@
 # Using Custom Types
 
 Application Accelerators can declare new types to be used for options declaration,
-in addition to the built-in types `string`, `number` and `boolean`.
+in addition to the built-in types `string`, `number`, and `boolean`.
 
 ## Introducing the Types Section
 
@@ -49,7 +49,7 @@ accelerator:
     ...
 ```
 
-whereby UIs would render something similar to the following:
+For example, UIs render:
 
 ![SimpleTask form is open with my first task sample title and task details.](../images/simple-task.png)
 
@@ -67,10 +67,10 @@ values submission (here represented using JSON notation):
 }
 ```
 
-Thus, the actual type of the `myTask` value is `object` (in Javascript/JSON parlance)
+The actual type of the `myTask` value is `object` (in Javascript/JSON parlance)
 and `Map<String, ?>` when seen from the Java engine side.
 
-The above example is technically possible with the custom types feature,
+The earlier example is technically possible with the custom types feature,
 but brings little benefit over having 3 options named _e.g._ `myTaskTitle`,
 `myTaskDetails` and `myTaskDone` to achieve the same end result.
 
@@ -87,7 +87,7 @@ accelerator:
     ...
 ```
 
-Which could result of the following example submission (JSON):
+Which mights result of the following example submission (JSON):
 
 ```json
 {
@@ -108,13 +108,13 @@ Which could result of the following example submission (JSON):
 
 ### Limitations
 
-As stated above, a `struct` custom type declaration is made of an ordered
-series of option definitions. The support and semantics for individual fields
-of such option-definition-like elements when used in the type _declaration_ is stated below.
+As stated earlier, a `struct` custom type declaration is made of an ordered
+series of option definitions. The support and semantics for individual text boxes
+of such option-definition-like elements when used in the type _declaration_ is stated later.
 
 Also, when _referencing_ a custom type in an option definition, some previously
-valid properties of an option definition may become irrelevant / unsupported.
-Again, this is stated in the example below:
+valid properties of an option definition might become irrelevant or unsupported.
+Again, this is stated in the following example:
 
 ```yaml
 accelerator:
@@ -153,25 +153,24 @@ accelerator:
 ## Interaction with SpEL
 
 Everywhere that SpEL is used in the engine syntax, accelerator authors
-may use SpEL's syntax for accessing properties and/or array elements:
+might use SpELs syntax for accessing properties or< array elements:
 
 ```console
   #myTasks[2]['done']
 ```
 
-In practice though, array indexing will not be used (either with a literal
-number or even a variable)
-because the whole point of the list of custom types feature is that users don't know
-the data length in advance. See the section about the [`Loop`](transforms/loop.hbs.md) Transform
-to discover more idiomatic usage of repeated structured data.
+In practice though, array indexing is not be used (either with a literal number or even a variable)
+because the whole point of the list of custom types feature is that users don't know the data length
+in advance. See the section about the [`Loop`](transforms/loop.hbs.md) Transform to discover more
+idiomatic use of repeated structured data.
 
 ## Interaction with Composition
 
 Using composition alongside custom types brings several challenges / opportunities:
 
-- users may want to **leverage** types declared in an imported fragment
-- there could be a type **name clash** between a host accelerator/fragment and an imported
-  fragment, because the imported fragment author is unaware of how the fragment will be used.
+- Users might want to **leverage** types declared in an imported fragment
+- There might be a type **name clash** between a host accelerator/fragment and an imported
+  fragment, because the imported fragment author is unaware of how the fragment is to be used.
 
 See the section about [composition](composition.hbs.md) to learn about syntax to
 customize the imported types names.

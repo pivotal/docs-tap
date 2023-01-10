@@ -1,8 +1,8 @@
 # Using NodePort
 
->**Note** The recommended service type is [Ingress](../ingress.hbs.md).
+>**Note** The recommended service type is [Ingress](ingress.hbs.md).
 >NodePort is only recommended when the cluster does not support
->[Ingress](../ingress.hbs.md) or the cluster does not support the
+>[Ingress](ingress.hbs.md) or the cluster does not support the
 >[LoadBalancer](use-load-balancer.hbs.md) service type.  `NodePort` is not
 >supported for a multicluster setup, as certificates cannot be modified.
 

@@ -25,14 +25,6 @@ To apply a workload:
 
 2. Run `Tanzu: Apply Workload`.
 
-   Context Menu screenshot:
-
-   ![Context menu open showing text Tanzu: Apply Workload.](../images/vscode-applyworkload1.png)
-
-   Command Palette screenshot:
-
-   ![Command palette open showing text Tanzu: Apply Workload.](../images/vscode-applyworkload2.png)
-
 3. If there are multiple projects with workloads, select the workload to apply.
 
    ![Apply Workload menu open showing workloads available to apply.](../images/vscode-applyworkload3.png)
@@ -73,10 +65,8 @@ Debugging requires a `workload.yaml` file in your project.
 For information about creating a `workload.yaml` file, see
 [Get Started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
 
-Debugging on the cluster and Live Update cannot be used simultaneously.
-If you use Live Update for the current project, ensure that you stop the
-Tanzu Live Update Run Configuration before attempting to debug on the cluster.
-For more information, see [Stop Live Update](#stop-live-update).
+The developer sandbox experience enables developers to Live Update their code, and simultaneously
+debug the updated code, without having to deactivate Live Update when debugging.
 
 ### <a id="start-debugging"></a> Start debugging on the cluster
 
@@ -86,12 +76,6 @@ To start debugging on the cluster:
 2. Right-click anywhere in the VS Code project explorer or open the Command Palette by pressing ⇧⌘P
    (Ctrl+Shift+P on Windows).
 3. Click **Tanzu: Java Debug Workload** from either menu.
-
-   Context Menu screenshot:
-   ![The VS Code interface showing the Explorer tab with the Workload YAML file pop-up menu open and the Tanzu: Java Debug Start option highlighted.](../images/vscode-startdebug1.png)
-
-   Command Palette screenshot:
-   ![Command palette open showing text Tanzu: Java Debug Start.](../images/vscode-startdebug2.png)
 
 ### <a id="stop-debugging"></a> Stop Debugging on the cluster
 
@@ -125,20 +109,20 @@ Live Update requires a `workload.yaml` file and a Tiltfile in your project.
 For information about how to create a `workload.yaml` and a Tiltfile, see
 [Get Started with Tanzu Developer Tools for VS Code](../vscode-extension/getting-started.hbs.md#set-up-tanzu-dev-tools).
 
-Live Update and Debugging on the cluster cannot be used simultaneously.
-If you are debugging on the cluster, stop debugging before attempting to use Live Update.
+The developer sandbox experience enables developers to Live Update their code, and simultaneously
+debug the updated code, without having to deactivate Live Update when debugging.
 
 ### <a id="start-live-update"></a> Start Live Update
 
 You can start Live Update by right-clicking anywhere in the VS Code project explorer and then clicking
 **Tanzu: Live Update Start** in the pop-up menu.
 
-   ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
+![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
 
-Alternatively, you can press `⇧⌘P` to open the Command Palette and run the `Tanzu: Live Update Start`
-command.
+Alternatively, you can press `⇧⌘P` to open the Command Palette and then run the
+`Tanzu: Live Update Start` command.
 
-   ![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
+![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
 
 ### <a id="stop-live-update"></a> Stop Live Update
 
@@ -211,12 +195,6 @@ To delete a workload:
    (Ctrl+Shift+P on Windows).
 
 2. Run `Tanzu: Delete Workload`.
-
-   Context Menu screenshot:
-   ![Context menu open showing text Tanzu: Delete Workload.](../images/vscode-deleteworkload1.png)
-
-   Command Palette screenshot:
-   ![Command palette open showing text Tanzu: Delete Workload.](../images/vscode-deleteworkload2.png)
 
 3. Select the workload to delete.
 

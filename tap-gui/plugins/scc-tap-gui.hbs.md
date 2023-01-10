@@ -27,7 +27,7 @@ For more information, see [Overview of multicluster Tanzu Application Platform](
 
 To enable CVE scan results:
 
-1. [Obtain the read-write token](../../scst-store/create-service-account.hbs.md#getting-access-token),
+1. [Obtain the read-write token](../../scst-store/retrieve-access-tokens.hbs.md),
    which is created by default when installing Tanzu Application Platform. Alternatively,
    [create an additional read-write service account](../../scst-store/create-service-account.hbs.md#rw-serv-accts).
 2. Add this proxy configuration to the `tap-gui:` section of `tap-values.yaml`:
@@ -49,10 +49,11 @@ To enable CVE scan results:
 
 > **Important** The `Authorization` value must start with the word `Bearer`.
 
-## <a id="view-approvals"></a> Enable View Approvals
+## <a id="view-approvals"></a> Enable GitOps Pull Request Flow
 
-To enable the supply chain box-and-line diagram to show **View Approvals**, set up for GitOps and
-pull requests. For more information, see [GitOps vs. RegistryOps](../../scc/gitops-vs-regops.hbs.md).
+To enable the supply chain box-and-line diagram to show **Approve a Request** in the **Config Writer**
+stage, set up for GitOps and pull requests. For more information, see
+[GitOps vs. RegistryOps](../../scc/gitops-vs-regops.hbs.md).
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 
@@ -98,12 +99,12 @@ appears in the supply chain that shows **Pull Config** boxes and **Delivery** bo
 
 When you have a `Pull Request` configured in your environment, access the merge request from the
 supply chain by clicking **APPROVE A REQUEST**. This button is displayed after you click
-**View Approvals** in the supply chain diagram.
+**Config Writer** in the supply chain diagram.
 
 In the following example, the merge request is approved, which causes **Pull Config** and **Delivery**
 boxes to appear in the supply chain diagram.
 
-![Screenshot of part of the box-and-line diagram, which includes a View Approvals box. Below the diagram is a button labeled APPROVE A REQUEST.](images/supply-chain-approvals-diagram.png)
+![Screenshot of the pull request flow diagram. The APPROVE A REQUEST button is at the bottom middle of the screenshot.](images/pr-flow-diagram.png)
 
 ## <a id="sc-view-scan-results"></a> View Vulnerability Scan Results
 

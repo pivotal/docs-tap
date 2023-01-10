@@ -15,9 +15,39 @@ Debugging requires a single-document `workload.yaml` file in your project.
 For how to create `workload.yaml`, see
 [Set up Tanzu Developer Tools](getting-started.hbs.md#set-up-tanzu-dev-tools).
 
-Debugging on the cluster and Live Update cannot be used simultaneously.
-If you use Live Update for the current project, ensure that you stop the
-Tanzu Live Update Run Configuration before attempting to debug on the cluster.
+The developer sandbox experience enables developers to Live Update their code, and simultaneously
+debug the updated code, without having to deactivate Live Update when debugging.
+
+### <a id="apply-workload"></a> Apply a workload
+
+The extension enables you to apply workloads on your Kubernetes cluster that has
+Tanzu Application Platform.
+
+To apply a workload:
+
+1. Right-click anywhere in the IntelliJ project explorer.
+2. Click **Tanzu** > **Apply Workload**.
+
+   ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Apply Workload option highlighted.](../images/intellij-apply-workload.png)
+
+3. Click **Tanzu > Modify Apply Configuration**.
+
+The `Tanzu workload apply` command is triggered in the terminal and the workload is applied.
+A new workload appears on the Tanzu panel.
+
+### <a id="delete-workload"></a> Delete a workload
+
+The extension enables you to delete workloads on your Kubernetes cluster that has Tanzu Application Platform.
+
+To delete a workload:
+
+1. Right-click anywhere in the IntelliJ project explorer.
+2. Click **Tanzu > Delete Workload**.
+
+   ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Delete Workload option highlighted.](../images/intellij-delete-workload.png)
+
+A message appears that prompts you to delete the workload and not warn again, delete the workload,
+or cancel. A notification appears showing that the workload was deleted.
 
 ### <a id="start-debugging"></a> Start debugging on the cluster
 
@@ -77,9 +107,18 @@ running.
 
 ## <a id="workload-panel"></a> Tanzu Workloads panel
 
-The current state of the workloads is visible on the Tanzu Panel in the bottom of the IDE window.
+The current state of the workloads is visible on the Tanzu Workloads panel in the bottom of the IDE
+window.
 The panel shows the current status of each workload, namespace, and cluster.
 It also shows whether Live Update and Debug is running, stopped, or deactivated.
+
+Because each workload is deployed on the cluster, the activity section on the right in the
+Tanzu Workloads panel enables developers to visualize the supply chain, delivery, and running
+application pods.
+The panel displays detailed error messages on each resource and enables a developer to view and
+describe logs on these resources from within their IDE.
+
+![Screenshot of the Tanzu Workloads panel. A Config Map is selected.](../images/intellij-activity-panel.png)
 
 The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context.
 
@@ -94,8 +133,6 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
     ```console
     kubectl config set-context --current --namespace=YOUR-NAMESPACE
     ```
-
-    ![Screenshot of Tanzu Workloads Panel. The tab on the right shows a Java file named HelloController.](../images/intellij-panel-debug-running.png)
 
 ## <a id="mono-repo"></a> Working with microservices in a monorepo
 
