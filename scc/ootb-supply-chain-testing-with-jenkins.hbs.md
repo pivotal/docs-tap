@@ -25,31 +25,30 @@ Tanzu Application Platform users to integrate with and make use of the modern ap
 deployment pipeline provided by our platform while maintaining their existing test suites on 
 their Jenkins services.
  
-The Out of the Box Jenkins task user ideally
-1. Makes use of Jenkins Jobs to run their source code test suites 
-2. Has a Jenkins pipeline already configured.
+The Out of the Box Jenkins task makes use of an existing Jenkins Job to run test suites on source code. 
+
 
 #### 1. Configuring a Jenkins job in an existing Jenkins Pipeline
 
 This section of the guide shows how to configure a Jenkins job that can be kicked off by the
 Tanzu Application Platform Jenkins task. 
 
-The Jenkins task is expected to trigger the Jenkins Job with `Workload` 
-and `job-params`parameters specified so as to run a job targeting the correct source code. 
-The parameters are only passed by the Jenkins task if they are defined in the Jenkins job itself.
-
 #### Example Jenkins Job
 
 Here is an example of a script that can be added to your pipeline that specifies source url and source revision 
-information for your source code target:
-This example assumes that your Jenkins instance is deployed on a Kubernetes cluster. 
+information for your source code target.
+This example uses a Jenkins instance that is deployed on a Kubernetes cluster although this is not the only possible 
+configuration for a Jenkins instance. 
 
 ```groovy
 #!/bin/env groovy
 
 pipeline {
   agent {
-    kubernetes {
+    // Use an agent that is appropriate 
+    // for your Jenkins installation. 
+    // This is only an example
+    kubernetes { 
       label 'maven'
     }
   }
@@ -134,11 +133,11 @@ section.
 
 A secret must be created in the developer namespace to contain the credentials required to authenticate and interact with your Jenkins instance's builds. The following properties are required:
 
-- `JENKINS-URL` **required**: URL of the Jenkins instance that hosts the job, including
+- `url` **required**: URL of the Jenkins instance that hosts the job, including
   the scheme. For example: https://my-jenkins.com.
-- `USERNAME` **required**: User name of the user that has access to trigger a build on Jenkins.
-- `PASSWORD` **required**: Password of the user that has access to trigger a build on Jenkins.
-- `PEM-CA-CERT` **optional**: The PEM-encoded CA certificate to verify the Jenkins instance identity.
+- `username` **required**: User name of the user that has access to trigger a build on Jenkins.
+- `password` **required**: Password of the user that has access to trigger a build on Jenkins.
+- `ca-cert` **optional**: The PEM-encoded CA certificate to verify the Jenkins instance identity.
 
 Use the Kubernetes CLI tool (kubectl) to create the above secret. You can provide the optional PEM-encoded CA certificate as a file using the the `--from-file` flag as shown below:  
 
@@ -156,13 +155,13 @@ The expected format of the secret is will be as follows:
 apiVersion: v1
 kind: Secret
 metadata:
-  name: MY-SECRET
+  name: MY-SECRET # secret name that will be referenced by the workload
 type: Opaque
 stringData:
-  url: JENKINS-URL
-  username: USERNAME
-  password: PASSWORD
-  ca-cert: PEM-CA-CERT
+  url: JENKINS-URL # target jenkins instance url
+  username: USERNAME # jenkins username
+  password: PASSWORD # jenkins password
+  ca-cert: PEM-CA-CERT # PEM encoded certificate
 ```
 
 #### 3. <a id="tekton-pipeline"></a> Create a Tekton pipeline
