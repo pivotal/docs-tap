@@ -10,7 +10,7 @@ To apply a workload:
 
 1. Ensure that you meet the following prerequisites:
 
-   - Tanzu CLI is installed in a location included in your `PATH` environment variable.
+   - The Tanzu CLI is installed in a location included in your `PATH` environment variable.
    - A valid `workload.yaml` file is in the project. For more information, see the specification for
      [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
    - You have a functional Tanzu Application Platform environment.
@@ -34,9 +34,9 @@ To delete a workload:
 
 1. Ensure that you have the following prerequisites:
 
-   - A `tanzu` command in `PATH`
-   - A running Tanzu Application Platform workload
-   - A valid `workload.yaml` file in the project that describes the workload to delete
+   - The Tanzu CLI is installed in a location included in your `PATH` environment variable.
+   - A running Tanzu Application Platform workload.
+   - A valid `workload.yaml` file in the project that describes the workload to delete.
    - A `namespace` set in `Kube config/Kubecontext` that matches with where the workload was deployed
      either by using `Workload Apply` or `Live Update`.
 
@@ -51,13 +51,13 @@ To use Live Update:
 
 1. Ensure that you have the following prerequisites:
 
-   - A project with a `Tiltfile` in the project root
-   - A `tilt` command in `PATH`
-   - A `tanzu` command in `PATH`
+   - A project with a `Tiltfile` in the project root.
+   - The Tilt CLI is installed in a location included in your `PATH` environment variable.
+   - The Tanzu CLI is installed in a location included in your `PATH` environment variable.
    - The `namespace` you use matches the `namespace` where the workload is running, if it was
-     deployed already by using `Apply Workload`
-   - You can `Build` the code within Visual Studio
-   - The `Debug` sub folder is in the output folder
+     deployed already by using `Apply Workload`.
+   - You can `Build` the code within Visual Studio.
+   - The `Debug` sub folder is in the output folder.
 
 2. Start Live Update by right-clicking on any project or file node in the solution explorer and then
    clicking **Tanzu: Start Live Update**.
@@ -117,9 +117,9 @@ This makes the path discoverable and enables Live Update to run.
 
 Before using Remote Debug, ensure that you have the following prerequisites:
 
-- A running .NET workload in Tanzu Application Platform
-- A `tanzu` command in `PATH`
-- A `kubectl` command in `PATH`
+- A running .NET workload in Tanzu Application Platform.
+- The Tanzu CLI is installed in a location included in your `PATH` environment variable.
+- The Kubernetes CLI (kubectl) is installed in a location included in your `PATH` environment variable.
 
 ### <a id="run-workload"></a> Run a workload in Tanzu Application Platform
 

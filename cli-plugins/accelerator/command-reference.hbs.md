@@ -11,6 +11,7 @@
     - [tanzu accelerator fragment list](command-reference/tanzu_accelerator_fragment_list.md)
     - [tanzu accelerator fragment update](command-reference/tanzu_accelerator_fragment_update.md)
     - [tanzu accelerator generate](command-reference/tanzu_accelerator_generate.md)
+    - [tanzu accelerator generate-from-local](command-reference/tanzu_accelerator_generate_from_local.hbs.md) 
     - [tanzu accelerator get](command-reference/tanzu_accelerator_get.md)
     - [tanzu accelerator list](command-reference/tanzu_accelerator_list.md)
     - [tanzu accelerator push](command-reference/tanzu_accelerator_push.md)
