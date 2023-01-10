@@ -351,5 +351,7 @@ $ tanzu package installed delete snyk-scanner \
 
 In addition to providing the above supported integrations, VMware encourages the broader community (both internal and external to VMware) to also support us in our goal of integrating with customers' preferred CVE scanners.
 
-Refer below to some of these additional integrations that are currently available.
-- [Prisma Scanner (Alpha)](install-prisma-integration.hbs.md) is available for source and image scanning. **Note: This integration is being released as an Alpha, which means that it is still in active development by the Tanzu Practices Global Tech Team and may be subject to change at any point. Users may encounter unexpected behavior, but we would love to hear your feedback if you do try out this integration.**
+Refer below to some of these additional integrations that are currently available:
+
+- [Prisma Scanner (Alpha)](install-prisma-integration.hbs.md) is available for source and image scanning.
+  > **Note**: This integration is being released as an Alpha, which means that it is still in active development by the Tanzu Practices Global Tech Team and may be subject to change at any point. Users may encounter unexpected behavior, but we would love to hear your feedback if you do try out this integration.
