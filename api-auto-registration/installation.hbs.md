@@ -6,6 +6,8 @@ This topic describes how to install API Auto Registration from the Tanzu Applica
 > If your cluster is one of these profiles, skip the installation and proceed to the [Usage section](usage.md).
 > For information about profiles, see [About Tanzu Application Platform profiles](../about-package-profiles.md#profiles-and-packages).
 
+> **Note** Follow the steps in this topic if you do not want to use a profile to install PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+
 ## <a id='prereqs'></a>Tanzu Application Platform prerequisites
 
 Before installing API Auto Registration, complete all prerequisites to install Tanzu Application Platform.

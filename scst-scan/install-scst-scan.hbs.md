@@ -3,9 +3,7 @@
 This topic describes how to install Supply Chain Security Tools - Scan
 from the Tanzu Application Platform package repository.
 
->**Note** Use the instructions in this topic if you do not want to use a profile to install packages.
-The full profile includes SCST - Scan.
-For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='scst-scan-prereqs'></a> Prerequisites
 
