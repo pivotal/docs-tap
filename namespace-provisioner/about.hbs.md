@@ -16,11 +16,12 @@ package and how they work together to automate resource creation in developer na
 
 ![Namespace Provisioner Overview](../images/namespace-provisioner-overview-2.svg)
 
-### <a id="nsp-component-carvel-app"></a>Provisioner Carvel App
+### <a id="nsp-component-carvel-app"></a>Provisioner Carvel Application
 
 ![Namespace Provisioner - Provisioner Carvel App](../images/namespace-provisioner-overview-2-c.svg)
 
-Namespace Provisioner consists of a Carvel application named **`provisioner`** that is installed in the
+Namespace Provisioner consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest/app-overview/)
+application named **`provisioner`** that is installed in the
 `tap-namespace-provisioning` namespace. The **`provisioner`** application uses ytt to templatize a
 set of resources into installations in multiple namespaces. The provisioner application references a
 ConfigMap and a Secret which are explained in more detail below.

@@ -198,12 +198,13 @@ like the `ServiceAccount` that are annotated with a special annotation
 Any changes to the resources that have the `...no-overwrite` annotation are not overwritten by the
 [provisioner application](about.hbs.md#provisioner-carvel-app) that controls resource provision.
 If you want to restore the default state of those resources, you can delete them and the
-provisioner application re-creates them in their initial default state.
+[provisioner application](about.hbs.md#nsp-component-carvel-app) re-creates them in their initial
+default state.
 
-The provisioner application has a synchronization interval of 10 minutes. To manually force the
+The [provisioner application](about.hbs.md#nsp-component-carvel-app) has a synchronization interval of 10 minutes. To manually force the
 reconciliation of the resources, for example, to delete a resource so that it can be re-created into
 its default initial state, use the [Carvel kctrl](https://carvel.dev/blog/kctrl-release-blog/) CLI
-to “kick” the provisioner application reconciliation.
+to “kick” the [provisioner application](about.hbs.md#nsp-component-carvel-app) reconciliation.
 
 Run the following command to initiate the "kick":
 
@@ -264,8 +265,8 @@ The following command uses Kubectl to override this [`desired-namespaces`](about
 kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/namespace-provisioner-gitops-examples/desired-namespaces/gitops-managed-desired-namespaces.yaml
 ```
 
-When this change is applied, the provisioner application will start the reconcile process and provision
-the resources on the given namespaces.
+When this change is applied, the [provisioner application](about.hbs.md#nsp-component-carvel-app)
+will start the reconcile process and provision the resources on the given namespaces.
 
 >**WARNING:** If there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) list that does not
 exist on the cluster, the `provisioner` application will fail to reconcile and will not be able to

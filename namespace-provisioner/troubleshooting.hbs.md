@@ -58,8 +58,8 @@ similar to the following, (followed by some reconciliation messages)
 {"level":"error","ts":"2022-12-14T15:41:44.639402794Z","logger":".0.1.NamespaceSelectorReconciler","msg":"unable to sync","controller":"namespace","controllerGroup":"","controllerKind":"Namespace","Namespace":{"name":"ns2"},"namespace":"","name":"ns2","reconcileID":"26395d34-418b-446d-9b5e-a4a73cc657ed","resourceType":"/v1, Kind=Namespace","error":"\"exists\" is not a valid pod selector operator","stacktrace":"..."}
 ```
 
->**Note:** The provisioner won’t show an error as the controller was not able to update the
-[`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap).
+>**Note:** The [provisioner application](about.hbs.md#nsp-component-carvel-app) won’t show an error
+as the controller was not able to update the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap).
 
 
 ### <a id="carvel-ytt-error-additional-sources"></a>Carvel-YTT error in additional_sources
@@ -100,7 +100,7 @@ stringData:
 ```
 
 Where the used `data.values` does not exist, and after adding it as an `additional_source` in the
-`witherror` library, the provisioner application will show an error as follows:
+`witherror` library, the [provisioner application](about.hbs.md#nsp-component-carvel-app) will show an error as follows:
 
 ```terminal
 $ kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
@@ -119,7 +119,7 @@ ytt: Error:
 This will show any error coming from the Carvel-YTT template resolution.
 
 Another common error is defining resources several times (like adding a resource that is created by
-default instead of overlaying it), this is reported in the provisioner application also.
+default instead of overlaying it), this is reported in the [provisioner application](about.hbs.md#nsp-component-carvel-app) also.
 
 ### <a id="unable-to-delete-namespace"></a>Unable to delete namespace
 
