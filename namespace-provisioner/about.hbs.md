@@ -77,6 +77,6 @@ list of resources that are created for different profiles, see [Default resource
 ### <a id="expansion-template"></a>Expansion Template ConfigMap
 
 The expansion-template ConfigMap contains the ytt logic to expand the resources defined in the
-following locations into each of the  namespaces listed in the desired-namespaces ConfigMap:</br>
+following locations into each of the  namespaces listed in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap):</br>
 - Default-resources Secret</br>
-- additional_sources in the `namespace-provisioner` config  in the `tap-values.yaml` file</br>
+- [additional_sources](install.hbs.md#customized-installation) in the `namespace-provisioner` config  in the `tap-values.yaml` file</br>

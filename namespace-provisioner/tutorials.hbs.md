@@ -79,12 +79,12 @@ There are two approaches to provisioning namespace-scoped resources supported:
 ## <a id="using-gitops"></a>Using GitOps
 
 This section describes how to use the built-in controller instead of using GitOps to
-manage the list of namespaces in the [`desired-namespaces`](about.hbs.md#desired-ns-configmap)
-ConfigMap.
+manage the list of namespaces in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+.
 
->**WARNING**: if there is a namespace in your GitOps repo desired-namespace list that does not
-exist on the cluster, the provisioner application will fail to reconcile and will not be able to create
-resources. Creation of the namespaces themselves is out of the scope for the namespace provisioner package.
+>**WARNING**: if there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the provisioner application will fail to reconcile and will
+not be able to create resources. Creation of the namespaces themselves is out of the scope for the
+Namespace Provisioner package.
 
 ### <a id="gitops-prerequisites"></a>Prerequisites</br>
 
