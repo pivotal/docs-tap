@@ -48,7 +48,7 @@ To install a new scanner, follow these steps:
       snyk.scanning.apps.tanzu.vmware.com   1.0.0-beta.2
     ```
 
-1. (Optional) Confirm that the secret created in Step 1 scanner specific prerequisites have been created.
+1. (Optional) Confirm that the secret created in Step 1 for scanner specific prerequisites is created.
 
 1. Create a `values.yaml` to apply custom configurations to the scanner:
 
@@ -302,7 +302,7 @@ In order to scan your images with the new scanner installed in the [Out of the B
 
 Add the `ootb_supply_chain_testing_scanning.scanning` section to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.hbs.md#perform-the-upgrade-of-tanzu-application-platform).
 
-In this file you can define which `ScanTemplates` is used for both `SourceScan` and `ImageScan`. The default values are the Grype Scanner `ScanTemplates`, but they are overwritten by any other `ScanTemplate` present in your `DEV-NAMESPACE`. The same applies to the `ScanPolicies` applied to each kind of scan.
+You can define which `ScanTemplates` is used for both `SourceScan` and `ImageScan`. The default values are the Grype Scanner `ScanTemplates`, but they are overwritten by any other `ScanTemplate` present in your `DEV-NAMESPACE`. The same applies to the `ScanPolicies` applied to each kind of scan.
 
 ```yaml
 ootb_supply_chain_testing_scanning:
@@ -347,9 +347,12 @@ For example:
 $ tanzu package installed delete snyk-scanner \
     --namespace tap-install
 ```
+
 ## <a id="other-scanner-integrations"></a> Other Available Scanner Integrations
 
-In addition to providing the above supported integrations, VMware encourages the broader community (both internal and external to VMware) to also support us in our goal of integrating with customers' preferred CVE scanners.
+In addition to providing the above supported integrations, VMware encourages the broader community to support VMware in our goal of integrating with customers' preferred CVE scanners.
 
-Refer below to some of these additional integrations that are currently available.
-- [Prisma Scanner (Alpha)](install-prisma-integration.hbs.md) is available for source and image scanning. **Note: This integration is being released as an Alpha, which means that it is still in active development by the Tanzu Practices Global Tech Team and may be subject to change at any point. Users may encounter unexpected behavior, but we would love to hear your feedback if you do try out this integration.**
+Additional integrations:
+
+- [Prisma Scanner (Alpha)](install-prisma-integration.hbs.md) is available for source and image scanning. 
+  >**Note** This integration is in Alpha, which means that it is still in active development by the Tanzu Practices Global Tech Team and may be subject to change at any point. Users may encounter unexpected behavior.
