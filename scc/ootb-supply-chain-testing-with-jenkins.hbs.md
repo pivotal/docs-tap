@@ -240,6 +240,8 @@ EOF
 ```
 
 #### <a id="patch-the-service-account"></a> 4. Patching the default Service Account
+Tanzu Application Platform includes a [Namespace Provisioner](/namespace-provisioner/about.hbs.md) which is not enabled by default.
+This section of the guide assumes that the user is not using the Namespace Provisioner.
 
 The `jenkins-task` `ClusterTask` resource uses a container image with the
 Jenkins Adapter application to trigger the Jenkins job and wait for it to complete.
@@ -260,11 +262,6 @@ kubectl patch serviceaccount default \
   --patch '{"imagePullSecrets": [{"name": "tap-registry"}]}' \
   --namespace developer-namespace
 ```
-
-<!-- These tasks are run by Tekton.  Tekton has other methods for configuring the
-[custom service account credentials](https://tekton.dev/docs/pipelines/pipelineruns/#specifying-custom-serviceaccount-credentials)
-used by running tasks, if you prefer. -->
-
 #### 5.  <a id="developer-workload"></a> Create a Developer Workload
 
 Submit your `Workload` to the same namespace as the Tekton `Pipeline`
