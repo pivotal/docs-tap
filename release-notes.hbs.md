@@ -144,8 +144,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
   environments. See [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md).
-- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) through the tap-values.yml for both Grype and Snyk scanners.
-- Alpha release of Prisma Scanner integration. The installation guide is available [here](scst-scan/install-prisma-integration.hbs.md).
+- Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) by using the `tap-values.yml` for both Grype and Snyk scanners.
+- Alpha release of Prisma Scanner integration. See [Install Prisma Scanner](scst-scan/install-prisma-integration.hbs.md).
 </br></br>
 
 #### <a id="1-4-0-scst-policy-new-features"></a> Supply Chain Security Tools - Policy
@@ -195,17 +195,20 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 #### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plugin for Tanzu CLI
 
 - Added `--update-strategy` flag to allow users to change `tanzu apps workload apply` behavior when
-  contents from file is applied.
+  contents from file is applied. Check [How-to-guides](./cli-plugins/apps/how-to-guides.hbs.md#update-strategy) 
+  section for usage and examples.
 - Added ability for users to pass URL for `--file` flag.
-- Added show fully qualified resource name in the resources column of Supply chain and Delivery
-  sections of the `tanzu apps workload get` command.
+- Show fully qualified resource name in the resources column of Supply chain and Delivery
+  sections of the `tanzu apps workload get` command. Example output can be found in 
+  [tanzu apps workload get](./cli-plugins/apps/command-reference/workload_get.hbs.md) command description.
 - Added new shorthand flag aliases: `-a` for `--app`, `-e` for `--env`, `-i` for `--image`,
-  `-l` for `label`, `-p` for `--param`, and `-t` for `--type`.
+  `-l` for `label`, `-p` for `--param`, and `-t` for `--type`. All flags usage and shorthands (if apply)
+  can be found in [tanzu apps workload apply](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md) flags list.
 - Added emojis to `tanzu apps workload create/apply/delete` commands.
-- Added do not print emojis when `--no-color` flag  is set.
+- Do not print emojis when `--no-color` flag  is set.
 - Added namespace to `tanzu apps workload get` command's overview section.
 - Added progress bar to provide feedback to users when uploading source code to registry.
-- Added remove color from tail command output when `--no-color` flag is passed.
+- Removed color from tail command output when `--no-color` flag is passed.
 
 </br>
 
@@ -568,7 +571,8 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 #### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
-- The default value for the `--update-strategy` flag will change from `merge` to `replace` in
+- The default value for the [`--update-strategy`](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
+  flag will change from `merge` to `replace` in
   Tanzu Application Platform v1.7.0.
 - The `tanzu apps workload update` command is deprecated and marked for removal in Tanzu Application
   Platform 1.5.0. Use `tanzu apps workload apply` instead.

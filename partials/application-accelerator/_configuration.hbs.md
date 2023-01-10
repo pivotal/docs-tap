@@ -37,16 +37,17 @@ accelerator:
 
 Where:
 
-- `GIT-REPO-URL` is the URL of a Git
-  repository that contains manifest YAML files for the accelerators that you want to have managed. The URL must start with `https://` or `git@`.
-  See the following for [manifest examples](#examples-multi-manifest). You can specify a `sub_path` if necessary and also a
-  `secret_ref` if the repository requires authentication. If not needed, then leave these additional
-  properties out. See the following for the configuration of [Git credentials secret](#creating-git-credentials).
+- `GIT-REPO-URL` is the URL of a Git repository that contains manifest YAML files for the
+  accelerators that you want to have managed. The URL must start with `https://` or `git@`.
+  See the following for [manifest examples](#examples-multi-manifest). You can specify a `sub_path` if
+  necessary and also a `secret_ref` if the repository requires authentication. If not needed, then
+  leave these additional properties out. See the following for the configuration of [Git credentials
+  secret](#creating-git-credentials).
 
 ### <a id="functional-considerations"></a> Functional and Organizational Considerations
 
 Any accelerator manifest that is defined under the `GIT-REPO-URL` and optional `sub_path` is
-picked up by the kapp-controller app. If there are multiple manifests at the defined `GIT-REPO-URL`,
+selected up by the kapp-controller app. If there are multiple manifests at the defined `GIT-REPO-URL`,
 they are all watched for changes and displayed to the user as a merged catalog.
 
 For example: Say you have two manifests containing multiple accelerator or fragment
@@ -190,12 +191,12 @@ spec:
 
 For an even larger example of this,
 see [Sample Accelerators Main](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/sample-accelerators-main.yaml)
-that is optionally used to create an initial catalog of accelerators and fragments during a fresh
+(optional) You may use this to create an initial catalog of accelerators and fragments during a fresh
 Application Accelerator install.
 
 ## <a id="creating-git-credentials"></a> Configure `tap-values.yaml` with Git credentials secret
 
-> **Note** For how to create a new OAuth Token for optional git repository creation, see the
+> **Note** For how to create a new OAuth Token for optional Git repository creation, see
 > [Creating an Application Accelerator Git repository during project creation](/docs-tap/tap-gui/plugins/application-accelerator-git-repo.hbs.md).
 
 When deploying accelerators using Git repositories that requires authentication or are installed
@@ -273,7 +274,7 @@ For GitHub repositories that aren't accessible anonymously, you need to provide 
   for HTTPS authentication. See [fluxcd/source-controller HTTPS Certificate Authority](https://fluxcd.io/docs/components/source/gitrepositories/#https-certificate-authority)
 - For SSH repositories, the secret must contain identity, identity.pub, and known_hosts text boxes.
   See [fluxcd/source-controller SSH authentication](https://fluxcd.io/docs/components/source/gitrepositories/#ssh-authentication).
-- For Image repositories that aren't publicly available, an image pull secret can be provided.
+- For Image repositories that aren't publicly available, an image pull secret may be provided.
   For more information, see [Kubernetes documentation on using imagePullSecrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
 
 ### <a id="private-git-repo-example"></a> Examples for a private Git repository
@@ -291,13 +292,13 @@ kubectl create secret generic https-credentials \
     --from-literal=password=<access-token>
 ```
 
-Validate that your secret was created by running the following command:
+Verify that your secret was created by running:
 
 ```console
 kubectl get secret --namespace accelerator-system https-credentials -o yaml
 ```
 
-The output should be similar to the following:
+The output is similar to:
 
 ```yaml
 apiVersion: v1
@@ -311,7 +312,7 @@ data:
   password: <BASE64>
 ```
 
-After you have created and verified the secret, you can create the accelerator by using the
+After you created and verified the secret, you can create the accelerator by using the
 `spec.git.secretRef.name` property:
 
 **`private-acc.yaml`**
@@ -352,13 +353,13 @@ kubectl create secret generic https-ca-credentials \
     --from-file=caFile=<path-to-CA-file>
 ```
 
-Validate that your secret was created by running the following command:
+Verify that your secret was created by running:
 
 ```console
 kubectl get secret --namespace accelerator-system https-ca-credentials -o yaml
 ```
 
-The output should be similar to the following:
+The output is similar to:
 
 ```yaml
 apiVersion: v1
@@ -421,14 +422,13 @@ the values for the `kubectl create secret` command. Such as:
 - `--from-file=identity.pub=<path to your identity.pub file>`
 - `--from-file=known_hosts=<path to your know_hosts file>`
 
-
-Validate that your secret was created by running the following command:
+Verify that your secret was created by running:
 
 ```console
 kubectl get secret --namespace accelerator-system ssh-credentials -o yaml
 ```
 
-The output should be similar to the following:
+The output is similar to :
 
 ```yaml
 apiVersion: v1
@@ -505,13 +505,13 @@ create secret generic registry-credentials \
     --from-literal=password=<password>
 ```
 
-Validate that your secret was created by running the following command:
+Verify that your secret was created by running:
 
 ```console
 kubectl get secret --namespace accelerator-system registry-credentials -o yaml
 ```
 
-The output should be similar to the following:
+The output is be similar to:
 
 ```yaml
 apiVersion: v1

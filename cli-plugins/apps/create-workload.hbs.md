@@ -150,9 +150,11 @@ tanzu apps workload create petclinic-image --param-yaml maven="{"artifactId":"he
 
 ## <a id='yaml-files'></a> Working with YAML files
 
+
 In many cases, workload life cycles are managed through CLI commands. However, there might be cases
 where managing the workload through direct interactions and edits of a `yaml` file is preferred. The
 Apps CLI plug-in supports using `yaml` files to meet the requirements.
+
 
 When a workload is managed using a `yaml` file, that file **must contain a single workload definition**.
 
@@ -195,8 +197,18 @@ The console waits for input, and the content with valid `yaml` definitions for a
 be written or pasted. Then click **Ctrl-D** three times to start the workload creation. This can
 also be done with the `workload apply` command.
 
+
 **Note** To pass a workload through `stdin`, the `--yes` flag is required. If not provided, the
 >command fails.
+
+Another way to pass a workload with the `--file` flag is using a URL, which, as mentioned before,
+needs to contain a raw file with the workload definition.
+
+For example:
+
+```console
+tanzu apps workload apply --file https://raw.githubusercontent.com/vmware-tanzu/apps-cli-plugin/main/pkg/commands/testdata/workload.yaml
+```
 
 ## <a id="bind-service"></a> Bind a service to a workload
 
