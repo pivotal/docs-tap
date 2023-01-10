@@ -100,8 +100,8 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 - Added new `ClassClaim` API that allows claims for service instances to be created by referring to
   a `ClusterInstanceClass`. For more information, see
-  [When to use ClassClaim vs ResourceClaim](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/GUID-resource_claims-which_claim.html)
-  and [Introducing different service implementations in different environments](https://docs-staging.vmware.com/en/draft/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/GUID-usecases-introducing_different_service_implementations_in_different_environments.html).
+  [When to use ClassClaim vs ResourceClaim](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/resource_claims-which_claim.html)
+  and [Introducing different service implementations in different environments](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-introducing_different_service_implementations_in_different_environments.html).
 - Added corresponding `tanzu services class-claims` CLI plug-in command.
 - Added support for OpenShift v4.11.
 - Added support for Kubernetes v1.25.
