@@ -196,6 +196,10 @@ workload is clicked in the Workloads table and that supply chain is no longer pr
 
 - Deploying workloads on a `run` cluster in multicluster setup on Openshift no longer fails with Forbidden errors.
 
+#### <a id="1-3-2-policy-controller-resolved"></a>Supply Chain Security Tools - Policy Controller
+
+- Fixed issue where initialization fails because of `go-tuf` when using the Official Sigstore TUF root. For more information, see [Supply Chain Security Tools Policy Controller - Known Issues](./scst-policy/known-issues.hbs.md).
+
 ### <a id='1-3-2-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
@@ -216,6 +220,10 @@ Because VMware does not recommend committing binaries to source code repositorie
 find vulnerabilities during a source scan.
 The vulnerabilities are found during the image scan after the binaries are built and packaged
 as images.
+
+#### <a id="policy-controller-known-issues"></a>Supply Chain Security Tools - Policy Controller
+
+- Issue where initialization fails because of `go-tuf` when using the Official Sigstore TUF root. For more information, see [Supply Chain Security Tools - Policy Controller Known Issues](./scst-policy/known-issues.hbs.md). VMware resolved this issue with Policy Controller `v1.1.3` in TAP 1.3.2.
 
 #### <a id="1-3-2-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI
 
