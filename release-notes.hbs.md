@@ -2,6 +2,28 @@
 
 This topic contains release notes for Tanzu Application Platform v1.4.
 
+## <a id='1-4-1'></a> v1.4.1
+
+**Release Date**: February 14, 2023
+
+### <a id='1-4-1-security-fixes'></a> Security fixes
+
+This release has the following security fixes, listed by area and component.
+
+### <a id='1-4-1-resolved-issues'></a> Resolved issues
+
+The following issues, listed by area and component, are resolved in this release.
+
+### <a id='1-4-1-known-issues'></a> Known issues
+
+This release has the following known issues, listed by area and component.
+
+### <a id='1-4-1-deprecations'></a> Deprecations
+
+The following features, listed by component, are deprecated. 
+Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
+
+
 ## <a id='1-4-0'></a> v1.4.0
 
 **Release Date**: January 10, 2023
