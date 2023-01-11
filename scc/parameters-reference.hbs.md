@@ -909,7 +909,7 @@ The Deliverable is relevant in the context of deploying to a Kubernetes cluster
 that the configuration that is produced through the resources defined by
 a ClusterSupplyChain:
 
-```
+```console
       Workload              (according to ClusterSupplyChain in `build` cluster)
 
         - fetch source
@@ -931,7 +931,7 @@ In the following section, you find the reference documentation that relates spec
 two resources defined in the `basic` ClusterDelivery part of the
 `ootb-delivery-basic` package:
 
-```
+```console
 source-provider                     fetches kubernetes configuration
     |
     |  kubernetes configuration
