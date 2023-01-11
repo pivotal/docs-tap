@@ -23,11 +23,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
   Visual Studio to help you develop, providing the rapid iteration experience for .NET Core apps in
   Tanzu Application Platform.
 
-</br>
-
 ---
-
-</br>
 
 ### <a id='1-4-0-new-component-features'></a> New features by component and area
 
