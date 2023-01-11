@@ -1,8 +1,4 @@
-# <a id='how-to-guides'>How-to-guides
-
-<!-- Intro to this point -->
-
-<!-- ## <a id='service-account-usage'> --service-account usage -->
+# How-to-guides
 
 ## <a id='custom-registry'> Custom registry credentials
 
@@ -14,7 +10,7 @@ To pass the certificate via flags the user may need to specify:
 
 - `--registry-ca-cert`, which refers to the path of the self-signed certificate needed for the custom/private registry. This is also populated with a default value through the environment variable `TANZU_APPS_REGISTRY_CA_CERT`.
 - `--registry-password` which is used when the registry requires credentials to push. The value of this flag can also be specified through `TANZU_APPS_REGISTRY_PASSWORD`.
-- `--registry-username` usually used with `--registry-password` to set the registry credentials. It can also be provided as the environment variable `TANZU_APPS_REGISTRY_USERNAME`. 
+- `--registry-username` usually used with `--registry-password` to set the registry credentials. It can also be provided as the environment variable `TANZU_APPS_REGISTRY_USERNAME`.
 - `--registry-token` which is set when the registry authentication is done via token. The value of this flag can also be taken from `TANZU_APPS_REGISTRY_TOKEN` environment variable.
 
 For example:
@@ -52,11 +48,6 @@ tanzu apps workload apply my-workload --local-path path/to/my/repo -s registry.u
 ```
 
 Using environment variables provides the added convenience of not having to enter these flag values repeatedly in the event that multiple workloads must be created, with references to the same registry, during a given terminal session.
-<!-- ## <a id='control-auto-scale'> Using label annotation to control auto-scale -->
-
-<!-- ## <a id='limit-request'>limit/request-cpu and limit/request-memory -->
-
-<!-- ## <a id='tail-usage'> --tail usage -->
 
 ## <a id='live-updated-debug'> --live-update and --debug
 
@@ -93,7 +84,7 @@ Live update is ideally situated for executing from within one of our supported I
    The files and directories listed in the .tanzuignore file are being excluded from the uploaded source code.
    Publishing source in "." to "gcr.io/my-project/tanzu-java-web-app-live-update"...
    📥 Published source
-   
+
    🔎 Create workload:
        1 + |---
        2 + |apiVersion: carto.run/v1alpha1
@@ -151,8 +142,6 @@ Live update is ideally situated for executing from within one of our supported I
     tanzu-java-w… │      ┊ Ready           - (…) Pending
     ...
     ```
-
-<!-- add info regarding debug flag -->
 
 ## <a id='export-usage'> --export usage
 
@@ -434,7 +423,7 @@ This flag is provided to support use cases where more than one application is in
       ❓ Publish source in "." to "gcr.io/my-registry/my-workload-image"? It may be visible to others who can pull images from that repository Yes
       Publishing source in "." to "gcr.io/my-registry/my-workload-image"...
       📥 Published source
-      
+
       🔎 Create workload:
             1 + |---
             2 + |apiVersion: carto.run/v1alpha1
@@ -479,17 +468,12 @@ If the `.tanzuignore` file contains files or directories that are not found in t
     this-is-a-file.ext
 ```
 
-<!-- ## <a id='maximize-efficiency'> Leveraging ENVs to maximize efficiency
-
-## <a id='param-yaml-usage'> --param-yaml
-
-## <a id='app-usage'> --app
-
-## <a id='type-usage'> --type
-
-## <a id='labels-anns-env'> --labels, --annotations, --env, --build-env -->
-
-## <a id='dry-run-usage'> --dry-run
+<!-- ## <a id='maximize-efficiency'> Leveraging ENVs to maximize efficiency -->
+<!-- ## <a id='param-yaml-usage'> --param-yaml -->
+<!-- ## <a id='app-usage'> --app -->
+<!-- ## <a id='type-usage'> --type -->
+<!-- ## <a id='labels-anns-env'> --labels, --annotations, --env, --build-env -->
+<!-- ## <a id='dry-run-usage'> --dry-run -->
 
 The main goal of `--dry-run` flag is to prepare all the steps to submit a workload to the cluster and stop before sending it, showing
 an output of the final structure of the workload.
@@ -525,7 +509,7 @@ status:
 
 This will allow the user to check how a workload *would be* created/updated in the cluster based on the current specifications passed in via `--file workload.yaml` and/or command flags.
 
-If there would be an error when trying to apply the workload, this would be shown with the `--dry-run` flag. 
+If there would be an error when trying to apply the workload, this would be shown with the `--dry-run` flag.
 
 ```bash
 tanzu apps workload create rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" -t web --dry-run
@@ -630,10 +614,7 @@ Note that with this last, the lines that were deleted in the yaml file are going
 
 **Note**: It's important to highlight that the only fields that will remain exactly as they were created are the system populated metadata fields (`resourceVersion`, `uuid`, `generation`, `creationTimestamp`, `deletionTimestamp`).
 
-<!-- ## <a id='wait-usage'> --wait
-
-## <a id='wait-timeout-usage'> --wait-timeout 
-
-## <a id='airgapped-env'> Apps plug-in usage in an airgapped environment -->
-
-**NOTE: Additional how-to's will be added soon**
+<!-- ## <a id='wait-usage'> --wait -->
+<!-- ## <a id='wait-timeout-usage'> --wait-timeout -->
+<!-- ## <a id='airgapped-env'> Apps plug-in usage in an airgapped environment -->
+<!-- **NOTE: Additional how-to's will be added soon** -->
