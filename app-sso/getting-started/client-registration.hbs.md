@@ -20,8 +20,8 @@ In this tutorial, you are going to:
 Assuming you have deployed the AuthServer as described previously, you can create and apply the following client 
 registration:
 
-> **Note** ✋ Note that we used <code>ClientRegistration.spec.redirectURIs[0]` = `test-app.example.com`</code>, but you should customize the URL
-to match the domain of your TAP cluster. This will be the URL you use to expose your test application in the next
+> **Note** AppSSO uses `test-app.example.com` for `ClientRegistration.spec.redirectURIs[0]`. You must customize the URL
+to match the domain of your Tanzu Application Platform cluster. This is the URL to expose your test application in the next
 section.
 
 ```yaml
