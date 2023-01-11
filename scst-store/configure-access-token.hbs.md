@@ -1,4 +1,4 @@
-# Configure Access Tokens
+# Configure access tokens
 
 The access token is a `Bearer` token used in the http request header
 `Authorization`. For example, `Authorization: Bearer

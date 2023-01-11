@@ -1,4 +1,4 @@
-# Using an existing image
+# Use an existing image
 
 For apps that build container images in a predefined way, the supply chains
 in the Out of the Box packages enable you to specify a prebuilt image.

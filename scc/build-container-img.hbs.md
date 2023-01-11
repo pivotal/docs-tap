@@ -1,4 +1,4 @@
-# Building Container Images
+# Building container images
 
 This topic describes the available methods for building container images for Supply Chain Choreographer for Tanzu.
 
