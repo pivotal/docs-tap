@@ -1,4 +1,4 @@
-# Using LoadBalancer
+# Use LoadBalancer
 
 >**Note** `LoadBalancer` is not the recommended service type.
 >Consider the recommended configuration of enabling

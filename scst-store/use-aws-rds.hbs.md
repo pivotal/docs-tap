@@ -1,4 +1,4 @@
-# AWS RDS Postgres configuration
+# AWS RDS postgres configuration
 
 ## <a id='prereq'></a>Prerequisites
 

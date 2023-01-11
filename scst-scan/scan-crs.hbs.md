@@ -1,4 +1,4 @@
-# Configure code repositories and image artifacts to be scanned
+# Configure code repositories and image artifacts
 
 ## <a id="prerequisite"></a>Prerequisite
 

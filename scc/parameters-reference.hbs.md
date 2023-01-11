@@ -1,4 +1,4 @@
-# Workload Parameters reference
+# Workload parameters reference
 
 The supply chains and templates provided by the out of the box packages contain
 a series of parameters that customize supply chain behavior. This topic
