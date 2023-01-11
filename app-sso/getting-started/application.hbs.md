@@ -14,9 +14,9 @@ For more information about how a Client application uses an AuthServer to authen
 
 You are going to deploy a two-container pod, as a test application.
 
-> **Important** ✋ Note that we used `HTTPProxy.spec.virtualhost.fqdn` = `test-app.example.com`, but you should customize the URL to
-match the domain of your TAP cluster. This URL should match what was set up in `ClientRegistration.spec.redirectURIs[0]`
-in the [Previous section](client-registration.md)
+> **Important** AppSSO uses `test-app.example.com` for `HTTPProxy.spec.virtualhost.fqdn`. You must customize the URL to
+match the domain of your Tanzu Application Platform cluster. This URL must match what was set up in `ClientRegistration.spec.redirectURIs[0]`
+in [Provision a client registration](client-registration.hbs.md)
 
 ```yaml
 ---
