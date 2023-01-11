@@ -14,7 +14,7 @@ For more information about how a Client application uses an AuthServer to authen
 
 You are going to deploy a two-container pod, as a test application.
 
-> **Important** ✋ Note that we used <code>HTTPProxy.spec.virtualhost.fqdn` = `test-app.example.com`</code>, but you should customize the URL to
+> **Important** ✋ Note that we used `HTTPProxy.spec.virtualhost.fqdn` = `test-app.example.com`, but you should customize the URL to
 match the domain of your TAP cluster. This URL should match what was set up in `ClientRegistration.spec.redirectURIs[0]`
 in the [Previous section](client-registration.md)
 
