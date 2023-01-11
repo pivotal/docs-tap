@@ -25,7 +25,7 @@ statically, properties cannot be changed without triggering a rollout of AppSSO.
 
 [Grant Types](grant-types.md)
 
-## Workloads
+## <a id='workloads'></a> Workloads
 
 This guide will walk you through steps necessary to secure your deployed `Workload` with AppSSO.
 
