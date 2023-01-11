@@ -23,7 +23,6 @@ This topic contains release notes for Tanzu Application Platform v1.4.
   Visual Studio to help you develop, providing the rapid iteration experience for .NET Core apps in
   Tanzu Application Platform.
 
-
 ---
 
 ### <a id='1-4-0-new-component-features'></a> New features by component and area
@@ -194,7 +193,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - Added namespace to `tanzu apps workload get` command's overview section.
 - Added progress bar to provide feedback to users when uploading source code to registry.
 - Removed color from tail command output when `--no-color` flag is passed.
-<br>
+
 ---
 
 ### <a id='1-4-0-breaking-changes'></a> Breaking changes
