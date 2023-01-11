@@ -1,4 +1,4 @@
-# Triaging and Remediating CVEs
+# Triage and Remediate CVEs
 
 This topic explains how to triage and remediate CVEs related to the Supply Chain.
 
