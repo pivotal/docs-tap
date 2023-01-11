@@ -72,7 +72,7 @@ kind: Secret
 metadata:
   name: redis-credentials
   namespace: my-authserver
-type: servicebinding.io/redis        # required
+type: servicebinding.io/redis        # optional, must equal 'servicebinding.io/redis' if defined
 stringData:
   type: "redis"                      # required, must equal 'redis'
   ssl: "true"                        # required, must equal 'true'
@@ -165,7 +165,7 @@ The following data is stored in Redis:
 
     >**Note** This is the data that carries the highest level risk.
 
-    - Authentication token includeing the principal
+    - Authentication token including the principal
         - Personally identifying information such as email and name
 
 - Approved or rejected consents
