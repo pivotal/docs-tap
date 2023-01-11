@@ -3,7 +3,9 @@
 This document describes how to install Out of the Box Templates
 from the Tanzu Application Platform package repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+>**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+Both the full and light profiles include Out of the Box Templates.
+For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
 
 The Out of the Box Templates package is used by all the Out of the Box Supply
 Chains to provide the templates that are used by the Supply Chains to create

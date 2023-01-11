@@ -3,7 +3,9 @@
 This document describes how to install Cloud Native Runtimes
 from the Tanzu Application Platform package repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install PACKAGE-NAME. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
+>**Note:** Use the instructions on this page if you do not want to use a profile to install packages.
+Both the full and light profiles include Cloud Native Runtimes.
+For more information about profiles, see [Installing the Tanzu Application Platform Package and Profiles](../install.md).
 
 ## <a id='cnr-prereqs'></a>Prerequisites
 
