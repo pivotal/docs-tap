@@ -69,7 +69,7 @@ Similarly, if the context to be used for the build must be set to a different
 directory within the repository, you can make use of the `docker_build_context`
 to change that:
 
-```
+```console
 $ tanzu apps workload create foo \
   --git-repo https://github.com/foo/bar \
   --git-branch dev \
