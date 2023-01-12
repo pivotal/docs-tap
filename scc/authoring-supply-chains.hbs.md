@@ -1,4 +1,4 @@
-# Authoring supply chains
+# Author supply chains
 
 The Out of the Box Supply Chain, Delivery Basic, and Templates packages provide
 a set of Kubernetes objects aiming at covering a reference path to production

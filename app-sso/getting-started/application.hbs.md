@@ -1,7 +1,7 @@
 # Deploy an application with Application Single Sign-On
 
-> **Note** 👉 This article assumes that you have completed the previous step in this Getting Started
-guide. If not, please refer to instructions in [Provision a client registration](client-registration.md).
+> **Important** This topic assumes that you have completed the steps described in [Get started with Application Single Sign-On](appsso-overview.hbs.md). 
+If not, see [Provision a client registration](client-registration.md).
 
 In this tutorial, you are going to deploy a minimal Kubernetes application that uses the credentials created through 
 the [ClientRegistration](client-registration.md) and be protected through SSO.
@@ -14,9 +14,9 @@ For more information about how a Client application uses an AuthServer to authen
 
 You are going to deploy a two-container pod, as a test application.
 
-> **Important** ✋ Note that we used `HTTPProxy.spec.virtualhost.fqdn` = `test-app.example.com`, but you should customize the URL to
-match the domain of your TAP cluster. This URL should match what was set up in `ClientRegistration.spec.redirectURIs[0]`
-in the [Previous section](client-registration.md)
+> **Important** AppSSO uses `test-app.example.com` for `HTTPProxy.spec.virtualhost.fqdn`. You must customize the URL to
+match the domain of your Tanzu Application Platform cluster. This URL must match what was set up in `ClientRegistration.spec.redirectURIs[0]`
+in [Provision a client registration](client-registration.hbs.md)
 
 ```yaml
 ---

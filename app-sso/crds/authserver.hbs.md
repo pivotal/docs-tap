@@ -87,7 +87,7 @@ spec:
         kind: "Secret"
         name: ""
   caCerts: # optional
-    - secretRef: # Reference to Secret resource within same namespace as this AuthServer
+    - secretRef: # Reference to Secret resource within the same namespace as this AuthServer.
         name: ""
   identityProviders: # optional
     # each must be one and only one of internalUnsafe, ldap, openID or saml
