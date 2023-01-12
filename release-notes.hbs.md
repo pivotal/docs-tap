@@ -24,6 +24,7 @@ The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
 ---
+---
 
 ## <a id='1-4-0'></a> v1.4.0
 
@@ -67,7 +68,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   - Introduced `identityProviders.ldap.group.search`.
   - `identityProviders.ldap.group` is now optional in `AuthServer.spec`.
 
-
 #### <a id="1-4-0-app-live-view"></a> Application Live View
 
 - Users can now activate or deactivate the automatic configuration of Spring Boot actuators on Tanzu Application Platform and on workloads.
@@ -76,7 +76,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - Added support for Spring Boot 3. Spring Boot 3 Native Image is not supported.
 - Added new App Live View pages `HTTP Requests` and `Request Mappings` for Steeltoe workloads.
 - Added `appliveview_connnector.backend.sslDeactivated` to deprecate `appliveview_connnector.backend.sslDisabled`.
-
 
 #### <a id="1-4-0-app-accelerator"></a> Application Accelerator
 
@@ -97,18 +96,15 @@ Deprecated features will remain on this list until they are retired from Tanzu A
     - [Spring Boot MySQL Fragment](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/fragments/spring-boot-mysql)
     - [Spring Boot PostgreSQL Fragment](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/fragments/spring-boot-postgresql)
 
-
 #### <a id="1-4-0-cert-manager"></a> cert-manager
 
 - `cert-manager.tap.tanzu.vmware.com` can optionally install self-signed `ClusterIssuer`s.
-
 
 #### <a id="1-4-0-eventing"></a> Eventing
 
 - Upgraded Knative Eventing version from 1.6 to 1.8.
 - Added a Kubernetes tracing attribute to ApiServerSource.
 - The ApiServerSource is a Knative Eventing Kubernetes custom resource that listens for events emitted by the Kubernetes API server. For example, pod creation, deployment updates, and so on. It then forwards them as CloudEvents to a sink.
-
 
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> External Secrets Operator (alpha)
 
@@ -143,7 +139,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   This allows better alignment between the data in the Supply Chain Choreographer plug-in and the
   Security Analysis plug-in.
 
-
 ##### <a id='1-4-0-sagui-new-feats'></a>Security Analysis Plug-in
 
 - **Understand the total number of affected packages and vulnerabilities on the
@@ -158,7 +153,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   and Package details page on the source or image scan stage in the Supply Chain
   Choreographer Plug-in.
 
-
 #### <a id="1-4-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
 
 - Users no longer need to create a package overlay to enable Grype in offline and air-gapped
@@ -166,19 +160,16 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - Increased compatibility with customers' existing environments by supporting custom certificate authorities (CAs) by using the `tap-values.yml` for both Grype and Snyk scanners.
 - Alpha release of Prisma Scanner integration. See [Install Prisma Scanner](scst-scan/install-prisma-integration.hbs.md).
 
-
 #### <a id="1-4-0-scst-policy-new-features"></a> Supply Chain Security Tools - Policy
 
 - Added ability to [configure action when no policy matches the admitting image digest](./scst-policy/install-scst-policy.hbs.md#install-scst-policy).
 - Added ability to [allow empty authorities for ClusterImagePolicies](./scst-policy/install-scst-policy.hbs.md#install-scst-policy).
 - Added ability to [specify which resources a ClusterImagePolicy should enforce](./scst-policy/configuring.hbs.md#cip-match).
 
-
 #### <a id="1-4-0-vscode-new-features"></a> Tanzu Developer Tools for Visual Studio Code
 
 - The developer sandbox enables developers to Live Update their code, and
   simultaneously debug the updated code, without having to deactivate Live Update when debugging.
-
 
 #### <a id="1-4-0-vs-new-features"></a> Tanzu Developer Tools for Visual Studio
 
@@ -198,7 +189,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   specification is generated from the API Auto Registration of Tanzu Application Platform. See [API
   Validation and Scoring](api-validation-scoring/about.hbs.md) for more information.
 
-
 #### <a id="1-4-0-intellij-new-feat"></a> Tanzu Developer Tools for IntelliJ
 
 - The developer sandbox enables developers to Live Update their code and
@@ -209,7 +199,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   logs on these resources from within their IDE.
 - Tanzu workload `apply` and `delete` actions were added to ​IntelliJ.
 - Code snippets to create `workload.yaml` and `catalog-info.yaml` files were added to IntelliJ.
-
 
 #### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plug-in for Tanzu CLI
 
@@ -248,7 +237,6 @@ This release has the following breaking changes, listed by area and component.
 - Removed `AuthServer.status.deployments.authServer.lastParentGenerationWithRestart` field.
 - Removed deprecated field `AuthServer.spec.issuerURI`. For more information, see [IssuerURI and TLS](./app-sso/service-operators/issuer-uri-and-tls.hbs.md).
 
-
 #### <a id="1-4-0-supply-chain-templates"></a> Out of the Box Supply Chain Templates
 
 - In a multicluster setup, when a Deliverable is created on a Build profile cluster,
@@ -265,7 +253,6 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 - `Tanzu Debug` no longer port forwards the application port (8080).
 
-
 #### <a id="1-4-0-tap-gui-bc"></a> Tanzu Application Platform GUI
 
 - **Ingress URL:** As mentioned in the [new features section](#1-4-0-tap-new-features),
@@ -281,28 +268,10 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
   plug-in. If upgrading from v1.3, update your Tanzu Application Platform GUI configuration accordingly.
   See the updated instructions in [Enable CVE scan results](tap-gui/plugins/scc-tap-gui.hbs.md#scan).
 
-#### <a id="1-4-0-scst-scan-bc"></a> Supply Chain Security Tools - Scan
-
-- **Deprecated and removed ScanTemplates:**
-
-  Deprecated Grype ScanTemplates shipped with Tanzu Application Platform v1.1 and earlier are
-  removed and no longer supported. Use Grype ScanTemplates v1.2 and later.
-
-- **Deprecation notice for `docker` field and related sub-fields:**
-
-  The `docker` field and related sub-fields used in Supply Chain Security Tools - Scan are
-  deprecated and marked for removal in Tanzu Application Platform v1.7.0.
-  The deprecation impacts Scan Controller, Grype Scanner, and Snyk Scanner.
-  Carbon Black Scanner is not impacted.
-  For information about the migration path, see
-  [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
-
-
 #### <a id="1-4-0-ipw-bc"></a> Supply Chain Security Tools - Image Policy Webhook
 
 - The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
 in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
-
 
 #### <a id="1-4-0-policy-controller-bc"></a> Supply Chain Security Tools - Policy Controller
 
@@ -324,12 +293,9 @@ This release has the following security fixes, listed by area and component.
 
 - `python` is updated to `3.7.5-22.ph3`.
 
-
 #### <a id="1-4-0-api-auto-registration-fixes"></a> API Auto Registration
 
 - Base image updated to use the latest Paketo Jammy Base image.
-
-
 
 #### <a id="1-4-0-vulnerabilities-remediated"></a> Remediated vulnerabilities
 
@@ -342,13 +308,11 @@ GHSA-66x3-6cw3-v5gj, CVE-2022-3515, CVE-2022-2602, CVE-2022-41222, CVE-2022-3221
 CVE-2021-27498, CVE-2021-27500, CVE-2019-12900, CVE-2021-28861, CVE-2021-3737, CVE-2022-0391, GHSA-4w2j-2rg4-5mjw, CVE-2022-2586,
 CVE-2022-2588, CVE-2022-34918, GHSA-4wf5-vphf-c2xc, CVE-2022-42916, CVE-2022-43551, CVE-2022-43552, CVE-2021-3999, GHSA-m974-647v-whv7
 
-
-
 #### <a id="1-4-0-cve-2022-4378"></a> Note about CVE-2022-4378
 
 - [CVE-2022-4378](https://nvd.nist.gov/vuln/detail/CVE-2022-4378) is a high severity, exploitable stack overflow flaw found in the Linux kernel's SYSCTL subsystem. At this time, there is no available patch from Canonical in their upstream Ubuntu distribution. Once there is a patch available for the 22.04 release line, Tanzu Application Platform will release a patched base stack image. The current status for patching this vulnerability in the Jammy stack is available on [Ubuntu’s security page](https://ubuntu.com/security/CVE-2022-4378). <br />
 
-  It is important for customers to understand CVE-2022-4378 is a kernel exploit, and the kernel runs on the customers’ container host VM, not the Tanzu Application Platform container image. Even with a patched image, the vulnerability will not be mitigated until customers deploy their containers on a host with a patched OS. An unpatched host OS may be exploitable if the base image is deployed allowing users to modify SYSCTL parameters. <br />
+  It is important for customers to understand CVE-2022-4378 is a kernel exploit, and the kernel runs on the customers’ container host VM, not the Tanzu Application Platform container image. Even with a patched image, the vulnerability will not be mitigated until customers deploy their containers on a host with a patched OS. An unpatched host OS may be exploitable if the base image is deployed allowing users to modify SYSCTL parameters.
 
   RedHat has published a [potential mitigation](https://access.redhat.com/security/cve/cve-2022-4378) preventing regular users from accessing sysctl files and increasing privileges until a patch becomes available.
 
@@ -365,7 +329,6 @@ The following issues, listed by area and component, are resolved in this release
   reconciliation into the Tanzu Application Platform GUI catalog. This synchronization period or
   frequency is configurable through the new value `sync_period`. The default value is 5 minutes.
 
-
 #### <a id="1-4-0-appsso-ri"></a> Application Single Sign-On (AppSSO)
 
 - Fixed infinite redirect loops for an `AuthServer` configured with a single OIDC or SAML identity provider.
@@ -374,8 +337,6 @@ The following issues, listed by area and component, are resolved in this release
 - OpenShift: custom `SecurityContextConstraint` resource is created for Kubernetes platforms
   versions 1.23.x and lower.
 - LDAP error log now contains proper error message.
-
-
 
 #### <a id="1-4-0-supply-chain-templates-resolved"></a> Out of the Box Supply Chain Templates
 
@@ -391,7 +352,6 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 - Fixed `tanzu apps workload tail` command output, which was displaying extra init container log lines.
 - Fixed `tanzu apps workload tail` command not including all logs.
 
-
 #### <a id="1-4-0-tap-gui-plugin-ri"></a> Tanzu Application Platform GUI Plug-ins
 
 - **Immediate entity provider back-end plug-in**
@@ -401,7 +361,6 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
   - Considering the restriction of Backstage for [Entity Provider mutations](https://backstage.io/docs/features/software-catalog/external-integrations#provider-mutations),
     whenever an existing entity is intended for a mutation through this plug-in, and its origin is
     a different entity provider, a `409 Conflict` error is returned.
-
 
 #### <a id="supply-chain-plugin-ri"></a> Supply Chain Choreographer Plug-In
 
@@ -482,11 +441,9 @@ This release has the following known issues, listed by area and component.
   The vulnerabilities are still found during the image scan after the binaries are built and packaged
   as images.
 
-
 #### <a id="1-4-0-nsp-ki"></a> Namespace Provisioner
 
 - Applying the label selector used by the namespace provisioner controller to the developer namespace, which is configured at deployment time under the `grype` package values, will cause the [`provisioner` Carvel app](namespace-provisioner/about.hbs.md#nsp-component-carvel-app) to crash due to ownership issues. This is because it's trying to install Grype in a namespace where it's already been installed.
-
 
 #### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI plug-ins
 
@@ -496,7 +453,6 @@ This release has the following known issues, listed by area and component.
 - Customizing the `Source Tester` stage in an Out Of the Box supply chain does not show details in the
   **Stage Details** section.
 - When a GitOps PR flow is configured, the **Approve a Request** link no longer appears in the supply chain graph.
-
 
 ##### <a id="sec-analysis-plugin-ki"></a> Security Analysis plug-in
 
@@ -535,25 +491,21 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - The Image Policy Webhook component is removed in Tanzu Application Platform v1.4. This component is deprecated
 in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 
-
 #### <a id="1-4-0-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
 
 - Removed deprecated ScanTemplates:
   - Deprecated Grype ScanTemplates shipped with versions prior to Tanzu Application Platform 1.2.0
-    have been removed and are no longer supported. Please ensure you are using Grype ScanTemplates
-    v1.2+ moving forward.
-  - `docker` field and related sub-fields by Supply Chain Security Tools - Scan are deprecated and
+    are removed and no longer supported. Use Grype ScanTemplates v1.2 and later.
+  - `docker` field and related sub-fields used in Supply Chain Security Tools - Scan are deprecated and
     marked for removal in Tanzu Application Platform 1.7.0.
-    - The deprecation will impact the following components: Scan Controller, Grype Scanner, and Snyk Scanner.
-    - See [troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images)
-      documentation for the migration path.
-
+    - The deprecation impacts the following components: Scan Controller, Grype Scanner, and Snyk Scanner. Carbon Black Scanner is not impacted.
+    - For information about the migration path, see
+  [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
 
 #### <a id="1-3-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
 
 - [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration
   information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
-
 
 #### <a id="1-3-tbs-deprecations"></a> Tanzu Build Service
 
@@ -566,7 +518,6 @@ It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
 VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
 and remove support in Tanzu Application Platform v1.6.
 To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
-
 
 #### <a id="1-3-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
