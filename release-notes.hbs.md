@@ -60,6 +60,9 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 - Added [custom `types`](application-accelerator/creating-accelerators/custom-types.hbs.md), which allows for 1-N number of repeating sets of options in an accelerator's form during project creation.
 - Added the [Loop transform](application-accelerator/creating-accelerators/transforms/loop.hbs.md) to allow for transforms to be applied on list options.
 - Added [`generate-from-local`](cli-plugins/accelerator/command-reference/tanzu_accelerator_generate_from_local.hbs.md) command to the Application Accelerator plug-in for the Tanzu CLI to generate projects from local assets without needing to commit code.
+- Code completion & validation when authoring an `accelerator.yaml`:
+  - Available in VS Code ([requires the YAML extension for VS Code](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)).
+  - Automatically available in the IntelliJ IDE.
 - Additional Application Accelerator plug-ins for Tanzu CLI improvements:
   - `fragment create` now supports `--local-path` and `--source-image`.
   - `fragment update` now supports `--source-image`.
