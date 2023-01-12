@@ -30,8 +30,8 @@ domain_template: "{{.Name}}.{{.Domain}}"
 
 {{{{/raw}}}}
 
-> **Caution** ⚠️ Be aware that by leaving out the namespace in your domain template, application routes may conflict if there
-> are multiple `AuthServer`s of the same name but in different namespaces.
+> **Caution** By leaving out the namespace in your domain template, application routes might conflict if there
+> are multiple `AuthServer`s with the same name but in different namespaces.
 
 ## <a id="cidr-ranges"></a> Redirect URIs change to http instead of https
 
