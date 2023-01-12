@@ -17,14 +17,13 @@ accelerator used in this tutorial.
 
 ## Getting started
 
-> **Note** 👟 Skip to [step-by-step instructions](#deploying-the-sample-application-as-a-workload) if you are already familiar
-with the accelerator used in this tutorial.
+> **Note** See [Deploying the sample application as a Workload](#deploy-as-workload) for step-by-step instructions if you are already familiar
+with the accelerator described in this tutorial.
 
 ### Understanding the sample application
 
 In this tutorial, you will be working with a sample Servlet-based Spring Boot application that
-uses [Spring Security OAuth2 Client library](https://docs.spring.io/spring-security/reference/servlet/oauth2/client/index.html)
-.
+uses [Spring Security OAuth2 Client library](https://docs.spring.io/spring-security/reference/servlet/oauth2/client/index.html).
 
 You can find
 the [source code for the application here](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java).
@@ -38,9 +37,7 @@ The application, once launched, has two pages:
 The security configuration for the above is located
 at `com.vmware.tanzu.apps.sso.sampleworkload.config.WebSecurityConfig`.
 
-> **Note** For more in-depth details about how apps are configured with Spring Security OAuth2 Client library, be sure to check
-out the
-official [Spring Boot and OAuth2 tutorial](https://spring.io/guides/tutorials/spring-boot-oauth2/).
+> **Note** For more information about how apps are configured with Spring Security OAuth2 Client library, see [Spring Boot and OAuth2 documentation](https://spring.io/guides/tutorials/spring-boot-oauth2/).
 
 By default, there is no application properties file in our sample application and this is by design: even the simplest
 application can be deployed with AppSSO, you can even go to [start.spring.io](https://start.spring.io) and download a
@@ -71,7 +68,7 @@ The `ClientRegistration` resource definition contains a few critical pieces in i
   is [required by OpenID Connect specification](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) in
   order to issue identity tokens which designate a user as 'signed in'.
 
-> **Note** For more details about `ClientRegistration` custom resource,
+> **Note** For more information about `ClientRegistration` custom resource, 
 see [ClientRegistration CRD](../../crds/clientregistration.md).
 
 The `client.yaml` file is using [ytt templating](https://carvel.dev/ytt/) conventions. If you have
@@ -110,7 +107,7 @@ To deploy a workload, it is best to work in a separate workload-specific namespa
 are [required TAP configurations that need to be applied](../../../set-up-namespaces.md)
 before a `Workload` in a specific namespace can be deployed properly.
 
-## Deploying the sample application as a Workload
+## <a id="deploy-as-workload"></a>Deploying the sample application as a Workload
 
 To tie it all together and deploy the sample application, the following are the steps involved.
 
@@ -131,7 +128,7 @@ as described.
 
 Apply the `client.yaml` definition file (described [above](#the-sample-applications-clientregistration))
 
-> **Caution** Make sure to set `auth_server_name` field to the value of the label "name" on the AuthServer custom resource. 
+> **Caution** Make sure to set `auth_server_name` field to the value of the label name on the AuthServer custom resource. 
 This might differ from the name of the AuthServer custom resource.
 
 ```shell
@@ -169,7 +166,7 @@ You should see the `ClientRegistration` entry listed.
 
 Using Tanzu Services plugin CLI, create a service resource claim for the workload:
 
-> **Caution** Name of the claim must be the same as the value of `claim_name` from previous step.
+> **Caution** Name of the claim must be the same as the value of `claim_name` from the previous step.
 
 > **Caution** Resource name must be the same name as the workload name.
 
@@ -230,7 +227,7 @@ tanzu apps workload get appsso-starter-java --namespace workloads
 >
 > **status**: `Unknown`
 > 
-> This is NOT an error, this is normal operation of a pending workload. Watch the status for changes.
+> This is not an error, this is normal operation of a pending workload. Watch the status for changes.
 
 Follow the `Workload` logs:
 
