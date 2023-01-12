@@ -3,7 +3,7 @@
 This topic describes known limitations and default resource mapping.
 ## <a id="known-limitations"></a>Known Limitations/Issues
 
-- If there is a namespace in your GitOp's repository [**`desired-namespaces`**](about.hbs.md#desired-ns-configmap)
+- If there is a namespace in your GitOp's repository [`desired-namespaces`](about.hbs.md#desired-ns-configmap)
 ConfigMap that does not exist on the cluster, the `provisioner` application fails to reconcile
 and cannot create resources.
 - The creation of the namespaces is out of scope for Namespace Provisioner.

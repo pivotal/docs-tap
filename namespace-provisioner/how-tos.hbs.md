@@ -109,7 +109,7 @@ the OOTB Testing and Scanning Supply Chain.
 
 1. Add or update `tap-values.yaml` with the following `namespace_provisioner.additional_resources`
 configuration</br>
-(The ytt templated testing and scanpolicy files that are mounted can be found [**here**](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain)).</br></br>
+(The ytt templated testing and scanpolicy files that are mounted can be found [here](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain)).</br></br>
 
 
    ```yaml
