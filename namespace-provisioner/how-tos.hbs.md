@@ -72,6 +72,8 @@ This [example](#example-additional-resources) adds four additional sources:
 <a id="example-additional-resources"></a>Example `tap-values.yaml` snippet with custom configuration
 for additional_sources:
 
+>***Note:** As in the example below, each of the user-generated `namespace_provisioner.additional_sources.path` values must be unique, and each path must begin with "_ytt_lib/" to be identified as a ytt libary. 
+
 ```yaml
 namespace_provisioner:
   additional_sources:
@@ -92,13 +94,13 @@ namespace_provisioner:
       ref: origin/main
       subPath: namespace-provisioner-gitops-examples/custom-resources/scanpolicies
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-    path: _ytt_lib/scanpolicies
+    path: _ytt_lib/scanpolicies  
   # Add templated tekton pipelines for angular, colang and python based on data.values
   - git:
       ref: origin/main
       subPath: namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-    path: _ytt_lib/tektonpipelines
+    path: _ytt_lib/tektonpipelines 
 ```
 
 ### <a id="add-test-scan"></a> Add the resources required by the **Out of the Box Testing and Scanning Supply Chain**
@@ -120,7 +122,7 @@ configuration</br>
          ref: origin/main
          subPath: namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain
          url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-       path: _ytt_lib/testingscanning
+       path: _ytt_lib/testingscanning   #this user-generated path must always begin with "_ytt_lib/"
    ```
    </br>
 1. Apply your updated `tap-values.yaml` to the target cluster
@@ -160,13 +162,13 @@ namespace_provisioner:
       ref: origin/main
       subPath: namespace-provisioner-gitops-examples/default-resources-overrides/overlays
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-    path: _ytt_lib/customize
+    path: _ytt_lib/customize #this user-generated path must always begin with "_ytt_lib/"
   # Adds the secrets referenced in the overlay
   - git:
       ref: origin/main
       subPath: namespace-provisioner-gitops-examples/custom-resources/workload-sa
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-    path: _ytt_lib/workload-sa
+    path: _ytt_lib/workload-sa #this user-generated path must always begin with "_ytt_lib/"
 ```
 
 Sample customization (`.lib.yaml`) file for overriding the `secrets` and `imagePullSecrets` of the default ServiceAccount
