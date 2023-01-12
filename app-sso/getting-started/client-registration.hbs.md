@@ -1,11 +1,6 @@
 # Provision a client registration
 
----
-
-👉 This article assumes that you have completed the previous step in this Getting Started
-guide.
-
----
+> **Important** This topic assumes that you have completed the steps described in [Get started with Application Single Sign-On](appsso-overview.hbs.md). 
 
 In this tutorial, you are going to:
 
@@ -50,7 +45,7 @@ spec:
       - name: "message.read"
 ```
 
-The AuthServer should now have this `ClientRegistration` registered. There are two ways to validate this, either by
+The AuthServer should now have this `ClientRegistration` registered. You can verify the status either by
 looking at the `ClientRegistration`s `.status` field, or looking at the `AuthServer` itself.
 
 ```shell
