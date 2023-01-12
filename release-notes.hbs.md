@@ -439,21 +439,19 @@ This release has the following known issues, listed by area and component.
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
-The following features, listed by component, are deprecated.</br>
-Deprecated features will remain on this list until they are retired from Tanzu Application Platform.</br></br>
+The following features, listed by component, are deprecated. 
+Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
 #### <a id="1-4-0-app-sso-deprecations"></a> Application Single Sign-On (AppSSO)
 
 - `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the next release. For more
   information about how to migrate
   to `AuthServer.spec.tls.deactivated`, see [Migration guides](app-sso/upgrades/index.md#migration-guides).
-</br></br>
 
 #### <a id="1-4-0-app-live-view-deprecations"></a> Application Live View
 
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for removal in Tanzu Application Platform 1.7.0.
   For more information on the migration, see [Deprecate the sslDisabled key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
-</br></br>
 
 #### <a id="1-4-0-stk-deprecations"></a> Services Toolkit
 
