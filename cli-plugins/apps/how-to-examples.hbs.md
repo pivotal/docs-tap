@@ -1,21 +1,28 @@
-# How-to-guides
+# How-to Examples
 
 ## <a id='custom-registry'> Custom registry credentials
 
-The Apps CLI plug-in allows users to push images to their private registry by setting some flags when creating workloads from local source code.
+The Apps CLI plug-in allows users to push images to their private registry by setting some flags
+when creating workloads from local source code.
 
-A user can either trust a custom certificate on their system or pass the path to the certificate via flags.
+A user can either trust a custom certificate on their system or pass the path to the certificate
+through flags.
 
-To pass the certificate via flags the user may need to specify:
+To pass the certificate through flags the user must specify:
 
-- `--registry-ca-cert`, which refers to the path of the self-signed certificate needed for the custom/private registry. This is also populated with a default value through the environment variable `TANZU_APPS_REGISTRY_CA_CERT`.
-- `--registry-password` which is used when the registry requires credentials to push. The value of this flag can also be specified through `TANZU_APPS_REGISTRY_PASSWORD`.
-- `--registry-username` usually used with `--registry-password` to set the registry credentials. It can also be provided as the environment variable `TANZU_APPS_REGISTRY_USERNAME`.
-- `--registry-token` which is set when the registry authentication is done via token. The value of this flag can also be taken from `TANZU_APPS_REGISTRY_TOKEN` environment variable.
+- `--registry-ca-cert`, which refers to the path of the self-signed certificate needed for the
+  custom or private registry. This is also populated with a default value through the environment
+  variable `TANZU_APPS_REGISTRY_CA_CERT`.
+- `--registry-password` which is used when the registry requires credentials to push. The value of
+  this flag can also be specified through `TANZU_APPS_REGISTRY_PASSWORD`.
+- `--registry-username` usually used with `--registry-password` to set the registry credentials. It
+  can also be provided as the environment variable `TANZU_APPS_REGISTRY_USERNAME`.
+- `--registry-token` which is set when the registry authentication is done through token. The value
+  of this flag can also be taken from `TANZU_APPS_REGISTRY_TOKEN` environment variable.
 
 For example:
 
-```bash
+```console
 tanzu apps workload apply my-workload --local-path path/to/my/repo -s registry.url.nip.io/my-package/my-image --type web --registry-ca-cert path/to/cacert/mycert.nip.io.crt --registry-username my-username --registry-password my-password
 ❓ Publish source in "path/to/my/repo" to "registry.url.nip.io/my-package/my-image"? It may be visible to others who can pull images from that repository [Yn]: y
 Publishing source in "path/to/my/repo" to "registry.url.nip.io/my-package/my-image"...
@@ -37,9 +44,9 @@ Publishing source in "path/to/my/repo" to "registry.url.nip.io/my-package/my-ima
 ❓ Do you want to create this workload? [yN]:
 ```
 
-Also, the same command could be run as:
+Also, the same command can be run as:
 
-```bash
+```console
 export TANZU_APPS_REGISTRY_CA_CERT=path/to/cacert/mycert.nip.io.crt
 export TANZU_APPS_REGISTRY_PASSWORD=my-username
 export TANZU_APPS_REGISTRY_USERNAME=my-password
@@ -47,13 +54,19 @@ export TANZU_APPS_REGISTRY_USERNAME=my-password
 tanzu apps workload apply my-workload --local-path path/to/my/repo -s registry.url.nip.io/my-package/my-image
 ```
 
-Using environment variables provides the added convenience of not having to enter these flag values repeatedly in the event that multiple workloads must be created, with references to the same registry, during a given terminal session.
+Using environment variables provides the added convenience of not having to enter these flag values
+repeatedly in the event that multiple workloads must be created, with references to the same
+registry, during a terminal session.
 
 ## <a id='live-updated-debug'> --live-update and --debug
 
-`--live-update` deploys the workload with configuration which enables local source code changes to be reflected on the running workload within seconds after the source code changes have been saved. This can be particularly valuable when iterating on features which require the workload to be deployed and running to validate.
+`--live-update` deploys the workload with configuration which enables local source code changes to
+be reflected on the running workload within seconds after the source code changes are saved. This is
+particularly valuable when iterating on features which require the workload to be deployed and
+running to validate.
 
-Live update is ideally situated for executing from within one of our supported IDE extensions, but it can also be utilized independently as shown in the following Spring Boot application example:
+Live update is ideally situated for running from within one of our supported IDE extensions, but it
+can also be utilized independently as shown in the following Spring Boot application example:
 
 **Prerequisites:** [Tilt](https://docs.tilt.dev/install.html) must be installed on the client
 
@@ -63,24 +76,24 @@ Live update is ideally situated for executing from within one of our supported I
    git clone https://github.com/vmware-tanzu/application-accelerator-samples
    ```
 
-1. Change into the `tanzu-java-web-app` directory.
-1. In `Tiltfile`, first change the `SOURCE_IMAGE` variable to use your registry and project.
-1. At the very end of the file add:
+2. Change into the `tanzu-java-web-app` directory.
+3. In `Tiltfile`, first change the `SOURCE_IMAGE` variable to use your registry and project.
+4. At the very end of the file add:
 
-   ```bash
+   ```console
    allow_k8s_contexts('your-cluster-name')
    ```
 
-1. Inside the directory, run:
+5. Inside the directory, run:
 
-   ```bash
+   ```console
    tanzu apps workload apply tanzu-java-web-app --live-update --local-path . -s
    gcr.io/my-project/tanzu-java-web-app-live-update -y
    ```
 
    Expected output:
 
-   ```bash
+   ```console
    The files and directories listed in the .tanzuignore file are being excluded from the uploaded source code.
    Publishing source in "." to "gcr.io/my-project/tanzu-java-web-app-live-update"...
    📥 Published source
@@ -105,9 +118,9 @@ Live update is ideally situated for executing from within one of our supported I
 
    ```
 
-1. Run Tilt to deploy the workload.
+6. Run Tilt to deploy the workload.
 
-    ```bash
+    ```console
     tilt up
 
     Tilt started on http://localhost:10350/
@@ -143,21 +156,25 @@ Live update is ideally situated for executing from within one of our supported I
     ...
     ```
 
-## <a id='export-usage'> --export usage
+## <a id='export-usage'> --export use
 
-When using the `--export` flag, the user can retrieve the workload definition with all the extraneous, cluster-specific, properties/values removed (e.g. the status and metadata fileds like `creationTimestamp`) so that the workload definition could be saved and applied to a different environment without having to make significant edits.
+When using the `--export` flag, the user can retrieve the workload definition with all the
+extraneous, cluster-specific, properties/values removed (e.g. the status and metadata text boxes like
+`creationTimestamp`) so that the workload definition can be saved and applied to a different
+environment without having to make significant edits.
 
-This means that the workload definition includes only the fields that were specificied by the developer that created it (`--export` preserves the essence of the developer's intent for portability).
+This means that the workload definition includes only the text boxes that were specified by the
+developer that created it (`--export` preserves the essence of the developer's intent for portability).
 
 For example, if user creates a workload with:
 
-```bash
+```console
 tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" -t web
 ```
 
-When querying the workload with `--export`, the default export format is yaml as follows:
+When querying the workload with `--export`, the default export format is YAML as follows:
 
-```bash
+```console
 # with yaml format
     tanzu apps workload get rmq-sample-app --export
     ---
@@ -216,11 +233,13 @@ When querying the workload with `--export`, the default export format is yaml as
     }
 ```
 
-If it's desired to retrieve the workload including all the cluster-specifics (with its status and all its fields) the `--output` flag should be provided.
+If you want to retrieve the workload including all the cluster-specifics (with its status and all
+its fields) the `--output` flag is provided.
 
-As shown before, this flag can also be used alongside `--export` to set the export format (as `json`, `yaml` or `yml`).
+As shown before, this flag can also be used alongside `--export` to set the export
+format (as `json`, `yaml` or `yml`).
 
-```bash
+```console
 # with json format
 tanzu apps workload get rmq-sample-app --output json # can also be used as tanzu apps workload get rmq-sample-app -ojson
     {
@@ -389,11 +408,12 @@ status:
 
 ## <a id='subpath-usage'> --sub-path
 
-This flag is provided to support use cases where more than one application is included in a single project or repository.
+This flag is provided to support use cases where more than one application is in a single project or
+repository.
 
 - Using `--sub-path` when creating a workload from a Git repository
 
-    ```bash
+    ```console
     tanzu apps workload apply subpathtester --git-repo https://github.com/path-to-repo/my-repo --git-branch main --type web --sub-path my-subpath
 
     🔎 Create workload:
@@ -418,7 +438,7 @@ This flag is provided to support use cases where more than one application is in
 - Using `--sub-path` when creating a workload from local source code
   - In the directory of the project you want to create the workload from
 
-      ```bash
+      ```console
       tanzu apps workload apply my-workload --local-path . -s gcr.io/my-registry/my-workload-image --sub-path subpath_folder
       ❓ Publish source in "." to "gcr.io/my-registry/my-workload-image"? It may be visible to others who can pull images from that repository Yes
       Publishing source in "." to "gcr.io/my-registry/my-workload-image"...
@@ -439,28 +459,42 @@ This flag is provided to support use cases where more than one application is in
 
       ```
 
-**Note:** in cases where a workload must be created from local source code it's recommended to just set the `--local-path` value to point directly to the directory containing the code to be deployed rather than using `--sub-path` to reduce the total amount of code that must be uploaded to create the workload.
+**Note** In cases where a workload must be created from local source code it's recommended to set
+the `--local-path` value to point directly to the directory containing the code to be deployed
+rather than using `--sub-path` to reduce the total amount of code that must be uploaded to create
+the workload.
 
 ## <a id='tanzuignore-file-usage'> .tanzuignore file
 
-As more systems around us adopt the "as code" approaches, application developers will increasingly have files in their projects that have nothing to do with actually running code (those files don't end up in the running container).
+As more systems around us adopt the "as code" approaches, application developers will increasingly
+have files in their projects that have nothing to do with actually running code (those files don't
+end up in the running container).
 
-When creating a workload from local source code, these unused files can be added to the `.tanzuignore` file so there won't be an unnecessary consumption of resources when uploading the source.
+When creating a workload from local source code, these unused files can be added to the
+`.tanzuignore` file so there is not an unnecessary consumption of resources when uploading the
+source.
 
-Additionally, and perhaps more importantly, when iterating on code with `--live-update` enabled, changes which are triggered automatically and/or manually to certain directories/files specified in `.tanzuignore`, will not trigger the automatic re-deployment of the source code (making the iteration loop tighter than it would be if those directories/files were not specified in the `.tanzuignore` file).
+Additionally, and perhaps more importantly, when iterating on code with `--live-update` enabled,
+changes which are triggered automatically and/or manually to certain directories/files specified in
+`.tanzuignore`, will not trigger the automatic re-deployment of the source code (making the
+iteration loop tighter than it would be if those directories/files were not specified in the
+`.tanzuignore` file).
 
-Lastly, it's recommended that the `.tanzuignore` file include a reference to itself given it provides no value when deployed.
+Lastly, it's recommended that the `.tanzuignore` file include a reference to itself given it
+provides no value when deployed.
 
-Folders/directories are supported (these must not end with the system separator, e.g. `/` or `\`).
+Directories are supported (these must not end with the system separator, e.g. `/` or `\`).
 
-Individual files can be listed.
+Individual files may be listed.
 
 And comments (which start with `#`) can be included.
 
-If the `.tanzuignore` file contains files or directories that are not found in the source code, they will be ignored.
+If the `.tanzuignore` file contains files or directories that are not found in the source code, they
+are ignored.
 
-**Example of a .tanzuignore file**
-```bash
+### Example of a .tanzuignore file
+
+```coonsole
     .tanzuignore # must contain itself in order to be ignored
     # This is a comment
     this/is/a/folder/to/exclude
@@ -468,19 +502,12 @@ If the `.tanzuignore` file contains files or directories that are not found in t
     this-is-a-file.ext
 ```
 
-<!-- ## <a id='maximize-efficiency'> Leveraging ENVs to maximize efficiency -->
-<!-- ## <a id='param-yaml-usage'> --param-yaml -->
-<!-- ## <a id='app-usage'> --app -->
-<!-- ## <a id='type-usage'> --type -->
-<!-- ## <a id='labels-anns-env'> --labels, --annotations, --env, --build-env -->
-<!-- ## <a id='dry-run-usage'> --dry-run -->
-
-The main goal of `--dry-run` flag is to prepare all the steps to submit a workload to the cluster and stop before sending it, showing
-an output of the final structure of the workload.
+The main goal of `--dry-run` flag is to prepare all the steps to submit a workload to the cluster
+and stop before sending it, showing an output of the final structure of the workload.
 
 For example, when applying a workload from Git source:
 
-```bash
+```console
 tanzu apps workload apply rmq-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" -t web --dry-run
 ---
 apiVersion: carto.run/v1alpha1
@@ -507,11 +534,12 @@ status:
   supplyChainRef: {}
 ```
 
-This will allow the user to check how a workload *would be* created/updated in the cluster based on the current specifications passed in via `--file workload.yaml` and/or command flags.
+This allows the user to verify how a workload is created or updated in the cluster based on the
+current specifications passed through `--file workload.yaml` or command flags.
 
-If there would be an error when trying to apply the workload, this would be shown with the `--dry-run` flag.
+If there is an error when trying to apply the workload, this is shown with the `--dry-run` flag.
 
-```bash
+```console
 tanzu apps workload create rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1" -t web --dry-run
 Error: workload "default/rmq-sample-app" already exists
 ```
@@ -520,27 +548,36 @@ Error: workload "default/rmq-sample-app" already exists
 
 The `--update-strategy` flag accepts two values (`merge` (default) and `replace`).
 
-This flag can be used to control whether configuration properties/values passed in via `--file workload.yaml` for an existing workload will `merge` with, or completely `replace` (or overwrite), existing on-cluster properties/values set for a workload.
+This flag may be used to control whether configuration properties and values passed through `--file
+workload.yaml` for an existing workload `merge` with, or completely `replace` (or overwrite),
+existing on-cluster properties or values set for a workload.
 
-**Note:** All `tanzu apps workload apply` commands will employ the `merge` update strategy if not specified otherwise by explicitly using the flag and setting its value to `replace`.
+**Note** All `tanzu apps workload apply` commands employs the `merge` update strategy if not
+specified otherwise by explicitly using the flag and setting its value to `replace`.
 
 With the default `merge`:
 
-If the `--file workload.yaml` deletes an existing on-cluster property/value, that property will not be removed from the on-cluster definition.
-If the `--file workload.yaml` includes a new property/value - it will be added to the on-cluster workload properties/values.
-If the `--file workload.yaml` updates an existing value for a property, that property's value on-cluster will be updated.
+If the `--file workload.yaml` deletes an existing on-cluster property or value, that property is not
+be removed from the on-cluster definition.
+If the `--file workload.yaml` includes a new property/value - it is added to the on-cluster workload
+properties/values.
+If the `--file workload.yaml` updates an existing value for a property, that property's value
+on-cluster is updated.
 
 With `replace`:
 
-The on-cluster workload will be updated to exactly what has been specified in the `--file workload.yaml` definition.
+The on-cluster workload is updated to exactly what is specified in the `--file workload.yaml` definition.
 
-The intent of the current default merge strategy is to prevent unintentional deletions of critical properties from existing workloads.
+The intent of the current default merge strategy is to prevent unintentional deletions of critical
+properties from existing workloads.
 
-However, it has been found that this default strategy is counter-intuitive for users and `merge` has been deprecated as of TAP v1.4.0. The default update strategy will be switched to `replace` in 2024.
+However, it is found that this default strategy is counter-intuitive for users and `merge` is
+deprecated as of Tanzu Application Platform v1.4.0. The default update strategy is switched to
+`replace` in 2024.
 
-Examples of the outcomes of both `merge` and `replace` update strategies are provided below:
+Examples of the outcomes of both `merge` and `replace` update strategies are provided in the following:
 
-- ```bash
+- ```console
   # Export workload if there is no previous yaml definition
   tanzu apps workload get spring-petclinic --export > spring-petclinic.yaml
 
@@ -568,29 +605,29 @@ Examples of the outcomes of both `merge` and `replace` update strategies are pro
           tag: tap-1.1
   ```
 
-After saving the file, to check how both of the update strategy options behave, run:
+After saving the file, to verify how both of the update strategy options behave, run:
 
-```bash
+```console
 tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy merge # if flag is not specified, merge is taken as default
 ```
 
-Executing the command above will produce the following output:
+Running the earlier command produces the following output:
 
-```bash
+```console
 ❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files will replace rather than merge existing configuration. The change will take place in the January 2024 TAP release (use "--update-strategy" to control strategy explicitly).
 
 Workload is unchanged, skipping update
 ```
 
-On the other hand, use `replace` as follows:
+By contrast, use `replace` as follows:
 
-```bash
+```console
 tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy replace
 ```
 
-Executing the `replace` command above will produce the following output:
+Running the `replace` earlier command produces the following output:
 
-```bash
+```console
 ❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files will replace rather than merge existing configuration. The change will take place in the January 2024 TAP release (use "--update-strategy" to control strategy explicitly).
 
 🔎 Update workload:
@@ -610,11 +647,8 @@ Executing the `replace` command above will produce the following output:
 ❓ Really update the workload "spring-petclinic"? [yN]:
 ```
 
-Note that with this last, the lines that were deleted in the yaml file are going to be deleted as well in the workload running in the cluster.
-
-**Note**: It's important to highlight that the only fields that will remain exactly as they were created are the system populated metadata fields (`resourceVersion`, `uuid`, `generation`, `creationTimestamp`, `deletionTimestamp`).
-
-<!-- ## <a id='wait-usage'> --wait -->
-<!-- ## <a id='wait-timeout-usage'> --wait-timeout -->
-<!-- ## <a id='airgapped-env'> Apps plug-in usage in an airgapped environment -->
-<!-- **NOTE: Additional how-to's will be added soon** -->
+>**Note** With this last, the lines that were deleted in the YAML file are deleted as well in the
+>workload running in the cluster.
+> The only text boxes that remain exactly as they were created are the system populated
+>metadata text boxes (`resourceVersion`, `uuid`, `generation`, `creationTimestamp`,
+>`deletionTimestamp`).
