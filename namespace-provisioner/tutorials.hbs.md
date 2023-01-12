@@ -78,21 +78,4 @@ There are two approaches to provisioning namespace-scoped resources supported:
 
 ## <a id="using-gitops"></a>Using GitOps
 
-This section describes how to use the built-in controller instead of using GitOps to
-manage the list of namespaces in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
-.
-
->**WARNING**: if there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the [provisioner application](about.hbs.md#nsp-component-carvel-app)
-fails to reconcile and will not be able to create resources. Creation of the namespaces
-is out of the scope for the Namespace Provisioner package.
-
-### <a id="gitops-prerequisites"></a>Prerequisites</br>
-
-The prerequisites for using GitOps are the same as those specified in the
-[controller prerequisites](#nps-controller-prerequisites) above except for the `controller`
-tap value key's value as follows:
-
-- The [`controller` tap value key](install.hbs.md#customized-install) is set to **`false`**
-  (Default is `true`)
-
 For more information about provisioning namespaces with GitOps, see [Control the `desired-namespaces` ConfigMap with GitOps](how-tos.hbs.md#control-desired-namespaces).

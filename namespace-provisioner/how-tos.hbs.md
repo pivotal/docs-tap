@@ -103,7 +103,7 @@ namespace_provisioner:
 
 ### <a id="add-test-scan"></a> Add the resources required by the **Out of the Box Testing and Scanning Supply Chain**
 
-Follow these instructions to install the Java scan policy and Tekton pipeline resources required by
+Follow these instructions to install the Grype scan policy and Java Tekton pipeline resources required by
 the OOTB Testing and Scanning Supply Chain.
 
 
@@ -115,7 +115,7 @@ configuration</br>
    ```yaml
    namespace_provisioner:
      additional_sources:
-     # Add templated java scan policy and tekton pipeline
+     # Add templated Grype scan policy and Java Tekton pipeline
      - git:
          ref: origin/main
          subPath: namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain
