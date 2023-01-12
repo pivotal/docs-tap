@@ -1,4 +1,4 @@
-# Troubleshooting upgrading
+# Troubleshoot upgrading
 
 This topic describes upgrading issues and resolutions.
 

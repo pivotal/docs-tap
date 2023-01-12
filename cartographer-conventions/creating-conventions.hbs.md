@@ -1,4 +1,4 @@
-# Creating conventions
+# Create conventions
 
 This topic describes how to create and deploy custom conventions to the Tanzu Application Platform.
 

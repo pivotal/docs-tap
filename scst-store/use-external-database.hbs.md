@@ -1,4 +1,4 @@
-# User External PostgreSQL database
+# Use External PostgreSQL database
 
 ## <a id='prereqExtrenalDB'></a>Prerequisites
 
