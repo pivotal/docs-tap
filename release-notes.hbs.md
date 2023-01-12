@@ -223,7 +223,6 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 #### <a id="1-4-0-intellij-bc"></a> Tanzu Developer Tools for IntelliJ
 
 - IntelliJ IDEA v2022.2 to v2022.3 is required to install the extension.
-</br></br>
 
 #### <a id="1-4-0-vscode-bc"></a> Tanzu Developer Tools for Visual Studio Code
 
