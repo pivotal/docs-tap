@@ -24,6 +24,7 @@ The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
 ---
+---
 
 ## <a id='1-4-0'></a> v1.4.0
 
