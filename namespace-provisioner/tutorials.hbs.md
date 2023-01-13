@@ -54,7 +54,7 @@ There are two approaches to provisioning namespace-scoped resources supported:
    - The label's value can be anything, including "". </br>
    - If required, you can change the default label selector by configuring the
      [`namespace_selector`](install.hbs.md#customized-install) property/value in tap-values
-     for namespace provisioner.
+     for Namespace Provisioner.
 
 1. **Optional** - this step is only required if the `registry-credentials` secret that was created
    during Tanzu Application Platform Installation **_was not_** exported to all namespaces (see the

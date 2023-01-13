@@ -421,7 +421,7 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="1-4-0-nsp-ki"></a> Namespace Provisioner
 
-- Applying the label selector used by the namespace provisioner controller to the developer namespace, which is configured at deployment time under the `grype` package values, will cause the [`provisioner` Carvel app](namespace-provisioner/about.hbs.md#nsp-component-carvel-app) to crash due to ownership issues. This is because it's trying to install Grype in a namespace where it's already been installed.
+- Applying the label selector used by the Namespace Provisioner controller to the developer namespace, which is configured at deployment time under the `grype` package values, will cause the [`provisioner` Carvel app](namespace-provisioner/about.hbs.md#nsp-component-carvel-app) to crash due to ownership issues. This is because it's trying to install Grype in a namespace where it's already been installed.
 
 #### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI plug-ins
 
@@ -442,7 +442,7 @@ This release has the following known issues, listed by area and component.
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
-The following features, listed by component, are deprecated. 
+The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
 #### <a id="1-4-0-app-sso-deprecations"></a> Application Single Sign-On (AppSSO)
