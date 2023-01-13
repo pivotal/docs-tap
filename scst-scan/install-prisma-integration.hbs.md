@@ -122,8 +122,8 @@ VMware recommends installing the Prisma Scanner objects in the existing `tap-ins
 
 To prepare the Prisma configuration before you install any scanners:
 
-1. Obtain your Prisma Compute Console url and Access Keys/Token by following the documentation [here](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/authentication/access_keys)  
-   * Note - generated tokens expire after an hour
+1. Obtain your Prisma Compute Console url and Access Keys and Token. See [Access keys](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/authentication/access_keys) in the Prisma documentation. 
+   >**Note** Generated tokens expire after an hour.
 2. Create a Prisma secret YAML file and insert the base64 encoded Prisma API token into the `prisma_token`:
 
     ```yaml
@@ -321,8 +321,9 @@ Where:
 
 ## Install Prisma Scanner
 
-After all prerequisites are completed, follow the steps in [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md) to install the Prisma Scanner.
+After all prerequisites are completed, install the Prisma Scanner. See [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md).
 
 ## Known Limitations
-* AWS ECR is not supported
-* OpenShift is not supported
+
+- AWS ECR is not supported.
+- OpenShift is not supported.
