@@ -2,6 +2,12 @@
 
 This topic explains key concepts related to API Auto Registration.
 
+## <a id='architecture'></a>API Auto Registration Architecture
+
+Users can leverage the potential of Tanzu Application Platform and its API Auto Registration component by using a distributed environment like the one we showcase in this diagram:
+
+![API Auto Registration Architecture Diagram](./images/arch.png)
+
 ## <a id='api-descriptor'></a>APIDescriptor Custom Resource Explained
 
 To use API Auto Registration, you must create a custom resource of type `APIDescriptor`.
