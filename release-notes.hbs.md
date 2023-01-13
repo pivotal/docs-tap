@@ -421,7 +421,13 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="1-4-0-nsp-ki"></a> Namespace Provisioner
 
+<<<<<<< HEAD
 - Applying the label selector used by the Namespace Provisioner controller to the developer namespace, which is configured at deployment time under the `grype` package values, will cause the [`provisioner` Carvel app](namespace-provisioner/about.hbs.md#nsp-component-carvel-app) to crash due to ownership issues. This is because it's trying to install Grype in a namespace where it's already been installed.
+=======
+- A deleted namespace may remain in a `Terminating` state indefinitely under certain conditions. 
+  - see the [Unable to delete namespace](namespace-provisioner/troubleshooting.hbs.md#unable-to-delete-namespace) section of the Namespace Provisioner troubleshooting guide for detailed explanation and solution.
+- Applying the label selector used by the namespace provisioner controller to the developer namespace, which is configured at deployment time under the `grype` package values, will cause the [`provisioner` Carvel app](namespace-provisioner/about.hbs.md#nsp-component-carvel-app) to crash due to ownership issues. This is because it's trying to install Grype in a namespace where it's already been installed.
+>>>>>>> 0d94909e65e8220c35147c0e97ba13868a6952a4
 
 #### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI plug-ins
 
