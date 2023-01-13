@@ -72,6 +72,8 @@ This [example](#example-additional-resources) adds four additional sources:
 <a id="example-additional-resources"></a>Example `tap-values.yaml` snippet with custom configuration
 for additional_sources:
 
+>***Note:** As in the example below, each of the user-generated `namespace_provisioner.additional_sources[].path` values must be unique, and each path must begin with "_ytt_lib/" to be identified as a ytt libary.
+
 ```yaml
 namespace_provisioner:
   additional_sources:
@@ -120,9 +122,11 @@ configuration</br>
          ref: origin/main
          subPath: namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain
          url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-       path: _ytt_lib/testingscanning
+       path: _ytt_lib/testingscanning   # this user-generated path must always begin with "_ytt_lib/"
    ```
+
    </br>
+
 1. Apply your updated `tap-values.yaml` to the target cluster
 
    ```terminal
@@ -160,13 +164,13 @@ namespace_provisioner:
       ref: origin/main
       subPath: namespace-provisioner-gitops-examples/default-resources-overrides/overlays
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-    path: _ytt_lib/customize
+    path: _ytt_lib/customize   # this path must always be exactly "_ytt_lib/customize"
   # Adds the secrets referenced in the overlay
   - git:
       ref: origin/main
       subPath: namespace-provisioner-gitops-examples/custom-resources/workload-sa
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-    path: _ytt_lib/workload-sa
+    path: _ytt_lib/workload-sa   # this user-generated path must always begin with "_ytt_lib/"
 ```
 
 Sample customization (`.lib.yaml`) file for overriding the `secrets` and `imagePullSecrets` of the default ServiceAccount
@@ -215,17 +219,16 @@ kctrl app kick --app provisioner -n tap-namespace-provisioning -y
 ### <a id="control-desired-namespaces"></a>Control the `desired-namespaces` ConfigMap with GitOps
 
 You can maintain the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap in your Git
-repository instead of using the [controller](about.hbs.md#nsp-controller). You can use different GitOps tools
-to override the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) in the
-tap-namespace-provisioning namespace. If the [controller](about.hbs.md#nsp-controller) is installed
-as part of the package, when it reconciles, it removes all namespaces that are not properly labeled with the
-[`namespace_selector`](install.hbs.md#customized-install) specified in the tap values
-(Default label selector is **`apps.tanzu.vmware.com/tap-ns=""`**).
+repository instead of using the [controller](about.hbs.md#nsp-controller). You can use the GitOps 
+tool of your choice to override the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) 
+in the `tap-namespace-provisioning` namespace. 
 
 #### Prerequisites
 
 - The Namespace Provisioner package is installed and successfully reconciled.
-- [`controller`](install.hbs.md#customized-installation) is set to “false”.
+- [`controller`](install.hbs.md#customized-installation) must be set to “false”.
+  - **Note:** If the [controller](about.hbs.md#nsp-controller) is set to "true", it will overwrite 
+  the declarative desired state configured in your GitOps repository.
 - The registry-credentials secret referred by the Tanzu Build Service is added to `tap-install.yaml`
   and exported to all namespaces. If you don’t want to export this secret to all namespaces for any reason,
   you will have to go through an additional step to create this secret in the namespace.
@@ -259,7 +262,12 @@ data:
 
 ```
 
-The following command uses Kubectl to override this [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap manually, but the ConfigMap can be overridden with your  tool of choice for GitOps.
+The recommended approach is to maintain a list of namespace objects in your GitOps repo, and use the GitOps tool of your 
+choice to create namespaces in the cluster and the provisioner will populate it with the appropriate 
+resources.
+
+The following command uses Kubectl to override this [`desired-namespaces`](about.hbs.md#desired-ns-configmap) 
+ConfigMap manually, but the ConfigMap can be overridden with your  tool of choice for GitOps.
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/namespace-provisioner-gitops-examples/desired-namespaces/gitops-managed-desired-namespaces.yaml
@@ -268,6 +276,6 @@ kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/application-acce
 When this change is applied, the [provisioner application](about.hbs.md#nsp-component-carvel-app)
 starts the reconcile process and provisions the resources on the given namespaces.
 
->**WARNING:** If there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) list that does not
-exist on the cluster, the `provisioner` application fails to reconcile and is not able to
-create resources. Creating namespaces is out of scope for the Namespace Provisioner package.
+>**WARNING:** If there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) 
+list that does not exist on the cluster, the `provisioner` application fails to reconcile and is 
+not able to create resources. Creating namespaces is out of scope for the Namespace Provisioner package.
