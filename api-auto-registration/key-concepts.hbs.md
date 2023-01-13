@@ -4,7 +4,7 @@ This topic explains key concepts related to API Auto Registration.
 
 ## <a id='architecture'></a>API Auto Registration Architecture
 
-Users can leverage the potential of Tanzu Application Platform and its API Auto Registration component by using a distributed environment like the one we showcase in this diagram:
+Users can leverage the potential of Tanzu Application Platform and its API Auto Registration component by using a distributed environment like the one shown in the following diagram:
 
 ![API Auto Registration Architecture Diagram](./images/arch.png)
 
