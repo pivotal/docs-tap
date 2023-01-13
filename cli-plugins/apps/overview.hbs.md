@@ -17,6 +17,6 @@ To get started with apps plugin and workload management, see [Tutorials](tutoria
 
 ## <a id='how-to-guides'></a>How-to-guides
 
-For more complex examples regarding apps cli plugin usage, check [How-to-guides](how-to-guides.hbs.md)
+For more complex examples regarding apps cli plugin usage, check [How-to-guides](how-to-examples.hbs.md)
 
 <!-- describe each component and how they work together -->
