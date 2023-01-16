@@ -144,9 +144,10 @@ To do so:
     This ensures the `kubeconfig` context is set to the cluster with resources to be viewed in
     Tanzu Application Platform GUI.
 
-1. Again, on the `Run` cluster, discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values:
+1. Again, on the `Run` cluster, discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values.
 
-   - If you're watching a v1.23 or earlier Kubernetes cluster, run:
+   v1.23 or earlier Kubernetes cluster
+   : If you're watching a v1.23 or earlier Kubernetes cluster, run:
 
      ```console
      CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
@@ -160,7 +161,8 @@ To do so:
      echo CLUSTER_TOKEN: $CLUSTER_TOKEN
      ```
 
-   - If you're watching a v1.24 or later Kubernetes cluster, run:
+   v1.24 or later Kubernetes cluster
+   : If you're watching a v1.24 or later Kubernetes cluster, run:
 
      ```console
      CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
@@ -184,8 +186,8 @@ To do so:
      echo CLUSTER_TOKEN: $CLUSTER_TOKEN
      ```
 
-     > **Note** You can create a short-lived token with the `kubectl create token` command if that is
-     > the preferred method. This method requires frequent token rotation.
+   > **Note** You can create a short-lived token with the `kubectl create token` command if that is
+   > the preferred method. This method requires frequent token rotation.
 
 1. (Optional) Configure the Kubernetes client to verify the TLS certificates presented by a cluster's
    API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
