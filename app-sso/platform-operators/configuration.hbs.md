@@ -27,7 +27,7 @@ The AppSSO package has one required configuration value, its `domain_name`. It i
 for `AuthServer`. `domain_name` must be the shared ingress domain of your TAP package installation. If your TAP
 installation is configured with `shared.ingress_domain`, then AppSSO will inherit the correct configuration.
 
-> **Note** If omitted <code>domain_name</code> is set to <code>shared.ingress_domain</code>.
+>**Note** If omitted, `domain_name` is set to `shared.ingress_domain`.
 
 ## domain_template
 
@@ -62,7 +62,7 @@ certificates from a custom CA and [configuring `AuthServer` storage](../service-
 
 Alternatively, you can [configure trust for a single `AuthServer`](../service-operators/ca-certs.hbs.md).
 
-> **Note** AppSSO-specific <code>ca_cert_data</code> is concatenated with <code>shared.ca_cert_data</code>. The resulting PEM bundle contains both.
+>**Note** AppSSO-specific `ca_cert_data` is concatenated with `shared.ca_cert_data`. The resulting PEM bundle contains both.
 
 ## kubernetes_distribution
 
@@ -71,7 +71,7 @@ and `openshift`.
 
 AppSSO installs [_OpenShift_-specific RBAC and resources](openshift.md).
 
-> **Note** If omitted `kubernetes_distribution` is set to `shared.kubernetes_distribution`.
+>**Note** If omitted, `kubernetes_distribution` is set to `shared.kubernetes_distribution`.
 
 ## Configuration schema
 
