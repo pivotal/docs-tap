@@ -447,6 +447,12 @@ It is recommended that you update the Java buildpack in your ClusterStore with t
   associated scan policies.
 - The CVEs bar graph in Workload Build Vulnerabilities sometimes cuts numbers off.
 
+#### <a id="api-auto-registration-ki"></a> API Auto Registration
+
+- Unknown Certificate Authority and connection refused errors from the APIDescriptor CRD. See [API Auto Registration Troubleshooting section](api-auto-registration/troubleshooting.hbs.md) for more details and resolution
+
+</br>
+
 ---
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
