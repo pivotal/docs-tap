@@ -1,25 +1,25 @@
 # AuthServer readiness
 
-Generally, `AuthServer.status` is a reliable source to judge an `AuthServer`'s readiness.
+`AuthServer.status` is a reliable source to judge an `AuthServer`'s readiness.
 
-However, you are encouraged to verify your `AuthServer` with the following checks:
+You can verify your `AuthServer` by ensuring:
 
-- [ ] Ensure that there is at least one token signing key configured
+- there is at least one token signing key configured.
 
-  ```shell
-  curl -X GET {spec.issuerURI}/oauth2/jwks
-  ```
+    ```shell
+    curl -X GET {spec.issuerURI}/oauth2/jwks
+    ```
 
-  The response body should yield at least one key in the list. If there are no keys,
-  please [apply a token signing key](token-signature.md)
+    The response body should yield at least one key in the list. If there are no keys,
+    please [apply a token signing key](token-signature.md)
 
-- [ ] Ensure that OpenID discovery endpoint is available
+- OpenID discovery endpoint is available.
 
-  ```shell
-  curl -X GET {spec.issuerURI}/.well-known/openid-configuration
-  ```
+    ```shell
+    curl -X GET {spec.issuerURI}/.well-known/openid-configuration
+    ```
 
-  The response body should yield a valid JSON body containing information about the `AuthServer`.
+    The response body should yield a valid JSON body containing information about the `AuthServer`.
 
 ## Client registration check
 

@@ -158,7 +158,7 @@ Now you can navigate to `http://test-app.example.com/`. It may ask you to log in
 AuthServer you haven't already. You can also navigate to `http://test-app.example.com/token` if you wish to see the
 contents of the ID token.
 
-## 💡 Deployment manifest explained
+## Deployment manifest
 
 The application was deployed as a two-container pod: one for the app, and one for handling login.
 
@@ -170,7 +170,7 @@ The application was deployed as a two-container pod: one for the app, and one fo
 
 Along with this deployment, there is a `Service` + `HTTPProxy`, to expose the application to the outside world.
 
-## 💡 Notes on OAuth2-Proxy
+## OAuth2-Proxy
 
 The setup of the above [OAuth2 Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) is minimal, and is not considered
 suitable for production use. To configure it for production, please refer to the official documentation.
