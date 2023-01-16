@@ -8,10 +8,9 @@ security policies.
 AppSSO currently only supports Redis `v6.0` or above as a storage solution. Version 6.0 introduced TLS support to ensure
 encrypted client-server communication -- AppSSO enforces TLS by default.
 
-> **Note** [Storage provided by default](#storage-provided-by-default) refers to an `AuthServer` resource in which the field
-`.spec.storage` is not set.
+[Storage provided by default](#default-storage) refers to an `AuthServer` resource in which `.spec.storage` is not set.
 
-> **Note** Although data in motion is encrypted by using TLS, data at rest is not encrypted by default through `AuthServer`. Each
+Although data in motion is encrypted by using TLS, data at rest is not encrypted by default through `AuthServer`. Each
 storage provider is responsible for encrypting their own data. See [data types](#data-types) for more
 information about storage.
 
@@ -64,7 +63,7 @@ in [Service Bindings 1.0.0 specification](https://github.com/servicebinding/spec
 
 Here is an example of a properly formatted `Secret` resource:
 
-> **Important** The Secret **must** be created in the same namespace as your `AuthServer`
+>**Important** The Secret must be created in the same namespace as your `AuthServer`.
 
 ```yaml
 apiVersion: v1
@@ -126,14 +125,14 @@ Expect to see the following output with actual Redis host and port:
 }
 ```
 
-## Storage provided by default
+## <a id="default-storage"></a>Storage provided by default
 
 If no storage is defined, an `AuthServer` provides its own short-lived ephemeral storage solution,
 Redis. The provided Redis is configured to never flush any data to any volume that may be attached to the Pods operating
 the authorization server.
 
-> **Caution** The default storage configuration is most useful in prototyping or testing environments, and **should not be relied on
-in production environments.**
+>**Caution** The default storage configuration is most useful in prototyping or testing environments 
+and must not be used in production environments.
 
 To view details for Redis of an `AuthServer`:
 
@@ -196,4 +195,4 @@ stringData:
   cluster.nodes: 100.90.1.10:6379,100.90.1.11:6379,100.90.1.12:6379
 ```
 
-> **Note** `cluster.nodes` must be a comma-separated list of `<ip>:<port>`.
+>**Important** `cluster.nodes` must be a comma-separated list of `<ip>:<port>`.

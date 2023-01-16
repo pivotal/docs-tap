@@ -48,19 +48,19 @@ To allow `ClientRegistrations` from all or a restricted set of namespaces this a
 comma-separated list of allowed Namespaces, e.g. `"app-team-red,app-team-green"`, or `"*"` if it should allow clients
 from all namespaces.
 
-> **Caution** If the annotation is missing, no clients are allowed.
+>**Caution** If the annotation is missing, no clients are allowed.
 
 ## Unsafe configuration
 
 `AuthServer` is designed to enforce secure and production-ready configuration. However, sometimes it is necessary
 to opt-out of those constraints, e.g. when deploying `AuthServer` on an _iterate_ cluster.
 
-> **Caution** Allowing **unsafe** is not recommended for production!
+>**Caution** Allowing **unsafe** is not recommended for production.
 
 ### Unsafe identity provider
 
 The `InternalUnsafe` identity provider cannot be used unless explicitly allowed by including the annotation
-`sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider` like so:
+`sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider` as follows:
 
 ```yaml
 ---
@@ -81,8 +81,8 @@ apply.
 
 ### Unsafe issuer URI
 
-It's not possible to use a plain HTTP issuer URI, unless it's explicitly allowed by including the
-annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri` like so:
+It's not possible to use a plain HTTP issuer URI, unless it's explicitly allowed by including the 
+annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri` as follows:
 
 ```yaml
 ---
@@ -95,4 +95,4 @@ spec:
   issuerURI: http://this.is.unsafe
 ```
 
-If the annotation is not present and a plain HTTP issuer URI configured the `AuthServer` will not apply.
+If the annotation is not present and a plain HTTP issuer URI is configured, the `AuthServer` does not apply.

@@ -7,7 +7,7 @@ users for development purposes only. `AuthServer` also has limited beta support 
 Identity providers are configured under `spec.identityProviders`, learn more
 from [the API reference](../crds/authserver.md).
 
-> **Caution** Changes to `spec.identityProviders` take some time to be effective as the operator will roll out a new deployment
+>**Caution** Changes to `spec.identityProviders` does not take effect immediately because the operator will roll out a new deployment
 of the authorization server.
 
 End-users will be able to log in with these providers when they go to `{spec.issuerURI}` in their browser.
@@ -56,7 +56,7 @@ stringData:
   clientSecret: very-secr3t
 ```
 
-where:
+Where:
 
 - `openID` is the issuer identifier. You can define as many OpenID providers as you like. If the provider supports OpenID Connect Discovery, 
 the value of `openID` is used to auto-configure the provider by using information from `https://openid.example.com/.well-known/openid-configuration`.
@@ -99,7 +99,7 @@ curl -s "ISSUER-URI/.well-known/openid-configuration" | jq ".id_token_signing_al
 
 ## <a id='ldap'></a>LDAP
 
-> **Important** **At most one** `ldap` identity provider can be configured.
+>**Important** You can not configure more than one `ldap` identity provider.
 
 For example:
 
@@ -139,7 +139,7 @@ stringData:
   password: confidential-password-value
 ```
 
-where:
+Where:
 
 - `url` is the URL of the LDAP server. It must be `ldaps` and must contain a port.
 - `bind.dn` is the DN to perform the bind.
@@ -452,7 +452,7 @@ do not have the role `Citizens`, which requires a depth greater or equal to 3.
 
 ## SAML (experimental)
 
-> **Caution** Support for SAML providers is considered "experimental".
+>**Caution** Support for SAML providers is experimental.
 
 For SAML providers only autoconfiguration through `metadataURI` is supported.
 
@@ -490,10 +490,10 @@ provider should be `https://appsso.company.example.com:1234/login/saml2/sso/my-p
 
 ## Internal users
 
-> **Caution** `InternalUnsafe` considered **unsafe**, and **not** recommended for production!
+>**Caution** `InternalUnsafe` is unsafe and not recommended for production.
 
-During development, static users may be useful for testing purposes. **At most one** `internalUnsafe` identity
-provider can be configured.
+During development, static users can be useful for testing purposes. 
+You can not configure more than one `internalUnsafe` identity provider.
 
 For example:
 
