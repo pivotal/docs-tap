@@ -105,7 +105,7 @@ pet-clinic-config-writer-9fbk6-pod[step-main] ++ jq -r 'to_entries | .[] | @sh "
 + pet-clinic-config-writer-kpmc6-pod › step-main
 + pet-clinic-config-writer-kpmc6-pod › step-init
 + pet-clinic-config-writer-kpmc6-pod › place-scripts
-pet-clinic-config-writer-9fbk6-pod[step-main] + eval 'mkdir -p $(dirname '\''delivery.yml<!--฿ Per YAML.org, |.yaml| is the preferred extension. If the reader creates this YAML file, fix every instance of the filename in every topic as part of your commit. Files with the |.yml| extension downloaded from elsewhere are outside our control. ฿-->'\'') && echo '\''apiVersion: serving.knative.dev/v1'
+pet-clinic-config-writer-9fbk6-pod[step-main] + eval 'mkdir -p $(dirname '\''delivery.yml'\'') && echo '\''apiVersion: serving.knative.dev/v1'
 pet-clinic-config-writer-9fbk6-pod[step-main] kind: Service
 pet-clinic-config-writer-9fbk6-pod[step-main] metadata:
 pet-clinic-config-writer-9fbk6-pod[step-main]   name: pet-clinic
