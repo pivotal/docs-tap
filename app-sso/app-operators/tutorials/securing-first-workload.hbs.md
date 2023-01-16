@@ -37,7 +37,7 @@ The application, once launched, has two pages:
 The security configuration for the above is located
 at `com.vmware.tanzu.apps.sso.sampleworkload.config.WebSecurityConfig`.
 
-> **Note** For more information about how apps are configured with Spring Security OAuth2 Client library, see [Spring Boot and OAuth2 documentation](https://spring.io/guides/tutorials/spring-boot-oauth2/).
+For more information about how apps are configured with Spring Security OAuth2 Client library, see [Spring Boot and OAuth2 documentation](https://spring.io/guides/tutorials/spring-boot-oauth2/).
 
 By default, there is no application properties file in our sample application and this is by design: even the simplest
 application can be deployed with AppSSO, you can even go to [start.spring.io](https://start.spring.io) and download a
@@ -68,7 +68,7 @@ The `ClientRegistration` resource definition contains a few critical pieces in i
   is [required by OpenID Connect specification](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) in
   order to issue identity tokens which designate a user as 'signed in'.
 
-> **Note** For more information about `ClientRegistration` custom resource, 
+For more information about `ClientRegistration` custom resource, 
 see [ClientRegistration CRD](../../crds/clientregistration.md).
 
 The `client.yaml` file is using [ytt templating](https://carvel.dev/ytt/) conventions. If you have
