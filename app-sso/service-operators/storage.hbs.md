@@ -14,8 +14,9 @@ Although data in motion is encrypted by using TLS, data at rest is not encrypted
 storage provider is responsible for encrypting their own data. See [data types](#data-types) for more
 information about storage.
 
-<p>
-<strong>Best Practice for Securing Data at Rest:</strong>
+
+## Best Practice for Securing Data at Rest
+
 To be compliant with HIPAA, FISMA, PCI and GDPR, you must encrypt data at rest. Securing
 the underlying infrastructure that Redis uses is crucial to protect against a potential attack.
 The National Institute for Standards and Technology – Federal Information Processing Standards (NIST-FIPS) sets the
@@ -24,7 +25,7 @@ Symmetric cryptography can be used to protect data at rest. This means that the 
 decrypts the data, so there is no need for a different private and public key. The [Advanced Encryption Standard (AES)](https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.197.pdf)
 encryption algorithm is an industry standard for securing data at rest. For the highest level security, VMware recommends
 to use a 256-bit key.
-</p>
+
 
 ## Configuring Redis
 
