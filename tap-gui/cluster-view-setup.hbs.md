@@ -146,45 +146,45 @@ To do so:
 
 1. Again, on the `Run` cluster, discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values.
 
-   v1.23 or earlier Kubernetes cluster
-   : If you're watching a v1.23 or earlier Kubernetes cluster, run:
+    v1.23 or earlier Kubernetes cluster
+    : If you're watching a v1.23 or earlier Kubernetes cluster, run:
 
-     ```console
-     CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+      ```console
+       CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
-     CLUSTER_TOKEN=$(kubectl -n tap-gui get secret $(kubectl -n tap-gui get sa tap-gui-viewer -o=json \
-     | jq -r '.secrets[0].name') -o=json \
-     | jq -r '.data["token"]' \
-     | base64 --decode)
+       CLUSTER_TOKEN=$(kubectl -n tap-gui get secret $(kubectl -n tap-gui get sa tap-gui-viewer -o=json \
+       | jq -r '.secrets[0].name') -o=json \
+       | jq -r '.data["token"]' \
+       | base64 --decode)
 
-     echo CLUSTER_URL: $CLUSTER_URL
-     echo CLUSTER_TOKEN: $CLUSTER_TOKEN
-     ```
+       echo CLUSTER_URL: $CLUSTER_URL
+       echo CLUSTER_TOKEN: $CLUSTER_TOKEN
+      ```
 
-   v1.24 or later Kubernetes cluster
-   : If you're watching a v1.24 or later Kubernetes cluster, run:
+    v1.24 or later Kubernetes cluster
+    : If you're watching a v1.24 or later Kubernetes cluster, run:
 
-     ```console
-     CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
+      ```console
+       CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
 
-     kubectl apply -f - <<EOF
-     apiVersion: v1
-     kind: Secret
-     metadata:
-       name: tap-gui-viewer
-       namespace: tap-gui
-       annotations:
-         kubernetes.io/service-account.name: tap-gui-viewer
-     type: kubernetes.io/service-account-token
-     EOF
+       kubectl apply -f - <<EOF
+       apiVersion: v1
+       kind: Secret
+       metadata:
+         name: tap-gui-viewer
+         namespace: tap-gui
+         annotations:
+           kubernetes.io/service-account.name: tap-gui-viewer
+      type: kubernetes.io/service-account-token
+      EOF
 
-     CLUSTER_TOKEN=$(kubectl -n tap-gui get secret tap-gui-viewer -o=json \
-     | jq -r '.data["token"]' \
-     | base64 --decode)
+      CLUSTER_TOKEN=$(kubectl -n tap-gui get secret tap-gui-viewer -o=json \
+      | jq -r '.data["token"]' \
+      | base64 --decode)
 
-     echo CLUSTER_URL: $CLUSTER_URL
-     echo CLUSTER_TOKEN: $CLUSTER_TOKEN
-     ```
+      echo CLUSTER_URL: $CLUSTER_URL
+      echo CLUSTER_TOKEN: $CLUSTER_TOKEN
+      ```
 
    > **Note** You can create a short-lived token with the `kubectl create token` command if that is
    > the preferred method. This method requires frequent token rotation.
