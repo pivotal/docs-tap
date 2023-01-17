@@ -1,4 +1,4 @@
-# <a id='tutorials'>Tutorials
+# Tutorials
 
 ## <a id='install-uninstall'>Installing/Uninstalling Apps CLI plug-in
 
