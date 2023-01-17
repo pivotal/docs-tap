@@ -21,8 +21,7 @@ kubectl get secrets metadata-store-read-write-client -n metadata-store -o jsonpa
 
 ## Retrieving the read-only access token
 
-> **Note** In order retrieve the read-only access token, you must first have a read-only service account.
-> See [Create read-only service account](create-service-account.hbs.md#ro-serv-accts).
+In order retrieve the read-only access token, you must first have a read-only service account. See [Create read-only service account](create-service-account.hbs.md#ro-serv-accts).
 
 To retrieve the read-only access token, run:
 

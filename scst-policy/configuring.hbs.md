@@ -84,7 +84,7 @@ Authorities listed in the `authorities` block of the ClusterImagePolicy are
 Each `key` authority can contain a PEM-encoded ECDSA public key, a `secretRef`,
 or a `kms` path.
 
->**Note:** Currently, only ECDSA public keys are supported.
+> **Important** Only ECDSA public keys are supported.
 
 ```yaml
 spec:

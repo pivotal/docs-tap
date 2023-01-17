@@ -66,7 +66,7 @@ Expect to see the following output:
       15 + |      url: https://github.com/sample-accelerators/tanzu-java-web-app
   ```
 
->**Note:** The Git repository URL must include the scheme: `http://`,
+>**Important** The Git repository URL must include the scheme: `http://`,
 `https://`, or `ssh://`.
 
 

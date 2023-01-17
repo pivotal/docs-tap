@@ -330,7 +330,7 @@ manually is to add registry credentials to both the developer namespace and the
 `scan-link-system` namespace, using these
 [instructions](../set-up-namespaces.hbs.md).
 
-Note: This topic step does not apply to users who used
+>**Important** This step does not apply to users who used
 `--export-to-all-namespaces` when setting up the Tanzu Application Platform
 package repository.
 
@@ -349,4 +349,4 @@ To resolve this issue, ensure that Grype has access to its vulnerability databas
 - If you did not set up a mirror, Grype manages its database behind the scenes.
   Verify that the cluster has access to https://anchore.com/.
 
-Note: This issue is unrelated to Supply Chain Security Tools for Tanzu – Store.
+This issue is unrelated to Supply Chain Security Tools for Tanzu – Store.

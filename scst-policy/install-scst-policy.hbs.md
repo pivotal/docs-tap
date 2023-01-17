@@ -10,7 +10,7 @@ Platform's Full, Iterate and Run profiles. Use the instructions in this topic to
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 
 - A container image registry that supports TLS connections.
->**Note:** This component does not work with not secure registries.
+>**Important:** This component does not work with not secure registries.
 
 - If Supply Chain Security Tools - Sign is installed with an existing running
 Image Policy Webhook `ClusterImagePolicy`, see
@@ -220,7 +220,7 @@ To install Supply Chain Security Tools - Policy Controller:
 
 After you run the commands earlier the policy controller is running.
 
->**Note:** Policy Controller is now installed, but it does not enforce any
+Policy Controller is now installed, but it does not enforce any
 policies by default. Policies must be explicitly configured on the cluster.
 To configure signature verification policies, see [Configuring Supply Chain
 Security Tools - Policy](configuring.md).

@@ -389,16 +389,13 @@ provide the credentials for that repository as follows:
     password: GIT-PASSWORD
   ```
 
->**Note:** Both the Tekton annotation and the `basic-auth` secret type must be
+Both the Tekton annotation and the `basic-auth` secret type must be
 set. `GIT-SERVER` must be prefixed with the appropriate URL scheme and the Git
 server. For example, for `https://github.com/vmware-tanzu/cartographer`,
 `https://github.com` must be provided as the `GIT-SERVER`.
 
-<p class="note important">
-<strong>Note:</strong>
 To use the pull request approach, the password text box must contain a token.
 See [Pull Requests](#prs).
-</p>
 
 >**Note:** If you want to use the pull request approach, the password field must be filled with a token.
 See the [Pull Requests section](#pull-requests) for more information.

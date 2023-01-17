@@ -161,7 +161,7 @@ To install Out of the Box Supply Chain with Testing and Scanning:
     service_account: default
     ```
 
-    >**Note:** The `gitops.repository_prefix` field must end with `/`.
+    >**Important** The `gitops.repository_prefix` field must end with `/`.
 
 1. With the configuration ready, install the package by running:
 

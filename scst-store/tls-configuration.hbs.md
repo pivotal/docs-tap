@@ -2,7 +2,7 @@
 
 Supply Chain Security Tools - Store supports only TLS 1.2.
 
-> **Note** SCST - Store only supports TLS v1.2.
+> **Important** SCST - Store only supports TLS v1.2.
 
 ## (Optional) Setting up custom ingress TLS certificate
 

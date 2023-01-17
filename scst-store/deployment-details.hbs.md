@@ -92,7 +92,7 @@ db_password: "PASSWORD-0123"
 
 Where `PASSWORD-0123` is the same password used between deployments.
 
->**Note:** there is a known issue related to changing database passwords [Persistent Volume Retains Data](../release-notes.md#store-persistent-volume-retains-data).
+>**Important** There is a known issue related to changing database passwords [Persistent Volume Retains Data](../release-notes.md#store-persistent-volume-retains-data).
 
 ### <a id='service-accounts'></a>Service accounts
 
