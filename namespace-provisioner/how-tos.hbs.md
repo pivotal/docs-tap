@@ -1,6 +1,6 @@
 # Customize Namespace Provisioner
 
-This topic describes advanced use-cases associated with Namespace Provisioner.
+This topic describes advanced use cases associated with Namespace Provisioner.
 
 ## <a id="data-values-templating"></a>Data values templating guide
 
@@ -52,7 +52,7 @@ Here's a [sample of a templated Tekton pipeline.](https://github.com/vmware-tanz
 
 ### <a id="extending-default-resources"></a>Extending the default provisioned resources
 
-To customize and extend the default out of box configuration for the Namespace Provisioner
+To customize and extend the default configuration for the Namespace Provisioner
 that is templated in the  [`default-resources`](about.hbs.md#nsp-component-default-resources) Secret,
 add [additional sources](install.hbs.md#customized-install) in the `tap-values.yaml` configuration
 file. For example, to adjust quota allocation or to create other namespace resources. For details of
@@ -72,7 +72,7 @@ This [example](#example-additional-resources) adds four additional sources:
 <a id="example-additional-resources"></a>Example `tap-values.yaml` snippet with custom configuration
 for additional_sources:
 
->***Note:** As in the example below, each of the user-generated `namespace_provisioner.additional_sources[].path` values must be unique, and each path must begin with "_ytt_lib/" to be identified as a ytt libary.
+>***Note** As shown in the following example, each of the user-generated `namespace_provisioner.additional_sources[].path` values must be unique, and each path must begin with "_ytt_lib/" to be identified as a ytt library.
 
 ```yaml
 namespace_provisioner:
@@ -196,7 +196,7 @@ imagePullSecrets:
 ### <a id="control-reconcile-behavior"></a>Control the Namespace Provisioner reconcile behavior for specific resources
 
 There are certain OOTB [`default-resources`](reference.hbs.md#tap-profile---default-resources-mapping)
-like the `ServiceAccount` that are annotated with a special annotation
+like the `ServiceAccount` that is annotated with a special annotation
 **`namespace-provisioner.apps.tanzu.vmware.com/no-overwrite`**.
 
 Any changes to the resources that have the `...no-overwrite` annotation are not overwritten by the
@@ -219,22 +219,22 @@ kctrl app kick --app provisioner -n tap-namespace-provisioning -y
 ### <a id="control-desired-namespaces"></a>Control the `desired-namespaces` ConfigMap with GitOps
 
 You can maintain the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap in your Git
-repository instead of using the [controller](about.hbs.md#nsp-controller). You can use the GitOps 
-tool of your choice to override the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) 
-in the `tap-namespace-provisioning` namespace. 
+repository instead of using the [controller](about.hbs.md#nsp-controller). You can use the GitOps0
+tool of your choice to override the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+in the `tap-namespace-provisioning` namespace.
 
 #### Prerequisites
 
 - The Namespace Provisioner package is installed and successfully reconciled.
 - [`controller`](install.hbs.md#customized-installation) must be set to “false”.
-  - **Note:** If the [controller](about.hbs.md#nsp-controller) is set to "true", it will overwrite 
+  - **Note** If the [controller](about.hbs.md#nsp-controller) is set to "true", it will overwrite
   the declarative desired state configured in your GitOps repository.
 - The registry-credentials secret referred by the Tanzu Build Service is added to `tap-install.yaml`
   and exported to all namespaces. If you don’t want to export this secret to all namespaces for any reason,
   you will have to go through an additional step to create this secret in the namespace.
 
-Use the following snippet as a reference for the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) that you can put on your
-Git repository.
+Use the following snippet as a reference for the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+that you can put on your Git repository.
 Desired-namespaces.yaml ([Link to sample repo file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/desired-namespaces/gitops-managed-desired-namespaces.yaml))
 
 ```yaml
@@ -262,11 +262,11 @@ data:
 
 ```
 
-The recommended approach is to maintain a list of namespace objects in your GitOps repo, and use the GitOps tool of your 
-choice to create namespaces in the cluster and the provisioner will populate it with the appropriate 
-resources.
+The recommended approach is to maintain a list of namespace objects in your GitOps repo, and use the
+GitOps tool of your choice to create namespaces in the cluster and the provisioner application will
+populate it with the appropriate resources.
 
-The following command uses Kubectl to override this [`desired-namespaces`](about.hbs.md#desired-ns-configmap) 
+The following command uses Kubectl to override this [`desired-namespaces`](about.hbs.md#desired-ns-configmap)
 ConfigMap manually, but the ConfigMap can be overridden with your  tool of choice for GitOps.
 
 ```bash
@@ -276,6 +276,6 @@ kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/application-acce
 When this change is applied, the [provisioner application](about.hbs.md#nsp-component-carvel-app)
 starts the reconcile process and provisions the resources on the given namespaces.
 
->**WARNING:** If there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) 
-list that does not exist on the cluster, the `provisioner` application fails to reconcile and is 
+>**WARNING:** If there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+list that does not exist on the cluster, the `provisioner` application fails to reconcile and is
 not able to create resources. Creating namespaces is out of scope for the Namespace Provisioner package.
