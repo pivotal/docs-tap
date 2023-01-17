@@ -63,24 +63,24 @@ guide](installation.md).  You can obtain the PEM Encoded crt file using the foll
 1. Create a Certificate object where the issuerRef refers to the ClusterIssuer referenced
 in the `shared.ingress_issuer` field.
 
-  ```console
-  # create the cert
-  cat <<EOF | kubectl apply -f -
-  apiVersion: cert-manager.io/v1
-  kind: Certificate
-  metadata:
-    name: ca-extractor
-    namespace: default
-  spec:
-    dnsNames:
-    - tap.example.com
-    issuerRef:
-      group: cert-manager.io
-      kind: ClusterIssuer
-      name: tap-ingress-selfsigned
-    secretName: ca-extractor
-  EOF
-  ```
+    ```console
+    # create the cert
+    cat <<EOF | kubectl apply -f -
+    apiVersion: cert-manager.io/v1
+    kind: Certificate
+    metadata:
+      name: ca-extractor
+      namespace: default
+    spec:
+      dnsNames:
+      - tap.example.com
+      issuerRef:
+        group: cert-manager.io
+        kind: ClusterIssuer
+        name: tap-ingress-selfsigned
+      secretName: ca-extractor
+    EOF
+    ```
 
 2. Extract the CA certificate data from the secret that is generated in the
 previous command. The name of the secret is found in the `secretName:
