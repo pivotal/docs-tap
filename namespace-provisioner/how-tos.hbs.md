@@ -69,10 +69,10 @@ This [example](#example-additional-resources) adds four additional sources:
 - The fourth additional source points to [examples of ytt templated tekton pipelines](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines).
    - After importing this source, Namespace Provisioner creates a **developer-defined-tekton-pipeline-python** and **developer-defined-tekton-pipeline-angular** for namespaces in  the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)  that has an additional parameter **language: python** and **language: angular** respectively.</br></br>
 
-<a id="example-additional-resources"></a>Example `tap-values.yaml` snippet with custom configuration
-for additional_sources:
-
->***Note** As shown in the following example, each of the user-generated `namespace_provisioner.additional_sources[].path` values must be unique, and each path must begin with "_ytt_lib/" to be identified as a ytt library.
+<a id="example-additional-resources"></a>The following example provides a snippet from `tap-values.yaml`
+with custom configuration for [additional_sources](install.hbs.md#customized-installation). Each of
+the user-generated `namespace_provisioner.additional_sources[].path` values must be unique, and each
+path must begin with "_ytt_lib/" to be identified as a ytt library.
 
 ```yaml
 namespace_provisioner:
@@ -219,7 +219,7 @@ kctrl app kick --app provisioner -n tap-namespace-provisioning -y
 ### <a id="control-desired-namespaces"></a>Control the `desired-namespaces` ConfigMap with GitOps
 
 You can maintain the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap in your Git
-repository instead of using the [controller](about.hbs.md#nsp-controller). You can use the GitOps0
+repository instead of using the [controller](about.hbs.md#nsp-controller). You can use the GitOps
 tool of your choice to override the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
 in the `tap-namespace-provisioning` namespace.
 
