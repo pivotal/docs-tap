@@ -64,8 +64,8 @@ To add an overlay to a package that was installed by using a Tanzu Application P
     ```yaml
     package_overlays:
     - name: PACKAGE-NAME
-    secrets:
-    - name: SECRET-NAME
+      secrets:
+      - name: SECRET-NAME
     ```
 
     Where `PACKAGE-NAME` is the target package for the overlay. For example, `tap-gui`.
