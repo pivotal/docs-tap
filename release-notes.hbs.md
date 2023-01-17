@@ -81,9 +81,11 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 #### <a id="1-4-0-eventing"></a> Eventing
 
-- Upgraded Knative Eventing version from 1.6 to 1.8.
+- Upgraded Knative Eventing from v1.6 to v1.8.
 - Added a Kubernetes tracing attribute to ApiServerSource.
-- The ApiServerSource is a Knative Eventing Kubernetes custom resource that listens for events emitted by the Kubernetes API server. For example, pod creation, deployment updates, and so on. It then forwards them as CloudEvents to a sink.
+- The ApiServerSource is a Knative Eventing Kubernetes custom resource that listens for events
+  emitted by the Kubernetes API server. For example, pod creation, deployment updates, and so on.
+  It then forwards them as CloudEvents to a sink.
 
 #### <a id="1-4-0-tap-gui-plugin-nf"></a> External Secrets Operator (alpha)
 
