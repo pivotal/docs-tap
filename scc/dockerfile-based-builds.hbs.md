@@ -77,7 +77,7 @@ $ tanzu apps workload create foo \
   --param docker_build_context=./src
 ```
 
-> **Note** This feature has no platform operator configurations to be passed
+> **Important** This feature has no platform operator configurations to be passed
 > through `tap-values.yaml`, but if `ootb-supply-chain-*.registry.ca_cert_data` or
 `shared.ca_cert_data` is configured in `tap-values`, the certificates
 > are considered when pushing the container image.

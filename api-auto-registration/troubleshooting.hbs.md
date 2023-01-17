@@ -126,7 +126,7 @@ After you obtain the certificate you must update the `api-auto-registration` ins
   - `VALUES-FILE` is name of values file
   - `VERSION` is the api-auto-registration version. For example, `0.2.1`.
 
-  >**Note** You can find the available api-auto-registration volumes by running:
+You can find the available api-auto-registration volumes by running:
 
   ```console
   tanzu package available list -n tap-install | grep 'API Auto Registration'
