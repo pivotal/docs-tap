@@ -52,6 +52,6 @@ adding environment variables, or adding cached volumes.
 Such conventions are a great way to ensure infrastructure uniformity
 across workloads deployed on the cluster while reducing developer toil.
 
->**Note** Adding a sidecar alone does not make the log or metrics collection work.
+>**Important** Adding a sidecar alone does not make the log or metrics collection work.
   This requires having collector agents deployed and accessible from the Kubernetes cluster,
 and configuring required access by using role-based access control (RBAC) policy.

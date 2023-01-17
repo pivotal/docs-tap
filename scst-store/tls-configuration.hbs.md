@@ -2,7 +2,7 @@
 
 This topic describes TLS configuration for Supply Chain Security Tools (SCST) - Store.
 
-> **Note** SCST - Store only supports TLS v1.2.
+> **Important** SCST - Store only supports TLS v1.2.
 
 ## Setting up custom ingress TLS ciphers
 

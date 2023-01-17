@@ -2,7 +2,7 @@
 
 This topic describes the prerequisites for installing Supply Chain Security Tools - Scan (Snyk Scanner) from the Tanzu Application Platform package repository.
 
->**Note** Snyk's image scanning capability is in beta. Snyk might only return a partial list of CVEs when scanning Buildpack images.
+>**Important** Snyk's image scanning capability is in beta. Snyk might only return a partial list of CVEs when scanning Buildpack images.
 
 ## <a id="prerecs"></a> Prepare the Snyk Scanner configuration
 

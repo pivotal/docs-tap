@@ -2,7 +2,7 @@
 
 This topic describes prerequisites for installing Supply Chain Security Tools - Scan (Carbon Black Scanner) from the Tanzu Application Platform package repository.
 
->**Note** Carbon Black's image scanning capability is in beta. Carbon Black might only return
+>**Important** Carbon Black's image scanning capability is in beta. Carbon Black might only return
 a partial list of CVEs when scanning Buildpack images.
 
 ## <a id="prerecs"></a> Prepare the Carbon Black Scanner configuration
@@ -61,7 +61,7 @@ Create a `values.yaml` file by using the following configuration:
 
      - `DEV-NAMESPACE` is your developer namespace.
 
-       >**Note** To use a namespace other than the default namespace, ensure that the namespace exists before you install.
+       >**Important** To use a namespace other than the default namespace, ensure that the namespace exists before you install.
        If the namespace does not exist, the scanner installation fails.
 
      - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from a private registry for scanning.
