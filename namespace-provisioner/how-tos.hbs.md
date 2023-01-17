@@ -1,6 +1,6 @@
 # Customize Namespace Provisioner
 
-This topic describes advanced use-cases associated with Namespace Provisioner.
+This topic describes advanced use cases associated with Namespace Provisioner.
 
 ## <a id="data-values-templating"></a>Data values templating guide
 
@@ -52,7 +52,7 @@ Here's a [sample of a templated Tekton pipeline.](https://github.com/vmware-tanz
 
 ### <a id="extending-default-resources"></a>Extending the default provisioned resources
 
-To customize and extend the default out of box configuration for the Namespace Provisioner
+To customize and extend the default configuration for the Namespace Provisioner
 that is templated in the  [`default-resources`](about.hbs.md#nsp-component-default-resources) Secret,
 add [additional sources](install.hbs.md#customized-install) in the `tap-values.yaml` configuration
 file. For example, to adjust quota allocation or to create other namespace resources. For details of
@@ -63,14 +63,16 @@ This [example](#example-additional-resources) adds four additional sources:
 - The first additional source points to an example of a [workload service account yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/workload-sa/workload-sa-with-secrets.yaml) with no ytt templating or overlay.
    - After importing this source, Namespace Provisioner creates the following resources in all namespaces listed in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap).</br></br>
 - <a id="add-test-scan"></a>The second additional source points to examples of [ytt templated testing and scanpolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain).
-   - After importing this source, Namespace Provisioner creates a **scan-policy** as well as a **developer-defined-tekton-pipeline-java** in all namespaces in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)  with the default setup in [Install OOTB Supply Chain with Testing and Scanning](../getting-started/add-test-and-security.hbs.md#install-OOTB-test-scan) documentation.</br></br>
+   - After importing this source, Namespace Provisioner creates a **scan-policy** and a **developer-defined-tekton-pipeline-java** in all namespaces in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)  with the default setup in [Install OOTB Supply Chain with Testing and Scanning](../getting-started/add-test-and-security.hbs.md#install-OOTB-test-scan) documentation.</br></br>
 - The third additional source points to an example of a [ytt templated scanpolicy yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/scanpolicies/snyk-scanpolicies.yaml).
    - After importing this source, Namespace Provisioner creates a **snyk-scan-policy** in all namespaces in the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap that has an additional parameter **scanpolicy: snyk**.</br></br>
 - The fourth additional source points to [examples of ytt templated tekton pipelines](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines).
    - After importing this source, Namespace Provisioner creates a **developer-defined-tekton-pipeline-python** and **developer-defined-tekton-pipeline-angular** for namespaces in  the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)  that has an additional parameter **language: python** and **language: angular** respectively.</br></br>
 
-<a id="example-additional-resources"></a>Example `tap-values.yaml` snippet with custom configuration
-for additional_sources:
+<a id="example-additional-resources"></a>The following example provides a snippet from `tap-values.yaml`
+with custom configuration for [additional_sources](install.hbs.md#customized-installation). Each of
+the user-generated `namespace_provisioner.additional_sources[].path` values must be unique, and each
+path must begin with "_ytt_lib/" to be identified as a ytt library.
 
 ```yaml
 namespace_provisioner:
@@ -109,7 +111,7 @@ the OOTB Testing and Scanning Supply Chain.
 
 1. Add or update `tap-values.yaml` with the following `namespace_provisioner.additional_resources`
 configuration</br>
-(The ytt templated testing and scanpolicy files that are mounted can be found [**here**](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain)).</br></br>
+(The ytt templated testing and scanpolicy files that are mounted are [**here**](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain)).</br></br>
 
 
    ```yaml
@@ -120,30 +122,32 @@ configuration</br>
          ref: origin/main
          subPath: namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain
          url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-       path: _ytt_lib/testingscanning
+       path: _ytt_lib/testingscanning   # this user-generated path must always begin with "_ytt_lib/"
    ```
+
    </br>
+
 1. Apply your updated `tap-values.yaml` to the target cluster
 
    ```terminal
    tanzu package installed update tap -f tap-values.yaml --namespace tap-install
    ```
 
-   - Once the tap-values changes have been applied and the
-`namespace_provisioner.additional_resources` have been imported, Namespace Provisioner creates
+   - After the tap-values changes are applied and the
+`namespace_provisioner.additional_resources` are imported, Namespace Provisioner creates
 the defined `scan-policy` and `developer-defined-tekton-pipeline-java` in all namespaces
 defined in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap).
 
 ### <a id="customizing-default-resources"></a>Customizing the default resources that get provisioned
 
-The Out-Of-The-box [`default-resources`](reference.hbs.md#tap-profile---default-resources-mapping)
-can be customized by using GitOps with some specific characteristics:
+Customize the Out-Of-The-box [`default-resources`](reference.hbs.md#tap-profile---default-resources-mapping)
+using GitOps with some specific characteristics:
 
 - The GitOps customization should be done by using the [ytt overlay](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-overlay/) feature and should be set in the `tap-values.yaml` under [additional_sources](install.hbs.md#customized-installation)
-- The additional git resource should be mounted in the **path** `_ytt_lib/customize`, otherwise
+- The additional Git resource should be mounted in the **path** `_ytt_lib/customize`, otherwise
 the customization is not be applied
-- The GitOps repo folder must have a file with an extension [`lib.yaml`](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-library/#instanceexport) to be recognized as a ytt library with members to be exported
-- The library file in the GitOps repo folder must have a function called `customize` with the
+- The GitOps repository folder must have a file with an extension [`lib.yaml`](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-library/#instanceexport) to be recognized as a ytt library with members to be exported
+- The library file in the GitOps repository folder must have a function called `customize` with the
 overlays to be applied to the resources, it can contain one or more overlays
 
 The sample file [`sa-secrets.lib.yaml`](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/default-resources-overrides/overlays/sa-secrets.lib.yaml)
@@ -160,13 +164,13 @@ namespace_provisioner:
       ref: origin/main
       subPath: namespace-provisioner-gitops-examples/default-resources-overrides/overlays
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-    path: _ytt_lib/customize
+    path: _ytt_lib/customize   # this path must always be exactly "_ytt_lib/customize"
   # Adds the secrets referenced in the overlay
   - git:
       ref: origin/main
       subPath: namespace-provisioner-gitops-examples/custom-resources/workload-sa
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-    path: _ytt_lib/workload-sa
+    path: _ytt_lib/workload-sa   # this user-generated path must always begin with "_ytt_lib/"
 ```
 
 Sample customization (`.lib.yaml`) file for overriding the `secrets` and `imagePullSecrets` of the default ServiceAccount
@@ -192,12 +196,12 @@ imagePullSecrets:
 ### <a id="control-reconcile-behavior"></a>Control the Namespace Provisioner reconcile behavior for specific resources
 
 There are certain OOTB [`default-resources`](reference.hbs.md#tap-profile---default-resources-mapping)
-like the `ServiceAccount` that are annotated with a special annotation
+like the `ServiceAccount` that is annotated with a special annotation
 **`namespace-provisioner.apps.tanzu.vmware.com/no-overwrite`**.
 
 Any changes to the resources that have the `...no-overwrite` annotation are not overwritten by the
 [provisioner application](about.hbs.md#provisioner-carvel-app) that controls resource provision.
-If you want to restore the default state of those resources, you can delete them and the
+To restore the default state of those resources, you can delete them and the
 [provisioner application](about.hbs.md#nsp-component-carvel-app) re-creates them in their initial
 default state.
 
@@ -215,23 +219,22 @@ kctrl app kick --app provisioner -n tap-namespace-provisioning -y
 ### <a id="control-desired-namespaces"></a>Control the `desired-namespaces` ConfigMap with GitOps
 
 You can maintain the [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap in your Git
-repository instead of using the [controller](about.hbs.md#nsp-controller). You can use different GitOps tools
-to override the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) in the
-tap-namespace-provisioning namespace. If the [controller](about.hbs.md#nsp-controller) is installed
-as part of the package, when it reconciles, it removes all namespaces that are not properly labeled with the
-[`namespace_selector`](install.hbs.md#customized-install) specified in the tap values
-(Default label selector is **`apps.tanzu.vmware.com/tap-ns=""`**).
+repository instead of using the [controller](about.hbs.md#nsp-controller). You can use the GitOps
+tool of your choice to override the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+in the `tap-namespace-provisioning` namespace.
 
 #### Prerequisites
 
 - The Namespace Provisioner package is installed and successfully reconciled.
-- [`controller`](install.hbs.md#customized-installation) is set to “false”.
+- [`controller`](install.hbs.md#customized-installation) must be set to “false”.
+  - **Note** If the [controller](about.hbs.md#nsp-controller) is set to "true", it will overwrite
+  the declarative desired state configured in your GitOps repository.
 - The registry-credentials secret referred by the Tanzu Build Service is added to `tap-install.yaml`
   and exported to all namespaces. If you don’t want to export this secret to all namespaces for any reason,
-  you will have to go through an additional step to create this secret in the namespace.
+  you must complete an additional step to create this secret in the namespace.
 
-Use the following snippet as a reference for the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) that you can put on your
-Git repository.
+Use the following snippet as a reference for the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+that you can put on your Git repository.
 Desired-namespaces.yaml ([Link to sample repo file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/desired-namespaces/gitops-managed-desired-namespaces.yaml))
 
 ```yaml
@@ -259,7 +262,12 @@ data:
 
 ```
 
-The following command uses Kubectl to override this [`desired-namespaces`](about.hbs.md#desired-ns-configmap) ConfigMap manually, but the ConfigMap can be overridden with your  tool of choice for GitOps.
+The recommended approach is to maintain a list of namespace objects in your GitOps repository, and use the
+GitOps tool of your choice to create namespaces in the cluster and the provisioner application will
+populate it with the appropriate resources.
+
+The following command uses Kubectl to override this [`desired-namespaces`](about.hbs.md#desired-ns-configmap)
+ConfigMap manually, but the ConfigMap can be overridden with your  tool of choice for GitOps.
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/namespace-provisioner-gitops-examples/desired-namespaces/gitops-managed-desired-namespaces.yaml
@@ -268,6 +276,6 @@ kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/application-acce
 When this change is applied, the [provisioner application](about.hbs.md#nsp-component-carvel-app)
 starts the reconcile process and provisions the resources on the given namespaces.
 
->**WARNING:** If there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) list that does not
-exist on the cluster, the `provisioner` application fails to reconcile and is not able to
-create resources. Creating namespaces is out of scope for the Namespace Provisioner package.
+>**WARNING:** If there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+list that does not exist on the cluster, the `provisioner` application fails to reconcile and is
+not able to create resources. Creating namespaces is out of scope for the Namespace Provisioner package.
