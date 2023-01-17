@@ -10,9 +10,9 @@ For more information about the AppSSO installation, see [Install AppSSO](../plat
 
 - To make sure AppSSO is installed on your cluster, run:
 
-```shell
-tanzu package installed list -A | grep "sso.apps.tanzu.vmware.com"
-```
+    ```shell
+    tanzu package installed list -A | grep "sso.apps.tanzu.vmware.com"
+    ```
 
 ---
 
