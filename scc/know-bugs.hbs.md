@@ -2,7 +2,7 @@
 
 ## Unbound number of TaskRuns in pull-request based GitOps
 
-> **Note** this fix is necessary _only_ for TAP 1.2.0 and a fix is included
+> **Important** this fix is necessary _only_ for TAP 1.2.0 and a fix is included
 > for TAP 1.2.1+. It affects only those installations making use of
 > [pull requests](scc/gitops-regops.md#pull-requests) as the method of
 > configuration promotion.

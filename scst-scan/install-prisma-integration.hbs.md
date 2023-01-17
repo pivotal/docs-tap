@@ -2,7 +2,7 @@
 
 This topic describes prerequisites for installing SCST - Scan (Prisma) from the VMware package repository.
 
->**Note** This integration is in Alpha, which means that it is still in active
+>**Important** This integration is in Alpha, which means that it is still in active
 >development by the Tanzu Practices Global Tech Team and might be subject to
 >change at any point. Users might encounter unexpected behavior.
 

@@ -49,7 +49,7 @@ Where:
 - `API-RENEW` is how long before the expiry of the API certificate is renewed.
   Must be given in h, m, or s. Default value is 24h.
 
->**Note**
+>**Important**
    - The `*_cert_duration` and the corresonding `*_renew_before` settings must
      not be ["very
      close"](https://cert-manager.io/docs/usage/certificate/#renewal). This can
