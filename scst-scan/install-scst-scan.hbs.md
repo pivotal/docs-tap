@@ -161,7 +161,7 @@ To install SCST - Scan (Scan controller):
         name: "TOKEN-SECRET-NAME" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
-    >**Note** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`,
+    >**Important** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`,
     >or not define them as they depend on each other.
 
     Where:
@@ -207,7 +207,7 @@ To install SCST - Scan (Scan controller):
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
 
-    >**Note** If `targetSourceSshSecret` is not set, the private source scan template is not installed.
+    >**Important** If `targetSourceSshSecret` is not set, the private source scan template is not installed.
 
 3. Install the package by running:
 

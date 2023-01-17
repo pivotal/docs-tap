@@ -71,7 +71,7 @@ workload by including it in its set of secrets. For example:
 Aside from using HTTP(S) as a transport, the supply chains also allow you to
 use SSH.
 
->**Note** If you want to use the pull request feature, you must use
+>**Important** If you want to use the pull request feature, you must use
 HTTP(S) authentication with an access token.
 
 1. To provide the credentials for any Git operations with SHH,

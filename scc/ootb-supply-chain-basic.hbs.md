@@ -141,7 +141,7 @@ imagePullSecrets:
   - name: tap-registry
 ```
 
-> **Note** The ServiceAccount must have the secrets created earlier linked to it. If
+> **Important** The ServiceAccount must have the secrets created earlier linked to it. If
 > it does not, services like Tanzu Build Service (used in the supply chain)
 > lack the necessary credentials for pushing the images it builds for that
 > workload.

@@ -72,7 +72,7 @@ There is no default service account bound to the `Read Only` cluster role. You
 must create your service account and cluster role binding to bind to the `Read
 Only` role.
 
->**Note** There is no support for roles with access to only specific types of
+>**Important** There is no support for roles with access to only specific types of
 >resources For example, images, packages, and vulnerabilities.
 
 ## <a id='contain-sec'></a>Container security
