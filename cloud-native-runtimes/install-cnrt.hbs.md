@@ -133,7 +133,7 @@ To install Cloud Native Runtimes:
 
 1. Configure a namespace to use Cloud Native Runtimes:
 
-   >**Note:** This step covers configuring a namespace to run Knative services.
+   >**Important** This step covers configuring a namespace to run Knative services.
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >skip this step because namespace configuration is covered in
    >[Set up developer namespaces to use installed packages](../install-components.md#setup).

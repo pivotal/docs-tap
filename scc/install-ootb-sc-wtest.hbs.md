@@ -134,7 +134,7 @@ Install by following these steps:
     service_account: default
     ```
 
-    >**Note:** it's **required** that the `gitops.repository_prefix` field ends
+    >**Important** it's **required** that the `gitops.repository_prefix` field ends
     > with a `/`.
 
 
