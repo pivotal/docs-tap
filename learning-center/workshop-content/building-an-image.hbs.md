@@ -18,8 +18,8 @@ RUN fix-permissions /home/eduk8s
 
 The default `Dockerfile` action is to:
 
-  - Copy all files from a registry to the `/home/eduk8s` directory. You must build the custom workshop images on the `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:36b8462ffdf064372e6124bf093e075b140ff2978b536477f28025253cb647cd` workshop image. You can do this directly or you can also create an intermediate base image to install extra packages required by a number of different workshops. The `--chown=1001:0` option ensures that files are owned by the appropriate user and group.
-  - The `workshop` subdirectory is moved to `/opt/workshop` so that it is not visible to the user. This subdirectory is in an area searchable for workshop content, in addition to `/home/eduk8s/workshop`.
+  - Copy all files from a registry to the `/home/eduk8s` directory. You must build the custom workshop images on the `registry.tanzu.vmware.com/tanzu-application-platform/tap-packages@sha256:36b8462ffdf064372e6124bf093e075b140ff2978b536477f28025253cb647cd` workshop image. You can do this directly, or you can create an intermediate base image to install extra packages required by a number of different workshops. The `--chown=1001:0` option ensures that files are owned by the appropriate user and group.
+  - The `workshop` subdirectory is moved to `/opt/workshop` so it is not visible to the user. This subdirectory is in an area searchable for workshop content, in addition to `/home/eduk8s/workshop`.
 
 To customize your `Dockerfile`:
 
