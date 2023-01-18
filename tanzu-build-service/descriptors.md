@@ -4,7 +4,7 @@ owner: Build Service Team
 ---
 
 This topic describes the descriptors that are available so you can choose
-which option to configure depending on your use case.
+which option to configure depending on your use case..
 
 ## <a id="descriptors"></a> About descriptors
 
