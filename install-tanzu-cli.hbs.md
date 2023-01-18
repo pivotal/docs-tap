@@ -122,9 +122,9 @@ versions of the CLI core and plug-ins are installed by running:
 
 4. Install or update the CLI core by running:
 
-  >**Note** Replace v0.25.4 with the version you downloaded which is found by inspecting the
+  >**Note** Replace v0.25.4 with the version you downloaded, which is found by inspecting the
    >directory name under `$HOME/tanzu/cli/core/`. For example, if the directory name under
-   >`$HOME/tanzu/cli/core/` is v0.25.4, then set the following `VERSION` to `v0.25.4`.
+   >`$HOME/tanzu/cli/core/` is v0.25.4, set the following `VERSION` to `v0.25.4`.
 
    - **For Linux:**
 
@@ -142,7 +142,7 @@ versions of the CLI core and plug-ins are installed by running:
      install cli/core/$VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
      ```
 
-5. Confirm the installation by running:
+1. Confirm the installation by running:
 
     ```console
     tanzu version
@@ -155,7 +155,7 @@ versions of the CLI core and plug-ins are installed by running:
     ...
     ```
 
-6. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
+2. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
 
 ### <a id='windows-tanzu-cli'></a> Install Tanzu CLI: Windows
 
