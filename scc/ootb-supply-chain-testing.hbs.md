@@ -259,9 +259,8 @@ For example:
 
 ```console
 tanzu apps workload create tanzu-java-web-app \
-  --git-branch main \
-  --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
-  --sub-path tanzu-java-web-app \
+  --git-repo ${GIT_PROJECT_URL} \
+  --git-branch ${GIT_BRANCH} \
   --label apps.tanzu.vmware.com/has-tests=true \
   --label app.kubernetes.io/part-of=tanzu-java-web-app \
   --type web

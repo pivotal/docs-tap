@@ -114,16 +114,18 @@ the workload must be updated to point at your Tekton pipeline.
 
 1. Update the workload by running the following with the Tanzu CLI:
 
-    ```console
+    ```bash
     tanzu apps workload create tanzu-java-web-app \
-      --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
-      --sub-path tanzu-java-web-app \
-      --git-branch main \
+      --git-repo ${GIT_PROJECT_URL} \
+      --git-branch ${GIT_BRANCH} \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
       --label app.kubernetes.io/part-of=tanzu-java-web-app \
-      --yes
+      --yes \
+      --namespace ${DEVELOPER_NAMESPACE}
     ```
+
+    Example output:
 
     ```console
     Create workload:
@@ -141,8 +143,7 @@ the workload must be updated to point at your Tekton pipeline.
        12 + |    git:
        13 + |      ref:
        14 + |        branch: main
-       15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
-       16 + |    subPath: tanzu-java-web-app
+       15 + |      url: https://github.com/my/tanzu-project.git
 
     ? Do you want to create this workload? Yes
     Created workload "tanzu-java-web-app"
@@ -296,37 +297,36 @@ pipeline:
 
 1. Update the workload by running the following using the Tanzu CLI:
 
-    ```console
+    ```bash
     tanzu apps workload create tanzu-java-web-app \
-      --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
-      --sub-path tanzu-java-web-app \
-      --git-branch main \
+      --git-repo ${GIT_PROJECT_URL} \
+      --git-branch ${GIT_BRANCH} \
       --type web \
       --label apps.tanzu.vmware.com/has-tests=true \
       --label app.kubernetes.io/part-of=tanzu-java-web-app \
-      --yes
+      --yes \
+      --namespace ${DEVELOPER_NAMESPACE}
     ```
 
     Example output:
 
-    ```console
+    ```console 
     Create workload:
-          1 + |---
-          2 + |apiVersion: carto.run/v1alpha1
-          3 + |kind: Workload
-          4 + |metadata:
-          5 + |  labels:
-          6 + |    apps.tanzu.vmware.com/has-tests: "true"
-          7 + |    apps.tanzu.vmware.com/workload-type: web
-          8 + |  name: tanzu-java-web-app
-          9 + |  namespace: default
-        10 + |spec:
-        11 + |  source:
-        12 + |    git:
-        13 + |      ref:
-        14 + |        branch: main
-        15 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
-        16 + |    subPath: tanzu-java-web-app
+      1 + |---
+      2 + |apiVersion: carto.run/v1alpha1
+      3 + |kind: Workload
+      4 + |metadata:
+      5 + |  labels:
+      6 + |    apps.tanzu.vmware.com/has-tests: "true"
+      7 + |    apps.tanzu.vmware.com/workload-type: web
+      8 + |  name: tanzu-java-web-app
+      9 + |  namespace: default
+      10 + |spec:
+      11 + |  source:
+      12 + |    git:
+      13 + |      ref:
+      14 + |        branch: main
+      15 + |      url: https://github.com/my/tanzu-project.git
 
     ? Do you want to create this workload? Yes
     Created workload "tanzu-java-web-app"
