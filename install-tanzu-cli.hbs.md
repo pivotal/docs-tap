@@ -252,7 +252,7 @@ For online installation:
 - [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 - [Install the Tanzu Application Platform package and profiles](install.html)
 
-\* _For Red Hat OpenShift 4.10, [Cluster Essentials 1.3.0](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html) is reccommended._
+\* _For Red Hat OpenShift 4.10, [Cluster Essentials 1.3.0](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html) is recommended._
 
 For air-gapped installation:
 
