@@ -13,7 +13,7 @@ For background information about application accelerators, see [Application Acce
 
 ## <a id="create-an-app-acc"></a>Create an application accelerator
 
-You can use any Git repository to create an accelerator provided it: 
+You can use any Git repository to create an accelerator provided it:
 
 - Is public
 - Contains a README.md file
@@ -38,7 +38,7 @@ To create a new application accelerator by using your Git repository, follow the
       - getting-started
     ```
 
-    >**Note:** You can use any icon with a reachable URL.
+    You can use any icon that has a reachable URL.
 
 4. Add the new `accelerator.yaml` file, commit this change, and push it to your Git repository.
 
@@ -61,7 +61,7 @@ To publish the new application accelerator that is created in your Git repositor
 
     ![Another accelerator appears in Tanzu Application Platform GUI](../images/new-accelerator-deployed-v1-1.png)
 
-    >**Note:** It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for your new accelerator.
+    It might take a few seconds for Tanzu Application Platform GUI to refresh the catalog and add an entry for your new accelerator.
 
 ## <a id="work-with-accelerators"></a>Working with accelerators
 
