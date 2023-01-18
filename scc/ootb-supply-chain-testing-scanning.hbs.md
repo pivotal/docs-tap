@@ -329,15 +329,16 @@ Basic, except that you mark the workload as having tests enabled.
 
 For example:
 
-```console
+```bash
 tanzu apps workload create tanzu-java-web-app \
-  --git-branch main \
-  --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
-  --sub-path tanzu-java-web-app \
+  --git-repo ${GIT_PROJECT_URL} \
+  --git-branch ${GIT_BRANCH} \
   --label apps.tanzu.vmware.com/has-tests=true \
   --label app.kubernetes.io/part-of=tanzu-java-web-app \
   --type web
 ```
+
+Expect to see output similar to the following:
 
 ```console
 Create workload:
@@ -356,8 +357,7 @@ Create workload:
      13 + |    git:
      14 + |      ref:
      15 + |        branch: main
-     16 + |      url: https://github.com/vmware-tanzu/application-accelerator-samples
-     17 + |    subPath: tanzu-java-web-app
+     16 + |      url: https://github.com/my/tanzu-project.git
 ```
 
 ## <a id="cve-triage-workflow"></a> CVE triage workflow

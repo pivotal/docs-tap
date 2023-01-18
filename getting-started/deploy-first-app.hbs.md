@@ -50,46 +50,34 @@ In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanz
 
 7. After downloading the ZIP file, expand it in a workspace directory. If you did not create a Git repository in the preceding steps, follow your preferred procedure for uploading the generated project files to a Git repository for your new project.
 
-## <a id="deploy-your-app"></a>Deploy your application through Tanzu Application Platform GUI
+## <a id="deploy-your-app"></a>Deploy your application through Tanzu Application Platform GUI 
 
 1. Set up environment variables by running:
 
-    ```console
-    export GIT_URL_TO_REPO=GIT-URL-TO-PROJECT-REPO
-    export YOUR_NAMESPACE=YOUR-DEVELOPER-NAMESPACE
+    ```bash
+    export GIT_PROJECT_URL=GIT-URL-TO-PROJECT-REPO
+    export GIT_BRANCH=GIT-PROJECT-BRANCH
+    export DEVELOPER_NAMESPACE=YOUR-DEVELOPER-NAMESPACE
     ```
 
     Where:
 
-    - `GIT-URL-TO-PROJECT-REPO` is the path you uploaded to earlier.
+    - `GIT-URL-TO-PROJECT-REPO` is the git URL of the repository you uploaded your source code to earlier. e.g. `https://github.com/my-org/repository.git`
+    - `GIT-PROJECT-BRANCH` is the git branch of the project. e.g. `main`
     - `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
 2. Deploy the Tanzu Java Web App accelerator by running the `tanzu apps workload create` command:
 
-    ```console
+    ```bash
     tanzu apps workload create tanzu-java-web-app \
-    --git-repo ${GIT_URL_TO_REPO} \
-    --git-branch main \
-    --type web \
-    --label app.kubernetes.io/part-of=tanzu-java-web-app \
-    --yes \
-    --namespace ${YOUR_NAMESPACE}
+        --git-repo ${GIT_PROJECT_URL} \
+        --git-branch ${GIT_BRANCH} \
+        --type web \
+        --label apps.tanzu.vmware.com/has-tests=true \
+        --label app.kubernetes.io/part-of=tanzu-java-web-app \
+        --yes \
+        --namespace ${DEVELOPER_NAMESPACE}
     ```
-
-    If you bypassed step 5 or were unable to upload your accelerator to a Git repository, use the following public version to test:
-
-    ```console
-    tanzu apps workload create tanzu-java-web-app \
-    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
-    --sub-path tanzu-java-web-app \
-    --git-branch main \
-    --type web \
-    --label app.kubernetes.io/part-of=tanzu-java-web-app \
-    --yes \
-    --namespace YOUR-DEVELOPER-NAMESPACE
-    ```
-
-    Where `YOUR-DEVELOPER-NAMESPACE` is the namespace configured earlier.
 
     For more information, see [Tanzu Apps Workload Apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
@@ -98,7 +86,7 @@ In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanz
 
 3. View the build and runtime logs for your app by running the `tail` command:
 
-    ```console
+    ```bash
     tanzu apps workload tail tanzu-java-web-app --since 10m --timestamp --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 
@@ -106,7 +94,7 @@ In this example, you use the `Tanzu-Java-Web-App` accelerator. You also use Tanz
 
 4. After the workload is built and running, you can view the web app in your browser. View the URL of the web app by running the following command and then press **ctrl-click** on the Workload Knative Services URL at the bottom of the command output.
 
-    ```console
+    ```bash
     tanzu apps workload get tanzu-java-web-app --namespace YOUR-DEVELOPER-NAMESPACE
     ```
 

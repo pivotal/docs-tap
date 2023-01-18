@@ -17,11 +17,15 @@ Before implementing a multicluster topology, complete the following:
 1. To set the value of `DEVELOPER_NAMESPACE` to the namespace you setup in the previous step, run:
 
     ```bash
+    export GIT_PROJECT_URL=GIT-URL-TO-PROJECT-REPO
+    export GIT_BRANCH=GIT-PROJECT-BRANCH
     export DEVELOPER_NAMESPACE=YOUR-DEVELOPER-NAMESPACE
     ```
 
     Where:
 
+    - `GIT-URL-TO-PROJECT-REPO` is the git URL of the repository you uploaded your source code to. e.g. `https://github.com/my-org/repository.git`
+    - `GIT-PROJECT-BRANCH` is the git branch of the project. e.g. `main`
     - `YOUR-DEVELOPER-NAMESPACE` is the namespace you set up in [Set up developer namespaces to use installed packages](../set-up-namespaces.md). `default` is used in this example.
 
 
@@ -33,7 +37,8 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
     ```bash
     tanzu apps workload create tanzu-java-web-app \
-    --git-repo https://github.com/vmware-tanzu/application-accelerator-samples \
+    --git-repo ${GIT_PROJECT_URL} \
+    --git-branch ${GIT_BRANCH} \
     --sub-path tanzu-java-web-app \
     --git-branch main \
     --type web \
