@@ -1,4 +1,4 @@
-# Namespace Provisioner overview
+# Namespace Provisioner
 
 Namespace Provisioner provides a secure, automated way for platform operators to provision
 namespaces with the resources and proper namespace-level privileges required for their workloads
