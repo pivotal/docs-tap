@@ -594,3 +594,81 @@ take "/" at the end of the string.
 ### Solution
 
 Do not append "/" to the end of the string.
+
+---
+
+## <a id='cluster-issuer-trust-issues'></a> x509: certificate signed by unknown authority
+
+### Explanation
+
+In TAP 1.4, a [Shared Ingress Issuer](../release-notes.hbs.md#1-4-0-tap-new-features) was inttroduced for securing ingress communication by default. The Certificate Authority for it is generated as self-signed and thus some procedures in TAP will result in errors such as:
+* `connection refused`
+* `x509: certificate signed by unknown authority`
+
+### Solution
+
+There are two procedures that can mitigate the issue.
+
+* Configure the Shared Ingress Issuer's Certificate Authority as a trusted Certificate Authority
+  * This is the recommended option for a secure instance
+* Disable the shared ingress issuer
+  * This option is fast and convenient but is not recommended. This option is documented for testing purposes only.
+
+#### Configure the Shared Ingress Issuer's Certificate Authority as a trusted Certificate Authority
+
+The following procedure results in the Shared Ingress Issuer's Certificate Authority to be trusted within TAP.
+
+1. Extract the ClusterIssuer's Certificate Authority from cert-manager
+
+  ```console
+  kubectl get secret tap-ingress-selfsigned-root-ca -n cert-manager -o yaml | yq .data | cut -d' ' -f2 | head -1 | base64 -d
+  ```
+
+1. Add the certificate to the list of trusted certificate authorities. This is done by updating your tap-values.yml to append the above certificate authority to the field `shared.ca_cert_data`
+
+1. Pause the meta package's reconciliation. This prevents Tanzu Application Platform from reverting to the original values.
+
+  ```console
+  kctrl package installed pause --yes --namespace tap-install --package-install tap
+  ```
+
+1.  Reapply your configuration
+
+  ```console
+  tanzu package install tap -p tap.tanzu.vmware.com -v ${TAP_VERSION} --values-file tap-values.yml -n tap-install
+  ```
+
+1. Unpause the meta package's reconciliation
+
+  ```console
+  kctrl package installed kick --yes --namespace tap-install --package-install tap
+  ```
+
+#### Disable the shared ingress issuer
+
+This procedure disables TLS for Cloud Native Runtimes, AppSSO and TAP GUI and consequently addresses trust issues. This is not recommended but provided as a fast and convenient option for testing purposes.
+
+1. Update your tap-values.yml. Set shared.ingress_issuer to `""`
+
+  ```
+  shared:
+    ingress_issuer: ""
+  ```
+
+1. Pause the meta package's reconciliation. This prevents Tanzu Application Platform from reverting to the original values.
+
+  ```console
+  kctrl package installed pause --yes --namespace tap-install --package-install tap
+  ```
+
+1. Reapply your configuration
+
+  ```
+  tanzu package install tap -p tap.tanzu.vmware.com -v ${TAP_VERSION} --values-file tap-values.yml -n tap-install
+  ```
+
+1. Unpause the meta package's reconciliation
+
+  ```console
+  kctrl package installed kick --yes --namespace tap-install --package-install tap
+  ```
