@@ -90,7 +90,7 @@ Tanzu CLI packages are available on repositories. Adding the Tanzu Application P
 - `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
 - `INSTALL_REPO` is `tanzu-application-platform`
 - `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
-- `TAP_VERSION`is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
+- `TAP_VERSION` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 To add the Tanzu Application Platform package repository to your cluster:
 
