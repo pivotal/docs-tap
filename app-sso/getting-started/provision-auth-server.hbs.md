@@ -111,10 +111,6 @@ You can review the standard OpenID information of your `AuthServer` by visiting
 > **Important** If the issuer URIs domain is not yours, the AppSSO package installation must be updated. 
 For more information, see [Install Application Single Sign-On](../platform-operators/installation.md).
 
-> **Important** If you are using TKGm or TKGs, which have customizable in-cluster communication CIDR ranges, there is a
-[known issue](../known-issues/index.md#cidr-ranges) regarding AppSSO making requests to external identity providers with
-`http` rather than `https`.
-
 ## The AuthServer spec in detail
 
 Here is a detailed explanation of the `AuthServer` you have applied in the above section. This is intended to give you
