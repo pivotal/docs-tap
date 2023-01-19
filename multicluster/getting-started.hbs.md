@@ -24,8 +24,8 @@ Before implementing a multicluster topology, complete the following:
 
     Where:
 
-    - `GIT-URL-TO-PROJECT-REPO` is the git URL of the repository you uploaded your source code to. e.g. `https://github.com/my-org/repository.git`
-    - `GIT-PROJECT-BRANCH` is the git branch of the project. e.g. `main`
+    - `GIT-URL-TO-PROJECT-REPO` is the git URL of the repository you uploaded your source code to. For example, `https://github.com/my-org/repository.git`.
+    - `GIT-PROJECT-BRANCH` is the git branch of the project. For example, `main`.
     - `YOUR-DEVELOPER-NAMESPACE` is the namespace you set up in [Set up developer namespaces to use installed packages](../set-up-namespaces.md). `default` is used in this example.
 
 
