@@ -8,8 +8,8 @@ This topic describes TLS configuration for Supply Chain Security Tools (SCST) - 
 
 Optionally, users can configure TLS to use a custom certificate. In order to do that, follow these steps:
 
-1. Place the certificates in secret
-1. Modify the `tap-values.yaml` to use this secret
+1. Place the certificates in secret.
+1. Update the `tap-values.yaml` to use this secret.
 
 ### Place the certificates in secret
 

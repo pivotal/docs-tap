@@ -15,8 +15,8 @@ If [ingress support](ingress.hbs.md) is enabled, SCST - Store installation creat
 
 Optionally, users can configure TLS to use a custom certificate. In order to do that, follow these steps:
 
-1. Place the certificates in secret
-1. Modify the `tap-values.yaml` to use this secret
+1. Place the certificates in secret.
+1. Update the `tap-values.yaml` to use this secret.
 
 ### Place the certificates in secret
 
@@ -33,7 +33,7 @@ metadata_store:
     secretName: "secretName"
 ```
 
-* `namespace`: The targeted namespace for secret consumption by the HTTPProxy. 
+* `namespace`: The targeted namespace for secret consumption by the HTTPProxy.
 * `secretName`: The name of secret for consumption by the HTTPProxy.
 
 ## Additional resources
