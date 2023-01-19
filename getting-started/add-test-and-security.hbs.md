@@ -20,8 +20,6 @@ When you activate OOTB Supply Chain with Testing, it deactivates OOTB Supply Cha
 The following installations also provide a sample Tekton pipeline that tests your sample application. The pipeline is configurable. Therefore, you can customize the steps to perform
 either additional testing or other tasks with Tekton Pipelines.
 
->**Important** You can only have one Tekton pipeline per namespace.
-
 ## <a id="install-OOTB-test"></a>Install OOTB Supply Chain with Testing
 
 To install OOTB Supply Chain with Testing:
