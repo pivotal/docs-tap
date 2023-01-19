@@ -133,7 +133,7 @@ This is the value to pass to `--service-ref` to create the application workload.
     but rather to the claim that has claimed the `RabbitmqCluster` service instance.
     See the [consuming services diagram](#overview) at the beginning of this walkthrough.
 
-    > **Note** The Deliverable produced eventually fails if the referenced resource in `--service-ref` consistently does not exist.
+    > **Note** The deliverable produced eventually fails if the referenced resource in `--service-ref` consistently does not exist.
     > This behavior is encoded in the OOTB supply chains through the use of the [OOTB templates](../scc/ootb-templates.md).
     > The `service-bindings` OOTB template can be used to replicate the same behavior in bespoke supply chains.
 
