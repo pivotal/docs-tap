@@ -41,7 +41,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
       - Docker Hub has the form `"my-dockerhub-user/build-service"` or `"index.docker.io/my-user/build-service"`.
       - Google Cloud Registry has the form `"gcr.io/my-project/build-service"`.
 
-    >**Note** Add any unsigned image that must run in your namespace to the previous policy.
+    Add any unsigned image that must run in your namespace to the previous policy.
     For example, if you add a Tekton pipeline that runs a gradle image for testing, you need
     to add `glob: index.docker.io/library/gradle*` to `spec.images.glob` in the preceding code. If you relocated
     the Tanzu Application Platform images to your own registry,
