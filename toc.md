@@ -420,7 +420,7 @@ docs.vmware.com is built.
         - [Install another Scanner](scst-scan/install-scanners.hbs.md)
             - [Prerequisites for Snyk Scanner (Beta)](scst-scan/install-snyk-integration.hbs.md)
             - [Prerequisites for Carbon Black Scanner (Beta)](scst-scan/install-carbonblack-integration.hbs.md)
-            - [Install Prisma Scanner](scst-scan/install-prisma-integration.hbs.md)
+            - [Prerequisites for Prisma Scanner (Alpha)](scst-scan/install-prisma-integration.hbs.md)
         - [Spec reference](scst-scan/explanation.hbs.md)
         - [Scan samples](scst-scan/samples/overview.hbs.md)
             - [Overview](scst-scan/samples/overview.hbs.md)
