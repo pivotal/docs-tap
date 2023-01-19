@@ -327,9 +327,9 @@ supported in Tanzu Application Platform v1.4.0 and later.
 
 There are two options to resolve this issue:
 
-1. Upgrade to the latest Grype Scanner version. This automatically replaces the old ScanTemplates with the upgraded ScanTemplates.
+- Option 1: Upgrade to the latest Grype Scanner version. This automatically replaces the old ScanTemplates with the upgraded ScanTemplates.
 
-2. Create a ScanTemplate. Follow the steps in [Create a scan template](create-scan-template.hbs.md).
+- Option 2: Create a ScanTemplate. Follow the steps in [Create a scan template](create-scan-template.hbs.md).
 
 #### <a id="inc-cnfg-self-signed-cert"></a> Incorrectly configured self-signed certificate
 
