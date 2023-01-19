@@ -3,7 +3,7 @@
 You can deploy workshop images directly to a container runtime. Learning Center Operator enables managing the deployments into a Kubernetes cluster. A set of Kubernetes custom resource definitions (CRDs) controls the operation of the Learning Center Operator.
 
 >**Note** The examples do not show all the possible fields of each custom resource type.
-Later documentation will go in-depth on all the possible fields and their definitions.
+Later documentation may go in-depth on possible fields and their definitions.
 
 ## <a id="workshop-def-resource"></a> Workshop definition resource
 
@@ -39,7 +39,7 @@ spec:
 When you create an instance of the `Workshop` custom resource, the Learning Center Operator does not take any immediate
 action. This custom resource exists only to define the workshop.
 
->**Note** You create the `Workshop` custom resource at the cluster scope.
+You create the `Workshop` custom resource at the cluster scope.
 
 ## <a id="workshop-env-resource"></a> Workshop environment resource
 
@@ -74,7 +74,7 @@ If necessary, you can also specify the namespaces from which a request for a wor
 
 The `Workshop` defines a set of common resources that must exist for the workshop. Learning Center Operator creates these common resources after you created the namespace for the workshop environment. If necessary, these resources can include creation of separate namespaces with specific resources that you create in those namespaces instead.
 
->**Note** You create the `WorkshopEnvironment` custom resource at the cluster scope.
+You create the `WorkshopEnvironment` custom resource at the cluster scope.
 
 ## <a id="workshop-request-resource"></a> Workshop request resource
 
@@ -115,7 +115,7 @@ links back to the `WorkshopRequest` resource object that triggered the request.
 The Learning Center Operator reacts to an instance of `WorkshopSession` and creates the workshop
 instance based on that definition.
 
->**Note** You create the `WorkshopSession` custom resource at the cluster scope.
+You create the `WorkshopSession` custom resource at the cluster scope.
 
 ## <a id="training-portal-resource"></a> Training portal resource
 
@@ -138,7 +138,7 @@ spec:
 You can set the capacity of the training room, which dictates how many workshop instances
 are created for each workshop.
 
->**Note** You create the `TrainingPortal` custom resource at the cluster scope.
+You create the `TrainingPortal` custom resource at the cluster scope.
 
 ## <a id="system-profile-resource"></a> System profile resource
 
@@ -174,7 +174,7 @@ is created at cluster scope.
 You can make changes to instances of the `SystemProfile` custom resource.
 The Learning Center Operator uses these changes without needing to redeploy the custom resource.
 
->**Note** You create the `SystemProfile` custom resource at the cluster scope.
+You create the `SystemProfile` custom resource at the cluster scope.
 
 ## <a id="loading-workshop-crds"></a> Loading the workshop CRDs
 
