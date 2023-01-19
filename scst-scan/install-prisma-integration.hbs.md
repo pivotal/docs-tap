@@ -6,6 +6,24 @@ This topic describes prerequisites for installing SCST - Scan (Prisma) from the 
 >development by the Tanzu Practices Global Tech Team and might be subject to
 >change at any point. Users might encounter unexpected behavior.
 
+## Determine latest alpha package version
+
+Run the following command to output a list of available tags.
+
+Use the latest version returned in place of the sample version in this doc, such as `0.1.4-alpha.11` in the output below. 
+
+```shell
+imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | grep -v sha | sort -V
+
+0.1.4-alpha.1	
+0.1.4-alpha.2	
+0.1.4-alpha.3	
+0.1.4-alpha.4	
+0.1.4-alpha.5	
+0.1.4-alpha.6	
+0.1.4-alpha.11	
+```
+
 ## Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to
@@ -36,7 +54,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 3. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
 
     ```console
-    docker login registry.tanzu.vmware.com
+    docker login projects.registry.vmware.com
     ```
 
 4. Set up environment variables for installation by running:
@@ -54,7 +72,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `MY-REGISTRY-USER` is the user with write access to MY-REGISTRY.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `MY-REGISTRY` is your own registry.
-    - `VERSION` is your Prisma Scanner version. For example, `0.1.4-alpha.3`.
+    - `VERSION` is your Prisma Scanner version. For example, `0.1.4-alpha.11`.
     - `TARGET-REPOSITORY` is your target repository, a directory or repository on `MY-REGISTRY` that serves as the location for the installation files for Prisma Scanner.
 
 5. [Install the Carvel tool imgpkg CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
@@ -98,7 +116,7 @@ VMware recommends installing the Prisma Scanner objects in the existing `tap-ins
     NAME:          prisma-scanner-repository
     VERSION:       71091125
     REPOSITORY:    index.docker.io/tapsme/prisma-repo-scanning-bundle
-    TAG:           0.1.4-alpha.3
+    TAG:           0.1.4-alpha.11
     STATUS:        Reconcile succeeded
     REASON:
     ```
@@ -122,10 +140,14 @@ VMware recommends installing the Prisma Scanner objects in the existing `tap-ins
 
 To prepare the Prisma configuration before you install any scanners:
 
-1. Obtain your Prisma Compute Console url and Access Keys and Token. See [Access keys](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/authentication/access_keys) in the Prisma documentation. 
-   >**Note** Generated tokens expire after an hour.
-2. Create a Prisma secret YAML file and insert the base64 encoded Prisma API token into the `prisma_token`:
+### Obtain Console url and Access Keys/Token
+Obtain your Prisma Compute Console url and Access Keys/Token by following the documentation [here](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/authentication/access_keys)  
+   * Note - generated tokens expire after an hour
 
+### Create Prisma Secret
+
+#### Access Token Authentication
+1. Create a Prisma secret YAML file and insert the base64 encoded Prisma API token into the `prisma_token`:
     ```yaml
     apiVersion: v1
     kind: Secret
@@ -135,14 +157,12 @@ To prepare the Prisma configuration before you install any scanners:
     data:
       prisma_token: BASE64-PRISMA-API-TOKEN
     ```
-
-    Where:
-
+   Where:
     - `PRISMA-TOKEN-SECRET` is the name of your Prisma token secret.
     - `APP-NAME` is the namespace you want to use.
     - `BASE64-PRISMA-API-TOKEN` is the name of your base64 encoded Prisma API token.
 
-3. Apply the Prisma secret YAML file by running:
+2. Apply the Prisma secret YAML file by running:
 
     ```console
     kubectl apply -f YAML-FILE
@@ -150,7 +170,7 @@ To prepare the Prisma configuration before you install any scanners:
 
     Where `YAML-FILE` is the name of the Prisma secret YAML file you created.
 
-4. Define the `--values-file` flag to customize the default configuration. You
+3. Define the `--values-file` flag to customize the default configuration. You
    must define the following fields in the `values.yaml` file for the Prisma
    Scanner configuration. You can add fields as needed to activate or deactivate
    behaviors. You can append the values to this file as shown later in this
@@ -166,17 +186,74 @@ To prepare the Prisma configuration before you install any scanners:
         name: PRISMA-CONFIG-SECRET
     ```
 
-  Where:
+   Where:
 
-  - `DEV-NAMESPACE` is your developer namespace.
+   - `DEV-NAMESPACE` is your developer namespace.
     > **Note** To use a namespace other than the default namespace, ensure that
-    > the namespace exists before you install. If the namespace does not exist,
-    > the scanner installation fails.
-  - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
-    credentials to pull an image from a private registry for scanning.
-  - `PRISMA-URL` is the FQDN of your Twistlock server.
-  - `PRISMA-CONFIG-SECRET` is the name of the secret you created that contains the
-    Prisma configuration to connect to Prisma. This field is required.
+      the namespace exists before you install. If the namespace does not exist,
+      the scanner installation fails.
+   - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
+     credentials to pull an image from a private registry for scanning.
+   - `PRISMA-URL` is the FQDN of your Twistlock server.
+   - `PRISMA-CONFIG-SECRET` is the name of the secret you created that contains the
+     Prisma configuration to connect to Prisma. This field is required.
+
+#### Access Key Authentication
+
+1. Create a Prisma secret YAML file and insert the base64 encoded Prisma API token into the `prisma_token`:
+
+    ```yaml
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: PRISMA-ACCESS-KEY-SECRET
+      namespace: APP-NAME
+    data:
+      username: BASE64-PRISMA-ACCESS-KEY-ID
+      password: BASE64-PRISMA-ACCESS-KEY-PASSWORD
+    ```
+   Where:
+   - `PRISMA-ACCESS-KEY-SECRET` is the name of your Prisma token secret.
+   - `APP-NAME` is the namespace you want to use.
+   - `BASE64-PRISMA-ACCESS-KEY-ID` is your base64 encoded Prisma Access Key ID.
+   - `BASE64-PRISMA-ACCESS-KEY-PASSWORD` is your base64 encoded Prisma Access Key Password.
+
+2. Apply the Prisma secret YAML file by running:
+
+    ```console
+    kubectl apply -f YAML-FILE
+    ```
+
+   Where `YAML-FILE` is the name of the Prisma secret YAML file you created.
+
+3. Define the `--values-file` flag to customize the default configuration. You
+   must define the following fields in the `values.yaml` file for the Prisma
+   Scanner configuration. You can add fields as needed to activate or deactivate
+   behaviors. You can append the values to this file as shown later in this
+   topic. Create a `values.yaml` file by using the following configuration:
+
+    ```yaml
+    ---
+    namespace: DEV-NAMESPACE
+    targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
+    prisma:
+      url: PRISMA-URL
+      basicAuth:
+        name: PRISMA-ACCESS-KEY-SECRET
+    ```
+
+   Where:
+
+   - `DEV-NAMESPACE` is your developer namespace.
+   > **Note** To use a namespace other than the default namespace, ensure that
+     the namespace exists before you install. If the namespace does not exist,
+     the scanner installation fails.
+   - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
+     credentials to pull an image from a private registry for scanning.
+   - `PRISMA-URL` is the FQDN of your Twistlock server.
+   - `PRISMA-CONFIG-SECRET` is the name of the secret you created that contains the
+     Prisma configuration to connect to Prisma. This field is required.
+
 
 The Prisma integration can work with or without the SCST - Store integration.
 The values.yaml file is slightly different for each configuration.
@@ -262,8 +339,57 @@ metadataStore:
   url: "" # Configuration is moved, so set this string to empty
 ```
 
-## Sample ScanPolicy for CycloneDX Format
+## Prepare the ScanPolicy
 
+### Sample ScanPolicy using Prisma Policies
+The following sample ScanPolicy allows you to control whether the SupplyChain passes or fails based on the Compliance and Vulnerability rules configured within the Prisma Compute Console.
+
+The policy will read the `complianceScanPassed` and `vulnerabilityScanPassed` fields returned from Prisma scanner output to control the results of the scan.
+
+```yaml
+apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
+kind: ScanPolicy
+metadata:
+  name: prisma-scan-policy
+  labels:
+    'app.kubernetes.io/part-of': 'enable-in-gui'
+spec:
+  regoFile: |
+    package main
+    
+    import future.keywords.in
+    import future.keywords.if
+    
+    failedPrismaComplianceOrVulnerabilityChecks(metadata) {
+      x := false in cast_set(metadata.properties.property)
+      x
+    }
+
+    deny[msg] {
+      failedPrismaComplianceOrVulnerabilityChecks(input.bom.metadata)
+      vulnerabilityMessages := { message |
+        components := {e | e := input.bom.components.component} | {e | e := input.bom.components.component[_]}
+        some component in components
+        vulnerabilities := {e | e := component.vulnerabilities.vulnerability} | {e | e := component.vulnerabilities.vulnerability[_]}
+        some vulnerability in vulnerabilities
+        ratings := {e | e := vulnerability.ratings.rating.severity} | {e | e := vulnerability.ratings.rating[_].severity}
+        formattedRatings := concat(", ", ratings)
+        message := sprintf("Vulnerability - Component: %s CVE: %s Severity: %s", [component.name, vulnerability.id, formattedRatings])
+      }
+      complianceMessages := { message |
+        compliances := {e | e := input.bom.metadata.component.compliances.compliance} | {e | e := input.bom.metadata.component.compliances.compliance[_]}
+        some compliance in compliances
+        message := sprintf("Compliance - %s \\\nId: %s Severity: %s Category: %s", [compliance.title, compliance.id, compliance.severity, compliance.category])
+      }
+      combinedMessages := complianceMessages | vulnerabilityMessages
+      some message in combinedMessages
+      msg := message
+    }
+
+```
+
+### Sample ScanPolicy using Local Policies
+The following sample ScanPolicy allows you to control whether the SupplyChain passes or fails based on the Prisma Scanner CycloneDX vulnerability results returned from the Prisma Scanner.
 ```yaml
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: ScanPolicy
@@ -324,6 +450,4 @@ Where:
 After all prerequisites are completed, install the Prisma Scanner. See [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md).
 
 ## Known Limitations
-
-- AWS ECR is not supported.
-- OpenShift is not supported.
+* OpenShift is not supported
