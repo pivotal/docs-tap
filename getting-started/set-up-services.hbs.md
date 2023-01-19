@@ -153,12 +153,12 @@ To create a service instance:
     kubectl create namespace service-instances
     ```
 
-    > **Note** Using namespaces to separate service instances from application workloads allows
-    > for greater separation of concerns, and means that you can achieve greater control
-    > over who has access to what. However, this is not a strict requirement.
-    > You can create both service instances and application workloads in the same namespace.
-    > There is no need to create a resource claim policy if the service instance resides in the
-    > same namespace as the application workload.
+    Using namespaces to separate service instances from application workloads allows
+    for greater separation of concerns, and means that you can achieve greater control
+    over who has access to what. However, this is not a strict requirement.
+    You can create both service instances and application workloads in the same namespace.
+    There is no need to create a resource claim policy if the service instance resides in the
+    same namespace as the application workload.
 
 2. Create a `RabbitmqCluster` service instance.
 
