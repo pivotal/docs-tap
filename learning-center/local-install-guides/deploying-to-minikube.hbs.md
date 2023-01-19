@@ -26,7 +26,7 @@ minikube start --insecure-registry=192.168.64.0/24
 
 If you already have a cluster started with Minikube, you cannot stop it and then provide this option when it is restarted. You can only use this option for a completely new cluster.
 
->**Note** You must be using `dockerd`, not `containerd`, in the Minikube cluster. `containerd` does not accept an IP subnet when defining insecure registries to be trusted. It allows only specific hosts or IP addresses. Because you don't know what IP address Minikube will use in advance, you can't provide the IP address on the command line when starting Minikube to create the cluster.
+You must also use `dockerd`, not `containerd`, in the Minikube cluster. `containerd` does not accept an IP subnet when defining insecure registries to be trusted. It allows only specific hosts or IP addresses. Because you don't know what IP address Minikube will use in advance, you can't provide the IP address on the command line when starting Minikube to create the cluster.
 
 ## <a id="prerequisites"></a> Prerequisites
 
@@ -68,7 +68,7 @@ To install secret-gen controller, run:
 kapp deploy -a sg -f https://github.com/vmware-tanzu/carvel-secretgen-controller/releases/latest/download/release.yml
 ```
 
->**Note** Type "y" and enter to continue when prompted during installation of both kapp and secret-gen controllers.
+Type "y" and enter to continue when prompted during installation of both kapp and secret-gen controllers.
 
 ## <a id="install-tanzu-pkg-repo"></a> Install Tanzu package repository
 
