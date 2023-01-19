@@ -1,4 +1,4 @@
-# Namespace Provisioner
+# Namespace Provisioner reference guide
 
 This topic describes known limitations and default resource mapping.
 ## <a id="known-limitations"></a>Known Limitations/Issues
