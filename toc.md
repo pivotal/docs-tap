@@ -126,6 +126,7 @@ docs.vmware.com is built.
                         - [tanzu accelerator fragment list](cli-plugins/accelerator/command-reference/tanzu_accelerator_fragment_list.hbs.md)
                         - [tanzu accelerator fragment update](cli-plugins/accelerator/command-reference/tanzu_accelerator_fragment_update.hbs.md)
                         - [tanzu accelerator generate](cli-plugins/accelerator/command-reference/tanzu_accelerator_generate.hbs.md)
+                        - [tanzu accelerator generate-from-local](cli-plugins/accelerator/command-reference/tanzu_accelerator_generate_from_local.hbs.md)
                         - [tanzu accelerator get](cli-plugins/accelerator/command-reference/tanzu_accelerator_get.hbs.md)
                         - [tanzu accelerator list](cli-plugins/accelerator/command-reference/tanzu_accelerator_list.hbs.md)
                         - [tanzu accelerator push](cli-plugins/accelerator/command-reference/tanzu_accelerator_push.hbs.md)
