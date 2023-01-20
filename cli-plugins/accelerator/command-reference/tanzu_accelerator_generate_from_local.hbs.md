@@ -28,19 +28,19 @@ specify the `--server-url` flag or set an `ACC_SERVER_URL` environment variable.
 Generate a project using a combination local and registered assets
 
 ```console
-tanzu accelerator generate-from-local \
---accelerator-path java-rest=workspace/java-rest \ # Use a local accelerator
---fragment-paths java-version=workspace/version \ # Use a local fragment
---fragment-names tap-workload \ # Use a registered fragment
---options '{"projectName":"test"}' \
---output-dir "./generated-java-rest-app"
+   tanzu accelerator generate-from-local \
+   --accelerator-path java-rest=workspace/java-rest \ # Use a local accelerator
+   --fragment-paths java-version=workspace/version \ # Use a local fragment
+   --fragment-names tap-workload \ # Use a registered fragment
+   --options '{"projectName":"test"}' \
+   --output-dir "./generated-java-rest-app"
 ```
 
 ## Options
 
 ```console
-    --accelerator-name string             name of the registered accelerator to use
-    --accelerator-path "key=value" pair   key value pair of the name and path to the directory containing the accelerator
+   --accelerator-name string             name of the registered accelerator to use
+   --accelerator-path "key=value" pair   key value pair of the name and path to the directory containing the accelerator
 -f, --force                               force clean and rewrite of output-dir
     --fragment-names strings              names of the registered fragments to use
     --fragment-paths stringToString       key value pairs of the name and path to the directory containing each fragment (default [])
@@ -54,6 +54,6 @@ tanzu accelerator generate-from-local \
 ## Options inherited from parent commands
 
 ```console
-    --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
-    --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
+   --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
+   --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
 ```
