@@ -142,12 +142,18 @@ The Prisma Scanner supports two methods of authentication:
 
 The steps to configure both are outlined below to allow you to choose which option you use. Note that the token method will require the token issued by Prisma Cloud has a expiration of 1 hour, so it will require frequent refreshing.
 
-To obtain your Prisma Compute Console url and Access Keys/Token by following the documentation [here](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/authentication/access_keys)  
-   * Note - generated tokens expire after an hour
+To obtain your Prisma Compute Console URL and Access Keys and Token. See [Access keys](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/authentication/access_keys) in the Palo Alto Networks documentation.
+
+1) Basic Authentication with API Key and Secret
+2) Token Based Authentication
 
 #### Access Key Authentication
 
+To create a Prisma secret, follow the instructions in the sections below. 
+
+#### Access Token Authentication
 1. Create a Prisma secret YAML file and insert the base64 encoded Prisma API token into the `prisma_token`:
+
 
     ```yaml
     apiVersion: v1
@@ -177,7 +183,7 @@ To obtain your Prisma Compute Console url and Access Keys/Token by following the
 
 3. Define the `--values-file` flag to customize the default configuration. You
    must define the following fields in the `values.yaml` file for the Prisma
-   Scanner configuration. You can add fields as needed to activate or deactivate
+   Scanner configuration. You can add fields to activate or deactivate
    behaviors. You can append the values to this file as shown later in this
    topic. Create a `values.yaml` file by using the following configuration:
 
@@ -217,8 +223,10 @@ The values.yaml file is slightly different for each configuration.
     data:
       prisma_token: BASE64-PRISMA-API-TOKEN
     ```
+
    Where:
-    - `PRISMA-TOKEN-SECRET` is the name of your Prisma token secret.
+ 
+   - `PRISMA-TOKEN-SECRET` is the name of your Prisma token secret.
     - `APP-NAME` is the namespace you want to use.
     - `BASE64-PRISMA-API-TOKEN` is the name of your base64 encoded Prisma API token.
 
