@@ -140,13 +140,13 @@ The Prisma Scanner supports two methods of authentication:
 1) Basic Authentication with API Key and Secret
 2) Token Based Authentication
 
-The steps to configure both are outlined below to allow you to choose which option you use. Note that the token method will require the token issued by Prisma Cloud has a expiration of 1 hour, so it will require frequent refreshing.
+The steps to configure both are outlined below to allow you to choose which option you use. Note that the token method issued by Prisma Cloud has a expiration of 1 hour, so it will require frequent refreshing.
 
 To obtain your Prisma Compute Console URL and Access Keys and Token. See [Access keys](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/authentication/access_keys) in the Palo Alto Networks documentation.
 
   >**Note** Generated tokens expire after an hour.
 
-#### Access Key Authentication
+#### Access Key and Secret Authentication
 
 To create a Prisma secret, follow the instructions in the sections below. 
 
