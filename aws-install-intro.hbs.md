@@ -16,7 +16,7 @@ To install, take the following steps.
 |7.| Set up developer namespaces to use installed packages |[Set up developer namespaces to use installed packages](set-up-namespaces-aws.hbs.md)|
 |8.| Install developer tools into your integrated development environment (IDE) |[Install Tanzu Developer Tools for VS Code](vscode-install-aws.hbs.md)|
 
->**Important** Installing Tanzu Application Platform 1.4 on AWS using ECR as your container registry currently requires Cluster Essentials 1.3 due to an issue with support for credential helpers in Cluster Essentials 1.4.
+>**Important** Installing Tanzu Application Platform v1.4 on AWS using ECR as your container image registry currently requires Cluster Essentials v1.3 due to an issue with support for credential helpers in Cluster Essentials v1.4.
 
 After installing Tanzu Application Platform on your Kubernetes clusters,
 [get started with Tanzu Application Platform](getting-started.hbs.md) and create your ECR repositories
