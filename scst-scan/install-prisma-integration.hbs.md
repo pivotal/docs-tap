@@ -152,10 +152,6 @@ To create a Prisma secret, follow the instructions in the sections below.
 
 1. Create a Prisma secret YAML file and insert the base64 encoded Prisma API token into the `prisma_token`:
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 5fc5e0b74248812185d64ead76a171b8c1682f2f
     ```yaml
     apiVersion: v1
     kind: Secret
