@@ -6,22 +6,22 @@ This topic describes prerequisites for installing SCST - Scan (Prisma) from the 
 >development by the Tanzu Practices Global Tech Team and might be subject to
 >change at any point. Users might encounter unexpected behavior.
 
-## Determine latest alpha package version
+## Verify the latest alpha package version
 
 Run the following command to output a list of available tags.
 
-Use the latest version returned in place of the sample version in this doc, such as `0.1.4-alpha.11` in the output below. 
+Use the latest version returned in place of the sample version in this topic, such as `0.1.4-alpha.11` in the following output. 
 
-```shell
+```console
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | grep -v sha | sort -V
 
-0.1.4-alpha.1	
-0.1.4-alpha.2	
-0.1.4-alpha.3	
-0.1.4-alpha.4	
-0.1.4-alpha.5	
-0.1.4-alpha.6	
-0.1.4-alpha.11	
+0.1.4-alpha.1  
+0.1.4-alpha.2  
+0.1.4-alpha.3  
+0.1.4-alpha.4  
+0.1.4-alpha.5  
+0.1.4-alpha.6  
+0.1.4-alpha.11  
 ```
 
 ## Relocate images to a registry
@@ -227,8 +227,12 @@ The values.yaml file is slightly different for each configuration.
 
 ### Create Prisma Secret
 
+To create a Prisma secret, follow the instructions in the sections below. 
+
 #### Access Token Authentication
+
 1. Create a Prisma secret YAML file and insert the base64 encoded Prisma API token into the `prisma_token`:
+
     ```yaml
     apiVersion: v1
     kind: Secret
@@ -238,7 +242,9 @@ The values.yaml file is slightly different for each configuration.
     data:
       prisma_token: BASE64-PRISMA-API-TOKEN
     ```
+
    Where:
+
     - `PRISMA-TOKEN-SECRET` is the name of your Prisma token secret.
     - `APP-NAME` is the namespace you want to use.
     - `BASE64-PRISMA-API-TOKEN` is the name of your base64 encoded Prisma API token.
@@ -253,7 +259,7 @@ The values.yaml file is slightly different for each configuration.
 
 3. Define the `--values-file` flag to customize the default configuration. You
    must define the following fields in the `values.yaml` file for the Prisma
-   Scanner configuration. You can add fields as needed to activate or deactivate
+   Scanner configuration. You can add fields to activate or deactivate
    behaviors. You can append the values to this file as shown later in this
    topic. Create a `values.yaml` file by using the following configuration:
 
@@ -293,7 +299,9 @@ The values.yaml file is slightly different for each configuration.
       username: BASE64-PRISMA-ACCESS-KEY-ID
       password: BASE64-PRISMA-ACCESS-KEY-PASSWORD
     ```
+
    Where:
+
    - `PRISMA-ACCESS-KEY-SECRET` is the name of your Prisma token secret.
    - `APP-NAME` is the namespace you want to use.
    - `BASE64-PRISMA-ACCESS-KEY-ID` is your base64 encoded Prisma Access Key ID.
@@ -334,7 +342,6 @@ The values.yaml file is slightly different for each configuration.
    - `PRISMA-URL` is the FQDN of your Twistlock server.
    - `PRISMA-CONFIG-SECRET` is the name of the secret you created that contains the
      Prisma configuration to connect to Prisma. This field is required.
-
 
 The Prisma integration can work with or without the SCST - Store integration.
 The values.yaml file is slightly different for each configuration.
