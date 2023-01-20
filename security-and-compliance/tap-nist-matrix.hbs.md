@@ -9,7 +9,7 @@ Standardized control frameworks provide a model for how to protect information a
 
 This table provides a self-assessment of Tanzu Application Platform against the NIST SP 800-53 Rev. 5 controls and provides a high level of guidance for  the initial approch of how deployers can achieve compliance when using a shared responsibility model. Responsibility for any control can be assigned as indicated.
 
-|Name | Developer Responability | Platform Provided (Tanzu Application Platform) | Hybrid (Platform and App shared resonsibility) | Potential to inharet from IaaS or Enterprise pollicy/tool | Security Control Baseline Moderate | Security Controle Baseline High |
+|Name | Developer Responsibility | Platform Provided (Tanzu Application Platform) | Hybrid (Platform and App Shared Responsibility) | Potential to Inherit from IaaS or Enterprise pollicy/tool | Security Control Baseline Moderate | Security Control Baseline High |
 |---|---|---|---|---|---|---|
 | AC-1 | yes |  |  | yes | x | x |
 | AC-2 | yes |  |  | yes | x | x |
