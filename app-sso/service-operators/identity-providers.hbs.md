@@ -45,6 +45,9 @@ spec:
         jwksUri: https://example.com/oauth2/jwks
         claimMappings:
           roles: my-oidc-provider-groups
+        roles:
+          fromUpstream:
+            claim: "my-oidc-provider-groups"
   # ...
 ---
 apiVersion: v1
@@ -70,10 +73,10 @@ You can also run `curl -s "https://openid.example.com/.well-known/openid-configu
 - `authorizationUri` (optional) is the URI for performing an authorization request and obtaining an `authorization_code`.
 - `tokenUri` (optional) is the URI for performing a token request and obtaining a token.
 - `jwksUri` (optional) is the JSON Web Key Set (JWKS) endpoint for obtaining the JSON Web Keys to verify token signatures.
-- `claimMappings` (optional) selects which claim in the `id_token` contains the `roles` of the user. 
+- TODO: UPDATE THIS >>>>>>>>> `claimMappings` (optional) selects which claim in the `id_token` contains the `roles` of the user. 
 `roles` is a non-standard OpenID Connect claim. When `ClientRegistrations` has a `roles` scope, 
 it is used to populate the `roles` claim in the `id_token` issued by the `AuthServer`.
-- `my-oidc-provider-groups` claim from the ID token issued by `my-oidc-provider` is mapped into the `roles` claim in tokens issued by AppSSO.
+- `my-oidc-provider-groups` claim from the ID token issued by `my-oidc-provider` is mapped into the `roles` claim in id tokens issued by AppSSO.
 
 Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and select `my-oidc-provider`.
 
