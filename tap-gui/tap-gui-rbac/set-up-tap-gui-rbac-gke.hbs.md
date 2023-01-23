@@ -146,15 +146,14 @@ After the new configuration file is ready, update the `tap` package:
 
 When leveraging Google's OIDC provider, fewer steps are needed to enable authorization:
 
-1. Add a redirect config on the OIDC side
+1. Add redirect configuration on the OIDC side.
 1. Configure the Tanzu Application Platform GUI to view the remote GKE cluster
 1. Upgrade the Tanzu Application Platform GUI package
 
-### <a id="add-redirect-config"></a> Add a redirect config on the OIDC side
+### <a id="add-redirect-config"></a> Add redirect configuration on the OIDC side
 
-Add a redirect config on the OIDC side:
-
-To add a redirect config on the OIDC side, please refer to the following documentation: [Use external identity providers to authenticate to GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/oidc).
+Add redirect configuration on the OIDC side by following the
+[Google Cloud documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/oidc).
 
 ### <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
 
