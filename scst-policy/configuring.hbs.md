@@ -188,9 +188,7 @@ is installed. Such secret must only contain one `data` entry with the public key
 Each keyless authority can contain a Fulcio URL, a Rekor URL, a certificate, or
 an array of identities.
 
-> **Note** Identities are required in keyless authorities as of Policy Controller version `1.3+`.
-
-Identities require a combination of `issuer` or `issuerRegExp` with `subject` or `subjectRegExp`.
+Identities are represented with a combination of `issuer` or `issuerRegExp` with `subject` or `subjectRegExp`.
 * `issuer`: defines the issuer for this identity.
 * `issuerRegExp`: specifies a regular expression to match the issuer for this identity.
 * `subject`: defines the subject for this identity.
