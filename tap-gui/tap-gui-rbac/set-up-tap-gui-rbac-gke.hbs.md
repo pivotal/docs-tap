@@ -170,8 +170,7 @@ Configure visibility of the remote GKE cluster in Tanzu Application Platform GUI
     This command returns the URL of the first configured cluster in your `kubeconfig` file.
     To view other clusters one by one, edit the number in `.clusters[0].cluster.server` or edit the
     command to view all the configured clusters.
-
-1. <!-- INSERT HOW TO OBTAIN CA-DATA -->
+    <!-- Ideally insert step below for how to obtain CA data -->
 
 1. Ensure you have an `auth` section in the `app_config` section that Tanzu Application Platform GUI
 uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
