@@ -154,7 +154,7 @@ When leveraging Google's OIDC provider, fewer steps are needed to enable authori
 
 Add a redirect config on the OIDC side:
 
-(SECTION TO BE ADDED)
+To add a redirect config on the OIDC side, please refer to the following documentation: [Use external identity providers to authenticate to GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/oidc).
 
 ### <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
 
