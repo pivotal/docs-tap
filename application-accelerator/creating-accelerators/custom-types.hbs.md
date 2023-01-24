@@ -64,8 +64,8 @@ The type of the `myTask` value is `object` (in Javascript/JSON parlance)
 and `Map<String, ?>` when seen from the Java engine side.
 
 The earlier example is technically possible with the custom types feature,
-but brings little benefit over having three options named _e.g._ `myTaskTitle`,
-`myTaskDetails` and `myTaskDone` to achieve the same end result. The value of custom types is that
+but brings little benefit over having three options named to achieve the same end result,
+ for example, `myTaskTitle`, `myTaskDetails`, and `myTaskDone`. The value of custom types is that
 they can be used in sequence types, allowing you to enter an unbounded list of structured data:
 
 ```yaml
