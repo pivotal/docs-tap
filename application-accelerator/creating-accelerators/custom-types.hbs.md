@@ -4,8 +4,8 @@ You can declare new `types` in `accelerator.yaml`. These can be used for options
 in addition to the built-in types `string`, `number`, and `boolean`.
 
 In `accelerator.yaml`, use the `types` entry (inside the top-level
-`accelerator` section)  to define custom types.
-The name must be an initial capital letter.
+`accelerator` section)  to define custom types.</br>
+The name must be an initial capital letter.</br>
 In the following example, the `struct` type definition is syntactically equivalent to a sequence
 of option definitions.:
 
@@ -41,11 +41,11 @@ accelerator:
     ...
 ```
 
-For example, UIs render:
+UIs would render something similar to the following:
 
 ![SimpleTask form is open with my first task sample title and task details.](../images/simple-task.png)
 
-Associate the entered values to the `myTask` top-level name, resulting in the following example
+and associate the entered values to the `myTask` top-level name, resulting in the following example
 values submission (here represented using JSON notation):
 
 ```json
