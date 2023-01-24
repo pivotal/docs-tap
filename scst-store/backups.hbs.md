@@ -5,7 +5,7 @@ By default, the metadata store uses a `PersistentVolume` mounted on a Postgres i
 ## <a id='backup-store'></a>Backup
 You can use [Velero](https://velero.io/) to create regular backups.
 
->**Note** Backup support for `PersistentVolume` depends on the used `StorageClass` and existing provider plug-ins is the noun or adjective. See the officially [supported plugins here](https://velero.io/plugins/).
+>**Note** Backup support for `PersistentVolume` depends on the used `StorageClass` and existing provider plug-ins. See the officially [supported plug-ins here](https://velero.io/plugins/).
 
 ```bash
 velero install --provider <provider> --bucket <bucket-name> --plugins <plugin-image-location> --secret-file <secrets-file>

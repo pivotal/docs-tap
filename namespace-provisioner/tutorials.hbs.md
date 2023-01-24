@@ -2,11 +2,11 @@
 
 There are two approaches to provisioning namespace-scoped resources supported:
 
-1. [**Using Namespace Provisioner Controller**](#controller-ns-provisioning) - recommended for Tanzu
+1. [Using Namespace Provisioner Controller](#controller-ns-provisioning) - recommended for Tanzu
    Application Platform clusters that:
    - include [Out of the Box Supply Chain Basic](../scc/ootb-supply-chain-basic.hbs.md)
    - require only the default namespace-scoped resources to be provisioned
-2. [**Using GitOps**](#using-gitops) - required for Tanzu Application Platform clusters that
+2. [Using GitOps](#using-gitops) - required for Tanzu Application Platform clusters that
    meet any of the following:
    - include [Out of the Box Supply Chain - Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md)
    - require customization or extension of the default namespace-scoped resources that are provisioned
@@ -95,4 +95,4 @@ tap value key's value as follows:
 - The [`controller` tap value key](install.hbs.md#customized-install) is set to **`false`**
   (Default is `true`)
 
-For more information about provisioning namespaces with GitOps, see [**Control the `desired-namespaces` ConfigMap with GitOps**](how-tos.hbs.md#control-desired-namespaces).
+For more information about provisioning namespaces with GitOps, see [Control the `desired-namespaces` ConfigMap with GitOps](how-tos.hbs.md#control-desired-namespaces).

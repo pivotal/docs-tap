@@ -69,7 +69,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
-    To query for the available `imgpkg` CLI versions on VMWare Tanzu Network Registry, run:
+    To query for the available versions of Tanzu Application Platform on VMWare Tanzu Network Registry, run:
 
     ```console
     imgpkg tag list -i registry.tanzu.vmware.com/tanzu-application-platform/tap-packages | grep -v sha | sort -V
@@ -90,7 +90,7 @@ Tanzu CLI packages are available on repositories. Adding the Tanzu Application P
 - `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
 - `INSTALL_REPO` is `tanzu-application-platform`
 - `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
-- `TAP_VERSION`is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
+- `TAP_VERSION` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 To add the Tanzu Application Platform package repository to your cluster:
 
