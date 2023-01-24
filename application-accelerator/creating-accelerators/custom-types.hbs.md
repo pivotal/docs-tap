@@ -5,9 +5,11 @@ in addition to the built-in types `string`, `number`, and `boolean`.
 
 In `accelerator.yaml`, use the `types` entry (inside the top-level
 `accelerator` section)  to define custom types.</br>
+
 The name must be an initial capital letter.</br>
+
 In the following example, the `struct` type definition is syntactically equivalent to a sequence
-of option definitions.:
+of option definitions:
 
 ```yaml
 accelerator:
