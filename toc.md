@@ -335,6 +335,7 @@ docs.vmware.com is built.
         - [Using Grype in offline and air-gapped environments](scst-scan/offline-airgap.md)
         - [Triaging and Remediating CVEs](scst-scan/triaging-and-remediating-cves.hbs.md)
         - [Observing and troubleshooting](scst-scan/observing.md)
+        - [Troubleshoot](scst-scan/troubleshoot-scan.hbs.md)
         - [Additional scan resources](scst-scan/scan-crs.md)
             - [Configure code repositories and image artifacts to be scanned](scst-scan/scan-crs.md)
             - [Enforce compliance policy using Open Policy Agent](scst-scan/policies.md)
