@@ -1,7 +1,7 @@
 # AuthServer
 
-`AuthServer` represents the request for an OIDC authorization server. It results in the deployment of an authorization
-server backed by Redis over mutual TLS (if no storage is defined).
+`AuthServer` represents the request for an OIDC authorization server. It causes the deployment of an authorization
+server backed by Redis over mutual TLS if no storage is defined.
 
 An `AuthServer` should have labels which allow to uniquely match it amongst others. `ClientRegistration` selects an
 `AuthServer` by label selector and needs a unique match to be successful.
@@ -82,12 +82,12 @@ spec:
       - name: ""
   storage: # optional
     redis: # required if 'storage' is defined
-      serviceRef: # Reference to a provisioned service within the same namespace as this AuthServer. Currently supports Secret reference only.
+      serviceRef: # reference to a provisioned service within the same namespace as this AuthServer. Currently supports Secret reference only.
         apiVersion: "v1"
         kind: "Secret"
         name: ""
   caCerts: # optional
-    - secretRef: # Reference to Secret resource within the same namespace as this AuthServer.
+    - secretRef: # reference to Secret resource within the same namespace as this AuthServer.
         name: ""
   identityProviders: # optional
     # each must be one and only one of internalUnsafe, ldap, openID or saml
@@ -161,7 +161,7 @@ status:
       configHash: ""
       image: ""
       replicas: 0
-    redis: # empty if storage is configured by the service operator
+    redis: # leave empty if storage is configured by the service operator
       image: ""
   storage:
     redis:
@@ -204,9 +204,9 @@ to troubleshoot issues.
 its replicas, the hash of the current configuration and the generation which has last resulted in a restart.
 
 `.status.deployments.redis` describes the current provided Redis deployment by listing its running image. This field is
-nil if storage is defined explicitly via `.spec.storage`.
+nil if storage is defined explicitly by using `.spec.storage`.
 
-`.status.storage.redis` describes the configured Redis storage such as hostname and port number.
+`.status.storage.redis` describes the configured Redis storage such as host name and port number.
 
 `.status.conditions` documents each step in the reconciliation:
 
@@ -240,11 +240,11 @@ deployments:
     configHash: "11216479096262796218"
     image: "..."
     replicas: 1
-  redis: # empty if external storage is defined
+  redis: # leave empty if external storage is defined
     image: "..."
 storage:
   redis:
-   host: "" # the hostname of the configured Redis
+   host: "" # the host name of the configured Redis
    port: "" # the port of the configured Redis
 tls:
   deactivated: false
