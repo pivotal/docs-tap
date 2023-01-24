@@ -358,10 +358,11 @@ This release has the following known issues, listed by area and component.
 
 - When using custom types, if there is a check box in the list of attributes then re-ordering
   the inputs doesn't work.
-  
+
 #### <a id="1-4-0-app-acc-vscode-ki"></a> Tanzu Build Service
 
-- After January 26th 2023, workloads that leverage the Paketo Buildpack for Spring Boot as a part of the Tanzu Java Buildpack v8.5 and earlier will fail due to [recent restrictions](https://spring.io/blog/2022/12/14/notice-of-permissions-changes-to-repo-spring-io-january-2023) to repo.spring.io permissions. Users may experience failures prior January 26th this due to intermittent brown-outs scheduled (for more details on the brown-outs see the "Upcoming Changes" section of the [Spring Notice of Permissions Changes](https://spring.io/blog/2022/12/14/notice-of-permissions-changes-to-repo-spring-io-january-2023)). It is recommended that users update the Java buildpack in their ClusterStore with the new Java Buildpack image from [Tanzu Net](https://network.tanzu.vmware.com/products/tanzu-java-buildpack#/releases/1240737/artifact_references)(v8.6.0). Please see the following Tanzu Build Service documentation for how to [update a buildpack in a ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-stores.html#adding-buildpackages-to-a-clusterstore). 
+- After January 26th 2023, workloads that leverage the Paketo Buildpack for Spring Boot as a part of the Tanzu Java Buildpack v8.5 and earlier will fail due to [recent restrictions](https://spring.io/blog/2022/12/14/notice-of-permissions-changes-to-repo-spring-io-january-2023) to repo.spring.io permissions. You might experience failures prior January 26th, due to scheduled intermittent brown-outs. For more details on the brown-outs see the "Upcoming Changes" section of the [Spring Notice of Permissions Changes](https://spring.io/blog/2022/12/14/notice-of-permissions-changes-to-repo-spring-io-january-2023). </br>
+It is recommended that you update the Java buildpack in your ClusterStore with the new Java Buildpack image from [Tanzu Net](https://network.tanzu.vmware.com/products/tanzu-java-buildpack#/releases/1240737/artifact_references) (v8.6.0). For details on how to update a buildpack in a ClusterStore, see [Adding buildpackages to a ClusterStore](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-stores.html#adding-buildpackages-to-a-clusterstore) in the Tanzu Build Service documentation.
 
 #### <a id="1-4-0-cnr-ki"></a> Cloud Native Runtimes for VMware Tanzu
 
