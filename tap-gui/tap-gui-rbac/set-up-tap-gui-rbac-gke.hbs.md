@@ -146,15 +146,14 @@ After the new configuration file is ready, update the `tap` package:
 
 When leveraging Google's OIDC provider, fewer steps are needed to enable authorization:
 
-1. Add a redirect config on the OIDC side
+1. Add redirect configuration on the OIDC side.
 1. Configure the Tanzu Application Platform GUI to view the remote GKE cluster
 1. Upgrade the Tanzu Application Platform GUI package
 
-### <a id="add-redirect-config"></a> Add a redirect config on the OIDC side
+### <a id="add-redirect-config"></a> Add redirect configuration on the OIDC side
 
-Add a redirect config on the OIDC side:
-
-(SECTION TO BE ADDED)
+Add redirect configuration on the OIDC side by following the
+[Google Cloud documentation](https://cloud.google.com/kubernetes-engine/docs/how-to/oidc).
 
 ### <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
 
@@ -171,8 +170,7 @@ Configure visibility of the remote GKE cluster in Tanzu Application Platform GUI
     This command returns the URL of the first configured cluster in your `kubeconfig` file.
     To view other clusters one by one, edit the number in `.clusters[0].cluster.server` or edit the
     command to view all the configured clusters.
-
-1. <!-- INSERT HOW TO OBTAIN CA-DATA -->
+    <!-- Ideally insert step below for how to obtain CA data -->
 
 1. Ensure you have an `auth` section in the `app_config` section that Tanzu Application Platform GUI
 uses. In the example for Auth0, copy this YAML content into `tap-values.yaml`:
