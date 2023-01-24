@@ -6,7 +6,7 @@ Follow the instructions in this topic to install a scanner other than the out of
 
 ## <a id="prerecs"></a> Prerequisites
 
-Before installing a new scanner, install [Supply Chain Security Tools - Scan](install-scst-scan.md). It must be present on the same cluster. The prerequisites for Scan are also required.
+Before installing a new scanner, install [Supply Chain Security Tools - Scan](./install-scst-scan.hbs.md). It must be present on the same cluster. The prerequisites for Scan are also required.
 
 ## <a id="installation"></a> Install
 
@@ -22,7 +22,7 @@ To install a new scanner, follow these steps:
     tanzu package available list --namespace tap-install
     ```
 
-  For example:
+    For example:
 
     ```console
     $ tanzu package available list --namespace tap-install
@@ -39,7 +39,7 @@ To install a new scanner, follow these steps:
     tanzu package available list SCANNER-NAME --namespace tap-install
     ```
 
-  For example:
+    For example:
 
     ```console
     $ tanzu package available list snyk.scanning.apps.tanzu.vmware.com --namespace tap-install
@@ -48,7 +48,7 @@ To install a new scanner, follow these steps:
       snyk.scanning.apps.tanzu.vmware.com   1.0.0-beta.2
     ```
 
-1. (Optional) Create the secrets the scanner package relies on:
+1. (Optional) Confirm that the secret created in Step 1 for scanner specific prerequisites is created.
 
 1. Create a `values.yaml` to apply custom configurations to the scanner:
 
@@ -85,7 +85,7 @@ To install a new scanner, follow these steps:
     targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry.
     ```
 
-2. Define the `--values-file` flag to customize the default configuration:
+1. Define the `--values-file` flag to customize the default configuration:
 
     The `values.yaml` file you created earlier is referenced with the `--values-file` flag when running your Tanzu install command:
 
@@ -130,11 +130,11 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 1. (Optional) Create a `ScanPolicy` formatted for the output specific to the scanner you are installing, to reference in the `ImageScan` or `SourceScan`.
 
-   ```console
-    kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
-  ```
+    ```console
+      kubectl apply -n $DEV_NAMESPACE -f SCAN-POLICY-YAML
+    ```
 
-  > **Note** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
+    > **Note** As vulnerability scanners output different formats, the `ScanPolicies` can vary. For information about policies and samples, see [Enforce compliance policy using Open Policy Agent](policies.hbs.md).
 
 1. Retrieve available `ScanTemplates` from the namespace where the scanner is installed:
 
@@ -298,11 +298,11 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 ## <a id="configure-supply-chain"></a> Configure Tanzu Application Platform Supply Chain to use new scanner
 
-In order to scan your images with the new scanner installed in the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.md), you must update your Tanzu Application Platform installation.
+In order to scan your images with the new scanner installed in the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md), you must update your Tanzu Application Platform installation.
 
-Add the `ootb_supply_chain_testing_scanning.scanning` section to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.md#upgrading-tanzu-application-platform).
+Add the `ootb_supply_chain_testing_scanning.scanning` section to your `tap-values.yaml` and perform a [Tanzu Application Platform update](../upgrading.hbs.md#perform-the-upgrade-of-tanzu-application-platform).
 
-In this file you can define which `ScanTemplates` is used for both `SourceScan` and `ImageScan`. The default values are the Grype Scanner `ScanTemplates`, but they are overwritten by any other `ScanTemplate` present in your `DEV-NAMESPACE`. The same applies to the `ScanPolicies` applied to each kind of scan.
+You can define which `ScanTemplates` is used for both `SourceScan` and `ImageScan`. The default values are the Grype Scanner `ScanTemplates`, but they are overwritten by any other `ScanTemplate` present in your `DEV-NAMESPACE`. The same applies to the `ScanPolicies` applied to each kind of scan.
 
 ```yaml
 ootb_supply_chain_testing_scanning:
@@ -347,9 +347,12 @@ For example:
 $ tanzu package installed delete snyk-scanner \
     --namespace tap-install
 ```
+
 ## <a id="other-scanner-integrations"></a> Other Available Scanner Integrations
 
-In addition to providing the above supported integrations, VMware encourages the broader community (both internal and external to VMware) to also support us in our goal of integrating with customers' preferred CVE scanners.
+In addition to providing the above supported integrations, VMware encourages the broader community to support VMware in our goal of integrating with customers' preferred CVE scanners.
 
-Refer below to some of these additional integrations that are currently available.
-- [Prisma Scanner (Alpha)](install-prisma-integration.md) is available for source and image scanning. **Note: This integration is being released as an Alpha, which means that it is still in active development by the Tanzu Practices Global Tech Team and may be subject to change at any point. Users may encounter unexpected behavior, but we would love to hear your feedback if you do try out this integration.**
+Additional integrations:
+
+- [Prisma Scanner (Alpha)](install-prisma-integration.hbs.md) is available for source and image scanning. 
+  >**Note** This integration is in Alpha, which means that it is still in active development by the Tanzu Practices Global Tech Team and may be subject to change at any point. Users may encounter unexpected behavior.

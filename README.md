@@ -17,8 +17,18 @@ This repo contains the content for Tanzu Application Platform docs.
 <tbody>
 <tr>
 <td>main</td>
-<td><a href="https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4/tap/overview.html">Staging</a> (Pre-release v1.4 docs)</td>
+<td><a href="https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5/tap/overview.html">Staging</a> (Pre-release v1.5 docs)</td>
 <td><em>n/a</em></td>
+</tr>
+<tr>
+<td>1-4-1</td>
+<td><a href="https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4.1/tap/overview.html">Staging</a> (Pre-release v1.4.1 docs)</td>
+<td><em>n/a</em></td>
+</tr>
+<tr>
+<td>1-4-0</td>
+<td><a href="https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html">Staging</a></td>
+<td><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html">Production</a></td>
 </tr>
 <tr>
 <td>1-3-4</td>
@@ -135,6 +145,7 @@ Use this table to keep a running list of terms used and how they should be defin
 | Supply Chain Security Tools - Scan | Not SCST - Scan |
 | Tanzu Application Platform GUI | Not Tanzu Application Platform Graphical User Interface, nor TAP GUI, nor TAP UI, etc. Also not "the Tanzu Application Platform GUI" because Tanzu Application Platform GUI is considered a product name. |
 |Tanzu Developer Tools for IntelliJ| The long form is VMware Tanzu Developer Tools for IntelliJ. It can be referred to as "the extension" in a topic after introducing it as "the Tanzu Developer Tools for IntelliJ extension" when there is no risk of confusion. |
+|Tanzu Developer Tools for Visual Studio| The long form is VMware Tanzu Developer Tools for Visual Studio. It can be referred to as "the extension" in a topic after introducing it as "the Tanzu Developer Tools for Visual Studio extension" when there is no risk of confusion. |
 |Tanzu Developer Tools for VS Code| The long form is VMware Tanzu Developer Tools for Visual Studio Code. It can be referred to as "the extension" in a topic after introducing it as "the Tanzu Developer Tools for VS Code extension" when there is no risk of confusion. |
 | Tanzu Kubernetes Grid | Never use TKGm or TKG in customer facing documentation. |
 | TAP repo bundle | Decided on lowercase and not "TAP Repo Bundle".|

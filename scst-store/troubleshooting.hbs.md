@@ -102,7 +102,7 @@ or
 
 The logs of metadata-store-db show the following error:
 
-```
+```console
 $ kubectl logs statefulset/metadata-store-db -n metadata-store
 ...
 2022-07-20 20:02:51.206 UTC [1] LOG:  database system is ready to accept connections
@@ -118,13 +118,13 @@ cert-manager rotates the certificates, but the metadata-store and the PostgreSQL
 
 If you see `TLS handshake error` in the metadata-store-app logs, delete the metadata-store-app pod and wait for it to come back up.
 
-```
+```console
 kubectl delete pod metadata-store-app-xxxx -n metadata-store
 ```
 
 If you see `could not accept SSL connection` in the metadata-store-db logs, delete the metadata-store-db pod and wait for it to come back up.
 
-```
+```console
 kubectl delete pod metadata-store-db-0 -n metadata-store
 ```
 

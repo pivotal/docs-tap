@@ -1,4 +1,4 @@
-# Observability and troubleshooting
+# Observe and troubleshoot
 
 This section outlines observability and troubleshooting methods and issues for using the Supply
 Chain Security Tools - Scan> components.
@@ -327,9 +327,9 @@ supported in Tanzu Application Platform v1.4.0 and later.
 
 There are two options to resolve this issue:
 
-1. Upgrade to the latest Grype Scanner version. This automatically replaces the old ScanTemplates with the upgraded ScanTemplates.
+- Option 1: Upgrade to the latest Grype Scanner version. This automatically replaces the old ScanTemplates with the upgraded ScanTemplates.
 
-2. Create a ScanTemplate. Follow the steps in [Create a scan template](create-scan-template.hbs.md).
+- Option 2: Create a ScanTemplate. Follow the steps in [Create a scan template](create-scan-template.hbs.md).
 
 #### <a id="inc-cnfg-self-signed-cert"></a> Incorrectly configured self-signed certificate
 
@@ -360,7 +360,7 @@ manually is to add registry credentials to both the developer namespace and the
 `scan-link-system` namespace, using these
 [instructions](../set-up-namespaces.hbs.md).
 
->**Note** This step does not apply to users who used
+>**Important** This step does not apply to users who used
 `--export-to-all-namespaces` when setting up the Tanzu Application Platform
 package repository.
 
@@ -379,4 +379,4 @@ To resolve this issue, ensure that Grype has access to its vulnerability databas
 - If you did not set up a mirror, Grype manages its database behind the scenes.
   Verify that the cluster has access to https://anchore.com/.
 
-Note: This issue is unrelated to Supply Chain Security Tools for Tanzu – Store.
+This issue is unrelated to Supply Chain Security Tools for Tanzu – Store.

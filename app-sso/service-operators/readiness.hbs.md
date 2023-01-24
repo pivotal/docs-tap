@@ -1,30 +1,30 @@
 # AuthServer readiness
 
-Generally, `AuthServer.status` is a reliable source to judge an `AuthServer`'s readiness.
+`AuthServer.status` is a reliable source to judge an `AuthServer`'s readiness.
 
-However, you are encouraged to verify your `AuthServer` with the following checks:
+You can verify your `AuthServer` by ensuring:
 
-- [ ] Ensure that there is at least one token signing key configured
+- there is at least one token signing key configured.
 
-  ```shell
-  curl -X GET {spec.issuerURI}/oauth2/jwks
-  ```
+    ```shell
+    curl -X GET {spec.issuerURI}/oauth2/jwks
+    ```
 
-  The response body should yield at least one key in the list. If there are no keys,
-  please [apply a token signing key](token-signature.md)
+    The response body should yield at least one key in the list. If there are no keys,
+    please [apply a token signing key](token-signature.md)
 
-- [ ] Ensure that OpenID discovery endpoint is available
+- OpenID discovery endpoint is available.
 
-  ```shell
-  curl -X GET {spec.issuerURI}/.well-known/openid-configuration
-  ```
+    ```shell
+    curl -X GET {spec.issuerURI}/.well-known/openid-configuration
+    ```
 
-  The response body should yield a valid JSON body containing information about the `AuthServer`.
+    The response body should yield a valid JSON body containing information about the `AuthServer`.
 
 ## Client registration check
 
-It is helpful to verify an `AuthServer` by executing a test run with a test `ClientRegistration`. This check also
-ensures that app developers will also be able to register clients with the `AuthServer` successfully.
+It is helpful to verify an `AuthServer` by running a test run with a test `ClientRegistration`. 
+It ensures that app developers can register clients with the `AuthServer` successfully.
 
 Follow the steps below to ensure that your installation can:
 
@@ -57,7 +57,7 @@ spec:
   clientAuthenticationMethod: basic
 ```
 
-> **Note** Check out the [ClientRegistration API reference](../crds/clientregistration.md) for more field definitions.
+See the [ClientRegistration API reference](../crds/clientregistration.md) for more field definitions.
 
 This defines a test `ClientRegistration` with the `client_credentials` OAuth grant type.
 

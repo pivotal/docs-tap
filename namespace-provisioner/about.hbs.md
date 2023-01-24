@@ -1,4 +1,4 @@
-# Namespace Provisioner Overview
+# Namespace Provisioner
 
 Namespace Provisioner provides a secure, automated way for platform operators to provision
 namespaces with the resources and proper namespace-level privileges required for their workloads
@@ -16,11 +16,12 @@ package and how they work together to automate resource creation in developer na
 
 ![Namespace Provisioner Overview](../images/namespace-provisioner-overview-2.svg)
 
-### <a id="nsp-component-carvel-app"></a>Provisioner Carvel App
+### <a id="nsp-component-carvel-app"></a>Provisioner Carvel Application
 
 ![Namespace Provisioner - Provisioner Carvel App](../images/namespace-provisioner-overview-2-c.svg)
 
-Namespace Provisioner consists of a Carvel application named **`provisioner`** that is installed in the
+Namespace Provisioner consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest/app-overview/)
+application named **`provisioner`** that is installed in the
 `tap-namespace-provisioning` namespace. The **`provisioner`** application uses ytt to templatize a
 set of resources into installations in multiple namespaces. The provisioner application references a
 ConfigMap and a Secret which are explained in more detail below.
@@ -77,9 +78,6 @@ list of resources that are created for different profiles, see [Default resource
 ### <a id="expansion-template"></a>Expansion Template ConfigMap
 
 The expansion-template ConfigMap contains the ytt logic to expand the resources defined in the
-following locations into each of the  namespaces listed in the desired-namespaces ConfigMap:</br>
+following locations into each of the  namespaces listed in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap):</br>
 - Default-resources Secret</br>
-- the `tap-values.yaml` file under additional_sources</br>
-
-The intent is to only support definition of cluster-scoped or namespaced resources,
-but currently, we also support installation of the Grype package in the tap-install namespace.
+- [additional_sources](install.hbs.md#customized-installation) in the `namespace-provisioner` config  in the `tap-values.yaml` file</br>

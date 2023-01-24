@@ -155,8 +155,8 @@ spec:
       description: "The user's profile information"
 ```
 
-The client is being registered with the authorization server with the given specs. The resulting client credentials are
-available in a Secret that's owned by the ClientRegistration.
+The client is registered with the authorization server with the given `spec`. The resulting client credentials are
+available in a `Secret` that the `ClientRegistration` owns.
 
 ```yaml
 apiVersion: v1
@@ -175,3 +175,26 @@ data: # fields below are base64-decoded for display purposes only
   scope: openid,email,profile
   authorization-grant-types: client_credentials,refresh_token
 ```
+
+## <a id="public-clients"></a>Configuring public clients
+
+>**Note** A public client is a client application that does not require credentials to obtain tokens, such as single-page
+> apps (SPAs). Public clients rely on Proof Key for Code Exchange (PKCE) Authorization Code flow extension.
+
+When configuring a `ClientRegistration` for a public client, you must set your Client Authentication Method to
+`none` and ensure that your public client supports Authorization Code with PKCE. With PKCE,
+the client does not authenticate, but presents a code challenge and
+subsequent code verifier to establish trust with the authorization server.
+
+To set Client Authentication Method to `none`, ensure your `ClientRegistration` resource defines the following:
+
+```yaml
+.spec.clientAuthenticationMethod: none
+```
+
+Public clients that support Authorization Code with PKCE flow ensure that:
+
+- On every OAuth `authorize` request, parameters `code_challenge` and `code_challenge_method` (default: `S256`) are
+  provided.
+- On every OAuth `token` request, parameter `code_verifier` is provided. Public clients do not provide a Client Secret
+  because they are not tailored to retain any secrets in public view.

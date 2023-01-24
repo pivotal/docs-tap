@@ -162,7 +162,7 @@ Authorities listed in the `authorities` block of the ClusterImagePolicy are
 Each `key` authority can contain a PEM-encoded ECDSA public key, a `secretRef`,
 or a `kms` path.
 
-> **Note** Only ECDSA public keys are supported.
+> **Important** Only ECDSA public keys are supported.
 
 ```yaml
 spec:
@@ -188,6 +188,15 @@ is installed. Such secret must only contain one `data` entry with the public key
 Each keyless authority can contain a Fulcio URL, a Rekor URL, a certificate, or
 an array of identities.
 
+> **Note** Identities are required in keyless authorities as of Policy Controller version `1.3+`.
+
+Identities require a combination of `issuer` or `issuerRegExp` with `subject` or `subjectRegExp`.
+* `issuer`: defines the issuer for this identity.
+* `issuerRegExp`: specifies a regular expression to match the issuer for this identity.
+* `subject`: defines the subject for this identity.
+* `subjectRegExp`: specifies a regular expression to match the subject for this identity.
+
+An example of the keyless authority structure:
 ```yaml
 spec:
   authorities:
@@ -195,6 +204,11 @@ spec:
         url: https://fulcio.example.com
         ca-cert:
           data: Certificate Data
+        identities:
+          - issuer: https://accounts.google.com
+            subjectRegExp: .*@example.com 
+          - issuer: https://token.actions.githubusercontent.com
+            subject: https://github.com/mycompany/*/.github/workflows/*@*
       ctlog:
         url: https://rekor.example.com
     - keyless:
@@ -202,12 +216,9 @@ spec:
         ca-cert:
           secretRef:
             name: secretName
-    - keyless:
         identities:
-          - issuer: https://accounts.google.com
-            subject: .*@example.com
-          - issuer: https://token.actions.githubusercontent.com
-            subject: https://github.com/mycompany/*/.github/workflows/*@*
+          - issuerRegExp: .*kubernetes.default.*
+            subjectRegExp: .*kubernetes.io/namespaces/default/serviceaccounts/default
 ```
 
 The authorities are evaluated using the "any of" operator to admit container

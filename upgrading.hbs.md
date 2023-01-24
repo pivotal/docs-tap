@@ -23,25 +23,24 @@ Follow these steps to update the new package repository:
 
     >**Important** Make sure to update the `TAP_VERSION` to the target version of Tanzu Application Platform you are migrating to. For example, `{{ vars.tap_version }}`.
 
-1. Add the target version of the Tanzu Application Platform package repository:
+1. Add the target version of the Tanzu Application Platform package repository by running:
 
-    - If you are using Cluster Essentials 1.2 or above, run:
+    Cluster Essentials 1.2 or above
+    :
+    ```console
+    tanzu package repository add tanzu-tap-repository \
+    --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages:$TAP_VERSION \
+    --namespace tap-install
+    ```
 
-        ```console
-        tanzu package repository add tanzu-tap-repository \
-        --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages:$TAP_VERSION \
-        --namespace tap-install
-        ```
-
-    - If you are using Cluster Essentials 1.1 or 1.0, run:
-
-        ```console
-       tanzu package repository update tanzu-tap-repository \
-        --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:${TAP_VERSION} \
-        --namespace tap-install
-        ```
-
-        Expect to see the installed Tanzu Application Platform packages in a temporary “Reconcile Failed” state, following a “Package not found” warning. These warnings will disappear after you upgrade the installed Tanzu Application Platform packages to version 1.2.0.
+    Cluster Essentials 1.1 or 1.0
+    :
+    ```console
+    tanzu package repository update tanzu-tap-repository \
+    --url ${INSTALL_REGISTRY_HOSTNAME}/TARGET-REPOSITORY/tap-packages:${TAP_VERSION} \
+    --namespace tap-install
+    ```
+    Expect to see the installed Tanzu Application Platform packages in a temporary “Reconcile Failed” state, following a “Package not found” warning. These warnings will disappear after you upgrade the installed Tanzu Application Platform packages to version 1.2.0.
 
 1. Verify you have added the new package repository by running:
 

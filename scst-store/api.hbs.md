@@ -131,7 +131,7 @@ See [API walkthrough](api-walkthrough.md) for a walkthrough and example.
 
 ### <span id="create-artifact-group"></span> Create an artifact group with specified labels and entity (*CreateArtifactGroup*)
 
-```
+```console
 POST /api/v1/artifact-groups
 ```
 
@@ -180,7 +180,7 @@ ErrorMessage
 
 ### <span id="create-image-report"></span> Create a new image report. Related packages and vulnerabilities are also created. (*CreateImageReport*)
 
-```
+```console
 POST /api/imageReport
 ```
 
@@ -219,7 +219,7 @@ ErrorMessage
 
 ### <span id="create-source-report"></span> Create a new source report. Related packages and vulnerabilities are also created. (*CreateSourceReport*)
 
-```
+```console
 POST /api/sourceReport
 ```
 
@@ -258,7 +258,7 @@ ErrorMessage
 
 ### <span id="get-image-by-id"></span> Search image by ID (*GetImageByID*)
 
-```
+```console
 GET /api/v1/images/{ID}
 ```
 
@@ -307,7 +307,7 @@ ErrorMessage
 
 ### <span id="get-image-packages"></span> List the packages in an image. (*GetImagePackages*)
 
-```
+```console
 GET /api/images/{IDorDigest}/packages
 ```
 
@@ -346,7 +346,7 @@ ErrorMessage
 
 ### <span id="get-image-packages-query"></span> List packages of the given image. (*GetImagePackagesQuery*)
 
-```
+```console
 GET /api/images/packages
 ```
 
@@ -387,7 +387,7 @@ ErrorMessage
 
 ### <span id="get-image-vulnerabilities"></span> List vulnerabilities from the given image. (*GetImageVulnerabilities*)
 
-```
+```console
 GET /api/images/{IDorDigest}/vulnerabilities
 ```
 
@@ -427,7 +427,7 @@ ErrorMessage
 
 ### <span id="get-images"></span> Search image by id, name or digest . (*GetImages*)
 
-```
+```console
 GET /api/images
 ```
 
@@ -460,7 +460,7 @@ ErrorMessage
 
 ### <span id="get-package-by-id"></span> Search package by ID (*GetPackageByID*)
 
-```
+```console
 GET /api/v1/packages/{ID}
 ```
 
@@ -509,7 +509,7 @@ ErrorMessage
 
 ### <span id="get-package-images"></span> List the images that contain the given package. (*GetPackageImages*)
 
-```
+```console
 GET /api/packages/{IDorName}/images
 ```
 
@@ -548,7 +548,7 @@ ErrorMessage
 
 ### <span id="get-package-sources"></span> List the sources containing the given package. (*GetPackageSources*)
 
-```
+```console
 GET /api/packages/{IDorName}/sources
 ```
 
@@ -587,7 +587,7 @@ ErrorMessage
 
 ### <span id="get-package-vulnerabilities"></span> List vulnerabilities from the given package. (*GetPackageVulnerabilities*)
 
-```
+```console
 GET /api/packages/{IDorName}/vulnerabilities
 ```
 
@@ -627,7 +627,7 @@ ErrorMessage
 
 ### <span id="get-packages"></span> Search packages by id, name and/or version. (*GetPackages*)
 
-```
+```console
 GET /api/packages
 ```
 
@@ -668,7 +668,7 @@ ErrorMessage
 
 ### <span id="get-source-by-id"></span> Search source by ID (*GetSourceByID*)
 
-```
+```console
 GET /api/v1/sources/{ID}
 ```
 
@@ -717,7 +717,7 @@ ErrorMessage
 
 ### <span id="get-source-packages"></span> get source packages (*GetSourcePackages*)
 
-```
+```console
 GET /api/sources/{IDorRepoorSha}/packages
 ```
 
@@ -756,7 +756,7 @@ ErrorMessage
 
 ### <span id="get-source-packages-query"></span> List packages of the given source. (*GetSourcePackagesQuery*)
 
-```
+```console
 GET /api/sources/packages
 ```
 
@@ -797,7 +797,7 @@ ErrorMessage
 
 ### <span id="get-source-vulnerabilities"></span> get source vulnerabilities (*GetSourceVulnerabilities*)
 
-```
+```console
 GET /api/sources/{IDorRepoorSha}/vulnerabilities
 ```
 
@@ -836,7 +836,7 @@ ErrorMessage
 
 ### <span id="get-source-vulnerabilities-query"></span> List vulnerabilities of the given source. (*GetSourceVulnerabilitiesQuery*)
 
-```
+```console
 GET /api/sources/vulnerabilities
 ```
 
@@ -878,7 +878,7 @@ ErrorMessage
 
 ### <span id="get-sources"></span> Search for sources by ID, repository, commit sha and/or organization. (*GetSources*)
 
-```
+```console
 GET /api/sources
 ```
 
@@ -920,7 +920,7 @@ ErrorMessage
 
 ### <span id="get-vulnerabilities"></span> Search for vulnerabilities by CVE id. (*GetVulnerabilities*)
 
-```
+```console
 GET /api/vulnerabilities
 ```
 
@@ -960,7 +960,7 @@ ErrorMessage
 
 ### <span id="get-vulnerability-by-id"></span> Search vulnerability by ID (*GetVulnerabilityByID*)
 
-```
+```console
 GET /api/v1/vulnerabilities/{ID}
 ```
 
@@ -1009,7 +1009,7 @@ ErrorMessage
 
 ### <span id="get-vulnerability-images"></span> List the images that contain the given vulnerability. (*GetVulnerabilityImages*)
 
-```
+```console
 GET /api/vulnerabilities/{CVEID}/images
 ```
 
@@ -1048,7 +1048,7 @@ ErrorMessage
 
 ### <span id="get-vulnerability-packages"></span> List packages that contain the given CVE id. (*GetVulnerabilityPackages*)
 
-```
+```console
 GET /api/vulnerabilities/{CVEID}/packages
 ```
 
@@ -1087,7 +1087,7 @@ ErrorMessage
 
 ### <span id="get-vulnerability-sources"></span> List sources that contain the given vulnerability. (*GetVulnerabilitySources*)
 
-```
+```console
 GET /api/vulnerabilities/{CVEID}/sources
 ```
 
@@ -1126,7 +1126,7 @@ ErrorMessage
 
 ### <span id="health-check"></span> health check (*HealthCheck*)
 
-```
+```console
 GET /api/health
 ```
 
@@ -1155,7 +1155,7 @@ ErrorMessage
 
 ### <span id="search-artifact-groups"></span> Query for a list of artifact group that contains image(s) with specified digests, and or source(s) with specified shas. At least one image digest or source sha must be provided. This query can be further refined by matching images and sources with a specific combination of package name and/or cve id. (*SearchArtifactGroups*)
 
-```
+```console
 POST /api/v1/artifact-groups/_search
 ```
 
@@ -1206,7 +1206,7 @@ ErrorMessage
 
 ### <span id="search-artifact-groups-vuln-reach"></span> Search for how many artifact groups are affected by vulnerabilities associated with the specified image(s) digests, and/or source(s) shas. At least one image digest or source sha must be provided. (*SearchArtifactGroupsVulnReach*)
 
-```
+```console
 POST /api/v1/artifact-groups/vulnerabilities/_reach
 ```
 
@@ -1255,7 +1255,7 @@ ErrorMessage
 
 ### <span id="search-artifact-groups-vulnerabilities"></span> Search for all vulnerabilities associated with an artifact group that contains image(s) with specified digests, and/or source(s) with specified shas. At least one image digest or source sha must be provided. (*SearchArtifactGroupsVulnerabilities*)
 
-```
+```console
 POST /api/v1/artifact-groups/vulnerabilities/_search
 ```
 
@@ -1306,7 +1306,7 @@ ErrorMessage
 
 ### <span id="v1-get-images"></span> Query for images. If no parameters are given, this endpoint will return all images. (*V1GetImages*)
 
-```
+```console
 GET /api/v1/images
 ```
 
@@ -1360,7 +1360,7 @@ ErrorMessage
 
 ### <span id="v1-get-images-packages"></span> Query for packages with images parameters. If no parameters are given, this endpoint will return all packages related to images. (*V1GetImagesPackages*)
 
-```
+```console
 GET /api/v1/images/packages
 ```
 
@@ -1415,7 +1415,7 @@ ErrorMessage
 
 ### <span id="v1-get-images-vulnerabilities"></span> Query for vulnerabilities with image parameters. If no parameters are give, this endpoint will return all vulnerabilities. (*V1GetImagesVulnerabilities*)
 
-```
+```console
 GET /api/v1/images/vulnerabilities
 ```
 
@@ -1470,7 +1470,7 @@ ErrorMessage
 
 ### <span id="v1-get-packages"></span> Query for packages. If no parameters are given, this endpoint will return all packages. (*V1GetPackages*)
 
-```
+```console
 GET /api/v1/packages
 ```
 
@@ -1524,7 +1524,7 @@ ErrorMessage
 
 ### <span id="v1-get-sources"></span> Query for sources. If no parameters are given, this endpoint will return all sources. (*V1GetSources*)
 
-```
+```console
 GET /api/v1/sources
 ```
 
@@ -1578,7 +1578,7 @@ ErrorMessage
 
 ### <span id="v1-get-sources-packages"></span> Query for packages with source parameters. If no parameters are given, this endpoint will return all packages related to sources. (*V1GetSourcesPackages*)
 
-```
+```console
 GET /api/v1/sources/packages
 ```
 
@@ -1621,7 +1621,7 @@ ErrorMessage
 
 ### <span id="v1-get-sources-vulnerabilities"></span> Query for vulnerabilities with source parameters. If no parameters are given, this endpoint will return all vulnerabilities. (*V1GetSourcesVulnerabilities*)
 
-```
+```console
 GET /api/v1/sources/vulnerabilities
 ```
 

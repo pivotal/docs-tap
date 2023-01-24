@@ -1,4 +1,4 @@
-# Troubleshoot Convention Service
+# Troubleshoot Cartographer Conventions
 
 ## <a id="no-server-in-cluster"></a> No server in the cluster
 
@@ -34,7 +34,7 @@ Deploy a `convention server` ([ClusterPodConvention](reference/cluster-pod-conve
 
 Ensure that the `convention server` ([ClusterPodConvention](reference/cluster-pod-convention.md)) is configured with the correct certificates. To do so, verify the value of annotation `conventions.carto.run/inject-ca-from` which must be set to the used *Certificate*.
 
-> **Note** Do not set annotation `conventions.carto.run/inject-ca-from` if no certificate is used.
+> **Important** Do not set annotation `conventions.carto.run/inject-ca-from` if no certificate is used.
 
 ## <a id="server-fails"></a>Server fails when processing a request
 

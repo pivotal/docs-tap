@@ -3,9 +3,7 @@
 This topic describes how to install Supply Chain Security Tools - Scan
 from the Tanzu Application Platform package repository.
 
->**Note** Use the instructions in this topic if you do not want to use a profile to install packages.
-The full profile includes SCST - Scan.
-For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install Supply Chain Security Tools - Scan. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='scst-scan-prereqs'></a> Prerequisites
 
@@ -171,7 +169,7 @@ To install SCST - Scan (Scan controller):
         name: "TOKEN-SECRET-NAME" # The name of the secret containing the auth token to connect to Store
         importFromNamespace: "SECRET-NAMESPACE" # The namespace where the connection secrets were created (if multi-cluster)
     ```
-    >**Note** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`,
+    >**Important** You must either define both the `METADATA-STORE-URL` and `CA-SECRET-NAME`,
     >or not define them as they depend on each other.
 
     Where:
@@ -217,7 +215,7 @@ To install SCST - Scan (Scan controller):
       targetSourceSshSecret      <EMPTY>  string  Reference to the secret containing SSH credentials for cloning private repositories.
     ```
 
-    >**Note** If `targetSourceSshSecret` is not set, the private source scan template is not installed.
+    >**Important** If `targetSourceSshSecret` is not set, the private source scan template is not installed.
 
 3. Install the package by running:
 

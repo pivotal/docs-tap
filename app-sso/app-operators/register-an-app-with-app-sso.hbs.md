@@ -7,9 +7,8 @@
 
 ## Client registration
 
-> Applications/Clients must register with AppSSO to allow users to sign in with single sign on within a Kubernetes
-> cluster.
-> This registration will result in the creation of a Kubernetes secret
+Applications or Clients must register with AppSSO to allow users to sign in with single sign on within a Kubernetes cluster.
+This registration results in the creation of a Kubernetes secret.
 
 To do this, apply a [`ClientRegistration`](../crds/clientregistration.md) to the appropriate Kubernetes cluster.
 
@@ -21,8 +20,8 @@ kubectl describe clientregistrations.sso.apps.tanzu.vmware.com <client-name>
 
 It is also possible, but not recommended, to register clients statically while deploying AppSSO.
 
-> **Note** It is recommended to register clients dynamically after AppSSO has been deployed. When registering a client
-> statically, properties cannot be changed without triggering a rollout of AppSSO itself.
+VMware recommends registering clients dynamically after deploying AppSSO. When registering a client 
+statically, properties cannot be changed without triggering a rollout of AppSSO.
 
 [Grant Types](grant-types.md)
 

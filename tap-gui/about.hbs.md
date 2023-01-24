@@ -30,6 +30,10 @@ Tanzu Application Platform GUI consists of the following components:
 
   ![Screenshot of a Tanzu Application Platform catalog displayed within Tanzu Application Platform GUI.](images/tap-gui-catalog.png)
 
+- **Search:**
+  This plug-in enables you to search your organization's catalog, including domains, systems,
+  components, APIs, accelerators, and TechDocs.
+
 - **A Git repository:**
   Tanzu Application Platform GUI stores the following in a Git repository:
 

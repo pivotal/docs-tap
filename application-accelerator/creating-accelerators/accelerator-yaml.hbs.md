@@ -62,9 +62,14 @@ The following option properties are used by both the UI and the engine.
   available as a [SPeL](spel-samples.md) variable name. For example, `#deploymentType`.
 
 - **dataType**:
-  Data types that work with the UI are `string`, `boolean`, `number`, and arrays of those,
-  as in `[string]`, `[number]`, and so on. Most input types return a string, which is the default.
-  Use Boolean values with `checkbox`.
+  Data types that work with the UI are:
+  - `string`
+  - `boolean`
+  - `number`
+  - Custom types defined in the accelerator `types` section
+  - Arrays of these such as `[string]`, `[number]`, and so on.
+
+  Most input types return a string, which is the default. Use Boolean values with `checkbox`.
 
 - **defaultValue**:
   This literal value pre-populates the option. Ensure that it's type matches the dataType.
@@ -75,9 +80,9 @@ The following option properties are used by both the UI and the engine.
 - **validationRegex**:
   When present, a regex validates the string representation of the
   option value _when set_. It doesn't apply when the value is blank. As a consequence, don't use the
-  regex to enforce a prerequisite. See **required** for that purpose.
+  regex to enforce  prerequisites. See **required** for that purpose.
 
-  This regex is used by several layers in Application Accelerator,
+  This regex is used in several layers in Application Accelerator,
   built using several technologies, for example, JavaScript and Java. So refrain from using "exotic"
   regex features. Also, the regex applies to portions of the value by default. That is, `[a-z ]+`
   matches `Hello world` despite the capital `H`. To apply it to the whole value (or just start/end),
@@ -94,8 +99,8 @@ The following option properties are for UI purposes only.
 
 - **inputType**:
   - `text`: The default input type.
-  - `textarea`: Single text value with larger input that allows line breaks.
-  - `checkbox`: Ideal for Boolean values or multivalue selection from choices.
+  - `textarea`: Single text value with larger input allowing line breaks.
+  - `checkbox`: Ideal for Boolean values or multi-value selection from choices.
   - `select`: Single-value selection from choices using a drop-down menu.
   - `radio`: Alternative single-value selection from choices using buttons.
 
@@ -110,13 +115,12 @@ The following option properties are for UI purposes only.
 
 - **dependsOn**:
   This is a way to control visibility by specifying the `name` and optional `value` of another input
-  option.
-  When the other option has a value exactly equal to `value`, or `true` if no `value` is specified,
-  then the option with `dependsOn` is visible. Otherwise, it is hidden.
-  Ensure that the value matches the dataType of the `dependsOn` option.
-  For example, a multi-value option (`dataType = [string]`) such as a `checkbox` uses `[matched-value]`
-  to trigger another option when `matched-value` (and only `matched-value`) is selected. See the
-  following section for more information about `dependsOn`.
+  option. When the other option has a value exactly equal to `value`, or `true` if no `value` is
+  specified, then the option with `dependsOn` is visible. Otherwise, it is hidden. Ensure that the
+  value matches the dataType of the `dependsOn` option. For example, a multi-value option
+  (`dataType = [string]`) such as a `checkbox` uses `[matched-value]` to trigger another option when
+  `matched-value` (and only `matched-value`) is selected. See the following section for more
+  information about `dependsOn`.
 
 #### <a id="depends-on-multi-value"></a> DependsOn and multi-value dataType
 
@@ -174,7 +178,7 @@ options:
 
 ### <a id="examples"></a> Examples
 
-The screenshot and `accelerator.yaml` file snippet that follows demonstrates each `inputType`.
+The later screenshot and `accelerator.yaml` file snippet that follows demonstrates each `inputType`.
 You can also see the GitHub sample
 [demo-input-types](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/demo-input-types).
 
@@ -363,8 +367,9 @@ multiple files at the same path:
     - `UseLast` keeps the contents of the last file.
     - `Append` keeps both by using `cat <first-file> <second-file>`.
 
+### <a id="advanced-accelerator-use"></a> Advanced accelerator use
 
-### <a id="advanced-accelerator-usage"></a> Advanced accelerator usage
+Additional advanced features might be leveraged when writing an `accelerator.yaml`.
+For additional information see:
 
-There are additional advanced features that can be leveraged when writing an `accelerator.yaml`. Please see the following references for additional information:
-* [Creating dynamic parameters using custom types](custom-types.md)
+- [Creating dynamic parameters using custom types](custom-types.md)

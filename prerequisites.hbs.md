@@ -86,8 +86,8 @@ providers:
 - Azure Kubernetes Service.
 - Amazon Elastic Kubernetes Service.
     - containerd must be used as the Container Runtime Interface (CRI). Some versions of EKS default to Docker as the container runtime and must be changed to containerd.
-    - EKS clusters on Kubernetes version 1.23 require the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) due to the [CSIMigrationAWS](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) is enabled by default in Kubernetes 1.23.
-        - Users currently on EKS Kubernetes version 1.22 must install the Amazon EBS CSI Driver before upgrading to Kubernetes version 1.23. See [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi-migration-faq.html) for more information.
+    - EKS clusters on Kubernetes version 1.23 and above require the [Amazon EBS CSI Driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html) due to the [CSIMigrationAWS](https://aws.amazon.com/blogs/containers/amazon-eks-now-supports-kubernetes-1-23/) is enabled by default in Kubernetes version 1.23 and above.
+        - Users currently on EKS Kubernetes version 1.22 must install the Amazon EBS CSI Driver before upgrading to Kubernetes version 1.23 and above. See [AWS documentation](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi-migration-faq.html) for more information.
 - Google Kubernetes Engine.
     - GKE Autopilot clusters do not have the required features enabled.
     - GKE clusters that are set up in zonal mode might detect Kubernetes API errors when the GKE
@@ -133,7 +133,7 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
 - For the [`full` profile](install.html#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
 - Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in the following optional configurations:
-    - Tanzu Build Service, in which CustomStacks require root privileges. For more information, see [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.7/vmware-tanzu-build-service/GUID-managing-custom-stacks.html).
+    - Tanzu Build Service, in which CustomStacks require root privileges. For more information, see [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-custom-stacks.html).
     - Supply Chain, in which Kaniko usage requires root privileges to build containers.
     - Tanzu Learning Center, which requires root privileges.
 

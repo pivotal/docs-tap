@@ -1,16 +1,16 @@
 # CA certificates
 
-An `AuthServer` can trust custom CAs. You can establish either [for _
-all_](../platform-operators/configuration.md#ca_cert_data) or for a single `AuthServer`. This is useful when either
-your [identity provider](./identity-providers.md) or [storage](./storage.hbs.md) serve certificates from a custom CA.
+An `AuthServer` can trust custom CAs. You can establish either [for 
+all `AuthServer`s](../platform-operators/configuration.md#ca) or for a single `AuthServer`. This is useful when either
+your [identity provider](identity-providers.hbs.md) or [storage](storage.hbs.md) serves certificates from a custom CA.
 
-CA certificates are expected to be PEM-encoded and located in a `Secret` which is referred
-from `.spec.caCerts[].secretRef.name`. The controller will consider all `Secret` entries matching `*.(crt|ca-bundle)`.
-That means you can include multiple CA certificates in a single `Secret` or spread them across multiple `Secret`.
+In most cases, CA certificates are PEM-encoded and located in a `Secret` referred 
+from `.spec.caCerts[].secretRef.name`. The controller considers all `Secret` entries matching `*.(crt|ca-bundle)`.
+That means you can include multiple CA certificates in a single `Secret` or spread them across multiple `Secret`s.
 
-Once created, an `AuthServer` will report the trusted, total custom CA certificates in its `.status.caCerts` together
-with the location where it sourced them from. This will include the CA certificates which are trusted by _all_
-`AuthServer`.
+After being created, an `AuthServer` reports the trusted, total custom CA certificates in its `.status.caCerts` together
+with the location where it sources them from. This includes the CA certificates that are trusted by all
+`AuthServer`s.
 
 For example:
 
@@ -53,6 +53,6 @@ status:
   # ...
 ```
 
-Note that CA certificates which are configured for _all_ `AuthServer` through the package installation's `ca_cert_data`
+CA certificates configured for all `AuthServer`s by using the package installation's `ca_cert_data` 
 are sourced from `secretEntry: appsso/appsso-controller[controller.yaml]`. This denotes the AppSSO controller's
 configuration `Secret`. 

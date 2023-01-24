@@ -133,7 +133,7 @@ This is the value to pass to `--service-ref` to create the application workload.
     but rather to the claim that has claimed the `RabbitmqCluster` service instance.
     See the [consuming services diagram](#overview) at the beginning of this walkthrough.
 
-    > **Note** The Deliverable produced eventually fails if the referenced resource in `--service-ref` consistently does not exist.
+    > **Note** The deliverable produced eventually fails if the referenced resource in `--service-ref` consistently does not exist.
     > This behavior is encoded in the OOTB supply chains through the use of the [OOTB templates](../scc/ootb-templates.md).
     > The `service-bindings` OOTB template can be used to replicate the same behavior in bespoke supply chains.
 
@@ -150,7 +150,7 @@ There are more service use cases not covered in this getting started guide. See 
   <th><strong>Short Description</strong></th>
   <tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html#dscvr-claim-bind">Consuming AWS RDS on Tanzu Application Platform</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_ack.html#dscvr-claim-bind">Consuming AWS RDS on Tanzu Application Platform</a>
     </td>
     <td>
       Using the Controllers for Kubernetes (ACK) to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
@@ -158,7 +158,7 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html#claim-the-rds-postgresql-instance-and-connect-to-it-from-the-tanzu-application-platform-workload-8">Consuming AWS RDS on Tanzu Application Platform with Crossplane</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_crossplane.html#claim-the-rds-postgresql-instance-and-connect-to-it-from-the-tanzu-application-platform-workload-8">Consuming AWS RDS on Tanzu Application Platform with Crossplane</a>
     </td>
     <td>
       Using <a href="https://crossplane.io/">Crossplane</a> to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
@@ -166,7 +166,7 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_config_connector.html#discover-claim-and-bind-to-a-google-cloud-sql-postgresql-instance-3">Consuming Google Cloud SQL on Tanzu Application Platform with Config Connector</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_gcp_sql_with_config_connector.html#discover-claim-and-bind-to-a-google-cloud-sql-postgresql-instance-3">Consuming Google Cloud SQL on Tanzu Application Platform with Config Connector</a>
     </td>
     <td>
       Using GCP Config Connector to provision a Cloud SQL instance and consume it from a Tanzu Application Platform workload.<br>
@@ -174,7 +174,7 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_gcp_sql_with_crossplane.html#claim-the-cloudsql-postgresql-instance-and-connect-to-it-from-the-tanzu-application-platform-workload-8">Consuming Google Cloud SQL on Tanzu Application Platform with Crossplane</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_gcp_sql_with_crossplane.html#claim-the-cloudsql-postgresql-instance-and-connect-to-it-from-the-tanzu-application-platform-workload-8">Consuming Google Cloud SQL on Tanzu Application Platform with Crossplane</a>
     </td>
     <td>
       Using <a href="https://crossplane.io/">Crossplane</a> to provision a Cloud SQL instance and consume it from a Tanzu Application Platform workload.<br>
@@ -182,7 +182,7 @@ There are more service use cases not covered in this getting started guide. See 
     </td>
   </tr><tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-direct_secret_references.html">Direct Secret References</a>
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-direct_secret_references.html">Direct Secret References</a>
     </td>
     <td>
       Binding to services running external to the cluster, for example, an in-house oracle database.<br>
@@ -191,14 +191,14 @@ There are more service use cases not covered in this getting started guide. See 
   </tr>
   <tr>
     <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a> (Experimental)
+      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a> (Experimental)
     </td>
     <td>Separates application workloads from service instances across dedicated clusters.</td>
   </tr>
 </table>
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
-[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-overview.html).
+[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/overview.html).
 
 ## Next steps
 

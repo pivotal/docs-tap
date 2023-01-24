@@ -122,9 +122,9 @@ versions of the CLI core and plug-ins are installed by running:
 
 4. Install or update the CLI core by running:
 
-  >**Note** Replace v0.25.4 with the version you downloaded which is found by inspecting the
-   >directory name under `$HOME/tanzu/cli/core/`. For example, if the directory name under
-   >`$HOME/tanzu/cli/core/` is v0.25.4, then set the following `VERSION` to `v0.25.4`.
+  >**Note** Replace v0.25.4 with the version you downloaded, which is found by inspecting the
+   >directory name under `$HOME/tanzu/cli/core/`.</br>
+    For example, if the directory name under `$HOME/tanzu/cli/core/` is v0.26.0, set the following `VERSION` to `v0.26.0`.
 
    - **For Linux:**
 
@@ -155,7 +155,15 @@ versions of the CLI core and plug-ins are installed by running:
     ...
     ```
 
-6. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
+6. Enable tab completion</br>
+   (Highly recommended, but ultimately optional)
+   
+   Follow the shell-specific instructions from completion help:
+   ```
+   tanzu completion --help
+   ```
+ 
+7. Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install)
 
 ### <a id='windows-tanzu-cli'></a> Install Tanzu CLI: Windows
 
@@ -249,12 +257,12 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
 For online installation:
 
-- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/GUID-deploy.html)
+- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 - [Install the Tanzu Application Platform package and profiles](install.html)
 
 For air-gapped installation:
 
-- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/GUID-deploy.html)
+- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 - [Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, there is no need to install Cluster Essentials because the contents of Cluster Essentials are already installed on your cluster._

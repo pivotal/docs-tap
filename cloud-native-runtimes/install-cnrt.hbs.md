@@ -3,9 +3,7 @@
 This topic describes how to install Cloud Native Runtimes
 from the Tanzu Application Platform package repository.
 
->**Note** Use the instructions in this topic if you do not want to use a profile to install packages.
-The `full`, `iterate`, and `run` profiles include Cloud Native Runtimes.
-For information about profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install Cloud Native Runtimes. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='cnr-prereqs'></a>Prerequisites
 
@@ -131,7 +129,7 @@ To install Cloud Native Runtimes:
 
 4. Configure a namespace to use Cloud Native Runtimes:
 
-   >**Note** This step covers configuring a namespace to run Knative services.
+   >**Important** This step covers configuring a namespace to run Knative services.
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >skip this step because namespace configuration is covered in
    >[Set up developer namespaces to use installed packages](../set-up-namespaces.hbs.md).

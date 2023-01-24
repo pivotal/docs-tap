@@ -3,9 +3,7 @@
 This document describes how to install Out of the Box Supply Chain with Testing and Scanning
 from the Tanzu Application Platform package repository.
 
->**Note** Use the instructions on this page if you do not want to use a profile to install packages.
-The full profile includes Out of the Box Supply Chain with Testing and Scanning.
-For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
+> **Note** Follow the steps in this topic if you do not want to use a profile to install Out of the Box Supply Chain with Testing and Scanning. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 The Out of the Box Supply Chain with Testing and Scanning package provides a
 ClusterSupplyChain that brings an application from source code to a deployed
@@ -163,7 +161,7 @@ To install Out of the Box Supply Chain with Testing and Scanning:
     service_account: default
     ```
 
-    >**Note** The `gitops.repository_prefix` field must end with `/`.
+    >**Important** The `gitops.repository_prefix` field must end with `/`.
 
 1. With the configuration ready, install the package by running:
 

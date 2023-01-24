@@ -929,7 +929,7 @@ Refers to the path of the self-signed certificate needed for the custom/private 
 This is also populated with a default value through environment variables. If the environment
 variable `TANZU_APPS_REGISTRY_CA_CERT` is set, it's not necessary to use it in the command.
 
-See [Custom registry credentials](../how-to-guides.hbs.md#custom-registry) for the currently
+See [Custom registry credentials](../how-to-examples.hbs.md#custom-registry) for the currently
 supported environment variables.
 
 <details><summary>Example</summary>

@@ -27,7 +27,7 @@ The AppSSO package has one required configuration value, its `domain_name`. It i
 for `AuthServer`. `domain_name` must be the shared ingress domain of your TAP package installation. If your TAP
 installation is configured with `shared.ingress_domain`, then AppSSO will inherit the correct configuration.
 
-> **Note** If omitted <code>domain_name</code> is set to <code>shared.ingress_domain</code>.
+>**Note** If omitted, `domain_name` is set to `shared.ingress_domain`.
 
 ## domain_template
 
@@ -52,17 +52,17 @@ When the value of `AuthServer.spec.tls.issuerRef` is the empty string `""`, no d
 If you configured `shared.ingress_issuer` and omitted `default_authserver_clusterissuer` while installing Tanzu Application Platform,
 AppSSO uses the ingress issuer of Tanzu Application Platform and sets `default_authserver_clusterissuer` to `shared.ingress_issuer`.
 
-## ca_cert_data
+## <a id="ca"></a>ca_cert_data
 
-You can configure trust for custom CAs by providing their certificates as a PEM bundle to `ca_cert_data`. As a result
-_all_ `AuthServer` will trust your custom CAs.
+You can configure trust for custom CAs by providing their certificates as a PEM bundle to `ca_cert_data`. As a result, 
+all `AuthServer`s trust your custom CAs.
 
-This is useful if, for example, you have [identity providers](../service-operators/identity-providers.md) which serve
-certificates from a custom CA, as well as [configuring `AuthServer` storage](../service-operators/storage.md).
+This is useful if you have [identity providers](../service-operators/identity-providers.hbs.md) serving
+certificates from a custom CA and [configuring `AuthServer` storage](../service-operators/storage.hbs.md).
 
-Alternatively, you can [configure trust for a single `AuthServer`](../service-operators/ca-certs.md).
+Alternatively, you can [configure trust for a single `AuthServer`](../service-operators/ca-certs.hbs.md).
 
-> **Note** AppSSO-specific <code>ca_cert_data</code> is concatenated with <code>shared.ca_cert_data</code>. The resulting PEM bundle contains both.
+>**Note** AppSSO-specific `ca_cert_data` is concatenated with `shared.ca_cert_data`. The resulting PEM bundle contains both.
 
 ## kubernetes_distribution
 
@@ -71,7 +71,7 @@ and `openshift`.
 
 AppSSO installs [_OpenShift_-specific RBAC and resources](openshift.md).
 
-> **Note** If omitted `kubernetes_distribution` is set to `shared.kubernetes_distribution`.
+>**Note** If omitted, `kubernetes_distribution` is set to `shared.kubernetes_distribution`.
 
 ## Configuration schema
 

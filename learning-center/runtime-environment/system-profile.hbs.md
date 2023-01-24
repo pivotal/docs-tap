@@ -4,7 +4,7 @@ Use the `SystemProfile` custom resource to configure the Learning Center Operato
 You can use the default system profile to set defaults for ingress and image pull secrets. You can also select an alternate profile for
 specific deployments if required.
 
->**Note** Changes made to the `SystemProfile` custom resource, or changes made by means of environment variables,
+>**Important** Changes made to the `SystemProfile` custom resource, or changes made by means of environment variables,
 >don't take effect on already deployed `TrainingPortals`. You must recreate those for the changes
 >to be applied.
 >You only need to recreate the `TrainingPortal` resources, because this resource takes care of

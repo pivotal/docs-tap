@@ -1,4 +1,4 @@
-# Authoring supply chains
+# Author supply chains
 
 The Out of the Box Supply Chain, Delivery Basic, and Templates packages provide
 a set of Kubernetes objects aiming at covering a reference path to production
@@ -230,7 +230,7 @@ modification to is `source-to-url` provided by the
       kubectl apply -f-
     ```
 
-    >**Note** The modified supply chain does not outlive the destruction of the cluster. VMware recommends that you save it, for example, in a Git repository to install on every cluster where you expect the supply chain to exist.
+    >**Important** The modified supply chain does not outlive the destruction of the cluster. VMware recommends that you save it, for example, in a Git repository to install on every cluster where you expect the supply chain to exist.
 
 ## <a id="modify-ootb-sc"></a> Modifying an Out of the Box Supply template
 

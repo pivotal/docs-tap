@@ -57,8 +57,8 @@ For services that do not provide a resource adhering to the Service Binding Spec
 be possible to provide configurations allowing such services to integrate with Tanzu Application Platform. See the following
 for examples of how to do this for Amazon AWS RDS.
 
-* [Consuming AWS RDS on Tanzu Application Platform (TAP) with AWS Controllers for Kubernetes (ACK)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_ack.html)
-* [Consuming AWS RDS on Tanzu Application Platform (TAP) with Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.8/svc-tlk/GUID-usecases-consuming_aws_rds_with_crossplane.html)
+* [Consuming AWS RDS on Tanzu Application Platform (TAP) with AWS Controllers for Kubernetes (ACK)](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_ack.html)
+* [Consuming AWS RDS on Tanzu Application Platform (TAP) with Crossplane](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_crossplane.html)
 
 ## <a id="stk-user-roles"></a> User roles and responsibilities
 

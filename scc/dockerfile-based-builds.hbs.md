@@ -69,7 +69,7 @@ Similarly, if the context to be used for the build must be set to a different
 directory within the repository, you can make use of the `docker_build_context`
 to change that:
 
-```
+```console
 $ tanzu apps workload create foo \
   --git-repo https://github.com/foo/bar \
   --git-branch dev \
@@ -77,7 +77,7 @@ $ tanzu apps workload create foo \
   --param docker_build_context=./src
 ```
 
-> **Note** This feature has no platform operator configurations to be passed
+> **Important** This feature has no platform operator configurations to be passed
 > through `tap-values.yaml`, but if `ootb-supply-chain-*.registry.ca_cert_data` or
 `shared.ca_cert_data` is configured in `tap-values`, the certificates
 > are considered when pushing the container image.

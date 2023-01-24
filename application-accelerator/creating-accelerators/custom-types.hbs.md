@@ -1,13 +1,15 @@
 # Using Custom Types
 
-Application Accelerators can declare new types to be used for options declaration,
+You can declare new `types` in `accelerator.yaml`. These can be used for options declaration,
 in addition to the built-in types `string`, `number`, and `boolean`.
 
-## Introducing the Types Section
+In `accelerator.yaml`, use the `types` entry (inside the top-level
+`accelerator` section)  to define custom types.</br>
 
-The `accelerator.yaml` file syntax supports an entry named `types` inside the top-level
-`accelerator` section, allowing the definition of custom types, with support for
-`struct` types, like so:
+The name must be an initial capital letter.</br>
+
+In the following example, the `struct` type definition is syntactically equivalent to a sequence
+of option definitions:
 
 ```yaml
 accelerator:
@@ -29,16 +31,8 @@ accelerator:
           defaultValue: false
 ```
 
-The `struct` type definition is syntactically equivalent to **a sequence (hence ordered) of
-option definitions**.
-
-A type name MUST be a `CapitalizedName`.
-
-## Interaction with UIs and Values Submission
-
-The effect of the previous example is that a new _type_ then becomes available
-(in addition to the built-in `string`, `number`, `boolean` and sequences thereof)
-for the `dataType` property of any option:
+This example creates a new _type_ that is available for the `dataType` property of any option.
+For example,
 
 ```yaml
 accelerator:
@@ -49,12 +43,11 @@ accelerator:
     ...
 ```
 
-For example, UIs render:
+UIs would render something similar to the following:
 
 ![SimpleTask form is open with my first task sample title and task details.](../images/simple-task.png)
 
-Associate the entered
-values to the `myTask` top-level name, resulting in the following example
+and associate the entered values to the `myTask` top-level name, resulting in the following example
 values submission (here represented using JSON notation):
 
 ```json
@@ -67,16 +60,13 @@ values submission (here represented using JSON notation):
 }
 ```
 
-The actual type of the `myTask` value is `object` (in Javascript/JSON parlance)
+The type of the `myTask` value is `object` (in Javascript/JSON parlance)
 and `Map<String, ?>` when seen from the Java engine side.
 
 The earlier example is technically possible with the custom types feature,
-but brings little benefit over having 3 options named _e.g._ `myTaskTitle`,
-`myTaskDetails` and `myTaskDone` to achieve the same end result.
-
-The real value of custom types comes from the ability to use such types
-in sequence types, allowing users to enter an unbounded list of structured
-data:
+but brings little benefit over having three options named _e.g._ `myTaskTitle`,
+`myTaskDetails` and `myTaskDone` to achieve the same end result. The value of custom types is that
+they can be used in sequence types, allowing you to enter an unbounded list of structured data:
 
 ```yaml
 accelerator:
@@ -87,7 +77,7 @@ accelerator:
     ...
 ```
 
-Which mights result of the following example submission (JSON):
+Which might result in the following example submission (JSON):
 
 ```json
 {
@@ -106,15 +96,15 @@ Which mights result of the following example submission (JSON):
 }
 ```
 
-### Limitations
+## Limitations
 
-As stated earlier, a `struct` custom type declaration is made of an ordered
-series of option definitions. The support and semantics for individual text boxes
-of such option-definition-like elements when used in the type _declaration_ is stated later.
+A `struct` custom type declaration is made of an ordered series of option definitions.
+The support and semantics for individual text boxes of option-definition-like elements
+when used in the type _declaration_ are stated in the following example.
 
-Also, when _referencing_ a custom type in an option definition, some previously
+When _referencing_ a custom type in an option definition, some previously
 valid properties of an option definition might become irrelevant or unsupported.
-Again, this is stated in the following example:
+This is stated in the following example:
 
 ```yaml
 accelerator:
@@ -159,18 +149,17 @@ might use SpELs syntax for accessing properties or< array elements:
   #myTasks[2]['done']
 ```
 
-In practice though, array indexing is not be used (either with a literal number or even a variable)
-because the whole point of the list of custom types feature is that users don't know the data length
+Array indexing should not be used (either with a literal number or a variable) as the purpose
+of the list of the custom types feature is that you don't know the data length
 in advance. See the section about the [`Loop`](transforms/loop.hbs.md) Transform to discover more
 idiomatic use of repeated structured data.
 
 ## Interaction with Composition
 
-Using composition alongside custom types brings several challenges / opportunities:
+Using composition alongside custom types has the following advantages/disadvantages:
 
-- Users might want to **leverage** types declared in an imported fragment
+- You might want to **leverage** types declared in an imported fragment
 - There might be a type **name clash** between a host accelerator/fragment and an imported
   fragment, because the imported fragment author is unaware of how the fragment is to be used.
 
-See the section about [composition](composition.hbs.md) to learn about syntax to
-customize the imported types names.
+For more information about the syntax to customize the imported types names, see [composition](composition.hbs.md).

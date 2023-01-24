@@ -7,8 +7,7 @@ This topics describes how to create a workload from example source code with Tan
 The following prerequisites are required to use workloads with Tanzu Application Platform:
 
 - Install Kubernetes command line interface tool (kubectl). For information about installing
-  kubectl, see [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes
-  documentation.
+  kubectl, see [Install Tools in the Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/).
 - Install Tanzu Application Platform components on a Kubernetes cluster. See [Installing Tanzu
   Application Platform](../../install-intro.hbs.md).
 - [Set your kubeconfig context](tutorials.hbs.md#changing-clusters) to the prepared cluster `kubectl
@@ -18,8 +17,8 @@ The following prerequisites are required to use workloads with Tanzu Application
 - Install the apps plug-in. See the [Install Apps plug-in](tutorials.hbs.md#install).
 - [Set up developer namespaces to use installed packages](../../set-up-namespaces.hbs.md).
 - As you familiarize yourself with creating and managing the life cycle of workloads on the
-  platform, you might want to review the full `Cartographer Workload spec` to learn more about the
-  values that may be provided.
+  platform, review the full `Cartographer Workload spec` to learn more about the
+  values that can be provided.
 
   There are two methods for doing so:
 
@@ -87,13 +86,13 @@ and push it to the given registry to be used in the workload.
     and the directories must not end with the system path separator (`/` or `\`).
 
     For more info regarding the `.tanzuignore` file
-    see [.tanzuignorefile](how-to-guides.hbs.md#tanzuignore-file) section of the how-to-guides.
+    see [.tanzuignorefile](how-to-examples.hbs.md#tanzuignore-file) section of the how-to-guides.
 
 ### <a id="workload-image"></a> Create workload from an existing image
 
 Tanzu Application Platform supports creating a workload from an existing registry image by providing
 the reference to that image through the `--image` flag. When provided,
-the [supplychain](../../scc/about.hbs.md) will references the provided registry image when
+the [supplychain](../../scc/about.hbs.md) references the provided registry image when
 the workload is deployed.
 
 An example on how to create a workload from image is as follows:
@@ -138,7 +137,7 @@ The Maven repository URL is being set when the supply chain is created.
     }
     ```
 
-For example, to create a workload from a Maven artifact, something like this can be done:
+For example, to create a workload from a Maven artifact, run:
 
 ```console
 # YAML
@@ -191,12 +190,21 @@ The workload YAML definition can also be passed in through stdin as follows:
 tanzu apps workload create --file - --yes
 ```
 
-The console waits for input, and the content with valid `yaml` definitions for a workload may either
+The console waits for input, and the content with valid `yaml` definitions for a workload can either
 be written or pasted. Then click **Ctrl-D** three times to start the workload creation. This can
 also be done with the `workload apply` command.
 
 **Note** To pass a workload through `stdin`, the `--yes` flag is required. If not provided, the
 >command fails.
+
+Another way to pass a workload with the `--file` flag is using a URL, which, as mentioned before,
+must contain a raw file with the workload definition.
+
+For example:
+
+```console
+tanzu apps workload apply --file https://raw.githubusercontent.com/vmware-tanzu/apps-cli-plugin/main/pkg/commands/testdata/workload.yaml
+```
 
 ## <a id="bind-service"></a> Bind a service to a workload
 
@@ -214,11 +222,11 @@ The intent of these bindings is to provide information from a service resource t
 
     Where:
 
-    - `pet-clinic` is the name of the workload to be updated.
-    - `--service-ref` references the service using the format {service-ref-name}={apiVersion}:{kind}:{service-binding-name}.
+  - `pet-clinic` is the name of the workload to be updated.
+  - `--service-ref` references the service using the format {service-ref-name}={apiVersion}:{kind}:{service-binding-name}.
 
 See [services consumption documentation](../../getting-started/consume-services.hbs.md) to get more
-information on how to bind a service to a workload.
+information about how to bind a service to a workload.
 
 ## <a id="next-steps"></a> Next steps
 

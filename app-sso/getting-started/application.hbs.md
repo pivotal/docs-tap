@@ -1,7 +1,7 @@
 # Deploy an application with Application Single Sign-On
 
-> **Note** 👉 This article assumes that you have completed the previous step in this Getting Started
-guide. If not, please refer to instructions in [Provision a client registration](client-registration.md).
+> **Important** This topic assumes that you have completed the steps described in [Get started with Application Single Sign-On](appsso-overview.hbs.md). 
+If not, see [Provision a client registration](client-registration.md).
 
 In this tutorial, you are going to deploy a minimal Kubernetes application that uses the credentials created through 
 the [ClientRegistration](client-registration.md) and be protected through SSO.
@@ -14,9 +14,9 @@ For more information about how a Client application uses an AuthServer to authen
 
 You are going to deploy a two-container pod, as a test application.
 
-> **Important** ✋ Note that we used <code>HTTPProxy.spec.virtualhost.fqdn` = `test-app.example.com`</code>, but you should customize the URL to
-match the domain of your TAP cluster. This URL should match what was set up in `ClientRegistration.spec.redirectURIs[0]`
-in the [Previous section](client-registration.md)
+> **Important** AppSSO uses `test-app.example.com` for `HTTPProxy.spec.virtualhost.fqdn`. You must customize the URL to
+match the domain of your Tanzu Application Platform cluster. This URL must match what was set up in `ClientRegistration.spec.redirectURIs[0]`
+in [Provision a client registration](client-registration.hbs.md)
 
 ```yaml
 ---
@@ -158,7 +158,7 @@ Now you can navigate to `http://test-app.example.com/`. It may ask you to log in
 AuthServer you haven't already. You can also navigate to `http://test-app.example.com/token` if you wish to see the
 contents of the ID token.
 
-## 💡 Deployment manifest explained
+## Deployment manifest
 
 The application was deployed as a two-container pod: one for the app, and one for handling login.
 
@@ -170,7 +170,7 @@ The application was deployed as a two-container pod: one for the app, and one fo
 
 Along with this deployment, there is a `Service` + `HTTPProxy`, to expose the application to the outside world.
 
-## 💡 Notes on OAuth2-Proxy
+## OAuth2-Proxy
 
 The setup of the above [OAuth2 Proxy](https://oauth2-proxy.github.io/oauth2-proxy/) is minimal, and is not considered
 suitable for production use. To configure it for production, please refer to the official documentation.

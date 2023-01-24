@@ -1,4 +1,4 @@
-# Using NodePort
+# Use NodePort
 
 >**Note** The recommended service type is [Ingress](ingress.hbs.md).
 >NodePort is only recommended when the cluster does not support

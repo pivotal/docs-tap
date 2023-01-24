@@ -15,7 +15,7 @@ Tanzu Developer Tools for Visual Studio:
   installed.
   Download Tanzu Application Platform from [VMware Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
   For more information about the profiles, see [Components and installation profiles](../about-package-profiles.hbs.md).
-- [Visual Studio](https://visualstudio.microsoft.com/vs/)
+- [Visual Studio 2022](https://visualstudio.microsoft.com/vs/)
 
 ## <a id="install"></a> Install
 
