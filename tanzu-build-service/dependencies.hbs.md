@@ -119,7 +119,7 @@ The `lite` dependencies contain the following buildpacks in Tanzu Application Pl
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
 | Java Buildpack for VMware Tanzu (Lite) | [8.0.0](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-tanzu-java-release-notes.html#tanzu-java-buildpack-8.0.0) | Bionic, Jammy |
-| Java Native Image Buildpack for Tanzu (Lite) | [6.39.0] | Bionic, Jammy |
+| Java Native Image Buildpack for Tanzu (Lite) | [6.39.0](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-tanzu-java-native-image-release-notes.html#tanzu-java-native-image-buildpack-6.39.0) | Bionic, Jammy |
 | .NET Core Buildpack for VMware Tanzu (Lite) | [1.19.2](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-dotnet-core-release-notes.html#tanzu.net-core-buildpack-1.19.2-lite) | Bionic, Jammy |
 | Node.js Buildpack for VMware Tanzu (Lite) | [1.17.1](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-nodejs-release-notes.html#tanzu-node.js-buildpack-1.17.0-lite) | Bionic, Jammy |
 | Python Buildpack for VMware Tanzu (Lite)| [2.3.1](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-python-release-notes.html#tanzu-python-buildpack-2.3.1-lite)  | Bionic, Jammy |
