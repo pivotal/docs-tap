@@ -223,10 +223,9 @@ with a client application later in this guide.
 
 > **Caution** VMware discourages using the `internalUnsafe` identity provider in production environments.
 
-### Configuring storage
+### <a id="config-storage"></a>Configuring storage
 
-An `AuthServer` issues a Redis instance by default, and may be used for testing, prototyping, and other non-production
-purposes -- no additional configuration is needed.
+An `AuthServer` issues a Redis instance by default. It can be used for testing, prototyping and other non-production
+purposes. No additional configuration is required.
 
-To configure your own storage that is ready for production, follow the steps outlined
-in [configuring Storage documentation](../service-operators/storage.hbs.md).
+To configure your own storage that is ready for production, see [Storage](../service-operators/storage.hbs.md).
