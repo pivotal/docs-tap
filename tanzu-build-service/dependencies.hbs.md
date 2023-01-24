@@ -126,7 +126,7 @@ The `lite` dependencies contain the following buildpacks in Tanzu Application Pl
 | Go Buildpack for VMware Tanzu (Lite) | [2.0.4](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-go-release-notes.html#tanzu-go-buildpack-2.0.4-lite) | Bionic, Jammy |
 | Web Servers Buildpack for VMware Tanzu (Lite) | [0.4.1](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-web-servers-release-notes.html#tanzu-web-servers-buildpack-0.4.1-lite) | Bionic, Jammy |
 | Ruby Buildpack for VMware Tanzu (Lite) | [1.5.0](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-ruby-release-notes.html#tanzu-ruby-buildpack-1.5.0-lite) | Bionic, Jammy |
-| Procfile Buildpack for VMware Tanzu (Lite) | [5.4.0]((https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-procfile-release-notes.html#paketo-buildpack-for-procfile-5.4.0) | Bionic, Jammy |
+| Procfile Buildpack for VMware Tanzu (Lite) | [5.4.0](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-procfile-release-notes.html#paketo-buildpack-for-procfile-5.4.0) | Bionic, Jammy |
 | Base Stack of Ubuntu Bionic for VMware Tanzu | [1.2.34](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-base-stack-release-notes.html#tanzu-base-stack-of-ubuntu-bionic-v1.2.34) | Bionic |
 | Base Stack of Ubuntu Jammy for VMware Tanzu | [0.1.16](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-base-stack-ubuntu-2204-release-notes.html?hWord=N4IghgNiBcICpgHYC8CuACAQmAzgU3QGUAXMAYwGt0AzAewCd0BVAI1UWIwCYuA6ABgAs6AG79eARkkA2EAF8gA#tanzu-base-stack-for-ubuntu-22.04-v0.1.16) | Jammy |
 
