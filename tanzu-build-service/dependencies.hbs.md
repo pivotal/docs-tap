@@ -118,17 +118,17 @@ The `lite` dependencies contain the following buildpacks in Tanzu Application Pl
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
-| Java Buildpack for VMware Tanzu (Lite) | 8.0.0 | Bionic, Jammy |
-| Java Native Image Buildpack for Tanzu (Lite) | 6.39.0 | Bionic, Jammy |
-| .NET Core Buildpack for VMware Tanzu (Lite) | 1.19.2 | Bionic, Jammy |
-| Node.js Buildpack for VMware Tanzu (Lite) | 1.17.1 | Bionic, Jammy |
-| Python Buildpack for VMware Tanzu (Lite) | 2.3.1 | Bionic, Jammy |
-| Go Buildpack for VMware Tanzu (Lite) | 2.0.4 | Bionic, Jammy |
-| Web Servers Buildpack for VMware Tanzu (Lite) | 0.4.1 | Bionic, Jammy |
-| Ruby Buildpack for VMware Tanzu (Lite) | 1.5.0 | Bionic, Jammy |
-| Procfile Buildpack for VMware Tanzu (Lite) | 5.4.0 | Bionic, Jammy |
-| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.34 | Bionic |
-| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.16 | Jammy |
+| Java Buildpack for VMware Tanzu (Lite) | [8.0.0](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-tanzu-java-release-notes.html#tanzu-java-buildpack-8.0.0) | Bionic, Jammy |
+| Java Native Image Buildpack for Tanzu (Lite) | [6.39.0](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-tanzu-java-native-image-release-notes.html#tanzu-java-native-image-buildpack-6.39.0) | Bionic, Jammy |
+| .NET Core Buildpack for VMware Tanzu (Lite) | [1.19.2](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-dotnet-core-release-notes.html#tanzu.net-core-buildpack-1.19.2-lite) | Bionic, Jammy |
+| Node.js Buildpack for VMware Tanzu (Lite) | [1.17.1](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-nodejs-release-notes.html#tanzu-node.js-buildpack-1.17.0-lite) | Bionic, Jammy |
+| Python Buildpack for VMware Tanzu (Lite)| [2.3.1](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-python-release-notes.html#tanzu-python-buildpack-2.3.1-lite)  | Bionic, Jammy |
+| Go Buildpack for VMware Tanzu (Lite) | [2.0.4](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-go-release-notes.html#tanzu-go-buildpack-2.0.4-lite) | Bionic, Jammy |
+| Web Servers Buildpack for VMware Tanzu (Lite) | [0.4.1](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-web-servers-release-notes.html#tanzu-web-servers-buildpack-0.4.1-lite) | Bionic, Jammy |
+| Ruby Buildpack for VMware Tanzu (Lite) | [1.5.0](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-ruby-release-notes.html#tanzu-ruby-buildpack-1.5.0-lite) | Bionic, Jammy |
+| Procfile Buildpack for VMware Tanzu (Lite) | [5.4.0]((https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-procfile-release-notes.html#paketo-buildpack-for-procfile-5.4.0) | Bionic, Jammy |
+| Base Stack of Ubuntu Bionic for VMware Tanzu | [1.2.34](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-base-stack-release-notes.html#tanzu-base-stack-of-ubuntu-bionic-v1.2.34) | Bionic |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | [0.1.16](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-base-stack-ubuntu-2204-release-notes.html?hWord=N4IghgNiBcICpgHYC8CuACAQmAzgU3QGUAXMAYwGt0AzAewCd0BVAI1UWIwCYuA6ABgAs6AG79eARkkA2EAF8gA#tanzu-base-stack-for-ubuntu-22.04-v0.1.16) | Jammy |
 
 ### <a id="full-dependencies"></a> Full dependencies
 
@@ -164,22 +164,22 @@ The `full` dependencies contain the following buildpacks in Tanzu Application Pl
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
-| Java Buildpack for VMware Tanzu | 8.0.0 | Bionic, Jammy |
-| Java Native Image Buildpack for Tanzu | 6.39.0 | Bionic, Jammy |
-| .NET Core Buildpack for VMware Tanzu | 1.19.2 | Bionic, Jammy |
-| Node.js Buildpack for VMware Tanzu | 1.17.1 | Bionic, Jammy |
-| Python Buildpack for VMware Tanzu | 2.3.1 | Bionic, Jammy |
-| Ruby Buildpack for VMware Tanzu | 1.5.0 | Bionic, Jammy |
-| Go Buildpack for VMware Tanzu | 2.0.4 | Bionic, Jammy |
+| Java Buildpack for VMware Tanzu | [8.0.0](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-tanzu-java-release-notes.html#tanzu-java-buildpack-8.0.0) | Bionic, Jammy |
+| Java Native Image Buildpack for Tanzu | [6.39.0](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-tanzu-java-native-image-release-notes.html#tanzu-java-native-image-buildpack-6.39.0) | Bionic, Jammy |
+| .NET Core Buildpack for VMware Tanzu | [1.19.2](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-dotnet-core-release-notes.html#tanzu.net-core-buildpack-1.19.2-full) | Bionic, Jammy |
+| Node.js Buildpack for VMware Tanzu | [1.17.1](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-nodejs-release-notes.html#tanzu-node.js-buildpack-1.17.0-full) | Bionic, Jammy |
+| Python Buildpack for VMware Tanzu | [2.3.1](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-python-release-notes.html#tanzu-python-buildpack-2.3.1-full) | Bionic, Jammy |
+| Ruby Buildpack for VMware Tanzu | [1.5.0](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-ruby-release-notes.html#tanzu-ruby-buildpack-1.5.0-full) | Bionic, Jammy |
+| Go Buildpack for VMware Tanzu | [2.0.4](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-go-release-notes.html#tanzu-go-buildpack-2.0.4-full) | Bionic, Jammy |
 | PHP Buildpack for VMware Tanzu | 2.0.0 | Bionic, Jammy |
-| Web Servers Buildpack for VMware Tanzu | 0.4.1 | Bionic, Jammy |
-| Procfile Buildpack for VMware Tanzu | 5.4.0 | Bionic, Jammy |
-| Tiny Stack of Ubuntu Bionic for VMware Tanzu | 1.3.88 | Bionic |
-| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.34 | Bionic |
-| Full Stack of Ubuntu Bionic for VMware Tanzu | 1.3.121 | Bionic |
-| Tiny Stack of Ubuntu Jammy for VMware Tanzu | 0.1.17 | Jammy |
-| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.16 | Jammy |
-| Full Stack of Ubuntu Jammy for VMware Tanzu | 0.1.38 | Jammy |
+| Web Servers Buildpack for VMware Tanzu | [0.4.1](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-web-servers-release-notes.html#tanzu-web-servers-buildpack-0.4.1-full) | Bionic, Jammy |
+| Procfile Buildpack for VMware Tanzu | [5.4.0](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-release-notes-procfile-release-notes.html#paketo-buildpack-for-procfile-5.4.0) | Bionic, Jammy |
+| Tiny Stack of Ubuntu Bionic for VMware Tanzu | [1.3.88](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-tiny-stack-release-notes.html#tanzu-tiny-stack-of-ubuntu-bionic-v1.3.88) | Bionic |
+| Base Stack of Ubuntu Bionic for VMware Tanzu | [1.2.34](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-base-stack-release-notes.html#tanzu-base-stack-of-ubuntu-bionic-v1.2.34) | Bionic |
+| Full Stack of Ubuntu Bionic for VMware Tanzu | [1.3.121](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-full-stack-release-notes.html#tanzu-full-stack-of-ubuntu-bionic-v1.3.121) | Bionic |
+| Tiny Stack of Ubuntu Jammy for VMware Tanzu | [0.1.17](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-tiny-stack-ubuntu-2204-release-notes.html#tanzu-tiny-stack-for-ubuntu-22.04-v0.1.17) | Jammy |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | [0.1.16](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-base-stack-ubuntu-2204-release-notes.html#tanzu-base-stack-for-ubuntu-22.04-v0.1.16) | Jammy |
+| Full Stack of Ubuntu Jammy for VMware Tanzu | [0.1.38](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-full-stack-ubuntu-2204-release-notes.html#tanzu-full-stack-for-ubuntu-22.04-v0.1.38) | Jammy |
 
 ### <a id="lite-vs-full-table"></a> Dependency comparison
 
