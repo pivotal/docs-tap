@@ -1,5 +1,7 @@
 # Troubleshoot Spring Boot Conventions
 
+This topic describes how to troubleshoot Spring Boot conventions.
+
 ## <a id="collect-logs"></a>Collect logs
 
 If you have trouble, you can retrieve and examine logs from the Spring Boot convention server as follows:
