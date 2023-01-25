@@ -47,4 +47,4 @@ The convention server searches inside the image for `Config -> Labels -> io.buil
 to find the `bom` file. It looks inside the `bom` file for metadata to evaluate whether the
 convention is to be applied.
 
-For the list of conventions, see [Conventions](reference/conventions.md).
+For the list of conventions, see [Conventions](reference/conventions.hbs.md).
