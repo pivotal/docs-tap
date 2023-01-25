@@ -1,6 +1,6 @@
 # Troubleshoot Spring Boot Conventions
 
-This topic describes troubleshooting Spring Boot conventions.
+This topic describes how to troubleshoot Spring Boot conventions.
 
 ## <a id="collect-logs"></a>Collect logs
 

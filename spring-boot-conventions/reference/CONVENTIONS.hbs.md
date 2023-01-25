@@ -167,7 +167,7 @@ status:
         resources: {}
 ```
 
-## <a id="spring-boot-web-convention"></a>Spring boot web convention
+## <a id="sb-web-convention"></a> Spring Boot web convention
 
 In the `bom` file's metadata, under `dependencies`, if there are any of the following `dependencies`,
 the convention is applied to the `PodTemplateSpec` object:
@@ -246,7 +246,7 @@ status:
         resources: {}
 ```
 
-## <a id="spring-boot-actuator-convention"></a>Spring boot actuator convention
+## <a id="sb-actuator-convention"></a> Spring Boot Actuator convention
 
 In the `bom` file's metadata, under `dependencies`, there is a `dependency` with the name
 `spring-boot-actuator`.
