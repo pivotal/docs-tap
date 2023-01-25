@@ -449,11 +449,8 @@ It is recommended that you update the Java buildpack in your ClusterStore with t
 
 #### <a id="api-auto-registration-ki"></a> API Auto Registration
 
-- Unknown Certificate Authority and connection refused errors from the APIDescriptor CRD. See [API Auto Registration Troubleshooting section](api-auto-registration/troubleshooting.hbs.md) for more details and resolution
-
-</br>
-
----
+- Unknown Certificate Authority and connection refused errors from the APIDescriptor CRD. 
+For more information, see [Troubleshoot API Auto Registration](api-auto-registration/troubleshooting.hbs.md).
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
