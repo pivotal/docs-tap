@@ -116,7 +116,7 @@ This is the table of contents from which the Tanzu Application Platform Document
         - [Private image scan](scst-scan/samples/private-image.md)
         - [Private source scan](scst-scan/samples/private-source.md)
         - [Public source scan of a blob/tar file](scst-scan/samples/blob.md)
-      - [Observing and troubleshooting](scst-scan/observing.md)
+      - [Observing](scst-scan/observing.md)
       - [Troubleshoot](scst-scan/troubleshoot-scan.hbs.md)
       - [Additional scan resources](scst-scan/additional.md)
         - [Configure code repositories and image artifacts to be scanned](scst-scan/scan-crs.md)
