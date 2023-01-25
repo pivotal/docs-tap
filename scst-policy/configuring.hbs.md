@@ -189,12 +189,14 @@ Each keyless authority can contain a Fulcio URL, a Rekor URL, a certificate, or
 an array of identities.
 
 Identities are represented with a combination of `issuer` or `issuerRegExp` with `subject` or `subjectRegExp`.
-* `issuer`: defines the issuer for this identity.
-* `issuerRegExp`: specifies a regular expression to match the issuer for this identity.
-* `subject`: defines the subject for this identity.
-* `subjectRegExp`: specifies a regular expression to match the subject for this identity.
 
-An example of the keyless authority structure:
+- `issuer`: Defines the issuer for this identity.
+- `issuerRegExp`: Specifies a regular expression to match the issuer for this identity.
+- `subject`: Defines the subject for this identity.
+- `subjectRegExp`: Specifies a regular expression to match the subject for this identity.
+
+An example of keyless authority structure:
+
 ```yaml
 spec:
   authorities:
@@ -219,7 +221,7 @@ spec:
             subjectRegExp: .*kubernetes.io/namespaces/default/serviceaccounts/default
 ```
 
-The authorities are evaluated using the "any of" operator to admit container
+The authorities are evaluated using the `any of` operator to admit container
 images. For each pod, the Policy Controller iterates over the list of containers
 and init containers. For every policy that matches against the images, they must
 each have at least one valid signature obtained using the authorities specified.
