@@ -460,7 +460,10 @@ This release has the following known issues, listed by area and component.
   associated scan policies.
 - The CVEs bar graph in Workload Build Vulnerabilities sometimes cuts numbers off.
 
----
+#### <a id="api-auto-registration-ki"></a> API Auto Registration
+
+- Unknown Certificate Authority and connection refused errors from the APIDescriptor CRD. 
+For more information, see [Troubleshoot API Auto Registration](api-auto-registration/troubleshooting.hbs.md).
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
