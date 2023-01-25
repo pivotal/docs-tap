@@ -1,7 +1,7 @@
-# Observe Supply Chain Security Tools - Scan
+# Observe and troubleshoot
 
 This section outlines observability and troubleshooting methods and issues for using the Supply
-Chain Security Tools - Scan components.
+Chain Security Tools - Scan> components.
 
 ## <a id="observability"></a> Observability
 
