@@ -77,7 +77,7 @@ do so by the second component of Cartographer Conventions, the [Convention Contr
 
 ### <a id='convention-controller'></a>Convention controller
 
-The convention controller is the orchestrator of one or many convention servers deployed to the cluster. There are resources available on the `conventions.carto.run/v1aplha1` API that allow the controller to carry out it's functions. These resources include:
+The convention controller is the orchestrator of one or many convention servers deployed to the cluster. There are resources available on the `conventions.carto.run/v1aplha1` API that allow the controller to carry out its functions. These resources include:
 
   -  [ClusterPodConvention](./reference/cluster-pod-convention.hbs.md)
       - `ClusterPodConvention` is a  resource type that allows the conventions author to register a webhook server with the controller using it's `spec.webhook` field.
@@ -98,10 +98,10 @@ The convention controller is the orchestrator of one or many convention servers 
 
   - [PodIntent](./reference/pod-intent.hbs.md)
 
-    - The `PodIntent`is a `conventions.carto.run/v1alpha1)` resource type that
+    - The `PodIntent` is a `conventions.carto.run/v1alpha1` resource type that
       is continuously reconciled and applies decorations to a workload
-      `PodTemplateSpec` exposing the enriched `PodTemplateSpec` on it's status.
-      Whenever the status of the `PodIntent` is updated no side effects are
+      `PodTemplateSpec` exposing the enriched `PodTemplateSpec` on its status.
+      Whenever the status of the `PodIntent` is updated, no side effects are
       caused on the cluster.
 
   As key types defined on the `conventions.carto.run` API, the
