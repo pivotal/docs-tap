@@ -23,7 +23,7 @@ steps:
 
     - The `JAVA_TOOL_OPTIONS` property is set as `-Dmanagement.server.port="8081"`.
     - The `JAVA_TOOL_OPTIONS` property is set as `-Dmanagement.endpoints.web.base-path="/actuator"`.
-    - Annotation on the PodIntent is set as `boot.spring.io/actuator`: `http://:8081/actuator`.
+    - Annotation on the PodIntent is set as `boot.spring.io/actuator: http://:8081/actuator`.
 
     In addition to the these settings, Application Live View is activated with the following actuator
     configuration:
