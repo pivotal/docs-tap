@@ -1,12 +1,13 @@
-# Convention Service
+# Convention Service for VMware Tanzu
 
->**Caution** This component is being deprecated in favor of [Cartographer Conventions](../cartographer-conventions/about.md).
+>**Caution** This component is deprecated in favor of [Cartographer Conventions](../cartographer-conventions/about.md).
 
-The [Cartographer Conventions](../cartographer-conventions/about.md) component must be installed to add conventions to your Pod.
+The [Cartographer Conventions](../cartographer-conventions/about.md) component must be installed to add conventions to your pod.
 The v0.7.x version of the convention controller is a passive system that translates the CRDs to the [new group](../cartographer-conventions/reference/pod-intent.md).
 
 
 #### <a id="ootb-conventions"></a> Sample conventions
+
 There are several out-of-the-box conventions provided with a full profile installation of Tanzu Application Platform or individual component installation of the following packages.
 
   ```shell
