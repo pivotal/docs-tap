@@ -116,7 +116,7 @@ status:
        resources: {}
 ```
 
-## <a id="spring-boot-graceful-shutdown-convention"></a> Spring boot graceful shut down convention
+## <a id="grcfl-shtdwn-convention"></a> Spring boot graceful shut down convention
 
 If any of the following dependencies are in the metadata within the `SBOM` file under `dependencies`,
 the Spring Boot graceful shut down convention is applied to the `PodTemplateSpec` object:
@@ -172,7 +172,7 @@ status:
         resources: {}
 ```
 
-## <a id="spring-boot-web-convention"></a> Spring Boot web convention
+## <a id="sb-web-convention"></a> Spring Boot web convention
 
 If any of the following dependencies are in the metadata within the `SBOM` file under `dependencies`,
 the Spring Boot web convention is applied to the `PodTemplateSpec` object:
@@ -228,7 +228,7 @@ status:
         resources: {}
 ```
 
-## <a id="spring-boot-actuator-convention"></a> Spring Boot Actuator convention
+## <a id="sb-actuator-convention"></a> Spring Boot Actuator convention
 
 If the `spring-boot-actuator` dependency is in the metadata within the `SBOM` file
 under `dependencies`, the Spring Boot actuator convention is applied to the `PodTemplateSpec` object.
@@ -303,10 +303,9 @@ status:
        resources: {}
 ```
 
-## <a id="spring-boot-actuator-probes-convention"></a> Spring Boot Actuator Probes convention
+## <a id="sb-actuator-probes-conv"></a> Spring Boot Actuator Probes convention
 
-The Spring Boot Actuator Probes convention is applied only if **all**
-of the following conditions are met:
+The Spring Boot Actuator Probes convention is applied only if all of the following conditions are met:
 
 - The `spring-boot-actuator` dependency exists and is **>= 2.6**
 - The `JAVA_TOOL_OPTIONS` environment variable does not include the following properties or, if
@@ -384,7 +383,7 @@ status:
         resources: {}
 ```
 
-## <a id="service-intent-conventions"></a> Service intent conventions
+## <a id="service-intent-conv"></a> Service intent conventions
 
 The Service intent conventions do not change the behavior of the final deployment, but you can use
 them as added information to process in the supply chain.
