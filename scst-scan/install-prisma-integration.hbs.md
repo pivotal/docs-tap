@@ -27,13 +27,17 @@ imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-pack
 ## Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to
-your own container image registry before installing. The Prisma Scanner is currently in Alpha development phase, and as such, is not packaged as part of the Tanzu Application Platform package and is hosted on the VMware Project Repository instead of TanzuNet. Therefore, if you relocated the Tanzu Application Platform images, you may also wany to relocate the Prisma Scanner package. If you don’t relocate the
-images, the Prisma Scanner installation depends on VMware Tanzu Network for
+your own container image registry before installing. The Prisma Scanner is in
+the Alpha development phase, and not packaged as part of Tanzu Application
+Platform. It is hosted on the VMware Project Repository instead of
+VMware Tanzu Network. If you relocated the Tanzu Application Platform
+images, you can also relocate the Prisma Scanner package. If you don’t relocate
+the images, the Prisma Scanner installation depends on VMware Tanzu Network for
 continued operation, and VMware Tanzu Network offers no uptime guarantees. The
 option to skip relocation is documented for evaluation and proof-of-concept
 only.
 
-For information about supported registeries, please see the documentation.
+For information about supported registries, see each registry's documentation.
 
 To relocate images from the VMware Project Registry to your registry:
 
@@ -47,7 +51,7 @@ To relocate images from the VMware Project Registry to your registry:
 
     Where `MY-REGISTRY` is your own registry.
 
-3. Set up environment variables for installation by running:
+3. Set up environment variables for installation:
 
     ```console
     export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
@@ -65,16 +69,16 @@ To relocate images from the VMware Project Registry to your registry:
     - `VERSION` is your Prisma Scanner version. For example, `0.1.4-alpha.3`.
     - `TARGET-REPOSITORY` is your target repository, a directory or repository on `MY-REGISTRY` that serves as the location for the installation files for Prisma Scanner.
 
-5. [Install the Carvel tool imgpkg CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
+4. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
 
-6. Relocate the images with the imgpkg CLI by running:
+5. Relocate images with the imgpkg CLI by running:
 
     ```console
     imgpkg copy -b projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/prisma-repo-scanning-bundle
     ```
 
 > **Note**
-> The VMware project repository does not require authentication, so there is no need to perform a docker login for it.
+> The VMware project repository does not require authentication, so there is no need to perform a docker login.
 
 ## Add the Prisma Scanner package repository
 
@@ -131,7 +135,7 @@ VMware recommends installing the Prisma Scanner objects in the existing `tap-ins
 
 ## Prepare the Prisma Scanner configuration
 
-Before installing the Prisma scanner, you'll need to create the configuration and a Kubernetes secret that contains credentials to access Prisma Cloud.  
+Before installing the Prisma scanner, you must create the configuration and a Kubernetes secret that contains credentials to access Prisma Cloud. 
 
 ### Obtain Console url and Access Keys/Token
 
@@ -140,16 +144,18 @@ The Prisma Scanner supports two methods of authentication:
 1) Basic Authentication with API Key and Secret
 2) Token Based Authentication
 
-The steps to configure both are outlined below to allow you to choose which option you use. Note that the token method issued by Prisma Cloud has a expiration of 1 hour, so it will require frequent refreshing.
+The steps to configure both are outlined to allow you to decide which option you use. 
+
+>**Note** The token method issued by Prisma Cloud has a expiration of 1 hour, so it requires frequent refreshing.
 
 To obtain your Prisma Compute Console URL and Access Keys and Token. See [Access keys](https://docs.paloaltonetworks.com/prisma/prisma-cloud/prisma-cloud-admin-compute/authentication/access_keys) in the Palo Alto Networks documentation.
 
 1) Basic Authentication with API Key and Secret
 2) Token Based Authentication
 
-#### Access Key and Secret Authentication
+#### Access key and secret authentication
 
-To create a Prisma secret, follow the instructions in the sections below. 
+To create a Prisma secret, use the following instructions. 
 
 1. Create a Prisma secret YAML file and insert the base64 encoded Prisma API token into the `prisma_token`:
 
@@ -210,7 +216,9 @@ The Prisma integration can work with or without the SCST - Store integration.
 The values.yaml file is slightly different for each configuration.
 
 #### Access Token Authentication
+
 1. Create a Prisma secret YAML file and insert the base64 encoded Prisma API token into the `prisma_token`:
+
     ```yaml
     apiVersion: v1
     kind: Secret
@@ -224,8 +232,8 @@ The values.yaml file is slightly different for each configuration.
    Where:
  
    - `PRISMA-TOKEN-SECRET` is the name of your Prisma token secret.
-    - `APP-NAME` is the namespace you want to use.
-    - `BASE64-PRISMA-API-TOKEN` is the name of your base64 encoded Prisma API token.
+   - `APP-NAME` is the namespace you want to use.
+   - `BASE64-PRISMA-API-TOKEN` is the name of your base64 encoded Prisma API token.
 
 2. Apply the Prisma secret YAML file by running:
 
@@ -333,7 +341,7 @@ Where:
 - `STORE-SECRETS-NAMESPACE` is the namespace where the secrets for the Store Deployment live. Default is `metadata-store`.
 - `AUTH-SECRET-NAME` is the name of the secret that contains the authentication token to authenticate to the Store Deployment.
 
-**Without Supply Chain Security Tools - Store Integration:** If you don’t want
+**Without SCST - Store Integration:** If you don’t want
 to enable the SCST - Store integration, explicitly deactivate the integration by
 appending the following fields to the values.yaml file that is enabled by
 default:
@@ -346,7 +354,7 @@ metadataStore:
 
 ## Sample ScanPolicy for CycloneDX Format
 
-To prepare the ScanPolicy, follow the instructions in the sections below.
+To prepare the ScanPolicy, use the instructions in the following sections.
 
 ### Sample ScanPolicy using Prisma Policies
 
