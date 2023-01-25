@@ -430,7 +430,7 @@ docs.vmware.com is built.
             - [Public source scan of a blob](scst-scan/samples/blob.hbs.md)
         - [Use Grype in offline and air-gapped environments](scst-scan/offline-airgap.hbs.md)
         - [Triage and remediate CVEs](scst-scan/triaging-and-remediating-cves.hbs.md)
-        - [Observe and troubleshoot](scst-scan/observing.hbs.md)
+        - [Observe](scst-scan/observing.hbs.md)
         - [Troubleshoot](scst-scan/troubleshoot-scan.hbs.md)
         - [Additional scan resources](scst-scan/scan-crs.hbs.md)
             - [Configure code repositories and image artifacts](scst-scan/scan-crs.hbs.md)
