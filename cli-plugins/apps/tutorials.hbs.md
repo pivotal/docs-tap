@@ -60,7 +60,7 @@ tar -xvf tanzu-apps-plugin-darwin-amd64-v0.10.0.tar.gz
 tanzu plugin install apps --local ./tanzu-apps-plugin-darwin-amd64-v0.10.0 --version v0.10.0
 ```
 
-## <a id='uninstall'>Uninstalling Apps CLI plug-in
+## <a id='uninstall'></a>Uninstalling Apps CLI plug-in
 
 To uninstall Apps CLI plug-in by using:
 
@@ -117,9 +117,9 @@ echo "autoload -U compinit; compinit" >> ~/.zshrc
 tanzu completion zsh > "${fpath[1]}/_tanzu"
 ```
 
-## <a id='about-workloads'>About workloads
+## <a id='about-workloads'></a> About workloads
 
-### <a id='creating-workloads'>Creating workloads
+### <a id='creating-workloads'></a>Creating workloads
 
 The four sources from which workloads can be created are as follows:
 
@@ -130,7 +130,7 @@ The four sources from which workloads can be created are as follows:
 
 Some examples of each of these ways are given in the [workload creation](create-workload.hbs.md) page.
 
-### <a id='debugging-workloads'>Debugging and troubleshooting workloads
+### <a id='debugging-workloads'></a>Debugging and troubleshooting workloads
 
 Check workload status with the `tanzu apps workload get` and `tanzu apps workload tail` commands.
 
