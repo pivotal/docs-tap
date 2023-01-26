@@ -84,7 +84,7 @@ VMware Tanzu Network refresh token. To generate such a token see
 [How to Authenticate](https://network.tanzu.vmware.com/docs/api#how-to-authenticate).
 The script also uses `curl` and `jq`.
 
-The script downloads artifacts compatible with Tanzu Application Platform version v1.3 and a Linux operating
+The script downloads artifacts compatible with Tanzu Application Platform version v1.4 and a Linux operating
 system. Update the script to suit the Tanzu Application Platform version and OS that you are using.
 
 ```bash
@@ -95,7 +95,7 @@ system. Update the script to suit the Tanzu Application Platform version and OS 
 ACCESS_TOKEN=$(curl -X POST https://network.tanzu.vmware.com/api/v2/authentication/access_tokens -d '{"refresh_token":"'"$TANZU_REFRESH_TOKEN"'"}' | jq -r ".access_token")
 
 # Download bundle
-# See https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-install-tanzu-cli.html#cli-plugin-install
+# See https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/GUID-install-tanzu-cli.html#cli-plugin-install
 # Update url to download desired version
 mkdir -p $HOME/tanzu
 curl -L -X GET https://network.tanzu.vmware.com/api/v2/products/tanzu-application-platform/releases/1205491/product_files/1352407/download -H "Authorization: Bearer $ACCESS_TOKEN" --output bundle.tar
