@@ -373,6 +373,11 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 This release has the following known issues, listed by area and component.
 
+#### <a id="api-auto-registration-ki"></a> API Auto Registration
+
+- Unknown Certificate Authority and connection refused errors from the APIDescriptor CRD.
+For more information, see [Troubleshoot API Auto Registration](api-auto-registration/troubleshooting.hbs.md).
+
 #### <a id="1-4-0-app-acc-vscode-ki"></a> Application Accelerator for Visual Studio Code
 
 - When using custom types, if there is a check box in the list of attributes then re-ordering
@@ -458,11 +463,6 @@ This release has the following known issues, listed by area and component.
 - The **No Associated Policy** tab in Workload Build Vulnerabilities does not show workloads that lack
   associated scan policies.
 - The CVEs bar graph in Workload Build Vulnerabilities sometimes cuts numbers off.
-
-#### <a id="api-auto-registration-ki"></a> API Auto Registration
-
-- Unknown Certificate Authority and connection refused errors from the APIDescriptor CRD.
-For more information, see [Troubleshoot API Auto Registration](api-auto-registration/troubleshooting.hbs.md).
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
