@@ -1,4 +1,4 @@
-# <a id='install'></a>Install Apps CLI plug-in
+# Install Apps CLI plug-in
 
 This document describes how to install the Apps CLI plug-in..
 
