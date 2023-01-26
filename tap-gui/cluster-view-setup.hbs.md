@@ -124,11 +124,15 @@ To do so:
       resources:
       - apps
       verbs: ['get', 'watch', 'list']
+    - apiGroups: ['conventions.carto.run']
+      resources:
+      - podintents
+      verbs: ['get', 'watch', 'list']
     ```
 
     This YAML content creates `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
 
-1. On the `Run` cluster, create `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`
+2. On the `Run` cluster, create `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`
    by running:
 
     ```console
@@ -138,7 +142,7 @@ To do so:
     This ensures the `kubeconfig` context is set to the cluster with resources to be viewed in
     Tanzu Application Platform GUI.
 
-1. Again, on the `Run` cluster, discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values:
+3. Again, on the `Run` cluster, discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values:
 
     ```console
     CLUSTER_URL=$(kubectl config view --minify -o jsonpath='{.clusters[0].cluster.server}')
@@ -152,7 +156,7 @@ To do so:
     echo CLUSTER_TOKEN: $CLUSTER_TOKEN
     ```
 
-1. (Optional) Configure the Kubernetes client to verify the TLS certificates presented by a cluster's
+4. (Optional) Configure the Kubernetes client to verify the TLS certificates presented by a cluster's
    API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
 
     ```console
@@ -163,7 +167,7 @@ To do so:
 
     Where `CLUSTER-NAME` is your cluster name.
 
-1. Record the `Run` cluster's `CLUSTER_URL` and `CLUSTER_TOKEN` values for when you
+5. Record the `Run` cluster's `CLUSTER_URL` and `CLUSTER_TOKEN` values for when you
    [Update Tanzu Application Platform GUI to view resources on multiple clusters](#update-tap-gui)
    later.
 
