@@ -594,3 +594,58 @@ take "/" at the end of the string.
 ### Solution
 
 Do not append "/" to the end of the string.
+
+---
+
+## <a id='cluster-issuer-trust-issues'></a> x509: certificate signed by unknown authority
+
+### Explanation
+
+Tanzu Application Platform v1.4 introduces [Shared Ingress Issuer](../release-notes.hbs.md#1-4-0-tap-new-features) to secure ingress communication by default. 
+The Certificate Authority for Shared Ingress Issuer is generated as self-signed. As a result, you might see one of the following errors:
+
+- `connection refused`
+- `x509: certificate signed by unknown authority`
+
+### Solution
+
+You can choose one of the following options to mitigate the issue:
+
+#### Option 1: Configure the Shared Ingress Issuer's Certificate Authority as a trusted Certificate Authority
+
+>**Important:** This is the recommended option for a secure instance.
+
+Follow these steps to trust the Shared Ingress Issuer's Certificate Authority in Tanzu Application Platform:
+
+1. Extract the ClusterIssuer's Certificate Authority from cert-manager:
+
+    ```console
+    kubectl get secret tap-ingress-selfsigned-root-ca -n cert-manager -o yaml | yq .data | cut -d' ' -f2 | head -1 | base64 -d
+    ```
+
+1. Add the certificate to the list of trusted certificate authorities by appending the certificate authority to the `shared.ca_cert_data` field in your `tap-values.yml`.
+
+1. Reapply your configuration:
+
+    ```console
+    tanzu package install tap -p tap.tanzu.vmware.com -v ${TAP_VERSION} --values-file tap-values.yml -n tap-install
+    ```
+
+#### Option 2: Deactivate the shared ingress issuer
+
+>**Important:** This option is recommended for testing purposes only.
+
+Follow these steps to deactivate TLS for Cloud Native Runtimes, AppSSO and Tanzu Application Platform GUI:
+
+1. Set `shared.ingress_issuer` to `""` in your `tap-values.yml`:
+
+    ```yaml
+    shared:
+      ingress_issuer: ""
+    ```
+
+1. Reapply your configuration:
+
+    ```console
+    tanzu package install tap -p tap.tanzu.vmware.com -v ${TAP_VERSION} --values-file tap-values.yml -n tap-install
+    ```
