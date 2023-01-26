@@ -5,9 +5,13 @@ clusters and then surface those details in the various Tanzu Application Platfor
 
 > **Important** In this topic the terms `Build`, `Run`, and `View` describe the cluster's roles and
 > distinguish which steps to apply to which cluster.
+>
 > `Build` clusters are where the code is built and packaged, ready to be run.
+>
 > `Run` clusters are where the Tanzu Application Platform workloads themselves run.
+>
 > `View` clusters are where the Tanzu Application Platform GUI is run from.
+>
 > In multicluster configurations, these can be separate clusters. However, in many configurations
 > these can also be the same cluster.
 
