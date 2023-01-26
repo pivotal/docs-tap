@@ -9,6 +9,21 @@ This topic describes how to install API Auto Registration from the Tanzu Applica
 Before installing API Auto Registration, complete all prerequisites to install Tanzu Application Platform.
 See [Tanzu Application Platform Prerequisites](../prerequisites.md).
 
+## <a id='prereqs'></a> Using with TLS
+
+Starting in Tanzu Application Platform v1.4, TLS is turned on by default for
+several components. This causes an issue with API Auto Registration. For
+information about a workaround, see
+[Troubleshooting](../api-auto-registration/troubleshooting.hbs.md). 
+
+Starting in Tanzu Application Platform v1.4.1, API Auto Registration
+automatically trusts the CA for the shared `ingress_issuer`. This change means
+that a `Certificate` is generated using this issuer. If you do not want a
+`Certificate` to generate automatically, you can set the `auto_generate_cert`
+flag to `false` in the values file. You must follow the instructions in the
+troubleshooting guide to manually set the `ca_cert_data`. See
+[Troubleshooting](../api-auto-registration/troubleshooting.hbs.md). 
+
 ## <a id='install'></a>Install
 
 To install the API Auto Registration package:
@@ -42,11 +57,13 @@ To install the API Auto Registration package:
     For example:
 
     ```console
-    tanzu package available get apis.apps.tanzu.vmware.com/0.2.0 --values-schema --namespace tap-install
+    tanzu package available get apis.apps.tanzu.vmware.com/0.2.2 --values-schema --namespace tap-install
 
-    Retrieving package details for apis.apps.tanzu.vmware.com/0.2.0...
+    Retrieving package details for apis.apps.tanzu.vmware.com/0.2.2...
     KEY                        DEFAULT                                       TYPE     DESCRIPTION
-    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS. connections with a custom CA
+    ca_cert_data                                                             string   Optional: PEM-encoded certificate data for the controller to trust TLS connections with a custom CA. 
+    ingress_issuer                                                           string   Optional: Name of the default cluster issuer used to generate certificates.
+    auto_generate_cert         true                                          boolean  Flag that indicates if a cert-manager certificate should be generated using the ingress_issuer. Only applies if the ingress_issuer is specified.
     cluster_name               dev                                           string   Name of the cluster used for setting the API entity lifecycle in TAP GUI. The value should be unique for each run cluster.
     sync_period                5m                                            string   Time period used for reconciling an APIDescriptor.
     tap_gui_url                http://server.tap-gui.svc.cluster.local:7000  string   FQDN URL for TAP GUI.
@@ -77,6 +94,7 @@ To install the API Auto Registration package:
     ```yaml
     tap_gui_url: https://tap-gui.view-cluster.com
     cluster_name: staging-us-east
+    auto_generate_cert: false
     ca_cert_data:  |
         -----BEGIN CERTIFICATE-----
         MIICpTCCAYUCBgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIYg9x6gkCAggA

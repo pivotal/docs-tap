@@ -41,7 +41,8 @@ To install Spring Boot conventions:
 1. (Optional) Change the default installation settings by running:
 
     ```console
-    tanzu package available get spring-boot-conventions.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
+    tanzu package available get spring-boot-conventions.tanzu.vmware.com/VERSION-NUMBER \
+    --values-schema --namespace tap-install
     ```
 
     Where `VERSION-NUMBER` is the version of the package listed. For example: `1.4.0`.
@@ -66,7 +67,7 @@ To install Spring Boot conventions:
    --namespace tap-install
    ```
 
-2. Verify you installed the package by running:
+1. Verify you installed the package by running:
 
    ```console
    tanzu package installed get spring-boot-conventions --namespace tap-install
