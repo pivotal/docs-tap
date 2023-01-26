@@ -21,7 +21,7 @@ Verify that your configuration is correct and you can make a connection using `t
 
 > **Important** The `tanzu insight health` command tests the configured endpoint and CA certificate.
 > However, it does not test whether the access token is correct.
-> For that you must use the plug-in to [add](add-data.hbs.md) and [query](query-data.hbs.md) data.
+> For that, you must use the plug-in to [add](add-data.hbs.md) and [query](query-data.hbs.md) data.
 
 For example:
 
