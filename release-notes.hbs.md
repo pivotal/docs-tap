@@ -32,5 +32,5 @@ This release has the following known issues, listed by area and component.
 
 ### <a id='1-5-0-deprecations'></a> Deprecations
 
-The following features, listed by component, are deprecated. 
+The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
