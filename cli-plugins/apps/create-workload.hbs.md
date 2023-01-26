@@ -195,7 +195,7 @@ be written or pasted. Then click **Ctrl-D** three times to start the workload cr
 also be done with the `workload apply` command.
 
 **Note** To pass a workload through `stdin`, the `--yes` flag is required. If not provided, the
->command fails.
+command fails.
 
 Another way to pass a workload with the `--file` flag is using a URL, which, as mentioned before,
 must contain a raw file with the workload definition.
