@@ -1,4 +1,4 @@
-# <a id='install-uninstall'>Install Apps CLI plug-in
+# <a id='install-uninstall'></a>Install Apps CLI plug-in
 
 ## <a id='prereqs'></a>Prerequisites
 
