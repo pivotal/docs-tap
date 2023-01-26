@@ -130,6 +130,10 @@ To do so:
     - apiGroups: [ 'batch' ]
       resources: [ 'jobs', 'cronjobs' ]
       verbs: [ 'get', 'watch', 'list' ]
+    - apiGroups: ['conventions.carto.run']
+      resources:
+      - podintents                                 
+      verbs: ['get', 'watch', 'list']
     ```
 
     This YAML content creates `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
