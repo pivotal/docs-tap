@@ -601,50 +601,51 @@ Do not append "/" to the end of the string.
 
 ### Explanation
 
-In TAP 1.4, a [Shared Ingress Issuer](../release-notes.hbs.md#1-4-0-tap-new-features) was inttroduced for securing ingress communication by default. The Certificate Authority for it is generated as self-signed and thus some procedures in TAP will result in errors such as:
-* `connection refused`
-* `x509: certificate signed by unknown authority`
+Tanzu Application Platform v1.4 introduces [Shared Ingress Issuer](../release-notes.hbs.md#1-4-0-tap-new-features) to secure ingress communication by default. 
+The Certificate Authority for Shared Ingress Issuer is generated as self-signed. As a result, you might see one of the following errors:
+
+- `connection refused`
+- `x509: certificate signed by unknown authority`
 
 ### Solution
 
-There are two procedures that can mitigate the issue.
+You can choose one of the following options to mitigate the issue:
 
-* Configure the Shared Ingress Issuer's Certificate Authority as a trusted Certificate Authority
-  * This is the recommended option for a secure instance
-* Disable the shared ingress issuer
-  * This option is fast and convenient but is not recommended. This option is documented for testing purposes only.
+#### Option 1: Configure the Shared Ingress Issuer's Certificate Authority as a trusted Certificate Authority
 
-#### Configure the Shared Ingress Issuer's Certificate Authority as a trusted Certificate Authority
+>**Important:** This is the recommended option for a secure instance.
 
-The following procedure results in the Shared Ingress Issuer's Certificate Authority to be trusted within TAP.
+Follow these steps to trust the Shared Ingress Issuer's Certificate Authority in Tanzu Application Platform:
 
-1. Extract the ClusterIssuer's Certificate Authority from cert-manager
+1. Extract the ClusterIssuer's Certificate Authority from cert-manager:
 
-  ```console
-  kubectl get secret tap-ingress-selfsigned-root-ca -n cert-manager -o yaml | yq .data | cut -d' ' -f2 | head -1 | base64 -d
-  ```
+    ```console
+    kubectl get secret tap-ingress-selfsigned-root-ca -n cert-manager -o yaml | yq .data | cut -d' ' -f2 | head -1 | base64 -d
+    ```
 
-1. Add the certificate to the list of trusted certificate authorities. This is done by updating your tap-values.yml to append the above certificate authority to the field `shared.ca_cert_data`
+1. Add the certificate to the list of trusted certificate authorities by appending the certificate authority to the `shared.ca_cert_data` field in your `tap-values.yml`.
 
-1.  Reapply your configuration
+1. Reapply your configuration:
 
-  ```console
-  tanzu package install tap -p tap.tanzu.vmware.com -v ${TAP_VERSION} --values-file tap-values.yml -n tap-install
-  ```
+    ```console
+    tanzu package install tap -p tap.tanzu.vmware.com -v ${TAP_VERSION} --values-file tap-values.yml -n tap-install
+    ```
 
-#### Disable the shared ingress issuer
+#### Option 2: Deactivate the shared ingress issuer
 
-This procedure disables TLS for Cloud Native Runtimes, AppSSO and TAP GUI and consequently addresses trust issues. This is not recommended but provided as a fast and convenient option for testing purposes.
+>**Important:** This option is recommended for testing purposes only.
 
-1. Update your tap-values.yml. Set shared.ingress_issuer to `""`
+Follow these steps to deactivate TLS for Cloud Native Runtimes, AppSSO and Tanzu Application Platform GUI:
 
-  ```
-  shared:
-    ingress_issuer: ""
-  ```
+1. Set `shared.ingress_issuer` to `""` in your `tap-values.yml`:
 
-1. Reapply your configuration
+    ```yaml
+    shared:
+      ingress_issuer: ""
+    ```
 
-  ```
-  tanzu package install tap -p tap.tanzu.vmware.com -v ${TAP_VERSION} --values-file tap-values.yml -n tap-install
-  ```
+1. Reapply your configuration:
+
+    ```console
+    tanzu package install tap -p tap.tanzu.vmware.com -v ${TAP_VERSION} --values-file tap-values.yml -n tap-install
+    ```
