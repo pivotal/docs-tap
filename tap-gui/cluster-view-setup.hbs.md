@@ -3,9 +3,8 @@
 You can configure Tanzu Application Platform GUI to retrieve Kubernetes object details from multiple
 clusters and then surface those details in the various Tanzu Application Platform GUI plug-ins.
 
-> **Important**
-> In this topic the terms `Build, `Run`, and `View`describe the cluster's roles and distinguish
-> which steps to apply to which cluster.
+> **Important** In this topic the terms `Build`, `Run`, and `View` describe the cluster's roles and
+> distinguish which steps to apply to which cluster.
 > `Build` clusters are where the code is built and packaged, ready to be run.
 > `Run` clusters are where the Tanzu Application Platform workloads themselves run.
 > `View` clusters are where the Tanzu Application Platform GUI is run from.
@@ -14,12 +13,16 @@ clusters and then surface those details in the various Tanzu Application Platfor
 
 ## <a id="set-up-service-account"></a> Set up a Service Account to view resources on a cluster
 
-To view resources on the `Built` or `Run` clusters, create a service account on the `View` cluster that can `get`,
-`watch`, and `list` resources on that those clusters.
-You first create a `ClusterRole` with these rules and a `ServiceAccount` in its own `Namespace`, and
-then bind the `ClusterRole` to the `ServiceAccount`. Depending on your topology, not every cluster will have all of the below objects. For example, the `Build` cluster won't have any of the `serving.knative.dev` objects by design since it doesn't run the workloads themselves. Feel free to edit the below object lists to reflect your topology.
+To view resources on the `Build` or `Run` clusters, create a service account on the `View` cluster
+that can `get`, `watch`, and `list` resources on those clusters.
 
-To do so:
+You first create a `ClusterRole` with these rules and a `ServiceAccount` in its own `Namespace`, and
+then bind the `ClusterRole` to the `ServiceAccount`. Depending on your topology, not every cluster
+has all of the following objects. For example, the `Build` cluster doesn't have any of the
+`serving.knative.dev` objects, by design, because it doesn't run the workloads themselves.
+You can edit the following object lists to reflect your topology.
+
+To set up a Service Account to view resources on a cluster:
 
 1. Copy this YAML content into a file called `tap-gui-viewer-service-account-rbac.yaml`.
 
@@ -133,20 +136,20 @@ To do so:
       verbs: [ 'get', 'watch', 'list' ]
     - apiGroups: ['conventions.carto.run']
       resources:
-      - podintents                                 
+      - podintents
       verbs: ['get', 'watch', 'list']
     ```
 
     This YAML content creates `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.
 
-1. On the `Build` and `Run` clusters, create `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`
-   by running:
+2. On the `Build` and `Run` clusters, create `Namespace`, `ServiceAccount`, `ClusterRole`, and
+   `ClusterRoleBinding` by running:
 
     ```console
     kubectl create -f tap-gui-viewer-service-account-rbac.yaml
     ```
 
-1. Again, on the `Build` and `Run` clusters, discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values.
+3. Again, on the `Build` and `Run` clusters, discover the `CLUSTER_URL` and `CLUSTER_TOKEN` values.
 
     v1.23 or earlier Kubernetes cluster
     : If you're watching a v1.23 or earlier Kubernetes cluster, run:
@@ -191,7 +194,7 @@ To do so:
    > **Note** You can create a short-lived token with the `kubectl create token` command if that is
    > the preferred method. This method requires frequent token rotation.
 
-1. (Optional) Configure the Kubernetes client to verify the TLS certificates presented by a cluster's
+4. (Optional) Configure the Kubernetes client to verify the TLS certificates presented by a cluster's
    API server. To do this, discover `CLUSTER_CA_CERTIFICATES` by running:
 
     ```console
@@ -202,7 +205,7 @@ To do so:
 
     Where `CLUSTER-NAME` is your cluster name.
 
-1. Record the `Build` and `Run` cluster's `CLUSTER_URL` and `CLUSTER_TOKEN` values for when you
+5. Record the `Build` and `Run` clusters' `CLUSTER_URL` and `CLUSTER_TOKEN` values for when you
    [Update Tanzu Application Platform GUI to view resources on multiple clusters](#update-tap-gui)
    later.
 
