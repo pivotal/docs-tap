@@ -1,14 +1,14 @@
 # <a id='install-uninstall'>Install Apps CLI plug-in
 
-### <a id='prereqs'></a>Prerequisites
+## <a id='prereqs'></a>Prerequisites
 
 Before you install the Apps CLI plug-in:
 
 - Follow the instructions to [Install or update the Tanzu CLI and plug-ins](../../install-tanzu-cli.hbs.md#cli-and-plugin).
 
-### <a id='install'></a>Install
+## <a id='install'></a>Install
 
-#### <a id='from-tap-net'></a>From VMware Tanzu Network
+### <a id='from-tap-net'></a>From VMware Tanzu Network
 
 To install the Apps CLI plug-in:
 
@@ -44,7 +44,7 @@ To install the Apps CLI plug-in:
         versions: []
     ```
 
-#### <a id='from-release'></a>From Release
+### <a id='from-release'></a>From Release
 
 The latest release is in the [Github repository releases page](https://github.com/vmware-tanzu/apps-cli-plugin/releases/). Each of these releases has the *Assets* section where the packages for each *system-architecture* are placed.
 
@@ -58,7 +58,7 @@ tar -xvf tanzu-apps-plugin-darwin-amd64-v0.10.0.tar.gz
 tanzu plugin install apps --local ./tanzu-apps-plugin-darwin-amd64-v0.10.0 --version v0.10.0
 ```
 
-### <a id='uninstall'>Uninstalling Apps CLI plug-in
+## <a id='uninstall'>Uninstalling Apps CLI plug-in
 
 To uninstall Apps CLI plug-in by using:
 
