@@ -45,8 +45,8 @@ Add a custom CA
   Tanzu Application Platform GUI pod, and then set the pod's environment variable as
   `NODE_EXTRA_CA_CERTS=PATH-TO-MOUNTED-FILE`. To do so:
 
-1. Encode the extra CA certificates you want to trust in base64. You can provide many certificates in
-   PEM format in the same file. Get the output you need for the next step by running:
+  1. Encode the extra CA certificates you want to trust in base64. You can provide many certificates in
+     PEM format in the same file. Get the output you need for the next step by running:
 
     ```console
     cat FILENAME | base64 -w0
@@ -54,8 +54,8 @@ Add a custom CA
 
     Where `FILENAME` is your filename. For example, `cert-chain.pem`.
 
-2. Copy the output from the previous command into the example field `tap-gui-certs.crt` into the
-   following example `secret.yaml`:
+  1. Copy the output from the previous command into the example field `tap-gui-certs.crt` into the
+     following example `secret.yaml`:
 
     ```yaml
     ---
@@ -71,19 +71,19 @@ Add a custom CA
 
     Adjust metadata and naming from this example accordingly.
 
-3. Apply the secret to your cluster by running:
+  1. Apply the secret to your cluster by running:
 
     ```console
     kubectl apply -f secret.yaml
     ```
 
-4. To set the environment variable `NODE_EXTRA_CA_CERTS`, use the `package_overlays` key in the
-   Tanzu Application Platform values file.
-   For instructions, see [Customizing Package Installation](customize-package-installation.hbs.md).
+  1. To set the environment variable `NODE_EXTRA_CA_CERTS`, use the `package_overlays` key in the
+     Tanzu Application Platform values file.
+     For instructions, see [Customizing Package Installation](customize-package-installation.hbs.md).
 
-   The following is an example overlay to add a custom CA.
-   It assumes that your Tanzu Application Platform GUI instance is deployed in the namespace `tap-gui`.
-   Adjust all names accordingly.
+     The following is an example overlay to add a custom CA.
+     It assumes that your Tanzu Application Platform GUI instance is deployed in the namespace `tap-gui`.
+     Adjust all names accordingly.
 
     ```yaml
     #@ load("@ytt:overlay", "overlay")
