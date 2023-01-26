@@ -202,16 +202,15 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 #### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plug-in for Tanzu CLI
 
-- Added `--update-strategy` flag to allow users to change `tanzu apps workload apply` behavior when
+- Added `--update-strategy` flag to allow you to change `tanzu apps workload apply` behavior when
   contents from file is applied. See [How-to-guides](./cli-plugins/apps/how-to-guides.hbs.md#update-strategy)
   section for use and examples.
-- Added ability for users to pass URL for `--file` flag.
+- Added ability to pass URL for `--file` flag.
 - Show fully qualified resource name in the resources column of Supply chain and Delivery
   sections of the `tanzu apps workload get` command. Example output is found in
   [tanzu apps workload get](./cli-plugins/apps/command-reference/workload_get.hbs.md) command description.
 - Added new shorthand flag aliases: `-a` for `--app`, `-e` for `--env`, `-i` for `--image`,
-  `-l` for `label`, `-p` for `--param`, and `-t` for `--type`. All flags use and shorthands (if apply)
-  are found in [tanzu apps workload apply](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md) flags list.
+  `-l` for `label`, `-p` for `--param`, and `-t` for `--type`. For more information, see [Tanzu apps workload apply](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md) flags list.
 - Added emojis to `tanzu apps workload create/apply/delete` commands.
 - Do not print emojis when `--no-color` flag  is set.
 - Added namespace to `tanzu apps workload get` command's overview section.
@@ -462,7 +461,7 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="api-auto-registration-ki"></a> API Auto Registration
 
-- Unknown Certificate Authority and connection refused errors from the APIDescriptor CRD. 
+- Unknown Certificate Authority and connection refused errors from the APIDescriptor CRD.
 For more information, see [Troubleshoot API Auto Registration](api-auto-registration/troubleshooting.hbs.md).
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
