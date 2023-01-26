@@ -225,6 +225,17 @@ network:
   blockCIDRs:
   - 169.254.169.254/32
   - fd00:ec2::254/128
+
+#! clusterSecurity and policyEngine settings are used to change the security policy engine used by Learning Center. Possible values are:  
+#! "pod-security-policies" - kubernetes <= 1.24
+#! "pod-security-standards" - kubernetes >= 1.22
+#! "security-context-constraints" - Openshift <= 4.10
+#! "security-context-constraints-v2" - Openshift >= 4.11
+#! "none" - Disable security - Not recommended 
+
+clusterSecurity:
+  policyEngine: "pod-security-policies"  #! default value
+
 ```
 
 See [Restricting Network Access](./runtime-environment/system-profile.md#restrict-network-access) for more information on blocking CIDRs.
