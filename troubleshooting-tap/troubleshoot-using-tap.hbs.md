@@ -613,7 +613,7 @@ You can choose one of the following options to mitigate the issue:
 
 #### Option 1: Configure the Shared Ingress Issuer's Certificate Authority as a trusted Certificate Authority
 
->**Important:** This is the recommended option for a secure instance.
+>**Important** This is the recommended option for a secure instance.
 
 Follow these steps to trust the Shared Ingress Issuer's Certificate Authority in Tanzu Application Platform:
 
@@ -633,7 +633,7 @@ Follow these steps to trust the Shared Ingress Issuer's Certificate Authority in
 
 #### Option 2: Deactivate the shared ingress issuer
 
->**Important:** This option is recommended for testing purposes only.
+>**Important** This option is recommended for testing purposes only.
 
 Follow these steps to deactivate TLS for Cloud Native Runtimes, AppSSO and Tanzu Application Platform GUI:
 
