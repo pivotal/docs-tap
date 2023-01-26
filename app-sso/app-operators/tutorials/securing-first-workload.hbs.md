@@ -65,8 +65,7 @@ The `ClientRegistration` resource definition contains a few critical pieces in i
   is [required by OpenID Connect specification](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) in
   order to issue identity tokens which designate a user as 'signed in'.
 
-For more information about `ClientRegistration` custom resource, 
-> see [ClientRegistration CRD](../../crds/clientregistration.md).
+For more information about `ClientRegistration` custom resource, see [ClientRegistration CRD](../../crds/clientregistration.md).
 
 The `client.yaml` file is using [ytt templating](https://carvel.dev/ytt/) conventions. If you have
 the [Tanzu Cluster Essentials](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) installed, you
