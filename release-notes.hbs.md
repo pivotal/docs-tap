@@ -16,7 +16,7 @@ This release has the following breaking changes, listed by area and component.
 
 ### <a id='1-5-0-policy-bc'></a> Supply Chain Security Tools - Policy Controller
 
-- `Keyless` authorities in the `ClusterImagePolicy` now require identities. Identities consists of a combination of `issuer` or `issuerRegExp` with `subject` or `subjectRegExp`. For more information, see [Supply Chain Security Tools - Policy Controller Authorities](./scst-policy/configuring.hbs.md#authorities)
+- `Keyless` authorities in the `ClusterImagePolicy` now require identities. Identities consists of a combination of `issuer` or `issuerRegExp` with `subject` or `subjectRegExp`. For more information, see [Supply Chain Security Tools - Policy Controller Authorities](./scst-policy/configuring.hbs.md#authorities).
 
 ### <a id='1-5-0-security-fixes'></a> Security fixes
 
