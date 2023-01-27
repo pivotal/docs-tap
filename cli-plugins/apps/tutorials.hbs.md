@@ -57,17 +57,17 @@ kubeconfig file (located by default at `HOME/.kube/config`).
 
 There are two ways to change the target cluster:
 
-1. Use `kubectl config use-context <context-name>` to change the default context. All subsequent
+1. Use `kubectl config use-context CONTENT-NAME` to change the default context. All subsequent
 `tanzu apps` commands target the cluster defined in the new default kubeconfig context.
 
-2. Include the `--context <context-name>` flag when running any `tanzu apps` command.
+2. Include the `--context CONTENT-NAME` flag when running any `tanzu apps` command.
 
-   **Note** Any subsequent `tanzu apps` commands that do not include the `--context <context-name>`
+   **Note** Any subsequent `tanzu apps` commands that do not include the `--context CONTENT-NAME`
      flag continue to use the default context set in the kubeconfig.
 
 ## <a id='override-kubeconfig'></a>Overriding the default kubeconfig
 
-There are two approaches to achieving this:
+There are two approaches to overriding the default kubeconfig:
 
 1. Set the environment variable `KUBECONFIG=PATH` to change the kubeconfig the Apps CLI plug-in will
    reference.
@@ -85,9 +85,8 @@ For more information about kubeconfig, see [Configure Access to Multiple Cluster
 ## <a id='autocompletion'></a>Autocompletion
 
 The Apps CLI plug-in has auto-completion support. The plug-in supports auto-completion for commands,
-positional arguments, flags, and flag values. Add the following command to the shell config file
-according to your current setup.</br>
-Use one of the following options:
+positional arguments, flags, and flag values. Add one of the following commands to the shell config file
+according to your current setup:
 
 ### <a id='bash'></a>Bash
 
