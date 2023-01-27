@@ -8,7 +8,7 @@ This topic describes prerequisites for installing SCST - Scan (Prisma) from the 
 
 ## Verify the latest alpha package version
 
-Run the following command to output a list of available tags.
+Run the command in this section to output a list of available tags.
 
 Use the latest version returned in place of the sample version in this topic, such as `0.1.4-alpha.11` in the following output. 
 
@@ -170,6 +170,7 @@ To create a Prisma secret, use the following instructions.
     ```
 
    Where:
+   
    - `PRISMA-ACCESS-KEY-SECRET` is the name of your Prisma token secret.
    - `APP-NAME` is the namespace you want to use.
    - `BASE64-PRISMA-ACCESS-KEY-ID` is your base64 encoded Prisma Access Key ID.
@@ -270,7 +271,7 @@ The values.yaml file is slightly different for each configuration.
    - `PRISMA-CONFIG-SECRET` is the name of the secret you created that contains the
      Prisma configuration to connect to Prisma. This field is required.
 
-## Supply Chain Security Tools - Store integration
+## SCST - Store integration
 
 When using SCST - Store integration, to persist the results
 found by the Prisma Scanner, you can enable the SCST -
