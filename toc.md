@@ -99,6 +99,7 @@ docs.vmware.com is built.
           - [CLI plug-ins overview](cli-plugins/tanzu-cli-plugin.hbs.md)
           - [Apps](cli-plugins/apps/overview.hbs.md)
                 - [Apps CLI plug-in overview](cli-plugins/apps/overview.hbs.md)
+                - [Install Apps CLI plug-in](cli-plugins/apps/tutorials.hbs.md)
                 - [Create a workload](cli-plugins/apps/create-workload.hbs.md)
                 - [Debug a workload](cli-plugins/apps/debug-workload.hbs.md)
                 - [Commands details](cli-plugins/apps/command-reference/commands-details.hbs.md)
