@@ -24,23 +24,6 @@ Before you install the Apps CLI plug-in:
 
     A version displays in the output.
 
-    If the following error is displayed during installation:
-
-    ```console
-    Error: could not find plug-in "apps" in any known repositories
-
-    ✖  could not find plug-in "apps" in any known repositories
-    ```
-
-    Verify that there is an `apps` entry in the `cli/manifest.yaml` file. For example:
-
-    ```yaml
-    plugins:
-    ...
-        - name: apps
-        description: Applications on Kubernetes
-        versions: []
-    ```
 
 ## <a id='from-release'></a>Install From Release
 
