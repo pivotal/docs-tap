@@ -18,10 +18,38 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
+#### <a id="1-4-1-grype-scan-known-issues"></a>Grype scanner
+
+- **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
+
+  For most languages, Source Code Scanning only scans files present in the source code repository.
+  Except for support added for Java projects using Maven, no network calls fetch
+  dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+  lock files to check dependencies for vulnerabilities.
+
+  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies
+  present in the built binaries, such as `.jar` or `.war` files.
+
+  Because VMware discourages committing binaries to source code repositories, Grype fails to
+  find vulnerabilities during a source scan.
+  The vulnerabilities are still found during the image scan after the binaries are built and packaged
+  as images.
+
 ### <a id='1-4-1-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
+
+#### <a id="1-4-1-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
+
+- Removed deprecated ScanTemplates:
+  - Deprecated Grype ScanTemplates shipped with versions prior to Tanzu Application Platform 1.2.0
+    are removed and no longer supported. Use Grype ScanTemplates v1.2 and later.
+  - `docker` field and related sub-fields used in Supply Chain Security Tools - Scan are deprecated and
+    marked for removal in Tanzu Application Platform 1.7.0.
+    - The deprecation impacts the following components: Scan Controller, Grype Scanner, and Snyk Scanner. Carbon Black Scanner is not impacted.
+    - For information about the migration path, see
+  [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
 
 ---
 ---
@@ -373,6 +401,11 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 
 This release has the following known issues, listed by area and component.
 
+#### <a id="api-auto-registration-ki"></a> API Auto Registration
+
+- Unknown Certificate Authority and connection refused errors from the APIDescriptor CRD.
+For more information, see [Troubleshoot API Auto Registration](api-auto-registration/troubleshooting.hbs.md).
+
 #### <a id="1-4-0-app-acc-vscode-ki"></a> Application Accelerator for Visual Studio Code
 
 - When using custom types, if there is a check box in the list of attributes then re-ordering
@@ -458,11 +491,6 @@ This release has the following known issues, listed by area and component.
 - The **No Associated Policy** tab in Workload Build Vulnerabilities does not show workloads that lack
   associated scan policies.
 - The CVEs bar graph in Workload Build Vulnerabilities sometimes cuts numbers off.
-
-#### <a id="api-auto-registration-ki"></a> API Auto Registration
-
-- Unknown Certificate Authority and connection refused errors from the APIDescriptor CRD.
-For more information, see [Troubleshoot API Auto Registration](api-auto-registration/troubleshooting.hbs.md).
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 

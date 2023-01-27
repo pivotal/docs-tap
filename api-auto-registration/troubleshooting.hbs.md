@@ -1,6 +1,6 @@
 # Troubleshoot API Auto Registration
 
-## How to debug API Auto Registration
+## Debug API Auto Registration
 
 This topic includes commands for debugging or troubleshooting the APIDescriptor CR.
 
@@ -42,6 +42,9 @@ This topic includes issues users might find and how to solve them.
 
 ### APIDescriptor CRD shows message of `connection refused` but service is up and running
 
+In Tanzu Application Platform v1.4.x, if your workloads use ClusterIssues for the TLS configuration and you access `https://spring-petclinic.example.com/v3/api-docs`,
+you might encounter the following message. API Auto Registration does not support using ClusterIssues for TLS configuration.
+
 Your APIDescription CRD shows a status and message similar to:
 
 ```console
@@ -52,13 +55,14 @@ Your APIDescription CRD shows a status and message similar to:
     Last Transition Time:  2022-11-28T09:59:13Z
 ```
 
-You can access "https://spring-petclinic.example.com/v3/api-docs", and you are
-using Tanzu Application Platform v1.4.x, you might encounter a problem with TLS
-configuration. Workloads might be using ClusterIssuer for their TLS
-configuration, but API Auto Registration does not support it. To solve this
-issue, you can either deactivate TLS by setting `shared.ingress_issuer: ""`, or
-inform `shared.ca_cert_data` key as mentioned in [our installation
-guide](installation.md).  You can obtain the PEM Encoded crt file using the following steps:
+To solve this issue, either:
+
+- Deactivate TLS by setting `shared.ingress_issuer: ""`.
+- Configure `shared.ca_cert_data` key as mentioned in [Install Tanzu Application Platform](../install.hbs.md).
+
+#### <a id="obtain-pem"></a> Obtain PEM encoded crt
+
+You can obtain the PEM Encoded crt file using the following steps:
 
 1. Create a Certificate object where the issuerRef refers to the ClusterIssuer referenced
 in the `shared.ingress_issuer` field.
@@ -82,7 +86,7 @@ in the `shared.ingress_issuer` field.
     EOF
     ```
 
-2. Extract the CA certificate data from the secret that is generated in the
+1. Extract the CA certificate data from the secret that is generated in the
 previous command. The name of the secret is found in the `secretName:
 ca-extractor` field. The following command extracts a PEM encoded CA certificate
 and stores it in the file `ca.crt`.
