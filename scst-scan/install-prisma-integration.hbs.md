@@ -8,7 +8,7 @@ This topic describes prerequisites for installing SCST - Scan (Prisma) from the 
 
 ## Verify the latest alpha package version
 
-Run the following command to output a list of available tags.
+Run the command in this section to output a list of available tags.
 
 Use the latest version returned in place of the sample version in this topic, such as `0.1.4-alpha.11` in the following output. 
 
@@ -177,6 +177,7 @@ To create a Prisma secret, use the following instructions.
     ```
 
    Where:
+   
    - `PRISMA-ACCESS-KEY-SECRET` is the name of your Prisma token secret.
    - `APP-NAME` is the namespace you want to use.
    - `BASE64-PRISMA-ACCESS-KEY-ID` is your base64 encoded Prisma Access Key ID.
