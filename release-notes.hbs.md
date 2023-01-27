@@ -394,6 +394,7 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 - The UI no longer shows the error `Unable to retrieve details from Image Provider Stage` when the
   Builder is not available or configured. It now correctly shows the same error as the CLI,
   `Builder default is not ready`.
+- Build logs are now displayed when the **Image Provider** stage fails 
 
 ---
 
