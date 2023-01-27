@@ -1,13 +1,12 @@
 # Create a workload
 
-This topics describes how to create a workload from example source code with Tanzu Application Platform.
+This topic describes how to create a workload from example source code with Tanzu Application Platform.
 
 ## <a id='prerequisites'></a> Prerequisites
 
 The following prerequisites are required to use workloads with Tanzu Application Platform:
 
-- Install Kubernetes command line interface tool (kubectl). For information about installing
-  kubectl, see [Install Tools in the Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/).
+- Install [kubectl](https://kubernetes.io/docs/tasks/tools/).
 - Install Tanzu Application Platform components on a Kubernetes cluster. See [Installing Tanzu
   Application Platform](../../install-intro.hbs.md).
 - [Set your kubeconfig context](tutorials.hbs.md#changing-clusters) to the prepared cluster `kubectl
@@ -32,7 +31,7 @@ The following prerequisites are required to use workloads with Tanzu Application
 ### <a id="workload-git"></a> Create a workload from GitHub repository
 
 Tanzu Application Platform supports creating a workload from an existing Git repository by setting
-the flags `--git-repo`, `--git-branch`, `--git-tag` and `--git-commit`, this  allows the
+the flags `--git-repo`, `--git-branch`, `--git-tag`, and `--git-commit`, this  allows the
 [supply chain](../../scc/about.hbs.md) to get the source from the given repository to deploy the
 application.
 
@@ -115,7 +114,7 @@ Tanzu Application Platform supports creating a workload from a Maven repository
 artifact ([Source-Controller](../../source-controller/about.hbs.md)) by setting some
 specific properties as YAML parameters in the workload when using the [supply chain](../../scc/about.hbs.md).
 
-The Maven repository URL is being set when the supply chain is created.
+The Maven repository URL is set when the supply chain is created.
 
 - Param name: maven
 - Param value:
@@ -232,7 +231,7 @@ information about how to bind a service to a workload.
 
 You can verify workload details and status, add environment variables, export definitions or bind services.
 
-1. To verify a workloads status and details, use `tanzu apps workload get`.
+1. To verify a workload status and details, use `tanzu apps workload get`.
 
    To get workload logs, use `tanzu apps workload tail`.
 
