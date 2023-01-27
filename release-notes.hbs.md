@@ -184,7 +184,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 #### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plug-in for Tanzu CLI
 
 - Added `--update-strategy` flag to allow you to change `tanzu apps workload apply` behavior when
-  contents from file is applied. See [How-to-guides](./cli-plugins/apps/how-to-guides.hbs.md#update-strategy)
+  contents from file are applied. See [How-to-guides](./cli-plugins/apps/how-to-guides.hbs.md#update-strategy)
   section for use and examples.
 - Added ability to pass URL for `--file` flag.
 - Show fully qualified resource name in the resources column of Supply chain and Delivery
