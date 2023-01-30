@@ -10,12 +10,13 @@ This topic describes prerequisites for installing SCST - Scan (Trivy) from the V
 
 Run the following command to output a list of available tags.
 
-Use the latest version returned in place of the sample version in this topic, such as `0.1.0-alpha.19` in the following output. 
+Use the latest version returned in place of the sample version in this topic, such as `0.1.4-alpha.1` in the following output. 
 
 ```console
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle | grep -v sha | sort -V
 
 0.1.0-alpha.19
+0.1.4-alpha.1
 ```
 
 ## Relocate images to a registry
@@ -164,33 +165,37 @@ Example output:
 
 ```shell
   KEY                                           DEFAULT                                                           TYPE    DESCRIPTION                                                                       
-  targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry             
-  targetSourceSshSecret                                                                                           string  Reference to the secret containing SSH credentials for cloning private            
-                                                                                                                          repositories                                                                      
-  trivy.cli.source.additionalArguments                                                                             string  additional arguments to be appended to the fs scan command                        
-  trivy.cli.image.additionalArguments                                                                              string  additional arguments to be appended to the image scan command                     
-  trivy.cli.repositoryUrl                                                                                          string  location of the CLI tar in an OCI registry to be used in place of the embedded    
-                                                                                                                          version                                                                           
-  trivy.db.repositoryUrl                                                                                           string  location of the vulnerability database in an OCI registry to be used as the       
-                                                                                                                          download location prior to running a scan                                         
-  metadataStore.caSecret.name                   app-tls-cert                                                      string  Name of deployed Secret with key ca.crt holding the CA Cert of the Insight        
-                                                                                                                          Metadata Store                                                                    
-  metadataStore.caSecret.importFromNamespace    metadata-store                                                    string  Namespace from which to import the Insight Metadata Store CA Cert                 
-  metadataStore.clusterRole                     metadata-store-read-write                                         string  Name of the deployed ClusterRole for read/write access to the Insight Metadata    
-                                                                                                                          Store deployed in the same cluster                                                
-  metadataStore.url                             https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store                                                 
-  metadataStore.authSecret.importFromNamespace                                                                    string  Namespace from which to import the Insight Metadata Store auth_token              
-  metadataStore.authSecret.name                                                                                   string  Name of deployed Secret with key auth_token                                       
-  namespace                                     default                                                           string  Deployment namespace for the Scan Templates                                       
-  resources.limits.cpu                          1000m                                                             string  Limits describes the maximum amount of cpu resources allowed.                     
-  resources.requests.memory                     128Mi                                                             string  Requests describes the minimum amount of memory resources                         
-  resources.requests.cpu                        250m                                                              string  Requests describes the minimum amount of cpu resources required.                  
   scanner.docker.password                                                                                         string  <nil>                                                                             
   scanner.docker.server                                                                                           string  <nil>                                                                             
   scanner.docker.username                                                                                         string  <nil>                                                                             
   scanner.pullSecret                                                                                              string  <nil>                                                                             
-  scanner.serviceAccount                        trivy-scanner                                                      string  Name of scan pod's service ServiceAccount                                         
-  scanner.serviceAccountAnnotations             <nil>                                                             <nil>   Annotations added to ServiceAccount   
+  scanner.serviceAccount                        trivy-scanner                                                     string  Name of scan pod's service ServiceAccount                                         
+  scanner.serviceAccountAnnotations             <nil>                                                             <nil>   Annotations added to ServiceAccount                                               
+  targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry             
+  targetSourceSshSecret                                                                                           string  Reference to the secret containing SSH credentials for cloning private            
+                                                                                                                          repositories                                                                      
+  trivy.cli.image.additionalArguments                                                                             string  additional arguments to be appended to the image scan command                     
+  trivy.cli.plugins.aqua.repositoryUrl                                                                            string  location of the aqua plugin tar in an OCI registry to be used in place of the     
+                                                                                                                          embedded version                                                                  
+  trivy.cli.repositoryUrl                                                                                         string  location of the CLI tar in an OCI registry to be used in place of the embedded    
+                                                                                                                          version                                                                           
+  trivy.cli.source.additionalArguments                                                                            string  additional arguments to be appended to the fs scan command                        
+  trivy.db.repositoryUrl                                                                                          string  location of the vulnerability database in an OCI registry to be used as the       
+                                                                                                                          download location prior to running a scan                                         
+  environmentVariables                          <nil>                                                             <nil>   Environment Variables you want added to the scan container to impact trivy        
+                                                                                                                          behavior                                                                          
+  metadataStore.authSecret.name                                                                                   string  Name of deployed Secret with key auth_token                                       
+  metadataStore.authSecret.importFromNamespace                                                                    string  Namespace from which to import the Insight Metadata Store auth_token              
+  metadataStore.caSecret.importFromNamespace    metadata-store                                                    string  Namespace from which to import the Insight Metadata Store CA Cert                 
+  metadataStore.caSecret.name                   app-tls-cert                                                      string  Name of deployed Secret with key ca.crt holding the CA Cert of the Insight        
+                                                                                                                          Metadata Store                                                                    
+  metadataStore.clusterRole                     metadata-store-read-write                                         string  Name of the deployed ClusterRole for read/write access to the Insight Metadata    
+                                                                                                                          Store deployed in the same cluster                                                
+  metadataStore.url                             https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store                                                 
+  namespace                                     default                                                           string  Deployment namespace for the Scan Templates                                       
+  resources.limits.cpu                          1000m                                                             string  Limits describes the maximum amount of cpu resources allowed.                     
+  resources.requests.memory                     128Mi                                                             string  Requests describes the minimum amount of memory resources                         
+  resources.requests.cpu                        250m                                                              string  Requests describes the minimum amount of cpu resources required.    
 ```
 
 The Trivy integration can work with or without the SCST - Store integration.
@@ -268,7 +273,7 @@ Where:
 
 **Without SCST - Store Integration:** If you don’t want
 to enable the SCST - Store integration, explicitly deactivate the integration by
-appending the following fields to the values.yaml file that is enabled by
+appending the following fields to the `values.yaml` file that is enabled by
 default:
 
 ```yaml
@@ -360,7 +365,6 @@ Install the `oras` cli. See [Installation](https://oras.land/cli/) in the ORAS d
 >**Note** Using a relocated database means you are taking responsibility for keeping it up to date to ensure that security scans are relevant. Stale databases weaken your security posture.
 
 If you have a host with access, you can use the `oras` cli to perform a copy.
-
 ```shell
 oras copy -r ghcr.io/aquasecurity/trivy-db:2 registry.company.com/project_name/trivy-db:2 # the tag of 2 is required
 
@@ -370,7 +374,7 @@ Copied ghcr.io/aquasecurity/trivy-db:2 => registry.company.com/project_name/triv
 Digest: sha256:ed57874a80499e858caac27fc92e4952346eb75a2774809ee989bcd2ce48897a
 ```
 
-If not, you can use oras cli to download the database and manifest and then push to your registry.
+If not, you can use the `oras` cli to download the database and manifest and then push to your registry.
 
 1. Download the trivy-db
 
@@ -403,8 +407,7 @@ If not, you can use oras cli to download the database and manifest and then push
 
 ### Update data values with db repository URL
 
-Edit your `values.yaml` to add the following:
-
+Edit your `values.yaml` to add the following
 ```yaml
 trivy:
   db:
@@ -415,7 +418,7 @@ The URL leaves off the tag of `2`.
 
 ## Use another Trivy Version
 
-This section describes how to use a different Trivy version.
+This section describes how to use a different Trivy CLI version than what is bundled with the package.
 
 ### Prerequisites
 
@@ -450,10 +453,137 @@ Digest: sha256:5bdb18378e8f66a72f4bef4964edeccfcc2f21883e7a6caca6dbf7a3d7233696
 
 ### Update data values with CLI repository URL
 
-Edit your values.yaml to add the location of your cli.
+Edit your `values.yaml` to add the location of your cli.
 
 ```yaml
 trivy:
   cli:
     repositoryUrl: "registry.company.com/project_name/trivy-cli:0.36.0"
 ```
+
+## Use another Trivy Aqua Plugin Version
+
+The Trivy Aqua Plugin will enable Aqua SaaS integration with your Trivy scans.
+
+### Prerequisites
+
+Install the `oras` cli utilizing their [instructions](https://oras.land/cli/)
+
+### Download the Plugin
+
+Download the version of the Trivy Aqua Plugin you are interested in from their [GitHub releases page](https://github.com/aquasecurity/trivy-plugin-aqua/releases).
+For example: [https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.5/linux_amd64_v0.115.5.tar.gz](https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.5/linux_amd64_v0.115.5.tar.gz)
+```shell
+TRIVY_AQUA_PLUGIN_VERSION="v0.115.6"
+wget -c "https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/${TRIVY_AQUA_PLUGIN_VERSION}/linux_amd64_${TRIVY_AQUA_PLUGIN_VERSION}.tar.gz" -O trivy-aqua-plugin.tar.gz
+
+--2023-01-30 10:44:05--  https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.6/linux_amd64_v0.115.6.tar.gz
+HTTP request sent, awaiting response... 200 OK
+Length: 50915539 (49M) [application/octet-stream]
+Saving to: ‘trivy-aqua-plugin.tar.gz’
+
+trivy-aqua-plugin.tar.gz 100%[==>]  48.56M  35.3MB/s    in 1.4s    
+
+2023-01-30 10:44:07 (35.3 MB/s) - ‘trivy-aqua-plugin.tar.gz’ saved [50915539/50915539]
+```
+
+### Download the Plugin Yaml File
+The yaml file is a necessary component to tell trivy it has the plugin already installed.
+You will download the yaml that is associated with the Trivy Aqua Plugin version you downloaded.
+
+```shell
+TRIVY_AQUA_PLUGIN_VERSION="v0.115.6"
+wget -c "https://raw.githubusercontent.com/aquasecurity/trivy-plugin-aqua/${TRIVY_AQUA_PLUGIN_VERSION}/plugin.yaml" -O plugin.yaml
+
+--2023-01-30 10:46:32--  https://raw.githubusercontent.com/aquasecurity/trivy-plugin-aqua/v0.115.6/plugin.yaml
+HTTP request sent, awaiting response... 200 OK
+Length: 909 [text/plain]
+Saving to: ‘plugin.yaml’
+plugin.yaml 100%[==>]     909  --.-KB/s    in 0s      
+
+2023-01-30 10:46:32 (54.2 MB/s) - ‘plugin.yaml’ saved [909/909]
+```
+
+### Relocate the Plugin and Yaml to your registry
+
+```shell
+TRIVY_AQUA_PLUGIN_VERSION="v0.115.6"
+REPOSITORY_URL="registry.company.com/project_name/trivy-aqua-plugin:$TRIVY_AQUA_PLUGIN_VERSION"
+
+oras push ${REPOSITORY_URL} \
+--artifact-type trivy/aqua-plugin \
+./trivy-aqua-plugin.tar.gz:application/gzip \
+./plugin.yaml:text/yaml
+
+Uploading 6fb65adbfde2 plugin.yaml
+Uploading 7340855e31ff trivy-aqua-plugin.tar.gz
+Uploaded  6fb65adbfde2 plugin.yaml
+Uploaded  7340855e31ff trivy-aqua-plugin.tar.gz
+Pushed registry.company.com/project_name/trivy-aqua-plugin:v0.115.6
+Digest: sha256:791274e44b97fad98edf570205fddc1b0bc21c56d3d54565ad9475fd4da969ae
+```
+
+### Update data values with Aqua Plugin repository url
+
+Edit your `values.yaml` to add the location of your CLI.
+
+```yaml
+trivy:
+  plugins:
+    aqua:
+      repositoryUrl: "registry.company.com/project_name/trivy-aqua-plugin:v0.115.6"
+```
+
+## Integrate with Aqua SaaS Platform
+
+### Create API Key
+
+In order to connect to the SaaS Platform you will need to have an API key.
+1. Log into Aqua SaaS
+2. Enter CSPM
+3. Click on Settings -> API Keys
+4. Click Generate Key
+5. Save the information for the next steps
+
+### Create Auth Secret
+In order to integrate with Aqua SaaS Platform you will need to have an API key. We will pass this to the scanner through environment variables, referenced in a Secret.
+
+An example Secret is below:
+```yaml
+apiVersion: v1
+kind: Secret
+metadata:
+  name: aqua-creds
+  namespace: APP_NAMESPACE
+stringData:
+  aqua-key: "API_KEY"
+  aqua-secret: "API_KEY_SECRET"
+```
+
+### Update aqua-values.yaml
+In order to tell Trivy to connect and report to Aqua SaaS it requires a few environment variables set.
+
+You can find every plugin option in the [README.md](https://github.com/aquasecurity/trivy-plugin-aqua/blob/master/README.md) in its GitHub repo.
+
+Here is an example of referencing your API key and Secret from a prior created Kubernetes Secret
+```yaml
+namespace: dev
+targetImagePullSecret: registry-credentials
+environmentVariables:
+  - name: TRIVY_RUN_AS_PLUGIN
+    value: aqua
+  - name: AQUA_KEY
+    valueFrom:
+      secretKeyRef:
+        name: aqua-creds
+        key: aqua-key
+  - name: AQUA_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: aqua-creds
+        key: aqua-secret
+```
+
+## Known Limitations
+
+- None
