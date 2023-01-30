@@ -21,13 +21,20 @@ imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-pack
 ## Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to
-your own container image registry before installing. The Trivy Scanner is currently in Alpha development phase, and as such, is not packaged as part of the Tanzu Application Platform package and is hosted on the VMware Project Repository instead of TanzuNet. Therefore, if you relocated the Tanzu Application Platform images, you may also wany to relocate the Trivy Scanner package. If you don’t relocate the
-images, the Trivy Scanner installation depends on VMware Tanzu Network for
-continued operation, and VMware Tanzu Network offers no uptime guarantees. The
-option to skip relocation is documented for evaluation and proof-of-concept
-only.
+your own container image registry before installing. 
 
-For information about supported registries, please see the documentation.
+The Trivy Scanner is in the Alpha development phase, is not packaged as part of
+the Tanzu Application Platform package, and is hosted on the VMware Project
+Repository instead of VMware Tanzu Network. If you relocated the Tanzu
+Application Platform images, you might also want to relocate the Trivy Scanner
+package. 
+
+If you don’t relocate the images, the Trivy Scanner installation depends on
+VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no
+uptime guarantees. The option to skip relocation is documented for evaluation
+and proof-of-concept only.
+
+For information about supported registries, see the registry's documentation.
 
 To relocate images from the VMware Project Registry to your registry:
 
@@ -59,7 +66,7 @@ To relocate images from the VMware Project Registry to your registry:
     - `VERSION` is your Trivy Scanner version. For example, `0.1.0-alpha.19`.
     - `TARGET-REPOSITORY` is your target repository, a directory or repository on `MY-REGISTRY` that serves as the location for the installation files for Trivy Scanner.
 
-4. [Install the Carvel tool imgpkg CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
+4. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials v1.4](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
 
 5. Relocate the images with the imgpkg CLI by running:
 
@@ -68,7 +75,7 @@ To relocate images from the VMware Project Registry to your registry:
     ```
 
 > **Note**
-> The VMware project repository does not require authentication, so there is no need to perform a docker login for it.
+> The VMware project repository does not require authentication, so you don't need to perform a Docker login.
 
 ## Add the Trivy Scanner package repository
 
@@ -77,7 +84,7 @@ package repository makes the Trivy Scanning bundle and its packages available
 for installation.
 
 > **Note**
-> VMware recommends, but does not require, relocating images to a registry for installation. This section assumes that you relocated images to a registry. See the earlier section to fill in the variables.
+> VMware recommends, but does not require, relocating images to a registry for installation. The following section requires that you relocated images to a registry. See the earlier section to fill in the variables.
 
 VMware recommends installing the Trivy Scanner objects in the existing `tap-install` namespace to keep the Trivy Scanner grouped logically with the other Tanzu Application Platform components.
 
@@ -125,11 +132,10 @@ VMware recommends installing the Trivy Scanner objects in the existing `tap-inst
 
 ## Prepare the Trivy Scanner configuration
 
-Before installing the Trivy Scanner, you'll need to create the configuration necessary to install  
+Before installing the Trivy Scanner, you must create the configuration necessary to install  
 
 Define the `--values-file` flag to customize the default configuration. You must define the following fields in the `values.yaml` file for the Trivy
-Scanner configuration. You can add fields as needed to activate or deactivate behaviors. You can append the values to this file as shown later in this
-topic. Create a `values.yaml` file by using the following configuration:
+Scanner configuration. You can add fields as needed to activate or deactivate behaviors. You can append the values to the `values.yaml` file. Create a `values.yaml` file by using the following configuration:
 
 ```yaml
     ---
@@ -148,13 +154,14 @@ topic. Create a `values.yaml` file by using the following configuration:
      credentials to pull an image from a private registry for scanning.
    - `TARGET-SOURCE-SSH-SECRET` is the name of the secret containing SSH credentials for cloning private repositories 
 
+To see all available values, run the following command using the version that you want:
 
-If you want to see all available values options, you can see those by running the following command using your desired version.
 ```shell
 tanzu package available get trivy.scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
 ```
 
-Example output
+Example output:
+
 ```shell
   KEY                                           DEFAULT                                                           TYPE    DESCRIPTION                                                                       
   targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry             
@@ -187,9 +194,9 @@ Example output
 ```
 
 The Trivy integration can work with or without the SCST - Store integration.
-The values.yaml file is slightly different for each configuration.
+The `values.yaml` file is slightly different for each configuration.
 
-## Supply Chain Security Tools - Store integration
+## SCST - Store integration
 
 When using SCST - Store integration, to persist the results
 found by the Trivy Scanner, you can enable the SCST -
@@ -201,7 +208,7 @@ whether another scanner integration is installed or not. If Tanzu Application
 Platform is installed using the Full Profile, the Grype Scanner Integration is
 installed unless it is explicitly excluded.
 
-If any other scanner integration is installed in the same dev-namespace where the Trivy Scanner is installed:
+If any other scanner integration is installed in the same `dev-namespace` where the Trivy Scanner is installed:
 
 ```yaml
 #! ...
@@ -229,7 +236,7 @@ Where:
 - `AUTH-SECRET-NAME` is the name of the secret that contains the authentication token to
   authenticate to the Store Deployment.
 
-If the other scanner integration is not installed in the same dev-namespace Trivy Scanner is installed:
+If the other scanner integration is not installed in the same `dev-namespace` where the Trivy Scanner is installed:
 
 ```yaml
 #! ...
@@ -259,7 +266,7 @@ Where:
 - `STORE-SECRETS-NAMESPACE` is the namespace where the secrets for the Store Deployment live. Default is `metadata-store`.
 - `AUTH-SECRET-NAME` is the name of the secret that contains the authentication token to authenticate to the Store Deployment.
 
-**Without Supply Chain Security Tools - Store Integration:** If you don’t want
+**Without SCST - Store Integration:** If you don’t want
 to enable the SCST - Store integration, explicitly deactivate the integration by
 appending the following fields to the values.yaml file that is enabled by
 default:
@@ -325,7 +332,7 @@ spec:
       }
 ```
 
-Apply the YAML:
+Apply tp the YAML:
 
 ```console
 kubectl apply -n $DEV-NAMESPACE -f SCAN-POLICY-YAML
@@ -342,15 +349,18 @@ After all prerequisites are completed, install the Trivy Scanner. See [Install a
 
 ## Air-Gap Configuration
 
+The following section explains how to configure Trivy in an air-gap environment.
+
 ### Prerequisites
 
-Install the `oras` cli utilizing their [instructions](https://oras.land/cli/)
+Install the `oras` cli. See [Installation](https://oras.land/cli/) in the ORAS documentation.
 
-### Relocate Trivy DB to your registry
+### Relocate Trivy database to your registry
 
->Note: Using a relocated database means you are taking responsibility for keeping it up to date in a timely manner to ensure security scans are relevant. Stale databases weaken your security posture.
+>**Note** Using a relocated database means you are taking responsibility for keeping it up to date to ensure that security scans are relevant. Stale databases weaken your security posture.
 
-If you have a host with access, you can use oras cli to perform a copy.
+If you have a host with access, you can use the `oras` cli to perform a copy.
+
 ```shell
 oras copy -r ghcr.io/aquasecurity/trivy-db:2 registry.company.com/project_name/trivy-db:2 # the tag of 2 is required
 
@@ -363,6 +373,7 @@ Digest: sha256:ed57874a80499e858caac27fc92e4952346eb75a2774809ee989bcd2ce48897a
 If not, you can use oras cli to download the database and manifest and then push to your registry.
 
 1. Download the trivy-db
+
    ```shell
    oras pull ghcr.io/aquasecurity/trivy-db:2
    Downloading 1612cc15d377 db.tar.gz
@@ -372,11 +383,13 @@ If not, you can use oras cli to download the database and manifest and then push
    ```
 
 2. Download the manifest for trivy-db
+
    ```shell
    oras manifest fetch ghcr.io/aquasecurity/trivy-db:2 > trivy-db-manifest.json
    ```
 
 3. Push the prior downloaded trivy-db to your registry
+
    ```shell
    oras push registry.company.com/project_name/trivy-db:2 \
      --export-manifest trivy-db-manifest.json \
@@ -388,21 +401,25 @@ If not, you can use oras cli to download the database and manifest and then push
    Digest: sha256:41a7eeab8837e90d8a5afd56cfce73936e15d3db04c5294f992ecff9492971dc
    ```
 
-### Update data values with db repository url
+### Update data values with db repository URL
 
-Edit your values.yaml to add the following
+Edit your `values.yaml` to add the following:
+
 ```yaml
 trivy:
   db:
     repositoryUrl: "registry.company.com/project_name/trivy-db"
 ```
-Note: the url should leave off the tag of `2`
+
+The URL leaves off the tag of `2`.
 
 ## Use another Trivy Version
 
+This section describes how to use a different Trivy version.
+
 ### Prerequisites
 
-Install the `oras` cli utilizing their [instructions](https://oras.land/cli/)
+Install the `oras` cli. See [Installation](https://oras.land/cli/) in the ORAS documentation.
 
 ### Download the CLI
 
@@ -418,7 +435,8 @@ trivy.tar.gz 100%[==>]  46.12M  50.7MB/s    in 0.9s
 2023-01-25 10:47:55 (50.7 MB/s) - ‘trivy.tar.gz’ saved [48363295/48363295]
 ```
 
-### Relocated the CLI to your registry
+### Relocate the CLI to your registry
+
 ```shell
 oras push registry.company.com/project_name/trivy-cli:0.36.0 \
 --artifact-type trivy/cli \
@@ -430,7 +448,7 @@ Pushed registry.company.com/project_name/trivy-cli:0.36.0
 Digest: sha256:5bdb18378e8f66a72f4bef4964edeccfcc2f21883e7a6caca6dbf7a3d7233696
 ```
 
-### Update data values with CLI repository url
+### Update data values with CLI repository URL
 
 Edit your values.yaml to add the location of your cli.
 
@@ -439,7 +457,3 @@ trivy:
   cli:
     repositoryUrl: "registry.company.com/project_name/trivy-cli:0.36.0"
 ```
-
-## Known Limitations
-
-- None
