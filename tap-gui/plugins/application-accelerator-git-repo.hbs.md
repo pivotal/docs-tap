@@ -11,7 +11,7 @@ create GitHub repositories.
 
 ## <a id="supported-providers"></a> Supported Providers
 
-The currently supported Git providers are GitHub and GitLab.
+The supported Git providers are GitHub and GitLab.
 
 ## <a id="configuration"></a> Configure
 
@@ -19,7 +19,7 @@ The following steps describe an example configuration that uses GitHub:
 
 1. Create an **OAuth App** in GitHub based on the configuration
    described in this [Backstage documentation](https://backstage.io/docs/auth/github/provider).
-   GitHub Apps are not yet supported. For more information about creating an OAuth App in GitHub, see
+   GitHub Apps are not supported. For more information about creating an OAuth App in GitHub, see
    the [GitHub documentation](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app).
 
    These values appear in your `app-config.yaml` or `app-config.local.yaml` for local development.
@@ -110,6 +110,6 @@ To create a project:
 
    ![Screenshot of GitHub log-in credential text boxes.](images/github-login.png)
 
-6. Click **GENERATE ACCELERATOR**. Eventually a link to the repository location appears.
+6. Click **GENERATE ACCELERATOR**. A link to the repository location appears.
 
    ![Screenshot of the output status, which includes a Download ZIP File button.](images/application-accelerator-task-output.png)
