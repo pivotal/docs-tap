@@ -17,8 +17,7 @@ The following prerequisites are required to create an accelerator:
         documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html).
   - For more information about Application Accelerator extension for VS Code, see the latest on
         the [Application Accelerator Visual Studio Code extension page](../vscode.md)
-- kubectl is installed. The Kubernetes command line interface tool (kubectl) is installed and authenticated
-    with admin rights for your target cluster.
+- kubectl is installed and authenticated with admin rights for your target cluster.
 
 ## <a id="creating-acc-get-started"></a>Getting started
 
@@ -128,9 +127,9 @@ that as the interval when VMware created the earlier accelerator.
 ## <a id="using-acc-fragments"></a>Using accelerator fragments
 
 Accelerator fragments are reusable accelerator components that can provide options, files, or
-transforms. They may be imported from accelerators using an `import` entry and the transforms from
-the fragment may be referenced in an `InvokeFragment` transform in the accelerator that is declaring
-the import. For additional details see [InvokeFragment transform](transforms/invoke-fragment.md).
+transforms. They can be imported from accelerators using an `import` entry and the transforms from
+the fragment can be referenced in an `InvokeFragment` transform in the accelerator that is declaring
+the import. For more details see, [InvokeFragment transform](transforms/invoke-fragment.md).
 
 The accelerator samples include three fragments - `java-version`, `tap-initialize`, and
 `live-update`. See
@@ -227,7 +226,7 @@ To create the fragment (we can save the above manifest in a `java-version.yaml` 
 tanzu accelerator apply -f ./java-version.yaml
 ```
 
->**Note** The `accelerator apply` command may be used to apply both Accelerator and Fragment resources.
+>**Note** The `accelerator apply` command can be used to apply both Accelerator and Fragment resources.
 
 To avoid having to create a separate manifest file, run:
 
