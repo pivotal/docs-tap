@@ -178,9 +178,9 @@ options:
 
 ### <a id="examples"></a> Examples
 
-The later screenshot<!--฿ If introducing a screenshot, consider if you really need to: good screenshots are self-explanatory by nature and by placement within the topic. ฿--> and `accelerator.yaml` file snippet that follows demonstrates each `inputType`.
+The later screenshot and `accelerator.yaml` file snippet that follows demonstrates each `inputType`.
 You can also see the GitHub sample
-[demo-input-types](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/demo-input-types)<!--฿ Verify that the link name should not be a topic title or |THIRD-PARTY-NAME documentation|. ฿-->.
+[demo-input-types](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/demo-input-types)
 
 ![A screenshot of option inputs for sample accelerator demo-input-types.](../images/demo-input-types-2.png)
 
@@ -369,5 +369,5 @@ multiple files at the same path:
 
 ### <a id="advanced-accelerator-use"></a> Advanced accelerator use
 
-Additional advanced features can be<!--฿ Consider switching to active voice. ฿--> leveraged when writing an `accelerator.yaml`.
+Additional advanced features can be leveraged when writing an `accelerator.yaml`.
 For more information see, [Creating dynamic parameters using custom types](custom-types.hbs.md)
