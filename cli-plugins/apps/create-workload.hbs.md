@@ -31,7 +31,7 @@ The following prerequisites are required to use workloads with Tanzu Application
 ### <a id="workload-git"></a> Create a workload from GitHub repository
 
 Tanzu Application Platform supports creating a workload from an existing Git repository by setting
-the flags `--git-repo`, `--git-branch`, `--git-tag` and, `--git-commit`. This allows the
+the flags `--git-repo`, `--git-branch`, `--git-tag`, and `--git-commit`. This allows the
 [supply chain](../../scc/about.hbs.md) to get the source from the given repository to deploy the
 application.
 
@@ -229,7 +229,7 @@ information about how to bind a service to a workload.
 
 ## <a id="next-steps"></a> Next steps
 
-You can verify workload details and status, add environment variables, export definitions or bind services.
+You can verify workload details and status, add environment variables, export definitions, or bind services.
 
 1. To verify a workload status and details, use `tanzu apps workload get`.
 

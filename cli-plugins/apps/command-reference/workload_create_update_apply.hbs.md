@@ -271,7 +271,7 @@ status:
 
 ### <a id="apply-env"></a> `--env` / `-e`
 
- Sets the environment variables to the workload so the supply chain resources can used it to deploy
+ Sets the environment variables to the workload so the supply chain resources can use it to deploy
  the workload application.
 
  <details><summary>Example</summary>
@@ -690,7 +690,7 @@ An example with a Spring Boot application:
 ### <a id="apply-local-path"></a> `--local-path`
 
 Sets the path to a source in the local machine from where the workload creates an image to use as an
-application source. The local path may be a directory, a JAR, a ZIP, or a WAR file. Java/Spring Boot
+application source. The local path can be a directory, a JAR, a ZIP, or a WAR file. Java/Spring Boot
 compiled binaries are also supported. This flag must be used with `--source-image` flag.
 
 >**Note:**If Java/Spring compiled binary is passed instead of source code, the command will take
@@ -752,7 +752,7 @@ Registry path where the local source code is uploaded as an image.
 
 ```bash
 tanzu apps workload apply spring-pet-clinic --local-path /home/user/workspace/spring-pet-clinic --source-image gcr.io/spring-community/spring-pet-clinic --type web
-❓ Publish source in "/home/user/workspace/spring-pet-clinic" to "gcr.io/spring-community/spring-pet-clinic"? It may be visible to others who can pull images from that repository Yes
+❓ Publish source in "/home/user/workspace/spring-pet-clinic" to "gcr.io/spring-community/spring-pet-clinic"? It might be visible to others who can pull images from that repository Yes
 The files and/or directories listed in the .tanzuignore file are being excluded from the uploaded source code.
 Publishing source in "/home/user/workspace/spring-pet-clinic" to "gcr.io/spring-community/spring-pet-clinic"...
 📥 Published source
@@ -929,14 +929,14 @@ Refers to the path of the self-signed certificate needed for the custom/private 
 This is also populated with a default value through environment variables. If the environment
 variable `TANZU_APPS_REGISTRY_CA_CERT` is set, it's not necessary to use it in the command.
 
-See [Custom registry credentials](../how-to-examples.hbs.md#custom-registry) for the currently
+See [Custom registry credentials](../how-to-examples.hbs.md#custom-registry) for the
 supported environment variables.
 
 <details><summary>Example</summary>
 
 ```bash
 tanzu apps workload apply my-workload --local-path . -s registry.url.nip.io/my-package/my-image --type web --registry-ca-cert path/to/cacert/mycert.nip.io.crt --registry-username my-username --registry-password my-password
-❓ Publish source in "." to "registry.url.nip.io/my-package/my-image"? It may be visible to others who can pull images from that repository Yes
+❓ Publish source in "." to "registry.url.nip.io/my-package/my-image"? It might be visible to others who can pull images from that repository Yes
 Publishing source in "." to "registry.url.nip.io/my-package/my-image"...
 📥 Published source
 
@@ -1186,7 +1186,7 @@ Defines which path is used as the root path to create and update the workload.
 
       ```bash
       tanzu apps workload apply my-workload --local-path . -s gcr.io/my-registry/my-workload-image --sub-path subpath_folder
-      ❓ Publish source in "." to "gcr.io/my-registry/my-workload-image"? It may be visible to others who can pull images from that repository Yes
+      ❓ Publish source in "." to "gcr.io/my-registry/my-workload-image"? It might be visible to others who can pull images from that repository Yes
       Publishing source in "." to "gcr.io/my-registry/my-workload-image"...
       📥 Published source
 
@@ -1336,11 +1336,11 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 
 ### <a id="update-strategy-type"></a> `--update-strategy`
 
-Specifies if the update from file should be done by replacing the current workload or merging it. Defaults to `merge`.
+Specifies whether the update from file should replace or merge the current workload. The default is merge.
 
 <details><summary>Example</summary>
 
-Assuming there is a workload created from a file, which has in its `spec` the following:
+For example, there is a workload created from a file, which has in its `spec` the following:
 ```yaml
 ...
 spec:
@@ -1365,7 +1365,7 @@ tanzu apps workload apply -f ./spring-petclinic.yaml # defaulting to merge
 Workload is unchanged, skipping update
 ```
 
-The other, with `replace` update strategy, which will completely overwrite the workload in the cluster according to the new specifications in the file.
+The other, with `replace` update strategy, which completely overwrites the workload in the cluster according to the new specifications in the file.
 
 ```bash
 tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy replace

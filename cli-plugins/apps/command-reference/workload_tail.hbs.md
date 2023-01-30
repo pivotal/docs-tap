@@ -4,7 +4,7 @@
 
 ## Default view
 
-Without timestamp set, workload tail will show the stage where it is and the log related.
+Without timestamp set, workload tail will show the stage where it is and the related log.
 
 ```bash
 + spring-pet-clinic-build-1-build-pod › prepare
@@ -82,7 +82,7 @@ pet-clinic-00004-deployment-6445565f7b-ts8l5[workload] 2022-06-14 16:28:53.231  
 
 ### <a id="tail-since"></a> `--since`
 
-Sets the time duration to start reading logs from, this is set in seconds (`s`), minutes(`m`) or hours (`h`) in the format `0h0m0s`, when the duration is `0` it is net necessary to be written for example, for 1 hour, 0 minutes and 1 seconds is `1h1s`. The default value for this flag is 1 second `1s`
+Sets the time duration to start reading logs from, this is set in seconds (`s`), minutes(`m`) or hours (`h`) in the format `0h0m0s`. You do not need to indicate a `0` duration, for example, 1 hour, 0 minutes and 1 seconds is `1h1s`. The default value is 1 second `1s`
 
 ```bash
 tanzu apps workload tail pet-clinic --since 1h1s
