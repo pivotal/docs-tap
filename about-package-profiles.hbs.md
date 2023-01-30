@@ -25,6 +25,14 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   documentation from the source URLs. An API portal operator can add any number of OpenAPI source
   URLs to to appear in a single instance.
 
+- **[API Scoring and Validation](api-validation-scoring/about.hbs.md)**
+
+  API Validation and Scoring focuses on scanning and validating an OpenAPI specification. 
+  The API specification is generated from the [API Auto Registration](api-auto-registration/about.hbs.md). 
+  After an API is registered, the API specification goes through static scan analysis and is validated. 
+  Based on the validation, a scoring is provided to indicate the quality and health of the API specification 
+  as it relates to Documentation, OpenAPI best practices, and Security.
+
 - **[Application Accelerator for VMware Tanzu](application-accelerator/about-application-accelerator.md)**
 
   The Application Accelerator component helps app developers and app operators create application
@@ -62,6 +70,18 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   [Knative documentation](https://knative.dev/docs/). Cloud Native Runtimes capabilities are
   in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
 
+- **[cert-manager](cert-manager/about.hbs.md)**
+
+  cert-manager adds certificates and certificate issuers as resource types to Kubernetes clusters. It also helps you to
+  obtain, renew, and use those certificates. For more information about cert-manager, see
+  the [cert-manager documentation](https://cert-manager.io/docs).
+
+- **[Contour](contour/about.hbs.md)**
+
+  Contour is an ingress controller for Kubernetes that supports dynamic configuration updates and multi-team ingress
+  delegation. It provides the control plane for the Envoy edge and service proxy. For more information about Contour, see
+  the [Contour documentation](https://projectcontour.io/docs/v1.22.0/).
+
 - **[Convention Service for VMware Tanzu](convention-service/about.md)**
 
   The convention service provides a means for people in operational roles to express their hard-won
@@ -90,13 +110,13 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to edit the workload to enable
   inner loop capabilities.
 
-- **[Eventing for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
+- **[Eventing for VMware Tanzu](eventing/about.hbs.md)**
 
   Eventing for VMware Tanzu focuses on providing tooling and patterns for Kubernetes applications to
   manage event-triggered systems through Knative Eventing. For information about Knative, see
   the [Knative documentation](https://knative.dev/docs/).
 
-- **[Flux Source Controller](https://fluxcd.io/docs/components/source/)**
+- **[FluxCD Source Controller](fluxcd-source-controller/about.hbs.md)**
 
   The main role of this source management component is to provide a common interface for artifact
   acquisition.
