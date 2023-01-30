@@ -42,13 +42,13 @@ deploying workloads to the cluster. The default policy prohibits running of imag
 a privileged pod. Specified workshops can relax these restrictions and apply a policy that enables additional
 privileges required by the workshop.
 
-In order to enforce some sort of security policy around what a user can do, different mechanisms have been provided over time with standard Kubernetes distributions and derivatives such as OpenShift. These are:
+To enforce a security policy around what a user can do, different mechanisms have been provided with standard Kubernetes distributions and derivatives such as OpenShift. These are:
 
-    Pod security policies (Kubernetes <= 1.25)
-    Pod security standards (Kubernetes >= 1.22)
-    Security context constraints (OpenShift)
+- Pod security policies (Kubernetes <= 1.25)
+- Pod security standards (Kubernetes >= 1.22)
+- Security context constraints (OpenShift)
 
-For pod security policies and pod security standards, these both need to be enabled in the Kubernetes cluster at the time the cluster is created, it is not something that can be enabled afterwards. For some Kubernetes distributions, such as Tanzu Community Edition (TCE), it is not possible to enable pod security policies, and pod security standards being new, may also not be supported.
+For pod security policies and pod security standards, these both must be enabled in the Kubernetes cluster at the time the cluster is created. They cannot be enabled afterwards. For some Kubernetes distributions, such as Tanzu Community Edition, it is not possible to enable pod security policies. Because pod security standards are new, they might also not be supported.
 
 VMware recommends that the pod security policy admission controller be enabled for the cluster to ensure
 that the pod security policies are applied. If the admission controller is not enabled, users can
