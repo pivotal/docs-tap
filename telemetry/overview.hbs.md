@@ -1,4 +1,4 @@
-# Telemetry for Tanzu Application Platform
+# Tanzu Application Platform Telemetry
 
 Tanzu Application Platform Telemetry is a set of objects that collect data about the usage of Tanzu Application Platform and send it back to VMware for product improvements. A benefit of remaining enrolled in telemetry and identifying your company during Tanzu Application Platform installation is that VMware can provide your
 organization with usage reports about Tanzu Application Platform. See [Tanzu Application Platform usage reports](#usage-reports) for more information about enrolling in telemetry reports.
