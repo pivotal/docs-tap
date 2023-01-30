@@ -85,7 +85,7 @@ NAME      FQDN                                      TLS SECRET     STATUS   STAT
 tap-gui   tap-gui.tap.tapdemo.myorg.com             tap-gui-cert   valid    Valid HTTPProxy
 ```
 
-## <a id="app-acclerator-known-issues"></a> Known Issues
+## <a id="app-acc-known-issues"></a> Known Issues
 
 In v0.1.5 of the Application Accelerator extension for VS Code, if an accelerator with [`custom
 types`](creating-accelerators/custom-types.hbs.md) is used _and_ the custom type form contains

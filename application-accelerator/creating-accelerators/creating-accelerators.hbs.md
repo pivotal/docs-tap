@@ -48,7 +48,7 @@ Use the following procedure to create an accelerator based on this Git repositor
 
     Feel free to use a different icon if it uses a reachable URL.
 
-4. Add the new `accelerator.yaml` file, commit this change, and push to your Git repository.
+4. Add the new `accelerator.yaml` file, commit this change and push to your Git repository.
 
 ## <a id="publishing-the-new-acc"></a>Publishing the new accelerator
 

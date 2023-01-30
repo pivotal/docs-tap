@@ -31,7 +31,7 @@ The following example applies the [ChangePackage](https://docs.openrewrite.org/r
 Recipe to a set of Java files in the `com.acme` package and moves them to the value
 of `#companyPkg`. This is more powerful than using [RewritePath](rewrite-path.md)
 and [ReplaceText](replace-text.md), as it reads the syntax of files and
-correctly deals with imports, fully versus non-fully qualified names, and so on.
+correctly deals with imports, fully compared to non-fully qualified names, and so on.
 
 ```console
 chain:

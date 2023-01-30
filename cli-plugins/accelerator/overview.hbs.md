@@ -7,7 +7,7 @@ The Application Accelerator Tanzun CLI plug-in includes commands for developers 
 The Application Accelerator CLI must connect to a server for all provided commands except for the `help` and `version` commands.
 
 Operators typically use **create**, **update**, and **delete** commands for managing accelerators in a Kubernetes context.
-They also use the **fragment** commands to manage acccelerator fragments.
+They also use the **fragment** commands to manage accelerator fragments.
 These commands require a Kubernetes context where the operator is already authenticated and is authorized to create and edit the accelerator resources.
 Operators can also use the **get** and **list** commands by using the same authentication.
 For any of these commands, the operator can specify the `--context` flag to access accelerators in a specific Kubernetes context.
