@@ -64,7 +64,7 @@ There are known errors that cause the workload to enter an error or unknown stat
 		- The Git repository is not accessible from the cluster
 			- *Resolution*: Configure your cluster networking or your Git repository networking so that they can communicate with each other.
 		- The namespace is missing the Git secret for communicating with the private repository
-			- *Resolution*: For more information, see [Git authentication](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-scc-git-auth.html.
+			- *Resolution*: For more information, see [Git authentication](../../scc/git-auth.hbs.md)
 
 - *TemplateRejectedByAPIServer*
 	- *Message*: Unable to apply object `[ns/workload-name]` for resource `[source-provider]` in supply chain `[source-to-url]`: failed to get unstructured `[ns/workload-name]` from API server: imagerepositories.source.apps.tanzu.vmware.com "workload-name" is forbidden: User "system:serviceaccount:ns:default" cannot get resource "imagerepositories" in API group "source.apps.tanzu.vmware.com" in the namespace "ns"
