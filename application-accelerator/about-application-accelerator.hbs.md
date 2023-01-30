@@ -8,7 +8,7 @@ deploying them in a discoverable and repeatable way.
 Enterprise Architects author and publish accelerator projects that provide developers and operators
 in their organization ready-made, conforming code and configurations.
 
-Published accelerators projects are maintained in Git repositories. You can then use Application
+Published accelerator projects are maintained in Git repositories. You can then use Application
 Accelerator to create new projects based on those accelerator projects.
 
 The Application Accelerator user interface(UI) enables you to discover available accelerators,
