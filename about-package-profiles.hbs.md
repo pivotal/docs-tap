@@ -79,13 +79,13 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to edit the workload to enable
   inner loop capabilities.
 
-- **[Eventing for VMware Tanzu](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/index.html)**
+- **[Eventing for VMware Tanzu](eventing/about.hbs.md)**
 
   Eventing for VMware Tanzu focuses on providing tooling and patterns for Kubernetes applications to
   manage event-triggered systems through Knative Eventing. For information about Knative, see
   the [Knative documentation](https://knative.dev/docs/).
 
-- **[Flux Source Controller](https://fluxcd.io/docs/components/source/)**
+- **[FluxCD Source Controller](fluxcd-source-controller/about.hbs.md)**
 
   The main role of this source management component is to provide a common interface for artifact
   acquisition.
