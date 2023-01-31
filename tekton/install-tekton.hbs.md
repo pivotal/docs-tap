@@ -1,16 +1,17 @@
 # Install Tekton
 
-This topic describes how to install Tekton from the Tanzu Application Platform package repository.
+This topic describes how to install Tekton Pipelines from the Tanzu Application Platform package
+repository.
 
-> **Note** Follow the steps in this topic if you do not want to use a profile to install Tekton.
+> **Note** Follow the steps in this topic if you do not want to use a profile to install
+> Tekton Pipelines.
 > For more information about profiles, see
 > [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='prereqs'></a>Prerequisites
 
-Before installing Tekton, complete all [prerequisites](../prerequisites.html) to install
+Before installing Tekton Pipelines, complete all [prerequisites](../prerequisites.html) to install
 Tanzu Application Platform.
-
 
 ## <a id='install-tekton-pipelines'></a> Install Tekton Pipelines
 
@@ -31,7 +32,7 @@ To install Tekton Pipelines:
       tekton.tanzu.vmware.com  0.30.0   2021-11-18 17:05:37Z
     ```
 
-1. Install Tekton by running:
+1. Install Tekton Pipelines by running:
 
     ```console
     tanzu package install tekton-pipelines -n tap-install -p tekton.tanzu.vmware.com -v VERSION
@@ -76,7 +77,6 @@ To install Tekton Pipelines:
     ```
 
     Verify that `STATUS` is `Reconcile succeeded`.
-
 
 ## <a id='config-namespace'></a> Configure a namespace to use Tekton Pipelines
 
