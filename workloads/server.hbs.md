@@ -206,7 +206,7 @@ spec:
   Additional steps:
 
     - Replace `INGRESS-DOMAIN` to the ingress domain you set during the installation.
-    - Set the annotation `cert-manager.io/cluster-issuer` to the `ingress_issuer` set during installation or leave as `tap-ingress-selfsigned` to use the default one.
+    - Set the annotation `cert-manager.io/cluster-issuer` to the `shared.ingress_issuer` value configured during installation or leave it as `tap-ingress-selfsigned` to use the default one.
     - This configuration assumes that your workload service is running on port `8080`
   
   2. Add the above snippet to the `spec-ytt.yaml` file. Look for the `Service` resource, 
