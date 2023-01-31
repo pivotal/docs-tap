@@ -110,7 +110,7 @@ The following values are valid within the `ports` argument:
 ## <a id="params"></a> Securing `server` workloads
 
 ### Manual configuration for HTTP workloads
-For http `server` workloads you can expose them securely creating an `Ingress` resource. Taking the `spring-sensors-consumer-web`
+For http `server` workloads you can expose them by creating an Ingress resource and using cert-manager to provision TLS signed certificates. Taking the `spring-sensors-consumer-web`
 workload as an example, create the following `Ingress`:
 
 ```
