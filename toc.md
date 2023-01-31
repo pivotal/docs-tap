@@ -557,6 +557,6 @@ docs.vmware.com is built.
       - [Security Context Constraint for OpenShift](tanzu-build-service/openshift.hbs.md)
       - [Troubleshoot Tanzu Build Service](tanzu-build-service/troubleshooting.hbs.md)
       - [Create a GitHub Action](tanzu-build-service/build-image-action.hbs.md)
-    - [Tekton](tekton/tekton-about.hbs.md)
+    - [Tekton Pipelines](tekton/tekton-about.hbs.md)
       - [Tekton overview](tekton/tekton-about.hbs.md)
-      - [Install Tekton](tekton/install-tekton.hbs.md)
+      - [Install Tekton Pipelines](tekton/install-tekton.hbs.md)

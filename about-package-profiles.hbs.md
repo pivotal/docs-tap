@@ -27,10 +27,10 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[API Scoring and Validation](api-validation-scoring/about.hbs.md)**
 
-  API Validation and Scoring focuses on scanning and validating an OpenAPI specification. 
-  The API specification is generated from the [API Auto Registration](api-auto-registration/about.hbs.md). 
-  After an API is registered, the API specification goes through static scan analysis and is validated. 
-  Based on the validation, a scoring is provided to indicate the quality and health of the API specification 
+  API Validation and Scoring focuses on scanning and validating an OpenAPI specification.
+  The API specification is generated from the [API Auto Registration](api-auto-registration/about.hbs.md).
+  After an API is registered, the API specification goes through static scan analysis and is validated.
+  Based on the validation, a scoring is provided to indicate the quality and health of the API specification
   as it relates to Documentation, OpenAPI best practices, and Security.
 
 - **[Application Accelerator for VMware Tanzu](application-accelerator/about-application-accelerator.md)**
@@ -127,13 +127,20 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[Namespace Provisioner](namespace-provisioner/about.hbs.md)**
 
-  Namespace provisioner provides an easy, secure, automated way for Platform Operators to provision namespaces with the resources and proper namespace-level privileges needed for developer workloads to function as intended.
+  Namespace provisioner provides an easy, secure, automated way for Platform Operators to provision
+  namespaces with the resources and proper namespace-level privileges needed for developer workloads
+  to function as intended.
 
-- **[Services Toolkit](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html)**
+- **[Services Toolkit for VMware Tanzu](services-toolkit/about.hbs.md)**
 
   Services Toolkit comprises a number of Kubernetes-native components that support the management,
   life cycle, discoverability, and connectivity of Service Resources (databases, message queues,
   DNS records, and so on) on Kubernetes.
+
+- **[Spring Boot conventions](spring-boot-conventions/about.hbs.md)**
+
+  The Spring Boot convention server has a bundle of smaller conventions applied to any Spring Boot
+  application that is submitted to the supply chain in which the convention controller is configured.
 
 - **[Supply Chain Choreographer for VMware Tanzu](scc/about.md)**
 
@@ -178,7 +185,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   It integrates with SCST - Scan to automatically store the resulting source
   and image vulnerability reports.
 
-- **[Overview of Tanzu Application Platform GUI](tap-gui/about.md)**
+- **[Tanzu Application Platform GUI](tap-gui/about.md)**
 
   Tanzu Application Platform GUI lets your developers view your organization's running applications
   and services. It provides a central location for viewing dependencies, relationships, technical
@@ -198,9 +205,23 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   The kpack CLI tool, kp, can aid in managing kpack resources. Build Service helps you
   develop and automate containerized software workflows securely and at scale.
 
-- **[Tanzu Developer Tools for VS Code](vscode-extension/about.md)**
+- **[Tanzu Developer Tools for IntelliJ](intellij-extension/about.hbs.md)**
 
-  Tanzu Developer Tools for Visual Studio Code is the official VMware Tanzu IDE extension for VS Code
+  Tanzu Developer Tools for IntelliJ is the official VMware Tanzu IDE extension for IntelliJ IDEA
+  to help you develop code by using Tanzu Application Platform.
+  This extension enables you to rapidly iterate on your workloads on supported Kubernetes clusters
+  that have Tanzu Application Platform installed.
+
+- **[Tanzu Developer Tools for Visual Studio](vs-extension/about.hbs.md)**
+
+  Tanzu Developer Tools for Visual Studio is the official VMware Tanzu IDE extension for Visual Studio
+  to help you develop code by using Tanzu Application Platform.
+  The Visual Studio extension enables live updates of your application while it runs on the cluster
+  and lets you debug your application directly on the cluster.
+
+- **[Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.hbs.md)**
+
+  Tanzu Developer Tools for VS Code is the official VMware Tanzu IDE extension for VS Code
   to help you develop code by using Tanzu Application Platform.
   The VS Code extension enables live updates of your application while it runs on the cluster and
   lets you debug your application directly on the cluster.
@@ -217,7 +238,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   you can use it to host training for other purposes as well. For example, you can use it to train
   users on web-based applications, use of databases, or programming languages.
 
-- **[Tekton](tekton/tekton-about.md)**
+- **[Tekton Pipelines](tekton/tekton-about.hbs.md)**
 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
