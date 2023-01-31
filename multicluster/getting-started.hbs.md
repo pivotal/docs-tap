@@ -91,7 +91,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
    kubectl get configmap tanzu-java-web-app-deliverable -n ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}' > deliverable.yaml
    ```
 
-1. (For 1.4.0 only) Patch the `Deliverable` created on the Run profile cluster to add missing labels. See [known issues](../release-notes.hbs.md#1-3-scc-ki).
+1. (v1.4.0 only) Patch the `Deliverable` created on the Run profile cluster to add missing labels. See [known issues](../release-notes.hbs.md#1-3-scc-ki).
   
   ```console
   kubectl patch deliverable tanzu-java-web-app \
