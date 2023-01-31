@@ -5,7 +5,8 @@ through a supply chain.
 
 ## Default view
 
-In the output of the workload apply command, the specification for the workload is shown in YAML format.
+In the output of the `tanzu apps workload apply` command, the specification for the workload is
+shown in YAML format.
 
 <details><summary>Example</summary>
 
@@ -35,6 +36,7 @@ To see logs:   "tanzu apps workload tail pet-clinic"
 To get status: "tanzu apps workload get pet-clinic"
 
 ```
+
 </details>
 
 In the first section, the definition of workload is displayed. It's followed by a dialog box asking
@@ -42,7 +44,7 @@ whether to create or update the workload. In the last section, if a workload is 
 some hints are displayed about the next steps.
 Each flag used in this example is explained in detail in the following section.
 
-## <a id='workload_apply_flags'></a> Workload Apply flags
+## <a id='workload-apply-flags'></a> Workload Apply flags
 
 ### <a id="apply-annotation"></a> `--annotation`
 
@@ -99,7 +101,7 @@ Update workload:
 
 ### <a id="apply-app"></a> `--app`
 
-The application of which the workload is part of. This is part of the workload metadata section.
+This is the application the workload is part of. This is part of the workload metadata section.
 
 <details><summary>Example</summary>
 
@@ -134,7 +136,8 @@ To get status: "tanzu apps workload get pet-clinic"
 
 ### <a id="apply-build-env"></a> `--build-env`
 
-Sets environment variables to be used in the **build** phase by the build resources in the supply chain where some *build* specific behavior can be set or changed
+Sets environment variables to use in the build phase by the build resources in the supply chain
+where some build-specific behavior can be set or changed.
 
 <details><summary>Example</summary>
 
@@ -219,11 +222,13 @@ Create workload:
 
 ? Do you want to create this workload? (y/N)
 ```
+
 </details>
 
 ### <a id="apply-dry-run"></a> `--dry-run`
 
-Prepares all the steps to submit the workload to the cluster and stops before sending it, showing as an output how the final structure of the workload.
+This flag prepares all the steps to submit the workload to the cluster but stops before sending it,
+and shows an output of the final structure of the workload.
 
 <details><summary>Example</summary>
 
@@ -457,7 +462,7 @@ Create workload:
 
 ### <a id="apply-label"></a> `--label`
 
-Set the label to be applied to the workload, to specify more than one label, set the flag multiple times
+Sets the label to be applied to the workload. To specify more than one label, set the flag multiple times.
 
 <details><summary>Example</summary>
 
@@ -571,7 +576,8 @@ Create workload:
 
 ### <a id="apply-live-update"></a> `--live-update`
 
-Enable this to deploy a workload once, save changes to the code, and see those changes reflected within seconds in the workload running on the cluster.
+Enable this to deploy a workload once, save changes to the code, and see those changes reflected
+within seconds in the workload running on the cluster.
 
 <details><summary>Example</summary>
 
@@ -650,11 +656,11 @@ Enable this to deploy a workload once, save changes to the code, and see those c
 
 Sets the path to a source in the local machine from where the workload creates an image to use as an application source. The local path can be a directory, a JAR, a ZIP, or a WAR file. Java/Spring Boot compiled binaries are also supported. This flag must be used with `--source-image` flag.
 
-|>**Note:**| If Java/Spring compiled binary is passed instead of source code, the command takes less
+**Note** If Java/Spring compiled binary is passed instead of source code, the command takes less
 time to apply the workload since the buildpack skips the compiling steps and starts uploading the image.
 
 When working with local source code, you can exclude files from the source code to be uploaded within the image by creating a file `.tanzuignore` at the root of the source code.
-The `.tanzuignore` file contains a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`). Directories that are not in the source code, and lines starting with the hash `#` character are ignored.
+The `.tanzuignore` file contains a list of file paths to exclude from the image including the file itself and the directories must not end with the system path separator (`/` or `\`). Directories that are not in the source code, and lines starting with the hashtag `#` character are ignored.
 
 ### <a id="apply-source-image"></a> `--source-image`, `-s`
 
@@ -894,7 +900,8 @@ Create workload:
 
 ### <a id="apply-service-account"></a> `--service-account`
 
-Refers to the service account to be associated with the workload. A service account provides an identity for a workload object.
+Refers to the service account associated with the workload. A service account provides an identity
+for a workload object.
 
 <details><summary>Example</summary>
 
@@ -948,7 +955,7 @@ Update workload:
 
 Binds a service to a workload to provide the information from a service resource to an application.
 
-|>**Note:**| For more information see [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-getting-started-consume-services.html#stk-bind).
+**Note** For more information see [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-getting-started-consume-services.html#stk-bind).
 
 <details><summary>Example</summary>
 
@@ -1008,12 +1015,13 @@ Update workload:
 
 ### <a id="apply-subpath"></a> `--sub-path`
 
-It defines which path is used as root to create and update workloads.
+Defines which path is used as root to create and update workloads.
 
 
 <details><summary>Example</summary>
 
   - Git repo
+
     ```bash
     tanzu apps workload apply subpathtester --git-repo https://github.com/path-to-repo/my-repo --git-branch main --type web --sub-path my-subpath
 
@@ -1242,7 +1250,7 @@ Workload "spring-pet-clinic" is ready
 
 ### <a id="apply-yes"></a> `--yes`, `-y`
 
-Assume yes on all the survey prompts
+Assume `yes` on all the survey prompts
 
 <details><summary>Example</summary>
 
