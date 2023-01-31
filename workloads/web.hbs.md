@@ -57,3 +57,38 @@ tanzu apps workload apply tanzu-java-web-app --type=web
 
 You can use this to test which applications can function well as serverless web applications,
 and which are more suited to the `server` application style.
+
+## <a id="using"></a> Communication between `web` workloads
+
+When a workload of the type `web` is created, a Knative service is deployed to the cluster. To access your application,
+you will need the URL for the route created by the Knative Service. You can obtain it by running one of the commands below:
+
+```console
+tanzu apps workload get <WORKLOAD-NAME> --namespace <YOUR-DEVELOPER-NAMESPACE>
+kubectl get ksvc <WORKLOAD-NAME> -n <YOUR-DEVELOPER-NAMESPACE> -ojsonpath="{status.url}"
+```
+
+It is important to note that for communication between workloads within the same Kubernetes namespace, workloads of the type
+`web` should be addressable by referencing both the workload name and the workload's namespace at a minimal. This behaviour is
+currently distinct from workloads of the type `server`, which do not rely on the namespace name to establish service to service
+communication between applications within the same namespace.
+
+Follow the example below to understand the difference between service to service communication for `web` and `server`
+workloads. Let's suppose we have 3 applications deployed to the namespace called `dev-namespace`:
+1. one is a workload of the type `server` named `server-workload`
+2. the other is a workload of the type `web` named `web-workload`
+3. the third one is a pod running the busybox image with curl, named `busybox`
+
+If we get a shell to the running container of the `busybox` pod and send a request to the `server` workload using curl, the
+command would look like this:
+
+```console
+kubectl exec busybox -n dev-namespace -- curl server-workload.svc.cluster.local -v
+```
+
+On the other hand, if we try to reach the `web` workload from the `busybox` pod, the command will look slightly
+different since we will need to specify the namespace:
+
+```console
+kubectl exec busybox -n dev-namespace -- curl web-workload.dev-namespace.svc.cluster.local -v
+```
