@@ -809,7 +809,7 @@ pipeline:
     service.serving.knative.dev/tanzu-java-web-app   http://tanzu-java-web-app.developer.example.com   tanzu-java-web-app-00001   tanzu-java-web-app-00001   Unknown   IngressNotConfigured
     ```
 
-    If the source or image scan has a "Failed" phase, then the scan has failed compliance and the supply chain will not continue.  
+    If the source or image scan has a "Failed" phase, then the scan has failed compliance and the supply chain will not continue.
 
 #### <a id="query-for-vuln"></a> Query for vulnerabilities
 
