@@ -49,7 +49,7 @@ client secret of an identity provider is misconfigured.
 
 Validate the `spec.OpenId.clientSecretRef`.
 
-## <a id='issue-workload-trust-authserver'> '`Workload` does not trust `AuthServer`
+## <a id='issue-workload-trust-authserver'> `Workload` does not trust `AuthServer`
 
 If your `ClientRegistration` selects an `AuthServer` which serves a certificate from a custom CA, then your `Workload`
 will not trust it by default.
