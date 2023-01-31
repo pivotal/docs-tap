@@ -30,7 +30,7 @@ To install the Apps CLI plug-in:
     tanzu apps version
     ```
 
-    A version is be displayed in the output.
+    A version is displayed in the output.
 
     If the following error is displayed during installation:
 
@@ -57,7 +57,7 @@ Download the latest release from the [ apps-cli-plugin release page](https://git
 To install the Apps CLI plug-in:
 
 Download binary executable file `tanzu-apps-plugin-{OS_ARCH}-{version}.tar.gz`
-For example, run the these commands on macOS with plugin version v0.11.0
+For example, run these commands on macOS with plugin version v0.11.0
 
 ```bash
 tar -xvf tanzu-apps-plugin-darwin-amd64-v0.11.0.tar.gz

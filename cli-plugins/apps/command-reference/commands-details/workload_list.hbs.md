@@ -4,7 +4,7 @@ The `tanzu apps workload list` command gets the workloads present in the cluster
 
 ## Default view
 
-The default view for workload list is a table with the workloads present in the cluster in the specified namespace. This table has, in each row, the name of the workload, the app it is related to, its status, and how long it's been in the cluster.
+The default view for workload list is a table with the workloads present in the cluster in the specified namespace. This table has, in each row, the name of the workload, the application it is related to, its status, and how long it has been in the cluster.
 
 For example, in the default namespace
 ```bash

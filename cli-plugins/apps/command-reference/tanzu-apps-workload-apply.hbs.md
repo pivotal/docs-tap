@@ -4,7 +4,7 @@ This topic helps you apply configurations to a new or existing workload.
 
 ### <a id="synopsis"></a> Synopsis
 
-Apply configurations to a new or existing workload. If the resource does not exist, it's created.
+Apply configurations to a new or existing workload. If the resource does not exist, it is created.
 
 Workload configuration options include:
 
