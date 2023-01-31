@@ -109,7 +109,7 @@ The following values are valid within the `ports` argument:
 
 ## <a id="params"></a> Securing `server` workloads
 
-### Manual configuration
+### Manual configuration for HTTP workloads
 For http `server` workloads you can expose them securely creating an `Ingress` resource. Taking the `spring-sensors-consumer-web`
 workload as an example, create the following `Ingress`:
 
