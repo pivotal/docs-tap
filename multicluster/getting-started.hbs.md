@@ -54,7 +54,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
    {{#unless vars.hide_content}}
 
-    TAP 1.3.5 and later
+    v1.3.5 and later
     : Follow these steps to generate the `deliverable.yaml` file for Tanzu Application Platform v1.3.5 and later:
 
         1. Verify that your supply chain has produced the necessary `ConfigMap` containing `Deliverable` content produced by the `Workload`:
@@ -92,10 +92,10 @@ The Build cluster starts by building the necessary bundle for the workload that 
            ```console
            kubectl get configmap tanzu-java-web-app-deliverable -n ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}' > deliverable.yaml
            ```
-           
+
     {{/unless}}
 
-    TAP 1.3.2 and 1.3.4
+    v1.3.2 and v1.3.4
     : Follow these steps to generate the `deliverable.yaml` file for Tanzu Application Platform v1.3.2 and 1.3.4:
 
         3. Verify that your supply chain has produced the necessary `ConfigMap` containing `Deliverable` content produced by the `Workload`:
@@ -131,7 +131,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
            kubectl get configmap tanzu-java-web-app -n ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}' > deliverable.yaml
            ```
 
-    TAP 1.3.0
+    v1.3.0
     : Follow these steps to generate the `deliverable.yaml` file for Tanzu Application Platform v1.3.0:
 
         5. Verify that your supply chain has produced the necessary `Deliverable` for the `Workload` by running:
@@ -192,7 +192,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
     kubectl apply -f deliverable.yaml --namespace ${DEVELOPER_NAMESPACE}
     ```
 
-3. (For 1.3.2 and 1.3.4 only) Patch the `Deliverable` created on the Run profile cluster to add missing labels. See [known issues](../release-notes.hbs.md#1-3-2-supplychain-resolved).
+3. (v1.3.2 and v1.3.4 only) Patch the `Deliverable` created on the Run profile cluster to add missing labels. See [known issues](../release-notes.hbs.md#1-3-2-supplychain-resolved).
 
     ```
     kubectl patch deliverable tanzu-java-web-app \

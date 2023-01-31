@@ -12,9 +12,9 @@ This topic contains release notes for Tanzu Application Platform v1.3
 #### <a id='scc-bug-fix'></a> Supply Chain Choreographer
 
 - Out of the Box Supply Chain Templates
-Fixed deliverable content written into ConfigMaps in multicluster setup:
+Fixed Deliverable content written into ConfigMaps in multicluster setup:
 ConfigMap is renamed to avoid conflict with `config-template`.
-Labels to attribute the Deliverable content with the supply chain and template are now added to be consistent with the ordinary Delivery on a non-Build profile cluster.
+Labels to attribute the Deliverable content with the supply chain and template are now added to be consistent with the Delivery on a non-Build profile cluster.
 For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 ### <a id='1-3-5-breaking-change'></a> Breaking changes
@@ -22,7 +22,7 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 #### <a id='scc-breaking-change'></a> Supply Chain Choreographer
 
 - Out of the Box Supply Chain Templates
-In a multicluster setup, when a Deliverable is created on a Build profile cluster, the ConfigMap it is placed in is renamed from <workload-name> to <workload-name>-deliverable. Any automation depending on obtaining the Deliverable content by the former name must be updated to use the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
+In a multicluster setup, when a Deliverable is created on a Build profile cluster, the ConfigMap it's' in is renamed from <workload-name> to <workload-name>-deliverable. Any automation that depends on obtaining the Deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 {{/unless}}
 
