@@ -297,6 +297,7 @@ Known security vulnerability
 #### <a id='1-3-2-scc'></a> Supply Chain Choreographer
 
 - In a Build profile cluster, deliverables are created with the labels to associate them with their Workload missing. As a workaround, they will have to be manually injected.  For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
+- These Deliverables are now rendered inside a ConfigMap. This resource was not renamed, and will cause Cartographer to overwrite one deliverable with the other depending on the timing of events in your cluster. VMware recommends upgrade to v1.3.5 to avoid unpredictable results.
 
 ### <a id='1-3-2-deprecations'></a> Deprecations
 
