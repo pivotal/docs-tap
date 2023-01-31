@@ -186,13 +186,6 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   This extension enables you to rapidly iterate on your workloads on supported Kubernetes clusters
   that have Tanzu Application Platform installed.
 
-- **[Tanzu Developer Tools for Visual Studio](vs-extension/about.hbs.md)**
-
-  Tanzu Developer Tools for Visual Studio is the official VMware Tanzu IDE extension for Visual Studio
-  to help you develop code by using Tanzu Application Platform.
-  The Visual Studio extension enables live updates of your application while it runs on the cluster
-  and lets you debug your application directly on the cluster.
-
 - **[Tanzu Developer Tools for Visual Studio Code](vscode-extension/about.hbs.md)**
 
   Tanzu Developer Tools for VS Code is the official VMware Tanzu IDE extension for VS Code
