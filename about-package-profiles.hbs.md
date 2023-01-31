@@ -142,6 +142,12 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   The Spring Boot convention server has a bundle of smaller conventions applied to any Spring Boot
   application that is submitted to the supply chain in which the convention controller is configured.
 
+- **[Spring Cloud Gateway for Kubernetes](spring-cloud-gateway/about.hbs.md)**
+
+  Spring Cloud Gateway for Kubernetes is an API gateway solution based on the open-source
+  Spring Cloud Gateway project. It provides a simple means to route internal or external API requests
+  to application services that expose APIs.
+
 - **[Supply Chain Choreographer for VMware Tanzu](scc/about.md)**
 
   Supply Chain Choreographer is based on open-source [Cartographer](https://cartographer.sh/docs/).
