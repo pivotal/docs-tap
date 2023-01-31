@@ -55,8 +55,8 @@ To install Spring Cloud Gateway:
 
 3. Install Spring Cloud Gateway by running:
 
-  Default values
-  : Run this command to install Spring Cloud Gateway with the default values
+    Default values
+    : Run this command to install Spring Cloud Gateway with the default values
 
     ```console
     tanzu package install spring-cloud-gateway \
@@ -86,8 +86,8 @@ To install Spring Cloud Gateway:
     Added installed package 'spring-cloud-gateway'
     ```
 
-  Overriding values
-  : Run this command to install Spring Cloud Gateway while overriding the default values
+    Overriding values
+    : Run this command to install Spring Cloud Gateway while overriding the default values
 
     ```console
     tanzu package install spring-cloud-gateway \
