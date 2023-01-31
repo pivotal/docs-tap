@@ -31,11 +31,11 @@ See [Install Out of The Box Supply Chain Basic](scc/install-ootb-sc-basic.md).
     >**Note:** If you used the default profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install.md),
     you have already installed the Out of The Box (OOTB) Supply Chain Basic.
 
-- **Installed Tekton-Pipelines**<br>
-See [Install Tekton Pipelines](tekton/install-tekton.md).
-
-    >**Note:** If you used the default profiles provided in [Installing the Tanzu Application Platform Package and Profiles](install.md),
-    you have already installed Tekton Pipelines.
+- **Installed Tekton Pipelines**<br>
+  See [Install Tekton Pipelines](tekton/install-tekton.md).
+  If you used the default profiles provided in
+  [Installing the Tanzu Application Platform Package and Profiles](install.md), you have already
+  installed Tekton Pipelines.
 
   - **Set up a developer namespace to accommodate the developer Workload**<br>
 See [Set up developer namespaces to use installed packages](install-components.md#setup).
