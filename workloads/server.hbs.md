@@ -144,7 +144,7 @@ spec:
 ```
 
 Replace the `<YOUR-DEVELOPER-NAMESPACE>` with your developer namespace and `<INGRESS-DOMAIN>` with the domain name defined
-in `tap-values.yaml` during the installation. Also set the annotation `cert-manager.io/cluster-issuer` to the `ingress_issuer`
+in `tap-values.yaml` during the installation. Also, set the annotation `cert-manager.io/cluster-issuer` to the `shared.ingress_issuer` value
 set during installation or leave as `tap-ingress-selfsigned` to use the default one. Make sure to update the port exposed by
 your `Service` resource, in the previous snippet it is set to `8080`. 
 
