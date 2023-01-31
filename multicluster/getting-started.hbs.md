@@ -91,13 +91,22 @@ The Build cluster starts by building the necessary bundle for the workload that 
    kubectl get configmap tanzu-java-web-app-deliverable -n ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}' > deliverable.yaml
    ```
 
+1. (For 1.4.0 only) Patch the `Deliverable` created on the Run profile cluster to add missing labels. See [known issues](../release-notes.hbs.md#1-3-scc-ki).
+  
+  ```console
+  kubectl patch deliverable tanzu-java-web-app \
+    -n ${DEVELOPER_NAMESPACE} \
+    --type merge \
+    --patch "{\"metadata\":{\"labels\":{\"carto.run/workload-name\":\"tanzu-java-web-app\",\"carto.run/workload-namespace\":\"${DEVELOPER_NAMESPACE}\"}}}"
+  ```
+
 1. Take this `Deliverable` file to the Run profile clusters by running:
 
     ```bash
     kubectl apply -f deliverable.yaml --namespace ${DEVELOPER_NAMESPACE}
     ```
 
-1. Verify that this `Deliverable` is started and `Ready` by running:
+2. Verify that this `Deliverable` is started and `Ready` by running:
 
     ```bash
     kubectl get deliverables --namespace ${DEVELOPER_NAMESPACE}
@@ -111,7 +120,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
     tanzu-java-web-app   tapmulticloud.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-1a7beafd6389   delivery-basic   True    Ready    7m2s
     ```
 
-1. To test the application, query the URL for the application. Look for the `httpProxy` by running:
+3. To test the application, query the URL for the application. Look for the `httpProxy` by running:
 
     ```bash
     kubectl get httpproxy --namespace ${DEVELOPER_NAMESPACE}
@@ -130,4 +139,4 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
     Select the URL that corresponds to the domain you specified in your Run cluster's profile and enter it into a browser. Expect to see the message "Greetings from Spring Boot + Tanzu!".
 
-1. View the component in Tanzu Application Platform GUI, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/catalog/catalog-info.yaml) from the sample accelerator in GitHub.
+4. View the component in Tanzu Application Platform GUI, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/catalog/catalog-info.yaml) from the sample accelerator in GitHub.
