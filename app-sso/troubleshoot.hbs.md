@@ -55,8 +55,7 @@ If your `ClientRegistration` selects an `AuthServer` which serves a certificate 
 will not trust it by default.
 
 A `ca-certificates` service binding `Secret` allows to configure trust for custom CAs. [Your _Service
-Operator_ can export such a resource for you](service-operators/issuer-uri-and-tls.md#allow-workloads-to-trust-a-custom-ca-authserver)
-.
+Operator_ can export such a resource for you](service-operators/issuer-uri-and-tls.md#allow-workloads-to-trust-a-custom-ca-authserver).
 
 Once they have exported a `ca-certificates` service binding `Secret`, we can import it and add another service claim to
 the `Workload` to configure trust:
@@ -85,7 +84,7 @@ spec:
     # ...
 ```
 
-Workload can also be provided a `--service-ref` parameter like so:
+You can also provide the workload with a `--service-ref` parameter:
 
 ```shell
 --service-ref "authservers-ca-cert=v1:Secret:custom-ca-cert"
