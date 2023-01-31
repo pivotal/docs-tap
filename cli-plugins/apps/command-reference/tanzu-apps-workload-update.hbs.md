@@ -39,10 +39,10 @@ tanzu apps workload update my-workload --param-yaml maven=$"artifactId:hello-wor
       --dry-run                        print kubernetes resources to stdout rather than apply them to the cluster, messages normally on stdout will be sent to stderr
       --env "key=value" pair           environment variables represented as a "key=value" pair ("key-" to remove, flag can be used multiple times)
   -f, --file file path                 file path containing the description of a single workload, other flags are layered on top of this resource. Use value "-" to read from stdin
-      --git-branch branch              branch within the git repo to checkout
-      --git-commit SHA                 commit SHA within the git repo to checkout
+      --git-branch branch              branch within the Git repository to checkout
+      --git-commit SHA                 commit SHA within the Git repository to checkout
       --git-repo url                   git url to remote source code
-      --git-tag tag                    tag within the git repo to checkout
+      --git-tag tag                    tag within the Git repository to checkout
   -h, --help                           help for update
       --image image                    pre-built image, skips the source resolution and build phases of the supply chain
       --label "key=value" pair         label is represented as a "key=value" pair ("key-" to remove, flag can be used multiple times)

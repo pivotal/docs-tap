@@ -35,10 +35,10 @@ tanzu apps workload apply my-workload --param-yaml maven=$"artifactId:hello-worl
       --dry-run                        print kubernetes resources to stdout rather than apply them to the cluster, messages normally on stdout will be sent to stderr
       --env "key=value" pair           environment variables represented as a "key=value" pair ("key-" to remove, flag can be used multiple times)
   -f, --file file path                 file path containing the description of a single workload, other flags are layered on top of this resource. Use value "-" to read from stdin
-      --git-branch branch              branch within the git repo to checkout
-      --git-commit SHA                 commit SHA within the git repo to checkout
+      --git-branch branch              branch within the Git repository to checkout
+      --git-commit SHA                 commit SHA within the Git repository to checkout
       --git-repo url                   git url to remote source code
-      --git-tag tag                    tag within the git repo to checkout
+      --git-tag tag                    tag within the Git repository to checkout
   -h, --help                           help for apply
       --image image                    pre-built image, skips the source resolution and build phases of the supply chain
       --label "key=value" pair         label is represented as a "key=value" pair ("key-" to remove, flag can be used multiple times)
@@ -54,7 +54,7 @@ tanzu apps workload apply my-workload --param-yaml maven=$"artifactId:hello-worl
       --service-account string         name of service account permitted to create resources submitted by the supply chain (to unset, pass empty string "")
       --service-ref object reference   object reference for a service to bind to the workload "service-ref-name=apiVersion:kind:service-binding-name" ("service-ref-name-" to remove, flag can be used multiple times)
   -s, --source-image image             destination image repository where source code is staged before being built
-      --sub-path path                  relative path inside the repo or image to treat as application root (to unset, pass empty string "")
+      --sub-path path                  relative path inside the repository or image to treat as application root (to unset, pass empty string "")
       --tail                           show logs while waiting for workload to become ready
       --tail-timestamp                 show logs and add timestamp to each log line while waiting for workload to become ready
       --type type                      distinguish workload type

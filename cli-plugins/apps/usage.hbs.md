@@ -12,7 +12,7 @@ There are two ways to change the target cluster:
 
 There are also two ways to override the default kubeconfig:
 
-3. Set the env var `KUBECONFIG=<path>` to change the kubeconfig the Apps CLI plug-in should reference. All subsequent `tanzu apps` commands will reference the non-default kubeconfig assigned to the env var.
+3. Set the env var `KUBECONFIG=<path>` to change the kubeconfig the Apps CLI plug-in will reference. All subsequent `tanzu apps` commands will reference the non-default kubeconfig assigned to the env var.
 4. Include the  `--kubeconfig <path>` flag when running any `tanzu apps` command. All subsequent `tanzu apps` commands without the `--kubeconfig <path>` flag will continue to use the default kubeconfig.
 
 For more information about kubeconfig, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).

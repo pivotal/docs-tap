@@ -1,12 +1,12 @@
 # Create a workload
 
-This document describes how to create a workload from example source code with Tanzu Application Platform.
+This topic describes how to create a workload from example source code with Tanzu Application Platform.
 
 ## <a id='prerequisites'></a> Prerequisites
 
 The following prerequisites are required to use workloads with Tanzu Application Platform:
 
-- Install Kubernetes command line tool (kubectl). For information about installing kubectl, see [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
+- Install [kubectl](https://kubernetes.io/docs/tasks/tools/).
 - Install Tanzu Application Platform components on a Kubernetes cluster. See [Installing Tanzu Application Platform](../../install-intro.md).
 - Set your kubeconfig context to the prepared cluster `kubectl config use-context CONTEXT_NAME`.
 - Install Tanzu CLI. See [Install or update the Tanzu CLI and plug-ins](../../install-tanzu-cli.md#cli-and-plugin).
@@ -17,9 +17,9 @@ The following prerequisites are required to use workloads with Tanzu Application
 
 ### <a id="workload-git"></a> Create a workload from GitHub repository
 
-Tanzu Application Platform supports creating a workload from an existing git repository by setting the flags `--git-repo`, `--git-branch`, `--git-tag` and `--git-commit`, this will allow the out of the box [supply chain](../../scc/about.md) to get the source from the given repository to deploy the application.
+Create a workload from an existing Git repository by setting the flags `--git-repo`, `--git-branch`, `--git-tag`, and `--git-commit`. This allows the [supply chain](../../scc/about.md) to get the source from the given repository to deploy the application.
 
-To create a named workload and specify a git source code location, run:
+To create a named workload and specify a Git source code location, run:
 
  ```bash
 tanzu apps workload create pet-clinic --git-repo https://github.com/sample-accelerators/spring-petclinic --git-tag tap-1.1 --type web
@@ -32,7 +32,7 @@ Where:
 - `pet-clinic` is the name of the workload.
 - `--git-repo` is the location of the code to build the workload from.
 - `--git-branch` (optional) specifies which branch in the repository to pull the code from.
-- `--type` is used to distinguish the workload type.
+- `--type` used to distinguish the workload type.
 
 You can find the options available for specifying the workload in the command reference for [`workload create`](command-reference/tanzu-apps-workload-create.md), or you can run `tanzu apps workload create --help`.
 
@@ -46,13 +46,13 @@ Tanzu Application Platform supports creating a workload from an existing local p
     tanzu apps workload create pet-clinic --local-path /path/to/my/project --source-image springio/petclinic
     ```
 
-    Respond `Y` to the prompt about publishing local source code if the image needs to be updated.
+    Respond `Y` to the prompt to publish the local source code and update the image.
 
     Where:
 
     - `pet-clinic` is the name of the workload.
     - `--local-path` points to the directory where the source code is located.
-    - `--source-image` is the registry path where the local source code will be uploaded as an image.
+    - `--source-image` is the registry path where the local source code is uploaded as an image.
 
     **Exclude Files**
     When working with local source code, you can exclude files from the source code to be uploaded within the image by creating a file `.tanzuignore` at the root of the source code. You can find the options available to specify the workload in the command reference for [`workload create`](command-reference/tanzu-apps-workload-create.md), or run `tanzu apps workload create --help`.
@@ -74,7 +74,7 @@ Tanzu Application Platform supports creating a workload from an existing local p
 
 ### <a id="workload-image"></a> Create workload from an existing image
 
-Tanzu Application Platform supports creating a workload from an existing image by setting the flag `--image`. This will allow the out of the box [supply chain](../../scc/about.md) to get the given image from the registry to deploy the application.
+Creating a workload from an existing image by setting the flag `--image`. This allows the [supply chain](../../scc/about.md) to get the given image from the registry to deploy the application.
 
 An example on how to create a workload from image is as follows:
 
@@ -93,7 +93,7 @@ Respond `Y` to prompts to complete process.
 
 Tanzu Application Platform supports creating a workload from a Maven repository artifact ([Source-Controller](../../source-controller/about.md)) by setting some specific properties as yaml parameters in the workload when using the [supply chain](../../scc/about.md).
 
-The maven repository url is being set when the supply chain is created.
+The maven repository URL is being set when the supply chain is created.
 
 - Param name: maven
 - Param value:
@@ -115,7 +115,7 @@ The maven repository url is being set when the supply chain is created.
     }
     ```
 
-For example, to create a workload from a maven artifact, something like this could be done:
+For example, to create a workload from a maven artifact:
 
 ```bash
 # YAML
@@ -142,14 +142,14 @@ The intent of these bindings is to provide information from a service resource t
     - `pet-clinic` is the name of the workload to be updated.
     - `--service-ref` references the service using the format {service-ref-name}={apiVersion}:{kind}:{service-binding-name}.
 
-Check [services consumption documentation](../../getting-started/consume-services.md) to get more info on how to bind a service to a workload.
+Check [services consumption documentation](../../getting-started/consume-services.md) to get more information on how to bind a service to a workload.
 
 ## <a id="next-steps"></a> Next steps
 
-You can check workload details and status, add environment variables, export definitions, bind services and use flags with these [commands](command-reference.md). See more detailed explanation of flags usage for each command in [Command reference](command-reference.md).
+You can check workload details and status, add environment variables, export definitions, bind services, and use flags with these [commands](command-reference.md). For more information,[Command reference](command-reference.hbs.md).
 
-1. To check workload status and details, use `workload get` command and to get workload logs, use `workload tail` command. For more info about these, refer to [debug workload section](debug-workload.md).
-
+1. To check workload status and details, use `workload get` command and to get workload logs, use `workload tail` command.
+For more information about these, refer to [debug workload section](debug-workload.md).
 
 2. To add environment variables, run:
 
@@ -157,7 +157,7 @@ You can check workload details and status, add environment variables, export def
     tanzu apps workload update pet-clinic --env foo=bar
     ```
 
-3. To export the workload definition into git, or to migrate to another environment, run:
+3. To export the workload definition into Git, or to migrate to another environment, run:
 
     ```bash
     tanzu apps workload get pet-clinic --export

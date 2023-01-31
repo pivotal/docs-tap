@@ -17,7 +17,7 @@ Manage accelerators in a Kubernetes cluster
 * [tanzu accelerator delete](tanzu_accelerator_delete.md)	 - Delete an accelerator
 * [tanzu accelerator fragment](tanzu_accelerator_fragment.md)	 - Fragment commands
 * [tanzu accelerator generate](tanzu_accelerator_generate.md)	 - Generate project from accelerator
-* [tanzu accelerator get](tanzu_accelerator_get.md)	 - Get accelerator info
+* [tanzu accelerator get](tanzu_accelerator_get.md)	 - Get accelerator information.
 * [tanzu accelerator list](tanzu_accelerator_list.md)	 - List accelerators
 * [tanzu accelerator push](tanzu_accelerator_push.md)	 - Push local path to source image
 * [tanzu accelerator update](tanzu_accelerator_update.md)	 - Update an accelerator

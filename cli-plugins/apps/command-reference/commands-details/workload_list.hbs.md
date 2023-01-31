@@ -1,10 +1,10 @@
 # tanzu apps workload list
 
-`tanzu apps workload list` gets the workloads present in the cluster, either in the current namespace, in another namespace or in all namespaces.
+The `tanzu apps workload list` command gets the workloads present in the cluster, either in the current namespace, in another namespace, or in all namespaces.
 
 ## Default view
 
-The default view for workload list is a table with the workloads present in the cluster in the specified namespace. This table has, in each row, the name of the workload, the app it is related to, its status and how long it's been in the cluster.
+The default view for workload list is a table with the workloads present in the cluster in the specified namespace. This table has, in each row, the name of the workload, the app it is related to, its status, and how long it's been in the cluster.
 
 For example, in the default namespace
 ```bash
@@ -68,7 +68,7 @@ app3     <empty>   Unknown                       8d
 
 ### <a id="list-output"></a> `--output`, `-o`
 
-Allows to list all workloads in the specified namespace in yaml, yml or json format.
+Lists all workloads in the specified namespace in yaml, yml or json format.
 
 - yaml/yml
     ```yaml

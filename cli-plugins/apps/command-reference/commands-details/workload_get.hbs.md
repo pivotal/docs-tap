@@ -1,8 +1,8 @@
 # tanzu apps workload get
 
-`tanzu apps workload get` is a command used to retrieve information and status about a workload.
+Use the `tanzu apps workload get` command to retrieve information and status about a workload.
 
-You can view workload details at whenever. Some details are:
+Some available details are:
 
  - The status of the workload.
  - The source of the workload application.
@@ -13,13 +13,13 @@ You can view workload details at whenever. Some details are:
 
 ## Default view
 
-There are multiple sections in workload get command output. Following data is displayed:
+There are multiple sections in the workload get command output. Following data is displayed:
 
 - Name of the workload and its status.
 - Display source information of workload.
-- If the workload was matched with a supply chain, the information of its name and the status is displayed.
+- If the workload was matched with a supply chain, the information of its name and status is displayed.
 - Information and status of the individual steps that's defined in the supply chain for workload.
-- Any issue with the workload, the name and corresponding message.
+- Any issue with the workload, the name and the corresponding message.
 - Workload related resource information and status like services claims, related pods, knative services.
 
 At the very end of the command output, a hint to follow up commands is also displayed.

@@ -30,7 +30,7 @@ To install the Apps CLI plug-in:
     tanzu apps version
     ```
 
-    A version should be displayed in the output.
+    A version is be displayed in the output.
 
     If the following error is displayed during installation:
 
@@ -40,7 +40,7 @@ To install the Apps CLI plug-in:
     ✖  could not find plug-in "apps" in any known repositories
     ```
 
-    Verify that there is an `apps` entry in the `cli/manifest.yaml` file. It should look like this:
+    Verify that there is an `apps` entry in the `cli/manifest.yaml` file. It will look similar to this:
 
     ```yaml
     plugins:

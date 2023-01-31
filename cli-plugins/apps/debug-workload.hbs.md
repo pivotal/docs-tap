@@ -2,7 +2,7 @@
 
 ## <a id="check-build-logs"></a> Check build logs
 
-Once the workload is created, you can tail the workload to view the build and runtime logs. For more info about `tail` command, refer to [workload tail](command-reference/tanzu-apps-workload-tail.md) in command reference section.
+After the workload is created, you can tail the workload to view the build and runtime logs. For more information about `tail` command, see [workload tail](command-reference/tanzu-apps-workload-tail.md).
 
 - Check logs by running:
 
@@ -45,7 +45,7 @@ There are known errors that will make the workload enter in an error or unknown 
 		- *Resolution*:
 			- Run  `docker logout registry` and `docker login registry` commands and specify the valid credentials for the registry.
 	- *Message*: Writing `registry/project/workload:latest`: Writing image: HEAD Unexpected status code *400 Bad Request* (HEAD responses have no body, use GET for details)
-		- *Cause*: Certain registries like Harbor or GCR have a concept of `Project`. 400 Bad request is sent when either the project does not exists, the user does not have access to it, or the path in the `—source-image` flag is missing either project or repo.
+		- *Cause*: Certain registries like Harbor or GCR have a concept of `Project`. 400 Bad request is sent when either the project does not exists, the user does not have access to it, or the path in the `—source-image` flag is missing either project or repository.
 		- *Resolution*:
 			- Fix the path in the `—source-image` flag value to point to a valid repo path.
 
@@ -61,9 +61,9 @@ There are known errors that will make the workload enter in an error or unknown 
 	- *Possible Causes*:
 		- The git `url/tag/branch/commit` params passed in the workload are not valid.
 			- *Resolution*: Fix the invalid git param by using *tanzu apps workload apply*
-		- The git repo is not accessible from the cluster
+		- The git repository is not accessible from the cluster
 			- *Resolution*: Configure your cluster networking or your Git repo networking so that they can communicate with each other.
-		- The namespace is missing the git secret for communicating with the private repository
+		- The namespace is missing the Git secret for communicating with the private repository
 			- *Resolution*: Checkout this page on how to setup Git Authentication for Private repositories [Link to [Git authentication](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-scc-git-auth.html)]
 
 - *TemplateRejectedByAPIServer*

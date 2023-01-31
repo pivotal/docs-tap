@@ -57,7 +57,7 @@ Packages:
 
 ## <a id='example2'></a>Example #2: What packages & CVEs does my source code contain?
 
-### Determining source code org, repo, and commit SHA
+### Determining source code org, repository, and commit SHA
 
 In order to query a source scan for vulnerabilities, you need a Git org and Git repository, or the commit SHA.  Find these by examining the source scan resource.
 
@@ -72,7 +72,7 @@ For example:
 ```console
 kubectl describe sourcescan tanzu-java-web-app -n my-apps
 ```
-In the resource look for the `Spec.Blob` field. Within, there's `Revision` and `URL`. 
+In the resource look for the `Spec.Blob` field. Within, there's `Revision` and `URL`.
 
 For example:
 

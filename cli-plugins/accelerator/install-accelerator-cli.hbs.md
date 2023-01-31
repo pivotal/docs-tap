@@ -38,7 +38,7 @@ To install the Accelerator CLI plug-in:
     ✖  could not find plug-in "accelerator" in any known repositories
     ```
 
-    Verify that there is an `accelerator` entry in the `cli/manifest.yaml` file. It should look like this:
+    Verify that there is an `accelerator` entry in the `cli/manifest.yaml` file. It will look similar to this:
 
     ```yaml
     plugins:
