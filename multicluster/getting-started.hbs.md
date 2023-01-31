@@ -51,14 +51,14 @@ The Build cluster starts by building the necessary bundle for the workload that 
 1. To exit the monitoring session, press **CTRL** + **C**.
 
 1. Generate the `deliverable.yaml` file.
-
-    TAP 1.3.2 and later
-    : Follow these steps to generate the `deliverable.yaml` file for Tanzu Application Platform v1.3.2 and later:
+   {{#unless vars.hide_content}}
+    TAP 1.3.5 and later
+    : Follow these steps to generate the `deliverable.yaml` file for Tanzu Application Platform v1.3.5 and later:
 
         1. Verify that your supply chain has produced the necessary `ConfigMap` containing `Deliverable` content produced by the `Workload`:
 
             ```bash
-            kubectl get configmap tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}'
+            kubectl get configmap tanzu-java-web-app-deliverable --namespace ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}'
             ```
 
             The output resembles the following:
@@ -85,7 +85,43 @@ The Build cluster starts by building the necessary bundle for the workload that 
                     branch: main
             ```
 
-        1. Store the `Deliverable` content, which you can take to the Run profile clusters from the `ConfigMap` by running:
+        2. Store the `Deliverable` content, which you can take to the Run profile clusters from the `ConfigMap` by running:
+
+           ```console
+           kubectl get configmap tanzu-java-web-app-deliverable -n ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}' > deliverable.yaml
+           ```
+    {{/unless}}
+    TAP 1.3.2 and 1.3.4
+    : Follow these steps to generate the `deliverable.yaml` file for Tanzu Application Platform v1.3.2 and 1.3.4:
+
+        3. Verify that your supply chain has produced the necessary `ConfigMap` containing `Deliverable` content produced by the `Workload`:
+
+            ```bash
+            kubectl get configmap tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}'
+            ```
+
+            The output resembles the following:
+
+            ```yaml
+            apiVersion: carto.run/v1alpha1
+            kind: Deliverable
+            metadata:
+              name: tanzu-java-web-app
+              labels:
+                app.kubernetes.io/component: deliverable
+                app.tanzu.vmware.com/deliverable-type: web
+            spec:
+              params:
+              - name: gitops_ssh_secret
+                value: ""
+              source:
+                git:
+                  url: http://git-server.default.svc.cluster.local/app-namespace/tanzu-java-web-app
+                  ref:
+                    branch: main
+            ```
+
+        4. Store the `Deliverable` content, which you can take to the Run profile clusters from the `ConfigMap` by running:
 
            ```console
            kubectl get configmap tanzu-java-web-app -n ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}' > deliverable.yaml
@@ -94,7 +130,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
     TAP 1.3.0
     : Follow these steps to generate the `deliverable.yaml` file for Tanzu Application Platform v1.3.0:
 
-        1. Verify that your supply chain has produced the necessary `Deliverable` for the `Workload` by running:
+        5. Verify that your supply chain has produced the necessary `Deliverable` for the `Workload` by running:
 
            ```bash
            kubectl get deliverable --namespace ${DEVELOPER_NAMESPACE}
@@ -110,13 +146,13 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
            The `Deliverable` contains the reference to the `source`. In this case, it is a bundle on the image registry you specified for the supply chain. The supply chains can also leverage Git repositories instead of ImageRepositories, but that's beyond the scope of this tutorial. 
 
-        1. Create a `Deliverable` after verifying there's a `Deliver` on the build cluster. Copy its content to a file that you can take to the Run profile clusters:
+        6. Create a `Deliverable` after verifying there's a `Deliver` on the build cluster. Copy its content to a file that you can take to the Run profile clusters:
 
            ```bash
            kubectl get deliverable tanzu-java-web-app --namespace ${DEVELOPER_NAMESPACE} -oyaml > deliverable.yaml
            ```
 
-        1. Delete the `ownerReferences` and `status` sections from the `deliverable.yaml`.
+        7. Delete the `ownerReferences` and `status` sections from the `deliverable.yaml`.
 
            After editing, the file will look like the following:
 
@@ -146,13 +182,22 @@ The Build cluster starts by building the necessary bundle for the workload that 
                image: tapmulticluster.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-xxxx
            ```
 
-1. Take this `Deliverable` file to the Run profile clusters by running:
+2. Take this `Deliverable` file to the Run profile clusters by running:
 
     ```bash
     kubectl apply -f deliverable.yaml --namespace ${DEVELOPER_NAMESPACE}
     ```
 
-1. Verify that this `Deliverable` is started and `Ready` by running:
+3. (For 1.3.2 and 1.3.4 only) Patch the `Deliverable` created on the Run profile cluster to add missing labels. See [known issues](../release-notes.hbs.md#1-3-2-supplychain-resolved).
+
+    ```
+    kubectl patch deliverable tanzu-java-web-app \
+      -n ${DEVELOPER_NAMESPACE} \
+      --type merge \
+      --patch "{\"metadata\":{\"labels\":{\"carto.run/workload-name\":\"tanzu-java-web-app\",\"carto.run/workload-namespace\":\"${DEVELOPER_NAMESPACE}\"}}}"
+    ```
+
+4. Verify that this `Deliverable` is started and `Ready` by running:
 
     ```bash
     kubectl get deliverables --namespace ${DEVELOPER_NAMESPACE}
@@ -166,7 +211,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
     tanzu-java-web-app   tapmulticloud.azurecr.io/tap-multi-build-dev/tanzu-java-web-app-default-bundle:xxxx-xxxx-xxxx-xxxx-1a7beafd6389   delivery-basic   True    Ready    7m2s
     ```
 
-1. To test the application, query the URL for the application. Look for the `httpProxy` by running:
+5. To test the application, query the URL for the application. Look for the `httpProxy` by running:
 
     ```bash
     kubectl get httpproxy --namespace ${DEVELOPER_NAMESPACE}
@@ -185,4 +230,4 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
     Select the URL that corresponds to the domain you specified in your Run cluster's profile and enter it into a browser. Expect to see the message "Greetings from Spring Boot + Tanzu!".
 
-1. View the component in Tanzu Application Platform GUI, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/catalog/catalog-info.yaml) from the sample accelerator in GitHub.
+6. View the component in Tanzu Application Platform GUI, by following [these steps](../tap-gui/catalog/catalog-operations.md#register-comp) and using the [catalog file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/catalog/catalog-info.yaml) from the sample accelerator in GitHub.
