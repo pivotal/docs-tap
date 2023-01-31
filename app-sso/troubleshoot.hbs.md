@@ -54,8 +54,9 @@ Validate the `spec.OpenId.clientSecretRef`.
 If your `ClientRegistration` selects an `AuthServer` which serves a certificate from a custom CA, then your `Workload`
 will not trust it by default.
 
-A `ca-certificates` service binding `Secret` allows to configure trust for custom CAs. [Your _Service
-Operator_ can export such a resource for you](service-operators/issuer-uri-and-tls.md#allow-workloads-to-trust-a-custom-ca-authserver).
+A `ca-certificates` service binding `Secret` allows to configure trust for custom CAs. 
+Your Service Operator can export this resource for you. 
+For more information, see [Allow `Workloads` to trust a custom CA `AuthServer`](service-operators/issuer-uri-and-tls.md#trust-custom-ca).
 
 Once they have exported a `ca-certificates` service binding `Secret`, we can import it and add another service claim to
 the `Workload` to configure trust:
