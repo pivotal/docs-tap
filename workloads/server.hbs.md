@@ -169,7 +169,7 @@ kubectl get ClusterConfigTemplate server-template -oyaml > secure-server-templat
 ```
 2. Extract `.spec.ytt` field from this file and create another file
 ```console
-yq '.spec.ytt' secure-server-template.yaml > spec-ytt.yaml
+yq eval '.spec.ytt' secure-server-template.yaml > spec-ytt.yaml
 ```
 3. Edit `spec-ytt.yaml` to add the `Ingress` resource.
    1. The `Ingress` resource snippet looks like this:
@@ -284,12 +284,12 @@ data:
 4. Add the above to the `.spec.ytt` property in `secure-server-template.yaml`
 
 ```console
-SPEC_YTT=$(cat spec-ytt.yaml) yq -i '.spec.ytt |= strenv(SPEC_YTT)' secure-server-template.yaml
+SPEC_YTT=$(cat spec-ytt.yaml) yq eval -i '.spec.ytt |= strenv(SPEC_YTT)' secure-server-template.yaml
 ```
 
 5. Change the name of the `ClusterConfigTemplate` to `secure-server-template`
 ```console
-yq -i '.metadata.name = "secure-server-template"' secure-server-template.yaml
+yq eval -i '.metadata.name = "secure-server-template"' secure-server-template.yaml
 ```
 
 6. Create the new `ClusterConfigTemplate`
