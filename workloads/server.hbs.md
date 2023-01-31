@@ -107,7 +107,7 @@ The following values are valid within the `ports` argument:
 | `name` | A human-readable name for the port. Defaults to `port` if not set. |
 
 
-## <a id="params"></a> Securing `server` workloads
+## <a id="exposing-server-workloads"></a> Exposing `server` workloads outside the cluster
 
 ### Manual configuration for HTTP workloads
 For http `server` workloads you can expose them by creating an Ingress resource and using cert-manager to provision TLS signed certificates. Taking the `spring-sensors-consumer-web`
@@ -153,8 +153,7 @@ Your `server` workload can be accessed with https like so:
 curl -k https://spring-sensors-consumer-web.<INGRESS-DOMAIN>
 ```
 
-
-### Creating a new workload type that will secure _server_ workloads by default
+### Define your own workload type that will expose _server_ workloads outside the cluster
 
 >**Note** Make sure you delete the `Ingress` resource previously created.
 
