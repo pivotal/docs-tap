@@ -13,7 +13,7 @@ The Tanzu CLI is a command-line interface that connects you to Tanzu. For exampl
 
 ## <a id="itanzu-cli-architecture"></a>Tanzu CLI Architecture
 
-The Tanzu CLI has a pluggable architecture. Plug-ins contain CLI commands. Here are the CLI plug-ins that may be installed with Tanzu Application Platform.
+The Tanzu CLI has a pluggable architecture. Plug-ins contain CLI commands. Here are the CLI plug-ins that can be installed with Tanzu Application Platform.
 
 - Accelerator: manage accelerator's in a Kubernetes cluster
 - Apps: manage application workloads running on workload clusters
