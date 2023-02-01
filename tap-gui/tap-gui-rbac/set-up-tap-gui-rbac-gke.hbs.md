@@ -57,9 +57,7 @@ in the Backstage documentation.
 
 ### <a id="configure-cluster"></a> Configure the GKE cluster with the OIDC provider
 
-To configure the cluster with the OIDC provider's credentials:
-
-(SECTION TO BE ADDED)
+To add a redirect config on the OIDC side, please refer to the following documentation: [Use external identity providers to authenticate to GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/oidc).
 
 ### <a id="configure-tap-gui"></a> Configure the Tanzu Application Platform GUI
 
