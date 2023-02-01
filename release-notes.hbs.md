@@ -41,6 +41,14 @@ This release has the following known issues, listed by area and component.
   The vulnerabilities are still found during the image scan after the binaries are built and packaged
   as images.
 
+#### <a id="1-4-1-security-analysis-gui-known-issues"></a>Security Analysis GUI
+
+- **Dashboard may show empty after an upgrade from TAP 1.3 to TAP 1.4:**
+
+  In TAP 1.4, the Security Analysis GUI dashboard will now display information from the Metadata Store. Previously, the Security Analysis GUI dashboard would poll the Kubernetes clusters for information.
+
+  To repopulate the dashboard, source and image scans can be ran. This can be done by triggering a workload to run with a new commit to the source code. Or by deleting the corresponding SourceScan and/or ImageScan on the Kubernetes cluster.
+
 ### <a id='1-4-1-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
