@@ -84,8 +84,8 @@ and push it to the given registry to be used in the workload.
     The file must contain a list of file paths to exclude from the image including the file itself
     and the directories must not end with the system path separator (`/` or `\`).
 
-    For more info regarding the `.tanzuignore` file
-    see [.tanzuignorefile](how-to-guides.hbs.md#tanzuignore-file) section of the how-to-guides.
+    For more information regarding the `.tanzuignore` file
+    see [.tanzuignorefile](how-to-examples.hbs.md#tanzuignore-file) section of the how-to-guides.
 
 ### <a id="workload-image"></a> Create workload from an existing image
 

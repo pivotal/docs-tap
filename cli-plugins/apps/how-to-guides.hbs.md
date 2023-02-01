@@ -17,7 +17,7 @@ For example:
 
 ```bash
 tanzu apps workload apply my-workload --local-path path/to/my/repo -s registry.url.nip.io/my-package/my-image --type web --registry-ca-cert path/to/cacert/mycert.nip.io.crt --registry-username my-username --registry-password my-password
-❓ Publish source in "path/to/my/repo" to "registry.url.nip.io/my-package/my-image"? It may be visible to others who can pull images from that repository [Yn]: y
+❓ Publish source in "path/to/my/repo" to "registry.url.nip.io/my-package/my-image"? It might be visible to others who can pull images from that repository [Yn]: y
 Publishing source in "path/to/my/repo" to "registry.url.nip.io/my-package/my-image"...
 37.53 kB / 37.53 kB [-----------------------------------------------------------------------------------] 100.00% 57.67 kB p/s
 📥 Published source
@@ -439,7 +439,9 @@ This flag is provided to support use cases where more than one application is in
 
       ```
 
-**Note:** in cases where a workload must be created from local source code it's recommended to just set the `--local-path` value to point directly to the directory containing the code to be deployed rather than using `--sub-path` to reduce the total amount of code that must be uploaded to create the workload.
+**Note** In cases where a workload must be created from local source code, to reduce the total amount
+of code that is uploaded, it is recommended to set the `--local-path` value to point directly to the
+directory containing the code rather than using `--sub-path`.
 
 ## <a id='tanzuignore-file-usage'> .tanzuignore file
 
