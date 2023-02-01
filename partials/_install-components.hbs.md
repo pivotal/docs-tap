@@ -10,7 +10,6 @@ Before installing the packages, be sure to complete the prerequisites, configure
 and verify the cluster, accept the EULA, and install the Tanzu CLI with any required plug-ins.
 For more information, see [Prerequisites](/docs-tap/prerequisites.hbs.md).
 
-
 ## <a id='individual-package-toc'></a> Install pages for individual Tanzu Application Platform packages
 
 - [Install API Auto Registration](/docs-tap/api-auto-registration/installation.hbs.md)
@@ -32,7 +31,7 @@ For more information, see [Prerequisites](/docs-tap/prerequisites.hbs.md).
 - [Install Service Bindings](/docs-tap/service-bindings/install-service-bindings.hbs.md)
 - [Install Services Toolkit](/docs-tap/services-toolkit/install-services-toolkit.hbs.md)
 - [Install Source Controller](/docs-tap/source-controller/install-source-controller.hbs.md)
-- [Install Spring Boot Conventions](/docs-tap/spring-boot-conventions/install-spring-boot-conventions.hbs.md)
+- [Install Spring Boot conventions](/docs-tap/spring-boot-conventions/install-spring-boot-conventions.hbs.md)
 - [Install Supply Chain Choreographer](/docs-tap/scc/install-scc.hbs.md)
 - [Install Supply Chain Security Tools - Store](/docs-tap/scst-store/install-scst-store.hbs.md)
 - [Install Supply Chain Security Tools - Policy Controller](/docs-tap/scst-policy/install-scst-policy.hbs.md)
@@ -41,7 +40,6 @@ For more information, see [Prerequisites](/docs-tap/prerequisites.hbs.md).
 - [Install Tanzu Build Service](/docs-tap/tanzu-build-service/install-tbs.hbs.md)
 - [Install Tekton](/docs-tap/tekton/install-tekton.hbs.md)
 - [Install Telemetry](/docs-tap/telemetry/install-telemetry.hbs.md)
-
 
 ## <a id='verify'></a> Verify the installed packages
 

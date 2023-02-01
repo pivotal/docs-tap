@@ -14,6 +14,12 @@ This release has the following security fixes, listed by area and component.
 
 The following issues, listed by area and component, are resolved in this release.
 
+#### <a id="1-4-1-supply-chain-templates-resolved"></a> Out of the Box Supply Chain Templates
+
+Fixed Deliverable content written into ConfigMaps in a multicluster setup. Labels to attribute the Deliverable content with the supply chain and template are added to be consistent with the Delivery on a non-Build profile cluster.
+
+For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
+
 ### <a id='1-4-1-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
@@ -267,8 +273,8 @@ This release has the following breaking changes, listed by area and component.
 #### <a id="1-4-0-supply-chain-templates"></a> Out of the Box Supply Chain Templates
 
 - In a multicluster setup, when a Deliverable is created on a Build profile cluster,
-the ConfigMap it is placed in is renamed from `<workload-name>` to `<workload-name>-deliverable`. Any automation
-depending on obtaining the Deliverable content by the former name must be updated to use the new name.
+the ConfigMap it's in is renamed from `<workload-name>` to `<workload-name>-deliverable`. Any automation
+that depends on obtaining the Deliverable content by the former name must be updated with the new name.
 For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 #### <a id="1-4-0-intellij-bc"></a> Tanzu Developer Tools for IntelliJ
@@ -367,10 +373,7 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id="1-4-0-supply-chain-templates-resolved"></a> Out of the Box Supply Chain Templates
 
-Fixed deliverable content written into ConfigMaps in multicluster setup:
-
-- ConfigMap is renamed to avoid conflict with `config-template`.
-- Labels to attribute the Deliverable content with the supply chain and template are now added to be consistent with the ordinary Delivery on a non-Build profile cluster.
+Fixed deliverable content written into ConfigMaps in multicluster setup. ConfigMap is renamed to avoid conflict with `config-template`.
 
 For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
@@ -394,6 +397,7 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 - The UI no longer shows the error `Unable to retrieve details from Image Provider Stage` when the
   Builder is not available or configured. It now correctly shows the same error as the CLI,
   `Builder default is not ready`.
+- Build logs are now displayed when the **Image Provider** stage fails 
 
 ---
 
@@ -536,6 +540,10 @@ in favor of the [Policy Controller](./scst-policy/overview.hbs.md).
 
 - [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration
   information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
+
+#### <a id="1-3-scc-ki"></a> Out of the Box Supply Chain Templates
+
+In a Build profile cluster, Deliverables will be created with the labels to associate them with their Workload missing. As a workaround, they will have to be manually injected.  For more information, see [Multicluster Tanzu Application Platform overview](../docs-tap/multicluster/about.hbs.md).
 
 #### <a id="1-3-tbs-deprecations"></a> Tanzu Build Service
 

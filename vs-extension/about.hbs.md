@@ -20,8 +20,8 @@ The extension has the following features:
 
 - **Debug workloads directly on the cluster**
 
-  Debug your application in a production-like environment by debugging on a Kubernetes cluster of yours
-  that has Tanzu Application Platform.
+  Debug your application in a production-like environment by debugging on a Kubernetes cluster of
+  yours that has Tanzu Application Platform.
   The similarity of an environment to production relies on keeping dependencies updated, among other
   variables.
 
