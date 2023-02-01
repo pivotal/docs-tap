@@ -617,11 +617,13 @@ You can choose one of the following options to mitigate the issue:
 
 Follow these steps to trust the Shared Ingress Issuer's Certificate Authority in Tanzu Application Platform:
 
-1. Extract the ClusterIssuer's Certificate Authority from cert-manager:
+1. Extract the ClusterIssuer's Certificate Authority. For default installations where `ingress_issuer` is not set in tap_values.yml, this can be extracted from cert-manager:
 
     ```console
     kubectl get secret tap-ingress-selfsigned-root-ca -n cert-manager -o yaml | yq .data | cut -d' ' -f2 | head -1 | base64 -d
     ```
+
+Note: If your installation of TAP overrode the default `ingress_issuer`, the above code snippet may not be the way to extract your ClusterIssuer's Certificate Authority. Please referr to your issuer's documentation as to how to find it.
 
 1. Add the certificate to the list of trusted certificate authorities by appending the certificate authority to the `shared.ca_cert_data` field in your `tap-values.yml`.
 
