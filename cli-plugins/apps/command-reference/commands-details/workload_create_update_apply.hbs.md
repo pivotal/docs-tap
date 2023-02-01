@@ -5,8 +5,7 @@ cluster through a supply chain.
 
 ## Default view
 
-In the output of the `workload apply` command, the specification for the workload is shown as if they
-were in a YAML file.
+In the output of the `tanzu apps workload apply` command, the specification for the workload is shown in YAML file format.
 
 <details><summary>Example</summary>
 
@@ -41,9 +40,8 @@ To get status: "tanzu apps workload get tanzu-java-web-app"
 </details>
 
 In the first section, the definition of workload is displayed. It's followed by a dialog box asking
-`whether the workload should be created or updated`. In the last section, if workload is created or
-updated, a couple of hints are displayed about the next set of commands that are used for a follow up.
-Each flag used in this example is explained in detail in the following section.
+`whether the workload should be created or updated`. In the last section, if a workload is created or
+updated, some hints are displayed about the next steps.
 
 ## <a id='workload-apply-flags'></a> Workload Apply flags
 
@@ -81,7 +79,7 @@ Create workload:
 
 </details>
 
-To delete an annotation, use `-` after it's name.
+To delete an annotation, use `-` after its name.
 
 <details><summary>Example</summary>
 
@@ -107,7 +105,7 @@ Update workload:
 
 ### <a id="apply-app"></a> `--app`
 
-The app of which the workload is part of. This is part of the workload metadata section.
+This is the application the workload is part of. This is part of the workload metadata section.
 
 <details><summary>Example</summary>
 
@@ -144,8 +142,8 @@ To get status: "tanzu apps workload get tanzu-app"
 
 ### <a id="apply-build-env"></a> `--build-env`
 
-Sets environment variables to be used in the **build** phase by the build resources in the supply
-chain where some **build** specific behavior is set or changed.
+Sets environment variables to use in the build phase by the build resources in the supply
+chain.
 
 <details><summary>Example</summary>
 
@@ -377,9 +375,7 @@ Create workload:
 
 ### <a id="apply-git-repo"></a> `--git-repo`
 
-The Git repository from which the workload is created. With this, `--git-tag`, `--git-commit` or
-`--git-branch` is specified.
-
+The Git repository from which the workload is created. You can specify `--git-tag`, or `--git-commit`.
 ### <a id="apply-git-branch"></a> `--git-branch`
 
 The branch in a Git repository from where the workload is created. This is specified with a commit
@@ -488,7 +484,7 @@ Create workload:
 
 ### <a id="apply-label"></a> `--label`
 
-Sets the label to be applied to the workload, to specify more than one label set the flag multiple
+Sets the label to be applied to the workload. To specify more than one label, set the flag multiple
 times.
 
 <details><summary>Example</summary>
@@ -610,8 +606,8 @@ Create workload:
 
 ### <a id="apply-live-update"></a> `--live-update`
 
-Enable this to deploy the workload once, save changes to the code, and see those changes reflected within
-seconds in the workload running on the cluster.
+Enable this to deploy the workload once, save changes to the code, and see those changes reflected
+in the workload running on the cluster.
 
 <details><summary>Example</summary>
 
@@ -711,9 +707,9 @@ Sets the path to a source in the local machine from where the workload creates a
 application source. The local path can be a directory, a JAR, a ZIP, or a WAR file. Java/Spring Boot
 compiled binaries are also supported. This flag must be used with `--source-image` flag.
 
->**Note:**If Java/Spring compiled binary is passed instead of source code, the command will take
->less time to apply the workload since the build pack will skip the compiling steps and start uploading
->the image.
+**Note** If Java/Spring compiled binary is passed instead of source code, the command will take
+less time to apply the workload since the build pack will skip the compiling steps and start uploading
+the image.
 
 When working with local source code, you can exclude files from the source code to be uploaded within
 the image by creating a file `.tanzuignore` at the root of the source code.
@@ -989,12 +985,12 @@ flag. The value of this flag can also be specified through `TANZU_APPS_REGISTRY_
 ### <a id="apply-registry-token"></a> `--registry-token`
 
 Used for token authentication in the private registry. This flag is set as
-`TANZU_APPS_REGISTRY_TOKEN` envvar.
+`TANZU_APPS_REGISTRY_TOKEN` environment variable.
 
 ### <a id="apply-registry-username"></a> `--registry-username`
 
 Often used with `--registry-password` to set private registry credentials. Can be provided using
-`TANZU_APPS_REGISTRY_USERNAME` envvar to avoid setting it every time in the command.
+`TANZU_APPS_REGISTRY_USERNAME` environment variable to avoid setting it every time in the command.
 
 ### <a id="apply-request-cpu"></a> `--request-cpu`
 
@@ -1064,7 +1060,7 @@ Create workload:
 
 ### <a id="apply-service-account"></a> `--service-account`
 
-Refers to the service account to be associated with the workload. A service account provides an
+Refers to the service account to associate with the workload. A service account provides an
 identity for a workload object.
 
 <details><summary>Example</summary>
@@ -1122,7 +1118,7 @@ Update workload:
 
 Binds a service to a workload to provide the information from a service resource to an application.
 
-|>**Note:**| For more information see [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-getting-started-consume-services.html#stk-bind).
+**Note** For more information see [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-getting-started-consume-services.html#stk-bind).
 
 <details><summary>Example</summary>
 
@@ -1341,8 +1337,8 @@ tanzu-java-web-app-build-1-build-pod[prepare] 2022-06-15T11:28:01.365372427-05:0
 
 ### <a id="apply-type"></a> `--type`
 
-Sets the type of the workload by adding the label `apps.tanzu.vmware.com/workload-type`, which is used
-as a matcher by supply chains. Use `TANZU_APPS_TYPE` envvar to have a default value for this flag.
+Sets the type of workload by adding the label `apps.tanzu.vmware.com/workload-type`, which is used
+as a matcher by supply chains. Use the `TANZU_APPS_TYPE` environment variable to have a default value for this flag.
 
 <details><summary>Example</summary>
 
@@ -1431,7 +1427,7 @@ Workload "tanzu-java-web-app" is ready
 
 ### <a id="apply-yes"></a> `--yes`, `-y`
 
-Assumes yes on all the survey prompts.
+Assumes `--yes` on all the survey prompts.
 
 <details><summary>Example</summary>
 

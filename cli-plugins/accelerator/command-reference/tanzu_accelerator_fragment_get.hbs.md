@@ -1,10 +1,10 @@
 ## tanzu accelerator fragment get
 
-Get accelerator fragment info
+Get accelerator fragment information.
 
 ### Synopsis
 
-Get accelerator fragment info.
+Get accelerator fragment information.
 
 ```
 tanzu accelerator fragment get [flags]
