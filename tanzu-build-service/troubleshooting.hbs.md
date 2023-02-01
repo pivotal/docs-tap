@@ -15,7 +15,7 @@ Amazon Elastic Kubernetes Service (EKS) cluster to Kubernetes v1.23, build pods 
  for the condition'
 ```
 
-### Explanation
+### Cause
 
 This is due to the CSIMigrationAWS in this Kubernetes version, which requires users
 to install the [Amazon EBS CSI driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html)
@@ -30,14 +30,16 @@ Tanzu Application Platform uses the default storage class which uses EBS volumes
 Follow the AWS documentation to install the [Amazon EBS CSI driver](https://docs.aws.amazon.com/eks/latest/userguide/ebs-csi.html)
 before installing Tanzu Application Platform, or before upgrading to Kubernetes v1.23.
 
-## Smart-warmer-image-fetcher reports ErrImagePull due to dockerd's layer depth limitation
+---
+
+## <a id="smart-warmer-image-fetcher"></a> Smart-warmer-image-fetcher reports ErrImagePull due to dockerd's layer depth limitation
 
 ### Symptom
 
 When using dockerd as the cluster's container runtime, you might see the `smart-warmer-image-fetcher` pods
 report a status of `ErrImagePull`.
 
-### Explanation
+### Cause
 
 This error might be due to dockerd's layer depth limitation, in which the maximum
 supported image layer depth is 125.
@@ -76,6 +78,8 @@ For OpenShift, see:
 - The [Red Hat Hybrid Cloud blog](https://cloud.redhat.com/blog/containerd-support-for-windows-containers-in-openshift)
 - The [Red Hat Openshift documentation](https://docs.openshift.com/container-platform/3.11/crio/crio_runtime.html)
 
+---
+
 ## <a id="max-message-size"></a> Nodes fail due to "trying to send message larger than max" error
 
 ### Symptom
@@ -86,7 +90,7 @@ You see the following error, or similar, in a node status:
 Warning ContainerGCFailed 119s (x2523 over 42h) kubelet rpc error: code = ResourceExhausted desc = grpc: trying to send message larger than max (16779959 vs. 16777216)
 ```
 
-### Explanation
+### Cause
 
 This is due to the way that the container runtime interface (CRI) handles garbage
 collection for unused images and containers.
@@ -95,6 +99,8 @@ collection for unused images and containers.
 
 Do not use Docker as the CRI because it is not supported. Some versions of EKS
 default to Docker as the runtime.
+
+---
 
 ## <a id="old-build-cache-used"></a> Build platform uses the old build cache after upgrade to new stack
 
