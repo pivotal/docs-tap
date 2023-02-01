@@ -58,7 +58,7 @@ tanzu apps workload apply tanzu-java-web-app --type=web
 You can use this to test which applications can function well as serverless web applications,
 and which are more suited to the `server` application style.
 
-## <a id="using"></a> Communication between `web` workloads
+## <a id="communication"></a> Communication between `web` workloads
 
 When a workload of the type `web` is created, a Knative service is deployed to the cluster. To access your application,
 you will need the URL for the route created by the Knative Service. You can obtain it by running one of the commands below:
