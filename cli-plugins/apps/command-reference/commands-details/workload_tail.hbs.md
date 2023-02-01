@@ -39,9 +39,9 @@ spring-pet-clinic-build-1-build-pod[detect] paketo-buildpacks/image-labels      
 
 ### <a id="tail-component"></a> `--component`
 
-Set the component from which the tail command should stream the logs, the values that the flag can
+Set the component from which the tail command should stream the logs. The values that the flag can
 take depends on the final deployed pods label `app.kubernetes.io/component`, for example, `build`,
-`run` and `config-writer`
+`run` and `config-writer`.
 
 ```console
 tanzu apps workload tail pet-clinic --component build

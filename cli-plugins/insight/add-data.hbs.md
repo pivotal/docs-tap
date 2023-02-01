@@ -6,7 +6,7 @@ This topic describes how to add vulnerability scan reports or Software Bill of M
 
 Currently, only CycloneDX XML and JSON files are accepted.
 
-Source commits and image files have been tested. Additional file types may work, but are not fully supported (for example, JAR files).
+Source commits and image files have been tested. Additional file types might work, but are not fully supported (for example, JAR files).
 
 >**Note** If you are not using a source commit or image file, you must ensure the `component.version` field in the CycloneDX file is non-null.
 
