@@ -119,7 +119,7 @@ For more information, see [Create a workload](create-workload.hbs.md).
 Check workload status with the `tanzu apps workload get` and `tanzu apps workload tail` commands.
 
 Use `tanzu apps workload get` to see the workload specification, the resources attached to it, their
-status and any associated high-level error messages (should they exist).
+status and any associated high-level error messages (if they exist).
 
 Use `tanzu apps workload tail` to see testing, scanning, build, configuration, deployment, and
 runtime logs associated with a workload and its progression through the supply chain.
