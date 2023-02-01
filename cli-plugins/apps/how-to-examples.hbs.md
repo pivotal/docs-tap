@@ -24,7 +24,7 @@ For example:
 
 ```console
 tanzu apps workload apply my-workload --local-path path/to/my/repo -s registry.url.nip.io/my-package/my-image --type web --registry-ca-cert path/to/cacert/mycert.nip.io.crt --registry-username my-username --registry-password my-password
-❓ Publish source in "path/to/my/repo" to "registry.url.nip.io/my-package/my-image"? It may be visible to others who can pull images from that repository [Yn]: y
+❓ Publish source in "path/to/my/repo" to "registry.url.nip.io/my-package/my-image"? It might be visible to others who can pull images from that repository [Yn]: y
 Publishing source in "path/to/my/repo" to "registry.url.nip.io/my-package/my-image"...
 37.53 kB / 37.53 kB [-----------------------------------------------------------------------------------] 100.00% 57.67 kB p/s
 📥 Published source
@@ -459,10 +459,9 @@ repository.
 
       ```
 
-**Note** In cases where a workload must be created from local source code it's recommended to set
-the `--local-path` value to point directly to the directory containing the code to be deployed
-rather than using `--sub-path` to reduce the total amount of code that must be uploaded to create
-the workload.
+**Note** In cases where a workload must be created from local source code, to reduce the total amount
+of code that is uploaded, it is recommended to set the `--local-path` value to point directly to the
+directory containing the code rather than using `--sub-path`.
 
 ## <a id='tanzuignore-file-usage'> .tanzuignore file
 
@@ -485,7 +484,7 @@ provides no value when deployed.
 
 Directories are supported (these must not end with the system separator, e.g. `/` or `\`).
 
-Individual files may be listed.
+Individual files can be listed.
 
 And comments (which start with `#`) can be included.
 
@@ -548,7 +547,7 @@ Error: workload "default/rmq-sample-app" already exists
 
 The `--update-strategy` flag accepts two values (`merge` (default) and `replace`).
 
-This flag may be used to control whether configuration properties and values passed through `--file
+This flag might be used to control whether configuration properties and values passed through `--file
 workload.yaml` for an existing workload `merge` with, or completely `replace` (or overwrite),
 existing on-cluster properties or values set for a workload.
 
