@@ -12,10 +12,11 @@ This topic contains release notes for Tanzu Application Platform v1.3
 #### <a id='scc-bug-fix'></a> Supply Chain Choreographer
 
 - Out of the Box Supply Chain Templates
-Fixed Deliverable content written into ConfigMaps in multicluster setup:
-ConfigMap is renamed to avoid conflict with `config-template`.
-Labels to attribute the Deliverable content with the supply chain and template are now added to be consistent with the Delivery on a non-Build profile cluster.
-For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
+  - Fixed Deliverable content written into ConfigMaps in multicluster setup.
+  - ConfigMap is renamed to avoid conflict with `config-template`.
+  - Labels to attribute the Deliverable content with the supply chain and template are now added to be consistent with the Delivery on a non-Build profile cluster.
+  - Tanzu Application Platform GUI Supply Chain plugin displays deliverables on run clusters with workloads from build clusters.
+  - For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 ### <a id='1-3-5-breaking-change'></a> Breaking changes
 
