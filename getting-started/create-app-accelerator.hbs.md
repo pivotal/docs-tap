@@ -43,7 +43,7 @@ Here are some configurable parameters:
 <CONFIGURABLE_PARAMETER_2>
 ```
 
-1. Open the `accelerator.yaml` and begin populating the file section using the snippet below. This section contains important information such as the accelerator's display name, description, tags, and more. 
+2. Open the `accelerator.yaml` and begin populating the file section using the snippet below. This section contains important information such as the accelerator's display name, description, tags, and more. 
 
     >**Tip** See the [Creating accelerator.yaml doc](/application-accelerator/creating-accelerators/accelerator-yaml.hbs.md#accelerator-metadata) for all the possible parameters available in this section.
 
@@ -56,13 +56,13 @@ accelerator:
     - simple
     - getting-started
 ```
-2. Add the configuration parameters using the snippet below. This configures what parameters will be displayed in the accelerator form during project creation. 
+3. Add the configuration parameters using the snippet below. This configures what parameters will be displayed in the accelerator form during project creation. 
 
     In this example snippet, the field `firstConfigurableParameter` takes in text that is provided by the user. The `secondConfigurableParameter` does the same thing except it will only be displayed if the user checks `secondConfigurableParameterCheckbox` because of the `dependsOn` parameter.
 
     > **Tip** For more information on possible options, see the [Creating accelerator.yaml doc](/application-accelerator/creating-accelerators/accelerator-yaml.hbs.md#accelerator-options).
 ```yaml
-# Place this after the 'tags' section
+# Place this after the 'tags' section from the previous step
   options:
     - name: firstConfigurableParameter
       inputType: text
@@ -80,4 +80,68 @@ accelerator:
       dependsOn: 
         name: secondConfigurableParameterCheckbox
 ```
-3. 
+4. Add the `engine` configuration using the snippet below and save the file.
+
+    The `engine` configuration tells the `accelerator engine` behind the scenes what needs to be done to the project files during project creation. In this example, this instructs the engine to replace `<CONFIGURABLE_PARAMETER_1>` and, if the checkbox is checked, `<CONFIGURABLE_PARAMETER_2>` with the parameters that the user passes in during project creation. 
+    
+    This also leverages a simple [Spring Expression Language (SpEL)](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions) syntax to convert the text input to all lowercase.
+
+    >**Tip** For more information about the possible parameters for use within the `engine` section, see the [Creating accelerator.yaml doc](/application-accelerator/creating-accelerators/accelerator-yaml.hbs.md#engine).
+
+```yaml
+# Place this after the `options` section from the previous step
+engine:
+  merge:
+    - include: [ "README.md" ]
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: "<CONFIGURABLE_PARAMETER_1>"
+              with: "#firstConfigurableParameter.toLowerCase()"
+        - condition: "#secondConfigurableParameterCheckbox"
+          chain:
+          - type: ReplaceText
+            substitutions:
+              - text: "<CONFIGURABLE_PARAMETER_2>"
+                with: "#secondConfigurableParameter.toLowerCase()"
+```
+### Test the accelerator
+It is important to quickly test and iterate on accelerators as they are being developed to ensure that the resulting project is being generated as expected.
+
+1. Using any terminal of your choice which has access to the `tanzu` command, run the following command to test the accelerator created earlier.
+
+    This step takes the local `accelerator.yaml` and project files, configures the project using the parameters passed in through the `--options` field, and outputs the project to a specified directory.
+
+    >**Note** this step requires that the `accelerator` endpoint is exposed and accessible.
+
+```bash
+tanzu accelerator generate-from-local -- \
+    --accelerator-path simple-accelerator="$(pwd)" \ # The path to new accelerator
+    --server-url TANZU-APPLICATION-ACCELERATOR-URL \ # Example: https://accelerator.mytapcluster.myorg.com
+    --options '{"firstConfigurableParameter": "Parameter 1", "secondConfigurableParameterCheckbox": true, "secondConfigurableParameter":"Parameter 2"}' \
+    -o "${HOME}/simple-accelerator/" # Change this path to change where the project folder gets generated
+```
+2. Once the project is generated, a status message will be displayed.
+```
+generated project simple-accelerator
+```
+3. Navigate to output directory and validate that the `README.md` has been updated based on the `--options` specified in the `generate-from-local` command above.
+```
+## Tanzu Application Accelerator Sample Project
+
+This is some very important placeholder text that should describe what this project can do and how to use it.
+
+Here are some configurable parameters:
+
+parameter 1
+parameter 2
+```
+
+## Upload the project to a git repository
+The Application Accelerator system and Tanzu Application Platform GUI depends on an accelerator project living inside a git repository. For this example, [GitHub](https://github.com/) will be used.
+
+1. [Create a new repository in GitHub](https://docs.github.com/en/get-started/quickstart/create-a-repo) and ensure that the "Visibility" is set to "Public". Click "Create Repository".
+2. To push your accelerator project (**not** the generated project from `generate-from-local`) to GitHub, follow the instructions that GitHub provides for the *"…or create a new repository on the command line"* that is shown after clicking "Create Repository". The instructions can also be found on the ["Adding locally hosted code to GitHub"](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git) page.
+3. Verify that the project has been successfully pushed to the target repository.
+
+## Register the accelerator to the Tanzu Application Platform GUI
