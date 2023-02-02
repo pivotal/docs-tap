@@ -346,7 +346,7 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 - The UI no longer shows the error `Unable to retrieve details from Image Provider Stage` when the
   Builder is not available or configured. It now correctly shows the same error as the CLI,
   `Builder default is not ready`.
-- Build logs are now displayed when the **Image Provider** stage fails 
+- Build logs are now displayed when the **Image Provider** stage fails
 
 ---
 
@@ -446,6 +446,9 @@ For more information, see [Troubleshoot API Auto Registration](api-auto-registra
 - The **No Associated Policy** tab in Workload Build Vulnerabilities does not show workloads that lack
   associated scan policies.
 - The CVEs bar graph in Workload Build Vulnerabilities sometimes cuts numbers off.
+- After upgrading to Tanzu Application Platform v1.4 from v1.3, the Security Analysis GUI dashboard
+  might appear empty because the dashboard now displays information from the Metadata Store.
+  To repopulate the dashboard, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#empty-dash-after-upgrade).
 
 ### <a id='1-4-0-deprecations'></a> Deprecations
 
