@@ -323,7 +323,7 @@ Fixed deliverable content written into ConfigMaps in multicluster setup:
 
 - ConfigMap is renamed to avoid conflict with `config-template`.
 - Labels to attribute the Deliverable content with the supply chain and template are now added to be consistent with the ordinary Delivery on a non-Build profile cluster.
-
+- Tanzu Application Platform GUI Supply Chain plugin displays deliverables on run clusters with workloads from build clusters.
 For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 #### <a id="1-4-0-apps-cli-plugin-ri"></a> Tanzu CLI Apps Plug-in
