@@ -41,13 +41,15 @@ This release has the following known issues, listed by area and component.
   The vulnerabilities are still found during the image scan after the binaries are built and packaged
   as images.
 
-#### <a id="1-4-1-security-analysis-gui-known-issues"></a>Security Analysis GUI
+#### <a id="1-4-1-sa-gui-known-issues"></a>Security Analysis GUI
 
-- **Dashboard may show empty after an upgrade from TAP 1.3 to TAP 1.4:**
+- When upgrading to Tanzu Application Platform v1.4 from v1.3, the Security Analysis GUI dashboard
+  might appear empty because it displays information from the Metadata Store.
+  Previously, the Security Analysis GUI dashboard polled the Kubernetes clusters for information.
 
-  In TAP 1.4, the Security Analysis GUI dashboard will now display information from the Metadata Store. Previously, the Security Analysis GUI dashboard would poll the Kubernetes clusters for information.
-
-  To repopulate the dashboard, source and image scans can be ran. This can be done by triggering a workload to run with a new commit to the source code. Or by deleting the corresponding SourceScan and/or ImageScan on the Kubernetes cluster.
+  To repopulate the dashboard, run source and image scans by triggering a workload to run with a new
+  commit to the source code. You can also do so by deleting the corresponding SourceScan or
+  ImageScan on the Kubernetes cluster.
 
 ### <a id='1-4-1-deprecations'></a> Deprecations
 
@@ -405,7 +407,7 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 - The UI no longer shows the error `Unable to retrieve details from Image Provider Stage` when the
   Builder is not available or configured. It now correctly shows the same error as the CLI,
   `Builder default is not ready`.
-- Build logs are now displayed when the **Image Provider** stage fails 
+- Build logs are now displayed when the **Image Provider** stage fails
 
 ---
 
