@@ -43,13 +43,9 @@ This release has the following known issues, listed by area and component.
 
 #### <a id="1-4-1-sa-gui-known-issues"></a>Security Analysis GUI
 
-- When upgrading to Tanzu Application Platform v1.4 from v1.3, the Security Analysis GUI dashboard
-  might appear empty because it displays information from the Metadata Store.
-  Previously, the Security Analysis GUI dashboard polled the Kubernetes clusters for information.
-
-  To repopulate the dashboard, run source and image scans by triggering a workload to run with a new
-  commit to the source code. You can also do so by deleting the corresponding SourceScan or
-  ImageScan on the Kubernetes cluster.
+- After upgrading to Tanzu Application Platform v1.4 from v1.3, the Security Analysis GUI dashboard
+  might appear empty because the dashboard now displays information from the Metadata Store.
+  To repopulate the dashboard, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#empty-dash-after-upgrade).
 
 ### <a id='1-4-1-deprecations'></a> Deprecations
 

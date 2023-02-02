@@ -336,6 +336,30 @@ app_config:
       - host: acc-server.accelerator-system.svc.cluster.local
 ```
 
+## <a id='security-analysis'></a> Security Analysis page
+
+Here are troubleshooting steps for errors affecting the **Security Analysis** page.
+
+### <a id='empty-dash-after-upgrade'></a> Empty dashboard after upgrading from Tanzu Application Platform v1.3
+
+#### Symptom
+
+After upgrading to Tanzu Application Platform v1.4 from v1.3, the Security Analysis GUI dashboard
+appears empty.
+
+#### Cause
+
+From Tanzu Application Platform v1.4, the dashboard displays information from the Metadata Store.
+Previously, the Security Analysis GUI dashboard polled the Kubernetes clusters for information.
+
+#### Solution
+
+Repopulate the dashboard by running new source scans and image scans. To do so, do one of the following
+actions:
+
+- Trigger a workload to run with a new commit to the source code
+- Delete the relevant SourceScan or ImageScan on the Kubernetes cluster
+
 ## Supply Chain Choreographer plug-in
 
 These are troubleshooting steps for the [Supply Chain Choreographer plug-in](plugins/scc-tap-gui.hbs.md).
