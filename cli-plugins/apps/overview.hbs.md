@@ -18,4 +18,4 @@ For information about available commands, see [Command Reference](command-refere
 
 ## <a id='usage-and-examples'></a>Usage and examples
 
-For information about how to use the Apps CLI plug-in, see [Usage and Examples](usage.md).
+For information about how to use the Apps CLI plug-in, see [Usage and Examples](usage.hbs.md).
