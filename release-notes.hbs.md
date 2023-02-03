@@ -6,19 +6,26 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 **Release Date**: January 10, 2023
 
-### <a id="1-4-0-tap-new-features"></a> Tanzu Application Platform new features
+### <a id="1-4-0-whats-new"></a> What's new in Tanzu Application Platform
+
+This release includes the following platform-wide enhancements.
+
+#### <a id='1-4-0-new-platform-features'></a> New platform-wide features
 
 - [Shared Ingress Issuer](security-and-compliance/ingress-certificates.hbs.md) for secure ingress
   communication by default. [CNRs](cloud-native-runtimes/about.hbs.md), [AppSSO](app-sso/about.hbs.md),
   and [Tanzu Application Platform GUI](tap-gui/about.hbs.md) use this issuer to secure
   ingress. Over future releases, VMware plans to incrementally update all Tanzu Application Platform components
   to support the shared ingress issuer.
-- [Namespace Provisioner](namespace-provisioner/about.hbs.md) provides a secure, automated
-  way for Platform Operators to provision namespaces with the resources and proper namespace-level
-  privileges required for their workloads to function as intended.
 - [Tanzu Application Platform Telemetry Reports](telemetry/overview.hbs.md#tanzu-application-platform-usage-reports)
   offers the option to enroll in a usage reporting program that provides a usage summary of your
   Tanzu Application Platform.
+
+#### <a id='1-4-0-new-components'></a> New components
+
+- [Namespace Provisioner](namespace-provisioner/about.hbs.md) provides a secure, automated
+  way for Platform Operators to provision namespaces with the resources and proper namespace-level
+  privileges required for their workloads to function as intended.
 - [Tanzu Developer Tools for Visual Studio](vs-extension/about.hbs.md) is an IDE extension for
   Visual Studio to help you develop, providing the rapid iteration experience for .NET Core apps in
   Tanzu Application Platform.
