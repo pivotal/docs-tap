@@ -41,6 +41,12 @@ This release has the following known issues, listed by area and component.
   The vulnerabilities are still found during the image scan after the binaries are built and packaged
   as images.
 
+#### <a id="1-4-1-sa-gui-known-issues"></a>Security Analysis GUI
+
+- After upgrading to Tanzu Application Platform v1.4 from v1.3, the Security Analysis GUI dashboard
+  might appear empty because the dashboard now displays information from the Metadata Store.
+  To repopulate the dashboard, see [Troubleshooting](tap-gui/troubleshooting.hbs.md#empty-dash-after-upgrade).
+
 ### <a id='1-4-1-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
@@ -397,7 +403,7 @@ For more information, see [Multicluster Tanzu Application Platform overview](mul
 - The UI no longer shows the error `Unable to retrieve details from Image Provider Stage` when the
   Builder is not available or configured. It now correctly shows the same error as the CLI,
   `Builder default is not ready`.
-- Build logs are now displayed when the **Image Provider** stage fails 
+- Build logs are now displayed when the **Image Provider** stage fails
 
 ---
 
