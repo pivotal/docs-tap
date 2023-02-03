@@ -10,6 +10,11 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ### <a id='1-5-0-new-component-features'></a> New features by component and area
 
+### <a id='1-5-0-appsso-new-features'></a> Application Single Sign-On (AppSSO)
+
+- Adds a consistent roles claim mapping API across OpenID, LDAP, and SAML identity providers
+- Introduces roles claim filtering API within an `AuthServer`s identity provider configuration.
+
 ### <a id='1-5-0-cert-manager-ncf'></a> cert-manager
 
 - `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`. 
@@ -30,6 +35,10 @@ This release has the following security fixes, listed by area and component.
 ### <a id='1-5-0-resolved-issues'></a> Resolved issues
 
 The following issues, listed by area and component, are resolved in this release.
+
+### <a id='1-5-0-appsso-resolved-issues'></a> Application Single Sign-On (AppSSO)
+
+- Resolves redirect URI issue with insecure http redirection on TKGm clusters.
 
 ### <a id='1-5-0-known-issues'></a> Known issues
 
