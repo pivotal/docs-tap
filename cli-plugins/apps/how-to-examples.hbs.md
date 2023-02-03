@@ -1,4 +1,4 @@
-# How-to Examples
+# Workload Examples
 
 Use the following flags with the Apps CLI plug-in.
 
@@ -22,41 +22,22 @@ To pass the certificate through flags, specify:
 For example:
 
 ```console
-tanzu apps workload apply my-workload --local-path path/to/my/repo -s registry.url.nip.io/my-package/my-image --type web --registry-ca-cert path/to/cacert/mycert.nip.io.crt --registry-username my-username --registry-password my-password
-❓ Publish source in "path/to/my/repo" to "registry.url.nip.io/my-package/my-image"? It might be visible to others who can pull images from that repository [Yn]: y
-Publishing source in "path/to/my/repo" to "registry.url.nip.io/my-package/my-image"...
-37.53 kB / 37.53 kB [-----------------------------------------------------------------------------------] 100.00% 57.67 kB p/s
-📥 Published source
+tanzu apps workload apply WORKLOAD --local-path PATH-TO-REPO -s registry.url.nip.io/PACKAGE/IMAGE --type web --registry-ca-cert PATH-TO-CA-CERT.nip.io.crt --registry-username USERNAME --registry-password PASSWORD
 
-🔎 Create workload:
-      1 + |---
-      2 + |apiVersion: carto.run/v1alpha1
-      3 + |kind: Workload
-      4 + |metadata:
-      5 + |  labels:
-      6 + |    apps.tanzu.vmware.com/workload-type: web
-      7 + |  name: my-workload
-      8 + |  namespace: default
-      9 + |spec:
-     10 + |  source:
-     11 + |    image: registry.url.nip.io/my-package/my-image:latest@sha256:caeb7e3a0e3ae0659f74d01095b6fdfe0d3c4a12856a15ac67ad6cd3b9e43648
-❓ Do you want to create this workload? [yN]:
-```
-
-Also, the same command can be run as:
+Alternatively, the same command can be run as:
 
 ```console
-export TANZU_APPS_REGISTRY_CA_CERT=path/to/cacert/mycert.nip.io.crt
-export TANZU_APPS_REGISTRY_PASSWORD=my-username
-export TANZU_APPS_REGISTRY_USERNAME=my-password
+export TANZU_APPS_REGISTRY_CA_CERT=PATH-TO-CA-CERT.nip.io.crt
+export TANZU_APPS_REGISTRY_PASSWORD=USERNAME
+export TANZU_APPS_REGISTRY_USERNAME=PASSWORD
 
-tanzu apps workload apply my-workload --local-path path/to/my/repo -s registry.url.nip.io/my-package/my-image
+tanzu apps workload apply WORKLOAD --local-path PATH-TO-REPO -s registry.url.nip.io/PACKAGE/IMAGE
 ```
 ## <a id='live-updated-debug'> --live-update and --debug
 
-`--live-update` enables local source code changes to be reflected on the running workload
-quickly. This is particularly valuable when iterating on features  require the workload to
-be deployed and running to validate.
+Use the `--live-update` flag to ensure that local source code changes are reflected quickly
+on the running workload. This is particularly valuable when iterating on features that require
+the workload to be deployed and running to validate.
 
 Live update is ideally situated for running from within one of our supported IDE extensions, but it
 can also be utilized independently as shown in the following Spring Boot application example:
@@ -83,14 +64,14 @@ Prerequisites: [Tilt](https://docs.tilt.dev/install.html) must be installed on t
 
    ```console
    tanzu apps workload apply tanzu-java-web-app --live-update --local-path . -s
-   gcr.io/my-project/tanzu-java-web-app-live-update -y
+   gcr.io/PROJECT/tanzu-java-web-app-live-update -y
    ```
 
    Expected output:
 
    ```console
    The files and directories listed in the .tanzuignore file are being excluded from the uploaded source code.
-   Publishing source in "." to "gcr.io/my-project/tanzu-java-web-app-live-update"...
+   Publishing source in "." to "gcr.io/PROJECT/tanzu-java-web-app-live-update"...
    📥 Published source
 
    🔎 Create workload:
@@ -105,7 +86,7 @@ Prerequisites: [Tilt](https://docs.tilt.dev/install.html) must be installed on t
        9 + |  - name: live-update
       10 + |    value: "true"
       11 + |  source:
-      12 + |    image: gcr.io/my-project/tanzu-java-web-app-live-update:latest@sha256:3c9fd738492a23ac532a709301fcf0c9aa2a8761b2b9347bdbab52ce9404264b
+      12 + |    image: gcr.io/PROJECT/tanzu-java-web-app-live-update:latest@sha256:3c9fd738492a23ac532a709301fcf0c9aa2a8761b2b9347bdbab52ce9404264b
    👍 Created workload "tanzu-java-web-app"
 
    To see logs:   "tanzu apps workload tail tanzu-java-web-app --timestamp --since 1h"
@@ -153,7 +134,7 @@ Prerequisites: [Tilt](https://docs.tilt.dev/install.html) must be installed on t
 
 ## <a id='export-usage'> --export
 
-Use the `--export` flag to retrieve the workload definition with all the
+Use this flag to retrieve the workload definition with all the
 extraneous, cluster-specific, properties/values removed. For example, the status and metadata text
 boxes like `creationTimestamp`. This allows you to apply the workload definition to a different
 environment without having to make significant edits.
@@ -230,7 +211,7 @@ When querying the workload with `--export`, the default export format in YAML is
 
 ## <a id='export-usage'> --output
 
-Use the `--output` flag to retrieve the workload including all the cluster-specifics. The
+Use this flag to retrieve the workload including all the cluster-specifics. The
 `--output` flag can also be used in conjunction with the `--export` flag to set the export format
 as `json`, `yaml`, or `yml`.
 
@@ -403,12 +384,12 @@ status:
 
 ## <a id='subpath-usage'> --sub-path
 
-Use this to support use cases where more than one application is in a single project or repository.
+Use this flag to support use cases where more than one application is in a single project or repository.
 
-- Using `--sub-path` when creating a workload from a Git repository
+Use `--sub-path` when creating a workload from a Git repository
 
     ```console
-    tanzu apps workload apply subpathtester --git-repo https://github.com/path-to-repo/my-repo --git-branch main --type web --sub-path my-subpath
+    tanzu apps workload apply subpathtester --git-repo https://github.com/PATH-TO-REPO --git-branch main --type web --sub-path SUBPATH
 
     🔎 Create workload:
         1 + |---
@@ -424,18 +405,19 @@ Use this to support use cases where more than one application is in a single pro
        11 + |    git:
        12 + |      ref:
        13 + |        branch: main
-       14 + |      url: https://github.com/path-to-repo/my-repo
-       15 + |    subPath: my-subpath
+       14 + |      url: https://github.com/path-to-repo/PATH-TO-REPO
+       15 + |    subPath: SUBPATH
     ❓ Do you want to create this workload? [yN]:
     ```
 
-- Using `--sub-path` when creating a workload from local source code
-  - In the directory of the project you want to create the workload from
+Use `--sub-path` when you create a workload from local source code.
+In the directory of the project you want to create the workload from:
 
       ```console
-      tanzu apps workload apply my-workload --local-path . -s gcr.io/my-registry/my-workload-image --sub-path subpath_folder
-      ❓ Publish source in "." to "gcr.io/my-registry/my-workload-image"? It might be visible to others who can pull images from that repository Yes
-      Publishing source in "." to "gcr.io/my-registry/my-workload-image"...
+      tanzu apps workload apply WORKLOAD --local-path . -s gcr.io/REGISTRY/WORKLOAD-IMAGE --sub-path SUBPATH
+
+      ❓ Publish source in "." to "gcr.io/REGISTRY/WORKLOAD-IMAGE"? It might be visible to others who can pull images from that repository Yes
+      Publishing source in "." to "gcr.io/REGISTRY/WORKLOAD-IMAGE"...
       📥 Published source
 
       🔎 Create workload:
@@ -443,12 +425,12 @@ Use this to support use cases where more than one application is in a single pro
             2 + |apiVersion: carto.run/v1alpha1
             3 + |kind: Workload
             4 + |metadata:
-            5 + |  name: myworkload
+            5 + |  name: WORKLOAD
             6 + |  namespace: default
             7 + |spec:
             8 + |  source:
-            9 + |    image: gcr.io/my-registry/my-workload-image:latest@sha256:f28c5fedd0e902800e6df9605ce5e20a8e835df9e87b1a0aa256666ea179fc3f
-           10 + |    subPath: subpath_folder
+            9 + |    image: gcr.io/REGISTRY/my-workload-image:latest@sha256:f28c5fedd0e902800e6df9605ce5e20a8e835df9e87b1a0aa256666ea179fc3f
+           10 + |    subPath: SUBPATH
       ❓ Do you want to create this workload? [yN]:
 
       ```
@@ -531,11 +513,11 @@ Error: workload "default/rmq-sample-app" already exists
 
 ## <a id='update-strategy-usage'> --update-strategy
 
-The `--update-strategy` flag accepts two values (`merge` (default) and `replace`).
-
 Use this flag to control whether configuration properties and values passed through
 `--file workload.yaml` for an existing workload `merge` with, or `replace` (overwrite),
 existing on-cluster properties or values set for a workload.
+
+The `--update-strategy` flag accepts two values: `merge` (default), and `replace`.
 
 With the default `merge`:
 
@@ -593,7 +575,7 @@ After saving the file, to verify how both of the update strategy options behave,
 tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy merge # if flag is not specified, merge is taken as default
 ```
 
-Running the earlier command produces the following output:
+This produces the following output:
 
 ```console
 ❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files will replace rather than merge existing configuration. The change will take place in the January 2024 TAP release (use "--update-strategy" to control strategy explicitly).
@@ -607,7 +589,7 @@ By contrast, use `replace` as follows:
 tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy replace
 ```
 
-Running the `replace` earlier command produces the following output:
+This produces the following output:
 
 ```console
 ❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files will replace rather than merge existing configuration. The change will take place in the January 2024 TAP release (use "--update-strategy" to control strategy explicitly).
@@ -629,8 +611,7 @@ Running the `replace` earlier command produces the following output:
 ❓ Really update the workload "spring-petclinic"? [yN]:
 ```
 
->**Note** With this last, the lines that were deleted in the YAML file are deleted as well in the
->workload running in the cluster.
-> The only text boxes that remain exactly as they were created are the system populated
->metadata text boxes (`resourceVersion`, `uuid`, `generation`, `creationTimestamp`,
->`deletionTimestamp`).
+The lines that were deleted in the YAML file are deleted as well in the workload running in the
+cluster. The only text boxes that remain exactly as they were created are the system populated
+metadata text boxes (`resourceVersion`, `uuid`, `generation`, `creationTimestamp`,
+`deletionTimestamp`).

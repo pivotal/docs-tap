@@ -15,5 +15,3 @@ starts on demand, a constellation of microservices that functions as a logical a
 a small hello-world test application.
 
 For information about installing the Apps CLI plug-in, see [Install Apps CLI plug-in](tutorials.hbs.md)
-
-For Apps CLI plug-in usage examples, see [How-to examples](how-to-examples.hbs.md).

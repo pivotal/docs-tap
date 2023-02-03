@@ -101,6 +101,7 @@ docs.vmware.com is built.
                 - [Apps CLI plug-in overview](cli-plugins/apps/overview.hbs.md)
                 - [Install Apps CLI plug-in](cli-plugins/apps/tutorials.hbs.md)
                 - [Create a workload](cli-plugins/apps/create-workload.hbs.md)
+                - [Workload examples](how-to-examples.hbs)
                 - [Debug a workload](cli-plugins/apps/debug-workload.hbs.md)
                 - [Commands details](cli-plugins/apps/command-reference/commands-details.hbs.md)
                     - [Commands details](cli-plugins/apps/command-reference/commands-details.hbs.md)
