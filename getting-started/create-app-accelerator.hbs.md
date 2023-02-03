@@ -145,3 +145,35 @@ The Application Accelerator system and Tanzu Application Platform GUI depends on
 3. Verify that the project has been successfully pushed to the target repository.
 
 ## Register the accelerator to the Tanzu Application Platform GUI
+Now that the accelerator has been committed to its own repository, the accelerator can be registered to the Tanzu Application Platform GUI for developers to generate projects from the newly created accelerator.
+1. **Using the URL of the git repository and branch name created above**, run the following command using the Tanzu CLI to register the accelerator to the Tanzu Application Platform GUI.
+
+> **Tip** `tanzu accelerator create` works with monorepositories as well. Add the `--git-sub-path` parameter with the desired sub-path to fetch the accelerator project in that directory. For more information, see the [`tanzu accelerator create` doc](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/cli-plugins-accelerator-command-reference-tanzu_accelerator_create.html).
+```bash
+tanzu accelerator create simple-accelerator --git-repository https://github.com/myusername/myprojectrepository --branch main
+```
+2. Navigate to your organizations instance of the Tanzu Application Platform GUI
+<!-- TODO: Insert home screen image of TAP GUI here -->
+3. On the left-hand navigation pane, click on the "**Create**" button.
+<!-- TODO: Insert image of highlight Create button in TAP GUI here -->
+4. Using the search bar towards the left-hand side of the page, search for "simple accelerator". Once found, click "**Choose**" on the accelerator card.
+<!-- TODO: Insert image of searching for the accelerator in TAP GUI here -->
+5. Proceed to configure the project by filling in the parameters in the form.
+   
+   Notice that the options that were defined in the `accelerator.yaml` are displayed for the user to configure. Also note that the `secondConfigurableParameter` `dependsOn` `secondConfigurableParameterCheckbox` will be hidden depending on if the checkbox is selected or not.
+   <!-- TODO: Insert image of the configuration page in TAP GUI here -->
+
+6. Once configuration is complete, click the "**Next**" button to proceed to the next step.
+
+> **Note** Depending on your organization's Tanzu Application Platform configuration, you may be presented with an option to create a git repository. In this guide, this will be skipped and will be covered in the ["Deploy an app on Tanzu Application Platform" guide](deploy-first-app.hbs.md).
+
+7. Once on the "Review and generate" step, review the parameters and click "**Generate Accelerator**".
+8. Explore the zip file of the configured project and verify that the project has been generated with the parameters that were provided during the configuration stage.
+
+<!-- TODO: Insert image of explore page showing changed parameters -->
+
+## Learn more about Application Accelerator
+* For advanced functionality when creating accelerators, such as accelerator best practices, accelerator fragments, engine transforms, and more, see the ["Application Accelerator" docs](/application-accelerator/about-application-accelerator.hbs.md)
+* For additional information on Application Accelerator configurations, see the ["Configure Application Accelerator" docs](/application-accelerator/configuration.hbs.md)
+* For information on installing the Application Accelerator extension for VS Code, see the ["Application Accelerator Visual Studio Code extension" docs](/application-accelerator/vscode.hbs.md)
+* For general accelerator troubleshooting, see the ["Troubleshooting Application Accelerator for VMware Tanzu" doc](/application-accelerator/troubleshooting.hbs.md)
