@@ -10,6 +10,10 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ### <a id='1-5-0-new-component-features'></a> New features by component and area
 
+### <a id='1-5-0-cert-manager-ncf'></a> cert-manager
+
+- `cert-manager.tanzu.vmware.com` has upgraded to [cert-manager `v1.11.0`](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0)
+
 ### <a id='1-5-0-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
