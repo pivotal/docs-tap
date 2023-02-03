@@ -10,7 +10,7 @@ When you create the workshop content, you can use data variables to automaticall
 
 These data variables can display a YAML/JSON resource file in the workshop content with values already filled out. You can have executable commands that have the data variables substituted with values given as arguments to the commands.
 
-For commands run in the shell environment, a number of predefined environment variables are also available that can be referenced directly.
+For commands run in the shell environment, you can also reference a number of predefined environment variables.
 
 Key environment variables are:
 
