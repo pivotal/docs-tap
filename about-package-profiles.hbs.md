@@ -64,7 +64,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[Convention Service for VMware Tanzu](convention-service/about.md)**
 
-  The convention service provides a means for people in operational roles to express their hard-won
+  Convention Service provides a means for people in operational roles to express their hard-won
   knowledge and opinions about how apps run on Kubernetes as a convention. The convention
   service applies these opinions to fleets of developer workloads as they are deployed to the
   platform, saving time for operators and developers.

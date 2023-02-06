@@ -39,7 +39,7 @@ To troubleshoot, confirm the following:
 
    Where `APP-NAME` is the name of your app.
 
-1. Confirm that the convention service workload YAML file does not contain property `management.endpoints.web.exposure.include` overrides
+1. Confirm that the Convention Service workload YAML file does not contain property `management.endpoints.web.exposure.include` overrides.
 
 See also:
 
