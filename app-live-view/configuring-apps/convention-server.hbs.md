@@ -140,5 +140,5 @@ status:
 
 In your output:
 
-- `status.template.metadata.labels` shows the list of applied labels by Application Live View Convention Server.
-- `status.template.metadata.annotations` shows the list of applied annotations by Application Live View Convention Server.
+- `status.template.metadata.labels` shows the list of applied labels by Application Live View convention server.
+- `status.template.metadata.annotations` shows the list of applied annotations by Application Live View convention server.
