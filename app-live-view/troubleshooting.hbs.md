@@ -265,14 +265,14 @@ It is not possible to override the labels set by the Application Live View Conve
 for the workload deployment in Tanzu Application Platform.
 The labels `tanzu.app.live.view`, `tanzu.app.live.view.application.flavours`
 and `tanzu.app.live.view.application.name` cannot be overridden.
-The default values set by the Application Live View Convention Server are used.
+The default values set by the Application Live View convention server are used.
 
 However, if you want to override `management.endpoints.web.exposure.include`
 or `management.endpoint.health.show-details`, you can override these environment
 properties in `application.properties` or `application.yml` in the Spring Boot Application
 before deploying the workload in Tanzu Application Platform.
 Environment properties updated in your app take precedence over the default values
-set by Application Live View Convention Server.
+set by Application Live View convention server.
 
 
 ## <a id="config-labels"></a> Configure labels when management.endpoints.web.base-path and management.server.port are set
