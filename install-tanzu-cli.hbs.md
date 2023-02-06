@@ -232,17 +232,22 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
    Expected outcome:
 
    ```console
-   NAME                DESCRIPTION                                                        SCOPE       DISCOVERY                                VERSION  STATUS
-   login               Login to the platform                                              Standalone  default                                  v0.25.4  not installed
-   management-cluster  Kubernetes management-cluster operations                           Standalone  default                                  v0.25.4  not installed
-   package             Tanzu package management                                           Standalone  default                                  v0.25.4  installed
-   pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default                                  v0.25.4  not installed
-   secret              Tanzu secret management                                            Standalone  default                                  v0.25.4  installed
-   telemetry           Configure cluster-wide telemetry settings                          Standalone  default                                  v0.25.4  not installed
-   services            Commands for working with service instances, classes and claims    Standalone                                           v0.5.0   installed
-   accelerator         Manage accelerators in a Kubernetes cluster                        Standalone                                           v1.4.0   installed
-   apps                Applications on Kubernetes                                         Standalone                                           v0.10.0  installed
-   insight             post & query image, package, source, and vulnerability data        Standalone                                           v1.4.2   installed
+    NAME                DESCRIPTION                                                                       SCOPE       DISCOVERY  VERSION        STATUS
+      login               Login to the platform                                                             Standalone  default    v0.25.0        not installed
+      management-cluster  Kubernetes management-cluster operations                                          Standalone  default    v0.25.0        not installed
+      package             Tanzu package management                                                          Standalone  default    v0.11.6        update available
+      pinniped-auth       Pinniped authentication operations (usually not directly invoked)                 Standalone  default    v0.25.0        not installed
+      secret              Tanzu secret management                                                           Standalone  default    v0.11.6        update available
+      telemetry           Configure cluster-wide telemetry settings                                         Standalone  default    v0.25.0        not installed
+      apps                Applications on Kubernetes                                                        Standalone             v0.7.0         installed
+      builder             Build Tanzu components                                                            Standalone             v0.25.0        installed
+      external-secrets    interacts with external-secrets.io resources                                      Standalone             v0.0.1         installed
+      insight             post & query image, package, source, and vulnerability data                       Standalone             v1.2.2         installed
+      rbac                The rbac plugin allows the tap platform operator to add or remove subjects from   Standalone             v1.0.1-beta.1  installed
+                          a tap default user role with in a namespace.
+      services            Explore Service Instance Classes, discover claimable Service Instances and        Standalone             v0.3.0         installed
+                          manage Resource Claims
+      accelerator         Manage accelerators in a Kubernetes cluster                                       Standalone             v1.2.0         installed
   ```
 
 ## <a id='next-steps'></a>Next steps
