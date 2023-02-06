@@ -1,6 +1,6 @@
 # Install FluxCD Source Controller
 
->**Note** Follow the steps in this topic if you do not want to use a profile to install FluxCD Source Controller. 
+>**Note** Follow the steps in this topic if you do not want to use a profile to install FluxCD Source Controller.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='sc-prereqs'></a>Prerequisites
@@ -12,7 +12,7 @@ Before installing Source Controller:
 
 ## <a id="Configuration"></a> Configuration
 
-Source controller package has no configurable properties.
+The Source Controller package has no configurable properties.
 
 ##  <a id="installation"></a> Installation
 
