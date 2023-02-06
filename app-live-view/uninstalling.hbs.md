@@ -2,7 +2,7 @@
 
 This topic describes how to uninstall Application Live View for VMware Tanzu in Tanzu Application Platform.
 
-To uninstall the Application Live View Backend, Application Live View Connector and Application Live View Convention Server, run:
+To uninstall the Application Live View Backend, Application Live View Connector and Application Live View convention server, run:
 
 ```
 tanzu package installed delete appliveview -n tap-install
