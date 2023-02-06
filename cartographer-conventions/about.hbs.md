@@ -2,7 +2,7 @@
 
 ## <a id="overview"></a> Overview
 
->**Note** This component is replacing the [Convention Controller](../convention-service/about.md).
+>**Note** This component is replacing the [convention controller](../convention-service/about.md).
 
 Cartographer Conventions provides a means for operators to express
 their knowledge about how applications should run on Kubernetes as a convention.
