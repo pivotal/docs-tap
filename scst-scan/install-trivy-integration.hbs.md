@@ -354,7 +354,7 @@ After all prerequisites are completed, install the Trivy Scanner. See [Install a
 
 ## Air-Gap Configuration
 
-The following section explains how to configure Trivy in an air-gap environment.
+The following section explains how to configure Trivy in an air gap environment.
 
 ### Prerequisites
 
@@ -461,21 +461,22 @@ trivy:
     repositoryUrl: "registry.company.com/project_name/trivy-cli:0.36.0"
 ```
 
-## Use another Trivy Aqua Plugin Version
+## Use another Trivy Aqua Plug-in Version
 
-The Trivy Aqua Plugin will enable Aqua SaaS integration with your Trivy scans.
+The Trivy Aqua Plug-in enables Aqua SaaS integration with your Trivy scans.
 
 ### Prerequisites
 
-Install the `oras` cli utilizing their [instructions](https://oras.land/cli/)
+Install the `oras` cli. See [Installation](https://oras.land/cli/) in the Oras documentation.
 
-### Download the Plugin
+### Download the Plug-in
 
-Download the version of the Trivy Aqua Plugin you are interested in from their [GitHub releases page](https://github.com/aquasecurity/trivy-plugin-aqua/releases).
-For example: [https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.5/linux_amd64_v0.115.5.tar.gz](https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.5/linux_amd64_v0.115.5.tar.gz)
+Download the version of the Trivy Aqua Plug-in you want from the GitHub releases page. See [trivy-plugin-aqua](https://github.com/aquasecurity/trivy-plugin-aqua/releases) in GitHub.
+For example, [v0.115.14](https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.5/linux_amd64_v0.115.5.tar.gz) in GitHub.
+
 ```shell
-TRIVY_AQUA_PLUGIN_VERSION="v0.115.6"
-wget -c "https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/${TRIVY_AQUA_PLUGIN_VERSION}/linux_amd64_${TRIVY_AQUA_PLUGIN_VERSION}.tar.gz" -O trivy-aqua-plugin.tar.gz
+TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
+wget -c "https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/${TRIVY-AQUA-PLUGIN-VERSION}/linux_amd64_${TRIVY-AQUA-PLUGIN-VERSION}.tar.gz" -O trivy-aqua-plugin.tar.gz
 
 --2023-01-30 10:44:05--  https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.6/linux_amd64_v0.115.6.tar.gz
 HTTP request sent, awaiting response... 200 OK
@@ -487,13 +488,16 @@ trivy-aqua-plugin.tar.gz 100%[==>]  48.56M  35.3MB/s    in 1.4s
 2023-01-30 10:44:07 (35.3 MB/s) - ‘trivy-aqua-plugin.tar.gz’ saved [50915539/50915539]
 ```
 
-### Download the Plugin Yaml File
-The yaml file is a necessary component to tell trivy it has the plugin already installed.
-You will download the yaml that is associated with the Trivy Aqua Plugin version you downloaded.
+Where `TRIVY-AQUA-PLUGIN-VERSION` is the version of Trivy Aqua Plug-in you are using.
+
+### Download the Plug-in File
+
+The YAML file is a necessary component to tell trivy it has the plug-in already installed.
+Download the YAML associated with the Trivy Aqua Plug-in version you downloaded.
 
 ```shell
-TRIVY_AQUA_PLUGIN_VERSION="v0.115.6"
-wget -c "https://raw.githubusercontent.com/aquasecurity/trivy-plugin-aqua/${TRIVY_AQUA_PLUGIN_VERSION}/plugin.yaml" -O plugin.yaml
+TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
+wget -c "https://raw.githubusercontent.com/aquasecurity/trivy-plugin-aqua/${TRIVY-AQUA-PLUGIN-VERSION}/plugin.yaml" -O plugin.yaml
 
 --2023-01-30 10:46:32--  https://raw.githubusercontent.com/aquasecurity/trivy-plugin-aqua/v0.115.6/plugin.yaml
 HTTP request sent, awaiting response... 200 OK
@@ -504,13 +508,15 @@ plugin.yaml 100%[==>]     909  --.-KB/s    in 0s
 2023-01-30 10:46:32 (54.2 MB/s) - ‘plugin.yaml’ saved [909/909]
 ```
 
-### Relocate the Plugin and Yaml to your registry
+Where `TRIVY-AQUA-PLUGIN-VERSION` is the version of Trivy Aqua Plug-in you are using.
+
+### Relocate the Plug-in and YAML to your registry
 
 ```shell
-TRIVY_AQUA_PLUGIN_VERSION="v0.115.6"
-REPOSITORY_URL="registry.company.com/project_name/trivy-aqua-plugin:$TRIVY_AQUA_PLUGIN_VERSION"
+TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
+REPOSITORY-URL="registry.company.com/project_name/trivy-aqua-plugin:$TRIVY-AQUA-PLUGIN-VERSION"
 
-oras push ${REPOSITORY_URL} \
+oras push ${REPOSITORY-URL} \
 --artifact-type trivy/aqua-plugin \
 ./trivy-aqua-plugin.tar.gz:application/gzip \
 ./plugin.yaml:text/yaml
@@ -523,7 +529,12 @@ Pushed registry.company.com/project_name/trivy-aqua-plugin:v0.115.6
 Digest: sha256:791274e44b97fad98edf570205fddc1b0bc21c56d3d54565ad9475fd4da969ae
 ```
 
-### Update data values with Aqua Plugin repository url
+Where:
+
+- `TRIVY-AQUA-PLUGIN-VERSION` is the version of Trivy Aqua Plug-in you are using.
+- `REPOSITORY-URL` is the repository where you want to relocate the plug in.
+
+### Update data values with Aqua Plug-in repository URL
 
 Edit your `values.yaml` to add the location of your CLI.
 
@@ -538,17 +549,20 @@ trivy:
 
 ### Create API Key
 
-In order to connect to the SaaS Platform you will need to have an API key.
-1. Log into Aqua SaaS
-2. Enter CSPM
-3. Click on Settings -> API Keys
-4. Click Generate Key
-5. Save the information for the next steps
+In order to connect to the SaaS Platform you must have an API key. To create an API key:
+
+1. Log into Aqua SaaS.
+2. Enter CSPM.
+3. Click **Settings** -> **API Keys**.
+4. Click **Generate Key**.
+5. Save the information for the next steps.
 
 ### Create Auth Secret
-In order to integrate with Aqua SaaS Platform you will need to have an API key. We will pass this to the scanner through environment variables, referenced in a Secret.
 
-An example Secret is below:
+In order to integrate with Aqua SaaS Platform you must have an API key. You pass this to the scanner through environment variables, referenced in a secret.
+
+Example secret:
+
 ```yaml
 apiVersion: v1
 kind: Secret
@@ -561,11 +575,13 @@ stringData:
 ```
 
 ### Update aqua-values.yaml
+
 In order to tell Trivy to connect and report to Aqua SaaS it requires a few environment variables set.
 
-You can find every plugin option in the [README.md](https://github.com/aquasecurity/trivy-plugin-aqua/blob/master/README.md) in its GitHub repo.
+You can find plug in options in the [README.md](https://github.com/aquasecurity/trivy-plugin-aqua/blob/master/README.md) in GitHub.
 
-Here is an example of referencing your API key and Secret from a prior created Kubernetes Secret
+Here is an example of referencing your API key and secret from a prior created Kubernetes Secret:
+
 ```yaml
 namespace: dev
 targetImagePullSecret: registry-credentials
@@ -583,7 +599,3 @@ environmentVariables:
         name: aqua-creds
         key: aqua-secret
 ```
-
-## Known Limitations
-
-- None
