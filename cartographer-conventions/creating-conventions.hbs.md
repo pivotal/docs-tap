@@ -22,10 +22,10 @@ Convention supports the creation of custom conventions to meet the unique operat
 and requirements of an organization.
 
 Before jumping into the details of creating a custom convention, you can view two
-distinct components of Cartographer Conventions: 
+distinct components of Cartographer Conventions:
 
 - [Convention Controller](#convention-controller)
-- [Convention Server](#convention-server) 
+- [Convention server](#convention-server)
 
 ### <a id='convention-server'></a>Convention server
 
@@ -96,7 +96,7 @@ The following prerequisites must be met before a convention is developed and dep
 ## <a id='define-conv-criteria'></a> Define convention criteria
 
 The `server.go` file contains the configuration for the server and the logic the server applies when a workload matches the defined criteria.
-For example, adding a Prometheus sidecar to web applications, or adding a `workload-type=spring-boot` label to any workload that has metadata, indicating it is a Spring Boot app.  
+For example, adding a Prometheus sidecar to web applications, or adding a `workload-type=spring-boot` label to any workload that has metadata, indicating it is a Spring Boot app.
 
 >**Important** For this example, the package `model` defines [resource types](./reference/convention-resources.md).
 
@@ -251,7 +251,7 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
 
 ## <a id='define-conv-behavior'></a> Define the convention behavior
 
-Any property or value within the PodTemplateSpec or OCI image metadata associated with a workload is used to define the criteria for applying conventions. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation. The following are a few examples. 
+Any property or value within the PodTemplateSpec or OCI image metadata associated with a workload is used to define the criteria for applying conventions. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation. The following are a few examples.
 
 ### <a id='match-crit-labels-annot'></a> Matching criteria by labels or annotations
 
@@ -556,7 +556,7 @@ To verify the status of the convention server, check for the running convention 
         replicaset.apps/awesome-webhook-9b6957476        0         0         0       24h
         ```
 
-    + To verify that the conventions are applied, check the `PodIntent` of a workload that matches the convention criteria:  
+    + To verify that the conventions are applied, check the `PodIntent` of a workload that matches the convention criteria:
 
         ```bash
         kubectl -o yaml get podintents.conventions.apps.tanzu.vmware.co awesome-app

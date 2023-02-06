@@ -341,6 +341,6 @@ status:
 
 In your output:
 
-- `status.metadata.template.spec.containers.env.value` shows the list of applied environment properties by Application Live View Convention Server.
-- `status.metadata.template.labels` shows the list of applied labels by Application Live View Convention Server.
-- `status.metadata.template.annotations` shows the list of applied annotations by Application Live View Convention Server.
+- `status.metadata.template.spec.containers.env.value` shows the list of applied environment properties by Application Live View convention server.
+- `status.metadata.template.labels` shows the list of applied labels by Application Live View convention server.
+- `status.metadata.template.annotations` shows the list of applied annotations by Application Live View convention server.
