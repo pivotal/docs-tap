@@ -3,7 +3,7 @@
 This document describes how to install Source Controller
 from the Tanzu Application Platform package repository.
 
->**Note** Follow the steps in this topic if you do not want to use a profile to install Source Controller. 
+>**Note** Follow the steps in this topic if you do not want to use a profile to install Source Controller.
 For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
 
 ## <a id='sc-prereqs'></a>Prerequisites
@@ -47,10 +47,10 @@ To install Source Controller:
 
     ```console
     tanzu package available get controller.source.apps.tanzu.vmware.com/0.4.1 --values-schema --namespace tap-install
-    
-    Retrieving package details for controller.source.apps.tanzu.vmware.com/0.4.1... 
-    KEY               DEFAULT  TYPE    DESCRIPTION                                                                        
-    aws_iam_role_arn           string  Optional: The AWS IAM Role ARN to attach to the source controller service account  
+
+    Retrieving package details for controller.source.apps.tanzu.vmware.com/0.4.1...
+    KEY               DEFAULT  TYPE    DESCRIPTION
+    aws_iam_role_arn           string  Optional: The AWS IAM Role ARN to attach to the Source Controller service account
     ca_cert_data               string  Optional: PEM Encoded certificate data for image registries with private CA.
     ```
 
