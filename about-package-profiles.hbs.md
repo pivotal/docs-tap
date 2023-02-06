@@ -333,7 +333,7 @@ The following table lists the packages contained in each profile:
    </td>
   </tr>
   <tr>
-   <td>Convention Controller
+   <td>Convention controller
     </td>
    <td>&check;
    </td>
