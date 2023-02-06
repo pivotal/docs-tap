@@ -25,7 +25,7 @@ Before jumping into the details of creating a custom convention, you can view tw
 distinct components of Cartographer Conventions:
 
 - [Convention Controller](#convention-controller)
-- [Convention Server](#convention-server)
+- [Convention server](#convention-server)
 
 ### <a id='convention-server'></a>Convention server
 
