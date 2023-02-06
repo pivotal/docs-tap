@@ -255,7 +255,7 @@ After you push the container image, you see the same results as building the ima
 [using a Dockerfile](#dockerfile).
 
 For more information about building container images for a Spring Boot app,
-see [Spring Boot with Docker](https://spring.io/guides/gs/spring-boot-docker)
+see [Spring Boot with Docker](https://spring.io/guides/topicals/spring-boot-docker/)
 
 ## <a id="ootb-supply-chain"></a> About Out of the Box Supply Chains
 
