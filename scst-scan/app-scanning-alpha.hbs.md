@@ -282,9 +282,22 @@ spec:
     - name: GRYPE_SCOPE
 ```
 
-Refer to 
+Refer to [Using other types of volume sources](https://tekton.dev/docs/pipelines/workspaces/#using-other-types-of-volumesources)
+to try out other workspace bindings.
+
 ### Use with OOTB supply chains
 
 
 ## Troubleshooting
 
+Get the logs of the controller
+
+```console
+kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system -c manager
+```
+
+To check the status of the scanning CRDs
+
+```console
+watch kubectl get givs,ivs,prs,trs,pod
+```
