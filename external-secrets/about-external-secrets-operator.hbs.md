@@ -34,94 +34,94 @@ tanzu package install external-secrets \
 ### Using the External Secrets Operator
 
 Further instructions and guides for how to use the External Secrets Operator
-can be found on the [External Secrets Operator site](https://external-secrets.io). The example provided below is only 
-aimed at demonstrating a simple use case for external secrets in a Supply Chain.
-in a Supply Chain to configure secrets.
+can be found on the [External Secrets Operator site](https://external-secrets.io). The following example demonstrates a simple use case for configuring external secrets in a Supply Chain.
 
-### Connecting to a secret manager 
+### Connecting to a secret manager
 
-#### Example : Google Secret Manager 
+#### Example : Google Secret Manager
 
-In order to connect to a Google Secrets Manager instance you will need a Service Account with the right permissions to connect to it. The following steps detail how to Create a `ClusterStore` reource that uses this Service Account to connect to your Secrets Manager 
+In order to connect to a Google Secret Manager instance, you need a service account with the appropriate permissions. The following steps detail how to create a `ClusterStore` reource that uses this service account to connect to your Secret Manager.
 
-1. Create a secret that holds the service account 
-```sh
-ytt -f google-secrets-manager-secret.yaml  \
-  --data-value gcp_secret_name=google-secrets-manager-secret  \
-  --data-value secrets_namespace=external-secrets \
-  --data-value-file service_account_json=<path_to_service_account_json> | kubectl apply -f- 
-```
-where
-```yaml
-❯ cat google-secrets-manager-secret.yaml
-#@ load("@ytt:data", "data")
----
-apiVersion: v1
-kind: Secret
-metadata:
-  labels:
-    type: gcpsm
-  name: #@ data.values.gcp_secret_name
-  namespace: #@ data.values.secrets_namespace
-stringData:
-  secret-access-credentials: #@ data.values.service_account_json
-type: Opaque
-```
+1. Create a secret that holds the service account. Run:
 
-2. Create a `ClusterStoreSecret` resource that references the secret above.
+    ```sh
+    ytt -f google-secrets-manager-secret.yaml  \
+      --data-value gcp_secret_name=google-secrets-manager-secret  \
+      --data-value secrets_namespace=external-secrets \
+      --data-value-file service_account_json=<path_to_service_account_json> | kubectl apply -f-
+    ```
 
+    Where:
 
-```sh
-export GOOGLE_PROJECT_ID="project-id-name"
-ytt -f google-secrets-store.yaml \
---data-value cluster_store_name=google-secrets-manager-store-secret \
---data-value secret_name=google-secrets-manager-secret-store \
---data-value google_project_id="#{GOOGLE_PROJECT_ID}" | kubectl delete -f-
-```
+    ```yaml
+    ❯ cat google-secrets-manager-secret.yaml
+    #@ load("@ytt:data", "data")
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      labels:
+        type: gcpsm
+      name: #@ data.values.gcp_secret_name
+      namespace: #@ data.values.secrets_namespace
+    stringData:
+      secret-access-credentials: #@ data.values.service_account_json
+    type: Opaque
+    ```
 
-where
-```yaml
-❯ cat google-secrets-store.yaml
-#@ load("@ytt:data", "data")
----
-apiVersion: external-secrets.io/v1beta1
-kind: ClusterSecretStore
-metadata:
-  name:  #@ data.values.cluster_store_name
-spec:
-  provider:
-    gcpsm:
-      auth:
-        secretRef:
-          secretAccessKeySecretRef:
-            key: secret-access-credentials
-            name: #@ data.values.secret_name
-            namespace: external-secrets
-      projectID: #@ data.values.google_project_id
-You will need to create a serviceaccount with the r ight access permikssions to your secrets nager a n asscoiated key t
-Create a secret that holds your service account to allow you to connect to your Google Secrets Manager instance
-```
+1. Create a `ClusterStoreSecret` resource that references the secret above. Run:
 
-To check that we have correctly authenticated to the Secrets Manager 
-```sh  
-  tanzu external-secrets stores list -A
-  NAMESPACE  NAME                                  PROVIDER                STATUS
-  Cluster    google-secrets-manager-cluster-store  Google Secrets Manager  Valid
-```
+    ```sh
+    export GOOGLE_PROJECT_ID="project-id-name"
+    ytt -f google-secrets-store.yaml \
+    --data-value cluster_store_name=google-secrets-manager-store-secret \
+    --data-value secret_name=google-secrets-manager-secret-store \
+    --data-value google_project_id="#{GOOGLE_PROJECT_ID}" | kubectl delete -f-
+    ```
 
-### Creating a Synced Secret 
+    Where:
 
-The secret to be synced needs to exist on your Secret Manager or you can create one as shown below 
+    ```yaml
+    ❯ cat google-secrets-store.yaml
+    #@ load("@ytt:data", "data")
+    ---
+    apiVersion: external-secrets.io/v1beta1
+    kind: ClusterSecretStore
+    metadata:
+      name:  #@ data.values.cluster_store_name
+    spec:
+      provider:
+        gcpsm:
+          auth:
+            secretRef:
+              secretAccessKeySecretRef:
+                key: secret-access-credentials
+                name: #@ data.values.secret_name
+                namespace: external-secrets
+          projectID: #@ data.values.google_project_id
+    You will need to create a serviceaccount with the right access permissions to your Secrets Manager and asscoiated key to
+    create a secret that holds your service account to allow you to connect to your Google Secret Manager instance.
+    ```
 
-Consider an example where we would like to acccess our secret to access a maven repository stored in a asecret ` maven-registry-credential` in our Secret Manager. 
+3. To check that you have correctly authenticated to the Secret Manager, run:
+
+    ```sh
+      tanzu external-secrets stores list -A
+      NAMESPACE  NAME                                  PROVIDER                STATUS
+      Cluster    google-secrets-manager-cluster-store  Google Secrets Manager  Valid
+    ```
+
+### Create a synced secret
+
+The secret to be synced must exist on your Secret Manager. Alternatively, you can create one. For example: To acccess your secret to access a maven repository stored in a secret `maven-registry-credential` in your Secret Manager, run:
 
 ```sh
 kubectl apply -f external-secret.yaml
 ```
 
-where
+Where:
 
-Create an external secrets resource with the reference to the secret to be synced and the `Valid` `ClusterStore` configured above 
+Create an external secrets resource with the reference to the secret to be synced and the `Valid` `ClusterStore` configured above
 ```yaml
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -157,7 +157,7 @@ spec:
       engineVersion: v2
 ```
 
-### Using a Synced Secret 
+### Using a Synced Secret
 #### Example: Using the synced secret to access a maven artifact.
 
 ```sh
