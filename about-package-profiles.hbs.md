@@ -131,6 +131,11 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   namespaces with the resources and proper namespace-level privileges needed for developer workloads
   to function as intended.
 
+- **[Service Bindings for Kubernetes](service-bindings/about.hbs.md)
+
+  Service Bindings for Kubernetes create a Kubernetes-wide specification for communicating service
+  secrets to workloads in a consistent way.
+
 - **[Services Toolkit for VMware Tanzu](services-toolkit/about.hbs.md)**
 
   Services Toolkit comprises a number of Kubernetes-native components that support the management,
