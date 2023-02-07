@@ -26,9 +26,9 @@ To deploy API Validation and Scoring package, your cluster must have at least:
 
 ## <a id='relocate-images'></a>Relocate images to a registry
 
-VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before attempting installation. 
-API Validation and Scoring depends on VMware Tanzu Network for continued operation. 
-If you don’t relocate the images, VMware Tanzu Network offers no uptime guarantees. 
+VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before attempting installation.
+API Validation and Scoring depends on VMware Tanzu Network for continued operation.
+If you don’t relocate the images, VMware Tanzu Network offers no uptime guarantees.
 The option to skip relocation is documented for evaluation and proof-of-concept only.
 
 To relocate images from the VMware Tanzu Network registry to your registry:
@@ -88,7 +88,7 @@ Tanzu CLI packages are available on repositories. Adding the API Validation and 
 
 * `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
 * `INSTALL_REPO` is `tanzu-application-platform`
-* `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
+* `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
 * `APIX_VERSION` is your API Validation and Scoring package version. For example, `0.2.5`
 
 To add the API Validation and Scoring package repository to your cluster:
@@ -119,7 +119,7 @@ To add the API Validation and Scoring package repository to your cluster:
 
     ```console
     NAME                         DISPLAY-NAME     SHORT_DESCRIPTION               LATEST-VERSION
-    apix.apps.tanzu.vmware.com   apix             apix.apps.tanzu.vmware.com      0.2.5 
+    apix.apps.tanzu.vmware.com   apix             apix.apps.tanzu.vmware.com      0.2.5
     ```
 
 1. Get the status of the API Validation and Scoring package repository by running:
@@ -161,7 +161,7 @@ Follow these steps to install the API Validation and Scoring package:
     - `HOST` is the hostname of the API Validation and Scoring GUI. It can be left empty `""` to use the default value.
     - `BACKSTAGE-HOST` is the Tanzu Application Platform GUI or Backstage host that you want to point to. For example, `https://tap-gui.view-cluster.com`
     - `BACKSTAGE-PORT` is the Tanzu Application Platform GUI or Backstage port that you want to point to. For example, `443`
- 
+
 1. Install the API Validation and Scoring package using the Tanzu CLI by running:
 
     ```console
