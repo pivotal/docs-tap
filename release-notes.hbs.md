@@ -34,3 +34,6 @@ This release has the following known issues, listed by area and component.
 
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
+
+#### <a id='1-5-0-convention-controller-dp'></a> Convention Controller
+- This component is now fully deprecated in this release and is now fully replaced by [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions) which implements the `conventions.carto.run` API that implementes all the features that were avaialble in the Convention Controller component.

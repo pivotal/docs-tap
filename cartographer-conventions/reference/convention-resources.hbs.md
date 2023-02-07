@@ -1,14 +1,15 @@
 ## <a id="conv-service-resources"></a>Convention Service Resources
 
 There are several resources involved in the application of conventions to workloads and these 
-typically consumed by platform developers and operators rather than by application developers. 
-The resources include the following 
+are typically consumed by platform developers and operators rather than by application developers. 
+
+
 
 + [ClusterPodConvention](cluster-pod-convention.md) 
-  This is a `clusterpodconventions.conventions.carto.run` type resource. See an example below.
-  
+  This is a `conventions.carto.run/v1alpha1` type. An example is  provided below
+
   ```yaml
-    ---
+  ---
   apiVersion: conventions.carto.run/v1alpha1
   kind: ClusterPodConvention
   metadata:
@@ -23,16 +24,27 @@ The resources include the following
         namespace: sample-conventions
       clientConfig: 
         <admissionregistrationv1.WebhookClientConfig>
-  ```
- 
-  A single `ClusterPodConvention` can target a single or multiple workloads 
-  or even have multiple conventions being applied to a different types of workloads. 
-  The choice around how to apply conventions is solely at the discretion of the `Conventions Author`. 
+    ```
+  A `ClusterPodConvention` can target a single or multiple workloads of different types. 
+  It is also possible to have multiple conventions being applied to a single workload. 
+  It is at the discretion of the "Conventions Author" how a convention is applied.
 
+
+  To list out available conventions in your cluster, run the following `kubectl`command 
+    
+    ```bash 
+
+    ❯ kubectl get clusterpodconventions.conventions.carto.run
+
+      NAME                     AGE
+      appliveview-sample       23h
+      developer-conventions    23h
+      spring-boot-convention   23h
+    ``` 
 
 + [PodIntent](pod-intent.md) 
 
-  This is a `podintents.conventions.carto.run` type resource. See an example below.
+  This is a `conventions.carto.run/v1alpha1` resource. An example is provided below.
   ```yaml
   apiVersion: conventions.carto.run/v1alpha1
   kind: PodIntent
@@ -50,20 +62,29 @@ The resources include the following
     template: # enriched PodTemplateSpec
       <corev1.PodTemplateSpec>
     ```  
+  To list out available `PodIntent` resources in your cluster, run the following `kubectl` command
   
+  ```bash
+   # specify relevant namespace
+   kubectl get podintents.conventions.carto.run -n my-apps
+
+    NAME            READY   REASON               AGE
+    spring-sample   True    ConventionsApplied   8m5s
+  ```
   When a`PodIntent` is created, the `PodIntent` reconciler lists all `ClusterPodConventions` resources 
-  and applies them serially. To ensure the consistency of the enriched [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec), the list of `ClusterPodConventions`is sorted alphabetically 
-  by name before applying the conventions.
+  and applies them serially. To ensure the consistency of the enriched [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec), 
+  the list of `ClusterPodConventions`is sorted alphabetically by name before applying the conventions.
   
-  
-   >**Tip** : *You can use strategic naming to control the order in which the conventions are applied.*
+  >
+
+  >**Tip** : *You can use strategic naming to control the order in which the conventions are applied.*
 
   After the conventions are applied, the `Ready` status condition on the `PodIntent` resource is used 
   to indicate whether it is applied successfully.
   A list of all applied conventions is stored under the annotation `conventions.carto.run/applied-conventions`.
 
-There are also a few other reources within the inner workings of the convention services's `controller`
-and these include the following 
+There are also a few other resources available to the `Conventions Author` that are not persisted in your cluster 
+and these include 
 + [ImageConfig](image-config.md)
 + [PodConventionContextSpec](pod-convention-context-spec.md)
 + [PodConventionContextStatus](pod-convention-context-status.md)

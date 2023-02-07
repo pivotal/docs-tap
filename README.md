@@ -129,6 +129,7 @@ Use this table to keep a running list of terms used and how they should be defin
 | API Auto Registration | Both __Auto__ and __Registration__ are separated from each other, and capitalized |
 | API portal | The p _is_ supposed to be lowercase. [Pull request #73](https://github.com/pivotal/docs-tap/pull/73#issue-1011334602).|
 | components | The individual products available in the TAP SKU. For example, Cloud Native Runtimes is a component of TAP. Not: add-ons or capabilities.|
+| convention controller | Lowercase; this is one of the minor components that make up Convention Service |
 | convention server | Lowercase; this is one of the minor components that make up Convention Service |
 | Convention Service | Title case; this is a component with its own TanzuNet product page |
 | Default Supply Chain | singular |
