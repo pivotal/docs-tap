@@ -152,7 +152,7 @@ spec:
           tekton.dev/git-0: https://github.com
       type: kubernetes.io/basic-auth
       data:
-        password: '{{ .apitoken | toString }}'
+        password: '\{{ .apitoken | toString }}'
         username: "_json_key"
       engineVersion: v2
 ```
