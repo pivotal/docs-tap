@@ -1,48 +1,85 @@
-# Convention resources
-
-The convention controller is open to extension. These resources are typically consumed by platform developers and operators rather than by application developers.
-
 ## <a id="conv-service-resources"></a>Convention Service Resources
 
-There are several [resources](convention-resources.md) involved in the application of conventions to workloads.
+There are several resources involved in the application of conventions to workloads and these 
+typically consumed by platform developers and operators rather than by application developers. 
+The resources include the following 
 
-### <a id="api-structure"></a>API Structure
++ [ClusterPodConvention](cluster-pod-convention.md) - 
+  This is a `clusterpodconventions.conventions.carto.run` type resource. See example below.
+  
+  ```yaml
+    ---
+  apiVersion: conventions.carto.run/v1alpha1
+  kind: ClusterPodConvention
+  metadata:
+    name: sample
+  spec:
+    selectorTarget: PodTemplateSpec # optional field with options, defaults to PodTemplateSpec
+    selectors: # optional, defaults to match all workloads
+    - <metav1.LabelSelector>
+    webhook:
+      certificate:
+        name: sample-cert
+        namespace: sample-conventions
+      clientConfig: 
+        <admissionregistrationv1.WebhookClientConfig>
+  ```
+ 
+  A platform developer can have a single ClusterPodConvention target a single or multiple workloads 
+  or even have multiple conventions being applied to a different types of workloads. 
+  The choice around how to apply conventions is solely at the discretion of the Conventions Author. 
 
-The [`PodConventionContext`](pod-convention-context.md) API object in the `webhooks.conventions.carto.run` API group is the structure used for both request and response from the convention server.
 
-### <a id="template-status"></a>Template Status
 
-The enriched `PodTemplateSpec` is reflected at [`.status.template`](pod-convention-context-status.md). For more information about `PodTemplateSpec`, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).
++ [PodIntent](pod-intent.md) 
 
-## <a id="chain-multi-conventions"></a>Chaining Multiple Conventions
+  This is a `podintents.conventions.carto.run` type resource. See example below.
+  ```yaml
+  apiVersion: conventions.carto.run/v1alpha1
+  kind: PodIntent
+  metadata:
+    name: sample
+  spec:
+    imagePullSecrets: <[]corev1.LocalObjectReference> # optional
+    serviceAccountName: <string> # optional, defaults to 'default'
+    template:
+      <corev1.PodTemplateSpec>
+  status:
+    observedGeneration: 1 # reflected from .metadata.generation
+    conditions:
+    - <metav1.Condition>
+    template: # enriched PodTemplateSpec
+      <corev1.PodTemplateSpec>
+    ```  
+  
+  When a`PodIntent` is created, the `PodIntent` reconciler lists all `ClusterPodConventions` resources 
+  and applies them serially. To ensure the consistency of the enriched [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec), the list of `ClusterPodConventions`is sorted alphabetically 
+  by name before applying the conventions.
+  
+  
+   >**Tip** : *You can use strategic naming to control the order in which the conventions are applied.*
 
-You can define multiple `ClusterPodConventions` and apply them to different types of workloads.
-You can also apply multiple conventions to a single workload.
-
-The `PodIntent` reconciler lists all `ClusterPodConvention` resources and applies them serially.
-To ensure the consistency of enriched [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec),
-the list of `ClusterPodConventions`is sorted alphabetically by name before applying conventions.
-You can use strategic naming to control the order in which the conventions are applied.
-
-After the conventions are applied, the `Ready` status condition on the `PodIntent` resource is used to indicate
-whether it is applied successfully.
-A list of all applied conventions is stored under the annotation `conventions.carto.run/applied-conventions`.
+  After the conventions are applied, the `Ready` status condition on the `PodIntent` resource is used 
+  to indicate whether it is applied successfully.
+  A list of all applied conventions is stored under the annotation `conventions.carto.run/applied-conventions`.
 
 ## <a id="collect-logs-from-ctrlr"></a>Collecting Logs from the Controller
 
-The convention controller is a Kubernetes operator and can be deployed in a cluster with other components. If you have trouble, you can retrieve and examine the logs from the controller to help identify issues.
+  The convention controller is a Kubernetes operator and can be deployed in a cluster with other 
+  components. If you have trouble, you can retrieve and examine the logs from the controller to help identify issues.
 
-To retrieve Pod logs from the `conventions-controller-manager` running in the `conventions-system` namespace:
+  To retrieve Pod logs from the `cartographer-conventions-controller-manage` running in the `cartographer-system` namespace:
 
-  ```console
-  kubectl -n conventions-system logs -l control-plane=controller-manager
+  ```bash
+   kubectl -n cartographer-system logs -l control-plane=controller-manager
   ```
 
 For example:
 
-  ```console
+  ```bash
   ...
-  {"level":"info","ts":1637073467.3334172,"logger":"controllers.PodIntent.PodIntent.ApplyConventions","msg":"applied convention","diff":"  interface{}(\n- \ts\"&PodTemplateSpec{ObjectMeta:{      0 0001-01-01 00:00:00 +0000 UTC <nil> <nil> map[app.kubernetes.io/component:run app.kubernetes.io/part-of:spring-petclinic-app-db carto.run/workload-name:spring-petclinic-app-db] map[developer.conventions/target-container\"...,\n+ \tv1.PodTemplateSpec{\n+ \t\tObjectMeta: v1.ObjectMeta{\n+ \t\t\tLabels: map[string]string{\n+ \t\t\t\t\"app.kubernetes.io/component\": \"run\",\n+ \t\t\t\t\"app.kubernetes.io/part-of\":   \"spring-petclinic-app-db\",\n+ \t\t\t\t\"carto.run/workload-name\":     \"spring-petclinic-app-db\",\n+ \t\t\t\t\"tanzu.app.live.view\":         \"true\",\n+ \t\t\t\t...\n+ \t\t\t},\n+ \t\t\tAnnotations: map[string]string{\"developer.conventions/target-containers\": \"workload\"},\n+ \t\t},\n+ \t\tSpec: v1.PodSpec{Containers: []v1.Container\{{...}}, ServiceAccountName: \"default\"},\n+ \t},\n  )\n","convention":"appliveview-sample"}
+  {"level":"info","ts":"2023-02-06T20:49:19.855086032Z","logger":"MetricsReconciler","msg":"reconciling builders configmap","controller":"configmap","controllerGroup":"","controllerKind":"ConfigMap","ConfigMap":{"name":"controller-manager-metrics-data","namespace":"cartographer-system"},"namespace":"cartographer-system","name":"controller-manager-metrics-data","reconcileID":"6f5e38c7-0ce0-4c74-aff3-f938fb742dab","diff":"  map[string]string{\n- \t\"clusterpodconventions_names\": \"appliveview-sample\",\n+ \t\"clusterpodconventions_names\": \"appliveview-sample\\nspring-boot-convention\",\n  \t\"podintents_count\":            \"0\",\n  }\n"}
+  {"level":"info","ts":"2023-02-06T20:49:20.101742252Z","logger":"MetricsReconciler","msg":"reconciling builders configmap","controller":"configmap","controllerGroup":"","controllerKind":"ConfigMap","ConfigMap":{"name":"controller-manager-metrics-data","namespace":"cartographer-system"},"namespace":"cartographer-system","name":"controller-manager-metrics-data","reconcileID":"3a1950bc-4c55-47bb-8380-2de574bd5d5e","diff":"  map[string]string{\n  \t\"clusterpodconventions_names\": strings.Join({\n  \t\t\"appliveview-sample\\n\",\n+ \t\t\"developer-conventions\\n\",\n  \t\t\"spring-boot-convention\",\n  \t}, \"\"),\n  \t\"podintents_count\": \"0\",\n  }\n"}
   ...
   ```
 
