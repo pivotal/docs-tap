@@ -233,7 +233,7 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
    ```console
     NAME                DESCRIPTION                                                                       SCOPE       DISCOVERY  VERSION        STATUS
-      login               Login to the platform                                                             Standalone  default    v0.25.0        not installed
+      login               Log in to the platform                                                             Standalone  default    v0.25.0        not installed
       management-cluster  Kubernetes management-cluster operations                                          Standalone  default    v0.25.0        not installed
       package             Tanzu package management                                                          Standalone  default    v0.11.6        update available
       pinniped-auth       Pinniped authentication operations (usually not directly invoked)                 Standalone  default    v0.25.0        not installed
@@ -243,7 +243,7 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
       builder             Build Tanzu components                                                            Standalone             v0.25.0        installed
       external-secrets    interacts with external-secrets.io resources                                      Standalone             v0.0.1         installed
       insight             post & query image, package, source, and vulnerability data                       Standalone             v1.2.2         installed
-      rbac                The rbac plugin allows the tap platform operator to add or remove subjects from   Standalone             v1.0.1-beta.1  installed
+      rbac                The rbac plug-in allows the tap platform operator to add or remove subjects from   Standalone             v1.0.1-beta.1  installed
                           a tap default user role with in a namespace.
       services            Explore Service Instance Classes, discover claimable Service Instances and        Standalone             v0.3.0         installed
                           manage Resource Claims

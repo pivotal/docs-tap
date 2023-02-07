@@ -113,7 +113,7 @@ In order to connect to a Google Secret Manager instance, you need a service acco
 
 ### Create a synced secret
 
-The secret to be synced must exist on your Secret Manager. Alternatively, you can create one. For example: To acccess your secret to access a maven repository stored in a secret `maven-registry-credential` in your Secret Manager, run:
+The secret to be synced must exist on your Secret Manager. Alternatively, you can create one. For example, say you want to acccess your secret to access a maven repository stored in a secret `maven-registry-credential` in your Secret Manager. First, create an external secrets resource with a reference to the secret to be synced and the `Valid` `ClusterStore` configured earlier. Run:
 
 ```sh
 kubectl apply -f external-secret.yaml
@@ -121,7 +121,6 @@ kubectl apply -f external-secret.yaml
 
 Where:
 
-Create an external secrets resource with the reference to the secret to be synced and the `Valid` `ClusterStore` configured above
 ```yaml
 ---
 apiVersion: external-secrets.io/v1beta1
@@ -157,8 +156,9 @@ spec:
       engineVersion: v2
 ```
 
-### Using a Synced Secret
-#### Example: Using the synced secret to access a maven artifact.
+### Using a synced secret
+
+The following example uses the synced secret to access a maven artifact:
 
 ```sh
 local readonly workload_name='java-web-app'
