@@ -33,7 +33,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Based on the validation, a scoring is provided to indicate the quality and health of the API specification
   as it relates to Documentation, OpenAPI best practices, and Security.
 
-- **[Application Accelerator for VMware Tanzu](application-accelerator/about-application-accelerator.md)**
+- **[Application Accelerator](application-accelerator/about-application-accelerator.md)**
 
   The Application Accelerator component helps app developers and app operators create application
   accelerators.
@@ -56,25 +56,25 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   endpoints (in our case, HTTP endpoints). Application Live View uses those endpoints to get the
   data from the application and to interact with it.
 
-- **[Application Single Sign-On for VMware Tanzu](app-sso/about.md)**
+- **[Application Single Sign-On](app-sso/about.md)**
 
   Application Single Sign-On enables application users to sign in to their identity provider once
   and be authorized and identified to access any Kubernetes-deployed workload. It is a secure and
   straightforward approach for developers and operators to manage access across all workloads in the
   enterprise.
 
-- **[Cloud Native Runtimes for VMware Tanzu](../docs-tap/cloud-native-runtimes/about.hbs.md)**
+- **[cert-manager](cert-manager/about.hbs.md)**
+
+  cert-manager adds certificates and certificate issuers as resource types to Kubernetes clusters.
+  It also helps you to obtain, renew, and use those certificates. For more information about cert-manager, see
+  the [cert-manager documentation](https://cert-manager.io/docs).
+
+- **[Cloud Native Runtimes](../docs-tap/cloud-native-runtimes/about.hbs.md)**
 
   Cloud Native Runtimes for Tanzu is a serverless application runtime for Kubernetes that is based on
   Knative and runs on a single Kubernetes cluster. For information about Knative, see the
   [Knative documentation](https://knative.dev/docs/). Cloud Native Runtimes capabilities are
   in VMware Tanzu Advanced Edition and VMware Tanzu Application Platform.
-
-- **[cert-manager](cert-manager/about.hbs.md)**
-
-  cert-manager adds certificates and certificate issuers as resource types to Kubernetes clusters. It also helps you to
-  obtain, renew, and use those certificates. For more information about cert-manager, see
-  the [cert-manager documentation](https://cert-manager.io/docs).
 
 - **[Contour](contour/about.hbs.md)**
 
@@ -82,7 +82,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   delegation. It provides the control plane for the Envoy edge and service proxy. For more information about Contour, see
   the [Contour documentation](https://projectcontour.io/docs/v1.22.0/).
 
-- **[Convention Service for VMware Tanzu](convention-service/about.md)**
+- **[Convention Service](convention-service/about.md)**
 
   Convention Service provides a means for people in operational roles to express their hard-won
   knowledge and opinions about how apps run on Kubernetes as a convention. The convention
@@ -110,7 +110,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   Tanzu CLI Apps plug-in, which rely on the Developer Conventions to edit the workload to enable
   inner loop capabilities.
 
-- **[Eventing for VMware Tanzu](eventing/about.hbs.md)**
+- **[Eventing](eventing/about.hbs.md)**
 
   Eventing for VMware Tanzu focuses on providing tooling and patterns for Kubernetes applications to
   manage event-triggered systems through Knative Eventing. For information about Knative, see
@@ -121,9 +121,17 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   The main role of this source management component is to provide a common interface for artifact
   acquisition.
 
-- **[Grype](https://github.com/anchore/grype)**
+  - **[Learning Center](learning-center/about.md)**
 
-  Grype is a vulnerability scanner for container images and file systems.
+  Learning Center provides a platform for creating and self-hosting workshops. With Learning Center,
+  content creators can create workshops from markdown files that learners can view in a terminal
+  shell environment with an instructional wizard UI. The UI can embed slide content, an integrated
+  development environment (IDE), a web console for accessing the Kubernetes cluster, and other custom
+  web applications.
+
+  Although Learning Center requires Kubernetes to run, and it teaches users about Kubernetes,
+  you can use it to host training for other purposes as well. For example, you can use it to train
+  users on web-based applications, use of databases, or programming languages.
 
 - **[Namespace Provisioner](namespace-provisioner/about.hbs.md)**
 
@@ -131,12 +139,12 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   namespaces with the resources and proper namespace-level privileges needed for developer workloads
   to function as intended.
 
-- **[Service Bindings for Kubernetes](service-bindings/about.hbs.md)
+- **[Service Bindings](service-bindings/about.hbs.md)**
 
-  Service Bindings for Kubernetes create a Kubernetes-wide specification for communicating service
+  Service Bindings create a Kubernetes-wide specification for communicating service
   secrets to workloads in a consistent way.
 
-- **[Services Toolkit for VMware Tanzu](services-toolkit/about.hbs.md)**
+- **[Services Toolkit](services-toolkit/about.hbs.md)**
 
   Services Toolkit comprises a number of Kubernetes-native components that support the management,
   life cycle, discoverability, and connectivity of Service Resources (databases, message queues,
@@ -147,13 +155,13 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   The Spring Boot convention server has a bundle of smaller conventions applied to any Spring Boot
   application that is submitted to the supply chain in which the convention controller is configured.
 
-- **[Spring Cloud Gateway for Kubernetes](spring-cloud-gateway/about.hbs.md)**
+- **[Spring Cloud Gateway](spring-cloud-gateway/about.hbs.md)**
 
   Spring Cloud Gateway for Kubernetes is an API gateway solution based on the open-source
   Spring Cloud Gateway project. It provides a simple means to route internal or external API requests
   to application services that expose APIs.
 
-- **[Supply Chain Choreographer for VMware Tanzu](scc/about.md)**
+- **[Supply Chain Choreographer](scc/about.md)**
 
   Supply Chain Choreographer is based on open-source [Cartographer](https://cartographer.sh/docs/).
   It enables app operators to create preapproved paths to production by integrating Kubernetes
@@ -163,6 +171,13 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   resources, namely test, build, scan, and deploy. Enabling developers to focus on delivering
   value to their users. Pre-approved supply chains also assure application operators that all code in
   production has passed through the steps of an approved workflow.
+
+- **[Supply Chain Security Tools - Policy Controller](scst-policy/overview.md)**
+
+  Supply Chain Security Tools - Policy is an admission controller that allows a cluster operator
+  to specify policies to verify image container signatures before admitting them to a cluster. It
+  works with [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for
+  fine-tuned configuration of policies based on image source patterns.
 
 - **[Supply Chain Security tools for Tanzu - Scan](scst-scan/overview.md)**
 
@@ -182,13 +197,6 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for fine-tuned
   configuration based on image source patterns.
 
-- **[Supply Chain Security Tools - Policy Controller](scst-policy/overview.md)**
-
-  Supply Chain Security Tools - Policy is an admission controller that allows a cluster operator
-  to specify policies to verify image container signatures before admitting them to a cluster. It
-  works with [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for
-  fine-tuned configuration of policies based on image source patterns.
-
 - **[Supply Chain Security Tools - Store](scst-store/overview.md)**
 
   Supply Chain Security Tools - Store saves software bills of materials (SBoMs) to a database and
@@ -203,6 +211,18 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   documentation, and even service status.
   Tanzu Application Platform GUI is built from the Cloud Native Computing Foundation's project
   Backstage.
+
+- **[Tanzu Application Platform Telemetry](telemetry/overview.hbs.md)**
+
+  Tanzu Application Platform Telemetry is a set of objects that collect data about the use of
+  Tanzu Application Platform and send it back to VMware for product improvements. A benefit of
+  remaining enrolled in telemetry and identifying your company during Tanzu Application Platform
+  installation is that VMware can provide your organization with use reports about Tanzu Application
+  Platform. See [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports)
+  for more information about enrolling in telemetry reports.
+
+  >**Note** You can opt out of telemetry collection by following the
+  >instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).
 
 - **[Tanzu Build Service](tanzu-build-service/tbs-about.md)**
 
@@ -237,34 +257,10 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   The VS Code extension enables live updates of your application while it runs on the cluster and
   lets you debug your application directly on the cluster.
 
-- **[Tanzu Learning Center](learning-center/about.md)**
-
-  Learning Center provides a platform for creating and self-hosting workshops. With Learning Center,
-  content creators can create workshops from markdown files that learners can view in a terminal
-  shell environment with an instructional wizard UI. The UI can embed slide content, an integrated
-  development environment (IDE), a web console for accessing the Kubernetes cluster, and other custom
-  web applications.
-
-  Although Learning Center requires Kubernetes to run, and it teaches users about Kubernetes,
-  you can use it to host training for other purposes as well. For example, you can use it to train
-  users on web-based applications, use of databases, or programming languages.
-
 - **[Tekton Pipelines](tekton/tekton-about.hbs.md)**
 
   Tekton is a powerful and flexible open-source framework for creating CI/CD systems, enabling
   developers to build, test, and deploy across cloud providers and on-premise systems.
-
-- **[Tanzu Application Platform Telemetry](telemetry/overview.hbs.md)**
-
-  Tanzu Application Platform Telemetry is a set of objects that collect data about the use of
-  Tanzu Application Platform and send it back to VMware for product improvements. A benefit of
-  remaining enrolled in telemetry and identifying your company during Tanzu Application Platform
-  installation is that VMware can provide your organization with use reports about Tanzu Application
-  Platform. See [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports)
-  for more information about enrolling in telemetry reports.
-
->**Note** You can opt out of telemetry collection by following the
->instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).
 
 ## <a id='profiles-and-packages'></a> Installation profiles in Tanzu Application Platform v{{ vars.url_version }}
 
