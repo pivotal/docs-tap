@@ -530,7 +530,7 @@ docs.vmware.com is built.
          - [Application Accelerator](tap-gui/plugins/application-accelerator.hbs.md)
              - [Application Accelerator in Tanzu Application Platform GUI](tap-gui/plugins/application-accelerator.hbs.md)
              - [Install Application Accelerator](application-accelerator/install-app-acc.hbs.md)
-             - [Create an Application Accelerator Git repository](tap-gui/plugins/application-accelerator-git-repo.hbs.md)
+             - [Create an Application Accelerator Git repository](tap-gui/plugins/application-accelerator-git-repo-1.5.hbs.md)
          - [API documentation](tap-gui/plugins/api-docs.hbs.md)
              - [API documentation overview](tap-gui/plugins/api-docs.hbs.md)
              - [Get started](tap-gui/plugins/api-docs-getting-started.hbs.md)
