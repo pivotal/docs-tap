@@ -15,7 +15,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   from workloads. You can also use API Auto Registration without supply chains by directly applying
   an `APIDescriptor` CR to the cluster.
 
-- **[API portal for VMware Tanzu](https://docs.pivotal.io/api-portal)**
+- **[API portal](https://docs.pivotal.io/api-portal)**
 
   API portal for VMware Tanzu enables API consumers to find APIs they can use in their own
   applications.
@@ -121,7 +121,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   The main role of this source management component is to provide a common interface for artifact
   acquisition.
 
-  - **[Learning Center](learning-center/about.md)**
+- **[Learning Center](learning-center/about.md)**
 
   Learning Center provides a platform for creating and self-hosting workshops. With Learning Center,
   content creators can create workshops from markdown files that learners can view in a terminal
