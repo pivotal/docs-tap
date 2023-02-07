@@ -3,13 +3,13 @@
 This topic contains release notes for Tanzu Application Platform v1.3
 
 {{#unless vars.hide_content}} 
-## <a id='1-3-4'></a> v1.3.5
+## <a id='1-3-5'></a> v1.3.5
 
 **Release Date**: February 14, **2023**
 
 ### <a id='1-3-5-bug-fix'></a> Bug fixes
 
-#### <a id='scc-bug-fix'></a> Supply Chain Choreographer
+#### <a id='1-3-5-scc-bug-fix'></a> Supply Chain Choreographer
 
 - Out of the Box Supply Chain Templates
   - Fixed Deliverable content written into ConfigMaps in multicluster setup.
