@@ -1,392 +1,91 @@
-# NIST controls
+# NIST 800-53 Assessment
 
-This topic reviews Tanzu Application Platform security control standards.
+The following table provides a self-assessment of Tanzu Application Platform against the
+NIST SP 800-53r4 moderate baseline. This translates to FISMA Moderate and CNSSI 1253 Mod/Mod/Mod for
+use in US Federal systems accreditation. The Moderate baseline applies to only technical controls.
+Organizational policy controls, physical security, media policies, and similar
+are excluded as they are not applicable to Tanzu Application Platform. These excluded
+controls are still relevant to the system at large and must be inherited from existing accreditations
+or otherwise addressed.
 
-## <a id="controls"></a> Assessment of Tanzu Application Platform controls
+The initial iteration of this assessment delineates responsible parties.
+Incremental updates will add more details on implementation and update to 800-53 Revision 5.
 
-Many organizations are required to reference a standardized control framework when assessing the security and compliance of their information systems.
-Standardized control frameworks provide a model for how to protect information and data systems from threats, including malicious third parties, structural failures, and human error. One comprehensive and commonly referenced framework is [NIST Special Publication 800-53 Rev. 5](https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final). Adherence to these controls is required for many government agencies in the United States, and for many private enterprises that operate within regulated markets, such as healthcare or finance. For example, the HIPAA regulations that govern the required protections for Personal Health Information (PHI) can be cross-referenced to the NIST SP 800-53 Rev. 5 control set.
-
-This table provides a self-assessment of Tanzu Application Platform against the NIST SP 800-53 Rev. 5 controls and provides a high level of guidance for  the initial approch of how deployers can achieve compliance when using a shared responsibility model. Responsibility for any control can be assigned as indicated.
-
-|Name | Developer Responability | Platform Provided (Tanzu Application Platform) | Hybrid (Platform and App shared resonsibility) | Potential to inharet from IaaS or Enterprise pollicy/tool | Security Control Baseline Moderate | Security Controle Baseline High |
-|---|---|---|---|---|---|---|
-| AC-1 | yes |  |  | yes | x | x |
-| AC-2 | yes |  |  | yes | x | x |
-| AC-2(1) |  | yes |  | yes | x | x |
-| AC-2(2) | yes |  |  | yes | x | x |
-| AC-2(3) |  yes |  |  | yes | x | x |
-| AC-2(4) |  |  | yes |  | x | x |
-| AC-2(5) | yes |  |  | yes | x | x |
-| AC-2(7) |  |  |  | yes | x | x |
-| AC-2(9) | yes |  |  | yes | x | x |
-| AC-2(10) | yes |  |  | yes | x | x |
-| AC-2(11) | yes |  |  | yes |  | x |
-| AC-2(12) |   |  | yes | yes |  | x |
-| AC-2(12)(a) |   |  | yes | yes |  |  |
-| AC-2(12)(b) |   |  | yes | yes |  | x |
-| AC-2(13) | yes |  |  | yes |  | x |
-| AC-3 |  |  | yes | yes | x | x |
-| AC-4 |  |  | yes |  | x | x |
-| AC-5 |  | yes |  |  | x | x |
-| AC-5a |  |  | yes |  | x | x |
-| AC-5b |  |  | yes |  | x | x |
-| AC-5c |  |  | yes |  | x | x |
-| AC-6 |  | yes |  |  | x | x |
-| AC-6 (1) | yes |  | yes | x | x |
-| AC-6 (3) | yes |  | yes |  | x |
-| AC-6 (5) |  |  | yes | yes | x | x |
-| AC-7 |  |  | yes | yes | x | x |
-| AC-7a | yes |  |  |  || x | x |
-| AC-7b | yes |  |  |  | x | x |
-| AC-11 | yes |  |  | yes | x | x |
-| AC-11a | yes |  |  | yes |  |  |
-| AC-11b | yes |  |  |  | x | x |
-| AC-11 (1) | yes |  |  | yes | x | x |
-| AC-12 | yes |  | ? |  | x | x |
-| AC-12(1) | yes |  | ? |  |  |  |
-| AC-14 |  |  | shared |  |  |  |
-| AC-17 |  | yes |  |  | x | x |
-| AC-17(1) |  | ? |  |  | x | x |
-| AC-20 | yes |  |  | yes | x | x |
-| AC-20(1) | yes |  |  | yes |  |  |
-| AC-20(2) | yes |  |  | yes |  |  |
-| AC-21 | yes |  |  | yes | x | x |
-| AC-22 | yes |  |  | yes | x | x |
-| AT-1 | yes |  |  | yes | x | x |
-| AT-2 | yes |  |  | yes | x | x |
-| AT-2 (1) | yes |  |  | yes | x | x |
-| AT-2 (2) | yes |  |  | yes | x | x |
-| AT-3 | yes |  |  | yes | x | x |
-| AT-4 | yes |  |  | yes | x | x |
-| AU-6(1) |  | ? |  |  | x | x |
-| AU-6(3) | yes |  |  | yes | x | x |
-| AU-6(5) | yes |  |  |  |  | x |
-| AU-6(6) | yes |  |  |  |  | x |
-| AU-6(7) | yes |  |  |  |  |  x|
-| AU-7 |  | yes |  |  | x | x |
-| AU-7a |  | yes |  |  | x | x |
-| AU-7b |  |  |  |  | x | x |
-| AU-7 (1) |  | yes |  |  | x | x |
-| AU-9(2) | yes |  |  | yes |  |  |
-| AU-11|  | ? |  | yes |  |  |
-| AU-12 |  | yes |  |  | x | x |
-| AU-12a |  | yes |  |  | x | x |
-| AU-12b |  | yes |  |  | x | x |
-| AU-12c |  | yes |  |  | x | x |
-| AU-12(1) |  | yes |  |  |  | x |
-| AU-12(3) |  | yes |  |  |  | x |
-| CM-1 | yes |  |  | yes |  |  |
-| CM-2 |  | yes |  |  |  |  |
-| CM-2(1) |  | yes |  |  |  |  |
-| CM-2(2) |  | yes |  |  |  |  |
-| CM-2(3) |  | yes |  |  |  |  |
-| CM-3(4) | yes |  |  |  |  |  |
-| CM-3(5) |  |  | shared? | yes? |  |  |
-| CM-4 | yes |  |  |  |  |  |
-| CM-4(1) | yes |  |  |  |  |  |
-| CM-5 |  |  | shared |  |  |  |
-| CM-5(1) |  | roadmap? |  |  |  |  |
-| CM-5(2) |  |  | Shared |  |  |  |
-| CM-6 |  |  | yes |  | x | x |
-| CM-6(1) |  |  | yes |  |  | x |
-| CM-7 |  | yes |  |  | x | x |
-| CM-7(2) |  |  | yes |  | x | x |
-| CM-7(4) | yes |  |  | yes | x |  |
-| CM-7(4)(a) | yes |  |  |  |  |  |
-| CM-7(4)(b) | yes |  |  | yes | x |  |
-| CM-7(5) | yes |  |  |  |  |  |
-| CM-7(5)(b) | yes |  |  | yes |  | x |
-| CM-8 |  | yes | ? |  |  |  |
-| CM-8(1) |  | yes |  |  |  |  |
-| CM-8(2) |  | yes |  |  |  |  |
-| CM-8(3) |  | yes |  |  |  |  |
-| CM-10 | yes |  |  |  |  |  |
-| CP-1 | yes |  |  | yes | x | x |
-| CP-1a |  |  |  | yes |  |  |
-| CP-1a1 |  |  |  | yes |  |  |
-| CP-1 a2|  |  |  | yes |  |  |
-| CP-1b |  |  |  | yes |  |  |
-| CP-1b1 |  |  |  | yes |  |  |
-| CP-1 b2|  |  |  | yes |  |  |
-| CP-2 | yes |  |  | yes | x | x |
-| CP-2a |  |  |  | yes |  |  |
-| CP-2a1 |  |  |  | yes |  |  |
-| CP-2a2 |  |  |  | yes |  |  |
-| CP-2a3 |  |  |  | yes |  |  |
-| CP-2a4 |  |  |  | yes |  |  |
-| CP-2a6 |  |  |  | yes |  |  |
-| CP-2b |  |  |  | yes |  |  |
-| CP-2c |  |  |  | yes |  |  |
-| CP-2d |  |  |  | yes |  |  |
-| CP-2e |  |  |  | yes |  |  |
-| CP-2f |  |  |  | yes |  |  |
-| CP-2g |  |  |  | yes |  |  |
-| CP-2 (1) | yes |  |  | yes | x | x |
-| CP-2 (2) | yes |  |  | yes |  | x |
-| CP-2 (3) | yes |  |  | yes | x | x |
-| CP-2 (4) | yes |  |  | yes |  | x |
-| CP-2 (5) | yes |  |  | yes |  | x |
-| CP-2 (6) | yes |  |  | yes |  |  |
-| CP-2 (7) | yes |  |  | yes |  |  |
-| CP-2 (8) | yes |  |  | yes | x | x |
-| CP-3 | yes |  |  | yes | x | x |
-| CP-3a | yes |  |  | yes |  |  |
-| CP-3b | yes |  |  | yes |  |  |
-| CP-3c | yes |  |  | yes |  |  |
-| CP-3 (1) | yes |  |  | yes |  | x |
-| CP-3 (2) | yes |  |  | yes |  |  |
-| CP-4 | yes |  |  | yes | x | x |
-| CP-4a | yes |  |  | yes |  |  |
-| CP-4b | yes |  |  | yes |  |  |
-| CP-4c | yes |  |  | yes |  |  |
-| CP-4 (1) | yes |  |  | yes | x | x |
-| CP-4 (2) | yes |  |  | yes |  | x |
-| CP-4(2)(a) | yes |  |  | yes |  |  |
-| CP-4(2)(b) | yes |  |  | yes |  |  |
-| CP-4 (3) | yes |  |  | yes |  |  |
-| CP-4 (4) | yes |  |  | yes |  |  |
-| CP-5 | yes |  |  | yes |  |  |
-| CP-6| yes |  |  | yes | x | x |
-| CP-6a| yes |  |  | yes |  |  |
-| CP-6b| yes |  |  | yes |  |  |
-| CP-6 (1) | yes |  |  | yes | x | x |
-| CP-6 (2) | yes |  |  | yes |  | x |
-| CP-6 (3) | yes |  |  | yes | x | x |
-| CP-7 | yes |  |  | yes | x | x |
-| CP-7a | yes |  |  | yes |  |  |
-| CP-7b | yes |  |  | yes |  |  |
-| CP-7c | yes |  |  | yes |  |  |
-| CP-7 (1) | yes |  |  | yes | x | x |
-| CP-7 (2) | yes |  |  | yes | x | x |
-| CP-7 (3) | yes |  |  | yes | x | x |
-| CP-7 (4) | yes |  |  | yes |  | x |
-| CP-7 (5) | yes |  |  | yes |  |  |
-| CP-7 (6) | yes |  |  | yes |  |  |
-| CP-8 | yes |  |  | yes | x | x |
-| CP-8(1) | yes |  |  | yes | x | x |
-| CP-8(1)(a) | yes |  |  | yes |  |  |
-| CP-8(1)(b) | yes |  |  | yes |  |  |
-| CP-8(2) | yes |  |  | yes | x | x |
-| CP-8(3) | yes |  |  | yes |  | x |
-| CP-8(4) | yes |  |  | yes |  | x |
-| CP-8(4)(a) | yes |  |  | yes |  |  |
-| CP-8(4)(b) | yes |  |  | yes |  |  |
-| CP-8(4)(c) | yes |  |  | yes |  |  |
-| CP-8(5) |  |  |  | yes |  |  |
-| CP-9 | yes |  |  | yes |  | x | x |
-| CP-9a |  |  |  | yes |  |  |  |
-| CP-9b |  |  |  | yes |  |  |  |
-| CP-9c |  |  |  | yes |  |  |  |
-| CP-9d |  |  |  | yes |  |  |  |
-| CP-9 (1) | yes |  |  | yes |  | x | x |
-| CP-9 (2) | yes |  |  | yes |  |  | x |
-| CP-9 (3) | yes |  |  | yes |  |  | x |
-| CP-9 (4) | yes |  |  | yes |  |  | x |
-| CP-9 (5) | yes? |  |  | yes |  |  | x |
-| CP-9(6) |  |  |  | yes |  |  | x |
-| CP-9(7) |  |  |  | yes |  |  | x |
-| CP-10 |  |  | yes |  | x | x |
-| CP-10 (1) |  |  | yes | x | x |
-| CP-10 (2) |  |  | yes | x | x |
-| CP-10 (3) |  |  | yes | x | x |
-| CP-10 (4) |  |  | yes | x | x |
-| IA-1 | yes |  |  |  | x | x |
-| IA-2 |  | yes |  | yes | x | x |
-| IA-2(2) |  |  | yes |  | x | x |
-| IA-2(3) | yes |  |  | yes |  |  |
-| IA-2(4) |  | yes |  | yes |  | x |
-| IA-2(9) |  | yes |  | yes |  | x |
-| IA-2(11) |  | yes |  | yes | x | x |
-| IA-2(12) |  | yes |  | yes | x | x |
-| IA-3 |  |  | yes | yes | x | x |
-| IA-4 |  | yes |  | yes | x | x |
-| IA-4a |  | yes |  | yes | x | x |
-| IA-4b |  | yes |  | yes | x | x |
-| IA-4c |  | yes |  | yes | x | x |
-| IA-4d |  | yes |  | yes | x | x |
-| IA-5 | yes |  |  | yes | x | x |
-| IA-5(1) | yes |  |  | yes | x | x |
-| IA-5(1)(a) | yes |  |  | yes | x | x |
-| IA-5(1)(d) | yes |  |  | yes | x | x |
-| IA-5(1)(e) | yes |  |  | yes | x | x |
-| IA-5(1)(f) | yes |  |  | yes | x | x |
-| IA-5 (11) |  |  |  | yes | x | x |
-| IA-6 | yes |  |  | yes | x | x |
-| IA-7 | yes |  |  | yes | x | x |
-| IA-8 |  |  | yes |  | x | x |
-| IA-8(3) | yes |  |  | yes | x | x |
-| IR-1 | yes |  |  | yes | x | x |
-| IR-2 | yes |  |  | yes | x | x |
-| IR-2 (1) | yes |  |  | yes |  | x |
-| IR-2 (2) | yes |  |  | yes |  | x |
-| IR-3 | yes |  |  | yes | x | x |
-| IR-3 (1) | yes |  |  | yes | x | x |
-| IR-3 (2) | yes |  |  | yes | x | x |
-| IR-4 | yes |  |  | yes | x | x |
-| IR-4(1) | yes |  |  | yes | x | x |
-| IR-4(2) | yes |  |  | yes | x |  |
-| IR-4(3) |  |  |  | yes |  | x |
-| IR-4(4) | yes |  |  | yes |  | x |
-| IR-5 |  |  | yes |  | x | x |
-| IR-5 (1) |  |  | yes |  |  | x |
-| IR-6 | yes |  |  | yes | x | x |
-| IR-6 (1) | yes |  |  | yes | x | x |
-| IR-7 | yes |  |  | yes | x | x |
-| IR-7 (1) | yes |  |  | yes | x | x |
-| IR-8 | yes |  |  | yes | x | x |
-| MA-1 | yes |  |  | yes | x | x |
-| MA-2 | yes |  |  | yes | x | x |
-| MA-3 | yes |  |  | yes | x | x |
-| MA-3(1) | yes |  |  | yes | x | x |
-| MA-3(2) | yes |  |  | yes | x | x |
-| MA-3(3) | yes |  |  | yes | x | x |
-| MA-4 | yes |  |  | yes | x | x |
-| MA-4(2) |yes |  |  | yes | x | x |
-| MA-4(3) |yes |  |  | yes | x | x |
-| MA-5 |yes |  |  | yes | x | x |
-| MA-5(1) |yes |  |  | yes | x | x |
-| MA-6 |yes |  |  | yes | x | x |
-| MP-1 |yes |  |  | yes | x | x |
-| MP-2 |yes |  |  | yes | x | x |
-| MP-3 |yes |  |  | yes | x | x |
-| MP-4 |yes |  |  | yes | x | x |
-| MP-5 |yes |  |  | yes | x | x |
-| MP-5 (4) |yes |  |  | yes | x | x |
-| MP-6 |yes |  |  | yes | x | x |
-| MP-6(1) | yes |  |  | yes |  | x |
-| MP-6(2) | yes |  |  | yes |  | x |
-| MP-6(3) | yes |  |  | yes |  | x |
-| MP-7 |yes |  |  | yes | x | x |
-| MP-7(1) |yes |  |  | yes | x | x |
-| PE-1 |yes |  |  | yes | x | x |
-| PE-2 |yes |  |  | yes | x | x |
-| PE-3 |yes |  |  | yes | x | x |
-| PE-3(1) | yes |  |  | yes |  | x |
-| PE-4 |yes |  |  | yes | x | x |
-| PE-5 |yes |  |  | yes | x | x |
-| PE-6 |yes |  |  | yes | x | x |
-| PE-6(1) |yes |  |  | yes | x | x |
-| PE-6(4) | yes |  |  | yes |  | x |
-| PE-8 |yes |  |  | yes | x | x |
-| PE-8(1) | yes |  |  | yes |  | x |
-| PE-9 |yes |  |  | yes | x | x |
-| PE-10 |yes |  |  | yes | x | x |
-| PE-11 |yes |  |  | yes | x | x |
-| PE-12 |yes |  |  | yes | x | x |
-| PE-13 |yes |  |  | yes | x | x |
-| PE-13(1) | yes |  |  | yes |  | x |
-| PE-13(2) | yes |  |  | yes |  | x |
-| PE-13(3) | yes |  |  | yes | x | x |
-| PE-14 |yes |  |  | yes | x | x |
-| PE-15 |yes |  |  | yes | x | x |
-| PE-15(1) | yes |  |  | yes |  | x |
-| PE-16 |yes |  |  | yes | x | x |
-| PE-17 |yes |  |  | yes | x | x |
-| PE-18 | yes |  |  | yes |  | x |
-| PL-1 |yes |  |  | yes | x | x |
-| PL-2 |yes |  |  | yes | x | x |
-| PL-2(3) |yes |  |  | yes | x | x |
-| PL-4 |yes |  |  | yes | x | x |
-| PL-4 (1) |yes |  |  | yes | x | x |
-| PL-8 |  |  | yes |  | x | x |
-| PS-1 |yes |  |  | yes | x | x |
-| PS-2 |yes |  |  | yes | x | x |
-| PS-3 | yes |  |  | yes | x | x |
-| PS-4 | yes |  |  | yes | x | x |
-| PS-4(2) | yes |  |  | yes |  | x |
-| PS-5 | yes |  |  | yes | x | x |
-| PS-6 | yes |  |  | yes | x | x |
-| PS-7 | yes |  |  | yes | x | x |
-| PS-8 | yes |  |  | yes | x | x |
-| RA-1 | yes |  |  | yes | x | x |
-| RA-2 | yes |  |  | yes | x | x |
-| RA-3 | yes |  |  | yes | x | x |
-| RA-5 |  |  | yes |  | x | x |
-| RA-5(1) |  |  | yes |  | x | x |
-| RA-5(2) |  |  | yes |  | x | x |
-| RA-5(4) |  |  | yes |  |  | x |
-| RA-5(5) |  |  | yes |  | x | x |
-| RA-7 |  |  | yes |  | x | x |
-| RA-9 |yes |  |  | yes | x | x |
-| SA-1 |yes |  |  | yes | x | x |
-| SA-2 |yes |  |  | yes | x | x |
-| SA-3 |yes |  |  | yes | x | x |
-| SA-4 |yes |  |  | yes | x | x |
-| SA-4(1) |yes |  |  | yes | x | x |
-| SA-4(2) |yes |  |  | yes | x | x |
-| SA-4 (9)  |yes |  |  | yes | x | x |
-| SA-4 (10) |yes |  |  | yes | x | x |
-| SA-5 |yes |  |  | yes | x | x |
-| SA-8 |yes |  |  | yes | x | x |
-| SA-9 |yes |  |  | yes | x | x |
-| SA-9(2) |yes |  |  | yes | x | x |
-| SA-10 |yes |  |  | yes | x | x |
-| SA-11 |yes |  |  | yes | x | x |
-| SA-12 | yes |  |  | yes |  | x | x |
-| SA-15 | yes |  |  | yes |  | x |
-| SA-16 | yes |  |  | yes |  | x |
-| SA-17 | yes |  |  | yes |  | x |
-| SA-21 | yes |  |  | yes |  |  |
-| SA-22 |  |  | yes |  |  |  |
-| SC-1 |yes |  |  | yes | x | x |
-| SC-2 |  |  | yes |  | x | x |
-| SC-3 |  |  | yes |  |  | x |
-| SC-4 |  | yes |  |  | x | x |
-| SC-5 |  | yes |  |  | x | x |
-| SC-7 |  | yes |  |  | x | x |
-| SC-7a |  |  | yes |  | x | x |
-| SC-7b |  |  | yes |  | x | x |
-| SC-7c |yes |  |  | yes | x | x |
-| SC-7(4)(c) |  | yes |  |  | x | x |
-| SC-7(5) |  | yes |  |  | x | x |
-| SC-7(7) | yes |  |  |  |  |  |
-| SC-7(8) |  | coming soon |  |  |  | x |
-| SC-7(18) |  | yes |  | yes |  | x |
-| SC-8 |  | yes |  | yes | x | x |
-| SC-10 |  | yes |  | yes | x | x |
-| SC-12 |yes |  |  | yes | x | x |
-| SC-13 |yes |  |  | yes | x | x |
-| SC-15 |yes |  |  | yes | x | x |
-| SC-17 |yes |  |  | yes | x | x |
-| SC-18 |yes |  |  | yes | x | x |
-| SC-19 |yes |  |  | yes | x | x |
-| SC-20 |yes |  |  | yes | x | x |
-| SC-21 |  | yes |  |  | x | x |
-| SC-22 |  |  | yes |  | x | x |
-| SC-23 |  |  | yes |  | x | x |
-| SC-24 | yes |  |  | yes |  | x |
-| SC-28 |yes |  |  | yes | x | x |
-| SC-39 |  | yes |  |  | x | x |
-| SI-1 |yes |  |  | yes | x | x |
-| SI-2 |  |  | yes |  | x | x |
-| SI-3 |  |  | yes |  | x | x |
-| SI-4 |  |  | yes |  | x | x |
-| SI-5 |  |  | yes |  | x | x |
-| SI-6 |  |  | yes |  |  | x |
-| SI-6a |  |  | yes |  |  | x |
-| SI-6b |  |  | yes |  |  | x |
-| SI-6c |  |  | yes |  |  | x |
-| SI-6d |  |  | yes |  |  | x |
-| SI-7 |yes |  |  | yes | x | x |
-| SI-7(1) |yes |  |  | yes | x | x |
-| SI-7(2) | yes |  |  | yes |  | x |
-| SI-7(5) | yes |  |  | yes |  | x |
-| SI-8 |yes |  |  | yes | x | x |
-| SI-10 |yes |  |  | yes | x | x |
-| SI-11 |yes |  |  | yes | x | x |
-| SI-12 |yes |  |  | yes | x | x |
-| SI-16 |  | yes |  |  | x | x |
-| SR-1 |yes |  |  | yes | x | x |
-| SR-2 |yes |  |  | yes | x | x |
-| SR-2(1) |yes |  |  | yes | x | x |
-| SR-3 |yes |  |  | yes | x | x |
-| SR-5 |yes |  |  | yes | x | x |
-| SR-6 |yes |  |  | yes | x | x |
-| SR-8 |  |  | yes |  | x | x |
-| SR-9 |  |  | yes |  |  | x |
-| S9-9(1) |  |  | yes |  |  | x |
-| SR-10 |yes |  |  | yes | x | x |
-| SR-11 |yes |  |  | yes | x | x |
-| SR-11(1) |yes |  |  | yes | x | x |
-| SR-11(2) |  | yes |  |  | x | x |
+| **Name** | **Title** | **Responsible Party** | **Notes** |
+| --- | --- | --- | --- |
+| AC-2 (1) | AUTOMATED SYSTEM ACCOUNT MANAGEMENT | Customer | Implemented on customer identity store. Customer should employ automated mechanisms to support the management of information system accounts used to access their Tanzu Application Platform installation. |
+| AC-2 (2) | REMOVAL OF TEMPORARY / EMERGENCY ACCOUNTS | Customer | Implemented on customer identity store. If the customer chooses to use temporary or emergency accounts, they should ensure that the system automatically disables or removes the account following an organization-defined time period. |
+| **AC-2 (3)** | DISABLE INACTIVE ACCOUNTS | Customer | Implemented on customer identity store. The customer should automatically disable inactive accounts used to access their Tanzu Application Platform installation following an organization-defined time period of inactivity. |
+| **AC-2 (4)** | AUTOMATED AUDIT ACTIONS | Customer | Implemented on customer identity store. The customer should automatically audit account creation, modification, enabling, disabling, and removal actions associated with accounts used to access their Tanzu Application Platform installation and should notify an organization-defined personnel or role. |
+| **AC-3** | ACCESS ENFORCEMENT | Customer | The customer should federate their IdP with Tanzu Application Platform to enforce approved access authorizations to their Tanzu Application Platform installation. |
+| **AC-4** | INFORMATION FLOW ENFORCEMENT | Customer | The customer is responsible for enforcing approved authorizations for controlling the flow of information between Tanzu Application Platform and interconnected systems (ex. SIEM tool) based on organization-defined information flow control policies. Currently, Tanzu Application Platform does not restrict intra-service or inter-system communication. Future versions of Tanzu Application Platform will include this functionality via service mesh architecture or similar methods. |
+| **AC-6** | LEAST PRIVILEGE | Shared | The customer is responsible for enforcing least privilege by ensuring Tanzu Application Platform users have the minimum permissions necessary to perform their job function. Tanzu Application Platform is responsible for providing RBAC functionality to enforce least privilege. |
+| **AC-6 (1)** | AUTHORIZE ACCESS TO SECURITY FUNCTIONS | Shared | The customer is responsible for explicitly authorizing access to organization-defined security functions and security-relevant information as it relates to their Tanzu Application Platform installation. Tanzu Application Platform is responsible for providing the RBAC functionality necessary to restrict which users can access security functions and security-related information. |
+| **AC-6 (5)** | PRIVILEGED ACCOUNTS | Shared | The customer should restrict privileged Tanzu Application Platform accounts to organization-defined personnel or roles. Tanzu Application Platform is responsible for providing the RBAC functionality for customers to restrict privileged Tanzu Application Platform accounts to organization-defined personnel or roles. |
+| **AC-6 (9)** | AUDITING USE OF PRIVILEGED FUNCTIONS | Shared | The customer is responsible for configuring Tanzu Application Platform and underlying Kubernetes to send log streams to their SIEM tool for log analysis to be capable of auditing the execution of privileged functions. Tanzu Application Platform is responsible for generating logs pertaining to the execution of privileged functions that can be ingested by the customer SIEM tool for analysis. |
+| **AC-6 (10)** | PROHIBIT NON-PRIVILEGED USERS FROM EXECUTING PRIVILEGED FUNCTIONS | Tanzu Application Platform | This functionality is inherent to Tanzu Application Platform/Kubernetes RBAC and can't be configured otherwise. |
+| AC-7AC-7a. **AC-7b.** | UNSUCCESSFUL LOGON ATTEMPTS | Customer | Implemented on customer identity provider. The customer is responsible for configuring their IdP to enforce a limit of consecutive invalid logon attempts by a user during an organization-defined time period which locks the user's account for an organization-defined time period, or until released by an administrator. |
+| AC-8AC-8a.AC-8a.1.AC-8a.2.AC-8a.3.AC-8a.4.AC-8b.AC-8c.AC-8c.1.AC-8c.2. **AC-8c.3.** | SYSTEM USE NOTIFICATION | Customer | Implemented on customer identity provider.
+Customer must configure their IdP to display the system use notification banner before login. |
+| AC-11AC-11a. **AC-11b.** | SESSION LOCK | Customer | The customer must configure sessions locks on user workstations used to access their Tanzu Application Platform installation. Tanzu Application Platform does not have a concept of session locks and relies on sessions locks applied by the user's workstation. Tanzu Application Platform provides logout functionality in place of session locking. |
+| **AC-11 (1)** | PATTERN-HIDING DISPLAYS | Customer | The customer must configure sessions locks on user workstations used to access their Tanzu Application Platform installation. This includes hiding of the user's private session with a publicly available image. Tanzu Application Platform does not have a concept of session locks and relies on sessions locks applied by the user's workstation. Tanzu Application Platform provides logout functionality in place of session locking. |
+| **AC-12** | SESSION TERMINATION | Shared | Implemented on customer identity provider. The customer is responsible for configuring IdP token TTL and refresh policies that apply to Tanzu Application Platform sessions. Tanzu Application Platform enforces token policies and cannot be configured otherwise. |
+| **AC-14 AC-14a.** | PERMITTED ACTIONS WITHOUT IDENTIFICATION OR AUTHENTICATION | Shared | The customer is responsible for identifying organization- defined user actions that can be performed on the information system without identification or authentication consistent with organizational missions/business functions. For production installations Tanzu Application Platform GUI must be configured with OIDC authentication and guest access disabled. |
+| **AC-17 (1)** | AUTOMATED MONITORING / CONTROL | Customer | "Remote Access" is defined as outside-the-org endpoints like remote workers over VPN. This is outside the scope of Tanzu Application Platform. The customer is responsible for all aspects regarding "remote access" to Tanzu Application Platform. |
+| **AC-17 (2)** | PROTECTION OF CONFIDENTIALITY / INTEGRITY USING ENCRYPTION | Customer | "Remote Access" is defined as outside-the-org endpoints like remote workers over VPN. This is outside the scope of Tanzu Application Platform. The customer is responsible for implementing cryptographic mechanisms to protect the confidentiality and integrity of "remote access" sessions to Tanzu Application Platform. |
+| **AC-17 (3)** | MANAGED ACCESS CONTROL POINTS | Customer | "Remote Access" is defined as outside-the-org endpoints like remote workers over VPN. This is outside the scope of Tanzu Application Platform. The customer is responsible for routing all "remote accesses" to Tanzu Application Platform through an organization-defined number of managed network access control points. |
+| AC-19 AC-19a.AC-19b. | ACCESS CONTROL FOR MOBILE DEVICES | Customer | The customer is responsible for all aspects regarding mobile devices which grant access to Tanzu Application Platform. |
+| **AU-3** | CONTENT OF AUDIT RECORDS | Tanzu Application Platform | The Tanzu Application Platform application must be capable of generating audit logs that contain the minimum content required by the customer consuming the application. |
+| **AU-3 (1)** | ADDITIONAL AUDIT INFORMATION | Customer | Implemented on customer SIEM. The customer is responsible for parsing Tanzu Application Platform logs on their SIEM to extract organization-defined extra information. |
+| **AU-4** | AUDIT STORAGE CAPACITY | Customer | Implemented on customer Kubernetes. Tanzu Application Platform logs are all captured by Kubernetes logging. The customer is responsible for configuring their Kubernetes hosts with record storage capacity to ensure that there is adequate storage of logs generated by Tanzu Application Platform clusters. |
+| AU-5AU-5a. **AU-5b.** | RESPONSE TO AUDIT PROCESSING FAILURES | Customer | Implemented on customer Kubernetes. Tanzu Application Platform audit records are collected and managed by Kubernetes and thus out of Tanzu Application Platform scope. The customer is responsible for configuring their Kubernetes hosts to account for audit processing failures and to alert the appropriate personnel responsible to take appropriate action. |
+| AU-7AU-7a.AU-7b. | AUDIT REDUCTION AND REPORT GENERATION | Customer | Implemented on customer Kubernetes and SIEM Tanzu Application Platform audit records are collected and managed by Kubernetes. The customer is responsible for ensuring that Kubernetes ships Tanzu Application Platform audit records to a central SIEM for review and analysis. |
+| **AU-7 (1)** | AUTOMATIC PROCESSING | Customer | Implemented on customer Kubernetes and SIEM Tanzu Application Platform audit records are collected and managed by Kubernetes. The customer is responsible for ensuring that Kubernetes ships Tanzu Application Platform audit records to a central SIEM for review and analysis. |
+| AU-8AU-8a. **AU-8b.** | TIME STAMPS | Tanzu Application Platform | Tanzu Application Platform components pull their system time from the container OS and the Kubernetes host and cannot be configured otherwise. Tanzu Application Platform components log statements include UTC timestamps and cannot be configured otherwise. |
+| AU-8 (1)AU-8 (1)(a)**AU-8 (1)(b)** | SYNCHRONIZATION WITH AUTHORITATIVE TIME SOURCE | Customer | The customer is responsible for configuring authoritative time sources on K8 clusters. |
+| AU-9 | PROTECTION OF AUDIT INFORMATION | Customer | Tanzu Application Platform audit records are collected and managed by Kubernetes. The customer is responsible for protecting Kubernetes and Kubernetes logging configurations from unauthorized access, modification, and deletion. |
+| AU-12AU-12a.AU-12b. **AU-12c.** | AUDIT GENERATION | Shared | Tanzu Application Platform audit records are collected and managed by Kubernetes. The customer is responsible for ensuring that Kubernetes ships Tanzu Application Platform audit records to a central SIEM for review and analysis. Tanzu Application Platform cannot be configured to audit specific information. Tanzu Application Platform logs verbosely and lets the customer filter out what is relevant to them via their SIEM. Tanzu Application Platform logging cannot be disabled. |
+| CM-7CM-7a. **CM-7b.** | LEAST FUNCTIONALITY | Shared | The customer is responsible for configuring Tanzu Application Platform to provide only essential capabilities. Tanzu Application Platform is responsible for providing customers with the capability to disable non-essential features not required by the customer. The customer is responsible for restricting the use of functions, ports, protocols, and/or services for the Tanzu Application Platform installation. Tanzu Application Platform is responsible for ensuring that functions, ports, protocols, and/or services are limited to those explicitly required for the application to operate. |
+| **CM-7 (2)** | PREVENT PROGRAM EXECUTION | Tanzu Application Platform | As an extension of CM-7, Least Functionality, this control is a responsibility of Tanzu Application Platform. Tanzu Application Platform only consists of containers with purposeful services with no extra programs running or bloat. This is not something that can be configured by the customer. |
+| **CM-7 (4)(b)** | UNAUTHORIZED SOFTWARE / BLACKLISTING | Tanzu Application Platform | Tanzu Application Platform service containers do not implement a deny-by-exception policy to prohibit the execution of unauthorized software programs. Tanzu Application Platform service containers are built to provide stripped down services and do not include extra programs or bloat. Tanzu Application Platform can provide a SBOM to compare against customer organization policies on disallowed software. |
+| **IA-2** | IDENTIFICATION AND AUTHENTICATION (ORGANIZATIONAL USERS) | Shared | The customer is responsible for configuring Tanzu Application Platform to use their IdP which is capable of uniquely identifying and authenticating organizational users. Tanzu Application Platform is responsible for providing customers with the capability to integrate their IdP to allow Tanzu Application Platform to uniquely identify organizational users. |
+| **IA-2 (1)** | NETWORK ACCESS TO PRIVILEGED ACCOUNTS | Customer | Implemented on customer identity provider. The customer is responsible for implementing multifactor authentication on their IdP for network access to privileged accounts. |
+| **IA-2 (2)** | NETWORK ACCESS TO NON-PRIVILEGED ACCOUNTS | Customer | Implemented on customer identity provider. The customer is responsible for implementing multifactor authentication on their IdP for network access to non-privileged accounts. |
+| **IA-2 (3)** | LOCAL ACCESS TO PRIVILEGED ACCOUNTS | N/A | Tanzu Application Platform does not utilize local accounts. All access occurs over a network connection. |
+| **IA-2 (8)** | NETWORK ACCESS TO PRIVILEGED ACCOUNTS - REPLAY RESISTANT | Tanzu Application Platform | Tanzu Application Platform is responsible for ensuring that all connections to the customer IdP are over TLS 1.2+. |
+| **IA-2 (11)** | REMOTE ACCESS - SEPARATE DEVICE | Customer | The customer is responsible for all aspects of MFA and MFA devices used to authenticate to their Tanzu Application Platform installation, including via remote access. |
+| **IA-2 (12)** | ACCEPTANCE OF PIV CREDENTIALS | Customer | Implemented on customer identity provider. The customer is responsible for implementing CAC/PIV credentials with their IdP. |
+| **IA-3** | DEVICE IDENTIFICATION AND AUTHENTICATION | Customer | The customer is responsible for uniquely identifying and authenticating organization-defined specific and/or types of devices before establishing a local, remote, or network connection. |
+| **IA-4e.** | IDENTIFIER MANAGEMENT | Customer | Implemented on customer identity provider. The customer is responsible for configuring IdP token TTL and refresh policies that apply to Tanzu Application Platform sessions. Tanzu Application Platform enforces token policies and cannot be configured otherwise. |
+| IA-5 (1)IA-5 (1)(a)IA-5 (1)(b)IA-5 (1)(c)IA-5 (1)(d)IA-5 (1)(e)IA-5 (1)(f) | PASSWORD-BASED AUTHENTICATION | Customer | Implemented on customer identity store. The customer is responsible for all aspects of password-based authentication to their IdP, via their identity store. Tanzu Application Platform does not employ password-based authentication itself. |
+| IA-5 (2)IA-5 (2)(a)IA-5 (2)(b)IA-5 (2)(c)**IA-5 (2)(d)** | PKI-BASED AUTHENTICATION | Customer | Implemented on customer identity provider. The customer is responsible for all aspects of PKI-based authentication on the IdP used to access their Tanzu Application Platform installation. |
+| **IA-5 (11)** | HARDWARE TOKEN-BASED AUTHENTICATION | Customer | The customer is responsible for ensuring hardware token-based, employs mechanisms that satisfy organization-defined token quality requirements. |
+| **IA-6** | AUTHENTICATOR FEEDBACK | Customer | Implemented on customer identity provider. The customer is responsible for ensuring their IdP obscures feedback of authentication information during the authentication process. |
+| **IA-7** | CRYPTOGRAPHIC MODULE AUTHENTICATION | Customer | Implemented on customer identity provider. The customer is responsible for ensuring their IdP implements FIPS 140-2 validated cryptographic modules. |
+| **IA-8** | IDENTIFICATION AND AUTHENTICATION (NON-ORGANIZATIONAL USERS) | Customer | Implemented on customer identity provider. The customer is responsible for ensuring that their IdP uniquely identifies and authenticates non-organizational Tanzu Application Platform users, or processes acting on behalf of non-organizational users. |
+| **IA-8 (1)** | ACCEPTANCE OF PIV CREDENTIALS FROM OTHER AGENCIES | Customer | Implemented on customer identity provider. The customer is responsible for configuring their IdP to accept and electronically verify Personal Identity Verification (PIV) credentials from other federal agencies. |
+| **IA-8 (2)** | ACCEPTANCE OF THIRD-PARTY CREDENTIALS | Customer | Implemented on customer identity provider. The customer is responsible for configuring their IdP to accept only FICAM-approved third-party credentials. |
+| **IA-8 (3)** | USE OF FICAM-APPROVED PRODUCTS | Customer | Implemented on customer identity provider. The customer is responsible for employing only FICAM-approved information system components on their IdP to accept third-party credentials. |
+| **IA-8 (4)** | USE OF FICAM-ISSUED PROFILES | Customer | Implemented on customer identity provider. The customer is responsible for ensuring their IdP conforms to FICAM-issued profiles. |
+| **SC-2** | APPLICATION PARTITIONING | Tanzu Application Platform | Tanzu Application Platform does not isolate user and management functionality on separate network interfaces, instances, CPUs, or similar. Tanzu Application Platform relies on different roles and Kubernetes RBAC to keep user and management functionality distinct. |
+| **SC-4** | INFORMATION IN SHARED RESOURCES | Tanzu Application Platform | Tanzu Application Platform creates dedicated Kubernetes namespaces upon deployment. Kubernetes namespaces prevent unauthorized and unintended information transfer via shared system resources. |
+| **SC-5** | DENIAL OF SERVICE PROTECTION | Customer | The customer is responsible for ensuring that organizational DoS protections at the network layer include the Tanzu Application Platform installation. |
+| SC-7SC-7a.SC-7b. **SC-7c.** | BOUNDARY PROTECTION | Customer | The customer is responsible for the configuration and management of boundary protection devices. |
+| **SC-7 (4)(c)** | EXTERNAL TELECOMMUNICATIONS SERVICES | Customer | The customer is responsible for external telecommunication services used to establish connections to their Tanzu Application Platform installation. |
+| **SC-7 (5)** | DENY BY DEFAULT / ALLOW BY EXCEPTION | Shared | Tanzu Application Platform does not currently implement 'deny by default' network policies. This might be mitigated by network level access controls configured by the customer. |
+| **SC-7 (7)** | PREVENT SPLIT TUNNELING FOR REMOTE DEVICES | Customer | The customer is responsible for all configuration of remote devices used to access Tanzu Application Platform. |
+| **SC-8** | TRANSMISSION CONFIDENTIALITY AND INTEGRITY | Tanzu Application Platform | Tanzu Application Platform is responsible for ensuring all communications occur over TLS 1.2+. |
+| **SC-8 (1)** | CRYPTOGRAPHIC OR ALTERNATE PHYSICAL PROTECTION | Tanzu Application Platform | Tanzu Application Platform is responsible for ensuring all communications occur over TLS 1.2+. |
+| **SC-10** | NETWORK DISCONNECT | Tanzu Application Platform | Tanzu Application Platform tears down TCP connections and deallocates system resources following the expiration of a session token and cannot be configured otherwise. |
+| **SC-12** | CRYPTOGRAPHIC KEY ESTABLISHMENT AND MANAGEMENT | Tanzu Application Platform | Tanzu Application Platform is responsible for providing customers with the ability to manage trust stores. |
+| **SC-13** | CRYPTOGRAPHIC PROTECTION | Tanzu Application Platform | Tanzu Application Platform is responsible for implementing FIPS 140 validated cryptographic modules and providing the customer with a means to enable "FIPS Mode". |
+| **SC-21** | SECURE NAME / ADDRESS RESOLUTION SERVICE (RECURSIVE OR CACHING RESOLVER) | Customer | Tanzu Application Platform inherits the DNSSEC capabilities of the organization resolvers it is configured to use. The customer is responsible for configuring the Tanzu Application Platform and Kubernetes infrastructure to use DNSSEC-capable resolvers. |
+| **SC-23** | SESSION AUTHENTICITY | Tanzu Application Platform | Tanzu Application Platform is responsible for ensuring all communications occur over TLS 1.2+. |
+| **SC-28** | PROTECTION OF INFORMATION AT REST | Customer | Tanzu Application Platform does not natively provide encryption for data at rest, but instead relies on the underlying Kubernetes persistent volumes for appropriate cryptographic protections. The customer is responsible for deploying Tanzu Application Platform to Kubernetes with persistent volumes for appropriate cryptographic protections. |
+| **SC-39** | PROCESS ISOLATION | Tanzu Application Platform | Tanzu Application Platform container OS enforces the use of separate execution domains for each executing process and cannot be configured otherwise. The underlying Kubernetes host isolates each container from the other. |
+| **SI-2c.** | FLAW REMEDIATION | Tanzu Application Platform | The customer is responsible for keeping the Tanzu Application Platform installation up to date, to within org-defined standards. Tanzu Application Platform does not automatically update itself. |
+| **SI-3 (2)** | AUTOMATIC UPDATES | N/A | Tanzu Application Platform does not include malicious code protection mechanisms therefore automatic update to such mechanisms is N/A. |
+| **SI-7 (1)** | INTEGRITY CHECKS | Tanzu Application Platform | Tanzu Application Platform performs a hash check when images are downloaded, and a cryptographic signature validation at runtime. This cannot be configured otherwise. |
+| **SI-10** | INFORMATION INPUT VALIDATION | Tanzu Application Platform | Tanzu Application Platform is responsible for performing input validation of user-supplied input to Tanzu Application Platform. |
+| SI-11SI-11a. **SI-11b.** | ERROR HANDLING | Tanzu Application Platform | Tanzu Application Platform limits error message verbosity but does display errors to users. Given the development/coding nature of Tanzu Application Platform, deployment errors and similar need to be raised to the user so they can be corrected. |
+| **SI-16** | MEMORY PROTECTION | Tanzu Application Platform | Tanzu Application Platform container OS protects its memory from unauthorized code execution and cannot be configured otherwise. The underlying Kubernetes host also isolates container memory pages. |
