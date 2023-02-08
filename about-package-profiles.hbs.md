@@ -65,16 +65,16 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[Cartographer Conventions](cartographer-conventions/about.hbs.md)**
 
-Use Cartographer Conventions to ensure infrastructure uniformity across workloads deployed on
-the cluster. Cartographer Conventions provide a way to control how applications should be deployed
-on Kubernetes using a convention. Use Cartographer Conventions to apply the runtime best practices,
-policies, and conventions of your organization to workloads as they are created on the platform.
+  Use Cartographer Conventions to ensure infrastructure uniformity across workloads deployed on
+  the cluster. Cartographer Conventions provide a way to control how applications should be deployed
+  on Kubernetes using a convention. Use Cartographer Conventions to apply the runtime best practices,
+  policies, and conventions of your organization to workloads as they are created on the platform.
 
 - **[cert-manager](cert-manager/about.hbs.md)**
 
   cert-manager adds certificates and certificate issuers as resource types to Kubernetes clusters.
-  It also helps you to obtain, renew, and use those certificates. For more information about cert-manager, see
-  the [cert-manager documentation](https://cert-manager.io/docs).
+  It also helps you to obtain, renew, and use those certificates. For more information about
+   cert-manager, see the [cert-manager documentation](https://cert-manager.io/docs).
 
 - **[Cloud Native Runtimes](../docs-tap/cloud-native-runtimes/about.hbs.md)**
 
@@ -96,7 +96,7 @@ policies, and conventions of your organization to workloads as they are created 
   service applies these opinions to fleets of developer workloads as they are deployed to the
   platform, saving time for operators and developers.
 
-<!--- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)**
+<!-- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)**
 
   This package includes five default roles for users, including app-editor, app-viewer, app-operator,
   and service accounts including workload and deliverable. These roles are available to help
@@ -105,7 +105,7 @@ policies, and conventions of your organization to workloads as they are created 
   access control (RBAC).
 
   Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI.
-  Tanzu Application Platform GUI support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI-->
+  Tanzu Application Platform GUI support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI -->
 
 - **[Developer Conventions](developer-conventions/about.hbs.md)**
 
