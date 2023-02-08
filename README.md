@@ -154,6 +154,43 @@ Use this table to keep a running list of terms used and how they should be defin
 | TAP package repository |  How is this different from the other package repositories? (Are there non-TAP package repositories discussed on this page?) Changed from TAP to Tanzu Application Platform, Sept 24, 2021.|
 | .yaml and YAML file | Standardize on using the "a", not `.yml` |
 
+## Component list
+
+|Full Name|Short Name|
+|---------|-----------|
+|API Auto Registration|API Auto Registration|
+|API portal for VMware Tanzu|API portal|
+|API Scoring and Validation|API Scoring and Validation|
+|Application Accelerator for VMware Tanzu|Application Accelerator|
+|Application Live View|Application Live View|
+|Application Single Sign-On for VMware Tanzu|Application Single Sign-On|
+|Cartographer Conventions|Cartographer Conventions|
+|cert-manager|cert-manager|
+|Cloud Native Runtimes for VMware Tanzu|Cloud Native Runtimes|
+|Contour|Contour|
+|Convention Service for VMware Tanzu|Convention Service|
+|Developer Conventions|Developer Conventions|
+|Eventing|Eventing|
+|FluxCD Source Controller|FluxCD Source Controller|
+|Tanzu Learning Center|Learning Center|
+|Namespace Provisioner|Namespace Provisioner|
+|Service Bindings|Service Bindings|
+|Services Toolkit for VMware Tanzu Application Platform|Services Toolkit|
+|Spring Boot conventions|Spring Boot conventions|
+|Spring Cloud Gateway for Kubernetes|Spring Cloud Gateway|
+|Supply Chain Choreographer|Supply Chain Choreographer|
+|Supply Chain Security Tools for VMware Tanzu - Policy Controller|Supply Chain Security Tools - Policy Controller|
+|Supply Chain Security Tools for VMware Tanzu - Scan|Supply Chain Security Tools - Scan|
+|Supply Chain Security Tools for VMware Tanzu - Sign|Supply Chain Security Tools - Sign|
+|Supply Chain Security Tools for VMware Tanzu - Store|Supply Chain Security Tools - Store|
+|Tanzu Application Platform GUI|Tanzu Application Platform GUI|
+|Tanzu Application Platform Telemetry|Tanzu Application Platform Telemetry|
+|Tanzu Build Service|Tanzu Build Service|
+|VMware Tanzu Developer Tools for IntelliJ|Tanzu Developer Tools for IntelliJ|
+|VMware Tanzu Developer Tools for Visual Studio|Tanzu Developer Tools for Visual Studio|
+|VMware Tanzu Developer Tools for Visual Studio Code|Tanzu Developer Tools for Visual Studio Code|
+|VMware Tanzu Application Platform Pipeline service with Tekton|Tekton Pipelines|
+
 ## Placeholder List
 
 | Placeholder | Definition |
