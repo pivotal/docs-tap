@@ -158,15 +158,22 @@ The accelerator may take some time to reconcile. Once it has reconciled, it will
 
 ## Verify project generation output using the Tanzu Application Platform GUI
 1. Navigate to your organizations instance of the Tanzu Application Platform GUI.
-<!-- TODO: Insert home screen image of TAP GUI here -->
+
+    ![Home screen image of Tanzu Application Platform GUI](/images/app-accelerator/getting-started-1-1.png)
+
 2. On the left-hand navigation pane, click on the "**Create**" button.
-<!-- TODO: Insert image of highlight Create button in TAP GUI here -->
+
+    ![Image of highlighting the Create button in Tanzu Application Platform GUI](/images/app-accelerator/getting-started-1-2.png)
+
 3. Using the search bar towards the left-hand side of the page, search for "simple accelerator". Once found, click "**Choose**" on the accelerator card.
-<!-- TODO: Insert image of searching for the accelerator in TAP GUI here -->
+
+    ![Image of searching for the accelerator in Tanzu Application Platform GUI](/images/app-accelerator/getting-started-1-3.png)
+
 4. Proceed to configure the project by filling in the parameters in the form.
    
    Notice that the options that were defined in the `accelerator.yaml` are displayed for the user to configure. Also note that the `secondConfigurableParameter` `dependsOn` `secondConfigurableParameterCheckbox` will be hidden depending on if the checkbox is selected or not.
-   <!-- TODO: Insert image of the configuration page in TAP GUI here -->
+
+   ![Image of the configuration page in Tanzu Application Platform GUI](/images/app-accelerator/getting-started-1-4.png)
 
 5. Once configuration is complete, click the "**Next**" button to proceed to the next step.
 
@@ -175,7 +182,7 @@ The accelerator may take some time to reconcile. Once it has reconciled, it will
 6. Once on the "Review and generate" step, review the parameters and click "**Generate Accelerator**".
 7. Explore the zip file of the configured project and verify that the project has been generated with the parameters that were provided during the configuration stage.
 
-<!-- TODO: Insert image of explore page showing changed parameters -->
+    ![Image of explore page showing changed parameters](/images/app-accelerator/getting-started-1-5.png)
 
 ## Learn more about Application Accelerator
 * For advanced functionality when creating accelerators, such as accelerator best practices, accelerator fragments, engine transforms, and more, see the ["Application Accelerator" docs](/application-accelerator/about-application-accelerator.hbs.md)
