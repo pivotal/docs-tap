@@ -105,7 +105,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   access control (RBAC).
 
   Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI.
-  Tanzu Application Platform GUI support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI -->
+  Tanzu Application Platform GUI support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI and there is a question out to Josh Collins who is on PTO-->
 
 - **[Developer Conventions](developer-conventions/about.hbs.md)**
 
