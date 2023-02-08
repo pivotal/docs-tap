@@ -1,4 +1,4 @@
-# Create an accelerator
+# <a id="create-an-accelerator"></a>Create an accelerator
 > **Note** This guide follows a "quick start" format, see the [Application Accelerator docs](/application-accelerator/about-application-accelerator.hbs.md) for advanced features.
 
 ## <a id="you-will"></a>What you will do
@@ -8,14 +8,15 @@
 - Test your accelerator locally using the Tanzu CLI's `generate-from-local` command.
 - Create a new git repository for the project and push the project to it.
 - Register the accelerator in a Tanzu Application Platform instance.
-- View the new accelerator in the Tanzu Application Platform GUI and generate a new project from it.
+- Verify project generation with the new accelerator using the Tanzu Application Platform GUI.
 
 ## <a id="ide-set-up-for-authoring"></a>Set up [VS Code](https://code.visualstudio.com/download) for authoring accelerators
 
 1. To simplify accelerator authoring, code assist capabilities are available through the [YAML plugin](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). To install the extension navigate to the [YAML plugin's Marketplace page](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) and click the **"Install"** button.
+>**Note** Code assist for authoring accelerators is also available in the IntelliJ IDE. This can be enabled by selecting **"Application Accelerator"** in the schema mapping dropdown. For more information on how to enable this, see the IntelliJ [Using schemas from JSON Schema Store](https://www.jetbrains.com/help/idea/json.html#ws_json_using_schemas) documentation.
 2. Once installed, editing files entitled `accelerator.yaml` will now automatically use the code assist capabilities.
 
-## Create a simple project
+## <a id="create-simple-project"></a>Create a simple project
 
 ### Set up the project directory
 1. Create a new folder for the project named `myProject` and change directories to the newly created folder.
@@ -28,7 +29,7 @@ cd myProject
 ```bash
 touch README.MD accelerator.yaml
 ```
-### Prepare the `README.md` and `accelerator.yaml`
+### <a id="prepare-readme-accelerator-yaml"></a>Prepare the `README.md` and `accelerator.yaml`
 The following instructions will require using VS Code to edit the files
 
 1. Using VS Code, open the `README.md`, copy and paste the following text into it, and save the file. `<CONFIGURABLE_PARAMETER_#>` will be what is targeted to be transformed during project generation in the upcoming `accelerator.yaml` definition.
@@ -39,8 +40,8 @@ This is some very important placeholder text that should describe what this proj
 
 Here are some configurable parameters:
 
-<CONFIGURABLE_PARAMETER_1>
-<CONFIGURABLE_PARAMETER_2>
+* <CONFIGURABLE_PARAMETER_1>
+* <CONFIGURABLE_PARAMETER_2>
 ```
 
 2. Open the `accelerator.yaml` and begin populating the file section using the snippet below. This section contains important information such as the accelerator's display name, description, tags, and more. 
@@ -105,7 +106,7 @@ engine:
               - text: "<CONFIGURABLE_PARAMETER_2>"
                 with: "#secondConfigurableParameter.toLowerCase()"
 ```
-### Test the accelerator
+### <a id="test-accelerator"></a>Test the accelerator
 It is important to quickly test and iterate on accelerators as they are being developed to ensure that the resulting project is being generated as expected.
 
 1. Using any terminal of your choice which has access to the `tanzu` command, run the following command to test the accelerator created earlier.
@@ -115,11 +116,11 @@ It is important to quickly test and iterate on accelerators as they are being de
     >**Note** this step requires that the `accelerator` endpoint is exposed and accessible.
 
 ```bash
-tanzu accelerator generate-from-local -- \
-    --accelerator-path simple-accelerator="$(pwd)" \ # The path to new accelerator
-    --server-url TANZU-APPLICATION-ACCELERATOR-URL \ # Example: https://accelerator.mytapcluster.myorg.com
+tanzu accelerator generate-from-local \
+    --accelerator-path simple-accelerator="$(pwd)" `# The path to new accelerator` \
+    --server-url TANZU-APPLICATION-ACCELERATOR-URL `# Example: https://accelerator.mytapcluster.myorg.com` \
     --options '{"firstConfigurableParameter": "Parameter 1", "secondConfigurableParameterCheckbox": true, "secondConfigurableParameter":"Parameter 2"}' \
-    -o "${HOME}/simple-accelerator/" # Change this path to change where the project folder gets generated
+    -o "${HOME}/simple-accelerator/" `# Change this path to change where the project folder gets generated`
 ```
 2. Once the project is generated, a status message will be displayed.
 ```
@@ -133,42 +134,46 @@ This is some very important placeholder text that should describe what this proj
 
 Here are some configurable parameters:
 
-parameter 1
-parameter 2
+* parameter 1
+* parameter 2
 ```
 
-## Upload the project to a git repository
+## <a id="upload-to-git-repo"></a>Upload the project to a git repository
 The Application Accelerator system and Tanzu Application Platform GUI depends on an accelerator project living inside a git repository. For this example, [GitHub](https://github.com/) will be used.
 
 1. [Create a new repository in GitHub](https://docs.github.com/en/get-started/quickstart/create-a-repo) and ensure that the "Visibility" is set to "Public". Click "Create Repository".
 2. To push your accelerator project (**not** the generated project from `generate-from-local`) to GitHub, follow the instructions that GitHub provides for the *"…or create a new repository on the command line"* that is shown after clicking "Create Repository". The instructions can also be found on the ["Adding locally hosted code to GitHub"](https://docs.github.com/en/get-started/importing-your-projects-to-github/importing-source-code-to-github/adding-locally-hosted-code-to-github#adding-a-local-repository-to-github-using-git) page.
 3. Verify that the project has been successfully pushed to the target repository.
 
-## Register the accelerator to the Tanzu Application Platform GUI
+## <a id="register-accelerator"></a>Register the accelerator to the Tanzu Application Platform and verify project generation output
 Now that the accelerator has been committed to its own repository, the accelerator can be registered to the Tanzu Application Platform GUI for developers to generate projects from the newly created accelerator.
 1. **Using the URL of the git repository and branch name created above**, run the following command using the Tanzu CLI to register the accelerator to the Tanzu Application Platform GUI.
 
 > **Tip** `tanzu accelerator create` works with monorepositories as well. Add the `--git-sub-path` parameter with the desired sub-path to fetch the accelerator project in that directory. For more information, see the [`tanzu accelerator create` doc](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/cli-plugins-accelerator-command-reference-tanzu_accelerator_create.html).
 ```bash
-tanzu accelerator create simple-accelerator --git-repository https://github.com/myusername/myprojectrepository --branch main
+tanzu accelerator create simple-accelerator --git-repository https://github.com/myusername/myprojectrepository --git-branch main
 ```
-2. Navigate to your organizations instance of the Tanzu Application Platform GUI
+
+The accelerator may take some time to reconcile. Once it has reconciled, it will be available for use in the Tanzu Application GUI and the Application Accelerator extension for VS Code.
+
+## Verify project generation output using the Tanzu Application Platform GUI
+1. Navigate to your organizations instance of the Tanzu Application Platform GUI.
 <!-- TODO: Insert home screen image of TAP GUI here -->
-3. On the left-hand navigation pane, click on the "**Create**" button.
+2. On the left-hand navigation pane, click on the "**Create**" button.
 <!-- TODO: Insert image of highlight Create button in TAP GUI here -->
-4. Using the search bar towards the left-hand side of the page, search for "simple accelerator". Once found, click "**Choose**" on the accelerator card.
+3. Using the search bar towards the left-hand side of the page, search for "simple accelerator". Once found, click "**Choose**" on the accelerator card.
 <!-- TODO: Insert image of searching for the accelerator in TAP GUI here -->
-5. Proceed to configure the project by filling in the parameters in the form.
+4. Proceed to configure the project by filling in the parameters in the form.
    
    Notice that the options that were defined in the `accelerator.yaml` are displayed for the user to configure. Also note that the `secondConfigurableParameter` `dependsOn` `secondConfigurableParameterCheckbox` will be hidden depending on if the checkbox is selected or not.
    <!-- TODO: Insert image of the configuration page in TAP GUI here -->
 
-6. Once configuration is complete, click the "**Next**" button to proceed to the next step.
+5. Once configuration is complete, click the "**Next**" button to proceed to the next step.
 
 > **Note** Depending on your organization's Tanzu Application Platform configuration, you may be presented with an option to create a git repository. In this guide, this will be skipped and will be covered in the ["Deploy an app on Tanzu Application Platform" guide](deploy-first-app.hbs.md).
 
-7. Once on the "Review and generate" step, review the parameters and click "**Generate Accelerator**".
-8. Explore the zip file of the configured project and verify that the project has been generated with the parameters that were provided during the configuration stage.
+6. Once on the "Review and generate" step, review the parameters and click "**Generate Accelerator**".
+7. Explore the zip file of the configured project and verify that the project has been generated with the parameters that were provided during the configuration stage.
 
 <!-- TODO: Insert image of explore page showing changed parameters -->
 
