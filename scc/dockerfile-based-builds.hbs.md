@@ -80,8 +80,7 @@ $ tanzu apps workload create foo \
 > **Important** This feature has no platform operator configurations to be passed
 > through `tap-values.yaml`, but if `ootb-supply-chain-*.registry.ca_cert_data` or
 `shared.ca_cert_data` is configured in `tap-values`, the certificates
-are considered when pushing the container image.
-
+> are considered when pushing the container image.
 
 ## OpenShift
 
@@ -183,6 +182,6 @@ the container images.
 > **Note** Such restrictions are due to well-known limitations in how Kaniko
 > performs the image builds, and there is currently no solution. For more information, see [kaniko#105].
 
-
 [kaniko#105]: https://github.com/GoogleContainerTools/kaniko/issues/105
+
 [SecurityContextConstraint]: https://docs.openshift.com/container-platform/4.11/authentication/managing-security-context-constraints.html
