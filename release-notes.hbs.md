@@ -20,6 +20,12 @@ Fixed Deliverable content written into ConfigMaps in a multicluster setup. Label
 
 For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
+#### <a id="1-4-1-supply-chain-plug-in-resolved"></a> Suply Chain Choreographer Plug-in
+
+- The `Generation` field will now show the correct amended scan policy version, and clicking on the scan policy link will show the amended policy.
+- **Approve a Request** now appears in the **Stage Details** section of the supply chain view when the Config Writer stage is selected and the GitOps PR flow has been configured.
+- Scan policy documentation link that is displayed on error will now direct to the latest version of Tanzu Application Platform documentation. 
+
 ### <a id='1-4-1-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
