@@ -63,6 +63,13 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   straightforward approach for developers and operators to manage access across all workloads in the
   enterprise.
 
+- **[Cartographer Conventions](cartographer-conventions/about.hbs.md)**
+
+Use Cartographer Conventions to ensure infrastructure uniformity across workloads deployed on
+the cluster. Cartographer Conventions provide a way to control how applications should be deployed
+on Kubernetes using a convention. Use Cartographer Conventions to apply the runtime best practices,
+policies, and conventions of your organization to workloads as they are created on the platform.
+
 - **[cert-manager](cert-manager/about.hbs.md)**
 
   cert-manager adds certificates and certificate issuers as resource types to Kubernetes clusters.
@@ -89,7 +96,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   service applies these opinions to fleets of developer workloads as they are deployed to the
   platform, saving time for operators and developers.
 
-- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)**
+<!--- **[Default roles for Tanzu Application Platform](authn-authz/overview.md)**
 
   This package includes five default roles for users, including app-editor, app-viewer, app-operator,
   and service accounts including workload and deliverable. These roles are available to help
@@ -98,9 +105,9 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   access control (RBAC).
 
   Default roles only apply to a user interacting with the cluster by using kubectl and Tanzu CLI.
-  Tanzu Application Platform GUI support for default roles is planned for a future release.
+  Tanzu Application Platform GUI support for default roles is planned for a future release. KOR - commenting this out as part of TAAP-617 effort as it is not a component, it is part of Tanzu ClI-->
 
-- **[Developer Conventions](convention-service/about.md)**
+- **[Developer Conventions](developer-conventions/about.hbs.md)**
 
   Developer conventions configure workloads to prepare them for inner loop development.
 
