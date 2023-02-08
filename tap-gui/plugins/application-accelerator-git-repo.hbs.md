@@ -1,4 +1,4 @@
-# Creating an Application Accelerator Git repository during project creation
+# Create an Application Accelerator Git repository during project creation
 
 This topic describes how to enable and use the GitHub repository creation in the Application
 Accelerator plug-in.
@@ -49,11 +49,11 @@ The following steps describe an example configuration that uses GitHub:
 
 ### <a id="deactiv-git-repo-creation"></a> (Optional) Deactivate Git repository creation
 
-Starting in Tanzu Application Platform v1.5, the git repository creation can be disabled by setting the
-property `customize.features.accelerators.gitRepoCreation` to `false` in
-`tap-values.yaml`. This will also disable the git repository creation in the Application Accelerator extension for VS Code.
+As of Tanzu Application Platform v1.5, you can deactivate Git repository creation by setting the
+property `customize.features.accelerators.gitRepoCreation` to `false` in `tap-values.yaml`.
+This also deactivates Git repository creation in the Application Accelerator extension for VS Code.
 
-See the example configuration below to disable git repository creation:
+See the following example configuration for deactivating Git repository creation:
 
 ```yaml
 app_config:
