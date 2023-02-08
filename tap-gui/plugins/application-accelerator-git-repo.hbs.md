@@ -1,4 +1,4 @@
-# Creating an Application Accelerator Git repository during project creation
+# Create an Application Accelerator Git repository during project creation
 
 This topic describes how to enable and use the GitHub repository creation in the Application
 Accelerator plug-in.
