@@ -194,8 +194,8 @@ Application Accelerator install.
 
 ## <a id="creating-git-credentials"></a> Configure `tap-values.yaml` with Git credentials secret
 
-> **Note** For how to create a new OAuth Token for optional git repository creation, see the
-> [Creating an Application Accelerator Git repository during project creation](/docs-tap/tap-gui/plugins/application-accelerator-git-repo.hbs.md).
+> **Note** For how to create a new OAuth Token for optional Git repository creation, see
+> [Create an Application Accelerator Git repository in Tanzu Application Platform GUI](/docs-tap/tap-gui/plugins/application-accelerator-git-repo.hbs.md).
 
 When deploying accelerators using Git repositories that requires authentication or are installed
 with custom CA certificates, you must provide some additional authentication values in a secret. The

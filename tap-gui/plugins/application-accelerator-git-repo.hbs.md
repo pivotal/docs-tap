@@ -1,4 +1,4 @@
-# Creating an Application Accelerator Git repository in Tanzu Application Platform GUI
+# Create an Application Accelerator Git repository in Tanzu Application Platform GUI
 
 This topic describes how to enable and use Git repository creation in the Application Accelerator
 plug-in.
