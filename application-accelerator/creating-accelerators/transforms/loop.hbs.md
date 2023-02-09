@@ -63,7 +63,7 @@ doAsMerge:
   rewriteTo: "#m + '/' + #g1"
 ```
 
-Add every artifactId in `artifacts` (a list of strings) as a Spring plugin.
+Add every artifactId in `artifacts` (a list of strings) as a Spring plug-in.
 
 ``` console
 type: Loop
