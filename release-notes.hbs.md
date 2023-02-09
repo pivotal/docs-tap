@@ -20,6 +20,10 @@ The following is a list of vulnerabilities remediated with this release:
 
 The following issues, listed by area and component, are resolved in this release.
 
+#### <a id='1-4-1-source-controller-resolved-issues'></a> Source Controller
+
+Fixes an issue that causes some registries, including DockerHub, to incur higher than expected pulls due to considering all HTTP "GET" calls as pulls. This fix switched HTTP requests from using "GET" operations to "HEAD" operations, which reduces the number of pulls while checking updated image versions.
+=======
 #### <a id="1-4-1-api-validation-and-scoring-ri"></a> API Validation and Scoring Toolkit
 
 - Fixed a bug when one of the API Scores didn't have a value specified in the yaml.
