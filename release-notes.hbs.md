@@ -6,13 +6,22 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 **Release Date**: February 14, 2023
 
-### <a id='1-3-5-bug-fix'></a> Bug fixes
+### <a id='1-3-5-breaking-changes'></a> Breaking changes
 
-#### <a id='1-3-5-sc-bug-fix'></a> Source Controller
+#### <a id='scc-breaking-changes'></a> Supply Chain Choreographer
 
-- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls due to all HTTP "GET" calls considered to be pulls. This fix switched HTTP requests from using "GET" operations to "HEAD" operations, which reduces the number of pulls while checking updated image versions.
+- Out of the Box Supply Chain Templates
+In a multicluster setup, when a Deliverable is created on a Build profile cluster, the ConfigMap it's in is renamed from <workload-name> to <workload-name>-deliverable. Any automation that depends on obtaining the Deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
-#### <a id='1-3-5-scc-bug-fix'></a> Supply Chain Choreographer
+---
+
+### <a id='1-3-5-resolved-issues'></a> Resolved issues
+
+#### <a id='1-3-5-sc-resolved-issues'></a> Source Controller
+
+- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP "GET" calls are considered to be pulls. This fix switched HTTP requests from using "GET" operations to "HEAD" operations, which reduces the number of pulls while checking updated image versions.
+
+#### <a id='1-3-5-scc-resolved-issues'></a> Supply Chain Choreographer
 
 - Out of the Box Supply Chain Templates
   - Fixed Deliverable content written into ConfigMaps in multicluster setup.
@@ -21,12 +30,7 @@ This topic contains release notes for Tanzu Application Platform v1.3
   - Tanzu Application Platform GUI Supply Chain plugin displays deliverables on run clusters with workloads from build clusters.
   - For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
-### <a id='1-3-5-breaking-change'></a> Breaking changes
-
-#### <a id='scc-breaking-change'></a> Supply Chain Choreographer
-
-- Out of the Box Supply Chain Templates
-In a multicluster setup, when a Deliverable is created on a Build profile cluster, the ConfigMap it's' in is renamed from <workload-name> to <workload-name>-deliverable. Any automation that depends on obtaining the Deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
+---
 
 ## <a id='1-3-4'></a> v1.3.4
 
@@ -43,6 +47,8 @@ Fixes for the following vulnerabilities:
 * [CVE-2022-32215](https://nvd.nist.gov/vuln/detail/CVE-2022-32215): Updates the version of Node used to run Tanzu Application Platform GUI from v14.20.0 to v14.20.1.
 
 * GHSA-hrpp-h998-j3pp: Updates the versions of express and qs.
+
+---
 
 ### <a id='1-3-4-deprecations'></a> Deprecations
 
@@ -76,6 +82,8 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 - The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
   - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
+
+---
 
 ## <a id='1-3-3'></a> v1.3.3
 
