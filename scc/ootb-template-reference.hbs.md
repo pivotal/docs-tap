@@ -333,3 +333,71 @@ read [testing-pipeline](#testing-pipeline).
 
 For information about the Tekton Pipeline that must be created by the user, read the [OOTB Supply Chain
 Testing documentation of the Pipeline](ootb-supply-chain-testing.hbs.md#a-idtekton-pipelinea-tektonpipeline).
+
+## source-scanner-template
+
+### Purpose
+Scans the source code for vulnerabilities.
+
+### Kind
+ClusterSourceTemplate.carto.run
+
+### Used by
+
+- [Out of the Box Supply Chain Testing Scanning](ootb-supply-chain-testing-scanning.hbs.md)
+
+### Creates
+
+[SourceScan](../scst-scan/overview.hbs.md)
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>scanning_source_template<code></td>
+    <td>
+      Name of the ScanTemplate object to use for running the scans.
+      The ScanTemplate must be in the same namespace as the Workload.
+    </td>
+    <td>
+      <pre>
+      - name: scanning_source_template
+        value: private-source-scan-template
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>scanning_source_policy<code></td>
+    <td>
+      Name of the ScanPolicy object to use when evaluating the scan results of a source scan.
+      The ScanPolicy must be in the same namespace as the Workload.
+    </td>
+    <td>
+      <pre>
+      - name: scanning_source_policy
+        value: allowlist-policy
+      </pre>
+    </td>
+  </tr>
+</table>
+
+### More Information
+
+See [Out of the Box Supply Chain with Testing and
+Scanning](ootb-supply-chain-testing-scanning.hbs.md#a-iddeveloper-namespacea-developer-namespace)
+for details about how to set up the Workload namespace with the ScanPolicy and
+ScanTemplate required for this resource.
+
+Read [SourceScan reference](../scst-scan/scan-crs.hbs.md#sourcescan)
+for details about the SourceScan custom resource.
+
+For information about how the artifacts found
+during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
+Store](../scst-store/overview.hbs.md).
