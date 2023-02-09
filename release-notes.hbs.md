@@ -23,7 +23,7 @@ The following issues, listed by area and component, are resolved in this release
 #### <a id='1-4-1-source-controller-resolved-issues'></a> Source Controller
 
 - Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP "GET" calls are considered to be pulls. This fix switched HTTP requests from using "GET" operations to "HEAD" operations, which reduces the number of pulls while checking updated image versions.
-=======
+
 #### <a id="1-4-1-api-validation-and-scoring-ri"></a> API Validation and Scoring Toolkit
 
 - Fixed a bug when one of the API Scores didn't have a value specified in the yaml.
