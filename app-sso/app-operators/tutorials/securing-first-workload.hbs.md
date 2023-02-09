@@ -79,7 +79,7 @@ spec:
   authServerSelector:
     matchLabels:
     # At least one unique label to target an `AuthServer`.
-  clientAuthenticationMethod: basic
+  clientAuthenticationMethod: client_secret_basic
   authorizationGrantTypes:
     - authorization_code
   redirectURIs:

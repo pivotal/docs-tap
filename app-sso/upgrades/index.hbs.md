@@ -7,7 +7,7 @@ For help on migrating your resources in between versions, see the [migration gui
 If you installed the `AppSSO` package on its own, and not as part of `TAP`, you can upgrade it individually by running:
 
 ```
-tanzu package installed update PACKAGE_INSTALLATION_NAME -p sso.apps.tanzu.vmware.com -v 3.0.0 --values-file PATH_TO_YOUR_VALUES_YAML -n YOUR_INSTALL_NAMESPACE
+tanzu package installed update PACKAGE_INSTALLATION_NAME -p sso.apps.tanzu.vmware.com -v {{ vars.app-sso.version }} --values-file PATH_TO_YOUR_VALUES_YAML -n YOUR_INSTALL_NAMESPACE
 ```
 
 >**Note** You can also upgrade AppSSO as part of upgrading Tanzu Application Platform as a whole. See [Upgrading Tanzu Application Platform](../../upgrading.hbs.md) for more information.
@@ -23,6 +23,10 @@ with the following changes:
 - Migrate field `.spec.identityProviders[*].ldap.group.roleAttribute` to `.spec.identityProviders[*].ldap.roles.fromUpstream.attribute`.
 - Migrate field `.spec.identityProviders[*].ldap.group.search` to `.spec.identityProviders[*].ldap.roles.fromUpstream.search`.
 - Migrate field `.spec.identityProviders[*].saml.claimMappings["roles"]` to `.spec.identityProviders[*].saml.roles.fromUpstream.attribute`.
+
+Within your existing `ClientRegistration` resources, perform the following:
+
+- Migrate `.spec.clientAuthenticationMethod` values. Migrate existing value `post` to `client_secret_post`, or value `basic` to `client_secret_basic`. This step is generally optional, but required if you are intent on running Spring Boot 3 based Workloads.
 
 ### <a id="v2-to-v3">`v2.0.0` to `v3.0.0`
 
