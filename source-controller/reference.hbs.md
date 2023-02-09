@@ -34,8 +34,8 @@ metadata:
 spec:
   artifact:
     groupId: org.springframework.boot
-    version: spring-boot
-    artifactId: "2.7.0"
+    artifactId: spring-boot
+    version: "2.7.0"
   repository:
     url: https://repo1.maven.org/maven2
   interval: 5m0s
