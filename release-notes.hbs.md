@@ -2,10 +2,9 @@
 
 This topic contains release notes for Tanzu Application Platform v1.3
 
-{{#unless vars.hide_content}} 
 ## <a id='1-3-5'></a> v1.3.5
 
-**Release Date**: February 14, **2023**
+**Release Date**: February 14, 2023
 
 ### <a id='1-3-5-bug-fix'></a> Bug fixes
 
@@ -24,8 +23,6 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 - Out of the Box Supply Chain Templates
 In a multicluster setup, when a Deliverable is created on a Build profile cluster, the ConfigMap it's' in is renamed from <workload-name> to <workload-name>-deliverable. Any automation that depends on obtaining the Deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
-
-{{/unless}}
 
 ## <a id='1-3-4'></a> v1.3.4
 

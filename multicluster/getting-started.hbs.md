@@ -52,8 +52,6 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
 1. Generate the `deliverable.yaml` file.
 
-   {{#unless vars.hide_content}}
-
     v1.3.5 and later
     : Follow these steps to generate the `deliverable.yaml` file for Tanzu Application Platform v1.3.5 and later:
 
@@ -92,8 +90,6 @@ The Build cluster starts by building the necessary bundle for the workload that 
            ```console
            kubectl get configmap tanzu-java-web-app-deliverable -n ${DEVELOPER_NAMESPACE} -o go-template='\{{.data.deliverable}}' > deliverable.yaml
            ```
-
-    {{/unless}}
 
     v1.3.2 to v1.3.4
     : Follow these steps to generate the `deliverable.yaml` file for Tanzu Application Platform v1.3.2 and 1.3.4:
