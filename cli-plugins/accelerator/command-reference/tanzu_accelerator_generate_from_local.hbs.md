@@ -1,6 +1,6 @@
 # Tanzu accelerator generate-from-local
 
-Generate a project from local or registered accelerators/fragments
+Generate a project from local or registered accelerator or accelerator fragments.
 
 ## Synopsis
 
@@ -25,7 +25,7 @@ specify the `--server-url` flag or set an `ACC_SERVER_URL` environment variable.
 
 ## Examples
 
-Generate a project using a combination local and registered assets
+Generate a project using a combination of local and registered assets
 
 ```console
 tanzu accelerator generate-from-local \
