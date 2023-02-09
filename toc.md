@@ -408,6 +408,7 @@ docs.vmware.com is built.
           - [Install Out of the Box Supply Chain with Testing and Scanning](scc/install-ootb-sc-wtest-scan.hbs.md)
           - [Install Out of the Box Templates](scc/install-ootb-templates.hbs.md)
       - [Reference guides](scc/scc-reference.hbs.md)
+          - [Template reference](scc/ootb-template-reference.hbs.md)
           - [Workload parameters reference](scc/parameters-reference.hbs.md)
           - [Events reference](scc/events.hbs.md)
       - [Building container images](scc/build-container-img.hbs.md)
