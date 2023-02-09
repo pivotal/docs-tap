@@ -73,44 +73,42 @@ the conventions are organized, grouped, and deployed is up to you and the needs 
 your organization.
 
 Convention servers deployed to the cluster does not take action unless triggered to
-do so by the second component of Cartographer Conventions, the [Convention controller](#convention-controller).
+do so by the second component of Cartographer Conventions, the [Convention service's controller](#convention-controller).
 
 ### <a id='convention-controller'></a>Convention controller
 
 The convention controller is the orchestrator of one or many convention servers deployed to the cluster. There are resources available on the `conventions.carto.run/v1aplha1` API that allow the controller to carry out its functions. These resources include:
 
   -  [ClusterPodConvention](./reference/cluster-pod-convention.hbs.md)
-      - `ClusterPodConvention` is a  resource type that allows the conventions author to register a webhook server with the controller using it's `spec.webhook` field.
+    `ClusterPodConvention` is a  resource type that allows the conventions author to register a webhook server with the controller using its `spec.webhook` field.
 
-          ```yaml
-          ...
-          spec:
-            selectorTarget: PodTemplateSpec # optional field with options, defaults to PodTemplateSpec
-            selectors: # optional, defaults to match all workloads
-            - <metav1.LabelSelector>
-            webhook:
-              certificate:
-                name: sample-cert
-                namespace: sample-conventions
-              clientConfig:
-                <admissionregistrationv1.WebhookClientConfig>
-          ```
+      ```yaml
+      ...
+      spec:
+        selectorTarget: PodTemplateSpec # optional field with options, defaults to PodTemplateSpec
+        selectors: # optional, defaults to match all workloads
+        - <metav1.LabelSelector>
+        webhook:
+          certificate:
+            name: sample-cert
+            namespace: sample-conventions
+          clientConfig:
+            <admissionregistrationv1.WebhookClientConfig>
+      ```
 
   - [PodIntent](./reference/pod-intent.hbs.md)
 
-    - The `PodIntent` is a `conventions.carto.run/v1alpha1` resource type that
+    `PodIntent` is a `conventions.carto.run/v1alpha1` resource type that
       is continuously reconciled and applies decorations to a workload
       `PodTemplateSpec` exposing the enriched `PodTemplateSpec` on its status.
       Whenever the status of the `PodIntent` is updated, no side effects are
       caused on the cluster.
 
-  As key types defined on the `conventions.carto.run` API, the
-  `ClusterPodConvention` and `PodIntent` resources are both present on the
+  As key types defined on the `conventions.carto.run` API, the ClusterPodConvention` and `PodIntent` resources are both present on the
   Kubernetes API Server and are queried using
-  `clusterpodconventions.conventions.carto.run` for the former and
-  `podintents.conventions.carto.run` for the later.
+  `clusterpodconventions.conventions.carto.run` for the former and `podintents.conventions.carto.run` for the later.
 
-#### <a id='role-of-the-controller'></a>How the convention controller works
+#### <a id='role-of-the-controller'></a>How the convention services's controller works
 
 When the Supply Chain Choreographer creates or updates a PodIntent for a workload, the convention
 controller retrieves the OCI image metadata from the repository
@@ -352,7 +350,8 @@ spec:
       <admissionregistrationv1.WebhookClientConfig>
 ```
 
-If you do not provide a value for this optional field while using the `conventions.carto.run/v1alpha1` API, the default value is set to `PodTemplateSpec` without the conventions author explicitly doing so. The `selectorTarget` field is not available in the `conventions.apps.tanzu.vmware.com/v1alpha1` API and labels specified in the `PodTemplateSpec` are considered if a matcher is defined in a `ClusterPodConvention` while referencing this deprecated API.
+If you do not provide a value for this optional field while using the `conventions.carto.run/v1alpha1` API,
+the default value is set to `PodTemplateSpec` without the conventions author explicitly doing so. 
 
 ### <a id='match-criteria-env-var'></a> Matching criteria by environment variables
 

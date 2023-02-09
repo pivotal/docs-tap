@@ -37,7 +37,6 @@ The following table summarizes the top-level keys used for package-specific conf
 |Application Live View Conventions|`appliveview-conventions`|
 |Cartographer|`cartographer`|
 |Cloud Native Runtimes|`cnrs`|
-|Convention controller|`convention_controller`|
 |Source Controller|`source_controller`|
 |Supply Chain|`supply_chain`|
 |Supply Chain Basic|`ootb_supply_chain_basic`|
