@@ -8,6 +8,10 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 ### <a id='1-3-5-bug-fix'></a> Bug fixes
 
+#### <a id='1-3-5-sc-bug-fix'></a> Source Controller
+
+- Fixes an issue that was causing some registries including DockerHub to incur higher than expected pulls because of considering all HTTP "GET" calls as pulls. This was done by switching HTTP request from using "GET" operations to "HEAD" operations which would reduce the number of pulls while checking updated image versions.
+
 #### <a id='1-3-5-scc-bug-fix'></a> Supply Chain Choreographer
 
 - Out of the Box Supply Chain Templates
