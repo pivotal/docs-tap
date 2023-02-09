@@ -24,8 +24,8 @@ and requirements of an organization.
 Before jumping into the details of creating a custom convention, you can view two
 distinct components of Cartographer Conventions:
 
-- [Convention Controller](#convention-controller)
-- [Convention Server](#convention-server)
+- [Convention controller](#convention-controller)
+- [Convention server](#convention-server)
 
 ### <a id='convention-server'></a>Convention server
 
@@ -73,7 +73,7 @@ the conventions are organized, grouped, and deployed is up to you and the needs 
 your organization.
 
 Convention servers deployed to the cluster does not take action unless triggered to
-do so by the second component of Cartographer Conventions, the [Convention Controller](#convention-controller).
+do so by the second component of Cartographer Conventions, the [Convention controller](#convention-controller).
 
 ### <a id='convention-controller'></a>Convention controller
 
@@ -533,7 +533,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-6. <a id='install-convention'></a>The [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the Convention Controller:
+6. <a id='install-convention'></a>The [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the convention controller:
     >**Important** The `annotations` block is only needed if you use a self-signed certificate. See the [cert-manager documentation](https://cert-manager.io/docs/).
 
     ```yaml

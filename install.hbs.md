@@ -61,10 +61,10 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
     for the installation files for Tanzu Application Platform.
 
-    VMware recommends using a JSON key file to authenticate with Google Container Registry. 
-    In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and 
+    VMware recommends using a JSON key file to authenticate with Google Container Registry.
+    In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and
     the value of `INSTALL_REGISTRY_PASSWORD` is the content of the JSON key file.
-    For more information about how to generate the JSON key file, 
+    For more information about how to generate the JSON key file,
     see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).  
 
 1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
@@ -89,7 +89,7 @@ Tanzu CLI packages are available on repositories. Adding the Tanzu Application P
 
 - `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
 - `INSTALL_REPO` is `tanzu-application-platform`
-- `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
+- `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
 - `TAP_VERSION` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 To add the Tanzu Application Platform package repository to your cluster:
