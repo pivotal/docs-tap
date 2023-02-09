@@ -1,6 +1,6 @@
 # Loop transform
 
-The `Loop` transform iterates over elements in a list,and applies the provided transform for every
+The `Loop` transform iterates over elements in a list and applies the provided transform for every
 element in that list.
 
 When `doAsMerge` is used, a copy of the `Loop` transform's input is passed to each transform and the
@@ -34,11 +34,11 @@ doAsMerge: <transform>
 
 Both `var` and `index` are optional.
 
-Only one of the `doAsMerge` or `doAsChain` variables are to be used in a `Loop` transform.
+Only one of the `doAsMerge` or `doAsChain` variables is to be used in a `Loop` transform.
 
 ## <a id="behavior"></a>Behavior
 
-Consider the following when choosing which of `doAsMerge` or `doAsChain` is appropriate for your use.
+Consider the following when choosing `doAsMerge` or `doAsChain`:
 
 `doAsMerge` executes the transform on the same input files for every iteration and merges the
 resulting outputs. It is best suited when a transform is executed multiple times on the
@@ -78,8 +78,7 @@ doAsChain:
     version: "'5.7.1'"
 ```
 
-Using `Loop` in combination with [custom types](../custom-types.hbs.md) is possible and is a common
-use:
+You can use `Loop` in combination with custom types, for example:
 
 ```yaml
 accelerator:
@@ -107,6 +106,4 @@ engine:
           version:    "#p['version']"
 ```
 
-## See also
-
-- [Custom Types](../custom-types.hbs.md)
+For more information, see [Using Custom Types](../custom-types.hbs.md).
