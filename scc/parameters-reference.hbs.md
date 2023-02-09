@@ -1,4 +1,4 @@
-# Workload Parameters reference
+# Workload parameters reference
 
 The supply chains and templates provided by the out of the box packages contain
 a series of parameters that customize supply chain behavior. This topic
@@ -55,6 +55,7 @@ config-writer                       writes the configuration to a destination
                                     to a `run` cluster
 ```
 
+For information about supply chains, see:
 
 - [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.hbs.md)
 - [Out of the Box Supply Chain Testing](ootb-supply-chain-testing.hbs.md)
@@ -169,7 +170,6 @@ For information about how to use ImageRepository with the Tanzu CLI [Create a wo
 > the Workload object. To configure the `serviceAccount` parameter, use
 > `--param serviceAccount=...`.
 
-
 ### MavenArtifact
 
 When carrying pre-built Java artifacts, `MavenArtifact` makes the artifact available to
@@ -261,7 +261,7 @@ Parameters:
       Set of extra parameters, aside from `source-url` and
       `source-revision`, to pass to the Tekton Pipeline. The Tekton Pipeline
       <b>must</b> declare both the required parameters `source-url` and
-      `source-revision` as well the extra ones declared here.
+      `source-revision` as well the extra ones declared in this table.
     </td>
     <td>
       <pre>
@@ -291,7 +291,7 @@ that is tested by pointing a
 [SourceScan](../scst-scan/scan-crs.hbs.md#sourcescan) object at the same source
 code as the tests.
 
-You can customize behavior for [CVEs evaluation](../scst-scan/policies.hbs.md) with parameters.
+You can customize behavior for both [CVEs evaluation](../scst-scan/policies.hbs.md) with parameters.
 
 Parameters:
 
@@ -361,7 +361,7 @@ source](building-from-source.hbs.md), different semantics apply:
 
 ### Kpack Image
 
-The Kpack Image object provides means for building a
+The Kpack Image object provides a means for building a
 container image out of source code or pre-built Java artifact. This makes the
 container image available to further resources in the supply chain through a
 content addressable image reference that's carried to the final
@@ -444,9 +444,9 @@ Parameters:
 > `--param serviceAccount=...`.
 
 For information about
-the integration with Tanzu Build Service, see [Tanzu Build Service (TBS) Integration](tbs.hbs.md).
+the integration with Tanzu Build Service, see [Tanzu Build Service Integration](tbs.hbs.md).
 
-For information about `live-update`, see [Developer Conventions](../developer-conventions/about.hbs.md) and [About IntelliJ extension](intellij-extension/about.hbs.md.
+For information about `live-update`, see [Developer Conventions](../developer-conventions/about.hbs.md) and [Overview of Tanzu Developer Tools for IntelliJ](../intellij-extension/about.hbs.md).
 
 For information about using Kpack builders with `clusterBuilder`, see [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md).
 
@@ -610,11 +610,10 @@ Store](../scst-store/overview.hbs.md).
 ## config-provider
 
 The `config-provider` resource in the supply chains is responsible for
-generating a
-[PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)
-to be used further along in app configs (knative serivices / deployments) to
-represent the shape of the pods that you want to get instantiated to run the
-application in containers.
+generating a PodTemplateSpec
+to use in app configs, such as knative services and deployments, to
+represent the shape of the pods that you want to instantiate to run the
+application in containers. See [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) in the Kubernetes documentation.
 
 The `config-provider` resource manages a [PodIntent](../cartographer-conventions/reference/pod-intent.hbs.md)
 object that represents the intention of having PodTemplateSpec enhanced
@@ -636,7 +635,7 @@ Parameters:
       name of the serviceaccount (in the same namespace as the Workload) to use
       for providing the necessary credentials to `PodIntent` for fetching
       the container image to inspect the metadata to pass to convention
-      servers and the serviceAccountName to be set in the
+      servers and the serviceAccountName set in the
       podtemplatespec.
     </td>
     <td>
@@ -706,7 +705,7 @@ convention servers enabled by default in Tanzu Application Platform installation
 ## app-config
 
 The `app-config` resource is responsible for preparing a ConfigMap with the
-Kubernetes configuration that are used for instantiating an application in
+Kubernetes configuration that is used for instantiating an application in
 the form of a particular workload type in a cluster.
 
 The resource is configured in the supply chain in such a way to allow, by
@@ -717,7 +716,7 @@ apply based on the labels set in the Workload object created by the developer:
 - `apps.tanzu.vmware.com/workload-type: worker`
 - `apps.tanzu.vmware.com/workload-type: server`
 
-Only the `server` workload type has configurable parameters as shown:
+Only the `server` workload type has the following configurable parameters:
 
 <table>
   <tr>
@@ -783,12 +782,11 @@ Parameters:
   </tr>
 </table>
 
-
-See [use of `--service-ref` in Tanzu
-CLI](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
-for an example and [Consume services on
-Tanzu Application Platform](../getting-started/consume-services.hbs.md) for an overview of the
-function.
+For an example, see
+[`--service-ref`](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#apply-service-ref)
+in the Tanzu CLI documentation.
+For an overview of the function, see
+[Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md).
 
 ## apidescriptors
 
@@ -824,7 +822,7 @@ Parameters:
   <tr>
     <td><code>api_descriptor<code></td>
     <td>
-     Information used to fill the state of the APIDescriptor object that you want
+     Information used to fill the state that you want of the APIDescriptor object
     (its spec).
     </td>
     <td>
@@ -860,7 +858,7 @@ It can do so in three distinct manners:
 
 - publishing the configuration to a container image registry
 - publishing the configuration to a Git repository
-  - solely through the push of a commit, or
+  - solely by using the push of a commit, or
   - pushing a commit _and_ opening a pull request.
 
 Details about the different modes of operation are found in [Gitops vs
@@ -871,7 +869,7 @@ place.
 
 The `deliverable` resource is responsible for creating a `Deliverable` object
 that represents the intention of delivering to the cluster the configuration
-that is produced by the supply chain.
+that are produced by the supply chain.
 
 Parameters:
 

@@ -85,12 +85,12 @@ To install Out of the Box Supply Chain Basic:
 
     gitops.pull_request.pull_request_body  Any further information to add to the pull request
 
-    cluster_builder                        Name of the Tanzu Build Service (TBS) ClusterBuilder to
+    cluster_builder                        Name of the Tanzu Build Service ClusterBuilder to
                                            use by default on image objects managed by the supply chain.
 
     service_account                        Name of the service account in the namespace where the Workload
                                            is submitted to utilize for providing registry credentials to
-                                           Tanzu Build Service (TBS) Image objects as well as deploying the
+                                           Tanzu Build Service Image objects as well as deploying the
                                            application.
 
     maven.repository.url                   The URL of the Maven repository to be used when pulling Maven
