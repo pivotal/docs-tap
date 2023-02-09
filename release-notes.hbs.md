@@ -14,6 +14,10 @@ This release has the following security fixes, listed by area and component.
 
 The following issues, listed by area and component, are resolved in this release.
 
+#### <a id='1-4-1-source-controller-resolved-issues'></a> Source Controller
+
+Fixes an issue that was causing some registries including DockerHub to incur higher than expected pulls because of considering all HTTP "GET" calls as pulls. This was done by switching HTTP request from using "GET" operations to "HEAD" operations which would reduce the number of pulls while checking updated image versions.
+
 #### <a id="1-4-1-supply-chain-templates-resolved"></a> Out of the Box Supply Chain Templates
 
 Fixed Deliverable content written into ConfigMaps in a multicluster setup. Labels to attribute the Deliverable content with the supply chain and template are added to be consistent with the Delivery on a non-Build profile cluster.
