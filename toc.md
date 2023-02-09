@@ -215,6 +215,7 @@ docs.vmware.com is built.
                 - [Merge](application-accelerator/creating-accelerators/transforms/merge.hbs.md)
                 - [Chain](application-accelerator/creating-accelerators/transforms/chain.hbs.md)
                 - [Let](application-accelerator/creating-accelerators/transforms/let.hbs.md)
+                - [Loop](application-accelerator/creating-accelerators/transforms/loop.hbs.md)
                 - [InvokeFragment](application-accelerator/creating-accelerators/transforms/invoke-fragment.hbs.md)
                 - [ReplaceText](application-accelerator/creating-accelerators/transforms/replace-text.hbs.md)
                 - [RewritePath](application-accelerator/creating-accelerators/transforms/rewrite-path.hbs.md)
