@@ -1,11 +1,10 @@
 # Tanzu accelerator generate-from-local
 
-Generate a project from local or registered accelerators/fragments
+Generate a project from local files and registered accelerators or fragments.
 
 ## Synopsis
 
-Generate a project from a combination of local files and registered accelerators/fragments using
-provided options and download project artifacts as a ZIP file.
+Use local files and registered accelerators or fragments to create a project, and download the project artifacts as ZIP files.
 
 Options values are provided as a JSON object and match the declared options that are specified for
 the accelerator used for the generation. The options can include `projectName` which by default is
@@ -25,7 +24,7 @@ specify the `--server-url` flag or set an `ACC_SERVER_URL` environment variable.
 
 ## Examples
 
-Generate a project using a combination local and registered assets
+Generate a project using a combination of local and registered assets
 
 ```console
 tanzu accelerator generate-from-local \

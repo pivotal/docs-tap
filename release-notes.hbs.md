@@ -10,19 +10,59 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 This release has the following security fixes, listed by area and component.
 
+#### <a id="1-4-1-vulnerabilities-remediated"></a> Remediated vulnerabilities
+
+The following is a list of vulnerabilities remediated with this release:
+
+- GHSA-3xq5-wjfh-ppjc
+
 ### <a id='1-4-1-resolved-issues'></a> Resolved issues
 
 The following issues, listed by area and component, are resolved in this release.
 
 #### <a id='1-4-1-source-controller-resolved-issues'></a> Source Controller
 
-Fixes an issue that was causing some registries including DockerHub to incur higher than expected pulls because of considering all HTTP "GET" calls as pulls. This was done by switching HTTP request from using "GET" operations to "HEAD" operations which would reduce the number of pulls while checking updated image versions.
+Fixes an issue that causes some registries, including DockerHub, to incur higher than expected pulls due to considering all HTTP "GET" calls as pulls. This fix switched HTTP requests from using "GET" operations to "HEAD" operations, which reduces the number of pulls while checking updated image versions.
+=======
+#### <a id="1-4-1-api-validation-and-scoring-ri"></a> API Validation and Scoring Toolkit
+
+- Fixed a bug when one of the API Scores didn't have a value specified in the yaml.
+- Adjusted some styles of the components to meet requirements.
+
+#### <a id="1-4-1-app-accelerator-ri"></a> Application Accelerator
+
+- Fix rendering of options that have identical dependsOn with an array value.
+- Added system property config for the git repository creation.
+- Added workflow additional scope to git repository creation.
+
+#### <a id="1-4-1-app-live-view-ri"></a> Application Live View
+
+- Fix the reset button in root logger of Application Live View log levels page.
 
 #### <a id="1-4-1-supply-chain-templates-resolved"></a> Out of the Box Supply Chain Templates
 
-Fixed Deliverable content written into ConfigMaps in a multicluster setup. Labels to attribute the Deliverable content with the supply chain and template are added to be consistent with the Delivery on a non-Build profile cluster.
+- Fixed Deliverable content written into ConfigMaps in a multicluster setup. Labels to attribute the Deliverable content with the supply chain and template are added to be consistent with the Delivery on a non-Build profile cluster.
+- For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
-For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
+#### <a id="1-4-1-sagui-ri"></a> Security Analysis Plug-in
+
+- Update the data model for metadata-store's response.
+- Update table's position in index page.
+- Update filter for workloads with no associated policy.
+- Update bargraph for workloads with small and big values for different severities.
+- Fix a discrepancy between the widget and the information in Workload Build Vulnerabilities.
+
+#### <a id="1-4-1-scst-ri"></a> Supply Chain Security Tools
+
+- Fix view approval not showing up in config writer stage fix.
+- Fix for checkbox check state in Table filter.
+- Scan policy documentation URL is updated.
+- Showing the correct Generation number after the scan policy has been updated.
+
+#### <a id="1-4-1-tap-gui-ri"></a> Tanzu Application Platform GUI
+
+- Fixed svg icons appearing larger on the sidebar.
+- Add catalog graph cards and diagram defaults to align with upstream backstage.
 
 ### <a id='1-4-1-known-issues'></a> Known issues
 
