@@ -600,6 +600,9 @@ as the `image-provider` resource when the workload param `dockerfile` is defined
 
 A taskrun.tekton.dev which refers to the [kaniko-build ClusterTask](#kaniko-build).
 
+This template uses the `lifecycle: tekton` flag to create a new taskrun rather than
+updating the previous taskrun.
+
 ### Parameters
 
 <table>
@@ -651,3 +654,18 @@ A taskrun.tekton.dev which refers to the [kaniko-build ClusterTask](#kaniko-buil
 
 For information about how to use Dockerfile-based builds and limits associated with the function, see
 [Dockerfile-based builds](dockerfile-based-builds.hbs.md).
+
+To read more about `lifecycle:tekton`,
+read [Cartographer Lifecycle](https://cartographer.sh/docs/v0.6.0/lifecycle/).
+
+## kaniko-build
+
+### Purpose
+Defines a series of steps to build a container image from source code.
+
+### Kind
+ClusterTask.tekton.dev
+
+### Used by
+
+- [kaniko-template](#kaniko-template)
