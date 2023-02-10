@@ -484,7 +484,7 @@ ClusterImageTemplate.carto.run
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url)
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
 
-as the `image-provider` resource.
+as the `image-provider` resource when the workload param `dockerfile` is **not** defined.
 
 ### Creates
 
@@ -577,3 +577,77 @@ see [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md).
 
 For information about `buildServiceBindings`,
 see [Service Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md).
+
+## kaniko-template
+
+### Purpose
+
+Build an image for source code that ships with a Dockerfile.
+
+### Kind
+
+ClusterImageTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url)
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url)
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
+
+as the `image-provider` resource when the workload param `dockerfile` is defined.
+
+### Creates
+
+A taskrun.tekton.dev which refers to the [kaniko-build ClusterTask](#kaniko-build).
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>dockerfile<code></td>
+    <td>relative path to the Dockerfile file in the build context</td>
+    <td><pre>./Dockerfile</pre></td>
+  </tr>
+
+  <tr>
+    <td><code>docker_build_context<code></td>
+    <td>relative path to the directory where the build context is</td>
+    <td><pre>.</pre></td>
+  </tr>
+
+  <tr>
+    <td><code>docker_build_extra_args<code></td>
+    <td>
+      List of flags to pass directly to kaniko,such as providing arguments to a build.
+    </td>
+    <td><pre>- --build-arg=FOO=BAR</pre></td>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account to use for providing Docker credentials.
+      The service account must exist in the same namespace as the Workload.
+      The service account must have a secret associated with the credentials.
+      See <a href="https://tekton.dev/docs/pipelines/auth/#configuring-authentication-for-docker">Configuring
+      authentication for Docker</a> in the Tekton documentation.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+</table>
+
+### More Information
+
+For information about how to use Dockerfile-based builds and limits associated with the function, see
+[Dockerfile-based builds](dockerfile-based-builds.hbs.md).
