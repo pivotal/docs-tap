@@ -401,3 +401,61 @@ for details about the SourceScan custom resource.
 For information about how the artifacts found
 during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
 Store](../scst-store/overview.hbs.md).
+
+## image-provider-template
+
+### Purpose
+Fetches a container image of a prebuilt application,
+specified in the workload's `.spec.image` field.
+This makes the content-addressable name, (e.g. the image name containing the digest)
+available to other resources in the supply chain.
+
+### Kind
+ClusterImageTemplate.carto.run
+
+### Used by
+
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url)
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url)
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url)
+
+### Creates
+
+ImageRepository.source.apps.tanzu.vmware.com
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account providing credentials for the target image registry.
+      The service account must exist in the same namespace as the Workload.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+> **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
+> (The similarly named `--service-account` flag sets a different value:
+> the `spec.serviceAccountName` key in the Workload object.)
+
+### More Information
+
+For information about the ImageRepository resource,
+see [ImageRepository reference docs](../source-controller/reference.hbs.md#imagerepository).
+
+For information about prebuilt images,
+see [Using a prebuilt image](pre-built-image.hbs.md).
