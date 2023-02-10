@@ -467,3 +467,113 @@ see [ImageRepository reference docs](../source-controller/reference.hbs.md#image
 
 For information about prebuilt images,
 see [Using a prebuilt image](pre-built-image.hbs.md).
+
+## kpack-template
+
+### Purpose
+
+Builds an container image from source code using [cloud native buildpacks](https://buildpacks.io/).
+
+### Kind
+
+ClusterImageTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url)
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url)
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
+
+as the `image-provider` resource.
+
+### Creates
+
+[Image.kpack.io](https://github.com/pivotal/kpack/blob/main/docs/image.md)
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account providing credentials for the configured image registry.
+      `Image` will use these credentials to push built container images to the registry.
+      The service account must exist in the same namespace as the Workload.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>clusterBuilder<code></td>
+    <td>
+      Name of the Kpack Cluster Builder to use.
+    </td>
+    <td>
+      <pre>
+      - name: clusterBuilder
+        value: nodejs-cluster-builder
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>buildServiceBindings<code></td>
+    <td>
+      Definition of a list of service bindings to make use at build time. For example,
+      providing credentials for fetching dependencies from
+      repositories that require credentials.
+    </td>
+    <td>
+      <pre>
+      - name: buildServiceBindings
+        value:
+          - name: settings-xml
+            kind: Secret
+            apiVersion: v1
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>live-update<code></td>
+    <td>
+      Enable the use of Tilt's live-update function.
+    </td>
+    <td>
+      <pre>
+      - name: live-update
+        value: "true"
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+> **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
+> (The similarly named `--service-account` flag sets a different value:
+> the `spec.serviceAccountName` key in the Workload object.)
+
+### More Information
+
+For information about the integration with Tanzu Build Service,
+see [Tanzu Build Service Integration](tbs.hbs.md).
+
+For information about `live-update`,
+see [Developer Conventions](../developer-conventions/about.hbs.md) and [Overview of Tanzu Developer Tools for IntelliJ](../intellij-extension/about.hbs.md).
+
+For information about using Kpack builders with `clusterBuilder`,
+see [Builders](https://github.com/pivotal/kpack/blob/main/docs/builders.md).
+
+For information about `buildServiceBindings`,
+see [Service Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebindings.md).
