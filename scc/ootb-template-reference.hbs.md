@@ -23,6 +23,8 @@ ClusterSourceTemplate.carto.run
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url)
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
 
+as the `source-provider` resource.
+
 ### Creates
 
 The source-template creates one of three objects, either:
@@ -219,6 +221,8 @@ ClusterSourceTemplate.carto.run
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url)
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
 
+as the `source-tester` resource.
+
 ### Creates
 
 `testing-pipeline`creates a [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/)
@@ -346,6 +350,8 @@ ClusterSourceTemplate.carto.run
 
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
 
+as the `source-scanner` resource.
+
 ### Creates
 
 [SourceScan](../scst-scan/overview.hbs.md)
@@ -418,6 +424,8 @@ ClusterImageTemplate.carto.run
 - [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url)
 - [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url)
 - [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url)
+
+as the `image-provider` resource.
 
 ### Creates
 
