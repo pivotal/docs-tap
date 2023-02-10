@@ -411,6 +411,8 @@ docs.vmware.com is built.
           - [Template reference](scc/ootb-template-reference.hbs.md)
           - [Workload parameters reference](scc/parameters-reference.hbs.md)
           - [Events reference](scc/events.hbs.md)
+          - [Supply Chain Reference](scc/ootb-supply-chain-reference.hbs.md)
+          - [Delivery Reference](scc/ootb-delivery-reference.hbs.md)
       - [Building container images](scc/build-container-img.hbs.md)
           - [Building from source](scc/building-from-source.hbs.md)
           - [Dockerfile-based builds](scc/dockerfile-based-builds.hbs.md)
