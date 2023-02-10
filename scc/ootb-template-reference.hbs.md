@@ -19,9 +19,9 @@ ClusterSourceTemplate.carto.run
 
 ### Used By
 
-- [Out of the Box Supply Chain Basic](ootb-supply-chain-basic.hbs.md)
-- [Out of the Box Supply Chain Testing](ootb-supply-chain-testing.hbs.md)
-- [Out of the Box Supply Chain Testing Scanning](ootb-supply-chain-testing-scanning.hbs.md)
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url)
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url)
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
 
 ### Creates
 
@@ -216,8 +216,8 @@ ClusterSourceTemplate.carto.run
 
 ### Used by
 
-- [Out of the Box Supply Chain Testing](ootb-supply-chain-testing.hbs.md)
-- [Out of the Box Supply Chain Testing Scanning](ootb-supply-chain-testing-scanning.hbs.md)
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url)
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
 
 ### Creates
 
@@ -344,7 +344,7 @@ ClusterSourceTemplate.carto.run
 
 ### Used by
 
-- [Out of the Box Supply Chain Testing Scanning](ootb-supply-chain-testing-scanning.hbs.md)
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
 
 ### Creates
 
