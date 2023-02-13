@@ -60,7 +60,7 @@ and which are more suited to the `server` application style.
 
 When a  `web` workload type is created, a Knative service is deployed to the cluster.
 To access your application, you need the URL for the route created by the Knative Service.
-Obtain it by running one of the these commands:
+Obtain it by running one of these commands:
 
 ```console
 tanzu apps workload get WORKLOAD-NAME --namespace DEVELOPER-NAMESPACE
