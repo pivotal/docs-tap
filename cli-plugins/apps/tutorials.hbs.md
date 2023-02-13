@@ -22,7 +22,6 @@ Ensure that you installed or updated the Tanzu CLI, for more information, see [I
 
     A version displays in the output.
 
-
 ## <a id='from-release'></a>Install From Release
 
 The latest release is in the [Github repository releases page](https://github.com/vmware-tanzu/apps-cli-plugin/releases/). Each of these releases has the *Assets* section where the packages for each *system-architecture* are placed.
