@@ -4,7 +4,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 ## <a id='1-4-1'></a> v1.4.1
 
-**Release Date**: February 14, 2023
+**Release Date**: February 16, 2023
 
 ### <a id='1-4-1-security-fixes'></a> Security fixes
 
