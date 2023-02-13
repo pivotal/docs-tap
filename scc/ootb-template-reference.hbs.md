@@ -648,6 +648,21 @@ updating the previous taskrun.
       </pre>
     </td>
   </tr>
+
+  <tr>
+    <td><code>registry<code></td>
+    <td>
+      Specification of the registry server and repository in which the built image should be placed.
+    </td>
+    <td>
+      <pre>
+      - name: registry
+        value:
+          server: index.docker.io
+          repository: web-team
+      </pre>
+    </td>
+  </tr>
 </table>
 
 ### More Information
@@ -669,3 +684,69 @@ ClusterTask.tekton.dev
 ### Used by
 
 - [kaniko-template](#kaniko-template)
+
+## image-scanner-template
+
+### Purpose
+Scans the container image for vulnerabilities,
+persists the results in a store,
+and prevents the image from moving forward
+if CVEs are found which are not compliant with its referenced ScanPolicy.
+
+### Kind
+ClusterImageTemplate.carto.run
+
+### Used by
+
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url)
+
+### Creates
+
+ImageScan.scanning.apps.tanzu.vmware.com
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>scanning_image_template<code></td>
+    <td>
+      Name of the ScanTemplate object for running the scans against a container image.
+      The ScanTemplate must be in the same namespace as the Workload.
+    </td>
+    <td>
+      <pre>
+      - name: scanning_image_template
+        value: private-image-scan-template
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>scanning_image_policy<code></td>
+    <td>
+      Name of the ScanPolicy object for evaluating the scan results of an image scan.
+      The ScanPolicy must be in the same namespace as the Workload.
+    </td>
+    <td>
+      <pre>
+      - name: scanning_image_policy
+        value: allowlist-policy
+      </pre>
+    </td>
+  </tr>
+</table>
+
+### More Information
+
+For information about the ImageScan custom resource,
+see [ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan).
+
+For information about how the artifacts found during scanning are catalogued,
+see [Supply Chain Security Tools for Tanzu – Store](../scst-store/overview.hbs.md).
