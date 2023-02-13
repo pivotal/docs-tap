@@ -29,6 +29,8 @@ To install the Apps CLI plug-in:
     tanzu apps version
     ```
 
+    A version is displayed in the output.
+
 ### <a id=”from-release”></a>From Release
 
 The latest release is found in the [repository release page](https://github.com/vmware-tanzu/apps-cli-plugin/releases/).
