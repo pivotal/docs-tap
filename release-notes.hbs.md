@@ -10,65 +10,68 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 This release has the following security fixes, listed by area and component.
 
-#### <a id="1-4-1-vulnerabilities-remediated"></a> Remediated vulnerabilities
+#### <a id="1-4-1-tap-gui-sf"></a> Tanzu Application Platform GUI
 
-The following is a list of vulnerabilities remediated with this release:
-
-- GHSA-3xq5-wjfh-ppjc
+- [GHSA-3xq5-wjfh-ppjc](https://github.com/advisories/GHSA-3xq5-wjfh-ppjc)
 
 ### <a id='1-4-1-resolved-issues'></a> Resolved issues
 
 The following issues, listed by area and component, are resolved in this release.
 
-#### <a id='1-4-1-source-controller-resolved-issues'></a> Source Controller
+#### <a id='1-4-1-src-controller-ri'></a> Source Controller
 
 - Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP "GET" calls are considered to be pulls. This fix switched HTTP requests from using "GET" operations to "HEAD" operations, which reduces the number of pulls while checking updated image versions.
 
-#### <a id="1-4-1-api-validation-and-scoring-ri"></a> API Validation and Scoring Toolkit
+#### <a id='1-4-1-tap-gui-ri'></a> Tanzu Application Platform GUI
 
-- Fixed a bug when one of the API Scores didn't have a value specified in the yaml.
+- Fixed SVG icons that appeared overly large on the sidebar.
+- Added catalog graph cards and diagram defaults to align with upstream Backstage.
+
+##### <a id="1-4-1-api-val-and-scor-ri"></a> API Validation and Scoring Toolkit plug-in
+
+- Fixed an issue where one of the API Scores didn't have a value specified in the YAML.
 - Adjusted some styles of the components to meet requirements.
 
-#### <a id="1-4-1-app-accelerator-ri"></a> Application Accelerator
+#### <a id="1-4-1-app-acc-pi-ri"></a> Application Accelerator plug-in
 
-- Fix rendering of options that have identical dependsOn with an array value.
-- Added system property config for the git repository creation.
-- Added workflow additional scope to git repository creation.
+- Fixed rendering of options that have an identical `dependsOn` option with an array value.
+  Added system property configuration for the Git repository creation feature.
+- Added workflow additional scope to the Git repository creation feature.
 
-#### <a id="1-4-1-app-live-view-ri"></a> Application Live View
+#### <a id="1-4-1-app-live-view-pi-ri"></a> Application Live View plug-in
 
-- Fix the reset button in root logger of Application Live View log levels page.
+- Fixed the reset button in the root logger of the Application Live View log levels page.
 
-#### <a id="1-4-1-supply-chain-templates-resolved"></a> Out of the Box Supply Chain Templates
+#### <a id="1-4-1-sc-templates-pi-ri"></a> Out of the Box Supply Chain Templates plug-in
 
-- Fixed Deliverable content written into ConfigMaps in a multicluster setup. Labels to attribute the Deliverable content with the supply chain and template are added to be consistent with the Delivery on a non-Build profile cluster.
-- For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
+- Fixed Deliverable content written into ConfigMaps in a multicluster setup.
+- Added labels to attribute the Deliverable content with the supply chain and template to be consistent
+  with the Delivery on a non-Build profile cluster.
+  For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
-#### <a id="1-4-1-sagui-ri"></a> Security Analysis Plug-in
+#### <a id="1-4-1-sagui-pi-ri"></a> Security Analysis plug-in
 
-- Update the data model for metadata-store's response.
-- Update table's position in index page.
-- Update filter for workloads with no associated policy.
-- Update bargraph for workloads with small and big values for different severities.
-- Fix a discrepancy between the widget and the information in Workload Build Vulnerabilities.
+- Updated the data model for the response of `metadata-store`.
+- Changed the table's position in the index page.
+- Update the filter for workloads with no associated policy.
+- Updated the bar graph for workloads with big and small values for different severities.
+- Fixed a discrepancy between the widget and the information in **Workload Build Vulnerabilities**.
 
-#### <a id="1-4-1-scst-ri"></a> Supply Chain Security Tools
+#### <a id="1-4-1-scst-pi-ri"></a> Supply Chain Security Tools plug-in
 
-- Fix view approval not showing up in config writer stage fix.
-- Fix for checkbox check state in Table filter.
-- Scan policy documentation URL is updated.
-- Showing the correct Generation number after the scan policy has been updated.
+- Fixed view approval failing to display in the **Config Writer** stage.
+- Fixed the check box status in the Table filter.
+- Updated the Scan policy documentation URL.
+- Fixed the Generation number displayed after the scan policy is updated.
 
-#### <a id="1-4-1-tap-gui-ri"></a> Tanzu Application Platform GUI
+#### <a id="1-4-1-scc-resolved"></a> Supply Chain Choreographer plug-in
 
-- Fixed svg icons appearing larger on the sidebar.
-- Add catalog graph cards and diagram defaults to align with upstream backstage.
-
-#### <a id="1-4-1-supply-chain-plug-in-resolved"></a> Suply Chain Choreographer Plug-in
-
-- The `Generation` field will now show the correct amended scan policy version, and clicking on the scan policy link will show the amended policy.
-- **Approve a Request** now appears in the **Stage Details** section of the supply chain view when the Config Writer stage is selected and the GitOps PR flow has been configured.
-- Scan policy documentation link that is displayed on error will now direct to the latest version of Tanzu Application Platform documentation.
+- The **Generation** box now shows the correct amended scan policy version. Clicking on the scan
+  policy link displays the amended policy.
+- The **Approve a Request** button now appears in the **Stage Details** section of the Supply Chain
+  view when the **Config Writer** stage is selected and the GitOps PR flow is configured.
+- The scan policy documentation link that appears after an error occurs now targets the latest version
+  of the Tanzu Application Platform documentation.
 
 ### <a id='1-4-1-known-issues'></a> Known issues
 
