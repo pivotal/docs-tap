@@ -19,9 +19,9 @@ ClusterSourceTemplate.carto.run
 
 ### Used By
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url)
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url)
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the source provider step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the source provider step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the source provider step.
 
 as the `source-provider` resource.
 
@@ -218,8 +218,8 @@ ClusterSourceTemplate.carto.run
 
 ### Used by
 
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url)
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the source-tester step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the source-tester step.
 
 as the `source-tester` resource.
 
@@ -348,7 +348,7 @@ ClusterSourceTemplate.carto.run
 
 ### Used by
 
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the source-scanner step.
 
 as the `source-scanner` resource.
 
@@ -421,9 +421,9 @@ ClusterImageTemplate.carto.run
 
 ### Used by
 
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url)
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url)
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url)
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the image-provider step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the image-provider step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the image-provider step.
 
 as the `image-provider` resource.
 
@@ -480,9 +480,9 @@ ClusterImageTemplate.carto.run
 
 ### Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url)
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url)
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the image-provider step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the image-provider step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-provider step.
 
 as the `image-provider` resource when the workload param `dockerfile` is **not** defined.
 
@@ -590,9 +590,9 @@ ClusterImageTemplate.carto.run
 
 ### Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url)
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url)
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the image-provider step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the image-provider step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-provider step.
 
 as the `image-provider` resource when the workload param `dockerfile` is defined.
 
@@ -698,8 +698,8 @@ ClusterImageTemplate.carto.run
 
 ### Used by
 
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url)
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url)
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-scanner step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the image-scanner step.
 
 ### Creates
 
