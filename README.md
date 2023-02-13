@@ -185,7 +185,7 @@ Use this table to keep a running list of terms used and how they should be defin
 |Spring Cloud Gateway for Kubernetes|Spring Cloud Gateway|
 |Supply Chain Choreographer|Supply Chain Choreographer|
 |Supply Chain Security Tools for VMware Tanzu - Policy Controller|Supply Chain Security Tools - Policy Controller (SCST - Policy Controller)|
-|Supply Chain Security Tools for VMware Tanzu - Scan|Supply Chain Security Tools - Scan (SCST - Tools|
+|Supply Chain Security Tools for VMware Tanzu - Scan|Supply Chain Security Tools - Scan (SCST - Tools)|
 |Supply Chain Security Tools for VMware Tanzu - Sign|Supply Chain Security Tools - Sign (SCST - Sign)|
 |Supply Chain Security Tools for VMware Tanzu - Store|Supply Chain Security Tools - Store (SCST -Store)|
 |Tanzu Application Platform GUI|Tanzu Application Platform GUI|
