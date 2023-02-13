@@ -166,8 +166,8 @@ metadata:
   name: grypescan
 spec:
   image: nginx:latest # The image that has to be scanned
-  publisherSpec:
-    resultPushLocation: registry/project/scan-results # Place to upload scan results
+  scanResults:
+    location: registry/project/scan-results # Place to upload scan results
   serviceAccountNames:
     scanner: scanner # Service account that enables scanning component to pull the image to be scanned
     publisher: publisher # Service account has the secrets to push the scan results
@@ -195,8 +195,8 @@ metadata:
   name: generic-image-scan
 spec:
   image: nginx
-  publisherSpec:
-    resultPushLocation: registry/project/scan-results
+  scanResults:
+    location: registry/project/scan-results
   serviceAccountNames:
     scanner: scanner
     publisher: publisher
@@ -259,15 +259,16 @@ metadata:
   name: imagevulnerabilityscan-with-configmap
 spec:
   image: nginx
-  publisherSpec:
-    resultPushLocation: registry/team/scan-results
+  scanResults:
+    location: registry/team/scan-results
   serviceAccountNames:
     scanner: scanner
     publisher: publisher
-  workspaceBindings: # Attach the configmap as a worksapce
-  - name: source
-    configMap:
-      name: my-configmap
+  workspace: # Attach the configmap as a worksapce
+    bindings:
+    - name: source
+      configMap:
+        name: my-configmap
   steps:
   - name: grype
     image: anchore/grype:latest
