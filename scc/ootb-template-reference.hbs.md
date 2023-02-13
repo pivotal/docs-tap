@@ -862,3 +862,125 @@ See [Developer
 Conventions](../developer-conventions/about.hbs.md) and [Spring Boot
 Conventions](../spring-boot-conventions/about.hbs.md) for more details about the two
 convention servers enabled by default in Tanzu Application Platform installations.
+
+
+## config-template
+
+### Purpose
+
+For workloads with the label `apps.tanzu.vmware.com/workload-type: web`, define a knative service.
+
+### Kind
+ClusterConfigTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the app-config step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the app-config step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the app-config step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the app-config step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the app-config step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the app-config step.
+
+### Creates
+
+A ConfigMap, in which the data field has a key `delivery.yml` whose value is the definition of a knative service.
+
+### Parameters
+
+None
+
+### More Information
+
+See [workload types](../workloads/workload-types.hbs.md) for more details about the
+three different types of workloads.
+
+## worker-template
+
+### Purpose
+
+For workloads with the label `apps.tanzu.vmware.com/workload-type: worker`, define a Kuberenetes Deployment.
+
+### Kind
+ClusterConfigTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the app-config step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the app-config step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the app-config step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the app-config step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the app-config step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the app-config step.
+
+### Creates
+
+A ConfigMap, in which the data field has a key `delivery.yml` whose value is the definition of a Kuberenetes Deployment.
+
+### Parameters
+
+None
+
+### More Information
+
+See [workload types](../workloads/workload-types.hbs.md) for more details about the
+three different types of workloads.
+
+## worker-template
+
+### Purpose
+
+For workloads with the label `apps.tanzu.vmware.com/workload-type: server`,
+define a Kuberenetes Deployment and a Kubernetes Service.
+
+### Kind
+ClusterConfigTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the app-config step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the app-config step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the app-config step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the app-config step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the app-config step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the app-config step.
+
+### Creates
+
+A ConfigMap, in which the data field has a key `delivery.yml` whose value is the definitions of a Kuberenetes
+Deployment and a Kubernetes Service to expose the pods.
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>ports<code></td>
+    <td>
+      Set of network ports to expose from the application to the Kubernetes
+      cluster.
+    </td>
+    <td>
+      <pre>
+      - name: ports
+        value:
+          - containerPort: 2025
+            name: smtp
+            port: 25
+      </pre>
+    </td>
+  </tr>
+</table>
+
+### More Information
+
+See [workload types](../workloads/workload-types.hbs.md) for more details about the
+three different types of workloads.
+
+See [`server`-specific Workload parameters](../workloads/server.hbs.md#-server-specific-workload-parameters)
+for a detailed overview of the ports parameter.
