@@ -200,7 +200,7 @@ Use this table to keep a running list of terms used and how they should be defin
 - Use the short component name in the Table of Contents, Release Notes headings, and Components page headings.
 - Call out the full name where one exists on the first occurrence in the component page description and the first occurrence in the actual component doc and then use the short name elsewhere. 
 
-Exception forr Supply Chain Security Tools:
+**Exception for Supply Chain Security Tools:**
 - As above, use the short name in the Table of Contents, Release Notes headings, and Components page headings. 
 - As above, call out the full name on the first occurrence in the component page description and the first occurrence in the actual component doc, **however** as even the short name is very long, use the acronym after this.
 
