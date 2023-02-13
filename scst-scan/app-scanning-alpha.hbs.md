@@ -1,12 +1,26 @@
 # Supply Chain Security Tools - App Scanning (alpha)
 
-Alpha release
-Not installed by default with any profile
+>**Important** This component is in Alpha, which means that it is still in active
+>development by VMware and might be subject to change at any point. Users might 
+>encounter unexpected behavior.  As such, this is an currently an opt-in component
+>is not installed by default with any profile.
+
 Dependency on the tekton-pipelines component
 
-## Overview
+## <a id="overview"></a>Overview
 
-## Features
+The App Scanning component within the Supply Chain Security Tools is responsibile for providing the framework to scan applications for security their posture.  This is currently implemented by scanning source code repositories and container images for known Common Vulnerabilities and Exposures (CVEs).  
+
+This component is currently in Alpha and is intended to supersede the [SCST-Scan component](overview.mds) once it reaches feature parity with the existing component.  
+
+## <a id="features"></a>Features
+
+* Tekton is leveraged as the orchestrator of the scan 
+
+TAP is committed to using Tekton as the orchestrator of multi-step activities wherever they occur within the platform.  TAP’s vulnerability scanning behavior (run a scanner and then store results) is a fit for this architecture and it is assumed to be the low-level implementation for this design.
+
+As of the current release, the app-scan component.
+
 
 ## Installing App Scanning in a cluster
 
