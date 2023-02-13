@@ -750,3 +750,115 @@ see [ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan).
 
 For information about how the artifacts found during scanning are catalogued,
 see [Supply Chain Security Tools for Tanzu – Store](../scst-store/overview.hbs.md).
+
+## convention-template
+
+### Purpose
+Create the PodTemplateSpec for the kubernetes configuration (e.g. the knative service or kubernetes deployment)
+which will be applied to the cluster.
+
+### Kind
+ClusterConfigTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the config-provider step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the config-provider step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the config-provider step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the config-provider step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the config-provider step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the config-provider step.
+
+### Creates
+Creates a [PodIntent](../cartographer-conventions/reference/pod-intent.hbs.md) object.
+The PodIntent leverages conventions installed on the cluster.
+The PodIntent object is responsible for generating a PodTemplateSpec.
+The PodTemplateSpec is used in app configs, such as knative services and deployments,
+to represent the shape of the pods to run the application in containers.
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the serviceAccount providing necessary credentials to `PodIntent`.
+      The serviceAccount must be in the same namespace as the Workload.
+      The serviceAccount is set as the `serviceAccountName` in the podtemplatespec.
+      The credentials associated with the serviceAccount must allow fetching the container image
+      used to inspect the metadata passed to convention servers.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>annotations<code></td>
+    <td>
+     Extra set of annotations to pass down to the PodTemplateSpec.
+    </td>
+    <td>
+      <pre>
+      - name: annotations
+        value:
+          name: my-application
+          version: v1.2.3
+          team: store
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>debug<code></td>
+    <td>
+      Put the workload in debug mode.
+    </td>
+    <td>
+      <pre>
+      - name: debug
+        value: "true"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>live-update<code></td>
+    <td>
+      Enable live-updating of the code (for innerloop development).
+    </td>
+    <td>
+      <pre>
+      - name: live-update
+        value: "true"
+      </pre>
+    </td>
+  </tr>
+</table>
+
+> **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
+> (The similarly named `--service-account` flag sets a different value:
+> the `spec.serviceAccountName` key in the Workload object.)
+
+### More Information
+
+Read more about
+[PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)
+in the Kubernetes documentation.
+
+Read more about
+[Cartographer Conventions](../cartographer-conventions/about.hbs.md).
+
+See [Developer
+Conventions](../developer-conventions/about.hbs.md) and [Spring Boot
+Conventions](../spring-boot-conventions/about.hbs.md) for more details about the two
+convention servers enabled by default in Tanzu Application Platform installations.
