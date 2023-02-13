@@ -31,24 +31,6 @@ To install the Apps CLI plug-in:
 
     A version is displayed in the output.
 
-    If the following error is displayed during installation:
-
-    ```console
-    Error: could not find plug-in "apps" in any known repositories
-
-    ✖  could not find plug-in "apps" in any known repositories
-    ```
-
-    Verify that there is an `apps` entry in the `cli/manifest.yaml` file. It looks like this:
-
-    ```yaml
-    plugins:
-    ...
-        - name: apps
-        description: Applications on Kubernetes
-        versions: []
-    ```
-
 ### <a id=”from-release”></a>From Release
 
 The latest release is found in the [repository release page](https://github.com/vmware-tanzu/apps-cli-plugin/releases/).
