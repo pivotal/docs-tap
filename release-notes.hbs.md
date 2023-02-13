@@ -11,7 +11,7 @@ This topic contains release notes for Tanzu Application Platform v1.3
 #### <a id='scc-breaking-changes'></a> Supply Chain Choreographer
 
 - Out of the Box Supply Chain Templates
-In a multicluster setup, when a deliverable is created on a Build profile cluster, the ConfigMap it's in is renamed from <workload-name> to <workload-name>-deliverable. Any automation that depends on obtaining the deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
+In a multicluster setup, when a deliverable is created on a Build profile cluster, the ConfigMap it's in is renamed from `workload-name` to `workload-name`-deliverable. Any automation that depends on obtaining the deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 ---
 
