@@ -75,7 +75,6 @@ spec:
     secretRef:
       name: ""
     deactivated: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
-    disabled: false # deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
   cors:
     allowOrigins: # optional, cannot be combined with 'allowAllOrigins'.
       - ""

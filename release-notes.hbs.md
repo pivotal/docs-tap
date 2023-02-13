@@ -46,6 +46,10 @@ This release includes the following changes, listed by component and area.
 
 - Breaking change description.
 
+#### <a id='1-5-0-appsso-bc'></a> Application Single Sign-On (AppSSO)
+
+- Field `AuthServer.spec.tls.disabled` has been removed. Please rely on `AuthServer.spec.tls.deactivated`.
+
 ---
 
 ### <a id='1-6-0-security-fixes'></a> Security fixes
