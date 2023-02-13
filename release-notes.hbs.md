@@ -11,7 +11,7 @@ This topic contains release notes for Tanzu Application Platform v1.3
 #### <a id='scc-breaking-changes'></a> Supply Chain Choreographer
 
 - Out of the Box Supply Chain Templates
-In a multicluster setup, when a Deliverable is created on a Build profile cluster, the ConfigMap it's in is renamed from <workload-name> to <workload-name>-deliverable. Any automation that depends on obtaining the Deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
+In a multicluster setup, when a deliverable is created on a Build profile cluster, the ConfigMap it's in is renamed from <workload-name> to <workload-name>-deliverable. Any automation that depends on obtaining the deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 ---
 
@@ -24,10 +24,10 @@ In a multicluster setup, when a Deliverable is created on a Build profile cluste
 #### <a id='1-3-5-scc-resolved-issues'></a> Supply Chain Choreographer
 
 - Out of the Box Supply Chain Templates
-  - Fixed Deliverable content written into ConfigMaps in multicluster setup.
+  - Fixed deliverable content written into ConfigMaps in multicluster setup.
   - ConfigMap is renamed to avoid conflict with `config-template`.
-  - Labels to attribute the Deliverable content with the supply chain and template are now added to be consistent with the Delivery on a non-Build profile cluster.
-  - Tanzu Application Platform GUI Supply Chain plugin displays deliverables on run clusters with workloads from build clusters.
+  - Labels to attribute the deliverable content with the supply chain and template are now added to be consistent with the delivery on a non-Build profile cluster.
+  - Tanzu Application Platform GUI Supply Chain plug-in displays deliverables on run clusters with workloads from build clusters.
   - For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 ---
@@ -37,9 +37,11 @@ In a multicluster setup, when a Deliverable is created on a Build profile cluste
 #### <a id="1-3-tbs-known-issues"></a> Tanzu Build Service
 
 - Migrating from the `buildservice.kp_default_repository` key, to the `shared.image_registry` key can cause
-existing workloads to fail. If the `shared.image_registry` key is being used and workloads are now failing with a 
-`spec.tag` immutability error from the `image.kpack.io` after upgrading to 1.3, users will need 
-delete the `image.kpack.io` associated with the failing workloads, so that they can be recreated with the correct tags.
+existing workloads to fail. If using the `shared.image_registry` key and workloads are failing with a
+`spec.tag` immutability error from the `image.kpack.io` after upgrading to 1.3,
+delete the `image.kpack.io` associated with the failing workloads, so they can be recreated with the correct tags.
+
+---
 
 ## <a id='1-3-4'></a> v1.3.4
 
