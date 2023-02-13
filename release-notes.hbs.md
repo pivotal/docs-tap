@@ -32,6 +32,15 @@ In a multicluster setup, when a Deliverable is created on a Build profile cluste
 
 ---
 
+### <a id='1-3-5-known-issues'></a> Known Issues
+
+#### <a id="1-3-tbs-known-issues"></a> Tanzu Build Service
+
+- Migrating from the `buildservice.kp_default_repository` key, to the `shared.image_registry` key can cause
+existing workloads to fail. If the `shared.image_registry` key is being used and workloads are now failing with a 
+`spec.tag` immutability error from the `image.kpack.io` after upgrading to 1.3, users will need 
+delete the `image.kpack.io` associated with the failing workloads, so that they can be recreated with the correct tags.
+
 ## <a id='1-3-4'></a> v1.3.4
 
 **Release Date**: December 20, 2022
