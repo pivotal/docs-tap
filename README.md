@@ -184,17 +184,23 @@ Use this table to keep a running list of terms used and how they should be defin
 |Spring Boot conventions|Spring Boot conventions|
 |Spring Cloud Gateway for Kubernetes|Spring Cloud Gateway|
 |Supply Chain Choreographer|Supply Chain Choreographer|
-|Supply Chain Security Tools for VMware Tanzu - Policy Controller|Supply Chain Security Tools - Policy Controller|
-|Supply Chain Security Tools for VMware Tanzu - Scan|Supply Chain Security Tools - Scan|
-|Supply Chain Security Tools for VMware Tanzu - Sign|Supply Chain Security Tools - Sign|
-|Supply Chain Security Tools for VMware Tanzu - Store|Supply Chain Security Tools - Store|
+|Supply Chain Security Tools for VMware Tanzu - Policy Controller|Supply Chain Security Tools - Policy Controller (SCST - Policy Controller)*|
+|Supply Chain Security Tools for VMware Tanzu - Scan|Supply Chain Security Tools - Scan (SCST - Tools*|
+|Supply Chain Security Tools for VMware Tanzu - Sign|Supply Chain Security Tools - Sign (SCST - Sign)*|
+|Supply Chain Security Tools for VMware Tanzu - Store|Supply Chain Security Tools - Store (SCST -Store)*|
 |Tanzu Application Platform GUI|Tanzu Application Platform GUI|
 |Tanzu Application Platform Telemetry|Tanzu Application Platform Telemetry|
 |Tanzu Build Service|Tanzu Build Service|
 |VMware Tanzu Developer Tools for IntelliJ|Tanzu Developer Tools for IntelliJ|
-|VMware Tanzu Developer Tools for Visual Studio|Tanzu Developer Tools for Visual Studio|
-|VMware Tanzu Developer Tools for Visual Studio Code|Tanzu Developer Tools for Visual Studio Code|
+|VMware Tanzu Developer Tools for Visual Studio|Tanzu Developer Tools for VS|
+|VMware Tanzu Developer Tools for Visual Studio Code|Tanzu Developer Tools for VS Code|
 |VMware Tanzu Application Platform Pipeline service with Tekton|Tekton Pipelines|
+
+**Component names usage:**
+- Use the short component name in the Table of Contents, Release Notes headings, and Components page headings.
+- Call out the full name where one exists on the first occurrence in the component page description and the first occurrence in the actual component doc and then use the short name elsewhere. 
+Exception:  For Supply Chain Security Tools, as above, use short name in Table of Contents, Release Notes headings, and Components page headings. As above, call out the full name on the first occurrence in the component page description and the first occurrence in the actual component doc, **however** as even the short name is very long, use the acronym after this.
+
 
 ## Placeholder List
 
