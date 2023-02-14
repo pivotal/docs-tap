@@ -1,6 +1,6 @@
 # <a id="create-an-accelerator"></a>Create an accelerator
 
-> **Note** This guide follows a "quick start" format, see the [Application Accelerator docs](/application-accelerator/about-application-accelerator.hbs.md) for advanced features.
+> **Note** This guide follows a "quick start" format, see the [Application Accelerator docs](../application-accelerator/about-application-accelerator.hbs.md) for advanced features.
 
 ## <a id="you-will"></a>What you will do
 
@@ -56,7 +56,7 @@ The following instructions require using Visual Studio Code to edit the files.
 
 1. Open the `accelerator.yaml` and begin populating the file section using the snippet below. This section contains important information, such as the accelerator's display name, description, tags, and more.
 
-    For all possible parameters available in this section, see [Creating accelerator.yaml](/application-accelerator/creating-accelerators/accelerator-yaml.hbs.md#accelerator-metadata).
+    For all possible parameters available in this section, see [Creating accelerator.yaml](../application-accelerator/creating-accelerators/accelerator-yaml.hbs.md#accelerator-metadata).
 
     ```yaml
     accelerator:
@@ -72,7 +72,7 @@ The following instructions require using Visual Studio Code to edit the files.
 
     In this example snippet, the field `firstConfigurableParameter` takes in text that is provided by the user. The `secondConfigurableParameter` does the same, except it is only displayed if the user checks `secondConfigurableParameterCheckbox` because of the `dependsOn` parameter.
 
-    For more information about possible options, see [Creating accelerator.yaml](/application-accelerator/creating-accelerators/accelerator-yaml.hbs.md#accelerator-options).
+    For more information about possible options, see [Creating accelerator.yaml](../application-accelerator/creating-accelerators/accelerator-yaml.hbs.md#accelerator-options).
 
     ```yaml
     # Place this after the 'tags' section from the previous step
@@ -100,7 +100,7 @@ The following instructions require using Visual Studio Code to edit the files.
 
     This also leverages a simple [Spring Expression Language (SpEL)](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions) syntax to convert the text input to all lowercase.
 
-    For more information about the possible parameters for use within the `engine` section, see [Creating accelerator.yaml](/application-accelerator/creating-accelerators/accelerator-yaml.hbs.md#engine).
+    For more information about the possible parameters for use within the `engine` section, see [Creating accelerator.yaml](../application-accelerator/creating-accelerators/accelerator-yaml.hbs.md#engine).
 
     ```yaml
     # Place this after the `options` section from the previous step
@@ -184,21 +184,21 @@ Now that the accelerator has been committed to its own repository, the accelerat
 
 1. Navigate to your organization's instance of the Tanzu Application Platform GUI.
 
-    ![Home screen image of Tanzu Application Platform GUI](/images/app-accelerator/getting-started-1-1.png)
+    ![Home screen image of Tanzu Application Platform GUI](../images/app-accelerator/getting-started-1-1.png)
 
 2. On the left-hand navigation pane, click **Create**.
 
-    ![Image of highlighting the Create button in Tanzu Application Platform GUI](/images/app-accelerator/getting-started-1-2.png)
+    ![Image of highlighting the Create button in Tanzu Application Platform GUI](../images/app-accelerator/getting-started-1-2.png)
 
 3. Using the search bar near the left-hand side of the page, search for **simple accelerator**. After you've found it, click **Choose** on the accelerator card.
 
-    ![Image of searching for the accelerator in Tanzu Application Platform GUI](/images/app-accelerator/getting-started-1-3.png)
+    ![Image of searching for the accelerator in Tanzu Application Platform GUI](../images/app-accelerator/getting-started-1-3.png)
 
 4. Configure the project by filling in the parameters in the form.
 
    Notice that the options you defined in the `accelerator.yaml` are now displayed for you to configure. Also note that the `secondConfigurableParameter` `dependsOn` `secondConfigurableParameterCheckbox` is hidden depending on whether the checkbox is selected.
 
-   ![Image of the configuration page in Tanzu Application Platform GUI](/images/app-accelerator/getting-started-1-4.png)
+   ![Image of the configuration page in Tanzu Application Platform GUI](../images/app-accelerator/getting-started-1-4.png)
 
 5. After configuration is complete, click **Next**.
 
@@ -207,11 +207,11 @@ Now that the accelerator has been committed to its own repository, the accelerat
 6. On the "Review and generate" step, review the parameters and click **Generate Accelerator**.
 7. Explore the .zip file of the configured project and verify that the project is generated with the parameters you provided during configuration.
 
-    ![Image of explore page showing changed parameters](/images/app-accelerator/getting-started-1-5.png)
+    ![Image of explore page showing changed parameters](../images/app-accelerator/getting-started-1-5.png)
 
 ## Learn more about Application Accelerator
 
-* For advanced functionality when creating accelerators, such as accelerator best practices, accelerator fragments, engine transforms, and more, see the [Application Accelerator documentation](/application-accelerator/about-application-accelerator.hbs.md).
-* For additional information on Application Accelerator configurations, see the [Configure Application Accelerator documentation](/application-accelerator/configuration.hbs.md).
-* For information on installing the Application Accelerator extension for Visual Studio Code, see the [Application Accelerator Visual Studio Code extension documentation](/application-accelerator/vscode.hbs.md).
-* For general accelerator troubleshooting, see [Troubleshooting Application Accelerator for VMware Tanzu](/application-accelerator/troubleshooting.hbs.md).
+* For advanced functionality when creating accelerators, such as accelerator best practices, accelerator fragments, engine transforms, and more, see the [Application Accelerator documentation](../application-accelerator/about-application-accelerator.hbs.md).
+* For additional information on Application Accelerator configurations, see the [Configure Application Accelerator documentation](../application-accelerator/configuration.hbs.md).
+* For information on installing the Application Accelerator extension for Visual Studio Code, see the [Application Accelerator Visual Studio Code extension documentation](../application-accelerator/vscode.hbs.md).
+* For general accelerator troubleshooting, see [Troubleshooting Application Accelerator for VMware Tanzu](../application-accelerator/troubleshooting.hbs.md).
