@@ -1,4 +1,4 @@
-# Application Accelerator for VMware Tanzu v{{ vars.url_version }}
+# Application Accelerator for VMware Tanzu
 
 ## <a id="overview"></a>Application Accelerator overview
 
