@@ -23,7 +23,7 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id='1-4-1-src-controller-ri'></a> Source Controller
 
-- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP "GET" calls are considered to be pulls. This fix switched HTTP requests from using "GET" operations to "HEAD" operations, which reduces the number of pulls while checking updated image versions.
+- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP GET calls are considered to be pulls. This fix switched HTTP requests from using GET operations to HEAD operations, which reduces the number of pulls while checking updated image versions.
 
 #### <a id='1-4-1-tap-gui-ri'></a> Tanzu Application Platform GUI
 
@@ -47,9 +47,9 @@ The following issues, listed by area and component, are resolved in this release
 
 ##### <a id="1-4-1-sc-templates-pi-ri"></a> Out of the Box Supply Chain Templates plug-in
 
-- Fixed Deliverable content written into ConfigMaps in a multicluster setup.
-  Added labels to attribute the Deliverable content with the supply chain and the template.
-  This was done to be consistent with the Delivery on a non-Build profile cluster.
+- Fixed deliverable content written into ConfigMaps in a multicluster setup.
+  Added labels to attribute the deliverable content with the supply chain and the template.
+  This was done to be consistent with the delivery on a non-Build profile cluster.
   For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 ##### <a id="1-4-1-sagui-pi-ri"></a> Security Analysis plug-in
@@ -62,7 +62,7 @@ The following issues, listed by area and component, are resolved in this release
 
 ##### <a id="1-4-1-scc-resolved"></a> Supply Chain Choreographer plug-in
 
-- The **Generation** box now shows the correct amended scan policy version. Clicking on the scan
+- The **Generation** box now shows the correct amended scan policy version. Clicking the scan
   policy link displays the amended policy.
 - The **Approve a Request** button now appears in the **Stage Details** section of the Supply Chain
   view when the **Config Writer** stage is selected and the GitOps PR flow is configured.
@@ -86,7 +86,7 @@ This release has the following known issues, listed by area and component.
 
 - **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
-  For most languages, Source Code Scanning only scans files present in the source code repository.
+  For most languages, source code scanning only scans files present in the source code repository.
   Except for support added for Java projects using Maven, no network calls fetch
   dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
   lock files to check dependencies for vulnerabilities.
