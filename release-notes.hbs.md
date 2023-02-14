@@ -28,7 +28,7 @@ In a multicluster setup, when a deliverable is created on a Build profile cluste
 
 #### <a id='1-3-5-sc-resolved-issues'></a> Source Controller
 
-- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP GET calls are considered to be pulls. This fix switched HTTP requests from using GET operations to HEAD operations, which reduces the number of pulls while checking updated image versions.
+- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP GET calls are considered to be pulls. With this fix, HTTP requests use HEAD operations instead of GET operations, which reduces the number of pulls while checking updated image versions.
 
 #### <a id='1-3-5-scc-resolved-issues'></a> Supply Chain Choreographer
 
