@@ -22,6 +22,8 @@ To configure:
 
 To generate OpenAPI Spec:
 
+- [By creating a simple Spring Boot app](#using-simple-app)
+
 - [By scaffolding a new project using App Accelerator Template](#using-app-accelerator-template)
 
 - [In an existing Spring Boot project using springdoc](https://springdoc.org/#getting-started)
@@ -64,6 +66,35 @@ To create APIDescriptor CR:
     ```
 
 >**Note** You can also update API Auto Registration as part of upgrading Tanzu Application Platform. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
+
+## <a id='using-simple-app'></a>Using a simple Spring Boot app with a REST service
+
+You can use a [simple Spring Boot example app](https://github.com/making/rest-service) built using [Building a RESTful Web Service guide](https://spring.io/guides/gs/rest-service/).
+and has the [Springdoc dependency](https://springdoc.org/#getting-started).
+
+Example of a workload using the simple Spring Boot app:
+
+```yaml
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: simple-rest-app
+  labels:
+    ...
+    apis.apps.tanzu.vmware.com/register-api: "true"
+spec:
+  source:
+    ...
+  params:
+    - name: api_descriptor
+      value:
+        type: openapi
+        location:
+          path: "/v3/api-docs"
+        system: dev
+        owner: team-a
+        description: "A set of API endpoints."
+```
 
 ## <a id='using-app-acc-template'></a>Using App Accelerator Template
 
