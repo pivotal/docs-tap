@@ -1044,3 +1044,81 @@ in the Tanzu CLI documentation.
 
 For an overview of the function, see
 [Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md).
+
+## api-descriptors
+
+### Purpose
+
+The `api-descriptor` resource takes care of adding an
+[APIDescriptor](../api-auto-registration/key-concepts.hbs.md) to the set of
+Kubernetes objects to deploy such that API auto registration takes place.
+
+### Kind
+ClusterConfigTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the service-bindings step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the service-bindings step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the service-bindings step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the service-bindings step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the service-bindings step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the service-bindings step.
+
+### Creates
+
+A ConfigMap. This template consumes input of multiple yaml files and
+enriches the input with an APIDescriptor if
+the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>annotations<code></td>
+    <td>
+     Extra set of annotations to pass down to the APIDescriptor object.
+    </td>
+    <td>
+      <pre>
+      - name: annotations
+        value:
+          name: my-application
+          version: v1.2.3
+          team: store
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>api_descriptor<code></td>
+    <td>
+     Information used to fill the state that you want of the APIDescriptor object
+    (its spec).
+    </td>
+    <td>
+      <pre>
+      - name: api_descriptor
+        value:
+          type: openapi
+          location:
+            baseURL: http://petclinic-hard-coded.my-apps.tapdemo.vmware.com/
+            path: "/v3/api
+          owner: team-petclinic
+          system: pet-clinics
+          description: "example"
+      </pre>
+    </td>
+  </tr>
+</table>
+
+### More Information
+
+See [Use API Auto Registration](../api-auto-registration/usage.hbs.md) for more
+details about API auto registration.
