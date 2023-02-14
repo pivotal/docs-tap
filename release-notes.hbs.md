@@ -7,9 +7,10 @@ This topic contains release notes for Tanzu Application Platform v1.3
 **Release Date**: February 16, 2023
 
 ### <a id='1-3-5-security-fix'></a> Security fixes
+
 #### <a id='1-3-5-contour-resolved-issues'></a> Contour
 
-- Bump to [Contour 1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3). Includes a bump to go [1.19.4](https://go.dev/doc/devel/release#go1.19.minor), which contains security fixes to the `net/http` and `os` packages.
+- Bump to [Contour 1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3). Includes a bump to [1.19.4](https://go.dev/doc/devel/release#go1.19.minor), which contains security fixes to the `net/http` and `os` packages.
 
 ---
 ### <a id='1-3-5-breaking-changes'></a> Breaking changes
@@ -17,7 +18,7 @@ This topic contains release notes for Tanzu Application Platform v1.3
 #### <a id='scc-breaking-changes'></a> Supply Chain Choreographer
 
 - Out of the Box Supply Chain Templates
-In a multicluster setup, when a deliverable is created on a Build profile cluster, the ConfigMap it's in is renamed from `workload-name` to `workload-name`-deliverable. Any automation that depends on obtaining the deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
+In a multicluster setup, when a deliverable is created on a Build profile cluster, the ConfigMap it's in is renamed from `WORKLOAD-NAME` to `WORKLOAD-NAME`-deliverable. Any automation that depends on obtaining the deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 ---
 
@@ -25,7 +26,7 @@ In a multicluster setup, when a deliverable is created on a Build profile cluste
 
 #### <a id='1-3-5-sc-resolved-issues'></a> Source Controller
 
-- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP "GET" calls are considered to be pulls. This fix switched HTTP requests from using "GET" operations to "HEAD" operations, which reduces the number of pulls while checking updated image versions.
+- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP GET calls are considered to be pulls. This fix switched HTTP requests from using GET operations to HEAD operations, which reduces the number of pulls while checking updated image versions.
 
 #### <a id='1-3-5-scc-resolved-issues'></a> Supply Chain Choreographer
 
