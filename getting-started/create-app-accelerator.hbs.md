@@ -40,7 +40,7 @@
 
 The following instructions require using Visual Studio Code to edit the files.
 
-1. Using Visual Studio Code, open the `README.md`, copy and paste the following text into it, and save the file. `<CONFIGURABLE_PARAMETER_#>` is targeted to be transformed during project generation in the upcoming `accelerator.yaml` definition.
+1. Using Visual Studio Code, open the `README.md`, copy and paste the following code block into it, and save the file. `CONFIGURABLE_PARAMETER_#` is targeted to be transformed during project generation in the upcoming `accelerator.yaml` definition.
 
     ```markdown
 
@@ -50,8 +50,8 @@ The following instructions require using Visual Studio Code to edit the files.
 
     Here are some configurable parameters:
 
-    * <CONFIGURABLE_PARAMETER_1>
-    * <CONFIGURABLE_PARAMETER_2>
+    * CONFIGURABLE_PARAMETER_1
+    * CONFIGURABLE_PARAMETER_2
     ```
 
 1. Open the `accelerator.yaml` and begin populating the file section using the snippet below. This section contains important information, such as the accelerator's display name, description, tags, and more.
@@ -96,7 +96,7 @@ The following instructions require using Visual Studio Code to edit the files.
 
 3. Add the `engine` configuration by using the following code snippet and save the file.
 
-    The `engine` configuration tells the `accelerator engine` behind the scenes what needs to be done to the project files during project creation. In this example, this instructs the engine to replace `<CONFIGURABLE_PARAMETER_1>` and, if the checkbox is checked, `<CONFIGURABLE_PARAMETER_2>` with the parameters that the user passes in during project creation.
+    The `engine` configuration tells the `accelerator engine` behind the scenes what needs to be done to the project files during project creation. In this example, this instructs the engine to replace `CONFIGURABLE_PARAMETER_1` and, if the checkbox is checked, `CONFIGURABLE_PARAMETER_2` with the parameters that the user passes in during project creation.
 
     This also leverages a simple [Spring Expression Language (SpEL)](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#expressions) syntax to convert the text input to all lowercase.
 
@@ -110,13 +110,13 @@ The following instructions require using Visual Studio Code to edit the files.
           chain:
             - type: ReplaceText
               substitutions:
-                - text: "<CONFIGURABLE_PARAMETER_1>"
+                - text: "CONFIGURABLE_PARAMETER_1"
                   with: "#firstConfigurableParameter.toLowerCase()"
             - condition: "#secondConfigurableParameterCheckbox"
               chain:
               - type: ReplaceText
                 substitutions:
-                  - text: "<CONFIGURABLE_PARAMETER_2>"
+                  - text: "CONFIGURABLE_PARAMETER_2"
                     with: "#secondConfigurableParameter.toLowerCase()"
     ```
 
