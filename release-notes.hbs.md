@@ -4,7 +4,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 ## <a id='1-4-1'></a> v1.4.1
 
-**Release Date**: February 14, 2023
+**Release Date**: February 16, 2023
 
 ### <a id='1-4-1-security-fixes'></a> Security fixes
 
@@ -13,6 +13,8 @@ This release has the following security fixes, listed by area and component.
 #### <a id="1-4-1-tap-gui-sf"></a> Tanzu Application Platform GUI
 
 - [GHSA-3xq5-wjfh-ppjc](https://github.com/advisories/GHSA-3xq5-wjfh-ppjc)
+
+---
 
 ### <a id='1-4-1-resolved-issues'></a> Resolved issues
 
@@ -32,24 +34,24 @@ The following issues, listed by area and component, are resolved in this release
 - Fixed an issue where one of the API Scores didn't have a value specified in the YAML.
 - Adjusted some styles of the components to meet requirements.
 
-#### <a id="1-4-1-app-acc-pi-ri"></a> Application Accelerator plug-in
+##### <a id="1-4-1-app-acc-pi-ri"></a> Application Accelerator plug-in
 
 - Fixed rendering of options that have an identical `dependsOn` option with an array value.
   Added system property configuration for the Git repository creation feature.
 - Added workflow additional scope to the Git repository creation feature.
 
-#### <a id="1-4-1-app-live-view-pi-ri"></a> Application Live View plug-in
+##### <a id="1-4-1-app-live-view-pi-ri"></a> Application Live View plug-in
 
 - Fixed the reset button in the root logger of the Application Live View log levels page.
 
-#### <a id="1-4-1-sc-templates-pi-ri"></a> Out of the Box Supply Chain Templates plug-in
+##### <a id="1-4-1-sc-templates-pi-ri"></a> Out of the Box Supply Chain Templates plug-in
 
 - Fixed Deliverable content written into ConfigMaps in a multicluster setup.
 - Added labels to attribute the Deliverable content with the supply chain and template to be consistent
   with the Delivery on a non-Build profile cluster.
   For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
-#### <a id="1-4-1-sagui-pi-ri"></a> Security Analysis plug-in
+##### <a id="1-4-1-sagui-pi-ri"></a> Security Analysis plug-in
 
 - Updated the data model for the response of `metadata-store`.
 - Changed the table's position in the index page.
@@ -57,14 +59,7 @@ The following issues, listed by area and component, are resolved in this release
 - Updated the bar graph for workloads with big and small values for different severities.
 - Fixed a discrepancy between the widget and the information in **Workload Build Vulnerabilities**.
 
-#### <a id="1-4-1-scst-pi-ri"></a> Supply Chain Security Tools plug-in
-
-- Fixed view approval failing to display in the **Config Writer** stage.
-- Fixed the check box status in the Table filter.
-- Updated the Scan policy documentation URL.
-- Fixed the Generation number displayed after the scan policy is updated.
-
-#### <a id="1-4-1-scc-resolved"></a> Supply Chain Choreographer plug-in
+##### <a id="1-4-1-scc-resolved"></a> Supply Chain Choreographer plug-in
 
 - The **Generation** box now shows the correct amended scan policy version. Clicking on the scan
   policy link displays the amended policy.
@@ -72,6 +67,15 @@ The following issues, listed by area and component, are resolved in this release
   view when the **Config Writer** stage is selected and the GitOps PR flow is configured.
 - The scan policy documentation link that appears after an error occurs now targets the latest version
   of the Tanzu Application Platform documentation.
+
+##### <a id="1-4-1-scst-pi-ri"></a> Supply Chain Security Tools plug-in
+
+- Fixed view approval failing to display in the **Config Writer** stage.
+- Fixed the check box status in the Table filter.
+- Updated the Scan policy documentation URL.
+- Fixed the Generation number displayed after the scan policy is updated.
+
+---
 
 ### <a id='1-4-1-known-issues'></a> Known issues
 
@@ -116,7 +120,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
     - For information about the migration path, see
   [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
 
----
 ---
 
 ## <a id='1-4-0'></a> v1.4.0
