@@ -6,6 +6,12 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 **Release Date**: February 16, 2023
 
+### <a id='1-3-5-security-fix'></a> Security fixes
+#### <a id='1-3-5-contour-resolved-issues'></a> Contour
+
+- Bump to [Contour 1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3). Includes a bump to go [1.19.4](https://go.dev/doc/devel/release#go1.19.minor), which contains security fixes to the `net/http` and `os` packages.
+
+---
 ### <a id='1-3-5-breaking-changes'></a> Breaking changes
 
 #### <a id='scc-breaking-changes'></a> Supply Chain Choreographer
