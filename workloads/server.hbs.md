@@ -56,9 +56,9 @@ After the workload completes the new deployment, there are a few differences:
 `spring-sensors-consumer-web` within the namespace, but you must use
 `kubectl port-forward service/spring-sensors-consumer-web 8080` to access the web service on port 8080.
 
-    You can also set up a Kubernetes ingress rule to direct traffic from outside the cluster to the workload.
-    Using an ingress rule, you can specify that specific host names or paths must be routed to the application.
-    For more information about ingress rules, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)
+    You can set up a Kubernetes Ingress rule to direct traffic from outside the cluster to the workload.
+    Use an Ingress rule to specify that specific host names or paths must be routed to the application.
+    For more information about Ingress rules, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/services-networking/ingress/)
 
 - The workload no longer autoscales based on request traffic.
 For the `spring-sensors-consumer-web` workload, this means that it never spawns
@@ -149,10 +149,10 @@ Create the following `Ingress`:
                       number: 8080
     ```
 
-    - Replace `DEVELOPER-NAMESPACE` with your developer namespace\
-    - Replace `INGRESS-DOMAIN` with the domain name defined in `tap-values.yaml` during the installation.\
+    - Replace `DEVELOPER-NAMESPACE` with your developer namespace
+    - Replace `INGRESS-DOMAIN` with the domain name defined in `tap-values.yaml` during the installation.
     - Set the annotation `cert-manager.io/cluster-issuer` to the `shared.ingress_issuer` value
-      configured during installation or leave it as `tap-ingress-selfsigned` to use the default one.\
+      configured during installation or leave it as `tap-ingress-selfsigned` to use the default one.
     - Update the port exposed by your `Service` resource, in the previous snippet it is set
       to `8080`.
 
@@ -173,6 +173,8 @@ Tanzu Application Platform allows you to create new workload types. Start by tak
 - Make sure you delete the `Ingress` resource previously created.
 - Install the `yq` cli on your computer.
 
+**Procedure**
+
 1. Save the existing `server-template` in a local file:
 
     ```console
@@ -189,7 +191,7 @@ Tanzu Application Platform allows you to create new workload types. Start by tak
   provides a sample `Ingress` resource snippet below. Make the following edits before adding the
   `Ingress` resource snippet to `spec-ytt.yaml`:
 
-   - Replace `INGRESS-DOMAIN` with the ingress domain you set during the installation.
+   - Replace `INGRESS-DOMAIN` with the Ingress domain you set during the installation.
    - Set the annotation `cert-manager.io/cluster-issuer` to the `shared.ingress_issuer` value
      configured during installation or leave it as `tap-ingress-selfsigned` to use the default one.
    - This configuration is based on your workload service running on port `8080`.
