@@ -1,4 +1,4 @@
-# <a id="create-an-accelerator"></a>Create an accelerator
+# Create an accelerator
 
 > **Note** This guide follows a "quick start" format, see the [Application Accelerator docs](../application-accelerator/about-application-accelerator.hbs.md) for advanced features.
 
