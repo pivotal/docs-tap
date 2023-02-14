@@ -385,6 +385,10 @@ target an alternative Sigstore stack, specify `policy.tuf_mirror` and
 
 This release has the following security fixes, listed by area and component.
 
+#### <a id="1-4-0-api-auto-registration-fixes"></a> API Auto Registration
+
+- Base image updated to use the latest Paketo Jammy Base image.
+
 #### <a id='1-4-0-contour-fixes'></a> Contour
 
 - Update to [Contour v1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3). 
@@ -394,10 +398,6 @@ which contains security fixes to the `net/http` and `os` packages.
 #### <a id='1-4-0-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
 
 - `python` is updated to `3.7.5-22.ph3`.
-
-#### <a id="1-4-0-api-auto-registration-fixes"></a> API Auto Registration
-
-- Base image updated to use the latest Paketo Jammy Base image.
 
 #### <a id="1-4-0-vulnerabilities-remediated"></a> Remediated vulnerabilities
 
