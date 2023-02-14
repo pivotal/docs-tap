@@ -1887,3 +1887,120 @@ see [Out of the Box Delivery Basic](ootb-delivery-basic.hbs.md).
 For information about the use of the Deliverable object in a multicluster
 environment, see [Getting started with multicluster Tanzu Application
 Platform](../multicluster/getting-started.hbs.md).
+
+## delivery-source-template
+
+### Purpose
+Continuously fetches Kubernetes configuration files from a Git repository
+or container image registry and makes them available on the cluster.
+
+### Kind
+ClusterSourceTemplate.carto.run
+
+### Used by
+
+- [Delivery-Basic](ootb-delivery-reference.hbs.md#delivery-basic)
+
+### Creates
+
+The source-template creates one of three objects, either:
+- GitRepository. Created if the deliverable has `.spec.source.git` defined.
+- ImageRepository. Created if the deliverable has `.spec.source.image` defined.
+
+#### GitRepository
+
+`GitRepository` makes source code from a particular commit available as a tarball in the
+cluster. Other resources in the supply chain can then access that code.
+
+##### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>gitImplementation<code></td>
+    <td>
+      The library used to fetch source code.
+      If not provided, TAP's default implementation will use <code>go-git</code>,
+      which works with the providers currently supported by TAP: Github and Gitlab.
+      An alternate value that may be used with other git providers is <code>libggit2</code>.
+    </td>
+    <td>
+      <pre>
+      - name: gitImplementation
+        value: libggit2
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_ssh_secret<code></td>
+    <td>
+      Name of the secret used to provide credentials for the Git repository.
+      The secret with this name must exist in the same namespace as the <code>Deliverable</code>.
+      The credentials must be sufficient to read the repository.
+      If not provided, TAP will default to look for a secret named <code>git-ssh</code>.
+      See <a href="git-auth.html">Git authentication</a>.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_ssh_secret
+        value: git-credentials
+      </pre>
+    </td>
+  </tr>
+</table>
+
+> **Note** Some git providers, notably Azure DevOps, require you to use
+> `libgit2` due to the server-side implementation providing support
+> only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
+> For information about the features supported by each implementation, see
+> [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation)
+> in the flux documentation.
+
+##### More Information
+
+For an example using the Tanzu CLI to create a Workload using GitHub as the provider of source code,
+see [Create a workload from GitHub
+repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
+
+For information about GitRepository objects, see
+[GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
+
+#### ImageRepository
+
+`ImageRepository` makes the contents of a container image available as a tarball on the cluster.
+
+##### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account, providing credentials to `ImageRepository` for fetching container images.
+      The service account must exist in the same namespace as the Deliverable.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+##### More Information
+
+For information about the ImageRepository resource, see [ImageRepository reference
+docs](../source-controller/reference.hbs.md#imagerepository).
