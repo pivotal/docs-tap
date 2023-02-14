@@ -23,7 +23,7 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id='1-4-1-src-controller-ri'></a> Source Controller
 
-- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP GET calls are considered to be pulls. This fix switched HTTP requests from using GET operations to HEAD operations, which reduces the number of pulls while checking updated image versions.
+- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP GET calls are considered to be pulls. With this fix, HTTP requests use HEAD operations instead of GET operations, which reduces the number of pulls while checking updated image versions.
 
 #### <a id='1-4-1-tap-gui-ri'></a> Tanzu Application Platform GUI
 
@@ -387,8 +387,8 @@ This release has the following security fixes, listed by area and component.
 
 #### <a id='1-4-0-contour-fixes'></a> Contour
 
-- Update to [Contour v1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3). 
-Includes an update to [go v1.19.4](https://go.dev/doc/devel/release#go1.19.minor), 
+- Update to [Contour v1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3).
+Includes an update to [go v1.19.4](https://go.dev/doc/devel/release#go1.19.minor),
 which contains security fixes to the `net/http` and `os` packages.
 
 #### <a id='1-4-0-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
