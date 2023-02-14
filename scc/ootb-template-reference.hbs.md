@@ -2004,3 +2004,67 @@ For information about GitRepository objects, see
 
 For information about the ImageRepository resource, see [ImageRepository reference
 docs](../source-controller/reference.hbs.md#imagerepository).
+
+## app-deploy
+
+### Purpose
+Applies kubernetes configuration to the cluster.
+
+### Kind
+ClusterDeploymentTemplate.carto.run
+
+### Used by
+
+- [Delivery-Basic](ootb-delivery-reference.hbs.md#delivery-basic)
+
+### Creates
+
+A [kapp App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/).
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account providing the necessary privileges for `App` to apply
+      the Kubernetes objects to the cluster.
+      The service account must be in the same namespace as the Deliverable.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_sub_path<code> (deprecated)</td>
+    <td>
+      Sub directory within the configuration bundle that is used for
+      looking up the files to apply to the Kubernetes cluster. <b>DEPRECATED</b>
+    </td>
+    <td>
+      <pre>
+      - name: gitops_sub_path
+        value: ./config
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+> **Note** The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
+
+### More Information
+
+For details about RBAC and how `kapp-controller` makes use of the ServiceAccount provided via the Deliverable's
+`serviceAccount` parameter,
+see [`kapp-controller`'s Security Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/).
