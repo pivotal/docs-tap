@@ -517,14 +517,10 @@ Build an image for source code that ships with a Dockerfile.
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the image-provider step.
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-provider step.
 
-as the `image-provider` resource when the workload param `dockerfile` is defined.
-
 ### Creates
 
-A taskrun.tekton.dev which provides configuration to a Tekton ClusterTask to build an image with kaniko.
-
-This template uses the [`lifecycle: tekton`](https://cartographer.sh/docs/v0.6.0/lifecycle/)
-flag to create new immutable objects rather than updating the previous object.
+A Runnable which provides inputs to the
+[kaniko-runtemplate ClusterRunTemplate](ootb-cluster-run-template-reference.hbs.md#kaniko-runtemplate).
 
 ### Parameters
 
