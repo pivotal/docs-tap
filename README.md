@@ -181,6 +181,7 @@ Use this table to keep a running list of terms used and how they should be defin
 |Namespace Provisioner|Namespace Provisioner|
 |Service Bindings|Service Bindings|
 |Services Toolkit for VMware Tanzu Application Platform|Services Toolkit|
+|Source Controller|Source Controller|
 |Spring Boot conventions|Spring Boot conventions|
 |Spring Cloud Gateway for Kubernetes|Spring Cloud Gateway|
 |Supply Chain Choreographer|Supply Chain Choreographer|
