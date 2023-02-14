@@ -416,8 +416,8 @@ Tanzu Application Platform allows you to create new workload types. Start by tak
 
     ```
 
-Access your `secure-server` workload with https:
+    Access your `secure-server` workload with https:
 
-```console
-curl -k https://spring-sensors-consumer-web.INGRESS-DOMAIN
-```
+    ```console
+    curl -k https://spring-sensors-consumer-web.INGRESS-DOMAIN
+    ```
