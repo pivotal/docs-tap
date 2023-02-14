@@ -11,22 +11,23 @@ source code to a manually-scaled Kubernetes deployment which exposes an in-clust
 If required, you can use environment-specific LoadBalancer Services or Ingress resources to
 expose these applications outside the cluster.
 
-The `server` workload is a good match for traditional applications, including HTTP applications,
-which have the following implementation:
+The `server` workload is suitable for traditional applications, including HTTP applications,
+which have the following characteristics:
 
-* Store state locally
-* Run background tasks outside of requests
-* Provide multiple network ports or non-HTTP protocols
-* Are not a good match for the `web` workload type
+- Store state locally
+- Run background tasks outside of requests
+- Provide multiple network ports or non-HTTP protocols
+- Are not a good match for the `web` workload type
 
 An application using the `server` workload type has the following features:
 
-* Does not natively autoscale, but you can use these applications with the Kubernetes Horizontal Pod Autoscaler.
-* By default, is exposed only within the cluster using a `ClusterIP` service
-* Uses health checks if defined by a convention
-* Uses a rolling update pattern by default
+- Does not natively autoscale, but you can use these applications with the Kubernetes Horizontal Pod
+  Autoscaler.
+- By default, is exposed only within the cluster using a `ClusterIP` service.
+- Uses health checks if defined by a convention.
+- Uses a rolling update pattern by default.
 
-When creating a workload with `tanzu apps workload create`, you can use the
+When creating a workload with the `tanzu apps workload create` command, you can use the
 `--type=server` argument to select the `server` workload type.
 For more information, see [Use the `server` Workload Type](#using) later in this topic.
 You can also use the `apps.tanzu.vmware.com/workload-type:server` annotation in the
@@ -34,23 +35,24 @@ YAML workload description to support this deployment type.
 
 ## <a id="using"></a> Use the `server` workload type
 
-The `spring-sensors-consumer-web` workload in the getting started example
-[using Service Toolkit claims](../getting-started/consume-services.md#stk-bind)
-is a good match for the `server` workload type.
-This is because it runs continuously to extract information from a RabbitMQ queue,
-and stores the resulting data locally in-memory and presents it through a web UI.
+The `spring-sensors-consumer-web` workload in
+[Bind an application workload to the service instance](../getting-started/consume-services.hbs.md#stk-bind)
+in the Get started guide is a good match for the `server` workload type.
 
-If you have followed the Services Toolkit example, you can update the `spring-sensors-consumer-web`
-to use the `server` supply chain by changing the workload type by running:
+This is because it runs continuously to extract information from a RabbitMQ queue,
+and stores the resulting data locally in memory and presents it through a web UI.
+
+In the Services Toolkit example in [Bind an application workload to the service instance](../getting-started/consume-services.hbs.md#stk-bind), you can update the `spring-sensors-consumer-web` workload to use the `server` supply
+chain by changing the workload:
 
 ```console
 tanzu apps workload apply spring-sensors-consumer-web --type=server
 ```
 
-This shows the change in the workload label, and prompts you to accept the change.
+This shows the change in the workload label and prompts you to accept the change.
 After the workload completes the new deployment, there are a few differences:
 
-- The workload no longer advertises a URL. It's available within the cluster as
+- The workload no longer exposes a URL. It's available within the cluster as
 `spring-sensors-consumer-web` within the namespace, but you must use
 `kubectl port-forward service/spring-sensors-consumer-web 8080` to access the web service on port 8080.
 
@@ -96,12 +98,324 @@ This snippet configures:
 - One service on port 25, which is redirected to port 2025 on the application.
 - One service on port 8080, which is routed to port 8080 on the application.
 
-You can set the `ports` parameter from the `tanzu apps workload create` command line as `--param-yaml 'ports=[{"port": 8080}]'`.
+You can set the `ports` parameter from the `tanzu apps workload create` command
+as `--param-yaml 'ports=[{"port": 8080}]'`.
 
 The following values are valid within the `ports` argument:
 
-| field | value |
+| Field | Value |
 |-------|-------|
 | `port` | The port on which the application is exposed to the rest of the cluster |
 | `containerPort` | The port on which the application listens for requests. Defaults to `port` if not set. |
 | `name` | A human-readable name for the port. Defaults to `port` if not set. |
+
+## <a id="exposing-server-workloads"></a> Exposing `server` workloads outside the cluster
+
+### Manual configuration for HTTP workloads
+
+Expose HTTP `server` workloads by creating an Ingress resource and using cert-manager to provision
+TLS signed certificates.
+
+1. Use the `spring-sensors-consumer-web` workload as an example from
+[Bind an application workload to the service instance](../getting-started/consume-services.hbs.md#stk-bind).
+Create the following `Ingress`:
+
+    ```console
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: spring-sensors-consumer-web
+      namespace: DEVELOPER-NAMESPACE
+      annotations:
+        cert-manager.io/cluster-issuer: tap-ingress-selfsigned
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/ingress.class: contour
+        kubernetes.io/tls-acme: "true"
+    spec:
+      tls:
+        - secretName: spring-sensors-consumer-web
+          hosts:
+            - "spring-sensors-consumer-web.INGRESS-DOMAIN"
+      rules:
+        - host: "spring-sensors-consumer-web.INGRESS-DOMAIN"
+          http:
+            paths:
+              - pathType: Prefix
+                path: /
+                backend:
+                  service:
+                    name: spring-sensors-consumer-web
+                    port:
+                      number: 8080
+    ```
+
+    - Replace `DEVELOPER-NAMESPACE` with your developer namespace\
+    - Replace `INGRESS-DOMAIN` with the domain name defined in `tap-values.yaml` during the installation.\
+    - Set the annotation `cert-manager.io/cluster-issuer` to the `shared.ingress_issuer` value
+      configured during installation or leave it as `tap-ingress-selfsigned` to use the default one.\
+    - Update the port exposed by your `Service` resource, in the previous snippet it is set
+      to `8080`.
+
+2. Access the `server` workload with https:
+
+    ```console
+    curl -k https://spring-sensors-consumer-web.INGRESS-DOMAIN
+    ```
+
+### Define a workload type that exposes _server_ workloads outside the cluster
+
+Tanzu Application Platform allows you to create new workload types. Start by taking the existing
+`server-template` `ClusterConfigTemplate` and edit it to add an `Ingress` resource when this new
+ type of workload is created.
+
+**Before you begin:**
+
+- Make sure you delete the `Ingress` resource previously created.
+- Install the `yq` cli on your computer.
+
+1. Save the existing `server-template` in a local file:
+
+    ```console
+    kubectl get ClusterConfigTemplate server-template -oyaml > secure-server-template.yaml
+    ```
+
+2. Extract `.spec.ytt` field from this file and create another file:
+
+    ```console
+    yq eval '.spec.ytt' secure-server-template.yaml > spec-ytt.yaml
+    ```
+
+3. In the next step, you will add the  `Ingress` resource snippet to `spec-ytt.yaml`. This step
+  provides a sample `Ingress` resource snippet below. Make the following edits before adding the
+  `Ingress` resource snippet to `spec-ytt.yaml`:
+
+   - Replace `INGRESS-DOMAIN` with the ingress domain you set during the installation.
+   - Set the annotation `cert-manager.io/cluster-issuer` to the `shared.ingress_issuer` value
+     configured during installation or leave it as `tap-ingress-selfsigned` to use the default one.
+   - This configuration is based on your workload service running on port `8080`.
+
+    The `Ingress` resource snippet looks like this:
+
+    ```yaml
+    ---
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: #@ data.values.workload.metadata.name
+      annotations:
+        cert-manager.io/cluster-issuer: tap-ingress-selfsigned
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/ingress.class: contour
+        kubernetes.io/tls-acme: "true"
+        kapp.k14s.io/change-rule: "upsert after upserting Services"
+      labels: #@ merge_labels({ "app.kubernetes.io/component": "run", "carto.run/workload-name": data.values.workload.metadata.name })
+    spec:
+      tls:
+        - secretName: #@ data.values.workload.metadata.name
+          hosts:
+            - #@ data.values.workload.metadata.name + ".INGRESS-DOMAIN"
+      rules:
+        - host: #@ data.values.workload.metadata.name + ".INGRESS-DOMAIN"
+          http:
+            paths:
+              - pathType: Prefix
+                path: /
+                backend:
+                  service:
+                    name: #@ data.values.workload.metadata.name
+                    port:
+                      number: 8080
+    ```
+
+4. Add the above `Ingress` resource snippet to the `spec-ytt.yaml` file and save. Look for the
+ `Service` resource, and insert the snippet before the last `#@ end`. For example:
+
+    ```yaml
+
+    # THE TOP OF THE FILE IS NOT SHOWN
+
+    ---
+    apiVersion: v1
+    kind: Service
+    metadata:
+      name: #@ data.values.workload.metadata.name
+      labels: #@ merge_labels({ "app.kubernetes.io/component": "run", "carto.run/workload-name": data.values.workload.metadata.name })
+    spec:
+      selector: #@ data.values.config.metadata.labels
+      ports:
+      #@ hasattr(data.values.params, "ports") and len(data.values.params.ports) or assert.fail("one or more ports param must be provided.")
+      #@ declared_ports = {}
+      #@ if "ports" in data.values.params:
+      #@   declared_ports = data.values.params.ports
+      #@ else:
+      #@   declared_ports = struct.encode([{ "containerPort": 8080, "port": 8080, "name":   "http"}])
+      #@ end
+      #@ for p in merge_ports(declared_ports, data.values.config.spec.containers):
+      - #@ p
+      #@ end
+
+    # NEW INGRESS RESOURCE
+    ---
+    apiVersion: networking.k8s.io/v1
+    kind: Ingress
+    metadata:
+      name: #@ data.values.workload.metadata.name
+      annotations:
+        cert-manager.io/cluster-issuer: tap-ingress-selfsigned
+        ingress.kubernetes.io/force-ssl-redirect: "true"
+        kubernetes.io/ingress.class: contour
+        kubernetes.io/tls-acme: "true"
+        kapp.k14s.io/change-rule: "upsert after upserting Services"
+      labels: #@ merge_labels({ "app.kubernetes.io/component": "run", "carto.run/workload-name": data.values.workload.metadata.name })
+    spec:
+      tls:
+        - secretName: #@ data.values.workload.metadata.name
+          hosts:
+            - #@ data.values.workload.metadata.name + ".INGRESS-DOMAIN"
+      rules:
+        - host: #@ data.values.workload.metadata.name + ".INGRESS-DOMAIN"
+          http:
+            paths:
+              - pathType: Prefix
+                path: /
+                backend:
+                  service:
+                    name: #@ data.values.workload.metadata.name
+                    port:
+                      number: 8080
+    # END NEW INGRESS RESOURCE
+
+    #@ end
+
+    ---
+    apiVersion: v1
+    kind: ConfigMap
+    metadata:
+      name: #@ data.values.workload.metadata.name + "-server"
+      labels: #@ merge_labels({ "app.kubernetes.io/component": "config" })
+    data:
+      delivery.yml: #@ yaml.encode(delivery())
+    ```
+
+5. Add the above to the `.spec.ytt` property in `secure-server-template.yaml`:
+
+    ```console
+    SPEC_YTT=$(cat spec-ytt.yaml) yq eval -i '.spec.ytt |= strenv(SPEC_YTT)' secure-server-template.yaml
+    ```
+
+6. Change the name of the `ClusterConfigTemplate` to `secure-server-template`:
+
+    ```console
+    yq eval -i '.metadata.name = "secure-server-template"' secure-server-template.yaml
+    ```
+
+7. Create the new `ClusterConfigTemplate`:
+
+    ```console
+    kubectl apply -f secure-server-template.yaml
+    ```
+
+8. Verify the new `ClusterConfigTemplate` is in the cluster:
+
+    ```console
+    kubectl get ClusterConfigTemplate
+    ```
+
+    Expected output:
+
+    ```console
+    kubectl get ClusterConfigTemplate
+    NAME                     AGE
+    api-descriptors          82m
+    config-template          82m
+    convention-template      82m
+    secure-server-template   22s
+    server-template          82m
+    service-bindings         82m
+    worker-template          82m
+    ```
+
+9. Add the new workload type to the `tap-values.yaml`. The new workload type is named
+   `secure-server` and the `cluster_config_template_name` is `secure-server-template`.
+
+    ```yaml
+    ootb_supply_chain_basic:
+      supported_workloads:
+        - type: web
+          cluster_config_template_name: config-template
+        - type: server
+          cluster_config_template_name: server-template
+        - type: worker
+          cluster_config_template_name: worker-template
+        - type: secure-server
+          cluster_config_template_name: secure-server-template
+    ```
+
+10. Update your Tanzu Application Platform installation as follows:
+
+    ```console
+    tanzu package installed update tap -p tap.tanzu.vmware.com --values-file "/path/to/your/config/tap-values.yaml"  -n tap-install
+    ```
+
+11. Give privileges to the `deliverable` role to manage `Ingress` resources:
+
+    ```console
+    cat <<EOF | kubectl apply -f -
+    apiVersion: rbac.authorization.k8s.io/v1
+    kind: ClusterRole
+    metadata:
+      name: deliverable-with-ingress
+      labels:
+        apps.tanzu.vmware.com/aggregate-to-deliverable: "true"
+    rules:
+    - apiGroups:
+      - networking.k8s.io
+      resources:
+      - ingresses
+      verbs:
+      - get
+      - list
+      - watch
+      - create
+      - patch
+      - update
+      - delete
+      - deletecollection
+    EOF
+    ```
+
+12. Update the workload type to `secure-server`:
+
+    >**Note** If you created the `Ingress` resource manually in the previous section,
+    delete it before this.
+
+    ```console
+    tanzu apps workload apply spring-sensors-consumer-web --type=secure-server
+    ```
+
+13. After the process finishes, you will see these resources: Deployment, Service and Ingress.
+
+    ```console
+    kubectl get ingress,svc,deploy -l carto.run/workload-name=spring-sensors-consumer-web
+    ```
+
+    Expected output:
+
+    ```console
+    kubectl get ingress,svc,deploy -l carto.run/workload-name=tanzu-java-web-app-js
+    NAME                                                    CLASS    HOSTS                                          ADDRESS          PORTS     AGE
+    ingress.networking.k8s.io/spring-sensors-consumer-web   <none>   spring-sensors-consumer-web.INGRESS-DOMAIN   34.111.111.111   80, 443   37s
+
+    NAME                                  TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)    AGE
+    service/spring-sensors-consumer-web   ClusterIP   10.32.15.194   <none>        8080/TCP   36m
+
+    NAME                                          READY   UP-TO-DATE   AVAILABLE   AGE
+    deployment.apps/spring-sensors-consumer-web   1/1     1            1           37s
+
+    ```
+
+Access your `secure-server` workload with https:
+
+```console
+curl -k https://spring-sensors-consumer-web.INGRESS-DOMAIN
+```
