@@ -1509,3 +1509,381 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
 
 See [Gitops vs RegistryOps](gitops-vs-regops.hbs.md) for more information about the operation of this template
 and of the [config-writer-template](#config-writer-template).
+
+## deliverable-template
+
+### Purpose
+Create a deliverable which will
+[pair with a Delivery](https://cartographer.sh/docs/v0.6.0/architecture/#clusterdelivery)
+to deploy Kubernetes configuration on the cluster.
+
+### Kind
+ClusterTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the deliverable step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the deliverable step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the deliverable step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the deliverable step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the deliverable step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the deliverable step.
+
+### Creates
+
+A [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#deliverable)
+preconfigured with reference to a repository or registry from which to fetch Kubernetes configuration.
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account providing the necessary permissions for
+      the Delivery to create children objects.
+      Populates the Deliverable's serviceAccount param.
+      The service account must be in the same namespace as the Deliverable.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_ssh_secret<code></td>
+    <td>
+      Name of the secret where credentials exist for fetching the configuration
+      from a Git repository. Populates the Deliverable's gitops_ssh_secret param.
+      The service account must be in the same namespace as the Deliverable.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_ssh_secret
+        value: ssh-secret
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_ssh_secret<code></td>
+    <td>
+      Name of the secret where credentials exist for fetching the configuration
+      from a Git repository. Populates the Deliverable's gitops_ssh_secret param.
+      The service account must be in the same namespace as the Deliverable.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_ssh_secret
+        value: ssh-secret
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_branch<code></td>
+    <td>
+      Name of the branch from which to fetch the configuration.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_branch
+        value: main
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository<code></td>
+    <td>
+      The full repository URL to which the configuration should be fetched.
+      <b>DEPRECATED</b>
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository
+        value: "https://github.com/vmware-tanzu/cartographer"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_prefix<code></td>
+    <td>
+      The prefix of the repository URL.
+      <b>DEPRECATED</b>
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository
+        value: "https://github.com/vmware-tanzu/"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_server_address<code></td>
+    <td>
+      The server url of the git repository from which configuration will be fetched.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_server_address
+        value: "https://github.com/"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_owner<code></td>
+    <td>
+      The owner/organization to which the repository belongs.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_owner
+        value: vmware-tanzu
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_name<code></td>
+    <td>
+      The name of the repository.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_name
+        value: cartographer
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>registry<code></td>
+    <td>
+      Specification of the registry server and repository from which the configuration should be fetched.
+    </td>
+    <td>
+      <pre>
+      - name: registry
+        value:
+          server: index.docker.io
+          repository: web-team
+          ca_cert_data:
+            -----BEGIN CERTIFICATE-----
+            MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+            -----END CERTIFICATE-----
+      </pre>
+    </td>
+  </tr>
+</table>
+
+> **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
+> (The similarly named `--service-account` flag sets a different value:
+> the `spec.serviceAccountName` key in the Workload object.)
+
+### More Information
+
+For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
+see [Out of the Box Delivery Basic](ootb-delivery-basic.hbs.md).
+
+## external-deliverable-template
+
+### Purpose
+Create a definition of a deliverable which a user can manually applied to
+an external kubernetes cluster. When a properly configured Delivery
+(for example, the [OOTB Delivery](ootb-delivery-basic.hbs.md)) is installed on that
+external cluster, the Deliverable will
+[pair with the Delivery](https://cartographer.sh/docs/v0.6.0/architecture/#clusterdelivery)
+to deploy Kubernetes configuration on the cluster.
+
+### Kind
+ClusterTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the deliverable step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the deliverable step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the deliverable step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the deliverable step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the deliverable step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the deliverable step.
+
+### Creates
+A configmap in which the `.data` field has a key `deliverable` for which the value is the yaml definition
+of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#deliverable).
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account providing the necessary permissions for
+      the Delivery to create children objects.
+      Populates the Deliverable's serviceAccount param.
+      The service account must be in the same namespace as the Deliverable.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_ssh_secret<code></td>
+    <td>
+      Name of the secret where credentials exist for fetching the configuration
+      from a Git repository. Populates the Deliverable's gitops_ssh_secret param.
+      The service account must be in the same namespace as the Deliverable.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_ssh_secret
+        value: ssh-secret
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_ssh_secret<code></td>
+    <td>
+      Name of the secret where credentials exist for fetching the configuration
+      from a Git repository. Populates the Deliverable's gitops_ssh_secret param.
+      The service account must be in the same namespace as the Deliverable.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_ssh_secret
+        value: ssh-secret
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_branch<code></td>
+    <td>
+      Name of the branch from which to fetch the configuration.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_branch
+        value: main
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository<code></td>
+    <td>
+      The full repository URL to which the configuration should be fetched.
+      <b>DEPRECATED</b>
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository
+        value: "https://github.com/vmware-tanzu/cartographer"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_prefix<code></td>
+    <td>
+      The prefix of the repository URL.
+      <b>DEPRECATED</b>
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository
+        value: "https://github.com/vmware-tanzu/"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_server_address<code></td>
+    <td>
+      The server url of the git repository from which configuration will be fetched.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_server_address
+        value: "https://github.com/"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_owner<code></td>
+    <td>
+      The owner/organization to which the repository belongs.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_owner
+        value: vmware-tanzu
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_name<code></td>
+    <td>
+      The name of the repository.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_name
+        value: cartographer
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>registry<code></td>
+    <td>
+      Specification of the registry server and repository from which the configuration should be fetched.
+    </td>
+    <td>
+      <pre>
+      - name: registry
+        value:
+          server: index.docker.io
+          repository: web-team
+          ca_cert_data:
+            -----BEGIN CERTIFICATE-----
+            MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+            -----END CERTIFICATE-----
+      </pre>
+    </td>
+  </tr>
+</table>
+
+### More Information
+
+For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
+see [Out of the Box Delivery Basic](ootb-delivery-basic.hbs.md).
+
+For information about the use of the Deliverable object in a multicluster
+environment, see [Getting started with multicluster Tanzu Application
+Platform](../multicluster/getting-started.hbs.md).
