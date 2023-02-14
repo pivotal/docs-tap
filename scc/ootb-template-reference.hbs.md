@@ -1,11 +1,9 @@
 # Template Reference
 
-The OOTB Template package includes:
-- [Cartographer Templates](https://cartographer.sh/docs/v0.6.0/architecture/#templates)
-- [Cartographer ClusterRunTemplates](https://cartographer.sh/docs/v0.6.0/runnable/architecture/#clusterruntemplate)
-- [ClusterRoles](https://kubernetes.io/docs/reference/access-authn-authz/rbac/#role-and-clusterrole)
-- [openshift SecurityContextConstraints](https://docs.openshift.com/container-platform/3.11/admin_guide/manage_scc.html)
-- [Tekton ClusterTasks](https://tekton.dev/docs/pipelines/tasks/#overview)
+All the objects referenced here are [Cartographer Templates](https://cartographer.sh/docs/v0.6.0/reference/template/)
+packaged in [Out of the Box Templates](ootb-templates.hbs.md).
+Their purpose, the object(s) they create, the supply chains that include them and
+the parameters they leverage are detailed below.
 
 ## source-template
 
@@ -14,16 +12,11 @@ Creates an object to fetch source code and make that code available
 to other objects in the supply chain. More details can be read in [Building from
 Source](building-from-source.hbs.md).
 
-### Kind
-ClusterSourceTemplate.carto.run
-
 ### Used By
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the source provider step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the source provider step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the source provider step.
-
-as the `source-provider` resource.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the `source-provider` step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the `source-provider` step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the `source-provider` step.
 
 ### Creates
 
@@ -213,9 +206,6 @@ Testing depends on a user provided
 Parameters for this template allow for selection of the proper Pipeline and
 for specification of additional values to pass to the Pipeline.
 
-### Kind
-ClusterSourceTemplate.carto.run
-
 ### Used by
 
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the source-tester step.
@@ -228,7 +218,7 @@ as the `source-tester` resource.
 `testing-pipeline`creates a [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/)
 object. This Runnable provides inputs to the
 [ClusterRunTemplate](https://cartographer.sh/docs/v0.4.0/reference/runnable/#clusterruntemplate)
-named [tekton-source-pipelinerun](#tekton-source-pipelinerun).
+named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tekton-source-pipelinerun).
 
 ### Parameters
 
@@ -280,71 +270,15 @@ named [tekton-source-pipelinerun](#tekton-source-pipelinerun).
 ### More Information
 
 For more information on the ClusterRunTemplate that pairs with the Runnable, read
-[tekton-source-pipelinerun](#tekton-source-pipelinerun)
+[tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tekton-source-pipelinerun)
 
 For information about the Tekton Pipeline that must be created by the user, read the [OOTB Supply Chain
 Testing documentation of the Pipeline](ootb-supply-chain-testing.hbs.md#a-idtekton-pipelinea-tektonpipeline)
-
-## tekton-source-pipelinerun
-
-### Purpose
-Tests source code.
-
-### Kind
-ClusterRunTemplate.carto.run
-
-### Used By
-- [testing-pipeline](#testing-pipeline)
-
-### Creates
-This ClusterRunTemplate creates a [Tekton
-PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/).
-Pipeline runs are immutable, so when the inputs from the Runnable change, a new pipelineRun is created.
-
-### Inputs
-<table>
-  <tr>
-    <th>Input name</th>
-    <th>Meaning</th>
-    <th>Example</th>
-  </tr>
-
-  <tr>
-    <td><code>tekton-params<code></td>
-    <td>
-      Set of parameters to pass to the Tekton Pipeline.
-    </td>
-    <td>
-      <pre>
-      - name: source-url
-        value: https://github.com/vmware-tanzu/cartographer.git
-      - name: source-revision
-        value: e4a53f49a92fc913d26f8cc23d59102a51a5e635
-      - name: verbose
-        value: true
-      - name: foo
-        value: bar
-      </pre>
-    </td>
-  </tr>
-
-</table>
-
-### More Information
-
-For more information about the runnable created in the OOTB Testing and OOTB Testing and Scanning,
-read [testing-pipeline](#testing-pipeline).
-
-For information about the Tekton Pipeline that must be created by the user, read the [OOTB Supply Chain
-Testing documentation of the Pipeline](ootb-supply-chain-testing.hbs.md#a-idtekton-pipelinea-tektonpipeline).
 
 ## source-scanner-template
 
 ### Purpose
 Scans the source code for vulnerabilities.
-
-### Kind
-ClusterSourceTemplate.carto.run
 
 ### Used by
 
@@ -416,9 +350,6 @@ specified in the workload's `.spec.image` field.
 This makes the content-addressable name, (e.g. the image name containing the digest)
 available to other resources in the supply chain.
 
-### Kind
-ClusterImageTemplate.carto.run
-
 ### Used by
 
 - [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the image-provider step.
@@ -473,10 +404,6 @@ see [Using a prebuilt image](pre-built-image.hbs.md).
 ### Purpose
 
 Builds an container image from source code using [cloud native buildpacks](https://buildpacks.io/).
-
-### Kind
-
-ClusterImageTemplate.carto.run
 
 ### Used by
 
@@ -584,10 +511,6 @@ see [Service Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebi
 
 Build an image for source code that ships with a Dockerfile.
 
-### Kind
-
-ClusterImageTemplate.carto.run
-
 ### Used by
 
 - [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the image-provider step.
@@ -598,10 +521,10 @@ as the `image-provider` resource when the workload param `dockerfile` is defined
 
 ### Creates
 
-A taskrun.tekton.dev which refers to the [kaniko-build ClusterTask](#kaniko-build).
+A taskrun.tekton.dev which provides configuration to a Tekton ClusterTask to build an image with kaniko.
 
-This template uses the `lifecycle: tekton` flag to create a new taskrun rather than
-updating the previous taskrun.
+This template uses the [`lifecycle: tekton`](https://cartographer.sh/docs/v0.6.0/lifecycle/)
+flag to create new immutable objects rather than updating the previous object.
 
 ### Parameters
 
@@ -673,18 +596,6 @@ For information about how to use Dockerfile-based builds and limits associated w
 To read more about `lifecycle:tekton`,
 read [Cartographer Lifecycle](https://cartographer.sh/docs/v0.6.0/lifecycle/).
 
-## kaniko-build
-
-### Purpose
-Defines a series of steps to build a container image from source code.
-
-### Kind
-ClusterTask.tekton.dev
-
-### Used by
-
-- [kaniko-template](#kaniko-template)
-
 ## image-scanner-template
 
 ### Purpose
@@ -692,9 +603,6 @@ Scans the container image for vulnerabilities,
 persists the results in a store,
 and prevents the image from moving forward
 if CVEs are found which are not compliant with its referenced ScanPolicy.
-
-### Kind
-ClusterImageTemplate.carto.run
 
 ### Used by
 
@@ -756,9 +664,6 @@ see [Supply Chain Security Tools for Tanzu – Store](../scst-store/overview.hbs
 ### Purpose
 Create the PodTemplateSpec for the kubernetes configuration (e.g. the knative service or kubernetes deployment)
 which will be applied to the cluster.
-
-### Kind
-ClusterConfigTemplate.carto.run
 
 ### Used by
 
@@ -869,9 +774,6 @@ convention servers enabled by default in Tanzu Application Platform installation
 
 For workloads with the label `apps.tanzu.vmware.com/workload-type: web`, define a knative service.
 
-### Kind
-ClusterConfigTemplate.carto.run
-
 ### Used by
 
 - [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the app-config step.
@@ -899,9 +801,6 @@ three different types of workloads.
 ### Purpose
 
 For workloads with the label `apps.tanzu.vmware.com/workload-type: worker`, define a Kuberenetes Deployment.
-
-### Kind
-ClusterConfigTemplate.carto.run
 
 ### Used by
 
@@ -931,9 +830,6 @@ three different types of workloads.
 
 For workloads with the label `apps.tanzu.vmware.com/workload-type: server`,
 define a Kuberenetes Deployment and a Kubernetes Service.
-
-### Kind
-ClusterConfigTemplate.carto.run
 
 ### Used by
 
@@ -990,9 +886,6 @@ for a detailed overview of the ports parameter.
 
 Adds [ServiceBindings](../service-bindings/about.hbs.md)
 to the set of Kubernetes configuration files.
-
-### Kind
-ClusterConfigTemplate.carto.run
 
 ### Used by
 
@@ -1051,9 +944,6 @@ For an overview of the function, see
 The `api-descriptor` resource takes care of adding an
 [APIDescriptor](../api-auto-registration/key-concepts.hbs.md) to the set of
 Kubernetes objects to deploy such that API auto registration takes place.
-
-### Kind
-ClusterConfigTemplate.carto.run
 
 ### Used by
 
@@ -1127,9 +1017,6 @@ details about API auto registration.
 ### Purpose
 Persist in an external system (registry or git repository) the
 Kubernetes configuration passed to the template.
-
-### Kind
-ClusterTemplate.carto.run
 
 ### Used by
 
@@ -1318,9 +1205,6 @@ and of the [config-writer-and-pull-requester-template](#config-writer-and-pull-r
 ### Purpose
 Persist the passed in Kubernetes configuration to a branch in a repository and open a pull request to another branch.
 (This process allows for manual review of configuration before deployment to a cluster)
-
-### Kind
-ClusterTemplate.carto.run
 
 ### Used by
 
@@ -1516,9 +1400,6 @@ Create a deliverable which will
 [pair with a Delivery](https://cartographer.sh/docs/v0.6.0/architecture/#clusterdelivery)
 to deploy Kubernetes configuration on the cluster.
 
-### Kind
-ClusterTemplate.carto.run
-
 ### Used by
 
 - [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the deliverable step.
@@ -1692,9 +1573,6 @@ external cluster, the Deliverable will
 [pair with the Delivery](https://cartographer.sh/docs/v0.6.0/architecture/#clusterdelivery)
 to deploy Kubernetes configuration on the cluster.
 
-### Kind
-ClusterTemplate.carto.run
-
 ### Used by
 
 - [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the deliverable step.
@@ -1863,9 +1741,6 @@ Platform](../multicluster/getting-started.hbs.md).
 Continuously fetches Kubernetes configuration files from a Git repository
 or container image registry and makes them available on the cluster.
 
-### Kind
-ClusterSourceTemplate.carto.run
-
 ### Used by
 
 - [Delivery-Basic](ootb-delivery-reference.hbs.md#delivery-basic)
@@ -1978,9 +1853,6 @@ docs](../source-controller/reference.hbs.md#imagerepository).
 
 ### Purpose
 Applies kubernetes configuration to the cluster.
-
-### Kind
-ClusterDeploymentTemplate.carto.run
 
 ### Used by
 
