@@ -984,3 +984,63 @@ three different types of workloads.
 
 See [`server`-specific Workload parameters](../workloads/server.hbs.md#-server-specific-workload-parameters)
 for a detailed overview of the ports parameter.
+
+## service-bindings
+
+### Purpose
+
+Adds [ServiceBindings](../service-bindings/about.hbs.md)
+to the set of Kubernetes configuration files.
+
+### Kind
+ClusterConfigTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the service-bindings step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the service-bindings step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the service-bindings step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the service-bindings step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the service-bindings step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the service-bindings step.
+
+### Creates
+
+A ConfigMap. This template consumes input of multiple deployment yaml files and
+enriches the input with ResourceClaims and ServiceBindings if the workload contains serviceClaims.
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>annotations<code></td>
+    <td>
+     Extra set of annotations to pass down to the ServiceBinding and
+     ResourceClaim objects.
+    </td>
+    <td>
+      <pre>
+      - name: annotations
+        value:
+          name: my-application
+          version: v1.2.3
+          team: store
+      </pre>
+    </td>
+  </tr>
+</table>
+
+### More Information
+
+For an example, see
+[`--service-ref`](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#apply-service-ref)
+in the Tanzu CLI documentation.
+
+For an overview of the function, see
+[Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md).
