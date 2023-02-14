@@ -184,21 +184,21 @@ Now that the accelerator has been committed to its own repository, the accelerat
 
 1. Navigate to your organization's instance of the Tanzu Application Platform GUI.
 
-    ![Home screen image of Tanzu Application Platform GUI](../../images/app-accelerator/getting-started-1-1.png)
+    ![Home screen image of Tanzu Application Platform GUI](../images/app-accelerator/getting-started-1-1.png)
 
 2. On the left-hand navigation pane, click **Create**.
 
-    ![Image of highlighting the Create button in Tanzu Application Platform GUI](../../images/app-accelerator/getting-started-1-2.png)
+    ![Image of highlighting the Create button in Tanzu Application Platform GUI](../images/app-accelerator/getting-started-1-2.png)
 
 3. Using the search bar near the left-hand side of the page, search for **simple accelerator**. After you've found it, click **Choose** on the accelerator card.
 
-    ![Image of searching for the accelerator in Tanzu Application Platform GUI](../../images/app-accelerator/getting-started-1-3.png)
+    ![Image of searching for the accelerator in Tanzu Application Platform GUI](../images/app-accelerator/getting-started-1-3.png)
 
 4. Configure the project by filling in the parameters in the form.
 
    Notice that the options you defined in the `accelerator.yaml` are now displayed for you to configure. Also note that the `secondConfigurableParameter` `dependsOn` `secondConfigurableParameterCheckbox` is hidden depending on whether the checkbox is selected.
 
-   ![Image of the configuration page in Tanzu Application Platform GUI](../../images/app-accelerator/getting-started-1-4.png)
+   ![Image of the configuration page in Tanzu Application Platform GUI](../images/app-accelerator/getting-started-1-4.png)
 
 5. After configuration is complete, click **Next**.
 
@@ -207,7 +207,7 @@ Now that the accelerator has been committed to its own repository, the accelerat
 6. On the "Review and generate" step, review the parameters and click **Generate Accelerator**.
 7. Explore the .zip file of the configured project and verify that the project is generated with the parameters you provided during configuration.
 
-    ![Image of explore page showing changed parameters](../../images/app-accelerator/getting-started-1-5.png)
+    ![Image of explore page showing changed parameters](../images/app-accelerator/getting-started-1-5.png)
 
 ## Learn more about Application Accelerator
 
