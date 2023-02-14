@@ -1122,3 +1122,390 @@ the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
 
 See [Use API Auto Registration](../api-auto-registration/usage.hbs.md) for more
 details about API auto registration.
+
+## config-writer-template
+
+### Purpose
+Persist in an external system (registry or git repository) the
+Kubernetes configuration passed to the template.
+
+### Kind
+ClusterTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the config-writer step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the config-writer step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the config-writer step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the config-writer step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the config-writer step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the config-writer step.
+
+### Creates
+
+A runnable which creates a Tekton TaskRun that refers either to
+the Tekton Task `git-writer` or the Tekton Task `image-writer`.
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account which will provide the credentials to the registry or repository.
+      The service account must exist in the same namespace as the Workload.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_branch<code></td>
+    <td>
+      Name of the branch to push the configuration to.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_branch
+        value: main
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_user_name<code></td>
+    <td>
+      User name to use in the commits.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_user_name
+        value: "Alice Lee"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_user_email<code></td>
+    <td>
+      User email address to use in the commits.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_user_email
+        value: alice@example.com
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_commit_message<code></td>
+    <td>
+      Message to write as the body of the commits produced for pushing configuration to the Git repository.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_commit_message
+        value: "ci bump"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository<code></td>
+    <td>
+      The full repository URL to which the configuration should be committed.
+      <b>DEPRECATED</b>
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository
+        value: "https://github.com/vmware-tanzu/cartographer"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_prefix<code></td>
+    <td>
+      The prefix of the repository URL.
+      <b>DEPRECATED</b>
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository
+        value: "https://github.com/vmware-tanzu/"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_server_address<code></td>
+    <td>
+      The server url of the git repository to which configuration will be applied.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_server_address
+        value: "https://github.com/"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_owner<code></td>
+    <td>
+      The owner/organization to which the repository belongs.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_owner
+        value: vmware-tanzu
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_name<code></td>
+    <td>
+      The name of the repository.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_name
+        value: cartographer
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>registry<code></td>
+    <td>
+      Specification of the registry server and repository in which the configuration should be placed.
+    </td>
+    <td>
+      <pre>
+      - name: registry
+        value:
+          server: index.docker.io
+          repository: web-team
+          ca_cert_data:
+            -----BEGIN CERTIFICATE-----
+            MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+            -----END CERTIFICATE-----
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+### More Information
+
+See [Gitops vs RegistryOps](gitops-vs-regops.hbs.md) for more information about the operation of this template
+and of the [config-writer-and-pull-requester-template](#config-writer-and-pull-requester-template).
+
+## config-writer-and-pull-requester-template
+
+### Purpose
+Persist the passed in Kubernetes configuration to a branch in a repository and open a pull request to another branch.
+(This process allows for manual review of configuration before deployment to a cluster)
+
+### Kind
+ClusterTemplate.carto.run
+
+### Used by
+
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the config-writer step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the config-writer step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the config-writer step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the config-writer step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the config-writer step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the config-writer step.
+
+### Creates
+
+A runnable which provides configuration to the ClusterRunTemplate `commit-and-pr-pipelinerun` in order to create a
+Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account which will provide the credentials to the registry or repository.
+      The service account must exist in the same namespace as the Workload.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_commit_branch<code></td>
+    <td>
+      Name of the branch to which configuration is pushed.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_commit_branch
+        value: feature
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_branch<code></td>
+    <td>
+      Name of the branch to which a pull request is opened.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_branch
+        value: main
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_user_name<code></td>
+    <td>
+      User name to use in the commits.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_user_name
+        value: "Alice Lee"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_user_email<code></td>
+    <td>
+      User email address to use in the commits.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_user_email
+        value: alice@example.com
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_commit_message<code></td>
+    <td>
+      Message to write as the body of the commits produced for pushing configuration to the Git repository.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_commit_message
+        value: "ci bump"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_pull_request_title<code></td>
+    <td>
+      Title of the pull request to be opened.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_pull_request_title
+        value: "ready for review"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_pull_request_body<code></td>
+    <td>
+      Body of the pull request to be opened.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_pull_request_body
+        value: "generated by supply chain"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_server_address<code></td>
+    <td>
+      The server url of the git repository to which configuration will be applied.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_server_address
+        value: "https://github.com/"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_owner<code></td>
+    <td>
+      The owner/organization to which the repository belongs.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_owner
+        value: vmware-tanzu
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_name<code></td>
+    <td>
+      The name of the repository.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_name
+        value: cartographer
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_server_kind<code></td>
+    <td>
+      The kind of git provider
+    </td>
+    <td>
+      <pre>
+      - name: gitops_server_kind
+        value: gitlab
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+### More Information
+
+See [Gitops vs RegistryOps](gitops-vs-regops.hbs.md) for more information about the operation of this template
+and of the [config-writer-template](#config-writer-template).
