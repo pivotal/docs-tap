@@ -1,7 +1,11 @@
 # Deliveries
 
 TAP ships with one delivery package,
-which installs a single delivery.
+which installs a single [ClusterDelivery](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#clusterdelivery).
+
+The delivery provides some [parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters)
+to the templates.
+Some of these may be overridden by the parameters provided by the deliverable.
 
 ## Delivery-Basic
 
@@ -17,15 +21,15 @@ which installs a single delivery.
 Refers to [delivery-source-template](ootb-template-reference.hbs.md#delivery-source-template).
 
 Params provided:
- - `serviceAccount` from tap-value `service_account`. Overridable by workload param.
- - `gitImplementation` from tap-value `git_implementation`. NOT overridable by workload param.
+ - `serviceAccount` from tap-value `service_account`. Overridable by deliverable.
+ - `gitImplementation` from tap-value `git_implementation`. NOT overridable by deliverable.
 
 #### deployer
 
 Refers to [app-deploy template](ootb-template-reference.hbs.md#app-deploy).
 
 Params provided:
-- `serviceAccount` from tap-value `service_account`. Overridable by workload param.
+- `serviceAccount` from tap-value `service_account`. Overridable by deliverable.
 
 ### Package
 
