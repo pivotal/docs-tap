@@ -863,7 +863,6 @@ Conventions](../developer-conventions/about.hbs.md) and [Spring Boot
 Conventions](../spring-boot-conventions/about.hbs.md) for more details about the two
 convention servers enabled by default in Tanzu Application Platform installations.
 
-
 ## config-template
 
 ### Purpose
@@ -926,7 +925,7 @@ None
 See [workload types](../workloads/workload-types.hbs.md) for more details about the
 three different types of workloads.
 
-## worker-template
+## server-template
 
 ### Purpose
 
@@ -1575,21 +1574,6 @@ preconfigured with reference to a repository or registry from which to fetch Kub
   </tr>
 
   <tr>
-    <td><code>gitops_ssh_secret<code></td>
-    <td>
-      Name of the secret where credentials exist for fetching the configuration
-      from a Git repository. Populates the Deliverable's gitops_ssh_secret param.
-      The service account must be in the same namespace as the Deliverable.
-    </td>
-    <td>
-      <pre>
-      - name: gitops_ssh_secret
-        value: ssh-secret
-      </pre>
-    </td>
-  </tr>
-
-  <tr>
     <td><code>gitops_branch<code></td>
     <td>
       Name of the branch from which to fetch the configuration.
@@ -1745,21 +1729,6 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
       <pre>
       - name: serviceAccount
         value: default
-      </pre>
-    </td>
-  </tr>
-
-  <tr>
-    <td><code>gitops_ssh_secret<code></td>
-    <td>
-      Name of the secret where credentials exist for fetching the configuration
-      from a Git repository. Populates the Deliverable's gitops_ssh_secret param.
-      The service account must be in the same namespace as the Deliverable.
-    </td>
-    <td>
-      <pre>
-      - name: gitops_ssh_secret
-        value: ssh-secret
       </pre>
     </td>
   </tr>
