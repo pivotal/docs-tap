@@ -2,7 +2,7 @@
 
 This topic contains release notes for Tanzu Application Platform v1.3
 
-{{#unless vars.hide_content}} 
+{{#unless vars.hide_content}}
 ## <a id='1-3-5'></a> v1.3.5
 
 **Release Date**: February 14, **2023**
@@ -42,6 +42,18 @@ Fixes for the following vulnerabilities:
 * [CVE-2022-32215](https://nvd.nist.gov/vuln/detail/CVE-2022-32215): Updates the version of Node used to run Tanzu Application Platform GUI from v14.20.0 to v14.20.1.
 
 * GHSA-hrpp-h998-j3pp: Updates the versions of express and qs.
+
+### <a id='1-3-4-known-issues'></a> Known Issues
+
+#### <a id="1-3-tbs-known-issues"></a> Tanzu Build Service
+
+- Migrating from the `buildservice.kp_default_repository` key to the `shared.image_registry` key can
+cause existing workloads to fail. After upgrading to v1.3, if you are using the
+`shared.image_registry` key, and workloads are failing with a `spec.tag` immutability error from the
+`image.kpack.io`, delete the `image.kpack.io` associated with the failing workloads, so they can be
+recreated with the correct tags.
+
+---
 
 ### <a id='1-3-4-deprecations'></a> Deprecations
 
