@@ -13,6 +13,7 @@ This release has the following security fixes, listed by area and component.
 #### <a id="1-4-1-tap-gui-sf"></a> Tanzu Application Platform GUI
 
 - [GHSA-3xq5-wjfh-ppjc](https://github.com/advisories/GHSA-3xq5-wjfh-ppjc)
+- [GHSA-36fh-84j7-cv5h](https://github.com/advisories/GHSA-36fh-84j7-cv5h)
 
 ---
 
