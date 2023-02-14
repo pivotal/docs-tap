@@ -31,14 +31,14 @@ The following issues, listed by area and component, are resolved in this release
 
 ##### <a id="1-4-1-api-val-and-scor-ri"></a> API Validation and Scoring Toolkit plug-in
 
-- Fixed an issue where one of the API Scores didn't have a value specified in the YAML.
+- Better error-handling for when a scoring value is missing in the API YAML.
 - Adjusted some styles of the components to meet requirements.
 
 ##### <a id="1-4-1-app-acc-pi-ri"></a> Application Accelerator plug-in
 
 - Fixed rendering of options that have an identical `dependsOn` option with an array value.
   Added system property configuration for the Git repository creation feature.
-- Added workflow additional scope to the Git repository creation feature.
+- Added a workflow scope to the Git repository creation feature.
 
 ##### <a id="1-4-1-app-live-view-pi-ri"></a> Application Live View plug-in
 
