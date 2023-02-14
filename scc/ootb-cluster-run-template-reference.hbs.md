@@ -310,3 +310,57 @@ For more information about the template creating the related Runnable,
 see [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
 
 For more information about the gitops flow, see [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).
+
+## kaniko-runtemplate
+
+### Purpose
+Build images from source code which has a dockerfile.
+
+### Used By
+- [kaniko-template](ootb-template-reference.hbs.md#kaniko-template)
+
+### Creates
+Creates a TaskRun referring to the kaniko-build Tekton ClusterTask.
+
+### Inputs
+<table>
+  <tr>
+    <th>Input name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Service Account with credentials for the image registry in which the built image will be placed.
+    </td>
+    <td>
+      <pre>
+        default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>params<code></td>
+    <td>
+      Set of parameters to pass to the Tekton Task.
+    </td>
+    <td>
+      <pre>
+        - name: foo
+          value: bar
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+### More Information
+
+For more information about the template creating the associated Runnable,
+see [kaniko-template](ootb-template-reference.hbs.md#kaniko-template)
+
+For information about how to use Dockerfile-based builds and limits associated with the function, see
+[Dockerfile-based builds](dockerfile-based-builds.hbs.md).
