@@ -1,6 +1,6 @@
 # Create an accelerator
 
-> **Note** This guide follows a "quick start" format, see the [Application Accelerator docs](../application-accelerator/about-application-accelerator.hbs.md) for advanced features.
+> **Note** This guide follows a "quick start" format. See the [Application Accelerator docs](../application-accelerator/about-application-accelerator.hbs.md) for advanced features.
 
 ## <a id="you-will"></a>What you will do
 
