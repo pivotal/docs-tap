@@ -313,7 +313,7 @@ with the configured public key. Run:
     pod/cosign created (server dry run)
     ```
 
-1. Verify that the Policy Controller rejects the unsigned image. Run:
+1. Verify that the Policy Controller rejects the unmatched image. Run:
 
     ```console
     kubectl run busybox --image=busybox --dry-run=server
@@ -323,8 +323,7 @@ with the configured public key. Run:
 
     ```console
     $ kubectl run busybox --image=busybox --dry-run=server
-      Error from server (BadRequest): admission webhook "policy.sigstore.dev" denied the request: validation failed: no matching signatures:
-      : spec.containers[0].image
+      Error from server (BadRequest): admission webhook "policy.sigstore.dev" denied the request: validation failed: no matching policies: spec.containers[0].image
       index.docker.io/library/busybox@sha256:3614ca5eacf0a3a1bcc361c939202a974b4902b9334ff36eb29ffe9011aaad83
     ```
 
