@@ -7,6 +7,7 @@ This topic contains release notes for Tanzu Application Platform v1.3
 **Release Date**: February 16, 2023
 
 ### <a id='1-3-5-security-fix'></a> Security fixes
+
 #### <a id='1-3-5-contour-resolved-issues'></a> Contour
 
 - Update to [Contour v1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3). 
