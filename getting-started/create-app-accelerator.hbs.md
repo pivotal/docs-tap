@@ -202,7 +202,7 @@ Now that the accelerator is committed to its own repository, the accelerator can
 
 5. After configuration is complete, click **Next**.
 
-> **Note** Depending on your organization's Tanzu Application Platform configuration, you can be presented with an option to create a Git repository. In this guide, this is skipped and is covered in [Deploy an app on Tanzu Application Platform](deploy-first-app.hbs.md).
+> **Note** Depending on your organization's Tanzu Application Platform configuration, you might be presented with an option to create a Git repository. In this guide, this is skipped and is covered in [Deploy an app on Tanzu Application Platform](deploy-first-app.hbs.md).
 
 6. On the "Review and generate" step, review the parameters and click **Generate Accelerator**.
 7. Explore the ZIP file of the configured project and verify that the project is generated with the parameters you provided during configuration.
