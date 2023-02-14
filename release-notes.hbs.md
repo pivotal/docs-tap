@@ -36,7 +36,7 @@ The following issues, listed by area and component, are resolved in this release
 
 ##### <a id="1-4-1-app-acc-pi-ri"></a> Application Accelerator plug-in
 
-- Fixed rendering of options that have an identical `dependsOn` option with an array value.
+- Fixed the rendering of options that share an identical `dependsOn` array value.
   Added system property configuration for the Git repository creation feature.
 - Added a workflow scope to the Git repository creation feature.
 
@@ -47,15 +47,15 @@ The following issues, listed by area and component, are resolved in this release
 ##### <a id="1-4-1-sc-templates-pi-ri"></a> Out of the Box Supply Chain Templates plug-in
 
 - Fixed Deliverable content written into ConfigMaps in a multicluster setup.
-- Added labels to attribute the Deliverable content with the supply chain and template to be consistent
-  with the Delivery on a non-Build profile cluster.
+  Added labels to attribute the Deliverable content with the supply chain and the template.
+  This was done to be consistent with the Delivery on a non-Build profile cluster.
   For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 ##### <a id="1-4-1-sagui-pi-ri"></a> Security Analysis plug-in
 
 - Updated the data model for the response of `metadata-store`.
-- Changed the table's position in the index page.
-- Update the filter for workloads with no associated policy.
+- Changed the table's position on the index page.
+- Updated the filter for workloads with no associated policy.
 - Updated the bar graph for workloads with big and small values for different severities.
 - Fixed a discrepancy between the widget and the information in **Workload Build Vulnerabilities**.
 
@@ -65,8 +65,8 @@ The following issues, listed by area and component, are resolved in this release
   policy link displays the amended policy.
 - The **Approve a Request** button now appears in the **Stage Details** section of the Supply Chain
   view when the **Config Writer** stage is selected and the GitOps PR flow is configured.
-- The scan policy documentation link that appears after an error occurs now targets the latest version
-  of the Tanzu Application Platform documentation.
+- When an error occurs and the scan policy documentation link appears, the link now targets the latest
+  version of the Tanzu Application Platform documentation.
 
 ##### <a id="1-4-1-scst-pi-ri"></a> Supply Chain Security Tools plug-in
 
