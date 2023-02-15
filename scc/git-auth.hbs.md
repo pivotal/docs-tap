@@ -172,3 +172,7 @@ workload by including it in its set of secrets. For example:
       - name: registry-credentials
       - name: tap-registry
     ```
+
+## Read more on Git
+
+See [Git Reference](git.hbs.md)

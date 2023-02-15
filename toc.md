@@ -412,6 +412,7 @@ docs.vmware.com is built.
           - [Template Reference](scc/ootb-template-reference.hbs.md)
           - [ClusterRunTemplate Reference](scc/ootb-cluster-run-template-reference.hbs.md)
           - [Delivery Reference](scc/ootb-delivery-reference.hbs.md)
+          - [Git](scc/git.hbs.md)
       - [Building container images](scc/build-container-img.hbs.md)
           - [Building from source](scc/building-from-source.hbs.md)
           - [Dockerfile-based builds](scc/dockerfile-based-builds.hbs.md)
