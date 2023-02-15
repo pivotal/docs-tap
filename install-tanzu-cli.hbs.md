@@ -264,12 +264,12 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
 For online installation:
 
-- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html)
 - [Install the Tanzu Application Platform package and profiles](install.html)
 
 For air-gapped installation:
 
-- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html)
 - [Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster
