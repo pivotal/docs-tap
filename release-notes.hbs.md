@@ -10,8 +10,11 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 #### <a id='1-3-5-contour-resolved-issues'></a> Contour
 
-- Update to [Contour v1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3).
-Includes an update to [go v1.19.4](https://go.dev/doc/devel/release#go1.19.minor),
+- Updated to [Contour v1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3).
+Includes an update to [go v
+
+
+1.19.4](https://go.dev/doc/devel/release#go1.19.minor),
 which contains security fixes to the `net/http` and `os` packages.
 
 ---
@@ -63,7 +66,7 @@ The following security issues are resolved in this release.
 
 #### <a id="1-3-4-tap-gui-resolved"></a> Tanzu Application Platform GUI
 
-Fixes for the following vulnerabilities:
+Fixed the following vulnerabilities:
 
 * [CVE-2022-32215](https://nvd.nist.gov/vuln/detail/CVE-2022-32215): Updates the version of Node used to run Tanzu Application Platform GUI from v14.20.0 to v14.20.1.
 
@@ -125,6 +128,8 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
     Template used.
   - Improved error-handling when the builder is failing.
 
+---
+
 ### <a id='1-3-3-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
@@ -149,6 +154,8 @@ as images.
 #### <a id="1-3-3-ootb-ki"></a>Out of the Box Supply Chains
 
 This release does not support configuring trusted CA certificates for an internal GitOps server.
+
+---
 
 ### <a id='1-3-3-deprecations'></a> Deprecations
 
@@ -182,6 +189,9 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 - The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
   - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
+
+
+---
 
 ## <a id='1-3-2'></a> v1.3.2
 
@@ -220,6 +230,9 @@ This release has the following security fixes, listed by area and component.
 - `expat` is updated to `2.2.9-10.ph3`.
 - `opa` is updated to `v0.44.0`.
 
+
+---
+
 ### <a id='1-3-2-resolved-issues'></a> Resolved issues
 
 The following issues, listed by area and component, are resolved in this release.
@@ -254,6 +267,9 @@ workload is clicked in the Workloads table and that supply chain is no longer pr
 #### <a id="1-3-2-policy-controller-resolved"></a>Supply Chain Security Tools - Policy Controller
 
 - Fixed issue where initialization fails because of `go-tuf` when using the Official Sigstore TUF root. For more information, see [Supply Chain Security Tools Policy Controller - Known Issues](./scst-policy/known-issues.hbs.md).
+
+
+---
 
 ### <a id='1-3-2-known-issues'></a> Known issues
 
@@ -302,15 +318,15 @@ Known security vulnerability
   - Image Provider logs are not appearing in the Stage Details section when a build fails.
     The logs are, however, available through the CLI.
 
-- **K8s logging backend  Plug-in**
+- **K8s logging backend  plug-in**
 
   - Fixes a bug where pod logs did not have OIDC support.
 
-- **App Accelerator Scaffolder Plug-in**
+- **App Accelerator Scaffolder plug-in**
 
   - The kebab-menu in the Accelerators page is not visible when using light-mode theme.
 
-- **Supply Chain Plugin**
+- **Supply Chain plug-in**
 
   - Fixes an error where changing the supply chain of a workload resulted in UI errors.
   - Fixes an error with the timestamp not being updated in the scanning stages (source scanning and image scanning).
@@ -329,6 +345,8 @@ Known security vulnerability
 
 - In a Build profile cluster, deliverables are created with the labels to associate them with their Workload missing. As a workaround, they will have to be manually injected.  For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 - These Deliverables are now rendered inside a ConfigMap. This resource was not renamed, and will cause Cartographer to overwrite one deliverable with the other depending on the timing of events in your cluster. VMware recommends upgrade to v1.3.5 to avoid unpredictable results.
+
+---
 
 ### <a id='1-3-2-deprecations'></a> Deprecations
 
@@ -362,6 +380,9 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 - The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
   - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
+
+
+---
 
 ## <a id='1-3-0'></a> v1.3.0
 
@@ -570,6 +591,9 @@ You can opt-in to building workloads with the Jammy stacks by following the inst
 - Formally defined the Service Operator user role (see [Role descriptions](./authn-authz/role-descriptions.hbs.md)).
 - **`tanzu services` CLI plug-in:** Improved information messages for deprecated commands.
 
+
+---
+
 ### <a id='1-3-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
@@ -592,6 +616,8 @@ This release has the following breaking changes, listed by area and component.
 - The `KEYS COUNT` print column is replaced with the more insightful `STATUS` for `AuthServer`.
 - The `sub` claim in `id_token`s and `access_token`s follow the `<providerId>_<userId>` pattern,
   instead of `<providerId>/<userId>`. See [Misconfigured `sub` claim](app-sso/troubleshoot.md#sub-claim) for more information.
+
+---
 
 ### <a id='1-3-resolved-issues'></a> Resolved issues
 
@@ -639,6 +665,9 @@ The following issues, listed by area and component, are resolved in this release
     supply chain delivery.
   - Results for the wrong workload are no longer shown if the same `part-of label` is used across
     workloads with the same name.
+
+
+---
 
 ### <a id='1-3-known-issues'></a> Known issues
 
@@ -827,6 +856,9 @@ Tanzu Application Platform GUI does not work in the Safari web browser.
   Deliverables incorrectly show a DeliveryNotFound error on build profile clusters even though the
   workload is working correctly. The message is typically:
   `No delivery found where full selector is satisfied by labels:`.
+
+
+---
 
 ### <a id='1-3-deprecations'></a> Deprecations
 
