@@ -536,6 +536,10 @@ where configuration is pushed to by tweaking the following parameters:
 -  `gitops_user_email`: User email address to use in the commits.
    Example: `alice@example.com`
 
+### Read more on Git
+
+See [Git Reference](git.hbs.md)
+
 ## <a id="registryops"></a>RegistryOps
 
 RegistryOps is typically used for inner loop flows where configuration is treated as an
