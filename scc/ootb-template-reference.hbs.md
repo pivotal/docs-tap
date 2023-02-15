@@ -805,7 +805,7 @@ three different types of workloads.
 
 ### Purpose
 
-For workloads with the label `apps.tanzu.vmware.com/workload-type: worker`, define a Kuberenetes Deployment.
+For workloads with the label `apps.tanzu.vmware.com/workload-type: worker`, define a Kubernetes Deployment.
 
 ### Used by
 
@@ -818,7 +818,7 @@ For workloads with the label `apps.tanzu.vmware.com/workload-type: worker`, defi
 
 ### Creates
 
-A ConfigMap, in which the data field has a key `delivery.yml` whose value is the definition of a Kuberenetes Deployment.
+A ConfigMap, in which the data field has a key `delivery.yml` whose value is the definition of a Kubernetes Deployment.
 
 ### Parameters
 
@@ -834,7 +834,7 @@ three different types of workloads.
 ### Purpose
 
 For workloads with the label `apps.tanzu.vmware.com/workload-type: server`,
-define a Kuberenetes Deployment and a Kubernetes Service.
+define a Kubernetes Deployment and a Kubernetes Service.
 
 ### Used by
 
@@ -847,7 +847,7 @@ define a Kuberenetes Deployment and a Kubernetes Service.
 
 ### Creates
 
-A ConfigMap, in which the data field has a key `delivery.yml` whose value is the definitions of a Kuberenetes
+A ConfigMap, in which the data field has a key `delivery.yml` whose value is the definitions of a Kubernetes
 Deployment and a Kubernetes Service to expose the pods.
 
 ### Parameters
