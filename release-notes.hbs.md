@@ -13,6 +13,7 @@ This release has the following security fixes, listed by area and component.
 #### <a id="1-4-1-tap-gui-sf"></a> Tanzu Application Platform GUI
 
 - [GHSA-3xq5-wjfh-ppjc](https://github.com/advisories/GHSA-3xq5-wjfh-ppjc)
+- [GHSA-36fh-84j7-cv5h](https://github.com/advisories/GHSA-36fh-84j7-cv5h)
 
 ---
 
@@ -22,7 +23,7 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id='1-4-1-src-controller-ri'></a> Source Controller
 
-- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP "GET" calls are considered to be pulls. This fix switched HTTP requests from using "GET" operations to "HEAD" operations, which reduces the number of pulls while checking updated image versions.
+- Fixed an issue that caused some registries, including DockerHub, to incur higher than expected pulls because all HTTP GET calls are considered to be pulls. With this fix, HTTP requests use HEAD operations instead of GET operations, which reduces the number of pulls while checking updated image versions.
 
 #### <a id='1-4-1-tap-gui-ri'></a> Tanzu Application Platform GUI
 
@@ -36,7 +37,7 @@ The following issues, listed by area and component, are resolved in this release
 
 ##### <a id="1-4-1-app-acc-pi-ri"></a> Application Accelerator plug-in
 
-- Fixed rendering of options that have an identical `dependsOn` option with an array value.
+- Fixed the rendering of options that share an identical `dependsOn` array value.
   Added system property configuration for the Git repository creation feature.
 - Added a workflow scope to the Git repository creation feature.
 
@@ -46,27 +47,27 @@ The following issues, listed by area and component, are resolved in this release
 
 ##### <a id="1-4-1-sc-templates-pi-ri"></a> Out of the Box Supply Chain Templates plug-in
 
-- Fixed Deliverable content written into ConfigMaps in a multicluster setup.
-- Added labels to attribute the Deliverable content with the supply chain and template to be consistent
-  with the Delivery on a non-Build profile cluster.
+- Fixed deliverable content written into ConfigMaps in a multicluster setup.
+  Added labels to attribute the deliverable content with the supply chain and the template.
+  This was done to be consistent with the delivery on a non-Build profile cluster.
   For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 ##### <a id="1-4-1-sagui-pi-ri"></a> Security Analysis plug-in
 
 - Updated the data model for the response of `metadata-store`.
-- Changed the table's position in the index page.
-- Update the filter for workloads with no associated policy.
+- Changed the table's position on the index page.
+- Updated the filter for workloads with no associated policy.
 - Updated the bar graph for workloads with big and small values for different severities.
 - Fixed a discrepancy between the widget and the information in **Workload Build Vulnerabilities**.
 
 ##### <a id="1-4-1-scc-resolved"></a> Supply Chain Choreographer plug-in
 
-- The **Generation** box now shows the correct amended scan policy version. Clicking on the scan
+- The **Generation** box now shows the correct amended scan policy version. Clicking the scan
   policy link displays the amended policy.
 - The **Approve a Request** button now appears in the **Stage Details** section of the Supply Chain
   view when the **Config Writer** stage is selected and the GitOps PR flow is configured.
-- The scan policy documentation link that appears after an error occurs now targets the latest version
-  of the Tanzu Application Platform documentation.
+- When an error occurs and the scan policy documentation link appears, the link now targets the latest
+  version of the Tanzu Application Platform documentation.
 
 ##### <a id="1-4-1-scst-pi-ri"></a> Supply Chain Security Tools plug-in
 
@@ -85,7 +86,7 @@ This release has the following known issues, listed by area and component.
 
 - **Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
-  For most languages, Source Code Scanning only scans files present in the source code repository.
+  For most languages, source code scanning only scans files present in the source code repository.
   Except for support added for Java projects using Maven, no network calls fetch
   dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
   lock files to check dependencies for vulnerabilities.
@@ -384,13 +385,19 @@ target an alternative Sigstore stack, specify `policy.tuf_mirror` and
 
 This release has the following security fixes, listed by area and component.
 
-#### <a id='1-4-0-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
-
-- `python` is updated to `3.7.5-22.ph3`.
-
 #### <a id="1-4-0-api-auto-registration-fixes"></a> API Auto Registration
 
 - Base image updated to use the latest Paketo Jammy Base image.
+
+#### <a id='1-4-0-contour-fixes'></a> Contour
+
+- Update to [Contour v1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3).
+Includes an update to [go v1.19.4](https://go.dev/doc/devel/release#go1.19.minor),
+which contains security fixes to the `net/http` and `os` packages.
+
+#### <a id='1-4-0-scst-grype-fixes'></a> Supply Chain Security Tools - Grype
+
+- `python` is updated to `3.7.5-22.ph3`.
 
 #### <a id="1-4-0-vulnerabilities-remediated"></a> Remediated vulnerabilities
 
