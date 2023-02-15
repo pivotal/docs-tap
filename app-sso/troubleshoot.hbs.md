@@ -49,50 +49,6 @@ client secret of an identity provider is misconfigured.
 
 Validate the `spec.OpenId.clientSecretRef`.
 
-## <a id='issue-workload-trust-authserver'> `Workload` does not trust `AuthServer`
-
-If your `ClientRegistration` selects an `AuthServer` which serves a certificate from a custom CA, then your `Workload`
-will not trust it by default.
-
-A `ca-certificates` service binding `Secret` allows to configure trust for custom CAs. 
-Your Service Operator can export this resource for you. 
-For more information, see [Allow `Workloads` to trust a custom CA `AuthServer`](service-operators/issuer-uri-and-tls.md#trust-custom-ca).
-
-Once they have exported a `ca-certificates` service binding `Secret`, we can import it and add another service claim to
-the `Workload` to configure trust:
-
-```yaml
----
-apiVersion: secretgen.carvel.dev/v1alpha1
-kind: SecretImport
-metadata:
-  name: custom-ca-cert
-  namespace: my-workloads
-spec:
-  fromNamespace: "<?>" # Your service operator can tell you which namespace to import from
-
----
-apiVersion: carto.run/v1alpha1
-kind: Workload
-# ...
-spec:
-  serviceClaims:
-    - name: authservers-ca-cert
-      ref:
-        apiVersion: v1
-        kind: Secret
-        name: custom-ca-cert
-    # ...
-```
-
-You can also provide the workload with a `--service-ref` parameter:
-
-```shell
---service-ref "authservers-ca-cert=v1:Secret:custom-ca-cert"
-```
-
-For more information about secretgen-controller and its APIs, see [secretgen-controller documentation](https://github.com/vmware-tanzu/carvel-secretgen-controller) in GitHub.
-
 ## Misconfigured redirect URI
 
 ### Problem:

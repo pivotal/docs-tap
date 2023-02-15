@@ -104,6 +104,8 @@ Follow these steps to deploy the sample application:
 1. [Create a namespace for workloads](#create-namespace).
 1. [Apply a client registration](#apply-client-registration).
 1. [Create a resource claim for the workload](#create-resource-claim).
+1. (Optional) [Ensure Workload will trust AuthServer](../../service-operators/workload-trust-custom-ca.md)
+   1. This step is **required** when your TAP installation is using the default self-signed certificate `ClusterIssuer`.
 1. [Deploy the workload](#deploy-workload).
 
 ### <a id="create-namespace"></a>Create a namespace for workloads
@@ -222,9 +224,6 @@ Follow the `Workload` logs:
 ```shell
 tanzu apps workload tail appsso-starter-java --namespace workloads
 ```
-
->**Caution** If your Workload fails to trust the AuthServer due to custom TLS certificates, you must provide additional parameters to your Workload. 
-For more information, see ['`Workload` does not trust `AuthServer`](../../troubleshoot.hbs.md#issue-workload-trust-authserver).
 
 After the status of the workload reaches the `Ready` state, you can navigate to the URL provided, which looks similar to:
 
