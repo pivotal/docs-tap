@@ -61,3 +61,8 @@ once a [carto.run/Deliverable](https://github.com/vmware-tanzu/cartographer) obj
 chains to express the intention of having the Workloads that go through them
 delivered to an environment. At this time, the environment is the same Kubernetes cluster as the
 Supply Chains.
+
+### More information
+
+- [Reference](ootb-delivery-reference.hbs.md)
+- [Installation](install-ootb-delivery-basic.hbs.md)
