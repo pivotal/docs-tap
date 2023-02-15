@@ -14,6 +14,7 @@ The following sections outline the essential steps to configure a fully operatio
 - [Issuer URI and TLS](./issuer-uri-and-tls.md)
 - [TLS scenario guides](./tls-scenario-guides.hbs.md)
 - [CA certificates](./ca-certs.md)
+- [Configure Workloads to trust a custom CA](./workload-trust-custom-ca.hbs.md)
 - [Identity providers](./identity-providers.md)
 - [Token signatures](./token-signature.md)
 - [Storage](./storage.hbs.md)

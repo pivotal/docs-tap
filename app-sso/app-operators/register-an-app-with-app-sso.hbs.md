@@ -47,6 +47,10 @@ Workload is aware of AppSSO. How does that work?
 - To make your Workload aware of AppSSO (i.e. that your application shall now rely on AppSSO for authentication and
   authorization requests), you must [specify a service resource claim](#add-a-service-resource-claim-to-your-workload)
   which produces the necessary credentials for your Workload to consume.
+- (Optional) Ensure `Workload` trusts `AuthServer`. 
+  For more information, see [Configure Workloads to trust a custom Certificate Authority (CA)](../service-operators/workload-trust-custom-ca.hbs.md).
+
+    >**Important** You must ensure `Workload` trusts `AuthServer` if you use the default self-signed certificate `ClusterIssuer` while installing Tanzu Application Platform.
 
 The following sections elaborate on both of the concepts in detail.
 
