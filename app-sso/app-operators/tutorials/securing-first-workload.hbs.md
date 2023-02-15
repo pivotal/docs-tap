@@ -187,6 +187,12 @@ tanzu service claim list --namespace workloads
 
 You should see `appsso-starter-java` claim with `Ready` status as `True`.
 
+### (Optional) Ensure Workload trusts AuthServer
+
+You must ensure `Workload` trusts `AuthServer` if you use the default self-signed certificate `ClusterIssuer` while installing Tanzu Application Platform.
+
+For more information, see [Configure Workloads to trust a custom Certificate Authority (CA)](../../service-operators/workload-trust-custom-ca.hbs.md).
+
 ### Deploy the workload
 
 The Tanzu CLI command to create a workload for the sample application should look like the following:
