@@ -11,10 +11,7 @@ This topic contains release notes for Tanzu Application Platform v1.3
 #### <a id='1-3-5-contour-resolved-issues'></a> Contour
 
 - Updated to [Contour v1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3).
-Includes an update to [go v
-
-
-1.19.4](https://go.dev/doc/devel/release#go1.19.minor),
+Includes an update to [go v1.19.4](https://go.dev/doc/devel/release#go1.19.minor),
 which contains security fixes to the `net/http` and `os` packages.
 
 ---
@@ -22,8 +19,7 @@ which contains security fixes to the `net/http` and `os` packages.
 
 #### <a id='scc-breaking-changes'></a> Supply Chain Choreographer
 
-- Out of the Box Supply Chain Templates
-In a multicluster setup, when a deliverable is created on a Build profile cluster, the ConfigMap it's in is renamed from `WORKLOAD-NAME` to `WORKLOAD-NAME`-deliverable. Any automation that depends on obtaining the deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
+- Out of the Box Supply Chain Templates: In a multicluster setup, when a deliverable is created on a Build profile cluster, the ConfigMap it's in is renamed from `WORKLOAD-NAME` to `WORKLOAD-NAME`-deliverable. Any automation that depends on obtaining the deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
 
 ---
 
