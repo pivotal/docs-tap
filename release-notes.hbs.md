@@ -173,15 +173,6 @@ Deprecated features will remain on this list until they are retired from Tanzu A
   - Introduced `identityProviders.ldap.group.search`.
   - `identityProviders.ldap.group` is now optional in `AuthServer.spec`.
 
-#### <a id="1-4-0-app-live-view"></a> Application Live View
-
-- Users can now activate or deactivate the automatic configuration of Spring Boot actuators on Tanzu Application Platform and on workloads.
-  For more information, see [Configure and access Spring Boot actuators in Tanzu Application Platform](spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
-- Added App Live View Memory View panel in Visual Studio Code as part of Spring Boot Dashboard extension.
-- Added support for Spring Boot 3. Spring Boot 3 Native Image is not supported.
-- Added new App Live View pages `HTTP Requests` and `Request Mappings` for Steeltoe workloads.
-- Added `appliveview_connnector.backend.sslDeactivated` to deprecate `appliveview_connnector.backend.sslDisabled`.
-
 #### <a id="1-4-0-app-accelerator"></a> Application Accelerator
 
 - Optional Git repository creation during project generation is supported in the Application Accelerator extension for VS Code.
@@ -200,6 +191,15 @@ Deprecated features will remain on this list until they are retired from Tanzu A
     - [Spring Boot H2 Fragment](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/fragments/spring-boot-h2)
     - [Spring Boot MySQL Fragment](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/fragments/spring-boot-mysql)
     - [Spring Boot PostgreSQL Fragment](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/fragments/spring-boot-postgresql)
+
+#### <a id="1-4-0-app-live-view"></a> Application Live View
+
+- Users can now activate or deactivate the automatic configuration of Spring Boot actuators on Tanzu Application Platform and on workloads.
+  For more information, see [Configure and access Spring Boot actuators in Tanzu Application Platform](spring-boot-conventions/configuring-spring-boot-actuators.hbs.md).
+- Added App Live View Memory View panel in Visual Studio Code as part of Spring Boot Dashboard extension.
+- Added support for Spring Boot 3. Spring Boot 3 Native Image is not supported.
+- Added new App Live View pages `HTTP Requests` and `Request Mappings` for Steeltoe workloads.
+- Added `appliveview_connnector.backend.sslDeactivated` to deprecate `appliveview_connnector.backend.sslDisabled`.
 
 #### <a id="1-4-0-apps-cli-plugin-new-feat"></a> Apps plug-in for Tanzu CLI
 
