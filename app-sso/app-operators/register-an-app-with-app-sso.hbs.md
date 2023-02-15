@@ -47,6 +47,8 @@ Workload is aware of AppSSO. How does that work?
 - To make your Workload aware of AppSSO (i.e. that your application shall now rely on AppSSO for authentication and
   authorization requests), you must [specify a service resource claim](#add-a-service-resource-claim-to-your-workload)
   which produces the necessary credentials for your Workload to consume.
+- (Optional) [Ensure Workload will trust AuthServer](../service-operators/workload-trust-custom-ca.hbs.md). This step
+  is **required** when your TAP installation is using the default self-signed certificate `ClusterIssuer`.
 
 The following sections elaborate on both of the concepts in detail.
 

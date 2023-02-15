@@ -235,8 +235,7 @@ Follow the `Workload` logs:
 tanzu apps workload tail appsso-starter-java --namespace workloads
 ```
 
-Once the status of the workload reaches the `Ready` state, you may navigate to the URL provided, which should look
-similar to:
+After the status of the workload reaches the `Ready` state, you can navigate to the URL provided, which looks similar to:
 
 ```text
 http://appsso-starter-java.workloads.127.0.0.1.nip.io
