@@ -46,9 +46,9 @@ In a multicluster setup, when a deliverable is created on a Build profile cluste
 #### <a id="1-3-tbs-known-issues"></a> Tanzu Build Service
 
 - Migrating from the `buildservice.kp_default_repository` key to the `shared.image_registry` key can
-cause existing workloads to fail. After upgrading to v1.3, if you are using the
-`shared.image_registry` key, and workloads are failing with a `spec.tag` immutability error from the
-`image.kpack.io`, delete the `image.kpack.io` associated with the failing workloads, so they can be
+cause existing workloads to fail. After upgrading to v1.3, if you use the
+`shared.image_registry` key and workloads fail with a `spec.tag` immutability error from the
+`image.kpack.io`, delete the `image.kpack.io` associated with the failing workloads. The workloads can then be
 recreated with the correct tags.
 
 ---
