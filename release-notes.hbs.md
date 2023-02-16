@@ -8,6 +8,8 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 ### <a id='1-3-5-security-fix'></a> Security fixes
 
+This release has the following security fixes, listed by component and area.
+
 #### <a id='1-3-5-contour-resolved-issues'></a> Contour
 
 - Updated to [Contour v1.22.3](https://github.com/projectcontour/contour/releases/tag/v1.22.3).
@@ -17,6 +19,8 @@ which contains security fixes to the `net/http` and `os` packages.
 ---
 ### <a id='1-3-5-breaking-changes'></a> Breaking changes
 
+This release includes the following changes, listed by component and area.
+
 #### <a id='scc-breaking-changes'></a> Supply Chain Choreographer
 
 - Out of the Box Supply Chain Templates: In a multicluster setup, when a deliverable is created on a Build profile cluster, the ConfigMap it's in is renamed from `WORKLOAD-NAME` to `WORKLOAD-NAME`-deliverable. Any automation that depends on obtaining the deliverable content by using the former name must be updated with the new name. For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
@@ -24,6 +28,8 @@ which contains security fixes to the `net/http` and `os` packages.
 ---
 
 ### <a id='1-3-5-resolved-issues'></a> Resolved issues
+
+The following issues, listed by area and component, are resolved in this release.
 
 #### <a id='1-3-5-sc-resolved-issues'></a> Source Controller
 
@@ -41,6 +47,8 @@ which contains security fixes to the `net/http` and `os` packages.
 ---
 
 ### <a id='1-3-5-known-issues'></a> Known Issues
+
+This release includes the following known issues, listed by component and area.
 
 #### <a id="1-3-tbs-known-issues"></a> Tanzu Build Service
 
