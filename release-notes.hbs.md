@@ -29,7 +29,7 @@ This release includes the following changes, listed by component and area.
 
 ### <a id='1-3-5-resolved-issues'></a> Resolved issues
 
-The following issues, listed by area and component, are resolved in this release.
+The following issues, listed by component and area, are resolved in this release.
 
 #### <a id='1-3-5-sc-resolved-issues'></a> Source Controller
 
@@ -136,7 +136,7 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 ### <a id='1-3-3-known-issues'></a> Known issues
 
-This release has the following known issues, listed by area and component.
+This release has the following known issues, listed by component and area.
 
 #### <a id="1-3-3-grype-scan-known-issues"></a>Grype scanner
 
@@ -203,7 +203,7 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 ### <a id='1-3-2-security-fixes'></a> Security fixes
 
-This release has the following security fixes, listed by area and component.
+This release has the following security fixes, listed by component and area.
 
 #### <a id='1-3-2-stk-sec-fix'></a> Services Toolkit
 
@@ -239,7 +239,7 @@ This release has the following security fixes, listed by area and component.
 
 ### <a id='1-3-2-resolved-issues'></a> Resolved issues
 
-The following issues, listed by area and component, are resolved in this release.
+The following issues, listed by component and area, are resolved in this release.
 
 #### <a id="1-3-2-supplychain-resolved"></a>Supply Chain Choreographer
 
@@ -277,7 +277,7 @@ workload is clicked in the Workloads table and that supply chain is no longer pr
 
 ### <a id='1-3-2-known-issues'></a> Known issues
 
-This release has the following known issues, listed by area and component.
+This release has the following known issues, listed by component and area.
 
 #### <a id="1-3-2-grype-scan-known-issues"></a>Grype scanner
 
@@ -600,7 +600,7 @@ You can opt-in to building workloads with the Jammy stacks by following the inst
 
 ### <a id='1-3-breaking-changes'></a> Breaking changes
 
-This release has the following breaking changes, listed by area and component.
+This release has the following breaking changes, listed by component and area.
 
 #### <a id="scst-scan-changes"></a> Supply Chain Security Tools - Scan
 
@@ -625,7 +625,7 @@ This release has the following breaking changes, listed by area and component.
 
 ### <a id='1-3-resolved-issues'></a> Resolved issues
 
-The following issues, listed by area and component, are resolved in this release.
+The following issues, listed by component and area, are resolved in this release.
 
 #### <a id="1-3-upgrade-issues"></a>Upgrading Tanzu Application Platform
 
@@ -675,7 +675,7 @@ The following issues, listed by area and component, are resolved in this release
 
 ### <a id='1-3-known-issues'></a> Known issues
 
-This release has the following known issues, listed by area and component.
+This release has the following known issues, listed by component and area.
 
 #### <a id="tap-known-issues"></a>Tanzu Application Platform
 
