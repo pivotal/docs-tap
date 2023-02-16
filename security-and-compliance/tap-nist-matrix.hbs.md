@@ -1,7 +1,7 @@
 # NIST 800-53 Moderate Assessment
 
 The following table provides an assessment of Tanzu Application Platform against the
-NIST SP 800-53r4 moderate baseline. This translates to FISMA Moderate and CNSSI 1253 Mod/Mod/Mod for
+NIST SP 800-53 Revision 4 Moderate baseline. This translates to FISMA Moderate and CNSSI 1253 Mod/Mod/Mod for
 use in US Federal systems accreditation. The Moderate baseline applies to only technical controls.
 Organizational policy controls, physical security, media policies, and similar
 are excluded as they are not applicable to Tanzu Application Platform. These excluded
@@ -71,7 +71,7 @@ Incremental updates will add more details about implementation and updates to 80
 | SC-5 | Denial of Service Protection | Customer | The customer is responsible for ensuring that organizational DoS protections at the network layer include the Tanzu Application Platform installation. |
 | SC-7<br />SC-7a<br />SC-7b<br />SC-7c | Boundary Protection | Customer | The customer is responsible for the configuration and management of boundary protection devices. |
 | SC-7(4)(c) | External Telecommunications Services | Customer | The customer is responsible for external telecommunication services used to establish connections to their Tanzu Application Platform installation. |
-| SC-7(5) | Deny by Default / Allow by Exception | Shared | Tanzu Application Platform does not implement 'deny by default' network policies. This might be mitigated by network-level access controls configured by the customer. |
+| SC-7(5) | Deny by Default / Allow by Exception | Shared | Tanzu Application Platform does not implement "deny by default" network policies. This might be mitigated by network-level access controls configured by the customer. |
 | SC-7(7) | Prevent Split Tunneling for Remote Devices | Customer | The customer is responsible for all configuration of remote devices used to access Tanzu Application Platform. |
 | SC-8 | Transmission Confidentiality and Integrity | Tanzu Application Platform | Tanzu Application Platform is responsible for ensuring all communications occur over TLS 1.2+. |
 | SC-8(1) | Cryptographic or Alternate Physical Protection | Tanzu Application Platform | Tanzu Application Platform is responsible for ensuring all communications occur over TLS 1.2+. |
