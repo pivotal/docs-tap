@@ -94,7 +94,7 @@ To install the API portal package:
    `api-portal-values.yaml` file. If you do not already have an existing values file, you can extract the existing values using the command:
 
     ```console
-    tanzu package installed get api-portal -n api-portal -f api-portal-values.yaml
+    tanzu package installed get api-portal -n tap-install -f api-portal-values.yaml
     ```
 
    For reference, you can view the schema of the package:
