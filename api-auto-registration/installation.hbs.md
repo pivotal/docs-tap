@@ -11,18 +11,14 @@ See [Tanzu Application Platform Prerequisites](../prerequisites.md).
 
 ## <a id='prereqs'></a> Using with TLS
 
-Starting in Tanzu Application Platform v1.4, TLS is turned on by default for
-several components. This causes an issue with API Auto Registration. For
-information about a workaround, see
-[Troubleshooting](../api-auto-registration/troubleshooting.hbs.md). 
+Starting in Tanzu Application Platform v1.4, TLS is turned on by default for several components.
+API Auto Registration automatically trusts the CA for the shared `ingress_issuer` when using the default ClusterIssuer `tap-ingress-selfsigned`.
+This change means that a `Certificate` is automatically generated using this issuer.
 
-Starting in Tanzu Application Platform v1.4.1, API Auto Registration
-automatically trusts the CA for the shared `ingress_issuer`. This change means
-that a `Certificate` is generated using this issuer. If you do not want a
-`Certificate` to generate automatically, you can set the `auto_generate_cert`
-flag to `false` in the values file. You must follow the instructions in the
-troubleshooting guide to manually set the `ca_cert_data`. See
-[Troubleshooting](../api-auto-registration/troubleshooting.hbs.md). 
+If you do not want a `Certificate` to generate automatically, you can set the `auto_generate_cert` flag to `false` in the values file.
+If you want to replace the default with a custom ingress issuer, see [Security and compliance](../security-and-compliance/about.hbs.md).
+For both these scenarios, whenever not using the default ClusterIssuer `tap-ingress-selfsigned` or not automatically generating certificates
+or using other custom CAs, you will need to manually set the cert. See [Troubleshooting](../api-auto-registration/troubleshooting.hbs.md#set-ca-crt).
 
 ## <a id='install'></a>Install
 
