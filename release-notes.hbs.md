@@ -39,7 +39,7 @@ The following issues, listed by component and area, are resolved in this release
 
 - Out of the Box Supply Chain Templates
   - Fixed deliverable content written into ConfigMaps in multicluster setup.
-  - ConfigMap is renamed to avoid conflict with `config-template`.
+  - Renamed ConfigMap to avoid conflict with `config-template`.
   - Labels to attribute the deliverable content with the supply chain and template are now added to be consistent with the delivery on a non-Build profile cluster.
   - Tanzu Application Platform GUI Supply Chain plug-in displays deliverables on run clusters with workloads from build clusters.
   - For more information, see [Multicluster Tanzu Application Platform overview](multicluster/about.hbs.md).
