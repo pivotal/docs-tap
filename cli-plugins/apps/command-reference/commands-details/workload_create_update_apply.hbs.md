@@ -707,7 +707,7 @@ Sets the path to a source in the local machine from where the workload creates a
 application source. The local path can be a directory, a JAR, a ZIP, or a WAR file. Java/Spring Boot
 compiled binaries are also supported. This flag must be used with `--source-image` flag.
 
-**Note** If Java/Spring compiled binary is passed instead of source code, the command will take
+If Java/Spring compiled binary is passed instead of source code, the command will take
 less time to apply the workload since the build pack will skip the compiling steps and start uploading
 the image.
 
@@ -1118,7 +1118,7 @@ Update workload:
 
 Binds a service to a workload to provide the information from a service resource to an application.
 
-**Note** For more information see [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-getting-started-consume-services.html#stk-bind).
+For more information, see [Tanzu Application Platform documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-getting-started-consume-services.html#stk-bind).
 
 <details><summary>Example</summary>
 

@@ -181,7 +181,7 @@ To create a workload from a file like the earlier example:
 tanzu apps workload create --file my-workload-file.yaml
 ```
 
-**Note** when flags are passed in combination with `--file my-workload-file.yaml` the flag/values
+**Note** When flags are passed in combination with `--file my-workload-file.yaml` the flag/values
 >take precedence over the associated property or values in the YAML.
 
 The workload YAML definition can also be passed in through stdin as follows:
@@ -194,8 +194,17 @@ The console waits for input, and the content with valid `yaml` definitions for a
 be written or pasted. Then click **Ctrl-D** three times to start the workload creation. This can
 also be done with the `workload apply` command.
 
-**Note** To pass a workload through `stdin`, the `--yes` flag is required. If not provided, the
->command fails.
+To pass a workload through `stdin`, the `--yes` flag is required. If not provided, the
+command fails.
+
+Another way to pass a workload with the `--file` flag is using a URL, which, as mentioned before,
+must contain a raw file with the workload definition.
+
+For example:
+
+```console
+tanzu apps workload apply --file https://raw.githubusercontent.com/vmware-tanzu/apps-cli-plugin/main/pkg/commands/testdata/workload.yaml
+```
 
 ## <a id="bind-service"></a> Bind a service to a workload
 
