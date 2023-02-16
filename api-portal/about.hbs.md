@@ -8,10 +8,10 @@ For installing the package without the predefined profiles of Tanzu Application 
 
 For more information about API portal for VMware Tanzu, see [API portal for VMware Tanzu](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/index.html).
 
-For configuring the package, see the the latest version of [API portal for VMware Tanzu docs](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/1.2/api-portal/GUID-configuring-k8s.html).
+For more information about configuring the package, see the latest version of [API portal for VMware Tanzu docs](https://docs.vmware.com/en/API-portal-for-VMware-Tanzu/1.2/api-portal/GUID-configuring-k8s.html).
 
 API portal for VMware Tanzu currently supports:
 
 - Authentication through Single Sign-On (SSO)
 - API keys configuration and management
-- Secure communication using TLS
+- Secure communication by using TLS
