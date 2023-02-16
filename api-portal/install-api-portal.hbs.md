@@ -45,18 +45,19 @@ To install the API portal package:
     $ tanzu package available get api-portal.tanzu.vmware.com/1.0.3 --values-schema --namespace tap-install
 
     Retrieving package details for api-portal.tanzu.vmware.com/1.0.3...
-
     ```
 
 3. (Optional) VMware recommends creating `api-portal-values.yaml`.
 
-   To overwrite the default values when installing the package, create a `api-portal-values.yaml` file following the values schema.
+   To overwrite the default values when installing the package, create a `api-portal-values.yaml` file by following the values schema.
 
 4. Install API portal by running:
 
     ```console
-    tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v $VERSION --values-file api-portal-values.yaml
+    tanzu package install api-portal -n tap-install -p api-portal.tanzu.vmware.com -v VERSION-NUMBER --values-file api-portal-values.yaml
     ```
+
+    Where `VERSION-NUMBER` is the version of the package listed earlier.
 
     For example:
 
@@ -82,36 +83,38 @@ To install the API portal package:
     tanzu package installed get api-portal -n tap-install
     ```
 
-   Verify that `STATUS` is `Reconcile succeeded`:
+    Verify that `STATUS` is `Reconcile succeeded`:
 
     ```console
     kubectl get pods -n api-portal
     ```
 
-## <a id='update-values'></a>Update the install values for api-portal package
+## <a id='update-values'></a>Update the install values for the `api-portal` package
 
-1. To overwrite the default values, create new values, or update the existing values, you will need an
-   `api-portal-values.yaml` file. If you do not already have an existing values file, you can extract the existing values using the command:
+To update the install values for the `api-portal` package:
+
+1. To overwrite the default values, create new values, or update the existing values, you need an
+   `api-portal-values.yaml` file. If you do not already have an existing values file, you can extract the existing values by running:
 
     ```console
     tanzu package installed get api-portal -n tap-install -f api-portal-values.yaml
     ```
 
-   For reference, you can view the schema of the package:
+    You can view the schema of the package:
 
     ```console
     tanzu package available get apis.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
     ```
 
-   Where `VERSION-NUMBER` is the version of the package listed in the earlier step.
+    Where `VERSION-NUMBER` is the version of the package listed in the earlier step.
 
-   For example:
+    For example:
 
     ```console
     tanzu package available get api-portal.tanzu.vmware.com/1.2.5 --values-schema --namespace tap-install
-   ```
+    ```
 
-2. Now, update the package using the Tanzu CLI:
+2. Update the package by using the Tanzu CLI:
 
     ```console
     tanzu package installed update api-auto-registration
@@ -121,11 +124,11 @@ To install the API portal package:
     --values-file api-portal-values.yaml
     ```
 
+3. If you installed the API portal package as part of Tanzu Application Platform, you must update the `tap-values.yaml` and update the installation of Tanzu Application Platform. 
+For more information, see [Install your Tanzu Application Platform profile](../install.hbs.md#install-profile).
 
-3. If you installed the API portal package as part of Tanzu Application Platform, you must update the `tap-values.yaml` and update the TAP installation.
-   See [Install your Tanzu Application Platform profile](../install.hbs.md#install-profile).
+    ```console
+    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version {VERSION} -f tap-values.yaml -n tap-install
+    ```
 
-   ```console
-   tanzu package installed update tap --package-name tap.tanzu.vmware.com --version {VERSION} -f tap-values.yaml -n tap-install
-   ```
 >**Note** You can also update API portal as part of upgrading Tanzu Application Platform. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
