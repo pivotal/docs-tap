@@ -110,7 +110,7 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
    - **For macOS:**
 
      ```console
-     tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
+     tar -xvf tanzu-framework-darwin-amd64-v0.25.4.4.tar -C $HOME/tanzu
      ```
 
 3. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure that the local downloaded
