@@ -209,4 +209,6 @@ Before you start, you must have:
 
 ## <a id="next-steps"></a>Next steps
 
-- [Iterate on your new app](iterate-new-app.md)
+- [Iterate on your new app using VS Code](iterate-new-app-vscode.md)
+or
+- [Iterate on your new app using IntelliJ](iterate-new-app-intellij.md)
