@@ -5,11 +5,11 @@ This how-to guide walks you through starting to iterate on your first applicatio
 ## <a id="you-will"></a>What you will do
 
 - Prepare your IDE to iterate on your application.
-- Apply your application to the cluster
+- Apply your application to the cluster.
 - Live update your application to view code changes updating live on the cluster.
 - Debug your application.
 - Monitor your running application on the Application Live View UI.
-- Delete your application from the cluster
+- Delete your application from the cluster.
 
 ## <a id="prepare-to-iterate"></a>Prepare your IDE to iterate on your application
 
@@ -40,10 +40,10 @@ For information about installing the prerequisites and the Tanzu Developer Tools
 
     >For example, if you use docker consult [docker's docs](https://docs.docker.com/engine/reference/commandline/login/), if you use Harbor consult [Harbor's docs](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/), etc. For troubleshooting failed registry authentication, consult our [troubleshooting docs](../troubleshooting-tap/troubleshoot-using-tap.md)
 
-    4. Confirm your current Kubernetes context has a namespace associated with it. The `TANZU WORKLOADS` panel uses the namespace associated with your current Kubernetes context to populate the workloads from the cluster.
-        - Open the Terminal (⌃\`), or by navigating to `View` > `Terminal`.
-        - Ensure your current Kubernetes context has an associated namespace using the command `kubectl config get-contexts`. This command will return a list of all of your Kubernetes contexts with an asterisk (*) in front of your current context. Verify your current context has a namespace in the namespace column.
-        - If your current context does not have a namespace in the namespace column, use the command `kubectl config set-context --current --namespace=<NAMESPACE>`, replacing \<NAMESPACE\> with the namespace value you would like to deploy the workload to.
+3. Confirm your current Kubernetes context has a namespace associated with it. The `TANZU WORKLOADS` panel uses the namespace associated with your current Kubernetes context to populate the workloads from the cluster.
+    - Open the Terminal (⌃\`), or by navigating to `View` > `Terminal`.
+    - Ensure your current Kubernetes context has an associated namespace using the command `kubectl config get-contexts`. This command will return a list of all of your Kubernetes contexts with an asterisk (*) in front of your current context. Verify your current context has a namespace in the namespace column.
+    - If your current context does not have a namespace in the namespace column, use the command `kubectl config set-context --current --namespace=<NAMESPACE>`, replacing \<NAMESPACE\> with the namespace value you would like to deploy the workload to.
 
 You are now ready to iterate on your application.
 
@@ -54,7 +54,7 @@ Apply the workload to see your application running on the cluster.
 1. In the Explorer tab of VS Code, right-click any file under the application name `tanzu-java-web-app` and select `Tanzu: Apply Workload` to begin applying the workload to the cluster.
 1. Alternatively, use the Command Palette (⇧⌘P) or `View` > `Command Palette` to run the `Tanzu: Apply Workload` command.
 
-The Apply Workload command will run, which opens a terminal and shows you the progress of the Workload Apply. You can also monitor your application as it's being deployed to the cluster on the `Tanzu Activity` panel. The `Tanzu Activity` panel shows the details of the Kubernetes resources associated with your application. To view the `Tanzu Activity` panel, open the Terminal (⌃\`) and then click on the `Tanzu Activity` tab. This process can take a few minutes to complete as your code makes its way onto the cluster. Once complete, you will see the workload running in the `TANZU WORKLOADS` panel on the left side of the VS Code Explorer tab.
+The Apply Workload command will run, which opens a terminal and shows you the progress of the Workload Apply. You can also monitor your application as it's being deployed to the cluster on the `Tanzu Activity` panel. The `Tanzu Activity` panel shows the details of the Kubernetes resources associated with your application. To view the `Tanzu Activity` panel, open the Terminal (⌃\`) and then click on the `Tanzu Activity` tab. The Apply Workload command can take a few minutes to deploy your application onto the cluster. Once complete, you will see the workload running in the `TANZU WORKLOADS` panel on the left side of the VS Code Explorer tab.
 
 
 ## <a id="live-update-your-app"></a>Live update your application
@@ -118,7 +118,7 @@ Use the following steps to diagnose Spring Boot-based applications by using Appl
 
 1. Select your running application to view the diagnostic options and inside the application. For more information, see [Application Live View features](../tap-gui/plugins/app-live-view.md).
 
-## <a id="monitor-running-app"></a>Delete your application from the cluster
+## <a id="delete-your-app"></a>Delete your application from the cluster
 
 You can use the delete action to remove your application from the cluster.
 
