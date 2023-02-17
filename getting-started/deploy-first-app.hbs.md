@@ -183,4 +183,6 @@ Type the link to the `catalog-info.yaml` file of the tanzu-java-web-app in the G
 
 ## Next steps
 
-- [Iterate on your new app](iterate-new-app.md)
+- [Iterate on your new app using VS Code](iterate-new-app-vscode.md)
+or
+- [Iterate on your new app using IntelliJ](iterate-new-app-intellij.md)
