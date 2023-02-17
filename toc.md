@@ -92,8 +92,13 @@ docs.vmware.com is built.
       - [Create an application accelerator](getting-started/create-app-accelerator.hbs.md)
       - [Generate an app](getting-started/generate-first-app.hbs.md)
       - [Deploy an app](getting-started/deploy-first-app.hbs.md)
+<<<<<<< HEAD
       - [Iterate on your app](getting-started/iterate-new-app.hbs.md)
       - [Claim services](getting-started/claim-services.md)
+=======
+      - [Iterate on your app - IntelliJ](getting-started/iterate-new-app-intellij.hbs.md)
+      - [Iterate on your app - VS Code](getting-started/iterate-new-app-vscode.hbs.md)
+>>>>>>> ea4f3235 (adding vscode and intellij iterate on app pages, removing non-ide-specific iterate on app page, updates to vscode iterate on app page)
       - [Consume services](getting-started/consume-services.hbs.md)
       - [Deploy air-gapped workload](getting-started/air-gap-workload.hbs.md)
   - [Learn more](getting-started/concepts.hbs.md)
