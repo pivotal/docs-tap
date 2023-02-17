@@ -52,7 +52,7 @@ To set the Kubernetes cluster context:
     For example:
 
     ```console
-    kubectl config get-contexts
+    $ kubectl config get-contexts
     CURRENT   NAME                                CLUSTER           AUTHINFO                                NAMESPACE
             aks-repo-trial                      aks-repo-trial    clusterUser_aks-rg-01_aks-repo-trial
     *       aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
@@ -70,7 +70,7 @@ To set the Kubernetes cluster context:
     For example:
 
     ```console
-    kubectl config use-context aks-tap-cluster
+    $ kubectl config use-context aks-tap-cluster
     Switched to context "aks-tap-cluster".
     ```
 
@@ -98,19 +98,19 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
 
 ### <a id='linux-mac-tanzu-cli'></a> Install Tanzu CLI: Linux or macOS
 
-1. Create a `HOME/tanzu` directory on your local machine.
-2. Unpack the downloaded TAR file into the `HOME/tanzu` directory by running:
+1. Create a `$HOME/tanzu` directory on your local machine.
+2. Unpack the downloaded TAR file into the `$HOME/tanzu` directory by running:
 
    - **For Linux:**
 
      ```console
-     tar -xvf tanzu-framework-linux-amd64.tar -C HOME/tanzu
+     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
      ```
 
    - **For macOS:**
 
      ```console
-     tar -xvf tanzu-framework-darwin-amd64.tar -C HOME/tanzu
+     tar -xvf tanzu-framework-darwin-amd64.tar -C $HOME/tanzu
      ```
 
 3. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure that the local downloaded
@@ -123,24 +123,24 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
 4. Install or update the CLI core by running:
 
     >**Note** Replace v0.25.4 with the version you downloaded, which is found by inspecting the
-    >directory name under `HOME/tanzu/cli/core/`.</br>
-    For example, if the directory name under `HOME/tanzu/cli/core/` is v0.26.0, set the following
+    >directory name under `$HOME/tanzu/cli/core/`.</br>
+    For example, if the directory name under `$HOME/tanzu/cli/core/` is v0.26.0, set the following
     `VERSION` to `v0.26.0`.
 
    - **For Linux:**
 
      ```console
-     cd HOME/tanzu
+     cd $HOME/tanzu
      export VERSION=v0.25.4
-     sudo install cli/core/VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
+     sudo install cli/core/$VERSION/tanzu-core-linux_amd64 /usr/local/bin/tanzu
      ```
 
    - **For macOS:**
 
      ```console
-     cd HOME/tanzu
+     cd $HOME/tanzu
      export VERSION=v0.25.4
-     install cli/core/VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
+     install cli/core/$VERSION/tanzu-core-darwin_amd64 /usr/local/bin/tanzu
      ```
 
 5. Confirm the installation by running:
@@ -226,7 +226,7 @@ Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install).
 
 To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
 
-1. Install plug-ins from the `HOME/tanzu` directory (if on Linux or macOS) or `Program Files\tanzu`
+1. Install plug-ins from the `$HOME/tanzu` directory (if on Linux or macOS) or `Program Files\tanzu`
    directory (if on Windows) by running:
 
     ```console
