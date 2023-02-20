@@ -100,7 +100,7 @@ providers:
     - vSphere
     - Baremetal
 - Tanzu Kubernetes Grid multicloud.
-- vSphere with Tanzu v7.0 U3e or later. Not compatible with Tanzu Application Platform v1.0.0 or earlier.<br>
+- vSphere with Tanzu v7.0 U3f or later.<br>
 For vSphere with Tanzu, pod security policies must be configured so that Tanzu Application Platform controller pods can run as root.
 For more information, see the [Kubernetes documentation](https://kubernetes.io/docs/concepts/policy/pod-security-policy/).
 
