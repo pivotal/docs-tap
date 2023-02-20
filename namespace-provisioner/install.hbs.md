@@ -52,7 +52,7 @@ namespace_provisioner:
   additional_sources:
   # Patches the OOTB scan policy with a different rego data
   - git:
-       ref: origin/main
+      ref: origin/main
       subPath: namespace-provisioner-gitops-examples/default-resources-overrides/overlays
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     path: _ytt_lib/customize
