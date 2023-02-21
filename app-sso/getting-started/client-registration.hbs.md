@@ -33,7 +33,7 @@ spec:
    redirectURIs:
       - "http://test-app.example.com/oauth2/callback"
    requireUserConsent: false
-   clientAuthenticationMethod: basic
+   clientAuthenticationMethod: client_secret_basic
    authorizationGrantTypes:
       - "client_credentials"
       - "authorization_code"

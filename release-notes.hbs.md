@@ -14,6 +14,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 - Adds a consistent roles claim mapping API across OpenID, LDAP, and SAML identity providers
 - Introduces roles claim filtering API within an `AuthServer`s identity provider configuration.
+- Introduces standardized client authentication methods to `ClientRegistration` custom resource. See [`ClientRegistration` resource docs](./app-sso/crds/clientregistration.md) for more.
 
 ### <a id='1-5-0-cert-manager-ncf'></a> cert-manager
 
@@ -48,6 +49,10 @@ This release has the following known issues, listed by area and component.
 
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
+
+### <a id='1-5-0-appsso-deprecations'></a> Application Single Sign-On (AppSSO)
+
+- `ClientRegistration` resource `clientAuthenticationMethod` field values `post` and `basic` have been deprecated. Please rely on `client_secret_post` and `client_secret_basic`, respectively, instead.
 
 #### <a id='1-5-0-convention-controller-dp'></a> Convention Controller
 - This component is now fully deprecated in this release and is now fully replaced by [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions) which implements the `conventions.carto.run` API that implementes all the features that were avaialble in the Convention Controller component.
