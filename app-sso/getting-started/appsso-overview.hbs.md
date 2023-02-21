@@ -27,18 +27,25 @@ etc.). Here is an example of an `id_token` as issued by an Authorization Server:
 
 ```json
 {
-  "iss": "https://appsso.example.com",
-  "sub": "213435498y",
-  "aud": "my-client",
-  "nonce": "fkg0-90_mg",
-  "exp": 1656929172,
-  "iat": 1656928872,
-  "name": "Jane Doe",
-  "given_name": "Jane",
-  "family_name": "Doe",
-  "email": "jane.doe@example.com"
+	"iss": "https://appsso.example.com",
+	"sub": "213435498y",
+	"aud": "my-client",
+	"nonce": "fkg0-90_mg",
+	"exp": 1656929172,
+	"iat": 1656928872,
+	"name": "Jane Doe",
+	"given_name": "Jane",
+	"family_name": "Doe",
+	"email": "jane.doe@example.com",
+	"roles": [
+		"developer",
+		"org-user"
+	]
 }
 ```
+
+> **Note** `roles` claim can only be part of an `id_token` when user roles are mapped AND 'roles' scope is requested. 
+> More info on mapping for [OpenID Connect](../service-operators/identity-providers.hbs.md#openid-external-groups-mapping), [LDAP](../service-operators/identity-providers.hbs.md#ldap-external-groups-mapping), and [SAML](../service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
 
 ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../service-operators/token-signature.md). Client
 applications may verify their validity using the AuthServer's public keys.
