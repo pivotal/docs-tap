@@ -87,6 +87,41 @@ You can wait for the next build of the workloads that new source code changes tr
 If you do not want to wait for subsequent builds to run automatically, follow the instructions in
 [Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
 
+### <a id="full-profile-upgrade-tbs-deps"></a> Upgrade the full dependencies package
+
+If you installed the [`full` dependencies package](install.md#tap-install-full-deps), 
+you can upgrade the package by following these steps:
+
+1. After upgrading Tanzu Application Platform, retrieve the latest version of the
+   Tanzu Build Service package by running:
+
+    ```console
+    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    ```
+
+1. Relocate the Tanzu Build Service `full` dependencies package repository by running:
+
+    ```console
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
+    --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps
+    ```
+
+    Where `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
+
+1. Update the Tanzu Build Service  `full` dependencies package repository by running:
+
+    ```console
+    tanzu package repository add tbs-full-deps-repository \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps:VERSION \
+      --namespace tap-install
+    ```
+
+1. Update the `full` dependencies package by running:
+
+    ```console
+    tanzu package installed update full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
+    ```
+
 ### <a id="upgrade-order"></a> Multicluster upgrade order
 
 Upgrading a [multicluster deployment](multicluster/installing-multicluster.hbs.md) requires updating multiple clusters with different profiles.
