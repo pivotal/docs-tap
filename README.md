@@ -198,7 +198,7 @@ Use this table to keep a running list of terms used and how they should be defin
 |Tanzu Application Platform Telemetry|Tanzu Application Platform Telemetry|
 |Tanzu Build Service|Tanzu Build Service|
 |VMware Tanzu Developer Tools for IntelliJ|Tanzu Developer Tools for IntelliJ|
-|VMware Tanzu Developer Tools for Visual Studio|Tanzu Developer Tools for VS|
+|VMware Tanzu Developer Tools for Visual Studio|Tanzu Developer Tools for Visual Studio|
 |VMware Tanzu Developer Tools for Visual Studio Code|Tanzu Developer Tools for VS Code|
 |VMware Tanzu Application Platform Pipeline service with Tekton|Tekton Pipelines|
 
