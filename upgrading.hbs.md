@@ -87,12 +87,12 @@ You can wait for the next build of the workloads that new source code changes tr
 If you do not want to wait for subsequent builds to run automatically, follow the instructions in
 [Builds fail after upgrading to Tanzu Application Platform v1.2](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-tanzu-build-service-troubleshooting.html#builds-fail-after-upgrading-to-tanzu-application-platform).
 
-### <a id="full-profile-upgrade-tbs-deps"></a> Upgrading the full dependencies package
+### <a id="full-profile-upgrade-tbs-deps"></a> Upgrade the full dependencies package
 
-If you installed the [`full` dependencies package](install.md#tap-install-full-deps),
-you can upgrade the package by:
+If you installed the [`full` dependencies package](install.md#tap-install-full-deps), 
+you can upgrade the package by following these steps:
 
-1. After upgrading Tanzu Application Platform, get the latest version of the
+1. After upgrading Tanzu Application Platform, retrieve the latest version of the
    Tanzu Build Service package by running:
 
     ```console

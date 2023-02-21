@@ -44,8 +44,12 @@ etc.). Here is an example of an `id_token` as issued by an Authorization Server:
 }
 ```
 
-> **Note** `roles` claim can only be part of an `id_token` when user roles are mapped AND 'roles' scope is requested. 
-> More info on mapping for [OpenID Connect](../service-operators/identity-providers.hbs.md#openid-external-groups-mapping), [LDAP](../service-operators/identity-providers.hbs.md#ldap-external-groups-mapping), and [SAML](../service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
+`roles` claim can only be part of an `id_token` when user roles are mapped and 'roles' scope is requested. 
+For more information about mapping for OpenID Connect, LDAP and SAML, see:
+
+- [OpenID external groups mapping](../service-operators/identity-providers.hbs.md#openid-external-groups-mapping)
+- [LDAP external groups mapping](../service-operators/identity-providers.hbs.md#ldap-external-groups-mapping)
+- [SAML external groups mapping](../service-operators/identity-providers.hbs.md#saml-external-groups-mapping)
 
 ID Tokens are signed by the `AuthServer`, using [Token Signature Keys](../service-operators/token-signature.md). Client
 applications may verify their validity using the AuthServer's public keys.

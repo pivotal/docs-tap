@@ -76,12 +76,13 @@ You can also run `curl -s "https://openid.example.com/.well-known/openid-configu
   signatures.
 - `roles.fromUpstream.claim` (optional) selects which claim in the `id_token` contains the `roles` of
   the user. `roles` is a non-standard OpenID Connect claim. When `ClientRegistrations` has a `roles` scope,
-  it is used to populate the `roles` claim in the `id_token` issued by the `AuthServer`. Read more about [external groups mapping](#openid-external-groups-mapping).
+  it is used to populate the `roles` claim in the `id_token` issued by the `AuthServer`. 
+  For more information, see [OpenID external groups mapping](#openid-external-groups-mapping).
   - `my-oidc-provider-groups` claim from the ID token issued by `my-oidc-provider` is mapped into the `roles` claim in id tokens issued by AppSSO.
 
 Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and select `my-oidc-provider`.
 
-### <a id='openid-external-groups-mapping'></a> External groups mapping
+### <a id='openid-external-groups-mapping'></a> OpenID external groups mapping
 
 Service operators may map the identity provider's "groups" (or equivalent) claim to the `roles` claim within
 an `AuthServer`'s identity token.
@@ -219,7 +220,7 @@ Where:
 
 Verify the configuration by visiting the `AuthServer`'s issuer URI in your browser and log in with the username and password from LDAP.
 
-### <a id='ldap-external-groups-mapping'></a> External groups mapping
+### <a id='ldap-external-groups-mapping'></a> LDAP external groups mapping
 
 Service operators may map the identity provider's "groups" (or equivalent) attribute to the `roles` claim within
 an `AuthServer`'s identity token.
@@ -580,7 +581,7 @@ spec:
         emailAddress: email
 ```
 
-### <a id='saml-external-groups-mapping'></a> External groups mapping
+### <a id='saml-external-groups-mapping'></a> SAML external groups mapping
 
 Service operators may map the identity provider's "groups" (or equivalent) attribute to the `roles` claim within
 an `AuthServer`'s identity token.
