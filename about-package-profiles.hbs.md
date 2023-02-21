@@ -197,7 +197,7 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
 
   Supply Chain Security Tools - Sign provides an admission controller that allows a cluster operator
   to specify a policy that allows or denies images from running based on signature verification
-  against public keys. It works with
+  against public keys. SCST - Sign works with
   [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for fine-tuned
   configuration based on image source patterns.
 
@@ -222,8 +222,7 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   Tanzu Application Platform and send it back to VMware for product improvements. A benefit of
   remaining enrolled in telemetry and identifying your company during Tanzu Application Platform
   installation is that VMware can provide your organization with use reports about Tanzu Application
-  Platform. See [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports)
-  for more information about enrolling in telemetry reports.
+  Platform. For information about enrolling in telemetry reports, see [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports).
 
   >**Note** You can opt out of telemetry collection by following the
   >instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).
