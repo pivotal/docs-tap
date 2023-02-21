@@ -156,10 +156,7 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
     ...
     ```
 
-6. Enable tab completion:</br>
-   (recommended, but optional)
-
-   Follow the shell-specific instructions from completion help:
+6. Optionally, enable tab completion. Follow the shell-specific instructions from completion help:
 
    ```console
    tanzu completion --help
