@@ -23,7 +23,7 @@ When Tanzu Application Platform is upgraded, new dependencies are installed whic
 workload images to rebuild.
 To ensure dependency compatibility, Tanzu Build Service only releases patches for
 dependencies in patch versions of Tanzu Application Platform.
-For upgrade instructions, see [Upgrading Tanzu Application Platform](../upgrading.md).
+For upgrade instructions, see [Upgrading the full dependencies package](../upgrading.md#full-profile-upgrade-tbs-deps).
 
 To upgrade Tanzu Build Service dependencies outside of Tanzu Application Platform releases, use the
 `kpack` CLI. This enables you to consume new versions of buildpacks and stacks and remediate

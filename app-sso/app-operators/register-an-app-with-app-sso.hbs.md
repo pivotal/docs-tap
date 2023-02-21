@@ -72,7 +72,7 @@ spec:
     - client_credentials
     - authorization_code
     - refresh_token
-  clientAuthenticationMethod: basic
+  clientAuthenticationMethod: client_secret_basic
   requireUserConsent: true
   redirectURIs:
     - "<MY_WORKLOAD_HOSTNAME>/redirect-back-uri"
@@ -165,7 +165,7 @@ The credentials provided by the service claim are:
 - **Issuer URI** - web address of AppSSO, and the primary location that your Workload will go to when interacting with
   AppSSO.
 - **Authorization Grant Types** - list of desired OAuth 2 grant types that your wants to support.
-- **Client Authentication Method** - method in which the client application requests an identity or access token
+- **Client Authentication Method** - method in which the client is authenticated when requesting an identity or access token.
 - **Scopes** - list of desired scopes that your application's users will have access to.
 
 The above credentials are mounted onto your Workload's Pod(s) as individual files at the following locations:

@@ -21,6 +21,8 @@ Token signature keys are configured by using `spec.tokenSignature`. This is a re
 [Token signatures](../service-operators/token-signature.md) for more context.
 
 Identity providers are configured under `spec.identityProviders`. If there are none, end-users won't be able to log in.
+See [identity providers page](../service-operators/identity-providers.hbs.md) for more details on configuring identity
+providers.
 
 The deployment can be further customized by configuring replicas, resources, http server and logging properties.
 
@@ -116,12 +118,24 @@ spec:
         user:
           searchFilter: ""
           searchBase: ""
-        group:
-          searchFilter: ""
-          searchBase: ""
-          searchSubTree: false
-          searchDepth: 0
-          roleAttribute: ""
+        roles: # optional
+          fromUpstream:
+            attribute: "" # required
+            search:
+              filter: ""
+              base: ""
+              subTree: false
+              depth: 0
+          filterBy: # optional
+            - exactMatch: ""
+            - regex: "" # must be valid regular expression
+        group:    # DEPRECATED, use 'ldap.roles.fromUpstream' instead.
+          search: # DEPRECATED, use 'ldap.roles.fromUpstream.search' instead.
+            filter: ""
+            base: ""
+            subTree: false
+            depth: 0
+          roleAttribute: "" # DEPRECATED, use 'ldap.roles.fromUpstream.attribute' instead.
     - name: "" # must be unique
       openID:
         issuerURI: ""
@@ -130,10 +144,24 @@ spec:
           name: ""
         scopes:
           - ""
+        claimMappings: # DEPRECATED, use 'openID.roles.fromUpstream.claim' instead.
+          roles: ""
+        roles: # optional
+          fromUpstream:
+            claim: "" # required
+          filterBy: # optional
+            - exactMatch: ""
+            - regex: "" # must be valid regular expression
     - name: "" # must be unique
       saml:
         metadataURI: ""
         claimMappings: { }
+        roles: # optional
+          fromUpstream:
+            attribute: "" # required
+          filterBy: # optional
+            - exactMatch: ""
+            - regex: "" # must be valid regular expression
   replicas: 1 # optional, default 2
   logging: "" # optional, must be valid YAML
   server: "" # optional, must be valid YAML
@@ -372,8 +400,9 @@ spec:
         jwksUri: https://dev-xxxxxx.okta.com/oauth2/v1/keys
         scopes:
           - openid
-        claimMappings:
-          roles: my_custom_okta_roles_claim
+        roles:
+          fromUpstream:
+            claim: my_custom_okta_roles_claim
 
 ---
 apiVersion: secretgen.k14s.io/v1alpha1
