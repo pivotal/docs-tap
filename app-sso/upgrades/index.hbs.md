@@ -16,7 +16,7 @@ tanzu package installed update PACKAGE_INSTALLATION_NAME -p sso.apps.tanzu.vmwar
 
 ### <a id="v3-to-v3_1">`v3.0.0` to `v3.1.0`
 
-VMware recommends that you recreate your `AuthServers` after upgrading your AppSSO to `v3.1.0`
+VMware recommends that you recreate your `AuthServers` after upgrading your AppSSO to `v3.1.0` 
 with the following changes:
 
 - Migrate field `.spec.identityProviders[*].openid.claimMappings["roles"]` to `.spec.identityProviders[*].openid.roles.fromUpstream.claim`.

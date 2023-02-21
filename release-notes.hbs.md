@@ -12,9 +12,10 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ### <a id='1-5-0-appsso-new-features'></a> Application Single Sign-On (AppSSO)
 
-- Adds a consistent roles claim mapping API across OpenID, LDAP, and SAML identity providers
-- Introduces roles claim filtering API within an `AuthServer`s identity provider configuration.
-- Introduces standardized client authentication methods to `ClientRegistration` custom resource. See [`ClientRegistration` resource docs](./app-sso/crds/clientregistration.md) for more.
+- Adds a consistent roles claim mapping API across OpenID, LDAP, and SAML identity providers.
+- Introduces roles claim filtering API in an `AuthServer`s identity provider configuration.
+- Introduces standardized client authentication methods to `ClientRegistration` custom resource. 
+For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
 ### <a id='1-5-0-cert-manager-ncf'></a> cert-manager
 

@@ -20,9 +20,8 @@ See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more info
 Token signature keys are configured by using `spec.tokenSignature`. This is a required field. See
 [Token signatures](../service-operators/token-signature.md) for more context.
 
-Identity providers are configured under `spec.identityProviders`. If there are none, end-users won't be able to log in.
-See [identity providers page](../service-operators/identity-providers.hbs.md) for more details on configuring identity
-providers.
+You can configure identity providers under `spec.identityProviders`. If there is none, end-users can not log in. 
+For more information about configuring identity providers, see [Identity providers](../service-operators/identity-providers.hbs.md).
 
 The deployment can be further customized by configuring replicas, resources, http server and logging properties.
 
@@ -76,7 +75,7 @@ spec:
     secretRef:
       name: ""
     deactivated: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
-    disabled: false # Deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
+    disabled: false # deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
   tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""
@@ -129,13 +128,13 @@ spec:
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expression
-        group:    # DEPRECATED, use 'ldap.roles.fromUpstream' instead.
-          search: # DEPRECATED, use 'ldap.roles.fromUpstream.search' instead.
+        group:    # deprecated, use 'ldap.roles.fromUpstream' instead.
+          search: # deprecated, use 'ldap.roles.fromUpstream.search' instead.
             filter: ""
             base: ""
             subTree: false
             depth: 0
-          roleAttribute: "" # DEPRECATED, use 'ldap.roles.fromUpstream.attribute' instead.
+          roleAttribute: "" # deprecated, use 'ldap.roles.fromUpstream.attribute' instead.
     - name: "" # must be unique
       openID:
         issuerURI: ""
@@ -144,7 +143,7 @@ spec:
           name: ""
         scopes:
           - ""
-        claimMappings: # DEPRECATED, use 'openID.roles.fromUpstream.claim' instead.
+        claimMappings: # deprecated, use 'openID.roles.fromUpstream.claim' instead.
           roles: ""
         roles: # optional
           fromUpstream:
@@ -161,7 +160,7 @@ spec:
             attribute: "" # required
           filterBy: # optional
             - exactMatch: ""
-            - regex: "" # must be valid regular expression
+            - regex: "" # must be valid regular expressions
   replicas: 1 # optional, default 2
   logging: "" # optional, must be valid YAML
   server: "" # optional, must be valid YAML
