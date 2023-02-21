@@ -52,6 +52,7 @@ must have `policy.sigstore.dev/include` set to `false` or not be set.
 Therefore, they are exempted from Policy Controller validation.
 
 **Image Policy Webhook:**
+
 ```yaml
 ---
 apiVersion: signing.apps.tanzu.vmware.com/v1beta1
@@ -77,7 +78,7 @@ spec:
 `spec.verification.keys[].publicKey` from Image Policy Webhook is mapped to
 `spec.authorities[].key.data` for Policy Controller.
 
-The `name` associated to each `key` is no longer required. Image Policy Webhook
+The `name` associated with each `key` is no longer required. Image Policy Webhook
 has direct association between `key` name and `imagePattern`. For Policy
 Controller, multiple `ClusterImagePolicy` resources are defined to create
 direct association between image patterns and key authorities.
@@ -90,6 +91,7 @@ Each `ClusterImagePolicy` has the image glob pattern defined and the
 associated key authorities defined.
 
 **Image Policy Webhook:**
+
 ```yaml
 ---
 apiVersion: signing.apps.tanzu.vmware.com/v1beta1
@@ -112,12 +114,13 @@ spec:
 ```
 
 **Policy Controller:**
+
 ```yaml
 ---
 apiVersion: policy.sigstore.dev/v1beta1
 kind: ClusterImagePolicy
 metadata:
-  name: POLICY_NAME
+  name: POLICY-NAME
 spec:
   authorities:
   ...
@@ -132,6 +135,7 @@ spec:
   ...
 ```
 
+Where `POLICY-NAME` is the name of the cluster image policy you want to use.
 
 ## <a id="img-matching"></a> Specifying Image Matching
 
@@ -181,11 +185,13 @@ spec:
 apiVersion: policy.sigstore.dev/v1beta1
 kind: ClusterImagePolicy
 metadata:
-  name: POLICY_NAME
+  name: POLICY-NAME
 spec:
   images:
   - glob: gcr.io/projectsigstore/cosign*
 ```
+
+Where `POLICY-NAME` is the name of the cluster image policy you want to use.
 
 ## <a id="img-matching"></a> Specifying policy mode
 If `AllowUnmatchedImages` is set to `true` in the Image Policy Webhook deployment
