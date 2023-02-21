@@ -7,6 +7,7 @@ referenced by the intended Kubernetes object created for performing the action.
 The following sections provide details about how to appropriately set up
 Kubernetes secrets for carrying those credentials forward to the proper resources.
 
+>**Important** For both HTTP(s) and SSH, do not use the same server for multiple secrets to avoid a Tekton error.
 
 ## <a id="http"></a>HTTP
 
