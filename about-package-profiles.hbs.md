@@ -167,7 +167,7 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
   Supply Chain Security Tools - Sign provides an admission controller that allows a cluster operator
   to specify a policy that allows or denies images from running based on signature verification
-  against public keys. It works with
+  against public keys. SCST - Sign works with
   [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for fine-tuned
   configuration based on image source patterns.
 
