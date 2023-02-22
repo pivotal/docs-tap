@@ -29,7 +29,7 @@ spec:
     - client_credentials
     - authorization_code
     - refresh_token
-  clientAuthenticationMethod: "" # optional, values accepted described in client authentication methods section below
+  clientAuthenticationMethod: "" # optional, values accepted are described in Client authentication methods section 
   requireUserConsent: false # optional
 status:
   authServerRef:
@@ -61,14 +61,15 @@ kubectl explain clientregistrations.sso.apps.tanzu.vmware.com
 
 Client authentication methods supported by `ClientRegistration` resource are:
 
-- `client_secret_basic` - HTTP header based based client authentication.
-- `client_secret_post` - HTTP POST body based client authentication.
-- `basic` (DEPRECATED) -  HTTP header based based client authentication. Rely on `client_secret_basic` instead.
-- `post` (DEPRECATED) - HTTP POST body based client authentication. Rely on `client_secret_post` instead.
-- `none` - No client authentication. Required for public clients. [Read more here](#public-clients)
+- `client_secret_basic`: HTTP header based client authentication.
+- `client_secret_post`: HTTP POST body based client authentication.
+- `basic` (deprecated):  HTTP header based client authentication. Use `client_secret_basic` instead.
+- `post` (deprecated): HTTP POST body based client authentication. Use `client_secret_post` instead.
+- `none`: No client authentication. Required for public clients. 
+For more information, see [Configuring public clients](#public-clients).
 
 > **Caution** When running Workloads using Spring Boot 3, you must use `client_secret_basic` or `client_secret_post`.
-> [Read more here](../known-issues/index.md#boot3-clientreg).
+> For more information, see [Spring Boot 3 based Workloads and `ClientRegistration` resources](../known-issues/index.md#boot3-clientreg).
 
 ## Status & conditions
 

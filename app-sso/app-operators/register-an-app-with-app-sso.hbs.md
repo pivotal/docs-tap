@@ -159,14 +159,15 @@ volume containing the necessary credentials required by your application to beco
 
 The credentials provided by the service claim are:
 
-- **Client ID** - the identifier of your Workload that AppSSO is registered with. This is a unique identifier.
-- **Client Secret** - secret string value used by AppSSO to verify your client during its interactions. Keep this value
-  secret.
-- **Issuer URI** - web address of AppSSO, and the primary location that your Workload will go to when interacting with
-  AppSSO.
-- **Authorization Grant Types** - list of desired OAuth 2 grant types that your wants to support.
-- **Client Authentication Method** - method in which the client is authenticated when requesting an identity or access token.
-- **Scopes** - list of desired scopes that your application's users will have access to.
+- `client-id`: the identifier of your `Workload` that AppSSO is registered with. 
+This is a unique identifier.
+- `client-secret`: secret string value used by AppSSO to verify your client. 
+Keep this value secret.
+- `issuer-uri`: web address of AppSSO, and the primary location that your `Workload` 
+goes to when interacting with AppSSO.
+- `authorization-grant-types`: list of desired OAuth 2 grant types.
+- `client-authentication-method`: method in which the client is authenticated when requesting an identity or access token.
+- `scope`: list of desired scopes that your application's users have access to.
 
 The above credentials are mounted onto your Workload's Pod(s) as individual files at the following locations:
 
