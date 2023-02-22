@@ -1,27 +1,28 @@
 # External Secrets Operator (alpha)
 
->**Caution** External Secrets Operator is currently in alpha and is intended for evaluation and test purposes only. Do not use in a production environment.
+>**Caution** External Secrets Operator is in alpha and is intended for
+>evaluation and test purposes only. Do not use in a production environment.
 
 The [External Secrets Operator](https://external-secrets.io) is a Kubernetes
-operator that integrates with external secret management systems, for example Google
-Secrets Manager and Hashicorp Vault. It reads information from external APIs and
-automatically injects the values into a Kubernetes secret.
+operator that integrates with external secret management systems, for example,
+Google Secrets Manager and Hashicorp Vault. It reads information from external
+APIs and automatically injects the values into a Kubernetes secret. Tanzu
+Application Platform repackages the External Secrets Operator into a Carvel
+bundle.
 
-Starting with Tanzu Application Platform 1.4.0, Tanzu Application Platform repackages this open
-source Kubernetes operator into a Carvel bundle that ships with Tanzu Application Platform.
+Tanzu Application Platform's External Secrets package is alpha software and does
+not constitute an entire solution. VMware expects later Tanzu Application
+Platform releases to have a more comprehensive secret management solution. Tanzu
+Application Platform v1.4.0 packages External Secrets Operator v0.6.1.
 
-Tanzu Application Platform's External Secrets package is alpha software and does not constitute an
-entire solution.  VMware expects later Tanzu Application Platform releases to have a more comprehensive secret
-management solution. Tanzu Application Platform 1.4.0 packages External Secrets Operator 0.6.1.
-
-### Installing the External Secrets Operator
+## Installing the External Secrets Operator
 
 Tanzu Application Platform packages a version of the External Secrets Operator
-that can be installed in the `tap-install` namespace.  The External Secrets
+that you can install in the `tap-install` namespace.  The External Secrets
 Operator is an optional Tanzu Application Platform component. It does not come installed with any of
 the default Tanzu Application Platform profiles.
 
-```sh
+```console
 ESO_VERSION=0.6.1+tap.2
 TAP_NAMESPACE=tap-install
 
@@ -31,20 +32,22 @@ tanzu package install external-secrets \
   --namespace "$TAP_NAMESPACE"
 ```
 
-### Using the External Secrets Operator
+## Using the External Secrets Operator
 
-Further instructions and guides for how to use the External Secrets Operator
-can be found on the [External Secrets Operator site](https://external-secrets.io). The following example demonstrates a simple use case for configuring external secrets in a Supply Chain.
+The following example demonstrates a use case for configuring external
+secrets in a Supply Chain.
 
 ### Connecting to a secret manager
 
 #### Example : Google Secret Manager
 
-In order to connect to a Google Secret Manager instance, you need a service account with the appropriate permissions. The following steps detail how to create a `ClusterStore` reource that uses this service account to connect to your Secret Manager.
+To connect to a Google Secret Manager instance, you need a service account with the appropriate
+permissions. The following steps detail how to create a `ClusterStore` resource
+that uses this service account to connect to your Secret Manager.
 
 1. Create a secret that holds the service account. Run:
 
-    ```sh
+    ```console
     ytt -f google-secrets-manager-secret.yaml  \
       --data-value gcp_secret_name=google-secrets-manager-secret  \
       --data-value secrets_namespace=external-secrets \
@@ -69,9 +72,9 @@ In order to connect to a Google Secret Manager instance, you need a service acco
     type: Opaque
     ```
 
-1. Create a `ClusterStoreSecret` resource that references the secret above. Run:
+2. Create a `ClusterStoreSecret` resource that references the earlier secret. Run:
 
-    ```sh
+    ```console
     export GOOGLE_PROJECT_ID="project-id-name"
     ytt -f google-secrets-store.yaml \
     --data-value cluster_store_name=google-secrets-manager-store-secret \
@@ -99,11 +102,11 @@ In order to connect to a Google Secret Manager instance, you need a service acco
                 name: #@ data.values.secret_name
                 namespace: external-secrets
           projectID: #@ data.values.google_project_id
-    You will need to create a serviceaccount with the right access permissions to your Secrets Manager and asscoiated key to
+    You will need to create a service account with the right access permissions to your Secrets Manager and associated key to
     create a secret that holds your service account to allow you to connect to your Google Secret Manager instance.
     ```
 
-3. To check that you have correctly authenticated to the Secret Manager, run:
+3. To verify that you have correctly authenticated to the Secret Manager, run:
 
     ```sh
       tanzu external-secrets stores list -A
@@ -111,9 +114,17 @@ In order to connect to a Google Secret Manager instance, you need a service acco
       Cluster    google-secrets-manager-cluster-store  Google Secrets Manager  Valid
     ```
 
-### Create a synced secret
+For more information about using the External Secrets Operator,
+see the [External Secrets Operator
+site](https://external-secrets.io).
 
-The secret to be synced must exist on your Secret Manager. Alternatively, you can create one. For example, say you want to acccess your secret to access a maven repository stored in a secret `maven-registry-credential` in your Secret Manager. First, create an external secrets resource with a reference to the secret to be synced and the `Valid` `ClusterStore` configured earlier. Run:
+### Create a sychronized secret
+
+The secret to be sychronized must exist on your Secret Manager. Alternatively, you
+can create one. For example, say you want to access your secret to access a
+maven repository stored in a secret `maven-registry-credential` in your Secret
+Manager. First, create an external secrets resource with a reference to the
+secret to be sychronized and the `Valid` `ClusterStore` configured earlier. Run:
 
 ```sh
 kubectl apply -f external-secret.yaml
@@ -156,11 +167,11 @@ spec:
       engineVersion: v2
 ```
 
-### Using a synced secret
+### Using a sychronized secret
 
-The following example uses the synced secret to access a maven artifact:
+The following example uses the sychronized secret to access a maven artifact:
 
-```sh
+```console
 local readonly workload_name='java-web-app'
 
 tanzu apps wld apply $workload_name \
