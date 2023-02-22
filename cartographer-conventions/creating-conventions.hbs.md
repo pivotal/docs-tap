@@ -31,9 +31,9 @@ distinct components of Cartographer Conventions:
 
 The convention server is the component that applies a convention already defined
 on the server. For a golang example of creating a convention server to add
-springboot conventions, see
+Spring Boot conventions, see
 [spring-convention-server](https://github.com/vmware-tanzu/cartographer-conventions/tree/main/samples/spring-convention-server)
-in Github. The  resource that facilitates structuring the request body of the
+in GitHub. The resource that structures the request body of the
 request and response from the server is the
 [PodConventionContext](./reference/pod-convention-context.hbs.md).
 
@@ -64,8 +64,8 @@ The conditional criteria for a convention are based on any property or value fou
 
 If a convention's criteria are met, the convention server enriches the PodTemplateSpec
 in the PodIntent. The convention server also updates the `status` section of the PodIntent
-with the name of the convention that's been applied.
-So if needed, you can figure out after the fact which conventions were applied to the workload.
+with the name of the convention that's applied.
+You can figure out after the fact which conventions were applied to the workload.
 
 To provide flexibility in how conventions are organized, you can deploy multiple convention servers. Each server can contain a convention or set of conventions focused on a
 specific class of runtime modifications, on a specific language framework, and so on. How
@@ -145,7 +145,7 @@ The following prerequisites must be met before a convention is developed and dep
     kubectl config use-context CONTEXT_NAME
     ```
 
-+ You use Github to install the ko CLI. See the [google/ko](https://github.com/google/ko) GitHub repository. These instructions use `ko` to build an image. If there is an existing image or build process, `ko` is optional.)
++ You use GitHub to install the ko CLI. See the [google/ko](https://github.com/google/ko) GitHub repository. These instructions use `ko` to build an image. If there is an existing image or build process, `ko` is optional.)
 
 ## <a id='define-conv-criteria'></a> Define convention criteria
 
@@ -323,6 +323,7 @@ The `conventions.carto.run/v1alpha1` API allows convention authors to use the `s
             awesome-annotation: awesome-value
       ...
     ```
+
 + PodIntent
 
     ```yaml
@@ -334,6 +335,7 @@ The `conventions.carto.run/v1alpha1` API allows convention authors to use the `s
             environment: production
             ...
     ```
+
 The `selectorTarget` field is configured on the ClusterPodConvention as follows:
 
 ```yaml

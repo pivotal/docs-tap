@@ -56,4 +56,5 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 - `ClientRegistration` resource `clientAuthenticationMethod` field values `post` and `basic` have been deprecated. Please rely on `client_secret_post` and `client_secret_basic`, respectively, instead.
 
 #### <a id='1-5-0-convention-controller-dp'></a> Convention Controller
-- This component is now fully deprecated in this release and is now fully replaced by [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions) which implements the `conventions.carto.run` API that implementes all the features that were avaialble in the Convention Controller component.
+
+- This component is deprecated in this release and is fully replaced by [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions) which implements the `conventions.carto.run` API that includes all the features that were available in the Convention Controller component.

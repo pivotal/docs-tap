@@ -22,10 +22,10 @@
    plug-in](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) and click
    **Install**.
 
->**Note** Code assist for authoring accelerators is also available in the IntelliJ IDE. You can
->enable this by selecting **Application Accelerator** in the schema mapping drop-down menu. For
->more information about how to enable this, see the IntelliJ [Using schemas from JSON Schema
->Store](https://www.jetbrains.com/help/idea/json.html#ws_json_using_schemas) documentation.
+    >**Note** Code assist for authoring accelerators is also available in the IntelliJ IDE. You can
+    >enable this by selecting **Application Accelerator** in the schema mapping drop-down menu. For
+    >more information about how to enable this, see the IntelliJ [Using schemas from JSON Schema
+    >Store](https://www.jetbrains.com/help/idea/json.html#ws_json_using_schemas) documentation.
 
 1. After you install the plug-in, editing files entitled `accelerator.yaml` automatically uses the
    code assist capabilities.
@@ -254,9 +254,9 @@ accelerator.
 
 5. After configuration is complete, click **Next**.
 
-> **Note** Depending on your organization's Tanzu Application Platform configuration, you might be
-> presented with an option to create a Git repository. In this guide, this is skipped and is covered
-> in [Deploy an app on Tanzu Application Platform](deploy-first-app.hbs.md).
+    > **Note** Depending on your organization's Tanzu Application Platform configuration, you might be
+    > presented with an option to create a Git repository. In this guide, this is skipped and is covered
+    > in [Deploy an app on Tanzu Application Platform](deploy-first-app.hbs.md).
 
 6. On the **Review and generate** step, review the parameters and click **Generate Accelerator**.
 7. Explore the ZIP file of the configured project and verify that the project is generated with the

@@ -197,7 +197,7 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
 
   Supply Chain Security Tools - Sign provides an admission controller that allows a cluster operator
   to specify a policy that allows or denies images from running based on signature verification
-  against public keys. It works with
+  against public keys. SCST - Sign works with
   [cosign signature format](https://github.com/sigstore/cosign#quick-start) and allows for fine-tuned
   configuration based on image source patterns.
 
@@ -222,8 +222,7 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
   Tanzu Application Platform and send it back to VMware for product improvements. A benefit of
   remaining enrolled in telemetry and identifying your company during Tanzu Application Platform
   installation is that VMware can provide your organization with use reports about Tanzu Application
-  Platform. See [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports)
-  for more information about enrolling in telemetry reports.
+  Platform. For information about enrolling in telemetry reports, see [Tanzu Application Platform usage reports](telemetry/overview.hbs.md#usage-reports).
 
   >**Note** You can opt out of telemetry collection by following the
   >instructions in [Opting out of telemetry collection](opting-out-telemetry.hbs.md).
@@ -955,7 +954,7 @@ and Live Update function in the inner loop.
 
 **Extended Scanning Coverage:** When building container images with the Tanzu Build Service, the Cloud Native Build Packs used in the build process for the specified languages produce a Software Bill of Materials (SBOM).  Some scan engines support the enhanced ability to use this SBOM as a source for the scan. Out of the Box Supply Chain - Testing and Scanning leverages Anchore's Grype for the image scan, which suppports this capability.  In addition, users have the ability to leverage Carbon Black Container image scans, which also supports this enhanced scan coverage.
 
->**Note:** Different scanners may have different limitation. Please see [Supported Scanner Matrix for Supply Chain Security Tools - Scan](scst-scan/scanner-matrix.hbs.md)
+>**Note:** Different scanners may have different limits. See [Supported Scanner Matrix for Supply Chain Security Tools - Scan](scst-scan/scanner-matrix.hbs.md).
 
 ## <a id='install'></a> Installing Tanzu Application Platform
 

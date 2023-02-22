@@ -157,13 +157,13 @@ Scanner configuration. You can add fields as needed to activate or deactivate be
 
 To see all available values, run the following command using the version that you want:
 
-```shell
+```console
 tanzu package available get trivy.scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
 ```
 
 Example output:
 
-```shell
+```console
   KEY                                           DEFAULT                                                           TYPE    DESCRIPTION                                                                       
   scanner.docker.password                                                                                         string  <nil>                                                                             
   scanner.docker.server                                                                                           string  <nil>                                                                             
@@ -337,7 +337,7 @@ spec:
       }
 ```
 
-Apply tp the YAML:
+Apply to the YAML:
 
 ```console
 kubectl apply -n $DEV-NAMESPACE -f SCAN-POLICY-YAML
@@ -365,6 +365,7 @@ Install the `oras` cli. See [Installation](https://oras.land/cli/) in the ORAS d
 >**Note** Using a relocated database means you are taking responsibility for keeping it up to date to ensure that security scans are relevant. Stale databases weaken your security posture.
 
 If you have a host with access, you can use the `oras` cli to perform a copy.
+
 ```shell
 oras copy -r ghcr.io/aquasecurity/trivy-db:2 registry.company.com/project_name/trivy-db:2 # the tag of 2 is required
 
@@ -376,9 +377,9 @@ Digest: sha256:ed57874a80499e858caac27fc92e4952346eb75a2774809ee989bcd2ce48897a
 
 If not, you can use the `oras` cli to download the database and manifest and then push to your registry.
 
-1. Download the trivy-db
+1. Download the trivy-db.
 
-   ```shell
+   ```console
    oras pull ghcr.io/aquasecurity/trivy-db:2
    Downloading 1612cc15d377 db.tar.gz
    Downloaded  1612cc15d377 db.tar.gz
@@ -386,15 +387,15 @@ If not, you can use the `oras` cli to download the database and manifest and the
    Digest: sha256:af903c7ddbe7516f18b06254b6297cf53c0ece918def07322925c71d2f694860
    ```
 
-2. Download the manifest for trivy-db
+2. Download the manifest for trivy-db.
 
-   ```shell
+   ```console
    oras manifest fetch ghcr.io/aquasecurity/trivy-db:2 > trivy-db-manifest.json
    ```
 
-3. Push the prior downloaded trivy-db to your registry
+3. Push the prior downloaded trivy-db to your registry.
 
-   ```shell
+   ```console
    oras push registry.company.com/project_name/trivy-db:2 \
      --export-manifest trivy-db-manifest.json \
      ./db.tar.gz
@@ -407,7 +408,8 @@ If not, you can use the `oras` cli to download the database and manifest and the
 
 ### Update data values with db repository URL
 
-Edit your `values.yaml` to add the following
+Edit your `values.yaml` to add the following:
+
 ```yaml
 trivy:
   db:
@@ -428,7 +430,8 @@ Install the `oras` cli. See [Installation](https://oras.land/cli/) in the ORAS d
 
 Download the version of the CLI you are interested in from their [GitHub releases page](https://github.com/aquasecurity/trivy/releases). 
 For example: https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_Linux-64bit.tar.gz
-```shell
+
+```console
 wget -c https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_Linux-64bit.tar.gz -O trivy.tar.gz
 Length: 48363295 (46M) [application/octet-stream]
 Saving to: ‘trivy.tar.gz’
@@ -440,7 +443,9 @@ trivy.tar.gz 100%[==>]  46.12M  50.7MB/s    in 0.9s
 
 ### Relocate the CLI to your registry
 
-```shell
+Run the following to relocate the CLI to your registry:
+
+```console
 oras push registry.company.com/project_name/trivy-cli:0.36.0 \
 --artifact-type trivy/cli \
 ./trivy.tar.gz:application/gzip
@@ -474,7 +479,7 @@ Install the `oras` cli. See [Installation](https://oras.land/cli/) in the Oras d
 Download the version of the Trivy Aqua Plug-in you want from the GitHub releases page. See [trivy-plugin-aqua](https://github.com/aquasecurity/trivy-plugin-aqua/releases) in GitHub.
 For example, [v0.115.14](https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.5/linux_amd64_v0.115.5.tar.gz) in GitHub.
 
-```shell
+```console
 TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
 wget -c "https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/${TRIVY-AQUA-PLUGIN-VERSION}/linux_amd64_${TRIVY-AQUA-PLUGIN-VERSION}.tar.gz" -O trivy-aqua-plugin.tar.gz
 
@@ -495,7 +500,7 @@ Where `TRIVY-AQUA-PLUGIN-VERSION` is the version of Trivy Aqua Plug-in you are u
 The YAML file is a necessary component to tell trivy it has the plug-in already installed.
 Download the YAML associated with the Trivy Aqua Plug-in version you downloaded.
 
-```shell
+```console
 TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
 wget -c "https://raw.githubusercontent.com/aquasecurity/trivy-plugin-aqua/${TRIVY-AQUA-PLUGIN-VERSION}/plugin.yaml" -O plugin.yaml
 
@@ -512,7 +517,9 @@ Where `TRIVY-AQUA-PLUGIN-VERSION` is the version of Trivy Aqua Plug-in you are u
 
 ### Relocate the Plug-in and YAML to your registry
 
-```shell
+Run the following command to relocate the plug-in and YAML to your registry:
+
+```console
 TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
 REPOSITORY-URL="registry.company.com/project_name/trivy-aqua-plugin:$TRIVY-AQUA-PLUGIN-VERSION"
 
@@ -547,6 +554,8 @@ trivy:
 
 ## Integrate with Aqua SaaS Platform
 
+The following sections explain how to integrate with Aqua SaaS platform.
+
 ### Create API Key
 
 In order to connect to the SaaS Platform you must have an API key. To create an API key:
@@ -568,10 +577,10 @@ apiVersion: v1
 kind: Secret
 metadata:
   name: aqua-creds
-  namespace: APP_NAMESPACE
+  namespace: APP-NAMESPACE
 stringData:
-  aqua-key: "API_KEY"
-  aqua-secret: "API_KEY_SECRET"
+  aqua-key: API-KEY
+  aqua-secret: API-KEY-SECRET
 ```
 
 ### Update aqua-values.yaml
@@ -586,14 +595,14 @@ Here is an example of referencing your API key and secret from a prior created K
 namespace: dev
 targetImagePullSecret: registry-credentials
 environmentVariables:
-  - name: TRIVY_RUN_AS_PLUGIN
+  - name: TRIVY-RUN-AS-PLUGIN
     value: aqua
-  - name: AQUA_KEY
+  - name: AQUA-KEY
     valueFrom:
       secretKeyRef:
         name: aqua-creds
         key: aqua-key
-  - name: AQUA_SECRET
+  - name: AQUA-SECRET
     valueFrom:
       secretKeyRef:
         name: aqua-creds
