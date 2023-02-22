@@ -46,6 +46,10 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
+### <a id='1-5-0-cnrs-ki'></a> Cloud Native Runtimes
+
+* When using auto-tls (on by default), DomainMapping resouces must have names that are less than 63 characters. Otherwise, the DomainMapping will fail to become ready due to `CertificateNotReady`.
+
 ### <a id='1-5-0-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
