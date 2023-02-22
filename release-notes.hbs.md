@@ -57,7 +57,8 @@ Deprecated features will remain on this list until they are retired from Tanzu A
 
 ### <a id='1-5-0-appsso-deprecations'></a> Application Single Sign-On (AppSSO)
 
-- `ClientRegistration` resource `clientAuthenticationMethod` field values `post` and `basic` have been deprecated. Please rely on `client_secret_post` and `client_secret_basic`, respectively, instead.
+- `ClientRegistration` resource `clientAuthenticationMethod` field values `post` and `basic` are deprecated. 
+Use `client_secret_post` and `client_secret_basic` instead.
 
 #### <a id='1-5-0-convention-controller-dp'></a> Convention Controller
 
