@@ -16,9 +16,9 @@ API Auto Registration automatically trusts the CA for the shared `ingress_issuer
 This change means that a `Certificate` is automatically generated using this issuer.
 
 If you do not want a `Certificate` to generate automatically, you can set the `auto_generate_cert` flag to `false` in the values file.
-If you want to replace the default with a custom ingress issuer, see [Security and compliance](../security-and-compliance/about.hbs.md).
-For both these scenarios, whenever not using the default ClusterIssuer `tap-ingress-selfsigned` or not automatically generating certificates
-or using other custom CAs, you will need to manually set the cert. See [Troubleshooting](../api-auto-registration/troubleshooting.hbs.md#set-ca-crt).
+To replace the default with a custom ingress issuer, see [Security and compliance](../security-and-compliance/about.hbs.md).
+Whenever you do not use the default ClusterIssuer `tap-ingress-selfsigned`, do not automatically generate certificates,
+or use other custom CAs, you must manually set the certificate. See [Troubleshooting](../api-auto-registration/troubleshooting.hbs.md#set-ca-crt).
 
 ## <a id='install'></a>Install
 

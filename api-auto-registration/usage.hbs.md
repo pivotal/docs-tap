@@ -67,12 +67,12 @@ To create APIDescriptor CR:
 
 >**Note** You can also update API Auto Registration as part of upgrading Tanzu Application Platform. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
 
-## <a id='using-simple-app'></a>Using a simple Spring Boot app with a REST service
+## <a id='using-simple-app'></a>Using a Spring Boot app with a REST service
 
-You can use a [simple Spring Boot example app](https://github.com/making/rest-service) built using [Building a RESTful Web Service guide](https://spring.io/guides/gs/rest-service/).
+You can use a [Spring Boot example app](https://github.com/making/rest-service) built using [Building a RESTful Web Service guide](https://spring.io/guides/gs/rest-service/).
 and has the [Springdoc dependency](https://springdoc.org/#getting-started).
 
-Example of a workload using the simple Spring Boot app:
+Example of a workload using the Spring Boot app:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
