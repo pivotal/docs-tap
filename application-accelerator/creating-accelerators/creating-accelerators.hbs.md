@@ -95,17 +95,18 @@ Where:
 - `PATH-TO-THE-ACCELERATOR` is the path to the accelerator source. It can be fully qualified or a relative path. If your current directory is already the directory where your source is, then use ".".
 - `YOUR-SOURCE-IMAGE-REPO` is the name of the OCI image repository where you want to push the new accelerator source. If using Docker Hub, use something such as `docker.io/YOUR-DOCKER_ID/simple-accelerator-source`.
 
-After you have made any additional changes you can push the latest to the same OCI image repository using:
+After you have made any additional changes, you can push the latest to the same OCI image repository using:
 
 ```sh
 tanzu accelerator push --local-path PATH-TO-THE-ACCELERATOR --source-image YOUR-SOURCE-IMAGE-REPO
 ```
 
-The accelerator now reflects the new content after approximately a 10 second wait since we specified that as the interval when we created the accelerator above.
+The accelerator now reflects the new content after approximately a 10-second as specified in the
+previous command.
 
 ## <a id="using-accelerator-fragments"></a>Using accelerator fragments
 
-Accelerator fragments are reusable accelerator components that can provide options, files or transforms. They may be imported to accelerators using an `import` entry and the transforms from the fragment may be referenced in an `InvokeFragment` transform in the accelerator that is declaring the import. For additional details see [InvokeFragment transform](transforms/invoke-fragment.md).
+Accelerator fragments are reusable accelerator components that can provide options, files, or transforms. They can be imported to accelerators using an `import` entry and the transforms from the fragment can be referenced in an `InvokeFragment` transform in the accelerator that is declaring the import. For additional details see [InvokeFragment transform](transforms/invoke-fragment.md).
 
 The accelerator samples include three fragments - `java-version`, `tap-initialize`, and `live-update`. See the [vmware-tanzu/application-accelerator-samples/fragments](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.3/fragments) Git repository for the content of these fragments.
 
@@ -160,13 +161,13 @@ This fragment contributes the following to any accelerator that imports it:
 
 1. An option named `javaVersion` with three choices `Java 8`, `Java 11`, and `Java 17`
 2. Three `ReplaceText` transforms:
-    - if the accelerator has a `pom.xml` file then what is specified for `<java.version>` is replaced with the chosen version.
-    - if the accelerator has a `build.gradle` file then what is specified for `sourceCompatibility` is replaced with the chosen version.
-    - if the accelerator has a `config/workload.yaml` file and the user selected "Java 17" then a build environment entry of BP_JVM_VERSION is inserted into the `spec:` section.
+    - if the accelerator has a `pom.xml` file, then what is specified for `<java.version>` is replaced with the chosen version.
+    - if the accelerator has a `build.gradle` file, then what is specified for `sourceCompatibility` is replaced with the chosen version.
+    - if the accelerator has a `config/workload.yaml` file, and the user selected "Java 17" then a build environment entry of BP_JVM_VERSION is inserted into the `spec:` section.
 
 ## <a id="deploy-accelerator-frags"></a>Deploying accelerator fragments
 
-To deploy new fragments to the accelerator system you can use the new `tanzu accelerator fragment create` CLI command or you can apply a custom resource manifest file with either `kubectl apply` or the `tanzu accelerator apply` commands.
+To deploy new fragments to the accelerator system, you can use the new `tanzu accelerator fragment create` CLI command or you can apply a custom resource manifest file with either `kubectl apply` or the `tanzu accelerator apply` commands.
 
 The resource manifest for the `java-version` fragment looks like this:
 
