@@ -88,10 +88,12 @@ To install the API portal package:
     kubectl get pods -n api-portal
     ```
 
-## <a id='update-values'></a>Update the install values for api-portal package
+## <a id='update-values'></a>Update the installation values for the `api-portal` package
 
-1. To overwrite the default values, create new values, or update the existing values, you will need an
-   `api-portal-values.yaml` file. If you do not already have an existing values file, you can extract the existing values using the command:
+To update the installation values for the `api-portal` package:
+
+1. To overwrite the default values, create new values, or update the existing values, you need an
+   `api-portal-values.yaml` file. If you do not already have an existing values file, you can extract the existing values by running:
 
     ```console
     tanzu package installed get api-portal -n tap-install -f api-portal-values.yaml
@@ -121,11 +123,10 @@ To install the API portal package:
     --values-file api-portal-values.yaml
     ```
 
+3. If you installed the API portal package as part of Tanzu Application Platform, you must update the `tap-values.yaml` and update the installation of Tanzu Application Platform. 
+See [Install your Tanzu Application Platform profile](../install.hbs.md#install-profile).
 
 3. If you installed the API portal package as part of Tanzu Application Platform, you must update the `tap-values.yaml` and update the TAP installation.
    See [Install your Tanzu Application Platform profile](../install.hbs.md#install-profile).
 
-   ```console
-   tanzu package installed update tap --package-name tap.tanzu.vmware.com --version {VERSION} -f tap-values.yaml -n tap-install
-   ```
->**Note** You can also update API portal as part of upgrading Tanzu Application Platform. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
+>**Note** You can update API portal as part of upgrading Tanzu Application Platform. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md).

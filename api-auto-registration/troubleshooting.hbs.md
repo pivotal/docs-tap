@@ -35,7 +35,7 @@ This topic includes commands for debugging or troubleshooting the APIDescriptor 
 
 ### APIDescriptor CRD shows message of `connection refused` but service is up and running
 
-In Tanzu Application Platform v1.4.x+, if your workloads use ClusterIssuer for the TLS configuration or your API spec location URL is secured using custom CA,
+In Tanzu Application Platform v1.4 and later, if your workloads use ClusterIssuer for the TLS configuration or your API specifications location URL is secured using a custom CA,
 you might encounter the following message.
 
 Your APIDescription CRD shows a status and message similar to:
@@ -51,15 +51,15 @@ Your APIDescription CRD shows a status and message similar to:
 This might be due to your workloads using a custom Ingress issuer. To solve this issue, either:
 
 - Configure `ca_cert_data` following the instructions in [Configure CA Cert Data](#set-ca-crt).
-- Although VMware discourages this, you may deactivate TLS by setting `shared.ingress_issuer: ""`.
+- Deactivate TLS by setting `shared.ingress_issuer: ""`. VMware discourages this method.
 
 #### <a id="set-ca-crt"></a> Configure CA Cert Data
 
-1. Obtain the PEM Encoded crt file for your ClusterIssuer or TLS setup . You will use this to update the `api-auto-registration` package.
+1. Obtain the PEM Encoded crt file for your ClusterIssuer or TLS setup . You use this to update the `api-auto-registration` package.
  
-2. If you installed the API Auto Registration package through pre-defined profiles, you must update the `tap-values.yaml` and update the TAP installation.
+2. If you installed the API Auto Registration package through predefined profiles, you must update the `tap-values.yaml` and update the Tanzu Application Platform installation.
    Place the PEM encoded certificate into the `shared.ca_cert_data` key of the values file. See [Install your Tanzu Application Platform profile](../install.hbs.md#install-profile).
-   Then, you must run the following command to update the package.
+   Run the following command to update the package.
 
    ```console
    tanzu package installed update tap -p tap.tanzu.vmware.com -v <TAP_VERSION>  --values-file tap-values.yaml -n tap-install
@@ -67,12 +67,14 @@ This might be due to your workloads using a custom Ingress issuer. To solve this
 
 3. If you installed the API Auto Registration package as standalone, you must update the `api-auto-registration-values.yaml` and then update the package.
    Place the PEM encoded certificate into the `ca_cert_data` key of the values file. See [Install API Auto Registration](installation.hbs.md).
-   Then, you must run the following command to update the package.
+   Run the following command to update the package.
 
    ```console
    tanzu package installed update api-auto-registration --version <API_AUTO_REGISTRATION_VERSION> --namespace tap-install --values-file api-auto-registration-values.yaml
    ```
+
    You can find the available api-auto-registration versions by running:
+   
    ```console
    tanzu package available list -n tap-install | grep 'API Auto Registration'
    ```
