@@ -6,7 +6,7 @@ For help on migrating your resources in between versions, see the [migration gui
 
 If you installed the `AppSSO` package on its own, and not as part of `TAP`, you can upgrade it individually by running:
 
-```
+```console
 tanzu package installed update PACKAGE_INSTALLATION_NAME -p sso.apps.tanzu.vmware.com -v 3.0.0 --values-file PATH_TO_YOUR_VALUES_YAML -n YOUR_INSTALL_NAMESPACE
 ```
 
