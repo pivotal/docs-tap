@@ -34,23 +34,23 @@ Follow these steps to install the Tanzu Application Platform RBAC CLI plug-in:
 
 1. Install the Tanzu Application Platform RBAC CLI plug-in locally on your operating system:
 
-    - For macOS, run:
+    macOS
+    :
+    ```console
+    tanzu plugin install rbac --local darwin-amd64
+    ```
 
-        ```console
-        tanzu plugin install rbac --local darwin-amd64
-        ```
+    Linux
+    :
+    ```console
+    tanzu plugin install rbac --local linux-amd64
+    ```
 
-    - For Linux, run:
-
-        ```console
-        tanzu plugin install rbac --local linux-amd64
-        ```
-
-    - For Windows, run:
-
-        ```console
-        tanzu plugin install rbac --local windows-amd64
-        ```
+    Windows
+    :
+    ```console
+    tanzu plugin install rbac --local windows-amd64
+    ```
 
 ## <a id="use-kubeconfig"></a> Use a different kubeconfig location
 
