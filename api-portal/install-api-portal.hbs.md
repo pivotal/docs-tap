@@ -70,3 +70,59 @@ To install API portal:
 
     Added installed package 'api-portal' in namespace 'tap-install'
     ```
+
+5. Verify the package installation by running:
+
+    ```console
+    tanzu package installed get api-portal -n tap-install
+    ```
+
+    Verify that `STATUS` is `Reconcile succeeded`:
+
+    ```console
+    kubectl get pods -n api-portal
+    ```
+
+## <a id='update-values'></a>Update the installation values for the `api-portal` package
+
+To update the installation values for the `api-portal` package:
+
+1. To overwrite the default values, create new values, or update the existing values, you need an
+   `api-portal-values.yaml` file. If you do not already have an existing values file, you can extract the existing values by running:
+
+    ```console
+    tanzu package installed get api-portal -n tap-install -f api-portal-values.yaml
+    ```
+
+    You can view the schema of the package:
+
+    ```console
+    tanzu package available get apis.apps.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+
+    Where `VERSION-NUMBER` is the version of the package listed in the earlier step.
+
+    For example:
+
+    ```console
+    tanzu package available get api-portal.tanzu.vmware.com/1.2.5 --values-schema --namespace tap-install
+    ```
+
+2. Update the package by using the Tanzu CLI:
+
+    ```console
+    tanzu package installed update api-auto-registration
+    --package-name apis.apps.tanzu.vmware.com
+    --namespace tap-install
+    --version $VERSION
+    --values-file api-portal-values.yaml
+    ```
+
+3. If you installed the API portal package as part of Tanzu Application Platform, you must update the `tap-values.yaml` and update the installation of Tanzu Application Platform. 
+See [Install your Tanzu Application Platform profile](../install.hbs.md#install-profile).
+
+    ```console
+    tanzu package installed update tap --package-name tap.tanzu.vmware.com --version {VERSION} -f tap-values.yaml -n tap-install
+    ```
+
+>**Note** You can update API portal as part of upgrading Tanzu Application Platform. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md).

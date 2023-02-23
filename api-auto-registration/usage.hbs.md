@@ -65,6 +65,35 @@ To create APIDescriptor CR:
 
 >**Note** You can also update API Auto Registration as part of upgrading Tanzu Application Platform. See [Upgrading Tanzu Application Platform](../upgrading.hbs.md).
 
+## <a id='using-simple-app'></a>Using a Spring Boot app with a REST service
+
+You can use a [Spring Boot example app](https://github.com/making/rest-service) built using [Building a RESTful Web Service guide](https://spring.io/guides/gs/rest-service/).
+and has the [Springdoc dependency](https://springdoc.org/#getting-started).
+
+Example of a workload using the Spring Boot app:
+
+```yaml
+apiVersion: carto.run/v1alpha1
+kind: Workload
+metadata:
+  name: simple-rest-app
+  labels:
+    ...
+    apis.apps.tanzu.vmware.com/register-api: "true"
+spec:
+  source:
+    ...
+  params:
+    - name: api_descriptor
+      value:
+        type: openapi
+        location:
+          path: "/v3/api-docs"
+        system: dev
+        owner: team-a
+        description: "A set of API endpoints."
+```
+
 ## <a id='using-app-acc-template'></a>Using App Accelerator Template
 
 If you are creating a new application exposing an API, you might use the [java-rest-service](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service)
