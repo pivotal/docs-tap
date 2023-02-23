@@ -20,13 +20,13 @@ To install FluxCD Source Controller from the Tanzu Application Platform package 
 
 1. List version information for the package by running:
 
-    ```
+    ```console
     tanzu package available list fluxcd.source.controller.tanzu.vmware.com -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     $ tanzu package available list fluxcd.source.controller.tanzu.vmware.com -n tap-install
         \ Retrieving package versions for fluxcd.source.controller.tanzu.vmware.com...
           NAME                                       VERSION  RELEASED-AT
@@ -35,7 +35,7 @@ To install FluxCD Source Controller from the Tanzu Application Platform package 
 
 2. Install the package by running:
 
-    ```
+    ```console
     tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
     ```
 
@@ -45,7 +45,7 @@ To install FluxCD Source Controller from the Tanzu Application Platform package 
 
     For example:
 
-    ```
+    ```console
     tanzu package install fluxcd-source-controller -p fluxcd.source.controller.tanzu.vmware.com -v 0.16.0 -n tap-install
     \ Installing package 'fluxcd.source.controller.tanzu.vmware.com'
     | Getting package metadata for 'fluxcd.source.controller.tanzu.vmware.com'
@@ -63,13 +63,13 @@ To install FluxCD Source Controller from the Tanzu Application Platform package 
 
 3. Verify the package install by running:
 
-    ```
+    ```console
     tanzu package installed get fluxcd-source-controller -n tap-install
     ```
 
     For example:
 
-    ```
+    ```console
     tanzu package installed get fluxcd-source-controller -n tap-install
     \ Retrieving installation details for fluxcd-source-controller...
     NAME:                    fluxcd-source-controller
@@ -82,13 +82,13 @@ To install FluxCD Source Controller from the Tanzu Application Platform package 
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-    ```
+    ```console
     kubectl get pods -n flux-system
     ```
 
     For example:
 
-    ```
+    ```console
     $ kubectl get pods -n flux-system
     NAME                                 READY   STATUS    RESTARTS   AGE
     source-controller-69859f545d-ll8fj   1/1     Running   0          3m38s
@@ -101,13 +101,13 @@ To install FluxCD Source Controller from the Tanzu Application Platform package 
 
 1. Verify the main components of `fluxcd-source-controller` were installed by running:
 
-    ```
+    ```console
     kubectl get all -n flux-system
     ```
 
     Expect to see the following outputs or similar:
 
-    ```
+    ```console
     NAME                                     READY   STATUS    RESTARTS   AGE
     pod/source-controller-7684c85659-2zfxb   1/1     Running   0          40m
 
@@ -123,7 +123,7 @@ To install FluxCD Source Controller from the Tanzu Application Platform package 
 
 2. Verify all the CRD were installedby running:
 
-    ```
+    ```console
     kubectl get crds -n flux-system | grep ".fluxcd.io"
     buckets.source.toolkit.fluxcd.io                         2022-03-07T19:20:14Z
     gitrepositories.source.toolkit.fluxcd.io                 2022-03-07T19:20:14Z
@@ -137,7 +137,7 @@ To install FluxCD Source Controller from the Tanzu Application Platform package 
 
     1. Create the following `gitrepository-sample.yaml` file:
 
-        ```
+        ```console
         apiVersion: source.toolkit.fluxcd.io/v1beta1
         kind: GitRepository
         metadata:
@@ -151,14 +151,14 @@ To install FluxCD Source Controller from the Tanzu Application Platform package 
 
     2. Apply the created conf:
 
-        ```
+        ```console
         kubectl apply -f gitrepository-sample.yaml
         gitrepository.source.toolkit.fluxcd.io/gitrepository-sample created
         ```
 
     3. Verify the git-repository was fetched correctly:
 
-        ```
+        ```console
         kubectl get GitRepository
         NAME                   URL                                                               READY   STATUS                                                              AGE
         gitrepository-sample   https://github.com/vmware-tanzu/application-accelerator-samples   True    Fetched revision: main/132f4e719209eb10b9485302f8593fc0e680f4fc   4s
