@@ -224,7 +224,7 @@ Is the same as:
   - type: Include
     patterns: ['**/*.txt', '**.md']
   - type: Chain
-    trasformations:
+    transformations:
     - type: ReplaceText
       ...
   ```
