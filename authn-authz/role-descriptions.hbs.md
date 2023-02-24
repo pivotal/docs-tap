@@ -28,7 +28,7 @@ Assign this role to a user who defines the activities within a supply chain or t
 - kpack's builder, stack, and store
 - Scanning resources
 - Grype
-- The metadata store 
+- The metadata store
 
 If this person must create Tanzu workloads, you can bind the user with the app-editor role as well.
 
@@ -40,8 +40,8 @@ Assign this role to a user who is responsible for the life cycle (create, edit a
 
 ## <a id="workload"></a>workload
 
-This role provides the service account associated with the Tanzu workload the permissions needed to execute the activities in the supply chain. This role is for a "robot” versus a user.  
+This role provides the service account associated with the Tanzu workload the permissions needed to execute the activities in the supply chain. This role is for a "robot” versus a user.
 
 ## <a id="deliverable"></a>deliverable
 
-This role gives the delivery “robot” service account the permissions neeeded to create running workloads. This role is not for a user.
+This role gives the delivery “robot” service account the permissions needed to create running workloads. This role is not for a user.
