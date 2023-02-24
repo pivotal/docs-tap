@@ -78,4 +78,4 @@ Use the following procedure to verify that the packages are installed.
     
 ## <a id='next-steps'></a>Next steps
 
-- [Setting up developer namespaces to use installed packages](set-up-namespaces.html)
+- [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md)
