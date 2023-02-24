@@ -58,7 +58,7 @@ To set the Kubernetes cluster context:
     *       aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
     ```
 
-2. If you are managing multiple cluster context, set the context to the cluster that you want to use
+2. If you are managing multiple cluster contexts, set the context to the cluster that you want to use
    for the Tanzu Application Platform packages installation by running:
 
     ```console
