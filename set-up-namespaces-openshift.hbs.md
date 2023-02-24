@@ -6,4 +6,4 @@
 
 ## <a id='next-steps'></a>Next steps
 
-- [Install Tanzu Developer Tools for VS Code](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-vscode-install-openshift.html)
+- [Install Tanzu Developer Tools for VS Code](vscode-install-openshift.hbs.md)

@@ -1,41 +1,41 @@
-You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [Components and installation profiles](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-about-package-profiles.html).
+You can install Tanzu Application Platform through predefined profiles or through individual packages. This page provides links to install instructions for each of the individual packages. For more information about installing through profiles, see [Components and installation profiles](/docs-tap/about-package-profiles.hbs.md).
 
 Installing individual Tanzu Application Platform packages
 is useful if you do not want to use a profile to install packages
 or if you want to install additional packages after installing a profile.
 Before installing the packages, be sure to complete the prerequisites, configure
 and verify the cluster, accept the EULA, and install the Tanzu CLI with any required plug-ins.
-For more information, see [Prerequisites](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-prerequisites.html).
+For more information, see [Prerequisites](/docs-tap/prerequisites.hbs.md).
 
 
 ## <a id='individual-package-toc'></a> Install pages for individual Tanzu Application Platform packages
 
-- [Install API Auto Registration](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-api-auto-registration-installation.html)
-- [Install API portal](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-api-portal-install-api-portal.html)
-- [Install Application Accelerator](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-application-accelerator-install-app-acc.html)
-- [Install Application Live View](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-app-live-view-install.html)
-- [Install Application Single Sign-On](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-app-sso-platform-operators-installation.html)
-- [Install cert-manager, Contour, and FluxCD](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-cert-mgr-contour-fcd-install-cert-mgr.html)
-- [Install Cloud Native Runtimes](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-cloud-native-runtimes-install-cnrt.html)
-- [Install default roles for Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-authn-authz-install.html)
-- [Install Developer Conventions](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-developer-conventions-install-dev-conventions.html)
-- [Install Eventing](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-eventing-install-eventing.html)
-- [Install Learning Center for Tanzu Application Platform](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-learning-center-install-learning-center.html)
-- [Install Out of the Box Templates](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scc-install-ootb-templates.html)
-- [Install Out of the Box Supply Chain with Testing](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scc-install-ootb-sc-wtest.html)
-- [Install Out of the Box Supply Chain with Testing and Scanning](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scc-install-ootb-sc-wtest-scan.html)
-- [Install Service Bindings](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-service-bindings-install-service-bindings.html)
-- [Install Services Toolkit](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-services-toolkit-install-services-toolkit.html)
-- [Install Source Controller](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-source-controller-install-source-controller.html)
-- [Install Spring Boot Conventions](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-spring-boot-conventions-install-spring-boot-conventions.html)
-- [Install Supply Chain Choreographer](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scc-install-scc.html)
-- [Install Supply Chain Security Tools - Store](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-store-install-scst-store.html)
-- [Install Supply Chain Security Tools - Policy Controller](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-policy-install-scst-policy.html)
-- [Install Supply Chain Security Tools - Scan](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-scst-scan-install-scst-scan.html)
-- [Install Tanzu Application Platform GUI](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-tap-gui-install-tap-gui.html)
-- [Install Tanzu Build Service](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-tanzu-build-service-install-tbs.html)
-- [Install Tekton](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-tekton-install-tekton.html)
-- [Install Telemetry](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-telemetry-install-telemetry.html)
+- [Install API Auto Registration](/docs-tap/api-auto-registration/installation.hbs.md)
+- [Install API portal](/docs-tap/api-portal/install-api-portal.hbs.md)
+- [Install Application Accelerator](/docs-tap/application-accelerator/install-app-acc.hbs.md)
+- [Install Application Live View](/docs-tap/app-live-view/install.hbs.md)
+- [Install Application Single Sign-On](/docs-tap/app-sso/platform-operators/installation.hbs.md)
+- [Install cert-manager, Contour, and FluxCD](/docs-tap/cert-mgr-contour-fcd/install-cert-mgr.hbs.md)
+- [Install Cloud Native Runtimes](/docs-tap/cloud-native-runtimes/install-cnrt.hbs.md)
+- [Install default roles for Tanzu Application Platform](/docs-tap/authn-authz/install.hbs.md)  
+- [Install Developer Conventions](/docs-tap/developer-conventions/install-dev-conventions.hbs.md)
+- [Install Eventing](/docs-tap/eventing/install-eventing.hbs.md)
+- [Install Learning Center for Tanzu Application Platform](/docs-tap/learning-center/install-learning-center.hbs.md)
+- [Install Out of the Box Templates](/docs-tap/scc/install-ootb-templates.hbs.md)
+- [Install Out of the Box Supply Chain with Testing](/docs-tap/scc/install-ootb-sc-wtest.hbs.md)
+- [Install Out of the Box Supply Chain with Testing and Scanning](/docs-tap/scc/install-ootb-sc-wtest-scan.hbs.md)
+- [Install Service Bindings](/docs-tap/service-bindings/install-service-bindings.hbs.md)
+- [Install Services Toolkit](/docs-tap/services-toolkit/install-services-toolkit.hbs.md)
+- [Install Source Controller](/docs-tap/source-controller/install-source-controller.hbs.md)
+- [Install Spring Boot Conventions](/docs-tap/spring-boot-conventions/install-spring-boot-conventions.hbs.md)
+- [Install Supply Chain Choreographer](/docs-tap/scc/install-scc.hbs.md)
+- [Install Supply Chain Security Tools - Store](/docs-tap/scst-store/install-scst-store.hbs.md)
+- [Install Supply Chain Security Tools - Policy Controller](/docs-tap/scst-policy/install-scst-policy.hbs.md)
+- [Install Supply Chain Security Tools - Scan](/docs-tap/scst-scan/install-scst-scan.hbs.md)
+- [Install Tanzu Application Platform GUI](/docs-tap/tap-gui/install-tap-gui.hbs.md)
+- [Install Tanzu Build Service](/docs-tap/tanzu-build-service/install-tbs.hbs.md)
+- [Install Tekton](/docs-tap/tekton/install-tekton.hbs.md)
+- [Install Telemetry](/docs-tap/telemetry/install-telemetry.hbs.md)
 
 
 ## <a id='verify'></a> Verify the installed packages

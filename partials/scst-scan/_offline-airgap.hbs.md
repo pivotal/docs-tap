@@ -104,4 +104,4 @@ To use Grype in offline and air-gapped environments:
 
 ## <a id='next-steps'></a>Next steps
 
-- [Setting up developer namespaces to use installed packages](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/{{ vars.url_version }}/tap/GUID-set-up-namespaces.html)
+- [Setting up developer namespaces to use installed packages](/docs-tap/set-up-namespaces.hbs.md)
