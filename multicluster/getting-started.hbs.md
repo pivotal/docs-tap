@@ -190,7 +190,7 @@ The Build cluster starts by building the necessary bundle for the workload that 
 
 3. (v1.3.2 to v1.3.4 only) Patch the `Deliverable` created on the Run profile cluster to add missing labels. See [known issues](../release-notes.hbs.md#1-3-2-supplychain-resolved).
 
-    ```
+    ```bash
     kubectl patch deliverable tanzu-java-web-app \
       -n ${DEVELOPER_NAMESPACE} \
       --type merge \
