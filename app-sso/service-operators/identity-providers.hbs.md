@@ -14,12 +14,13 @@ End-users will be able to log in with these providers when they go to `{spec.iss
 
 Learn how to configure identity providers for an `AuthServer`:
 
-- [OpenID Connect providers](#openid)
+- [OpenID](#openid)
 - [LDAP](#ldap)
 - [SAML (experimental)](#saml-experimental)
 - [Internal, static user](#internal-users)
 - [Roles claim filtering](#roles-filtering)
 - [Roles claim mapping and filtering explained](#roles-claim-mapping-and-filtering-explained)
+- [Configure authorization](./configure-authorization.md)
 - [Restrictions](#restrictions)
 
 ## <a id='openid'></a> OpenID Connect providers
