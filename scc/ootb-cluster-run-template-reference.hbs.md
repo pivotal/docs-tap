@@ -1,23 +1,28 @@
 # ClusterRunTemplate Reference
 
-All the objects referenced here are [Cartographer ClusterRunTemplates](https://cartographer.sh/docs/v0.6.0/reference/runnable/#clusterruntemplate)
-packaged in [Out of the Box Templates](ootb-templates.hbs.md).
-Their purpose, the object(s) they create, the supply chains that include them and
-the parameters they leverage are detailed below.
+All the objects referenced in this topic are [Cartographer
+ClusterRunTemplates](https://cartographer.sh/docs/v0.6.0/reference/runnable/#clusterruntemplate)
+packaged in [Out of the Box Templates](ootb-templates.hbs.md). Their purpose,
+the one or more objects they create, the supply chains that include them and the
+parameters they use are detailed in this topic.
 
 ## tekton-source-pipelinerun
 
 ### Purpose
+
 Tests source code.
 
 ### Used By
+
 - [testing-pipeline](ootb-template-reference.hbs.md#testing-pipeline)
 
 ### Creates
+
 This ClusterRunTemplate creates a [Tekton PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) referring to
 the user's specified Tekton Pipeline.
 
 ### Inputs
+
 <table>
   <tr>
     <th>Input name</th>
@@ -48,24 +53,27 @@ the user's specified Tekton Pipeline.
 
 ### More Information
 
-For more information about the runnable created in the OOTB Testing and OOTB Testing and Scanning,
-read [testing-pipeline](#testing-pipeline).
+For information about the runnable created in the OOTB Testing and OOTB Testing and Scanning,
+see [testing-pipeline](#testing-pipeline).
 
-For information about the Tekton Pipeline that must be created by the user, read the [OOTB Supply Chain
-Testing documentation of the Pipeline](ootb-supply-chain-testing.hbs.md#a-idtekton-pipelinea-tektonpipeline).
+For information about the Tekton Pipeline that the user must create, see [Out of the Box Supply Chain with Testing](ootb-supply-chain-testing.hbs.md#tekton-pipeline).
 
 ## tekton-taskrun
 
 ### Purpose
-Generic template for creating a Tekton Taskrun
+
+Generic template for creating a Tekton TaskRun
 
 ### Used By
+
 - [config-writer-template](ootb-template-reference.hbs.md#config-writer-template)
 
 ### Creates
+
 A Tekton TaskRun.
 
 ### Inputs
+
 <table>
   <tr>
     <th>Input name</th>
@@ -88,7 +96,7 @@ A Tekton TaskRun.
   <tr>
     <td><code>taskRef<code></td>
     <td>
-      Reference to the Tekton Task to which the TaskRun will provide parameters
+      Reference to the Tekton Task to which the TaskRun provides parameters
     </td>
     <td>
       <pre>
@@ -101,7 +109,7 @@ A Tekton TaskRun.
   <tr>
     <td><code>params<code></td>
     <td>
-      Params which will be provided to the Tekton Task
+      Parameters which are provided to the Tekton Task
     </td>
     <td>
       <pre>
@@ -118,15 +126,19 @@ A Tekton TaskRun.
 ## commit-and-pr-pipelinerun
 
 ### Purpose
-Commit configuration to a git repository and open a pull request for review.
+
+Commit configuration to a Git repository and open a pull request for review.
 
 ### Used By
+
 - [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
 
 ### Creates
+
 Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
 
 ### Inputs
+
 <table>
   <tr>
     <th>Input name</th>
@@ -137,7 +149,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      Service Account with credentials for the git repository.
+      Service Account with credentials for the Git repository.
     </td>
     <td>
       <pre>
@@ -149,7 +161,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
   <tr>
     <td><code>git_server_kind<code></td>
     <td>
-      Type of git provider
+      Type of Git provider
     </td>
     <td>
       <pre>
@@ -233,7 +245,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
   <tr>
     <td><code>base_branch<code></td>
     <td>
-      Branch into which the PR will be merged
+      Branch into which the PR is merged
     </td>
     <td>
       <pre>
@@ -245,7 +257,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
   <tr>
     <td><code>git_user_name<code></td>
     <td>
-      Username associated with the commit
+      User name associated with the commit
     </td>
     <td>
       <pre>
@@ -281,7 +293,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
   <tr>
     <td><code>git_files<code></td>
     <td>
-      Base64 encoded json file with where keys equal the file name and the value is the file contents.
+      Base64 encoded JSON file with where keys equal the filename and the value is the file contents.
     </td>
     <td>
       <pre>
@@ -292,8 +304,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
 
   <tr>
     <td><code>sub_path<code></td>
-    <td>
-      The directory location in the repo in which to write the files
+    <td>repository in which to write the files
     </td>
     <td>
       <pre>
@@ -306,23 +317,27 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
 
 ### More Information
 
-For more information about the template creating the related Runnable,
-see [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
+For information about the template creating the related Runnable,
+see [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template).
 
-For more information about the gitops flow, see [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).
+For information about using gitops, see [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).
 
 ## kaniko-runtemplate
 
 ### Purpose
+
 Build images from source code which has a dockerfile.
 
 ### Used By
+
 - [kaniko-template](ootb-template-reference.hbs.md#kaniko-template)
 
 ### Creates
+
 Creates a TaskRun referring to the kaniko-build Tekton ClusterTask.
 
 ### Inputs
+
 <table>
   <tr>
     <th>Input name</th>
@@ -333,7 +348,7 @@ Creates a TaskRun referring to the kaniko-build Tekton ClusterTask.
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      Service Account with credentials for the image registry in which the built image will be placed.
+      Service Account with credentials for the container image registry in which the built image is placed.
     </td>
     <td>
       <pre>
@@ -359,8 +374,8 @@ Creates a TaskRun referring to the kaniko-build Tekton ClusterTask.
 
 ### More Information
 
-For more information about the template creating the associated Runnable,
-see [kaniko-template](ootb-template-reference.hbs.md#kaniko-template)
+For information about the template creating the associated Runnable,
+see [kaniko-template](ootb-template-reference.hbs.md#kaniko-template).
 
 For information about how to use Dockerfile-based builds and limits associated with the function, see
 [Dockerfile-based builds](dockerfile-based-builds.hbs.md).
