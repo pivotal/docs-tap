@@ -52,7 +52,7 @@ To install a Tanzu CLI plug-in that was not automatically downloaded when runnin
 
    ```
    tanzu plugin list
-    NAME                DESCRIPTION                                                                                        SCOPE       DISCOVERY  VERSION         STATUS
+
   NAME                DESCRIPTION                                                        SCOPE       DISCOVERY  VERSION  STATUS
   login               Login to the platform                                              Standalone  default    v0.25.4  not installed
   management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.25.4  not installed
