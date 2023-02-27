@@ -1,15 +1,17 @@
 # Template Reference
 
-All the objects referenced here are [Cartographer Templates](https://cartographer.sh/docs/v0.6.0/reference/template/)
-packaged in [Out of the Box Templates](ootb-templates.hbs.md).
-Their purpose, the object(s) they create, the supply chains that include them and
-the parameters they leverage are detailed below.
+All the objects referenced in this topic are [Cartographer
+Templates](https://cartographer.sh/docs/v0.6.0/reference/template/) packaged in
+[Out of the Box Templates](ootb-templates.hbs.md). Their purpose, the one or
+more objects they create, the supply chains that include them and the parameters
+they use are detailed in this topic.
 
 ## source-template
 
 ### Purpose
+
 Creates an object to fetch source code and make that code available
-to other objects in the supply chain. More details can be read in [Building from
+to other objects in the supply chain. See [Building from
 Source](building-from-source.hbs.md).
 
 ### Used By
@@ -21,8 +23,9 @@ Source](building-from-source.hbs.md).
 ### Creates
 
 The source-template creates one of three objects, either:
+
 - GitRepository. Created if the workload has `.spec.source.git` defined.
-- MavenArtifact. Created if the template is provided a value for the param `maven`
+- MavenArtifact. Created if the template is provided a value for the parameter `maven`
 - ImageRepository. Created if the workload has `.spec.source.image` defined.
 
 #### GitRepository
@@ -43,9 +46,9 @@ cluster. Other resources in the supply chain can then access that code.
     <td><code>gitImplementation<code></td>
     <td>
       The library used to fetch source code.
-      If not provided, TAP's default implementation will use <code>go-git</code>,
-      which works with the providers currently supported by TAP: Github and Gitlab.
-      An alternate value that may be used with other git providers is <code>libggit2</code>.
+      If not provided, Tanzu Application Platform's default implementation uses <code>go-git</code>,
+      which works with the providers supported by Tanzu Application Platform: GitHub and GitLab.
+      An alternate value that can be used with other Git providers is <code>libggit2</code>.
     </td>
     <td>
       <pre>
@@ -61,7 +64,7 @@ cluster. Other resources in the supply chain can then access that code.
       Name of the secret used to provide credentials for the Git repository.
       The secret with this name must exist in the same namespace as the <code>Workload</code>.
       The credentials must be sufficient to read the repository.
-      If not provided, TAP will default to look for a secret named <code>git-ssh</code>.
+      If not provided, Tanzu Application Platform defaults to look for a secret named <code>git-ssh</code>.
       See <a href="git-auth.html">Git authentication</a>.
     </td>
     <td>
@@ -127,7 +130,7 @@ For information about GitRepository objects, see
 For information about the ImageRepository resource, see [ImageRepository reference
 docs](../source-controller/reference.hbs.md#imagerepository).
 
-For information about how to use the Tanzu CLI to create a workload leveraging ImageRepository refer to
+For information about how to use the Tanzu CLI to create a workload leveraging ImageRepository, see
 [Create a workload from local source
 code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
 
@@ -167,7 +170,7 @@ parameters in the Workload.
     </td>
     <td><code>maven_repository_url<code></td>
     <td>
-      Specifies the maven repository from which to fetch
+      Specifies the Maven repository from which to fetch
     </td>
     <td>
       <pre>
@@ -177,7 +180,7 @@ parameters in the Workload.
     </td>
     <td><code>maven_repository_secret_name<code></td>
     <td>
-      Specifies the secret containing credentials necessary to fetch from the maven repository.
+      Specifies the secret containing credentials necessary to fetch from the Maven repository.
       The secret named must exist in the same workspace as the workload.
     </td>
     <td>
@@ -200,6 +203,7 @@ artifact](../cli-plugins/apps/create-workload.hbs.md#workload-maven).
 ## testing-pipeline
 
 ### Purpose
+
 Tests the source code provided in the supply chain.
 Testing depends on a user provided
 [Tekton Pipeline](https://tekton.dev/docs/pipelines/pipelines/#overview).
@@ -211,7 +215,7 @@ for specification of additional values to pass to the Pipeline.
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the source-tester step.
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the source-tester step.
 
-as the `source-tester` resource.
+These are used as the `source-tester` resource.
 
 ### Creates
 
@@ -250,7 +254,7 @@ named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tek
     <td><code>testing_pipeline_params<code></td>
     <td>
       Set of parameters to pass to the Tekton Pipeline.
-      To this set of parameters, the template always adds the source url
+      To this set of parameters, the template always adds the source URL
       and revision as `source-url` and `source-revision`.
     </td>
     <td>
@@ -269,22 +273,23 @@ named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tek
 
 ### More Information
 
-For more information on the ClusterRunTemplate that pairs with the Runnable, read
+For more information about the ClusterRunTemplate that pairs with the Runnable, read
 [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tekton-source-pipelinerun)
 
-For information about the Tekton Pipeline that must be created by the user, read the [OOTB Supply Chain
+For information about the Tekton Pipeline that the user must create, see [OOTB Supply Chain
 Testing documentation of the Pipeline](ootb-supply-chain-testing.hbs.md#a-idtekton-pipelinea-tektonpipeline)
 
 ## source-scanner-template
 
 ### Purpose
+
 Scans the source code for vulnerabilities.
 
 ### Used by
 
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the source-scanner step.
 
-as the `source-scanner` resource.
+Source-Test-Scan-to-URL is used as the `source-scanner` resource.
 
 ### Creates
 
@@ -345,6 +350,7 @@ Store](../scst-store/overview.hbs.md).
 ## image-provider-template
 
 ### Purpose
+
 Fetches a container image of a prebuilt application,
 specified in the workload's `.spec.image` field.
 This makes the content-addressable name, (e.g. the image name containing the digest)
@@ -411,7 +417,7 @@ Builds an container image from source code using [cloud native buildpacks](https
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the image-provider step.
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-provider step.
 
-as the `image-provider` resource when the workload param `dockerfile` is **not** defined.
+as the `image-provider` resource when the workload parameter `dockerfile` is **not** defined.
 
 ### Creates
 
@@ -430,7 +436,7 @@ as the `image-provider` resource when the workload param `dockerfile` is **not**
     <td><code>serviceAccount<code></td>
     <td>
       Name of the service account providing credentials for the configured image registry.
-      `Image` will use these credentials to push built container images to the registry.
+      `Image` uses these credentials to push built container images to the registry.
       The service account must exist in the same namespace as the Workload.
     </td>
     <td>
@@ -509,7 +515,7 @@ see [Service Bindings](https://github.com/pivotal/kpack/blob/main/docs/servicebi
 
 ### Purpose
 
-Build an image for source code that ships with a Dockerfile.
+Build an image for source code that includes a Dockerfile.
 
 ### Used by
 
@@ -571,7 +577,7 @@ A Runnable which provides inputs to the
   <tr>
     <td><code>registry<code></td>
     <td>
-      Specification of the registry server and repository in which the built image should be placed.
+      Specification of the registry server and repository in which the built image is be placed.
     </td>
     <td>
       <pre>
@@ -595,6 +601,7 @@ read [Cartographer Lifecycle](https://cartographer.sh/docs/v0.6.0/lifecycle/).
 ## image-scanner-template
 
 ### Purpose
+
 Scans the container image for vulnerabilities,
 persists the results in a store,
 and prevents the image from moving forward
@@ -658,8 +665,9 @@ see [Supply Chain Security Tools for Tanzu – Store](../scst-store/overview.hbs
 ## convention-template
 
 ### Purpose
-Create the PodTemplateSpec for the kubernetes configuration (e.g. the knative service or kubernetes deployment)
-which will be applied to the cluster.
+
+Create the PodTemplateSpec for the Kubernetes configuration, such as the knative service or Kubernetes deployment,
+which is applied to the cluster.
 
 ### Used by
 
@@ -671,6 +679,7 @@ which will be applied to the cluster.
 - [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the config-provider step.
 
 ### Creates
+
 Creates a [PodIntent](../cartographer-conventions/reference/pod-intent.hbs.md) object.
 The PodIntent leverages conventions installed on the cluster.
 The PodIntent object is responsible for generating a PodTemplateSpec.
@@ -894,7 +903,7 @@ to the set of Kubernetes configuration files.
 
 ### Creates
 
-A ConfigMap. This template consumes input of multiple deployment yaml files and
+A ConfigMap. This template consumes input of multiple deployment YAML files and
 enriches the input with ResourceClaims and ServiceBindings if the workload contains serviceClaims.
 
 ### Parameters
@@ -952,7 +961,7 @@ Kubernetes objects to deploy such that API auto registration takes place.
 
 ### Creates
 
-A ConfigMap. This template consumes input of multiple yaml files and
+A ConfigMap. This template consumes input of multiple YAML files and
 enriches the input with an APIDescriptor if
 the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
 
@@ -1040,7 +1049,7 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      Name of the service account which will provide the credentials to the registry or repository.
+      Name of the service account which provides the credentials to the registry or repository.
       The service account must exist in the same namespace as the Workload.
     </td>
     <td>
@@ -1106,7 +1115,7 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
   <tr>
     <td><code>gitops_repository<code></td>
     <td>
-      The full repository URL to which the configuration should be committed.
+      The full repository URL to which the configuration is committed.
       <b>DEPRECATED</b>
     </td>
     <td>
@@ -1134,7 +1143,7 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
   <tr>
     <td><code>gitops_server_address<code></td>
     <td>
-      The server url of the git repository to which configuration will be applied.
+      The server URL of the Git repository to which configuration is applied.
     </td>
     <td>
       <pre>
@@ -1173,7 +1182,7 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
   <tr>
     <td><code>registry<code></td>
     <td>
-      Specification of the registry server and repository in which the configuration should be placed.
+      Specification of the registry server and repository in which the configuration is placed.
     </td>
     <td>
       <pre>
@@ -1199,6 +1208,7 @@ and of the [config-writer-and-pull-requester-template](#config-writer-and-pull-r
 ## config-writer-and-pull-requester-template
 
 ### Purpose
+
 Persist the passed in Kubernetes configuration to a branch in a repository and open a pull request to another branch.
 (This process allows for manual review of configuration before deployment to a cluster)
 
@@ -1213,7 +1223,7 @@ Persist the passed in Kubernetes configuration to a branch in a repository and o
 
 ### Creates
 
-A runnable which provides configuration to the ClusterRunTemplate `commit-and-pr-pipelinerun` in order to create a
+A runnable which provides configuration to the ClusterRunTemplate `commit-and-pr-pipelinerun` to create a
 Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
 
 ### Parameters
@@ -1228,7 +1238,7 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
   <tr>
     <td><code>serviceAccount<code></td>
     <td>
-      Name of the service account which will provide the credentials to the registry or repository.
+      Name of the service account which provides the credentials to the registry or repository.
       The service account must exist in the same namespace as the Workload.
     </td>
     <td>
@@ -1333,7 +1343,7 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
   <tr>
     <td><code>gitops_server_address<code></td>
     <td>
-      The server url of the git repository to which configuration will be applied.
+      The server URL of the Git repository to which configuration is applied.
     </td>
     <td>
       <pre>
@@ -1372,7 +1382,7 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
   <tr>
     <td><code>gitops_server_kind<code></td>
     <td>
-      The kind of git provider
+      The kind of Git provider
     </td>
     <td>
       <pre>
@@ -1392,8 +1402,8 @@ and of the [config-writer-template](#config-writer-template).
 ## deliverable-template
 
 ### Purpose
-Create a deliverable which will
-[pair with a Delivery](https://cartographer.sh/docs/v0.6.0/architecture/#clusterdelivery)
+Create a deliverable which
+[pairs with a Delivery](https://cartographer.sh/docs/v0.6.0/architecture/#clusterdelivery)
 to deploy Kubernetes configuration on the cluster.
 
 ### Used by
@@ -1424,7 +1434,7 @@ preconfigured with reference to a repository or registry from which to fetch Kub
     <td>
       Name of the service account providing the necessary permissions for
       the Delivery to create children objects.
-      Populates the Deliverable's serviceAccount param.
+      Populates the Deliverable's serviceAccount parameter.
       The service account must be in the same namespace as the Deliverable.
     </td>
     <td>
@@ -1439,7 +1449,7 @@ preconfigured with reference to a repository or registry from which to fetch Kub
     <td><code>gitops_ssh_secret<code></td>
     <td>
       Name of the secret where credentials exist for fetching the configuration
-      from a Git repository. Populates the Deliverable's gitops_ssh_secret param.
+      from a Git repository. Populates the Deliverable's gitops_ssh_secret parameter.
       The service account must be in the same namespace as the Deliverable.
     </td>
     <td>
@@ -1466,7 +1476,7 @@ preconfigured with reference to a repository or registry from which to fetch Kub
   <tr>
     <td><code>gitops_repository<code></td>
     <td>
-      The full repository URL to which the configuration should be fetched.
+      The full repository URL to which the configuration is fetched.
       <b>DEPRECATED</b>
     </td>
     <td>
@@ -1494,7 +1504,7 @@ preconfigured with reference to a repository or registry from which to fetch Kub
   <tr>
     <td><code>gitops_server_address<code></td>
     <td>
-      The server url of the git repository from which configuration will be fetched.
+      The server URL of the Git repository from which configuration is fetched.
     </td>
     <td>
       <pre>
@@ -1533,7 +1543,7 @@ preconfigured with reference to a repository or registry from which to fetch Kub
   <tr>
     <td><code>registry<code></td>
     <td>
-      Specification of the registry server and repository from which the configuration should be fetched.
+      Specification of the registry server and repository from which the configuration is fetched.
     </td>
     <td>
       <pre>
@@ -1579,7 +1589,7 @@ to deploy Kubernetes configuration on the cluster.
 - [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the deliverable step.
 
 ### Creates
-A configmap in which the `.data` field has a key `deliverable` for which the value is the yaml definition
+A configmap in which the `.data` field has a key `deliverable` for which the value is the YAML definition
 of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#deliverable).
 
 ### Parameters
@@ -1596,7 +1606,7 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
     <td>
       Name of the service account providing the necessary permissions for
       the Delivery to create children objects.
-      Populates the Deliverable's serviceAccount param.
+      Populates the Deliverable's serviceAccount parameter.
       The service account must be in the same namespace as the Deliverable.
     </td>
     <td>
@@ -1611,7 +1621,7 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
     <td><code>gitops_ssh_secret<code></td>
     <td>
       Name of the secret where credentials exist for fetching the configuration
-      from a Git repository. Populates the Deliverable's gitops_ssh_secret param.
+      from a Git repository. Populates the Deliverable's gitops_ssh_secret parameter.
       The service account must be in the same namespace as the Deliverable.
     </td>
     <td>
@@ -1638,7 +1648,7 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
   <tr>
     <td><code>gitops_repository<code></td>
     <td>
-      The full repository URL to which the configuration should be fetched.
+      The full repository URL to which the configuration is fetched.
       <b>DEPRECATED</b>
     </td>
     <td>
@@ -1666,7 +1676,7 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
   <tr>
     <td><code>gitops_server_address<code></td>
     <td>
-      The server url of the git repository from which configuration will be fetched.
+      The server URL of the Git repository from which configuration is fetched.
     </td>
     <td>
       <pre>
@@ -1705,7 +1715,7 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
   <tr>
     <td><code>registry<code></td>
     <td>
-      Specification of the registry server and repository from which the configuration should be fetched.
+      Specification of the registry server and repository from which the configuration is fetched.
     </td>
     <td>
       <pre>
@@ -1765,9 +1775,9 @@ cluster. Other resources in the supply chain can then access that code.
     <td><code>gitImplementation<code></td>
     <td>
       The library used to fetch source code.
-      If not provided, TAP's default implementation will use <code>go-git</code>,
-      which works with the providers currently supported by TAP: Github and Gitlab.
-      An alternate value that may be used with other git providers is <code>libggit2</code>.
+      If not provided, Tanzu Application Platform's default implementation uses <code>go-git</code>,
+      which works with the providers supported by Tanzu Application Platform: GitHub and GitLab.
+      An alternate value that can be used with other Git providers is <code>libggit2</code>.
     </td>
     <td>
       <pre>
@@ -1783,7 +1793,7 @@ cluster. Other resources in the supply chain can then access that code.
       Name of the secret used to provide credentials for the Git repository.
       The secret with this name must exist in the same namespace as the <code>Deliverable</code>.
       The credentials must be sufficient to read the repository.
-      If not provided, TAP will default to look for a secret named <code>git-ssh</code>.
+      If not provided, Tanzu Application Platform defaults to look for a secret named <code>git-ssh</code>.
       See <a href="git-auth.html">Git authentication</a>.
     </td>
     <td>
@@ -1795,7 +1805,7 @@ cluster. Other resources in the supply chain can then access that code.
   </tr>
 </table>
 
-> **Note** Some git providers, notably Azure DevOps, require you to use
+> **Note** Some Git providers, notably Azure DevOps, require you to use
 > `libgit2` due to the server-side implementation providing support
 > only for [git's v2 protocol](https://git-scm.com/docs/protocol-v2).
 > For information about the features supported by each implementation, see
@@ -1848,7 +1858,7 @@ docs](../source-controller/reference.hbs.md#imagerepository).
 ## app-deploy
 
 ### Purpose
-Applies kubernetes configuration to the cluster.
+Applies Kubernetes configuration to the cluster.
 
 ### Used by
 
@@ -1902,6 +1912,6 @@ A [kapp App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/).
 
 ### More Information
 
-For details about RBAC and how `kapp-controller` makes use of the ServiceAccount provided via the Deliverable's
+For details about RBAC and how `kapp-controller` makes use of the ServiceAccount provided through the Deliverable's
 `serviceAccount` parameter,
 see [`kapp-controller`'s Security Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/).
