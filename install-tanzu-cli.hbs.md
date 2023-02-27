@@ -239,17 +239,17 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
    Expected outcome:
 
    ```console
-   NAME                DESCRIPTION                                                        SCOPE       DISCOVERY  VERSION  STATUS
+  NAME                DESCRIPTION                                                        SCOPE       DISCOVERY  VERSION  STATUS
   login               Login to the platform                                              Standalone  default    v0.25.4  not installed
   management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.25.4  not installed
   package             Tanzu package management                                           Standalone  default    v0.25.4  installed
   pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default    v0.25.4  not installed
   secret              Tanzu secret management                                            Standalone  default    v0.25.4  installed
   telemetry           Configure cluster-wide telemetry settings                          Standalone  default    v0.25.4  not installed
-  insight             post & query image, package, source, and vulnerability data        Standalone             v1.4.3   installed
   services            Commands for working with service instances, classes and claims    Standalone             v0.5.0   installed
   accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.4.1   installed
   apps                Applications on Kubernetes                                         Standalone             v0.10.0  installed
+  insight             post & query image, package, source, and vulnerability data        Standalone             v1.4.3   installed
   ```
 
 ## <a id='next-steps'></a>Next steps
