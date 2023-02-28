@@ -33,27 +33,17 @@ The option to skip relocation is documented for evaluation and proof-of-concept 
 
 To relocate images from the VMware Tanzu Network registry to your registry:
 
-1. Install Docker if it is not already installed.
-
-1. Log in to your image registry by running:
-
-    ```console
-    docker login MY-REGISTRY
-    ```
-
-   Where `MY-REGISTRY` is your own container registry.
-
-1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
-
-    ```console
-    docker login registry.tanzu.vmware.com
-    ```
-
 1. Set up environment variables for installation use by running:
 
     ```console
-    export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
-    export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
+    export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
+    export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
+    export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+    export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
+    export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
+    export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
+    export INSTALL_REGISTRY_USERNAME="${IMGPKG_REGISTRY_USERNAME_1}"
+    export INSTALL_REGISTRY_PASSWORD="${IMGPKG_REGISTRY_PASSWORD_1}"
     export APIX_VERSION=VERSION-NUMBER
     export INSTALL_REPO=TARGET-REPOSITORY
     ```
@@ -63,6 +53,8 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     * `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`
     * `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`
     * `MY-REGISTRY` is your own container registry.
+    * `MY-TANZUNET-USERNAME` is the user that has access to the images in the TanzuNet registry `registry.tanzu.vmware.com`.
+    * `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     * `VERSION-NUMBER` is your API Validation and Scoring package version. For example, `0.2.5`
     * `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location for the installation files for API Validation and Scoring.
 
@@ -88,7 +80,7 @@ Tanzu CLI packages are available on repositories. Adding the API Validation and 
 
 * `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
 * `INSTALL_REPO` is `tanzu-application-platform`
-* `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
+* `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSWORD` are the credentials to the TanzuNet registry `registry.tanzu.vmware.com`
 * `APIX_VERSION` is your API Validation and Scoring package version. For example, `0.2.5`
 
 To add the API Validation and Scoring package repository to your cluster:
