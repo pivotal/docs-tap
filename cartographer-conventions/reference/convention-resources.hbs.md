@@ -5,7 +5,7 @@ are typically consumed by platform developers and operators rather than by appli
 
 + [ClusterPodConvention](cluster-pod-convention.md) 
 
-  This is a `conventions.carto.run/v1alpha1` type. An example is  provided below
+  The following is an example `conventions.carto.run/v1alpha1` type:
 
   ```yaml
   ---
@@ -25,13 +25,13 @@ are typically consumed by platform developers and operators rather than by appli
         <admissionregistrationv1.WebhookClientConfig>
     ```
 
-  A `ClusterPodConvention` can target a single or multiple workloads of different types. 
-  It is also possible to have multiple conventions being applied to a single workload. 
+  A `ClusterPodConvention` can target a one or more workloads of different types. 
+  You can apply multiple conventions to a single workload. 
   It is at the discretion of the "Conventions Author" how a convention is applied.
 
   To list out available conventions in your cluster, run the following `kubectl`command 
     
-    ```bash 
+    ```console 
 
     ❯ kubectl get clusterpodconventions.conventions.carto.run
 
@@ -39,11 +39,11 @@ are typically consumed by platform developers and operators rather than by appli
       appliveview-sample       23h
       developer-conventions    23h
       spring-boot-convention   23h
-    ``` 
+    ```
 
 + [PodIntent](pod-intent.md) 
 
-  This is a `conventions.carto.run/v1alpha1` resource. An example is provided below.
+  The following is an example `conventions.carto.run/v1alpha1` resource:
 
   ```yaml
   apiVersion: conventions.carto.run/v1alpha1
@@ -63,9 +63,9 @@ are typically consumed by platform developers and operators rather than by appli
       <corev1.PodTemplateSpec>
     ```  
 
-  To list out available `PodIntent` resources in your cluster, run the following `kubectl` command
+  To list out available `PodIntent` resources in your cluster, run the following kubectl command
   
-  ```bash
+  ```console
    # specify relevant namespace
    kubectl get podintents.conventions.carto.run -n my-apps
 
@@ -74,13 +74,13 @@ are typically consumed by platform developers and operators rather than by appli
   ```
 
   When a`PodIntent` is created, the `PodIntent` reconciler lists all `ClusterPodConventions` resources 
-  and applies them serially. To ensure the consistency of the enriched [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec), 
+  and applies them serially. To ensure that the consistency of the enriched [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec), 
   the list of `ClusterPodConventions`is sorted alphabetically by name before applying the conventions.
   
   >**Tip** : *You can use strategic naming to control the order in which the conventions are applied.*
 
   After the conventions are applied, the `Ready` status condition on the `PodIntent` resource is used 
-  to indicate whether it is applied successfully.
+  to indicate whether it is applied.
   A list of all applied conventions is stored under the annotation `conventions.carto.run/applied-conventions`.
 
 There are also a few other resources available to the `Conventions Author` that are not persisted in your cluster, including:
@@ -93,9 +93,9 @@ There are also a few other resources available to the `Conventions Author` that 
 
 ## <a id="collect-logs-from-ctrlr"></a>Collecting Logs from the Controller
 
-  A successful deployment of the convention service will create it's resources on the `cartographer-system`namespace as shown below.
+  A successful deployment of the convention service creates it's resources on the following `cartographer-system` namespace:
 
-  ```bash 
+  ```console 
   ❯ kubectl get all -n cartographer-system
     NAME                                                               READY   STATUS    RESTARTS   AGE
     ...
@@ -116,10 +116,9 @@ There are also a few other resources available to the `Conventions Author` that 
     replicaset.apps/cartographer-conventions-controller-manager-76fd86789f   1         1         1       20h
   ```
 
-  In order to examine logs from the cartographer conventions controller to help identify issues, try 
-  inspecting the cartographer conventions controller manager pod as follows  
+  In order to examine logs from the cartographer conventions controller to help identify issues, inspect the cartographer conventions controller manager pod as follows  
 
-  ```bash
+  ```console
    kubectl -n cartographer-system logs -l control-plane=controller-manager
   ...
   {"level":"info","ts":"2023-02-06T20:49:19.855086032Z","logger":"MetricsReconciler","msg":"reconciling builders configmap","controller":"configmap","controllerGroup":"","controllerKind":"ConfigMap","ConfigMap":{"name":"controller-manager-metrics-data","namespace":"cartographer-system"},"namespace":"cartographer-system","name":"controller-manager-metrics-data","reconcileID":"6f5e38c7-0ce0-4c74-aff3-f938fb742dab","diff":"  map[string]string{\n- \t\"clusterpodconventions_names\": \"appliveview-sample\",\n+ \t\"clusterpodconventions_names\": \"appliveview-sample\\nspring-boot-convention\",\n  \t\"podintents_count\":            \"0\",\n  }\n"}

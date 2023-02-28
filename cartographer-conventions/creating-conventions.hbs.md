@@ -410,7 +410,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-2. <a id='install-cm'></a>(Optional) A certificate manager `Issuer` is created to issue the certificate needed for TLS communication.
+2. <a id='install-cm'></a>(Optional) A certificate manager `Issuer` is created to issue the> certificate needed for TLS communication.
 
     ```yaml
     ...
