@@ -114,21 +114,21 @@ in the VMware Tanzu Buildpacks documentation.
 
 #### <a id="lite-buildpacks"></a> Lite dependencies: buildpacks
 
-The `lite` dependencies contain the following buildpacks in Tanzu Application Platform v1.3:
+The `lite` dependencies contain the following buildpacks in Tanzu Application Platform v1.5:
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
 | Java Buildpack for VMware Tanzu (Lite) | 8.0.0 | Bionic, Jammy |
 | Java Native Image Buildpack for Tanzu (Lite) | 6.39.0 | Bionic, Jammy |
-| .NET Core Buildpack for VMware Tanzu (Lite) | 1.19.2 | Bionic, Jammy |
-| Node.js Buildpack for VMware Tanzu (Lite) | 1.17.1 | Bionic, Jammy |
-| Python Buildpack for VMware Tanzu (Lite) | 2.3.1 | Bionic, Jammy |
-| Go Buildpack for VMware Tanzu (Lite) | 2.0.4 | Bionic, Jammy |
-| Web Servers Buildpack for VMware Tanzu (Lite) | 0.4.1 | Bionic, Jammy |
-| Ruby Buildpack for VMware Tanzu (Lite) | 1.5.0 | Bionic, Jammy |
+| .NET Core Buildpack for VMware Tanzu (Lite) | 2.3.0 | Bionic, Jammy |
+| Node.js Buildpack for VMware Tanzu (Lite) | 2.1.0 | Bionic, Jammy |
+| Python Buildpack for VMware Tanzu (Lite) | 2.3.3 | Bionic, Jammy |
+| Go Buildpack for VMware Tanzu (Lite) | 2.0.8 | Bionic, Jammy |
+| Web Servers Buildpack for VMware Tanzu (Lite) | 0.8.0 | Bionic, Jammy |
+| Ruby Buildpack for VMware Tanzu (Lite) | 2.1.0 | Bionic, Jammy |
 | Procfile Buildpack for VMware Tanzu (Lite) | 5.4.0 | Bionic, Jammy |
-| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.34 | Bionic |
-| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.16 | Jammy |
+| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.45 | Bionic |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.25 | Jammy |
 
 ### <a id="full-dependencies"></a> Full dependencies
 
@@ -160,26 +160,26 @@ in the VMware Tanzu Buildpacks documentation.
 
 #### <a id="full-buildpacks"></a> Full dependencies: buildpacks
 
-The `full` dependencies contain the following buildpacks in Tanzu Application Platform v1.3:
+The `full` dependencies contain the following buildpacks in Tanzu Application Platform v1.5:
 
 | Buildpack | Version | Supported Stacks |
 |-----------|---------|------------------|
 | Java Buildpack for VMware Tanzu | 8.0.0 | Bionic, Jammy |
 | Java Native Image Buildpack for Tanzu | 6.39.0 | Bionic, Jammy |
-| .NET Core Buildpack for VMware Tanzu | 1.19.2 | Bionic, Jammy |
-| Node.js Buildpack for VMware Tanzu | 1.17.1 | Bionic, Jammy |
-| Python Buildpack for VMware Tanzu | 2.3.1 | Bionic, Jammy |
-| Ruby Buildpack for VMware Tanzu | 1.5.0 | Bionic, Jammy |
-| Go Buildpack for VMware Tanzu | 2.0.4 | Bionic, Jammy |
+| .NET Core Buildpack for VMware Tanzu | 2.3.0 | Bionic, Jammy |
+| Node.js Buildpack for VMware Tanzu | 2.1.0 | Bionic, Jammy |
+| Python Buildpack for VMware Tanzu | 2.3.3 | Bionic, Jammy |
+| Ruby Buildpack for VMware Tanzu | 2.1.0 | Bionic, Jammy |
+| Go Buildpack for VMware Tanzu | 2.0.8 | Bionic, Jammy |
 | PHP Buildpack for VMware Tanzu | 2.0.0 | Bionic, Jammy |
-| Web Servers Buildpack for VMware Tanzu | 0.4.1 | Bionic, Jammy |
+| Web Servers Buildpack for VMware Tanzu | 0.8.0 | Bionic, Jammy |
 | Procfile Buildpack for VMware Tanzu | 5.4.0 | Bionic, Jammy |
-| Tiny Stack of Ubuntu Bionic for VMware Tanzu | 1.3.88 | Bionic |
-| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.34 | Bionic |
-| Full Stack of Ubuntu Bionic for VMware Tanzu | 1.3.121 | Bionic |
-| Tiny Stack of Ubuntu Jammy for VMware Tanzu | 0.1.17 | Jammy |
-| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.16 | Jammy |
-| Full Stack of Ubuntu Jammy for VMware Tanzu | 0.1.38 | Jammy |
+| Tiny Stack of Ubuntu Bionic for VMware Tanzu | 1.3.99 | Bionic |
+| Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.45 | Bionic |
+| Full Stack of Ubuntu Bionic for VMware Tanzu | 1.3.141 | Bionic |
+| Tiny Stack of Ubuntu Jammy for VMware Tanzu | 0.1.26 | Jammy |
+| Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.25 | Jammy |
+| Full Stack of Ubuntu Jammy for VMware Tanzu | 0.1.54 | Jammy |
 
 ### <a id="lite-vs-full-table"></a> Dependency comparison
 
