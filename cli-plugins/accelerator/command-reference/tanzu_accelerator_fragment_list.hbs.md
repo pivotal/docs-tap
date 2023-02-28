@@ -21,6 +21,7 @@ tanzu accelerator fragment list
 ```
   -h, --help               help for list
   -n, --namespace string   namespace for accelerator system (default "accelerator-system")
+  -v, --verbose            include repository and show long URLs or image digests in the output
 ```
 
 ### Options inherited from parent commands
