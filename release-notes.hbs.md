@@ -2,11 +2,9 @@
 
 This topic contains release notes for Tanzu Application Platform v1.3
 
-{{#unless vars.hide_content}} 
- 
 ## <a id='1-3-6'></a> v1.3.6
 
-**Release Date**: March 2, 2023
+**Release Date**: March 6, 2023
 
 ### <a id='1-3-6-security-fix'></a> Security fixes
 
@@ -17,8 +15,6 @@ This release has the following security fixes, listed by component and area.
 - Security fix description.
  
 ---
- 
-{{/unless}} 
 
 ## <a id='1-3-5'></a> v1.3.5
 
