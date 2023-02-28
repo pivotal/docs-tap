@@ -1,8 +1,10 @@
-Prerequisites:
+# Install Tanzu Application Platform package and profiles on Azure
+
+## Prerequisites:
 
 The following are required to install Tanzu Application Platform on Azure:
 
-VMware Tanzu Network and container image registry requirements
+### VMware Tanzu Network and container image registry requirements
 
 Installation requires:
 
@@ -14,17 +16,17 @@ Installation requires:
 - Registry credentials with read and write access available to Tanzu Application Platform to store images.
 - Network access to your chosen container image registry.
 
-DNS Records
+### DNS Records
 
 There are some DNS records created for a few TAP components. 
 
-Kubernetes cluster requirements
+### Kubernetes Cluster requirements
 
 Installation requires Kubernetes cluster v1.23, v1.24, v1.25, v1.26 on one of the following Kubernetes providers:
 
 - Azure Kubernetes Service.
 
-Resource requirements
+### Resource requirements
 
 - To deploy Tanzu Application Platform packages full profile, your cluster must have at least:
 	- 8 GB of RAM available per node to Tanzu Application Platform.
@@ -35,13 +37,13 @@ Resource requirements
 	- 12 vCPUs available across all nodes to Tanzu Application Platform.
 	- 100 GB of disk space available per node.
 	
-Tools and CLI requirements
+### Tools and CLI requirements
 
 Installation requires:
 
 - The Kubernetes CLI (kubectl) v1.23, v1.24, v1.25, v1.26 installed and authenticated with admin rights for your target cluster. See Install Tools in the Kubernetes documentation.
 
-Accepting Tanzu Application Platform EULAs and installing Tanzu CLI
+## Accepting Tanzu Application Platform EULAs and installing Tanzu CLI
 
 Selected product version:VMware Tanzu Application Platform 1.3 
 
@@ -51,7 +53,7 @@ This topic describes how to:
 - Set the Kubernetes cluster context
 - Install or update the Tanzu CLI and plug-ins
 
-Accept the End User License Agreements
+### Accept the End User License Agreements
 
 Before downloading and installing Tanzu Application Platform packages, you must accept the End User License Agreements (EULAs) as follows:
 
@@ -61,7 +63,7 @@ Before downloading and installing Tanzu Application Platform packages, you must 
 	- Cluster Essentials for VMware Tanzu
 
 
-Example of accepting the Tanzu Application Platform EULA
+### Example of accepting the Tanzu Application Platform EULA
 
 To accept the Tanzu Application Platform EULA:
 
@@ -70,27 +72,27 @@ To accept the Tanzu Application Platform EULA:
 
 3. Select Agree in the bottom-right of the dialog box as seen in the following screenshot.
 
-Install and Configure Azure CLI
+## Install and Configure Azure CLI
 
 Please refer to the Microsoft provided documentation in below link how to install and configure Azure CLI - documentation
 
 
-Login to Azure
+### Login to Azure
 
 	az login
 	az account set --subscription <<name of the subscription>>
 	
-Create Azure Resource Group
+### Create Azure Resource Group
 	
 Create a resource group with the az group create command. 
 
 	az group create --name myTAPResourceGroup --location eastus
 	
-Create an AKS Cluster
+### Create an AKS Cluster
 	
 To create an AKS cluster using the az aks create command with the --enable-addons monitoring and --enable-msi-auth-for-monitoring parameter to enable Azure Monitor Container insights with managed identity authentication (preview). The following example creates a cluster named tap-on-azure with one node and enables a system-assigned managed identity:
 	
-Azure CLI 
+#### Azure CLI 
 	
 	az aks create -g myTAPResourceGroup -n tap-on-azure --enable-managed-identity --node-count 6 --enable-addons monitoring --enable-msi-auth-for-monitoring --generate-ssh-	keys --node-vm-size Standard_D4ds_v4 --kubernetes-version 1.23.12
 	
@@ -100,12 +102,12 @@ Note
 	
 When you create an AKS cluster, a second resource group is automatically created to store the AKS resources. For more information, see Why are two resource groups created with AKS?
 	
-Connect to the cluster
+### Connect to the Cluster
 	
 To manage a Kubernetes cluster, use the Kubernetes command-line client, kubectl. kubectl is already installed if you use Azure Cloud Shell.
 1. Install kubectl locally using the az aks install-cli command:
 
- AKS CLI 
+ #### AKS CLI 
  
 	az aks install-cli
 	
@@ -114,12 +116,12 @@ To manage a Kubernetes cluster, use the Kubernetes command-line client, kubectl.
 	- Downloads credentials and configures the Kubernetes CLI to use them.
 	- Uses ~/.kube/config, the default location for the Kubernetes configuration file. Specify a different location for your Kubernetes configuration file using --file 	argument.
 	
-      Azure CLI 	
+#### Azure CLI 	
       
       		az aks get-credentials --resource-group myTAPResourceGroup --name tap-on-azure
       
 
-Set the Kubernetes cluster context
+### Set the Kubernetes cluster context
 	
 To set the Kubernetes cluster context:
 	
@@ -143,11 +145,11 @@ For example:
 	$ kubectl config use-context aks-tap-cluster
 	Switched to context "aks-tap-cluster".
 
-Deploying Cluster Essentials
+## Deploying Cluster Essentials
 
 Please refer to the Tanzu Application Platform documentation for more information.
 
-Creating Azure Resources for Tanzu Application Platform
+### Creating Azure Resources for Tanzu Application Platform
 
 To install Tanzu Application Platform within Azure Ecosystem, you must create several Azure resources. This guide walks you through creating:
 - An Azure Kubernetes Service (AKS) cluster to install Tanzu Application Platform.
@@ -164,14 +166,14 @@ To increase security, the token has a lifetime of 12 hours. This makes storing i
 
 Using an IAM role on a service account mitigates the need to retrieve the token at all because it is handled by credential helpers within the services.
 
-Prerequisites
+### Prerequisites
 
 Before installing Tanzu Application Platform on Azure, you need:
 - An Azure Subscription. You need to create all of your resources within an Azure subscription, create an Azure free account before you begin.
 - Azure CLI. This walkthrough uses the Azure CLI to both query and configure resources in Azure, such as IAM roles. For more information, see this Azure CLI documentation. 
 - If you prefer to run CLI reference commands locally, install the Azure CLI.
 
-Installing Tanzu Application Platform package and profiles on Azure
+### Installing Tanzu Application Platform package and profiles on Azure
 
 This topic describes how to install Tanzu Application Platform packages from the Tanzu Application Platform package repository on to Azure.
 Before installing the packages, ensure you have:
@@ -255,11 +257,11 @@ For example:
   	tap.tanzu.vmware.com                                 Tanzu Application Platform                                                Package to install a set of TAP components to get you started based on your use case.
  	workshops.learningcenter.tanzu.vmware.com            Workshop Building Tutorial                                                Workshop Building Tutorial
 	
-Install your Tanzu Application Platform profile
+### Install your Tanzu Application Platform profile
 
 The tap.tanzu.vmware.com package installs predefined sets of packages based on your profile settings. This is done by using the package manager installed by Tanzu Cluster Essentials.
 
-Setup Registry Credentials
+## Setup Registry Credentials
 
 	export KP_REGISTRY_USERNAME=
 	export KP_REGISTRY_PASSWORD=YOUR_PASSWORD
@@ -294,7 +296,7 @@ To prepare to install a profile:
 		Important: Keep the values file for future configuration use.
 	3. View possible configuration settings for your package
 	
-Full profile (Azure)
+### Full profile (Azure)
 
 The following command generates the YAML file sample for the full-profile on Azure by using the ACR repositories you created earlier. The profile: field takes full as the default value, but you can also set it to iterate, build, run, or view. Refer to Install multicluster Tanzu Application Platform profiles for more information.
 
@@ -384,7 +386,7 @@ For Azure, the default settings creates a classic LoadBalancer. To use the Netwo
   	  namespace: tap-workload
   	  targetImagePullSecret: registry-credentials
 	  
-Install your Tanzu Application Platform package
+### Install your Tanzu Application Platform package
 
 Follow these steps to install the Tanzu Application Platform package:
 
@@ -403,13 +405,13 @@ This can take 5-10 minutes because it installs several packages on your cluster.
    After installing the Full profile on your cluster, you can install the Tanzu Developer Tools for VS Code Extension to help you develop against it. For instructions, see 	    Installing Tanzu Developer Tools for VS Code.
    
    
-Access Tanzu Application Platform GUI
+### Access Tanzu Application Platform GUI
 
 To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see Accessing Tanzu Application Platform GUI.
 
 You are now ready to start using Tanzu Application Platform GUI. Proceed to the Getting Started topic or the Tanzu Application Platform GUI - Catalog Operations topic.
 
-Next steps
+### Next steps
 
 	- (Optional) Installing Individual Packages
 	- Setting up developer namespaces to use installed packages
@@ -464,14 +466,14 @@ Shared Keys define values that configure multiple packages. These keys are defin
 
 For information about package-specific configuration, see Installing individual packages.
 
-Set up developer namespaces to use installed packages
+## Set up developer namespaces to use installed packages
 
 You can choose either one of the following two approaches to create a Workload for your application by using the registry credentials specified, add credentials and Role-Based Access Control (RBAC) rules to the namespace that you plan to create the Workload in:
 
 - Enable single user access.
 - Enable additional users access with Kubernetes RBAC.
 
-Enable single user access
+### Enable single user access
 
 Follow these steps to enable your current user to submit jobs to the Supply Chain:
 
