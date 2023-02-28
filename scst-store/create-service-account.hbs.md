@@ -1,9 +1,8 @@
-# Retrieve and create service accounts
+# Retreive and create service accounts
 
-This topic explains how to create service accounts.
 When you install Tanzu Application Platform, the Supply Chain Security
 Tools (SCST) - Store deployment automatically includes a read-write service
-account.
+account so users don't have to create it.
 This service account is bound to the `metadata-store-read-write` role.
 
 There are two types of SCST - Store service accounts:
@@ -11,12 +10,14 @@ There are two types of SCST - Store service accounts:
 1. Read-write service account - full access to the `POST` and `GET` API requests
 2. Read-only service account - can only use `GET` API requests
 
+This topic explains how to create service accounts.
+
 ## <a id='rw-serv-accts'></a> Create read-write service account
 
 When you install Tanzu Application Platform, the SCST - Store deployment automatically includes a read-write service account.
 This service account is already bound to the `metadata-store-read-write` role.
 
-To create an additional read-write service account, run the following command.
+To create an *additional* read-write service account, run the following command.
 The command creates a service account called `metadata-store-read-write-client`, depending on the Kubernetes version:
 
 ```console
@@ -70,9 +71,7 @@ EOF
 > longer automatically created.
 > This is why the example adds a `Secret` resource in the earlier YAML.
 
-## <a id='ro-serv-accts'></a>Create a read-only service account
-
-You can create a read-only service account with a default cluster role or with a custom cluster role.
+## <a id='ro-serv-accts'></a>Create read-only service account
 
 ### With a default cluster role
 
