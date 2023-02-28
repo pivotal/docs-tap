@@ -12,15 +12,15 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ### <a id='1-5-0-appsso-new-features'></a> Application Single Sign-On (AppSSO)
 
-- Introduces an API for filtering of external roles/groups/memberships across OpenID, LDAP, and SAML identity providers
+- Introduces an API for filtering external roles, groups, and memberships across OpenID, LDAP, and SAML identity providers
   in `AuthServer` resource into the `roles` claim of the resulting identity
-  token. [Read more here](app-sso/service-operators/identity-providers.md#roles-filters).
+  token. For more information, see [Roles claim filtering](app-sso/service-operators/identity-providers.hbs.md#roles-filters).
 - Introduces mapping of users' roles, filtered and propagated in the identity
   token's `roles` claim, into scopes of the access token. For access tokens that are in the JWT format, the resulting
-  scopes will also be part of the access token's `scope` claim, as long as the `ClientRegistration` also contains the
-  scopes. [Read more here](app-sso/service-operators/configure-authorization.md).
-- Introduces default access token scopes for user's authenticating via an identity
-  provider. [Read more here](app-sso/service-operators/configure-authorization.md#default-scopes).
+  scopes are part of the access token's `scope` claim, if the `ClientRegistration` contains the
+  scopes. For more information, see [Configure authorization](app-sso/service-operators/configure-authorization.hbs.md).
+- Introduces default access token scopes for user's authentication by using an identity
+  provider. For more information, see [Default authorization scopes](app-sso/service-operators/configure-authorization.hbs.md#default-scopes).
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
