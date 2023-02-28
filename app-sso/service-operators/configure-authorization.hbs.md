@@ -20,7 +20,7 @@ http.authorizeExchange(exchanges -> exchanges
 The access token used to access any endpoint under `/message/` path **must** have `message.read` scope within its access
 token.
 
->**Note**: find the full example in the [official Spring Security docs](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html#oauth2resourceserver-jwt-sansboot)
+>**Note** Find the full example in the [official Spring Security docs](https://docs.spring.io/spring-security/reference/servlet/oauth2/resource-server/jwt.html#oauth2resourceserver-jwt-sansboot)
 
 To configure the mapping of user roles to authorization scopes at `AuthServer` identity provider and `ClientRegistration` levels,
 read more below.
