@@ -103,6 +103,14 @@ spec:
             emailVerified: false
             roles:
               - ""
+        accessToken: # optional
+          scope:
+            defaults: # optional
+            - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                  - ""
     - name: "" # must be unique
       ldap:
         server:
@@ -128,6 +136,14 @@ spec:
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expression
+          accessToken: # optional
+            scope:
+              defaults: # optional
+              - ""
+              rolesToScopes: # optional
+                - fromRole: ""
+                  toScopes:
+                  - ""
         group:    # deprecated, use 'ldap.roles.fromUpstream' instead.
           search: # deprecated, use 'ldap.roles.fromUpstream.search' instead.
             filter: ""
@@ -151,6 +167,14 @@ spec:
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expression
+        accessToken: # optional
+          scope:
+            defaults: # optional
+            - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                - ""
     - name: "" # must be unique
       saml:
         metadataURI: ""
@@ -161,6 +185,14 @@ spec:
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expressions
+        accessToken: # optional
+          scope:
+            defaults: # optional
+              - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                  - ""
   replicas: 1 # optional, default 2
   logging: "" # optional, must be valid YAML
   server: "" # optional, must be valid YAML
@@ -402,6 +434,16 @@ spec:
         roles:
           fromUpstream:
             claim: my_custom_okta_roles_claim
+        accessToken:
+          scope:
+            defaults:
+              - "developer.read"
+              - "developer.write"
+            rolesToScopes:
+              - fromRole: "finance"
+                toScopes:
+                  - "finance.read"
+                  - "finance.write"
 
 ---
 apiVersion: secretgen.k14s.io/v1alpha1
