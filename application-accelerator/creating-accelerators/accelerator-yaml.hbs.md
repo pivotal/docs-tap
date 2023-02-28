@@ -66,7 +66,8 @@ The following option properties are used by both the UI and the engine.
   - `string`
   - `boolean`
   - `number`
-  - Arrays of these such as `[string]`, `[number]`, ans so on.
+  - Custom types defined in the accelerator `types` section
+  - Arrays of these such as `[string]`, `[number]`, and so on.
 
   Most input types return a string, which is the default. Use Boolean values with `checkbox`.
 
