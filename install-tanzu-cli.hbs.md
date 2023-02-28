@@ -149,7 +149,7 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
     tanzu version
     ```
 
-    Expected outcome:
+    The outcome is similar to:
 
     ```console
     version: v0.25.4
