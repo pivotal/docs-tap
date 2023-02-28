@@ -3,14 +3,18 @@
 ## Standard Fields
 
 Cartographer workloads have standard fields leveraged by supply chains.
-See [Workload](https://cartographer.sh/docs/v0.6.0/reference/workload/#workload) in the Cartographer documentation.
+Read more about these in [Cartographer's Reference
+Documentation](https://cartographer.sh/docs/v0.6.0/reference/workload/#workload).
 
 ## Labels
 
 Workload labels affect which supply chain is selected
-and which template is stamped out for a particular reference. Individual templates can also leverage them. See [Selectors](https://cartographer.sh/docs/v0.6.0/architecture/#selectors) in the Cartographer documentation.
+(see [Cartographer documentation of
+selectors](https://cartographer.sh/docs/v0.6.0/architecture/#selectors))
+and which template is stamped out for a particular reference. They can also be
+leveraged by individual templates.
 
-The following workload labels leveraged by OOTB Supply Chains:
+Here is a list of workload labels leveraged by OOTB Supply Chains:
 
 - `apps.tanzu.vmware.com/has-tests` by
   [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) and
@@ -19,20 +23,19 @@ The following workload labels leveraged by OOTB Supply Chains:
 - `apis.apps.tanzu.vmware.com/register-api` by the [Api-Descriptors Template](ootb-template-reference.hbs.md#api-descriptors).
 
 ## Parameters
+The OOTB templates can be configured with parameters from the supply chain or workload.
+Read about Cartographer parameters (including precedence rules) in [Cartographer's
+Documentation](https://cartographer.sh/docs/v0.6.0/templating/#parameters).
 
-The OOTB templates are configured with parameters from the supply chain or workload.
-Read about Cartographer parameters, including precedence rules, in [Parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters) in the Cartographer
-documentation.
-
-What parameters are relevant depends on the supply chain selecting the workload, for two reasons:
-
+What parameters are relevant depends on the supply chain selecting the workload, for two reasons.
 1. The OOTB supply chains refer to overlapping sets of templates.
-A workload selected by the Source-to-URL supply chain can provide a `scanning_image_template` parameter,
-but the supply chain does not refer to a template that leverages that parameter.
-1. Supply Chains can be written to provide a param value to a template
-  and prevent the workload from overriding the value. See [Further Information](https://cartographer.sh/docs/v0.6.0/tutorials/using-params/#further-information) in the cartographer documentation.
+So a workload selected by the Source-to-URL supply chain could provide a `scanning_image_template` param,
+but the supply chain does not refer to a template that leverages that param.
+2. Supply Chains can be written to provide a param value to a template
+  and prevent the workload from overriding the value. (See [Carto
+  Documentation](https://cartographer.sh/docs/v0.6.0/tutorials/using-params/#further-information))
 
-The following parameters are respected by some OOTB supply chain.
+Here are a list of params that are respected by some OOTB supply chain.
 Each provides the templates that respect the param.
 The reference for the template details which supply chains include the template.
 
@@ -102,19 +105,20 @@ The reference for the template details which supply chains include the template.
 - gitops_pull_request_body: [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
 - gitops_server_kind: [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
 
+
 ## Service Account
 
 In order to create the templated objects, Cartographer needs a reference to a service account with permissions
 to manage said resources.
 This service account may be provided in the workload's `.spec.serviceAccountName` field
 or in the supply chain's `spec.serviceAccountRef` field.
-See [Service Account](https://cartographer.sh/docs/v0.6.0/tutorials/first-supply-chain/#service-account)
-and [Workload and Supply Chain Custom Resources](https://cartographer.sh/docs/v0.6.0/reference/workload/) in the Cartographer documentation.
+(Read a [short discussion here](https://cartographer.sh/docs/v0.6.0/tutorials/first-supply-chain/#service-account)
+and see the [CR References here](https://cartographer.sh/docs/v0.6.0/reference/workload/))
 When using the Tanzu CLI to create a workload,
 specify this service account's name with the `--service-account` flag.
 
-After the templated objects are created,
-they often need a service account with permissions to do work.
+Once the templated objects are created,
+they often similarly need a service account with permissions to do work.
 In the OOTB Templates and Supply Chains,
 the service account for these objects must be referenced by name in the _param_ `serviceAccount`.
 When using the Tanzu CLI to create a workload,

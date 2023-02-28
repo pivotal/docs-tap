@@ -1,7 +1,7 @@
 # Out of the Box Delivery Basic
 
 This package provides a reusable ClusterDelivery object that is responsible for
-delivering to an environment the Kubernetes configuration that is
+delivering to an environment the Kubernetes configuration that has been
 produced by the Out of the Box Supply Chains, including [Basic](ootb-supply-chain-basic.html),
 [Testing](ootb-supply-chain-testing.html), and
 [Testing With Scanning](ootb-supply-chain-testing-scanning.html).
@@ -51,14 +51,15 @@ DELIVERY
                                                 ...
 ```
 
-You must install this package to have Workloads delivered properly to the [Basic](ootb-supply-chain-basic.html),
+As a prerequisite to the [Basic](ootb-supply-chain-basic.html),
 [Testing](ootb-supply-chain-testing.html), and
 [Testing With Scanning](ootb-supply-chain-testing-scanning.html) Out of the Box
-Supply Chains.
+Supply Chains, you must install this package to have Workloads delivered properly.
 
 Consumers do not interact directly with this package. Instead, this package is used
-once the supply chain creates a [carto.run/Deliverable](https://github.com/vmware-tanzu/cartographer) to express the intention of having the Workloads that go through them
-delivered to an environment. The environment is the same Kubernetes cluster as the
+once a [carto.run/Deliverable](https://github.com/vmware-tanzu/cartographer) object is created by the supply
+chains to express the intention of having the Workloads that go through them
+delivered to an environment. At this time, the environment is the same Kubernetes cluster as the
 Supply Chains.
 
 ### More information

@@ -1,42 +1,38 @@
 # Supply Chains
 
-Tanzu Application Platform includes a number of supply chains packages,
+TAP ships with a number of supply chains packages,
 each of which installs two
 [ClusterSupplyChains](https://cartographer.sh/docs/v0.6.0/reference/workload/#clustersupplychain).
-Only one supply chain package can be installed at a time.
+Only one supply chain package may be installed at one time.
 
 The supply chains provide some [parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters)
 to the referenced templates.
-Some of these might be overridden by the parameters provided by the workload .
+Some of these may be overridden by the parameters provided by the workload .
 
 ## Source-to-URL
 
 ### Purpose
 
-- Fetches application source code
-- Builds it into an image
-- Writes the Kubernetes configuration necessary to deploy the application
-- Commits that configuration to either a Git repository or an container image registry
+- Fetches application source code,
+- builds it into an image,
+- writes the Kubernetes configuration necessary to deploy the application,
+- and commits that configuration to either a git repository or an image registry.
 
-### Resources
+### Resources (steps)
 
 #### source-provider
-
 Refers to [source-template](ootb-template-reference.hbs.md#source-template).
 
-Parameters provided:
-
+Params provided:
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
 - `gitImplementation` from tap-value `git_implementation`. NOT overridable by workload.
 
 #### image-provider
-
 Refers to [kaniko-template](ootb-template-reference.hbs.md#kaniko-template)
-when the workload provides a parameter `dockerfile`.
+when the workload provides a param `dockerfile`.
 Refers to [kpack-template](ootb-template-reference.hbs.md#kpack-template) otherwise.
 
-Parameters provided:
-
+Params provided:
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
 - `registry` from tap-value `registry`. NOT overridable by workload.
 - `clusterBuilder` from tap-value `cluster_builder`. Overridable by workload.
@@ -45,7 +41,6 @@ Parameters provided:
 - `docker_build_extra_args` value `[]`. Overridable by workload.
 
 #### Common Resources
-
 - [Config-Provider](#config-provider)
 - [App-Config](#app-config)
 - [Service-Bindings](#service-bindings)
@@ -53,7 +48,7 @@ Parameters provided:
 - [Config-Writer](#config-writer)
 - [Deliverable](#deliverable)
 
-### Parameters provided to all resources
+### Params provided to all resources
 
 - `maven_repository_url` from tap-value `maven.repository.url`. NOT overridable by workload.
 - `maven_repository_secret_name` from tap-value `maven.repository.secret_name`. NOT overridable by workload.
@@ -65,7 +60,8 @@ Parameters provided:
 
 ### More Information
 
-For information about setting tap-values at installation time, see [Install Out of the Box Supply Chain Basic](install-ootb-sc-basic.hbs.md).
+See [Install Out of the Box Supply Chain Basic](install-ootb-sc-basic.hbs.md)
+for information on setting tap-values at installation time.
 
 ## Source-Test-to-URL
 
@@ -73,33 +69,28 @@ For information about setting tap-values at installation time, see [Install Out 
 - runs user defined tests against the code,
 - builds the code into an image,
 - writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry.
+- and commits that configuration to either a git repository or an image registry.
 
-### Resources
+### Resources (steps)
 
 #### source-provider
-
 Refers to [source-template](ootb-template-reference.hbs.md#source-template).
 
-Parameters provided:
-
+Params provided:
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
 - `gitImplementation` from tap-value `git_implementation`. NOT overridable by workload.
 
 #### source-tester
-
 Refers to [testing-pipeline](ootb-template-reference.hbs.md#testing-pipeline).
 
-No parameters are provided by the supply-chain.
+No params are provided by the supply-chain.
 
 #### image-provider
-
 Refers to [kaniko-template](ootb-template-reference.hbs.md#kaniko-template)
-when the workload provides a parameter `dockerfile`.
+when the workload provides a param `dockerfile`.
 Refers to [kpack-template](ootb-template-reference.hbs.md#kpack-template) otherwise.
 
-Parameters provided:
-
+Params provided:
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
 - `registry` from tap-value `registry`. NOT overridable by workload.
 - `clusterBuilder` from tap-value `cluster_builder`. Overridable by workload.
@@ -108,7 +99,6 @@ Parameters provided:
 - `docker_build_extra_args` value `[]`. Overridable by workload.
 
 #### Common Resources
-
 - [Config-Provider](#config-provider)
 - [App-Config](#app-config)
 - [Service-Bindings](#service-bindings)
@@ -116,7 +106,7 @@ Parameters provided:
 - [Config-Writer](#config-writer)
 - [Deliverable](#deliverable)
 
-### Parameters provided to all resources
+### Params provided to all resources
 
 - `maven_repository_url` from tap-value `maven.repository.url`. NOT overridable by workload.
 - `maven_repository_secret_name` from tap-value `maven.repository.secret_name`. NOT overridable by workload.
@@ -128,7 +118,8 @@ Parameters provided:
 
 ### More Information
 
-For information about setting tap-values at installation time, see [Install Out of the Box Supply Chain with Testing](install-ootb-sc-wtest.hbs.md).
+See [Install Out of the Box Supply Chain with Testing](install-ootb-sc-wtest.hbs.md)
+for information on setting tap-values at installation time.
 
 ## Source-Test-Scan-to-URL
 
@@ -138,42 +129,35 @@ For information about setting tap-values at installation time, see [Install Out 
 - builds the code into an image,
 - scans the image for vulnerabilities,
 - writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry.
+- and commits that configuration to either a git repository or an image registry.
 
-### Resources
+### Resources (steps)
 
 #### source-provider
-
 Refers to [source-template](ootb-template-reference.hbs.md#source-template).
 
-Parameters provided:
-
+Params provided:
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
 - `gitImplementation` from tap-value `git_implementation`. NOT overridable by workload.
 
 #### source-tester
-
 Refers to [testing-pipeline](ootb-template-reference.hbs.md#testing-pipeline).
 
-No parameters are provided by the supply-chain.
+No params are provided by the supply-chain.
 
 #### source-scanner
-
 Refers to [source-scanner-template](ootb-template-reference.hbs.md#source-scanner-template).
 
-Parameters provided:
-
+Params provided:
 - `scanning_source_policy` from tap-value `scanning.source.policy`. Overridable by workload.
 - `scanning_source_template` from tap-value `scanning.source.template`. Overridable by workload.
 
 #### image-provider
-
 Refers to [kaniko-template](ootb-template-reference.hbs.md#kaniko-template)
-when the workload provides a parameter `dockerfile`.
+when the workload provides a param `dockerfile`.
 Refers to [kpack-template](ootb-template-reference.hbs.md#kpack-template) otherwise.
 
-Parameters provided:
-
+Params provided:
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
 - `registry` from tap-value `registry`. NOT overridable by workload.
 - `clusterBuilder` from tap-value `cluster_builder`. Overridable by workload.
@@ -182,15 +166,13 @@ Parameters provided:
 - `docker_build_extra_args` value `[]`. Overridable by workload.
 
 #### image-scanner
-
 Refers to [image-scanner-template](ootb-template-reference.hbs.md#image-scanner-template).
 
-Parameters provided:
+Params provided:
 - `scanning_image_policy` from tap-value `scanning.image.policy`. Overridable by workload.
 - `scanning_image_template` from tap-value `scanning.image.template`. Overridable by workload.
 
 #### Common Resources
-
 - [Config-Provider](#config-provider)
 - [App-Config](#app-config)
 - [Service-Bindings](#service-bindings)
@@ -198,7 +180,7 @@ Parameters provided:
 - [Config-Writer](#config-writer)
 - [Deliverable](#deliverable)
 
-### Parameters provided to all resources
+### Params provided to all resources
 
 - `maven_repository_url` from tap-value `maven.repository.url`. NOT overridable by workload.
 - `maven_repository_secret_name` from tap-value `maven.repository.secret_name`. NOT overridable by workload.
@@ -210,26 +192,24 @@ Parameters provided:
 
 ### More Information
 
-For information about setting tap-values at installation time, see [Install Out of the Box Supply Chain with Testing and Scanning](install-ootb-sc-wtest-scan.hbs.md).
+See [Install Out of the Box Supply Chain with Testing and Scanning](install-ootb-sc-wtest-scan.hbs.md)
+for information on setting tap-values at installation time.
 
 ## Basic-Image-to-URL
 
 - Fetches a prebuilt image,
 - writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry.
+- and commits that configuration to either a git repository or an image registry.
 
-### Resources
+### Resources (steps)
 
 #### image-provider
-
 Refers to [image-provider-template](ootb-template-reference.hbs.md#image-provider-template).
 
-Parameters provided:
-
+Params provided:
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
 
 #### Common Resources
-
 - [Config-Provider](#config-provider)
 - [App-Config](#app-config)
 - [Service-Bindings](#service-bindings)
@@ -237,7 +217,7 @@ Parameters provided:
 - [Config-Writer](#config-writer)
 - [Deliverable](#deliverable)
 
-### Parameters provided to all resources
+### Params provided to all resources
 
 - See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources)
 
@@ -247,26 +227,24 @@ Parameters provided:
 
 ### More Information
 
-For information about setting tap-values at installation time, see [Install Out of the Box Supply Chain Basic](install-ootb-sc-basic.hbs.md).
+See [Install Out of the Box Supply Chain Basic](install-ootb-sc-basic.hbs.md)
+for information on setting tap-values at installation time.
 
 ## Testing-Image-to-URL
 
 - Fetches a prebuilt image,
 - writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry.
+- and commits that configuration to either a git repository or an image registry.
 
-### Resources
+### Resources (steps)
 
 #### image-provider
-
 Refers to [image-provider-template](ootb-template-reference.hbs.md#image-provider-template).
 
-Parameters provided:
-
+Params provided:
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
 
 #### Common Resources
-
 - [Config-Provider](#config-provider)
 - [App-Config](#app-config)
 - [Service-Bindings](#service-bindings)
@@ -274,7 +252,7 @@ Parameters provided:
 - [Config-Writer](#config-writer)
 - [Deliverable](#deliverable)
 
-### Parameters provided to all resources
+### Params provided to all resources
 
 - See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources)
 
@@ -284,36 +262,32 @@ Parameters provided:
 
 ### More Information
 
-For information about setting tap-values at installation time, see [Install Out of the Box Supply Chain with Testing](install-ootb-sc-wtest.hbs.md).
+See [Install Out of the Box Supply Chain with Testing](install-ootb-sc-wtest.hbs.md)
+for information on setting tap-values at installation time.
 
 ## Scanning-Image-Scan-to-URL
 
 - Fetches a prebuilt image,
 - scans the image for vulnerabilities,
 - writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry.
+- and commits that configuration to either a git repository or an image registry.
 
-### Resources
+### Resources (steps)
 
 #### image-provider
-
 Refers to [image-provider-template](ootb-template-reference.hbs.md#image-provider-template).
 
-Parameters provided:
-
+Params provided:
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
 
 #### image-scanner
-
 Refers to [image-scanner-template](ootb-template-reference.hbs.md#image-scanner-template).
 
-Parameters provided:
-
+Params provided:
 - `scanning_image_policy` from tap-value `scanning.image.policy`. Overridable by workload.
 - `scanning_image_template` from tap-value `scanning.image.template`. Overridable by workload.
 
 #### Common Resources
-
 - [Config-Provider](#config-provider)
 - [App-Config](#app-config)
 - [Service-Bindings](#service-bindings)
@@ -321,7 +295,7 @@ Parameters provided:
 - [Config-Writer](#config-writer)
 - [Deliverable](#deliverable)
 
-### Parameters provided to all resources
+### Params provided to all resources
 
 - See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources)
 
@@ -331,20 +305,18 @@ Parameters provided:
 
 ### More Information
 
-For information about setting tap-values at installation time, see [Install Out of the Box Supply Chain with Testing and Scanning](install-ootb-sc-wtest-scan.hbs.md).
+See [Install Out of the Box Supply Chain with Testing and Scanning](install-ootb-sc-wtest-scan.hbs.md)
+for information on setting tap-values at installation time.
 
 ## Resources Common to All OOTB Supply Chains
 
 ### config-provider
-
 Refers to [convention-template](ootb-template-reference.hbs.md#convention-template).
 
-Parameters provided:
-
+Params provided:
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
 
 ### app-config
-
 The tap-values field `supported_workloads` defines which templates are referred to by this resource.
 Default configuration is:
 
@@ -359,48 +331,42 @@ supported_workloads:
 ```
 
 The workload's `apps.tanzu.vmware.com/workload-type` label determines which template is used at this step.
-For example, when the workload has a label `apps.tanzu.vmware.com/workload-type:web`, the supply chain references
+E.g. when the workload has a label `apps.tanzu.vmware.com/workload-type:web`, the supply chain references
 `config-template`.
 
-No parameters are provided by the supply-chain.
+No params are provided by the supply-chain.
 
 ### service-bindings
-
 Refers to the [service-binding template](ootb-template-reference.hbs.md#service-bindings).
 
-No parameters are provided by the supply-chain.
+No params are provided by the supply-chain.
 
 ### api-descriptors
-
 Refers to the [api-descriptors template](ootb-template-reference.hbs.md#api-descriptors).
 
-No parameters are provided by the supply-chain.
+No params are provided by the supply-chain.
 
 ### config-writer
-
 Refers to the
 [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
 when the tap-value `gitops.commit_strategy` is `pull_request`.
 Otherwise, this resource refers to the [config-writer-template](ootb-template-reference.hbs.md#config-writer-template)
 
-Parameters provided:
-
+Params provided:
 - `serviceAccount` from tap-value `service_account`. Overridable by workload.
 - `registry` from tap-value `registry`. NOT overridable by workload.
 
 ### deliverable
-
 Refers to the [external-deliverable-template](ootb-template-reference.hbs.md#external-deliverable-template)
 when the tap-value `external_delivery` evaluates to `true`.
 Otherwise the resource refers to the [deliverable-template](ootb-template-reference.hbs.md#deliverable-template).
 
-Parameters provided:
-
+Params provided:
 - `registry` from tap-value `registry`. NOT overridable by workload.
 
-## Parameters provided by all Supply Chains to all Resources
+## Params provided by all Supply Chains to all Resources
 
-All of the following parameters are overridable by the workload.
+All of the following params are overridable by the workload.
 
 - `gitops_branch` from tap-value `gitops.branch`
 - `gitops_user_name` from tap-value `gitops.username`
