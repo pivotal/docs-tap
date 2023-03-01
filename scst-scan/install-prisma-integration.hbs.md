@@ -41,19 +41,12 @@ For information about supported registries, see each registry's documentation.
 
 To relocate images from the VMware Project Registry to your registry:
 
-1. Install Docker if it is not already installed.
-
-2. Log in to your container image registry by running:
+1. Set up environment variables for installation:
 
     ```console
-    docker login MY-REGISTRY
-    ```
-
-    Where `MY-REGISTRY` is your own registry.
-
-3. Set up environment variables for installation:
-
-    ```console
+    export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
+    export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
+    export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
     export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
     export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
     export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
@@ -69,16 +62,13 @@ To relocate images from the VMware Project Registry to your registry:
     - `VERSION` is your Prisma Scanner version. For example, `0.1.4-alpha.11`.
     - `TARGET-REPOSITORY` is your target repository, a directory or repository on `MY-REGISTRY` that serves as the location for the installation files for Prisma Scanner.
 
-4. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
+1. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
 
-5. Relocate images with the imgpkg CLI by running:
+1. Relocate images with the imgpkg CLI by running:
 
     ```console
     imgpkg copy -b projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/prisma-repo-scanning-bundle
     ```
-
-> **Note**
-> The VMware project repository does not require authentication, so there is no need to perform a docker login.
 
 ## Add the Prisma Scanner package repository
 

@@ -48,15 +48,7 @@ To relocate images from the VMware Project Registry to your registry:
 
 1. Install Docker if it is not already installed.
 
-2. Log in to your container image registry by running:
-
-    ```console
-    docker login MY-REGISTRY
-    ```
-
-    Where `MY-REGISTRY` is your own registry.
-
-3. Set up environment variables for installation by running:
+1. Set up environment variables for installation by running:
 
     ```console
     export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
@@ -74,9 +66,9 @@ To relocate images from the VMware Project Registry to your registry:
     - `VERSION` is your Trivy Scanner version. For example, `0.1.4-alpha.6`.
     - `TARGET-REPOSITORY` is your target repository, a directory or repository on `MY-REGISTRY` that serves as the location for the installation files for Trivy Scanner.
 
-4. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials v1.4](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
+1. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials v1.4](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
 
-5. Relocate the images with the imgpkg CLI by running:
+1. Relocate the images with the imgpkg CLI by running:
 
     ```shell
     imgpkg copy -b projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/trivy-repo-scanning-bundle
