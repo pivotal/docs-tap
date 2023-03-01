@@ -1,10 +1,10 @@
 ## tanzu accelerator get
 
-Get accelerator information.
+Get accelerator info
 
 ### Synopsis
 
-Get accelerator information.
+Get accelerator info.
 
 You can choose to get the accelerator from the Application Accelerator server using --server-url flag
 or from a Kubernetes context using --from-context flag. The default is to get accelerators from the
@@ -29,6 +29,7 @@ tanzu accelerator get <accelerator-name> --from-context
   -h, --help                help for get
   -n, --namespace string    namespace for accelerator system (default "accelerator-system")
       --server-url string   the URL for the Application Accelerator server
+  -v, --verbose             include all fields and show long URLs in the output
 ```
 
 ### Options inherited from parent commands

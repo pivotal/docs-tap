@@ -29,7 +29,7 @@ tanzu accelerator create <accelerator-name> --git-repository <URL> --git-branch 
 ```
       --description string    description of this accelerator
       --display-name string   display name for the accelerator
-      --git-branch string     Git repository branch to be used
+      --git-branch string     Git repository branch to be used (default "main")
       --git-repo string       Git repository URL for the accelerator
       --git-sub-path string   Git repository subPath to be used
       --git-tag string        Git repository tag to be used

@@ -30,6 +30,7 @@ tanzu accelerator list
   -n, --namespace string    namespace for accelerator system (default "accelerator-system")
       --server-url string   the URL for the Application Accelerator server
   -t, --tags strings        accelerator tags to match against
+  -v, --verbose             include repository and show long URLs or image digests in the output
 ```
 
 ### Options inherited from parent commands
