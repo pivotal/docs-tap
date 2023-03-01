@@ -5,12 +5,12 @@ container images.
 
 ## <a id="admission-of-images"></a> Admission of Images
 
-An image is admitted after it is validated against all policies with
-matching image patterns, and where at least one valid signature is obtained from
-the authorities provided in the matched
-[ClusterImagePolicy](#create-cip-resource) later in the topic. Within a single policy, every
-signature must be valid. When more than one policy has a matching image pattern,
-the image must match at least one signature from each ClusterImagePolicy.
+An image is admitted after it is validated against a policy with
+matching image pattern, and where at least one valid signature is obtained from
+the authorities provided in matched [ClusterImagePolicy](#create-cip-resource).
+
+If more than one policy exists with matching image pattern, _ALL_ of the policies
+should have atleast one passing authority for the image.
 
 ## <a id="including-namespaces"></a> Including Namespaces
 
@@ -33,78 +33,6 @@ that applies to the images being deployed in the namespace.
 ## <a id="create-cip-resource"></a> Create a `ClusterImagePolicy` resource
 
 The cluster image policy is a custom resource containing the following properties:
-
-* `images`: The images block defines the patterns of images that must be
-  subject to the `ClusterImagePolicy`. If multiple policies match a particular
-  image, _ALL_ of those policies must be satisfied for the image to be admitted.
-
-  Policy Controller by default defines if the following globs are specified:
-
-  - If `*` is specified, the `glob` matching behavior is `index.docker.io/library/*`.
-  - If `*/*` is specified, the `glob` matching behavior is `index.docker.io/*/*`.
-  With these defaults, you require the `glob` pattern `**` to match against all images.
-  If your image is hosted on Docker Hub, include `index.docker.io` as the host for the glob.
-
-* `authorities`: The authorities block defines the rules for discovering and
-  validating signatures. Discovery is done by using the `sources` text box, and
-  is specified on any entry. Signatures are cryptographically verified using one
-  of the `key` or `keyless` text boxes.
-
-When a policy is selected to be evaluated against the matched image, the
-authorities are used to validate signatures. If at least one authority is
-satisfied and a signature is validated, the policy is validated.
-
-### <a id="cip-mode"></a> `mode`
-
-In a ClusterImagePolicy, `spec.mode` specifies the action of a policy:
-
-- `enforce`: The default behavior. If the policy fails to validate the image, the policy fails.
-- `warn`: If the policy fails to validate the image, validation error messages are converted to Warnings and the policy passes.
-
-A sample of a ClusterImagePolicy which has `warn` mode configured.
-
-```yaml
----
-apiVersion: policy.sigstore.dev/v1beta1
-kind: ClusterImagePolicy
-metadata:
-  name: POLICY-NAME
-spec:
-  mode: warn
-```
-
-Where `POLICY-NAME` is the name of the policy you want to configure your ClusterImagePolicy with.
-
-When `enforce` mode rejects an image, the image is not admitted.
-
-Sample output message:
-
-```console
-error: failed to patch: admission webhook "policy.sigstore.dev" denied the request: validation failed: failed policy: POLICY-NAME: spec.template.spec.containers[0].image
-IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
-failed policy: POLICY-NAME: spec.template.spec.containers[1].image
-IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
-```
-
-When `warn` mode rejects an image, the image is admitted.
-
-Sample output message:
-
-```console
-Warning: failed policy: POLICY-NAME: spec.template.spec.containers[0].image
-Warning: IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
-Warning: failed policy: POLICY-NAME: spec.template.spec.containers[1].image
-Warning: IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
-```
-
-If a namespace contains both signed and unsigned images, utilizing two ClusterImagePolicies can address this.
-You can configure one policy with `enforce` for images that are signed and configure the other policy with `warn` to allow expected unsigned images.
-
-For example, allowing unsigned `tap-packages` images required for the platform through a `warn` policy.
-However, the signed images produced from Tanzu Build Service are verified with an `enforce` policy.
-
-If `Warning` is undesirable, you might configure a `static.action` `pass` authority to allow expected unsigned images.
-For information about static action authorities, see the [Static Action](#cip-static-action) documentation.
 
 ### <a id="cip-images"></a> `images`
 
@@ -132,6 +60,52 @@ spec:
   - glob: "**"
 ```
 
+### <a id="cip-mode"></a> `mode`
+
+In a ClusterImagePolicy, `spec.mode` specifies the action of a policy:
+
+- `enforce`: The default behavior. If the policy fails to validate the image, the policy fails.
+- `warn`: If the policy fails to validate the image, validation error messages are converted to Warnings and the policy passes.
+
+A sample of a ClusterImagePolicy which has `warn` mode configured.
+
+```yaml
+---
+apiVersion: policy.sigstore.dev/v1beta1
+kind: ClusterImagePolicy
+metadata:
+  name: POLICY-NAME
+spec:
+  mode: warn
+```
+
+Where `POLICY-NAME` is the name of the policy you want to configure your ClusterImagePolicy with.
+
+When `enforce` mode is set, an image that fails validation is not admitted.
+
+Sample output message:
+
+```console
+error: failed to patch: admission webhook "policy.sigstore.dev" denied the request: validation failed: failed policy: POLICY-NAME: spec.template.spec.containers[0].image
+IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
+failed policy: POLICY-NAME: spec.template.spec.containers[1].image
+IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
+```
+
+When `warn` mode is set, an image that fails validation is admitted.
+
+Sample output message:
+
+```console
+Warning: failed policy: POLICY-NAME: spec.template.spec.containers[0].image
+Warning: IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
+Warning: failed policy: POLICY-NAME: spec.template.spec.containers[1].image
+Warning: IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
+```
+
+If `Warning` is undesirable, you might configure a `static.action` `pass` authority to allow expected unsigned images.
+For information about static action authorities, see the [Static Action](#cip-static-action) documentation.
+
 ### <a id="cip-match"></a> `match`
 
 You can use `match` to filter resources using group, version, kind, or labels in a
@@ -157,10 +131,14 @@ spec:
 Authorities listed in the `authorities` block of the ClusterImagePolicy are
 `key` or `keyless` specifications.
 
-> **Note** Keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](./install-scst-policy.hbs.md).
+#### <a id="key-authority"></a> `key`
 
 Each `key` authority can contain a PEM-encoded ECDSA public key, a `secretRef`,
 or a `kms` path.
+
+The policy resyncs with KMS referenced every 10 hours. Any updates to the secret
+in KMS would be pulled in during the refresh. If you want to force a resync, the policy has to be
+deleted and recreated.
 
 > **Important** Only ECDSA public keys are supported.
 
@@ -184,6 +162,10 @@ Where `KMSPATH` is the name of the KMS path you want to configure in your key au
 > **Note** The secret referenced in `key.secretRef.name` must be created
 in the `cosign-system` namespace or the namespace where the Policy Controller
 is installed. Such secret must only contain one `data` entry with the public key.
+
+#### <a id="keyless-authority"></a> `keyless`
+
+> **Note** Keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](./install-scst-policy.hbs.md).
 
 Each keyless authority can contain a Fulcio URL, a Rekor URL, a certificate, or
 an array of identities.
