@@ -1,10 +1,9 @@
-# Template Reference
+# Template reference
 
-All the objects referenced in this topic are [Cartographer
-Templates](https://cartographer.sh/docs/v0.6.0/reference/template/) packaged in
-[Out of the Box Templates](ootb-templates.hbs.md). Their purpose, the one or
-more objects they create, the supply chains that include them and the parameters
-they use are detailed in this topic.
+All the objects referenced in this topic are [Cartographer Templates](https://cartographer.sh/docs/v0.6.0/reference/template/)
+packaged in [Out of the Box Templates](ootb-templates.hbs.md).
+Their purpose, the one or more objects they create, the supply chains that include them, and
+the parameters they use are detailed in this topic.
 
 ## source-template
 
@@ -14,7 +13,7 @@ Creates an object to fetch source code and make that code available
 to other objects in the supply chain. See [Building from
 Source](building-from-source.hbs.md).
 
-### Used By
+### Used by
 
 - [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the `source-provider` step.
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the `source-provider` step.
@@ -83,7 +82,7 @@ cluster. Other resources in the supply chain can then access that code.
 > [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation)
 > in the flux documentation.
 
-##### More Information
+##### More information
 
 For an example using the Tanzu CLI to create a Workload using GitHub as the provider of source code,
 see [Create a workload from GitHub
@@ -122,10 +121,10 @@ For information about GitRepository objects, see
 </table>
 
 > **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
-> (The similarly named `--service-account` flag sets a different value:
-> the `spec.serviceAccountName` key in the Workload object.)
+> The similarly named `--service-account` flag sets a different value:
+> the `spec.serviceAccountName` key in the Workload object.
 
-##### More Information
+##### More information
 
 For information about the ImageRepository resource, see [ImageRepository reference
 docs](../source-controller/reference.hbs.md#imagerepository).
@@ -192,7 +191,7 @@ parameters in the Workload.
   </tr>
 </table>
 
-##### More Information
+##### More information
 
 For information about the custom resource, see [MavenArtifact reference
 docs](../source-controller/reference.hbs.md#mavenartifact).
@@ -271,9 +270,9 @@ named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tek
 
 </table>
 
-### More Information
+### More information
 
-For more information about the ClusterRunTemplate that pairs with the Runnable, read
+For information about the ClusterRunTemplate that pairs with the Runnable, read
 [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tekton-source-pipelinerun)
 
 For information about the Tekton Pipeline that the user must create, see [OOTB Supply Chain
@@ -289,7 +288,7 @@ Scans the source code for vulnerabilities.
 
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the source-scanner step.
 
-Source-Test-Scan-to-URL is used as the `source-scanner` resource.
+This is used as the `source-scanner` resource.
 
 ### Creates
 
@@ -333,15 +332,13 @@ Source-Test-Scan-to-URL is used as the `source-scanner` resource.
   </tr>
 </table>
 
-### More Information
+### More information
 
-See [Out of the Box Supply Chain with Testing and
-Scanning](ootb-supply-chain-testing-scanning.hbs.md#a-iddeveloper-namespacea-developer-namespace)
-for details about how to set up the Workload namespace with the ScanPolicy and
-ScanTemplate required for this resource.
+For information about how to set up the Workload namespace with the ScanPolicy and
+ScanTemplate required for this resource, see [Out of the Box Supply Chain with Testing and
+Scanning](ootb-supply-chain-testing-scanning.hbs.md#a-iddeveloper-namespacea-developer-namespace).
 
-Read [SourceScan reference](../scst-scan/scan-crs.hbs.md#sourcescan)
-for details about the SourceScan custom resource.
+For information about the SourceScan custom resource, see [SourceScan reference](../scst-scan/scan-crs.hbs.md#sourcescan).
 
 For information about how the artifacts found
 during scanning are catalogued, see [Supply Chain Security Tools for Tanzu –
@@ -362,7 +359,7 @@ available to other resources in the supply chain.
 - [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the image-provider step.
 - [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the image-provider step.
 
-as the `image-provider` resource.
+These are used as the `image-provider` resource.
 
 ### Creates
 
@@ -394,10 +391,10 @@ ImageRepository.source.apps.tanzu.vmware.com
 </table>
 
 > **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
-> (The similarly named `--service-account` flag sets a different value:
-> the `spec.serviceAccountName` key in the Workload object.)
+> The similarly named `--service-account` flag sets a different value:
+> the `spec.serviceAccountName` key in the Workload object.
 
-### More Information
+### More information
 
 For information about the ImageRepository resource,
 see [ImageRepository reference docs](../source-controller/reference.hbs.md#imagerepository).
@@ -417,7 +414,7 @@ Builds an container image from source code using [cloud native buildpacks](https
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the image-provider step.
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-provider step.
 
-as the `image-provider` resource when the workload parameter `dockerfile` is **not** defined.
+These are used as the `image-provider` resource when the workload parameter `dockerfile` is not defined.
 
 ### Creates
 
@@ -494,10 +491,10 @@ as the `image-provider` resource when the workload parameter `dockerfile` is **n
 </table>
 
 > **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
-> (The similarly named `--service-account` flag sets a different value:
-> the `spec.serviceAccountName` key in the Workload object.)
+> The similarly named `--service-account` flag sets a different value:
+> the `spec.serviceAccountName` key in the Workload object.
 
-### More Information
+### More information
 
 For information about the integration with Tanzu Build Service,
 see [Tanzu Build Service Integration](tbs.hbs.md).
@@ -522,6 +519,8 @@ Build an image for source code that includes a Dockerfile.
 - [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the image-provider step.
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the image-provider step.
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-provider step.
+
+These are used as the `image-provider` resource when the workload parameter `dockerfile` is defined.
 
 ### Creates
 
@@ -590,12 +589,12 @@ A Runnable which provides inputs to the
   </tr>
 </table>
 
-### More Information
+### More information
 
 For information about how to use Dockerfile-based builds and limits associated with the function, see
 [Dockerfile-based builds](dockerfile-based-builds.hbs.md).
 
-To read more about `lifecycle:tekton`,
+For information about `lifecycle:tekton`,
 read [Cartographer Lifecycle](https://cartographer.sh/docs/v0.6.0/lifecycle/).
 
 ## image-scanner-template
@@ -654,7 +653,7 @@ ImageScan.scanning.apps.tanzu.vmware.com
   </tr>
 </table>
 
-### More Information
+### More -nformation
 
 For information about the ImageScan custom resource,
 see [ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan).
@@ -756,22 +755,22 @@ to represent the shape of the pods to run the application in containers.
 </table>
 
 > **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
-> (The similarly named `--service-account` flag sets a different value:
-> the `spec.serviceAccountName` key in the Workload object.)
+> The similarly named `--service-account` flag sets a different value:
+> the `spec.serviceAccountName` key in the Workload object.
 
-### More Information
+### More information
 
-Read more about
+For information about `PodTemplateSpec`, see
 [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec)
 in the Kubernetes documentation.
 
-Read more about
+For information about conventions, see
 [Cartographer Conventions](../cartographer-conventions/about.hbs.md).
 
-See [Developer
+For information about the two convention servers enabled by default in Tanzu
+Application Platform installations, see [Developer
 Conventions](../developer-conventions/about.hbs.md) and [Spring Boot
-Conventions](../spring-boot-conventions/about.hbs.md) for more details about the two
-convention servers enabled by default in Tanzu Application Platform installations.
+Conventions](../spring-boot-conventions/about.hbs.md).
 
 ## config-template
 
@@ -790,13 +789,13 @@ For workloads with the label `apps.tanzu.vmware.com/workload-type: web`, define 
 
 ### Creates
 
-A ConfigMap, in which the data field has a key `delivery.yml` whose value is the definition of a knative service.
+A ConfigMap, in which the data field has a key `delivery.yaml` whose value is the definition of a knative service.
 
 ### Parameters
 
 None
 
-### More Information
+### More information
 
 See [workload types](../workloads/workload-types.hbs.md) for more details about the
 three different types of workloads.
@@ -818,16 +817,16 @@ For workloads with the label `apps.tanzu.vmware.com/workload-type: worker`, defi
 
 ### Creates
 
-A ConfigMap, in which the data field has a key `delivery.yml` whose value is the definition of a Kubernetes Deployment.
+A ConfigMap, in which the data field has a key `delivery.yaml` whose value is the definition of a Kubernetes Deployment.
 
 ### Parameters
 
 None
 
-### More Information
+### More information
 
-See [workload types](../workloads/workload-types.hbs.md) for more details about the
-three different types of workloads.
+For information about the three different types of workloads, see [workload
+types](../workloads/workload-types.hbs.md).
 
 ## server-template
 
@@ -847,7 +846,7 @@ define a Kubernetes Deployment and a Kubernetes Service.
 
 ### Creates
 
-A ConfigMap, in which the data field has a key `delivery.yml` whose value is the definitions of a Kubernetes
+A ConfigMap, in which the data field has a key `delivery.yaml` whose value is the definitions of a Kubernetes
 Deployment and a Kubernetes Service to expose the pods.
 
 ### Parameters
@@ -877,13 +876,13 @@ Deployment and a Kubernetes Service to expose the pods.
   </tr>
 </table>
 
-### More Information
+### More information
 
-See [workload types](../workloads/workload-types.hbs.md) for more details about the
-three different types of workloads.
+For information about the three different types of workloads, see [workload
+types](../workloads/workload-types.hbs.md).
 
-See [`server`-specific Workload parameters](../workloads/server.hbs.md#-server-specific-workload-parameters)
-for a detailed overview of the ports parameter.
+For information about the ports parameter, see [`server`-specific Workload
+parameters](../workloads/server.hbs.md#-server-specific-workload-parameters).
 
 ## service-bindings
 
@@ -933,7 +932,7 @@ enriches the input with ResourceClaims and ServiceBindings if the workload conta
   </tr>
 </table>
 
-### More Information
+### More information
 
 For an example, see
 [`--service-ref`](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
@@ -1012,15 +1011,15 @@ the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
   </tr>
 </table>
 
-### More Information
+### More information
 
-See [Use API Auto Registration](../api-auto-registration/usage.hbs.md) for more
-details about API auto registration.
+For information about API auto registration, see [Use API Auto Registration](../api-auto-registration/usage.hbs.md).
 
 ## config-writer-template
 
 ### Purpose
-Persist in an external system (registry or git repository) the
+
+Persist in an external system, such as a registry or git repository, the
 Kubernetes configuration passed to the template.
 
 ### Used by
@@ -1200,17 +1199,17 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
 
 </table>
 
-### More Information
+### More information
 
-See [Gitops vs RegistryOps](gitops-vs-regops.hbs.md) for more information about the operation of this template
-and of the [config-writer-and-pull-requester-template](#config-writer-and-pull-requester-template).
+For information about operating this template, see [Gitops vs RegistryOps](gitops-vs-regops.hbs.md)
+and the [config-writer-and-pull-requester-template](#config-writer-and-pull-requester-template).
 
 ## config-writer-and-pull-requester-template
 
 ### Purpose
 
 Persist the passed in Kubernetes configuration to a branch in a repository and open a pull request to another branch.
-(This process allows for manual review of configuration before deployment to a cluster)
+This process allows for manual review of configuration before deployment to a cluster.
 
 ### Used by
 
@@ -1394,14 +1393,15 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
 
 </table>
 
-### More Information
+### More information
 
-See [Gitops vs RegistryOps](gitops-vs-regops.hbs.md) for more information about the operation of this template
-and of the [config-writer-template](#config-writer-template).
+For information about the operation of this template, see [Gitops vs RegistryOps](gitops-vs-regops.hbs.md)
+and the [config-writer-template](#config-writer-template).
 
 ## deliverable-template
 
 ### Purpose
+
 Create a deliverable which
 [pairs with a Delivery](https://cartographer.sh/docs/v0.6.0/architecture/#clusterdelivery)
 to deploy Kubernetes configuration on the cluster.
@@ -1561,10 +1561,10 @@ preconfigured with reference to a repository or registry from which to fetch Kub
 </table>
 
 > **Note** When using the Tanzu CLI to configure this `serviceAccount` parameter, use `--param serviceAccount=...`.
-> (The similarly named `--service-account` flag sets a different value:
-> the `spec.serviceAccountName` key in the Workload object.)
+> The similarly named `--service-account` flag sets a different value:
+> the `spec.serviceAccountName` key in the Workload object.
 
-### More Information
+### More information
 
 For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
 see [Out of the Box Delivery Basic](ootb-delivery-basic.hbs.md).
@@ -1572,12 +1572,12 @@ see [Out of the Box Delivery Basic](ootb-delivery-basic.hbs.md).
 ## external-deliverable-template
 
 ### Purpose
+
 Create a definition of a deliverable which a user can manually applied to
-an external kubernetes cluster. When a properly configured Delivery
-(for example, the [OOTB Delivery](ootb-delivery-basic.hbs.md)) is installed on that
+an external kubernetes cluster. When a properly configured Delivery is installed on that
 external cluster, the Deliverable will
 [pair with the Delivery](https://cartographer.sh/docs/v0.6.0/architecture/#clusterdelivery)
-to deploy Kubernetes configuration on the cluster.
+to deploy Kubernetes configuration on the cluster. For example, the [OOTB Delivery](ootb-delivery-basic.hbs.md).
 
 ### Used by
 
@@ -1589,6 +1589,7 @@ to deploy Kubernetes configuration on the cluster.
 - [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the deliverable step.
 
 ### Creates
+
 A configmap in which the `.data` field has a key `deliverable` for which the value is the YAML definition
 of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#deliverable).
 
@@ -1732,18 +1733,19 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
   </tr>
 </table>
 
-### More Information
+### More information
 
 For information about the ClusterDelivery shipped with `ootb-delivery-basic`,
 see [Out of the Box Delivery Basic](ootb-delivery-basic.hbs.md).
 
-For information about the use of the Deliverable object in a multicluster
+For information about using the Deliverable object in a multicluster
 environment, see [Getting started with multicluster Tanzu Application
 Platform](../multicluster/getting-started.hbs.md).
 
 ## delivery-source-template
 
 ### Purpose
+
 Continuously fetches Kubernetes configuration files from a Git repository
 or container image registry and makes them available on the cluster.
 
@@ -1777,7 +1779,7 @@ cluster. Other resources in the supply chain can then access that code.
       The library used to fetch source code.
       If not provided, Tanzu Application Platform's default implementation uses <code>go-git</code>,
       which works with the providers supported by Tanzu Application Platform: GitHub and GitLab.
-      An alternate value that can be used with other Git providers is <code>libggit2</code>.
+      An alternate value that you can use with other Git providers is <code>libggit2</code>.
     </td>
     <td>
       <pre>
@@ -1812,7 +1814,7 @@ cluster. Other resources in the supply chain can then access that code.
 > [git implementation](https://fluxcd.io/flux/components/source/gitrepositories/#git-implementation)
 > in the flux documentation.
 
-##### More Information
+##### More information
 
 For an example using the Tanzu CLI to create a Workload using GitHub as the provider of source code,
 see [Create a workload from GitHub
@@ -1850,7 +1852,7 @@ For information about GitRepository objects, see
 
 </table>
 
-##### More Information
+##### More information
 
 For information about the ImageRepository resource, see [ImageRepository reference
 docs](../source-controller/reference.hbs.md#imagerepository).
@@ -1910,7 +1912,7 @@ A [kapp App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/).
 
 > **Note** The `gitops_sub_path` parameter is deprecated. Use `deliverable.spec.source.subPath` instead.
 
-### More Information
+### More information
 
 For details about RBAC and how `kapp-controller` makes use of the ServiceAccount provided through the Deliverable's
 `serviceAccount` parameter,

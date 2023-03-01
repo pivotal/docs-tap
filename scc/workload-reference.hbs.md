@@ -7,8 +7,8 @@ See [Workload](https://cartographer.sh/docs/v0.6.0/reference/workload/#workload)
 
 ## Labels
 
-Workload labels affect which supply chain is selected
-and which template is stamped out for a particular reference. Individual templates can also leverage them. See [Selectors](https://cartographer.sh/docs/v0.6.0/architecture/#selectors) in the Cartographer documentation.
+Workload labels affect which supply chain is selected. For information about which template is defined for a particular reference, see [Selectors](https://cartographer.sh/docs/v0.6.0/architecture/#selectors) in the Cartographer documentation.
+Individual templates can also use workload labels.
 
 The following workload labels leveraged by OOTB Supply Chains:
 
@@ -21,8 +21,7 @@ The following workload labels leveraged by OOTB Supply Chains:
 ## Parameters
 
 The OOTB templates are configured with parameters from the supply chain or workload.
-Read about Cartographer parameters, including precedence rules, in [Parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters) in the Cartographer
-documentation.
+For information about Cartographer parameters, including precedence rules, see [Parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters) in the Cartographer documentation.
 
 What parameters are relevant depends on the supply chain selecting the workload, for two reasons:
 
