@@ -47,7 +47,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `MY-REGISTRY` is your own container registry.
-    - `MY-TANZUNET-USERNAME` is the user that has access to the images in the TanzuNet registry `registry.tanzu.vmware.com`.
+    - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`.
     - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
     - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
@@ -81,7 +81,7 @@ Tanzu CLI packages are available on repositories. Adding the Tanzu Application P
 
 - `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
 - `INSTALL_REPO` is `tanzu-application-platform`
-- `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSWORD` are the credentials to the TanzuNet registry `registry.tanzu.vmware.com`
+- `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSWORD` are the credentials to the VMware Tanzu Network registry `registry.tanzu.vmware.com`
 - `TAP_VERSION` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 To add the Tanzu Application Platform package repository to your cluster:
