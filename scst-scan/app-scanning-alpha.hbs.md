@@ -9,14 +9,14 @@
 
 The App Scanning component within the Supply Chain Security Tools is responsibile for providing the framework to scan applications for security their posture.  This is currently implemented by scanning source code repositories and container images for known Common Vulnerabilities and Exposures (CVEs).  
 
-This component is currently in Alpha and is intended to supersede the [SCST-Scan component](overview.mds) once it reaches feature parity with the existing component.  GAPs in feature parity are documented below.
+This component is currently in Alpha and is intended to supersede the [SCST-Scan component](overview.mds) once it reaches feature parity with the existing component.  Gaps in feature parity are documented below.
 
-A core tenant of the app-scanning framework architecture is to simplify the integration process for new plugins by allowing users to integrate new scan engines using common, community based technologies such as Tekton pipelines and OCI Container Artifacts.
+A core tenant of the app-scanning framework architecture is to simplify the integration process for new plugins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
 
 ## <a id="features"></a>Features
 
 * Tekton is leveraged as the orchestrator of the scan to align with overall Tanzu Application Platform usage of Tekton for multi-step activities.  
-* New Scans are defined domain-aware CRDs that represent specific scanners (e.g. GrypeImageScan, GrypeSourceScan, SnykImageScan).  Mapping logic turns the domain-specific spec into a Tekton PipelineRun.  
+* New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageScan, GrypeSourceScan, SnykImageScan).  Mapping logic turns the domain-specific spec into a Tekton PipelineRun.  
 * CycloneDX-formatted scan results are pushed to an OCI registry for long-term storage.
 
 ## <a id="Capability Gaps"></a>Capability Gaps
@@ -26,6 +26,8 @@ Being an Alpha release, there are several capabilties that have not been impleme
 * Policy Enforcement:  In the existing scan controller, enforcement of vulnerability policy happens as part of the scan job.  With the new app-scanning implementation, we are abstracting policy enforcement outside of the scan job to simplify integrating new scan plugins.  This functionality will be added in a future iteration of the app-scanner.  Right now, all 
 
 * Metadata Storage:  As with policy enforcement, the previous scan framework handled submissions of the scan results to the Metadata store, which increased the complexity users had to understand to build new integrations.  With the new app-scanning framework, the scan results are submitted as a CycloneDX formated artifact to your OCI compatable container registry.  In the future, these results will be pulled from the container registry and pushed to the metadata repository for consumption from components such as the Security Analysis GUI and Workload Visualizations.
+
+* Scan Engine Support: Initially, only Grype image scan is packaged with the app-scanning component.  Others will be added at a later date.  However, it is possible to add additional scan engines by defining CRD's as noted below.
 
 * Cloud based authentication:  Credential helpers have not yet been added to the Tekton pipeline templates and therefore, cloud based credentials such as AWS IAM Roles are not supported.  This will be added in future release.
 
