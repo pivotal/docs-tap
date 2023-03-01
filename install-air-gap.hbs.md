@@ -63,7 +63,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     imgpkg copy \
       --tar tap-packages-$TAP_VERSION.tar \
       --to-repo $IMGPKG_REGISTRY_HOSTNAME/tap-packages \
-      --include-non-distributable-layers
+      --include-non-distributable-layers \
       --registry-ca-cert-path $REGISTRY_CA_PATH
     ```
 
