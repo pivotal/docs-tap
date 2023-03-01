@@ -43,10 +43,10 @@ To relocate images from the VMware Tanzu Network registry to the ECR registry:
     Where:
 
     - `MY-AWS-ACCOUNT-ID` is the account ID you depoloy Tanzu Application Platform in. No dashes and must be in the format `012345678901`.
-    - `MY-TANZUNET-USERNAME` is the user that has access to the images in the TanzuNet registry `registry.tanzu.vmware.com`.
+    - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
     - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `TARGET-AWS-REGION` is the region you deploy the Tanzu Application Platform to.
-    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
