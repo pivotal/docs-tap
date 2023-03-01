@@ -17,7 +17,7 @@ In the previous Getting started how-to topic, [Deploy your first application](de
 Now that you have a skeleton workload developed, you are ready to begin to iterate on your new application and test code changes on the cluster.
 
 Tanzu Developer Tools for Visual Studio Code is VMware Tanzu’s official IDE extension for VS Code.
-It helps you develop and receive fast feedback on the workloads running on the Tanzu Application Platform.
+It helps you develop and receive fast feedback on your workloads running on the Tanzu Application Platform.
 
 The VS Code extension enables live updates of your application while running on the cluster
 and allows you to debug your application directly on the cluster.
@@ -40,7 +40,7 @@ For information about installing the prerequisites and the Tanzu Developer Tools
 
     >For example, if you use docker consult [docker's docs](https://docs.docker.com/engine/reference/commandline/login/), if you use Harbor consult [Harbor's docs](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/), etc. For troubleshooting failed registry authentication, consult our [troubleshooting docs](../troubleshooting-tap/troubleshoot-using-tap.md)
 
-3. Confirm your current Kubernetes context has a namespace associated with it. The `TANZU WORKLOADS` panel uses the namespace associated with your current Kubernetes context to populate the workloads from the cluster.
+3. Confirm your current Kubernetes context has a namespace associated with it. The `TANZU WORKLOADS` panel, found on the left side of the VS Code Explorer tab, uses the namespace associated with your current Kubernetes context to populate the workloads from the cluster.
     - Open the Terminal (⌃\`), or by navigating to `View` > `Terminal`.
     - Ensure your current Kubernetes context has an associated namespace using the command `kubectl config get-contexts`. This command will return a list of all of your Kubernetes contexts with an asterisk (*) in front of your current context. Verify your current context has a namespace in the namespace column.
     - If your current context does not have a namespace in the namespace column, use the command `kubectl config set-context --current --namespace=<NAMESPACE>`, replacing \<NAMESPACE\> with the namespace value you would like to deploy the workload to.
@@ -54,7 +54,7 @@ Apply the workload to see your application running on the cluster.
 1. In the Explorer tab of VS Code, right-click any file under the application name `tanzu-java-web-app` and select `Tanzu: Apply Workload` to begin applying the workload to the cluster.
 1. Alternatively, use the Command Palette (⇧⌘P) or `View` > `Command Palette` to run the `Tanzu: Apply Workload` command.
 
-The Apply Workload command will run, which opens a terminal and shows you the progress of the Workload Apply. You can also monitor your application as it's being deployed to the cluster on the `Tanzu Activity` panel. The `Tanzu Activity` panel shows the details of the Kubernetes resources associated with your application. To view the `Tanzu Activity` panel, open the Terminal (⌃\`) and then click on the `Tanzu Activity` tab. The Apply Workload command can take a few minutes to deploy your application onto the cluster. Once complete, you will see the workload running in the `TANZU WORKLOADS` panel on the left side of the VS Code Explorer tab.
+The Apply Workload command will run, which opens a terminal and shows you the output of the Workload Apply. You can also monitor your application as it's being deployed to the cluster on the `Tanzu Activity` panel. The `Tanzu Activity` panel shows the details of the Kubernetes resources for the workloads running in the namespace associated with your current Kubernetes context. To view the `Tanzu Activity` panel, open the Terminal (⌃\`) and then click on the `Tanzu Activity` tab. The Apply Workload command can take a few minutes to deploy your application onto the cluster. Once complete, you will see the workload running in the `TANZU WORKLOADS` panel on the left side of the VS Code Explorer tab.
 
 
 ## <a id="live-update-your-app"></a>Live update your application
