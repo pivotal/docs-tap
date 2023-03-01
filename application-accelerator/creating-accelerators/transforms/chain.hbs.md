@@ -24,6 +24,6 @@ the output of that.  In other words, **T3** o **T2** o **T1**.
 An empty chain acts as function identity.
 
 If the optional `applyTo` property is set, then the chained transformations are only
-applied to files whose paths match the `applyTo` patterns. Files whose paths don't match
+applied to files with paths that match the `applyTo` patterns. Files with paths that don't match
 are left untouched and merged back with the other results to form the final result of the
 `Chain` transform.
