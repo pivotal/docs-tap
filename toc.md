@@ -271,6 +271,7 @@ docs.vmware.com is built.
             - [CA certificates](app-sso/service-operators/ca-certs.hbs.md)
             - [Configure Workloads to trust a custom CA](app-sso/service-operators/workload-trust-custom-ca.hbs.md)
             - [Identity providers](app-sso/service-operators/identity-providers.hbs.md)
+            - [Configure authorization](app-sso/service-operators/configure-authorization.hbs.md)
             - [Token signatures](app-sso/service-operators/token-signature.hbs.md)
             - [Storage](app-sso/service-operators/storage.hbs.md)
             - [AuthServer readiness](app-sso/service-operators/readiness.hbs.md)

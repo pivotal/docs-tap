@@ -24,6 +24,10 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
+### <a id='1-5-0-scst-policy-new-features'></a> Supply Chain Security Tools - Policy Controller
+
+- ClusterImagePolicy resync triggered every 10 hours to get updated values from KMS
+
 ### <a id='1-5-0-cert-manager-ncf'></a> cert-manager
 
 - `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`. 
@@ -32,10 +36,6 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 ### <a id='1-5-0-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
-
-### <a id='1-5-0-policy-bc'></a> Supply Chain Security Tools - Policy Controller
-
-- `Keyless` authorities in the `ClusterImagePolicy` now require identities. Identities consists of a combination of `issuer` or `issuerRegExp` with `subject` or `subjectRegExp`. For more information, see [Supply Chain Security Tools - Policy Controller Authorities](./scst-policy/configuring.hbs.md#authorities).
 
 ### <a id='1-5-0-security-fixes'></a> Security fixes
 
@@ -69,4 +69,4 @@ Use `client_secret_post` and `client_secret_basic` instead.
 
 #### <a id='1-5-0-convention-controller-dp'></a> Convention Controller
 
-- This component is deprecated in this release and is fully replaced by [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions) which implements the `conventions.carto.run` API that includes all the features that were available in the Convention Controller component.
+- This component is deprecated in this release and is replaced by [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions). Cartographer Conventions implements the `conventions.carto.run` API that includes all the features that were available in the Convention Controller component.
