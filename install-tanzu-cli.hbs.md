@@ -168,7 +168,7 @@ versions of the CLI core and plug-ins are installed by running:
     Expected outcome:
 
     ```console
-    version: v0.11.2
+    version: v0.11.4
     ...
     ```
 
