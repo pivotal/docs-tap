@@ -1,6 +1,6 @@
 # tanzu accelerator list
 
-List accelerators
+List accelerators.
 
 ## Synopsis
 
@@ -8,20 +8,19 @@ List all accelerators.
 
 You can choose to list the accelerators from the Application Accelerator server using --server-url flag
 or from a Kubernetes context using --from-context flag. The default is to list accelerators from the
-Kubernetes context. To override this, you can set the ACC_SERVER_URL environment variable with the URL for
-the Application Accelerator server you want to access.
+Kubernetes context. To override this, you can set the ACC_SERVER_URL environment variable with the URL for the Application Accelerator server you want to access.
 
 ```console
 tanzu accelerator list [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu accelerator list
 ```
 
-### Options
+## Options
 
 ```console
       --from-context        retrieve resources from the current context defined in kubeconfig
@@ -42,4 +41,3 @@ tanzu accelerator list
 ## SEE ALSO
 
 [tanzu accelerator](tanzu_accelerator.md)
-

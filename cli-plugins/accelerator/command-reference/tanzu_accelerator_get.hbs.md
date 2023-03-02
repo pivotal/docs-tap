@@ -1,6 +1,6 @@
 # tanzu accelerator get
 
-Get accelerator info
+Get accelerator info.
 
 ## Synopsis
 
@@ -14,13 +14,13 @@ Kubernetes context. To override this, you can set the ACC_SERVER_URL environment
 tanzu accelerator get [flags]
 ```
 
-### Examples
+## Examples
 
 ```console
 tanzu accelerator get <accelerator-name> --from-context
 ```
 
-### Options
+## Options
 
 ```console
       --from-context        retrieve resources from current context defined in kubeconfig
@@ -30,13 +30,13 @@ tanzu accelerator get <accelerator-name> --from-context
   -v, --verbose             include all fields and show long URLs in the output
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
 ```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
 [tanzu accelerator](tanzu_accelerator.md)
