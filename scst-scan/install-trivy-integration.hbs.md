@@ -380,7 +380,10 @@ Digest: sha256:ed57874a80499e858caac27fc92e4952346eb75a2774809ee989bcd2ce48897a
 If not, you can use the `oras` cli to download the database and manifest and then push to your registry.
 
 1. Download the trivy-db.
-
+   ```shell
+   oras pull ghcr.io/aquasecurity/trivy-db:2
+   ```
+   Example output:
    ```console
    oras pull ghcr.io/aquasecurity/trivy-db:2
    Downloading 1612cc15d377 db.tar.gz
@@ -391,15 +394,22 @@ If not, you can use the `oras` cli to download the database and manifest and the
 
 2. Download the manifest for trivy-db.
 
-   ```console
+   ```shell
    oras manifest fetch ghcr.io/aquasecurity/trivy-db:2 > trivy-db-manifest.json
    ```
 
-3. Push the prior downloaded trivy-db to your registry.
+3. Add the media type to the manifest
+   ```shell
+   jq '.mediaType="application/vnd.oci.image.manifest.v1+json"' trivy-db-manifest.json > updated-trivy-db-manifest.json
+   ```
 
+4. Push the prior downloaded trivy-db to your registry.
+   ```shell
+   oras push registry.company.com/project_name/trivy-db:2 ./db.tar.gz
+   ```
+   Example output:
    ```console
    oras push registry.company.com/project_name/trivy-db:2 \
-     --export-manifest trivy-db-manifest.json \
      ./db.tar.gz
    
    Uploading 1612cc15d377 db.tar.gz
@@ -407,6 +417,20 @@ If not, you can use the `oras` cli to download the database and manifest and the
    Pushed registry.company.com/project_name/trivy-db:2
    Digest: sha256:41a7eeab8837e90d8a5afd56cfce73936e15d3db04c5294f992ecff9492971dc
    ```
+5. Push the updated trivy-db manifest to your registry
+   ```shell
+   oras manifest push registry.company.com/project_name/trivy-db:2 updated-trivy-db-manifest.json
+   ```
+   Example output:
+   ```console
+   oras manifest push registry.company.com/project_name/trivy-db:2 updated-trivy-db-manifest.json
+   Pushed registry.company.com/project_name/trivy-db:2
+   Digest: sha256:b51a2fccf38e723aac1a7217ba36ca52398b2b20e3d74c9d5089dfdcd9bb2f11
+   ```
+6. Cleanup files
+   ```shell
+   rm trivy-db-manifest.json updated-trivy-db-manifest.json db.tar.gz
+   ````
 
 ### Update data values with db repository URL
 
