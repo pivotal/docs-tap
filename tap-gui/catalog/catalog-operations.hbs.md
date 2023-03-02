@@ -2,7 +2,7 @@
 
 The software catalog setup procedures in this topic make use of Backstage.
 For more information about Backstage, see the
-[Backstage documentation](https://backstage.io/docs/features/software-catalog/software-catalog-overview).
+[Backstage documentation](https://backstage.io/docs/features/software-catalog/).
 
 ## <a id='add-cat-entities'></a> Adding catalog entities
 
