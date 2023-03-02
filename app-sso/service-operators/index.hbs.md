@@ -17,6 +17,7 @@ The following sections outline the essential steps to configure a fully operatio
 - [Configure Workloads to trust a custom CA](./workload-trust-custom-ca.hbs.md)
 - [Identity providers](./identity-providers.md)
 - [Configure authorization](./configure-authorization.md)
+- [Public clients and CORS](./cors.md)
 - [Token signatures](./token-signature.md)
 - [Storage](./storage.hbs.md)
 - [AuthServer readiness](./readiness.md)
