@@ -14,7 +14,7 @@ Run the following command to output a list of available tags.
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle | grep -v sha | sort -V
 ```
 
-Use the latest version returned in place of the sample version in this topic, such as `0.1.4-alpha.6` in the following output. 
+For example:
 
 ``` shell
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle | grep -v sha | sort -V
@@ -25,6 +25,8 @@ imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-pack
 0.1.4-alpha.5   
 0.1.4-alpha.6
 ```
+
+In this topic, use the latest version returned by the command above. 
 
 ## Relocate images to a registry
 
@@ -66,9 +68,9 @@ To relocate images from the VMware Project Registry to your registry:
     - `VERSION` is your Trivy Scanner version. For example, `0.1.4-alpha.6`.
     - `TARGET-REPOSITORY` is your target repository, a directory or repository on `MY-REGISTRY` that serves as the location for the installation files for Trivy Scanner.
 
-1. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials v1.4](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
+2. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials v1.4](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
 
-1. Relocate the images with the imgpkg CLI by running:
+3. Relocate the images with the imgpkg CLI by running:
 
     ```shell
     imgpkg copy -b projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/trivy-repo-scanning-bundle
@@ -196,9 +198,8 @@ Example output:
 
 The Trivy integration can work with or without the SCST - Store integration. The `values.yaml` file is slightly different for each configuration.
 
-When using SCST - Store integration, to persist the results
-found by the Trivy Scanner, you can enable the SCST -
-Store integration by appending the fields to the `values.yaml` file.
+To persist the results found by the Trivy Scanner, enable the SCST -
+Store integration by appending the SCST- scan fields to the Trivy `values.yaml` file.
 
 The Grype, Snyk, Prisma, Carbon Black, and Trivy Scanner Integrations enable the Metadata Store. To
 prevent conflicts, the configuration values are slightly different based on
@@ -208,11 +209,14 @@ installed unless it is explicitly excluded.
 
 ### Multiple Scanners installed
 
-In order to find your CA secret name and auth token secret name as needed for your values.yaml when installing Trivy Scanner you will need to look at the configuration of a prior installed scanner in the same namespace as it will already exist.
+When installing Trivy Scanner, find your CA secret name and authentication token secret
+name for your `values.yaml` ny looking at the configuration of a prior installed
+scanner in the same namespace as it already exists.
 
-This [documentation](/docs-tap/scst-store/multicluster-setup.hbs.md) can be referenced on how it was most likely initially created and can be used as a reference.
+For information about how the scanner was initially created, see [Multicluster Setup](/scst-store/multicluster-setup.hbs.md). 
 
-An example `values.yaml` when there are other scanners already installed in the same `dev-namespace` where the Trivy Scanner is installed:
+The following example `values.yaml` has other scanners already installed in the same `dev-namespace` where the Trivy Scanner is installed:
+
 ```yaml
 #! ...
 metadataStore:
@@ -241,9 +245,10 @@ Where:
 
 ### Trivy Only Scanner Installed
 
-This [documentation](/docs-tap/scst-store/multicluster-setup.hbs.md) will walk you through creating and exporting secrets for the Metadata Store CA and auth token which will be referenced in the data values when installing Trivy Scanner.
+For a walk through of creating and exporting secrets for the Metadata Store CA and authentication token which referenced in the data values, see [Multicluster Setup](/scst-store/multicluster-setup.hbs.md).
 
-An example `values.yaml` when no other scanner integrations installed in the same `dev-namespace` where the Trivy Scanner is installed:
+The following example `values.yaml` has no other scanner integrations installed in the same `dev-namespace` where the Trivy Scanner is installed:
+
 ```yaml
 #! ...
 metadataStore:
@@ -274,7 +279,7 @@ Where:
 
 ### No Store Integration
 
-If you do not want to enable the SCST - Store integration, explicitly deactivate the integration by appending the following fields to the `values.yaml` file that is enabled by default:
+If you do not want to enable the SCST - Store integration, deactivate the integration by appending the following fields to the `values.yaml` file that is enabled by default:
 
 ```yaml
 # ...
@@ -337,7 +342,7 @@ spec:
       }
 ```
 
-Apply to the YAML:
+Apply the following to the YAML:
 
 ```console
 kubectl apply -n $DEV-NAMESPACE -f SCAN-POLICY-YAML
@@ -356,7 +361,7 @@ After all prerequisites are completed, install the Trivy Scanner. See [Install a
 
 The following section explains how to configure Trivy in an air gap environment.
 
-Please consult the [official documentation](https://aquasecurity.github.io/trivy/latest/docs/advanced/air-gap/) for additional flags and configuration that can be set based on your requirements.
+For information about additional flags and configuration, see [Air-Gapped Environment](https://aquasecurity.github.io/trivy/latest/docs/advanced/air-gap/) in the Trivy documentation.
 
 ### Prerequisites
 
@@ -380,10 +385,13 @@ Digest: sha256:ed57874a80499e858caac27fc92e4952346eb75a2774809ee989bcd2ce48897a
 If not, you can use the `oras` cli to download the database and manifest and then push to your registry.
 
 1. Download the trivy-db.
+
    ```shell
    oras pull ghcr.io/aquasecurity/trivy-db:2
    ```
+
    Example output:
+
    ```console
    oras pull ghcr.io/aquasecurity/trivy-db:2
    Downloading 1612cc15d377 db.tar.gz
@@ -404,10 +412,13 @@ If not, you can use the `oras` cli to download the database and manifest and the
    ```
 
 4. Push the prior downloaded trivy-db to your registry.
+
    ```shell
    oras push registry.company.com/project_name/trivy-db:2 ./db.tar.gz
    ```
+
    Example output:
+
    ```console
    oras push registry.company.com/project_name/trivy-db:2 \
      ./db.tar.gz
@@ -417,17 +428,23 @@ If not, you can use the `oras` cli to download the database and manifest and the
    Pushed registry.company.com/project_name/trivy-db:2
    Digest: sha256:41a7eeab8837e90d8a5afd56cfce73936e15d3db04c5294f992ecff9492971dc
    ```
+
 5. Push the updated trivy-db manifest to your registry
+
    ```shell
    oras manifest push registry.company.com/project_name/trivy-db:2 updated-trivy-db-manifest.json
    ```
+
    Example output:
+
    ```console
    oras manifest push registry.company.com/project_name/trivy-db:2 updated-trivy-db-manifest.json
    Pushed registry.company.com/project_name/trivy-db:2
    Digest: sha256:b51a2fccf38e723aac1a7217ba36ca52398b2b20e3d74c9d5089dfdcd9bb2f11
    ```
+
 6. Cleanup files
+
    ```shell
    rm trivy-db-manifest.json updated-trivy-db-manifest.json db.tar.gz
    ````
@@ -609,6 +626,12 @@ stringData:
   aqua-secret: API-KEY-SECRET
 ```
 
+Where:
+
+- `APP-NAMESPACE` is the developer namespace your app uses.
+- `API-KEY` is the Aqua Platform API Key.
+- `API-KEY-SECRET` is the Aqua Platform API Key’s Secret.
+
 ### Update aqua-values.yaml
 
 In order to tell Trivy to connect and report to Aqua SaaS it requires a few environment variables set.
@@ -635,13 +658,19 @@ environmentVariables:
         key: aqua-secret
 ```
 
+Where:
+
+- `TRIVY-RUN-AS-PLUGIN` is the Trivy Plugin you want to enable without using the subcommand.
+- `AQUA-KEY` is the Aqua Platform API Key.
+- `AQUA-SECRET` is the Aqua Platform API Key’s Secret.
+
 ## Self-Signed Registry Certificate
 
-When attempting to pull an image from a registry with a self-signed certificate during image scans additional configuration is necessary.
+You need additional configuration when attempting to pull an image from a registry with a self-signed certificate during image scans.
 
-### Tap Values Shared CA
+### Tanzu Application Platform Values Shared CA
 
-If your `tap-values.yaml` used during install has the following shared section filled out, Trivy Scanner will use this and enable it to connect to your registry without additional configuration.
+If your `tap-values.yaml` used during install has the following shared section filled out, Trivy Scanner uses this and enable it to connect to your registry without additional configuration.
 
 ```yaml
 shared:
@@ -653,7 +682,7 @@ shared:
 
 ### Secret within Developer Namespace
 
-1. Create a secret that holds the registry's CA cert data.
+1. Create a secret that holds the registry's CA certificate data.
 
    An example of the secret:
    ```yaml
