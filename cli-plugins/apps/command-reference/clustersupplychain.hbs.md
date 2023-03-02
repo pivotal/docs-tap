@@ -5,15 +5,11 @@
 The `tanzu apps clustersupplychain list` command lists the available supply chains installed in the
 cluster (supported clustersupplychain alias is `csc`).
 
-After listing the available supply chains, to view more detailed information about the selectors and
-conditions that must be met for a workload to be selected by a
-certain supply chain, run `tanzu apps clustersupplychain get <supplychain-name>` (check usage and
-examples in the next section).
+To view more detailed information about the selectors and conditions that must be met for a workload to be selected by a certain supply chain, run `tanzu apps clustersupplychain get <supplychain-name>`.
 
 ## Default view
 
-The default view for this command contains the name of the supply chain, if it's ready or not and
-its age.
+In the default view for this command, the name of the supply chain, whether it is ready or not, and its age are displayed
 
 For example:
 
@@ -50,8 +46,7 @@ Supply Chain Selectors
    expressions   apps.tanzu.vmware.com/workload-type   In         worker
 ```
 
-The output from the earlier command reveals the attributes a workload must have to
-be selected by the `source-to-url` supply chain on the target cluster:
+This output indicates the attributes a workload needs to be selected by the `source-to-url` supply chain on the target cluster. For example:
 
 - The workload must have the `--type` flag value of `web`, `server`, or `worker`
 - Or, if expressed through `workload.yaml`, the `Workload.metadata.labels` label

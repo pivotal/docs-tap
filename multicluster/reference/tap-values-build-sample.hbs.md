@@ -85,17 +85,16 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 credentials to pull an image from the registry for scanning.
 - `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See the [Tanzu Kubernetes Grid documentation](https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/1.5/vmware-tanzu-kubernetes-grid-15/GUID-cluster-lifecycle-ceip.html#identify-the-entitlement-account-number-2) for more information about identifying the Entitlement Account Number.
 
-> **Note** When you install Tanzu Application Platform, it is bootstrapped with the `lite`
-> set of dependencies, including buildpacks and stacks, for application builds.
-> For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
-> You can find the buildpack and stack artifacts installed with Tanzu Application Platform
-> on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies).
-> You can update dependencies by [upgrading Tanzu Application Platform](../../upgrading.md)
-> to the latest patch, or
-> by using an [automatic update process (deprecated)](../../tanzu-build-service/install-tbs.md#auto-updates-config).
+When you install Tanzu Application Platform, it is bootstrapped with the `lite` 
+set of dependencies, including buildpacks and stacks, for application builds. 
+For more information about buildpacks, see the [VMware Tanzu Buildpacks Documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
+You can find the buildpack and stack artifacts installed with Tanzu Application Platform 
+on [Tanzu Network](https://network.pivotal.io/products/tbs-dependencies). 
+You can update dependencies by [upgrading Tanzu Application Platform](../../upgrading.md) to the latest patch, or 
+by using an [automatic update process (deprecated)](../../tanzu-build-service/install-tbs.md#auto-updates-config).
 
-> **Note** See [Multicluster setup](../../scst-store/multicluster-setup.hbs.md) for more information about the value settings of `grype.metadataStore`.
+See [Multicluster setup](../../scst-store/multicluster-setup.hbs.md) for more information about the value settings of `grype.metadataStore`.
 
-> **Note** You must set the `scanning.metadatastore.url` to an empty string if you're installing Grype Scanner v1.2.0 and later or Snyk Scanner to deactivate the embedded SCST - Store integration.
+You must set the `scanning.metadatastore.url` to an empty string if you're installing Grype Scanner v1.2.0 and later or Snyk Scanner to deactivate the embedded SCST - Store integration.
 
->**Note** If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.
+If you use custom CA certificates, you must provide one or more PEM-encoded CA certificates under the `ca_cert_data` key. If you configured `shared.ca_cert_data`, Tanzu Application Platform component packages inherit that value by default.

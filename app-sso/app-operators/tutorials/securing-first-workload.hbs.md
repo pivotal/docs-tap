@@ -1,9 +1,11 @@
 # Secure a workload
 
-This tutorial will walk you through the steps to add an authentication mechanism to a sample Spring Boot application
-using AppSSO service, running on Tanzu Application Platform (TAP).
+This topic describes the procedures to add an authentication mechanism to a sample Spring Boot application 
+by using AppSSO, which runs on Tanzu Application Platform (TAP). 
+The [source code](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java) 
+is available in GitHub. To follow along, you must clone the Git repository into your local development workspace.
 
-## Prerequisites
+## <a id='prereqs'></a> Prerequisites
 
 Before starting the tutorial, please ensure that the following items are addressed:
 
@@ -12,8 +14,7 @@ Before starting the tutorial, please ensure that the following items are address
     - Please ensure that you are using one of the following TAP Profiles: `run`, `iterate`, or `full`.
 - AppSSO package is available and reconciled successfully on your cluster.
 - AppSSO has at least one [identity provider configured](../../service-operators/identity-providers.md).
-- Access to [AppSSO Starter Java](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java)
-accelerator used in this tutorial.
+- Access to [AppSSO Starter Java accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java).
 
 ## Getting started
 
@@ -24,10 +25,6 @@ with the accelerator described in this tutorial.
 
 In this tutorial, you will be working with a sample Servlet-based Spring Boot application that
 uses [Spring Security OAuth2 Client library](https://docs.spring.io/spring-security/reference/servlet/oauth2/client/index.html).
-
-You can find
-the [source code for the application here](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java).
-To follow along, be sure to Git clone the repository onto your local environment.
 
 The application, once launched, has two pages:
 
@@ -46,7 +43,7 @@ absence of any properties files: a demonstration
 of [Spring Cloud Bindings](https://github.com/spring-cloud/spring-cloud-bindings) in action, which removes the need for
 any OAuth related properties. Spring Cloud Bindings will be introduced later in this tutorial.
 
-#### The sample application's `ClientRegistration`
+#### <a id='sample-app-client-reg'></a> The sample application's `ClientRegistration`
 
 A critical piece of integration with AppSSO is to create
 a [`ClientRegistration` custom resource definition](../../crds/clientregistration.md). A `ClientRegistration` is a way
@@ -58,18 +55,14 @@ The `ClientRegistration` resource definition contains a few critical pieces in i
 - `authorizationGrantTypes` is set to a list of one: `authorization_code`. Authorization Code grant type is required for
   [OpenID Connect authentication](https://openid.net/specs/openid-connect-core-1_0.html#CodeFlowAuth) which we will be
   using in this tutorial.
-- `redirectURIs` is set to a list of two URIs: a remote URI and a local URI (i.e. `127.0.0.1`). The remote URI will be
-  the full URL to which AppSSO will redirect the user back upon successful authentication. The local URI is only meant
-  for debugging purposes and can be ignored unless desired. The suffix of both URIs is important for Spring Security -
-  it adheres
-  to [the default redirect URI template](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/core.html#oauth2login-sample-redirect-uri)
-  .
+- `redirectURIs` is set to two URIs: http based and https based. You might need only one URI based on your configuration. 
+  AppSSO redirects the user back to these URIs upon successful authentication. The suffix is important for
+  Spring Security and it adheres to [the default redirect URI template](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/core.html#oauth2login-sample-redirect-uri).
 - `scopes` is set to a list of one scope, the `openid` scope. The `openid` scope
   is [required by OpenID Connect specification](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) in
   order to issue identity tokens which designate a user as 'signed in'.
 
-For more information about `ClientRegistration` custom resource, 
-see [ClientRegistration CRD](../../crds/clientregistration.md).
+For more information about `ClientRegistration` custom resource, see [ClientRegistration CRD](../../crds/clientregistration.md).
 
 The `client.yaml` file is using [ytt templating](https://carvel.dev/ytt/) conventions. If you have
 the [Tanzu Cluster Essentials](https://network.tanzu.vmware.com/products/tanzu-cluster-essentials/) installed, you
@@ -85,12 +78,13 @@ metadata:
 spec:
   authServerSelector:
     matchLabels:
-    # ask your Service Operator for labels to target an `AuthServer`
-  clientAuthenticationMethod: basic
+    # At least one unique label to target an `AuthServer`.
+  clientAuthenticationMethod: client_secret_basic
   authorizationGrantTypes:
     - authorization_code
   redirectURIs:
-    - http://<app-url>/login/oauth2/code/<claim-name>
+    - https://<app-url>/login/oauth2/code/<workload-name>
+    - http://<app-url>/login/oauth2/code/<workload-name>
   scopes:
     - name: openid
 ```
@@ -101,35 +95,37 @@ To deploy the sample application onto a TAP cluster, we must first craft it as a
 a [Cartographer CRD](https://cartographer.sh/)). A `Workload` resource can be thought of as a manifest for a process you
 want to execute on the cluster, and in this context, the type of workload is `web` - a web application. TAP clusters
 provide the capability to apply `Workload` resources out of the box within the proper profiles, as described in
-the [prerequisites](#prerequisites) section.
+the [prerequisites](#prereqs) section.
 
-To deploy a workload, it is best to work in a separate workload-specific namespace. Once created, there
-are [required TAP configurations that need to be applied](../../../set-up-namespaces.md)
-before a `Workload` in a specific namespace can be deployed properly.
+## <a id="deploy-as-workload"></a> Deploying the sample application as a Workload
 
-## <a id="deploy-as-workload"></a>Deploying the sample application as a Workload
+Follow these steps to deploy the sample application:
 
-To tie it all together and deploy the sample application, the following are the steps involved.
+1. [Create a namespace for workloads](#create-namespace).
+1. [Apply a client registration](#apply-client-registration).
+1. [Create a resource claim for the workload](#create-resource-claim).
+1. (Optional) Ensure `Workload` trusts `AuthServer`. 
+For more information, see [Configure Workloads to trust a custom Certificate Authority (CA)](../../service-operators/workload-trust-custom-ca.hbs.md).
 
-### Create workload namespace
+    >**Important** You must ensure `Workload` trusts `AuthServer` if you use the default self-signed certificate `ClusterIssuer` while installing Tanzu Application Platform.
 
-Create a workload namespace called `workloads`:
+1. [Deploy the workload](#deploy-workload).
+
+### <a id="create-namespace"></a>Create a namespace for workloads
+
+Create a namespace called `workloads` and provision it as `Workload` ready:
 
 ```shell
 kubectl create namespace workloads
+kubectl label namespaces workloads apps.tanzu.vmware.com/tap-ns=""
 ```
 
-### Apply required TAP workload configurations
+For more information about provisioning namespaces for workloads, see [Set up developer namespaces](../../../set-up-namespaces.md)
 
-Within the `workloads` namespace, apply [TAP required developer namespaces](../../../set-up-namespaces.md)
-as described.
+### <a id="apply-client-registration"></a>Apply the `ClientRegistration`
 
-### Apply the `ClientRegistration`
-
-Apply the `client.yaml` definition file (described [above](#the-sample-applications-clientregistration))
-
-> **Caution** Make sure to set `auth_server_name` field to the value of the label name on the AuthServer custom resource. 
-This might differ from the name of the AuthServer custom resource.
+Apply the `client.yaml` definition file from the 
+[`application-accelerator-samples/appsso-starter-java` directory](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java):
 
 ```shell
 ytt \
@@ -137,36 +133,33 @@ ytt \
   --data-value namespace=workloads \
   --data-value workload_name=appsso-starter-java \
   --data-value domain=127.0.0.1.nip.io \
-  --data-value auth_server_name="" \
-  --data-value claim_name=appsso-starter-java | \
+  --data-value authserver_label.my-sso=true \
+  --data-value authserver_label.env=dev |
    kubectl apply -f-
 ```
 
-A bit more detail on the above YTT data values:
+Where:
 
 - **namespace** - the namespace in which the workload will run.
 - **workload_name** - the distinct name of the instance of the accelerator being deployed.
 - **domain** - the domain name under which the workload will be deployed. The workload instance will use a subdomain to
   distinguish itself from other workloads. If working locally, `127.0.0.1.nip.io` is the easiest approach to get a
   working DNS route on a local cluster.
-- **auth_server_name** - the value of the label "name" on the AuthServer resource that you installed and want to use with your workload. This may differ from the name of the AuthServer custom resource.
-- **claim_name** - the service resource claim name being assigned for this workload, this is the binding between the
-  workload and AppSSO. You may choose any reasonably descriptive name for this, it will be used in the next step.
+- **authserver_label.{matching-label}** - a uniquely identifying label(s) for your authorization server. In this example, we assume that
+  the `AuthServer` resource has labels `my-sso: "true"` and `env: dev`. You can add as many identifying labels as needed.
 
-This command has generated a `ClientRegistration` definition and applied it to the cluster. To check the status of the
+This command generates a `ClientRegistration` definition and applies it to the cluster. To verify the status of the 
 client registration, run:
 
 ```shell
 kubectl get clientregistration appsso-starter-java --namespace workloads
 ```
 
-You should see the `ClientRegistration` entry listed.
+The output lists the `ClientRegistration` entry.
 
-### Create a ClientRegistration service resource claim for the workload
+### <a id="create-resource-claim"></a>Create a ClientRegistration service resource claim for the workload
 
 Using Tanzu Services plugin CLI, create a service resource claim for the workload:
-
-> **Caution** Name of the claim must be the same as the value of `claim_name` from the previous step.
 
 > **Caution** Resource name must be the same name as the workload name.
 
@@ -187,7 +180,7 @@ tanzu service claim list --namespace workloads
 
 You should see `appsso-starter-java` claim with `Ready` status as `True`.
 
-### Deploy the workload
+### <a id="deploy-workload"></a>Deploy the workload
 
 The Tanzu CLI command to create a workload for the sample application should look like the following:
 
@@ -205,14 +198,14 @@ tanzu apps workload create appsso-starter-java \
 ```
 
 The above command creates a web `Workload` named 'appsso-starter-java' in the `workloads` namespace. The sample
-applications' source code repository is defined in the `git-repo` and `git-branch` parameters. The original client yaml
-definition contains the reference to a service claim which enables the `Workload`'s Pods to have the necessary
-AppSSO-generated credentials available as a Service Binding. Learn more about how this
-works [here](../register-an-app-with-app-sso.md#workloads).
+applications' source code repository is defined by `git-repo`, `git-branch` and `sub-path`. The original
+client yaml definition contains the reference to a service claim which enables the `Workload`'s pods to have the necessary
+AppSSO-generated credentials available as a Service Binding. 
+For more information, see [Register a workload](../register-an-app-with-app-sso.md#workloads).
 
-It takes some minutes for the workload to become available as a URL.
+It takes some minutes for the workload to become available through a browser-accessible URL.
 
-To query the latest status of the Workload, run:
+To query the latest status of the workload, run:
 
 ```shell
 tanzu apps workload get appsso-starter-java --namespace workloads
@@ -226,7 +219,7 @@ tanzu apps workload get appsso-starter-java --namespace workloads
 > **reason**: `MissingValueAtPath`
 >
 > **status**: `Unknown`
-> 
+>
 > This is not an error, this is normal operation of a pending workload. Watch the status for changes.
 
 Follow the `Workload` logs:
@@ -235,8 +228,7 @@ Follow the `Workload` logs:
 tanzu apps workload tail appsso-starter-java --namespace workloads
 ```
 
-Once the status of the workload reaches the `Ready` state, you may navigate to the URL provided, which should look
-similar to:
+After the status of the workload reaches the `Ready` state, you can navigate to the URL provided, which looks similar to:
 
 ```text
 http://appsso-starter-java.workloads.127.0.0.1.nip.io
@@ -249,22 +241,22 @@ instructions.
 
 ## Cleaning up
 
-You may delete the running accelerator by running the following:
+You can delete the running application by running the following commands:
 
-Delete the sample application workload
+1. Delete the sample application `Workload`:
 
-```shell
-tanzu apps workload delete appsso-starter-java --namespace workloads
-```
+    ```shell
+    tanzu apps workload delete appsso-starter-java --namespace workloads
+    ```
 
-Delete the service resource claim for the ClientRegistration
+1. Delete the service resource claim for the `ClientRegistration`:
 
-```shell
-tanzu service claim delete appsso-starter-java --namespace workloads
-```
+    ```shell
+    tanzu service claim delete appsso-starter-java --namespace workloads
+    ```
 
-Disconnect the accelerator from AppSSO
+1. Disconnect the client from AppSSO:
 
-```shell
-kubectl delete clientregistration appsso-starter-java --namespace workloads
-```
+    ```shell
+    kubectl delete clientregistration appsso-starter-java --namespace workloads
+    ```

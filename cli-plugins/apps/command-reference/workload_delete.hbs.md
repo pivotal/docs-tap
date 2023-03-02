@@ -4,7 +4,8 @@ This command deletes workloads in a cluster. Deleting a workload does not mean t
 
 ## Default view
 
-When attempting to delete a workload, if not used with `--yes` flag, a message asking if the workload is really to be deleted is shown in the terminal and, if user answers `Y`, and then the workload starts a deletion process inside the cluster.
+A message is displayed in the terminal asking if a workload should be deleted unless the `--yes` flag is used.
+If you indicate "Y", then the workload starts a deletion process inside the cluster.
 
 ```bash
 tanzu apps workload delete spring-pet-clinic

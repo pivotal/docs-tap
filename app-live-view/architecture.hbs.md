@@ -26,9 +26,9 @@ Application Live View includes the following components as shown in the architec
     * `Namespace scoped`: Deploy as a Kubernetes Deployment to discover apps running within a namespace across worker nodes of Kubernetes cluster.
 
 
-- **Application Live View Convention Server**
+- **Application Live View convention server**
 
-  This component provides a webhook handler for the Tanzu Convention Controller. The webhook handler is registered with Tanzu Convention Controller. The webhook handler detects supply-chain workloads running a Spring Boot. Such workloads are annotated automatically to enable Application Live View to monitor them. Download and install the Application Live View Convention Webhook component with [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+  This component provides a webhook handler for the Tanzu convention controller. The webhook handler is registered with Tanzu convention controller. The webhook handler detects supply-chain workloads running a Spring Boot. Such workloads are annotated automatically to enable Application Live View to monitor them. Download and install the Application Live View Convention Webhook component with [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 
 
 ## <a id="design-flow"></a> Design flow

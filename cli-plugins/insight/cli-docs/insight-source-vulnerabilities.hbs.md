@@ -4,7 +4,7 @@ Get source vulnerabilities.
 
 ## <a id='synopsis'></a>Synopsis
 
-Get source vulnerabilities. You can specify either commit or repo.
+Get source vulnerabilities. You can specify either commit or repository.
 
 ```console
 tanzu insight source vulnerabilities [--commit <commit-hash>] [--repo <repo-url>] [--format <format>] [flags]

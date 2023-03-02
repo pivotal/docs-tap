@@ -21,19 +21,34 @@ This repo contains the content for Tanzu Application Platform docs.
 <td><em>n/a</em></td>
 </tr>
 <tr>
-<td>1-4-1</td>
-<td><a href="https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4.1/tap/overview.html">Staging</a> (Pre-release v1.4.1 docs)</td>
+<td>1-4-2</td>
+<td><a href="https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4.2/tap/overview.html">Staging</a> (Pre-release v1.4.2 docs)</td>
 <td><em>n/a</em></td>
 </tr>
 <tr>
-<td>1-4-0</td>
+<td>1-4-1</td>
 <td><a href="https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html">Staging</a></td>
 <td><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html">Production</a></td>
 </tr>
 <tr>
-<td>1-3-4</td>
+<td>1-4-0</td>
+<td>Not in use. Do not PR to this branch.</td>
+<td>Not in use. Do not PR to this branch.</td>
+</tr>
+<tr>
+<td>1-3-6</td>
+<td><a href="https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3.6/tap/overview.html">Staging</a> (Pre-release v1.3.6 docs)</td>
+<td><em>n/a</em></td>
+</tr>
+<tr>
+<td>1-3-5</td>
 <td><a href="https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html">Staging</a></td>
 <td><a href="https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html">Production</a></td>
+</tr>
+<tr>
+<td>1-3-4</td>
+<td>Not in use. Do not PR to this branch.</td>
+<td>Not in use. Do not PR to this branch.</td>
 </tr>
 <tr>
 <td>1-3-3</td>
@@ -100,6 +115,7 @@ stored in dedicated repositories.
 | Carvel | https://github.com/vmware-tanzu/carvel/tree/develop/site/content |
 | Cloud Native Runtimes | https://gitlab.eng.vmware.com/daisy/cloud-native-runtimes-for-vmware-tanzu |
 | Services Toolkit | https://gitlab.eng.vmware.com/services-control-plane/documentation |
+| Spring Cloud Gateway | https://github.com/pivotal-cf/docs-scg-k8s |
 | Tanzu Build Service | https://github.com/pivotal-cf/docs-build-service/tree/v1.5 |
 
 ## Product Names
@@ -152,6 +168,53 @@ Use this table to keep a running list of terms used and how they should be defin
 | TAP packages | Right now there are three packages: one for each component. The three packages make up the bundle. The bundle is stored in the the TAP package repository. Although "Tanzu Application Platform packages" is in the original google doc, let's use "TAP packages" for consistency.|
 | TAP package repository |  How is this different from the other package repositories? (Are there non-TAP package repositories discussed on this page?) Changed from TAP to Tanzu Application Platform, Sept 24, 2021.|
 | .yaml and YAML file | Standardize on using the "a", not `.yml` |
+
+## Component list
+
+|Full Name|Short Name|
+|---------|-----------|
+|API Auto Registration|API Auto Registration|
+|API portal for VMware Tanzu|API portal|
+|API Scoring and Validation|API Scoring and Validation|
+|Application Accelerator for VMware Tanzu|Application Accelerator|
+|Application Live View|Application Live View|
+|Application Single Sign-On for VMware Tanzu|Application Single Sign-On|
+|Cartographer Conventions|Cartographer Conventions|
+|cert-manager|cert-manager|
+|Cloud Native Runtimes for VMware Tanzu|Cloud Native Runtimes|
+|Contour|Contour|
+|Convention Service for VMware Tanzu|Convention Service|
+|Developer Conventions|Developer Conventions|
+|Eventing|Eventing|
+|FluxCD Source Controller|FluxCD Source Controller|
+|Tanzu Learning Center|Learning Center|
+|Namespace Provisioner|Namespace Provisioner|
+|Service Bindings|Service Bindings|
+|Services Toolkit for VMware Tanzu Application Platform|Services Toolkit|
+|Source Controller|Source Controller|
+|Spring Boot conventions|Spring Boot conventions|
+|Spring Cloud Gateway for Kubernetes|Spring Cloud Gateway|
+|Supply Chain Choreographer|Supply Chain Choreographer|
+|Supply Chain Security Tools for VMware Tanzu - Policy Controller|Supply Chain Security Tools - Policy Controller (SCST - Policy Controller)|
+|Supply Chain Security Tools for VMware Tanzu - Scan|Supply Chain Security Tools - Scan (SCST - Tools)|
+|Supply Chain Security Tools for VMware Tanzu - Sign|Supply Chain Security Tools - Sign (SCST - Sign)|
+|Supply Chain Security Tools for VMware Tanzu - Store|Supply Chain Security Tools - Store (SCST - Store)|
+|Tanzu Application Platform GUI|Tanzu Application Platform GUI|
+|Tanzu Application Platform Telemetry|Tanzu Application Platform Telemetry|
+|Tanzu Build Service|Tanzu Build Service|
+|VMware Tanzu Developer Tools for IntelliJ|Tanzu Developer Tools for IntelliJ|
+|VMware Tanzu Developer Tools for Visual Studio|Tanzu Developer Tools for Visual Studio|
+|VMware Tanzu Developer Tools for Visual Studio Code|Tanzu Developer Tools for VS Code|
+|VMware Tanzu Application Platform Pipeline service with Tekton|Tekton Pipelines|
+
+**Component names usage:**
+- Use the short component name in the Table of Contents, Release Notes headings, and Components page headings.
+- Call out the full name where one exists on the first occurrence in the component page description and the first occurrence in the actual component doc and then use the short name elsewhere. 
+
+**Exception for Supply Chain Security Tools:**
+- As above, use the short name in the Table of Contents, Release Notes headings, and Components page headings. 
+- As above, call out the full name on the first occurrence in the component page description and the first occurrence in the actual component doc, **however** as even the short name is very long, use the acronym after this.
+
 
 ## Placeholder List
 

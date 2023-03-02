@@ -39,19 +39,18 @@ Where:
 
 - `GIT-REPO-URL` is the URL of a Git repository that contains manifest YAML files for the
   accelerators that you want to have managed. The URL must start with `https://` or `git@`.
-  See the following for [manifest examples](#examples-multi-manifest). You can specify a `sub_path` if
-  necessary and also a `secret_ref` if the repository requires authentication. If not needed, then
-  leave these additional properties out. See the following for the configuration of [Git credentials
-  secret](#creating-git-credentials).
+  You can specify a `sub_path` if   necessary and also a `secret_ref` if the repository requires authentication. If not needed, then leave these additional properties out.
+
+  For more information, see [Configure `tap-values.yaml` with Git credentials secret](#creating-git-credentials) and [Creating a manifest with multiple accelerators and fragments](#examples-multi-manifest) in this topic.
 
 ### <a id="functional-considerations"></a> Functional and Organizational Considerations
 
 Any accelerator manifest that is defined under the `GIT-REPO-URL` and optional `sub_path` is
-selected up by the kapp-controller app. If there are multiple manifests at the defined `GIT-REPO-URL`,
+selected by the kapp-controller app. If there are multiple manifests at the defined `GIT-REPO-URL`,
 they are all watched for changes and displayed to the user as a merged catalog.
 
-For example: Say you have two manifests containing multiple accelerator or fragment
-definitions, `manifest-1.yaml` and `manifest-2.yaml`, on the same path in the organizational
+For example: if you have two manifests containing multiple accelerator or fragment
+definitions, `manifest-1.yaml`, and `manifest-2.yaml`, on the same path in the organizational
 considerations. The resulting catalog is (`manifest-1.yaml` + `manifest-2.yaml`).
 
 ## <a id="examples-creating-acc"></a> Examples for creating accelerators
@@ -189,15 +188,15 @@ spec:
       branch: main
 ```
 
-For an even larger example of this,
-see [Sample Accelerators Main](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/sample-accelerators-main.yaml)
-(optional) You may use this to create an initial catalog of accelerators and fragments during a fresh
+For a larger example of this,
+see [Sample Accelerators Main](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/sample-accelerators-main.yaml).
+Optionally, use this to create an initial catalog of accelerators and fragments during a fresh
 Application Accelerator install.
 
 ## <a id="creating-git-credentials"></a> Configure `tap-values.yaml` with Git credentials secret
 
 > **Note** For how to create a new OAuth Token for optional Git repository creation, see
-> [Creating an Application Accelerator Git repository during project creation](/docs-tap/tap-gui/plugins/application-accelerator-git-repo.hbs.md).
+> [Create an Application Accelerator Git repository during project creation](/docs-tap/tap-gui/plugins/application-accelerator-git-repo.hbs.md).
 
 When deploying accelerators using Git repositories that requires authentication or are installed
 with custom CA certificates, you must provide some additional authentication values in a secret. The
@@ -265,16 +264,16 @@ accelerator:
 
 ## <a id="non-public-repos"></a> Using non-public repositories
 
-For GitHub repositories that aren't accessible anonymously, you need to provide credentials in a Secret.
+For GitHub repositories that aren't accessible anonymously, you must provide credentials in a Secret.
 
 - For HTTPS repositories the secret must contain user name and password fields. The password field
   can contain a personal access token instead of an actual password.
-  See [Fluxcd/source-controller basic access authentication](https://fluxcd.io/docs/components/source/gitrepositories/#basic-access-authentication)
+  For more information, see [Fluxcd/source-controller basic access authentication](https://fluxcd.io/docs/components/source/gitrepositories/#basic-access-authentication).
 - For HTTPS with self-signed certificates, you can add a `.data.caFile` value to the secret created
-  for HTTPS authentication. See [fluxcd/source-controller HTTPS Certificate Authority](https://fluxcd.io/docs/components/source/gitrepositories/#https-certificate-authority)
+  for HTTPS authentication. For more information, see [fluxcd/source-controller HTTPS Certificate Authority](https://fluxcd.io/docs/components/source/gitrepositories/#https-certificate-authority).
 - For SSH repositories, the secret must contain identity, identity.pub, and known_hosts text boxes.
-  See [fluxcd/source-controller SSH authentication](https://fluxcd.io/docs/components/source/gitrepositories/#ssh-authentication).
-- For Image repositories that aren't publicly available, an image pull secret may be provided.
+  For more information, see [fluxcd/source-controller SSH authentication](https://fluxcd.io/docs/components/source/gitrepositories/#ssh-authentication).
+- For Image repositories that aren't publicly available, an image pull secret might be provided.
   For more information, see [Kubernetes documentation on using imagePullSecrets](https://kubernetes.io/docs/concepts/configuration/secret/#using-imagepullsecrets).
 
 ### <a id="private-git-repo-example"></a> Examples for a private Git repository
@@ -466,17 +465,16 @@ spec:
 
 When using SSH credentials, the `REPOSITORY-URL` must include the user name as part of
 the URL. For example: `ssh://user@example.com:22/repository.git`.
-See [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url) for
-more detail.
+For more information, see [Flux documentation](https://fluxcd.io/flux/components/source/gitrepositories/#url).
 
 If you are using the Tanzu CLI, add the `--secret-ref` flag to your `tanzu accelerator create`
 command and provide the name of the secret for that flag.
 
-### <a id="private-source-imageexmpl></a> Examples for a private source-image repository
+### <a id="private-source-imageexmpl"></a> Examples for a private source-image repository
 
 If your registry uses a self-signed certificate then you must add the CA certificate data to the
-configuration for the "Tanzu Application Platform Source Controller" component. The easiest way to
-do that is to add it under `source_controller.ca_cert_data` in your `tap-values.yaml` file that is
+configuration for the "Tanzu Application Platform Source Controller" component. Add it under
+`source_controller.ca_cert_data` in your `tap-values.yaml` file that is
 used during installation.
 
 **`tap-values.yaml`**
@@ -511,7 +509,7 @@ Verify that your secret was created by running:
 kubectl get secret --namespace accelerator-system registry-credentials -o yaml
 ```
 
-The output is be similar to:
+The output is similar to:
 
 ```yaml
 apiVersion: v1
@@ -622,7 +620,7 @@ package_overlays:
 
 ## <a id="skip-sources-tls-veri"></a> Configuring skipping TLS verification for access to Source Controller
 
-You can configure the FLux or Tanzu Application Platform Source Controller to use Transport Layer
+You can configure the Flux or Tanzu Application Platform Source Controller to use Transport Layer
 Security (TLS) and use custom certificates. In that case, configure the Accelerator System to skip
 the TLS verification for calls to access the sources by providing the following property in the
 `accelerator` section of the `tap-values.yaml` file:

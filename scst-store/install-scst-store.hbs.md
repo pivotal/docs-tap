@@ -18,6 +18,7 @@ Before installing SCST - Store:
   what resources are deployed. For more information, see the
   [overview](overview.md).
 - Create ClusterIssuer 
+
     ```console
   kubectl apply -f - <<EOF
   apiVersion: cert-manager.io/v1
@@ -28,6 +29,7 @@ Before installing SCST - Store:
         selfSigned: {}
   EOF
     ```
+    
 ## <a id='install'></a>Install
 
 To install SCST - Store:

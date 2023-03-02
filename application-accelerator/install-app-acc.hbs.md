@@ -42,7 +42,7 @@ from within your `.yaml` configuration file:
 | git_credentials.username | null | The user name to use in secret storing Git credentials for accelerators |
 | git_credentials.password | null | The password to use in secret storing Git credentials for accelerators |
 | git_credentials.ca_file | null | The CA certificate data to use in secret storing Git credentials for accelerators |
-| managed_resources.enabled | false | Whether to enable the App used to control managed accelerator resources |
+| managed_resources.enable | false | Whether to enable the App used to control managed accelerator resources |
 | managed_resources.git.url | none | Required if managed_resources are enabled. Git repository URL containing manifests for managed accelerator resources |
 | managed_resources.git.ref | origin/main | Required if managed_resources are enabled. Git ref to use for repository containing manifests for managed accelerator resources |
 | managed_resources.git.sub_path | null | Git subPath to use for repository containing manifests for managed accelerator resources |

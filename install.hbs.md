@@ -26,25 +26,15 @@ See the following documentation for a registry to learn how to set it up:
 
 To relocate images from the VMware Tanzu Network registry to your registry:
 
-1. Install Docker if it is not already installed.
-
-1. Log in to your image registry by running:
-
-    ```console
-    docker login MY-REGISTRY
-    ```
-
-    Where `MY-REGISTRY` is your own container registry.
-
-1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
-
-    ```console
-    docker login registry.tanzu.vmware.com
-    ```
-
 1. Set up environment variables for installation use by running:
 
     ```console
+    export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
+    export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
+    export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+    export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
+    export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
+    export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
     export INSTALL_REGISTRY_USERNAME=MY-REGISTRY-USER
     export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
     export INSTALL_REGISTRY_HOSTNAME=MY-REGISTRY
@@ -57,14 +47,16 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `MY-REGISTRY` is your own container registry.
+    - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`.
+    - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
     - `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location
     for the installation files for Tanzu Application Platform.
 
-    VMware recommends using a JSON key file to authenticate with Google Container Registry. 
-    In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and 
+    VMware recommends using a JSON key file to authenticate with Google Container Registry.
+    In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and
     the value of `INSTALL_REGISTRY_PASSWORD` is the content of the JSON key file.
-    For more information about how to generate the JSON key file, 
+    For more information about how to generate the JSON key file,
     see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).  
 
 1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
@@ -89,7 +81,7 @@ Tanzu CLI packages are available on repositories. Adding the Tanzu Application P
 
 - `INSTALL_REGISTRY_HOSTNAME` is `registry.tanzu.vmware.com`
 - `INSTALL_REPO` is `tanzu-application-platform`
-- `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSSWORD` are the credentials to run `docker login registry.tanzu.vmware.com`
+- `INSTALL_REGISTRY_USERNAME` and `INSTALL_REGISTRY_PASSWORD` are the credentials to the VMware Tanzu Network registry `registry.tanzu.vmware.com`
 - `TAP_VERSION` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 To add the Tanzu Application Platform package repository to your cluster:
@@ -337,7 +329,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
     * Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET-KEY` is the SSH secret key in the developer namespace for the supply chain to fetch source code from and push configuration to.
 This field is only required if you use a private repository, otherwise, leave it empty. See [Git authentication](scc/git-auth.hbs.md) for more information.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces.
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.

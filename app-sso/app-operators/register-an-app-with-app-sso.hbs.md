@@ -25,7 +25,7 @@ statically, properties cannot be changed without triggering a rollout of AppSSO.
 
 [Grant Types](grant-types.md)
 
-## Workloads
+## <a id='workloads'></a> Workloads
 
 This guide will walk you through steps necessary to secure your deployed `Workload` with AppSSO.
 
@@ -47,6 +47,10 @@ Workload is aware of AppSSO. How does that work?
 - To make your Workload aware of AppSSO (i.e. that your application shall now rely on AppSSO for authentication and
   authorization requests), you must [specify a service resource claim](#add-a-service-resource-claim-to-your-workload)
   which produces the necessary credentials for your Workload to consume.
+- (Optional) Ensure `Workload` trusts `AuthServer`. 
+  For more information, see [Configure Workloads to trust a custom Certificate Authority (CA)](../service-operators/workload-trust-custom-ca.hbs.md).
+
+    >**Important** You must ensure `Workload` trusts `AuthServer` if you use the default self-signed certificate `ClusterIssuer` while installing Tanzu Application Platform.
 
 The following sections elaborate on both of the concepts in detail.
 
@@ -68,7 +72,7 @@ spec:
     - client_credentials
     - authorization_code
     - refresh_token
-  clientAuthenticationMethod: basic
+  clientAuthenticationMethod: client_secret_basic
   requireUserConsent: true
   redirectURIs:
     - "<MY_WORKLOAD_HOSTNAME>/redirect-back-uri"
@@ -155,14 +159,15 @@ volume containing the necessary credentials required by your application to beco
 
 The credentials provided by the service claim are:
 
-- **Client ID** - the identifier of your Workload that AppSSO is registered with. This is a unique identifier.
-- **Client Secret** - secret string value used by AppSSO to verify your client during its interactions. Keep this value
-  secret.
-- **Issuer URI** - web address of AppSSO, and the primary location that your Workload will go to when interacting with
-  AppSSO.
-- **Authorization Grant Types** - list of desired OAuth 2 grant types that your wants to support.
-- **Client Authentication Method** - method in which the client application requests an identity or access token
-- **Scopes** - list of desired scopes that your application's users will have access to.
+- `client-id`: the identifier of your `Workload` that AppSSO is registered with. 
+This is a unique identifier.
+- `client-secret`: secret string value used by AppSSO to verify your client. 
+Keep this value secret.
+- `issuer-uri`: web address of AppSSO, and the primary location that your `Workload` 
+goes to when interacting with AppSSO.
+- `authorization-grant-types`: list of desired OAuth 2 grant types.
+- `client-authentication-method`: method in which the client is authenticated when requesting an identity or access token.
+- `scope`: list of desired scopes that your application's users have access to.
 
 The above credentials are mounted onto your Workload's Pod(s) as individual files at the following locations:
 

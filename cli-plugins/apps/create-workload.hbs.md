@@ -1,13 +1,12 @@
 # Create a workload
 
-This topics describes how to create a workload from example source code with Tanzu Application Platform.
+This topic describes how to create a workload from example source code with Tanzu Application Platform.
 
 ## <a id='prerequisites'></a> Prerequisites
 
 The following prerequisites are required to use workloads with Tanzu Application Platform:
 
-- Install Kubernetes command line interface tool (kubectl). For information about installing
-  kubectl, see [Install Tools in the Kubernetes documentation](https://kubernetes.io/docs/tasks/tools/).
+- Install [kubectl](https://kubernetes.io/docs/tasks/tools/).
 - Install Tanzu Application Platform components on a Kubernetes cluster. See [Installing Tanzu
   Application Platform](../../install-intro.hbs.md).
 - [Set your kubeconfig context](tutorials.hbs.md#changing-clusters) to the prepared cluster `kubectl
@@ -32,7 +31,7 @@ The following prerequisites are required to use workloads with Tanzu Application
 ### <a id="workload-git"></a> Create a workload from GitHub repository
 
 Tanzu Application Platform supports creating a workload from an existing Git repository by setting
-the flags `--git-repo`, `--git-branch`, `--git-tag` and `--git-commit`, this  allows the
+the flags `--git-repo`, `--git-branch`, `--git-tag`, and `--git-commit`. This allows the
 [supply chain](../../scc/about.hbs.md) to get the source from the given repository to deploy the
 application.
 
@@ -85,7 +84,7 @@ and push it to the given registry to be used in the workload.
     The file must contain a list of file paths to exclude from the image including the file itself
     and the directories must not end with the system path separator (`/` or `\`).
 
-    For more info regarding the `.tanzuignore` file
+    For more information regarding the `.tanzuignore` file
     see [.tanzuignorefile](how-to-examples.hbs.md#tanzuignore-file) section of the how-to-guides.
 
 ### <a id="workload-image"></a> Create workload from an existing image
@@ -115,7 +114,7 @@ Tanzu Application Platform supports creating a workload from a Maven repository
 artifact ([Source-Controller](../../source-controller/about.hbs.md)) by setting some
 specific properties as YAML parameters in the workload when using the [supply chain](../../scc/about.hbs.md).
 
-The Maven repository URL is being set when the supply chain is created.
+The Maven repository URL is set when the supply chain is created.
 
 - Param name: maven
 - Param value:
@@ -181,7 +180,7 @@ To create a workload from a file like the earlier example:
 tanzu apps workload create --file my-workload-file.yaml
 ```
 
-**Note** when flags are passed in combination with `--file my-workload-file.yaml` the flag/values
+**Note** When flags are passed in combination with `--file my-workload-file.yaml` the flag/values
 >take precedence over the associated property or values in the YAML.
 
 The workload YAML definition can also be passed in through stdin as follows:
@@ -194,8 +193,8 @@ The console waits for input, and the content with valid `yaml` definitions for a
 be written or pasted. Then click **Ctrl-D** three times to start the workload creation. This can
 also be done with the `workload apply` command.
 
-**Note** To pass a workload through `stdin`, the `--yes` flag is required. If not provided, the
->command fails.
+To pass a workload through `stdin`, the `--yes` flag is required. If not provided, the
+command fails.
 
 Another way to pass a workload with the `--file` flag is using a URL, which, as mentioned before,
 must contain a raw file with the workload definition.
@@ -230,9 +229,9 @@ information about how to bind a service to a workload.
 
 ## <a id="next-steps"></a> Next steps
 
-You can verify workload details and status, add environment variables, export definitions or bind services.
+You can verify workload details and status, add environment variables, export definitions, or bind services.
 
-1. To verify a workloads status and details, use `tanzu apps workload get`.
+1. To verify a workload status and details, use `tanzu apps workload get`.
 
    To get workload logs, use `tanzu apps workload tail`.
 

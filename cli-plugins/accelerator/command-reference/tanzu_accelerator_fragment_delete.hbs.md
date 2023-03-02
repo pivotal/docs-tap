@@ -1,36 +1,35 @@
-## tanzu accelerator fragment delete
+# tanzu accelerator fragment delete
 
-Delete an accelerator fragment
+Delete an accelerator fragment.
 
-### Synopsis
+## Synopsis
 
 Delete the accelerator fragment resource with the specified name.
 
-```
+```console
 tanzu accelerator fragment delete [flags]
 ```
 
-### Examples
+## Examples
 
-```
+```console
 tanzu accelerator fragment delete <fragment-name>
 ```
 
-### Options
+## Options
 
-```
+```console
   -h, --help               help for delete
   -n, --namespace string   namespace for accelerator system (default "accelerator-system")
 ```
 
-### Options inherited from parent commands
+## Options inherited from parent commands
 
-```
+```console
       --context name      name of the kubeconfig context to use (default is current-context defined by kubeconfig)
       --kubeconfig file   kubeconfig file (default is $HOME/.kube/config)
 ```
 
-### SEE ALSO
+## SEE ALSO
 
-* [tanzu accelerator fragment](tanzu_accelerator_fragment.md)	 - Fragment commands
-
+[tanzu accelerator fragment](tanzu_accelerator_fragment.md)

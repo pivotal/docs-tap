@@ -24,16 +24,16 @@ and requirements of an organization.
 Before jumping into the details of creating a custom convention, you can view two
 distinct components of Cartographer Conventions:
 
-- [Convention Controller](#convention-controller)
-- [Convention Server](#convention-server)
+- [Convention controller](#convention-controller)
+- [Convention server](#convention-server)
 
 ### <a id='convention-server'></a>Convention server
 
 The convention server is the component that applies a convention already defined
 on the server. For a golang example of creating a convention server to add
-springboot conventions, see
+Spring Boot conventions, see
 [spring-convention-server](https://github.com/vmware-tanzu/cartographer-conventions/tree/main/samples/spring-convention-server)
-in Github. The  resource that facilitates structuring the request body of the
+in GitHub. The resource that structures the request body of the
 request and response from the server is the
 [PodConventionContext](./reference/pod-convention-context.hbs.md).
 
@@ -64,8 +64,8 @@ The conditional criteria for a convention are based on any property or value fou
 
 If a convention's criteria are met, the convention server enriches the PodTemplateSpec
 in the PodIntent. The convention server also updates the `status` section of the PodIntent
-with the name of the convention that's been applied.
-So if needed, you can figure out after the fact which conventions were applied to the workload.
+with the name of the convention that's applied.
+You can figure out after the fact which conventions were applied to the workload.
 
 To provide flexibility in how conventions are organized, you can deploy multiple convention servers. Each server can contain a convention or set of conventions focused on a
 specific class of runtime modifications, on a specific language framework, and so on. How
@@ -73,44 +73,42 @@ the conventions are organized, grouped, and deployed is up to you and the needs 
 your organization.
 
 Convention servers deployed to the cluster does not take action unless triggered to
-do so by the second component of Cartographer Conventions, the [Convention Controller](#convention-controller).
+do so by the second component of Cartographer Conventions, the [Convention service's controller](#convention-controller).
 
 ### <a id='convention-controller'></a>Convention controller
 
-The convention controller is the orchestrator of one or many convention servers deployed to the cluster. There are resources available on the `conventions.carto.run/v1aplha1` API that allow the controller to carry out it's functions. These resources include:
+The convention controller is the orchestrator of one or many convention servers deployed to the cluster. There are resources available on the `conventions.carto.run/v1aplha1` API that allow the controller to carry out its functions. These resources include:
 
   -  [ClusterPodConvention](./reference/cluster-pod-convention.hbs.md)
-      - `ClusterPodConvention` is a  resource type that allows the conventions author to register a webhook server with the controller using it's `spec.webhook` field.
+    `ClusterPodConvention` is a  resource type that allows the conventions author to register a webhook server with the controller using its `spec.webhook` field.
 
-          ```yaml
-          ...
-          spec:
-            selectorTarget: PodTemplateSpec # optional field with options, defaults to PodTemplateSpec
-            selectors: # optional, defaults to match all workloads
-            - <metav1.LabelSelector>
-            webhook:
-              certificate:
-                name: sample-cert
-                namespace: sample-conventions
-              clientConfig:
-                <admissionregistrationv1.WebhookClientConfig>
-          ```
+      ```yaml
+      ...
+      spec:
+        selectorTarget: PodTemplateSpec # optional field with options, defaults to PodTemplateSpec
+        selectors: # optional, defaults to match all workloads
+        - <metav1.LabelSelector>
+        webhook:
+          certificate:
+            name: sample-cert
+            namespace: sample-conventions
+          clientConfig:
+            <admissionregistrationv1.WebhookClientConfig>
+      ```
 
   - [PodIntent](./reference/pod-intent.hbs.md)
 
-    - The `PodIntent`is a `conventions.carto.run/v1alpha1)` resource type that
+    `PodIntent` is a `conventions.carto.run/v1alpha1` resource type that
       is continuously reconciled and applies decorations to a workload
-      `PodTemplateSpec` exposing the enriched `PodTemplateSpec` on it's status.
-      Whenever the status of the `PodIntent` is updated no side effects are
+      `PodTemplateSpec` exposing the enriched `PodTemplateSpec` on its status.
+      Whenever the status of the `PodIntent` is updated, no side effects are
       caused on the cluster.
 
-  As key types defined on the `conventions.carto.run` API, the
-  `ClusterPodConvention` and `PodIntent` resources are both present on the
+  As key types defined on the `conventions.carto.run` API, the ClusterPodConvention` and `PodIntent` resources are both present on the
   Kubernetes API Server and are queried using
-  `clusterpodconventions.conventions.carto.run` for the former and
-  `podintents.conventions.carto.run` for the later.
+  `clusterpodconventions.conventions.carto.run` for the former and `podintents.conventions.carto.run` for the later.
 
-#### <a id='role-of-the-controller'></a>How the convention controller works
+#### <a id='role-of-the-controller'></a>How the convention services's controller works
 
 When the Supply Chain Choreographer creates or updates a PodIntent for a workload, the convention
 controller retrieves the OCI image metadata from the repository
@@ -147,7 +145,7 @@ The following prerequisites must be met before a convention is developed and dep
     kubectl config use-context CONTEXT_NAME
     ```
 
-+ You use Github to install the ko CLI. See the [google/ko](https://github.com/google/ko) GitHub repository. These instructions use `ko` to build an image. If there is an existing image or build process, `ko` is optional.)
++ You use GitHub to install the ko CLI. See the [google/ko](https://github.com/google/ko) GitHub repository. These instructions use `ko` to build an image. If there is an existing image or build process, `ko` is optional.)
 
 ## <a id='define-conv-criteria'></a> Define convention criteria
 
@@ -325,6 +323,7 @@ The `conventions.carto.run/v1alpha1` API allows convention authors to use the `s
             awesome-annotation: awesome-value
       ...
     ```
+
 + PodIntent
 
     ```yaml
@@ -336,6 +335,7 @@ The `conventions.carto.run/v1alpha1` API allows convention authors to use the `s
             environment: production
             ...
     ```
+
 The `selectorTarget` field is configured on the ClusterPodConvention as follows:
 
 ```yaml
@@ -352,7 +352,8 @@ spec:
       <admissionregistrationv1.WebhookClientConfig>
 ```
 
-If you do not provide a value for this optional field while using the `conventions.carto.run/v1alpha1` API, the default value is set to `PodTemplateSpec` without the conventions author explicitly doing so. The `selectorTarget` field is not available in the `conventions.apps.tanzu.vmware.com/v1alpha1` API and labels specified in the `PodTemplateSpec` are considered if a matcher is defined in a `ClusterPodConvention` while referencing this deprecated API.
+If you do not provide a value for this optional field while using the `conventions.carto.run/v1alpha1` API,
+the default value is set to `PodTemplateSpec` without the conventions author explicitly doing so. 
 
 ### <a id='match-criteria-env-var'></a> Matching criteria by environment variables
 
@@ -409,7 +410,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-2. <a id='install-cm'></a>(Optional) A certificate manager `Issuer` is created to issue the certificate needed for TLS communication.
+2. <a id='install-cm'></a>(Optional) A certificate manager `Issuer` is created to issue the> certificate needed for TLS communication.
 
     ```yaml
     ...
@@ -533,7 +534,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-6. <a id='install-convention'></a>The [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the Convention Controller:
+6. <a id='install-convention'></a>The [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the convention controller:
     >**Important** The `annotations` block is only needed if you use a self-signed certificate. See the [cert-manager documentation](https://cert-manager.io/docs/).
 
     ```yaml

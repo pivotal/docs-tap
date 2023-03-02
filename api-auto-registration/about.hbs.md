@@ -17,10 +17,10 @@ chain automation, with other GitOps processes, or by directly applying an
 
 ## <a id='getting-started'></a> Getting started
 
-For information about the architecture of API Auto Registration, or the APIDescriptor CR and API entities in Tanzu Application Platform GUI, see [Key Concepts section](key-concepts.md).
+For information about the architecture of API Auto Registration, or the APIDescriptor CR and API entities in Tanzu Application Platform GUI, see [Key Concepts](key-concepts.hbs.md).
 
-For information about the iterate, run, and full Tanzu Application Platform cluster profiles, see [Usage section](usage.md).
+For information about the iterate, run, and full Tanzu Application Platform cluster profiles, see [Use API Auto Registration](usage.hbs.md).
 
-For information about other profiles, install the `api-auto-registration` package. See [Install API Auto Registration](installation.md).
+For information about other profiles, install the `api-auto-registration` package. See [Install API Auto Registration](installation.hbs.md).
 
 Troubleshoot and debug problems using the tips in [Troubleshooting](troubleshooting.md).

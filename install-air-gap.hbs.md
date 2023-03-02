@@ -12,26 +12,15 @@ Before installing the packages, ensure that you have completed the following tas
 
 To relocate images from the VMware Tanzu Network registry to your air-gapped registry:
 
-1. Log in to your image registry by running:
-
-    ```console
-    docker login MY-REGISTRY
-    ```
-
-    Where `MY-REGISTRY` is your own container registry.
-
-1. Log in to the VMware Tanzu Network registry with your VMware Tanzu Network credentials by running:
-
-    ```console
-    docker login registry.tanzu.vmware.com
-    ```
-
 1. Set up environment variables for installation use by running:
 
     ```console
-    export IMGPKG_REGISTRY_HOSTNAME=MY-REGISTRY
-    export IMGPKG_REGISTRY_USERNAME=MY-REGISTRY-USER
-    export IMGPKG_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
+    export IMGPKG_REGISTRY_HOSTNAME_0=registry.tanzu.vmware.com
+    export IMGPKG_REGISTRY_USERNAME_0=MY-TANZUNET-USERNAME
+    export IMGPKG_REGISTRY_PASSWORD_0=MY-TANZUNET-PASSWORD
+    export IMGPKG_REGISTRY_HOSTNAME_1=MY-REGISTRY
+    export IMGPKG_REGISTRY_USERNAME_1=MY-REGISTRY-USER
+    export IMGPKG_REGISTRY_PASSWORD_1=MY-REGISTRY-PASSWORD
     export TAP_VERSION=VERSION-NUMBER
     export REGISTRY_CA_PATH=PATH-TO-CA
     ```
@@ -41,7 +30,9 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     - `MY-REGISTRY` is your air-gapped container registry.
     - `MY-REGISTRY-USER` is the user with write access to `MY-REGISTRY`.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
-    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
+    - `MY-TANZUNET-USERNAME` is the user with access to the images in the VMware Tanzu Network registry `registry.tanzu.vmware.com`
+    - `MY-TANZUNET-PASSWORD` is the password for `MY-TANZUNET-USERNAME`.
+    - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`
 
 1. Copy the images into a `.tar` file from the VMware Tanzu Network onto an external storage device with the Carvel tool imgpkg by running:
 
@@ -63,7 +54,7 @@ To relocate images from the VMware Tanzu Network registry to your air-gapped reg
     imgpkg copy \
       --tar tap-packages-$TAP_VERSION.tar \
       --to-repo $IMGPKG_REGISTRY_HOSTNAME/tap-packages \
-      --include-non-distributable-layers
+      --include-non-distributable-layers \
       --registry-ca-cert-path $REGISTRY_CA_PATH
     ```
 
@@ -235,13 +226,11 @@ shared:
     project_path: "SERVER-NAME/REPO-NAME"
     username: "REGISTRY-USERNAME"
     password: "REGISTRY-PASSWORD"
-    ca_cert_data: |
-      -----BEGIN CERTIFICATE-----
-      MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
-      -----END CERTIFICATE-----
+  ca_cert_data: |
+    -----BEGIN CERTIFICATE-----
+    MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+    -----END CERTIFICATE-----
 profile: full
-excluded_packages:
-- policy.apps.tanzu.vmware.com
 ceip_policy_disclosed: true
 buildservice:
   kp_default_repository: "REPOSITORY"
@@ -350,7 +339,7 @@ service's External IP address.
    - Google Cloud Registry has the form `repository: "my-project/supply-chain"`.
 - `SSH-SECRET` is the secret name for https authentication, certificate authority, and SSH authentication. See [Git authentication](scc/git-auth.hbs.md) for more information.
 - `MAVEN-CREDENTIALS` is the name of [the secret with maven creds](scc/building-from-source.hbs.md#maven-repository-secret). This secret must be in the developer namespace. You can create it after the fact.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1043418/file_groups/6091). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `GITLABURL` is the host name of your GitLab instance.
 - `GITLAB-USER` is the user name of your GitLab instance.
 - `GITLAB-PASSWORD` is the password for the `GITLAB-USER` of your GitLab instance. This can also be the `GITLAB-TOKEN`.

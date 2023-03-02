@@ -8,6 +8,8 @@ Follow the instructions in this topic to install a scanner other than the out of
 
 Before installing a new scanner, install [Supply Chain Security Tools - Scan](./install-scst-scan.hbs.md). It must be present on the same cluster. The prerequisites for Scan are also required.
 
+>**Note:** Different scanners may have different limits. See [Supported Scanner Matrix for Supply Chain Security Tools - Scan](scanner-matrix.hbs.md).
+
 ## <a id="installation"></a> Install
 
 To install a new scanner, follow these steps:
@@ -355,4 +357,4 @@ In addition to providing the above supported integrations, VMware encourages the
 Additional integrations:
 
 - [Prisma Scanner (Alpha)](install-prisma-integration.hbs.md) is available for source and image scanning. 
-  >**Note** This integration is in Alpha, which means that it is still in active development by the Tanzu Practices Global Tech Team and may be subject to change at any point. Users may encounter unexpected behavior.
+- [Trivy Scanner (Alpha)](install-trivy-integration.hbs.md) is available for source and image scanning.

@@ -1,4 +1,4 @@
-# Creating an Application Accelerator Git repository during project creation
+# Create an Application Accelerator Git repository during project creation
 
 This topic describes how to enable and use the GitHub repository creation in the Application
 Accelerator plug-in.
@@ -11,7 +11,7 @@ create GitHub repositories.
 
 ## <a id="supported-providers"></a> Supported Providers
 
-The currently supported Git providers are GitHub and GitLab.
+The supported Git providers are GitHub and GitLab.
 
 ## <a id="configuration"></a> Configure
 
@@ -19,7 +19,7 @@ The following steps describe an example configuration that uses GitHub:
 
 1. Create an **OAuth App** in GitHub based on the configuration
    described in this [Backstage documentation](https://backstage.io/docs/auth/github/provider).
-   GitHub Apps are not yet supported. For more information about creating an OAuth App in GitHub, see
+   GitHub Apps are not supported. For more information about creating an OAuth App in GitHub, see
    the [GitHub documentation](https://docs.github.com/en/developers/apps/building-oauth-apps/creating-an-oauth-app).
 
    These values appear in your `app-config.yaml` or `app-config.local.yaml` for local development.
@@ -39,28 +39,28 @@ The following steps describe an example configuration that uses GitHub:
 
    ```yaml
    app_config:
-      integrations:
-         github:
-            - host: github.com
+     integrations:
+       github:
+         - host: github.com
    ```
 
    For more information, see the
    [Backstage documentation](https://backstage.io/docs/integrations/github/locations).
 
-### <a id="deactiv-git-repo-creation"></a> (Optional) Deactivate Git repository creation in the Application Accelerator extension for VS Code
+### <a id="deactiv-git-repo-creation"></a> (Optional) Deactivate Git repository creation
 
-From Tanzu Application Platform v1.4, the Application Accelerator extension for VS Code uses the
-Tanzu Application Platform GUI URL to interact with the accelerator system.
-There is a new plug-in called `gitProviders` that you can configure to deactivate Git repository
-creation in the VS Code extension.
+As of Tanzu Application Platform v1.5, you can deactivate Git repository creation by setting the
+property `customize.features.accelerators.gitRepoCreation` to `false` in `tap-values.yaml`.
+This also deactivates Git repository creation in the Application Accelerator extension for VS Code.
 
-To deactivate Git repository creation, set `app_config.gitProviders.active` to `false` in
-`tap-values.yaml` as shown in the following example:
+See the following example configuration for deactivating Git repository creation:
 
 ```yaml
-   app_config:
-      gitProviders:
-         active: false
+app_config:
+  customize:
+    features:
+      accelerators:
+        gitRepoCreation: false
 ```
 
 ### <a id="k8s-secrets"></a> Use Kubernetes secrets
@@ -79,13 +79,13 @@ To use Kubernetes secrets to set the values for `clientId` and `clientSecret`:
 
    ```yaml
    app_config:
-      auth:
-         environment: development
-         providers:
-            github:
-               development:
-               clientId: ${clientId}
-               clientSecret: ${clientSecret}
+     auth:
+       environment: development
+       providers:
+         github:
+           development:
+           clientId: ${clientId}
+           clientSecret: ${clientSecret}
    ```
 
 ## <a id="creating-project"></a> Create a Project
@@ -110,6 +110,6 @@ To create a project:
 
    ![Screenshot of GitHub log-in credential text boxes.](images/github-login.png)
 
-6. Click **GENERATE ACCELERATOR**. Eventually a link to the repository location appears.
+6. Click **GENERATE ACCELERATOR**. A link to the repository location appears.
 
    ![Screenshot of the output status, which includes a Download ZIP File button.](images/application-accelerator-task-output.png)

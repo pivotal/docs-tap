@@ -1,7 +1,7 @@
 # AuthServer
 
-`AuthServer` represents the request for an OIDC authorization server. It results in the deployment of an authorization
-server backed by Redis over mutual TLS (if no storage is defined).
+`AuthServer` represents the request for an OIDC authorization server. It causes the deployment of an authorization
+server backed by Redis over mutual TLS if no storage is defined.
 
 An `AuthServer` should have labels which allow to uniquely match it amongst others. `ClientRegistration` selects an
 `AuthServer` by label selector and needs a unique match to be successful.
@@ -20,7 +20,8 @@ See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more info
 Token signature keys are configured by using `spec.tokenSignature`. This is a required field. See
 [Token signatures](../service-operators/token-signature.md) for more context.
 
-Identity providers are configured under `spec.identityProviders`. If there are none, end-users won't be able to log in.
+You can configure identity providers under `spec.identityProviders`. If there is none, end-users can not log in. 
+For more information about configuring identity providers, see [Identity providers](../service-operators/identity-providers.hbs.md).
 
 The deployment can be further customized by configuring replicas, resources, http server and logging properties.
 
@@ -74,7 +75,7 @@ spec:
     secretRef:
       name: ""
     deactivated: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
-    disabled: false # Deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
+    disabled: false # deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
   tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""
@@ -82,12 +83,12 @@ spec:
       - name: ""
   storage: # optional
     redis: # required if 'storage' is defined
-      serviceRef: # Reference to a provisioned service within the same namespace as this AuthServer. Currently supports Secret reference only.
+      serviceRef: # reference to a provisioned service within the same namespace as this AuthServer. Currently supports Secret reference only.
         apiVersion: "v1"
         kind: "Secret"
         name: ""
   caCerts: # optional
-    - secretRef: # Reference to Secret resource within the same namespace as this AuthServer.
+    - secretRef: # reference to Secret resource within the same namespace as this AuthServer.
         name: ""
   identityProviders: # optional
     # each must be one and only one of internalUnsafe, ldap, openID or saml
@@ -102,6 +103,14 @@ spec:
             emailVerified: false
             roles:
               - ""
+        accessToken: # optional
+          scope:
+            defaults: # optional
+            - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                  - ""
     - name: "" # must be unique
       ldap:
         server:
@@ -116,12 +125,32 @@ spec:
         user:
           searchFilter: ""
           searchBase: ""
-        group:
-          searchFilter: ""
-          searchBase: ""
-          searchSubTree: false
-          searchDepth: 0
-          roleAttribute: ""
+        roles: # optional
+          fromUpstream:
+            attribute: "" # required
+            search:
+              filter: ""
+              base: ""
+              subTree: false
+              depth: 0
+          filterBy: # optional
+            - exactMatch: ""
+            - regex: "" # must be valid regular expression
+          accessToken: # optional
+            scope:
+              defaults: # optional
+              - ""
+              rolesToScopes: # optional
+                - fromRole: ""
+                  toScopes:
+                  - ""
+        group:    # deprecated, use 'ldap.roles.fromUpstream' instead.
+          search: # deprecated, use 'ldap.roles.fromUpstream.search' instead.
+            filter: ""
+            base: ""
+            subTree: false
+            depth: 0
+          roleAttribute: "" # deprecated, use 'ldap.roles.fromUpstream.attribute' instead.
     - name: "" # must be unique
       openID:
         issuerURI: ""
@@ -130,10 +159,40 @@ spec:
           name: ""
         scopes:
           - ""
+        claimMappings: # deprecated, use 'openID.roles.fromUpstream.claim' instead.
+          roles: ""
+        roles: # optional
+          fromUpstream:
+            claim: "" # required
+          filterBy: # optional
+            - exactMatch: ""
+            - regex: "" # must be valid regular expression
+        accessToken: # optional
+          scope:
+            defaults: # optional
+            - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                - ""
     - name: "" # must be unique
       saml:
         metadataURI: ""
         claimMappings: { }
+        roles: # optional
+          fromUpstream:
+            attribute: "" # required
+          filterBy: # optional
+            - exactMatch: ""
+            - regex: "" # must be valid regular expressions
+        accessToken: # optional
+          scope:
+            defaults: # optional
+              - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                  - ""
   replicas: 1 # optional, default 2
   logging: "" # optional, must be valid YAML
   server: "" # optional, must be valid YAML
@@ -161,7 +220,7 @@ status:
       configHash: ""
       image: ""
       replicas: 0
-    redis: # empty if storage is configured by the service operator
+    redis: # leave empty if storage is configured by the service operator
       image: ""
   storage:
     redis:
@@ -204,9 +263,9 @@ to troubleshoot issues.
 its replicas, the hash of the current configuration and the generation which has last resulted in a restart.
 
 `.status.deployments.redis` describes the current provided Redis deployment by listing its running image. This field is
-nil if storage is defined explicitly via `.spec.storage`.
+nil if storage is defined explicitly by using `.spec.storage`.
 
-`.status.storage.redis` describes the configured Redis storage such as hostname and port number.
+`.status.storage.redis` describes the configured Redis storage such as host name and port number.
 
 `.status.conditions` documents each step in the reconciliation:
 
@@ -240,11 +299,11 @@ deployments:
     configHash: "11216479096262796218"
     image: "..."
     replicas: 1
-  redis: # empty if external storage is defined
+  redis: # leave empty if external storage is defined
     image: "..."
 storage:
   redis:
-   host: "" # the hostname of the configured Redis
+   host: "" # the host name of the configured Redis
    port: "" # the port of the configured Redis
 tls:
   deactivated: false
@@ -372,8 +431,19 @@ spec:
         jwksUri: https://dev-xxxxxx.okta.com/oauth2/v1/keys
         scopes:
           - openid
-        claimMappings:
-          roles: my_custom_okta_roles_claim
+        roles:
+          fromUpstream:
+            claim: my_custom_okta_roles_claim
+        accessToken:
+          scope:
+            defaults:
+              - "developer.read"
+              - "developer.write"
+            rolesToScopes:
+              - fromRole: "finance"
+                toScopes:
+                  - "finance.read"
+                  - "finance.write"
 
 ---
 apiVersion: secretgen.k14s.io/v1alpha1

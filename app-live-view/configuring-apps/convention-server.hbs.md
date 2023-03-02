@@ -25,7 +25,7 @@ for Application Live View.
 ## <a id="desc-metadata"></a> Description of metadata labels
 
 If a workload resource explicitly defines a label under `metadata.labels` in the
-`workload.yaml`, then the convention service detects the presence of that label and respects its value.
+`workload.yaml`, then Convention Service detects the presence of that label and respects its value.
 When deploying a workload using Tanzu Application Platform,
 you can override the labels listed in the following table using the `Workload` YAML.
 
@@ -140,5 +140,5 @@ status:
 
 In your output:
 
-- `status.template.metadata.labels` shows the list of applied labels by Application Live View Convention Server.
-- `status.template.metadata.annotations` shows the list of applied annotations by Application Live View Convention Server.
+- `status.template.metadata.labels` shows the list of applied labels by Application Live View convention server.
+- `status.template.metadata.annotations` shows the list of applied annotations by Application Live View convention server.

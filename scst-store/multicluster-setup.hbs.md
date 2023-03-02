@@ -46,6 +46,8 @@ data:
 EOF
 ```
 
+Where `CERT-NAME` is the name of the certificate you want to reference in `store_ca.yaml`.
+
 For example:
 
 ```bash

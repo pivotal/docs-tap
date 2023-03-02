@@ -369,7 +369,5 @@ multiple files at the same path:
 
 ### <a id="advanced-accelerator-use"></a> Advanced accelerator use
 
-Additional advanced features might be leveraged when writing an `accelerator.yaml`.
-For additional information see:
-
-- [Creating dynamic parameters using custom types](custom-types.md)
+Additional advanced features can be leveraged when writing an `accelerator.yaml`.
+For more information see, [Creating dynamic parameters using custom types](custom-types.hbs.md)
