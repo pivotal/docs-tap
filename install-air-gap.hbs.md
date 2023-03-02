@@ -235,13 +235,11 @@ shared:
     project_path: "SERVER-NAME/REPO-NAME"
     username: "REGISTRY-USERNAME"
     password: "REGISTRY-PASSWORD"
-    ca_cert_data: |
-      -----BEGIN CERTIFICATE-----
-      MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
-      -----END CERTIFICATE-----
+  ca_cert_data: |
+    -----BEGIN CERTIFICATE-----
+    MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+    -----END CERTIFICATE-----
 profile: full
-excluded_packages:
-- policy.apps.tanzu.vmware.com
 ceip_policy_disclosed: true
 buildservice:
   kp_default_repository: "REPOSITORY"
