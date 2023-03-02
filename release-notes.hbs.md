@@ -26,7 +26,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ### <a id='1-5-0-scst-policy-new-features'></a> Supply Chain Security Tools - Policy Controller
 
-- ClusterImagePolicy resync triggered every 10 hours to get updated values from KMS
+- ClusterImagePolicy resync is triggered every 10 hours to get updated values from KMS.
 
 ### <a id='1-5-0-cert-manager-ncf'></a> cert-manager
 

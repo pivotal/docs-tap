@@ -7,10 +7,10 @@ container images.
 
 An image is admitted after it is validated against a policy with
 matching image pattern, and where at least one valid signature is obtained from
-the authorities provided in matched [ClusterImagePolicy](#create-cip-resource).
+the authorities provided in a matched [ClusterImagePolicy](#create-cip-resource).
 
 If more than one policy exists with matching image pattern, _ALL_ of the policies
-should have atleast one passing authority for the image.
+must have at least one passing authority for the image.
 
 ## <a id="including-namespaces"></a> Including Namespaces
 
@@ -48,7 +48,7 @@ Policy Controller defines the following globs by default:
 With these defaults, you require the `glob` pattern `**` to match against all images.
 If your image is hosted on Docker Hub, include `index.docker.io` as the host for the glob.
 
-A sample of a ClusterImagePolicy which matches against all images using glob:
+A sample ClusterImagePolicy which matches against all images using glob:
 
 ```yaml
 apiVersion: policy.sigstore.dev/v1beta1
@@ -65,7 +65,7 @@ spec:
 In a ClusterImagePolicy, `spec.mode` specifies the action of a policy:
 
 - `enforce`: The default behavior. If the policy fails to validate the image, the policy fails.
-- `warn`: If the policy fails to validate the image, validation error messages are converted to Warnings and the policy passes.
+- `warn`: If the policy fails to validate the image, validation error messages are converted to warnings and the policy passes.
 
 A sample of a ClusterImagePolicy which has `warn` mode configured.
 
@@ -103,8 +103,8 @@ Warning: failed policy: POLICY-NAME: spec.template.spec.containers[1].image
 Warning: IMAGE-REFERENCE signature key validation failed for authority authority-0 for IMAGE-REFERENCE: GET IMAGE-SIGNATURE-REFERENCE: DENIED: denied; denied
 ```
 
-If `Warning` is undesirable, you might configure a `static.action` `pass` authority to allow expected unsigned images.
-For information about static action authorities, see the [Static Action](#cip-static-action) documentation.
+If `Warning` is undesirable, you can configure a `static.action` `pass` authority to allow expected unsigned images.
+For information about static action authorities, see [Static Action](#cip-static-action).
 
 ### <a id="cip-match"></a> `match`
 
@@ -137,7 +137,7 @@ Each `key` authority can contain a PEM-encoded ECDSA public key, a `secretRef`,
 or a `kms` path.
 
 The policy resyncs with KMS referenced every 10 hours. Any updates to the secret
-in KMS would be pulled in during the refresh. If you want to force a resync, the policy has to be
+in KMS is pulled in during the refresh. To force a resync, the policy must be
 deleted and recreated.
 
 > **Important** Only ECDSA public keys are supported.
@@ -161,11 +161,11 @@ Where `KMSPATH` is the name of the KMS path you want to configure in your key au
 
 > **Note** The secret referenced in `key.secretRef.name` must be created
 in the `cosign-system` namespace or the namespace where the Policy Controller
-is installed. Such secret must only contain one `data` entry with the public key.
+is installed. This secret must only contain one `data` entry with the public key.
 
 #### <a id="keyless-authority"></a> `keyless`
 
-> **Note** Keyless support is deactivated by default. For more information, see [Install Supply Chain Security Tools - Policy Controller](./install-scst-policy.hbs.md).
+> **Note** Keyless support is deactivated by default. See [Install Supply Chain Security Tools - Policy Controller](./install-scst-policy.hbs.md).
 
 Each keyless authority can contain a Fulcio URL, a Rekor URL, a certificate, or
 an array of identities.
@@ -241,18 +241,17 @@ IMAGE-REFERENCE disallowed by static policy
 Images that are unsigned in a namespace with validation enabled are admitted
 with an authority with static action `pass`.
 
-A scenario where this applies is configuring a policy with `static.action`
+This applies when you are configuring a policy with `static.action`
 `pass` for `tap-packages` images. Another policy is then configured to validate
 signed images produced by Tanzu Build Service. This allows images from
 `tap-packages`, which are unsigned and required by the platform, to be admitted
 while still validating signed built images from Tanzu Build Service. See
 [Configure your supply chain to sign and verify your image
-builds](../getting-started/config-supply-chain.md#config-sc-to-img-builds) for
-an example.
+builds](../getting-started/config-supply-chain.md#config-sc-to-img-builds).
 
 If `Warning` messages are desirable for admitted images where validation failed,
 you can configure a policy with `warn` mode and valid authorities.
-For information about ClusterImagePolicy modes, see the [Mode](#cip-mode) documentation.
+For information about ClusterImagePolicy modes, see [Mode](#cip-mode).
 
 ## <a id='provide-creds-for-package'></a> Provide credentials for the package
 
