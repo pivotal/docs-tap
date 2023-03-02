@@ -1,22 +1,22 @@
 # Supply Chains
 
-Tanzu Application Platform a number of supply chains packages,
+Tanzu Application Platform includes a number of supply chains packages,
 each of which installs two
 [ClusterSupplyChains](https://cartographer.sh/docs/v0.6.0/reference/workload/#clustersupplychain).
 Only one supply chain package can be installed at one time.
 
 The supply chains provide some [parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters)
 to the referenced templates.
-Some of these might be overridden by the parameters provided by the workload.
+These might be overridden by the parameters provided by the workload.
 
 ## Source-to-URL
 
 ### Purpose
 
-- Fetches application source code,
-- builds it into an image,
-- writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or a container image registry.
+- Fetches application source code
+- Builds it into an image
+- Writes the Kubernetes configuration necessary to deploy the application
+- Commits that configuration to either a Git repository or a container image registry
 
 ### Resources
 
@@ -72,11 +72,11 @@ for information about setting tap-values at installation time.
 
 ## Source-Test-to-URL
 
-- Fetches application source code,
-- runs user defined tests against the code,
-- builds the code into an image,
-- writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry.
+- Fetches application source code
+- Runs user defined tests against the code
+- Builds the code into an image
+- Writes the Kubernetes configuration necessary to deploy the application
+- Commits that configuration to either a Git repository or a container image registry
 
 ### Resources
 
@@ -123,7 +123,7 @@ Parameters provided:
 
 - `maven_repository_url` from tap-value `maven.repository.url`. NOT overridable by workload.
 - `maven_repository_secret_name` from tap-value `maven.repository.secret_name`. NOT overridable by workload.
-- See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources)
+- See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources).
 
 ### Package
 
@@ -136,13 +136,13 @@ for information about setting tap-values at installation time.
 
 ## Source-Test-Scan-to-URL
 
-- Fetches application source code,
-- runs user defined tests against the code,
-- scans the code for vulnerabilities
-- builds the code into an image,
-- scans the image for vulnerabilities,
-- writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry.
+- Fetches application source code
+- Runs user defined tests against the code
+- Scans the code for vulnerabilities
+- Builds the code into an image
+- Scans the image for vulnerabilities
+- Writes the Kubernetes configuration necessary to deploy the application
+- Commits that configuration to either a Git repository or an image registry
 
 ### Resources
 
@@ -222,7 +222,7 @@ for information about setting tap-values at installation time.
 
 - Fetches a prebuilt image,
 - writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry.
+- and commits that configuration to either a Git repository or an image registry\.
 
 ### Resources
 
@@ -415,7 +415,7 @@ All of the following parameters are overridable by the workload.
 - `gitops_commit_message` from tap-value `gitops.commit_message`
 - `gitops_ssh_secret` from tap-value `gitops.ssh_secret`
 - `gitops_repository_prefix` from tap-value `gitops.repository_prefix` when present.
-- `gitops_server_address` from tap-value `gitops.server_address` when present.
+- `gitops_server_address` from tap-value `gitops.server_address` >when present.
 - `gitops_repository_owner` from tap-value `gitops.repository_owner` when present.
 - `gitops_repository_name` from tap-value `gitops.repository_name` when present.
 - `gitops_server_kind` from tap-value `gitops.pull_request.server_kind` when present.

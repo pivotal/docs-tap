@@ -1,6 +1,6 @@
 # Out of the Box Templates
 
-Templates stamp out Kubernetes objects based on configuration in the workload,
+Templates define Kubernetes objects based on configuration in the workload,
 supply chain Tanzu Application Platform values, and results output from other
 templated objects. A supply chain organizes a set of templates into a directed
 acyclic graph. This package contains templates that are used by the Out of the

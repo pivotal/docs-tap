@@ -322,4 +322,4 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
 For information about the template creating the related runnable,
 see [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template).
 
-For information about the gitops flow, see [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).
+For information about gitops, see [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).
