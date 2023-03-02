@@ -23,18 +23,19 @@ To use Supply Chain Choreographer in Tanzu Application Platform GUI you must hav
 
 For more information, see [Overview of multicluster Tanzu Application Platform](../../multicluster/about.hbs.md)
 
-
 ## <a id="scan"></a> Enable CVE scan results
 
-In order to see CVE scan results within Tanzu Application Platform GUI one must
-connect TAP GUI to the TAP component Supply Chain Security Tools - Store.
+To see CVE scan results within Tanzu Application Platform GUI, connect Tanzu Application Platform GUI
+to the Tanzu Application Platform component Supply Chain Security Tools - Store<!--฿ |Supply Chain Security Tools (SCST) - Store| on first use. |SCST - Store| thereafter. ฿--> (SCST - Store).
 
-### <a id="scan-auto"></a> Automatically Connect Tanzu Application Platform GUI to Metadata Store
+### <a id="scan-auto"></a> Automatically connect Tanzu Application Platform GUI to the Metadata Store
 
-TAP GUI has built automation around enabling connection between TAP GUI and
-Supply Chain Security Tools - Store. In order to use this you must add this to
-your the TAP GUI stanza within your TAP values file. The default value for
-`tap_gui.metadataStoreAutoconfiguration` is false.
+Tanzu Application Platform GUI has automation for enabling connection between
+Tanzu Application Platform GUI and SCST - Store.
+To use this automation, add it to the Tanzu Application Platform GUI section within your
+`tap-values.yaml` file.
+
+The default value for `tap_gui.metadataStoreAutoconfiguration` is `false`. See the following example:
 
 ```yaml
 # tap-values.yaml
@@ -45,18 +46,15 @@ tap_gui:
   metadataStoreAutoconfiguration: true
 ```
 
-This will create a service account for the connection with privileges scoped
-only to the metadata store. In addition it will mount the token of the service
-account into the TAP GUI pod and produce for you the `app_config` stanza
-necessary for TAP GUI to communicate with the Supply Chain Security Tools -
-Store.
+This file change creates a service account for the connection with privileges scoped only to the
+Metadata Store.
+In addition it mounts the token of the service account into the Tanzu Application Platform GUI
+pod and produces for you the `app_config` section necessary for Tanzu Application Platform GUI to
+communicate with SCST - Store.
 
-### <a id="scan-manual"></a> Manually Connect Tanzu Application Platform GUI to Metadata Store
+### <a id="scan-manual"></a> Manually connect Tanzu Application Platform GUI to Metadata Store
 
-In the event that you need to manually enable CVE scan results, please
-complete the following steps:
-
-To enable CVE scan results:
+To manually enable CVE scan results:
 
 1. [Obtain the read-write token](../../scst-store/retrieve-access-tokens.hbs.md),
    which is created by default when installing Tanzu Application Platform. Alternatively,
