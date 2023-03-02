@@ -8,20 +8,20 @@ This topic describes prerequisites for installing SCST - Scan (Prisma) from the 
 
 ## Verify the latest alpha package version
 
-Run the command in this section to output a list of available tags.
+Run this command to output a list of available tags.
+```shell
+imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | grep -v sha | sort -V
+```
 
-Use the latest version returned in place of the sample version in this topic, such as `0.1.4-alpha.11` in the following output. 
+Use the latest version returned in place of the sample version in this topic, such as `0.1.4-alpha.12` in the following output.
 
 ```console
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | grep -v sha | sort -V
 
 0.1.4-alpha.1  
-0.1.4-alpha.2  
-0.1.4-alpha.3  
-0.1.4-alpha.4  
-0.1.4-alpha.5  
 0.1.4-alpha.6  
-0.1.4-alpha.11  
+0.1.4-alpha.11
+0.1.4-alpha.12  
 ```
 
 ## Relocate images to a registry
@@ -72,14 +72,14 @@ To relocate images from the VMware Project Registry to your registry:
     - `MY-REGISTRY-USER` is the user with write access to MY-REGISTRY.
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `MY-REGISTRY` is your own registry.
-    - `VERSION` is your Prisma Scanner version. For example, `0.1.4-alpha.11`.
+    - `VERSION` is your Prisma Scanner version. For example, `0.1.4-alpha.12`.
     - `TARGET-REPOSITORY` is your target repository, a directory or repository on `MY-REGISTRY` that serves as the location for the installation files for Prisma Scanner.
 
 4. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
 
 5. Relocate images with the imgpkg CLI by running:
 
-    ```console
+    ```shell
     imgpkg copy -b projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/prisma-repo-scanning-bundle
     ```
 
@@ -99,16 +99,16 @@ VMware recommends installing the Prisma Scanner objects in the existing `tap-ins
 
 1. Add the Prisma Scanner package repository to the cluster by running:
 
-    ```console
+    ```shell
     tanzu package repository add prisma-scanner-repository \
       --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/prisma-repo-scanning-bundle:$VERSION \
       --namespace tap-install
     ```
 
-1. Get the status of the Prisma Scanner package repository, and ensure that the status updates to `Reconcile succeeded` by running:
+2. Get the status of the Prisma Scanner package repository, and ensure that the status updates to `Reconcile succeeded` by running:
 
-    ```console
-    tanzu package repository get prisma-scanning-repository --namespace tap-install
+    ```shell
+    tanzu package repository get prisma-scanner-repository --namespace tap-install
     ```
 
     For example:
@@ -118,15 +118,15 @@ VMware recommends installing the Prisma Scanner objects in the existing `tap-ins
     - Retrieving repository prisma-scanner-repository...
     NAME:          prisma-scanner-repository
     VERSION:       71091125
-    REPOSITORY:    index.docker.io/tapsme/prisma-repo-scanning-bundle
-    TAG:           0.1.4-alpha.11
+    REPOSITORY:    projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle
+    TAG:           0.1.4-alpha.12
     STATUS:        Reconcile succeeded
     REASON:
     ```
 
-1. List the available packages by running:
+3. List the available packages by running:
 
-    ```console
+    ```shell
     tanzu package available list --namespace tap-install
     ```
 
@@ -349,6 +349,8 @@ The values.yaml file is slightly different for each configuration.
 
 ## Supply Chain Security Tools - Store integration
 
+The Prisma Scanner integration can work with or without the SCST - Store integration. The `values.yaml` file is slightly different for each configuration.
+
 When using SCST - Store integration, to persist the results
 found by the Prisma Scanner, you can enable the SCST -
 Store integration by appending the fields to the `values.yaml` file.
@@ -359,8 +361,13 @@ whether the Grype Scanner Integration is installed or not. If Tanzu Application
 Platform is installed using the Full Profile, the Grype Scanner Integration is
 installed unless it is explicitly excluded.
 
-If the Grype or Snyk Scanner Integration is installed in the same dev-namespace where the Prisma Scanner is installed:
+### Multiple Scanners installed
 
+In order to find your CA secret name and auth token secret name as needed for your values.yaml when installing Prisma Scanner you will need to look at the configuration of a prior installed scanner in the same namespace as it will already exist.
+
+This [documentation](/docs-tap/scst-store/multicluster-setup.hbs.md) can be referenced on how it was most likely initially created and can be used as a reference.
+
+An example `values.yaml` when there are other scanners already installed in the same `dev-namespace` where the Prisma Scanner is installed:
 ```yaml
 #! ...
 metadataStore:
@@ -387,8 +394,11 @@ Where:
 - `AUTH-SECRET-NAME` is the name of the secret that contains the authentication token to
   authenticate to the Store Deployment.
 
-If the Grype or Snyk Scanner Integration is not installed in the same dev-namespace Prisma Scanner is installed:
+### Prisma Only Scanner Installed
 
+This [documentation](/docs-tap/scst-store/multicluster-setup.hbs.md) will walk you through creating and exporting secrets for the Metadata Store CA and auth token which will be referenced in the data values when installing Prisma Scanner.
+
+An example `values.yaml` when no other scanner integrations installed in the same `dev-namespace` where the Prisma Scanner is installed:
 ```yaml
 #! ...
 metadataStore:
@@ -417,10 +427,9 @@ Where:
 - `STORE-SECRETS-NAMESPACE` is the namespace where the secrets for the Store Deployment live. Default is `metadata-store`.
 - `AUTH-SECRET-NAME` is the name of the secret that contains the authentication token to authenticate to the Store Deployment.
 
-**Without SCST - Store Integration:** If you don’t want
-to enable the SCST - Store integration, explicitly deactivate the integration by
-appending the following fields to the values.yaml file that is enabled by
-default:
+### No Store Integration
+
+If you do not want to enable the SCST - Store integration, explicitly deactivate the integration by appending the following fields to the `values.yaml` file that is enabled by default:
 
 ```yaml
 # ...
@@ -542,6 +551,49 @@ Where:
 ## Install Prisma Scanner
 
 After all prerequisites are completed, install the Prisma Scanner. See [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md).
+
+## Self-Signed Registry Certificate
+
+When attempting to pull an image from a registry with a self-signed certificate during image scans additional configuration is necessary.
+
+### Tap Values Shared CA
+
+If your `tap-values.yaml` used during install has the following shared section filled out, Prisma Scanner will use this and enable it to connect to your registry without additional configuration.
+
+```yaml
+shared:
+   ca_cert_data: | # To be passed if using custom certificates.
+      -----BEGIN CERTIFICATE-----
+      MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+      -----END CERTIFICATE-----
+```
+
+### Secret within Developer Namespace
+
+1. Create a secret that holds the registry's CA cert data.
+
+   An example of the secret:
+   ```yaml
+   apiVersion: v1
+   kind: Secret
+   metadata:
+     name: prisma-registry-cert
+     namespace: dev
+   type: Opaque
+   data:
+     ca_cert_data: BASE64_CERT
+   ```
+
+2. Update your Prisma Scanner install values.yaml.
+
+   Add `caCertSecret` to the root of your `prisma-values.yaml` when installing Prisma Scanner
+
+   Example:
+   ```yaml
+   namespace: dev
+   targetImagePullSecret: tap-registry
+   caCertSecret: prisma-registry-cert
+   ```
 
 ## Known Limits
 
