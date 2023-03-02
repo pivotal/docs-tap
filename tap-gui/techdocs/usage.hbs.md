@@ -1,7 +1,7 @@
 # TechDocs
 
 This guide explains how to generate and publish TechDocs for catalogs.
-For more information, see the [Backstage.io documentation](https://backstage.io/docs/features/techdocs/techdocs-overview).
+For more information, see the [Backstage.io documentation](https://backstage.io/docs/features/techdocs/).
 
 
 ## <a id="create-s3-bucket"></a> Create an Amazon S3 bucket
