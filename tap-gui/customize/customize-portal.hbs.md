@@ -138,3 +138,40 @@ file:
 
 After the updated values configuration file is applied in Tanzu Application Platform GUI,
 you see the customized version of your portal.
+
+## <a id="customize-security-banners"></a> Customize security banners
+
+You can instruct TAP GUI to create security banners on the top and bottom of the page.
+
+To add security banners to the Tanzu Application Platform GUI:
+
+1. Provide additional configuration parameters to the `app_config` section of your `tap-values.yaml`
+file:
+
+    ```yaml
+    tap_gui:
+      app_config:
+        customize:
+          banners:
+            text: 'YOUR-TEXT-HERE'
+            color: 'YOUR-TEXT-COLOR-HERE'
+            bg: 'YOUR-BACKGROUND-COLOR-HERE'
+            link: 'YOUR-LINK-HERE'
+    ```
+
+    Where:
+    - `YOUR-TEXT-HERE`: is the text that will be displayed in the banner. We
+      recommend keeping this text short to accommodate varying screen sizes.
+    - `YOUR-TEXT-COLOR-HERE`: **Optional** is the color of the text that will be
+      displayed in the banner. Accepts CSS colors e.g. `#ffffff`. Defaults to
+      `#FFFFFF`
+    - `YOUR-BACKGROUND-COLOR-HERE`: **Optional** is the color of the banner
+      itself. Accepts CSS colors e.g. `#ffffff`. Defaults to `#C23B2E`
+    - `YOUR-LINK-HERE`: **Optional** is the link to which your text will
+      redirect.
+
+1. Reinstall your Tanzu Application Platform GUI package by following the steps in
+[Upgrading Tanzu Application Platform](../../upgrading.hbs.md).
+
+After the updated values configuration file is applied in Tanzu Application Platform GUI,
+you see the customized version of your portal.

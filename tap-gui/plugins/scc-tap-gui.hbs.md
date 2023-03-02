@@ -23,7 +23,38 @@ To use Supply Chain Choreographer in Tanzu Application Platform GUI you must hav
 
 For more information, see [Overview of multicluster Tanzu Application Platform](../../multicluster/about.hbs.md)
 
+
 ## <a id="scan"></a> Enable CVE scan results
+
+In order to see CVE scan results within Tanzu Application Platform GUI one must
+connect TAP GUI to the TAP component Supply Chain Security Tools - Store.
+
+### <a id="scan-auto"></a> Automatically Connect Tanzu Application Platform GUI to Metadata Store
+
+TAP GUI has built automation around enabling connection between TAP GUI and
+Supply Chain Security Tools - Store. In order to use this you must add this to
+your the TAP GUI stanza within your TAP values file. The default value for
+`tap_gui.metadataStoreAutoconfiguration` is false.
+
+```yaml
+# tap-values.yaml
+
+# ...
+tap_gui:
+  # ...
+  metadataStoreAutoconfiguration: true
+```
+
+This will create a service account for the connection with privileges scoped
+only to the metadata store. In addition it will mount the token of the service
+account into the TAP GUI pod and produce for you the `app_config` stanza
+necessary for TAP GUI to communicate with the Supply Chain Security Tools -
+Store.
+
+### <a id="scan-manual"></a> Manually Connect Tanzu Application Platform GUI to Metadata Store
+
+In the event that you need to manually enable CVE scan results, please
+complete the following steps:
 
 To enable CVE scan results:
 
