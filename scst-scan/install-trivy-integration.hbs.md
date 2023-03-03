@@ -19,25 +19,25 @@ For example:
 ``` shell
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle | grep -v sha | sort -V
 
-0.1.4-alpha.6  
-0.1.4-alpha.1   
-0.1.4-alpha.3   
-0.1.4-alpha.5   
+0.1.4-alpha.6
+0.1.4-alpha.1
+0.1.4-alpha.3
+0.1.4-alpha.5
 0.1.4-alpha.6
 ```
 
-In this topic, use the latest version returned by the command above. 
+In this topic, use the latest version returned by the command above.
 
 ## Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to
-your own container image registry before installing. 
+your own container image registry before installing.
 
 The Trivy Scanner is in the Alpha development phase, is not packaged as part of
 the Tanzu Application Platform package, and is hosted on the VMware Project
 Repository instead of VMware Tanzu Network. If you relocated the Tanzu
 Application Platform images, you might also want to relocate the Trivy Scanner
-package. 
+package.
 
 If you don’t relocate the images, the Trivy Scanner installation depends on
 VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no
@@ -108,7 +108,7 @@ VMware recommends installing the Trivy Scanner objects in the existing `tap-inst
 
     ```console
    tanzu package repository get trivy-scanner-repository --namespace tap-install
-   
+
    NAME:          trivy-scanner-repository
    VERSION:       7750726
    REPOSITORY:    projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle
@@ -134,7 +134,7 @@ VMware recommends installing the Trivy Scanner objects in the existing `tap-inst
 
 ## Prepare the Trivy Scanner configuration
 
-Before installing the Trivy Scanner, you must create the configuration necessary to install  
+Before installing the Trivy Scanner, you must create the configuration necessary to install
 
 Define the `--values-file` flag to customize the default configuration. You must define the following fields in the `values.yaml` file for the Trivy
 Scanner configuration. You can add fields as needed to activate or deactivate behaviors. You can append the values to the `values.yaml` file. Create a `values.yaml` file by using the following configuration:
@@ -154,7 +154,7 @@ Scanner configuration. You can add fields as needed to activate or deactivate be
    the scanner installation fails.
    - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
      credentials to pull an image from a private registry for scanning.
-   - `TARGET-SOURCE-SSH-SECRET` is the name of the secret containing SSH credentials for cloning private repositories 
+   - `TARGET-SOURCE-SSH-SECRET` is the name of the secret containing SSH credentials for cloning private repositories
 
 To see all available values, run the following command using the version that you want:
 
@@ -166,32 +166,32 @@ tanzu package available get trivy.scanning.apps.tanzu.vmware.com/$VERSION --valu
 Example output:
 
 ```console
-  KEY                                           DEFAULT                                                           TYPE    DESCRIPTION                                                                       
-  environmentVariables                          <nil>                                                             <nil>   Environment Variables you want added to the scan container to impact trivy behavior                                                                          
-  resources.limits.cpu                          1000m                                                             string  Limits describes the maximum amount of cpu resources allowed.                     
-  resources.requests.cpu                        250m                                                              string  Requests describes the minimum amount of cpu resources required.                  
-  resources.requests.memory                     128Mi                                                             string  Requests describes the minimum amount of memory resources                         
-  scanner.docker.server                                                                                           string  <nil>                                                                             
-  scanner.docker.username                                                                                         string  <nil>                                                                             
-  scanner.docker.password                                                                                         string  <nil>                                                                             
-  scanner.pullSecret                                                                                              string  <nil>                                                                             
-  scanner.serviceAccount                        trivy-scanner                                                     string  Name of scan pod's service ServiceAccount                                         
-  scanner.serviceAccountAnnotations             <nil>                                                             <nil>   Annotations added to ServiceAccount                                               
-  trivy.cli.image.additionalArguments                                                                             string  additional arguments to be appended to the image scan command                     
-  trivy.cli.plugins.aqua.repositoryUrl                                                                            string  location of the aqua plugin tar in an OCI registry to be used in place of the embedded version                                                                  
-  trivy.cli.repositoryUrl                                                                                         string  location of the CLI tar in an OCI registry to be used in place of the embedded version                                                                           
-  trivy.cli.source.additionalArguments                                                                            string  additional arguments to be appended to the fs scan command                        
-  trivy.db.repositoryUrl                                                                                          string  location of the vulnerability database in an OCI registry to be used as the download location prior to running a scan                                         
-  caCertSecret                                                                                                    string  Reference to the secret containing the registry ca cert set as ca_cert_data       
-  metadataStore.authSecret.importFromNamespace                                                                    string  Namespace from which to import the Insight Metadata Store auth_token              
-  metadataStore.authSecret.name                                                                                   string  Name of deployed Secret with key auth_token                                       
-  metadataStore.caSecret.importFromNamespace    metadata-store                                                    string  Namespace from which to import the Insight Metadata Store CA Cert                 
-  metadataStore.caSecret.name                   app-tls-cert                                                      string  Name of deployed Secret with key ca.crt holding the CA Cert of the Insight Metadata Store                                                                    
-  metadataStore.clusterRole                     metadata-store-read-write                                         string  Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster                                                
-  metadataStore.url                             https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store                                                 
-  namespace                                     default                                                           string  Deployment namespace for the Scan Templates                                       
-  targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry             
-  targetSourceSshSecret                                                                                           string  Reference to the secret containing SSH credentials for cloning private repositories                         
+  KEY                                           DEFAULT                                                           TYPE    DESCRIPTION
+  environmentVariables                          <nil>                                                             <nil>   Environment Variables you want added to the scan container to impact trivy behavior
+  resources.limits.cpu                          1000m                                                             string  Limits describes the maximum amount of cpu resources allowed.
+  resources.requests.cpu                        250m                                                              string  Requests describes the minimum amount of cpu resources required.
+  resources.requests.memory                     128Mi                                                             string  Requests describes the minimum amount of memory resources
+  scanner.docker.server                                                                                           string  <nil>
+  scanner.docker.username                                                                                         string  <nil>
+  scanner.docker.password                                                                                         string  <nil>
+  scanner.pullSecret                                                                                              string  <nil>
+  scanner.serviceAccount                        trivy-scanner                                                     string  Name of scan pod's service ServiceAccount
+  scanner.serviceAccountAnnotations             <nil>                                                             <nil>   Annotations added to ServiceAccount
+  trivy.cli.image.additionalArguments                                                                             string  additional arguments to be appended to the image scan command
+  trivy.cli.plugins.aqua.repositoryUrl                                                                            string  location of the aqua plugin tar in an OCI registry to be used in place of the embedded version
+  trivy.cli.repositoryUrl                                                                                         string  location of the CLI tar in an OCI registry to be used in place of the embedded version
+  trivy.cli.source.additionalArguments                                                                            string  additional arguments to be appended to the fs scan command
+  trivy.db.repositoryUrl                                                                                          string  location of the vulnerability database in an OCI registry to be used as the download location prior to running a scan
+  caCertSecret                                                                                                    string  Reference to the secret containing the registry ca cert set as ca_cert_data
+  metadataStore.authSecret.importFromNamespace                                                                    string  Namespace from which to import the Insight Metadata Store auth_token
+  metadataStore.authSecret.name                                                                                   string  Name of deployed Secret with key auth_token
+  metadataStore.caSecret.importFromNamespace    metadata-store                                                    string  Namespace from which to import the Insight Metadata Store CA Cert
+  metadataStore.caSecret.name                   app-tls-cert                                                      string  Name of deployed Secret with key ca.crt holding the CA Cert of the Insight Metadata Store
+  metadataStore.clusterRole                     metadata-store-read-write                                         string  Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster
+  metadataStore.url                             https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store
+  namespace                                     default                                                           string  Deployment namespace for the Scan Templates
+  targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry
+  targetSourceSshSecret                                                                                           string  Reference to the secret containing SSH credentials for cloning private repositories
 ```
 
 ## SCST - Store integration
@@ -213,7 +213,7 @@ When installing Trivy Scanner, find your CA secret name and authentication token
 name for your `values.yaml` ny looking at the configuration of a prior installed
 scanner in the same namespace as it already exists.
 
-For information about how the scanner was initially created, see [Multicluster Setup](/scst-store/multicluster-setup.hbs.md). 
+For information about how the scanner was initially created, see [Multicluster Setup](../scst-store/multicluster-setup.hbs.md).
 
 The following example `values.yaml` has other scanners already installed in the same `dev-namespace` where the Trivy Scanner is installed:
 
@@ -245,7 +245,7 @@ Where:
 
 ### Trivy Only Scanner Installed
 
-For a walk through of creating and exporting secrets for the Metadata Store CA and authentication token which referenced in the data values, see [Multicluster Setup](/scst-store/multicluster-setup.hbs.md).
+For a walk through of creating and exporting secrets for the Metadata Store CA and authentication token which referenced in the data values, see [Multicluster Setup](../scst-store/multicluster-setup.hbs.md).
 
 The following example `values.yaml` has no other scanner integrations installed in the same `dev-namespace` where the Trivy Scanner is installed:
 
@@ -422,7 +422,7 @@ If not, you can use the `oras` cli to download the database and manifest and the
    ```console
    oras push registry.company.com/project_name/trivy-db:2 \
      ./db.tar.gz
-   
+
    Uploading 1612cc15d377 db.tar.gz
    Uploaded  1612cc15d377 db.tar.gz
    Pushed registry.company.com/project_name/trivy-db:2
@@ -471,7 +471,7 @@ Install the `oras` cli. See [Installation](https://oras.land/cli/) in the ORAS d
 
 ### Download the CLI
 
-Download the version of the CLI you are interested in from their [GitHub releases page](https://github.com/aquasecurity/trivy/releases). 
+Download the version of the CLI you are interested in from their [GitHub releases page](https://github.com/aquasecurity/trivy/releases).
 For example: https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_Linux-64bit.tar.gz
 
 ```console
@@ -531,7 +531,7 @@ HTTP request sent, awaiting response... 200 OK
 Length: 50915539 (49M) [application/octet-stream]
 Saving to: ‘trivy-aqua-plugin.tar.gz’
 
-trivy-aqua-plugin.tar.gz 100%[==>]  48.56M  35.3MB/s    in 1.4s    
+trivy-aqua-plugin.tar.gz 100%[==>]  48.56M  35.3MB/s    in 1.4s
 
 2023-01-30 10:44:07 (35.3 MB/s) - ‘trivy-aqua-plugin.tar.gz’ saved [50915539/50915539]
 ```
@@ -551,7 +551,7 @@ wget -c "https://raw.githubusercontent.com/aquasecurity/trivy-plugin-aqua/${TRIV
 HTTP request sent, awaiting response... 200 OK
 Length: 909 [text/plain]
 Saving to: ‘plugin.yaml’
-plugin.yaml 100%[==>]     909  --.-KB/s    in 0s      
+plugin.yaml 100%[==>]     909  --.-KB/s    in 0s
 
 2023-01-30 10:46:32 (54.2 MB/s) - ‘plugin.yaml’ saved [909/909]
 ```
