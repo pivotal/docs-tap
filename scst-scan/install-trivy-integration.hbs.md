@@ -406,7 +406,8 @@ If not, you can use the `oras` cli to download the database and manifest and the
    oras manifest fetch ghcr.io/aquasecurity/trivy-db:2 > trivy-db-manifest.json
    ```
 
-3. Add the media type to the manifest
+3. Add the media type to the manifest.
+
    ```shell
    jq '.mediaType="application/vnd.oci.image.manifest.v1+json"' trivy-db-manifest.json > updated-trivy-db-manifest.json
    ```
@@ -701,6 +702,7 @@ shared:
    Add `caCertSecret` to the root of your `trivy-values.yaml` when installing Trivy Scanner
 
    Example:
+   
    ```yaml
    namespace: dev
    targetImagePullSecret: tap-registry
