@@ -80,7 +80,7 @@ For Tanzu Application Platform GUI, you must have:
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires Kubernetes cluster v1.23, v1.24 or v1.25 on one of the following Kubernetes
+Installation requires Kubernetes cluster v1.24, v1.25 or v1.26 on one of the following Kubernetes
 providers:
 
 - Azure Kubernetes Service.
@@ -97,7 +97,7 @@ providers:
 - Minikube.
     - Reference the [resource requirements](#resource-requirements) in the following section.
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
-- Red Hat OpenShift Container Platform v4.10 or v4.11.
+- Red Hat OpenShift Container Platform v4.11 or v4.12.
     - vSphere
     - Baremetal
 - Tanzu Kubernetes Grid multicloud.
@@ -145,7 +145,7 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
 
 Installation requires:
 
-- The Kubernetes CLI (kubectl) v1.23, v1.24, or v1.25 installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
+- The Kubernetes CLI (kubectl) v1.24, v1.25, or v1.26 installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 ## <a id='next-steps'></a>Next steps
 
