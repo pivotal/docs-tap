@@ -62,6 +62,7 @@ metadata:
     sso.apps.tanzu.vmware.com/allow-client-namespaces: "" # required, must be "*" or a comma-separated list of allowed client namespaces
     sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: "" # optional
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: "" # optional
+    sso.apps.tanzu.vmware.com/allow-unsafe-cors: "" # optional
 spec:
   # .tls is optional if a default issuer is set
   tls:
@@ -76,6 +77,11 @@ spec:
       name: ""
     deactivated: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
     disabled: false # deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
+  cors:
+    allowOrigins: # optional, cannot be combined with 'allowAllOrigins'
+      - ""
+    allowAllOrigins: false # optional; if true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
+                           # cannot be combined with 'allowOrigins'.
   tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""
@@ -401,6 +407,7 @@ metadata:
   annotations:
     sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
+    sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""
 spec:
   replicas: 1
   tls:
@@ -412,6 +419,8 @@ spec:
       name: sample-token-signing-key
     extraVerifyKeyRefs:
       - name: sample-token-verification-key
+  cors:
+    allowAllOrigins: true
   identityProviders:
     - name: internal
       internalUnsafe:

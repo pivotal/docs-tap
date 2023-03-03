@@ -12,6 +12,8 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ### <a id='1-5-0-appsso-new-features'></a> Application Single Sign-On (AppSSO)
 
+- Introduces `AuthServer` CORS API which allows for configuration of allowed HTTP origins, for use with public
+  clients (e.g. single-page apps).
 - Introduces an API for filtering external roles, groups, and memberships across OpenID, LDAP, and SAML identity providers
   in `AuthServer` resource into the `roles` claim of the resulting identity
   token. For more information, see [Roles claim filtering](app-sso/service-operators/identity-providers.hbs.md#roles-filters).
