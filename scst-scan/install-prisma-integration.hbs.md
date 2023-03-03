@@ -366,7 +366,7 @@ installed unless it is explicitly excluded.
 
 In order to find your CA secret name and authentication token secret name as needed for your values.yaml when installing Prisma Scanner you must look at the configuration of a prior installed scanner in the same namespace as it already exists.
 
-For information about how the scanner was likely initially created, see [Multicluster Setup](/scst-store/multicluster-setup.hbs.md) 
+For information about how the scanner was likely initially created, see [Multicluster Setup](../scst-store/multicluster-setup.hbs.md) 
 
 An example `values.yaml` when there are other scanners already installed in the same `dev-namespace` where the Prisma Scanner is installed:
 ```yaml
@@ -397,7 +397,7 @@ Where:
 
 ### Prisma Only Scanner Installed
 
-For information about creating and exporting secrets for the Metadata Store CA and authentication token  referenced in the data values when installing Prisma Scanner, see [Multicluster Setup](/scst-store/multicluster-setup.hbs.md).
+For information about creating and exporting secrets for the Metadata Store CA and authentication token  referenced in the data values when installing Prisma Scanner, see [Multicluster Setup](../scst-store/multicluster-setup.hbs.md).
 
 An example `values.yaml` when no other scanner integrations installed in the same `dev-namespace` where the Prisma Scanner is installed:
 
