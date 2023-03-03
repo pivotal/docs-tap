@@ -13,10 +13,10 @@ shared:
     project_path: "SERVER-NAME/REPO-NAME" # To be used by Build Service by appending "/buildservice" and used by Supply chain by appending "/workloads"
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
-    ca_cert_data: | # To be passed if using custom certificates
-    -----BEGIN CERTIFICATE-----
-    MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
-    -----END CERTIFICATE-----
+  ca_cert_data: | # To be passed if using custom certificates
+  -----BEGIN CERTIFICATE-----
+  MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+  -----END CERTIFICATE-----
 
 ceip_policy_disclosed: FALSE-OR-TRUE-VALUE # Installation fails if this is not set to true. Not a string.
 
