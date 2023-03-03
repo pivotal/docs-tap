@@ -26,7 +26,7 @@ For more information, see [Overview of multicluster Tanzu Application Platform](
 ## <a id="scan"></a> Enable CVE scan results
 
 To see CVE scan results within Tanzu Application Platform GUI, connect Tanzu Application Platform GUI
-to the Tanzu Application Platform component Supply Chain Security Tools - Store<!--฿ |Supply Chain Security Tools (SCST) - Store| on first use. |SCST - Store| thereafter. ฿--> (SCST - Store).
+to the Tanzu Application Platform component Supply Chain Security Tools - Store (SCST - Store).
 
 ### <a id="scan-auto"></a> Automatically connect Tanzu Application Platform GUI to the Metadata Store
 
@@ -52,7 +52,7 @@ In addition it mounts the token of the service account into the Tanzu Applicatio
 pod and produces for you the `app_config` section necessary for Tanzu Application Platform GUI to
 communicate with SCST - Store.
 
-### <a id="scan-manual"></a> Manually connect Tanzu Application Platform GUI to Metadata Store
+### <a id="scan-manual"></a> Manually connect Tanzu Application Platform GUI to the Metadata Store
 
 To manually enable CVE scan results:
 
