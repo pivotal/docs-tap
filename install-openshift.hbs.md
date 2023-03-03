@@ -285,9 +285,9 @@ service's External IP address.
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     * For Google Cloud Registry, use the contents of the service account JSON file.
     * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
-- `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.23.x` or `1.24.x`, where `x` stands for the patch version. Examples:
-    - Red Hat OpenShift Container Platform v4.10 uses the Kubernetes version `1.23.3`.
+- `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.24.x` or `1.25.x`, where `x` stands for the patch version. Examples:
     - Red Hat OpenShift Container Platform v4.11 uses the Kubernetes version `1.24.1`.
+    - Red Hat OpenShift Container Platform v4.12 uses the Kubernetes version `1.25.2`.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Docker Hub has the form `server: "index.docker.io"`.
