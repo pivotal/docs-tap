@@ -1,53 +1,64 @@
-# How do I join or leave the Customer Experience Improvement Programs for Tanzu Application Platform 
+# Join or leave the Customer Experience Improvement Programs for Tanzu Application Platform
 
-Tanzu Application Platform participates in VMware's original Customer Experience Improvement Program (CEIP) and also the Pendo Customer Experience Program (Pendo CEIP) for supported services.
+<!-- This topic must be accessible from https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tap-portal-telemetry.html -->
 
-You can separately join or leave the VMware original Customer Experience Improvement Program (CEIP) and the Pendo Customer Experience Program (Pendo CEIP). Each program collects somewhat different types of customer interaction data, as described below.
+Tanzu Application Platform participates in the VMware original Customer Experience Improvement Program
+(CEIP) and the Pendo Customer Experience Program (Pendo CEIP) for supported services.
 
-* Pendo CEIP
+You can separately join or leave the VMware original Customer Experience Improvement Program (CEIP)
+and the Pendo Customer Experience Program (Pendo CEIP). Each program collects slightly different
+types of customer interaction data.
 
-    Pendo is an integrated third-party tool that collects user activities and provides analytics to Tanzu Application Platform product development. The Pendo CEIP collects workflow data based on your interaction with the user interface. This information helps VMware designers and engineers develop data-driven improvements to the usability of products and services.
+Pendo CEIP is an integrated third-party tool that collects user activities and provides analytics to
+Tanzu Application Platform product development.
+The Pendo CEIP collects workflow data based on your interaction with the user interface.
+This information helps VMware designers and engineers develop data-driven improvements to the usability
+of products and services.
 
-## Join or leave the Pendo CEIP
+## <a id="join-or-leave-pendo"></a> Join or leave the Pendo CEIP
 
-You can join or leave the Pendo Customer Experience Improvement Program (Pendo CEIP) by using the following procedures.
+See the following procedures for joining or leaving the Pendo CEIP.
 
-### Enable or disable the Pendo CEIP for the organization
+### <a id="nbl-or-dsbl-pendo-for-org"></a> Enable or deactivate the Pendo CEIP for the organization
 
-To enable the program for the organization, add the following parameters to your tap-values.yaml file:
+To enable the program for the organization, add the following parameters to your `tap-values.yaml`
+file:
 
 ```yaml
-tap_gui:  
-  app_config:    
-    pendoAnalytics:      
-      enabled: true 
+tap_gui:
+  app_config:
+    pendoAnalytics:
+      enabled: true
 ```
->**Note** After enabling the program for the organization, each individual user shall be prompted to opt-in the Pendo CEIP according to VMware's policy.
 
-To disable the program for the entire organization, add the following parameters to your tap-values.yaml file:
+To deactivate the program for the entire organization, add the following parameters to your
+`tap-values.yaml` file:
 
 ```yaml
-tap_gui:  
-  app_config:    
-    pendoAnalytics:      
+tap_gui:
+  app_config:
+    pendoAnalytics:
       enabled: false
 ```
 
-### Opt-in or opt-out of the Pendo CEIP from the Tanzu Application Platform GUI
+### <a id="opt-in-or-out"></a> Opt in or opt out of the Pendo CEIP from Tanzu Application Platform GUI
 
-Once the Pendo CEIP is enabled for the organization, each user shall be prompted to Accept or Decline participation in the program.
+After the Pendo CEIP is enabled for the organization, in accordance with VMware policy each user is
+prompted to agree to participate in the program or decline.
 
   ![Screenshot of a Tanzu Application Platform GUI telemetry prompt.](tap-gui/images/tap-gui-telemetry-prompt.png)
 
-Each individual's preference shall be stored in Tanzu Application Platform GUI and can be modified at any time. To change your preferences, go to `SETTINGS` and press on the `Preferences` tab.
+Each individual's preference is stored in Tanzu Application Platform GUI and can be modified at any
+time. To change your preferences, go to **Settings** > **Preferences**.
 
-  ![Screenshot of a Tanzu Application Platform GUI Settings Preferences.](tap-gui/images/tap-gui-telemetry-preferences.png)
+  ![Screenshot of the Preference tab in Tanzu Application Platform GUI Settings.](tap-gui/images/tap-gui-telemetry-preferences.png)
 
+### <a id="delete-anon-data"></a> Request to delete your anonymized data
 
-### Request to delete your anonymized data
+If you no longer want to participate in the program and you want VMware to delete all your anonymized
+data, please send an email requesting deletion, with your hashed User ID, to tap-pendo@vmware.com.
 
-If you no longer want to participate in the program and require VMware to delete all your anonymized data, please send an email to tap-pendo@vmware.com with your Hashed User ID that would enable VMware to identify your anonymized data and proceed with its deletion according to the applicable regulations.
+This enables VMware to identify your anonymized data and delete it in accordance with the applicable
+regulations.
 
-To find your hashed User ID, go to the `SETTINGS` and press on the `Preferences` tab.
-
-Your privacy is the top priority for VMware.
+To find your hashed User ID, go to **Settings** > **Preferences** in Tanzu Application Platform GUI.
