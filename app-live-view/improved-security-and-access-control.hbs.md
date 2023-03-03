@@ -23,6 +23,19 @@ The improved security and access control is introduced in order to secure the RE
 
 The Application Live View Apiserver package (`apiserver.appliveview.tanzu.vmware.com`) package should be installed in Tanzu Application Platform. For more information, see [Install Application Live View Apiserver](./install.hbs.md).
 
+If you are using Service Account to view resources on a cluster in Tanzu Application Platform GUI, make sure the `ClusterRole` has rules to access and request tokens from the Application Live View Apiserver.
+
+```yaml
+- apiGroups: ['appliveview.apps.tanzu.vmware.com']
+  resources:
+  - resourceinspectiongrants
+  verbs: ['get', 'watch', 'list', 'create']
+```
+
+For more information, see [Set up a Service Account to view resources on a cluster](../tap-gui/cluster-view-setup.hbs.md).
+
+>**Note** With the Service Account approach to view resources on a cluster, every user with the Service Account Token with access to view the pods will be able to see the live information in Application Live View.
+
 
 ## <a id='improved-security'></a> Improved Security
 
