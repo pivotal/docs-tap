@@ -7,16 +7,16 @@
 
 ## <a id="overview"></a>Overview
 
-The App Scanning component within the Supply Chain Security Tools is responsibile for providing the framework to scan applications for security their posture.  This is currently implemented by scanning source code repositories and container images for known Common Vulnerabilities and Exposures (CVEs).  
+The App Scanning component within the Supply Chain Security Tools is responsibile for providing the framework to scan applications for their security posture.  This is currently implemented by scanning container images for known Common Vulnerabilities and Exposures (CVEs).  
 
 This component is currently in Alpha and is intended to supersede the [SCST-Scan component](overview.mds) once it reaches feature parity with the existing component.  Gaps in feature parity are documented below.
 
-A core tenant of the app-scanning framework architecture is to simplify the integration process for new plugins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
+A core tenet of the app-scanning framework architecture is to simplify the integration process for new plugins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
 
 ## <a id="features"></a>Features
 
 * Tekton is leveraged as the orchestrator of the scan to align with overall Tanzu Application Platform usage of Tekton for multi-step activities.  
-* New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageScan, GrypeSourceScan, SnykImageScan).  Mapping logic turns the domain-specific spec into a Tekton PipelineRun.  
+* New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageScan).  Mapping logic turns the domain-specific spec into a Tekton PipelineRun.  
 * CycloneDX-formatted scan results are pushed to an OCI registry for long-term storage.
 
 ## <a id="Capability Gaps"></a>Capability Gaps
@@ -27,18 +27,18 @@ Being an Alpha release, there are several capabilties that have not been impleme
 
 * Metadata Storage:  As with policy enforcement, the previous scan framework handled submissions of the scan results to the Metadata store, which increased the complexity users had to understand to build new integrations.  With the new app-scanning framework, the scan results are submitted as a CycloneDX formated artifact to your OCI compatable container registry.  In the future, these results will be pulled from the container registry and pushed to the metadata repository for consumption from components such as the Security Analysis GUI and Workload Visualizations.
 
-* Scan Engine Support: Initially, only Grype image scan is packaged with the app-scanning component.  Others will be added at a later date.  However, it is possible to add additional scan engines by defining CRD's as noted below.
+* Source Scans: Initially, only Grype image scan is packaged with the app-scanning component. Source scans will be added at a later date.
 
-* Cloud based authentication:  Credential helpers have not yet been added to the Tekton pipeline templates and therefore, cloud based credentials such as AWS IAM Roles are not supported.  This will be added in future release.
+* Scan Engine Support: Initially, only Grype image scan is packaged with the app-scanning component.  Others will be added at a later date.  However, it is possible to add additional scan engines by defining CRD's as noted below.
 
 ## Installing App Scanning in a cluster
 
-### <a id='scst-policy-prereqs'></a> Prerequisites
+### <a id='scst-app-scanning-prereqs'></a> Prerequisites
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
 - Install the [Tekton component](../tekton/install-tekton.hbs.md)
 
-### <a id='install-scst-policy'></a> Install
+### <a id='install-scst-app-scanning'></a> Install
 
 To install Supply Chain Security Tools - App Scanning
 
@@ -76,7 +76,7 @@ tanzu package available get app-scanning.apps.tanzu.vmware.com/0.1.0-alpha --val
                                                    secretgen-controller). Set to false if the secret will already be present.
   docker.pullSecret       registry-creds  string   Name of a docker pull secret in the deployment namespace to pull the scanner
                                                    images.
-  workspace.pullSecret    100Mi           string   Size of the Persistent Volume to be used by the tekton pipelineruns
+  workspace.storageSize   100Mi           string   Size of the Persistent Volume to be used by the tekton pipelineruns
   workspace.storageClass                  string   Name of the storage class to use while creating the Persistent Volume Claims
                                                    used by tekton pipelineruns
 ```
@@ -132,6 +132,7 @@ kubectl create secret docker-registry scanning-tap-component-read-creds \
   --docker-server=<TAP-REGISTRY-URL>
 ```
 
+>**Note** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret with your service account.
 
 1. If you are scanning a private image, create a secret which has read access to that image
 
@@ -142,10 +143,10 @@ kubectl create secret docker-registry scan-image-read-creds \
   --docker-server=<REGISTRY-URL>
 ```
 
->**Note** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret as your service account.
+>**Note** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret with your service account.
 
 1. Create a `kubernetes.io/dockerconfigjson` secret which has write access to where you
-want the scanner to upload the result. The same secret will be used to read private image 
+want the scanner to upload the result 
 
 ```bash
 kubectl create secret docker-registry write-creds \
@@ -192,7 +193,7 @@ kind: GrypeImageVulnerabilityScan
 metadata:
   name: grypescan
 spec:
-  image: nginx:latest # The image that has to be scanned
+  image: nginx@sha256:... # The image that has to be scanned. Digest must be specified.
   scanResults:
     location: registry/project/scan-results # Place to upload scan results
   serviceAccountNames:
@@ -200,11 +201,11 @@ spec:
     publisher: publisher # Service account has the secrets to push the scan results
 ```
 
-1. When the scanning successfull completes, the digest of the image scanned and the location of the
-published results are show
+1. When the scanning successfull completes, the statis is shown. Specify `-o wide` to see the digest of the image scanned and the location of the
+published results.
 
 ```console
-$ kubectl get givs grypescan
+$ kubectl get givs grypescan -o wide
 
 NAME        SCANRESULT                           SCANNEDIMAGE          SUCCEEDED   REASON
 grypescan   registry/project/scan-results@digest nginx:latest@digest   True        Succeeded
@@ -221,7 +222,7 @@ kind: ImageVulnerabilityScan
 metadata:
   name: generic-image-scan
 spec:
-  image: nginx
+  image: nginx@sha256:...
   scanResults:
     location: registry/project/scan-results
   serviceAccountNames:
@@ -240,11 +241,11 @@ spec:
     - nginx:1.16
 ```
 
-1. When the scanning successfull completes, the digest of the image scanned and the location of the
-published results are show
+1. When the scanning successfull completes, the statis is shown. Specify `-o wide` to see the digest of the image scanned and the location of the
+published results.
 
 ```console
-$ kubectl get ivs
+$ kubectl get ivs -o wide
 
 NAME                 SCANRESULT                           SCANNEDIMAGE          SUCCEEDED   REASON
 generic-image-scan   registry/project/scan-results@digest nginx:latest@digest   True        Succeeded
@@ -311,7 +312,7 @@ spec:
 ```
 
 Refer to [Using other types of volume sources](https://tekton.dev/docs/pipelines/workspaces/#using-other-types-of-volumesources)
-to try out other workspace bindings.
+to try out other workspace bindings. Only Secrets, ConfigMaps, and EmptyDirs are currently supported.
 
 ### Use with OOTB supply chains
 
@@ -327,5 +328,5 @@ kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-syste
 To check the status of the scanning CRDs
 
 ```console
-watch kubectl get givs,ivs,prs,trs,pod
+watch bash -c 'kubectl get givs,ivs; kubectl get -l imagevulnerabilityscan prs,trs,pod'
 ```
