@@ -19,18 +19,6 @@ A core tenet of the app-scanning framework architecture is to simplify the integ
 * New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan).  Mapping logic turns the domain-specific spec into a Tekton PipelineRun.  
 * CycloneDX-formatted scan results are pushed to an OCI registry for long-term storage.
 
-## <a id="Capability Gaps"></a>Capability Gaps
-
-Being an Alpha release, there are several capabilties that have not been implemented yet to bring the app-scanning framework to feature parity with the existing scan framework.  Here are some of the capabilities that are still a work in progress:
-
-* Policy Enforcement:  In the existing scan controller, enforcement of vulnerability policy happens as part of the scan job.  With the new app-scanning implementation, we are abstracting policy enforcement outside of the scan job to simplify integrating new scan plugins.  This functionality will be added in a future iteration of the app-scanner.  Right now, all 
-
-* Metadata Storage:  As with policy enforcement, the previous scan framework handled submissions of the scan results to the Metadata store, which increased the complexity users had to understand to build new integrations.  With the new app-scanning framework, the scan results are submitted as a CycloneDX formated artifact to your OCI compatable container registry.  In the future, these results will be pulled from the container registry and pushed to the metadata repository for consumption from components such as the Security Analysis GUI and Workload Visualizations.
-
-* Source Scans: Initially, only Grype image scan is packaged with the app-scanning component. Source scans will be added at a later date.
-
-* Scan Engine Support: Initially, only Grype image scan is packaged with the app-scanning component.  Others will be added at a later date.  However, it is possible to add additional scan engines by defining CRD's as noted below.
-
 ## Installing App Scanning in a cluster
 
 ### <a id='scst-app-scanning-prereqs'></a> Prerequisites
