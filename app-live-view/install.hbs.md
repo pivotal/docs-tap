@@ -2,17 +2,17 @@
 
 This topic describes how to install Application Live View from the Tanzu Application Platform package repository.
 
-Application Live View installs three packages for `view`, `run`, and `build` profiles:
+Application Live View installs four packages for `view`, `run`, and `build` profiles:
 
 - For the `view` profile, Application Live View installs Application Live View back-end package (`backend.appliveview.tanzu.vmware.com`). This installs the Application Live View back-end component with Tanzu Application Platform GUI in `app-live-view` namespace.
 
-- For the `run` profile, Application Live View installs Application Live View connector package (`connector.appliveview.tanzu.vmware.com`). This installs the Application Live View connector component as DaemonSet in `app-live-view-connector` namespace.
+- For the `run` profile, Application Live View installs Application Live View Apiserver package (`apiserver.appliveview.tanzu.vmware.com`) in `appliveview-tokens-system` namespace and Application Live View connector package (`connector.appliveview.tanzu.vmware.com`) as DaemonSet in `app-live-view-connector` namespace.
 
 - For the `build` profile, Application Live View installs Application Live View Conventions package (`conventions.appliveview.tanzu.vmware.com`). This installs the Application Live View Convention Service in `app-live-view-conventions` namespace.
 
-- For the `iterate` profile, Application Live View installs Application Live View connector package and Application Live View Conventions package.
+- For the `iterate` profile, Application Live View installs Application Live View connector package, Application Live View Apiserver package and Application Live View Conventions package.
 
-- For the `full` profile, Application Live View installs the Application Live View back-end package, Application Live View connector package, and Application Live View Conventions package.
+- For the `full` profile, Application Live View installs the Application Live View back-end package, Application Live View connector package, Application Live View Apiserver package and Application Live View Conventions package.
 
 
 >**Note** Follow the steps in this topic if you do not want to use a profile to install Application Live View. For more information about profiles, see [About Tanzu Application Platform components and profiles](../about-package-profiles.hbs.md).
@@ -33,6 +33,7 @@ You can install Application Live View in single cluster or multicluster environm
 
 - `Multicluster`: In a multicluster environment, the Application Live View back-end component is installed only once in a single cluster and exposes a RSocket registration for the other clusters using Tanzu shared ingress. Each cluster continues to install the connector as a DaemonSet. The connectors are configured to connect to the central instance of the Application Live View back end.
 
+The improved security and access control is introduced in order to secure the communication between the Application Live View Components. For more information, see [Improved Security And Access Control in Application Live View](./improved-security-and-access-control.hbs.md).
 
 ## <a id='install-app-live-view-back-end'></a> Install Application Live View back end
 
@@ -419,6 +420,90 @@ To install Application Live View Conventions:
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
+
+    ```
+
+    Verify that `STATUS` is `Reconcile succeeded`.
+
+## <a id='install-alv-apiserver'></a> Install Application Live View Apiserver
+
+To install Application Live View Apiserver:
+
+1. List version information for the package by running:
+
+    ```console
+    tanzu package available list apiserver.appliveview.tanzu.vmware.com --namespace tap-install
+    ```
+
+    For example:
+
+    ```console
+    $ tanzu package available list apiserver.appliveview.tanzu.vmware.com --namespace tap-install
+    - Retrieving package versions for apiserver.appliveview.tanzu.vmware.com...
+      NAME                                    VERSION       RELEASED-AT                    
+      apiserver.appliveview.tanzu.vmware.com  1.5.0-build.5  2023-03-01 19:26:55 +0530 IST 
+    ```
+
+1. (Optional) Change the default installation settings by running:
+
+    ```console
+    tanzu package available get apiserver.appliveview.tanzu.vmware.com/VERSION-NUMBER --values-schema --namespace tap-install
+    ```
+
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.5.0-build.5`.
+
+    For example:
+
+    ```console
+    $ tanzu package available get apiserver.appliveview.tanzu.vmware.com/1.5.0-build.5 --values-schema --namespace tap-install
+      KEY                               DEFAULT             TYPE     DESCRIPTION
+      kubernetes_distribution                               string  Kubernetes distribution that this package is installed on. Accepted values: ['''',''openshift''].
+      kubernetes_version                                    string  Optional: The Kubernetes Version. Valid values are '1.24.*', or ''.
+    ```
+
+    For more information about values schema options, see the properties listed earlier.
+
+2. Install the Application Live View Apiserver package by running:
+
+    ```console
+    tanzu package install appliveview-apiserver -p apiserver.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install
+    ```
+
+    Where `VERSION-NUMBER` is the version of the package listed. For example, `1.5.0-build.5`.
+
+    For example:
+
+    ```console
+    $ tanzu package install appliveview-apiserver -p apiserver.appliveview.tanzu.vmware.com -v 1.5.0-build.5 -n tap-install
+    - Installing package 'apiserver.appliveview.tanzu.vmware.com'
+    | Getting namespace 'tap-install'
+    | Getting package metadata for 'apiserver.appliveview.tanzu.vmware.com'
+    - Creating package resource
+    \ Package install status: Reconciling
+
+    Added installed package 'appliveview-apiserver' in namespace 'tap-install'
+    ```
+
+3. Verify the package install for Application Live View Apiserver package by running:
+
+    ```console
+    tanzu package installed get appliveview-apiserver -n tap-install
+    ```
+
+    For example:
+
+    ```console
+    tanzu package installed get appliveview-apiserver -n tap-install
+    | Retrieving installation details for appliveview-apiserver...
+    NAMESPACE:          tap-install
+    NAME:               appliveview-apiserver
+    PACKAGE-NAME:       apiserver.appliveview.tanzu.vmware.com
+    PACKAGE-VERSION:    1.5.0-build.5
+    STATUS:             Reconcile succeeded
+    CONDITIONS:         - type: ReconcileSucceeded
+        status: "True"
+        reason: ""
+        message: ""
 
     ```
 
