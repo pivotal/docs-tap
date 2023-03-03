@@ -16,7 +16,7 @@ A core tenet of the app-scanning framework architecture is to simplify the integ
 ## <a id="features"></a>Features
 
 * Tekton is leveraged as the orchestrator of the scan to align with overall Tanzu Application Platform usage of Tekton for multi-step activities.  
-* New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageScan).  Mapping logic turns the domain-specific spec into a Tekton PipelineRun.  
+* New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan).  Mapping logic turns the domain-specific spec into a Tekton PipelineRun.  
 * CycloneDX-formatted scan results are pushed to an OCI registry for long-term storage.
 
 ## <a id="Capability Gaps"></a>Capability Gaps
@@ -199,6 +199,8 @@ spec:
   serviceAccountNames:
     scanner: scanner # Service account that enables scanning component to pull the image to be scanned
     publisher: publisher # Service account has the secrets to push the scan results
+  advanced:
+    # Configuration values from Grype's config file - see https://github.com/anchore/grype#configuration
 ```
 
 1. When the scanning successfull completes, the statis is shown. Specify `-o wide` to see the digest of the image scanned and the location of the
