@@ -9,7 +9,7 @@
 
 The App Scanning component within the Supply Chain Security Tools is responsible for providing the framework to scan applications for their security posture.  This is implemented by scanning container images for known Common Vulnerabilities and Exposures (CVEs).  
 
-This component is in Alpha and supersedes the [SCST-Scan component](/overview.hbs.md)
+This component is in Alpha and supersedes the [SCST-Scan component](overview.hbs.md)
 
 A core tenet of the app-scanning framework architecture is to simplify integration for new plug-ins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
 
