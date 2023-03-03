@@ -429,6 +429,7 @@ docs.vmware.com is built.
           - [Delivery Reference](scc/ootb-delivery-reference.hbs.md)
           - [Git](scc/git.hbs.md)
           - [GitOps versus RegistryOps](scc/gitops-vs-regops.hbs.md)
+    - [Supply Chain Security Tools - App Scanning (alpha)](scst-scan/app-scanning-alpha.hbs.md)
     - [Supply Chain Security Tools for Tanzu – Scan](scst-scan/overview.hbs.md)
         - [Overview](scst-scan/overview.hbs.md)
         - [Install Supply Chain Security Tools - Scan](scst-scan/install-scst-scan.hbs.md)
