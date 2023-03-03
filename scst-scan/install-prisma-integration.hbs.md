@@ -9,6 +9,7 @@ This topic describes prerequisites for installing SCST - Scan (Prisma) from the 
 ## Verify the latest alpha package version
 
 Run this command to output a list of available tags.
+
 ```shell
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | grep -v sha | sort -V
 ```
@@ -75,9 +76,9 @@ To relocate images from the VMware Project Registry to your registry:
     - `VERSION` is your Prisma Scanner version. For example, `0.1.4-alpha.12`.
     - `TARGET-REPOSITORY` is your target repository, a directory or repository on `MY-REGISTRY` that serves as the location for the installation files for Prisma Scanner.
 
-4. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
+2. Install the Carvel tool imgpkg CLI. See [Deploying Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.4/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path-6).
 
-5. Relocate images with the imgpkg CLI by running:
+3. Relocate images with the imgpkg CLI by running:
 
     ```shell
     imgpkg copy -b projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle:${VERSION} --to-repo ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/prisma-repo-scanning-bundle
@@ -363,9 +364,9 @@ installed unless it is explicitly excluded.
 
 ### Multiple Scanners installed
 
-In order to find your CA secret name and auth token secret name as needed for your values.yaml when installing Prisma Scanner you will need to look at the configuration of a prior installed scanner in the same namespace as it will already exist.
+In order to find your CA secret name and authentication token secret name as needed for your values.yaml when installing Prisma Scanner you must look at the configuration of a prior installed scanner in the same namespace as it already exists.
 
-This [documentation](/docs-tap/scst-store/multicluster-setup.hbs.md) can be referenced on how it was most likely initially created and can be used as a reference.
+For information about how the scanner was likely initially created, see [Multicluster Setup](/scst-store/multicluster-setup.hbs.md) 
 
 An example `values.yaml` when there are other scanners already installed in the same `dev-namespace` where the Prisma Scanner is installed:
 ```yaml
@@ -396,9 +397,10 @@ Where:
 
 ### Prisma Only Scanner Installed
 
-This [documentation](/docs-tap/scst-store/multicluster-setup.hbs.md) will walk you through creating and exporting secrets for the Metadata Store CA and auth token which will be referenced in the data values when installing Prisma Scanner.
+For information about creating and exporting secrets for the Metadata Store CA and authentication token  referenced in the data values when installing Prisma Scanner, see [Multicluster Setup](/scst-store/multicluster-setup.hbs.md).
 
 An example `values.yaml` when no other scanner integrations installed in the same `dev-namespace` where the Prisma Scanner is installed:
+
 ```yaml
 #! ...
 metadataStore:
@@ -556,9 +558,9 @@ After all prerequisites are completed, install the Prisma Scanner. See [Install 
 
 When attempting to pull an image from a registry with a self-signed certificate during image scans additional configuration is necessary.
 
-### Tap Values Shared CA
+### Tanzu Application Platform Values Shared CA
 
-If your `tap-values.yaml` used during install has the following shared section filled out, Prisma Scanner will use this and enable it to connect to your registry without additional configuration.
+If your `tap-values.yaml` used during install has the following shared section filled out, Prisma Scanner uses this and enable it to connect to your registry without additional configuration.
 
 ```yaml
 shared:
@@ -570,7 +572,7 @@ shared:
 
 ### Secret within Developer Namespace
 
-1. Create a secret that holds the registry's CA cert data.
+1. Create a secret that holds the registry's CA certificate data.
 
    An example of the secret:
    ```yaml
