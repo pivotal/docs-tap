@@ -2,22 +2,22 @@
 
 >**Important** This component is in Alpha, which means that it is still in active
 >development by VMware and might be subject to change at any point. Users might 
->encounter unexpected behavior.  As such, this is an currently an opt-in component
+>encounter unexpected behavior.  This is an opt-in component
 >is not installed by default with any profile.
 
 ## <a id="overview"></a>Overview
 
-The App Scanning component within the Supply Chain Security Tools is responsibile for providing the framework to scan applications for their security posture.  This is currently implemented by scanning container images for known Common Vulnerabilities and Exposures (CVEs).  
+The App Scanning component within the Supply Chain Security Tools is responsibile for providing the framework to scan applications for their security posture.  This is implemented by scanning container images for known Common Vulnerabilities and Exposures (CVEs).  
 
-This component is currently in Alpha and is intended to supersede the [SCST-Scan component](overview.mds) once it reaches feature parity with the existing component.  Gaps in feature parity are documented below.
+This component is in Alpha and supersedes the [SCST-Scan component](overview.mds) after it reaches feature parity with the existing component.
 
-A core tenet of the app-scanning framework architecture is to simplify the integration process for new plugins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
+A core tenet of the app-scanning framework architecture is to simplify integration for new plug-ins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
 
 ## <a id="features"></a>Features
 
-* Tekton is leveraged as the orchestrator of the scan to align with overall Tanzu Application Platform usage of Tekton for multi-step activities.  
-* New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan).  Mapping logic turns the domain-specific spec into a Tekton PipelineRun.  
-* CycloneDX-formatted scan results are pushed to an OCI registry for long-term storage.
+- Tekton is leveraged as the orchestrator of the scan to align with overall Tanzu Application Platform use of Tekton for multi-step activities.  
+- New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan).  Mapping logic turns the domain-specific specifications into a Tekton PipelineRun.  
+- CycloneDX-formatted scan results are pushed to an OCI registry for long-term storage.
 
 ## Installing App Scanning in a cluster
 
@@ -71,7 +71,7 @@ tanzu package available get app-scanning.apps.tanzu.vmware.com/0.1.0-alpha --val
 
 1. Create a file named `app-scanning-values-file.yaml` and add the setting you want for the installation
 
-1. Install the package:
+2. Install the package:
 
 ```console
 tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.vmware.com \
@@ -99,7 +99,7 @@ tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.
     'PackageInstall' resource install status: ReconcileSucceeded
 ```
 
-App scanning package should be up and running in your cluster
+App scanning package is up and running in your cluster
 
 ## Configure and trigger a scan
 
@@ -115,9 +115,9 @@ App scanning package should be up and running in your cluster
 
 ```bash
 kubectl create secret docker-registry scanning-tap-component-read-creds \
-  --docker-username=<TAP-REGISTRY-USERNAME> \ 
-  --docker-password=<TAP-REGISTRY-PASSWORD> \
-  --docker-server=<TAP-REGISTRY-URL>
+  --docker-username=TAP-REGISTRY-USERNAME \ 
+  --docker-password=TAP-REGISTRY-PASSWORD \
+  --docker-server=TAP-REGISTRY-URL
 ```
 
 >**Note** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret with your service account.
@@ -126,9 +126,9 @@ kubectl create secret docker-registry scanning-tap-component-read-creds \
 
 ```bash
 kubectl create secret docker-registry scan-image-read-creds \
-  --docker-username=<REGISTRY-USERNAME> \
-  --docker-password=<REGISTRY-PASSWORD> \
-  --docker-server=<REGISTRY-URL>
+  --docker-username=REGISTRY-USERNAME \
+  --docker-password=REGISTRY-PASSWORD \
+  --docker-server=REGISTRY-URL
 ```
 
 >**Note** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret with your service account.
@@ -138,13 +138,13 @@ want the scanner to upload the result
 
 ```bash
 kubectl create secret docker-registry write-creds \
-  --docker-username=<WRITE-USERNAME> \
-  --docker-password=<WRITE-PASSWORD> \
-  --docker-server=<DESTINATION-REGISTRY-URL>
+  --docker-username=WRITE-USERNAME \
+  --docker-password=WRITE-PASSWORD \
+  --docker-server=DESTINATION-REGISTRY-URL
 ```
 
-1. Create a service account and attach the read secret created above as `imagePullSecrets` and
-the write secret as `secrets`
+1. Create a service account and attach the read secret created earlier as `imagePullSecrets` and
+the write secret as `secrets`.
 
 ```yaml
 apiVersion: v1
@@ -171,7 +171,7 @@ secrets:
 - name: write-creds # Used by the component to publish the scan results
 ```
 
-#### Trigger a grype scan
+#### Trigger a Grype scan
 
 1. Create the `GrypeImageVulnerabilityScan` and apply to the cluster
 
@@ -204,7 +204,7 @@ grypescan   registry/project/scan-results@digest nginx:latest@digest   True     
 
 #### Integrate your own scanner
 
-If you want to scan with any other scanner, use the generic `ImageVulnerabilityScan` 
+To scan with any other scanner, use the generic `ImageVulnerabilityScan` 
 
 ```yaml
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
@@ -301,21 +301,17 @@ spec:
     - name: GRYPE_SCOPE
 ```
 
-Refer to [Using other types of volume sources](https://tekton.dev/docs/pipelines/workspaces/#using-other-types-of-volumesources)
-to try out other workspace bindings. Only Secrets, ConfigMaps, and EmptyDirs are currently supported.
-
-### Use with OOTB supply chains
-
+For information about other workspace bindings, see [Using other types of volume sources](https://tekton.dev/docs/pipelines/workspaces/#using-other-types-of-volumesources). Only Secrets, ConfigMaps, and EmptyDirs are  supported.
 
 ## Troubleshooting
 
-Get the logs of the controller
+Get the logs of the controller:
 
 ```console
 kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system -c manager
 ```
 
-To check the status of the scanning CRDs
+To verify the status of the scanning CRDs:
 
 ```console
 watch bash -c 'kubectl get givs,ivs; kubectl get -l imagevulnerabilityscan prs,trs,pod'
