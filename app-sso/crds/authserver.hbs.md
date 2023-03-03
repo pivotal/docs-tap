@@ -78,10 +78,11 @@ spec:
     deactivated: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
     disabled: false # deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
   cors:
-    allowOrigins: # optional, cannot be combined with 'allowAllOrigins'
+    allowOrigins: # optional, cannot be combined with 'allowAllOrigins'.
       - ""
-    allowAllOrigins: false # optional; if true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
-                           # cannot be combined with 'allowOrigins'.
+    allowAllOrigins: false # optional
+                           # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
+                           # Cannot be combined with 'allowOrigins'.
   tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""
