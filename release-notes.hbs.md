@@ -138,20 +138,20 @@ Controller](./scst-policy/overview.hbs.md).
 
 - The Ubuntu Bionic stack is deprecated: Ubuntu Bionic stops receiving support
 in April 2023. VMware recommends you migrate builds to Jammy stacks in advance.
-For how to migrate builds, see [Use Jammy stacks for a
+For more information about how to migrate builds, see [Use Jammy stacks for a
 workload](tanzu-build-service/dependencies.md#using-jammy).
 - The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
 It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
 VMware plans to deactivate this format by default in Tanzu Application Platform
-v1.5 and remove support in Tanzu Application Platform v1.6. To manually
-deactivate legacy CNB BOM support, see [Deactivate the CNB BOM
+v1.5 and remove support in Tanzu Application Platform v1.6. For information
+about manually deactivating legacy CNB BOM support, see [Deactivate the CNB BOM
 format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
 
 #### <a id="1-4-2-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
-- The default value for the
+- VMware plans to change the default value for the
   [`--update-strategy`](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
-  flag will change from `merge` to `replace` in Tanzu Application Platform
+  flag from `merge` to `replace` in Tanzu Application Platform
   v1.7.0.
 - The `tanzu apps workload update` command is deprecated and marked for removal
   in Tanzu Application Platform v1.5.0. Use `tanzu apps workload apply` instead.
