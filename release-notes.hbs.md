@@ -36,16 +36,6 @@ This release has the following security fixes, listed by area and component.
 
 ---
  
-### <a id='1-4-2-resolved-issues'></a> Resolved issues 
- 
-The following issues, listed by area and component, are resolved in this release. 
- 
-#### <a id='1-4-2-COMPONENT-NAME-ri'></a> COMPONENT-NAME
- 
-- Resolved issue description.
- 
----
- 
 ### <a id='1-4-2-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
