@@ -8,45 +8,45 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 ### <a id='1-4-2-security-fixes'></a> Security fixes
 
-This release has the following security fixes, listed by package name and
-vulnerabilities resolved.
+This release contains the following security fixes, listed by package name and
+vulnerabilities.
 
-- **accelerator.apps.tanzu.vmware.com**: GHSA-69cg-p879-7622 and CVE-2023-0286
-- **api-portal.tanzu.vmware.com**: CVE-2023-0286
-- **apis.apps.tanzu.vmware.com**: CVE-2023-0286
-- **buildservice.tanzu.vmware.com**: GHSA-69cg-p879-7622, CVE-2023-0286, and
+- **accelerator.apps.tanzu.vmware.com**: GHSA-69cg-p879-7622 and [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
+- **api-portal.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
+- **apis.apps.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
+- **buildservice.tanzu.vmware.com**: GHSA-69cg-p879-7622, [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286), and
   GHSA-69ch-w2m2-3vjp
-- **cartographer.tanzu.vmware.com**: CVE-2023-0286 and GHSA-fxg5-wq6x-vr4w
+- **cartographer.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286) and GHSA-fxg5-wq6x-vr4w
 - **cert-manager.tanzu.vmware.com**: GHSA-69cg-p879-7622, GHSA-69ch-w2m2-3vjp,
   and GHSA-83g2-8m93-v3w7
-- **cnrs.tanzu.vmware.com**: GHSA-69cg-p879-7622, CVE-2023-0286,
+- **cnrs.tanzu.vmware.com**: GHSA-69cg-p879-7622, [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286),
   GHSA-fxg5-wq6x-vr4w, and GHSA-69ch-w2m2-3vjp
 - **controller.conventions.apps.tanzu.vmware.com**: GHSA-69cg-p879-7622,
-  CVE-2023-0286, GHSA-fxg5-wq6x-vr4w, and GHSA-69ch-w2m2-3vjp
-- **controller.source.apps.tanzu.vmware.com**: CVE-2023-0286 and
+  [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286), GHSA-fxg5-wq6x-vr4w, and GHSA-69ch-w2m2-3vjp
+- **controller.source.apps.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286) and
   GHSA-fxg5-wq6x-vr4w
 - **conventions.appliveview.tanzu.vmware.com**: GHSA-69cg-p879-7622 and
   GHSA-fxg5-wq6x-vr4w
-- **developer-conventions.tanzu.vmware.com**: CVE-2023-0286
-- **eventing.tanzu.vmware.com**: CVE-2023-0286
-- **external-secrets.apps.tanzu.vmware.com**: CVE-2023-0286
-- **fluxcd.source.controller.tanzu.vmware.com**: CVE-2023-0286
-- **metadata-store.apps.tanzu.vmware.com**: GHSA-69cg-p879-7622, CVE-2023-0286,
+- **developer-conventions.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
+- **eventing.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
+- **external-secrets.apps.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
+- **fluxcd.source.controller.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
+- **metadata-store.apps.tanzu.vmware.com**: GHSA-69cg-p879-7622, [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286),
   GHSA-fxg5-wq6x-vr4w, GHSA-69ch-w2m2-3vjp, GHSA-8c26-wmh5-6g9v, and
   GHSA-r48q-9g5r-8q2h
 - **namespace-provisioner.apps.tanzu.vmware.com**: GHSA-fxg5-wq6x-vr4w
-- **ootb-templates.tanzu.vmware.com**: GHSA-69cg-p879-7622, CVE-2023-0286,
+- **ootb-templates.tanzu.vmware.com**: GHSA-69cg-p879-7622, [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286),
   GHSA-fxg5-wq6x-vr4w, GHSA-69ch-w2m2-3vjp, GHSA-3vm4-22fp-5rfm,
   GHSA-8c26-wmh5-6g9v, GHSA-gwc9-m7rh-j2ww, GHSA-83g2-8m93-v3w7, and
   GHSA-ppp9-7jff-5vj2
-- **policy.apps.tanzu.vmware.com**: CVE-2023-0286
+- **policy.apps.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
 - **services-toolkit.tanzu.vmware.com**: GHSA-69cg-p879-7622 and
   GHSA-fxg5-wq6x-vr4w
 - **spring-boot-conventions.tanzu.vmware.com**: GHSA-69cg-p879-7622 and
   GHSA-fxg5-wq6x-vr4w
-- **sso.apps.tanzu.vmware.com**: CVE-2023-0286, CVE-2022-4450, and CVE-2023-0215
-- **tekton.tanzu.vmware.com**: CVE-2023-0286, CVE-2022-45061, CVE-2022-42703, and
-  CVE-2022-4378
+- **sso.apps.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286), [CVE-2022-4450](https://nvd.nist.gov/vuln/detail/CVE-2022-4450), and [CVE-2023-0215](https://nvd.nist.gov/vuln/detail/CVE-2023-0215)
+- **tekton.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286), [CVE-2022-45061](https://nvd.nist.gov/vuln/detail/CVE-2022-45061), [CVE-2022-42703](https://nvd.nist.gov/vuln/detail/CVE-2022-42703), and
+  [CVE-2022-4378](https://nvd.nist.gov/vuln/detail/CVE-2022-4378)
 
 ---
 
@@ -83,7 +83,7 @@ will remain on this list until they are retired from Tanzu Application Platform.
 #### <a id="1-4-2-app-live-view-deprecations"></a> Application Live View
 
 - `appliveview_connnector.backend.sslDisabled` is deprecated and marked for
-  removal in Tanzu Application Platform 1.7.0. For more information on the
+  removal in Tanzu Application Platform v1.7.0. For more information about the
   migration, see [Deprecate the sslDisabled
   key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
 
@@ -106,7 +106,7 @@ Platform overview](../docs-tap/multicluster/about.hbs.md).
 - The `tanzu services claims` CLI plug-in command is now deprecated. It is
   hidden from help text output, but continues to work until officially removed
   after the deprecation period. The new `tanzu services resource-claims` command
-  provides the same functionality.
+  has the same capability.
 
 #### <a id="1-4-2-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook
 
@@ -117,12 +117,12 @@ Controller](./scst-policy/overview.hbs.md).
 #### <a id="1-4-2-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
 
 - Removed deprecated ScanTemplates:
-  - Deprecated Grype ScanTemplates shipped with versions prior to Tanzu
-    Application Platform 1.2.0 are removed and no longer supported. Use Grype
+  - Deprecated Grype ScanTemplates shipped with versions before Tanzu
+    Application Platform v1.2.0 are removed and no longer supported. Use Grype
     ScanTemplates v1.2 and later.
   - `docker` field and related sub-fields used in Supply Chain Security Tools -
     Scan are deprecated and marked for removal in Tanzu Application Platform
-    1.7.0.
+    v1.7.0.
     - The deprecation impacts the following components: Scan Controller, Grype
       Scanner, and Snyk Scanner. Carbon Black Scanner is not impacted.
     - For information about the migration path, see
@@ -154,7 +154,7 @@ format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
   flag will change from `merge` to `replace` in Tanzu Application Platform
   v1.7.0.
 - The `tanzu apps workload update` command is deprecated and marked for removal
-  in Tanzu Application Platform 1.5.0. Use `tanzu apps workload apply` instead.
+  in Tanzu Application Platform v1.5.0. Use `tanzu apps workload apply` instead.
 
 ---
 
