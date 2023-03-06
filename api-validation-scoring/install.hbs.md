@@ -63,7 +63,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     To query for the available `imgpkg` CLI versions on VMWare Tanzu Network Registry, run:
 
     ```console
-    imgpkg tag list -i registry.tanzu.vmware.com/tanzu-application-platform/apix | grep -v sha | sort -V
+    imgpkg tag list -i registry.tanzu.vmware.com/tanzu-application-platform/apix | sort -V
     ```
 
 1. Relocate the images with the `imgpkg` CLI by running:
