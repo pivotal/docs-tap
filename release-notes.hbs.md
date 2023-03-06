@@ -8,7 +8,7 @@ This topic contains release notes for Tanzu Application Platform v1.4.
 
 ### <a id='1-4-2-security-fixes'></a> Security fixes
 
-This release contains the following security fixes, listed by package name and
+This release has the following security fixes, listed by package name and
 vulnerabilities.
 
 - **accelerator.apps.tanzu.vmware.com**: GHSA-69cg-p879-7622 and [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
