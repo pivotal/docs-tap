@@ -10,9 +10,22 @@ This topic contains release notes for Tanzu Application Platform v1.3
 
 This release has the following security fixes, listed by component and area.
 
-#### <a id='1-3-6-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
-
-- Security fix description.
+| Package Name | Vulnerabilities Resolved |
+| cartographer.tanzu.vmware.com | GHSA-8c26-wmh5-6g9v,GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,CVE-2023-0286,GHSA-fxg5-wq6x-vr4w |
+| cnrs.tanzu.vmware.com | GHSA-8c26-wmh5-6g9v,GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,CVE-2023-0286 |
+| metadata-store.apps.tanzu.vmware.com | GHSA-8c26-wmh5-6g9v,GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,CVE-2023-0286,GHSA-fxg5-wq6x-vr4w,GHSA-r48q-9g5r-8q2h,CVE-2022-3515 |
+| ootb-templates.tanzu.vmware.com | GHSA-8c26-wmh5-6g9v,GHSA-gwc9-m7rh-j2ww,GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,CVE-2023-0286,GHSA-fxg5-wq6x-vr4w,GHSA-83g2-8m93-v3w7,GHSA-ppp9-7jff-5vj2,GHSA-3vm4-22fp-5rfm |
+| controller.source.apps.tanzu.vmware.com | GHSA-69cg-p879-7622,GHSA-69ch-w2m2-3vjp,CVE-2023-0286,GHSA-fxg5-wq6x-vr4w |
+| fluxcd.source.controller.tanzu.vmware.com | GHSA-69cg-p879-7622,CVE-2023-0286 |
+| services-toolkit.tanzu.vmware.com | GHSA-69cg-p879-7622 |
+| api-portal.tanzu.vmware.com | CVE-2023-0286 |
+| apis.apps.tanzu.vmware.com | CVE-2023-0286 |
+| cert-manager.tanzu.vmware.com | CVE-2023-0286,CVE-2022-2509,CVE-2022-4450,CVE-2023-0215 |
+| controller.conventions.apps.tanzu.vmware.com | CVE-2023-0286 |
+| eventing.tanzu.vmware.com | CVE-2023-0286 |
+| policy.apps.tanzu.vmware.com | CVE-2023-0286 |
+| sso.apps.tanzu.vmware.com | CVE-2023-0286,CVE-2022-40152,CVE-2022-4450,CVE-2023-0215,CVE-2022-42916 |
+| tekton.tanzu.vmware.com | CVE-2023-0286,CVE-2018-25032,CVE-2021-28861,CVE-2020-10735,CVE-2022-45061,GHSA-cjjc-xp8v-855w,GHSA-ffhg-7mh4-33c4 |
 
 ---
  
