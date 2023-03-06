@@ -33,6 +33,41 @@ This release does not support configuring trusted CA certificates for an interna
 
 ---
 
+### <a id='1-3-6-deprecations'></a> Deprecations
+
+The following features, listed by component, are deprecated.
+Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
+
+#### <a id="1-3-6-app-sso-deprecations"></a> Application Single Sign-On
+
+- `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
+  to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
+- `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
+   for removal in the next release.
+
+#### <a id="1-3-6-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
+
+- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
+
+#### <a id="1-3-6-tbs-deprecations"></a> Tanzu Build Service
+
+- The Ubuntu Bionic stack is deprecated:
+Ubuntu Bionic stops receiving support in April 2023.
+VMware recommends you migrate builds to Jammy stacks in advance.
+For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated:
+It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
+VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
+and remove support in Tanzu Application Platform v1.6.
+To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
+
+#### <a id="1-3-6-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
+
+- The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
+  - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
+
+---
+
 ## <a id='1-3-5'></a> v1.3.5
 
 **Release Date**: February 16, 2023
@@ -81,6 +116,19 @@ The following issues, listed by component and area, are resolved in this release
 
 This release includes the following known issues, listed by component and area.
 
+#### <a id='1-3-5-grype-ki'></a> Grype scanner
+
+Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:
+
+For most languages, Source Code Scanning only scans files present in the source code repository. Except for support added for Java projects using Maven, no network calls are made to fetch dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the lock files to check dependencies for vulnerabilities.
+
+For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies present in the built binaries, such as .jar or .war files.
+
+Because VMware does not recommend committing binaries to source code repositories, Grype fails to find vulnerabilities during a source scan. The vulnerabilities are still found during the image scan after the binaries are built and packaged as images.
+
+Out of the Box Supply Chains
+This release does not support configuring trusted CA certificates for an internal GitOps server.
+
 #### <a id="1-3-tbs-known-issues"></a> Tanzu Build Service
 
 - Migrating from the `buildservice.kp_default_repository` key to the `shared.image_registry` key can
@@ -90,6 +138,42 @@ cause existing workloads to fail. After upgrading to v1.3, if you use the
 recreated with the correct tags.
 
 ---
+
+### <a id='1-3-5-deprecations'></a> Deprecations
+
+The following features, listed by component, are deprecated.
+Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
+
+#### <a id="1-3-5-app-sso-deprecations"></a> Application Single Sign-On
+
+- `AuthServer.spec.issuerURI` is deprecated and marked for removal in the next release. You can migrate
+  to `AuthServer.spec.tls` by following instructions in [AppSSO migration guides](app-sso/upgrades/index.md#migration-guides).
+- `AuthServer.status.deployments.authserver.LastParentGenerationWithRestart` is deprecated and marked
+   for removal in the next release.
+
+#### <a id="1-3-5-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
+
+- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For migration information, see [Migration From Supply Chain Security Tools - Sign](./scst-policy/migration.hbs.md).
+
+#### <a id="1-3-5-tbs-deprecations"></a> Tanzu Build Service
+
+- The Ubuntu Bionic stack is deprecated:
+Ubuntu Bionic stops receiving support in April 2023.
+VMware recommends you migrate builds to Jammy stacks in advance.
+For how to migrate builds, see [Use Jammy stacks for a workload](tanzu-build-service/dependencies.md#using-jammy).
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated:
+It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
+VMware plans to deactivate this format by default in Tanzu Application Platform v1.5
+and remove support in Tanzu Application Platform v1.6.
+To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
+
+#### <a id="1-3-5-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
+
+- The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
+  - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
+
+---
+
 
 ## <a id='1-3-4'></a> v1.3.4
 
@@ -106,6 +190,25 @@ Fixed the following vulnerabilities:
 * [CVE-2022-32215](https://nvd.nist.gov/vuln/detail/CVE-2022-32215): Updates the version of Node used to run Tanzu Application Platform GUI from v14.20.0 to v14.20.1.
 
 * GHSA-hrpp-h998-j3pp: Updates the versions of express and qs.
+
+---
+
+### <a id='1-3-4-known-issues'></a> Known Issues
+
+This release includes the following known issues, listed by component and area.
+
+#### <a id='1-3-4-grype-ki'></a> Grype scanner
+
+Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:
+
+For most languages, Source Code Scanning only scans files present in the source code repository. Except for support added for Java projects using Maven, no network calls are made to fetch dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the lock files to check dependencies for vulnerabilities.
+
+For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies present in the built binaries, such as .jar or .war files.
+
+Because VMware does not recommend committing binaries to source code repositories, Grype fails to find vulnerabilities during a source scan. The vulnerabilities are still found during the image scan after the binaries are built and packaged as images.
+
+Out of the Box Supply Chains
+This release does not support configuring trusted CA certificates for an internal GitOps server.
 
 ---
 
