@@ -11,7 +11,13 @@ VMware offers the option to enroll in a usage reporting program that offers a su
 to identify data about Tanzu Application Platform. See [Locate the Entitlement Account number for new orders](https://kb.vmware.com/s/article/2148565) for more details.
 
 Once enrolled, make sure to alert your VMware account team that you have configured the EAN field and want telemetry reports. This allows VMware to identify
-who the newly added EAN belongs to.
+who the newly added EAN belongs to. See below sample screenshots about the reports.
+
+<img width="1147" alt="Screenshot 2023-03-02 at 12 12 59 PM" src="https://user-images.githubusercontent.com/18624859/223277905-f2a0bec4-94e7-4503-b0ed-e17ecb312590.png">
+
+<img width="1163" alt="Screenshot 2023-03-02 at 12 07 38 PM" src="https://user-images.githubusercontent.com/18624859/223277943-d2ab2058-369b-4bf8-a007-ac62521fba51.png">
+
+<img width="1154" alt="Screenshot 2023-03-02 at 12 07 51 PM" src="https://user-images.githubusercontent.com/18624859/223277970-95c589ac-3b25-400c-bf3d-1f2ad2390257.png">
 
 >**Note** Usage report is only supported for non-airgapped TAP deployments and the Cluster must participate in Tanzu Application Platform telemetry. You are enrolled in telemetry by default. You can opt out of telemetry collection by following the
 instructions in [Opt out of telemetry collection](../opting-out-telemetry.hbs.md).
