@@ -11,7 +11,7 @@ This topic contains release notes for Tanzu Application Platform v1.3
 This release has the following security fixes, listed by component and area.
 
 #### <a id='1-3-6-COMPONENT-NAME-fixes'></a> COMPONENT-NAME
- 
+
 - Security fix description.
 
 ### <a id='1-3-6-ki'></a> Known Issues
@@ -20,16 +20,20 @@ This release has the following known issues, listed by component and area.
 
 #### <a id='1-3-6-grype-ki'></a> Grype scanner
 
-Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:
+**Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
-For most languages, Source Code Scanning only scans files present in the source code repository. Except for support added for Java projects using Maven, no network calls are made to fetch dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the lock files to check dependencies for vulnerabilities.
+For most languages, Source Code Scanning only scans files present in the source code repository.
+Except for support added for Java projects using Maven, no network calls are made to fetch
+dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+lock files to check the dependencies for vulnerabilities.
 
-For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies present in the built binaries, such as .jar or .war files.
+For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
+present in the built binaries (`.jar` or `.war` files) instead.
 
-Because VMware does not recommend committing binaries to source code repositories, Grype fails to find vulnerabilities during a source scan. The vulnerabilities are still found during the image scan after the binaries are built and packaged as images.
-
-Out of the Box Supply Chains
-This release does not support configuring trusted CA certificates for an internal GitOps server.
+Because VMware does not encourage committing binaries to source code repositories, Grype fails to
+find vulnerabilities during a source scan.
+The vulnerabilities are still found during the image scan after the binaries are built and packaged
+as images.
 
 ---
 
@@ -118,16 +122,20 @@ This release includes the following known issues, listed by component and area.
 
 #### <a id='1-3-5-grype-ki'></a> Grype scanner
 
-Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:
+**Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
-For most languages, Source Code Scanning only scans files present in the source code repository. Except for support added for Java projects using Maven, no network calls are made to fetch dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the lock files to check dependencies for vulnerabilities.
+For most languages, Source Code Scanning only scans files present in the source code repository.
+Except for support added for Java projects using Maven, no network calls are made to fetch
+dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+lock files to check the dependencies for vulnerabilities.
 
-For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies present in the built binaries, such as .jar or .war files.
+For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
+present in the built binaries (`.jar` or `.war` files) instead.
 
-Because VMware does not recommend committing binaries to source code repositories, Grype fails to find vulnerabilities during a source scan. The vulnerabilities are still found during the image scan after the binaries are built and packaged as images.
-
-Out of the Box Supply Chains
-This release does not support configuring trusted CA certificates for an internal GitOps server.
+Because VMware does not encourage committing binaries to source code repositories, Grype fails to
+find vulnerabilities during a source scan.
+The vulnerabilities are still found during the image scan after the binaries are built and packaged
+as images.
 
 #### <a id="1-3-tbs-known-issues"></a> Tanzu Build Service
 
@@ -199,16 +207,20 @@ This release includes the following known issues, listed by component and area.
 
 #### <a id='1-3-4-grype-ki'></a> Grype scanner
 
-Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:
+**Scanning Java source code that uses Gradle package manager might not reveal vulnerabilities:**
 
-For most languages, Source Code Scanning only scans files present in the source code repository. Except for support added for Java projects using Maven, no network calls are made to fetch dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the lock files to check dependencies for vulnerabilities.
+For most languages, Source Code Scanning only scans files present in the source code repository.
+Except for support added for Java projects using Maven, no network calls are made to fetch
+dependencies. For languages using dependency lock files, such as Golang and Node.js, Grype uses the
+lock files to check the dependencies for vulnerabilities.
 
-For Java using Gradle, dependency lock files are not guaranteed, so Grype uses dependencies present in the built binaries, such as .jar or .war files.
+For Java using Gradle, dependency lock files are not guaranteed, so Grype uses the dependencies
+present in the built binaries (`.jar` or `.war` files) instead.
 
-Because VMware does not recommend committing binaries to source code repositories, Grype fails to find vulnerabilities during a source scan. The vulnerabilities are still found during the image scan after the binaries are built and packaged as images.
-
-Out of the Box Supply Chains
-This release does not support configuring trusted CA certificates for an internal GitOps server.
+Because VMware does not encourage committing binaries to source code repositories, Grype fails to
+find vulnerabilities during a source scan.
+The vulnerabilities are still found during the image scan after the binaries are built and packaged
+as images.
 
 ---
 
