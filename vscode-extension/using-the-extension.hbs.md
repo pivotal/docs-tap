@@ -6,6 +6,23 @@ Ensure that the project you want to use the extension with has the required file
 The extension requires only one Tiltfile and one `workload.yaml` per project.
 The `workload.yaml` must be a single-document YAML file, not a multidocument YAML file.
 
+## <a id="configure-registry"></a> Configure source image registry
+
+When deploying a workload, you need to authenticate with an image registry to store your source code. You can either authenticate using the Docker CLI, or you can set enviroment variables that the Tanzu CLI will use to authenticate.
+
+- If you have the Docker CLI installed, you can run:
+   ```console
+   docker login $REGISTRY_HOSTNAME -u $REGISTRY_USERNAME -p $REGISTRY_PASSWORD
+   ```
+- If you prefer to authenticate using the Tanzu CLI, you export these enviroment variables(CA CERT is only needed for a custom or private registry.):
+   ```console
+   export TANZU_APPS_REGISTRY_CA_CERT=PATH-TO-CA-CERT.nip.io.crt
+   export TANZU_APPS_REGISTRY_PASSWORD=USERNAME
+   export TANZU_APPS_REGISTRY_USERNAME=PASSWORD
+   ```
+
+For more help, see [Workload creation fails due to authentication failure in Docker Registry](../troubleshooting-tap/troubleshoot-using-tap.hbs.md#workload-fails-docker-auth)
+
 ## <a id="multiple-projects"></a> Configure for multiple projects in the workspace
 
 When working with multiple projects in a single workspace, you can configure the extension settings
