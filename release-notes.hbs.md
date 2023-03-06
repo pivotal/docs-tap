@@ -9,34 +9,34 @@ This topic contains release notes for Tanzu Application Platform v1.3
 ### <a id='1-3-6-security-fix'></a> Security fixes
 
 This release has the following security fixes, listed by package name and
-vulnerabilities resolved.
+vulnerabilities.
 
-- **api-portal.tanzu.vmware.com**: CVE-2023-0286
-- **apis.apps.tanzu.vmware.com**: CVE-2023-0286
+- **api-portal.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
+- **apis.apps.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
 - **cartographer.tanzu.vmware.com**: GHSA-8c26-wmh5-6g9v, GHSA-69cg-p879-7622,
-  GHSA-69ch-w2m2-3vjp, CVE-2023-0286, and GHSA-fxg5-wq6x-vr4w
-- **cert-manager.tanzu.vmware.com**: CVE-2023-0286, CVE-2022-2509,
-  CVE-2022-4450, and CVE-2023-0215
+  GHSA-69ch-w2m2-3vjp, [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286), and GHSA-fxg5-wq6x-vr4w
+- **cert-manager.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286), [CVE-2022-2509](https://nvd.nist.gov/vuln/detail/CVE-2022-2509),
+  [CVE-2022-4450](https://nvd.nist.gov/vuln/detail/CVE-2022-4450), and [CVE-2023-0215](https://nvd.nist.gov/vuln/detail/CVE-2023-0215)
 - **cnrs.tanzu.vmware.com**: GHSA-8c26-wmh5-6g9v, GHSA-69cg-p879-7622,
-  GHSA-69ch-w2m2-3vjp, and CVE-2023-0286
-- **controller.conventions.apps.tanzu.vmware.com**: CVE-2023-0286
+  GHSA-69ch-w2m2-3vjp, and [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
+- **controller.conventions.apps.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
 - **controller.source.apps.tanzu.vmware.com**: GHSA-69cg-p879-7622,
-  GHSA-69ch-w2m2-3vjp, CVE-2023-0286, and GHSA-fxg5-wq6x-vr4w
-- **eventing.tanzu.vmware.com**: CVE-2023-0286
-- **fluxcd.source.controller.tanzu.vmware.com**: GHSA-69cg-p879-7622 and CVE-2023-0286
+  GHSA-69ch-w2m2-3vjp, [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286), and GHSA-fxg5-wq6x-vr4w
+- **eventing.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
+- **fluxcd.source.controller.tanzu.vmware.com**: GHSA-69cg-p879-7622 and [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
 - **metadata-store.apps.tanzu.vmware.com**: GHSA-8c26-wmh5-6g9v,
   GHSA-69cg-p879-7622,
-  GHSA-69ch-w2m2-3vjp, CVE-2023-0286, GHSA-fxg5-wq6x-vr4w, GHSA-r48q-9g5r-8q2h,
-  and CVE-2022-3515
+  GHSA-69ch-w2m2-3vjp, [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286), GHSA-fxg5-wq6x-vr4w, GHSA-r48q-9g5r-8q2h,
+  and [CVE-2022-3515](https://nvd.nist.gov/vuln/detail/CVE-2022-3515)
 - **ootb-templates.tanzu.vmware.com**: GHSA-8c26-wmh5-6g9v, GHSA-gwc9-m7rh-j2ww,
-  GHSA-69cg-p879-7622, GHSA-69ch-w2m2-3vjp, CVE-2023-0286, GHSA-fxg5-wq6x-vr4w,
+  GHSA-69cg-p879-7622, GHSA-69ch-w2m2-3vjp, [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286), GHSA-fxg5-wq6x-vr4w,
   GHSA-83g2-8m93-v3w7, GHSA-ppp9-7jff-5vj2, and GHSA-3vm4-22fp-5rfm
-- **policy.apps.tanzu.vmware.com**: CVE-2023-0286
+- **policy.apps.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286)
 - **services-toolkit.tanzu.vmware.com**: GHSA-69cg-p879-7622
-- **sso.apps.tanzu.vmware.com**: CVE-2023-0286, CVE-2022-40152, CVE-2022-4450,
-  CVE-2023-0215, and CVE-2022-42916
-- **tekton.tanzu.vmware.com**: CVE-2023-0286, CVE-2018-25032, CVE-2021-28861,
-  CVE-2020-10735, CVE-2022-45061, GHSA-cjjc-xp8v-855w, and GHSA-ffhg-7mh4-33c4
+- **sso.apps.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286), [CVE-2022-40152](https://nvd.nist.gov/vuln/detail/CVE-2022-40152), [CVE-2022-4450](https://nvd.nist.gov/vuln/detail/CVE-2022-4450),
+  [CVE-2023-0215](https://nvd.nist.gov/vuln/detail/CVE-2023-0215), and [CVE-2022-42916](https://nvd.nist.gov/vuln/detail/CVE-2022-42916)
+- **tekton.tanzu.vmware.com**: [CVE-2023-0286](https://nvd.nist.gov/vuln/detail/CVE-2023-0286), [CVE-2018-25032](https://nvd.nist.gov/vuln/detail/CVE-2018-25032), [CVE-2021-28861](https://nvd.nist.gov/vuln/detail/CVE-2021-28861),
+  [CVE-2020-10735](https://nvd.nist.gov/vuln/detail/CVE-2020-10735), [CVE-2022-45061](https://nvd.nist.gov/vuln/detail/CVE-2022-45061), GHSA-cjjc-xp8v-855w, and GHSA-ffhg-7mh4-33c4
 
 ---
 
@@ -93,7 +93,8 @@ To manually deactivate legacy CNB BOM support, see [Deactivate the CNB BOM forma
 
 #### <a id="1-3-6-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
 
-- The `tanzu apps workload update` command is deprecated in the `apps` CLI plug-in. Please use `tanzu apps workload apply` instead.
+- The `tanzu apps workload update` command is deprecated in the `apps` CLI
+  plug-in. Use `tanzu apps workload apply` instead.
   - `update` is deprecated in two Tanzu Application Platform releases (in Tanzu Application Platform v1.5.0) or in one year (on Oct 11, 2023), whichever is later.
 
 ---
