@@ -11,7 +11,7 @@ To provision namespaces manually, complete the following steps:
 
 ## <a id='single-user-access'></a>Enable single user access
 
-1. To add read/write registry credentials to the developer namespace, run the following command [1]:
+1. To add read/write registry credentials to the developer namespace, run the following command:
 
     ```console
     tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --namespace YOUR-NAMESPACE
@@ -134,10 +134,10 @@ Follow these steps to enable additional users in your namespace by using Kuberne
 
         Where:
 
-        - **`YOUR-NAMESPACE`** is the name you give to the developer namespace.
-        - **`GROUP-FOR-APP-VIEWER`** is the user group from the upstream identity provider that
+        - `YOUR-NAMESPACE` is the name you give to the developer namespace.
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that
           requires access to `app-viewer` resources on the current namespace and cluster.
-        - **`GROUP-FOR-APP-EDITOR`** is the user group from the upstream identity provider that
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that
           requires access to `app-editor` resources on the current namespace and cluster.
 
         </br>
@@ -215,10 +215,10 @@ Follow these steps to enable additional users in your namespace by using Kuberne
 
         Where:
 
-        - **`YOUR-NAMESPACE`** is the name you give to the developer namespace.
-        - **`GROUP-FOR-APP-VIEWER`** is the user group from the upstream identity provider that
+        - `YOUR-NAMESPACE` is the name you give to the developer namespace.
+        - `GROUP-FOR-APP-VIEWER` is the user group from the upstream identity provider that
           requires access to `app-viewer` resources on the current namespace and cluster.
-        - **`GROUP-FOR-APP-EDITOR`** is the user group from the upstream identity provider that
+        - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that
           requires access to `app-editor` resources on the current namespace and cluster.
 
         </br>
@@ -235,7 +235,7 @@ Follow these steps to enable additional users in your namespace by using Kuberne
         For an example of how to set up Azure Active Directory (AD) with your cluster, see
         [Integrate Azure Active Directory](../authn-authz/azure-ad.hbs.md).
 
-1. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the
+3. (Optional) Log in as a non-admin user, such as a developer, to see the effects of RBAC after the
    role bindings are applied.
 
 ## Additional configuration for testing and scanning

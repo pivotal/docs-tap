@@ -2,7 +2,7 @@
 
 ## <a id="controller-logs"></a>Controller logs
 
-To get the logs when using the [controller](about.hbs.md#nsp-controller) to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+To get the logs when using the [controller](about.hbs.md#nsp-controller) to manage the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap)
 
 ```terminal
 kubectl -n tap-namespace-provisioning logs deployments/controller-manager
@@ -35,10 +35,10 @@ kubectl -n tap-install get packageinstalls.packaging.carvel.dev/namespace-provis
 
 ### <a id="namespace-selector-malformed"></a>Namespace selector malformed
 
-When using the [controller](about.hbs.md#nsp-controller) to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) and customizing the
+When using the [controller](about.hbs.md#nsp-controller) to manage the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) and customizing the
 `namespace_selector` from `tap_values.yaml`, the match expression must be compliant with the [Kubernetes label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors).
 If it is not compliant when labeling a namespace, the Namespace Provisioner won't create any object
-in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) and the controller outputs a [log](#controller-logs) message.
+in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) and the controller outputs a [log](#controller-logs) message.
 
 For example, if the configured `namespace_selector` is
 
@@ -59,7 +59,7 @@ produces an error message similar to the following, (followed by some reconcilia
 ```
 
 >**Note:** The [provisioner application](about.hbs.md#nsp-component-carvel-app) won’t show an error
-as the controller was not able to update the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap).
+as the controller was not able to update the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap).
 
 
 ### <a id="carvel-ytt-error-additional-sources"></a>Carvel-YTT error in additional_sources
@@ -123,7 +123,7 @@ default instead of overlaying it), this is reported in the [provisioner applicat
 
 ### <a id="unable-to-delete-namespace"></a>Unable to delete namespace
 
-When a namespaces is provisioned and listed in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) (with [controller](about.hbs.md#nsp-controller) or GitOps), then it can be deleted in a common way by `kubectl` command:
+When a namespaces is provisioned and listed in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) (with [controller](about.hbs.md#nsp-controller) or GitOps), then it can be deleted in a common way by `kubectl` command:
 
 ```bash
 kubectl delete namespace {namespace-name}
@@ -143,7 +143,7 @@ block the namespace termination while waiting for the ServiceAccount to exist wi
 
 **Solution:** Remove the Kapp App *`finalizer`* in the Kapp App
 
-- Another possible cause is when the [controller](about.hbs.md#nsp-controller) is used to manage the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
+- Another possible cause is when the [controller](about.hbs.md#nsp-controller) is used to manage the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap)
 and it fails to remove the custom *`finalizer`* added to the namespace (`namespace-provisioner.apps.tanzu.vmware.com/finalizer`)
 
 **Solution:** Remove the *`finalizer`* in the *`namespace`*
