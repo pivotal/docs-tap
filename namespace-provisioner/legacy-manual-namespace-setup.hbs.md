@@ -30,7 +30,7 @@ To provision namespaces manually, complete the following steps:
     - `REGISTRY-PASSWORD` is the password of the registry.
       - For GCR or Google Artifact Registry, this must be the concatenated version of the JSON key. For example: `"$(cat ~/gcp-key.json)"`
 
-    If you observe the following issue when you run the command above:
+    If you observe the following issue:
 
     ```console
     panic: runtime error: invalid memory address or nil pointer dereference
@@ -103,7 +103,7 @@ To provision namespaces manually, complete the following steps:
     you must annotate the ARN of the IAM Role and remove the `registry-credentials` secret. Your
     service account entry then looks like the following:
 
-    ```
+    ```console
     apiVersion: v1
     kind: ServiceAccount
     metadata:
@@ -150,7 +150,7 @@ Follow these steps to enable additional users in your namespace by using Kuberne
 
         Depending on your identity provider, you might need to take further action to
         federate user groups appropriately with your cluster.
-        For an example of how to set up Azure Active Directory (AD) with your cluster, see
+        For an example of how to set up Azure Active Directory (Azure AD) with your cluster, see
         [Integrate Azure Active Directory](../authn-authz/azure-ad.hbs.md).
 
     - **Option 2:** Use the native Kubernetes YAML.

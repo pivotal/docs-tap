@@ -24,7 +24,7 @@ Namespace Provisioner consists of a [Carvel](https://carvel.dev/kapp-controller/
 application named provisioner that is installed in the
 `tap-namespace-provisioning` namespace. The provisioner application uses ytt to templatize a
 set of resources into installations in multiple namespaces. The provisioner application references a
-ConfigMap and a Secret which are explained in more detail below.
+ConfigMap and a secret.
 
 ### <a id="desired-ns-configmap"></a>Desired Namespaces ConfigMap
 
@@ -35,7 +35,7 @@ a declarative way to indicate which namespaces should be populated with resource
 consists of a list of namespace objects, with a required `name` parameter, and optional additional
 parameters which are used as `data.values` for customizing defined resources.
 Manage the ConfigMap directly with [GitOps](tutorials.hbs.md#using-gitops), or the
-[Namespace Provisioner Controller](tutorials.hbs.md#controller-ns-provisioning).
+[Namespace Provisioner Controller](tutorials.hbs.md#controller-ns-provision).
 
 #### Example
 
@@ -71,7 +71,7 @@ selector is configurable in `tap-values.yaml`.
 
 ### <a id="resources-secret"></a>Default Resources Secret
 
-The `default-resources` Secret is templated by `tap-values.yaml` to contain the appropriate
+The `default-resources` secret is templated by `tap-values.yaml` to contain the appropriate
 resources for the given profile, set of supply chains installed, and other similar values. For the full
 list of resources that are created for different profiles, see [Default resources mapping](reference.hbs.md#default-resources-mapping).
 
@@ -80,5 +80,6 @@ list of resources that are created for different profiles, see [Default resource
 The expansion-template ConfigMap contains the ytt logic to expand the resources defined in the
 following locations into each of the  namespaces listed in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap):
 
-- Default-resources Secret
-- [additional_sources](install.hbs.md#customized-installation) in the `namespace-provisioner` config in the `tap-values.yaml` file
+- Default-resources secret
+- [additional_sources](install.hbs.md#customized-installation) in the `namespace-provisioner` config
+in the `tap-values.yaml` file

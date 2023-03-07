@@ -2,20 +2,24 @@
 
 There are two approaches to provisioning namespace-scoped resources supported:
 
-[Using Namespace Provisioner Controller](#controller-ns-provisioning) is recommended for Tanzu
+[Using Namespace Provisioner Controller](#controller-ns-provision) is recommended for Tanzu
 Application Platform clusters that:
-  - include [Out of the Box Supply Chain Basic](../scc/ootb-supply-chain-basic.hbs.md)
-  - require only the default namespace-scoped resources to be provisioned
+
+- include [Out of the Box Supply Chain Basic](../scc/ootb-supply-chain-basic.hbs.md)
+- require only the default namespace-scoped resources to be provisioned
+
 [Using GitOps](#using-gitops) is required for Tanzu Application Platform clusters that
 meet any of the following:
-  - include [Out of the Box Supply Chain - Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md)
-  - require customization or extension of the default namespace-scoped resources that are provisioned
-  - prefer to control which namespaces get provisioned with GitOps
 
-## <a id="controller-ns-provisioning"></a>Using Namespace Provisioner Controller
+- include [Out of the Box Supply Chain - Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md)
+- require customization or extension of the default namespace-scoped resources that are provisioned
+- prefer to control which namespaces get provisioned with GitOps
 
-Ensure the following prerequisites are met before provisioning namespace-scoped resources using Namespace Provisioner Controller.
-### <a id="nps-controller-prerequisites"></a>Prerequisites</br>
+## <a id="controller-ns-provision"></a>Using Namespace Provisioner Controller
+
+Ensure that the following prerequisites are met before provisioning namespace-scoped resources using
+Namespace Provisioner Controller.
+### <a id="nps-controller-prereq"></a>Prerequisites</br>
 
 - The Namespace Provisioner package is installed and reconciled.
 - The [controller tap value key](install.hbs.md#customized-installation) is set to **`true`**
@@ -32,7 +36,7 @@ Ensure the following prerequisites are met before provisioning namespace-scoped 
 
   - Example secret creation for a specific namespace
 
-    ```terminal
+    ```console
     tanzu secret registry add tbs-registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --yes --namespace YOUR-NEW-DEVELOPER-NAMESPACE
     ```
 
@@ -42,13 +46,13 @@ Complete the following steps to provision a new developer namespace:
 
 1. Create a namespace using kubectl or any other means
 
-   ```bash
+   ```console
    kubectl create namespace YOUR-NEW-DEVELOPER-NAMESPACE
    ```
 
 1. Label your new developer namespace with the label selector `apps.tanzu.vmware.com/tap-ns=""`
 
-   ```bash
+   ```console
    kubectl label namespaces YOUR-NEW-DEVELOPER-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
    ```
 
@@ -66,13 +70,13 @@ Complete the following steps to provision a new developer namespace:
    - Add the registry-credentials secret referenced by the Tanzu Build Service to the new
      namespace and patch the service account that will be used by the workload to refer to this new secret.
 
-     ```terminal
+     ```console
      tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --yes --namespace YOUR-NEW-DEVELOPER-NAMESPACE
      ```
 
-1. Run the following command to verify the correct resources have been created in the namespace:
+1. Run the following command to verify the correct resources were created in the namespace:
 
-   ```bash
+   ```console
    kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap -n YOUR-NEW-DEVELOPER-NAMESPACE
    ```
 
@@ -83,13 +87,13 @@ Complete the following steps to provision a new developer namespace:
 
 This section describes how to use GitOps to manage the list of namespaces in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) instead of the built-in controller.
 
->**WARNING** If there is a namespace in your GitOps repo [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the [provisioner application](about.hbs.md#nsp-component-carvel-app) fails to reconcile and will not be able to create resources.
+>**WARNING** If there is a namespace in your GitOps repository [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the [provisioner application](about.hbs.md#nsp-component-carvel-app) fails to reconcile and cannot create resources.
 Creation of the namespaces is out of the scope for the Namespace Provisioner package.
 
 ### <a id="gitops-prerequisites"></a>Prerequisites</br>
 
 The prerequisites for using GitOps are the same as those specified in the
-[controller prerequisites](#nps-controller-prerequisites) above except for the `controller`
+[controller prerequisites](#nps-controller-prereq) above except for the `controller`
 tap value key's value as follows:
 
 - The [controller tap value key](install.hbs.md#customized-install) is set to **`false`**
