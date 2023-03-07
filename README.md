@@ -9,11 +9,11 @@ This repo contains the content for Tanzu Application Platform docs.
 |Branch|Staging|Production|
 |----|----|----|
 |main| [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) (Pre-release v1.5 docs)|n/a|
-|1-4-2| [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.4.2/tap/overview.html) (Pre-release v1.4.2 docs)|n/a|
-|1-4-1| [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) |
+|1-4-2| [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) |
+|1-4-1|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
 |1-4-0|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
-|1-3-6| [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.3.6/tap/overview.html) (Pre-release v1.3.6 docs)|n/a|
-|1-3-5| [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) |
+|1-3-6| [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) |
+|1-3-5|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
 |1-3-4|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
 |1-3-3|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
 |1-3-2|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|

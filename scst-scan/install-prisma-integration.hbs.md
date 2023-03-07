@@ -11,13 +11,13 @@ This topic describes prerequisites for installing SCST - Scan (Prisma) from the 
 Run this command to output a list of available tags.
 
 ```shell
-imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | grep -v sha | sort -V
+imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | sort -V
 ```
 
 Use the latest version returned in place of the sample version in this topic, such as `0.1.4-alpha.12` in the following output.
 
 ```console
-imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | grep -v sha | sort -V
+imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | sort -V
 
 0.1.4-alpha.1  
 0.1.4-alpha.6  
