@@ -117,9 +117,7 @@ Follow these instructions to install the Java scan policy and Tekton pipeline re
 the OOTB Testing and Scanning Supply Chain.
 
 1. Add or update `tap-values.yaml` with the following `namespace_provisioner.additional_resources`
-configuration</br>
-(The ytt templated testing and scanpolicy files that are mounted are [here](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain)).</br></br>
-
+configuration. 
 
    ```yaml
    namespace_provisioner:
@@ -132,18 +130,16 @@ configuration</br>
        path: _ytt_lib/testingscanning   # this user-generated path must always begin with "_ytt_lib/"
    ```
 
-   </br>
+   The ytt templated testing and scanpolicy files that are mounted are [here](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain).
 
-1. Apply your updated `tap-values.yaml` to the target cluster
+2. Apply your updated `tap-values.yaml` to the target cluster
 
-   ```terminal
+   ```console
    tanzu package installed update tap -f tap-values.yaml --namespace tap-install
    ```
 
-   - After the tap-values changes are applied and the
-`namespace_provisioner.additional_resources` are imported, Namespace Provisioner creates
-the defined `scan-policy` and `developer-defined-tekton-pipeline-java` in all namespaces
-defined in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap).
+  After the tap-values changes are applied and the `namespace_provisioner.additional_resources` are imported, Namespace Provisioner creates the defined `scan-policy` and `developer-defined-tekton-pipeline-java` in all namespaces defined in the
+  [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap).
 
 ### <a id="custom-default-resources"></a>Customizing the default resources that get provisioned
 

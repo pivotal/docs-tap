@@ -17,9 +17,11 @@ meet any of the following:
 
 ## <a id="controller-ns-provision"></a>Using Namespace Provisioner Controller
 
-Ensure that the following prerequisites are met before provisioning namespace-scoped resources using
-Namespace Provisioner Controller.
-### <a id="nps-controller-prereq"></a>Prerequisites</br>
+This section describes how to use the Namespace Provisioner Controller to provision namespace-scoped resources.
+
+### <a id="nps-controller-prereq"></a>Prerequisites</a>
+
+Ensure that the following prerequisites.
 
 - The Namespace Provisioner package is installed and reconciled.
 - The [controller tap value key](install.hbs.md#customized-installation) is set to **`true`**
@@ -44,44 +46,45 @@ Namespace Provisioner Controller.
 
 Complete the following steps to provision a new developer namespace:
 
-1. Create a namespace using kubectl or any other means
+1. Create a namespace using kubectl or any other means:
 
    ```console
    kubectl create namespace YOUR-NEW-DEVELOPER-NAMESPACE
    ```
 
-1. Label your new developer namespace with the label selector `apps.tanzu.vmware.com/tap-ns=""`
+2. Label your new developer namespace with the label selector `apps.tanzu.vmware.com/tap-ns=""`:
 
    ```console
    kubectl label namespaces YOUR-NEW-DEVELOPER-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
    ```
 
    - This label tells the controller to add this namespace to the
-   [desired-namespaces](about.hbs.md#desired-ns-configmap) ConfigMap.</br>
-   - The label's value can be anything, including "". </br>
+   [desired-namespaces](about.hbs.md#desired-ns-configmap) ConfigMap.
+   - The label's value can be anything, including "".
    - If required, you can change the default label selector by configuring the
      [namespace_selector](install.hbs.md#customized-install) property/value in tap-values
      for namespace provisioner.
 
-1. (Optional) This step is only required if the `registry-credentials` secret that was created
-   during Tanzu Application Platform Installation **_was not_** exported to all namespaces (see the
-   [Prerequisites](#nps-controller-prerequisites) section above for details).
-
-   - Add the registry-credentials secret referenced by the Tanzu Build Service to the new
+3. (Optional) Add the registry-credentials secret referenced by the Tanzu Build Service to the new
      namespace and patch the service account that will be used by the workload to refer to this new secret.
 
      ```console
      tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --yes --namespace YOUR-NEW-DEVELOPER-NAMESPACE
      ```
 
-1. Run the following command to verify the correct resources were created in the namespace:
+   This step is only required if the `registry-credentials` secret that was created
+   during Tanzu Application Platform Installation **_was not_** exported to all namespaces (see the
+   [Prerequisites](#nps-controller-prerequisites) section above for details).
+
+4. Run the following command to verify the correct resources were created in the namespace:
 
    ```console
    kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap -n YOUR-NEW-DEVELOPER-NAMESPACE
    ```
 
-   - To see the list of resources that are provisioned in your namespace based on the installation
-     profile and supply chain values configured in your `tap-values.yaml` file, see [Default resources mapping](reference.hbs.md#default-resources-mapping).
+   To see the list of resources that are provisioned in your namespace based on the installation
+   profile and supply chain values configured in your `tap-values.yaml` file, see
+   [Default resources mapping](reference.hbs.md#default-resources-mapping).
 
 ## <a id="using-gitops"></a>Using GitOps
 
@@ -91,7 +94,7 @@ manage the list of namespaces in the [desired-namespaces ConfigMap](about.hbs.md
 >**WARNING** If there is a namespace in your GitOps repository [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the [provisioner application](about.hbs.md#nsp-component-carvel-app) fails to reconcile and cannot create resources.
 Creation of the namespaces is out of the scope for the Namespace Provisioner package.
 
-### <a id="gitops-prerequisites"></a>Prerequisites</br>
+### <a id="gitops-prerequisites"></a>Prerequisites
 
 The prerequisites for using GitOps are the same as those specified in the
 [controller prerequisites](#nps-controller-prereq) above except for the `controller`
