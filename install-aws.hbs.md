@@ -6,9 +6,9 @@ from the Tanzu Application Platform package repository on to AWS.
 Before installing the packages, ensure you have:
 
 - Completed the [Prerequisites](prerequisites.hbs.md).
-- Created [AWS Resources](aws-resources.hbs.md)
+- Created [AWS Resources](aws-resources.hbs.md).
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](install-tanzu-cli.hbs.md) with any required plug-ins.
-- Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/)
+- Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/GUID-deploy.html).
 
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
