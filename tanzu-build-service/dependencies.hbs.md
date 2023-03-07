@@ -9,8 +9,9 @@
 This topic describes how Tanzu Build Service uses and installs dependencies.
 
 Tanzu Build Service requires dependencies in the form of Cloud Native
-[Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html) and
-[Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
+[Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html),
+[Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html),
+and [Lifecycle](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-builders.html#update-lifecycle)
 to build OCI images.
 
 ## <a id="install"></a> How dependencies are installed
@@ -114,6 +115,12 @@ The `lite` dependencies contain the following buildpacks in Tanzu Application Pl
 | Web Servers Buildpack for VMware Tanzu (Lite) | 0.8.0 | Bionic, Jammy |
 | Ruby Buildpack for VMware Tanzu (Lite) | 2.1.0 | Bionic, Jammy |
 | Procfile Buildpack for VMware Tanzu (Lite) | 5.4.0 | Bionic, Jammy |
+
+And the following components:
+
+| Component | Version | Supported Stacks |
+|-----------|---------|------------------|
+| CNB Lifecycle | 0.16.0 | Bionic, Jammy |
 | Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.45 | Bionic |
 | Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.25 | Jammy |
 
@@ -161,6 +168,12 @@ The `full` dependencies contain the following buildpacks in Tanzu Application Pl
 | PHP Buildpack for VMware Tanzu | 2.0.0 | Bionic, Jammy |
 | Web Servers Buildpack for VMware Tanzu | 0.8.0 | Bionic, Jammy |
 | Procfile Buildpack for VMware Tanzu | 5.4.0 | Bionic, Jammy |
+
+And the following components:
+
+| Component | Version | Supported Stacks |
+|-----------|---------|------------------|
+| CNB Lifecycle | 0.16.0 | Bionic, Jammy |
 | Tiny Stack of Ubuntu Bionic for VMware Tanzu | 1.3.99 | Bionic |
 | Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.45 | Bionic |
 | Full Stack of Ubuntu Bionic for VMware Tanzu | 1.3.141 | Bionic |
