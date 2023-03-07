@@ -78,9 +78,7 @@ There are two approaches to provisioning namespace-scoped resources supported:
 
 ## <a id="using-gitops"></a>Using GitOps
 
-This section describes how to use the built-in controller instead of using GitOps to
-manage the list of namespaces in the [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap)
-.
+This section describes how to use GitOps to manage the list of namespaces in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) instead of the built-in controller.
 
 >**WARNING**: if there is a namespace in your GitOps repo [`desired-namespaces` ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the [provisioner application](about.hbs.md#nsp-component-carvel-app)
 fails to reconcile and will not be able to create resources. Creation of the namespaces
