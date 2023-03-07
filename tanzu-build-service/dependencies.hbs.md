@@ -127,6 +127,12 @@ The `lite` dependencies contain the following buildpacks in Tanzu Application Pl
 | Web Servers Buildpack for VMware Tanzu (Lite) | 0.3.0 | Bionic |
 | Ruby Buildpack for VMware Tanzu (Lite) | 1.1.0 | Bionic |
 | Procfile Buildpack for VMware Tanzu (Lite) | 5.4.0 | Bionic, Jammy |
+
+And the following components:
+
+| Component | Version | Supported Stacks |
+|-----------|---------|------------------|
+| CNB Lifecycle | 0.14.2 | Bionic, Jammy |
 | Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.17 | Bionic |
 | Base Stack of Ubuntu Jammy for VMware Tanzu | 0.1.1 | Jammy |
 
@@ -174,6 +180,12 @@ The `full` dependencies contain the following buildpacks in Tanzu Application Pl
 | PHP Buildpack for VMware Tanzu | 1.2.0 | Bionic |
 | Web Servers Buildpack for VMware Tanzu | 0.3.0 | Bionic |
 | Procfile Buildpack for VMware Tanzu | 5.3.0 | Bionic, Jammy |
+
+And the following components:
+
+| Component | Version | Supported Stacks |
+|-----------|---------|------------------|
+| CNB Lifecycle | 0.14.2 | Bionic, Jammy |
 | Tiny Stack of Ubuntu Bionic for VMware Tanzu | 1.3.72 | Bionic |
 | Base Stack of Ubuntu Bionic for VMware Tanzu | 1.2.17 | Bionic |
 | Full Stack of Ubuntu Bionic for VMware Tanzu | 1.3.88 | Bionic |
