@@ -8,9 +8,7 @@ Before installing the packages, ensure you have:
 - Completed the [Prerequisites](prerequisites.hbs.md).
 - Created [AWS Resources](aws-resources.hbs.md)
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](install-tanzu-cli.hbs.md) with any required plug-ins.
-- Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html)*
-
->**Important** Installing Tanzu Application Platform v1.4 on AWS using ECR as your container image registry currently requires Cluster Essentials v1.3 due to an issue with support for credential helpers in Cluster Essentials v1.4.
+- Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/)
 
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
