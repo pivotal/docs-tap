@@ -14,11 +14,11 @@ Kubernetes, Namespace Provisioner is also compatible with existing Kubernetes to
 The following diagram shows the components that are installed as part of the Namespace Provisioner
 package and how they work together to automate resource creation in developer namespaces:
 
-![Diagram of how Namespace Provisioner components work together to automate resource creation in developer namespaces.](../images/namespace-provisioner-overview-2.svg)
+![Diagram of how Namespace Provisioner components work together to automate resource creation in developer namespaces.](../images/namespace-provisioner-overview-2.png)
 
 ### <a id="nsp-component-carvel-app"></a>Provisioner Carvel Application
 
-![Carvel provisioner application overview and components.](../images/namespace-provisioner-overview-2-c.svg)
+![Carvel provisioner application overview and components.](../images/namespace-provisioner-overview-2-c.png)
 
 Namespace Provisioner consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest/app-overview/)
 application named provisioner that is installed in the
@@ -28,7 +28,7 @@ ConfigMap and a secret.
 
 ### <a id="desired-ns-configmap"></a>Desired Namespaces ConfigMap
 
-![Diagram showing how the desired-namespaces ConfigMap provides a declarative way to indicate which namespaces should be populated with resources.](../images/namespace-provisioner-overview-2-a.svg)
+![Diagram showing how the desired-namespaces ConfigMap provides a declarative way to indicate which namespaces should be populated with resources.](../images/namespace-provisioner-overview-2-a.png)
 
 The `desired-namespaces` ConfigMap in the `tap-namespace-provisioning` namespace provides
 a declarative way to indicate which namespaces should be populated with resources. The ConfigMap
