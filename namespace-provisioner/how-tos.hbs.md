@@ -48,7 +48,7 @@ Here's a [sample of a templated Tekton pipeline.](https://github.com/vmware-tanz
 
 ## <a id="gitops-customizations"></a>GitOps Customizations
 
-![Diagram of Default and Additional Resources](../images/namespace-provisioner-overview-2-b.svg)
+![Diagram of Default and Additional Resources](../images/namespace-provisioner-overview-2-b.png)
 
 ### <a id="ex-default-resources"></a>Extending the default provisioned resources
 
