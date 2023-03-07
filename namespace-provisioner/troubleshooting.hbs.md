@@ -24,7 +24,7 @@ kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.
 For information about why certain resources are not reconciled automatically,
 and as a result might need some manual configuration, see [Control the Namespace Provisioner reconcile behavior for specific resources](how-tos.hbs.md#control-reconcile-behavior).
 
-**Note:** Any error with the [provisioner application](about.hbs.md#nsp-component-carvel-app) is
+>**Note:** Any error with the [provisioner application](about.hbs.md#nsp-component-carvel-app) is
 reported in the Carvel Package Install as a high level message.
 
 ```terminal

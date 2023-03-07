@@ -13,12 +13,10 @@ repository and two installation approaches are supported:
 
 To install Namespace Provisioner as part of a wider Tanzu Application Platform profile based
 installation, see [Installing Tanzu Application Platform](../install-intro.hbs.md).</br>
-The Namespace Provisioner package is installed as part of the standard installation profiles
-(i.e. Full, Iterate, Build and Run) and the default set of resources provisioned in a namespace is
-based on a combination of the Tanzu Application Platform installation profile employed and the supply
-chain that is installed on the cluster.
+The Namespace Provisioner package is installed as part of the [standard installation profiles](../about-package-profiles.hbs.md#profiles-and-packages).
+The default set of resources provisioned in a namespace is based on a combination of the Tanzu Application Platform installation profile employed and the supply chain that is installed on the cluster.
 
-For a list of what resources are created for different profile/supply chain combinations, see [default resource mapping table](reference.hbs.md#profile-resource-mapping).
+For a list of what resources are created for different profile and supply chain combinations, see [default resource mapping table](reference.hbs.md#profile-resource-mapping).
 
 ## <a id="customized-install"></a>Customized Installation
 

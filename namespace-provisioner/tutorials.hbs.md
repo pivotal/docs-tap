@@ -59,7 +59,7 @@ Complete the following steps to provision a new developer namespace:
      [namespace_selector](install.hbs.md#customized-install) property/value in tap-values
      for namespace provisioner.
 
-1. (Optional) - this step is only required if the `registry-credentials` secret that was created
+1. (Optional) This step is only required if the `registry-credentials` secret that was created
    during Tanzu Application Platform Installation **_was not_** exported to all namespaces (see the
    [Prerequisites](#nps-controller-prerequisites) section above for details).
 
@@ -83,9 +83,8 @@ Complete the following steps to provision a new developer namespace:
 
 This section describes how to use GitOps to manage the list of namespaces in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) instead of the built-in controller.
 
->**WARNING**: if there is a namespace in your GitOps repo [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the [provisioner application](about.hbs.md#nsp-component-carvel-app)
-fails to reconcile and will not be able to create resources. Creation of the namespaces
-is out of the scope for the Namespace Provisioner package.
+>**WARNING** If there is a namespace in your GitOps repo [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the [provisioner application](about.hbs.md#nsp-component-carvel-app) fails to reconcile and will not be able to create resources.
+Creation of the namespaces is out of the scope for the Namespace Provisioner package.
 
 ### <a id="gitops-prerequisites"></a>Prerequisites</br>
 
