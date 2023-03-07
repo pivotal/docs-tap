@@ -64,7 +64,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     To query for the available versions of Tanzu Application Platform on VMWare Tanzu Network Registry, run:
 
     ```console
-    imgpkg tag list -i registry.tanzu.vmware.com/tanzu-application-platform/tap-packages | grep -v sha | sort -V
+    imgpkg tag list -i registry.tanzu.vmware.com/tanzu-application-platform/tap-packages | sort -V
     ```
 
 1. Relocate the images with the `imgpkg` CLI by running:

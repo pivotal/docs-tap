@@ -11,13 +11,13 @@ This topic describes prerequisites for installing SCST - Scan (Trivy) from the V
 Run the following command to output a list of available tags.
 
 ```shell
-imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle | grep -v sha | sort -V
+imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle | sort -V
 ```
 
 For example:
 
 ``` shell
-imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle | grep -v sha | sort -V
+imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/trivy-repo-scanning-bundle | sort -V
 
 0.1.4-alpha.6
 0.1.4-alpha.1
