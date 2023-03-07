@@ -60,21 +60,21 @@ the list of resources that are templated in the `default-resources` Secret, see 
 
 This [example](#example-additional-resources) adds four additional sources:
 
-1. This additional source points to an example of a [workload service account yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/workload-sa/workload-sa-with-secrets.yaml).
+- This additional source points to an example of a [workload service account yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/workload-sa/workload-sa-with-secrets.yaml).
 After importing this source, Namespace Provisioner creates the following resources in all
 amespaces listed in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap).
-2. <a id="add-test-scan"></a>This additional source points to examples of
+- <a id="add-test-scan"></a>This additional source points to examples of
 [ytt templated testing and scanpolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain).
 After importing this source, Namespace Provisioner creates a **scan-policy** and a
 **developer-defined-tekton-pipeline-java** in all namespaces in the
 [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap)  with the default setup in [Install OOTB Supply Chain with Testing and Scanning](../getting-started/add-test-and-security.hbs.md#install-OOTB-test-scan)
 documentation.
-3. This additional source points to an example of a [ytt templated scanpolicy yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/scanpolicies/snyk-scanpolicies.yaml).
+- This additional source points to an example of a [ytt templated scanpolicy yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/scanpolicies/snyk-scanpolicies.yaml).
 After importing this source, Namespace Provisioner creates a **snyk-scan-policy** in all
 namespaces in the [desired-namespaces](about.hbs.md#desired-ns-configmap) ConfigMap that
 has an additional parameter **scanpolicy: snyk**.
-4. This additional source points to [examples of ytt templated tekton pipelines](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines).
-After importing this source, Namespace Provisioner creates a **developer-defined-tekton-pipeline-python**
+- This additional source points to [examples of ytt templated tekton pipelines](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines).
+After importing this source, Namespace Provisioner creates a *developer-defined-tekton-pipeline-python**
 and **developer-defined-tekton-pipeline-angular** for namespaces in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) that has an additional parameter **language: python** and **language: angular** respectively.
 
 <a id="ex-additional-resources"></a>The following example provides a snippet from `tap-values.yaml`
@@ -153,10 +153,10 @@ using GitOps with some specific characteristics:
 - Use the [ytt overlay](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-overlay/) feature for
   GitOps customization, set in the `tap-values.yaml` under [additional_sources](install.hbs.md#customized-installation).
 - Mount additional Git resource in the path `_ytt_lib/customize`, otherwise
-  the customization is not be applied
-- The GitOps repository directory must have a file with an extension [lib.yaml](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-library/#instanceexport) to be recognized as a ytt library with members to be exported
+  the customization is not applied.
+- The GitOps repository directory must have a file with an extension [lib.yaml](https://carvel.dev/ytt/docs/latest/lang-ref-ytt-library/#instanceexport) to be recognized as a ytt library with members to be exported.
 - The library file in the GitOps repository directory must have a function called `customize` with the
-overlays to be applied to the resources, it can contain one or more overlays
+overlays to be applied to the resources, it can contain one or more overlays.
 
 The sample file [sa-secrets.lib.yaml](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/default-resources-overrides/overlays/sa-secrets.lib.yaml)
 shows how to completely override the `secrets` and `imagePullSecrets`
@@ -205,7 +205,7 @@ imagePullSecrets:
 ### <a id="con-reconcile-behavior"></a>Control the Namespace Provisioner reconcile behavior for specific resources
 
 There are certain OOTB [default-resources](reference.hbs.md#tap-profile---default-resources-mapping)
-like the `ServiceAccount` that is annotated with a special annotation
+like the `ServiceAccount` that are annotated with a special annotation
 `namespace-provisioner.apps.tanzu.vmware.com/no-overwrite`.
 
 Any changes to the resources that have the `...no-overwrite` annotation are not overwritten by the
@@ -274,7 +274,7 @@ data:
 
 ```
 
-The recommended approach is to maintain a list of namespace objects in your GitOps repository, and
+The recommended approach is to maintain a list of namespace objects in your GitOps repository and
 use the GitOps tool of your choice to create namespaces in the cluster and the provisioner
 application populates it with the appropriate resources.
 
