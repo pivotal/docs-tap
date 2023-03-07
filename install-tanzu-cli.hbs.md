@@ -104,13 +104,13 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
    - **For Linux:**
 
      ```console
-     tar -xvf tanzu-framework-linux-amd64.tar -C $HOME/tanzu
+     tar -xvf tanzu-framework-linux-amd64-v0.25.4.5.tar -C $HOME/tanzu
      ```
 
    - **For macOS:**
 
      ```console
-     tar -xvf tanzu-framework-darwin-amd64-v0.25.4.4.tar -C $HOME/tanzu
+     tar -xvf tanzu-framework-darwin-amd64-v0.25.4.5.tar -C $HOME/tanzu
      ```
 
 3. Set the environment variable `TANZU_CLI_NO_INIT` to `true` to ensure that the local downloaded
@@ -170,7 +170,8 @@ Proceed to [Install/Update Tanzu CLI plug-ins](#cli-plugin-install).
 
 2. Create a `Program Files\tanzu` directory on your local machine.
 
-3. From the `Downloads` directory, right-click the `tanzu-framework-windows.amd64.zip` file, select
+3. From the `Downloads` directory, right-click the `tanzu-framework-windows-amd64-v0.25.4.5.zip`
+   file, select
    the **Extract All...** menu item, enter `C:\Program files\tanzu` in the
    **Files are extracted to this directory:** text box, and click the **Extract**.
 
