@@ -88,8 +88,7 @@ Complete the following steps to provision a new developer namespace:
 
 ## <a id="using-gitops"></a>Using GitOps
 
-This section describes how to use the built-in controller instead of using GitOps to
-manage the list of namespaces in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap).
+This section describes how to use GitOps to manage the list of namespaces in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) instead of the built-in controller.
 
 >**WARNING** If there is a namespace in your GitOps repository [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) list that does not exist on the cluster, the [provisioner application](about.hbs.md#nsp-component-carvel-app) fails to reconcile and cannot create resources.
 Creation of the namespaces is out of the scope for the Namespace Provisioner package.
