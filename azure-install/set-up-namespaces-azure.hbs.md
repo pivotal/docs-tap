@@ -102,7 +102,7 @@ subjects:
 Where: 
 - `YOUR-NAMESPACE` is your developer namespace.
 - `ROLE-ARN`is the ARN you created for workloads. For more information, 
-  see [Create Azure Resources](azure-install/azure-resources.hbs.md).
+  see [Create Azure Resources](azure-resources.hbs.md).
 
 ## <a id='additional-user-access'></a>Enable additional users access with Kubernetes RBAC
 
