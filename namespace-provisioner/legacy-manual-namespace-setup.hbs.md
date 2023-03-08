@@ -140,8 +140,6 @@ Follow these steps to enable additional users in your namespace by using Kuberne
         - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that
           requires access to `app-editor` resources on the current namespace and cluster.
 
-        </br>
-
         For more information about `tanzu rbac`, see
         [Bind a user or group to a default role](../authn-authz/binding.hbs.md)
 
@@ -220,8 +218,6 @@ Follow these steps to enable additional users in your namespace by using Kuberne
           requires access to `app-viewer` resources on the current namespace and cluster.
         - `GROUP-FOR-APP-EDITOR` is the user group from the upstream identity provider that
           requires access to `app-editor` resources on the current namespace and cluster.
-
-        </br>
 
         VMware recommends creating a user group in your identity provider's grouping system for
         each developer namespace and then adding the users accordingly.
