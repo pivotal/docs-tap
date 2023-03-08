@@ -1,7 +1,7 @@
 # Install Tanzu Application Platform package and profiles on Azure
 
 This topic describes how to install Tanzu Application Platform packages
-from the Tanzu Application Platform package repository on to AWS.
+from the Tanzu Application Platform package repository on to Azure.
 
 Before installing the packages, ensure you have:
 
@@ -9,6 +9,18 @@ Before installing the packages, ensure you have:
 - Created [Azure Resources](azure-resources.hbs.md).
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
+
+## <a id='add-tap-package-repo'></a> Relocate images to a registry
+
+VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
+attempting installation. If you don't relocate the images, Tanzu Application Platform will depend on
+VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no uptime guarantees.
+The option to skip relocation is documented for evaluation and proof-of-concept only.
+
+This section describes how to relocate images to the `tap-images` repository created in Azure Container Registry (ACR).
+See [Creating Azure Resources](azure-resources.hbs.md) for more information.
+
+To relocate images from the VMware Tanzu Network registry to the ACR registry:
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
 
@@ -55,7 +67,7 @@ Before installing the packages, ensure you have:
     - Retrieving repository tap...
     NAME:          tanzu-tap-repository
     VERSION:       16253001
-    REPOSITORY:    123456789012.dkr.ecr.us-west-2.amazonaws.com/tap-images
+    REPOSITORY:    123456789012.dkr.acr.us-east.azure.com/tap-images
     TAG:           {{ vars.tap_version }}
     STATUS:        Reconcile succeeded
     REASON:
@@ -164,8 +176,8 @@ To prepare to install a profile:
     tanzu package available list tap.tanzu.vmware.com --namespace tap-install
     ```
 
-1. Create a `tap-values.yaml` file by using the [Full Profile (AWS)](#full-profile),
-which contains the minimum configurations required to deploy Tanzu Application Platform on AWS.
+1. Create a `tap-values.yaml` file by using the [Full Profile (Azure)](#full-profile),
+which contains the minimum configurations required to deploy Tanzu Application Platform on Azure.
 The sample values file contains the necessary defaults for:
 
     - The meta-package, or parent Tanzu Application Platform package.
