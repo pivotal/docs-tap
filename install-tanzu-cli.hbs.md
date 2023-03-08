@@ -267,5 +267,10 @@ For air-gapped installation:
 - [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 - [Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)
 
+For GitOps (beta) installation:
+
+- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Install Tanzu Application Platform via GitOps](install-gitops.html)
+
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster
 Essentials because the contents of Cluster Essentials are already installed on your cluster._
