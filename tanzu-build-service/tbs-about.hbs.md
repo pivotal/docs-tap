@@ -7,3 +7,5 @@ It executes reproducible builds aligned with modern container standards and keep
 
 For more information about Tanzu Build Service, see the
 [Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
+
+Tanzu Application Platform 1.3 includes Tanzu Build Service 1.7.
