@@ -11,7 +11,7 @@ For information about how to retrieve the Tanzu Application Platform GUI URL, se
 
 - (Optionally) To use Git repository provisioning during project creation in the VS Code extension,
 you must enable GitHub repository creation in the Application Accelerator plug-in.
-For more information, see [Create an Application Accelerator Git repository during project creation](/tap-gui/plugins/application-accelerator-git-repo.hbs.md).
+For more information, see [Create an Application Accelerator Git repository during project creation](../tap-gui/plugins/application-accelerator-git-repo.hbs.md).
 
 ## <a id="vs-code-app-accel-install"></a> Installation
 
