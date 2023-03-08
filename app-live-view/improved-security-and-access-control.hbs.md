@@ -66,7 +66,7 @@ shared:
 If you want to override the security feature at the individual component level,
 follow the below steps:
 
-## <a id='app-live-view-connector'></a> Application Live View Connector
+### <a id='app-live-view-connector'></a> Application Live View Connector
 
 1. (Optional) Change the default installation settings for Application Live View
    connector by running:
@@ -174,7 +174,7 @@ follow the below steps:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-## <a id='app-live-view-ui-plugin'></a> Application Live View UI plug-in
+### <a id='app-live-view-ui-plugin'></a> Application Live View UI plug-in
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To override the default security settings for the Application Live View UI
