@@ -66,7 +66,7 @@ Install by following these steps:
          Uninstalled package 'ootb-supply-chain-testing-scanning' from namespace 'tap-install'
         ```
 
-1. Check the values of the package that can be configured by running:
+1. Verify that the values of the package can be configured by referencing the values below:
 
     ```console
     KEY                                   DESCRIPTION
@@ -131,7 +131,7 @@ Install by following these steps:
                               application.
     ```
 
-1. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies the
+2. Create a file named `ootb-supply-chain-testing-values.yaml` that specifies the
    corresponding values to the properties you want to change. For example:
 
     ```yaml
