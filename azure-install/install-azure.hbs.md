@@ -13,12 +13,9 @@ Before installing the packages, ensure you have:
 ## <a id='add-tap-package-repo'></a> Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to your own container image registry before
-attempting installation. If you don't relocate the images, Tanzu Application Platform will depend on
+attempting installation. If you don't relocate the images, Tanzu Application Platform depends on
 VMware Tanzu Network for continued operation, and VMware Tanzu Network offers no uptime guarantees.
 The option to skip relocation is documented for evaluation and proof-of-concept only.
-
-This section describes how to relocate images to the `tap-images` repository created in Azure Container Registry (ACR).
-See [Creating Azure Resources](azure-resources.hbs.md) for more information.
 
 To relocate images from the VMware Tanzu Network registry to the ACR registry:
 
@@ -140,8 +137,8 @@ To relocate images from the VMware Tanzu Network registry to the ACR registry:
 
 ## <a id='install-profile'></a> Install your Tanzu Application Platform profile
 
-The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
-This is done by using the package manager installed by Tanzu Cluster Essentials. 
+The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings 
+by using the package manager installed by Tanzu Cluster Essentials. 
 For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
 To create a registry secret and add it to a developer namespace:
@@ -185,23 +182,29 @@ The sample values file contains the necessary defaults for:
 
     Keep the values file for future configuration use.
 
-    >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
-
 1. [View possible configuration settings for your package](view-package-config-azure.hbs.md)
 
 ### <a id='full-profile'></a> Full profile (Azure)
 
 The following is the YAML file sample for the full-profile on Azure by using the ACR repositories you created earlier.
 The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run`, or `view`.
-Refer to [Install multicluster Tanzu Application Platform profiles](../multicluster/installing-multicluster.hbs.md) for more information.
+See [Install multicluster Tanzu Application Platform profiles](../multicluster/installing-multicluster.hbs.md) for more information.
 
 Where:
 
 - `INGRESS-DOMAIN` is the subdomain for the host name that you point at the `tanzu-shared-ingress`
 service's External IP address.
-- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
-- `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces.
-- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the credentials to pull an image from the registry for scanning.
+- `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file.
+  You can download either a blank or populated catalog file from the 
+  [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). 
+  Otherwise, you can use a Backstage-compliant catalog that was built and posted on the Git infrastructure.
+- `MY-DEV-NAMESPACE` is the name of the developer namespace. 
+  SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. 
+  This allows the scanning feature to run in this namespace. 
+  If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` 
+  to export the SCST - Store CA certificate to all namespaces.
+- `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains 
+  the credentials to pull an image from the registry for scanning.
 
 For Azure, the default settings creates a classic LoadBalancer.
 To use the Network LoadBalancer instead of the classic LoadBalancer for ingress, add the
@@ -303,28 +306,85 @@ Follow these steps to install the Tanzu Application Platform package:
 
     This can take 5-10 minutes because it installs several packages on your cluster.
 
-2. Verify that the necessary packages in the profile are installed by running:
+1. Verify that the necessary packages in the profile are installed by running:
 
     ```console
     tanzu package installed list -A
     ```
 
-3. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
+1. If you configured `full` dependencies in your `tbs-values.yaml` file, install the `full` dependencies
 by following the procedure in [Install full dependencies](#tap-install-full-deps).
 
 After installing the Full profile on your cluster, you can install the
 Tanzu Developer Tools for VS Code Extension to help you develop against it.
-For instructions, see [Install Tanzu Developer Tools for VS Code](vscode-install-azure.hbs.md).
+For more information, see [Install Tanzu Developer Tools for VS Code](vscode-install-azure.hbs.md).
 
->**Note** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
+## <a id="tap-install-full-deps"></a> Install the full dependencies package
 
-```
-tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --values-file tap-values.yaml -n tap-install
-```
+If you configured `full` dependencies in your `tap-values.yaml` file in
+[Configure your profile with full dependencies](#full-dependencies) earlier,
+you must install the `full` dependencies package.
+
+For more information about the differences between `lite` and `full` dependencies, see
+[About lite and full dependencies](../tanzu-build-service/dependencies.html#lite-vs-full).
+
+To install the `full` dependencies package:
+
+1. If you have not done so already, add the key-value pair `exclude_dependencies: true`
+ to your `tap-values.yaml` file under the `buildservice` section. For example:
+
+    ```yaml
+    buildservice:
+      kp_default_repository: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/tap-build-service
+      exclude_dependencies: true
+    ...
+    ```
+
+1. Get the latest version of the `buildservice` package by running:
+
+    ```console
+    tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
+    ```
+
+1. Create an ECR repository for Tanzu Build Service full dependencies by running:
+
+    ```console
+    aws ecr create-repository --repository-name tbs-full-deps --region ${AWS_REGION}
+    ```
+
+1. Relocate the Tanzu Build Service full dependencies package repository by running:
+
+    ```console
+    imgpkg copy -b registry.tanzu.vmware.com/tanzu-application-platform/full-tbs-deps-package-repo:VERSION \
+      --to-repo ${INSTALL_REGISTRY_HOSTNAME}/tbs-full-deps
+    ```
+
+    Where `VERSION` is the version of the `buildservice` package you retrieved in the previous step.
+
+1. Add the Tanzu Build Service full dependencies package repository by running:
+
+    ```console
+    tanzu package repository add tbs-full-deps-repository \
+      --url ${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tbs-full-deps:VERSION \
+      --namespace tap-install
+    ```
+
+    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
+
+1. Install the full dependencies package by running:
+
+    ```console
+    tanzu package install full-tbs-deps -p full-tbs-deps.tanzu.vmware.com -v VERSION -n tap-install
+    ```
+
+    Where `VERSION` is the version of the `buildservice` package you retrieved earlier.
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.hbs.md).
+To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. 
+This host name is pointed at the shared ingress. 
+To configure LoadBalancer for Tanzu Application Platform GUI, 
+see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.hbs.md).
 
 You're now ready to start using Tanzu Application Platform GUI.
 Proceed to the [Getting Started](../getting-started.md) topic or the
