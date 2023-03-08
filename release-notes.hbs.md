@@ -39,6 +39,10 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 
 This release has the following breaking changes, listed by area and component.
 
+### <a id='1-5-0-tbs-bc'></a> Tanzu Build Service
+
+- The default `ClusterBuilder` now uses the Ubuntu Jammy (22.04) instead of Bionic (18.04) stack, please ensure your workloads are able to be built and run on Jammy.
+
 ### <a id='1-5-0-security-fixes'></a> Security fixes
 
 This release has the following security fixes, listed by area and component.
