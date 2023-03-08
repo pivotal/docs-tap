@@ -10,101 +10,99 @@ that you plan to create the `Workload` in:
 
 ## <a id='single-user-access'></a>Enable single user access
 
-Follow these steps to enable your current user to submit jobs to the Supply Chain:
+Run the following command to add secrets, a service account to execute the supply chain, 
+and RBAC rules to authorize the service account to the developer namespace:
 
-1. Gather the ARN created for workloads in the Create Azure Resources.
+```console
+cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: tap-registry
+  annotations:
+    secretgen.carvel.dev/image-pull-secret: ""
+type: kubernetes.io/dockerconfigjson
+data:
+  .dockerconfigjson: e30K
 
-1. Update `YOUR-NAMESPACE` and `ROLE-ARN` and run the following command to add 
-  secrets, a service account to execute the supply chain, and RBAC rules to 
-  authorize the service account to the developer namespace.
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: default
+secrets:
+  - name: registry-credentials
+imagePullSecrets:
+  - name: registry-credentials
+  - name: tap-registry
 
-    ```console
-    cat <<EOF | kubectl -n YOUR-NAMESPACE apply -f -
-    apiVersion: v1
-    kind: Secret
-    metadata:
-      name: tap-registry
-      annotations:
-        secretgen.carvel.dev/image-pull-secret: ""
-    type: kubernetes.io/dockerconfigjson
-    data:
-      .dockerconfigjson: e30K
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: default
+rules:
+- apiGroups: [source.toolkit.fluxcd.io]
+  resources: [gitrepositories]
+  verbs: ['*']
+- apiGroups: [source.apps.tanzu.vmware.com]
+  resources: [imagerepositories]
+  verbs: ['*']
+- apiGroups: [carto.run]
+  resources: [deliverables, runnables]
+  verbs: ['*']
+- apiGroups: [kpack.io]
+  resources: [images]
+  verbs: ['*']
+- apiGroups: [conventions.apps.tanzu.vmware.com]
+  resources: [podintents]
+  verbs: ['*']
+- apiGroups: [""]
+  resources: ['configmaps']
+  verbs: ['*']
+- apiGroups: [""]
+  resources: ['pods']
+  verbs: ['list']
+- apiGroups: [tekton.dev]
+  resources: [taskruns, pipelineruns]
+  verbs: ['*']
+- apiGroups: [tekton.dev]
+  resources: [pipelines]
+  verbs: ['list']
+- apiGroups: [kappctrl.k14s.io]
+  resources: [apps]
+  verbs: ['*']
+- apiGroups: [serving.knative.dev]
+  resources: ['services']
+  verbs: ['*']
+- apiGroups: [servicebinding.io]
+  resources: ['servicebindings']
+  verbs: ['*']
+- apiGroups: [services.apps.tanzu.vmware.com]
+  resources: ['resourceclaims']
+  verbs: ['*']
+- apiGroups: [scanning.apps.tanzu.vmware.com]
+  resources: ['imagescans', 'sourcescans']
+  verbs: ['*']
 
-    ---
-    apiVersion: v1
-    kind: ServiceAccount
-    metadata:
-      name: default
-    secrets:
-      - name: registry-credentials
-    imagePullSecrets:
-      - name: registry-credentials
-      - name: tap-registry
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: default
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: default
+subjects:
+  - kind: ServiceAccount
+    name: default
+```
 
-    ---
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: Role
-    metadata:
-      name: default
-    rules:
-    - apiGroups: [source.toolkit.fluxcd.io]
-      resources: [gitrepositories]
-      verbs: ['*']
-    - apiGroups: [source.apps.tanzu.vmware.com]
-      resources: [imagerepositories]
-      verbs: ['*']
-    - apiGroups: [carto.run]
-      resources: [deliverables, runnables]
-      verbs: ['*']
-    - apiGroups: [kpack.io]
-      resources: [images]
-      verbs: ['*']
-    - apiGroups: [conventions.apps.tanzu.vmware.com]
-      resources: [podintents]
-      verbs: ['*']
-    - apiGroups: [""]
-      resources: ['configmaps']
-      verbs: ['*']
-    - apiGroups: [""]
-      resources: ['pods']
-      verbs: ['list']
-    - apiGroups: [tekton.dev]
-      resources: [taskruns, pipelineruns]
-      verbs: ['*']
-    - apiGroups: [tekton.dev]
-      resources: [pipelines]
-      verbs: ['list']
-    - apiGroups: [kappctrl.k14s.io]
-      resources: [apps]
-      verbs: ['*']
-    - apiGroups: [serving.knative.dev]
-      resources: ['services']
-      verbs: ['*']
-    - apiGroups: [servicebinding.io]
-      resources: ['servicebindings']
-      verbs: ['*']
-    - apiGroups: [services.apps.tanzu.vmware.com]
-      resources: ['resourceclaims']
-      verbs: ['*']
-    - apiGroups: [scanning.apps.tanzu.vmware.com]
-      resources: ['imagescans', 'sourcescans']
-      verbs: ['*']
-
-    ---
-    apiVersion: rbac.authorization.k8s.io/v1
-    kind: RoleBinding
-    metadata:
-      name: default
-    roleRef:
-      apiGroup: rbac.authorization.k8s.io
-      kind: Role
-      name: default
-    subjects:
-      - kind: ServiceAccount
-        name: default
-    ```
-
-    Where `YOUR-NAMESPACE` is your developer namespace.
+Where: 
+- `YOUR-NAMESPACE` is your developer namespace.
+- `ROLE-ARN`is the ARN you created for workloads. For more information, 
+  see [Create Azure Resources](azure-install/azure-resources.hbs.md).
 
 ## <a id='additional-user-access'></a>Enable additional users access with Kubernetes RBAC
 
