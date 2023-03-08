@@ -5,9 +5,9 @@ from the Tanzu Application Platform package repository on to AWS.
 
 Before installing the packages, ensure you have:
 
-- Completed the [Prerequisites](prerequisites.hbs.md).
+- Completed the [Prerequisites](../prerequisites.hbs.md).
 - Created [Azure Resources](azure-resources.hbs.md).
-- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](install-tanzu-cli.hbs.md) with any required plug-ins.
+- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
 
 1. Create a namespace called `tap-install` for deploying any component packages by running:
@@ -130,7 +130,7 @@ Before installing the packages, ensure you have:
 
 The `tap.tanzu.vmware.com` package installs predefined sets of packages based on your profile settings.
 This is done by using the package manager installed by Tanzu Cluster Essentials. 
-For more information about profiles, see [Components and installation profiles](about-package-profiles.md).
+For more information about profiles, see [Components and installation profiles](../about-package-profiles.md).
 
 To create a registry secret and add it to a developer namespace:
 
@@ -175,13 +175,13 @@ The sample values file contains the necessary defaults for:
 
     >**Note** `tap-values.yaml` is set as a Kubernetes secret, which provides secure means to read credentials for Tanzu Application Platform components.
 
-1. [View possible configuration settings for your package](view-package-config-aws.hbs.md)
+1. [View possible configuration settings for your package](view-package-config-azure.hbs.md)
 
 ### <a id='full-profile'></a> Full profile (Azure)
 
 The following is the YAML file sample for the full-profile on Azure by using the ACR repositories you created earlier.
 The `profile:` field takes `full` as the default value, but you can also set it to `iterate`, `build`, `run`, or `view`.
-Refer to [Install multicluster Tanzu Application Platform profiles](multicluster/installing-multicluster.html) for more information.
+Refer to [Install multicluster Tanzu Application Platform profiles](../multicluster/installing-multicluster.hbs.md) for more information.
 
 Where:
 
@@ -302,7 +302,7 @@ by following the procedure in [Install full dependencies](#tap-install-full-deps
 
 After installing the Full profile on your cluster, you can install the
 Tanzu Developer Tools for VS Code Extension to help you develop against it.
-For instructions, see [Install Tanzu Developer Tools for VS Code](vscode-extension/install.md).
+For instructions, see [Install Tanzu Developer Tools for VS Code](vscode-install-azure.hbs.md).
 
 >**Note** You can run the following command after reconfiguring the profile to reinstall the Tanzu Application Platform:
 
@@ -312,13 +312,13 @@ tanzu package installed update tap -p tap.tanzu.vmware.com -v $TAP_VERSION  --va
 
 ## <a id='access-tap-gui'></a> Access Tanzu Application Platform GUI
 
-To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](tap-gui/accessing-tap-gui.md).
+To access Tanzu Application Platform GUI, you can use the host name that you configured earlier. This host name is pointed at the shared ingress. To configure LoadBalancer for Tanzu Application Platform GUI, see [Access Tanzu Application Platform GUI](../tap-gui/accessing-tap-gui.hbs.md).
 
 You're now ready to start using Tanzu Application Platform GUI.
-Proceed to the [Getting Started](getting-started.md) topic or the
-[Tanzu Application Platform GUI - Catalog Operations](tap-gui/catalog/catalog-operations.md) topic.
+Proceed to the [Getting Started](../getting-started.md) topic or the
+[Tanzu Application Platform GUI - Catalog Operations](../tap-gui/catalog/catalog-operations.hbs.md) topic.
 
 ## <a id='next-steps'></a>Next steps
 
-- (Optional) [Install Individual Packages](install-components.html)
-- [Set up developer namespaces to use installed packages](set-up-namespaces-aws.html)
+- (Optional) [Install Individual Packages](install-components-azure.hbs.md)
+- [Set up developer namespaces to use installed packages](set-up-namespaces-azure.hbs.md)
