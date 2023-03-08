@@ -13,4 +13,4 @@ To install Tanzu Application Platform on Azure:
 |7.| Set up developer namespaces to use installed packages |[Set up developer namespaces to use installed packages](set-up-namespaces-azure.hbs.md)|
 |8.| Install developer tools into your integrated development environment (IDE) |[Install Tanzu Developer Tools for VS Code](vscode-install-azure.hbs.md)|
 
-After installing Tanzu Application Platform on to your OpenShift clusters, proceed with [Get started with Tanzu Application Platform](../getting-started.hbs.md).
+After installing Tanzu Application Platform on to your Kubernetes clusters, proceed with [Get started with Tanzu Application Platform](../getting-started.hbs.md).
