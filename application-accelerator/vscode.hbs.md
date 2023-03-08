@@ -5,10 +5,13 @@ from the defined accelerators in Tanzu Application Platform using VS Code.
 
 ## <a id="dependencies"></a> Dependencies
 
-To use the VS Code extension, the extension must access the Tanzu Application Platform GUI URL.
+- To use the VS Code extension, the extension must access the Tanzu Application Platform GUI URL.
+For information about how to retrieve the Tanzu Application Platform GUI URL, see
+[Retrieving the URL for the Tanzu Application Platform GUI](#fqdn-tap-gui-url).
 
-For information about how to retrieve the Tanzu Application Platform GUI URL,  see the later section
-entitled [Retrieving the URL for the Tanzu Application Platform GUI](#fqdn-tap-gui-url)
+- (Optionally) To use Git repository provisioning during project creation in the VS Code extension,
+you must enable GitHub repository creation in the Application Accelerator plug-in.
+For more information, see [Create an Application Accelerator Git repository during project creation](/tap-gui/plugins/application-accelerator-git-repo.hbs.md).
 
 ## <a id="vs-code-app-accel-install"></a> Installation
 
