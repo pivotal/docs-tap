@@ -1,19 +1,23 @@
 # Tanzu Apps Cluster Supply Chain
 
+This command provides details about the cluster supply chain.
+
 ## Tanzu apps cluster supply chain list
 
 The `tanzu apps clustersupplychain list` command lists the available supply chains installed in the
 cluster (supported clustersupplychain alias is `csc`).
 
-After listing the available supply chains, to view more detailed information about the selectors and
-conditions that must be met for a workload to be selected by a
-certain supply chain, run `tanzu apps clustersupplychain get <supplychain-name>` (check usage and
-examples in the next section).
+Run the following command to view more detailed information about the selectors and conditions that
+must be met for a workload to be selected by a certain supply chain:
+
+```console
+tanzu apps clustersupplychain get SUPPLYCHAIN-NAME`.
+```
 
 ## Default view
 
-The default view for this command contains the name of the supply chain, if it's ready or not and
-its age.
+The default view displays the name of the supply chain, whether it is ready or not,
+and its age.
 
 For example:
 
@@ -33,7 +37,7 @@ The `tanzu apps clustersupplychain get` command gets detailed information of the
 
 ### Default view
 
-The default view of `tanzu apps clustersupplychain get` command shows the status of the supply
+The default view displays the status of the supply
 chain, and the selectors that a workload must match so it is taken by that supply chain.
 
 For example:
@@ -50,12 +54,12 @@ Supply Chain Selectors
    expressions   apps.tanzu.vmware.com/workload-type   In         worker
 ```
 
-The output from the earlier command reveals the attributes a workload must have to
-be selected by the `source-to-url` supply chain on the target cluster:
+This output indicates the attributes a workload needs to be selected by the `source-to-url` supply
+chain on the target cluster. For example:
 
 - The workload must have the `--type` flag value of `web`, `server`, or `worker`
 - Or, if expressed through `workload.yaml`, the `Workload.metadata.labels` label
-  `apps.tanzu.vmware.com/workload-type` must exist and have a value of `web`, `server` ,or `worker`.
+  `apps.tanzu.vmware.com/workload-type` must exist and have a value of `web`, `server` , or `worker`.
 
 Another example is the `testing/scanning` pipeline, which has the `tekton` steps for testing and
 the scanning steps.

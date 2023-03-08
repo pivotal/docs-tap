@@ -12,7 +12,8 @@ repository and two installation approaches are supported:
 ## <a id="tap-profile-based-install"></a>Install using a Profile
 
 To install Namespace Provisioner as part of a wider Tanzu Application Platform profile based
-installation, see [Installing Tanzu Application Platform](../install-intro.hbs.md).</br>
+installation, see [Installing Tanzu Application Platform](../install-intro.hbs.md).
+
 The Namespace Provisioner package is installed as part of the [standard installation profiles](../about-package-profiles.hbs.md#profiles-and-packages).
 The default set of resources provisioned in a namespace is based on a combination of the Tanzu Application Platform installation profile employed and the supply chain that is installed on the cluster.
 

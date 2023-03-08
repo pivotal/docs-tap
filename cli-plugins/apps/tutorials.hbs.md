@@ -25,7 +25,9 @@ Ensure that you installed or updated the Tanzu CLI, for more information, see [I
 
 ## <a id='from-release'></a>Install From Release
 
-The latest release is in the [Github repository releases page](https://github.com/vmware-tanzu/apps-cli-plugin/releases/). Each of these releases has the *Assets* section where the packages for each *system-architecture* are placed.
+The latest release is in the [Github repository releases page](https://github.com/vmware-tanzu/apps-cli-plugin/releases/).
+Each of these releases has the *Assets* section where the packages for each *system-architecture* are
+placed.
 
 To install the Apps CLI plug-in:
 
@@ -62,7 +64,7 @@ There are two ways to change the target cluster:
 
 2. Include the `--context CONTENT-NAME` flag when running any `tanzu apps` command.
 
-   **Note** Any subsequent `tanzu apps` commands that do not include the `--context CONTENT-NAME`
+   >**Note** Any subsequent `tanzu apps` commands that do not include the `--context CONTENT-NAME`
      flag continue to use the default context set in the kubeconfig.
 
 ## <a id='override-kubeconfig'></a>Overriding the default kubeconfig
@@ -77,7 +79,7 @@ There are two approaches to overriding the default kubeconfig:
 
 2. Include the  `--kubeconfig path` flag when running any `tanzu apps` command.
 
-   **Note** Any subsequent `tanzu apps` commands that do not include the `--context CONTEXT-NAME` flag
+   >**Note** Any subsequent `tanzu apps` commands that do not include the `--context CONTEXT-NAME` flag
    continue to use the default context set in the kubeconfig.
 
 For more information about kubeconfig, see [Configure Access to Multiple Clusters](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) in the Kubernetes documentation.

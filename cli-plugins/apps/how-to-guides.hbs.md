@@ -9,14 +9,14 @@ through flags.
 
 To pass the certificate through flags, specify:
 
-- `--registry-ca-cert`, the path of the self-signed certificate needed for the
+- `--registry-ca-cert`: This is the path of the self-signed certificate needed for the
   custom or private registry. This is also populated with a default value through the environment
   variable `TANZU_APPS_REGISTRY_CA_CERT`.
-- `--registry-password` use when the registry requires credentials to push. The value of
+- `--registry-password`: Use this when the registry requires credentials to push. The value of
   this flag can also be specified through `TANZU_APPS_REGISTRY_PASSWORD`.
-- `--registry-username` used with `--registry-password` to set the registry credentials. It
+- `--registry-username`: Use with `--registry-password` to set the registry credentials. It
   can also be provided as the environment variable `TANZU_APPS_REGISTRY_USERNAME`.
-- `--registry-token`, set when the registry authentication is done through a token. The value
+- `--registry-token`: Set when the registry authentication is done through a token. The value
   of this flag can also be taken from `TANZU_APPS_REGISTRY_TOKEN` environment variable.
 
 For example:
@@ -33,6 +33,7 @@ export TANZU_APPS_REGISTRY_USERNAME=PASSWORD
 
 tanzu apps workload apply WORKLOAD --local-path PATH-TO-REPO -s registry.url.nip.io/PACKAGE/IMAGE
 ```
+
 ## <a id='live-updated-debug'> --live-update and --debug
 
 Use the `--live-update` flag to ensure that local source code changes are reflected quickly
@@ -135,7 +136,7 @@ Prerequisites: [Tilt](https://docs.tilt.dev/install.html) must be installed on t
 ## <a id='export-usage'> --export
 
 Use this flag to retrieve the workload definition with all the
-extraneous, cluster-specific, properties/values removed. For example, the status and metadata text
+extraneous, cluster-specific, properties, and values removed. For example, the status and metadata text
 boxes like `creationTimestamp`. This allows you to apply the workload definition to a different
 environment without having to make significant edits.
 
@@ -386,7 +387,7 @@ status:
 
 Use this flag to support use cases where more than one application is in a single project or repository.
 
-Use `--sub-path` when creating a workload from a Git repository
+Use `--sub-path` when creating a workload from a Git repository.
 
     ```console
     tanzu apps workload apply subpathtester --git-repo https://github.com/PATH-TO-REPO --git-branch main --type web --sub-path SUBPATH
@@ -523,7 +524,7 @@ With the default `merge`:
 
 If the `--file workload.yaml` deletes an existing on-cluster property or value, that property is not
 removed from the on-cluster definition.
-If the `--file workload.yaml` includes a new property/value - it is added to the on-cluster workload
+If the `--file workload.yaml` includes a new property or value, it is added to the on-cluster workload
 properties/values.
 If the `--file workload.yaml` updates an existing value for a property, that property's value
 on-cluster is updated.
@@ -535,7 +536,7 @@ The on-cluster workload is updated to exactly what is specified in the `--file w
 The intent of the current default merge strategy is to prevent unintentional deletions of critical
 properties from existing workloads.
 
-**Note** The default value for the `--update-strategy flag` will change from merge to replace
+>**Note** The default value for the `--update-strategy flag` will change from merge to replace
 in Tanzu Application Platform v1.7.0.
 
 Examples of the outcomes of both `merge` and `replace` update strategies are provided in the
@@ -578,7 +579,9 @@ tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy merge # i
 This produces the following output:
 
 ```console
-❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files will replace rather than merge existing configuration. The change will take place in the January 2024 TAP release (use "--update-strategy" to control strategy explicitly).
+❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files
+will replace rather than merge existing configuration. The change will take place in the January 2024
+Tanzu Application Platform release (use "--update-strategy" to control strategy explicitly).
 
 Workload is unchanged, skipping update
 ```
@@ -592,7 +595,9 @@ tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy replace
 This produces the following output:
 
 ```console
-❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files will replace rather than merge existing configuration. The change will take place in the January 2024 TAP release (use "--update-strategy" to control strategy explicitly).
+❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files
+will replace rather than merge existing configuration. The change will take place in the January 2024
+Tanzu Application Platform release (use "--update-strategy" to control strategy explicitly).
 
 🔎 Update workload:
 ...

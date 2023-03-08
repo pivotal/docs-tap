@@ -18,7 +18,7 @@ package and how they work together to automate resource creation in developer na
 
 ### <a id="nsp-component-carvel-app"></a>Provisioner Carvel Application
 
-![Carvel provisioner application overview and components.](../images/namespace-provisioner-overview-2-c.png)
+![Diagram of Carvel provisioner application showing overview and components.](../images/namespace-provisioner-overview-2-c.png)
 
 Namespace Provisioner consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest/app-overview/)
 application named provisioner that is installed in the

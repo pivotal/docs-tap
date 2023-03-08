@@ -238,8 +238,8 @@ in the `tap-namespace-provisioning` namespace.
 Ensure that the following prerequisites are met:
 
 - The Namespace Provisioner package is installed.
-- [controller](install.hbs.md#customized-installation) must be set to “false”.
-  - **Note** If the [controller](about.hbs.md#nsp-controller) is set to "true", it overwrites
+- [controller](install.hbs.md#customized-installation) must be set to “false”. If the
+  [controller](about.hbs.md#nsp-controller) is set to "true", it overwrites
   the declarative desired state configured in your GitOps repository.
 - The registry-credentials secret referred by the Tanzu Build Service is added to `tap-install.yaml`
   and exported to all namespaces. If you don’t want to export this secret to all namespaces for any reason,
