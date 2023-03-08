@@ -9,7 +9,7 @@ The improved security and access control is introduced in order to secure the RE
 
 The Application Live View UI plug-in part of The Tanzu Application Platform GUI uses the above approach to securely query for the actuator data for a pod. It requests for a token from Application Live View Apiserver and passes it to the subsequent calls to the back-end. This ensures that actuator data from the running application is fetched only if the user is authorized to see the live information for the pod.
 
-The Application Live View UI plug-in relies on Tanzu Application Platform GUI authentication and authroization to access the Application Live View Apiserver and fetch the application live view tokens.
+The Application Live View UI plug-in relies on Tanzu Application Platform GUI authentication and authorization to access the Application Live View Apiserver and fetch the application live view tokens.
 
 The Tanzu Application Platform GUI controls the access to kubernetes resources based on user roles and permissions for each of the remote clusters. For more information on this, see [View runtime resources on authorization-enabled clusters](../tap-gui/tap-gui-rbac/view-resources-rbac.hbs.md).
 
@@ -44,7 +44,7 @@ cluster](../tap-gui/cluster-view-setup.hbs.md).
 >able to see the live information in Application Live View.
 
 
-## <a id='improved-security'></a> Improved Security
+## <a id='improved-security'></a> Configure Improved Security
 
 The improved security feature is enabled by default for Application Live View.
 
@@ -66,7 +66,7 @@ shared:
 If you want to override the security feature at the individual component level,
 follow the below steps:
 
-## <a id='app-live-view-connector'></a> Configure Security for Application Live View Connector
+## <a id='app-live-view-connector'></a> Application Live View Connector
 
 1. (Optional) Change the default installation settings for Application Live View
    connector by running:
@@ -174,7 +174,7 @@ follow the below steps:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-## <a id='app-live-view-ui-plugin'></a> Configure Security for Application Live View UI plug-in
+## <a id='app-live-view-ui-plugin'></a> Application Live View UI plug-in
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To override the default security settings for the Application Live View UI
