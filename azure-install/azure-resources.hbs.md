@@ -27,11 +27,11 @@ because it is handled by credential helpers within the services.
 
 Before installing Tanzu Application Platform on Azure, you need:
 
-- An Azure subscription. 
+- **An Azure subscription:** 
   You must create all of your resources within
   an [Azure subscription](https://learn.microsoft.com/en-us/azure/guides/developer/azure-developer-guide#understanding-accounts-subscriptions-and-billing) and
   create an [Azure free account](https://azure.microsoft.com/en-us/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio).
-- Azure CLI. 
+- **Azure CLI:** 
   To run CLI reference commands locally, you must [install the Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli).
   This topic uses Azure CLI to both query and configure resources in Azure, such as IAM roles.
   For more information, see [Azure CLI documentation](https://learn.microsoft.com/en-us/cli/azure/authenticate-azure-cli).
