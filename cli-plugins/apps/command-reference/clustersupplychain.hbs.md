@@ -57,7 +57,7 @@ Supply Chain Selectors
 This output indicates the attributes a workload needs to be selected by the `source-to-url` supply
 chain on the target cluster. For example:
 
-- The workload must have the `--type` flag value of `web`, `server`, or `worker`
+- The workload must have the `--type` flag value of `web`, `server`, or `worker`.
 - Or, if expressed through `workload.yaml`, the `Workload.metadata.labels` label
   `apps.tanzu.vmware.com/workload-type` must exist and have a value of `web`, `server` , or `worker`.
 
