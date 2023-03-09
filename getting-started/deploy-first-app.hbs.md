@@ -15,7 +15,7 @@
 
 1. Deploy the Tanzu Java Web App project that was generated in the [previous guide](generate-first-app.hbs.md) by running the `tanzu apps workload create` command:
 
-    ```bash
+    ```console
     tanzu apps workload create tanzu-java-web-app \
     --git-repo GIT-REPO-URL \
     --git-branch main \
