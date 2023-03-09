@@ -24,19 +24,19 @@ After the workload build process is complete, create a Knative service to run th
 You can view workload details at any time during the process. Some details, such as the workload
 URL, are only available after the workload is running.
 
-1. To check the workload details, run:
+To check the workload details, run:
 
-    ```console
-    tanzu apps workload get pet-clinic
-    ```
+```console
+tanzu apps workload get pet-clinic
+```
 
-    Where:
+Where:
 
-    - `pet-clinic` is the name of the workload you want details about.
+`pet-clinic` is the name of the workload you want details about.
 
-2. You can now see the running workload. When the workload is created, `tanzu apps workload get`
-   includes the URL for the running workload. Some terminals allow you to `ctrl`+click the URL to
-   view it. You can also copy and paste the URL into your web browser to see the workload.
+You can now see the running workload. When the workload is created, `tanzu apps workload get`
+includes the URL for the running workload. Some terminals allow you to `ctrl`+click the URL to
+view it. You can also copy and paste the URL into your web browser to see the workload.
 
 ## <a id="common-workload-errors"></a> Common workload errors
 
@@ -50,6 +50,7 @@ Message: Writing `registry/project/repo/workload:latest`: Writing image: Unexpec
 *401 Unauthorized* (HEAD responses have no body, use GET for details)
 
 Cause: Apps plug-in cannot talk to the registry because the registry credentials are missing or invalid.
+
 Resolution: Run  `docker logout registry` and `docker login registry` commands and specify the valid
 credentials for the registry.
 
@@ -59,6 +60,7 @@ Message: Writing `registry/project/workload:latest`: Writing image: HEAD Unexpec
 Cause: Certain registries like Harbor or GCR have a concept of `Project`. A 400 Bad request is sent
 when either the project does not exist, the user does not have access to it, or the path in the
 `—source-image` flag is missing either project or repository.
+
 Resolution: Fix the path in the `—source-image` flag value to point to a valid repository path.
 
 ### WorkloadLabelsMissing/SupplyChainNotFound
