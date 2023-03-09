@@ -1,6 +1,6 @@
 # Commands Details
 
-The proceeding topics shows detailed examples of how to use flags on the Tanzu CLI Apps plug-in.
+The following topics describe the Tanzu CLI Apps plug-in.
 
 - [`tanzu apps clustersupplychain`](./clustersupplychain.hbs.md) sub-commands and details.
 - `tanzu apps workload` sub-commands and flags usage for each:

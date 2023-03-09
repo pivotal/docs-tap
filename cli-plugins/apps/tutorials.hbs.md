@@ -53,7 +53,7 @@ tanzu plugin delete apps
 ## <a id='changing-clusters'></a>Changing clusters
 
 The Apps CLI plug-in refers to the default kubeconfig file to access a Kubernetes cluster.
-When a `tanzu apps` command is run, the plug-in uses the default context that is defined in that
+When you run a `tanzu apps` command, the plug-in uses the default context that is defined in that
 kubeconfig file (located by default at `HOME/.kube/config`).
 
 There are two ways to change the target cluster:
