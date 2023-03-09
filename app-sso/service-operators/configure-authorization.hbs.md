@@ -123,7 +123,8 @@ The user must consent to allow the application to request the scope.
 After the consent is provided, the user can access resources limited to the 
 `developer.read` scope within the application by using their access token.
 
-## <a id='auth-config-sample'></a>Full sample of authorization configurations
+The following is a full sample of authorization configurations and the accompanying 
+`ClientRegistration` configurations to allow clients to request the scopes:
 
 ```yaml
 kind: AuthServer
@@ -158,8 +159,6 @@ spec:
                 - "marketing-reader"   # ^^
                 - "marketing-writer"   # ^^
 ```
-
-Accompanying `ClientRegistration` to allow clients to request the scopes:
 
 ```yaml
 kind: ClientRegistration
