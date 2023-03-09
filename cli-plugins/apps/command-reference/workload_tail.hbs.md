@@ -39,7 +39,7 @@ spring-pet-clinic-build-1-build-pod[detect] paketo-buildpacks/image-labels      
 
 ### <a id="tail-component"></a> `--component`
 
-Set the component from which the tail command should stream the logs. The values that the flag can take depends on the final deployed pods label `app.kubernetes.io/component`, for example, `build`, `run` and `config-writer`
+Set the component from which the tail command should stream the logs. The values that the flag can take depend on the final deployed pods label `app.kubernetes.io/component`, for example, `build`, `run` and, `config-writer`
 
 ```bash
 tanzu apps workload tail pet-clinic --component build
@@ -113,7 +113,7 @@ pet-clinic-config-writer-9fbk6-pod[step-main]     carto.run/workload-name: pet-c
 
 ### <a id="tail-timestamp"></a> `--timestamp`, `-t`
 
-Adds the timestamp to the begining of each log message
+Adds the timestamp to the beginning of each log message
 
 ```bash
 tanzu apps workload tail pet-clinic -t

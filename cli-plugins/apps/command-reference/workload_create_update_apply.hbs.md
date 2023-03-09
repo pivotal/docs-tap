@@ -8,7 +8,7 @@ In the output of the `tanzu apps workload apply` command, the specification for 
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web
 🔎 Create workload:
       1 + |---
@@ -49,7 +49,7 @@ multiple times. These annotations are passed as parameters to be processed in th
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --annotation tag=tap-1.3 --annotation name="Tanzu Java Web"
 🔎 Create workload:
     1 + |---
@@ -80,7 +80,7 @@ To delete an annotation, use `-` after its name.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --annotation tag-
 🔎 Update workload:
 ...
@@ -105,7 +105,7 @@ This is the application the workload is part of. This is part of the workload me
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --app tanzu-java-web-app
 🔎 Create workload:
     1 + |---
@@ -141,7 +141,7 @@ chain.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --build-env JAVA_VERSION=1.8
 🔎 Create workload:
       1 + |---
@@ -172,7 +172,7 @@ To delete a build environment variable, use `-` after its name.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --build-env JAVA_VERSION-
 🔎 Update workload:
 ...
@@ -200,7 +200,7 @@ Sets the parameter variable debug to true in the workload.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --debug
 🔎 Create workload:
       1 + |---
@@ -233,7 +233,7 @@ an output of the final structure of the workload.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --build-env JAVA_VERSION=1.8 --param-yaml server=$'port: 8080\nmanagement-port: 8181' --dry-run
 ---
 apiVersion: carto.run/v1alpha1
@@ -273,7 +273,7 @@ status:
 
  <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --env NAME="Tanzu Java App"
 🔎 Create workload:
       1 + |---
@@ -299,7 +299,7 @@ tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmwar
 
 To unset an environment variable, use `-` after its name.
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --env NAME-
 🔎 Update workload:
 ...
@@ -329,7 +329,7 @@ See [Working with YAML Files](../create-workload.hbs.md#yaml-files) for an examp
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app -f java-app-workload.yaml --param-yaml server=$'port: 9090\nmanagement-port: 9190'
 🔎 Create workload:
        1 + |---
@@ -371,7 +371,7 @@ or a tag.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web
 🔎 Create workload:
     1 + |---
@@ -405,7 +405,7 @@ Commit in Git repository from where the workload is resolved. Can be used with `
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --git-commit 1c4cf82e499f7e46da182922d4097908d4817320 --type web
 🔎 Create workload:
     1 + |---
@@ -435,7 +435,7 @@ Sets the OSI image to be used as the workload application source instead of a Gi
 
  <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --image private.repo.domain.com/tanzu-java-web-app --type web
 🔎 Create workload:
        1 + |---
@@ -474,7 +474,7 @@ times.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --label stage=production
 🔎 Create workload:
       1 + |---
@@ -502,7 +502,7 @@ To unset labels, use `-` after their name.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --label stage-
 🔎 Update workload:
 ...
@@ -527,7 +527,7 @@ The maximum CPU the workload pods are allowed to use.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --limit-cpu .2
 🔎 Create workload:
     1 + |---
@@ -559,7 +559,7 @@ The maximum memory the workload pods are allowed to use.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --limit-memory 200Mi
 🔎 Create workload:
     1 + |---
@@ -610,14 +610,14 @@ An example with a Spring Boot application:
 
 1. Inside the directory, run:
 
-   ```bash
+   ```console
    tanzu apps workload apply tanzu-java-web-app --live-update --local-path . -s
    gcr.io/my-project/tanzu-java-web-app-live-update -y
    ```
 
    Expected output:
 
-   ```bash
+   ```console
    The files and directories listed in the .tanzuignore file are being excluded from the uploaded source code.
    Publishing source in "." to "gcr.io/my-project/tanzu-java-web-app-live-update"...
    📥 Published source
@@ -689,8 +689,8 @@ Sets the path to a source in the local machine from where the workload creates a
 application source. The local path may be a directory, a JAR, a ZIP, or a WAR file. Java/Spring Boot
 compiled binaries are also supported. This flag must be used with `--source-image` flag.
 
-**Note** If Java/Spring compiled binary is passed instead of source code, the command will take
-less time to apply the workload since the build pack will skip the compiling steps and start uploading
+If Java/Spring compiled binary is passed instead of source code, the command takes
+less time to apply the workload since the build pack skips the compiling steps and start uploading
 the image.
 
 When working with local source code, you can exclude files from the source code to be uploaded within
@@ -706,7 +706,7 @@ and `--maven-group`.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply petc-mvn --maven-artifact petc --maven-version 2.6.1 --maven-group demo.com
 🔎 Create workload:
       1 + |---
@@ -746,7 +746,7 @@ Registry path where the local source code is uploaded as an image.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply spring-pet-clinic --local-path /home/user/workspace/spring-pet-clinic --source-image gcr.io/spring-community/spring-pet-clinic --type web
 ❓ Publish source in "/home/user/workspace/spring-pet-clinic" to "gcr.io/spring-community/spring-pet-clinic"? It may be visible to others who can pull images from that repository Yes
 The files and/or directories listed in the .tanzuignore file are being excluded from the uploaded source code.
@@ -776,7 +776,7 @@ Specifies the namespace in which the workload is created or updated in.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --namespace my-namespace
 🔎 Create workload:
     1 + |---
@@ -806,7 +806,7 @@ and JSON objects use `--param-yaml`.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --param port=9090 --param management-port=9190
 🔎 Create workload:
       1 + |---
@@ -838,7 +838,7 @@ To unset parameters, use `-` after their name.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --param port-
 🔎 Update workload:
 ...
@@ -864,7 +864,7 @@ Additional parameters to be sent to the supply chain, the value is sent as a com
 
  <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --param-yaml server=$'port: 9090\nmanagement-port: 9190'
 🔎 Create workload:
       1 + |---
@@ -896,7 +896,7 @@ To unset parameters, use `-` after their name.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --param-yaml server-
 🔎 Update workload:
 ...
@@ -930,7 +930,7 @@ supported environment variables.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply my-workload --local-path . -s registry.url.nip.io/my-package/my-image --type web --registry-ca-cert path/to/cacert/mycert.nip.io.crt --registry-username my-username --registry-password my-password
 ❓ Publish source in "." to "registry.url.nip.io/my-package/my-image"? It may be visible to others who can pull images from that repository Yes
 Publishing source in "." to "registry.url.nip.io/my-package/my-image"...
@@ -974,7 +974,7 @@ Refers to the minimum CPU the workload pods request to use.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --request-cpu .3
 🔎 Create workload:
     1 + |---
@@ -1006,7 +1006,7 @@ Refers to the minimum memory the workload pods are requesting to use.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --request-memory 300Mi
 🔎 Create workload:
      1 + |---
@@ -1039,7 +1039,7 @@ identity for a workload object.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --service-account petc-serviceaccount
 🔎 Create workload:
       1 + |---
@@ -1067,7 +1067,7 @@ To unset a service account, pass empty string.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --service-account ""
 🔎 Update workload:
 ...
@@ -1094,7 +1094,7 @@ Binds a service to a workload to provide the information from a service resource
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply rmq-sample-app --git-repo https://github.com/jhvhs/rabbitmq-sample --git-branch main --service-ref "rmq=rabbitmq.com/v1beta1:RabbitmqCluster:example-rabbitmq-cluster-1"
 🔎 Create workload:
      1 + |---
@@ -1124,7 +1124,7 @@ To delete service binding, use the service name followed by `-`.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply rmq-sample-app --service-ref rmq-
 🔎 Update workload:
 ...
@@ -1156,7 +1156,7 @@ Defines which path is used as the root path to create and update the workload.
 
 - Git repository
 
-    ```bash
+    ```console
     tanzu apps workload apply subpathtester --git-repo https://github.com/path-to-repo/my-repo --git-branch main --type web --sub-path my-subpath
     🔎 Create workload:
         1 + |---
@@ -1180,7 +1180,7 @@ Defines which path is used as the root path to create and update the workload.
 - Local path
   - In the directory of the project you want to create the workload from
 
-      ```bash
+      ```console
       tanzu apps workload apply my-workload --local-path . -s gcr.io/my-registry/my-workload-image --sub-path subpath_folder
       ❓ Publish source in "." to "gcr.io/my-registry/my-workload-image"? It may be visible to others who can pull images from that repository Yes
       Publishing source in "." to "gcr.io/my-registry/my-workload-image"...
@@ -1209,7 +1209,7 @@ Prints the logs of the workload creation in every step.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --tail
 🔎 Create workload:
       1 + |---
@@ -1258,7 +1258,7 @@ Prints the logs of the workload creation in every step adding the time in which 
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web --tail-timestamp
 🔎 Create workload:
       1 + |---
@@ -1308,7 +1308,7 @@ as a matcher by supply chains. Use the `TANZU_APPS_TYPE` environment variable to
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-branch main --type web
 🔎 Create workload:
       1 + |---
@@ -1353,7 +1353,7 @@ If the workload file is changed as specified in the comments, there are two ways
 
 One, with `merge` update strategy.
 
-```bash
+```console
 tanzu apps workload apply -f ./spring-petclinic.yaml # defaulting to merge
 
 ❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files will replace rather than merge existing configuration. The change will take place in the January 2024 TAP release (use "--update-strategy" to control strategy explicitly).
@@ -1363,7 +1363,7 @@ Workload is unchanged, skipping update
 
 The other, with `replace` update strategy, which will completely overwrite the workload in the cluster according to the new specifications in the file.
 
-```bash
+```console
 tanzu apps workload apply -f ./spring-petclinic.yaml --update-strategy replace
 
 ❗ WARNING: Configuration file update strategy is changing. By default, provided configuration files will replace rather than merge existing configuration. The change will take place in the January 2024 TAP release (use "--update-strategy" to control strategy explicitly).
@@ -1393,7 +1393,7 @@ Holds the command until the workload is ready.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3 --type web --wait
 🔎 Update workload:
 ...
@@ -1422,7 +1422,7 @@ Sets a timeout to wait for the workload to become ready.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply tanzu-java-web-app --git-repo https://github.com/vmware-tanzu/application-accelerator-samples --sub-path tanzu-java-web-app --git-tag tap-1.3-take1 --type web --wait --wait-timeout 1m
 🔎 Update workload:
 ...
@@ -1452,7 +1452,7 @@ Assumes `--yes` on all the survey prompts.
 
 <details><summary>Example</summary>
 
-```bash
+```console
 tanzu apps workload apply spring-pet-clinic --local-path/home/user/workspace/spring-pet-clinic --source-image gcr.io/spring-community/spring-pet-clinic --type web -y
 The files and/or directories listed in the .tanzuignore file are being excluded from the uploaded source code.
 Publishing source in "/Users/dalfonso/Documents/src/java/tanzu-java-web-app" to "gcr.io/spring-community/spring-pet-clinic"...
