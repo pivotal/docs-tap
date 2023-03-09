@@ -3,56 +3,29 @@
 This topic describes how to enable improved security and access control in
 Application Live View in the Tanzu Application Platform.
 
-Application Live View installs four packages:
+For more information on Appliction Live View packages, see [Install Application Live View](./install.hbs.md).
 
-- The Application Live View back-end package
-  (`backend.appliveview.tanzu.vmware.com`) in `app-live-view` namespace.
+The improved security and access control is introduced in order to secure the REST API exposed by the Application Live View back-end. There is one instance of Application Live View back-end installed per `view` profile. Multiple users access this back-end API to fetch actuator data for different applications. All the REST API calls to the back-end are secured. A token needs to be passed to the Application Live View back-end on each call to REST API to fetch actuator data. This token is obtained from Application Live View Apiserver. The Application Live View Apiserver generates a unique token upon access validation of a user to a given pod. The Application Live View back-end passes this token to the Application Live View connector when requesting the actuator data. The Application Live View connector verifies this token by calling the Application Live View Apiserver and proxies the actuator data only if the token is valid. 
 
-- The Application Live View connector package
-  (`connector.appliveview.tanzu.vmware.com`) in `app-live-view-connector`
-  namespace.
+The Application Live View UI plug-in part of The Tanzu Application Platform GUI uses the above approach to securely query for the actuator data for a pod. It requests for a token from Application Live View Apiserver and passes it to the subsequent calls to the back-end. This ensures that actuator data from the running application is fetched only if the user is authorized to see the live information for the pod.
 
-- The Application Live View Conventions package
-  (`conventions.appliveview.tanzu.vmware.com`) in `app-live-view-conventions`
-  namespace.
+The Application Live View UI plug-in relies on Tanzu Application Platform GUI authentication and authorization to access the Application Live View Apiserver and fetch the application live view tokens.
 
-- The Application Live View Apiserver package
-  (`apiserver.appliveview.tanzu.vmware.com`) in `appliveview-tokens-system`
-  namespace.
+The Tanzu Application Platform GUI controls the access to kubernetes resources based on user roles and permissions for each of the remote clusters. For more information on this, see [View runtime resources on authorization-enabled clusters](../tap-gui/tap-gui-rbac/view-resources-rbac.hbs.md).
 
-The Application Live View back end (`backend.appliveview.tanzu.vmware.com`)
-provides a REST API that is used to fetch the actuator data for the
-applications. The Application Live View UI plug-in as part of Tanzu Application
-Platform GUI queries this back-end REST API to get live actuator information for
-the pod. The Application Live View connector
-(`connector.appliveview.tanzu.vmware.com`) retrieves the actuator data from all
-the connected applications and returns it to the Application Live View back end.
-The actuator data is then displayed in the Application Live View UI plug-in as
-part of Tanzu Application Platform GUI.
-
-The improved security and access control is introduced in order to secure the
-REST API exposed by the Application Live View back-end. All the REST API calls
-are secured by passing a token. The Application Live View UI plug-in fetches
-this token from the Application Live View Apiserver. The Application Live View
-Apiserver (`apiserver.appliveview.tanzu.vmware.com`) generates a unique token
-upon access validation of a user to a given pod. This token is then passed to
-the Application Live View back-end on each call to REST API. The Application
-Live View back-end passes this token to the Application Live View connector when
-requesting the actuator data. The Application Live View connector verifies this
-token by calling the Application Live View Apiserver and proxies the actuator
-data only if the token is valid. This ensures that actuator data from the
-running application is fetched only if the user is authorized to see the live
-information for the pod.
+For more information about how to set up unrestricted remote cluster visibility, see [Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.hbs.md).
 
 
 ## <a id='prereqs'></a>Prerequisites
 
-The Application Live View Apiserver package
+1. The Application Live View Apiserver package
 (`apiserver.appliveview.tanzu.vmware.com`) package should be installed in Tanzu
 Application Platform. For more information, see [Install Application Live View
 Apiserver](./install.hbs.md).
 
-If you are using Service Account to view resources on a cluster in Tanzu
+1. The users are assigned necessary roles and permissions for the Kubernetes clusters. For more information on managing role based access control, see [Assign roles and permissions on Kubernetes clusters](../tap-gui/tap-gui-rbac/assigning-kubernetes-roles.hbs.md)
+
+For example, If you are using Service Account to view resources on a cluster in Tanzu
 Application Platform GUI, make sure the `ClusterRole` has rules to access and
 request tokens from the Application Live View Apiserver.
 
@@ -71,7 +44,7 @@ cluster](../tap-gui/cluster-view-setup.hbs.md).
 >able to see the live information in Application Live View.
 
 
-## <a id='improved-security'></a> Improved Security
+## <a id='improved-security'></a> Configure Improved Security
 
 The improved security feature is enabled by default for Application Live View.
 
@@ -93,7 +66,7 @@ shared:
 If you want to override the security feature at the individual component level,
 follow the below steps:
 
-## <a id='app-live-view-connector'></a> Configure Security for Application Live View Connector
+### <a id='app-live-view-connector'></a> Application Live View Connector
 
 1. (Optional) Change the default installation settings for Application Live View
    connector by running:
@@ -201,7 +174,7 @@ follow the below steps:
 
     Verify that `STATUS` is `Reconcile succeeded`.
 
-## <a id='app-live-view-ui-plugin'></a> Configure Security for Application Live View UI plug-in
+### <a id='app-live-view-ui-plugin'></a> Application Live View UI plug-in
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To override the default security settings for the Application Live View UI
