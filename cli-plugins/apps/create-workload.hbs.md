@@ -13,25 +13,21 @@ The following prerequisites are required to use workloads with Tanzu Application
   config use-context CONTEXT_NAME`.
 - Install Tanzu CLI. See [Install or update the Tanzu CLI and
   plug-ins](../../install-tanzu-cli.hbs.md#cli-and-plugin).
-- Install the apps plug-in. See the [Install Apps plug-in](tutorials.hbs.md#install).
+- Install the Apps plug-in. See the [Install Apps plug-in](tutorials.hbs.md#install).
 - [Set up developer namespaces to use installed packages](../../set-up-namespaces.hbs.md).
-- As you familiarize yourself with creating and managing the life cycle of workloads on the
-  platform, review the full `Cartographer Workload spec` to learn more about the
-  values that can be provided.
-
-  There are two methods for doing so:
-
-    1. On the [Cartographer](https://cartographer.sh/docs/v0.6.0/reference/workload/) documentation
-       website - detailed with comments
-    2. Via the terminal by running `kubectl explain workload.spec` - specific to the version running
-       on the target cluster
+- For more information about the values you can provide when creating and managing the life cycle of
+  workloads, see [Workload and Supply Chain Custom Resources](https://cartographer.sh/docs/v0.6.0/reference/workload/)
+  in the Cartographer documentation. Alternatively, run `kubectl explain workload.spec` for the Kubernetes
+  version running on the target cluster.
 
 ## <a id="example"></a> Get started with an example workload
 
+You can create a workload from a GitHub repository or local source.
+
 ### <a id="workload-git"></a> Create a workload from GitHub repository
 
-Tanzu Application Platform supports creating a workload from an existing Git repository by setting
-the flags `--git-repo`, `--git-branch`, `--git-tag`, and `--git-commit`, this  allows the
+Use the flags `--git-repo`, `--git-branch`, `--git-tag`, and `--git-commit` flags to create a
+workload from an existing Git repository. This allows the
 [supply chain](../../scc/about.hbs.md) to get the source from the given repository to deploy the
 application.
 
@@ -57,44 +53,42 @@ by running `tanzu apps workload apply --help`.
 
 ### <a id="workload-local-source"></a> Create a workload from local source code
 
-Tanzu Application Platform supports creating a workload from an existing local project by setting
-the flags `--local-path` and `--source-image`, this allows the [supply
-chain](../../scc/about.hbs.md) to generate an image ([carvel-imgpkg](https://carvel.dev/imgpkg/))
+Use the `--local-path` and `--source-image` flags to create a workload from an existing local project.
+This allows the [supplychain](../../scc/about.hbs.md) to generate an image ([carvel-imgpkg](https://carvel.dev/imgpkg/))
 and push it to the given registry to be used in the workload.
 
-- To create a named workload and specify where the local source code is, run:
+To create a named workload and specify where the local source code is, run:
 
-    ```console
-    tanzu apps workload create pet-clinic --local-path /path/to/my/project --source-image springio/petclinic
-    ```
+```console
+tanzu apps workload create pet-clinic --local-path /path/to/my/project --source-image springio/petclinic
+```
 
-    Respond `Y` to the dialog box about publishing local source code if the image must be updated.
+Respond `Y` to the dialog box about publishing local source code if the image must be updated.
 
-    Where:
+Where:
 
-  - `pet-clinic` is the name of the workload.
-  - `--local-path` points to the directory where the source code is located.
-  - `--source-image` is the registry path where the local source code will be uploaded as an image.
+- `pet-clinic` is the name of the workload.
+- `--local-path` points to the directory where the source code is located.
+- `--source-image` is the registry path where the local source code is uploaded as an image.
 
-    **Exclude Files**
+#### Exclude Files
 
-    When working with local source code, you can exclude files from the source code to be uploaded
-    within the image by creating a `.tanzuignore` file at the root of the source code.
+When working with local source code, you can exclude files from the source code to be uploaded
+within the image by creating a `.tanzuignore` file at the root of the source code.
 
-    The file must contain a list of file paths to exclude from the image including the file itself
-    and the directories must not end with the system path separator (`/` or `\`).
+The file must contain a list of file paths to exclude from the image including the file itself
+and the directories must not end with the system path separator (`/` or `\`).
 
-    For more information regarding the `.tanzuignore` file,
-    see [.tanzuignore file](how-to-guides.hbs.md#tanzuignore-file-usage).
+For more information regarding the `.tanzuignore` file
+see [tanzuignorefile](how-to-examples.hbs.md#tanzuignore-file).
 
 ### <a id="workload-image"></a> Create workload from an existing image
 
-Tanzu Application Platform supports creating a workload from an existing registry image by providing
-the reference to that image through the `--image` flag. When provided,
-the [supplychain](../../scc/about.hbs.md) references the provided registry image when
-the workload is deployed.
+Create a workload from an existing registry image by providing
+the reference to that image through the `--image` flag. The [supplychain](../../scc/about.hbs.md)
+references the provided registry image when the workload is deployed.
 
-An example on how to create a workload from image is as follows:
+For example:
 
 ```console
 tanzu apps workload create petclinic-image --image springcommunity/spring-framework-petclinic
@@ -110,7 +104,7 @@ Respond `Y` to prompts to complete process.
 
 ### <a id="workload-maven"></a> Create a workload from Maven repository artifact
 
-Tanzu Application Platform supports creating a workload from a Maven repository
+Create a workload from a Maven repository
 artifact ([Source-Controller](../../source-controller/about.hbs.md)) by setting some
 specific properties as YAML parameters in the workload when using the [supply chain](../../scc/about.hbs.md).
 
@@ -180,8 +174,7 @@ To create a workload from a file like the earlier example:
 tanzu apps workload create --file my-workload-file.yaml
 ```
 
-**Note** when flags are passed in combination with `--file my-workload-file.yaml` the flag/values
->take precedence over the associated property or values in the YAML.
+>**Note** When flags are passed in combination with `--file my-workload-file.yaml` the flag values take precedence over the associated property or values in the YAML.
 
 The workload YAML definition can also be passed in through stdin as follows:
 
@@ -211,7 +204,7 @@ Tanzu Application Platform supports creating a workload with binding to multiple
 services ([ServiceBinding](../../service-bindings/about.hbs.md)).
 The cluster supply chain is in charge of provisioning those services.
 
-The intent of these bindings is to provide information from a service resource to an application.
+The purpose of these bindings is to provide information from a service resource to an application.
 
 - To bind a database service to a workload, run:
 
@@ -224,9 +217,7 @@ The intent of these bindings is to provide information from a service resource t
   - `pet-clinic` is the name of the workload to be updated.
   - `--service-ref` references the service using the format {service-ref-name}={apiVersion}:{kind}:{service-binding-name}.
 
-See [services consumption documentation](../../getting-started/consume-services.hbs.md) to get more
-information about how to bind a service to a workload.
-
+For more information about how to bind a service to a workload, see [Consume services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md).
 ## <a id="next-steps"></a> Next steps
 
 You can verify workload details and status, add environment variables, export definitions or bind services.
@@ -235,7 +226,7 @@ You can verify workload details and status, add environment variables, export de
 
    To get workload logs, use `tanzu apps workload tail`.
 
-   For more information| about these, see [debug workload section](debug-workload.hbs.md).
+   For more information, see [debug workload section](debug-workload.hbs.md).
 
 2. To add environment variables, run:
 
