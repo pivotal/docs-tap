@@ -50,7 +50,7 @@ To relocate images from the VMware Tanzu Network registry to the ECR registry:
     - `TARGET-AWS-REGION` is the region you deploy the Tanzu Application Platform to.
     - `VERSION-NUMBER` is your Tanzu Application Platform version. For example, `{{ vars.tap_version }}`.
 
-1. [Install the Carvel tool `imgpk` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
+1. [Install the Carvel tool imgpk CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/1.3/cluster-essentials/GUID-deploy.html#optionally-install-clis-onto-your-path-6).
 
 1. Relocate the images with the `imgpkg` CLI by running:
 

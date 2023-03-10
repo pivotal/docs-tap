@@ -11,7 +11,7 @@
 > cluster.
 > This registration will result in the creation of a Kubernetes secret
 
-To do this, apply a [`ClientRegistration`](../crds/clientregistration.md) to the appropriate Kubernetes cluster.
+To do this, apply a [ClientRegistration](../crds/clientregistration.md) to the appropriate Kubernetes cluster.
 
 To confirm that the `ClientRegistration` was successfully processed, check the status:
 

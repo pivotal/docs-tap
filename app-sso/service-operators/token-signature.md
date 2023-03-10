@@ -96,7 +96,7 @@ An RSA key can be created multiple ways. Below are two recommended approaches --
 
 > NOTE: This section assumes you have TAP running in your cluster, with `secretgen-controller` installed.
 
-An [`RSAKey` CR](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/rsa_key.md) allows for
+An [RSAKey CR](https://github.com/vmware-tanzu/carvel-secretgen-controller/blob/develop/docs/rsa_key.md) allows for
 expedited creation of a Secret resource containing PEM-encoded public and private keys required by an `AuthServer`.
 
 1. Create an `AuthServer` with `RSAKeys` as follows:
