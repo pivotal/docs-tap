@@ -555,7 +555,7 @@ Update the `tap-values` that are used for installation of Tanzu Application Plat
 If the internally deployed TUF is used, `tuf_mirror` is `http://tuf.tuf-system.svc`.
 If the mirror is hosted elsewhere, provide the correct mirror URL. The default public TUF instance mirror URL is `https://sigstore-tuf-root.storage.googleapis.com`.
 
-The `tuf_root` is the contents of the obtained `root.json` from the `tuf-root` secret in the `tuf-system` namspace. The public TUF instance's [`root.json`](https://sigstore-tuf-root.storage.googleapis.com/root.json).
+The `tuf_root` is the contents of the obtained `root.json` from the `tuf-root` secret in the `tuf-system` namspace. The public TUF instance's [root.json](https://sigstore-tuf-root.storage.googleapis.com/root.json).
 
 If Policy Controller was installed through Tanzu Application Profiles, update the values file with:
 ```yaml

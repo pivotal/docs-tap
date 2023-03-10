@@ -881,7 +881,7 @@ Deployment and a Kubernetes Service to expose the pods.
 For information about the three different types of workloads, see [workload
 types](../workloads/workload-types.hbs.md).
 
-For information about the ports parameter, see [`server`-specific Workload
+For information about the ports parameter, see [server-specific Workload
 parameters](../workloads/server.hbs.md#-server-specific-workload-parameters).
 
 ## service-bindings
@@ -935,7 +935,7 @@ enriches the input with ResourceClaims and ServiceBindings if the workload conta
 ### More information
 
 For an example, see
-[`--service-ref`](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
+[--service-ref](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#apply-service-ref)
 in the Tanzu CLI documentation.
 
 For an overview of the function, see
@@ -1916,4 +1916,4 @@ A [kapp App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/).
 
 For details about RBAC and how `kapp-controller` makes use of the ServiceAccount provided through the Deliverable's
 `serviceAccount` parameter,
-see [`kapp-controller`'s Security Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/).
+see [kapp-controller's Security Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/).
