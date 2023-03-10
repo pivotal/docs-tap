@@ -335,7 +335,7 @@ To install the `full` dependencies package:
 
     ```yaml
     buildservice:
-      kp_default_repository: ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/tap-build-service
+      kp_default_repository: ${KP_REGISTRY_HOSTNAME}.azurecr.io/{$REPOSITORY_NAME}
       exclude_dependencies: true
     ...
     ```
@@ -344,12 +344,6 @@ To install the `full` dependencies package:
 
     ```console
     tanzu package available list buildservice.tanzu.vmware.com --namespace tap-install
-    ```
-
-1. Create an ECR repository for Tanzu Build Service full dependencies by running:
-
-    ```console
-    aws ecr create-repository --repository-name tbs-full-deps --region ${AWS_REGION}
     ```
 
 1. Relocate the Tanzu Build Service full dependencies package repository by running:
