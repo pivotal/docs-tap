@@ -89,7 +89,7 @@ If you do not want to wait for subsequent builds to run automatically, follow th
 
 ### <a id="full-profile-upgrade-tbs-deps"></a> Upgrade the full dependencies package
 
-If you installed the [`full` dependencies package](install.md#tap-install-full-deps), 
+If you installed the [full dependencies package](install.md#tap-install-full-deps), 
 you can upgrade the package by following these steps:
 
 1. After upgrading Tanzu Application Platform, retrieve the latest version of the

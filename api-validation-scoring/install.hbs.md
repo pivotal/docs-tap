@@ -66,7 +66,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     * `VERSION-NUMBER` is your API Validation and Scoring package version. For example, `0.2.5`
     * `TARGET-REPOSITORY` is your target repository, a folder/repository on `MY-REGISTRY` that serves as the location for the installation files for API Validation and Scoring.
 
-1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
+1. [Install the Carvel tool imgpkg CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
     To query for the available `imgpkg` CLI versions on VMWare Tanzu Network Registry, run:
 

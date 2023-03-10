@@ -47,7 +47,7 @@ The following steps introduce the path to configuring Redis with AppSSO:
 
 1. [Configuring Redis Server CA certificate](#ca-cert)
 1. [Configuring a Redis Secret](#redis-secret)
-1. [Attaching storage to an `AuthServer`](#attach-storage)
+1. [Attaching storage to an AuthServer](#attach-storage)
 
 ### <a id="ca-cert"></a>Configuring Redis Server CA certificate
 
