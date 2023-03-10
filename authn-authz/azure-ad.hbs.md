@@ -133,7 +133,7 @@ Meet these prerequisites:
 * Download and install the [Tanzu CLI](../install-tanzu-cli.html#-install-or-update-the-tanzu-cli-and-plug-ins)
 * Download and install the [Tanzu CLI RBAC plug-in](binding.html)
 * Install [Pinniped supervisor and concierge](pinniped-install-guide.html) on the cluster without
-setting up the [`OIDCIdentityProvider` and `secret`](pinniped-install-guide.html#create-pinniped-supervisor-configuration) yet.
+setting up the [OIDCIdentityProvider and secret](pinniped-install-guide.html#create-pinniped-supervisor-configuration) yet.
 
 
 ### <a id="set-up-azure-ad-app"></a> Set up the Azure AD app
