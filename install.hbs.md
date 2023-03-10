@@ -396,7 +396,7 @@ See [Install the full dependencies package](#tap-install-full-deps) for more inf
 #### <a id='jammy-only'></a> (Optional) Configure your profile with the Jammy stack only
 
 Tanzu Application Platform v1.5.0 supports building applications with both the
-Ubuntu 22.04 (Jammy) and 18.04 (Bionic) stack. For more information, see
+Ubuntu v22.04 (Jammy) and v18.04 (Bionic) stack. For more information, see
 [Bionic and Jammy stacks](tanzu-build-service/dependencies.html#bionic-vs-jammy).
 
 To install Tanzu Application Platform with Jammy as the only available stack,

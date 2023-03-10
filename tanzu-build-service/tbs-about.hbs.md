@@ -9,4 +9,4 @@ For more information about Tanzu Build Service, see the
 [Tanzu Build Service documentation](https://docs.vmware.com/en/VMware-Tanzu-Build-Service/index.html).
 For more information about Tanzu Buildpacks and their configuration, see the [Tanzu Buildpack documentation](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-index.html).
 
-Tanzu Application Platform 1.5 includes Tanzu Build Service 1.10.
+Tanzu Application Platform v1.5 includes Tanzu Build Service v1.10.

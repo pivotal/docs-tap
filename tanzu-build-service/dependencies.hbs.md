@@ -3,7 +3,7 @@
 > **Important** Ubuntu Bionic will stop receiving support in April 2023. The
 > Bionic stack is deprecated and will be removed in a future release.
 > VMware recommends that you migrate builds to Jammy stacks.
-> From Tanzu Application Platform 1.5 onwards, the default stack for Tanzu
+>For Tanzu Application Platform v1.5 and later, the default stack for Tanzu
 > Build Service is Jammy.
 
 This topic describes how Tanzu Build Service uses and installs dependencies.
@@ -11,7 +11,7 @@ This topic describes how Tanzu Build Service uses and installs dependencies.
 Tanzu Build Service requires dependencies in the form of Cloud Native
 [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html),
 [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html),
-and [Lifecycle](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-builders.html#update-lifecycle)
+and [Lifecycles](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-builders.html#update-lifecycle)
 to build OCI images.
 
 ## <a id="install"></a> How dependencies are installed
