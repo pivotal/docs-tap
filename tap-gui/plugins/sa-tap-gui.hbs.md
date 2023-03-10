@@ -51,7 +51,7 @@ The data on this dashboard is based on `kubectl describe` for `SourceScan` and `
 The data on the Supply Chain Choreographer's Vulnerability Scan Results is based on Metadata Store data.
 
 Only vulnerability scans associated to a Cartographer workload appear.
-Use [`tanzu insight`](../../cli-plugins/insight/cli-overview.hbs.md) to view results for
+Use [tanzu insight](../../cli-plugins/insight/cli-overview.hbs.md) to view results for
 non-workload scan results.
 
 ## <a id="accessing-details"></a> Viewing CVE and package details
