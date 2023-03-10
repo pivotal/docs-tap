@@ -277,7 +277,7 @@ buildservice:
 
 tap_gui:
   service_type: ClusterIP # If the shared.ingress_domain is set as above, this must be set to ClusterIP.
-  metadataStoreAutoconfiguration: true # Creates a service account, kubernetes control plane token and the requisite app_config block to enable communications between Tanzu Application Platform GUI and SCST - Store
+  metadataStoreAutoconfiguration: true # Create a service account, the Kubernetes control plane token and the requisite app_config block to enable communications between Tanzu Application Platform GUI and SCST - Store.
   app_config:
     catalog:
       locations:
