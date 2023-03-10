@@ -50,6 +50,20 @@ vulnerabilities.
 
 ---
 
+### <a id='1-4-2-resolved-issues'></a> Resolved issues
+
+The following issues, listed by area and component, are resolved in this
+release.
+
+#### <a id='1-4-2-tbs-ri'></a> Tanzu Build Service
+
+- Fixed bug that prevented the Cloud Native Buildpacks lifecycle component from
+  upgrading with TBS.
+  - Outdated lifecycle components may be built with older versions of Golang
+    containing CVEs in the standard library.
+  - Upgrading to TAP 1.4.2 will ensure the lifecycle component is updated to
+    the latest version.
+
 ### <a id='1-4-2-known-issues'></a> Known issues
 
 This release has the following known issues, listed by area and component.
