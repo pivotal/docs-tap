@@ -49,7 +49,7 @@ for VS Code : ## <a id="you-will"></a>What you will do
      optional Git repository creation, follow the sub-instructions below.
      Otherwise, proceed to step 5.
 
-    > **Note** For information on configuring optional Git repository creation and supported repositories, see [Create an Application Accelerator Git repository during project creation](tap-gui/plugins/application-accelerator-git-repo.hbs.md).
+    > **Note** For information on configuring optional Git repository creation and supported repositories, see [Create an Application Accelerator Git repository during project creation](../tap-gui/plugins/application-accelerator-git-repo.hbs.md).
 
       1. Select your git provider. In this example, `github.com` will be selected.
 
