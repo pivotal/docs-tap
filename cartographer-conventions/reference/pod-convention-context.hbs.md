@@ -2,7 +2,7 @@
 
 The Pod convention context is the body of the webhook request and response. The specification is provided by the convention controller and the status is set by the convention server.
 
-The context is a wrapper of the individual object description in an API (TypeMeta), the persistent metadata of a resource ([ObjectMeta](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/object-meta/#ObjectMeta)), the [`PodConventionContextSpec`](pod-convention-context-spec.md) and the [`PodConventionContextStatus`](pod-convention-context-status.md).
+The context is a wrapper of the individual object description in an API (TypeMeta), the persistent metadata of a resource ([ObjectMeta](https://kubernetes.io/docs/reference/kubernetes-api/common-definitions/object-meta/#ObjectMeta)), the [PodConventionContextSpec](pod-convention-context-spec.md) and the [PodConventionContextStatus](pod-convention-context-status.md).
 
 In the `PodConventionContext` API resource:
 
@@ -53,4 +53,4 @@ The controller is not the source of the metadata, and there is no guarantee that
 
 The `config` field in the image configuration passes through the [OCI Image metadata in GitHub](https://github.com/opencontainers/image-spec/blob/main/config.md) loaded from the registry for the image.
 
-The `boms` field in the image configuration passes through the [`BOM`](bom.md)s of the image. Conventions might parse the BOMs they want to inspect. There is no guarantee that an image contains a BOM or that the BOM is in a certain format.
+The `boms` field in the image configuration passes through the [BOM](bom.md)s of the image. Conventions might parse the BOMs they want to inspect. There is no guarantee that an image contains a BOM or that the BOM is in a certain format.
