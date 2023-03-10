@@ -71,6 +71,7 @@ To install Supply Chain Security Tools - App Scanning:
       workspace.storageSize   100Mi           string   Size of the Persistent Volume to be used by the tekton pipelineruns
       workspace.storageClass                  string   Name of the storage class to use while creating the Persistent Volume Claims
                                                       used by tekton pipelineruns
+      caCertData                              string   The custom certificates to be trusted by the scan's connections
     ```
 
 1. Create a file named `app-scanning-values-file.yaml` and add the setting you want for the installation
@@ -314,6 +315,29 @@ Optional fields:
       emptyDir: {}
     ```
     For information about workspace bindings, see [Using other types of volume sources](https://tekton.dev/docs/pipelines/workspaces/#using-other-types-of-volumesources). Only Secrets, ConfigMaps, and EmptyDirs are  supported.
+
+#### Default Environment
+
+Workspaces:  
+* /home/app-scanning: a memory-backed EmptyDir mount that will contain service account credentials loaded by Tekton
+* /cred-helper: a memory-backed EmptyDir mount containing:
+  * config.json will combine static credentials with workload identity credentials when `activeKeychains` is enabled
+  * trusted-cas.crt when App Scanning is deployed with `caCertData` 
+* /workspace: a PVC to hold scan artifacts and results
+
+Environment Variables:  
+If undefined by your `step` definition the environment will default to:
+* HOME=/home/app-scanning
+* DOCKER_CONFIG=/cred-helper
+* XDG_CACHE_HOME=/workspace/.cache
+* TMPDIR=/workspace/tmp
+* SSL_CERT_DIR=/etc/ssl/certs:/cred-helper
+
+Parameters:  
+* $(params.image): the image to be scanned
+* $(params.scan-results-path): location to save scanner output
+* $(params.trusted-ca-certs): PEM data from the installation's `caCertData`
+
 
 #### Trigger your scan
 
