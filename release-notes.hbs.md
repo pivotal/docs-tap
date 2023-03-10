@@ -88,6 +88,11 @@ after the binaries are built and packaged as images.
   2. Configure your SourceScan or Workload to connect using HTTPS to the repository instead of using SSH.
   3. Edit the FluxCD GitRepository resource to not include the `.git` directory.
 
+**Error: Unable to decode cyclonedx:**
+Supply Chain Security Tools - Scan has a known issue where it will set the phase to `Error` and show an `unable to decode cyclonedx` error in the `Succeeded` condition. The root cause of the problem is not known, but it is an intermittent issue that cuts the CycloneDX XML stream to the logs and then the scan controller can't process the results properly.
+
+**Workaround:** As this is an intermittent issue, if you're applying the scan manually, you can delete the scan and re-apply it again to retry the scan. If this problem happened while running a Supply Chain from the OOTB Supply Chains, you can run `kubectl get imagescans -n <workload namespace>` or `kubectl get sourcescans -n <workload namespace>` to get the scan name, delete it running `kubectl delete <imagescan or sourcescan> <scan name> -n <workload namespace>` and the Choreographer controller will recreate it for you.
+
 #### <a id="1-1-2-known-issues-scst-sign"></a>Supply Chain Security Tools - Sign
 
 Supply Chain Security Tools - Sign rejects images from private registries when the image is deployed to a
