@@ -1,6 +1,6 @@
 # ClientRegistration
 
-`ClientRegistration` is the request for client credentials for an [`AuthServer`](./authserver.md).
+`ClientRegistration` is the request for client credentials for an [AuthServer](./authserver.md).
 
 It implements the [Service Bindings'](https://servicebinding.io/spec/core/1.0.0/) `ProvisionedService`. The credentials
 are returned as a [Service Bindings](https://servicebinding.io/spec/core/1.0.0/) `Secret`.
@@ -69,7 +69,7 @@ Client authentication methods supported by `ClientRegistration` resource are:
 For more information, see [Public clients and CORS](../service-operators/cors.md).
 
 > **Caution** When running Workloads using Spring Boot 3, you must use `client_secret_basic` or `client_secret_post`.
-> For more information, see [Spring Boot 3 based Workloads and `ClientRegistration` resources](../known-issues/index.md#boot3-clientreg).
+> For more information, see [Spring Boot 3 based Workloads and ClientRegistration resources](../known-issues/index.md#boot3-clientreg).
 
 ## Status & conditions
 

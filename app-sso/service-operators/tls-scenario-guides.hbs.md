@@ -243,7 +243,7 @@ issuer.
 
 These scenarios use [Let's Encrypt](https://letsencrypt.org/)'s production API and assume that a
 `ClusterIssuer` by the name `letsencrypt-production` exists.
-See [the `ClusterIssuer` scenario](#cluster-issuer) for how to set the issuer up.
+See [the ClusterIssuer scenario](#cluster-issuer) for how to set the issuer up.
 
 When using `Certificate`, its `.spec.dnsNames` must contain the FQDN of the templated issuer URI. Make sure that your
 AppSSO package installation's `domain_name` and `domain_template` are compatible with your DNS name.
@@ -601,7 +601,7 @@ domain_template: "\{{.Name}}-\{{.Namespace}}.\{{.Domain}}"
 The following scenarios assume use of TLS Secrets, but the same concept carries over to `Certificate`.
 
 > **Important** When using a `(Cluster)Issuer` for [Let's Encrypt](https://letsencrypt.org/), you cannot request wild-card
-certificates when it uses the [`http01` challenge solver](https://cert-manager.io/docs/reference/api-docs/#acme.cert-manager.io/v1.ACMEChallengeSolver)
+certificates when it uses the [http01 challenge solver](https://cert-manager.io/docs/reference/api-docs/#acme.cert-manager.io/v1.ACMEChallengeSolver)
 
 If you have an existing wild-card TLS certificate in the same `Namespace` where the AuthServer is installed, 
 use the following AppSSO configuration values:

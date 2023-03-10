@@ -104,7 +104,7 @@ spec:
             claim: "upstream-identity-providers-groups-claim"
 ```
 
-For every [`ClientRegistration`](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
+For every [ClientRegistration](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
 token will be populated with the `roles` claim:
 
 ```yaml
@@ -240,7 +240,7 @@ spec:
             attribute: "upstream-identity-providers-groups-attribute" # e.g. "cn" or "dn"
 ```
 
-For every [`ClientRegistration`](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
+For every [ClientRegistration](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
 token will be populated with the `roles` claim:
 
 ```yaml
@@ -601,7 +601,7 @@ spec:
             attribute: "saml-group-attribute"
 ```
 
-For every [`ClientRegistration`](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
+For every [ClientRegistration](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
 token will be populated with the `roles` claim:
 
 ```yaml
