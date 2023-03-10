@@ -30,7 +30,7 @@ For information about installing the prerequisites and the Tanzu Developer Tools
 
 2. To ensure your extension assists you with iterating on the correct project, configure its settings using the following instructions.
 
-   1. In Visual Studio Code, navigate to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
+   1. In Visual Studio Code, navigate to `Preferences` > `Settings` > `Extensions` > `Tanzu Developer Tools`.
    2. In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App. The current directory is the default. The Local Path value tells the Tanzu Developer Tools extension which directory on your local file system to bring into the source image container image.
     For example, `.` uses the working directory, or you can specify a full file path.
    3. In the **Source Image** field, provide the destination image repository to publish an image containing the workload source code. The Source Image value tells the Tanzu Developer Tools extension where to publish the container image with your uncompiled source code, and what to name that image. The image must be published to a container registry where you have write (push) access.
@@ -43,7 +43,7 @@ For information about installing the prerequisites and the Tanzu Developer Tools
 3. Confirm your current Kubernetes context has a namespace associated with it. The `TANZU WORKLOADS` panel, found on the left side of the VS Code Explorer tab, uses the namespace associated with your current Kubernetes context to populate the workloads from the cluster.
     - Open the Terminal (⌃\`), or by navigating to `View` > `Terminal`.
     - Ensure your current Kubernetes context has an associated namespace using the command `kubectl config get-contexts`. This command will return a list of all of your Kubernetes contexts with an asterisk (*) in front of your current context. Verify your current context has a namespace in the namespace column.
-    - If your current context does not have a namespace in the namespace column, use the command `kubectl config set-context --current --namespace=<NAMESPACE>`, replacing \<NAMESPACE\> with the namespace value you would like to deploy the workload to.
+    - If your current context does not have a namespace in the namespace column, use the command `kubectl config set-context --current --namespace=YOUR-DEVELOPER-NAMESPACE`, replacing `YOUR-DEVELOPER-NAMESPACE` with the namespace value you would like to deploy the workload to.
 
 You are now ready to iterate on your application.
 
