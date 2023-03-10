@@ -28,7 +28,7 @@ For information about installing the prerequisites and the Tanzu Developer Tools
 1. Confirm your current Kubernetes context contains a default namespace. The `Tanzu Panel`, found by clicking `Tanzu Panel` at the bottom-left of the IntelliJ window, uses the default namespace associated with your current Kubernetes context to populate the workloads from the cluster.
     - Open the Terminal (⌃\`), or by navigating to `View` > `Terminal`.
     - Ensure your current context has a default namespace using the command `kubectl config get-contexts`. This command will return a list of all of your Kubernetes contexts with an asterisk (*) in front of your current context. Verify your current context has a namespace in the namespace column.
-    - If your current context does not have a namespace in the namespace column, use the command `kubectl config set-context --current --namespace=<NAMESPACE>`, replacing \<NAMESPACE\> with the namespace value you would like to assign to your current Kubernetes context.
+    - If your current context does not have a namespace in the namespace column, use the command `kubectl config set-context --current --namespace=YOUR-DEVELOPER-NAMESPACE`, replacing `YOUR-DEVELOPER-NAMESPACE` with the namespace value you would like to assign to your current Kubernetes context.
 
 You are now ready to iterate on your application.
 
