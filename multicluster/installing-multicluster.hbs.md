@@ -19,11 +19,15 @@ The installation order is flexible given the ability to update the installation 
   5. [Add Build, Run and Iterate clusters to Tanzu Application Platform GUI](#add-view).
   6. Update the View cluster's installation values file with the previous information and run the following command to pass the updated config values to Tanzu Application Platform GUI:
 
+    Tanzu CLI
+    :
     ```shell
     tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION --values-file tap-values.yaml -n tap-install
     ```
-
     Where `TAP-VERSION` is the Tanzu Application Platform version you've installed.
+    
+    Tanzu GitOps RI (beta)
+    :Tanzu GitOps procedures...
 
 ## <a id='install-view'></a> Install View cluster
 
