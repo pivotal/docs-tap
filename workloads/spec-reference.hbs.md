@@ -61,13 +61,13 @@ Parameters:
     <td><code>gitImplementation</code></td>
     <td>
       VMware recommends that you use the underlying library for fetching the source code.
-      Either <code>libggit2</code>, required for Azure DevOps, or
+      Either <code>libgit2</code>, required for Azure DevOps, or
       <code>go-git</code>.
     </td>
     <td>
       <pre>
       - name: gitImplementation
-        value: libggit2
+        value: libgit2
       </pre>
     </td>
   </tr>
@@ -906,13 +906,13 @@ Parameters:
     <td><code>gitImplementation</code></td>
     <td>
       VMware recommends that you use the underlying library for fetching the
-      source code.  Either <code>libggit2</code>, required for Azure DevOps, or
+      source code.  Either <code>libgit2</code>, required for Azure DevOps, or
       <code>go-git</code>.
     </td>
     <td>
       <pre>
       - name: gitImplementation
-        value: libggit2
+        value: libgit2
       </pre>
     </td>
   </tr>
@@ -1044,5 +1044,5 @@ The `--service-account` flag sets the `spec.serviceAccountName` key in  the deli
 To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For details about RBAC and how `kapp-controller` uses the ServiceAccount provided to it using the
-`serviceAccount` parameter in the `deliverable` object, see [kapp-controller's Security
+`serviceAccount` parameter in the `deliverable` object, see [`kapp-controller`'s Security
 Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/) in the Carvel documentation.
