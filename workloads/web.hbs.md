@@ -29,7 +29,7 @@ Applications using the `web` workload type have the following features:
 
 When creating a workload with `tanzu apps workload create`, you can use the
 `--type=web` argument to select the `web` workload type.
-For more information, see the [Use the `web` Workload Type](#using) later in this topic.
+For more information, see the [Use the web Workload Type](#using) later in this topic.
 You can also use the `apps.tanzu.vmware.com/workload-type:web` label in the
 YAML workload description to support this deployment type.
 
