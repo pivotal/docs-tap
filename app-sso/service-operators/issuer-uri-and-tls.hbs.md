@@ -46,7 +46,7 @@ There are many use-cases that pertain to TLS use. To find out which scenario app
 [TLS scenario guides](tls-scenario-guides.hbs.md).
 
 If your `AuthServer` obtains a certificate from a custom CA, you can enable App Operators to trust it. 
-See [Allow `Workloads` to trust a custom CA `AuthServer`](#trust-custom-ca) for more information.
+See [Allow Workloads to trust a custom CA AuthServer](#trust-custom-ca) for more information.
 
 ## Configure TLS by using a (Cluster)Issuer
 

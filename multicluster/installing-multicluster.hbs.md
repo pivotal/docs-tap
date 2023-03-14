@@ -19,11 +19,18 @@ The installation order is flexible given the ability to update the installation 
   5. [Add Build, Run and Iterate clusters to Tanzu Application Platform GUI](#add-view).
   6. Update the View cluster's installation values file with the previous information and run the following command to pass the updated config values to Tanzu Application Platform GUI:
 
-    ```shell
+    Tanzu CLI
+    :
+    ```console
     tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION --values-file tap-values.yaml -n tap-install
     ```
-
     Where `TAP-VERSION` is the Tanzu Application Platform version you've installed.
+    
+    Tanzu GitOps RI (beta)
+    :
+    ```console
+    Tanzu GitOps commands...
+    ```
 
 ## <a id='install-view'></a> Install View cluster
 
@@ -31,30 +38,60 @@ Install the View profile cluster first, because some components must exist befor
 
 To install the View cluster:
 
-1. Follow the steps for installing the Full profile in [Installing the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the View profile, as shown in [View profile](reference/tap-values-view-sample.md).
+1. Follow the steps for installing the Full profile in one of the following scenarios:
+
+    - [Online install](../install.md).
+    - [Air-gapped install](../install-air-gap.hbs.md).
+    - [Install on AWS](../install-aws.hbs.md).
+    - [Install on Azure](../azure-install/install-azure.hbs.md).
+    - [Install on OpenShift](../install-openshift.hbs.md).
+
+    Alternatively, you can use a reduced values file for the View profile, as shown in [View profile](reference/tap-values-view-sample.md).
+
 2. Verify that you can access Tanzu Application Platform GUI by using the ingress that you set up. The address must follow this format: `https://tap-gui.INGRESS-DOMAIN`, where `INGRESS-DOMAIN` is the DNS domain you set in `shared.ingress_domain` which points to the shared Contour installation in the `tanzu-system-ingress` namespace with the service `envoy`.
 3. Deploy Supply Chain Security Tools (SCST) - Store. See [Multicluster setup](../scst-store/multicluster-setup.hbs.md) for more information.
 
 ## <a id='install-build'></a> Install Build clusters
 
-To install the Build profile cluster:
+To install the Build profile cluster, follow the steps for installing the Full profile in one of the following scenarios:
 
--  Follow the steps for installing the Full profile in [Installing the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the Build profile, as shown in [Build profile](reference/tap-values-build-sample.md).
+- [Online install](../install.md).
+- [Air-gapped install](../install-air-gap.hbs.md).
+- [Install on AWS](../install-aws.hbs.md).
+- [Install on Azure](../azure-install/install-azure.hbs.md).
+- [Install on OpenShift](../install-openshift.hbs.md).
+
+Alternatively, you can use a reduced values file for the Build profile, as shown in [Build profile](reference/tap-values-build-sample.md).
 
 ## <a id='install-run'></a> Install Run clusters
 
 To install the Run profile cluster:
 
-1. Follow the steps for installing the Full profile in [Install the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the Run profile, as shown in [Run profile](./reference/tap-values-run-sample.md).
+1. Follow the steps for installing the Full profile in one of the following scenarios:
+
+    - [Online install](../install.md).
+    - [Air-gapped install](../install-air-gap.hbs.md).
+    - [Install on AWS](../install-aws.hbs.md).
+    - [Install on Azure](../azure-install/install-azure.hbs.md).
+    - [Install on OpenShift](../install-openshift.hbs.md).
+
+    Alternatively, you can use a reduced values file for the Run profile, as shown in [Run profile](./reference/tap-values-run-sample.md).
+    
 2. To use Application Live View, set the `INGRESS-DOMAIN` for `appliveview_connector` to match the value you set on the View profile for the `appliveview` in the values file.
 
     >**Note** The default configuration of `shared.ingress_domain` points to the local Run cluster, rather than the View cluster, as a result, `shared.ingress_domain` must be set explicitly.
 
 ## <a id='install-iterate'></a> Install Iterate clusters
 
-To install the Iterate profile cluster:
+To install the Iterate profile cluster, follow the steps for installing the Full profile in one of the following scenarios:
 
--  Follow the steps for installing the Full profile in [Install the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the Iterate profile, as shown in [Iterate profile](reference/tap-values-iterate-sample.md).
+- [Online install](../install.md).
+- [Air-gapped install](../install-air-gap.hbs.md).
+- [Install on AWS](../install-aws.hbs.md).
+- [Install on Azure](../azure-install/install-azure.hbs.md).
+- [Install on OpenShift](../install-openshift.hbs.md).
+
+Alternatively, you can use a reduced values file for the Iterate profile, as shown in [Iterate profile](reference/tap-values-iterate-sample.md).
 
 ## <a id='add-view'></a> Add Build, Run and Iterate clusters to Tanzu Application Platform GUI
 

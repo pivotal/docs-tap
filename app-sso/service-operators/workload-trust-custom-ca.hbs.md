@@ -18,7 +18,7 @@ To establish trust between a `Workload` and an `AuthServer`:
 
 A `ca-certificates` service binding `Secret` allows to configure trust for custom CAs.
 
-For more information about exporting CA certificate Secrets, see [Allow `Workloads` to trust a custom CA `AuthServer`](./issuer-uri-and-tls.md#trust-custom-ca).
+For more information about exporting CA certificate Secrets, see [Allow Workloads to trust a custom CA AuthServer](./issuer-uri-and-tls.md#trust-custom-ca).
 
 **Example:** Create a `ca-certificates`-type ServiceBinding Secret from template and offer Tanzu Application Platform's default self-signed CA
 certificate Secret to workloads namespace.

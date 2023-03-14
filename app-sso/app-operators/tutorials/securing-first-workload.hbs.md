@@ -46,7 +46,7 @@ any OAuth related properties. Spring Cloud Bindings will be introduced later in 
 #### <a id='sample-app-client-reg'></a> The sample application's `ClientRegistration`
 
 A critical piece of integration with AppSSO is to create
-a [`ClientRegistration` custom resource definition](../../crds/clientregistration.md). A `ClientRegistration` is a way
+a [ClientRegistration custom resource definition](../../crds/clientregistration.md). A `ClientRegistration` is a way
 for AppSSO to learn about the sample application. In the sample application, you can find the definition file
 named `client.yaml`, at the root of the source directory.
 
@@ -125,7 +125,7 @@ For more information about provisioning namespaces for workloads, see [Set up de
 ### <a id="apply-client-registration"></a>Apply the `ClientRegistration`
 
 Apply the `client.yaml` definition file from the 
-[`application-accelerator-samples/appsso-starter-java` directory](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java):
+[application-accelerator-samples/appsso-starter-java directory](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java):
 
 ```shell
 ytt \

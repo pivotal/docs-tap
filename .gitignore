@@ -4,3 +4,4 @@ _md-cli/*
 _md-cli/
 
 .idea/
+.vscode/*
