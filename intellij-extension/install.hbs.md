@@ -2,7 +2,6 @@
 
 This topic explains how to install the VMware Tanzu Developer Tools for IntelliJ IDE extension.
 The extension currently only supports Java applications on macOS and Windows.
-The extension currently supports IntelliJ IDEA v2022.2 to v2022.3.
 
 ## <a id="prereqs"></a> Prerequisites
 
