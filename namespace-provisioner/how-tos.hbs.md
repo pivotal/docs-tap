@@ -44,7 +44,7 @@ language: java
 
 You can use this config while creating custom resources to extend the default provisioned resources.
 
-Here's a [sample of a templated Tekton pipeline.](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines/python-test.yaml)
+Here's a [sample of a templated Tekton pipeline.](https://github.com/vmware-tanzu/application-accelerator-samples/blob/tap-1.4-np/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines/python-test.yaml)
 
 ## <a id="gitops-customizations"></a>GitOps Customizations
 
@@ -60,20 +60,20 @@ the list of resources that are templated in the `default-resources` Secret, see 
 
 This [example](#example-additional-resources) adds four additional sources:
 
-- This additional source points to an example of a [workload service account yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/workload-sa/workload-sa-with-secrets.yaml).
+- This additional source points to an example of a [workload service account yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/tap-1.4-np/namespace-provisioner-gitops-examples/custom-resources/workload-sa/workload-sa-with-secrets.yaml).
 After importing this source, Namespace Provisioner creates the following resources in all
 amespaces listed in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap).
 - <a id="add-test-scan"></a>This additional source points to examples of
-[ytt templated testing and scanpolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain).
+[ytt templated testing and scanpolicy](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.4-np/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain).
 After importing this source, Namespace Provisioner creates a **scan-policy** and a
 **developer-defined-tekton-pipeline-java** in all namespaces in the
 [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap)  with the default setup in [Install OOTB Supply Chain with Testing and Scanning](../getting-started/add-test-and-security.hbs.md#install-OOTB-test-scan)
 documentation.
-- This additional source points to an example of a [ytt templated scanpolicy yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/scanpolicies/snyk-scanpolicies.yaml).
+- This additional source points to an example of a [ytt templated scanpolicy yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/tap-1.4-np/namespace-provisioner-gitops-examples/custom-resources/scanpolicies/snyk-scanpolicies.yaml).
 After importing this source, Namespace Provisioner creates a **snyk-scan-policy** in all
 namespaces in the [desired-namespaces](about.hbs.md#desired-ns-configmap) ConfigMap that
 has an additional parameter **scanpolicy: snyk**.
-- This additional source points to [examples of ytt templated tekton pipelines](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines).
+- This additional source points to [examples of ytt templated tekton pipelines](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.4-np/namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines).
 After importing this source, Namespace Provisioner creates a *developer-defined-tekton-pipeline-python**
 and **developer-defined-tekton-pipeline-angular** for namespaces in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap) that has an additional parameter **language: python** and **language: angular** respectively.
 
@@ -87,25 +87,25 @@ namespace_provisioner:
   additional_sources:
   # Add a custom workload service account and some secrets
   - git:
-      ref: origin/main
+      ref: tap-1.4-np
       subPath: namespace-provisioner-gitops-examples/custom-resources/workload-sa
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     path: _ytt_lib/workload-sa
   # Add templated Grype scan policy and java Tekton pipeline
   - git:
-      ref: origin/main
+      ref: tap-1.4-np
       subPath: namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     path: _ytt_lib/testingscanning
   # Add templated snyk scan policy
   - git:
-      ref: origin/main
+      ref: tap-1.4-np
       subPath: namespace-provisioner-gitops-examples/custom-resources/scanpolicies
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     path: _ytt_lib/scanpolicies
   # Add templated tekton pipelines for angular, colang and python based on data.values
   - git:
-      ref: origin/main
+      ref: tap-1.4-np
       subPath: namespace-provisioner-gitops-examples/custom-resources/tekton-pipelines
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     path: _ytt_lib/tektonpipelines
@@ -118,7 +118,7 @@ the OOTB Testing and Scanning Supply Chain.
 
 1. Add or update `tap-values.yaml` with the following `namespace_provisioner.additional_resources`
 configuration</br>
-(The ytt templated testing and scanpolicy files that are mounted are [here](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain)).</br></br>
+(The ytt templated testing and scanpolicy files that are mounted are [here](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.4-np/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain)).</br></br>
 
 
    ```yaml
@@ -126,7 +126,7 @@ configuration</br>
      additional_sources:
      # Add templated java scan policy and tekton pipeline
      - git:
-         ref: origin/main
+         ref: tap-1.4-np
          subPath: namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain
          url: https://github.com/vmware-tanzu/application-accelerator-samples.git
        path: _ytt_lib/testingscanning   # this user-generated path must always begin with "_ytt_lib/"
@@ -158,7 +158,7 @@ using GitOps with some specific characteristics:
 - The library file in the GitOps repository directory must have a function called `customize` with the
 overlays to be applied to the resources, it can contain one or more overlays.
 
-The sample file [sa-secrets.lib.yaml](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/default-resources-overrides/overlays/sa-secrets.lib.yaml)
+The sample file [sa-secrets.lib.yaml](https://github.com/vmware-tanzu/application-accelerator-samples/blob/tap-1.4-np/namespace-provisioner-gitops-examples/default-resources-overrides/overlays/sa-secrets.lib.yaml)
 shows how to completely override the `secrets` and `imagePullSecrets`
 sections of the default ServiceAccount to add custom created secrets by using other additional resources.
 
@@ -169,13 +169,13 @@ namespace_provisioner:
   additional_sources:
   # Patches the OOTB default service account to add different secrets
   - git:
-      ref: origin/main
+      ref: tap-1.4-np
       subPath: namespace-provisioner-gitops-examples/default-resources-overrides/overlays
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     path: _ytt_lib/customize   # this path must always be exactly "_ytt_lib/customize"
   # Adds the secrets referenced in the overlay
   - git:
-      ref: origin/main
+      ref: tap-1.4-np
       subPath: namespace-provisioner-gitops-examples/custom-resources/workload-sa
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     path: _ytt_lib/workload-sa   # this user-generated path must always begin with "_ytt_lib/"
@@ -183,7 +183,7 @@ namespace_provisioner:
 
 Sample customization (`.lib.yaml`) file for overriding the `secrets` and `imagePullSecrets` of the
 default ServiceAccount
-- [Link to the Sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/default-resources-overrides/overlays/sa-secrets.lib.yaml)
+- [Link to the Sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/tap-1.4-np/namespace-provisioner-gitops-examples/default-resources-overrides/overlays/sa-secrets.lib.yaml)
 
 ```yaml
 #@ load("@ytt:overlay", "overlay")
@@ -247,7 +247,7 @@ Ensure that the following prerequisites are met:
 
 Use the following snippet as a reference for the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap)
 that you can put on your Git repository.
-Desired-namespaces.yaml ([Link to sample repo file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/desired-namespaces/gitops-managed-desired-namespaces.yaml))
+Desired-namespaces.yaml ([Link to sample repo file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/tap-1.4-np/namespace-provisioner-gitops-examples/desired-namespaces/gitops-managed-desired-namespaces.yaml))
 
 ```yaml
 ---
@@ -282,7 +282,7 @@ The following command uses Kubectl to override this [desired-namespaces](about.h
 ConfigMap manually. The ConfigMap can be overridden with your  tool of choice.
 
 ```console
-kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/main/namespace-provisioner-gitops-examples/desired-namespaces/gitops-managed-desired-namespaces.yaml
+kubectl apply -f https://raw.githubusercontent.com/vmware-tanzu/application-accelerator-samples/tap-1.4-np/namespace-provisioner-gitops-examples/desired-namespaces/gitops-managed-desired-namespaces.yaml
 ```
 
 When this change is applied, the [provisioner application](about.hbs.md#nsp-component-carvel-app)
