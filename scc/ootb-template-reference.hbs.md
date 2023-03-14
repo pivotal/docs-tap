@@ -935,7 +935,7 @@ enriches the input with ResourceClaims and ServiceBindings if the workload conta
 ### More information
 
 For an example, see
-[--service-ref](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#apply-service-ref)
+[--service-ref](../cli-plugins/apps/command-reference/commands-details/workload_create_update_apply.hbs.md#apply-service-ref)
 in the Tanzu CLI documentation.
 
 For an overview of the function, see
