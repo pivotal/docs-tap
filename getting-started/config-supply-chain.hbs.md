@@ -13,7 +13,7 @@ This how-to guide walks you through configuring your supply chain to sign and ve
 
 2. Create a `values.yaml` file, and install the Supply Chain Security Tools - Policy Controller. For instructions, see [Install Supply Chain Security Tools - Policy Controller](../scst-policy/install-scst-policy.md).
 
-3. Configure at least one `ClusterImagePolicy` resource to verify image signatures when deploying resources. For instructions, see [Create a `ClusterImagePolicy` resource](../scst-policy/configuring.md#create-cip-resource).
+3. Configure at least one `ClusterImagePolicy` resource to verify image signatures when deploying resources. For instructions, see [Create a ClusterImagePolicy resource](../scst-policy/configuring.md#create-cip-resource).
 
     For example:
 
