@@ -28,7 +28,7 @@ An application using the `server` workload type has the following features:
 
 When creating a workload with `tanzu apps workload create`, you can use the
 `--type=server` argument to select the `server` workload type.
-For more information, see [Use the `server` Workload Type](#using) later in this topic.
+For more information, see [Use the server Workload Type](#using) later in this topic.
 You can also use the `apps.tanzu.vmware.com/workload-type:server` annotation in the
 YAML workload description to support this deployment type.
 
