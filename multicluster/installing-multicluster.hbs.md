@@ -21,16 +21,13 @@ The installation order is flexible given the ability to update the installation 
 
     Tanzu CLI
     :
-    ```console
+    ```shell
     tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION --values-file tap-values.yaml -n tap-install
     ```
     Where `TAP-VERSION` is the Tanzu Application Platform version you've installed.
     
     Tanzu GitOps RI (beta)
-    :
-    ```console
-    Tanzu GitOps commands...
-    ```
+    :Tanzu GitOps procedures...
 
 ## <a id='install-view'></a> Install View cluster
 
@@ -41,10 +38,10 @@ To install the View cluster:
 1. Follow the steps for installing the Full profile in one of the following scenarios:
 
     - [Online install](../install.md).
-    - [Air-gapped install](../install-air-gap.hbs.md).
-    - [Install on AWS](../install-aws.hbs.md).
-    - [Install on Azure](../azure-install/install-azure.hbs.md).
-    - [Install on OpenShift](../install-openshift.hbs.md).
+    - [Air-gapped install](../install-air-gap.hbs.md)
+    - [Install on AWS](../install-aws.hbs.md)
+    - [Install on Azure](../azure-install/install-azure.hbs.md)
+    - [Install on OpenShift](../install-openshift.hbs.md)
 
     Alternatively, you can use a reduced values file for the View profile, as shown in [View profile](reference/tap-values-view-sample.md).
 
@@ -56,10 +53,10 @@ To install the View cluster:
 To install the Build profile cluster, follow the steps for installing the Full profile in one of the following scenarios:
 
 - [Online install](../install.md).
-- [Air-gapped install](../install-air-gap.hbs.md).
-- [Install on AWS](../install-aws.hbs.md).
-- [Install on Azure](../azure-install/install-azure.hbs.md).
-- [Install on OpenShift](../install-openshift.hbs.md).
+- [Air-gapped install](../install-air-gap.hbs.md)
+- [Install on AWS](../install-aws.hbs.md)
+- [Install on Azure](../azure-install/install-azure.hbs.md)
+- [Install on OpenShift](../install-openshift.hbs.md)
 
 Alternatively, you can use a reduced values file for the Build profile, as shown in [Build profile](reference/tap-values-build-sample.md).
 
@@ -70,10 +67,10 @@ To install the Run profile cluster:
 1. Follow the steps for installing the Full profile in one of the following scenarios:
 
     - [Online install](../install.md).
-    - [Air-gapped install](../install-air-gap.hbs.md).
-    - [Install on AWS](../install-aws.hbs.md).
-    - [Install on Azure](../azure-install/install-azure.hbs.md).
-    - [Install on OpenShift](../install-openshift.hbs.md).
+    - [Air-gapped install](../install-air-gap.hbs.md)
+    - [Install on AWS](../install-aws.hbs.md)
+    - [Install on Azure](../azure-install/install-azure.hbs.md)
+    - [Install on OpenShift](../install-openshift.hbs.md)
 
     Alternatively, you can use a reduced values file for the Run profile, as shown in [Run profile](./reference/tap-values-run-sample.md).
     
@@ -86,10 +83,10 @@ To install the Run profile cluster:
 To install the Iterate profile cluster, follow the steps for installing the Full profile in one of the following scenarios:
 
 - [Online install](../install.md).
-- [Air-gapped install](../install-air-gap.hbs.md).
-- [Install on AWS](../install-aws.hbs.md).
-- [Install on Azure](../azure-install/install-azure.hbs.md).
-- [Install on OpenShift](../install-openshift.hbs.md).
+- [Air-gapped install](../install-air-gap.hbs.md)
+- [Install on AWS](../install-aws.hbs.md)
+- [Install on Azure](../azure-install/install-azure.hbs.md)
+- [Install on OpenShift](../install-openshift.hbs.md)
 
 Alternatively, you can use a reduced values file for the Iterate profile, as shown in [Iterate profile](reference/tap-values-iterate-sample.md).
 
