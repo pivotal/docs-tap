@@ -125,3 +125,9 @@ For the Application Accelerator extension for VS Code to communicate with a Tanz
 
 4. Fully restart any applications that will be leveraging the certificate.
 5. Once restarted, the application will be able to leverage the newly installed certificate to communicate with the endpoints using TLS.
+
+## <a id="resolved-issues"></a> Resolved Issues
+
+Resolved issue in Application Accelerator extension for VS Code, if an accelerator with [`custom
+types`](creating-accelerators/custom-types.hbs.md) is used _and_ the custom type form contains
+checkboxes, re-prioritizing the custom types entries cause the data to not properly reorder.
