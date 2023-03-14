@@ -84,7 +84,7 @@ Click the stop button in the **Debug** overlay to stop debugging on the cluster.
 
 ### <a id="start-live-update"></a> Start Live Update
 
-Before using live update, verify that your auto-save setting is off or on with a reasonable delay(enough for the application to restart inbetween auto saves) to allow enough time for your app to live update on file changes. This setting can be found in Preferences -> Appearance & Behavior -> System Settings -> Autosave.
+Before using live update, verify that your auto-save setting is off or on with a reasonable delay(enough for the application to restart inbetween auto saves) to allow enough time for your app to live update on file changes. This setting can be found in **Preferences** -> **Appearance & Behavior** -> **System Settings** -> **Autosave**.
 
 To start Live Update:
 
@@ -266,3 +266,7 @@ For these projects, make these adjustments:
    all source code from the repository must be supplied to the workload builder.
 
    ![Edit Run Configuration window for Tanzu Debug dash SMTP-gateway.](../images/intellij-mono-repo-launch-config.png)
+
+## <a id="log-setting"></a> Changing logging verbosity
+
+The Tanzu Language Server saves logs to `~/tanzu-langserver.log`. You can change the log verbosity in **Preferences** -> **Tools** -> **Tanzu Developer Tools**.
