@@ -41,7 +41,7 @@ Where:
   accelerators that you want to have managed. The URL must start with `https://` or `git@`.
   You can specify a `sub_path` if   necessary and also a `secret_ref` if the repository requires authentication. If not needed, then leave these additional properties out.
 
-  For more information, see [Configure `tap-values.yaml` with Git credentials secret](#creating-git-credentials) and [Creating a manifest with multiple accelerators and fragments](#examples-multi-manifest) in this topic.
+  For more information, see [Configure tap-values.yaml with Git credentials secret](#creating-git-credentials) and [Creating a manifest with multiple accelerators and fragments](#examples-multi-manifest) in this topic.
 
 ### <a id="functional-considerations"></a> Functional and Organizational Considerations
 
