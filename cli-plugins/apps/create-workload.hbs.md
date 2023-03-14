@@ -80,7 +80,7 @@ The file must contain a list of file paths to exclude from the image including t
 and the directories must not end with the system path separator (`/` or `\`).
 
 For more information regarding the `.tanzuignore` file
-see [tanzuignorefile](how-to-examples.hbs.md#tanzuignore-file).
+see [tanzuignorefile](how-to-guides.hbs.md#tanzuignore-file).
 
 ### <a id="workload-image"></a> Create workload from an existing image
 
