@@ -38,7 +38,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ### <a id='1-5-0-cert-manager-ncf'></a> cert-manager
 
-- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`. 
+- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
 
 ### <a id='1-5-0-intellij-plugin-ncf'></a> Intellij Plugin
@@ -47,7 +47,7 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 - Tanzu actions for workload apply, workload delete, debug and live update start are now available from Tanzu workload panel.
 - Tanzu Developer tools for IntelliJ can be used to iterate on Spring boot applications.
 
-- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`. 
+- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
 
 ### <a id='1-5-0-breaking-changes'></a> Breaking changes
@@ -99,14 +99,14 @@ This release has the following known issues, listed by area and component.
 
 - On Windows, workload actions do not work when in a project with spaces in the name such as `my-app project`. An error similar to `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1` will be shown in the console.
 
-### <a id='1-5-0-deprecations'></a> Deprecations
+## <a id='1-5-0-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
-### <a id='1-5-0-appsso-deprecations'></a> Application Single Sign-On (AppSSO)
+#### <a id='1-5-0-appsso-deprecations'></a> Application Single Sign-On (AppSSO)
 
-- `ClientRegistration` resource `clientAuthenticationMethod` field values `post` and `basic` are deprecated. 
+- `ClientRegistration` resource `clientAuthenticationMethod` field values `post` and `basic` are deprecated.
 Use `client_secret_post` and `client_secret_basic` instead.
 
 #### <a id='1-5-0-convention-controller-dp'></a> Convention Controller
