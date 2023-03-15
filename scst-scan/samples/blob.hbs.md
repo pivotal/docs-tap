@@ -59,7 +59,7 @@ spec:
 Before deploying, set up a watch in another terminal to see things process:
 
 ```console
-watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
+watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies
 ```
 
 For more information, see [Observing and Troubleshooting](../observing.md).
