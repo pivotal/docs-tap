@@ -1,4 +1,4 @@
-# Secure a workload
+# Secure a Spring Boot Workload
 
 This topic describes the procedures to add an authentication mechanism to a sample Spring Boot application 
 by using AppSSO, which runs on Tanzu Application Platform (TAP). 
@@ -9,11 +9,11 @@ is available in GitHub. To follow along, you must clone the Git repository into 
 
 Before starting the tutorial, please ensure that the following items are addressed:
 
-- **RECOMMENDED** Familiarity with [Workloads and AppSSO](../register-an-app-with-app-sso.md#workloads)
+- **RECOMMENDED** Familiarity with [Workloads and AppSSO](./workloads-and-appsso.hbs.md)
 - Tanzu Application Platform (TAP) `v1.2.0` or above is available and fully reconciled in your cluster.
     - Please ensure that you are using one of the following TAP Profiles: `run`, `iterate`, or `full`.
 - AppSSO package is available and reconciled successfully on your cluster.
-- AppSSO has at least one [identity provider configured](../../service-operators/identity-providers.md).
+- AppSSO has at least one [identity provider configured](../service-operators/identity-providers.md).
 - Access to [AppSSO Starter Java accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/appsso-starter-java).
 
 ## Getting started
@@ -60,7 +60,7 @@ The `ClientRegistration` resource definition contains a few critical pieces in i
   Spring Security and it adheres to [the default redirect URI template](https://docs.spring.io/spring-security/reference/servlet/oauth2/login/core.html#oauth2login-sample-redirect-uri).
 - `scopes` is set to a list of one scope, the `openid` scope. The `openid` scope
   is [required by OpenID Connect specification](https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest) in
-  order to issue identity tokens which designate a user as 'signed in'.
+  order to issue identity tokens which designate a user as 'signed in' as well as provide identifying information about the user.
 
 For more information about `ClientRegistration` custom resource, see [ClientRegistration CRD](../../crds/clientregistration.md).
 

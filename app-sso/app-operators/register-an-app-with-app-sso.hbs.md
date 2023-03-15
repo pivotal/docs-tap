@@ -24,18 +24,3 @@ VMware recommends registering clients dynamically after deploying AppSSO. When r
 statically, properties cannot be changed without triggering a rollout of AppSSO.
 
 [Grant Types](grant-types.md)
-
-## <a id='workloads'></a> Workloads
-
-This guide will walk you through steps necessary to secure your deployed `Workload` with AppSSO.
-
-### Prerequisites
-
-Before attempting to integrate your workload with AppSSO, please ensure that the following items are addressed:
-
-- Tanzu Application Platform (TAP) `v{{ vars.tap_version }}` or above is available on your cluster.
-- AppSSO package `v{{ vars.app-sso.version }}` or above is available on your cluster.
-
-### Configuring a Workload with AppSSO
-
-
