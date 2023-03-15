@@ -110,6 +110,8 @@ debug the updated code, without having to deactivate Live Update when debugging.
 
 ### <a id="start-live-update"></a> Start Live Update
 
+Before using live update, verify that your auto-save setting is off or on with a reasonable delay(enough for the application to restart inbetween auto saves) to allow enough time for your app to live update on file changes. This setting can be found in **Preferences** -> **Text Editor** -> **Files** -> **Auto Save** and **Auto Save Delay**.
+
 To start Live Update:
 
 1. Right-click anywhere in the VS Code project explorer, on an associated workload in the workload panel, or open the Command Palette(⇧⌘P on Mac and Ctrl+Shift+P on Windows).
