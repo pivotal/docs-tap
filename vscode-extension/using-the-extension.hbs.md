@@ -350,3 +350,7 @@ For these projects, make these adjustments:
    from the repository must be supplied to the workload builder.
 
    ![VS Code Monorepo Preferences in Settings. The folder drop-down menu is circled in red. The Local Path text box is also circled in red.](../images/vscode-monorepo-preferences.png)
+
+## <a id="log-setting"></a> Changing logging verbosity
+
+The Tanzu Language Server saves logs to `~/tanzu-langserver.log`. You can change the log verbosity in **Preferences** -> **Extensions** -> **Tanzu Developer Tools** -> **Log Verbosity**.
