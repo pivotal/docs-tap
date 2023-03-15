@@ -117,7 +117,7 @@ for details.
 
 Read more about all available [client authentication methods here](../crds/clientregistration.hbs.md#client-auth-methods)
 
-## Requiring user consent
+### Requiring user consent
 
 TODO
 
@@ -157,7 +157,11 @@ NAMESPACE   NAME             READY  REASON  CLAIM REF
 my-apps     my-client-claim  True           services.apps.tanzu.vmware.com/v1alpha1:ResourceClaim:my-client-claim
 ```
 
+## Connecting a `Workload` to an `AuthServer`
+
 The created service resource claim will be referable within a `Workload`:
+
+_Example_: An example `Workload` in `my-apps` namespace
 
 ```yaml
 apiVersion: carto.run/v1alpha1
@@ -170,9 +174,9 @@ metadata:
 spec:
   source:
     git:
+      url: https://github.com/my-company/my-app.git
       ref:
         branch: main
-      url: ssh://git@github.com/my-company/my-workload.git
   serviceClaims:
     - name: my-client-claim
       ref:
@@ -218,14 +222,7 @@ The above credentials are mounted onto your `Workload`'s `Pod`(s) as individual 
 Taking our example from above, the location of mounted credentials can be found on every Workload Pod at the following location:
 
 ```shell
-/bindings
-  my-client-claim/
-    client-id
-    client-secret
-    issuer-uri
-    authorization-grant-types
-    client-authentication-method
-    scope
+/bindings/my-client-claim
 ```
 
 Given these auto-generated values, your `Workload` is now able to load them at runtime and bind to an AppSSO `AuthServer` 
