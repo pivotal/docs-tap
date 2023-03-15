@@ -41,6 +41,9 @@ To accept the Tanzu Application Platform EULA:
 
 ## <a id='cluster-context'></a> Set the Kubernetes cluster context
 
+For information on the supported Kubernetes cluster providers and versions, see
+[Kubernetes cluster requirements](prerequisites.hbs.md#kubernetes-cluster-requirements).
+
 To set the Kubernetes cluster context:
 
 1. List the existing contexts by running:
