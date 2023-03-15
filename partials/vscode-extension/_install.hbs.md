@@ -6,7 +6,7 @@ Before installing the extension, you must have:
 
 - [VS Code](https://code.visualstudio.com/download)
 - [kubectl](https://kubernetes.io/docs/tasks/tools/#kubectl)
-- [Tilt](https://docs.tilt.dev/install.html) v0.27.2 or later
+- [Tilt](https://docs.tilt.dev/install.html) v0.30.12 or later
 - [Tanzu CLI and plug-ins](/docs-tap/install-tanzu-cli.hbs.md#cli-and-plugin)
 - [A cluster with the Tanzu Application Platform Full profile or Iterate profile](/docs-tap/install.hbs.md)
 
