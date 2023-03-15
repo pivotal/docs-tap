@@ -58,16 +58,15 @@ namespace_provisioner:
   additional_sources:
   # Patches the OOTB scan policy with a different rego data
   - git:
-      ref: origin/main
+      ref: tap-1.4-np
       subPath: namespace-provisioner-gitops-examples/default-resources-overrides/overlays
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     path: _ytt_lib/customize
   # Add a custom workload service account and a bunch of git secrets
   - git:
-      ref: origin/main
+      ref: tap-1.4-np
       subPath: namespace-provisioner-gitops-examples/custom-resources/workload-sa
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     path: _ytt_lib/workload-sa
-  # Add templated scan policies
 ...
 ```
