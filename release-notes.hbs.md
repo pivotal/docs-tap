@@ -89,89 +89,6 @@ This release has the following known issues, listed by area and component.
 
 ---
 
-### <a id='1-4-2-deprecations'></a> Deprecations
-
-The following features, listed by component, are deprecated. Deprecated features
-will remain on this list until they are retired from Tanzu Application Platform.
-
-#### <a id="1-4-2-app-live-view-deprecations"></a> Application Live View
-
-- `appliveview_connnector.backend.sslDisabled` is deprecated and marked for
-  removal in Tanzu Application Platform v1.7.0. For more information about the
-  migration, see [Deprecate the sslDisabled
-  key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
-
-#### <a id="1-4-2-app-sso-deprecations"></a> Application Single Sign-On (AppSSO)
-
-- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the
-  next release. For more information about how to migrate to
-  `AuthServer.spec.tls.deactivated`, see [Migration
-  guides](app-sso/upgrades/index.md#migration-guides).
-
-#### <a id="1-4-2-scc-ki"></a> Out of the Box Supply Chain Templates
-
-In a Build profile cluster, Deliverables are created with the labels to
-associate them with their Workload missing. As a workaround, they have to be
-manually injected. For more information, see [Multicluster Tanzu Application
-Platform overview](../docs-tap/multicluster/about.hbs.md).
-
-#### <a id="1-4-2-stk-deprecations"></a> Services Toolkit
-
-- The `tanzu services claims` CLI plug-in command is now deprecated. It is
-  hidden from help text output, but continues to work until officially removed
-  after the deprecation period. The new `tanzu services resource-claims` command
-  has the same capability.
-
-#### <a id="1-4-2-ipw-dep"></a> Supply Chain Security Tools - Image Policy Webhook
-
-- The Image Policy Webhook component is removed in Tanzu Application Platform
-v1.4. This component is deprecated in favor of the [Policy
-Controller](./scst-policy/overview.hbs.md).
-
-#### <a id="1-4-2-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
-
-- Removed deprecated ScanTemplates:
-  - Deprecated Grype ScanTemplates shipped with versions before Tanzu
-    Application Platform v1.2.0 are removed and no longer supported. Use Grype
-    ScanTemplates v1.2 and later.
-  - `docker` field and related sub-fields used in Supply Chain Security Tools -
-    Scan are deprecated and marked for removal in Tanzu Application Platform
-    v1.7.0.
-    - The deprecation impacts the following components: Scan Controller, Grype
-      Scanner, and Snyk Scanner. Carbon Black Scanner is not impacted.
-    - For information about the migration path, see
-  [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
-
-#### <a id="1-4-2-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
-
-- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For
-  migration information, see [Migration From Supply Chain Security Tools -
-  Sign](./scst-policy/migration.hbs.md).
-
-#### <a id="1-4-2-tbs-deprecations"></a> Tanzu Build Service
-
-- The Ubuntu Bionic stack is deprecated: Ubuntu Bionic stops receiving support
-in April 2023. VMware recommends you migrate builds to Jammy stacks in advance.
-For more information about how to migrate builds, see [Use Jammy stacks for a
-workload](tanzu-build-service/dependencies.md#using-jammy).
-- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
-It is still activated by default in Tanzu Application Platform v1.3 and v1.4.
-VMware plans to deactivate this format by default in Tanzu Application Platform
-v1.5 and remove support in Tanzu Application Platform v1.6. For information
-about manually deactivating legacy CNB BOM support, see [Deactivate the CNB BOM
-format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
-
-#### <a id="1-4-2-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
-
-- VMware plans to change the default value for the
-  [`--update-strategy`](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
-  flag from `merge` to `replace` in Tanzu Application Platform
-  v1.7.0.
-- The `tanzu apps workload update` command is deprecated and marked for removal
-  in Tanzu Application Platform v1.5.0. Use `tanzu apps workload apply` instead.
-
----
-
 ## <a id='1-4-1'></a> v1.4.1
 
 **Release Date**: February 16, 2023
@@ -290,27 +207,6 @@ This release has the following known issues, listed by area and component.
   Analysis GUI dashboard might appear empty because the dashboard now displays
   information from the Metadata Store. To repopulate the dashboard, see
   [Troubleshooting](tap-gui/troubleshooting.hbs.md#empty-dash-after-upgrade).
-
----
-
-### <a id='1-4-1-deprecations'></a> Deprecations
-
-The following features, listed by component, are deprecated. Deprecated features
-will remain on this list until they are retired from Tanzu Application Platform.
-
-#### <a id="1-4-1-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
-
-- Removed deprecated ScanTemplates:
-  - Deprecated Grype ScanTemplates shipped with versions prior to Tanzu
-    Application Platform 1.2.0 are removed and no longer supported. Use Grype
-    ScanTemplates v1.2 and later.
-  - `docker` field and related sub-fields used in Supply Chain Security Tools -
-    Scan are deprecated and marked for removal in Tanzu Application Platform
-    1.7.0.
-    - The deprecation impacts the following components: Scan Controller, Grype
-      Scanner, and Snyk Scanner. Carbon Black Scanner is not impacted.
-    - For information about the migration path, see
-  [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
 
 ---
 
@@ -885,7 +781,7 @@ Registration](api-auto-registration/troubleshooting.hbs.md).
 
 ---
 
-### <a id='1-4-0-deprecations'></a> Deprecations
+## <a id='1-4-0-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated. Deprecated features
 will remain on this list until they are retired from Tanzu Application Platform.
@@ -938,7 +834,7 @@ Controller](./scst-policy/overview.hbs.md).
     - For information about the migration path, see
   [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
 
-#### <a id="1-3-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
+#### <a id="1-4-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
 
 - [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For
   migration information, see [Migration From Supply Chain Security Tools -
