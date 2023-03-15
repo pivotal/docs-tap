@@ -25,10 +25,12 @@ Tanzu Application Platform.
 
 To apply a workload:
 
-1. Right-click anywhere in the IntelliJ project explorer.
+1. Right-click anywhere in the IntelliJ project explorer or an associated workload in the workload panel.
 2. Click **Tanzu** > **Apply Workload**.
 
    ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Apply Workload option highlighted.](../images/intellij-apply-workload.png)
+
+   ![The IntelliJ interface showing the workload panel with the workload element pop-up menu open and the Apply Workload option highlighted.](../images/intellij-workload-panel-apply-action.png)
 
 3. Click **Tanzu > Modify Apply Configuration**.
 
@@ -41,10 +43,11 @@ The extension enables you to delete workloads on your Kubernetes cluster that ha
 
 To delete a workload:
 
-1. Right-click anywhere in the IntelliJ project explorer.
+1. Right-click anywhere in the IntelliJ project explorer or a workload in the workload panel.
 2. Click **Tanzu > Delete Workload**.
 
    ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Delete Workload option highlighted.](../images/intellij-delete-workload.png)
+   ![The IntelliJ interface showing the workload panel with the workload element pop-up menu open and the Delete Workload option highlighted.](../images/intellij-workload-panel-delete-action.png)
 
 A message appears that prompts you to delete the workload and not warn again, delete the workload,
 or cancel. A notification appears showing that the workload was deleted.
@@ -54,10 +57,11 @@ or cancel. A notification appears showing that the workload was deleted.
 To start debugging on the cluster:
 
 1. Add a [breakpoint](https://www.jetbrains.com/help/idea/using-breakpoints.html) in your code.
-2. Right-click the `workload.yaml` file in your project.
+2. Right-click the `workload.yaml` file in your project or an associated workload in the workload panel.
 3. Click **Debug 'Tanzu Debug Workload...'** in the pop-up menu.
 
     ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Debug Workload option highlighted.](../images/intellij-debugWorkload.png)
+    ![The IntelliJ interface showing the workload panel with the workload element pop-up menu open and the Debug Workload option highlighted.](../images/intellij-workload-panel-debug-action.png)
 
 4. Ensure that the configuration parameters are set:
 
@@ -80,11 +84,14 @@ Click the stop button in the **Debug** overlay to stop debugging on the cluster.
 
 ### <a id="start-live-update"></a> Start Live Update
 
+Before using live update, verify that your auto-save setting is off or on with a reasonable delay(enough for the application to restart inbetween auto saves) to allow enough time for your app to live update on file changes. This setting can be found in **Preferences** -> **Appearance & Behavior** -> **System Settings** -> **Autosave**.
+
 To start Live Update:
 
-1. Right-click your project’s Tiltfile and then click **Run 'Tanzu Live Update - ...'**.
+1. Right-click your project’s Tiltfile or an associated workload in the workload panel and then click **Run 'Tanzu Live Update - ...'**.
 
    ![The IntelliJ interface showing the project tab with the Tiltfile file pop-up menu open.](../images/intellij-startLiveUpdate.png)
+   ![The IntelliJ interface showing the workload panel with the workload element pop-up menu open and the Live Update Workload option highlighted.](../images/intellij-workload-panel-live-update-action.png)
 
 2. Ensure that the configuration parameters are set:
 
@@ -118,9 +125,11 @@ application pods.
 The panel displays detailed error messages on each resource and enables a developer to view and
 describe logs on these resources from within their IDE.
 
+Workload actions are available from the Tanzu Workloads panel on workloads that have an associated module in the current project. This association is based on a match of the module name and the workload name. For example, a project with a module named "my-app" will be associated with a deployed workload named "my-app". When taking an action from the workload panel, the action will use the namespace of the deployed workload regardless of the configuration in the module. For example, you may have a Live Upate configuration with a namespace argument of "my-apps-1", but running the action from a deployed workload in namespace "my-apps-2" will start a Live Update session with a namespace argument of "my-apps-2".
+
 ![Screenshot of the Tanzu Workloads panel. A Config Map is selected.](../images/intellij-activity-panel.png)
 
-The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context.
+The Tanzu Workloads panel uses the cluster and defaults to the namespace specified in the current kubectl context.
 
 1. View the current context and namespace by running:
 
@@ -133,6 +142,17 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
     ```console
     kubectl config set-context --current --namespace=YOUR-NAMESPACE
     ```
+
+3. To add additional namespaces to your workload panel:
+
+- Click on the gear icon in the upper right corner of the workload panel
+![Screenshot of the Tanzu Workloads panel namespace selection step 1.](../images/intellij-namespace-selection-1.png)
+
+- Click on **Select Namespaces...**
+![Screenshot of the Tanzu Workloads panel namespace selection step 2.](../images/intellij-namespace-selection-2.png)
+
+- Mark the checkboxes of the namespaces that you want to add to your panel
+![Screenshot of the Tanzu Workloads panel namespace selection step 3.](../images/intellij-namespace-selection-3.png)
 
 ## <a id="mono-repo"></a> Working with microservices in a monorepo
 
@@ -246,3 +266,7 @@ For these projects, make these adjustments:
    all source code from the repository must be supplied to the workload builder.
 
    ![Edit Run Configuration window for Tanzu Debug dash SMTP-gateway.](../images/intellij-mono-repo-launch-config.png)
+
+## <a id="log-setting"></a> Changing logging verbosity
+
+The Tanzu Language Server saves logs to `~/tanzu-langserver.log`. You can change the log verbosity in **Preferences** -> **Tools** -> **Tanzu Developer Tools**.

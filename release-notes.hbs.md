@@ -35,6 +35,15 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`. 
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
 
+### <a id='1-5-0-intellij-plugin-ncf'></a> Intellij Plugin
+
+- Tanzu Workload Panel has been updated to show workloads deployed across multiple namespaces.
+- Tanzu actions for workload apply, workload delete, debug and live update start are now available from Tanzu workload panel.
+- Tanzu Developer tools for IntelliJ can be used to iterate on Spring boot applications.
+
+- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`. 
+For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
+
 ### <a id='1-5-0-breaking-changes'></a> Breaking changes
 
 This release has the following breaking changes, listed by area and component.
