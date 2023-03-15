@@ -99,6 +99,25 @@ This release has the following known issues, listed by area and component.
 
 - On Windows, workload actions do not work when in a project with spaces in the name such as `my-app project`. An error similar to `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1` will be shown in the console.
 
+#### <a id="1-5-0-grype-scan-known-issues"></a>Grype scanner
+
+- **Scanning Java source code that uses Gradle package manager might not reveal
+  vulnerabilities:**
+
+  For most languages, source code scanning only scans files present in the
+  source code repository. Except for support added for Java projects using
+  Maven, no network calls fetch dependencies. For languages using dependency
+  lock files, such as Golang and Node.js, Grype uses the lock files to check
+  dependencies for vulnerabilities.
+
+  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
+  dependencies present in the built binaries, such as `.jar` or `.war` files.
+
+  Because VMware discourages committing binaries to source code repositories,
+  Grype fails to find vulnerabilities during a source scan. The vulnerabilities
+  are still found during the image scan after the binaries are built and
+  packaged as images.
+
 ### <a id='1-5-0-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
