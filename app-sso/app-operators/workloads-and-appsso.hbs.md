@@ -130,7 +130,7 @@ tanzu service resource-claim create my-client-claim \
   --namespace my-apps \
   --resource-api-version sso.apps.tanzu.vmware.com/v1alpha1 \
   --resource-kind ClientRegistration \
-  --resource-name my-workload-client-registration \
+  --resource-name my-workload-client \
   --resource-namespace my-apps
 ```
 
@@ -146,7 +146,7 @@ spec:
   ref:
     apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
     kind: ClientRegistration
-    name: my-workload-client-registration
+    name: my-workload-client
     namespace: my-apps
 ```
 
