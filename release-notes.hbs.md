@@ -73,6 +73,22 @@ This release has the following known issues, listed by area and component.
 
 - When using auto-tls, on by default, DomainMapping resources must have names that are less than 63 characters. Otherwise, the DomainMapping fails to become ready due to `CertificateNotReady`.
 
+### <a id='1-5-0-vscode-plugin-ki'></a> VSCode Plugin
+
+- If a user restarts their computer while running live update without having terminated the tilt process beforehand, there is a lock that incorrectly shows that live update is still running and prevents it from starting again. Deleting the tilt lock file resolves this(default location is `~/.tilt-dev/config.lock`).
+
+- On Windows, workload commands do not work when in a project with spaces in the name such as `my-app project`. An error similar to `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1` will be shown in the console.
+
+### <a id='1-5-0-intellij-plugin-ki'></a> Intellij Plugin
+
+- A `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` error will be shown in the error logs when attempting to take a workload action before having installed the Tanzu CLI apps plugin.
+
+- The apply action prompts and stores the workload file path when using the action for the first time, but modifying it after is not possible. If the workload file location changes, the user needs to delete the module's key-value entries prefixed with `com.tanzu` in the `PropertiesComponent` found in the project's `.idea/workspace.xml` file to delete the configuration. The next apply action run will prompt for new values again.
+
+- If a user restarts their computer while running live update without having terminated the tilt process beforehand, there is a lock that incorrectly shows that live update is still running and prevents it from starting again. Deleting the tilt lock file resolves this(default location is `~/.tilt-dev/config.lock`).
+
+- On Windows, workload actions do not work when in a project with spaces in the name such as `my-app project`. An error similar to `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1` will be shown in the console.
+
 ### <a id='1-5-0-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
