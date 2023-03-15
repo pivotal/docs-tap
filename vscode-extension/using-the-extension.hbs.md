@@ -228,6 +228,8 @@ It also shows whether Live Update and Debug is running, stopped, or deactivated.
 
 The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context.
 
+Workload commands are available from the Tanzu Workloads panel on workloads that have an associated module in the current project. This association is based on a match of the module name and the workload name. For example, a project with a module named "my-app" will be associated with a deployed workload named "my-app". When taking an action from the workload panel, the action will use the namespace of the deployed workload regardless of the configuration in the module. For example, you may have a Live Upate configuration with a namespace argument of "my-apps-1", but running the action from a deployed workload in namespace "my-apps-2" will start a Live Update session with a namespace argument of "my-apps-2".
+
 1. View the current context and namespace by running:
 
    ```console
