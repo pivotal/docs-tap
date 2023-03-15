@@ -105,7 +105,7 @@ Follow these steps to deploy the sample application:
 1. [Apply a client registration](#apply-client-registration).
 1. [Create a resource claim for the workload](#create-resource-claim).
 1. (Optional) Ensure `Workload` trusts `AuthServer`. 
-For more information, see [Configure Workloads to trust a custom Certificate Authority (CA)](../../service-operators/workload-trust-custom-ca.hbs.md).
+For more information, see [Configure Workloads to trust a custom Certificate Authority (CA)](../service-operators/workload-trust-custom-ca.hbs.md).
 
     >**Important** You must ensure `Workload` trusts `AuthServer` if you use the default self-signed certificate `ClusterIssuer` while installing Tanzu Application Platform.
 
