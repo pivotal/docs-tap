@@ -119,7 +119,7 @@ For the Application Accelerator extension for VS Code to communicate with a Tanz
         1. Using Windows Explorer, navigate to the directory where the certificate was downloaded and double click on the certificate.
         2. In the Certificate window, click "Install Certificate...".
         3. Change the "Store Location" from "Current User" to "Local Machine". Click Next.
-        4. Keep "Automatically select the certificate store based on the type of certificate" checked. Click Next.
+        4. Select "Place all certificates in the following store", click "Browse", and select "Trusted Root Certification Authorities"
         5. Click Finish.
         6. If successfully imported, a popup window stating "The import was successful." will appear.
 
