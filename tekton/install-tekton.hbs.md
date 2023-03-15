@@ -82,7 +82,7 @@ To install Tekton Pipelines:
 
 This section covers configuring a namespace to run Tekton Pipelines.
 If you rely on a SupplyChain to create Tekton PipelinesRuns in your cluster, skip this step because
-namespace configuration is covered in [Set up developer namespaces to use installed packages](#setup).
+namespace configuration is covered in [Set up developer namespaces to use installed packages](../install-components.hbs.md#setup).
 Otherwise, perform the steps in this section for each namespace where you create Tekton Pipelines.
 
 Service accounts that run Tekton workloads need access to the image pull secrets for the Tanzu package.
