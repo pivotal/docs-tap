@@ -56,7 +56,7 @@ time. To change your preferences, go to **Settings** > **Preferences**.
 ### <a id="delete-anon-data"></a> Request to delete your anonymized data
 
 If you no longer want to participate in the program and you want VMware to delete all your anonymized
-data, please send an email requesting deletion, with your hashed User ID, to tap-pendo@vmware.com.
+data, please send an email requesting deletion, with your hashed User ID, to [tap-pendo@groups.vmware.com](mailto:tap-pendo@groups.vmware.com).
 
 This enables VMware to identify your anonymized data and delete it in accordance with the applicable
 regulations.
