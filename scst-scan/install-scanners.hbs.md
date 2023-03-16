@@ -301,7 +301,7 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
 ## <a id="install-to-multiple-namespaces"></a> Install Scanner to Multiple Namespaces
 
-If you want to install a Scanner to multiple namespaces, please use [Namespace Provisioner](namespace-provisioner/about.hbs.md) which is the recommended way of doing this.
+If you want to install a Scanner to multiple namespaces, please use [Namespace Provisioner](../namespace-provisioner/about.hbs.md) which is the recommended way of doing this.
 
 
 ## <a id="configure-supply-chain"></a> Configure Tanzu Application Platform Supply Chain to use new scanner
