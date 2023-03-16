@@ -50,13 +50,13 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 
 ### <a id='1-5-0-vscode-plugin-ncf'></a> VS Code Plug-in
 
-- Tanzu Activity panel has been added to allow developers to visualize the supply chain, delivery, and running application pods. 
+- Tanzu Activity panel has been added to allow developers to visualize the supply chain, delivery, and running application pods.
   It displays detailed error messages on each resource and enables developers to describe and view logs on these resources from within their IDE.
 - Tanzu Workload panel has been updated to show workloads deployed across multiple namespaces.
 - Tanzu commands for workload apply, workload delete, debug and live update start are now available from Tanzu Workload panel.
 - Tanzu Developer Tools for VSCode can be used to iterate on Spring Boot applications.
 
-- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`. 
+- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
 
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
 
@@ -93,21 +93,39 @@ This release has the following known issues, listed by area and component.
 
 - When using auto-tls, on by default, DomainMapping resources must have names that are less than 63 characters. Otherwise, the DomainMapping fails to become ready due to `CertificateNotReady`.
 
-#### <a id='1-5-0-vscode-plugin-ki'></a> VSCode Plugin
+#### <a id='1-5-0-vscode-plugin-ki'></a> Tanzu Developer Tools for VS Code
 
-- If a user restarts their computer while running live update without having terminated the tilt process beforehand, there is a lock that incorrectly shows that live update is still running and prevents it from starting again. Deleting the tilt lock file resolves this(default location is `~/.tilt-dev/config.lock`).
+- If a user restarts their computer while running Live Update, without having terminated the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again. Delete the Tilt lock file to resolve this.
+  The default file location is `~/.tilt-dev/config.lock`.
 
-- On Windows, workload commands do not work when in a project with spaces in the name such as `my-app project`. An error similar to `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1` will be shown in the console.
+- On Windows, workload commands don't work when in a project with spaces in the name, such as
+  `my-app project`. An error similar to
+  `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1`
+  is shown in the console.
 
-#### <a id='1-5-0-intellij-plugin-ki'></a> Intellij Plugin
+#### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for Intellij
 
-- A `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` error will be shown in the error logs when attempting to take a workload action before having installed the Tanzu CLI apps plugin.
+- A `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` error is shown in the
+  error logs when attempting to take a workload action before having installed the Tanzu CLI apps
+  plug-in.
 
-- The apply action prompts and stores the workload file path when using the action for the first time, but modifying it after is not possible. If the workload file location changes, the user needs to delete the module's key-value entries prefixed with `com.tanzu` in the `PropertiesComponent` found in the project's `.idea/workspace.xml` file to delete the configuration. The next apply action run will prompt for new values again.
+- The apply action prompts and stores the workload file path when using the action for the first time,
+  but modifying it afterwards is not possible.
+  If the workload file location changes, the user needs to delete the module's key-value entries
+  prefixed with `com.tanzu` in the `PropertiesComponent` found in the project's `.idea/workspace.xml`
+  file to delete the configuration. The next apply action run prompts for new values again.
 
-- If a user restarts their computer while running live update without having terminated the tilt process beforehand, there is a lock that incorrectly shows that live update is still running and prevents it from starting again. Deleting the tilt lock file resolves this(default location is `~/.tilt-dev/config.lock`).
+- If a user restarts their computer while running Live Update without having terminated the Tilt
+  process beforehand, there is a lock that incorrectly shows that Live Update is still running and
+  prevents it from starting again.
+  Deleting the Tilt lock file resolves this. The default location is `~/.tilt-dev/config.lock`.
 
-- On Windows, workload actions do not work when in a project with spaces in the name such as `my-app project`. An error similar to `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1` will be shown in the console.
+- On Windows, workload actions do not work when in a project with spaces in the name such as
+  `my-app project`. An error similar to
+  `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1`
+  is shown in the console.
 
 #### <a id="1-5-0-grype-scan-known-issues"></a>Grype scanner
 
