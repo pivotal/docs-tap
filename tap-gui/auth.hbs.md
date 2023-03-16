@@ -1,4 +1,4 @@
-# Set up Authentication for Tanzu Application Platform GUI
+# Setting up a Tanzu Application Platform GUI authentication provider
 
 Tanzu Application Platform GUI extends the current Backstage's authentication plug-in so that you
 can see a login page based on the authentication providers configured at installation.
@@ -13,15 +13,6 @@ as standard:
 - [Google](https://backstage.io/docs/auth/google/provider)
 - [Okta](https://backstage.io/docs/auth/okta/provider)
 - [OneLogin](https://backstage.io/docs/auth/onelogin/provider)
-
-## <a id='backstage-identity'></a> View your Backstage Identity
-
-A Backstage identity is defined as the combination of the user reference (each entity in the catalog is uniquely identified by the triplet of its [kind](https://backstage.io/docs/features/software-catalog/descriptor-format#apiversion-and-kind-required), [namespace](https://backstage.io/docs/features/software-catalog/descriptor-format#namespace-optional), and [name](https://backstage.io/docs/features/software-catalog/descriptor-format#name-required). For example, a user Jane may be assigned User Entity `user:default/jane` and an ownership reference which is used to determine what that user owns. For example, a user Jane (`user:default/jane`) might have the Ownership References `user:default/jane`, `group:default/team-a`, and `group:default/admins`, this means that the user belongs to those groups and as such owns those references.
-
-You can view your current in the **Settings** section of the left-hand side navigation panel, under the **General** tab:
-
-  ![Screenshot of a Tanzu Application Platform catalog displayed within Tanzu Application Platform GUI.](images/backstage-identity.png)
-
 
 ## <a id='config-auth-prov'></a> Configure an authentication provider
 
