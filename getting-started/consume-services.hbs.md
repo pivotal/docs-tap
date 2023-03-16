@@ -37,7 +37,7 @@ For more information, see [Set up developer namespaces to use installed packages
 
 This section covers:
 
-* Using `tanzu service class list` and `tanzu service class get` to find information about the classes.
+* Using `tanzu service class list` and `tanzu service class get` to find information about the classes of services.
 
 The range of available services can be discovered using the `tanzu service class list` command.
 
