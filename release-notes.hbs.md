@@ -8,6 +8,9 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ### <a id="1-5-0-tap-new-features"></a> Tanzu Application Platform new features
 
+- A new Crossplane Package is now part of the iterate, run and full profiles.
+- A new Bitnami Services Package is now part of the iterate, run and full profiles.
+
 ### <a id='1-5-0-new-component-features'></a> New features by component and area
 
 #### <a id='1-5-0-app-accelerator-new-features'></a> Application Accelerator
@@ -32,6 +35,32 @@ This topic contains release notes for Tanzu Application Platform v1.5.
   provider. For more information, see [Default authorization scopes](app-sso/service-operators/configure-authorization.hbs.md#default-scopes).
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
+
+#### <a id='1-5-0-services-toolkit-new-features'></a> Services Toolkit
+
+- Services Toolkit now supports the dynamic provisioning of Services Instances. `ClusterInstanceClass` now supports the new provisioner mode. When a `ClassClaims` is created and refers to a provisioner `ClusterInstanceClass` a new Service Instance is created on-demand and claimed. This is powered by [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane).
+- `tanzu services class-claim` has been updated to allow the passing of parameters to `ClusterInstanceClass` that support dynamic provisioning.
+  - For example, `tanzu services class-claim create rmq-claim-1 --class rmq --parameter replicas=3  --parameter ha=true`
+- Services Toolkit integrates with the new Bitnami Services Package which provides out-of-the-box support for the following Helm charts:
+  - PostgreSQL
+  - MySQL
+  - Redis
+  - RabbitMQ
+- Improved the security model for which users can claim specific Service Instances. Introduced the `claim` custom RBAC verb that targets a specific `ClusterInstanceClass`. This can be bound to users for access control of who can create `ClassClaim` resources for a specific `ClusterInstanceClass`. `ResourceClaimPolicy` is now created automatically for successful `ClassClaims`.
+- `ResourceClaimPolicy` now supports targeting individual resources by name via `.spec.subject.resourceNames`
+
+#### <a id='1-5-0-crossplane-new-features'></a> Crossplane
+
+- [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane) version `1.11.0` is a new package in TAP. This provides integration for dynamic provisioning in Services Toolkit and can be used for integration with Cloud Services.
+- This ships with two Crossplane [Providers](https://docs.crossplane.io/v1.9/concepts/providers/) out-of-the-box, `provider-kubernetes` and `provider-helm`. Other providers can be added manually as required.
+
+#### <a id='1-5-0-bitnami-services-new-features'></a> Crossplane
+
+- Bitnami Helm charts are now shipped out-of-the-box with TAP and integrate with Services Toolkit. These include:
+  - PostgreSQL
+  - MySQL
+  - Redis
+  - RabbitMQ
 
 #### <a id='1-5-0-scst-policy-new-features'></a> Supply Chain Security Tools - Policy Controller
 
