@@ -55,7 +55,7 @@ The range of available services can be discovered using the `tanzu service class
       redis-unmanaged       Redis by Bitnami
     ```
 
-You can see that four classes are listed covering a range of services - MySQL, PostgreSQL, RabbitMQ and Redis. This is the default set of services that come preconfigured with Tanzu Application Platform. They are backed by Bitnami helm charts which run on the Tanzu Application Platform cluster itself. As such they can be considered "unmanaged" services.
+You can see that four classes are listed covering a range of services - MySQL, PostgreSQL, RabbitMQ and Redis. This is the default set of services that come preconfigured with Tanzu Application Platform. They are backed by Bitnami Helm charts which run on the Tanzu Application Platform cluster itself. As such they can be considered "unmanaged" services.
 
 You can see more detailed information for a given class by using the `tanzu service class get` command.
 
