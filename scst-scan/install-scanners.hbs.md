@@ -298,6 +298,12 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
 
     Where `PATH-TO-SCAN-YAML` is the path to the YAML file created earlier.
 
+
+## <a id="install-to-multiple-namespaces"></a> Install Scanner to Multiple Namespaces
+
+If you want to install a Scanner to multiple namespaces, please use [Namespace Provisioner](namespace-provisioner/about.hbs.md) which is the recommended way of doing this.
+
+
 ## <a id="configure-supply-chain"></a> Configure Tanzu Application Platform Supply Chain to use new scanner
 
 In order to scan your images with the new scanner installed in the [Out of the Box Supply Chain with Testing and Scanning](../scc/ootb-supply-chain-testing-scanning.hbs.md), you must update your Tanzu Application Platform installation.
