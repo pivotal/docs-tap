@@ -217,4 +217,4 @@ Follow these steps to enable additional users by using Kubernetes RBAC to submit
 
 ## <a id='next-steps'></a>Next steps
 
-- [Install Tanzu Developer Tools for VS Code](vscode-install-azure.hbs.md)
+- [Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)
