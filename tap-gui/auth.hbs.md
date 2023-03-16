@@ -19,9 +19,9 @@ as standard:
 A Backstage identity is defined as a combination of:
 
 - The user reference: each entity in the catalog is uniquely identified by the triplet of its
-  [kind](https://backstage.io/docs/features/software-catalog/descriptor-format/#apiversion-and-kind-required).
-- A [namespace](https://backstage.io/docs/features/software-catalog/descriptor-format/#namespace-optional).
-- A [name](https://backstage.io/docs/features/software-catalog/descriptor-format/#name-required).
+  [kind](https://backstage.io/docs/features/software-catalog/descriptor-format/#apiversion-and-kind-required)
+- A [namespace](https://backstage.io/docs/features/software-catalog/descriptor-format/#namespace-optional)
+- A [name](https://backstage.io/docs/features/software-catalog/descriptor-format/#name-required)
 
 For example, the user Jane can be assigned to the user entity `user:default/jane` and an ownership
 reference, which is used to determine what that user owns.
