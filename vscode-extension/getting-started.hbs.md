@@ -9,7 +9,7 @@ This topic guides you through getting started with VMware Tanzu Developer Tools 
 
 ## <a id="config-src-img-registry"></a> Configure source image registry
 
-{{> 'partials/ext-tshoot/config-src-img-registry' }}
+{{> 'partials/ide-extensions/config-src-img-registry' }}
 
 ## <a id="set-up-tanzu-dev-tools"></a> Set up Tanzu Developer Tools
 

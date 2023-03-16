@@ -20,7 +20,7 @@ Before you get started, ensure you have completed [Installing Tanzu Developer To
 
 ## <a id="config-src-img-registry"></a> Configure source image registry
 
-{{> 'partials/ext-tshoot/config-src-img-registry' }}
+{{> 'partials/ide-extensions/config-src-img-registry' }}
 
 ## <a id="create-workload-yaml"></a> Create the workload.yaml file
 
