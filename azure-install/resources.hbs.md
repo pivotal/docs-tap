@@ -98,4 +98,4 @@ To manage a Kubernetes cluster, use the Kubernetes command-line client,
 
 ## <a id='next-steps'></a>Next steps
 
-- [Install Tanzu Application Platform package and profiles on Azure](install-azure.hbs.md)
+- [Install Tanzu Application Platform package and profiles on Azure](profile.hbs.md)

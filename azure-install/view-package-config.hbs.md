@@ -4,4 +4,4 @@
 
 {{> 'partials/view-package-config' }}
 
-For information about package-specific configuration, see [Install individual packages](install-components-azure.hbs.md).
+For information about package-specific configuration, see [Install individual packages](components.hbs.md).

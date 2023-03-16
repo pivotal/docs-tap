@@ -6,7 +6,7 @@ from the Tanzu Application Platform package repository on to Azure.
 Before installing the packages, ensure you have:
 
 - Completed the [Prerequisites](../prerequisites.hbs.md).
-- Created [Azure Resources](azure-resources.hbs.md).
+- Created [Azure Resources](resources.hbs.md).
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
 
@@ -182,7 +182,7 @@ The sample values file contains the necessary defaults for:
 
     Keep the values file for future configuration use.
 
-1. [View possible configuration settings for your package](view-package-config-azure.hbs.md)
+1. [View possible configuration settings for your package](view-package-config.hbs.md)
 
 ### <a id='full-profile'></a> Full profile (Azure)
 
@@ -317,7 +317,7 @@ by following the procedure in [Install full dependencies](#tap-install-full-deps
 
 After installing the Full profile on your cluster, you can install the
 Tanzu Developer Tools for VS Code Extension to help you develop against it.
-For more information, see [Install Tanzu Developer Tools for VS Code](vscode-install-azure.hbs.md).
+For more information, see [Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md).
 
 ## <a id="tap-install-full-deps"></a> Install the full dependencies package
 
@@ -386,5 +386,5 @@ Proceed to the [Getting Started](../getting-started.md) topic or the
 
 ## <a id='next-steps'></a>Next steps
 
-- (Optional) [Install Individual Packages](install-components-azure.hbs.md)
-- [Set up developer namespaces to use installed packages](set-up-namespaces-azure.hbs.md)
+- (Optional) [Install Individual Packages](components.hbs.md)
+- [Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md)
