@@ -17,7 +17,7 @@ The following diagram depicts a summary of what this tutorial covers.
 Bear the following observations in mind as you work through this guide:
 
 1. There are a set of four classes preinstalled on the cluster.
-2. There is no configuration or setup required by Service Operators.
+2. There is no configuration or setup required by Service Operators for these four out-of-the-box services.
 3. ProvisionedService is the contract allowing credentials and connectivity information to flow from the service instance to the resource claim, to the class claim, to the service binding, and ultimately to the application workload. For more information, see [ProvisionedService](https://github.com/servicebinding/spec#provisioned-service) on GitHub.
 4. The life cycles of service bindings are implicitly tied to the life cycle of workloads.
 5. The life cycles of claims are explicitly managed by the Application Operator.
