@@ -9,18 +9,18 @@ The `Status.Conditions` array is populated with the scan status information duri
 ### <a id='con-type-scan'></a>Condition types for the scans
 
 #### <a id='scanning'></a>Scanning
-The Condition with type `Scanning` indicates the execution of the scanning job. The Status field indicates whether the scan is still running or has already finished (i.e., if `Status: True`, the scan job is still running; if `Status: False`, the scan is done).
+The Condition with type `Scanning` indicates the execution of the scanning taskrun. The Status field indicates whether the scan is still running or has already finished (i.e., if `Status: True`, the scan taskrun is still running; if `Status: False`, the scan is done).
 
 The Reason field is `JobStarted` while the scanning is running and `JobFinished` when it is done.
 
 The Message field can either be `The scan job is running` or `The scan job terminated` depending on the current Status and Reason.
 
 #### <a id='succeeded'></a>Succeeded
-The Condition with type `Succeeded` indicates the scanning job result. The Status field indicates whether the scan finished successfully or if it encountered an error (i.e., the status is `Status: True` if it completed successfully or `Status: False` otherwise).
+The Condition with type `Succeeded` indicates the scanning taskrun result. The Status field indicates whether the scan finished successfully or if it encountered an error (i.e., the status is `Status: True` if it completed successfully or `Status: False` otherwise).
 
 The Reason field is `JobFinished` if the scanning was successful or `Error` if otherwise.
 
-The Message and Error fields have more information about the last seen status of the scan job.
+The Message and Error fields have more information about the last seen status of the scan taskrun.
 
 #### <a id='send-results'></a>SendingResults
 The condition with type `SendingResults` indicates sending the scan results to the metadata store. In addition to a successful process of sending the results, the condition may also indicate that the metadata store integration has not been configured or that there was an error sending. An error would usually be a misconfigured metadata store url or that the metadata store is inaccessible. Check the installation steps to ensure the configuration is correct regarding secrets being set within the `scan-link-system` namespace.
@@ -44,7 +44,7 @@ The `status.metadataURL` is populated with the url of the vulnerability scan res
 The `status.phase` field is populated with the current phase of the scan. The phases are: Pending, Scanning, Completed, Failed, and Error.
 
 * `Pending`: initial phase of the scan.
-* `Scanning`: execution of the scan job is running.
+* `Scanning`: execution of the scan taskrun is running.
 * `Completed`: scan completed and no CVEs were found that violated the scan policy.
 * `Failed`: scan completed but CVEs were found that violated the scan policy.
 * `Error`: indication of an error (e.g., an invalid scantemplate or scan policy).

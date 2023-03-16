@@ -26,7 +26,7 @@ The following use cases apply to Supply Chain Security Tools - Scan:
 
 The following Supply Chain Security Tools - Scan features enable the [Use cases](#use-cases):
 
-- Kubernetes controllers to run scan jobs.
+- Kubernetes controllers to run scan taskruns.
 - Custom Resource Definitions (`CRD`s) for Image and Source Scan.
 - `CRD` for a scanner plug-in. Example is available by using Anchore's Syft and Grype.
 - `CRD` for policy enforcement.
