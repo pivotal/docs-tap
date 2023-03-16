@@ -174,4 +174,4 @@ Only associated workloads have apply, debug, and live upate workload actions ava
 
 ### Solution
 
-Open a project that contains a module that is associated with your deployed workloads.
+Open a project that contains a module that can be associated with your deployed workloads.
