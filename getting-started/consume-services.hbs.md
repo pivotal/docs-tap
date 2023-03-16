@@ -165,7 +165,7 @@ This is the value to pass to `--service-ref` when creating the application workl
 
 1. After the workloads are ready, visit the URL of the `spring-sensors-consumer-web` app.
 Confirm that sensor data is passing from the `spring-sensors-producer` workload to
-the `create spring-sensors-consumer-web` workload using the `RabbitmqCluster` service instance.
+the `spring-sensors-consumer-web` workload using the `RabbitmqCluster` service instance.
 
 ## <a id="stk-use-cases"></a> Further use cases and reading
 
