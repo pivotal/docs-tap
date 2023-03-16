@@ -33,6 +33,10 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
+#### <a id='1-5-0-scc-new-features'></a> Supply Chain Choreographer
+
+- Introduces ability to configure the OOTB Basic supply chain to [output Carvel Packages](scc/carvel-package-supply-chain.hbs.md). This feature is experimental.
+
 #### <a id='1-5-0-scst-policy-new-features'></a> Supply Chain Security Tools - Policy Controller
 
 - ClusterImagePolicy resync is triggered every 10 hours to get updated values from KMS.
