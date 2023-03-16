@@ -4,7 +4,7 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 
 ## <a id='cannot-view-workloads'></a> Unable to view workloads on the panel when connected to GKE cluster
 
-{{> 'partials/ext-tshoot/cannot-view-workloads' }}
+{{> 'partials/ide-extensions/cannot-view-workloads' }}
 
 ## <a id='lu-not-working-classversion'></a> Live update fails with `UnsupportedClassVersionError`
 
@@ -59,7 +59,7 @@ For example, Java 11 in `tanzu-java-web-app`.
 
 ## <a id="live-update-timeout"></a> Timeout error when Live Updating
 
-{{> 'partials/ext-tshoot/timeout-err-live-updating' }}
+{{> 'partials/ide-extensions/timeout-err-live-updating' }}
 
 ## <a id="deprecated-task"></a> Task-related error when running a Tanzu Debug launch configuration
 
