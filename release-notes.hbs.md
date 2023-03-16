@@ -11,6 +11,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 ### <a id='1-5-0-new-component-features'></a> New features by component and area
 
 #### <a id='1-5-0-app-accelerator-new-features'></a> Application Accelerator
+
 - The Application Accelerator plugin for IntelliJ is now available as a Beta release on the [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
 - The [`Tanzu Java Restful Web App`](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service) and [`Tanzu Java Web App`](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) accelerators have been updated to include an option to support of Spring Boot 3.0.
 - Accelerator provenance information (`accelerator-info.yaml`) is now available as a way to determine if a project has been generated with an accelerator as well as additional historical information.
@@ -47,7 +48,16 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 - Tanzu actions for workload apply, workload delete, debug and live update start are now available from Tanzu workload panel.
 - Tanzu Developer tools for IntelliJ can be used to iterate on Spring boot applications.
 
-- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
+### <a id='1-5-0-vscode-plugin-ncf'></a> VS Code Plug-in
+
+- Tanzu Activity panel has been added to allow developers to visualize the supply chain, delivery, and running application pods. 
+  It displays detailed error messages on each resource and enables developers to describe and view logs on these resources from within their IDE.
+- Tanzu Workload panel has been updated to show workloads deployed across multiple namespaces.
+- Tanzu commands for workload apply, workload delete, debug and live update start are now available from Tanzu Workload panel.
+- Tanzu Developer Tools for VSCode can be used to iterate on Spring Boot applications.
+
+- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`. 
+
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
 
 #### <a id='1-5-0-breaking-changes'></a> Breaking changes
