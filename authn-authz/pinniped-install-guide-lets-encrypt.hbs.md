@@ -48,6 +48,8 @@ Follow these steps to install `pinniped-supervisor`:
 
 ### <a id="create-certs"></a>Create Certificates (letsencrypt/cert-manager)
 
+Choose an fqdn that can resolve to the Contour instance running inside the `tanzu-system-ingress` namespace. In the following sections `pinniped-supervisor.example.com` will be used.
+
 Create a ClusterIssuer for `letsencrypt` and a TLS certificate resource for Pinniped Supervisor
 by creating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`.
 
