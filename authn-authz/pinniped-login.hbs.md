@@ -4,8 +4,18 @@ As a prerequisite, the administrator needs to provide users access to resources 
 
 To login to your cluster by using Pinniped, follow these steps:
 
+1. Download the correct version of the Pinniped CLI
 1. Generate and distribute `kubeconfig` to users
 1. Login with provided `kubeconfig`
+
+## Download the Pinniped CLI
+You must use Pinniped CLI version `0.12.0` to match the installed Concierge/Supervisor.
+
+- [Mac OS/AMD64](https://get.pinniped.dev/v0.12.0/pinniped-cli-darwin-amd64)
+- [Linux/AMD64](https://get.pinniped.dev/v0.12.0/pinniped-cli-linux-amd64)
+- [Windows/AMD64](https://get.pinniped.dev/v0.12.0/pinniped-cli-windows-amd64.exe)
+
+You should put the command-line tool somewhere on your $PATH, such as /usr/local/bin on macOS/Linux. You’ll also need to mark the file as executable.
 
 ## Generate and distribute kubeconfig to users
 
