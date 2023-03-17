@@ -1,4 +1,4 @@
-# ClusterRunTemplate Reference
+# ClusterRunTemplate reference
 
 All the objects referenced in this topic are [Cartographer
 ClusterRunTemplates](https://cartographer.sh/docs/v0.6.0/reference/runnable/#clusterruntemplate)
@@ -246,7 +246,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
   <tr>
     <td><code>base_branch<code></td>
     <td>
-      Branch into which the PR are merged
+      Branch into which the PR is merged
     </td>
     <td>
       <pre>
