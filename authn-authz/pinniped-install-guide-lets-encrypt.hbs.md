@@ -1,4 +1,4 @@
-# Install Pinniped on Tanzu Application Platform
+# Install Pinniped on Tanzu Application Platform Using Let's Encrypt
 
 [Pinniped](https://pinniped.dev/) is used to support authentication on Tanzu Application Platform.
 This topic introduces how to install Pinniped on a single cluster of Tanzu Application Platform.
