@@ -14,11 +14,13 @@ The supply chains included in this package perform the following:
   1. Building a container image out of the source code with Buildpacks
   1. Applying operator-defined conventions to the container definition
   1. Creating a deliverable object for deploying the application to a cluster
+    1. (Experimental) Alternatively, outputting a Carvel Package containing the application to a Git Repository
 
 - Using a prebuilt application image:
 
   1. Applying operator-defined conventions to the container definition
   1. Creating a deliverable object for deploying the application to a cluster
+    1. (Experimental) Alternatively, outputting a Carvel Package containing the application to a Git Repository
 
 
 ## <a id="prerequisites"></a> Prerequisites
@@ -227,3 +229,6 @@ of the supply chains), see the following sections:
 - [GitOps vs RegistryOps](gitops-vs-regops.md), for a description of the
   different ways of propagating the deployment configuration through external
   systems (Git repositories and image registries).
+
+- [Carvel Package Workflow (experimental)](carvel-package-workflow.md), for more information
+  about how to configure workloads to output Carvel Packages for delivery through Git repositories.
