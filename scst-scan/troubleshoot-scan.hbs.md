@@ -102,6 +102,9 @@ kubectl rollout restart deployment scan-link-controller-manager -n scan-link-sys
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
+### <a id="troubleshooting-grype-in-airgap"></a> Troubleshooting Grype in Airgap Environments
+For any issues with grype in airgap environments see [here](offline-airgap.hbs.md).
+
 ### <a id="miss-src-ps"></a> Missing target SSH secret
 
 Scanning source code from a private source repository requires an SSH secret present in the

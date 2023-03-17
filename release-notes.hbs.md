@@ -62,6 +62,10 @@ This topic contains release notes for Tanzu Application Platform v1.5.
   - Redis
   - RabbitMQ
 
+#### <a id='1-5-0-scc-new-features'></a> Supply Chain Choreographer
+
+- Introduces ability to configure the OOTB Basic supply chain to [output Carvel Packages](scc/carvel-package-supply-chain.hbs.md). This feature is experimental.
+
 #### <a id='1-5-0-scst-policy-new-features'></a> Supply Chain Security Tools - Policy Controller
 
 - ClusterImagePolicy resync is triggered every 10 hours to get updated values from KMS.
@@ -71,23 +75,23 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
 
-#### <a id='1-5-0-intellij-plugin-ncf'></a> Intellij Plug-in
+#### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
-- Tanzu Workload Panel has been updated to show workloads deployed across multiple namespaces.
-- Tanzu actions for workload apply, workload delete, debug and live update start are now available from Tanzu workload panel.
-- Tanzu Developer tools for IntelliJ can be used to iterate on Spring boot applications.
+- The Tanzu Workloads panel is updated to show workloads deployed across multiple namespaces.
+- Tanzu actions for workload apply, workload delete, debug, and Live Update start are now available
+  from the Tanzu Workloads panel.
+- Tanzu Developer Tools for IntelliJ can be used to iterate on Spring Boot applications.
 
-### <a id='1-5-0-vscode-plugin-ncf'></a> VS Code Plug-in
+### <a id='1-5-0-vscode-plugin-ncf'></a> Tanzu Developer Tools for VS Code
 
-- Tanzu Activity panel has been added to allow developers to visualize the supply chain, delivery, and running application pods.
-  It displays detailed error messages on each resource and enables developers to describe and view logs on these resources from within their IDE.
-- Tanzu Workload panel has been updated to show workloads deployed across multiple namespaces.
-- Tanzu commands for workload apply, workload delete, debug and live update start are now available from Tanzu Workload panel.
-- Tanzu Developer Tools for VSCode can be used to iterate on Spring Boot applications.
-
-- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
-
-For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
+- A Tanzu activity panel is added to visualize the supply chain, delivery, and running
+  application pods.
+  It displays detailed error messages on each resource and enables developers to describe and view
+  logs on these resources from within their IDE.
+- The Tanzu Workloads panel is updated to show workloads deployed across multiple namespaces.
+- Tanzu commands for workload apply, workload delete, debug, and Live Update start are now available
+  from the Tanzu Workloads panel.
+- Tanzu Developer Tools for VS Code can be used to iterate on Spring Boot applications.
 
 #### <a id='1-5-0-breaking-changes'></a> Breaking changes
 
@@ -95,8 +99,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id='1-5-0-tbs-bc'></a> Tanzu Build Service
 
-- The default `ClusterBuilder` now uses the Ubuntu Jammy (22.04) instead of Bionic (18.04) stack,
-ensure that your workloads can be built and run on Jammy.
+- The default `ClusterBuilder` now uses the Ubuntu Jammy (22.04) stack instead of the Ubuntu Bionic (18.04) stack. Previously, the default `ClusterBuilder` pointed to the Base builder based on the Bionic stack. Now, the default `ClusterBuilder` points to the Base builder based on the Jammy stack. Please ensure that your workloads can be built and run on Jammy. If you'd like to change the `ClusterBuilder` from the default builder, please see the [Configure the Cluster Builder](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tanzu-build-service-tbs-workload-config.html?hWord=N4IghgNiBcIMYQK4GcAuBTATgIUQSwgBMsBeEAXyA#configure-the-cluster-builder-3) section of our Tanzu Build Service component documentation. For more information on available builders, please see documentation on Tanzu Build Service [Lite Dependencies](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tanzu-build-service-dependencies.html#lite-dependencies-6) or Tanzu Build Service [Full Dependencies](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tanzu-build-service-dependencies.html#full-dependencies-7) depending on which dependency set you are using.
 
 #### <a id='1-5-0-security-fixes'></a> Security fixes
 

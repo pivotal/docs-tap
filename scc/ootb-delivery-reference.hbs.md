@@ -4,15 +4,15 @@ Tanzu Application Platform delivery package installs a single [ClusterDelivery](
 
 The delivery provides some parameters to the templates. Some of these might be
 overridden by the parameters provided by the deliverable.
-See[parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters) in
-the Cartographer documentation. 
+See [parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters) in
+the Cartographer documentation.
 
 ## Delivery-Basic
 
 ### Purpose
 
-- Fetches Kubernetes configuration created by a supply chain,
-- deploys the configuration on the cluster.
+- Fetches Kubernetes configuration created by a supply chain.
+- Deploys the configuration on the cluster.
 
 ### Resources
 
