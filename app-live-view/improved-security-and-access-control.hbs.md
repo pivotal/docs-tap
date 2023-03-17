@@ -52,7 +52,7 @@ GUI](../tap-gui/cluster-view-setup.hbs.md).
 more information, see [Install Application Live View
 Apiserver](./install.hbs.md).
 
-1. The users are assigned necessary roles and permissions for the Kubernetes
+1. Assign users necessary roles and permissions for the Kubernetes
    clusters. For more information about managing role-based access control, see
    [Assign roles and permissions on Kubernetes
    clusters](../tap-gui/tap-gui-rbac/assigning-kubernetes-roles.hbs.md)
@@ -259,7 +259,7 @@ plug-in, take the following steps.
      -f tap-gui-values.yaml
     ```
 
-    Where `VERSION` is the desired version. For example, `1.4.6`.
+    Where `VERSION` is the version that you want. For example, `1.4.6`.
 
     For example:
 
