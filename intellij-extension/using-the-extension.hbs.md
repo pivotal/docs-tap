@@ -84,11 +84,16 @@ Click the stop button in the **Debug** overlay to stop debugging on the cluster.
 
 ### <a id="start-live-update"></a> Start Live Update
 
-Before using live update, verify that your auto-save setting is off or on with a reasonable delay(enough for the application to restart inbetween auto saves) to allow enough time for your app to live update on file changes. This setting can be found in **Preferences** -> **Appearance & Behavior** -> **System Settings** -> **Autosave**.
+Before using Live Update, verify that your auto-save setting is either off or on with a delay.
+The delay must be long enough for the application to restart between auto saves to allow enough
+time for your app to Live Update when files change.
+This auto-save setting is in
+**Preferences** > **Appearance & Behavior** > **System Settings** > **Autosave**.
 
 To start Live Update:
 
-1. Right-click your project’s Tiltfile or an associated workload in the workload panel and then click **Run 'Tanzu Live Update - ...'**.
+1. Right-click your project’s Tiltfile or an associated workload in the workload panel and then click
+   **Run 'Tanzu Live Update - ...'**.
 
    ![The IntelliJ interface showing the project tab with the Tiltfile file pop-up menu open.](../images/intellij-startLiveUpdate.png)
    ![The IntelliJ interface showing the workload panel with the workload element pop-up menu open and the Live Update Workload option highlighted.](../images/intellij-workload-panel-live-update-action.png)
@@ -114,22 +119,9 @@ running.
 
 ## <a id="workload-panel"></a> Tanzu Workloads panel
 
-The current state of the workloads is visible on the Tanzu Workloads panel in the bottom of the IDE
-window.
-The panel shows the current status of each workload, namespace, and cluster.
-It also shows whether Live Update and Debug is running, stopped, or deactivated.
-
-Because each workload is deployed on the cluster, the activity section on the right in the
-Tanzu Workloads panel enables developers to visualize the supply chain, delivery, and running
-application pods.
-The panel displays detailed error messages on each resource and enables a developer to view and
-describe logs on these resources from within their IDE.
-
-Workload actions are available from the Tanzu Workloads panel on workloads that have an associated module in the current project. This association is based on a match of the module name and the workload name. For example, a project with a module named "my-app" will be associated with a deployed workload named "my-app". When taking an action from the workload panel, the action will use the namespace of the deployed workload regardless of the configuration in the module. For example, you may have a Live Upate configuration with a namespace argument of "my-apps-1", but running the action from a deployed workload in namespace "my-apps-2" will start a Live Update session with a namespace argument of "my-apps-2".
+{{> 'partials/ide-extensions/workload-panel-intro' }}
 
 ![Screenshot of the Tanzu Workloads panel. A Config Map is selected.](../images/intellij-activity-panel.png)
-
-The Tanzu Workloads panel uses the cluster and defaults to the namespace specified in the current kubectl context.
 
 1. View the current context and namespace by running:
 
@@ -143,16 +135,14 @@ The Tanzu Workloads panel uses the cluster and defaults to the namespace specifi
     kubectl config set-context --current --namespace=YOUR-NAMESPACE
     ```
 
-3. To add additional namespaces to your workload panel:
+To add additional namespaces to your workload panel:
 
-- Click on the gear icon in the upper right corner of the workload panel
-![Screenshot of the Tanzu Workloads panel namespace selection step 1.](../images/intellij-namespace-selection-1.png)
+1. Click on the gear icon in the upper right corner of the workload panel
+   ![Screenshot of the Tanzu Workloads panel namespace selection.](../images/intellij-namespace-selection-1.png)
 
-- Click on **Select Namespaces...**
-![Screenshot of the Tanzu Workloads panel namespace selection step 2.](../images/intellij-namespace-selection-2.png)
+1. Click on **Select Namespaces...**
 
-- Mark the checkboxes of the namespaces that you want to add to your panel
-![Screenshot of the Tanzu Workloads panel namespace selection step 3.](../images/intellij-namespace-selection-3.png)
+1. Select the checkboxes of the namespaces that you want to add to your panel.
 
 ## <a id="mono-repo"></a> Working with microservices in a monorepo
 
@@ -269,4 +259,5 @@ For these projects, make these adjustments:
 
 ## <a id="log-setting"></a> Changing logging verbosity
 
-The Tanzu Language Server saves logs to `~/tanzu-langserver.log`. You can change the log verbosity in **Preferences** -> **Tools** -> **Tanzu Developer Tools**.
+The Tanzu Language Server saves logs to `~/tanzu-langserver.log`.
+You can change the log verbosity in **Preferences** > **Tools** > **Tanzu Developer Tools**.

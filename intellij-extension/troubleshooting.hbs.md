@@ -163,15 +163,6 @@ of the activity pane.
 
 Restart IntelliJ to properly detect the context change.
 
-## <a id="tnz-panel-actions-unavailable"></a> Tanzu Workload panel workloads only have describe and delete action
-### Symptom
+## <a id="tnz-panel-actions-unavail"></a> Tanzu Workload panel workloads only have describe and delete action
 
-Some or all workloads in the workload panel only have describe and delete actions.
-
-### Cause
-
-Only associated workloads have apply, debug, and live upate workload actions available. Please see documentation for the [Tanzu Workload panel](./using-the-extension.hbs.md#tanzu-workloads-panel) for more information on workload association.
-
-### Solution
-
-Open a project that contains a module that can be associated with your deployed workloads.
+{{> 'partials/ide-extensions/tnz-panel-actions-unavail' }}

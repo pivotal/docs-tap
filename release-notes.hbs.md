@@ -42,23 +42,23 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
 
-#### <a id='1-5-0-intellij-plugin-ncf'></a> Intellij Plug-in
+#### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
-- Tanzu Workload Panel has been updated to show workloads deployed across multiple namespaces.
-- Tanzu actions for workload apply, workload delete, debug and live update start are now available from Tanzu workload panel.
-- Tanzu Developer tools for IntelliJ can be used to iterate on Spring boot applications.
+- The Tanzu workload panel is updated to show workloads deployed across multiple namespaces.
+- Tanzu actions for workload apply, workload delete, debug, and Live Update start are now available
+  from the Tanzu workload panel.
+- Tanzu Developer Tools for IntelliJ can be used to iterate on Spring Boot applications.
 
-### <a id='1-5-0-vscode-plugin-ncf'></a> VS Code Plug-in
+### <a id='1-5-0-vscode-plugin-ncf'></a> Tanzu Developer Tools for VS Code
 
-- Tanzu Activity panel has been added to allow developers to visualize the supply chain, delivery, and running application pods.
-  It displays detailed error messages on each resource and enables developers to describe and view logs on these resources from within their IDE.
-- Tanzu Workload panel has been updated to show workloads deployed across multiple namespaces.
-- Tanzu commands for workload apply, workload delete, debug and live update start are now available from Tanzu Workload panel.
-- Tanzu Developer Tools for VSCode can be used to iterate on Spring Boot applications.
-
-- `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
-
-For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
+- A Tanzu activity panel is added to visualize the supply chain, delivery, and running
+  application pods.
+  It displays detailed error messages on each resource and enables developers to describe and view
+  logs on these resources from within their IDE.
+- The Tanzu workload panel is updated to show workloads deployed across multiple namespaces.
+- Tanzu commands for workload apply, workload delete, debug, and Live Update start are now available
+  from the Tanzu workload panel.
+- Tanzu Developer Tools for VS Code can be used to iterate on Spring Boot applications.
 
 #### <a id='1-5-0-breaking-changes'></a> Breaking changes
 

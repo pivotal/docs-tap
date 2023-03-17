@@ -110,7 +110,11 @@ debug the updated code, without having to deactivate Live Update when debugging.
 
 ### <a id="start-live-update"></a> Start Live Update
 
-Before using live update, verify that your auto-save setting is off or on with a reasonable delay(enough for the application to restart inbetween auto saves) to allow enough time for your app to live update on file changes. This setting can be found in **Preferences** -> **Text Editor** -> **Files** -> **Auto Save** and **Auto Save Delay**.
+Before using Live Update, verify that your auto-save setting is either off or on with a delay.
+The delay must be long enough for the application to restart between auto saves to allow enough
+time for your app to Live Update when files change.
+The auto-save setting is in
+**Preferences** > **Text Editor** > **Files** > **Auto Save** > **Auto Save Delay**.
 
 To start Live Update:
 
@@ -215,19 +219,7 @@ To switch the namespace where you created the workload:
 
 ## <a id="workload-panel"></a> Tanzu Workloads panel
 
-The current state of the workloads is visible on the Tanzu Workloads panel in the bottom left corner
-of the VS Code window. The panel shows the current status of each workload, namespace, and cluster.
-It also shows whether Live Update and Debug is running, stopped, or deactivated.
-
-Because each workload is deployed on the cluster, the activity section on the right in the
-Tanzu Workloads panel enables developers to visualize the supply chain, delivery, and running
-application pods.
-The panel displays detailed error messages on each resource and enables a developer to view and
-describe logs on these resources from within their IDE.
-
-Workload commands are available from the Tanzu Workloads panel on workloads that have an associated module in the current project. This association is based on a match of the module name and the workload name. For example, a project with a module named "my-app" will be associated with a deployed workload named "my-app". When taking an action from the workload panel, the action will use the namespace of the deployed workload regardless of the configuration in the module. For example, you may have a Live Upate configuration with a namespace argument of "my-apps-1", but running the action from a deployed workload in namespace "my-apps-2" will start a Live Update session with a namespace argument of "my-apps-2".
-
-The Tanzu Workloads panel uses the cluster and defaults to the namespace specified in the current kubectl context.
+{{> 'partials/ide-extensions/workload-panel-intro' }}
 
 1. View the current context and namespace by running:
 
@@ -241,7 +233,8 @@ The Tanzu Workloads panel uses the cluster and defaults to the namespace specifi
     kubectl config set-context --current --namespace=YOUR-NAMESPACE
     ```
 
-3. Add additional namespaces to your workload panel in **Preferences** -> **Extensions** -> **Tanzu Developer Tools** -> **Tracked Namespaces**. 
+3. Add additional namespaces to your workload panel in **Preferences** > **Extensions** >
+   **Tanzu Developer Tools** > **Tracked Namespaces**.
 
 ![VS Code Workload Panel showing the Terminal log.](../images/vscode-workload-and-activity-panels.png)
 
@@ -356,4 +349,6 @@ For these projects, make these adjustments:
 
 ## <a id="log-setting"></a> Changing logging verbosity
 
-The Tanzu Language Server saves logs to `~/tanzu-langserver.log`. You can change the log verbosity in **Preferences** -> **Extensions** -> **Tanzu Developer Tools** -> **Language Server: Log Verbosity**.
+The Tanzu Language Server saves logs to `~/tanzu-langserver.log`.
+You can change the log verbosity in **Preferences** > **Extensions** > **Tanzu Developer Tools** >
+**Language Server: Log Verbosity**.
