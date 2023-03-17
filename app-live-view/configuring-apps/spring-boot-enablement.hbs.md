@@ -1,6 +1,6 @@
 # Enabling Spring Boot apps for Application Live View
 
-This topic describes how developers configure a Spring Boot app to be observed by
+This topic describes how developers configure a Spring Boot app for observation by
 Application Live View within Tanzu Application Platform.
 
 ## Enable Spring Boot apps
@@ -18,7 +18,7 @@ Add the maven dependency in `pom.xml` as follows:
 ```
 
 To enable Application Live View for Spring Boot apps, Spring Boot conventions automatically sets the Application Live View labels onto the PodSpec.
-For more information on the labels automatically set by Spring Boot conventions, see [Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
+For more information about the labels automatically set by Spring Boot conventions, see [Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
 
 
 ## Enable Spring Boot 3 apps
@@ -36,14 +36,13 @@ Add the maven dependency in `pom.xml` as follows:
 ```
 
 To enable Application Live View for Spring Boot 3 apps, Spring Boot conventions automatically sets the Application Live View labels onto the PodSpec.
-For more information on the labels automatically set by Spring Boot conventions, see [Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
+For more information about the labels automatically set by Spring Boot conventions, see [Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
 
 Here is an example of creating a workload for a Spring Boot 3 Application:
 
 ```console
 tanzu apps workload create spring-boot-3 --git-repo https://github.com/martinlippert/sb3-demo.git --git-branch main --annotation autoscaling.knative.dev/min-scale=1 --yes --label app.kubernetes.io/part-of=tanzu-java-web-app --type web --build-env "BP_JVM_VERSION=17" --label apps.tanzu.vmware.com/auto-configure-actuators="true"
 ```
-
 
 ## Enable Spring Cloud Gateway apps
 
