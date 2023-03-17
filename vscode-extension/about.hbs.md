@@ -29,5 +29,5 @@ An environment’s similarity to production relies on keeping dependencies and o
 
 *An environment’s similarity to production relies on keeping dependencies updated, among other variables.
 
-From the workload panel you can see any workload found within the cluster and namespace specified in
+From the Workloads panel you can see any workload found within the cluster and namespace specified in
 the current kubectl context.
