@@ -263,7 +263,7 @@ for migration instructions.
 
 #### <a id="dev-tls-vsc-features"></a>Tanzu Developer Tools for VS Code
 
-- **View workload statuses:** You can see the status of your workloads from the Workload Panel.
+- **View workload statuses:** You can see the status of your workloads from the Workloads panel.
 For more information, see
 [Using the Tanzu Dev Tools Extension](vscode-extension/using-the-extension.md).
 - **Apply and Delete workload commands:** You can run **Tanzu: Apply Workload** and
@@ -492,8 +492,8 @@ When running a Source Scan of a blob compressed file, it looks for a `.git` dire
   When debugging an application with service bindings, debugging sessions might prematurely end on
   the first run only. This is because of services being late-bound.
 
-- **Workload panel only supports `kubeconfig`:**
-  The workload panel only supports the default `kubeconfig` file, which is usually in `~/.kube/config`.
+- **Workloads panel only supports `kubeconfig`:**
+  The Workloads panel only supports the default `kubeconfig` file, which is usually in `~/.kube/config`.
 
 - **Unable to view workloads on the panel when connected to GKE cluster:**
   When connecting to Google's GKE clusters, an error might appear with the text

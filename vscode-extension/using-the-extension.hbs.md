@@ -38,7 +38,7 @@ To apply a workload from the Command Palette:
 
     ![Workload on Tanzu Workloads.](../images/vscode-panel-workload-unknown.png)
 
-    The workload panel shows the workloads running in the namespace that is defined in the current
+    The Workloads panel shows the workloads running in the namespace that is defined in the current
     Kubernetes context.
 
 1. (Optional) See the context and namespace currently configured by running:
@@ -72,7 +72,7 @@ To apply a workload from the context menu:
 
     ![Workload on the Tanzu Workloads panel.](../images/vscode-panel-workload-unknown.png)
 
-    The workload panel shows the workloads running in the namespace that is defined in the current
+    The workloads panel shows the workloads running in the namespace that is defined in the current
     Kubernetes context.
 
 1. (Optional) See the context and namespace currently configured by running:
@@ -255,4 +255,4 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
     kubectl config set-context --current --namespace=YOUR-NAMESPACE
     ```
 
-    ![VS Code Workload Panel showing the Terminal log.](../images/vscode-panel-live-update-running.png)
+    ![VS Code Tanzu Workloads panel showing the Terminal log.](../images/vscode-panel-live-update-running.png)
