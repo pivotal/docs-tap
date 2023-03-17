@@ -231,7 +231,7 @@ docs.vmware.com is built.
     - [Application Live View](app-live-view/about-app-live-view.hbs.md)
         - [Application Live View overview](app-live-view/about-app-live-view.hbs.md)
         - [Install Application Live View](app-live-view/install.hbs.md)
-        - [Improved Security and Access Control](app-live-view/improved-security-and-access-control.hbs.md)
+        - [Improved security and access control](app-live-view/improved-security-and-access-control.hbs.md)
         - [Configure apps](app-live-view/configuring-apps/spring-boot-enablement.hbs.md)
             - [Enable Spring Boot apps](app-live-view/configuring-apps/spring-boot-enablement.hbs.md)
             - [Enable Steeltoe apps](app-live-view/configuring-apps/steeltoe-enablement.hbs.md)
