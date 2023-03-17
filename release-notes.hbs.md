@@ -70,8 +70,7 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id='1-5-0-tbs-bc'></a> Tanzu Build Service
 
-- The default `ClusterBuilder` now uses the Ubuntu Jammy (22.04) instead of Bionic (18.04) stack,
-ensure that your workloads can be built and run on Jammy.
+- The default `ClusterBuilder` now uses the Ubuntu Jammy (22.04) stack instead of the Ubuntu Bionic (18.04) stack. Previously, the default `ClusterBuilder` pointed to the Base builder based on the Bionic stack. Now, the default `ClusterBuilder` points to the Base builder based on the Jammy stack. Please ensure that your workloads can be built and run on Jammy. If you'd like to change the `ClusterBuilder` from the default builder, please see the [Configure the Cluster Builder](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tanzu-build-service-tbs-workload-config.html?hWord=N4IghgNiBcIMYQK4GcAuBTATgIUQSwgBMsBeEAXyA#configure-the-cluster-builder-3) section of our Tanzu Build Service component documentation. For more information on available builders, please see documentation on Tanzu Build Service [Lite Dependencies](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tanzu-build-service-dependencies.html#lite-dependencies-6) or Tanzu Build Service [Full Dependencies](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tanzu-build-service-dependencies.html#full-dependencies-7) depending on which dependency set you are using.
 
 #### <a id='1-5-0-security-fixes'></a> Security fixes
 
