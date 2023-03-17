@@ -37,7 +37,7 @@ To apply a workload:
 
    ![Workload on Tanzu Workloads showing details for tanzu-java-web-app.](../images/vscode-panel-workload-unknown.png)
 
-   The workload panel shows the workloads running in the namespace that is defined in the current
+   The Workloads panel shows the workloads running in the namespace that is defined in the current
    Kubernetes context.
 
 4. (Optional) See the context and namespace currently configured by running:
@@ -240,7 +240,7 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
    kubectl config set-context --current --namespace=YOUR-NAMESPACE
    ```
 
-   ![VS Code Workload Panel showing the Terminal log.](../images/vscode-panel-live-update-running.png)
+   ![VS Code Tanzu Workloads Panel showing the Terminal log.](../images/vscode-panel-live-update-running.png)
 
 ## <a id="mono-repo"></a> Working with Microservices in a Monorepo
 
