@@ -11,8 +11,8 @@ Some of these might be overridden by the parameters provided by the deliverable.
 
 ### Purpose
 
-- Fetches Kubernetes configuration created by a supply chain,
-- deploys the configuration on the cluster.
+- Fetches Kubernetes configuration created by a supply chain.
+- Deploys the configuration on the cluster.
 
 ### Resources
 
