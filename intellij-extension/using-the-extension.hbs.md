@@ -25,12 +25,12 @@ Tanzu Application Platform.
 
 To apply a workload:
 
-1. Right-click anywhere in the IntelliJ project explorer or an associated workload in the workload panel.
+1. Right-click anywhere in the IntelliJ project explorer or an associated workload in the Workloads panel.
 2. Click **Tanzu** > **Apply Workload**.
 
    ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Apply Workload option highlighted.](../images/intellij-apply-workload.png)
 
-   ![The IntelliJ interface showing the workload panel with the workload element pop-up menu open and the Apply Workload option highlighted.](../images/intellij-workload-panel-apply-action.png)
+   ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Apply Workload option highlighted.](../images/intellij-workload-panel-apply-action.png)
 
 3. Click **Tanzu > Modify Apply Configuration**.
 
@@ -43,11 +43,11 @@ The extension enables you to delete workloads on your Kubernetes cluster that ha
 
 To delete a workload:
 
-1. Right-click anywhere in the IntelliJ project explorer or a workload in the workload panel.
+1. Right-click anywhere in the IntelliJ project explorer or a workload in the Workloads panel.
 2. Click **Tanzu > Delete Workload**.
 
    ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Delete Workload option highlighted.](../images/intellij-delete-workload.png)
-   ![The IntelliJ interface showing the workload panel with the workload element pop-up menu open and the Delete Workload option highlighted.](../images/intellij-workload-panel-delete-action.png)
+   ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Delete Workload option highlighted.](../images/intellij-workload-panel-delete-action.png)
 
 A message appears that prompts you to delete the workload and not warn again, delete the workload,
 or cancel. A notification appears showing that the workload was deleted.
@@ -57,11 +57,11 @@ or cancel. A notification appears showing that the workload was deleted.
 To start debugging on the cluster:
 
 1. Add a [breakpoint](https://www.jetbrains.com/help/idea/using-breakpoints.html) in your code.
-2. Right-click the `workload.yaml` file in your project or an associated workload in the workload panel.
+2. Right-click the `workload.yaml` file in your project or an associated workload in the Workloads panel.
 3. Click **Debug 'Tanzu Debug Workload...'** in the pop-up menu.
 
     ![The IntelliJ interface showing the project tab with the workload YAML file pop-up menu open and the Tanzu Debug Workload option highlighted.](../images/intellij-debugWorkload.png)
-    ![The IntelliJ interface showing the workload panel with the workload element pop-up menu open and the Debug Workload option highlighted.](../images/intellij-workload-panel-debug-action.png)
+    ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Debug Workload option highlighted.](../images/intellij-workload-panel-debug-action.png)
 
 4. Ensure that the configuration parameters are set:
 
@@ -92,11 +92,11 @@ This auto-save setting is in
 
 To start Live Update:
 
-1. Right-click your project’s Tiltfile or an associated workload in the workload panel and then click
+1. Right-click your project’s Tiltfile or an associated workload in the Workloads panel and then click
    **Run 'Tanzu Live Update - ...'**.
 
    ![The IntelliJ interface showing the project tab with the Tiltfile file pop-up menu open.](../images/intellij-startLiveUpdate.png)
-   ![The IntelliJ interface showing the workload panel with the workload element pop-up menu open and the Live Update Workload option highlighted.](../images/intellij-workload-panel-live-update-action.png)
+   ![The IntelliJ interface showing the Workloads panel with the workload element pop-up menu open and the Live Update Workload option highlighted.](../images/intellij-workload-panel-live-update-action.png)
 
 2. Ensure that the configuration parameters are set:
 
@@ -135,9 +135,9 @@ running.
     kubectl config set-context --current --namespace=YOUR-NAMESPACE
     ```
 
-To add additional namespaces to your workload panel:
+To add additional namespaces to your Workloads panel:
 
-1. Click on the gear icon in the upper right corner of the workload panel
+1. Click on the gear icon in the upper right corner of the Workloads panel
    ![Screenshot of the Tanzu Workloads panel namespace selection.](../images/intellij-namespace-selection-1.png)
 
 1. Click on **Select Namespaces...**

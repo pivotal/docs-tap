@@ -44,9 +44,9 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 
 #### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
-- The Tanzu workload panel is updated to show workloads deployed across multiple namespaces.
+- The Tanzu Workloads panel is updated to show workloads deployed across multiple namespaces.
 - Tanzu actions for workload apply, workload delete, debug, and Live Update start are now available
-  from the Tanzu workload panel.
+  from the Tanzu Workloads panel.
 - Tanzu Developer Tools for IntelliJ can be used to iterate on Spring Boot applications.
 
 ### <a id='1-5-0-vscode-plugin-ncf'></a> Tanzu Developer Tools for VS Code
@@ -55,9 +55,9 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
   application pods.
   It displays detailed error messages on each resource and enables developers to describe and view
   logs on these resources from within their IDE.
-- The Tanzu workload panel is updated to show workloads deployed across multiple namespaces.
+- The Tanzu Workloads panel is updated to show workloads deployed across multiple namespaces.
 - Tanzu commands for workload apply, workload delete, debug, and Live Update start are now available
-  from the Tanzu workload panel.
+  from the Tanzu Workloads panel.
 - Tanzu Developer Tools for VS Code can be used to iterate on Spring Boot applications.
 
 #### <a id='1-5-0-breaking-changes'></a> Breaking changes

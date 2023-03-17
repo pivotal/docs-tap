@@ -28,5 +28,5 @@ An environment’s similarity to production relies on keeping dependencies and o
 
 **See workloads running on the cluster**
 
-From the workload panel you can see any workload found within the cluster and namespace specified in
-the current kubectl context.
+From the Tanzu Workloads panel you can see any workload found within the cluster and namespace
+specified in the current kubectl context.

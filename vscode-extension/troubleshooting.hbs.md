@@ -78,6 +78,6 @@ The task you're trying to run is no longer supported.
 
 Delete the launch configuration from your `launch.json` file in your `.vscode` directory.
 
-## <a id="tnz-panel-actions-unavail"></a> Tanzu Workload panel workloads only show delete command
+## <a id="tnz-panel-actions-unavail"></a> Tanzu Workloads panel workloads only show delete command
 
 {{> 'partials/ide-extensions/tnz-panel-actions-unavail' }}

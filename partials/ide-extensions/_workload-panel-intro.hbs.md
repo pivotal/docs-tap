@@ -16,7 +16,7 @@ This association is based on a module name and a workload name matching.
 For example, a project with a module named `my-app` is associated with a deployed workload named
 `my-app`.
 
-When taking an action from the workload panel, the action uses the namespace of the deployed
+When taking an action from the Tanzu Workloads panel, the action uses the namespace of the deployed
 workload regardless of the configuration in the module.
 
 For example, you might have a Live Update configuration with a namespace argument of `my-apps-1`,
