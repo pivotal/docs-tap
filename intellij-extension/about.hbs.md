@@ -26,7 +26,7 @@ This extension gives the following features.
   variables.
 
 - **See workloads running on the cluster**
-  From the workload panel you can see any workload found within the cluster and namespace specified
+  From the Workloads panel you can see any workload found within the cluster and namespace specified
   in the current kubectl context.
 
 - **Work with microservices in a Java monorepo**

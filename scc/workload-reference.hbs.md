@@ -20,6 +20,7 @@ OOTB Supply Chains use the following workload labels:
   [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url).
 - `apps.tanzu.vmware.com/workload-type` by [all supply chains](ootb-supply-chain-reference.hbs.md).
 - `apis.apps.tanzu.vmware.com/register-api` by the [Api-Descriptors Template](ootb-template-reference.hbs.md#api-descriptors).
+- `apps.tanzu.vmware.com/carvel-package-workflow` by [source-to-url-package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) and [basic-image-to-url-package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-experimental).
 
 ## Parameters
 
@@ -103,6 +104,12 @@ The reference for the template details which supply chains include the template.
 - gitops_pull_request_title: [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
 - gitops_pull_request_body: [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
 - gitops_server_kind: [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
+- carvel_package_gitops_subpath (experimental): [carvel-package](ootb-template-reference.hbs.md#carvel-package-experimental),
+  [package-config-writer-template](ootb-template-reference.hbs.md#package-config-writer-template-experimental),
+  [package-config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#package-config-writer-and-pull-requester-template-experimental)
+- carvel_package_name_suffix (experimental): [carvel-package](ootb-template-reference.hbs.md#carvel-package-experimental),
+  [package-config-writer-template](ootb-template-reference.hbs.md#package-config-writer-template-experimental),
+  [package-config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#package-config-writer-and-pull-requester-template-experimental)
 
 ## Service Account
 

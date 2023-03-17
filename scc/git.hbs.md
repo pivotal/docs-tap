@@ -4,7 +4,7 @@ The out of the box supply chains and delivery use Git in 3 ways:
 
 - To fetch the developers source code, using the [template](ootb-template-reference.hbs.md#source-template).
 - To store complete Kubernetes configuration, the "write" side of gitops, use 
-  [template 1](ootb-template-reference.hbs.md#config-writer-template) and [template 2](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template).
+  [template 1](ootb-template-reference.hbs.md#config-writer-template), [template 2](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template), [template 3 (experimental)](ootb-template-reference.hbs.md#package-config-writer-template-experimental), and [template 4 (experimental)](ootb-template-reference.hbs.md#package-config-writer-and-pull-requester-template-experimental).
 - To fetch stored Kubernetes configuration, the read side of gitops,
   from either the same or a different Kubernetes cluster, use the
   [template](ootb-template-reference.hbs.md#delivery-source-template).

@@ -78,16 +78,6 @@ The task you're trying to run is no longer supported.
 
 Delete the launch configuration from your `launch.json` file in your `.vscode` directory.
 
-## <a id="tnz-panel-actions-unavailable"></a> Tanzu Workload panel workloads only show delete command
+## <a id="tnz-panel-actions-unavail"></a> Tanzu Workloads panel workloads only show delete command
 
-### Symptom
-
-Some or all workloads in the workload panel only show a delete command.
-
-### Cause
-
-Only associated workloads have apply, debug, and live upate workload commands available. Please see documentation for the [Tanzu Workload panel](./using-the-extension.hbs.md#tanzu-workloads-panel) for more information on workload association.
-
-### Solution
-
-Open a workspace that contains a workspace folder that can be associated with your deployed workloads.
+{{> 'partials/ide-extensions/tnz-panel-actions-unavail' }}
