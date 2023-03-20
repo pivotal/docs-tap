@@ -133,7 +133,7 @@ To install Cloud Native Runtimes:
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >skip this step because namespace configuration is covered in
    >[Set up developer namespaces to use installed packages](../set-up-namespaces.hbs.md).
-   >Otherwise, you must complete the following steps for each namespace where you create Knative services.
+   >Otherwise, you must follow these steps for each namespace where you create Knative services.
 
    Service accounts that run workloads using Cloud Native Runtimes need access to the image pull secrets for the Tanzu package.
    This includes the `default` service account in a namespace, which is created automatically but not associated with any image pull secrets.
@@ -149,14 +149,14 @@ To install Cloud Native Runtimes:
         kubectl annotate secret pull-secret secretgen.carvel.dev/image-pull-secret=""
         ```
 
-    1. After you create a `pull-secret` secret in the same namespace as the service account,
+    2. After you create a `pull-secret` secret in the same namespace as the service account,
     run the following command to add the secret to the service account:
 
         ```console
         kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
         ```
 
-    1. Verify that a service account is correctly configured by running:
+    3. Verify that a service account is correctly configured by running:
 
         ```console
         kubectl describe serviceaccount default
