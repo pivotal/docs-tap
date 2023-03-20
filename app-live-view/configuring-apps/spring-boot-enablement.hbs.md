@@ -17,6 +17,30 @@ Add the maven dependency in `pom.xml` as follows:
 </dependency>
 ```
 
+Add the below plugin configuration in `pom.xml` as follows:
+
+```xml
+<plugin>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-maven-plugin</artifactId>
+  <executions>
+    <execution>
+      <goals>
+        <goal>build-info</goal>
+      </goals>
+      <configuration>
+        <additionalProperties>
+          <spring.boot.version>${project.parent.version}</spring.boot.version>
+        </additionalProperties>
+      </configuration>
+    </execution>
+  </executions>
+</plugin>
+```
+
+The above configuration is made to generate build-info.properties into your Spring Boot application. This information is then used to display the Spring Boot Version that the app uses in Application Live View.
+
+
 To enable Application Live View for Spring Boot apps, Spring Boot conventions automatically sets the Application Live View labels onto the PodSpec.
 For more information about the labels automatically set by Spring Boot conventions, see [Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
 
@@ -34,6 +58,29 @@ Add the maven dependency in `pom.xml` as follows:
   <artifactId>spring-boot-starter-actuator</artifactId>
 </dependency>
 ```
+
+Add the below plugin configuration in `pom.xml` as follows:
+
+```xml
+<plugin>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-maven-plugin</artifactId>
+  <executions>
+    <execution>
+      <goals>
+        <goal>build-info</goal>
+      </goals>
+      <configuration>
+        <additionalProperties>
+          <spring.boot.version>${project.parent.version}</spring.boot.version>
+        </additionalProperties>
+      </configuration>
+    </execution>
+  </executions>
+</plugin>
+```
+
+The above configuration is made to generate build-info.properties into your Spring Boot application. This information is then used to display the Spring Boot Version that the app uses in Application Live View.
 
 To enable Application Live View for Spring Boot 3 apps, Spring Boot conventions automatically sets the Application Live View labels onto the PodSpec.
 For more information about the labels automatically set by Spring Boot conventions, see [Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
