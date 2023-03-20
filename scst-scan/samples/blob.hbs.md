@@ -9,49 +9,13 @@ Create `public-blob-source-example.yaml`:
 ```yaml
 ---
 apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
-kind: ScanTemplate
-metadata:
-  name: public-blob-source-scan-template
-spec:
-  template:
-    restartPolicy: Never
-    imagePullSecrets:
-      - name: scanner-secret-ref
-    volumes:
-      - name: workspace
-        emptyDir: {}
-    initContainers:
-      - name: repo
-        image: harbor-repo.vmware.com/supply_chain_security_tools/grype-templates@sha256:6d69a83d24e0ffbe2e527d8d414da7393137f00dd180437930a36251376a7912
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-          - name: workspace
-            mountPath: /workspace
-            readOnly: false
-        command: ["/bin/bash"]
-        args:
-          - "-c"
-          - "./source/untar-gitrepository.sh $REPOSITORY /workspace"
-    containers:
-      - name: scanner
-        image: harbor-repo.vmware.com/supply_chain_security_tools/grype-templates@sha256:6d69a83d24e0ffbe2e527d8d414da7393137f00dd180437930a36251376a7912
-        imagePullPolicy: IfNotPresent
-        volumeMounts:
-          - name: workspace
-            mountPath: /workspace
-            readOnly: false
-        command: ["/bin/bash"]
-        args: ["-c", "grype dir:/workspace/source -o cyclonedx"]
-
----
-apiVersion: scanning.apps.tanzu.vmware.com/v1beta1
 kind: SourceScan
 metadata:
   name: public-blob-source-example
 spec:
   blob:
     url: "https://gitlab.com/nina-data/ckan/-/archive/master/ckan-master.tar.gz"
-  scanTemplate: public-blob-source-scan-template
+  scanTemplate: blob-source-scan-template
 ```
 
 ## <a id="set-up-watch"></a>(Optional) Set up a watch
