@@ -66,7 +66,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 #### <a id='1-5-0-scc-new-features'></a> Supply Chain Choreographer
 
-- Introduces ability to configure the OOTB Basic supply chain to [output Carvel Packages](scc/carvel-package-supply-chain.hbs.md). This feature is experimental.
+- Introduces a variation of the OOTB Basic supply chains that output Carvel packages. Carvel packages enable configuring for each runtime environment. See [Carvel Package Workflow](scc/carvel-package-supply-chain.hbs.md). This feature is experimental.
 
 #### <a id='1-5-0-scst-policy-new-features'></a> Supply Chain Security Tools - Policy Controller
 

@@ -345,10 +345,10 @@ for information about setting tap-values at installation time.
 
 ### Purpose
 
-- Fetches application source code,
-- builds it into an image,
-- bundles the Kubernetes configuration necessary to deploy the application into a Carvel Package,
-- and commits that Package to a Git Repository.
+- Fetches application source code
+- builds it into an image
+- bundles the Kubernetes configuration necessary to deploy the application into a Carvel Package
+- commits that Package to a Git Repository
 
 ### Resources
 
@@ -425,9 +425,9 @@ for information about setting tap-values at installation time.
 
 ## Basic-Image-to-URL-Package (experimental)
 
-- Fetches a prebuilt image,
-- bundles the Kubernetes configuration necessary to deploy the application into a Carvel Package,
-- and commits that Package to a Git Repository.
+- Fetches a prebuilt image
+- bundles the Kubernetes configuration necessary to deploy the application into a Carvel Package
+- commits that Package to a Git Repository
 
 ### Resources
 
