@@ -717,6 +717,13 @@ Registration](api-auto-registration/troubleshooting.hbs.md).
   to ownership issues. This is because it's trying to install Grype in a
   namespace where it's already been installed.
 
+#### <a id="1-4-scc-ki"></a> Out of the Box Supply Chain Templates
+
+In a Build profile cluster, Deliverables will be created with the labels to
+associate them with their Workload missing. As a workaround, they will have to
+be manually injected.  For more information, see [Multicluster Tanzu Application
+Platform overview](../docs-tap/multicluster/about.hbs.md).
+
 #### <a id="1-4-0-tap-gui-plugin-ki"></a> Tanzu Application Platform GUI plug-ins
 
 ##### <a id="sec-analysis-plugin-ki"></a> Security Analysis plug-in
@@ -799,13 +806,6 @@ will remain on this list until they are retired from Tanzu Application Platform.
   next release. For more information about how to migrate to
   `AuthServer.spec.tls.deactivated`, see [Migration
   guides](app-sso/upgrades/index.md#migration-guides).
-
-#### <a id="1-3-scc-ki"></a> Out of the Box Supply Chain Templates
-
-In a Build profile cluster, Deliverables will be created with the labels to
-associate them with their Workload missing. As a workaround, they will have to
-be manually injected.  For more information, see [Multicluster Tanzu Application
-Platform overview](../docs-tap/multicluster/about.hbs.md).
 
 #### <a id="1-4-0-stk-deprecations"></a> Services Toolkit
 
