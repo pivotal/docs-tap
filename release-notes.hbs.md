@@ -79,7 +79,7 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 
 #### <a id="1-5-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
 - To support TSM integration, jobs were replaced with TaskRuns.
-  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restartsv) docs have been updated to account for these changes.
+  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts) docs have been updated to account for these changes.
 - Addition of Rotating Certs and TLS Support
   - Users can specify a TLS cert, minimum TLS version, and restrict TLS ciphers for using kube-rbac-proxy (see [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan)).
 - New simplified alpha user experience of integrating additional vulnerability scanners into supply chains. See [Supply Chain Security Tools - App Scanning (alpha)](./scst-scan/app-scanning-alpha.hbs.md).
