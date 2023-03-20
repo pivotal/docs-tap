@@ -102,14 +102,14 @@ To override two parameters set by the operator:
 
 1. (Optional) Set a GitOps subpath. This verifies the path in your GitOps repository to which Carvel Packages are written. See [Carvel Package template](ootb-template-reference.hbs.md#carvel-package-experimental).
 
-Set this parameter by modifying `workload.spec.params.carvel_package_gitops_subpath`. With the Tanzu CLI, you can do so by using the following flag:
+    Set this parameter by modifying `workload.spec.params.carvel_package_gitops_subpath`. With the Tanzu CLI, you can do so by using the following flag:
 
-   - `--param carvel_package_gitops_subpath=path/to/my/dir`
+    - `--param carvel_package_gitops_subpath=path/to/my/dir`
 
 1. (Optional) Set a name suffix. This verifies the suffix of the name of the Carvel Package. See [Carvel Package template](ootb-template-reference.hbs.md#carvel-package-experimental).
 
-Set this parameter by modifying `workload.spec.params.carvel_package_name_suffix`. With the Tanzu CLI, you can do so by using the following flag:
+    Set this parameter by modifying `workload.spec.params.carvel_package_name_suffix`. With the Tanzu CLI, you can do so by using the following flag:
 
-   - `--param carvel_package_name_suffix=vmware.com`
+      - `--param carvel_package_name_suffix=vmware.com`
 
->**Note** (Optional) You can override GitOps parameters as described in [GitOps versus RegistryOps](gitops-vs-regops.hbs.md#gitops).
+    >**Note** (Optional) You can override GitOps parameters as described in [GitOps versus RegistryOps](gitops-vs-regops.hbs.md#gitops).
