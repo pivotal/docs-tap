@@ -103,7 +103,8 @@ kubectl rollout restart deployment scan-link-controller-manager -n scan-link-sys
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
 ### <a id="troubleshooting-grype-in-airgap"></a> Troubleshooting Grype in Airgap Environments
-For any issues with grype in airgap environments see [here](offline-airgap.hbs.md).
+
+For information about issues with Grype in air-gap environments, see [Using Grype in offline and air-gapped environments](offline-airgap.hbs.md).
 
 ### <a id="miss-src-ps"></a> Missing target SSH secret
 
