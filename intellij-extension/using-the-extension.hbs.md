@@ -125,15 +125,15 @@ running.
 
 1. View the current context and namespace by running:
 
-    ```console
-    kubectl config get-contexts
-    ```
+   ```console
+   kubectl config get-contexts
+   ```
 
 2. Set a namespace for the current context by running:
 
-    ```console
-    kubectl config set-context --current --namespace=YOUR-NAMESPACE
-    ```
+   ```console
+   kubectl config set-context --current --namespace=YOUR-NAMESPACE
+   ```
 
 To add additional namespaces to your Workloads panel:
 
