@@ -214,9 +214,9 @@ For information about setting tap-values at installation time, see [Install Out 
 
 ## Basic-Image-to-URL
 
-- Fetches a prebuilt image,
-- writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry\.
+- Fetches a prebuilt image.
+- Writes the Kubernetes configuration necessary to deploy the application.
+- Commits that configuration to either a Git repository or an image registry.
 
 ### Resources
 
@@ -251,9 +251,9 @@ For information about setting tap-values at installation time, see [Install Out 
 
 ## Testing-Image-to-URL
 
-- Fetches a prebuilt image,
-- writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry.
+- Fetches a prebuilt image.
+- Writes the Kubernetes configuration necessary to deploy the application.
+- Commits that configuration to either a Git repository or an image registry.
 
 ### Resources
 
@@ -408,7 +408,7 @@ All of the following parameters are overridable by the workload.
 - `gitops_commit_message` from tap-value `gitops.commit_message`
 - `gitops_ssh_secret` from tap-value `gitops.ssh_secret`
 - `gitops_repository_prefix` from tap-value `gitops.repository_prefix` when present.
-- `gitops_server_address` from tap-value `gitops.server_address` >when present.
+- `gitops_server_address` from tap-value `gitops.server_address` when present.
 - `gitops_repository_owner` from tap-value `gitops.repository_owner` when present.
 - `gitops_repository_name` from tap-value `gitops.repository_name` when present.
 - `gitops_server_kind` from tap-value `gitops.pull_request.server_kind` when present.
