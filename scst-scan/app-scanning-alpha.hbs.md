@@ -71,6 +71,7 @@ To install Supply Chain Security Tools - App Scanning:
       workspace.storageSize   100Mi           string   Size of the Persistent Volume to be used by the tekton pipelineruns
       workspace.storageClass                  string   Name of the storage class to use while creating the Persistent Volume Claims
                                                       used by tekton pipelineruns
+      caCertData                              string   The custom certificates to be trusted by the scan's connections
     ```
 
 1. Create a file named `app-scanning-values-file.yaml` and add the setting you want for the installation
@@ -105,11 +106,9 @@ To install Supply Chain Security Tools - App Scanning:
 
 App scanning package is up and running in your cluster
 
-## Configure and trigger a scan
+## Configure namespace
 
-The following sections describe how to configure and trigger a scan.
-
-### Set up namespace
+The following sections describe how to configure service accounts and registry credentials.
 
 1. The following access is required:
 
@@ -177,6 +176,63 @@ the write secret as `secrets`.
     - name: write-creds # Used by the component to publish the scan results
     ```
 
+## Scan an image
+
+### Using the provided Grype scanner
+
+#### Configuration Options
+
+GrypeImageVulnerabilityScan spec fields:
+  
+Required fields:
+
+* image  
+  The registry url and digest of the image to be scanned  
+  e.g. `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`  
+
+* scanResults.location  
+  The registry url where results should be uploaded  
+  e.g. `my.registry/scan-results`
+  
+Optional fields:
+
+* activeKeychains  
+  Array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
+  ```yaml
+  activeKeychains:
+  - name: acr  # Azure Container Registry
+  - name: ecr  # Elastic Container Registry
+  - name: gcr  # Google Container Registry
+  - name: ghcr # Github Container Registry
+  ```
+
+* advanced  
+  Adjust the configuration of Grype for your needs. See Grype's [configuration](https://github.com/anchore/grype#configuration) for details.
+
+* serviceAccountNames  
+  * scanner  
+    Set the service account that will run the scan. Must have read access to `image`.
+  * publisher  
+    Set the service account that will upload results. Must have write access to `scanResults.location`.
+
+* workspace  
+  * size  
+    Size of the Persistent Volume Claim the scan uses to download the image and vulnerability database.
+  * bindings  
+    Additional array of Secrets, ConfigMaps, or EmptyDir volumes to mount to the running scan. The `name` will be used as the mount path.  
+    ```yaml
+    bindings:
+    - name: additionalconfig
+      configMap:
+        name: my-configmap
+    - name: additionalsecret
+      secret:
+        secretName: my-secret
+    - name: scratch
+      emptyDir: {}
+    ```
+    For information about workspace bindings, see [Using other types of volume sources](https://tekton.dev/docs/pipelines/workspaces/#using-other-types-of-volumesources). Only Secrets, ConfigMaps, and EmptyDirs are  supported.
+
 #### Trigger a Grype scan
 
 1. Create the `GrypeImageVulnerabilityScan` and apply to the cluster.
@@ -193,8 +249,6 @@ the write secret as `secrets`.
       serviceAccountNames:
         scanner: scanner # Service account that enables scanning component to pull the image to be scanned
         publisher: publisher # Service account has the secrets to push the scan results
-      advanced:
-        # Configuration values from Grype's config file - see https://github.com/anchore/grype#configuration
     ```
 
 1. When the scanning successfully completes, the status is shown. Specify `-o wide` to see the digest of the image scanned and the location of the
@@ -208,9 +262,84 @@ published results.
 
     ```
 
-#### Integrate your own scanner
+### Integrate your own scanner
 
 To scan with any other scanner, use the generic `ImageVulnerabilityScan` 
+
+#### Configuration Options
+
+ImageVulnerabilityScan spec fields:
+  
+Required fields:
+
+* image  
+  The registry url and digest of the image to be scanned  
+  e.g. `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`  
+
+* scanResults.location  
+  The registry url where results should be uploaded  
+  e.g. `my.registry/scan-results`
+  
+Optional fields:
+
+* activeKeychains  
+  Array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
+  ```yaml
+  activeKeychains:
+  - name: acr  # Azure Container Registry
+  - name: ecr  # Elastic Container Registry
+  - name: gcr  # Google Container Registry
+  - name: ghcr # Github Container Registry
+  ```
+
+* serviceAccountNames  
+  * scanner  
+    Set the service account that will run the scan. Must have read access to `image`.
+  * publisher  
+    Set the service account that will upload results. Must have write access to `scanResults.location`.
+
+* workspace  
+  * size  
+    Size of the Persistent Volume Claim the scan uses to download the image and vulnerability database.
+  * bindings  
+    Additional array of Secrets, ConfigMaps, or EmptyDir volumes to mount to the running scan. The `name` will be used as the mount path.  
+    ```yaml
+    bindings:
+    - name: additionalconfig
+      configMap:
+        name: my-configmap
+    - name: additionalsecret
+      secret:
+        secretName: my-secret
+    - name: scratch
+      emptyDir: {}
+    ```
+    For information about workspace bindings, see [Using other types of volume sources](https://tekton.dev/docs/pipelines/workspaces/#using-other-types-of-volumesources). Only Secrets, ConfigMaps, and EmptyDirs are  supported.
+
+#### Default Environment
+
+Workspaces:  
+* /home/app-scanning: a memory-backed EmptyDir mount that will contain service account credentials loaded by Tekton
+* /cred-helper: a memory-backed EmptyDir mount containing:
+  * config.json will combine static credentials with workload identity credentials when `activeKeychains` is enabled
+  * trusted-cas.crt when App Scanning is deployed with `caCertData` 
+* /workspace: a PVC to hold scan artifacts and results
+
+Environment Variables:  
+If undefined by your `step` definition the environment will default to:
+* HOME=/home/app-scanning
+* DOCKER_CONFIG=/cred-helper
+* XDG_CACHE_HOME=/workspace/.cache
+* TMPDIR=/workspace/tmp
+* SSL_CERT_DIR=/etc/ssl/certs:/cred-helper
+
+Parameters:  
+* $(params.image): the image to be scanned
+* $(params.scan-results-path): location to save scanner output
+* $(params.trusted-ca-certs): PEM data from the installation's `caCertData`
+
+
+#### Trigger your scan
 
 ```yaml
 apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
@@ -232,9 +361,11 @@ spec:
     - image
     - --format
     - cyclonedx
+    - --scanners
+    - vuln
     - --output
-    - /workspace/scan-results/scan.cdx
-    - nginx:1.16
+    - $(params.scan-results-path)/scan.cdx
+    - $(params.image)
 ```
 
 1. When the scanning successfully completes, the status is shown. Specify `-o wide` to see the digest of the image scanned and the location of the
@@ -248,68 +379,50 @@ published results.
 
     ```
 
-#### Specify configuration of the scanner through configmaps
+## Retrieving Results
 
-The `ImageVulnerabilityScan` CRD must be used.
+Scan results are uploaded to the image registry as an [imgpkg](https://carvel.dev/imgpkg/) bundle.  
+To retrieve a vulnerability report:
 
-1. Create a config map with configuration needed for the scanner.
+1. Retrieve the result location from the ImageVulnerabilityScan CR Status  
+   ```console
+   SCAN_RESULT_URL=$(kubectl get imagevulnerabilityscan my-scan -o jsonpath='{.status.scanResult}')
+   ```
 
-    ```yaml
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      name: grype-scanner-configuration
-    data:
-      config.yaml: |
-        ---
-        output: "cyclonedx"
-        file: "/workspace/scan-results/scan.cdx"
-        log:
-          structured: false
-    ```
-
-1. Bind the configmap as a workspace in the `ImageVulnerabilityScan` CRD.
-
-    ```yaml
-    apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
-    kind: ImageVulnerabilityScan
-    metadata:
-      labels:
-        app.kubernetes.io/name: imagevulnerabilityscan
-        app.kubernetes.io/instance: imagevulnerabilityscan-sample
-        app.kubernetes.io/part-of: app-scanning
-        app.kubernetes.io/managed-by: kustomize
-        app.kubernetes.io/created-by: app-scanning
-      name: imagevulnerabilityscan-with-configmap
-    spec:
-      image: nginx
-      scanResults:
-        location: registry/team/scan-results
-      serviceAccountNames:
-        scanner: scanner
-        publisher: publisher
-      workspace: # Attach the configmap as a worksapce
-        bindings:
-        - name: source
-          configMap:
-            name: my-configmap
-      steps:
-      - name: grype
-        image: anchore/grype:latest
-        args:
-        - registry:$(params.image)
-        - --config
-        - /source/config.yaml # Use it as a config file
-        env:
-        - name: GRYPE_ADD_CPES_IF_NONE
-          value: "false"
-        - name: GRYPE_EXCLUDE
-        - name: GRYPE_SCOPE
-    ```
-
-For information about other workspace bindings, see [Using other types of volume sources](https://tekton.dev/docs/pipelines/workspaces/#using-other-types-of-volumesources). Only Secrets, ConfigMaps, and EmptyDirs are  supported.
+1. Download the bundle to a local directory and list the contents  
+   ```console
+   imgpkg -b $SCAN_RESULT_URL -o myresults/`
+   ls myresults/
+   ```
 
 ## Troubleshooting
+
+To watch the status of the scanning CRDs and child resources:
+
+```console
+watch bash -c 'kubectl get givs,ivs; kubectl get -l imagevulnerabilityscan prs,trs,pod'
+```
+
+View the status, reason, and urls:
+
+```console
+kubectl get grypeimagevulnerabilityscan -o wide
+kubectl get imagevulnerabilityscan -o wide
+```
+
+View the complete status and events of scanning CRDs:
+
+```console
+kubectl describe grypeimagevulnerabilityscan
+kubectl describe imagevulnerabilityscan
+```
+
+List the child resources of a scan:
+
+```console
+kubectl get -l grypeimagevulnerabilityscan=$NAME pipelinerun,taskrun,pod,configmap
+kubectl get -l imagevulnerabilityscan=$NAME pipelinerun,taskrun,pod
+```
 
 Get the logs of the controller:
 
@@ -317,8 +430,3 @@ Get the logs of the controller:
 kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system -c manager
 ```
 
-To verify the status of the scanning CRDs:
-
-```console
-watch bash -c 'kubectl get givs,ivs; kubectl get -l imagevulnerabilityscan prs,trs,pod'
-```

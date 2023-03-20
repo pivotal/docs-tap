@@ -84,7 +84,7 @@ SourceScan:
 1. (Optional) Before deploying, set up a watch in another terminal to view processing by running:
 
     ```console
-    watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
+    watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies
     ```
 
     For more information, refer to [Observing and Troubleshooting](../observing.md).

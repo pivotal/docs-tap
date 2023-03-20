@@ -22,7 +22,7 @@ An application using the `worker` workload type has the following features:
 
 When creating a workload with `tanzu apps workload create`, you can use the
 `--type=worker` argument to select the `worker` workload type.
-For more information, see [Use the `worker` Workload Type](#using) later in this topic.
+For more information, see [Use the worker Workload Type](#using) later in this topic.
 You can also use the `apps.tanzu.vmware.com/workload-type:worker` annotation in the
 YAML workload description to support this deployment type.
 

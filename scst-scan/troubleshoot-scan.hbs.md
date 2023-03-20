@@ -2,7 +2,7 @@
 
 ## <a id="debugging-commands"></a> Debugging commands
 
-Run these commands to get more logs and details about the errors around scanning. The Jobs and pods
+Run these commands to get more logs and details about the errors around scanning. The taskruns and pods
 persist for a predefined amount of seconds before getting deleted.
 (`deleteScanJobsSecondsAfterFinished` is the tap pkg variable that defines this)
 
@@ -102,6 +102,9 @@ kubectl rollout restart deployment scan-link-controller-manager -n scan-link-sys
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
+### <a id="troubleshooting-grype-in-airgap"></a> Troubleshooting Grype in Airgap Environments
+For any issues with grype in airgap environments see [here](offline-airgap.hbs.md).
+
 ### <a id="miss-src-ps"></a> Missing target SSH secret
 
 Scanning source code from a private source repository requires an SSH secret present in the
@@ -119,11 +122,10 @@ Scanning an image from a private registry requires an image pull secret to exist
 namespace and be referenced as `grype.targetImagePullSecret` in `tap-values.yaml`. See [Installing
 the Tanzu Application Platform Package and Profiles](../install.md).
 
-If a private image scan is triggered and the secret is not configured, the scan job fails with the
-error as follows:
+If a private image scan is triggered and the secret is not configured, the scan taskrun's pod's `step-scan-plugin` container fails with the error as follows:
 
 ```console
-Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
+Error: GET https://dev.registry.tanzu.vmware.com/v2/vse-dev/spring-petclinic/manifests/sha256:128e38c1d3f10401a595c253743bee343967c81e8f22b94e30b2ab8292b3973f: UNAUTHORIZED: unauthorized to access repository: vse-dev/spring-petclinic, action: pull: unauthorized to access repository: vse-dev/spring-petclinic, action: pull
 ```
 
 ### <a id="deactivate-scst-store"></a> Deactivate Supply Chain Security Tools (SCST) - Store

@@ -37,7 +37,7 @@ Select debug configuration from the right-click pop-up menu.
 
 ## <a id="cannot-view-workloads"></a> Unable to view workloads on the panel when connected to GKE cluster
 
-{{> 'partials/ext-tshoot/cannot-view-workloads' }}
+{{> 'partials/ide-extensions/cannot-view-workloads' }}
 
 ## <a id="dsbl-lnch-ctrl"></a> Deactivated launch controls after running a launch configuration
 
@@ -93,7 +93,7 @@ If that doesn't work for you, delete the old corrupted launch configuration and 
 
 ## <a id="live-update-timeout"></a> Timeout error when Live Updating
 
-{{> 'partials/ext-tshoot/timeout-err-live-updating' }}
+{{> 'partials/ide-extensions/timeout-err-live-updating' }}
 
 ## <a id="panel-empty-gke"></a> Tanzu Panel empty when using a GKE cluster on macOS
 
@@ -162,3 +162,7 @@ of the activity pane.
 ### Solution
 
 Restart IntelliJ to properly detect the context change.
+
+## <a id="tnz-panel-actions-unavail"></a> Tanzu Workloads panel workloads only have describe and delete action
+
+{{> 'partials/ide-extensions/tnz-panel-actions-unavail' }}

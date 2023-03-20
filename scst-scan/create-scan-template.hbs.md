@@ -70,6 +70,8 @@ spec:
         - name: summary
 ```
 
+**Note:** A container cannot be named "sleep" because there is already a container named "sleep" which comes from the scan-link controller.
+
 ## <a id="sample-output"></a>Sample Outputs
 
 ```yaml
