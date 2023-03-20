@@ -143,7 +143,7 @@ To install SCST - Scan (Scan controller):
 
 <a id="install-grype"></a> To install SCST - Scan (Grype scanner):
 
->**Note:** If you want to install Grype into multiple namespaces, use [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
+>**Note:** To install Grype in multiple namespaces, use a namespace provisioner. See [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
 
 1. List version information for the package by running:
 
