@@ -78,12 +78,11 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
 
 #### <a id="1-5-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
-- To support TSM integration, jobs were replaced with TaskRuns.
-  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts) docs have been updated to account for these changes.
-- Addition of Rotating Certs and TLS Support
-  - Users can specify a TLS cert, minimum TLS version, and restrict TLS ciphers for using kube-rbac-proxy (see [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan)).
-- New simplified alpha user experience of integrating additional vulnerability scanners into supply chains. See [Supply Chain Security Tools - App Scanning (alpha)](./scst-scan/app-scanning-alpha.hbs.md).
-- New alpha integration with the [Trivy Open Source Vulnerability Scanner by Aqua Security](https://www.aquasec.com/products/trivy/) to enable users to configure Source and Image Scans from secure supply chains using Trivy. See [Install Trivy Scanner](./scst-scan/install-trivy-integration.hbs.md).
+- Supply Chain Security Tools - Scan now runs on Tanzu Service Mesh-enabled clusters, enabling end to end, secure communication.
+  - Kubernetes Jobs that previously created the scan pods have been replaced with [Tekton TaskRuns](https://tekton.dev/docs/pipelines/taskruns/#overview)
+  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts) docs have been updated to account for the impact of these changes.
+- In conformance with NIST 800-53, support for rotating certs and TLS has been added
+  - Users can specify a TLS cert, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy (see [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan)).
 
 #### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
