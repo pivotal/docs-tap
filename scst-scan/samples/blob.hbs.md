@@ -56,26 +56,30 @@ spec:
 
 ## <a id="set-up-watch"></a>(Optional) Set up a watch
 
-Before deploying, set up a watch in another terminal to see things process:
+Before deploying the resources to a user specified namespace, set up a watch in another terminal to view the progression:
 
 ```console
-watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies
+watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies -n DEV-NAMESPACE
 ```
+
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
 For more information, see [Observing and Troubleshooting](../observing.md).
 
 ## <a id="deploy-resources"></a>Deploy the resources
 
 ```console
-kubectl apply -f public-blob-source-example.yaml
+kubectl apply -f public-blob-source-example.yaml -n DEV-NAMESPACE
 ```
+
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
 ## <a id="view-scan-results"></a>View the scan results
 
 When the scan completes, perform:
 
 ```console
-kubectl describe sourcescan public-blob-source-example
+kubectl describe sourcescan public-blob-source-example -n DEV-NAMESPACE
 ```
 
 Notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
@@ -85,7 +89,7 @@ For more information, see [Viewing and Understanding Scan Status Conditions](../
 ## <a id="clean-up"></a>Clean up
 
 ```console
-kubectl delete -f public-blob-source-example.yaml
+kubectl delete -f public-blob-source-example.yaml -n DEV-NAMESPACE
 ```
 
 ## <a id="view-vuln-reports"></a>View vulnerability reports
