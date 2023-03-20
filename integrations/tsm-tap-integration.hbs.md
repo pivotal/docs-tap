@@ -28,57 +28,12 @@ After purchasing your Tanzu Service Mesh subscription, the VMware Cloud team sen
 If you don't receive them, you can follow
 [these instructions](https://pathfinder.vmware.com/v3/path/tsm_activation).
 
-## <a id="onboard-clusters"></a> Onboard clusters
-
 Onboard your clusters to Tanzu Service Mesh as described later in this topic.
 This deploys the Tanzu Service Mesh local control plane and OSS Istio on your Kubernetes cluster
 and connects the local control plane to your Tanzu Service Mesh tenant.
 
-As part of the onboarding of the cluster and Tanzu Application Platform integration as well as
-upgrades to the clusters, these namespaces must remain excluded while getting the Envoy proxy
-sidecars injected for Run profiles.
-
-Including them might cause the components to stop working at some point in the future when a pod
-within them is rescheduled or updated.
-
-The following namespaces must be specified as part of the onboarding process and excluded:
-
-- api-auto-registration
-- app-live-view-connector
-- appsso
-- cartographer-system
-- cert-manager
-- cosign-system
-- default
-- flux-system
-- image-policy-system
-- kapp-controller
-- knative-eventing
-- knative-serving
-- knative-sources
-- kube-node-lease
-- kube-public
-- kube-system
-- secretgen-controller
-- service-bindings
-- services-toolkit
-- source-system
-- tanzu-cluster-essentials
-- tanzu-package-repo-global
-- tanzu-system-ingress
-- tap-install
-- tap-telemetry
-- triggermesh
-- Vmware-sources
-
-You must also exclude these namespaces in case of an upgrade to Tanzu Application Platform.
-For more information, see
-[Onboard a Cluster to Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Service-Mesh/services/getting-started-guide/GUID-DE9746FD-8369-4B1E-922C-67CF4FB22D21.html#:~:text=To%20exclude%20a%20specific%20namespace,the%20right%20drop%2Ddown%20menu).
-
 ## <a id="set-up-tap"></a> Set up Tanzu Application Platform
 
-> **Important** Tanzu Application Platform Build cluster support for Tanzu Service Mesh is limited to
-> basic and testing supply chains. Supply Chains with scanning are not currently supported.
 
 To enable Tanzu Service Mesh support in Tanzu Application Platform Build clusters:
 
