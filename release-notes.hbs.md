@@ -47,11 +47,11 @@ release.
 
 #### <a id='1-3-6-tbs-ri'></a> Tanzu Build Service
 
-- Fixed bug that prevented the Cloud Native Buildpacks lifecycle component from
-  upgrading with TBS.
-  - Outdated lifecycle components may be built with older versions of Golang
+- Fixed an issue that prevented the Cloud Native Buildpacks lifecycle component from
+  upgrading with Tanzu Build Service.
+  - Outdated lifecycle components can be built with older versions of Golang
     containing CVEs in the standard library.
-  - Upgrading to TAP 1.3.6 will ensure the lifecycle component is updated to
+  - Upgrading to Tanzu Application Platform v1.3.6 will ensure the lifecycle component is updated to
     the latest version.
 
 ### <a id='1-3-6-ki'></a> Known Issues
