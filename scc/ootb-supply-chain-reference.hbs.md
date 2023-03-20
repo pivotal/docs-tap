@@ -316,6 +316,7 @@ Parameters provided:
 Refers to [image-scanner-template](ootb-template-reference.hbs.md#image-scanner-template).
 
 Parameters provided:
+
 - `scanning_image_policy` from tap-value `scanning.image.policy`. Overridable by workload.
 - `scanning_image_template` from tap-value `scanning.image.template`. Overridable by workload.
 
