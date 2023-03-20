@@ -24,13 +24,13 @@ Source](building-from-source.hbs.md).
 The source-template creates one of three objects, either:
 
 - GitRepository. Created if the workload has `.spec.source.git` defined.
-- MavenArtifact. Created if the template is provided a value for the parameter `maven`
+- MavenArtifact. Created if the template is provided a value for the parameter `maven`.
 - ImageRepository. Created if the workload has `.spec.source.image` defined.
 
 #### GitRepository
 
 `GitRepository` makes source code from a particular commit available as a tarball in the
-cluster. Other resources in the supply chain can then access that code. 
+cluster. Other resources in the supply chain can then access that code.
 
 ##### Parameters
 
@@ -126,8 +126,8 @@ For information about GitRepository objects, see
 
 ##### More information
 
-For information about the ImageRepository resource, see [ImageRepository reference
-docs](../source-controller/reference.hbs.md#imagerepository).
+For information about the ImageRepository resource, see the [ImageRepository reference
+documentation](../source-controller/reference.hbs.md#image-repository).
 
 For information about how to use the Tanzu CLI to create a workload leveraging ImageRepository, see
 [Create a workload from local source

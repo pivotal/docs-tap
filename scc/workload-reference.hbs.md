@@ -106,9 +106,9 @@ The reference for the template details which supply chains include the template.
 
 ## Service Account
 
-In order to create the templated objects, Cartographer needs a reference to a service account with permissions
+To create the templated objects, Cartographer needs a reference to a service account with permissions
 to manage resources.
-This service account may be provided in the workload's `.spec.serviceAccountName` field
+This service account might be provided in the workload's `.spec.serviceAccountName` field
 or in the supply chain's `spec.serviceAccountRef` field.
 See [Service Account](https://cartographer.sh/docs/v0.6.0/tutorials/first-supply-chain/#service-account)
 and [Workload and Supply Chain Custom Resources](https://cartographer.sh/docs/v0.6.0/reference/workload/) in the Cartographer documentation.
@@ -117,7 +117,7 @@ specify this service account's name with the `--service-account` flag.
 
 After the templated objects are created,
 they often need a service account with permissions to do work.
-In the OOTB Templates and Supply Chains, the _param_ `serviceAccount` must reference
+In the OOTB Templates and Supply Chains, the parameter `serviceAccount` must reference
 the service account for these objects.
 When using the Tanzu CLI to create a workload,
 specify this service account's name with `--param serviceAccount=...`.
