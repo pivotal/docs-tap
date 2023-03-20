@@ -57,7 +57,7 @@ release.
 
 #### <a id='1-4-2-tbs-ri'></a> Tanzu Build Service
 
-- Fixed a bug that prevented the Cloud Native Buildpacks lifecycle component from
+- Fixed an issue that prevented the Cloud Native Buildpacks lifecycle component from
   upgrading with Tanzu Build Service.
   - Outdated lifecycle components can be built with older versions of Golang
     containing CVEs in the standard library.
