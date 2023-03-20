@@ -299,9 +299,9 @@ To verify the installation create an `ImageScan` or `SourceScan` referencing one
     Where `PATH-TO-SCAN-YAML` is the path to the YAML file created earlier.
 
 
-## <a id="install-to-multiple-namespaces"></a> Install Scanner to Multiple Namespaces
+## <a id="install-to-multiple-namespaces"></a> Install scanner to multiple namespaces
 
-If you want to install a Scanner to multiple namespaces, please use [Namespace Provisioner](../namespace-provisioner/about.hbs.md) which is the recommended way of doing this.
+To install a Scanner to multiple namespaces, VMware recommends using a namespace provisioner. See [Namespace Provisioner](../namespace-provisioner/about.hbs.md)
 
 
 ## <a id="configure-supply-chain"></a> Configure Tanzu Application Platform Supply Chain to use new scanner
