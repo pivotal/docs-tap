@@ -123,6 +123,8 @@ running.
 
 ![Screenshot of the Tanzu Workloads panel. A Config Map is selected.](../images/intellij-activity-panel.png)
 
+To add a namespace:
+
 1. View the current context and namespace by running:
 
    ```console

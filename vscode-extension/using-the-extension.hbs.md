@@ -226,6 +226,8 @@ To switch the namespace where you created the workload:
 
 {{> 'partials/ide-extensions/workload-panel-intro' }}
 
+To add a namespace:
+
 1. View the current context and namespace by running:
 
    ```console
