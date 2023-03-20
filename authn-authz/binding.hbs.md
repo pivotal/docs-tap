@@ -52,16 +52,16 @@ Follow these steps to install the Tanzu Application Platform RBAC CLI plug-in:
     tanzu plugin install rbac --local windows-amd64
     ```
 
-## <a id="use-kubeconfig"></a> Use a different kubeconfig location
+## <a id="use-kubeconfig"></a> (Optional) Use a different kubeconfig location
 
-Use a different kubeconfig location by running:
+You can use a different kubeconfig location by running:
 
 ```console
 tanzu rbac --kubeconfig PATH-OF-KUBECONFIG binding add --user USER --role ROLE --namespace NAMESPACE
 ```
 
-> **Note:** The environment variable `KUBECONFIG` is not implemented.
-> You must use the `--kubeconfig` flag to enter a different location.
+> **Note** The environment variable `KUBECONFIG` is not implemented.
+> You must use the `--kubeconfig` flag to enter a different location. Otherwise the default `~/.kube/config` is used.
 
 For example:
 
