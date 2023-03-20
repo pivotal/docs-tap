@@ -77,6 +77,14 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
 
+#### <a id="1-5-0-scst-scan-new-features"></a> Supply Chain Security Tools - Scan
+- To support TSM integration, jobs were replaced with TaskRuns.
+  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restartsv) docs have been updated to account for these changes.
+- Addition of Rotating Certs and TLS Support
+  - Users can specify a TLS cert, minimum TLS version, and restrict TLS ciphers for using kube-rbac-proxy (see [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan)).
+- New simplified alpha user experience of integrating additional vulnerability scanners into supply chains. See [Supply Chain Security Tools - App Scanning (alpha)](./scst-scan/app-scanning-alpha.hbs.md).
+- New alpha integration with the [Trivy Open Source Vulnerability Scanner by Aqua Security](https://www.aquasec.com/products/trivy/) to enable users to configure Source and Image Scans from secure supply chains using Trivy. See [Install Trivy Scanner](./scst-scan/install-trivy-integration.hbs.md).
+
 #### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
 - The Tanzu Workloads panel is updated to show workloads deployed across multiple namespaces.
