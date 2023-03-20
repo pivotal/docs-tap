@@ -1,33 +1,65 @@
-# Improved Security And Access Control in Application Live View
+# Improved security and access control in Application Live View
 
-This topic describes how to enable improved security and access control in
-Application Live View in the Tanzu Application Platform.
+You can now enable improved security and access control in Application Live View
+in the Tanzu Application Platform. Improved security and access control in
+Application Live View secures the REST API exposed by the Application Live View
+back end.
 
-For more information on Appliction Live View packages, see [Install Application Live View](./install.hbs.md).
+For more information about Application Live View packages, see [Install
+Application Live View](./install.hbs.md).
 
-The improved security and access control is introduced in order to secure the REST API exposed by the Application Live View back-end. There is one instance of Application Live View back-end installed per `view` profile. Multiple users access this back-end API to fetch actuator data for different applications. All the REST API calls to the back-end are secured. A token needs to be passed to the Application Live View back-end on each call to REST API to fetch actuator data. This token is obtained from Application Live View Apiserver. The Application Live View Apiserver generates a unique token upon access validation of a user to a given pod. The Application Live View back-end passes this token to the Application Live View connector when requesting the actuator data. The Application Live View connector verifies this token by calling the Application Live View Apiserver and proxies the actuator data only if the token is valid. 
+## <a id='sec-ac-overview'></a>Security and access control overview
 
-The Application Live View UI plug-in part of The Tanzu Application Platform GUI uses the above approach to securely query for the actuator data for a pod. It requests for a token from Application Live View Apiserver and passes it to the subsequent calls to the back-end. This ensures that actuator data from the running application is fetched only if the user is authorized to see the live information for the pod.
+There is one instance of Application Live View back end installed per `view`
+profile. Multiple users access this back-end API to fetch actuator data for
+different applications. All the REST API calls to the back end are secured. A
+token must be passed to the Application Live View back end on each call to REST
+API to fetch actuator data. This token is obtained from Application Live View
+Apiserver.
 
-The Application Live View UI plug-in relies on Tanzu Application Platform GUI authentication and authorization to access the Application Live View Apiserver and fetch the application live view tokens.
+The Application Live View Apiserver generates a unique token upon access
+validation of a user to a pod. The Application Live View back end passes this
+token to the Application Live View connector when requesting the actuator data.
+The Application Live View connector verifies this token by calling the
+Application Live View Apiserver and proxies the actuator data only if the token
+is valid.
 
-The Tanzu Application Platform GUI controls the access to kubernetes resources based on user roles and permissions for each of the remote clusters. For more information on this, see [View runtime resources on authorization-enabled clusters](../tap-gui/tap-gui-rbac/view-resources-rbac.hbs.md).
+The Application Live View UI plug-in part of The Tanzu Application Platform GUI
+uses the preceding approach to securely query for the actuator data for a pod.
+It requests a token from Application Live View Apiserver and passes it in the
+subsequent calls to the back end. This ensures that actuator data from the
+running application is fetched only if the user is authorized to see the live
+information for the pod.
 
-For more information about how to set up unrestricted remote cluster visibility, see [Viewing resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.hbs.md).
+The Application Live View UI plug-in relies on Tanzu Application Platform GUI
+authentication and authorization to access the Application Live View Apiserver
+and fetch the application live view tokens.
+
+The Tanzu Application Platform GUI controls the access to Kubernetes resources
+based on user roles and permissions for each of the remote clusters. For more
+information, see [View runtime resources on authorization-enabled
+clusters](../tap-gui/tap-gui-rbac/view-resources-rbac.hbs.md).
+
+For more information about how to set up unrestricted remote cluster visibility,
+see [Viewing resources on multiple clusters in Tanzu Application Platform
+GUI](../tap-gui/cluster-view-setup.hbs.md).
 
 
 ## <a id='prereqs'></a>Prerequisites
 
-1. The Application Live View Apiserver package
-(`apiserver.appliveview.tanzu.vmware.com`) package should be installed in Tanzu
-Application Platform. For more information, see [Install Application Live View
+1. You install the Application Live View Apiserver package
+(`apiserver.appliveview.tanzu.vmware.com`) in Tanzu Application Platform. For
+more information, see [Install Application Live View
 Apiserver](./install.hbs.md).
 
-1. The users are assigned necessary roles and permissions for the Kubernetes clusters. For more information on managing role based access control, see [Assign roles and permissions on Kubernetes clusters](../tap-gui/tap-gui-rbac/assigning-kubernetes-roles.hbs.md)
+1. Assign users necessary roles and permissions for the Kubernetes
+   clusters. For more information about managing role-based access control, see
+   [Assign roles and permissions on Kubernetes
+   clusters](../tap-gui/tap-gui-rbac/assigning-kubernetes-roles.hbs.md)
 
-For example, If you are using Service Account to view resources on a cluster in Tanzu
-Application Platform GUI, make sure the `ClusterRole` has rules to access and
-request tokens from the Application Live View Apiserver.
+For example: If you are using Service Account to view resources on a cluster in
+Tanzu Application Platform GUI, verify that the `ClusterRole` has rules to
+access and request tokens from the Application Live View Apiserver.
 
 ```yaml
 - apiGroups: ['appliveview.apps.tanzu.vmware.com']
@@ -40,21 +72,21 @@ For more information, see [Set up a Service Account to view resources on a
 cluster](../tap-gui/cluster-view-setup.hbs.md).
 
 >**Note** With the Service Account approach to view resources on a cluster,
->every user with the Service Account Token with access to view the pods will be
->able to see the live information in Application Live View.
+>every user with the Service Account Token with access to view the pods is able
+>to see the live information in Application Live View.
 
 
-## <a id='improved-security'></a> Configure Improved Security
+## <a id='improved-security'></a> Configure improved security
 
 The improved security feature is enabled by default for Application Live View.
 
 In a Tanzu Application Platform profile install, the Application Live View
 connector (`connector.appliveview.tanzu.vmware.com`) and the Tanzu Application
 Platform GUI (`tap-gui.tanzu.vmware.com`) are automatically configured to enable
-the secure communication between the Application Live View components.
+the secure communication between Application Live View components.
 
-This feature can be controlled by setting the top-level key
-`shared.activateAppLiveViewSecureAccessControl` in the `tap-values.yml`.
+You can control this feature by setting the top-level key
+`shared.activateAppLiveViewSecureAccessControl` in the `tap-values.yaml`.
 
 For example:
 
@@ -63,10 +95,10 @@ shared:
     activateAppLiveViewSecureAccessControl: true
 ```
 
-If you want to override the security feature at the individual component level,
-follow the below steps:
+To override the security feature at the individual component level, take the
+following steps.
 
-### <a id='app-live-view-connector'></a> Application Live View Connector
+### <a id='app-live-view-connector'></a> Application Live View connector
 
 1. (Optional) Change the default installation settings for Application Live View
    connector by running:
@@ -85,10 +117,10 @@ follow the below steps:
       KEY                                   DEFAULT             TYPE        DESCRIPTION
       kubernetes_version                                        string      Optional: The Kubernetes Version. Valid values are '1.24.*', or ''.
 
-      backend.sslDeactivated                   false               boolean     Flag for whether to disable SSL.
+      backend.sslDeactivated                false               boolean     Flag for whether to disable SSL.
       backend.caCertData                    cert-in-pem-format  string      CA Cert Data for ingress domain.
-      backend.host                          <nil>               string      Domain to be used to reach the Application Live View back end. Prepend
-                                                                            "appliveview" subdomain to the value if you are using shared ingress. For
+      backend.host                          <nil>               string      Domain used to reach the Application Live View back end. Prepend
+                                                                            "appliveview" subdomain to the value if you use shared ingress. For
                                                                             example: "example.com" becomes "appliveview.example.com".
       backend.ingressEnabled                false               boolean     Flag for the connector to connect to ingress on back end.
 
@@ -97,8 +129,8 @@ follow the below steps:
       connector.namespace_scoped.namespace  default             string      Namespace to deploy connector.
       kubernetes_distribution                                   string      Kubernetes distribution that this package is being installed on. Accepted
                                                                             values: ['''',''openshift''].
-      activateAppLiveViewSecureAccessControl                    boolean     Optional: Configuration required to enable Secure Access Connection between App Live View components
-      activateSensitiveOperations                               boolean     Optional: Configuration to allow connector to execute sensitive operations on a running application
+      activateAppLiveViewSecureAccessControl                    boolean     Optional: Configuration required to enable Secure Access Connection between App Live View components.
+      activateSensitiveOperations                               boolean     Optional: Configuration to allow connector to execute sensitive operations on a running application.
     ```
 
     For more information about values schema options, see the properties listed
@@ -107,8 +139,8 @@ follow the below steps:
 
 2. Create `app-live-view-connector-values.yaml` with the following details:
 
-    If you want to override the default security settings for connector, use the
-    following values:
+    To override the default security settings for connector, use the following
+    values:
 
      ```yaml
     activateAppLiveViewSecureAccessControl: false
@@ -116,12 +148,12 @@ follow the below steps:
 
     By default, activateAppLiveViewSecureAccessControl is set to `true`.
 
-    The `activateSensitiveOperations` key enables/disables the execution of
-    sensitive operations such as editing environment variables, download heap
-    dump data, changing log levels for the applications in the cluster. It is
-    set to `false` by default.
+    The `activateSensitiveOperations` key activates/deactivates the execution of
+    sensitive operations, such as editing environment variables, downloading
+    heap dump data, and changing log levels for the applications in the cluster.
+    It is set to `false` by default.
 
-    To enable the sensitive operations, set the `activateSensitiveOperations` to
+    To enable the sensitive operations, set `activateSensitiveOperations` to
     `true`.
 
      ```yaml
@@ -178,7 +210,7 @@ follow the below steps:
 
 The Application Live View UI plug-in is part of Tanzu Application Platform GUI.
 To override the default security settings for the Application Live View UI
-plug-in, follow the below steps:
+plug-in, take the following steps.
 
 1. (Optional) Make changes to the default installation settings by running:
 
@@ -227,7 +259,7 @@ plug-in, follow the below steps:
      -f tap-gui-values.yaml
     ```
 
-    Where `VERSION` is the desired version. For example, `1.4.6`.
+    Where `VERSION` is the version that you want. For example, `1.4.6`.
 
     For example:
 
