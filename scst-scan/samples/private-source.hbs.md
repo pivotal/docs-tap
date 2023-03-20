@@ -4,6 +4,27 @@
 
 1. Create a [Kubernetes Secret](https://kubernetes.io/docs/concepts/configuration/secret/#use-case-pod-with-ssh-keys) named `secret-ssh-auth` with an SSH key for cloning a git repository.
 
+```console
+cat <<EOF | kubectl create -f -
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-ssh-auth
+  annotations:
+    tekton.dev/git-0: https://github.com
+    tekton.dev/git-1: https://gitlab.com
+type: kubernetes.io/ssh-auth
+stringData:
+  ssh-privatekey: |
+    -----BEGIN OPENSSH PRIVATE KEY-----
+    ....
+    ....
+    -----END OPENSSH PRIVATE KEY-----
+EOF
+```
+
+Where `.stringData.ssh-privatekey` contains the private key with pull-permissions
+
 2. Create `sample-private-source-scan.yaml`:
 
 ```yaml
