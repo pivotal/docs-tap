@@ -11,7 +11,7 @@ This topic describes how Tanzu Build Service uses and installs dependencies.
 To build OCI images, Tanzu Build Service has the following dependencies: Cloud Native
 [Buildpacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/index.html),
 [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html),
-and [Lifecycles](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-builders.html#update-lifecycle).
+and [Lifecycles](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-builders.html#update-lifecycle).
 
 ## <a id="install"></a> How dependencies are installed
 
@@ -28,7 +28,7 @@ For upgrade instructions, see [Upgrade the full dependencies package](../upgradi
 
 To upgrade Tanzu Build Service dependencies outside of Tanzu Application Platform releases, use the
 `kpack` CLI. This enables you to consume new versions of buildpacks and stacks and remediate
-vulnerabilities more quickly. For more information, see [Updating Build Service Dependencies](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/updating-deps.html#bulk-update).
+vulnerabilities more quickly. For more information, see [Updating Build Service Dependencies](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/updating-deps.html#bulk-update).
 
 By default, Tanzu Build Service is installed with the `lite` set of dependencies,
 which are smaller-footprint and contain a subset of the buildpacks and stacks in

@@ -13,6 +13,17 @@ on a per-project basis by using the drop-down menu in **Settings**.
 
 ![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu is expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
 
+## <a id=workload-commands></a> Workload Commands
+
+All commands are available by right-clicking anywhere in the VS Code project explorer, on an associated
+workload in the Tanzu Workloads panel, or in the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
+
+![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
+
+![The VS Code interface showing the Tanzu Workloads panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
+
+![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
+
 ## <a id="apply-workload"></a> Apply a workload
 
 The extension enables you to apply workloads on your Kubernetes cluster that has
@@ -20,12 +31,12 @@ Tanzu Application Platform.
 
 To apply a workload:
 
-1. Right-click anywhere in the VS Code project explorer or open the Command Palette by pressing ⇧⌘P
-   (Ctrl+Shift+P on Windows).
+1. Right-click anywhere in the VS Code project explorer, on an associated workload in the
+   Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
-2. Run `Tanzu: Apply Workload`.
+2. Select the `Tanzu: Apply Workload` command..
 
-3. If there are multiple projects with workloads, select the workload to apply.
+3. If applicable, select the workload to apply.
 
    ![Apply Workload menu open showing workloads available to apply.](../images/vscode-applyworkload3.png)
 
@@ -36,21 +47,6 @@ To apply a workload:
    A new workload appears on the Tanzu Workloads panel.
 
    ![Workload on Tanzu Workloads showing details for tanzu-java-web-app.](../images/vscode-panel-workload-unknown.png)
-
-   The workload panel shows the workloads running in the namespace that is defined in the current
-   Kubernetes context.
-
-4. (Optional) See the context and namespace currently configured by running:
-
-   ```console
-   kubectl config get-contexts
-   ```
-
-5. (Optional) Set a namespace for the current context by running:
-
-   ```console
-   kubectl config set-context --current --namespace=YOUR-NAMESPACE
-   ```
 
    After the workload is deployed, the status on the Tanzu Workloads panel changes to `Ready`.
 
@@ -73,9 +69,11 @@ debug the updated code, without having to deactivate Live Update when debugging.
 To start debugging on the cluster:
 
 1. Add a [breakpoint](https://code.visualstudio.com/docs/editor/debugging#_breakpoints) in your code.
-2. Right-click anywhere in the VS Code project explorer or open the Command Palette by pressing ⇧⌘P
-   (Ctrl+Shift+P on Windows).
-3. Click **Tanzu: Java Debug Workload** from either menu.
+
+2. Right-click anywhere in the VS Code project explorer, on an associated workload in the
+   Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
+
+3. Select the `Tanzu: Java Debug Start` command..
 
 ### <a id="stop-debugging"></a> Stop Debugging on the cluster
 
@@ -114,15 +112,18 @@ debug the updated code, without having to deactivate Live Update when debugging.
 
 ### <a id="start-live-update"></a> Start Live Update
 
-You can start Live Update by right-clicking anywhere in the VS Code project explorer and then clicking
-**Tanzu: Live Update Start** in the pop-up menu.
+Before using Live Update, verify that your auto-save setting is either off or on with a delay.
+The delay must be long enough for the application to restart between auto saves to allow enough
+time for your app to Live Update when files change.
+The auto-save setting is in
+**Preferences** > **Text Editor** > **Files** > **Auto Save** > **Auto Save Delay**.
 
-![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
+To start Live Update:
 
-Alternatively, you can press `⇧⌘P` to open the Command Palette and then run the
-`Tanzu: Live Update Start` command.
+1. Right-click anywhere in the VS Code project explorer, on an associated workload in the
+   Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
-![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
+2. Select the `Tanzu: Live Update Start` command.
 
 ### <a id="stop-live-update"></a> Stop Live Update
 
@@ -191,12 +192,12 @@ Tanzu Application Platform.
 
 To delete a workload:
 
-1. Right-click anywhere in the VS Code project explorer or open the Command Palette by pressing ⇧⌘P
-   (Ctrl+Shift+P on Windows).
+1. Right-click anywhere in the VS Code project explorer, on an associated workload in the
+   Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
-2. Run `Tanzu: Delete Workload`.
+2. Select the `Tanzu: Delete Workload` command..
 
-3. Select the workload to delete.
+3. If applicable, select the workload to delete.
 
    ![Delete Workload menu open showing workloads available to delete.](../images/vscode-deleteworkload3.png)
 
@@ -222,11 +223,9 @@ To switch the namespace where you created the workload:
 
 ## <a id="workload-panel"></a> Tanzu Workloads panel
 
-The current state of the workloads is visible on the Tanzu Workloads panel in the bottom left corner
-of the VS Code window. The panel shows the current status of each workload, namespace, and cluster.
-It also shows whether Live Update and Debug is running, stopped, or deactivated.
+{{> 'partials/ide-extensions/workload-panel-intro' }}
 
-The Tanzu Workloads panel uses the cluster and namespace specified in the current kubectl context.
+To add a namespace:
 
 1. View the current context and namespace by running:
 
@@ -240,7 +239,10 @@ The Tanzu Workloads panel uses the cluster and namespace specified in the curren
    kubectl config set-context --current --namespace=YOUR-NAMESPACE
    ```
 
-   ![VS Code Workload Panel showing the Terminal log.](../images/vscode-panel-live-update-running.png)
+3. Add additional namespaces to your Tanzu Workloads panel in **Preferences** > **Extensions** >
+   **Tanzu Developer Tools** > **Tracked Namespaces**.
+
+![VS Code Tanzu Workloads Panel showing the Terminal log.](../images/vscode-workload-and-activity-panels.png)
 
 ## <a id="mono-repo"></a> Working with Microservices in a Monorepo
 
@@ -350,3 +352,9 @@ For these projects, make these adjustments:
    from the repository must be supplied to the workload builder.
 
    ![VS Code Monorepo Preferences in Settings. The folder drop-down menu is circled in red. The Local Path text box is also circled in red.](../images/vscode-monorepo-preferences.png)
+
+## <a id="log-setting"></a> Changing logging verbosity
+
+The Tanzu Language Server saves logs to `~/tanzu-langserver.log`.
+You can change the log verbosity in **Preferences** > **Extensions** > **Tanzu Developer Tools** >
+**Language Server: Log Verbosity**.

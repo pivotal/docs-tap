@@ -20,6 +20,7 @@ OOTB Supply Chains use the following workload labels:
   [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url).
 - `apps.tanzu.vmware.com/workload-type` by [all supply chains](ootb-supply-chain-reference.hbs.md).
 - `apis.apps.tanzu.vmware.com/register-api` by the [Api-Descriptors Template](ootb-template-reference.hbs.md#api-descriptors).
+- `apps.tanzu.vmware.com/carvel-package-workflow` by [source-to-url-package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) and [basic-image-to-url-package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-experimental).
 
 ## Parameters
 
@@ -103,12 +104,18 @@ The reference for the template details which supply chains include the template.
 - gitops_pull_request_title: [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
 - gitops_pull_request_body: [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
 - gitops_server_kind: [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
+- carvel_package_gitops_subpath (experimental): [carvel-package](ootb-template-reference.hbs.md#carvel-package-experimental),
+  [package-config-writer-template](ootb-template-reference.hbs.md#package-config-writer-template-experimental),
+  [package-config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#package-config-writer-and-pull-requester-template-experimental)
+- carvel_package_name_suffix (experimental): [carvel-package](ootb-template-reference.hbs.md#carvel-package-experimental),
+  [package-config-writer-template](ootb-template-reference.hbs.md#package-config-writer-template-experimental),
+  [package-config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#package-config-writer-and-pull-requester-template-experimental)
 
 ## Service Account
 
-In order to create the templated objects, Cartographer needs a reference to a service account with permissions
+To create the templated objects, Cartographer needs a reference to a service account with permissions
 to manage resources.
-This service account may be provided in the workload's `.spec.serviceAccountName` field
+This service account might be provided in the workload's `.spec.serviceAccountName` field
 or in the supply chain's `spec.serviceAccountRef` field.
 See [Service Account](https://cartographer.sh/docs/v0.6.0/tutorials/first-supply-chain/#service-account)
 and [Workload and Supply Chain Custom Resources](https://cartographer.sh/docs/v0.6.0/reference/workload/) in the Cartographer documentation.
@@ -117,7 +124,7 @@ specify this service account's name with the `--service-account` flag.
 
 After the templated objects are created,
 they often need a service account with permissions to do work.
-In the OOTB Templates and Supply Chains, the _param_ `serviceAccount` must reference
+In the OOTB Templates and Supply Chains, the parameter `serviceAccount` must reference
 the service account for these objects.
 When using the Tanzu CLI to create a workload,
 specify this service account's name with `--param serviceAccount=...`.

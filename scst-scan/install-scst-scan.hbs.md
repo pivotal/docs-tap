@@ -44,6 +44,12 @@ When you install the SCST - Scan (Scan controller), you can configure the follow
 | metadataStore.authSecret.name | _n/a_ | string | Name of deployed secret with key auth_token | earlier than v1.2.0 |
 | retryScanJobsSecondsAfterError | 60 | integer | Seconds to wait before retrying errored scans | v1.3.1 and later |
 | caCertData | "" | string | The custom certificates trusted by the scans' connections. | v1.4.0 and later |
+| certIssuer | "" | string | The common certificate issuer for the cluster. | v1.5.0 and later |
+| controller.pullSecret | "controller-secret-ref" | string | Reference to the secret used for pulling the controller image from private registry. Set to empty if deploying from a public registry. | v1.5.0 and later |
+| docker.import | true | boolean | Import `controller.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret will already be present. | v1.5.0 and later |
+| kubeRbacProxy.certRef | "" | string | Reference to the secret which holds certificate for kube-rbac-proxy. The Certificate is used to enable secure connection to the metric proxy. | v1.5.0 and later |
+| kubeRbacProxy.tls.minVersion | "" | string | Minimum TLS version supported by kube-rbac-proxy. Value must match version names from https://golang.org/pkg/crypto/tls/#pkg-constants. | v1.5.0 and later |
+| kubeRbacProxy.tls.ciphers | empty array | array of strings | Comma-separated list of cipher suites for the server supported by kube-rbac-proxy. Values are from tls package constants (https://golang.org/pkg/crypto/tls/#pkg-constants). | v1.5.0 and later |
 
 When you install the SCST - Scan (Grype scanner), you can configure the following optional properties:
 
@@ -136,6 +142,8 @@ To install SCST - Scan (Scan controller):
     Where `VERSION` is your package version number. For example, `1.1.0`.
 
 <a id="install-grype"></a> To install SCST - Scan (Grype scanner):
+
+>**Note:** To install Grype in multiple namespaces, use a namespace provisioner. See [Namespace Provisioner](../namespace-provisioner/about.hbs.md).
 
 1. List version information for the package by running:
 

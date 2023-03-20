@@ -693,7 +693,7 @@ Only the `server` workload type has the following configurable parameters:
 </table>
 
 For more information about the three different types of workloads, see [workload types](../workloads/workload-types.hbs.md).
-For a more detailed overview of the ports parameter, see [`server`-specific Workload
+For a more detailed overview of the ports parameter, see [server-specific Workload
 parameters](../workloads/server.hbs.md#-server-specific-workload-parameters).
 
 ### <a id ="service-bindings"></a>service-bindings
@@ -730,7 +730,7 @@ Parameters:
 </table>
 
 For an example, see
-[`--service-ref`](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#apply-service-ref)
+[--service-ref](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#apply-service-ref)
 in Tanzu CLI documentation.
 
 For an overview of the function, see [Consume services on
@@ -994,7 +994,7 @@ either a Git repository or image repository, and applied to the cluster.
 #### App
 
 Regardless of where the configuration comes from, an
-[`App`](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/) object is
+[App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/) object is
 instantiated to deploy the set of Kubernetes configuration files to the cluster.
 
 Parameters:
@@ -1044,5 +1044,6 @@ The `--service-account` flag sets the `spec.serviceAccountName` key in  the deli
 To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For details about RBAC and how `kapp-controller` uses the ServiceAccount provided to it using the
-`serviceAccount` parameter in the `deliverable` object, see [`kapp-controller`'s Security
+
+`serviceAccount` parameter in the `deliverable` object, see [kapp-controller's Security
 Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/) in the Carvel documentation.

@@ -58,11 +58,11 @@ add [additional sources](install.hbs.md#customized-install) in the `tap-values.y
 file. For example, to adjust quota allocation or to create other namespace resources. For details of
 the list of resources that are templated in the `default-resources` Secret, see [Default Resource Mapping](reference.hbs.md#default-resources-mapping).
 
-This [example](#example-additional-resources) adds four additional sources:
+The following are examples of additional sources:
 
 - This additional source points to an example of a [workload service account yaml file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/workload-sa/workload-sa-with-secrets.yaml).
 After importing this source, Namespace Provisioner creates the following resources in all
-amespaces listed in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap).
+namespaces listed in the [desired-namespaces ConfigMap](about.hbs.md#desired-ns-configmap).
 - <a id="add-test-scan"></a>This additional source points to examples of
 [ytt templated testing and scanpolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/namespace-provisioner-gitops-examples/custom-resources/testing-scanning-supplychain).
 After importing this source, Namespace Provisioner creates a **scan-policy** and a

@@ -80,9 +80,10 @@ To manually enable CVE scan results:
 
 ## <a id="view-approvals"></a> Enable GitOps Pull Request Flow
 
-To enable the supply chain box-and-line diagram to show **Approve a Request** in the **Config Writer**
-stage details view when the **Config Writer** stage is clicked, set up for GitOps and pull requests. For more information, see
-[GitOps vs. RegistryOps](../../scc/gitops-vs-regops.hbs.md).
+Set up for GitOps and pull requests to enable the supply chain box-and-line diagram to show
+**Approve a Request** in the **Config Writer** stage details view when the **Config Writer** stage is
+clicked.
+For more information, see [GitOps vs. RegistryOps](../../scc/gitops-vs-regops.hbs.md).
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 

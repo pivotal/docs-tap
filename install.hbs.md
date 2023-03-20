@@ -240,7 +240,7 @@ shared:
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
 
-  kubernetes_distribution: "openshift" # To be passed only for OpenShift. Defaults to "".
+  kubernetes_distribution: "K8S-DISTRO"
   kubernetes_version: "K8S-VERSION"
 
   ca_cert_data: | # To be passed if using custom certificates.
@@ -316,9 +316,8 @@ service's External IP address. It is not required to know the External IP addres
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     * For Google Cloud Registry, use the contents of the service account JSON file.
     * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
-- `K8S-VERSION` is the Kubernetes version used by your OpenShift cluster. It must be in the form of `1.23.x` or `1.24.x`, where `x` stands for the patch version. Examples:
-    - Red Hat OpenShift Container Platform v4.10 uses the Kubernetes version `1.23.3`.
-    - Red Hat OpenShift Container Platform v4.11 uses the Kubernetes version `1.24.1`.
+- `K8S-DISTRO` (optional) is the type of Kubernetes infrastructure in use. You can use it in coordination with `kubernetes_version`. For example, `openshift`.
+- `K8S-VERSION` (optional) is the Kubernetes version in use. You can use it independently or in coordination with `kubernetes_distribution`. For example, `1.24.x`, where `x` is the Kubernetes patch version.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
     * Docker Hub has the form `server: "index.docker.io"`.
@@ -332,6 +331,7 @@ Images are written to `SERVER-NAME/REPO-NAME/workload-name`. Examples:
 This field is only required if you use a private repository, otherwise, leave it empty. See [Git authentication](scc/git-auth.hbs.md) for more information.
 - `GIT-CATALOG-URL` is the path to the `catalog-info.yaml` catalog definition file. You can download either a blank or populated catalog file from the [Tanzu Application Platform product page](https://network.pivotal.io/products/tanzu-application-platform/#/releases/1239018). Otherwise, you can use a Backstage-compliant catalog you've already built and posted on the Git infrastructure.
 - `MY-DEV-NAMESPACE` is the name of the developer namespace. SCST - Store exports secrets to the namespace, and SCST - Scan deploys the `ScanTemplates` there. This allows the scanning feature to run in this namespace. If there are multiple developer namespaces, use `ns_for_export_app_cert: "*"` to export the SCST - Store CA certificate to all namespaces.
+  >**Note:** To install Grype in multiple namespaces, use a namespace provisioner. See [Namespace Provisioner](namespace-provisioner/about.hbs.md).
 - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
 credentials to pull an image from the registry for scanning.
 - `CUSTOMER-ENTITLEMENT-ACCOUNT-NUMBER` (optional) refers to the Entitlement Account Number (EAN), which is a unique identifier VMware assigns to its customers. Tanzu Application Platform telemetry uses this number to identify data that belongs to a particular customers and prepare usage reports. See  [Locating the Entitlement Account number for new orders](https://kb.vmware.com/s/article/2148565) for more information about identifying the Entitlement Account Number.

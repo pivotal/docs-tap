@@ -88,8 +88,8 @@ tap-gui   tap-gui.tap.tapdemo.myorg.com             tap-gui-cert   valid    Vali
 
 ## <a id="app-acc-known-issues"></a> Known Issues
 
-In v0.1.5 of the Application Accelerator extension for VS Code, if an accelerator with [`custom
-types`](creating-accelerators/custom-types.hbs.md) is used _and_ the custom type form contains
+In v0.1.5 of the Application Accelerator extension for VS Code, if an accelerator with [custom
+types](creating-accelerators/custom-types.hbs.md) is used _and_ the custom type form contains
 checkboxes, re-prioritizing the custom types entries cause the data to not properly reorder. This is
 a known issue and is resolved in an upcoming release.
 

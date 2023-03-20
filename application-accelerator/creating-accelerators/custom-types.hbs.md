@@ -151,7 +151,7 @@ might use SpELs syntax for accessing properties or< array elements:
 
 Array indexing should not be used (either with a literal number or a variable) as the purpose
 of the list of the custom types feature is that you don't know the data length
-in advance. See the section about the [`Loop`](transforms/loop.hbs.md) Transform to discover more
+in advance. See the section about the [Loop](transforms/loop.hbs.md) Transform to discover more
 idiomatic use of repeated structured data.
 
 ## Interaction with Composition
