@@ -180,16 +180,16 @@ This release has the following known issues, listed by area and component.
   For most languages, source code scanning only scans files present in the
   source code repository. Except for support added for Java projects using
   Maven, no network calls fetch dependencies. For languages using dependency
-  lock files, such as Golang and Node.js, Grype uses the lock files to check
+  lock files, such as golang and Node.js, Grype uses the lock files to verify
   dependencies for vulnerabilities.
 
   For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
   dependencies present in the built binaries, such as `.jar` or `.war` files.
 
-  Because VMware discourages committing binaries to source code repositories,
-  Grype fails to find vulnerabilities during a source scan. The vulnerabilities
-  are still found during the image scan after the binaries are built and
-  packaged as images.
+  Grype fails to find vulnerabilities during a source scan because VMware
+  discourages committing binaries to source code repositories. The
+  vulnerabilities are still found during the image scan after the binaries are
+  built and packaged as images.
 
 ### <a id='1-5-0-deprecations'></a> Deprecations
 
