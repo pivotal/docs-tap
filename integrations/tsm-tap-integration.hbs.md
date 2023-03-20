@@ -619,11 +619,26 @@ gitOpsRepo=https://github.com/gm2552/tap-play-gitops.git | kubectl apply -f-
 
 ### <a id="scg-deploy"></a> Spring Cloud Gateway deployment
 
-The section requires the Spring Cloud Gateway for Kubernetes package to be installed on `RunCluster01`.
-For instructions, see
-[Installing Spring Cloud Gateway for Kubernetes using the Tanzu CLI](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/1.2/scg-k8s/GUID-installation-tanzu-cli.html).
+#### <a id="scg-package-install"></a> Spring Cloud Gateway Package Installation
+The section requires the Spring Cloud Gateway for Kubernetes package to be installed on `RunCluster01`.If Spring Cloud Gateway is already installed into the run cluster, you skip these install steps.
 
-The Spring Cloud Gateway `spec.service.name` configuration was not built with multi, cross-cluster
+Prior to TAP 1.5, the Spring Cloud Gateway operator must be installed manually; full instructions can be found [here](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/1.2/scg-k8s/GUID-installation-tanzu-cli.html).
+
+
+In TAP 1.5 and beyond, Spring Cloud Gateway is included as an optional package in the TAP carvel bundle.  You can simply install the Spring Cloud Gateway package with default setting using the following Tazu CLI template:
+
+```console
+tanzu package install scg –package-name spring-cloud-gateway.tanzu.vmware.com -version <VERSION_NUMBER> -n <TAP_INSTALL_NAMESPACE>
+```
+
+For example:
+
+```console
+tanzu package install scg --package-name spring-cloud-gateway.tanzu.vmware.com --version 2.0.0-tap.3 -n tap-install
+```
+#### <a id="scg-config"></a> Spring Cloud Gateway Instance And Route Configuration
+
+NOTE: The Spring Cloud Gateway `spec.service.name` configuration was not built with multi, cross-cluster
 support. The configuration for the gateway routes currently implements a workaround, which is brittle
 in terms of where certain services are deployed.
 Future releases of the gateway might have better support for this use case.
