@@ -15,10 +15,12 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 #### <a id='1-5-0-app-accelerator-new-features'></a> Application Accelerator
 
-- The Application Accelerator plugin for IntelliJ is now available as a Beta release on the [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-- The [`Tanzu Java Restful Web App`](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service) and [`Tanzu Java Web App`](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) accelerators have been updated to include an option to support of Spring Boot 3.0.
-- Accelerator provenance information (`accelerator-info.yaml`) is now available as a way to determine if a project has been generated with an accelerator as well as additional historical information.
-- Optional git repository creation now [has a system-wide flag](./tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation) to activate/deactivate the feature through the `tap-values.yaml` configuration file.
+- The Application Accelerator plug-in for IntelliJ is now available as a beta release on the [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+- The [Tanzu Java Restful Web App](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service) and [Tanzu Java Web App](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) accelerators have the option to support Spring Boot v3.0.
+- Use the `accelerator-info.yaml` file to review historical information and to determine if
+  a project was generated with an accelerator.
+- (Optional) Use a system-wide property in the `tap-values.yaml` configuration file to activate or
+  deactivate Git repository creation. For more information, see [Deactivate Git repository creation](./tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation).
 
 #### <a id='1-5-0-appsso-new-features'></a> Application Single Sign-On (AppSSO)
 
