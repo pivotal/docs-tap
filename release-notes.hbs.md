@@ -104,9 +104,15 @@ This release has the following breaking changes, listed by area and component.
 - The default `ClusterBuilder` now uses the Ubuntu Jammy v22.04 stack instead of the Ubuntu Bionic
 v18.04 stack. Previously, the default `ClusterBuilder` pointed to the Base builder based on the
 Bionic stack. Now, the default `ClusterBuilder` points to the Base builder based on the Jammy stack.
-Ensure that your workloads can be built and run on Jammy. For information about how to change the `ClusterBuilder` from the default builder, see the [Configure the Cluster Builder](../docs-tap/tanzu-build-service/tbs-workload-config.hbs.md#cluster-builder) in the Tanzu Build
-Service component documentation. For more information about available builders, see [Lite Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#lite-dependencies) and [Full Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#full-dependencies) in the Tanzu Build Service
-documentation.
+Ensure that your workloads can be built and run on Jammy.
+
+For information about how to change the `ClusterBuilder` from the default builder, see the
+[Configure the Cluster Builder](../docs-tap/tanzu-build-service/tbs-workload-config.hbs.md#cluster-builder) in the Tanzu Build Service documentation.
+
+For more information about available builders, see
+[Lite Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#lite-dependencies) and
+[Full Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#full-dependencies) in the
+Tanzu Build Service documentation.
 
 #### <a id='1-5-0-security-fixes'></a> Security fixes
 
