@@ -30,21 +30,19 @@ Install the View profile cluster first, because some components must exist befor
 
 To install the View cluster:
 
-1. Follow the steps for installing the Full profile in [Installing the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the View profile, as shown in [View profile](reference/tap-values-view-sample.md).
-2. Verify that you can access Tanzu Application Platform GUI by using the ingress that you have set up. The address must follow this format: `http://tap-gui.INGRESS-DOMAIN`, where `INGRESS-DOMAIN` is the DNS domain you've set to point to the shared Contour installation in the `tanzu-system-ingress` namespace with the service `envoy`.
-3. Verify that you have followed the instructions for [Multicluster setup](../scst-store/ingress-multicluster.md#multicluster-setup) for the Supply Chain Security Tools - Store.
+1. Follow the steps described in [Installing the Tanzu Application Platform package and profiles](../install.md) by using a reduced values file as shown in [View profile](reference/tap-values-view-sample.md).
+2. Verify that you can access Tanzu Application Platform GUI by using the ingress that you set up. The address must follow this format: `http://tap-gui.INGRESS-DOMAIN`, where `INGRESS-DOMAIN` is the DNS domain you set to point to the shared Contour installation in the `tanzu-system-ingress` namespace with the service `envoy`.
+3. Verify that you followed [Multicluster setup](../scst-store/ingress-multicluster.md#multicluster-setup) for the Supply Chain Security Tools - Store.
 
 ## <a id='install-build'></a> Install Build clusters
 
-To install the Build profile cluster:
-
--  Follow the steps for installing the Full profile in [Installing the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the Build profile, as shown in [Build profile](reference/tap-values-build-sample.md).
+To install the Build profile cluster, follow the steps described in [Installing the Tanzu Application Platform package and profiles](../install.md) by using a reduced values file as shown in [Build profile](reference/tap-values-build-sample.md).
 
 ## <a id='install-run'></a> Install Run clusters
 
 To install the Run profile cluster:
 
-1. Follow the steps for installing the Full profile in [Installing the Tanzu Application Platform package and profiles](../install.md). Alternatively, you can use a reduced values file for the Run profile, as shown in [Run profile](./reference/tap-values-run-sample.md).
+1. Follow the steps described in [Install the Tanzu Application Platform package and profiles](../install.md) by using a reduced values file as shown in [Run profile](reference/tap-values-run-sample.md).
 2. To use Application Live View, set the `INGRESS-DOMAIN` for `appliveview_connector` to match the value you set on the View profile for the `appliveview` in the values file.
 
 ## <a id='add-view'></a> Add Build and Run clusters to Tanzu Application Platform GUI
