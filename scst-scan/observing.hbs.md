@@ -9,5 +9,6 @@ The scans run inside a Tekton TaskRun where the TaskRun creates a pod. Both the 
 Before applying a new scan, you can set a watch on the TaskRuns, Pods, SourceScans, Imagescans to observe their progression:
 
 ```console
-watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies
+watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies -n DEV-NAMESPACE
 ```
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
