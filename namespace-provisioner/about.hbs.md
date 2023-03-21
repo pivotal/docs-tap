@@ -9,14 +9,14 @@ multiple developer namespaces in a shared cluster. For organizations that have a
 Kubernetes, Namespace Provisioner is also compatible with existing Kubernetes tooling.
 
 Controller mode
-: Controller mode has the following characteristics:
+: Controller mode has the following characteristics
 
 - List of developer namespaces are managed by the namespace provisioner controller via a label selector apps.tanzu.vmware.com/tap-ns=""
 - Namespace provisioner creates default resources that are shipped Out of the Box in all managed namespaces.
 - Namespace provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under additional_sources section in Namespace Provisioner configuration. (See Customize Installation for more details)
 
 GitOps mode
-: Gitops mode has the following characteristics:
+: Gitops mode has the following characteristics
 
 - List of developer namespaces is managed in a Git repository referred via the gitops_install section of the Namespace Provisioner configuration.
 - Namespace provisioner creates default resources that are shipped Out of the Box in all managed namespaces.
