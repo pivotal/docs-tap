@@ -13,14 +13,14 @@ on a per-project basis by using the drop-down menu in **Settings**.
 
 ![The VS Code interface showing Tanzu Extension selected in the settings. The Project drop-down menu is expanded to show both projects in the current workspace.](../images/vscode-multiple-projects.png)
 
-
 ## <a id=workload-commands></a> Workload Commands
 
-All commands are available by right-clicking anywhere in the VS Code project explorer, on an associated workload in the workload panel, and in the Command Palette(⇧⌘P on Mac and Ctrl+Shift+P on Windows). For example, the Live Update command is shown in each menu here:
+All commands are available by right-clicking anywhere in the VS Code project explorer, on an associated
+workload in the Tanzu Workloads panel, or in the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
 ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
 
-![The VS Code interface showing the Tanzu Workload panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
+![The VS Code interface showing the Tanzu Workloads panel right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-workload-panel-live-update-command.png)
 
 ![Command palette open showing text Tanzu: Live Update Start.](../images/vscode-startliveupdate2.png)
 
@@ -31,7 +31,8 @@ Tanzu Application Platform.
 
 To apply a workload:
 
-1. Right-click anywhere in the VS Code project explorer, on an associated workload in the workload panel, or open the Command Palette(⇧⌘P on Mac and Ctrl+Shift+P on Windows).
+1. Right-click anywhere in the VS Code project explorer, on an associated workload in the
+   Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
 2. Select the `Tanzu: Apply Workload` command..
 
@@ -69,7 +70,8 @@ To start debugging on the cluster:
 
 1. Add a [breakpoint](https://code.visualstudio.com/docs/editor/debugging#_breakpoints) in your code.
 
-2. Right-click anywhere in the VS Code project explorer, on an associated workload in the workload panel, or open the Command Palette(⇧⌘P on Mac and Ctrl+Shift+P on Windows).
+2. Right-click anywhere in the VS Code project explorer, on an associated workload in the
+   Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
 3. Select the `Tanzu: Java Debug Start` command..
 
@@ -118,9 +120,10 @@ The auto-save setting is in
 
 To start Live Update:
 
-1. Right-click anywhere in the VS Code project explorer, on an associated workload in the workload panel, or open the Command Palette(⇧⌘P on Mac and Ctrl+Shift+P on Windows).
+1. Right-click anywhere in the VS Code project explorer, on an associated workload in the
+   Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
-2. Select the `Tanzu: Live Update Start` command..
+2. Select the `Tanzu: Live Update Start` command.
 
 ### <a id="stop-live-update"></a> Stop Live Update
 
@@ -189,7 +192,8 @@ Tanzu Application Platform.
 
 To delete a workload:
 
-1. Right-click anywhere in the VS Code project explorer, on an associated workload in the workload panel, or open the Command Palette(⇧⌘P on Mac and Ctrl+Shift+P on Windows).
+1. Right-click anywhere in the VS Code project explorer, on an associated workload in the
+   Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
 2. Select the `Tanzu: Delete Workload` command..
 
@@ -221,22 +225,24 @@ To switch the namespace where you created the workload:
 
 {{> 'partials/ide-extensions/workload-panel-intro' }}
 
+To add a namespace:
+
 1. View the current context and namespace by running:
 
-    ```console
-    kubectl config get-contexts
-    ```
+   ```console
+   kubectl config get-contexts
+   ```
 
 2. Set a namespace for the current context by running:
 
-    ```console
-    kubectl config set-context --current --namespace=YOUR-NAMESPACE
-    ```
+   ```console
+   kubectl config set-context --current --namespace=YOUR-NAMESPACE
+   ```
 
-3. Add additional namespaces to your workload panel in **Preferences** > **Extensions** >
+3. Add additional namespaces to your Tanzu Workloads panel in **Preferences** > **Extensions** >
    **Tanzu Developer Tools** > **Tracked Namespaces**.
 
-![VS Code Workload Panel showing the Terminal log.](../images/vscode-workload-and-activity-panels.png)
+![VS Code Tanzu Workloads Panel showing the Terminal log.](../images/vscode-workload-and-activity-panels.png)
 
 ## <a id="mono-repo"></a> Working with Microservices in a Monorepo
 

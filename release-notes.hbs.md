@@ -8,14 +8,19 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ### <a id="1-5-0-tap-new-features"></a> Tanzu Application Platform new features
 
+- A new Crossplane Package is now part of the iterate, run and full profiles.
+- A new Bitnami Services Package is now part of the iterate, run and full profiles.
+
 ### <a id='1-5-0-new-component-features'></a> New features by component and area
 
 #### <a id='1-5-0-app-accelerator-new-features'></a> Application Accelerator
 
-- The Application Accelerator plugin for IntelliJ is now available as a Beta release on the [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
-- The [`Tanzu Java Restful Web App`](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service) and [`Tanzu Java Web App`](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) accelerators have been updated to include an option to support of Spring Boot 3.0.
-- Accelerator provenance information (`accelerator-info.yaml`) is now available as a way to determine if a project has been generated with an accelerator as well as additional historical information.
-- Optional git repository creation now [has a system-wide flag](./tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation) to activate/deactivate the feature through the `tap-values.yaml` configuration file.
+- The Application Accelerator plug-in for IntelliJ is now available as a beta release on the [Tanzu Network](https://network.tanzu.vmware.com/products/tanzu-application-platform/).
+- The [Tanzu Java Restful Web App](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/java-rest-service) and [Tanzu Java Web App](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/tanzu-java-web-app) accelerators have the option to support Spring Boot v3.0.
+- Use the `accelerator-info.yaml` file to review historical information and to determine if
+  a project was generated with an accelerator.
+- (Optional) Use a system-wide property in the `tap-values.yaml` configuration file to activate or
+  deactivate Git repository creation. For more information, see [Deactivate Git repository creation](./tap-gui/plugins/application-accelerator-git-repo.hbs.md#deactiv-git-repo-creation).
 
 #### <a id='1-5-0-appsso-new-features'></a> Application Single Sign-On (AppSSO)
 
@@ -33,6 +38,36 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
+#### <a id='1-5-0-services-toolkit-new-features'></a> Services Toolkit
+
+- Services Toolkit now supports the dynamic provisioning of Services Instances. `ClusterInstanceClass` now supports the new provisioner mode. When a `ClassClaims` is created and refers to a provisioner `ClusterInstanceClass` a new Service Instance is created on-demand and claimed. This is powered by [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane).
+- `tanzu services class-claim` has been updated to allow the passing of parameters to `ClusterInstanceClass` that support dynamic provisioning.
+  - For example, `tanzu services class-claim create rmq-claim-1 --class rmq --parameter replicas=3  --parameter ha=true`
+- Services Toolkit integrates with the new Bitnami Services Package which provides out-of-the-box support for the following Helm charts:
+  - PostgreSQL
+  - MySQL
+  - Redis
+  - RabbitMQ
+- Improved the security model for which users can claim specific Service Instances. Introduced the `claim` custom RBAC verb that targets a specific `ClusterInstanceClass`. This can be bound to users for access control of who can create `ClassClaim` resources for a specific `ClusterInstanceClass`. `ResourceClaimPolicy` is now created automatically for successful `ClassClaims`.
+- `ResourceClaimPolicy` now supports targeting individual resources by name via `.spec.subject.resourceNames`
+
+#### <a id='1-5-0-crossplane-new-features'></a> Crossplane
+
+- [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane) version `1.11.0` is a new package in TAP. This provides integration for dynamic provisioning in Services Toolkit and can be used for integration with Cloud Services.
+- This ships with two Crossplane [Providers](https://docs.crossplane.io/v1.9/concepts/providers/) out-of-the-box, `provider-kubernetes` and `provider-helm`. Other providers can be added manually as required.
+
+#### <a id='1-5-0-bitnami-services-new-features'></a> Crossplane
+
+- Bitnami Helm charts are now shipped out-of-the-box with TAP and integrate with Services Toolkit. These include:
+  - PostgreSQL
+  - MySQL
+  - Redis
+  - RabbitMQ
+
+#### <a id='1-5-0-scc-new-features'></a> Supply Chain Choreographer
+
+- Introduces a variation of the OOTB Basic supply chains that output Carvel packages. Carvel packages enable configuring for each runtime environment. See [Carvel Package Workflow](scc/carvel-package-supply-chain.hbs.md). This feature is experimental.
+
 #### <a id='1-5-0-scst-policy-new-features'></a> Supply Chain Security Tools - Policy Controller
 
 - ClusterImagePolicy resync is triggered every 10 hours to get updated values from KMS.
@@ -44,9 +79,9 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 
 #### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
-- The Tanzu workload panel is updated to show workloads deployed across multiple namespaces.
+- The Tanzu Workloads panel is updated to show workloads deployed across multiple namespaces.
 - Tanzu actions for workload apply, workload delete, debug, and Live Update start are now available
-  from the Tanzu workload panel.
+  from the Tanzu Workloads panel.
 - Tanzu Developer Tools for IntelliJ can be used to iterate on Spring Boot applications.
 
 ### <a id='1-5-0-vscode-plugin-ncf'></a> Tanzu Developer Tools for VS Code
@@ -55,9 +90,9 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
   application pods.
   It displays detailed error messages on each resource and enables developers to describe and view
   logs on these resources from within their IDE.
-- The Tanzu workload panel is updated to show workloads deployed across multiple namespaces.
+- The Tanzu Workloads panel is updated to show workloads deployed across multiple namespaces.
 - Tanzu commands for workload apply, workload delete, debug, and Live Update start are now available
-  from the Tanzu workload panel.
+  from the Tanzu Workloads panel.
 - Tanzu Developer Tools for VS Code can be used to iterate on Spring Boot applications.
 
 #### <a id='1-5-0-breaking-changes'></a> Breaking changes
@@ -66,8 +101,18 @@ This release has the following breaking changes, listed by area and component.
 
 #### <a id='1-5-0-tbs-bc'></a> Tanzu Build Service
 
-- The default `ClusterBuilder` now uses the Ubuntu Jammy (22.04) instead of Bionic (18.04) stack,
-ensure that your workloads can be built and run on Jammy.
+- The default `ClusterBuilder` now uses the Ubuntu Jammy v22.04 stack instead of the Ubuntu Bionic
+v18.04 stack. Previously, the default `ClusterBuilder` pointed to the Base builder based on the
+Bionic stack. Now, the default `ClusterBuilder` points to the Base builder based on the Jammy stack.
+Ensure that your workloads can be built and run on Jammy.
+
+  For information about how to change the `ClusterBuilder` from the default builder, see the
+  [Configure the Cluster Builder](../docs-tap/tanzu-build-service/tbs-workload-config.hbs.md#cluster-builder) in the Tanzu Build Service documentation.
+
+  For more information about available builders, see
+  [Lite Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#lite-dependencies) and
+  [Full Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#full-dependencies) in the
+  Tanzu Build Service documentation.
 
 #### <a id='1-5-0-security-fixes'></a> Security fixes
 
@@ -135,16 +180,16 @@ This release has the following known issues, listed by area and component.
   For most languages, source code scanning only scans files present in the
   source code repository. Except for support added for Java projects using
   Maven, no network calls fetch dependencies. For languages using dependency
-  lock files, such as Golang and Node.js, Grype uses the lock files to check
+  lock files, such as golang and Node.js, Grype uses the lock files to verify
   dependencies for vulnerabilities.
 
   For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
   dependencies present in the built binaries, such as `.jar` or `.war` files.
 
-  Because VMware discourages committing binaries to source code repositories,
-  Grype fails to find vulnerabilities during a source scan. The vulnerabilities
-  are still found during the image scan after the binaries are built and
-  packaged as images.
+  Grype fails to find vulnerabilities during a source scan because VMware
+  discourages committing binaries to source code repositories. The
+  vulnerabilities are still found during the image scan after the binaries are
+  built and packaged as images.
 
 ### <a id='1-5-0-deprecations'></a> Deprecations
 

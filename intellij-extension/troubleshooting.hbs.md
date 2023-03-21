@@ -163,6 +163,6 @@ of the activity pane.
 
 Restart IntelliJ to properly detect the context change.
 
-## <a id="tnz-panel-actions-unavail"></a> Tanzu Workload panel workloads only have describe and delete action
+## <a id="tnz-panel-actions-unavail"></a> Tanzu Workloads panel workloads only have describe and delete action
 
 {{> 'partials/ide-extensions/tnz-panel-actions-unavail' }}

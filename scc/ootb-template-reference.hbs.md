@@ -18,19 +18,20 @@ Source](building-from-source.hbs.md).
 - [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the `source-provider` step.
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the `source-provider` step.
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the `source-provider` step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the `source-provider` step.
 
 ### Creates
 
 The source-template creates one of three objects, either:
 
 - GitRepository. Created if the workload has `.spec.source.git` defined.
-- MavenArtifact. Created if the template is provided a value for the parameter `maven`
+- MavenArtifact. Created if the template is provided a value for the parameter `maven`.
 - ImageRepository. Created if the workload has `.spec.source.image` defined.
 
 #### GitRepository
 
 `GitRepository` makes source code from a particular commit available as a tarball in the
-cluster. Other resources in the supply chain can then access that code. 
+cluster. Other resources in the supply chain can then access that code.
 
 ##### Parameters
 
@@ -126,8 +127,8 @@ For information about GitRepository objects, see
 
 ##### More information
 
-For information about the ImageRepository resource, see [ImageRepository reference
-docs](../source-controller/reference.hbs.md#imagerepository).
+For information about the ImageRepository resource, see the [ImageRepository reference
+documentation](../source-controller/reference.hbs.md#image-repository).
 
 For information about how to use the Tanzu CLI to create a workload leveraging ImageRepository, see
 [Create a workload from local source
@@ -357,6 +358,7 @@ available to other resources in the supply chain.
 - [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the image-provider step.
 - [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the image-provider step.
 - [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the image-provider step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-package-experimental) in the image-provider step.
 
 These are used as the `image-provider` resource.
 
@@ -412,6 +414,7 @@ Builds an container image from source code using [cloud native buildpacks](https
 - [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the image-provider step.
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the image-provider step.
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-provider step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the image-provider step.
 
 These are used as the `image-provider` resource when the workload parameter `dockerfile` is not defined.
 
@@ -518,6 +521,7 @@ Build an image for source code that includes a Dockerfile.
 - [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the image-provider step.
 - [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the image-provider step.
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-provider step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the image-provider step.
 
 These are used as the `image-provider` resource when the workload parameter `dockerfile` is defined.
 
@@ -677,6 +681,8 @@ which are applied to the cluster.
 - [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the config-provider step.
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the config-provider step.
 - [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the config-provider step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the config-provider step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-package-experimental) in the config-provider step.
 
 ### Creates
 
@@ -844,6 +850,8 @@ define a Kubernetes Deployment and a Kubernetes Service.
 - [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the app-config step.
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the app-config step.
 - [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the app-config step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the app-config step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-package-experimental) in the app-config step.
 
 ### Creates
 
@@ -900,6 +908,8 @@ to the set of Kubernetes configuration files.
 - [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the service-bindings step.
 - [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the service-bindings step.
 - [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the service-bindings step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the service-bindings step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-package-experimental) in the service-bindings step.
 
 ### Creates
 
@@ -952,12 +962,14 @@ Kubernetes objects to deploy such that API auto registration takes place.
 
 ### Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the service-bindings step.
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the service-bindings step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the service-bindings step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the service-bindings step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the service-bindings step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the service-bindings step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the api-descriptors step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the api-descriptors step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the api-descriptors step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the api-descriptors step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the api-descriptors step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the api-descriptors step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the api-descriptors step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-package-experimental) in the api-descriptors step.
 
 ### Creates
 
@@ -1918,3 +1930,517 @@ A [kapp App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/).
 For details about RBAC and how `kapp-controller` makes use of the ServiceAccount provided through the Deliverable's
 `serviceAccount` parameter,
 see [kapp-controller's Security Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/).
+
+## carvel-package (experimental)
+
+### Purpose
+
+Bundles Kubernetes configuration into a Carvel Package.
+
+### Used by
+
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the carvel-package step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-package-experimental) in the carvel-package step.
+
+### Creates
+
+A taskrun.tekton.dev which provides configuration to a Tekton ClusterTask to bundle Kubernetes configuration into a Carvel Package.
+
+This template uses the [`lifecycle: tekton`](https://cartographer.sh/docs/v0.6.0/lifecycle/)
+flag to create new immutable objects rather than updating the previous object.
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account to use for providing Docker credentials.
+      The service account must exist in the same namespace as the Workload.
+      The service account must have a secret associated with the credentials.
+      See <a href="https://tekton.dev/docs/pipelines/auth/#configuring-authentication-for-docker">Configuring
+      authentication for Docker</a> in the Tekton documentation.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>registry<code></td>
+    <td>
+      Specification of the registry server and repository in which the built image is placed.
+    </td>
+    <td>
+      <pre>
+      - name: registry
+        value:
+          server: index.docker.io
+          repository: web-team
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>carvel_package_gitops_subpath<code></td>
+    <td>
+      Specifies the subpath to which Carvel Packages should be written.
+    </td>
+    <td>
+      <pre>
+      - name: carvel_package_gitops_subpath
+        value: path/to/my/dir
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>carvel_package_name_suffix<code></td>
+    <td>
+      Specifies the suffix to append to the Carvel Package name. The format is WORKLOAD_NAME.WORKLOAD_NAMESPACE.carvel_package_name_suffix The full Carvel Package name must be a valid DNS subdomain name as defined in RFC 1123.
+    </td>
+    <td>
+      <pre>
+      - name: carvel_package_name_suffix
+        value: vmware.com
+      </pre>
+    </td>
+  </tr>
+</table>
+
+### More Information
+
+To read more about `lifecycle:tekton`,
+read [Cartographer Lifecycle](https://cartographer.sh/docs/v0.6.0/lifecycle/).
+
+## package-config-writer-template (experimental)
+
+### Purpose
+
+Persist in an external git repository the Carvel Package Kubernetes configuration passed to the template.
+
+### Used by
+
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the config-writer step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-package-experimental) in the config-writer step.
+
+### Creates
+
+A runnable which creates a Tekton TaskRun that refers either to the Tekton Task `git-writer`.
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account which provides the credentials to the registry or repository.
+      The service account must exist in the same namespace as the Workload.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_branch<code></td>
+    <td>
+      Name of the branch to push the configuration to.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_branch
+        value: main
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_user_name<code></td>
+    <td>
+      User name to use in the commits.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_user_name
+        value: "Alice Lee"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_user_email<code></td>
+    <td>
+      User email address to use in the commits.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_user_email
+        value: alice@example.com
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_commit_message<code></td>
+    <td>
+      Message to write as the body of the commits produced for pushing configuration to the Git repository.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_commit_message
+        value: "ci bump"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository<code></td>
+    <td>
+      The full repository URL to which the configuration is committed.
+      <b>DEPRECATED</b>
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository
+        value: "https://github.com/vmware-tanzu/cartographer"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_prefix<code></td>
+    <td>
+      The prefix of the repository URL.
+      <b>DEPRECATED</b>
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository
+        value: "https://github.com/vmware-tanzu/"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_server_address<code></td>
+    <td>
+      The server URL of the Git repository to which configuration is applied.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_server_address
+        value: "https://github.com/"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_owner<code></td>
+    <td>
+      The owner/organization to which the repository belongs.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_owner
+        value: vmware-tanzu
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_name<code></td>
+    <td>
+      The name of the repository.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_name
+        value: cartographer
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>registry<code></td>
+    <td>
+      Specification of the registry server and repository in which the configuration is placed.
+    </td>
+    <td>
+      <pre>
+      - name: registry
+        value:
+          server: index.docker.io
+          repository: web-team
+          ca_cert_data:
+            -----BEGIN CERTIFICATE-----
+            MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+            -----END CERTIFICATE-----
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>carvel_package_gitops_subpath<code></td>
+    <td>
+      Specifies the subpath to which Carvel Packages should be written.
+    </td>
+    <td>
+      <pre>
+      - name: carvel_package_gitops_subpath
+        value: path/to/my/dir
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>carvel_package_name_suffix<code></td>
+    <td>
+      Specifies the suffix to append to the Carvel Package name. The format is WORKLOAD_NAME.WORKLOAD_NAMESPACE.carvel_package_name_suffix The full Carvel Package name must be a valid DNS subdomain name as defined in RFC 1123.
+    </td>
+    <td>
+      <pre>
+      - name: carvel_package_name_suffix
+        value: vmware.com
+      </pre>
+    </td>
+  </tr>
+</table>
+
+### More Information
+
+See [Gitops vs RegistryOps](gitops-vs-regops.hbs.md) for more information about the operation of this template
+and of the [package-config-writer-and-pull-requester-template (experimental)](#package-config-writer-and-pull-requester-template-experimental).
+
+## package-config-writer-and-pull-requester-template (experimental)
+
+### Purpose
+Persist the passed in Carvel Package Kubernetes configuration to a branch in a repository and open a pull request to another branch.
+(This process allows for manual review of configuration before deployment to a cluster)
+
+### Used by
+
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the config-writer step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-package-experimental) in the config-writer step.
+
+### Creates
+
+A runnable which provides configuration to the ClusterRunTemplate `commit-and-pr-pipelinerun` to create a
+Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
+
+### Parameters
+
+<table>
+  <tr>
+    <th>Parameter name</th>
+    <th>Meaning</th>
+    <th>Example</th>
+  </tr>
+
+  <tr>
+    <td><code>serviceAccount<code></td>
+    <td>
+      Name of the service account which provides the credentials to the registry or repository.
+      The service account must exist in the same namespace as the Workload.
+    </td>
+    <td>
+      <pre>
+      - name: serviceAccount
+        value: default
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_commit_branch<code></td>
+    <td>
+      Name of the branch to which configuration is pushed.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_commit_branch
+        value: feature
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_branch<code></td>
+    <td>
+      Name of the branch to which a pull request is opened.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_branch
+        value: main
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_user_name<code></td>
+    <td>
+      User name to use in the commits.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_user_name
+        value: "Alice Lee"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_user_email<code></td>
+    <td>
+      User email address to use in the commits.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_user_email
+        value: alice@example.com
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_commit_message<code></td>
+    <td>
+      Message to write as the body of the commits produced for pushing configuration to the Git repository.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_commit_message
+        value: "ci bump"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_pull_request_title<code></td>
+    <td>
+      Title of the pull request to be opened.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_pull_request_title
+        value: "ready for review"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_pull_request_body<code></td>
+    <td>
+      Body of the pull request to be opened.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_pull_request_body
+        value: "generated by supply chain"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_server_address<code></td>
+    <td>
+      The server URL of the Git repository to which configuration is applied.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_server_address
+        value: "https://github.com/"
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_owner<code></td>
+    <td>
+      The owner/organization to which the repository belongs.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_owner
+        value: vmware-tanzu
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_repository_name<code></td>
+    <td>
+      The name of the repository.
+    </td>
+    <td>
+      <pre>
+      - name: gitops_repository_name
+        value: cartographer
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>gitops_server_kind<code></td>
+    <td>
+      The kind of Git provider
+    </td>
+    <td>
+      <pre>
+      - name: gitops_server_kind
+        value: gitlab
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>carvel_package_gitops_subpath<code></td>
+    <td>
+      Specifies the subpath to which Carvel Packages should be written.
+    </td>
+    <td>
+      <pre>
+      - name: carvel_package_gitops_subpath
+        value: path/to/my/dir
+      </pre>
+    </td>
+  </tr>
+
+  <tr>
+    <td><code>carvel_package_name_suffix<code></td>
+    <td>
+      Specifies the suffix to append to the Carvel Package name. The format is WORKLOAD_NAME.WORKLOAD_NAMESPACE.carvel_package_name_suffix The full Carvel Package name must be a valid DNS subdomain name as defined in RFC 1123.
+    </td>
+    <td>
+      <pre>
+      - name: carvel_package_name_suffix
+        value: vmware.com
+      </pre>
+    </td>
+  </tr>
+
+</table>
+
+### More Information
+
+See [Gitops vs RegistryOps](gitops-vs-regops.hbs.md) for more information about the operation of this template
+and of the [package-config-writer-template (experimental)](#package-config-writer-template-experimental).

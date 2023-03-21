@@ -2,6 +2,12 @@
 
 [Pinniped](https://pinniped.dev/) is used to support authentication on Tanzu Application Platform.
 This topic introduces how to install Pinniped on a single cluster of Tanzu Application Platform.
+
+>**Note** This guide only shows an example of one possible installation method for Pinniped on Tanzu
+> Application Platform using the default Contour ingress controler that ships with the platform. Please visit 
+> the various [how-to-guides](https://pinniped.dev/docs/howto/) to find the install method appropriate to your 
+> environment.
+
 You will deploy two Pinniped components into the cluster.
 
 The **Pinniped Supervisor** is an OIDC server which allows users to authenticate with an external
@@ -62,7 +68,7 @@ metadata:
   namespace: cert-manager
 spec:
   acme:
-    email: your-mail@example.com
+    email: "EMAIL"
     privateKeySecretRef:
       name: letsencrypt-staging
     server: https://acme-staging-v02.api.letsencrypt.org/directory
@@ -80,12 +86,17 @@ metadata:
 spec:
   secretName: pinniped-supervisor-tls-cert
   dnsNames:
-  - pinniped-supervisor.example.com
+  - "DNS-NAME"
   issuerRef:
     name: letsencrypt-staging
     kind: ClusterIssuer
 ```
 
+
+Where:
+
+    - `EMAIL` is the user email address used for letsencrypt, e.g. `your-mail@example.com`.
+    - `DNS-NAME` is the domain the pinniped-supervisor is published on, e.g. `pinniped-supervisor.example.com`.
 
 ### <a id="create-ingress-resources"></a>Create Ingress resources
 
@@ -106,7 +117,7 @@ spec:
   - name: pinniped-supervisor
     port: 8443
     protocol: TCP
-    targetPort: 8080
+    targetPort: 8443
   selector:
     app: pinniped-supervisor
 
@@ -115,11 +126,12 @@ apiVersion: projectcontour.io/v1
 kind: HTTPProxy
 metadata:
   name: pinniped-supervisor
+  namespace: pinniped-supervisor
 spec:
   virtualhost:
-    fqdn: pinniped-supervisor.example.com
+    fqdn: "DNS-NAME"
     tls:
-      secretName: pinniped-supervisor-tls-cert
+      passthrough: true
   routes:
   - services:
     - name: pinniped-supervisor
@@ -127,11 +139,16 @@ spec:
 ```
 
 
+Where:
+
+    - `DNS-NAME` is the domain the pinniped-supervisor is published on, e.g. `pinniped-supervisor.example.com`.
+    - `tls.passthrough: true` specifies that the TLS connection is forwarded to the supervisor pod to terminate there
+
 ### <a id="create-pinniped-super-config"></a>Create Pinniped-Supervisor configuration
 
 Create a FederationDomain to link the concierge to the supervisor instance and configure an
 OIDCIdentityProvider to connect the supervisor to your OIDC Provider.
-In the following example, you will use auth0.
+In the following example, you will use auth0 as an example.
 See the [Pinniped documentation](https://pinniped.dev/docs/howto/) to learn how to configure different
 identity providers, including OKTA, GitLab, OpenLDAP, Dex, Microsoft AD, and more.
 
@@ -145,15 +162,15 @@ metadata:
   namespace: pinniped-supervisor
   name: auth0
 spec:
-  # Specify the upstream issuer URL.
-  issuer: https://dev-xyz.us.auth0.com/
+  # Specify the upstream issuer URL associated with your auth0 application.
+  issuer: https://"APPLICATION-SUBDOMAIN".auth0.com/
 
-  # Specify how to form authorization requests to GitLab.
+  # Specify how to form authorization requests. 
   authorizationConfig:
     additionalScopes: ["openid", "email"]
     allowPasswordGrant: false
 
-  # Specify how claims are mapped to Kubernetes identities.
+  # Specify how claims are mapped to Kubernetes identities. This varies a lot between providers.
   claims:
     username: email
     groups: groups
@@ -171,8 +188,8 @@ metadata:
   name: auth0-client-credentials
 type: secrets.pinniped.dev/oidc-client
 stringData:
-  clientID: "<auth0-client-id>"
-  clientSecret: "<auth0-client-secret>"
+  clientID: "AUTH0-CLIENT-ID"
+  clientSecret: "AUTH0-CLIENT-SECRET"
 
 ---
 apiVersion: config.supervisor.pinniped.dev/v1alpha1
@@ -181,11 +198,16 @@ metadata:
   name: pinniped-supervisor-federation-domain
   namespace: pinniped-supervisor
 spec:
-  issuer: https://pinniped-supervisor.example.com
+  issuer: "DNS-NAME"
   tls:
     secretName: pinniped-supervisor-tls-cert
 ```
 
+Where:
+
+    - `APPLICATION-SUBDOMAIN` is the application specific subdomain that gets assigned after application registration.
+    - `AUTH0-CLIENT-ID` and `AUTH0-CLIENT-SECRET` are the credentials taken from the application registration.
+    - `DNS-NAME` is the domain the pinniped-supervisor is published on, e.g. `pinniped-supervisor.example.com`.
 
 ### <a id="apply-resources"></a>Apply the resources
 
@@ -194,8 +216,11 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
 
 1. Install the supervisor by running:
     ```console
-    kapp deploy -y --app pinniped-supervisor --into-ns pinniped-supervisor -f pinniped-supervisor -f https://get.pinniped.dev/v0.12.0/install-pinniped-supervisor.yaml
+    kapp deploy -y --app pinniped-supervisor --into-ns pinniped-supervisor -f pinniped-supervisor -f https://get.pinniped.dev/v0.22.0/install-pinniped-supervisor.yaml
     ```
+   >**Note** In order to stay up to date with security patches you should always
+   > install the most recent version of Pinniped [available](https://github.com/vmware-tanzu/pinniped/releases).  
+
 1. Get the external IP address of Ingress by running:
     ```console
     kubectl -n tanzu-system-ingress get svc/envoy -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
@@ -224,7 +249,7 @@ by creating or updating the following resources and save them into `workspace/pi
     spec:
       acme:
         server: https://acme-v02.api.letsencrypt.org/directory
-        email: your-mail@example.com
+        email: "EMAIL"
         privateKeySecretRef:
           name: letsencrypt-prod
         solvers:
@@ -241,16 +266,21 @@ by creating or updating the following resources and save them into `workspace/pi
     spec:
       secretName: pinniped-supervisor-tls-cert
       dnsNames:
-      - pinniped-supervisor.example.com
+      - "DNS-NAME"
       issuerRef:
         name: letsencrypt-prod
         kind: ClusterIssuer
     ```
 
+Where:
+
+    - `EMAIL` is the user email address used for letsencrypt, e.g. `your-mail@example.com`.
+    - `DNS-NAME` is the domain the pinniped-supervisor is published on, e.g. `pinniped-supervisor.example.com`.
+
 2. Create or update the `pinniped-supervisor` kapp application:
 
     ```console
-    kapp deploy -y --app pinniped-supervisor --into-ns pinniped-supervisor -f pinniped-supervisor -f https://get.pinniped.dev/v0.12.0/install-pinniped-supervisor.yaml
+    kapp deploy -y --app pinniped-supervisor --into-ns pinniped-supervisor -f pinniped-supervisor -f https://get.pinniped.dev/v0.22.0/install-pinniped-supervisor.yaml
     ```
 
 ## <a id="install-pinniped-concierge"></a>Install Pinniped Concierge
@@ -262,8 +292,7 @@ To install Pinniped Concierge:
 
     ```console
     kapp deploy -y --app pinniped-concierge \
-      -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge-crds.yaml \
-      -f https://get.pinniped.dev/v0.12.0/install-pinniped-concierge.yaml
+      -f https://get.pinniped.dev/v0.22.0/install-pinniped-concierge.yaml
     ```
 
 1. Get the CA certificate of the supervisor by running the following command against the cluster running `Pinniped Supervisor`:
@@ -283,10 +312,10 @@ To install Pinniped Concierge:
     metadata:
       name: pinniped-jwt-authenticator
     spec:
-      issuer: https://pinniped-supervisor.example.com
+      issuer: "DNS-NAME"
       audience: concierge
       tls:
-        certificateAuthorityData: # insert the CA certificate data here
+        certificateAuthorityData: "CA-DATA"
     ```
 
     If you use the `letsencrypt` production issuer, you can omit the `tls` section:
@@ -298,9 +327,14 @@ To install Pinniped Concierge:
     metadata:
       name: pinniped-jwt-authenticator
     spec:
-      issuer: https://pinniped-supervisor.example.com
+      issuer: "DNS-NAME"
       audience: concierge
     ```
+
+    Where:
+
+    - `DNS-NAME` is the domain the pinniped-supervisor is published on, e.g. `pinniped-supervisor.example.com`.
+    - `CA-DATA` is the certificate authority data of the letsencrypt staging environment.
 
 1. Deploy the resource by running:
 

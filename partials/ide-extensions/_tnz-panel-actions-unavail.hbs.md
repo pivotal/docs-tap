@@ -1,6 +1,6 @@
 ### Symptom
 
-Some or all workloads in the workload panel only have describe and delete actions.
+Some or all workloads in the Tanzu Workloads panel only have describe and delete actions.
 
 ### Cause
 
