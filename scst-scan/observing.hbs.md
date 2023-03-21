@@ -12,5 +12,6 @@ Before applying a new scan, you can set a watch on the Jobs, Pods, SourceScans, 
 observe their progression:
 
 ```console
-watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
+watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies -n DEV-NAMESPACE
 ```
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.

@@ -81,24 +81,28 @@ SourceScan:
       scanPolicy: sample-scan-policy
     ```
 
-1. (Optional) Before deploying, set up a watch in another terminal to view processing by running:
+1. (Optional) Before deploying the resources to a user specified namespace, set up a watch in another terminal to view the progression:
 
     ```console
-    watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
+    watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies -n DEV-NAMESPACE
     ```
+
+    Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
     For more information, refer to [Observing and Troubleshooting](../observing.md).
 
 1. Deploy the resources by running:
 
     ```console
-    kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
+    kubectl apply -f sample-public-source-scan-with-compliance-check.yaml -n DEV-NAMESPACE
     ```
+
+    Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
 1. When the scan completes, view the results by running:
 
     ```console
-    kubectl describe sourcescan sample-public-source-scan-with-compliance-check
+    kubectl describe sourcescan sample-public-source-scan-with-compliance-check -n DEV-NAMESPACE
     ```
 
     The `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 7 CVEs`.
@@ -126,13 +130,13 @@ include the CVEs to ignore:
 1. The changes applied to the new ScanPolicy trigger the scan to run again. Reapply the resources by running:
 
     ```console
-    kubectl apply -f sample-public-source-scan-with-compliance-check.yaml
+    kubectl apply -f sample-public-source-scan-with-compliance-check.yaml -n DEV-NAMESPACE
     ```
 
 1. Re-describe the SourceScan CR by running:
 
     ```console
-kubectl describe sourcescan sample-public-source-scan-with-compliance-check
+    kubectl describe sourcescan sample-public-source-scan-with-compliance-check -n DEV-NAMESPACE
     ```
 
 1. Check that `Status.Conditions` now includes a `Reason: EvaluationPassed` and
@@ -150,5 +154,5 @@ Grype scan returns the following Severity spread of vulnerabilities (currently):
 1.  Clean up by running:
 
     ```console
-    kubectl delete -f sample-public-source-scan-with-compliance-check.yaml
+    kubectl delete -f sample-public-source-scan-with-compliance-check.yaml -n DEV-NAMESPACE
     ```
