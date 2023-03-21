@@ -35,6 +35,7 @@ stored in dedicated repositories.
 |-----------|------|
 | API Auto Registration | https://gitlab.eng.vmware.com/tap-api-first/api-auto-registration |
 | API portal | https://github.com/pivotal-cf/docs-api-portal |
+| Application Configuration Service | https://github.com/pivotal-cf/docs-application-configuration-service |
 | Carvel | https://github.com/vmware-tanzu/carvel/tree/develop/site/content |
 | Cloud Native Runtimes | https://gitlab.eng.vmware.com/daisy/cloud-native-runtimes-for-vmware-tanzu |
 | Services Toolkit | https://gitlab.eng.vmware.com/services-control-plane/documentation |
@@ -49,6 +50,7 @@ stored in dedicated repositories.
 |API portal for VMware Tanzu|API portal|
 |API Scoring and Validation|API Scoring and Validation|
 |Application Accelerator for VMware Tanzu|Application Accelerator|
+|Application Configuration Service for VMware Tanzu|Application Configuration Service|
 |Application Live View|Application Live View|
 |Application Single Sign-On for VMware Tanzu|Application Single Sign-On|
 |Cartographer Conventions|Cartographer Conventions|

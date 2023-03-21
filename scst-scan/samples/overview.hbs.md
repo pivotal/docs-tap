@@ -1,6 +1,6 @@
 # Scan samples
 
-This section provides samples on multiple use cases that you can copy to your cluster for testing purposes.  
+This section provides samples on multiple use cases that you can copy to your cluster for testing purposes.
 
 - [Running a sample public image scan with compliance check](public-image-compliance.md)
 - [Running a sample public source scan with compliance check](public-source-compliance.md)

@@ -240,8 +240,9 @@ shared:
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
 
-  kubernetes_distribution: "K8S-DISTRO"
-  kubernetes_version: "K8S-VERSION"
+  kubernetes_distribution: "K8S-DISTRO" # Only required if distribution is Openshift, then use it alongside the below kubernetes_version key.
+  
+  kubernetes_version: "K8S-VERSION" # Required regardless of distribution when Kubernetes version is 1.25+.
 
   ca_cert_data: | # To be passed if using custom certificates.
       -----BEGIN CERTIFICATE-----
