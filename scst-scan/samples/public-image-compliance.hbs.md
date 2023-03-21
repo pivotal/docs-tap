@@ -8,11 +8,11 @@ The policy in this example is set to only consider `Critical` severity CVEs as a
 
 >**Note:** This example ScanPolicy is deliberately constructed to showcase the features available and must not be considered an acceptable base policy.
 
-In this example, the scan does the following (currently):
+In this example, the scan does the following:
 
-* Finds all 223 of the CVEs.
-* Ignores any CVEs with severities that are not critical.
-* Indicates in the `Status.Conditions` that 21 CVEs have violated policy compliance.
+- Finds all 223 of the CVEs
+- Ignores any CVEs with severities that are not critical
+- Indicates in the `Status.Conditions` that 21 CVEs have violated policy compliance
 
 ### <a id="define-scanpolicy-imgscan"></a> Define the ScanPolicy and ImageScan
 
@@ -91,6 +91,7 @@ For more information about setting up a watch, see [Observing and Troubleshootin
 ```console
 kubectl apply -f sample-public-image-scan-with-compliance-check.yaml -n DEV-NAMESPACE
 ```
+
 Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
 ### <a id="view-scan-results"></a> View the scan results
@@ -99,13 +100,15 @@ Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 kubectl describe imagescan sample-public-image-scan-with-compliance-check -n DEV-NAMESPACE
 ```
 
-> **Note:** The `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 21 CVEs`.
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
+
+> **Note** The `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 21 CVEs`.
 
 For more information about scan status conditions, see [Viewing and Understanding Scan Status Conditions](../results.md).
 
-### <a id="modify-scanpolicy"></a> Modify the ScanPolicy
+### <a id="modify-scanpolicy"></a> Edit the ScanPolicy
 
-To modify the Scan Policy, see [Step 5: Sample Public Source Code Scan with Compliance Check](public-source-compliance.md#modify-scan-policy).
+To edit the Scan Policy, see [Step 5: Sample Public Source Code Scan with Compliance Check](public-source-compliance.md#modify-scan-policy).
 
 ### <a id="clean-up"></a> Clean up
 
@@ -114,3 +117,5 @@ To clean up, run:
 ```console
 kubectl delete -f sample-public-image-scan-with-compliance-check.yaml -n DEV-NAMESPACE
 ```
+
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
