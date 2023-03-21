@@ -433,6 +433,11 @@ For more information, see [Troubleshoot API Auto Registration](api-auto-registra
   The vulnerabilities are still found during the image scan after the binaries are built and packaged
   as images.
 
+- **Scanning some Alpine-based container images will fail:**
+
+  A bug in Syft causes the scanner to crash while parsing APK metadata to identify installed OS packages if a package's list of provided files is empty.
+  Fixed in 1.4.3 and 1.5.0.
+
 #### <a id="1-4-0-nsp-ki"></a> Namespace Provisioner
 
 - A deleted namespace may remain in a `Terminating` state indefinitely under certain conditions. For
