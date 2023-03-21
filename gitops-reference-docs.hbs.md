@@ -83,7 +83,7 @@ Git repository for a cluster named `full-tap-cluster`:
     - `tanzu-sync`
       - `app`: Contains the main Carvel Packaging App that runs on cluster. It will fetch, template and deploy our TAP installation from `clusters/full-tap-cluster/cluster-config`.
       - `boostrap`: Contains secret provider specific bootstrapping if required.
-      - `scripts`: Contains [useful helper scripts](gitops-reference-docs.md/#tanzu-sync-scripts) which can be run to aid in the configuration and deployment of Tanzu GitOps RI.
+      - `scripts`: Contains [useful helper scripts](#tanzu-sync-scripts) which can be run to aid in the configuration and deployment of Tanzu GitOps RI.
 
 ## <a id="configure-values"></a>Configuration of Tanzu Sync without helper scripts
 
