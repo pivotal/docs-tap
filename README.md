@@ -35,6 +35,7 @@ stored in dedicated repositories.
 |-----------|------|
 | API Auto Registration | https://gitlab.eng.vmware.com/tap-api-first/api-auto-registration |
 | API portal | https://github.com/pivotal-cf/docs-api-portal |
+| Application Configuration Service | https://github.com/pivotal-cf/docs-application-configuration-service |
 | Carvel | https://github.com/vmware-tanzu/carvel/tree/develop/site/content |
 | Cloud Native Runtimes | https://gitlab.eng.vmware.com/daisy/cloud-native-runtimes-for-vmware-tanzu |
 | Services Toolkit | https://gitlab.eng.vmware.com/services-control-plane/documentation |
