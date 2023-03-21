@@ -841,9 +841,8 @@ Tanzu Application Platform components.
    <td>
    </td>
    <td>&check;
-   <td>
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -853,12 +852,12 @@ Tanzu Application Platform components.
   <tr>
    <td>Steeltoe
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>&check;
    </td>
