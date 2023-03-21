@@ -1,4 +1,4 @@
-## Tanzu GitOps RI Reference Documentation
+# Tanzu GitOps RI Reference Documentation
 
 ## Component Overview
 
@@ -274,4 +274,3 @@ tap_install:
   values:
     ingress_domain: example.vmware.com
 ```
-
