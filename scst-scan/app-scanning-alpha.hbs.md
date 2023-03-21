@@ -188,7 +188,7 @@ The App Scanning CRs require the digest form of the url (e.g. nginx@sha256:aa0af
 [docker](https://docs.docker.com/engine/install/) can be used to pull and then inspect an image digest:
 ```console
 docker pull nginx:latest
-docker inspect --format='{{index .RepoDigests 0}}' nginx:latest
+docker inspect --format='\{{index .RepoDigests 0\}}' nginx:latest
 ```
 
 Alternatively, [krane](https://github.com/google/go-containerregistry/tree/main/cmd/krane) can be used to retrieve the digest without pulling the image:
@@ -469,4 +469,3 @@ Get the logs of the controller:
 ```console
 kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system -c manager
 ```
-
