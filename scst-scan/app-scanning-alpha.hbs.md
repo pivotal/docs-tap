@@ -30,7 +30,7 @@ The following sections describe how to install SCST - App Scanning.
 SCST App Scanning requires the following prerequisites:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install the [Tekton component](../tekton/install-tekton.hbs.md) (included in Full and Build profiles of Tanzu Application Platform)
+- Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is included in the Full and Build profiles of Tanzu Application Platform.
 
 ### <a id='install-scst-app-scanning'></a> Install
 
@@ -122,7 +122,7 @@ The following sections describe how to configure service accounts and registry c
 
     >**Important** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret with your service account.
 
-    ```bash
+    ```console
     read -s TAP_REGISTRY_PASSWORD
     kubectl create secret docker-registry scanning-tap-component-read-creds \
       --docker-username=TAP-REGISTRY-USERNAME \ 
@@ -134,7 +134,7 @@ The following sections describe how to configure service accounts and registry c
 
     >**Important** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret with your service account.
 
-    ```bash
+    ```console
     read -s REGISTRY_PASSWORD
     kubectl create secret docker-registry scan-image-read-creds \
       --docker-username=REGISTRY-USERNAME \
@@ -145,7 +145,7 @@ The following sections describe how to configure service accounts and registry c
 3. Create a `kubernetes.io/dockerconfigjson` secret which has write access to where you
 want the scanner to upload the result .
 
-    ```bash
+    ```console
     read -s WRITE_PASSWORD
     kubectl create secret docker-registry write-creds \
       --docker-username=WRITE-USERNAME \
@@ -189,7 +189,7 @@ The following section describe how to scan an image with SCST - App Scanning.
 
 The App Scanning CRs require the digest form of the URL. For example,  nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2.
 
-Use the [Docker documentation](https://docs.docker.com/engine/install/) to pull and then inspect an image digest:
+Use the [Docker documentation](https://docs.docker.com/engine/install/) to pull and inspect an image digest:
 
 ```console
 docker pull nginx:latest
@@ -237,7 +237,7 @@ Required fields:
   For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`  
 
 - scanResults.location  
-  The registry URL where results should are uploaded.  
+  The registry URL where results are uploaded.  
   For example, `my.registry/scan-results`.
   
 Optional fields:
@@ -297,8 +297,8 @@ To trigger a Grype scan:
 
 1. Child resources are created.
 
-    - view the child ImageVulnerabilityScan `kubectl get imagevulnerabilityscan`
-    - view the child PipelineRun, TaskRuns, and pods `kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod`
+    - view the child ImageVulnerabilityScan by running: `kubectl get imagevulnerabilityscan`
+    - view the child PipelineRun, TaskRuns, and pods by running: `kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod`
 
 1. When the scanning completes, the status is shown. Specify `-o wide` to see
 the digest of the image scanned and the location of the published results.
@@ -408,12 +408,12 @@ Workspaces:
 
 - /home/app-scanning: a memory-backed EmptyDir mount that contains service account credentials loaded by Tekton
 - /cred-helper: a memory-backed EmptyDir mount containing:
-  - config.json will combine static credentials with workload identity credentials when `activeKeychains` is enabled
+  - config.json combines static credentials with workload identity credentials when `activeKeychains` is enabled
   - trusted-cas.crt when App Scanning is deployed with `caCertData` 
 - /workspace: a PVC to hold scan artifacts and results
 
 Environment Variables:  
-If undefined by your `step` definition the environment defaults to:
+If undefined by your `step` definition the environment uses the following default variables:
 
 - HOME=/home/app-scanning
 - DOCKER_CONFIG=/cred-helper
@@ -454,7 +454,7 @@ published results.
 
 ## Retrieving Results
 
-Scan results are uploaded to the image registry as an [imgpkg](https://carvel.dev/imgpkg/) bundle.  
+Scan results are uploaded to the container image registry as an [imgpkg](https://carvel.dev/imgpkg/) bundle.  
 To retrieve a vulnerability report:
 
 1. Retrieve the result location from the ImageVulnerabilityScan CR Status  
