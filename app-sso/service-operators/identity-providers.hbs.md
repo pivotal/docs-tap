@@ -113,8 +113,8 @@ metadata:
   name: my-client-registration
 spec:
   scopes:
-    - openid
-    - roles
+    - name: openid
+    - name: roles
   # ...
 ```
 
@@ -249,8 +249,8 @@ metadata:
   name: my-client-registration
 spec:
   scopes:
-    - openid
-    - roles
+    - name: openid
+    - name: roles
   # ...
 ```
 
@@ -610,8 +610,8 @@ metadata:
   name: my-client-registration
 spec:
   scopes:
-    - openid
-    - roles
+    - name: openid
+    - name: roles
   # ...
 ```
 
