@@ -11,5 +11,6 @@ automatically after completion.
 You can set a watch on the job and Pod before applying a new scan to observe the job deployment.
 
 ```console
-watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
+watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies -n DEV-NAMESPACE
 ```
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.

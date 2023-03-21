@@ -64,24 +64,27 @@ spec:
 
 ### <a id="set-up-watch"></a> (Optional) Set up a watch
 
-Before deploying, set up a watch in another terminal to view the process:
+Before deploying the resources to a user specified namespace, set up a watch in another terminal to view the progression:
 
 ```console
-watch kubectl get scantemplates,scanpolicies,sourcescans,imagescans,pods,jobs
+watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies -n DEV-NAMESPACE
 ```
+
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
 For more information about setting up a watch, see [Observing and Troubleshooting](../observing.md).
 
 ### <a id="deploy-resources"></a> Deploy the resources
 
 ```console
-kubectl apply -f sample-public-image-scan-with-compliance-check.yaml
+kubectl apply -f sample-public-image-scan-with-compliance-check.yaml -n DEV-NAMESPACE
 ```
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
 ### <a id="view-scan-results"></a> View the scan results
 
 ```console
-kubectl describe imagescan sample-public-image-scan-with-compliance-check
+kubectl describe imagescan sample-public-image-scan-with-compliance-check -n DEV-NAMESPACE
 ```
 
 > **Note:** The `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 21 CVEs`.
@@ -97,5 +100,5 @@ To modify the Scan Policy, see [Step 5: Sample Public Source Code Scan with Comp
 To clean up, run:
 
 ```console
-kubectl delete -f sample-public-image-scan-with-compliance-check.yaml
+kubectl delete -f sample-public-image-scan-with-compliance-check.yaml -n DEV-NAMESPACE
 ```
