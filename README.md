@@ -50,6 +50,7 @@ stored in dedicated repositories.
 |API portal for VMware Tanzu|API portal|
 |API Scoring and Validation|API Scoring and Validation|
 |Application Accelerator for VMware Tanzu|Application Accelerator|
+|Application Configuration Service for VMware Tanzu|Application Configuration Service|
 |Application Live View|Application Live View|
 |Application Single Sign-On for VMware Tanzu|Application Single Sign-On|
 |Cartographer Conventions|Cartographer Conventions|

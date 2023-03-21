@@ -10,4 +10,4 @@ with the existing Git repository configuration management approach and filters r
 for any application via slices which produce Secrets and ConfigMaps.
 
 For more information about Application Configuration Service, see the 
-[Application Configuration Service for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/index.html).
+[Application Configuration Service for VMware Tanzu documentation](https://docs.vmware.com/en/Application-Configuration-Service-for-VMware-Tanzu/2.0/acs/GUID-overview.html).
