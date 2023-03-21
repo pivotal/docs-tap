@@ -213,7 +213,7 @@ After the Tanzu Sync application is installed in the cluster, the main
 resource to check is the [sync app]() in the `tanzu-sync` namespace.
 
 ```terminal
-kubectl -n tanzu-sync get app/sync --template='{{.status.usefulErrorMessage}}'
+kubectl -n tanzu-sync get app/sync --template='\{{.status.usefulErrorMessage\}}'
 ```
 
 Example error:
@@ -231,7 +231,7 @@ After the Tanzu Sync application is installed in the cluster, the tap installati
 resource to check is the [tap package install]() in the `tap-install` namespace.
 
 ```terminal
-kubectl -n tap-install get packageinstall/tap --template='{{.status.usefulErrorMessage}}'
+kubectl -n tap-install get packageinstall/tap --template='\{{.status.usefulErrorMessage\}}'
 ```
 
 
