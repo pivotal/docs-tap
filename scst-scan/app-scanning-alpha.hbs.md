@@ -106,7 +106,7 @@ To install Supply Chain Security Tools - App Scanning:
         'PackageInstall' resource install status: ReconcileSucceeded
     ```
 
-App scanning package is up and running in your cluster
+  App scanning package is up and running in your cluster.
 
 ## Configure namespace
 
@@ -232,17 +232,17 @@ This section describes optional and required GrypeImageVulnerabilityScan specifi
   
 Required fields:
 
-- image:  
+- image  
   The registry URL and digest of the scanned image.  
   For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`  
 
-- scanResults.location:  
+- scanResults.location  
   The registry URL where results should are uploaded.  
   For example, `my.registry/scan-results`.
   
 Optional fields:
 
-- activeKeychains:  
+- activeKeychains  
   Array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
 
   ```yaml
@@ -253,19 +253,19 @@ Optional fields:
   - name: ghcr # Github Container Registry
   ```
 
-- advanced:  
+- advanced  
   Adjust the configuration of Grype for your needs. See Grype's [configuration](https://github.com/anchore/grype#configuration) for details.
 
 - serviceAccountNames  
-  - scanner:  
+  - scanner  
     Set the service account that runs the scan. Must have read access to `image`.
-  - publisher:  
+  - publisher  
     Set the service account that uploads results. Must have write access to `scanResults.location`.
 
 - workspace  
-  - size:  
+  - size  
     Size of the PersistentVolumeClaim the scan uses to download the image and vulnerability database.
-  - bindings:  
+  - bindings  
     Additional array of secrets, ConfigMaps, or EmptyDir volumes to mount to the
     running scan. The `name` is used as the mount path.  
 
@@ -300,7 +300,7 @@ To trigger a Grype scan:
     - view the child ImageVulnerabilityScan `kubectl get imagevulnerabilityscan`
     - view the child PipelineRun, TaskRuns, and pods `kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod`
 
-2. When the scanning completes, the status is shown. Specify `-o wide` to see
+1. When the scanning completes, the status is shown. Specify `-o wide` to see
 the digest of the image scanned and the location of the published results.
 
     ```console
@@ -353,17 +353,17 @@ This section lists optional and required ImageVulnerabilityScan specifications f
   
 Required fields:
 
-- image:  
+- image  
   The registry URL and digest of the image to be scanned.  
   For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.  
 
-- scanResults.location:  
+- scanResults.location  
   The registry URL where results are uploaded. 
   For example, `my.registry/scan-results`.
   
 Optional fields:
 
-- activeKeychains:  
+- activeKeychains  
   Array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
 
   ```yaml
@@ -375,15 +375,15 @@ Optional fields:
   ```
 
 - serviceAccountNames  
-  - scanner:  
+  - scanner  
     Set the service account that runs the scan. Must have read access to `image`.
-  - publisher:  
+  - publisher  
     Set the service account that uploads results. Must have write access to `scanResults.location`.
 
 - workspace  
-  - size:  
+  - size  
     Size of the PersistentVolumeClaim the scan uses to download the image and vulnerability database.
-  - bindings:  
+  - bindings  
     Additional array of secrets, ConfigMaps, or EmptyDir volumes to mount to the running scan. The `name` is used as the mount path. 
  
     ```yaml
