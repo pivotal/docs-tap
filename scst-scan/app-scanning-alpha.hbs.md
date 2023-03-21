@@ -28,7 +28,7 @@ SCST App Scanning includes the following features:
 SCST App Scanning requires the following prerequisites:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
-- Install the [Tekton component](../tekton/install-tekton.hbs.md)
+- Install the [Tekton component](../tekton/install-tekton.hbs.md) (included in Full and Build profiles of Tanzu Application Platform)
 
 ### <a id='install-scst-app-scanning'></a> Install
 
@@ -121,9 +121,10 @@ The following sections describe how to configure service accounts and registry c
     >**Important** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret with your service account.
 
     ```bash
+    read -s TAP_REGISTRY_PASSWORD
     kubectl create secret docker-registry scanning-tap-component-read-creds \
       --docker-username=TAP-REGISTRY-USERNAME \ 
-      --docker-password=TAP-REGISTRY-PASSWORD \
+      --docker-password=$TAP_REGISTRY_PASSWORD \
       --docker-server=TAP-REGISTRY-URL
     ```
 
@@ -132,9 +133,10 @@ The following sections describe how to configure service accounts and registry c
     >**Important** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret with your service account.
 
     ```bash
+    read -s REGISTRY_PASSWORD
     kubectl create secret docker-registry scan-image-read-creds \
       --docker-username=REGISTRY-USERNAME \
-      --docker-password=REGISTRY-PASSWORD \
+      --docker-password=$REGISTRY_PASSWORD \
       --docker-server=REGISTRY-URL
     ```
 
@@ -142,9 +144,10 @@ The following sections describe how to configure service accounts and registry c
 want the scanner to upload the result .
 
     ```bash
+    read -s WRITE_PASSWORD
     kubectl create secret docker-registry write-creds \
       --docker-username=WRITE-USERNAME \
-      --docker-password=WRITE-PASSWORD \
+      --docker-password=$WRITE_PASSWORD \
       --docker-server=DESTINATION-REGISTRY-URL
     ```
 
@@ -178,7 +181,39 @@ the write secret as `secrets`.
 
 ## Scan an image
 
+### Retrieving an image digest
+
+The App Scanning CRs require the digest form of the url (e.g. nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2)
+
+[docker](https://docs.docker.com/engine/install/) can be used to pull and then inspect an image digest:
+```console
+docker pull nginx:latest
+docker inspect --format='{{index .RepoDigests 0}}' nginx:latest
+```
+
+Alternatively, [krane](https://github.com/google/go-containerregistry/tree/main/cmd/krane) can be used to retrieve the digest without pulling the image:
+```console
+krane digest nginx:latest
+```
+
 ### Using the provided Grype scanner
+
+#### Sample Grype scan
+
+1. Create a file named `grype-image-vulnerability-scan.yaml`. Configure the `image` and `scanResults.location`:
+    ```yaml
+    apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
+    kind: GrypeImageVulnerabilityScan
+    metadata:
+      name: grypescan
+    spec:
+      image: nginx@sha256:... # The image that has to be scanned. Digest must be specified.
+      scanResults:
+        location: registry/project/scan-results # Place to upload scan results
+      serviceAccountNames:
+        scanner: scanner # Service account that enables scanning component to pull the image to be scanned
+        publisher: publisher # Service account has the secrets to push the scan results
+    ```
 
 #### Configuration Options
 
@@ -235,21 +270,15 @@ Optional fields:
 
 #### Trigger a Grype scan
 
-1. Create the `GrypeImageVulnerabilityScan` and apply to the cluster.
+1. Apply the `GrypeImageVulnerabilityScan` to the cluster.
 
-    ```yaml
-    apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
-    kind: GrypeImageVulnerabilityScan
-    metadata:
-      name: grypescan
-    spec:
-      image: nginx@sha256:... # The image that has to be scanned. Digest must be specified.
-      scanResults:
-        location: registry/project/scan-results # Place to upload scan results
-      serviceAccountNames:
-        scanner: scanner # Service account that enables scanning component to pull the image to be scanned
-        publisher: publisher # Service account has the secrets to push the scan results
+    ```console
+    kubectl apply -f grype-image-vulnerability-scan.yaml
     ```
+
+1. Child resources will be created.
+    * view the child ImageVulnerabilityScan `kubectl get imagevulnerabilityscan`
+    * view the child PipelineRun, TaskRuns, and Pods `kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod`
 
 1. When the scanning successfully completes, the status is shown. Specify `-o wide` to see the digest of the image scanned and the location of the
 published results.
@@ -264,7 +293,36 @@ published results.
 
 ### Integrate your own scanner
 
-To scan with any other scanner, use the generic `ImageVulnerabilityScan` 
+To scan with any other scanner, use the generic `ImageVulnerabilityScan`. ImageVulnerabilityScans can also be used to change the version of a scanner or customize the behaviour of provided scanners.  
+
+ImageVulnerabilityScans allow you to define your scan as a [Tekton Step](https://tekton.dev/docs/pipelines/tasks/#defining-steps)
+
+#### Sample ImageVulnerabilityScan
+
+1. Create a file named `image-vulnerability-scan.yaml`. Configure the `image`, `scanResults.location` of the scan, and define the scanner `image`, `command` and `args` for your scanner `step`:
+```yaml
+apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
+kind: ImageVulnerabilityScan
+metadata:
+  name: generic-image-scan
+spec:
+  image: nginx@sha256:...
+  scanResults:
+    location: registry/project/scan-results
+  serviceAccountNames:
+    scanner: scanner
+    publisher: publisher
+  steps:
+  - name: scan
+    image: anchore/grype:latest
+    command: ["grype"]
+    args:
+    - registry:$(params.image)
+    - -o
+    - cyclonedx
+    - --file
+    - $(params.scan-results-path)/scan.cdx
+```
 
 #### Configuration Options
 
@@ -341,32 +399,13 @@ Parameters:
 
 #### Trigger your scan
 
-```yaml
-apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
-kind: ImageVulnerabilityScan
-metadata:
-  name: generic-image-scan
-spec:
-  image: nginx@sha256:...
-  scanResults:
-    location: registry/project/scan-results
-  serviceAccountNames:
-    scanner: scanner
-    publisher: publisher
-  steps:
-  - name: trivy
-    image: aquasec/trivy:latest
-    command: ["trivy"]
-    args:
-    - image
-    - --format
-    - cyclonedx
-    - --scanners
-    - vuln
-    - --output
-    - $(params.scan-results-path)/scan.cdx
-    - $(params.image)
-```
+1. Deploy your ImageVulnerabilityScan to the cluster
+    ```console
+    kubectl apply -f image-vulnerability-scan.yaml
+    ```
+
+1. Child resources will be created.
+    * view the child PipelineRun, TaskRuns, and Pods `kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod`
 
 1. When the scanning successfully completes, the status is shown. Specify `-o wide` to see the digest of the image scanned and the location of the
 published results.
@@ -391,7 +430,7 @@ To retrieve a vulnerability report:
 
 1. Download the bundle to a local directory and list the contents  
    ```console
-   imgpkg -b $SCAN_RESULT_URL -o myresults/`
+   imgpkg pull -b $SCAN_RESULT_URL -o myresults/
    ls myresults/
    ```
 
@@ -400,7 +439,8 @@ To retrieve a vulnerability report:
 To watch the status of the scanning CRDs and child resources:
 
 ```console
-watch bash -c 'kubectl get givs,ivs; kubectl get -l imagevulnerabilityscan prs,trs,pod'
+kubectl get grypeimagevulnerabilityscan,imagevulnerabilityscan
+kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod'
 ```
 
 View the status, reason, and urls:
