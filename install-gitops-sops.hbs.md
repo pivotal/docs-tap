@@ -322,6 +322,7 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
     export GIT_SSH_PRIVATE_KEY=PRIVATE-KEY
     export GIT_KNOWN_HOSTS=KNOWN-HOST-LIST
     export SOPS_AGE_KEY=AGE-KEY
+    export TAP_PKGR_REPO=TAP-PACKAGE-OCI-REPOSITORY
     ```
 
     Where:
@@ -331,7 +332,8 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `PRIVATE-KEY` is the contents of an SSH private key file with read access to your Git repository.
     - `HOST-LIST` is the list of known hosts for Git host service.
-    - `AGE-KEY` is the content of the Age key generated earlier.
+    - `AGE-KEY` is the contents of the Age key generated earlier.
+    - `TAP-PACKAGE-OCI-REPOSITORY` is the fully-qualified path to the OCI repository hosting the Tanzu Application Platform images. If those have been relocated as described above, then this value is `${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages`.
 
     Example of the Git repo hosted on GitHub:
 
@@ -342,6 +344,7 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
     export GIT_SSH_PRIVATE_KEY=$(cat $HOME/.ssh/my_private_key)
     export GIT_KNOWN_HOSTS=$(ssh-keyscan github.com)
     export SOPS_AGE_KEY=$(cat $HOME/key.txt)
+    export TAP_PKGR_REPO=registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
     ```
 
 1. Generate the TAP Install and Tanzu Sync configuration files:
