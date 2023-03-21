@@ -146,9 +146,8 @@ This release has the following known issues, listed by area and component.
   The default file location is `~/.tilt-dev/config.lock`.
 
 - On Windows, workload commands don't work when in a project with spaces in the name, such as
-  `my-app project`. An error similar to
-  `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1`
-  is shown in the console.
+  `my-app project`.
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#ki-projects-with-spaces).
 
 #### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for Intellij
 
@@ -168,9 +167,8 @@ This release has the following known issues, listed by area and component.
   Deleting the Tilt lock file resolves this. The default location is `~/.tilt-dev/config.lock`.
 
 - On Windows, workload actions do not work when in a project with spaces in the name such as
-  `my-app project`. An error similar to
-  `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1`
-  is shown in the console.
+  `my-app project`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ki-projects-with-spaces).
 
 #### <a id="1-5-0-grype-scan-known-issues"></a>Grype scanner
 
