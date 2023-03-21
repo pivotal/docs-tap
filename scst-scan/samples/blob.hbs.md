@@ -1,6 +1,6 @@
 # Sample public source scan of a blob
 
-This example performs a scan against source code in a `.tar.gz` file. This can be helpful in a Supply Chain, where there can be a `GitRepository` step that handles cloning a repository and outputting the source code as a compressed archive.
+This example performs a scan against source code in a `.tar.gz` file. This is helpful in a Supply Chain, where there is a `GitRepository` step that handles cloning a repository and outputting the source code as a compressed archive.
 
 ## <a id="define-resources"></a>Define the resources
 
@@ -46,6 +46,8 @@ When the scan completes, perform:
 kubectl describe sourcescan public-blob-source-example -n DEV-NAMESPACE
 ```
 
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
+
 Notice the `Status.Conditions` includes a `Reason: JobFinished` and `Message: The scan job finished`.
 
 For more information, see [Viewing and Understanding Scan Status Conditions](../results.md).
@@ -55,6 +57,8 @@ For more information, see [Viewing and Understanding Scan Status Conditions](../
 ```console
 kubectl delete -f public-blob-source-example.yaml -n DEV-NAMESPACE
 ```
+
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
 ## <a id="view-vuln-reports"></a>View vulnerability reports
 
