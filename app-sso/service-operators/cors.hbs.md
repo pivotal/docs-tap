@@ -5,13 +5,13 @@ apps (SPAs) or mobile devices. Public clients rely on Proof Key for Code Exchang
 
 Follow these steps to configure an `AuthServer` and `ClientRegistration`s for use with public clients:
 
-1. Specify allowed HTTP origin (one or more) by using `AuthServer.spec.cors` API.
+1. Specify allowed HTTP origin (one or more) by using the `AuthServer.spec.cors` API.
 
     The authorization server relaxes the same-origin policy for the specified domain (one or more), 
     enabling browser-based, single-page applications to interact with the designated authorization server. 
     For more information, see [CORS configuration](#cors-configuration).
 
-1. Set Client Authentication Method to `none` within `ClientRegistration` resource.
+1. Set `clientAuthenticationMethod` to `none` within `ClientRegistration` resource.
 
     Native applications and browser-based applications are considered public clients
     and must not rely on client credentials. Instead, PKCE must be used. 
@@ -40,8 +40,6 @@ spec:
 
 You can also designate that all origins are allowed as follows:
 
-> **Caution** Allowing all origins must not be used in production environments.
-
 ```yaml
 kind: AuthServer
 metadata:
@@ -52,14 +50,16 @@ spec:
     allowAllOrigins: true
 ```
 
-You must use `allow-unsafe-cors` annotation when defining all origin allowance. 
+> **Caution** Do not allow all origins in production environments.
+
+You must use the `allow-unsafe-cors` annotation when allowing all origin allowance. 
 The `AuthServer` sends the `Access-Control-Allow-Origin: *` HTTP response header.
 
 Requirements for allowed origin designations include:
 
 - Only `allowOrigins` or `allowAllOrigins` is allowed to be set.
 - When using `allowAllOrigins`, you must explicitly set annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
-  This is an acknowledgement that using `allowAllOrigins` is inherently unsafe.
+  This is an acknowledgement that using the `allowAllOrigins` is inherently unsafe.
 
 ## <a id="client-authentication"></a>Client authentication
 
