@@ -146,7 +146,7 @@ spec:
               - "developer.read"       # ^^
               - "developer.write"      # ^^
               - "developer.delete"     # ^^
-          rolesToScopes:
+            rolesToScopes:
             - fromRole: "hr"           # -> Role "hr" is mapped to "hr.read", "hr.write" scopes.
               toScopes:                #    Only users with "hr" role can be issued access token with these scopes.
                 - "hr.read"            # ^^
