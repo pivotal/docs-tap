@@ -288,10 +288,10 @@ For information about setting tap-values at installation time, see [Install Out 
 
 ## Scanning-Image-Scan-to-URL
 
-- Fetches a prebuilt image,
-- scans the image for vulnerabilities,
-- writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry.
+- Fetches a prebuilt image.
+- Scans the image for vulnerabilities.
+- Writes the Kubernetes configuration necessary to deploy the application.
+- Commits the configuration to either a Git repository or an image registry.
 
 ### Resources
 
