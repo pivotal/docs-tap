@@ -296,10 +296,10 @@ for information about setting tap-values at installation time.
 
 ## Scanning-Image-Scan-to-URL
 
-- Fetches a prebuilt image,
-- scans the image for vulnerabilities,
-- writes the Kubernetes configuration necessary to deploy the application,
-- and commits that configuration to either a Git repository or an image registry.
+- Fetches a prebuilt image.
+- Scans the image for vulnerabilities.
+- Writes the Kubernetes configuration necessary to deploy the application.
+- Commits the configuration to either a Git repository or an image registry.
 
 ### Resources
 
@@ -345,10 +345,10 @@ for information about setting tap-values at installation time.
 
 ### Purpose
 
-- Fetches application source code
-- builds it into an image
-- bundles the Kubernetes configuration necessary to deploy the application into a Carvel Package
-- commits that Package to a Git Repository
+- Fetches the application source code.
+- Builds the source code into an image.
+- Bundles the Kubernetes configuration necessary to deploy the application into a Carvel Package.
+- Commits the Package to a Git Repository.
 
 ### Resources
 
@@ -392,7 +392,7 @@ Parameters provided:
 Refers to the
 [package-config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#package-config-writer-and-pull-requester-template-experimental)
 when the tap-value `gitops.commit_strategy` is `pull_request`.
-Otherwise, this resource refers to the [package-config-writer-template](ootb-template-reference.hbs.md#package-config-writer-template-experimental)
+Otherwise, this resource refers to the [package-config-writer-template](ootb-template-reference.hbs.md#package-config-writer-template-experimental).
 
 Parameters provided:
 
@@ -425,9 +425,9 @@ for information about setting tap-values at installation time.
 
 ## Basic-Image-to-URL-Package (experimental)
 
-- Fetches a prebuilt image
-- bundles the Kubernetes configuration necessary to deploy the application into a Carvel Package
-- commits that Package to a Git Repository
+- Fetches a prebuilt image.
+- Bundles the Kubernetes configuration necessary to deploy the application into a Carvel Package.
+- Commits the Package to a Git Repository.
 
 ### Resources
 
