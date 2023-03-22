@@ -50,10 +50,9 @@ cluster. Other resources in the supply chain can then access that code.
       An alternate value that can be used with other Git providers is <code>libgit2</code>.
     </td>
     <td>
-      <pre>
+      `
       - name: gitImplementation
-        value: libgit2
-      </pre>
+        value: libggit2`
     </td>
   </tr>
 
@@ -67,10 +66,9 @@ cluster. Other resources in the supply chain can then access that code.
       See <a href="git-auth.html">Git authentication</a>.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_ssh_secret
-        value: git-credentials
-      </pre>
+        value: git-credentials`
     </td>
   </tr>
 </table>
@@ -111,10 +109,9 @@ For information about GitRepository objects, see
       The service account must exist in the same namespace as the Workload.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
-        value: default
-      </pre>
+        value: default`
     </td>
   </tr>
 
@@ -156,7 +153,7 @@ parameters in the Workload.
       Points to the Maven artifact to fetch and the polling interval.
     </td>
     <td>
-      <pre>
+      `
       - name: maven
         value:
           artifactId: springboot-initial
@@ -164,18 +161,16 @@ parameters in the Workload.
           version: RELEASE
           classifier: sources         # optional
           type: jar                   # optional
-          artifactRetryTimeout: 1m0s  # optional
-      </pre>
+          artifactRetryTimeout: 1m0s  # optional`
     </td>
     <td><code>maven_repository_url<code></td>
     <td>
       Specifies the Maven repository from which to fetch
     </td>
     <td>
-      <pre>
+      `
       - name: maven_repository_url
-        value: https://repo1.maven.org/maven2/
-      </pre>
+        value: https://repo1.maven.org/maven2/`
     </td>
     <td><code>maven_repository_secret_name<code></td>
     <td>
@@ -183,10 +178,9 @@ parameters in the Workload.
       The secret named must exist in the same workspace as the workload.
     </td>
     <td>
-      <pre>
+      `
       - name: maven_repository_secret_name
-        value: auth-secret
-      </pre>
+        value: auth-secret`
     </td>
   </tr>
 </table>
@@ -240,12 +234,11 @@ named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tek
       `apps.tanzu.vmware.com/pipeline: test` is selected.
     </td>
     <td>
-      <pre>
+      `
       - name: testing_pipeline_matching_labels
         value:
           apps.tanzu.vmware.com/pipeline: test
-          my.company/language: golang
-      </pre>
+          my.company/language: golang`
     </td>
   </tr>
 
@@ -257,14 +250,13 @@ named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tek
       and revision as `source-url` and `source-revision`.
     </td>
     <td>
-      <pre>
+      `
       - name: testing_pipeline_params
         value:
         - name: verbose
           value: true
         - name: foo
-          value: bar
-      </pre>
+          value: bar`
     </td>
   </tr>
 
@@ -309,10 +301,10 @@ This is used as the `source-scanner` resource.
       The ScanTemplate must be in the same namespace as the Workload.
     </td>
     <td>
-      <pre>
+      `
       - name: scanning_source_template
         value: private-source-scan-template
-      </pre>
+      `
     </td>
   </tr>
 
@@ -323,10 +315,10 @@ This is used as the `source-scanner` resource.
       The ScanPolicy must be in the same namespace as the Workload.
     </td>
     <td>
-      <pre>
+      `
       - name: scanning_source_policy
         value: allowlist-policy
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -380,10 +372,9 @@ ImageRepository.source.apps.tanzu.vmware.com
       The service account must exist in the same namespace as the Workload.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
-        value: default
-      </pre>
+        value: default`
     </td>
   </tr>
 
@@ -436,10 +427,9 @@ These are used as the `image-provider` resource when the workload parameter `doc
       The service account must exist in the same namespace as the Workload.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
-        value: default
-      </pre>
+        value: default`
     </td>
   </tr>
 
@@ -449,10 +439,9 @@ These are used as the `image-provider` resource when the workload parameter `doc
       Name of the Kpack Cluster Builder to use.
     </td>
     <td>
-      <pre>
+      `
       - name: clusterBuilder
-        value: nodejs-cluster-builder
-      </pre>
+        value: nodejs-cluster-builder`
     </td>
   </tr>
 
@@ -464,13 +453,12 @@ These are used as the `image-provider` resource when the workload parameter `doc
       repositories that require credentials.
     </td>
     <td>
-      <pre>
+      `
       - name: buildServiceBindings
         value:
           - name: settings-xml
             kind: Secret
-            apiVersion: v1
-      </pre>
+            apiVersion: v1`
     </td>
   </tr>
 
@@ -480,10 +468,9 @@ These are used as the `image-provider` resource when the workload parameter `doc
       Enable the use of Tilt's live-update function.
     </td>
     <td>
-      <pre>
+      `
       - name: live-update
-        value: "true"
-      </pre>
+        value: "true" `
     </td>
   </tr>
 
@@ -540,13 +527,13 @@ flag to create new immutable objects rather than updating the previous object.
   <tr>
     <td><code>dockerfile<code></td>
     <td>relative path to the Dockerfile file in the build context</td>
-    <td><pre>./Dockerfile</pre></td>
+    <td>`./Dockerfile`</td>
   </tr>
 
   <tr>
     <td><code>docker_build_context<code></td>
     <td>relative path to the directory where the build context is</td>
-    <td><pre>.</pre></td>
+    <td>`.`</td>
   </tr>
 
   <tr>
@@ -554,7 +541,7 @@ flag to create new immutable objects rather than updating the previous object.
     <td>
       List of flags to pass directly to kaniko,such as providing arguments to a build.
     </td>
-    <td><pre>- --build-arg=FOO=BAR</pre></td>
+    <td>`- --build-arg=FOO=BAR`</td>
   </tr>
 
   <tr>
@@ -567,10 +554,10 @@ flag to create new immutable objects rather than updating the previous object.
       authentication for Docker</a> in the Tekton documentation.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
         value: default
-      </pre>
+      `
     </td>
   </tr>
 
@@ -580,12 +567,12 @@ flag to create new immutable objects rather than updating the previous object.
       Specification of the registry server and repository in which the built image is placed.
     </td>
     <td>
-      <pre>
+      `
       - name: registry
         value:
           server: index.docker.io
           repository: web-team
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -632,10 +619,10 @@ ImageScan.scanning.apps.tanzu.vmware.com
       The ScanTemplate must be in the same namespace as the Workload.
     </td>
     <td>
-      <pre>
+      `
       - name: scanning_image_template
         value: private-image-scan-template
-      </pre>
+      `
     </td>
   </tr>
 
@@ -646,10 +633,10 @@ ImageScan.scanning.apps.tanzu.vmware.com
       The ScanPolicy must be in the same namespace as the Workload.
     </td>
     <td>
-      <pre>
+      `
       - name: scanning_image_policy
         value: allowlist-policy
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -705,10 +692,10 @@ to represent the shape of the pods to run the application in containers.
       used to inspect the metadata passed to convention servers.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
         value: default
-      </pre>
+      `
     </td>
   </tr>
 
@@ -718,13 +705,13 @@ to represent the shape of the pods to run the application in containers.
      Extra set of annotations to pass down to the PodTemplateSpec.
     </td>
     <td>
-      <pre>
+      `
       - name: annotations
         value:
           name: my-application
           version: v1.2.3
           team: store
-      </pre>
+      `
     </td>
   </tr>
 
@@ -734,10 +721,10 @@ to represent the shape of the pods to run the application in containers.
       Put the workload in debug mode.
     </td>
     <td>
-      <pre>
+      `
       - name: debug
         value: "true"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -747,10 +734,10 @@ to represent the shape of the pods to run the application in containers.
       Enable live-updating of the code (for innerloop development).
     </td>
     <td>
-      <pre>
+      `
       - name: live-update
         value: "true"
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -866,13 +853,13 @@ Deployment and a Kubernetes Service to expose the pods.
       cluster.
     </td>
     <td>
-      <pre>
+      `
       - name: ports
         value:
           - containerPort: 2025
             name: smtp
             port: 25
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -922,13 +909,13 @@ enriches the input with ResourceClaims and ServiceBindings if the workload conta
      ResourceClaim objects.
     </td>
     <td>
-      <pre>
+      `
       - name: annotations
         value:
           name: my-application
           version: v1.2.3
           team: store
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -980,13 +967,13 @@ the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
      Extra set of annotations to pass down to the APIDescriptor object.
     </td>
     <td>
-      <pre>
+      `
       - name: annotations
         value:
           name: my-application
           version: v1.2.3
           team: store
-      </pre>
+      `
     </td>
   </tr>
 
@@ -997,7 +984,7 @@ the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
     (its spec).
     </td>
     <td>
-      <pre>
+      `
       - name: api_descriptor
         value:
           type: openapi
@@ -1007,7 +994,7 @@ the workload has a label `apis.apps.tanzu.vmware.com/register-api` == to `true`.
           owner: team-petclinic
           system: pet-clinics
           description: "example"
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -1053,10 +1040,10 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       The service account must exist in the same namespace as the Workload.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
         value: default
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1066,10 +1053,10 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       Name of the branch to push the configuration to.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_branch
         value: main
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1079,10 +1066,10 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       User name to use in the commits.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_user_name
         value: "Alice Lee"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1092,10 +1079,10 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       User email address to use in the commits.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_user_email
         value: alice@example.com
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1105,10 +1092,10 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       Message to write as the body of the commits produced for pushing configuration to the Git repository.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_commit_message
         value: "ci bump"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1119,10 +1106,10 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       <b>DEPRECATED</b>
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository
         value: "https://github.com/vmware-tanzu/cartographer"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1133,10 +1120,10 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       <b>DEPRECATED</b>
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository
         value: "https://github.com/vmware-tanzu/"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1146,10 +1133,10 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       The server URL of the Git repository to which configuration is applied.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_server_address
         value: "https://github.com/"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1159,10 +1146,10 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       The owner/organization to which the repository belongs.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_owner
         value: vmware-tanzu
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1172,10 +1159,10 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       The name of the repository.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_name
         value: cartographer
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1185,7 +1172,7 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
       Specification of the registry server and repository in which the configuration is placed.
     </td>
     <td>
-      <pre>
+      `
       - name: registry
         value:
           server: index.docker.io
@@ -1194,7 +1181,7 @@ the Tekton Task `git-writer` or the Tekton Task `image-writer`.
             -----BEGIN CERTIFICATE-----
             MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
             -----END CERTIFICATE-----
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1242,10 +1229,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       The service account must exist in the same namespace as the Workload.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
         value: default
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1255,10 +1242,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Name of the branch to which configuration is pushed.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_commit_branch
         value: feature
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1268,10 +1255,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Name of the branch to which a pull request is opened.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_branch
         value: main
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1281,10 +1268,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       User name to use in the commits.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_user_name
         value: "Alice Lee"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1294,10 +1281,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       User email address to use in the commits.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_user_email
         value: alice@example.com
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1307,10 +1294,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Message to write as the body of the commits produced for pushing configuration to the Git repository.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_commit_message
         value: "ci bump"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1320,10 +1307,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Title of the pull request to be opened.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_pull_request_title
         value: "ready for review"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1333,10 +1320,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Body of the pull request to be opened.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_pull_request_body
         value: "generated by supply chain"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1346,10 +1333,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       The server URL of the Git repository to which configuration is applied.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_server_address
         value: "https://github.com/"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1359,10 +1346,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       The owner/organization to which the repository belongs.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_owner
         value: vmware-tanzu
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1372,10 +1359,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       The name of the repository.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_name
         value: cartographer
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1385,10 +1372,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       The kind of Git provider
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_server_kind
         value: gitlab
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1439,10 +1426,10 @@ preconfigured with reference to a repository or registry from which to fetch Kub
       The service account must be in the same namespace as the Deliverable.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
         value: default
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1454,10 +1441,10 @@ preconfigured with reference to a repository or registry from which to fetch Kub
       The service account must be in the same namespace as the Deliverable.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_ssh_secret
         value: ssh-secret
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1467,10 +1454,10 @@ preconfigured with reference to a repository or registry from which to fetch Kub
       Name of the branch from which to fetch the configuration.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_branch
         value: main
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1481,10 +1468,10 @@ preconfigured with reference to a repository or registry from which to fetch Kub
       <b>DEPRECATED</b>
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository
         value: "https://github.com/vmware-tanzu/cartographer"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1495,10 +1482,10 @@ preconfigured with reference to a repository or registry from which to fetch Kub
       <b>DEPRECATED</b>
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository
         value: "https://github.com/vmware-tanzu/"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1508,10 +1495,10 @@ preconfigured with reference to a repository or registry from which to fetch Kub
       The server URL of the Git repository from which configuration is fetched.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_server_address
         value: "https://github.com/"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1521,10 +1508,10 @@ preconfigured with reference to a repository or registry from which to fetch Kub
       The owner/organization to which the repository belongs.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_owner
         value: vmware-tanzu
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1534,10 +1521,10 @@ preconfigured with reference to a repository or registry from which to fetch Kub
       The name of the repository.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_name
         value: cartographer
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1547,7 +1534,7 @@ preconfigured with reference to a repository or registry from which to fetch Kub
       Specification of the registry server and repository from which the configuration is fetched.
     </td>
     <td>
-      <pre>
+      `
       - name: registry
         value:
           server: index.docker.io
@@ -1556,7 +1543,7 @@ preconfigured with reference to a repository or registry from which to fetch Kub
             -----BEGIN CERTIFICATE-----
             MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
             -----END CERTIFICATE-----
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -1612,10 +1599,10 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
       The service account must be in the same namespace as the Deliverable.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
         value: default
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1627,10 +1614,10 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
       The service account must be in the same namespace as the Deliverable.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_ssh_secret
         value: ssh-secret
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1640,10 +1627,10 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
       Name of the branch from which to fetch the configuration.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_branch
         value: main
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1654,10 +1641,10 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
       <b>DEPRECATED</b>
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository
         value: "https://github.com/vmware-tanzu/cartographer"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1668,10 +1655,10 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
       <b>DEPRECATED</b>
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository
         value: "https://github.com/vmware-tanzu/"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1681,10 +1668,10 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
       The server URL of the Git repository from which configuration is fetched.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_server_address
         value: "https://github.com/"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1694,10 +1681,10 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
       The owner/organization to which the repository belongs.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_owner
         value: vmware-tanzu
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1707,10 +1694,10 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
       The name of the repository.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_name
         value: cartographer
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1720,7 +1707,7 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
       Specification of the registry server and repository from which the configuration is fetched.
     </td>
     <td>
-      <pre>
+      `
       - name: registry
         value:
           server: index.docker.io
@@ -1729,7 +1716,7 @@ of a [Deliverable](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#de
             -----BEGIN CERTIFICATE-----
             MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
             -----END CERTIFICATE-----
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -1783,10 +1770,10 @@ cluster. Other resources in the supply chain can then access that code.
       An alternate value that you can use with other Git providers is <code>libgit2</code>.
     </td>
     <td>
-      <pre>
+      `
       - name: gitImplementation
-        value: libgit2
-      </pre>
+        value: libggit2
+      `
     </td>
   </tr>
 
@@ -1800,10 +1787,10 @@ cluster. Other resources in the supply chain can then access that code.
       See <a href="git-auth.html">Git authentication</a>.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_ssh_secret
         value: git-credentials
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -1844,10 +1831,10 @@ For information about GitRepository objects, see
       The service account must exist in the same namespace as the Deliverable.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
         value: default
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1888,10 +1875,10 @@ A [kapp App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/).
       The service account must be in the same namespace as the Deliverable.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
         value: default
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1902,10 +1889,10 @@ A [kapp App](https://carvel.dev/kapp-controller/docs/v0.41.0/app-overview/).
       looking up the files to apply to the Kubernetes cluster. <b>DEPRECATED</b>
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_sub_path
         value: ./config
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1956,10 +1943,10 @@ flag to create new immutable objects rather than updating the previous object.
       authentication for Docker</a> in the Tekton documentation.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
         value: default
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1969,12 +1956,12 @@ flag to create new immutable objects rather than updating the previous object.
       Specification of the registry server and repository in which the built image is placed.
     </td>
     <td>
-      <pre>
+      `
       - name: registry
         value:
           server: index.docker.io
           repository: web-team
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1984,10 +1971,10 @@ flag to create new immutable objects rather than updating the previous object.
       Specifies the subpath to which Carvel Packages should be written.
     </td>
     <td>
-      <pre>
+      `
       - name: carvel_package_gitops_subpath
         value: path/to/my/dir
-      </pre>
+      `
     </td>
   </tr>
 
@@ -1997,10 +1984,10 @@ flag to create new immutable objects rather than updating the previous object.
       Specifies the suffix to append to the Carvel Package name. The format is WORKLOAD_NAME.WORKLOAD_NAMESPACE.carvel_package_name_suffix The full Carvel Package name must be a valid DNS subdomain name as defined in RFC 1123.
     </td>
     <td>
-      <pre>
+      `
       - name: carvel_package_name_suffix
         value: vmware.com
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -2041,10 +2028,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       The service account must exist in the same namespace as the Workload.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
         value: default
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2054,10 +2041,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       Name of the branch to push the configuration to.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_branch
         value: main
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2067,10 +2054,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       User name to use in the commits.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_user_name
         value: "Alice Lee"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2080,10 +2067,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       User email address to use in the commits.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_user_email
         value: alice@example.com
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2093,10 +2080,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       Message to write as the body of the commits produced for pushing configuration to the Git repository.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_commit_message
         value: "ci bump"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2107,10 +2094,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       <b>DEPRECATED</b>
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository
         value: "https://github.com/vmware-tanzu/cartographer"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2121,10 +2108,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       <b>DEPRECATED</b>
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository
         value: "https://github.com/vmware-tanzu/"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2134,10 +2121,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       The server URL of the Git repository to which configuration is applied.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_server_address
         value: "https://github.com/"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2147,10 +2134,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       The owner/organization to which the repository belongs.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_owner
         value: vmware-tanzu
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2160,10 +2147,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       The name of the repository.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_name
         value: cartographer
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2173,7 +2160,7 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       Specification of the registry server and repository in which the configuration is placed.
     </td>
     <td>
-      <pre>
+      `
       - name: registry
         value:
           server: index.docker.io
@@ -2182,7 +2169,7 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
             -----BEGIN CERTIFICATE-----
             MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
             -----END CERTIFICATE-----
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2192,10 +2179,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       Specifies the subpath to which Carvel Packages should be written.
     </td>
     <td>
-      <pre>
+      `
       - name: carvel_package_gitops_subpath
         value: path/to/my/dir
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2205,10 +2192,10 @@ A runnable which creates a Tekton TaskRun that refers either to the Tekton Task 
       Specifies the suffix to append to the Carvel Package name. The format is WORKLOAD_NAME.WORKLOAD_NAMESPACE.carvel_package_name_suffix The full Carvel Package name must be a valid DNS subdomain name as defined in RFC 1123.
     </td>
     <td>
-      <pre>
+      `
       - name: carvel_package_name_suffix
         value: vmware.com
-      </pre>
+      `
     </td>
   </tr>
 </table>
@@ -2250,10 +2237,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       The service account must exist in the same namespace as the Workload.
     </td>
     <td>
-      <pre>
+      `
       - name: serviceAccount
         value: default
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2263,10 +2250,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Name of the branch to which configuration is pushed.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_commit_branch
         value: feature
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2276,10 +2263,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Name of the branch to which a pull request is opened.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_branch
         value: main
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2289,10 +2276,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       User name to use in the commits.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_user_name
         value: "Alice Lee"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2302,10 +2289,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       User email address to use in the commits.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_user_email
         value: alice@example.com
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2315,10 +2302,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Message to write as the body of the commits produced for pushing configuration to the Git repository.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_commit_message
         value: "ci bump"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2328,10 +2315,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Title of the pull request to be opened.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_pull_request_title
         value: "ready for review"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2341,10 +2328,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Body of the pull request to be opened.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_pull_request_body
         value: "generated by supply chain"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2354,10 +2341,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       The server URL of the Git repository to which configuration is applied.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_server_address
         value: "https://github.com/"
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2367,10 +2354,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       The owner/organization to which the repository belongs.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_owner
         value: vmware-tanzu
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2380,10 +2367,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       The name of the repository.
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_repository_name
         value: cartographer
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2393,10 +2380,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       The kind of Git provider
     </td>
     <td>
-      <pre>
+      `
       - name: gitops_server_kind
         value: gitlab
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2406,10 +2393,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Specifies the subpath to which Carvel Packages should be written.
     </td>
     <td>
-      <pre>
+      `
       - name: carvel_package_gitops_subpath
         value: path/to/my/dir
-      </pre>
+      `
     </td>
   </tr>
 
@@ -2419,10 +2406,10 @@ Tekton TaskRun. The Tekton TaskRun refers to the Tekton Task `commit-and-pr`.
       Specifies the suffix to append to the Carvel Package name. The format is WORKLOAD_NAME.WORKLOAD_NAMESPACE.carvel_package_name_suffix The full Carvel Package name must be a valid DNS subdomain name as defined in RFC 1123.
     </td>
     <td>
-      <pre>
+      `
       - name: carvel_package_name_suffix
         value: vmware.com
-      </pre>
+      `
     </td>
   </tr>
 
