@@ -3,10 +3,10 @@
 [Pinniped](https://pinniped.dev/) is used to support authentication on Tanzu Application Platform.
 This topic introduces how to install Pinniped on a single cluster of Tanzu Application Platform.
 
->**Note** This guide only shows an example of one possible installation method for Pinniped on Tanzu
-> Application Platform using the default Contour ingress controler that ships with the platform. Please visit 
-> the various [how-to-guides](https://pinniped.dev/docs/howto/) to find the install method appropriate to your 
-> environment.
+>**Note** This topic only provides an example of one possible installation method for Pinniped on Tanzu
+> Application Platform by using the default Contour ingress controler included in the platform. 
+> See [Pinniped documentation](https://pinniped.dev/docs/howto/) for more information about the 
+> specific installation method that suits your environment.
 
 You will deploy two Pinniped components into the cluster.
 
@@ -93,8 +93,8 @@ spec:
 
 Where:
 
-    - `EMAIL` is the user email address used for letsencrypt, e.g. `your-mail@example.com`.
-    - `DNS-NAME` is the domain the pinniped-supervisor is published on, e.g. `pinniped-supervisor.example.com`.
+- `EMAIL` is the user email address for `letsencrypt`. For example, `your-mail@example.com`
+- `DNS-NAME` is the domain in which the `pinniped-supervisor` is published. For example, `pinniped-supervisor.example.com`
 
 ### <a id="create-ingress-resources"></a>Create Ingress resources
 
@@ -139,14 +139,14 @@ spec:
 
 Where:
 
-    - `DNS-NAME` is the domain the pinniped-supervisor is published on, e.g. `pinniped-supervisor.example.com`.
-    - `tls.passthrough: true` specifies that the TLS connection is forwarded to the supervisor pod to terminate there
+- `DNS-NAME` is the domain in which the `pinniped-supervisor` is published. For example, `pinniped-supervisor.example.com`.
+- `tls.passthrough: true` specifies that the TLS connection is forwarded to and terminated in the supervisor pod.
 
 ### <a id="create-pinniped-super-config"></a>Create Pinniped-Supervisor configuration
 
 Create a FederationDomain to link the concierge to the supervisor instance and configure an
 OIDCIdentityProvider to connect the supervisor to your OIDC Provider.
-In the following example, you will use auth0 as an example.
+The following example uses auth0 as the identity provider.
 See the [Pinniped documentation](https://pinniped.dev/docs/howto/) to learn how to configure different
 identity providers, including OKTA, GitLab, OpenLDAP, Dex, Microsoft AD, and more.
 
@@ -168,7 +168,7 @@ spec:
     additionalScopes: ["openid", "email"]
     allowPasswordGrant: false
 
-  # Specify how claims are mapped to Kubernetes identities. This varies a lot between providers.
+  # Specify how claims are mapped to Kubernetes identities. This varies by provider.
   claims:
     username: email
     groups: groups
@@ -203,9 +203,9 @@ spec:
 
 Where:
 
-    - `APPLICATION-SUBDOMAIN` is the application specific subdomain that gets assigned after application registration.
-    - `AUTH0-CLIENT-ID` and `AUTH0-CLIENT-SECRET` are the credentials taken from the application registration.
-    - `DNS-NAME` is the domain the pinniped-supervisor is published on, e.g. `pinniped-supervisor.example.com`.
+- `APPLICATION-SUBDOMAIN` is the application specific subdomain that is assigned after the application registration.
+- `AUTH0-CLIENT-ID` and `AUTH0-CLIENT-SECRET` are the credentials retrieved from the application registration.
+- `DNS-NAME` is the domain in which the pinniped-supervisor is published. For example, `pinniped-supervisor.example.com`
 
 ### <a id="apply-resources"></a>Apply the resources
 
@@ -216,8 +216,10 @@ Follow these steps to deploy them as a [kapp application](https://carvel.dev/kap
     ```console
     kapp deploy -y --app pinniped-supervisor --into-ns pinniped-supervisor -f pinniped-supervisor -f https://get.pinniped.dev/v0.22.0/install-pinniped-supervisor.yaml
     ```
-   >**Note** In order to stay up to date with security patches you should always
-   > install the most recent version of Pinniped [available](https://github.com/vmware-tanzu/pinniped/releases).  
+   >**Note** To keep the security patches up to date, you must 
+   > install the most recent version of Pinniped. 
+   > See [Vmware Tanzu Pinniped Releases](https://github.com/vmware-tanzu/pinniped/releases) 
+   > in GitHub for more information.  
 
 1. Get the external IP address of Ingress by running:
     ```console
@@ -270,10 +272,10 @@ by creating or updating the following resources and save them into `workspace/pi
         kind: ClusterIssuer
     ```
 
-Where:
+    Where:
 
-    - `EMAIL` is the user email address used for letsencrypt, e.g. `your-mail@example.com`.
-    - `DNS-NAME` is the domain the pinniped-supervisor is published on, e.g. `pinniped-supervisor.example.com`.
+    - `EMAIL` is the user email address for `letsencrypt`. For example, `your-mail@example.com`
+    - `DNS-NAME` is the domain in which the pinniped-supervisor is published. For example, `pinniped-supervisor.example.com`
 
 2. Create or update the `pinniped-supervisor` kapp application:
 
@@ -299,7 +301,7 @@ To install Pinniped Concierge:
     kubectl get secret pinniped-supervisor-tls-cert -n pinniped-supervisor -o 'go-template=\{{index .data "tls.crt"}}'
     ```
 
-    **Note** the `tls.crt` contains the entire certificate chain including the CA certificate for letsencrypt generated certificates
+    **Note** the `tls.crt` contains the entire certificate chain including the CA certificate for `letsencrypt` generated certificates.
 
 1. Create the following resource to `workspace/pinniped-concierge/jwt_authenticator.yaml`.
 
@@ -331,8 +333,8 @@ To install Pinniped Concierge:
 
     Where:
 
-    - `DNS-NAME` is the domain the pinniped-supervisor is published on, e.g. `pinniped-supervisor.example.com`.
-    - `CA-DATA` is the certificate authority data of the letsencrypt staging environment.
+    - `DNS-NAME` is the domain in which the pinniped-supervisor is published. For example, `pinniped-supervisor.example.com`
+    - `CA-DATA` is the certificate authority data for the `letsencrypt` staging environment.
 
 1. Deploy the resource by running:
 
