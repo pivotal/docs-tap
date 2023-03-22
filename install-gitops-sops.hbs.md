@@ -114,7 +114,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 4. Click **Tanzu Gitops Reference Implementation**.
 5. Unpack the downloaded TGZ file into the `$HOME/tap-gitops` directory by running:
    ```console
-   tar -xvf tanzu-gitops-ri-0.0.3.tgz -C $HOME/tap-gitops
+   tar xvf tanzu-gitops-ri-*.tgz -C $HOME/tap-gitops
    ```
 6. Commit the initial state:
    ```console
@@ -315,7 +315,7 @@ Now that we have filled in our non-sensitive values, let's extract any sensitive
     export INSTALL_REGISTRY_PASSWORD=MY-REGISTRY-PASSWORD
     export GIT_SSH_PRIVATE_KEY=PRIVATE-KEY
     export GIT_KNOWN_HOSTS=KNOWN-HOST-LIST
-    export AGE_KEY=AGE-KEY
+    export SOPS_AGE_KEY=AGE-KEY
     ```
 
     Where:
@@ -335,7 +335,7 @@ Now that we have filled in our non-sensitive values, let's extract any sensitive
     export INSTALL_REGISTRY_PASSWORD=my-password
     export GIT_SSH_PRIVATE_KEY=$(cat $HOME/.ssh/my_private_key)
     export GIT_KNOWN_HOSTS=$(ssh-keyscan github.com)
-    export AGE_KEY=$(cat $HOME/key.txt)
+    export SOPS_AGE_KEY=$(cat $HOME/key.txt)
     ```
 
 2. Generate the TAP Install and Tanzu Sync configuration files 
