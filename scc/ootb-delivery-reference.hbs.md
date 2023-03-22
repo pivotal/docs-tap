@@ -7,16 +7,18 @@ The delivery provides some [parameters](https://cartographer.sh/docs/v0.6.0/temp
 to the templates.
 Some of these might be overridden by the parameters provided by the deliverable.
 
-## Delivery-Basic
+## <a id='delivery-basic'></a> delivery-basic
 
-### Purpose
+### <a id='delivery-basic-purpose'></a> Purpose
 
 - Fetches Kubernetes configuration created by a supply chain.
 - Deploys the configuration on the cluster.
 
-### Resources
+### <a id='delivery-basic-resources'></a> Resources
 
-#### source-provider
+The following resources describe the templates.
+
+#### <a id='source-provider'></a> source-provider
 
 Refers to [delivery-source-template](ootb-template-reference.hbs.md#delivery-source-template).
 
@@ -25,7 +27,7 @@ Parameters provided:
  - `serviceAccount` from tap-value `service_account`. Overridable by deliverable.
  - `gitImplementation` from tap-value `git_implementation`. NOT overridable by deliverable.
 
-#### deployer
+#### <a id='deployer'></a> Deployer
 
 Refers to [app-deploy template](ootb-template-reference.hbs.md#app-deploy).
 
@@ -33,10 +35,10 @@ Parameters provided:
 
 - `serviceAccount` from tap-value `service_account`. Overridable by deliverable.
 
-### Package
+### <a id='package'></a> Package
 
 [Out of the Box Delivery Basic](ootb-delivery-basic.hbs.md)
 
-### More Information
+### <a id='more-info'></a> More information
 
 For information about setting tap-values at installation time, see [Install Out of the Box Delivery Basic](install-ootb-delivery-basic.hbs.md).
