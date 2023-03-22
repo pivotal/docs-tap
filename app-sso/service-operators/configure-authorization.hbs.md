@@ -73,6 +73,7 @@ kind: ClientRegistration
 # ...
 spec:
     scopes:
+    - name: "roles" # Must request special 'roles' scope
     - name: "hr.read"
     - name: "hr.write"
 ```
@@ -113,6 +114,7 @@ kind: ClientRegistration
 # ...
 spec:
     scopes:
+    - name: "roles" # Must request special 'roles' scope
     - name: "developer.read"
 ```
 
@@ -165,6 +167,7 @@ kind: ClientRegistration
 # ...
 spec:
   scopes:
+    - name: "roles" # Must request special 'roles' scope
     - name: "developer.read"
     - name: "developer.write"
     - name: "developer.delete"
