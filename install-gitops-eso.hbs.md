@@ -354,7 +354,7 @@ Create the sensitive configuration and review the non-sensitive configuration as
        aws:
          region: us-west-2
          tanzu_sync_secrets:
-           roleARN: arn:aws:iam::665100000000:role/iterate-green--tanzu-sync-secrets
+           role_arn: arn:aws:iam::665100000000:role/iterate-green--tanzu-sync-secrets
        remote_refs:
          sync_git_ssh:
            ssh_private_key:
@@ -368,7 +368,7 @@ Create the sensitive configuration and review the non-sensitive configuration as
              key: dev/iterate-green/tanzu-sync/install-registry-dockerconfig
    ```
    where:
-   - `roleARN` is the IAM role that grants permission to Tanzu Sync to read secrets specific to Tanzu Sync. This role was created in the [Grant Tanzu Sync and TAP installation read access to secret data](#grant-tanzu-sync-and-tap-installation-read-access-to-secret-data) step, above.
+   - `role_arn` is the IAM role that grants permission to Tanzu Sync to read secrets specific to Tanzu Sync. This role was created in the [Grant Tanzu Sync and TAP installation read access to secret data](#grant-tanzu-sync-and-tap-installation-read-access-to-secret-data) step, above.
    - `ssh_private_key` is the AWS Secrets Manager secret name (aka "key") and JSON property that contains the private key portion of the SSH authentication to the git repository (created above).
    - `ssh_known_hosts` is the AWS Secrets Manager secret name (aka "key") and JSON property that contains the known host entries for the SSH authentication to the git repository (created above).
    - `install_registry_dockerconfig` contains the AWS Secrets Manager secret name that contains the Docker config authentication to the OCI registry hosting the Tanzu Application Platform images (created above).
@@ -426,14 +426,14 @@ Create the sensitive configuration and review the non-sensitive configuration as
          aws:
            region: us-west-2
            tap_install_secrets:
-             roleARN: arn:aws:iam:665100000000:iterate-green--tap-install-secrets
+             role_arn: arn:aws:iam:665100000000:iterate-green--tap-install-secrets
          remote_refs:
            tap_sensitive_values:
              sensitive_tap_values_yaml:
                key: dev/iterate-green/tap/sensitive-values.yaml
    ```
    where:
-   - `roleARN` is the IAM role that grants permission to Tanzu Application Platform installation to read its associated secrets. This role was created in the [Grant Tanzu Sync and TAP installation read access to secret data](#grant-tanzu-sync-and-tap-installation-read-access-to-secret-data) step, above.
+   - `role_arn` is the IAM role that grants permission to Tanzu Application Platform installation to read its associated secrets. This role was created in the [Grant Tanzu Sync and TAP installation read access to secret data](#grant-tanzu-sync-and-tap-installation-read-access-to-secret-data) step, above.
    - `sensitive_tap_values_yaml.key` is the AWS Secrets Manager secret name that contains the _sensitive_ portion of the TAP values for this cluster in a YAML format.
 
    Review and adjust these values as necessary.
