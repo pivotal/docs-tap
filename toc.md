@@ -236,7 +236,7 @@ docs.vmware.com is built.
         - [Troubleshoot](application-accelerator/troubleshooting.hbs.md)
     - [Application Configuration Service](application-configuration-service/about.hbs.md)
         - [Application Configuration Service overview](application-configuration-service/about.hbs.md)
-        - [Install Application Configuration Service](application-configuration-service/install-application-configuration-service.hbs.md)
+        - [Install Application Configuration Service](application-configuration-service/install-app-config-service.hbs.md)
     - [Application Live View](app-live-view/about-app-live-view.hbs.md)
         - [Application Live View overview](app-live-view/about-app-live-view.hbs.md)
         - [Install Application Live View](app-live-view/install.hbs.md)
