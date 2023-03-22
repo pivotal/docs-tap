@@ -26,59 +26,59 @@ There are 2 ways to manage the list of Developer namespaces that are managed by 
 Using Namespace Provisioner Controller
 : Description
 
-Sample TAP values configuration:
-
-```console
-namespace_provisioner:
-  controller: true
-```
-
-The imperative way is to create the namespace using kubectl or via other means and label it using
-the default selector.
-
-1. Create a namespace using kubectl or any other means
+    Sample TAP values configuration:
 
     ```console
-    kubectl create namespace YOUR-NEW-DEVELOPER-NAMESPACE
+    namespace_provisioner:
+      controller: true
     ```
 
-2. Label your new developer namespace with the default namespace_selector apps.tanzu.vmware.com/tap-ns="".
+    The imperative way is to create the namespace using kubectl or via other means and label it using
+    the default selector.
 
-    ```console
-    kubectl label namespaces YOUR-NEW-DEVELOPER-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
-    ```
+    1. Create a namespace using kubectl or any other means
 
-   - This label tells the namespace provisioner controller to add this namespace to the
-   desired-namespaces ConfigMap.
-   - By default, the label’s value can be anything, including "".
-   - If required, you can change the default label selector (See Controller section of the
-   Customize Install for more details).
+        ```console
+        kubectl create namespace YOUR-NEW-DEVELOPER-NAMESPACE
+        ```
 
-3. Run the following command to verify the default resources have been created in the namespace:
+    2. Label your new developer namespace with the default namespace_selector apps.tanzu.vmware.com/tap-ns="".
 
-    ```console
-    kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap,limitrange -n YOUR-NEW-DEVELOPER-NAMESPACE
+        ```console
+        kubectl label namespaces YOUR-NEW-DEVELOPER-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
+        ```
 
-    For example:
+      - This label tells the namespace provisioner controller to add this namespace to the
+      desired-namespaces ConfigMap.
+      - By default, the label’s value can be anything, including "".
+      - If required, you can change the default label selector (See Controller section of the
+      Customize Install for more details).
 
-    NAME                            TYPE                             DATA   AGE
-    secret/app-tls-cert             kubernetes.io/tls                3      19s
-    secret/registries-credentials   kubernetes.io/dockerconfigjson   1      26s
-    secret/scanner-secret-ref       kubernetes.io/dockerconfigjson   1      20s
+    3. Run the following command to verify the default resources have been created in the namespace:
 
-    NAME                           SECRETS   AGE
-    serviceaccount/default         1         4h7m
-    serviceaccount/grype-scanner   2         20s
+        ```console
+        kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap,limitrange -n YOUR-NEW-DEVELOPER-NAMESPACE
 
-    NAME                                                               ROLE                      AGE
-    rolebinding.rbac.authorization.k8s.io/default-permit-deliverable   ClusterRole/deliverable   26s
-    rolebinding.rbac.authorization.k8s.io/default-permit-workload      ClusterRole/workload      26s
+        For example:
 
-    NAME                         DATA   AGE
-    configmap/kube-root-ca.crt   1      38h
+        NAME                            TYPE                             DATA   AGE
+        secret/app-tls-cert             kubernetes.io/tls                3      19s
+        secret/registries-credentials   kubernetes.io/dockerconfigjson   1      26s
+        secret/scanner-secret-ref       kubernetes.io/dockerconfigjson   1      20s
 
-    NAME                            CREATED AT
-    limitrange/dev-lr   2023-03-08T04:18:58Z
+        NAME                           SECRETS   AGE
+        serviceaccount/default         1         4h7m
+        serviceaccount/grype-scanner   2         20s
+
+        NAME                                                               ROLE                      AGE
+        rolebinding.rbac.authorization.k8s.io/default-permit-deliverable   ClusterRole/deliverable   26s
+        rolebinding.rbac.authorization.k8s.io/default-permit-workload      ClusterRole/workload      26s
+
+        NAME                         DATA   AGE
+        configmap/kube-root-ca.crt   1      38h
+
+        NAME                            CREATED AT
+        limitrange/dev-lr   2023-03-08T04:18:58Z
     ```
 
 Using GitOps
