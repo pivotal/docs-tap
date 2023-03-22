@@ -66,7 +66,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 #### <a id='1-5-0-scc-new-features'></a> Supply Chain Choreographer
 
-- Introduces ability to configure the OOTB Basic supply chain to [output Carvel Packages](scc/carvel-package-supply-chain.hbs.md). This feature is experimental.
+- Introduces a variation of the OOTB Basic supply chains that output Carvel packages. Carvel packages enable configuring for each runtime environment. See [Carvel Package Workflow](scc/carvel-package-supply-chain.hbs.md). This feature is experimental.
 
 #### <a id='1-5-0-scst-policy-new-features'></a> Supply Chain Security Tools - Policy Controller
 
@@ -76,6 +76,13 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 - `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
+
+#### <a id="1-5-0-scst-scan-features"></a> Supply Chain Security Tools - Scan
+- SCST - Scan now runs on Tanzu Service Mesh-enabled clusters, enabling end to end, secure communication.
+  - Kubernetes Jobs that previously created the scan pods were replaced with [Tekton TaskRuns](https://tekton.dev/docs/pipelines/taskruns/#overview).
+  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts) documentation is updated to account for the impact of these changes.
+- In conformance with NIST 800-53, support for rotating certificates and TLS is added.
+  - Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy. See [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
 
 #### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
@@ -104,9 +111,15 @@ This release has the following breaking changes, listed by area and component.
 - The default `ClusterBuilder` now uses the Ubuntu Jammy v22.04 stack instead of the Ubuntu Bionic
 v18.04 stack. Previously, the default `ClusterBuilder` pointed to the Base builder based on the
 Bionic stack. Now, the default `ClusterBuilder` points to the Base builder based on the Jammy stack.
-Ensure that your workloads can be built and run on Jammy. For information about how to change the `ClusterBuilder` from the default builder, see the [Configure the Cluster Builder](../docs-tap/tanzu-build-service/tbs-workload-config.hbs.md#cluster-builder) in the Tanzu Build
-Service component documentation. For more information about available builders, see [Lite Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#lite-dependencies) and [Full Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#full-dependencies) in the Tanzu Build Service
-documentation.
+Ensure that your workloads can be built and run on Jammy.
+
+  For information about how to change the `ClusterBuilder` from the default builder, see the
+  [Configure the Cluster Builder](../docs-tap/tanzu-build-service/tbs-workload-config.hbs.md#cluster-builder) in the Tanzu Build Service documentation.
+
+  For more information about available builders, see
+  [Lite Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#lite-dependencies) and
+  [Full Dependencies](../docs-tap/tanzu-build-service/dependencies.hbs.md#full-dependencies) in the
+  Tanzu Build Service documentation.
 
 #### <a id='1-5-0-security-fixes'></a> Security fixes
 
@@ -140,9 +153,8 @@ This release has the following known issues, listed by area and component.
   The default file location is `~/.tilt-dev/config.lock`.
 
 - On Windows, workload commands don't work when in a project with spaces in the name, such as
-  `my-app project`. An error similar to
-  `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1`
-  is shown in the console.
+  `my-app project`.
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#ki-projects-with-spaces).
 
 #### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for Intellij
 
@@ -162,9 +174,8 @@ This release has the following known issues, listed by area and component.
   Deleting the Tilt lock file resolves this. The default location is `~/.tilt-dev/config.lock`.
 
 - On Windows, workload actions do not work when in a project with spaces in the name such as
-  `my-app project`. An error similar to
-  `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1`
-  is shown in the console.
+  `my-app project`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ki-projects-with-spaces).
 
 #### <a id="1-5-0-grype-scan-known-issues"></a>Grype scanner
 
@@ -174,16 +185,16 @@ This release has the following known issues, listed by area and component.
   For most languages, source code scanning only scans files present in the
   source code repository. Except for support added for Java projects using
   Maven, no network calls fetch dependencies. For languages using dependency
-  lock files, such as Golang and Node.js, Grype uses the lock files to check
+  lock files, such as golang and Node.js, Grype uses the lock files to verify
   dependencies for vulnerabilities.
 
   For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
   dependencies present in the built binaries, such as `.jar` or `.war` files.
 
-  Because VMware discourages committing binaries to source code repositories,
-  Grype fails to find vulnerabilities during a source scan. The vulnerabilities
-  are still found during the image scan after the binaries are built and
-  packaged as images.
+  Grype fails to find vulnerabilities during a source scan because VMware
+  discourages committing binaries to source code repositories. The
+  vulnerabilities are still found during the image scan after the binaries are
+  built and packaged as images.
 
 ### <a id='1-5-0-deprecations'></a> Deprecations
 

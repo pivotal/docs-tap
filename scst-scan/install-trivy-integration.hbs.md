@@ -1,12 +1,12 @@
-# Prerequisites for Trivy Scanner (Alpha)
+# Install Trivy Scanner (alpha)
 
-This topic describes prerequisites for installing SCST - Scan (Trivy) from the VMware package repository.
+This topic describes how to install SCST - Scan (Trivy) from the VMware package repository.
 
 >**Important** This integration is in Alpha, which means that it is still in active
 >development by the Tanzu Practice Global Tech Team and might be subject to
 >change at any point. Users might encounter unexpected behavior.
 
-## Verify the latest alpha package version
+## <a id='verify'></a> Verify the latest alpha package version
 
 Run the following command to output a list of available tags.
 
@@ -28,7 +28,7 @@ imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-pack
 
 In this topic, use the latest version returned by the command above.
 
-## Relocate images to a registry
+## <a id='relocate'></a> Relocate images to a registry
 
 VMware recommends relocating the images from VMware Tanzu Network registry to
 your own container image registry before installing.
@@ -79,7 +79,7 @@ To relocate images from the VMware Project Registry to your registry:
 > **Note**
 > The VMware project repository does not require authentication, so you don't need to perform a Docker login.
 
-## Add the Trivy Scanner package repository
+## <a id='trivy-repo'></a> Add the Trivy Scanner package repository
 
 Tanzu CLI packages are available on repositories. Adding the Trivy Scanning
 package repository makes the Trivy Scanning bundle and its packages available
@@ -132,69 +132,69 @@ VMware recommends installing the Trivy Scanner objects in the existing `tap-inst
       trivy.scanning.apps.tanzu.vmware.com                   trivy                              Default scan templates using Trivy
     ```
 
-## Prepare the Trivy Scanner configuration
+## <a id='prepare'></a> Prepare the Trivy Scanner configuration
 
-Before installing the Trivy Scanner, you must create the configuration necessary to install
+Before installing the Trivy Scanner, you must create the configuration necessary to install Trivy.
 
-Define the `--values-file` flag to customize the default configuration. You must define the following fields in the `values.yaml` file for the Trivy
+1. Define the `--values-file` flag to customize the default configuration. You must define the following fields in the `values.yaml` file for the Trivy
 Scanner configuration. You can add fields as needed to activate or deactivate behaviors. You can append the values to the `values.yaml` file. Create a `values.yaml` file by using the following configuration:
 
-```yaml
-    ---
-    namespace: DEV-NAMESPACE
-    targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
-    targetSourceSshSecret: TARGET-SOURCE-SSH-SECRET
-```
+  ```yaml
+      ---
+      namespace: DEV-NAMESPACE
+      targetImagePullSecret: TARGET-REGISTRY-CREDENTIALS-SECRET
+      targetSourceSshSecret: TARGET-SOURCE-SSH-SECRET
+  ```
 
-   Where:
+    Where:
 
-   - `DEV-NAMESPACE` is your developer namespace.
-   > **Note** To use a namespace other than the default namespace, ensure that
-   the namespace exists before you install. If the namespace does not exist,
-   the scanner installation fails.
-   - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
-     credentials to pull an image from a private registry for scanning.
-   - `TARGET-SOURCE-SSH-SECRET` is the name of the secret containing SSH credentials for cloning private repositories
+    - `DEV-NAMESPACE` is your developer namespace.
+    > **Note** To use a namespace other than the default namespace, ensure that
+    the namespace exists before you install. If the namespace does not exist,
+    the scanner installation fails.
+    - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that contains the
+      credentials to pull an image from a private registry for scanning.
+    - `TARGET-SOURCE-SSH-SECRET` is the name of the secret containing SSH credentials for cloning private repositories
 
-To see all available values, run the following command using the version that you want:
+1. To see all available values, run the following command using the version that you want:
 
-```shell
-VERSION="0.1.4-alpha.6"
-tanzu package available get trivy.scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
-```
+  ```shell
+  VERSION="0.1.4-alpha.6"
+  tanzu package available get trivy.scanning.apps.tanzu.vmware.com/$VERSION --values-schema -n tap-install
+  ```
 
-Example output:
+  Example output:
 
-```console
-  KEY                                           DEFAULT                                                           TYPE    DESCRIPTION
-  environmentVariables                          <nil>                                                             <nil>   Environment Variables you want added to the scan container to impact trivy behavior
-  resources.limits.cpu                          1000m                                                             string  Limits describes the maximum amount of cpu resources allowed.
-  resources.requests.cpu                        250m                                                              string  Requests describes the minimum amount of cpu resources required.
-  resources.requests.memory                     128Mi                                                             string  Requests describes the minimum amount of memory resources
-  scanner.docker.server                                                                                           string  <nil>
-  scanner.docker.username                                                                                         string  <nil>
-  scanner.docker.password                                                                                         string  <nil>
-  scanner.pullSecret                                                                                              string  <nil>
-  scanner.serviceAccount                        trivy-scanner                                                     string  Name of scan pod's service ServiceAccount
-  scanner.serviceAccountAnnotations             <nil>                                                             <nil>   Annotations added to ServiceAccount
-  trivy.cli.image.additionalArguments                                                                             string  additional arguments to be appended to the image scan command
-  trivy.cli.plugins.aqua.repositoryUrl                                                                            string  location of the aqua plugin tar in an OCI registry to be used in place of the embedded version
-  trivy.cli.repositoryUrl                                                                                         string  location of the CLI tar in an OCI registry to be used in place of the embedded version
-  trivy.cli.source.additionalArguments                                                                            string  additional arguments to be appended to the fs scan command
-  trivy.db.repositoryUrl                                                                                          string  location of the vulnerability database in an OCI registry to be used as the download location prior to running a scan
-  caCertSecret                                                                                                    string  Reference to the secret containing the registry ca cert set as ca_cert_data
-  metadataStore.authSecret.importFromNamespace                                                                    string  Namespace from which to import the Insight Metadata Store auth_token
-  metadataStore.authSecret.name                                                                                   string  Name of deployed Secret with key auth_token
-  metadataStore.caSecret.importFromNamespace    metadata-store                                                    string  Namespace from which to import the Insight Metadata Store CA Cert
-  metadataStore.caSecret.name                   app-tls-cert                                                      string  Name of deployed Secret with key ca.crt holding the CA Cert of the Insight Metadata Store
-  metadataStore.clusterRole                     metadata-store-read-write                                         string  Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster
-  metadataStore.url                             https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store
-  namespace                                     default                                                           string  Deployment namespace for the Scan Templates
-  targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry
-  targetSourceSshSecret                                                                                           string  Reference to the secret containing SSH credentials for cloning private repositories
-```
+  ```console
+    KEY                                           DEFAULT                                                           TYPE    DESCRIPTION
+    environmentVariables                          <nil>                                                             <nil>   Environment Variables you want added to the scan container to impact trivy behavior
+    resources.limits.cpu                          1000m                                                             string  Limits describes the maximum amount of cpu resources allowed.
+    resources.requests.cpu                        250m                                                              string  Requests describes the minimum amount of cpu resources required.
+    resources.requests.memory                     128Mi                                                             string  Requests describes the minimum amount of memory resources
+    scanner.docker.server                                                                                           string  <nil>
+    scanner.docker.username                                                                                         string  <nil>
+    scanner.docker.password                                                                                         string  <nil>
+    scanner.pullSecret                                                                                              string  <nil>
+    scanner.serviceAccount                        trivy-scanner                                                     string  Name of scan pod's service ServiceAccount
+    scanner.serviceAccountAnnotations             <nil>                                                             <nil>   Annotations added to ServiceAccount
+    trivy.cli.image.additionalArguments                                                                             string  additional arguments to be appended to the image scan command
+    trivy.cli.plugins.aqua.repositoryUrl                                                                            string  location of the aqua plugin tar in an OCI registry to be used in place of the embedded version
+    trivy.cli.repositoryUrl                                                                                         string  location of the CLI tar in an OCI registry to be used in place of the embedded version
+    trivy.cli.source.additionalArguments                                                                            string  additional arguments to be appended to the fs scan command
+    trivy.db.repositoryUrl                                                                                          string  location of the vulnerability database in an OCI registry to be used as the download location prior to running a scan
+    caCertSecret                                                                                                    string  Reference to the secret containing the registry ca cert set as ca_cert_data
+    metadataStore.authSecret.importFromNamespace                                                                    string  Namespace from which to import the Insight Metadata Store auth_token
+    metadataStore.authSecret.name                                                                                   string  Name of deployed Secret with key auth_token
+    metadataStore.caSecret.importFromNamespace    metadata-store                                                    string  Namespace from which to import the Insight Metadata Store CA Cert
+    metadataStore.caSecret.name                   app-tls-cert                                                      string  Name of deployed Secret with key ca.crt holding the CA Cert of the Insight Metadata Store
+    metadataStore.clusterRole                     metadata-store-read-write                                         string  Name of the deployed ClusterRole for read/write access to the Insight Metadata Store deployed in the same cluster
+    metadataStore.url                             https://metadata-store-app.metadata-store.svc.cluster.local:8443  string  Url of the Insight Metadata Store
+    namespace                                     default                                                           string  Deployment namespace for the Scan Templates
+    targetImagePullSecret                                                                                           string  Reference to the secret used for pulling images from private registry
+    targetSourceSshSecret                                                                                           string  Reference to the secret containing SSH credentials for cloning private repositories
+  ```
 
-## SCST - Store integration
+## <a id='store-integration'></a> SCST - Store integration
 
 The Trivy integration can work with or without the SCST - Store integration. The `values.yaml` file is slightly different for each configuration.
 
@@ -207,7 +207,7 @@ whether another scanner integration is installed or not. If Tanzu Application
 Platform is installed using the Full Profile, the Grype Scanner Integration is
 installed unless it is explicitly excluded.
 
-### Multiple Scanners installed
+### <a id='multiple-scan'></a> Multiple scanners installed
 
 When installing Trivy Scanner, find your CA secret name and authentication token secret
 name for your `values.yaml` ny looking at the configuration of a prior installed
@@ -243,7 +243,7 @@ Where:
 - `AUTH-SECRET-NAME` is the name of the secret that contains the authentication token to
   authenticate to the Store Deployment.
 
-### Trivy Only Scanner Installed
+### Trivy only scanner installed
 
 For a walk through of creating and exporting secrets for the Metadata Store CA and authentication token which referenced in the data values, see [Multicluster Setup](../scst-store/multicluster-setup.hbs.md).
 
@@ -277,7 +277,7 @@ Where:
 - `STORE-SECRETS-NAMESPACE` is the namespace where the secrets for the Store Deployment live. Default is `metadata-store`.
 - `AUTH-SECRET-NAME` is the name of the secret that contains the authentication token to authenticate to the Store Deployment.
 
-### No Store Integration
+### <a id='no-store'></a> No store integration
 
 If you do not want to enable the SCST - Store integration, deactivate the integration by appending the following fields to the `values.yaml` file that is enabled by default:
 
@@ -287,7 +287,7 @@ metadataStore:
   url: "" # Configuration is moved, so set this string to empty
 ```
 
-## Prepare the ScanPolicy
+## <a id='prep-scanpolicy'></a> Prepare the ScanPolicy
 
 The following sample ScanPolicy allows you to control whether the SupplyChain passes or fails based on the CycloneDX vulnerability results returned from the Trivy Scanner.
 
@@ -342,36 +342,37 @@ spec:
       }
 ```
 
-Apply the following to the YAML:
+To prepare the ScanPolicy:
 
-```console
-kubectl apply -n $DEV-NAMESPACE -f SCAN-POLICY-YAML
-```
+1. Apply the following to the YAML:
 
-Where:
+  ```console
+  kubectl apply -n $DEV-NAMESPACE -f SCAN-POLICY-YAML
+  ```
 
-- `DEV-NAMESPACE` is the name of the developer namespace you want to use.
-- `SCAN-POLICY-YAML` is the name of your SCST - Scan YAML.
+  Where:
 
-## Install Trivy Scanner
+  - `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+  - `SCAN-POLICY-YAML` is the name of your SCST - Scan YAML.
 
-After all prerequisites are completed, install the Trivy Scanner. See [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md).
+## <a id='install-trivy'></a> Install Trivy Scanner
 
-## Air-Gap Configuration
+After the following prerequisites are completed, install the Trivy Scanner:
 
-The following section explains how to configure Trivy in an air gap environment.
+- Prerequisites listed in [Install another scanner for Supply Chain Security Tools - Scan](install-scanners.hbs.md).
+- Install the ORAS CLI. See [the ORAS documentation](https://oras.land/cli/).
+
+## <a id='airgap-config'></a> Air-gap configuration
+
+This section explains how to configure Trivy in an air gap environment.
 
 For information about additional flags and configuration, see [Air-Gapped Environment](https://aquasecurity.github.io/trivy/latest/docs/advanced/air-gap/) in the Trivy documentation.
 
-### Prerequisites
-
-Install the `oras` cli. See [Installation](https://oras.land/cli/) in the ORAS documentation.
-
-### Relocate Trivy database to your registry
+### <a id='relocate-db'></a> Relocate Trivy database to your registry
 
 >**Note** Using a relocated database means you are taking responsibility for keeping it up to date to ensure that security scans are relevant. Stale databases weaken your security posture.
 
-If you have a host with access, you can use the `oras` cli to perform a copy.
+If you have a host with access, you can use the ORAS CLI to perform a copy.
 
 ```shell
 oras copy -r ghcr.io/aquasecurity/trivy-db:2 registry.company.com/project_name/trivy-db:2 # the tag of 2 is required
@@ -382,7 +383,7 @@ Copied ghcr.io/aquasecurity/trivy-db:2 => registry.company.com/project_name/triv
 Digest: sha256:ed57874a80499e858caac27fc92e4952346eb75a2774809ee989bcd2ce48897a
 ```
 
-If not, you can use the `oras` cli to download the database and manifest and then push to your registry.
+If not, you can use the ORAS CLI to download the database and manifest and then push to your registry.
 
 1. Download the trivy-db.
 
@@ -450,242 +451,216 @@ If not, you can use the `oras` cli to download the database and manifest and the
    rm trivy-db-manifest.json updated-trivy-db-manifest.json db.tar.gz
    ````
 
-### Update data values with db repository URL
+7. Update data values with db repository URL. Edit your `values.yaml` to add the following:
 
-Edit your `values.yaml` to add the following:
+  ```yaml
+  trivy:
+    db:
+      repositoryUrl: "registry.company.com/project_name/trivy-db"
+  ```
 
-```yaml
-trivy:
-  db:
-    repositoryUrl: "registry.company.com/project_name/trivy-db"
-```
+  The URL leaves off the tag of `2`.
 
-The URL leaves off the tag of `2`.
-
-## Use another Trivy Version
+## <a id='alt-version'></a> Use another Trivy version
 
 This section describes how to use a different Trivy CLI version than what is bundled with the package.
 
-### Prerequisites
+To use another Trivy version:
 
-Install the `oras` cli. See [Installation](https://oras.land/cli/) in the ORAS documentation.
+1. Install the ORAS CLI. See [the ORAS documentation](https://oras.land/cli/).
 
-### Download the CLI
-
-Download the version of the CLI you are interested in from their [GitHub releases page](https://github.com/aquasecurity/trivy/releases).
+2. Download the version of the CLI you are interested in from their [GitHub releases page](https://github.com/aquasecurity/trivy/releases).
 For example: https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_Linux-64bit.tar.gz
 
-```console
-wget -c https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_Linux-64bit.tar.gz -O trivy.tar.gz
-Length: 48363295 (46M) [application/octet-stream]
-Saving to: ‘trivy.tar.gz’
+  ```console
+  wget -c https://github.com/aquasecurity/trivy/releases/download/v0.36.0/trivy_0.36.0_Linux-64bit.tar.gz -O trivy.tar.gz
+  Length: 48363295 (46M) [application/octet-stream]
+  Saving to: ‘trivy.tar.gz’
 
-trivy.tar.gz 100%[==>]  46.12M  50.7MB/s    in 0.9s
+  trivy.tar.gz 100%[==>]  46.12M  50.7MB/s    in 0.9s
 
-2023-01-25 10:47:55 (50.7 MB/s) - ‘trivy.tar.gz’ saved [48363295/48363295]
-```
+  2023-01-25 10:47:55 (50.7 MB/s) - ‘trivy.tar.gz’ saved [48363295/48363295]
+  ```
 
-### Relocate the CLI to your registry
+3. Relocate the CLI to your registry.
 
-Run the following to relocate the CLI to your registry:
+  Run the following to relocate the CLI to your registry:
 
-```console
-oras push registry.company.com/project_name/trivy-cli:0.36.0 \
---artifact-type trivy/cli \
-./trivy.tar.gz:application/gzip
+  ```console
+  oras push registry.company.com/project_name/trivy-cli:0.36.0 \
+  --artifact-type trivy/cli \
+  ./trivy.tar.gz:application/gzip
 
-Uploading 121f4d8282aa trivy.tar.gz
-Uploaded  121f4d8282aa trivy.tar.gz
-Pushed registry.company.com/project_name/trivy-cli:0.36.0
-Digest: sha256:5bdb18378e8f66a72f4bef4964edeccfcc2f21883e7a6caca6dbf7a3d7233696
-```
+  Uploading 121f4d8282aa trivy.tar.gz
+  Uploaded  121f4d8282aa trivy.tar.gz
+  Pushed registry.company.com/project_name/trivy-cli:0.36.0
+  Digest: sha256:5bdb18378e8f66a72f4bef4964edeccfcc2f21883e7a6caca6dbf7a3d7233696
+  ```
 
-### Update data values with CLI repository URL
+1. Edit your `values.yaml` to add the location of your CLI.
 
-Edit your `values.yaml` to add the location of your cli.
+  ```yaml
+  trivy:
+    cli:
+      repositoryUrl: "registry.company.com/project_name/trivy-cli:0.36.0"
+  ```
 
-```yaml
-trivy:
-  cli:
-    repositoryUrl: "registry.company.com/project_name/trivy-cli:0.36.0"
-```
-
-## Use another Trivy Aqua Plug-in Version
+## <a id='aqua-version'></a> Use another Trivy Aqua plug-in version
 
 The Trivy Aqua Plug-in enables Aqua SaaS integration with your Trivy scans.
 
-### Prerequisites
+To use another Trivy Aqua plug-in version:
 
-Install the `oras` cli. See [Installation](https://oras.land/cli/) in the Oras documentation.
+1. Install the ORAS CLI. See [the ORAS documentation](https://oras.land/cli/).
 
-### Download the Plug-in
+2. Download the version of the Trivy Aqua Plug-in you want from the GitHub releases page. See [trivy-plugin-aqua](https://github.com/aquasecurity/trivy-plugin-aqua/releases) in GitHub.
 
-Download the version of the Trivy Aqua Plug-in you want from the GitHub releases page. See [trivy-plugin-aqua](https://github.com/aquasecurity/trivy-plugin-aqua/releases) in GitHub.
-For example, [v0.115.14](https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.5/linux_amd64_v0.115.5.tar.gz) in GitHub.
+For example, [v0.115.14](https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.5/linux_amd64_v0.115.5.tar.gz) in GitHub:
 
-```console
-TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
-wget -c "https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/${TRIVY-AQUA-PLUGIN-VERSION}/linux_amd64_${TRIVY-AQUA-PLUGIN-VERSION}.tar.gz" -O trivy-aqua-plugin.tar.gz
+  ```console
+  TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
+  wget -c "https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/${TRIVY-AQUA-PLUGIN-VERSION}/linux_amd64_${TRIVY-AQUA-PLUGIN-VERSION}.tar.gz" -O trivy-aqua-plugin.tar.gz
 
---2023-01-30 10:44:05--  https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.6/linux_amd64_v0.115.6.tar.gz
-HTTP request sent, awaiting response... 200 OK
-Length: 50915539 (49M) [application/octet-stream]
-Saving to: ‘trivy-aqua-plugin.tar.gz’
+  --2023-01-30 10:44:05--  https://github.com/aquasecurity/trivy-plugin-aqua/releases/download/v0.115.6/linux_amd64_v0.115.6.tar.gz
+  HTTP request sent, awaiting response... 200 OK
+  Length: 50915539 (49M) [application/octet-stream]
+  Saving to: ‘trivy-aqua-plugin.tar.gz’
 
-trivy-aqua-plugin.tar.gz 100%[==>]  48.56M  35.3MB/s    in 1.4s
+  trivy-aqua-plugin.tar.gz 100%[==>]  48.56M  35.3MB/s    in 1.4s
 
-2023-01-30 10:44:07 (35.3 MB/s) - ‘trivy-aqua-plugin.tar.gz’ saved [50915539/50915539]
-```
+  2023-01-30 10:44:07 (35.3 MB/s) - ‘trivy-aqua-plugin.tar.gz’ saved [50915539/50915539]
+  ```
 
-Where `TRIVY-AQUA-PLUGIN-VERSION` is the version of Trivy Aqua Plug-in you are using.
+1. The YAML file is a necessary component to tell Trivy it has the plug-in already installed.
+Download the plugin.yml associated with the Trivy Aqua Plug-in version you downloaded.
 
-### Download the Plug-in File
+  ```console
+  TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
+  wget -c "https://raw.githubusercontent.com/aquasecurity/trivy-plugin-aqua/${TRIVY-AQUA-PLUGIN-VERSION}/plugin.yaml" -O plugin.yaml
 
-The YAML file is a necessary component to tell trivy it has the plug-in already installed.
-Download the YAML associated with the Trivy Aqua Plug-in version you downloaded.
+  --2023-01-30 10:46:32--  https://raw.githubusercontent.com/aquasecurity/trivy-plugin-aqua/v0.115.6/plugin.yaml
+  HTTP request sent, awaiting response... 200 OK
+  Length: 909 [text/plain]
+  Saving to: ‘plugin.yaml’
+  plugin.yaml 100%[==>]     909  --.-KB/s    in 0s
 
-```console
-TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
-wget -c "https://raw.githubusercontent.com/aquasecurity/trivy-plugin-aqua/${TRIVY-AQUA-PLUGIN-VERSION}/plugin.yaml" -O plugin.yaml
+  2023-01-30 10:46:32 (54.2 MB/s) - ‘plugin.yaml’ saved [909/909]
+  ```
 
---2023-01-30 10:46:32--  https://raw.githubusercontent.com/aquasecurity/trivy-plugin-aqua/v0.115.6/plugin.yaml
-HTTP request sent, awaiting response... 200 OK
-Length: 909 [text/plain]
-Saving to: ‘plugin.yaml’
-plugin.yaml 100%[==>]     909  --.-KB/s    in 0s
+1. Relocate the plug-in and YAML to your registry:
 
-2023-01-30 10:46:32 (54.2 MB/s) - ‘plugin.yaml’ saved [909/909]
-```
+  ```console
+  TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
+  REPOSITORY-URL="registry.company.com/project_name/trivy-aqua-plugin:$TRIVY-AQUA-PLUGIN-VERSION"
 
-Where `TRIVY-AQUA-PLUGIN-VERSION` is the version of Trivy Aqua Plug-in you are using.
+  oras push ${REPOSITORY-URL} \
+  --artifact-type trivy/aqua-plugin \
+  ./trivy-aqua-plugin.tar.gz:application/gzip \
+  ./plugin.yaml:text/yaml
 
-### Relocate the Plug-in and YAML to your registry
+  Uploading 6fb65adbfde2 plugin.yaml
+  Uploading 7340855e31ff trivy-aqua-plugin.tar.gz
+  Uploaded  6fb65adbfde2 plugin.yaml
+  Uploaded  7340855e31ff trivy-aqua-plugin.tar.gz
+  Pushed registry.company.com/project_name/trivy-aqua-plugin:v0.115.6
+  Digest: sha256:791274e44b97fad98edf570205fddc1b0bc21c56d3d54565ad9475fd4da969ae
+  ```
 
-Run the following command to relocate the plug-in and YAML to your registry:
+  Where:
 
-```console
-TRIVY-AQUA-PLUGIN-VERSION="v0.115.6"
-REPOSITORY-URL="registry.company.com/project_name/trivy-aqua-plugin:$TRIVY-AQUA-PLUGIN-VERSION"
+  - `TRIVY-AQUA-PLUGIN-VERSION` is the version of Trivy Aqua plug-in you are using.
+  - `REPOSITORY-URL` is the repository where you want to relocate the plug-in.
 
-oras push ${REPOSITORY-URL} \
---artifact-type trivy/aqua-plugin \
-./trivy-aqua-plugin.tar.gz:application/gzip \
-./plugin.yaml:text/yaml
+1. Edit your `values.yaml` to add the location of your CLI.
 
-Uploading 6fb65adbfde2 plugin.yaml
-Uploading 7340855e31ff trivy-aqua-plugin.tar.gz
-Uploaded  6fb65adbfde2 plugin.yaml
-Uploaded  7340855e31ff trivy-aqua-plugin.tar.gz
-Pushed registry.company.com/project_name/trivy-aqua-plugin:v0.115.6
-Digest: sha256:791274e44b97fad98edf570205fddc1b0bc21c56d3d54565ad9475fd4da969ae
-```
+  ```yaml
+  trivy:
+    plugins:
+      aqua:
+        repositoryUrl: "registry.company.com/project_name/trivy-aqua-plugin:v0.115.6"
+  ```
 
-Where:
+## <a id='integrate-aqua'></a> Integrate with the Aqua SaaS platform
 
-- `TRIVY-AQUA-PLUGIN-VERSION` is the version of Trivy Aqua Plug-in you are using.
-- `REPOSITORY-URL` is the repository where you want to relocate the plug in.
+To integrate with the Aqua SaaS platform:
 
-### Update data values with Aqua Plug-in repository URL
+1. In order to connect to the SaaS Platform you must have an API key. To create an API key:
 
-Edit your `values.yaml` to add the location of your CLI.
+   1. Log into Aqua SaaS.
+   2. Enter CSPM.
+   3. Click **Settings** -> **API Keys**.
+   4. Click **Generate Key**.
+   5. Save the information for the next steps.
 
-```yaml
-trivy:
-  plugins:
-    aqua:
-      repositoryUrl: "registry.company.com/project_name/trivy-aqua-plugin:v0.115.6"
-```
+1. To integrate with the Aqua SaaS Platform you must have an API key. You pass this to the scanner through environment variables, referenced in a secret. Create an auth secret:
 
-## Integrate with Aqua SaaS Platform
+  Example secret:
 
-The following sections explain how to integrate with Aqua SaaS platform.
+  ```yaml
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: aqua-creds
+    namespace: APP-NAMESPACE
+  stringData:
+    aqua-key: API-KEY
+    aqua-secret: API-KEY-SECRET
+  ```
 
-### Create API Key
+  Where:
 
-In order to connect to the SaaS Platform you must have an API key. To create an API key:
+  - `APP-NAMESPACE` is the developer namespace your app uses.
+  - `API-KEY` is the Aqua Platform API key.
+  - `API-KEY-SECRET` is the Aqua Platform API key’s Secret.
 
-1. Log into Aqua SaaS.
-2. Enter CSPM.
-3. Click **Settings** -> **API Keys**.
-4. Click **Generate Key**.
-5. Save the information for the next steps.
+1. Set environment variables to tell Trivy to connect and report to Aqua SaaS.
 
-### Create Auth Secret
+You can find plug-in options in the [README.md](https://github.com/aquasecurity/trivy-plugin-aqua/blob/master/README.md) in GitHub.
 
-In order to integrate with Aqua SaaS Platform you must have an API key. You pass this to the scanner through environment variables, referenced in a secret.
+Here is an example of referencing your API key and secret from a Kubernetes Secret created earlier:
 
-Example secret:
+  ```yaml
+  namespace: dev
+  targetImagePullSecret: registry-credentials
+  environmentVariables:
+    - name: TRIVY-RUN-AS-PLUGIN
+      value: aqua
+    - name: AQUA-KEY
+      valueFrom:
+        secretKeyRef:
+          name: aqua-creds
+          key: aqua-key
+    - name: AQUA-SECRET
+      valueFrom:
+        secretKeyRef:
+          name: aqua-creds
+          key: aqua-secret
+  ```
 
-```yaml
-apiVersion: v1
-kind: Secret
-metadata:
-  name: aqua-creds
-  namespace: APP-NAMESPACE
-stringData:
-  aqua-key: API-KEY
-  aqua-secret: API-KEY-SECRET
-```
+  Where:
 
-Where:
+  - `TRIVY-RUN-AS-PLUGIN` is the Trivy Plugin you want to enable without using the subcommand.
+  - `AQUA-KEY` is the Aqua Platform API key.
+  - `AQUA-SECRET` is the Aqua Platform API key’s Secret.
 
-- `APP-NAMESPACE` is the developer namespace your app uses.
-- `API-KEY` is the Aqua Platform API Key.
-- `API-KEY-SECRET` is the Aqua Platform API Key’s Secret.
-
-### Update aqua-values.yaml
-
-In order to tell Trivy to connect and report to Aqua SaaS it requires a few environment variables set.
-
-You can find plug in options in the [README.md](https://github.com/aquasecurity/trivy-plugin-aqua/blob/master/README.md) in GitHub.
-
-Here is an example of referencing your API key and secret from a prior created Kubernetes Secret:
-
-```yaml
-namespace: dev
-targetImagePullSecret: registry-credentials
-environmentVariables:
-  - name: TRIVY-RUN-AS-PLUGIN
-    value: aqua
-  - name: AQUA-KEY
-    valueFrom:
-      secretKeyRef:
-        name: aqua-creds
-        key: aqua-key
-  - name: AQUA-SECRET
-    valueFrom:
-      secretKeyRef:
-        name: aqua-creds
-        key: aqua-secret
-```
-
-Where:
-
-- `TRIVY-RUN-AS-PLUGIN` is the Trivy Plugin you want to enable without using the subcommand.
-- `AQUA-KEY` is the Aqua Platform API Key.
-- `AQUA-SECRET` is the Aqua Platform API Key’s Secret.
-
-## Self-Signed Registry Certificate
+## <a id='ss-cert'></a> Self-signed registry certificate
 
 You need additional configuration when attempting to pull an image from a registry with a self-signed certificate during image scans.
 
-### Tanzu Application Platform Values Shared CA
+1. If your `tap-values.yaml` used during install has the following shared section filled out, Trivy Scanner uses this to connect to your registry without additional configuration. Use the following YAML with a Tanzu Application Platform values shared CA:
 
-If your `tap-values.yaml` used during install has the following shared section filled out, Trivy Scanner uses this and enable it to connect to your registry without additional configuration.
-
-```yaml
-shared:
-   ca_cert_data: | # To be passed if using custom certificates.
-      -----BEGIN CERTIFICATE-----
-      MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
-      -----END CERTIFICATE-----
-```
-
-### Secret within Developer Namespace
+  ```yaml
+  shared:
+    ca_cert_data: | # To be passed if using custom certificates.
+        -----BEGIN CERTIFICATE-----
+        MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
+        -----END CERTIFICATE-----
+  ```
 
 1. Create a secret that holds the registry's CA certificate data.
 
-   An example of the secret:
+   An example secret:
+
    ```yaml
    apiVersion: v1
    kind: Secret
@@ -697,11 +672,11 @@ shared:
      ca_cert_data: BASE64_CERT
    ```
 
-2. Update your Trivy Scanner install values.yaml.
+2. Update your Trivy Scanner install `trivy-values.yaml`.
 
-   Add `caCertSecret` to the root of your `trivy-values.yaml` when installing Trivy Scanner
+   Add `caCertSecret` to the root of your `trivy-values.yaml`.
 
-   Example:
+   For example:
    
    ```yaml
    namespace: dev

@@ -16,8 +16,7 @@ on a per-project basis by using the drop-down menu in **Settings**.
 ## <a id=workload-commands></a> Workload Commands
 
 All commands are available by right-clicking anywhere in the VS Code project explorer, on an associated
-workload in the Tanzu Workloads panel, and in the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
-For example, the Live Update command is shown in each menu here:
+workload in the Tanzu Workloads panel, or in the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
 ![The VS Code interface showing the Explorer tab with the Tiltfile file right-click menu open and the Tanzu: Live Update Start option highlighted.](../images/vscode-startliveupdate1.png)
 
@@ -72,7 +71,7 @@ To start debugging on the cluster:
 1. Add a [breakpoint](https://code.visualstudio.com/docs/editor/debugging#_breakpoints) in your code.
 
 2. Right-click anywhere in the VS Code project explorer, on an associated workload in the
-   Tanzu Workloads panel, or open the Command Palette(⇧⌘P on Mac and Ctrl+Shift+P on Windows).
+   Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
 3. Select the `Tanzu: Java Debug Start` command..
 
@@ -122,9 +121,9 @@ The auto-save setting is in
 To start Live Update:
 
 1. Right-click anywhere in the VS Code project explorer, on an associated workload in the
-   Tanzu Workloads panel, or open the Command Palette(⇧⌘P on Mac and Ctrl+Shift+P on Windows).
+   Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
-2. Select the `Tanzu: Live Update Start` command..
+2. Select the `Tanzu: Live Update Start` command.
 
 ### <a id="stop-live-update"></a> Stop Live Update
 
@@ -194,7 +193,7 @@ Tanzu Application Platform.
 To delete a workload:
 
 1. Right-click anywhere in the VS Code project explorer, on an associated workload in the
-   Tanzu Workloads panel, or open the Command Palette(⇧⌘P on Mac and Ctrl+Shift+P on Windows).
+   Tanzu Workloads panel, or open the Command Palette (⇧⌘P on Mac and Ctrl+Shift+P on Windows).
 
 2. Select the `Tanzu: Delete Workload` command..
 

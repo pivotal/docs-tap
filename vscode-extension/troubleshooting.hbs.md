@@ -81,3 +81,7 @@ Delete the launch configuration from your `launch.json` file in your `.vscode` d
 ## <a id="tnz-panel-actions-unavail"></a> Tanzu Workloads panel workloads only show delete command
 
 {{> 'partials/ide-extensions/tnz-panel-actions-unavail' }}
+
+## <a id="projects-with-spaces"></a> Workload actions do not work when in a project with spaces in the name
+
+{{> 'partials/ide-extensions/ki-projects-with-spaces' }}

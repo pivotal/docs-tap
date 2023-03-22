@@ -166,3 +166,7 @@ Restart IntelliJ to properly detect the context change.
 ## <a id="tnz-panel-actions-unavail"></a> Tanzu Workloads panel workloads only have describe and delete action
 
 {{> 'partials/ide-extensions/tnz-panel-actions-unavail' }}
+
+## <a id="projects-with-spaces"></a> Workload actions do not work when in a project with spaces in the name
+
+{{> 'partials/ide-extensions/ki-projects-with-spaces' }}

@@ -73,8 +73,8 @@ kind: ClientRegistration
 # ...
 spec:
     scopes:
-    - "hr.read"
-    - "hr.write" 
+    - name: "hr.read"
+    - name: "hr.write"
 ```
 
 Any client can request an access token with the scopes, but an access token can 
@@ -113,7 +113,7 @@ kind: ClientRegistration
 # ...
 spec:
     scopes:
-    - "developer.read"
+    - name: "developer.read"
 ```
 
 When an application or `Workload` is registered by using the `ClientRegistration`, 
@@ -165,12 +165,12 @@ kind: ClientRegistration
 # ...
 spec:
   scopes:
-    - "developer.read"
-    - "developer.write"
-    - "developer.delete"
-    - "hr.read"
-    - "hr.write"
-    - "finance"
-    - "marketing-reader"
-    - "marketing-writer"
+    - name: "developer.read"
+    - name: "developer.write"
+    - name: "developer.delete"
+    - name: "hr.read"
+    - name: "hr.write"
+    - name: "finance"
+    - name: "marketing-reader"
+    - name: "marketing-writer"
 ```
