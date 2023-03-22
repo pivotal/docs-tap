@@ -176,9 +176,8 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Server URL
     </td>
     <td>
-      <pre>
-        https://github.com
-      </pre>
+        `https://github.com`
+      
     </td>
   </tr>
 
