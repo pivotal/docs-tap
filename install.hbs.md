@@ -240,9 +240,9 @@ shared:
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
 
-  kubernetes_distribution: "K8S-DISTRO" # Only required if distribution is Openshift, then use it alongside the below kubernetes_version key.
+  kubernetes_distribution: "K8S-DISTRO" # Only required if the distribution is OpenShift and must be used with the following kubernetes_version key.
   
-  kubernetes_version: "K8S-VERSION" # Required regardless of distribution when Kubernetes version is 1.25+.
+  kubernetes_version: "K8S-VERSION" # Required regardless of distribution when Kubernetes version is 1.25 or later.
 
   ca_cert_data: | # To be passed if using custom certificates.
       -----BEGIN CERTIFICATE-----
@@ -317,7 +317,7 @@ service's External IP address. It is not required to know the External IP addres
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     * For Google Cloud Registry, use the contents of the service account JSON file.
     * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
-- `K8S-DISTRO` (optional) is the type of Kubernetes infrastructure in use. You can use it in coordination with `kubernetes_version`. For example, `openshift`.
+- `K8S-DISTRO` (optional) is the type of Kubernetes infrastructure in use. It is only required if the distribution is OpenShift and must be used in coordination with `kubernetes_version`. Supported value: `openshift`.
 - `K8S-VERSION` (optional) is the Kubernetes version in use. You can use it independently or in coordination with `kubernetes_distribution`. For example, `1.24.x`, where `x` is the Kubernetes patch version.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.
