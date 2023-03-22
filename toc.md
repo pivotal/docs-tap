@@ -381,6 +381,7 @@ docs.vmware.com is built.
           - [Client authentication](learning-center/portal-rest-api/client-authentication.hbs.md)
       - [Troubleshoot Learning Center](learning-center/troubleshoot-learning-center.hbs.md)
     - [Namespace Provisioner](namespace-provisioner/about.hbs.md)
+      - [Getting Started](namespace-provisioner/getting-started.md)
       - [Install Namespace Provisioner](namespace-provisioner/install.hbs.md)
       - [Provision namespace resources](namespace-provisioner/tutorials.hbs.md)
       - [Customize Namespace Provisioner](namespace-provisioner/how-tos.hbs.md)
