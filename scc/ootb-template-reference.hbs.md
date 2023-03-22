@@ -654,7 +654,7 @@ ImageScan.scanning.apps.tanzu.vmware.com
   </tr>
 </table>
 
-### More -nformation
+### More information
 
 For information about the ImageScan custom resource,
 see [ImageScan reference](../scst-scan/scan-crs.hbs.md#imagescan).
