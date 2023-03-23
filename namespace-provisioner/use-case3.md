@@ -155,7 +155,6 @@ Using GitOps
         create_export: true
     ```
 
-
 After reconciling, Namespace Provisioner will create:
 
 * [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) for the secret in the provided namespace (tap-install in the above example) to the namespace provisioner namespace.
