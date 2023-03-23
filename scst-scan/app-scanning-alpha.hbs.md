@@ -7,7 +7,7 @@
 
 ## <a id="overview"></a>Overview
 
-The App Scanning component within the Supply Chain Security Tools is responsible for providing the framework to scan applications for their security posture. Scanning container images for known Common Vulnerabilities and Exposures (CVEs) implements this framework .
+The App Scanning component within the Supply Chain Security Tools is responsible for providing the framework to scan applications for their security posture. Scanning container images for known Common Vulnerabilities and Exposures (CVEs) implements this framework.
 
 This component is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md)
 
@@ -38,11 +38,11 @@ When you install SCST - App Scanning, you can configure the following optional p
 
 | Key | Default | Type | Description |
 | --- | --- | --- | --- |
+| caCertData | "" | string | The custom certificates to be trusted by the scan's connections. |
 | docker.import | true | boolean | Import `docker.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret will already be present. |
 | docker.pullSecret | registry-creds | string | Name of a docker pull secret in the deployment namespace to pull the scanner images. |
 | workspace.storageSize  | 100Mi | string | Size of the Persistent Volume to be used by the tekton pipelineruns |
 | workspace.storageClass  | "" | string | Name of the storage class to use while creating the Persistent Volume Claims used by tekton pipelineruns |
-| caCertData  | "" | string | The custom certificates to be trusted by the scan's connections |
 
 ### <a id='install-scst-app-scanning'></a> Install
 
@@ -65,7 +65,7 @@ To install Supply Chain Security Tools - App Scanning:
 
 1. (Optional) Make changes to the default installation settings:
 
-    Create a `app-scanning-values-file.yaml` file which will hold changes to the default installation settings.
+    Create a `app-scanning-values-file.yaml` file which will contain any changes to the default installation settings.
 
     Retrieve the configurable settings using the following command and append the key-value pairs to be modified to the `app-scanning-values-file.yaml` file.
 
@@ -125,12 +125,12 @@ To install Supply Chain Security Tools - App Scanning:
 
 The following sections describe how to configure service accounts and registry credentials.
 
-1. The following access is required:
-     - Read access to pull tap images
-     - Read access to pull the image to scan (if a private image is scanned)
-     - Write access to a registry to publish the result
+The following access is required:
+  - Read access to the registry containing the Tanzu Application Platform bundles. This is the registry from [Relocate images to a registry](../../docs-tap/install.hbs.md#relocate-images-to-a-registry) or `registry.tanzu.vmware.com`.
+  - Read access to the registry containing the image to scan (if scanning a private image)
+  - Write access to the registry to which results will published to
 
-1. Create a `kubernetes.io/dockerconfigjson` secret which has read access to the tap bundles.
+1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This is used to pull the App Scanning component images.
 
     >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `tap-registry` secret with your service account.
 
@@ -145,9 +145,9 @@ The following sections describe how to configure service accounts and registry c
 
     Where `DEV-NAMESPACE` is the developer namespace where scanning will occur.
 
-1. If you are scanning a private image, create a secret which has read access to that image.
+2. If you are scanning a private image, create a secret `scan-image-read-creds` with read access to the registry containing that image.
 
-    >**Important** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret with your service account.
+    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `tap-registry` secret with your service account.
 
     ```console
     read -s REGISTRY_PASSWORD
@@ -158,8 +158,7 @@ The following sections describe how to configure service accounts and registry c
       -n DEV-NAMESPACE
     ```
 
-1. Create a `kubernetes.io/dockerconfigjson` secret which has write access to where you
-want the scanner to upload the result .
+3. Create a secret `write-creds` with write access to the registry for the scanner to upload the scan results to.
 
     ```console
     read -s WRITE_PASSWORD
@@ -170,8 +169,7 @@ want the scanner to upload the result .
       -n DEV-NAMESPACE
     ```
 
-1. Create a service account and attach the read secret created earlier as `imagePullSecrets` and
-the write secret as `secrets`.
+4. Create the service account `scanner` which enables the App Scanning component to pull the image to be scanned. Attach the read secret created earlier as `imagePullSecrets` and the write secret as `secrets`.
 
     ```yaml
     apiVersion: v1
@@ -180,13 +178,13 @@ the write secret as `secrets`.
       name: scanner
       namespace: DEV-NAMESPACE
     imagePullSecrets:
-    - name: scanning-tap-component-read-creds # Used by the component to pull the scan component image from tap registry
+    - name: scanning-tap-component-read-creds # Used by the component to pull the scan component image from the registry
     secrets:
     - name: scan-image-read-creds # Used by the component to pull the image to scan. Needed if
                                   # the image you are scanning is private
     ```
 
-1. Create service account for publisher.
+5. Create the service account `publisher` which enables the App Scanning component to push the scan results to a user specified registry.
 
     ```yaml
     apiVersion: v1
@@ -195,14 +193,14 @@ the write secret as `secrets`.
       name: publisher
       namespace: DEV-NAMESPACE
     imagePullSecrets:
-    - name: scanning-tap-component-read-creds # Used by the component to pull the scan component image from tap registry
+    - name: scanning-tap-component-read-creds # Used by the component to pull the scan component image from the registry
     secrets:
     - name: write-creds # Used by the component to publish the scan results
     ```
 
 ## Scan an image
 
-The following section describe how to scan an image with SCST - App Scanning.
+The following section describes how to scan an image with SCST - App Scanning.
 
 ### Retrieving an image digest
 
@@ -236,14 +234,16 @@ To create a sample Grype scan:
     kind: GrypeImageVulnerabilityScan
     metadata:
       name: grypescan
+      namespace: DEV-NAMESPACE
     spec:
-      image: nginx@sha256:... # The image that has to be scanned. Digest must be specified.
+      image: nginx@sha256:... # The image to be scanned. Digest must be specified.
       scanResults:
-        location: registry/project/scan-results # Place to upload scan results
+        location: registry/project/scan-results # Registry to upload scan results
       serviceAccountNames:
         scanner: scanner # Service account that enables scanning component to pull the image to be scanned
         publisher: publisher # Service account has the secrets to push the scan results
     ```
+
 
 #### Configuration Options
 
