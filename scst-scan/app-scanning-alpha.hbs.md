@@ -15,7 +15,7 @@ A core tenet of the app-scanning framework architecture is to simplify integrati
 
 ## <a id="features"></a>Features
 
-SCST App Scanning includes the following features:
+SCST - App Scanning includes the following features:
 
 - Tekton is leveraged as the orchestrator of the scan to align with overall Tanzu Application Platform use of Tekton for multi-step activities.
 - New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan).  Mapping logic turns the domain-specific specifications into a Tekton PipelineRun.
@@ -27,10 +27,22 @@ The following sections describe how to install SCST - App Scanning.
 
 ### <a id='scst-app-scanning-prereqs'></a> Prerequisites
 
-SCST App Scanning requires the following prerequisites:
+SCST - App Scanning requires the following prerequisites:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 - Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is included in the Full and Build profiles of Tanzu Application Platform.
+
+## <a id='configure-app-scanning'></a> Configure properties
+
+When you install the SCST - App Scanning, you can configure the following optional properties:
+
+| Key | Default | Type | Description |
+| --- | --- | --- | --- |
+| docker.import | true | boolean | Import `docker.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret will already be present. |
+| docker.pullSecret | registry-creds | string | Name of a docker pull secret in the deployment namespace to pull the scanner images. |
+| workspace.storageSize  | 100Mi | string | Size of the Persistent Volume to be used by the tekton pipelineruns |
+| workspace.storageClass  | "" | string | Name of the storage class to use while creating the Persistent Volume Claims used by tekton pipelineruns |
+| caCertData  | "" | string | The custom certificates to be trusted by the scan's connections |
 
 ### <a id='install-scst-app-scanning'></a> Install
 
@@ -57,7 +69,7 @@ To install Supply Chain Security Tools - App Scanning:
     tanzu package available get app-scanning.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
 
-    Where `VERSION` is the version number you discovered. For example, `0.1.0-alpha`.
+    Where `VERSION` is your package version number. For example, `0.1.0-alpha`.
 
     For example:
 
@@ -76,9 +88,9 @@ To install Supply Chain Security Tools - App Scanning:
       caCertData                              string   The custom certificates to be trusted by the scan's connections
     ```
 
-2. Create a file named `app-scanning-values-file.yaml` and add the setting you want for the installation
+1. Create a file named `app-scanning-values-file.yaml` and add the settings you want for the installation
 
-3. Install the package:
+1. Install the package by running:
 
     ```console
     tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.vmware.com \
@@ -86,6 +98,7 @@ To install Supply Chain Security Tools - App Scanning:
         --namespace tap-install \
         --values-file app-scanning-values-file.yaml
     ```
+    Where `VERSION` is your package version number. For example, `0.1.0-alpha`.
 
     For example:
 
@@ -94,7 +107,7 @@ To install Supply Chain Security Tools - App Scanning:
         --version 0.1.0-alpha \
         --namespace tap-install \
         --values-file app-scanning-values-file.yaml
-        
+
         Installing package 'app-scanning.apps.tanzu.vmware.com'
         Getting package metadata for 'app-scanning.apps.tanzu.vmware.com'
         Creating service account 'app-scanning-default-sa'
@@ -113,14 +126,13 @@ To install Supply Chain Security Tools - App Scanning:
 The following sections describe how to configure service accounts and registry credentials.
 
 1. The following access is required:
-
-  - Read access to pull tap images
-  - Read access to pull the image to scan (if a private image is scanned)
-  - Write access to a registry to publish the result
+     - Read access to pull tap images
+     - Read access to pull the image to scan (if a private image is scanned)
+     - Write access to a registry to publish the result
 
 1. Create a `kubernetes.io/dockerconfigjson` secret which has read access to the tap bundles.
 
-    >**Important** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret with your service account.
+    >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `tap-registry` secret with your service account.
 
     ```console
     read -s TAP_REGISTRY_PASSWORD
@@ -130,7 +142,7 @@ The following sections describe how to configure service accounts and registry c
       --docker-server=TAP-REGISTRY-URL
     ```
 
-2. If you are scanning a private image, create a secret which has read access to that image.
+1. If you are scanning a private image, create a secret which has read access to that image.
 
     >**Important** If you followed the directions for setting up Tanzu Application Platform, you can skip this step and use the `tap-registry` secret with your service account.
 
@@ -142,7 +154,7 @@ The following sections describe how to configure service accounts and registry c
       --docker-server=REGISTRY-URL
     ```
 
-3. Create a `kubernetes.io/dockerconfigjson` secret which has write access to where you
+1. Create a `kubernetes.io/dockerconfigjson` secret which has write access to where you
 want the scanner to upload the result .
 
     ```console
@@ -187,7 +199,7 @@ The following section describe how to scan an image with SCST - App Scanning.
 
 ### Retrieving an image digest
 
-The App Scanning CRs require the digest form of the URL. For example,  nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2.
+The App Scanning CRs require the digest form of the URL. For example,  `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
 
 Use the [Docker documentation](https://docs.docker.com/engine/install/) to pull and inspect an image digest:
 
