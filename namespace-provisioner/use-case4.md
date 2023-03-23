@@ -161,7 +161,7 @@ Using Namespace Provisioner Controller
     ```
 
 Using GitOps
-    : Add the following configuration to your TAP values
+: Add the following configuration to your TAP values
 
     ```console
     namespace_provisioner:
