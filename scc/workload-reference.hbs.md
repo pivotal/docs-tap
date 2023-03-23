@@ -23,13 +23,13 @@ The following workload labels leveraged by OOTB Supply Chains:
 The OOTB templates are configured with parameters from the supply chain or workload.
 For information about Cartographer parameters, including precedence rules, see [Parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters) in the Cartographer documentation.
 
-What parameters are relevant depends on the supply chain selecting the workload, for two reasons:
+What parameters are relevant depends on the supply chain that selects the workload, for two reasons:
 
 1. The OOTB supply chains refer to overlapping sets of templates.
 A workload selected by the Source-to-URL supply chain can provide a `scanning_image_template` parameter,
 but the supply chain does not refer to a template that leverages that parameter.
-1. Supply Chains can be written to provide a param value to a template
-  and prevent the workload from overriding the value. See [Further Information](https://cartographer.sh/docs/v0.6.0/tutorials/using-params/#further-information) in the cartographer documentation.
+1. You can write Supply Chains to provide a parameter value to a template
+  and prevent the workload from overriding the value. See [Further Information](https://cartographer.sh/docs/v0.6.0/tutorials/using-params/#further-information) in the Cartographer documentation.
 
 The following parameters are respected by some OOTB supply chain.
 Each provides the templates that respect the param.

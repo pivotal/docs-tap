@@ -1,11 +1,12 @@
-# Deliveries
+# Delivery reference
 
 Tanzu Application Platform includes one delivery package,
 which installs a single [ClusterDelivery](https://cartographer.sh/docs/v0.6.0/reference/deliverable/#clusterdelivery).
 
-The delivery provides some [parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters)
-to the templates.
-Some of these might be overridden by the parameters provided by the deliverable.
+The delivery provides some parameters to the templates. The parameters provided by the deliverable might
+override some of the delivery parameters in this topic.
+See [parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters) in
+the Cartographer documentation.
 
 ## <a id='delivery-basic'></a> delivery-basic
 
@@ -20,7 +21,7 @@ The following resources describe the templates.
 
 #### <a id='source-provider'></a> source-provider
 
-Refers to [delivery-source-template](ootb-template-reference.hbs.md#delivery-source-template).
+Refers to [delivery-source-template](ootb-template-reference.hbs.md#delivery-source).
 
 Parameters provided:
 

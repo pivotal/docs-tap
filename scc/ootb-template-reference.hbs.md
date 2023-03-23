@@ -15,9 +15,10 @@ Source](building-from-source.hbs.md).
 
 ### <a id='source-template-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the `source-provider` step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the `source-provider` step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the `source-provider` step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the `source-provider` step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the `source-provider` step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the `source-provider` step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-package) in the `source-provider` step.
 
 ### <a id='source-template-creates'></a> Creates
 
@@ -84,7 +85,7 @@ cluster. Other resources in the supply chain can then access that code.
 
 For an example using the Tanzu CLI to create a Workload using GitHub as the provider of source code,
 see [Create a workload from GitHub
-repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
+repository](../cli-plugins/apps/create-workload.hbs.md#workload-git).
 
 For information about GitRepository objects, see
 [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
@@ -128,7 +129,7 @@ documentation](../source-controller/reference.hbs.md#image-repository).
 
 For information about how to use the Tanzu CLI to create a workload leveraging ImageRepository, see
 [Create a workload from local source
-code](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-local-source-code).
+code](../cli-plugins/apps/create-workload.hbs.md#workload-local-source).
 
 #### <a id='maven-artifact'></a> MavenArtifact
 
@@ -188,7 +189,7 @@ parameters in the Workload.
 ##### <a id='maven-artifact-more-info'></a> More information
 
 For information about the custom resource, see [MavenArtifact reference
-docs](../source-controller/reference.hbs.md#mavenartifact).
+docs](../source-controller/reference.hbs.md#maven-artifact).
 
 For information about how to use the custom resource with the `tanzu apps workload` CLI plug-in [Create a Workload from Maven repository
 artifact](../cli-plugins/apps/create-workload.hbs.md#workload-maven).
@@ -205,8 +206,8 @@ for specification of additional values to pass to the Pipeline.
 
 ### <a id='testing-pipeline-used'></a> Used by
 
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the source-tester step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the source-tester step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the source-tester step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the source-tester step.
 
 These are used as the `source-tester` resource.
 
@@ -215,7 +216,7 @@ These are used as the `source-tester` resource.
 `testing-pipeline`creates a [Runnable](https://cartographer.sh/docs/v0.4.0/reference/runnable/)
 object. This Runnable provides inputs to the
 [ClusterRunTemplate](https://cartographer.sh/docs/v0.4.0/reference/runnable/#clusterruntemplate)
-named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tekton-source-pipelinerun).
+named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tekton-source).
 
 ### <a id='testing-pipeline-params'></a> Parameters
 
@@ -265,10 +266,10 @@ named [tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tek
 ### <a id='testing-pipeline-more-info'></a> More information
 
 For information about the ClusterRunTemplate that pairs with the Runnable, read
-[tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tekton-source-pipelinerun)
+[tekton-source-pipelinerun](ootb-cluster-run-template-reference.hbs.md#tekton-source)
 
-For information about the Tekton Pipeline that the user must create, see [OOTB Supply Chain
-Testing documentation of the Pipeline](ootb-supply-chain-testing.hbs.md#a-idtekton-pipelinea-tektonpipeline)
+For information about the Tekton Pipeline that the user must create, read the [OOTB Supply Chain
+Testing documentation of the Pipeline](ootb-supply-chain-testing.hbs.md)
 
 ## <a id='source-scanner'></a> source-scanner-template
 
@@ -277,7 +278,7 @@ Scans the source code for vulnerabilities.
 
 ### <a id='source-scanner-used'></a> Used by
 
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the source-scanner step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the source-scanner step.
 
 This is used as the `source-scanner` resource.
 
@@ -327,7 +328,7 @@ This is used as the `source-scanner` resource.
 
 For information about how to set up the Workload namespace with the ScanPolicy and
 ScanTemplate required for this resource, see [Out of the Box Supply Chain with Testing and
-Scanning](ootb-supply-chain-testing-scanning.hbs.md#a-iddeveloper-namespacea-developer-namespace).
+Scanning](ootb-supply-chain-testing-scanning.hbs.md#developer-namespace).
 
 For information about the SourceScan custom resource, see [SourceScan reference](../scst-scan/scan-crs.hbs.md#sourcescan).
 
@@ -346,9 +347,10 @@ available to other resources in the supply chain.
 
 ### <a id='image-provider-used'></a> Used by
 
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the image-provider step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the image-provider step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the image-provider step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image) in the image-provider step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image) in the image-provider step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the image-provider step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-package) in the image-provider step.
 
 These are used as the `image-provider` resource.
 
@@ -400,9 +402,10 @@ Builds an container image from source code using [cloud native buildpacks](https
 
 ### <a id='kpack-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the image-provider step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the image-provider step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-provider step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the image-provider step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the image-provider step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the image-provider step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-package) in the image-provider step.
 
 These are used as the `image-provider` resource when the workload parameter `dockerfile` is not defined.
 
@@ -502,9 +505,10 @@ Build an image for source code that includes a Dockerfile.
 
 ### <a id='kaniko-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the image-provider step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the image-provider step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-provider step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the image-provider step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the image-provider step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the image-provider step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-package) in the image-provider step.
 
 These are used as the `image-provider` resource when the workload parameter `dockerfile` is defined.
 
@@ -594,8 +598,8 @@ if CVEs are found which are not compliant with its referenced ScanPolicy.
 
 ### <a id='image-scanner-used'></a> Used by
 
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the image-scanner step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the image-scanner step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the image-scanner step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the image-scanner step.
 
 ### <a id='image-scanner-creates'></a> Creates
 
@@ -656,12 +660,14 @@ which is applied to the cluster.
 
 ### <a id='convention-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the config-provider step.
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the config-provider step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the config-provider step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the config-provider step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the config-provider step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the config-provider step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the config-provider step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image) in the config-provider step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the config-provider step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image) in the config-provider step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the config-provider step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the config-provider step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-package) in the config-provider step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-package) in the config-provider step.
 
 ### <a id='convention-creates'></a> Creates
 
@@ -766,12 +772,12 @@ For workloads with the label `apps.tanzu.vmware.com/workload-type: web`, define 
 
 ### <a id='config-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the app-config step.
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the app-config step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the app-config step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the app-config step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the app-config step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the app-config step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the app-config step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image) in the app-config step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the app-config step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image) in the app-config step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the app-config step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the app-config step.
 
 ### <a id='config-creates'></a> Creates
 
@@ -794,12 +800,12 @@ For workloads with the label `apps.tanzu.vmware.com/workload-type: worker`, defi
 
 ### <a id='worker-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the app-config step.
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the app-config step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the app-config step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the app-config step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the app-config step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the app-config step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the app-config step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image) in the app-config step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the app-config step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image) in the app-config step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the app-config step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the app-config step.
 
 ### <a id='worker-creates'></a> Creates
 
@@ -823,12 +829,14 @@ define a Kubernetes Deployment and a Kubernetes Service.
 
 ### <a id='server-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the app-config step.
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the app-config step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the app-config step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the app-config step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the app-config step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the app-config step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the app-config step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image) in the app-config step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the app-config step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image) in the app-config step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the app-config step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the app-config step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-package) in the app-config step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-package) in the app-config step.
 
 ### <a id='server-creates'></a> Creates
 
@@ -868,7 +876,7 @@ For information about the three different types of workloads, see [workload
 types](../workloads/workload-types.hbs.md).
 
 For information about the ports parameter, see [server-specific Workload
-parameters](../workloads/server.hbs.md#-server-specific-workload-parameters).
+parameters](../workloads/server.hbs.md#params).
 
 ## <a id='service-bindings'></a> service-bindings
 
@@ -879,12 +887,14 @@ to the set of Kubernetes configuration files.
 
 ### <a id='service-bindings-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the service-bindings step.
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the service-bindings step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the service-bindings step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the service-bindings step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the service-bindings step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the service-bindings step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the service-bindings step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image) in the service-bindings step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the service-bindings step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image) in the service-bindings step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the service-bindings step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the service-bindings step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-package) in the service-bindings step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-package) in the service-bindings step.
 
 ### <a id='service-bindings-creates'></a> Creates
 
@@ -937,12 +947,14 @@ Kubernetes objects to deploy such that API auto registration takes place.
 
 ### <a id='api-descriptors-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the service-bindings step.
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the service-bindings step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the service-bindings step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the service-bindings step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the service-bindings step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the service-bindings step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the api-descriptors step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image) in the api-descriptors step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the api-descriptors step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image) in the api-descriptors step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the api-descriptors step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the api-descriptors step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-package) in the api-descriptors step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-package) in the api-descriptors step.
 
 ### <a id='api-descriptors-creates'></a> Creates
 
@@ -1010,12 +1022,12 @@ Kubernetes configuration passed to the template.
 
 ### <a id='config-writer-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the config-writer step.
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the config-writer step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the config-writer step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the config-writer step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the config-writer step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the config-writer step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the config-writer step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image) in the config-writer step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the config-writer step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image) in the config-writer step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the config-writer step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the config-writer step.
 
 ### <a id='config-writer-creates'></a> Creates
 
@@ -1199,12 +1211,12 @@ This process allows for manual review of configuration before deployment to a cl
 
 ### <a id='config-writer-pr-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the config-writer step.
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the config-writer step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the config-writer step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the config-writer step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the config-writer step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the config-writer step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the config-writer step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image) in the config-writer step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the config-writer step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image) in the config-writer step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the config-writer step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the config-writer step.
 
 ### <a id='config-writer-pr-creates'></a> Creates
 
@@ -1394,12 +1406,12 @@ to deploy Kubernetes configuration on the cluster.
 
 ### <a id='deliverable-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the deliverable step.
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the deliverable step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the deliverable step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the deliverable step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the deliverable step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the deliverable step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the deliverable step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image) in the deliverable step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the deliverable step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image) in the deliverable step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the deliverable step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the deliverable step.
 
 ### <a id='deliverable-creates'></a> Creates
 
@@ -1567,12 +1579,12 @@ to deploy Kubernetes configuration on the cluster. For example, the [OOTB Delive
 
 ### <a id='external-deliverable-used'></a> Used by
 
-- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-to-url) in the deliverable step.
-- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image-to-url) in the deliverable step.
-- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test-to-url) in the deliverable step.
-- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image-to-url) in the deliverable step.
-- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan-to-url) in the deliverable step.
-- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image-scan-to-url) in the deliverable step.
+- [Source-to-URL](ootb-supply-chain-reference.hbs.md#source-url) in the deliverable step.
+- [Basic-Image-to-URL](ootb-supply-chain-reference.hbs.md#basic-image) in the deliverable step.
+- [Source-Test-to-URL](ootb-supply-chain-reference.hbs.md#source-test) in the deliverable step.
+- [Testing-Image-to-URL](ootb-supply-chain-reference.hbs.md#testing-image) in the deliverable step.
+- [Source-Test-Scan-to-URL](ootb-supply-chain-reference.hbs.md#source-test-scan) in the deliverable step.
+- [Scanning-Image-Scan-to-URL](ootb-supply-chain-reference.hbs.md#scanning-image) in the deliverable step.
 
 ### <a id='external-deliverable-creates'></a> Creates
 
@@ -1804,7 +1816,7 @@ cluster. Other resources in the supply chain can then access that code.
 
 For an example using the Tanzu CLI to create a Workload using GitHub as the provider of source code,
 see [Create a workload from GitHub
-repository](../cli-plugins/apps/create-workload.hbs.md#-create-a-workload-from-github-repository).
+repository](../cli-plugins/apps/create-workload.hbs.md).
 
 For information about GitRepository objects, see
 [GitRepository](https://fluxcd.io/flux/components/source/gitrepositories/).
@@ -1912,8 +1924,8 @@ Bundles Kubernetes configuration into a Carvel Package.
 
 ### <a id='carvel-used'></a> Used by
 
-- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the carvel-package step.
-- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-package-experimental) in the carvel-package step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-package) in the carvel-package step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-package) in the carvel-package step.
 
 ### <a id='carvel-creates'></a> Creates
 
@@ -2003,8 +2015,8 @@ Persist in an external git repository the Carvel Package Kubernetes configuratio
 
 ### <a id='package-config-writer-used'></a> Used by
 
-- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the config-writer step.
-- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-package-experimental) in the config-writer step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-package) in the config-writer step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-package) in the config-writer step.
 
 ### <a id='package-config-writer-creates'></a> Creates
 
@@ -2211,8 +2223,8 @@ Persist the passed in Carvel Package Kubernetes configuration to a branch in a r
 
 ### <a id='package-config-writer-pr-used'></a> Used by
 
-- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-to-url-package-experimental) in the config-writer step.
-- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-image-to-url-package-experimental) in the config-writer step.
+- [Source-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#source-package) in the config-writer step.
+- [Basic-Image-to-URL-Package (experimental)](ootb-supply-chain-reference.hbs.md#basic-package) in the config-writer step.
 
 ### <a id='package-config-writer-pr-creates'></a> Creates
 
