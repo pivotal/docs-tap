@@ -1,13 +1,13 @@
 # Supply Chain Security Tools - App Scanning (alpha)
 
 >**Important** This component is in Alpha, which means that it is still in active
->development by VMware and might be subject to change at any point. Users might 
+>development by VMware and might be subject to change at any point. Users might
 >encounter unexpected behavior.  This is an opt-in component
 >is not installed by default with any profile.
 
 ## <a id="overview"></a>Overview
 
-The App Scanning component within the Supply Chain Security Tools is responsible for providing the framework to scan applications for their security posture. Scanning container images for known Common Vulnerabilities and Exposures (CVEs)implements this framework .  
+The App Scanning component within the Supply Chain Security Tools is responsible for providing the framework to scan applications for their security posture. Scanning container images for known Common Vulnerabilities and Exposures (CVEs) implements this framework .
 
 This component is in Alpha and supersedes the [SCST-Scan component](overview.hbs.md)
 
@@ -17,8 +17,8 @@ A core tenet of the app-scanning framework architecture is to simplify integrati
 
 SCST App Scanning includes the following features:
 
-- Tekton is leveraged as the orchestrator of the scan to align with overall Tanzu Application Platform use of Tekton for multi-step activities.  
-- New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan).  Mapping logic turns the domain-specific specifications into a Tekton PipelineRun.  
+- Tekton is leveraged as the orchestrator of the scan to align with overall Tanzu Application Platform use of Tekton for multi-step activities.
+- New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan).  Mapping logic turns the domain-specific specifications into a Tekton PipelineRun.
 - CycloneDX-formatted scan results are pushed to an OCI registry for long-term storage.
 
 ## Installing App Scanning in a cluster
@@ -125,7 +125,7 @@ The following sections describe how to configure service accounts and registry c
     ```console
     read -s TAP_REGISTRY_PASSWORD
     kubectl create secret docker-registry scanning-tap-component-read-creds \
-      --docker-username=TAP-REGISTRY-USERNAME \ 
+      --docker-username=TAP-REGISTRY-USERNAME \
       --docker-password=$TAP_REGISTRY_PASSWORD \
       --docker-server=TAP-REGISTRY-URL
     ```
@@ -164,8 +164,8 @@ the write secret as `secrets`.
     imagePullSecrets:
     - name: scanning-tap-component-read-creds # Used by the component to pull the scan component image from tap registry
     secrets:
-    - name: scan-image-read-creds # Used by the component to pull the image to scan. Needed if 
-                                  # the image you are scanning is private  
+    - name: scan-image-read-creds # Used by the component to pull the image to scan. Needed if
+                                  # the image you are scanning is private
     ```
 
 1. Create service account for publisher.
@@ -229,20 +229,20 @@ To create a sample Grype scan:
 #### Configuration Options
 
 This section describes optional and required GrypeImageVulnerabilityScan specifications.
-  
+
 Required fields:
 
-- image  
-  The registry URL and digest of the scanned image.  
-  For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`  
+- image 
+  The registry URL and digest of the scanned image.
+  For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`
 
-- scanResults.location  
-  The registry URL where results are uploaded.  
+- scanResults.location
+  The registry URL where results are uploaded.
   For example, `my.registry/scan-results`.
-  
+
 Optional fields:
 
-- activeKeychains  
+- activeKeychains
   Array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
 
   ```yaml
@@ -253,21 +253,21 @@ Optional fields:
   - name: ghcr # Github Container Registry
   ```
 
-- advanced  
+- advanced
   Adjust the configuration of Grype for your needs. See Grype's [configuration](https://github.com/anchore/grype#configuration) for details.
 
-- serviceAccountNames  
-  - scanner  
+- serviceAccountNames
+  - scanner
     Set the service account that runs the scan. Must have read access to `image`.
-  - publisher  
+  - publisher
     Set the service account that uploads results. Must have write access to `scanResults.location`.
 
-- workspace  
-  - size  
+- workspace
+  - size
     Size of the PersistentVolumeClaim the scan uses to download the image and vulnerability database.
-  - bindings  
+  - bindings
     Additional array of secrets, ConfigMaps, or EmptyDir volumes to mount to the
-    running scan. The `name` is used as the mount path.  
+    running scan. The `name` is used as the mount path.
 
     ```yaml
     bindings:
@@ -313,7 +313,7 @@ the digest of the image scanned and the location of the published results.
 
 ### Integrate your own scanner
 
-To scan with any other scanner, use the generic `ImageVulnerabilityScan`. ImageVulnerabilityScans can also change the version of a scanner or customize the behavior of provided scanners. 
+To scan with any other scanner, use the generic `ImageVulnerabilityScan`. ImageVulnerabilityScans can also change the version of a scanner or customize the behavior of provided scanners.
 
 ImageVulnerabilityScans allow you to define your scan as a [Tekton Step](https://tekton.dev/docs/pipelines/tasks/#defining-steps)
 
@@ -350,20 +350,20 @@ To create a sample Sample ImageVulnerabilityScan:
 #### Configuration Options
 
 This section lists optional and required ImageVulnerabilityScan specifications fields.
-  
+
 Required fields:
 
-- image  
-  The registry URL and digest of the image to be scanned.  
-  For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.  
+- image
+  The registry URL and digest of the image to be scanned.
+  For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`.
 
-- scanResults.location  
-  The registry URL where results are uploaded. 
+- scanResults.location
+  The registry URL where results are uploaded.
   For example, `my.registry/scan-results`.
-  
+
 Optional fields:
 
-- activeKeychains  
+- activeKeychains
   Array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
 
   ```yaml
@@ -374,18 +374,18 @@ Optional fields:
   - name: ghcr # Github Container Registry
   ```
 
-- serviceAccountNames  
-  - scanner  
+- serviceAccountNames
+  - scanner
     Set the service account that runs the scan. Must have read access to `image`.
-  - publisher  
+  - publisher
     Set the service account that uploads results. Must have write access to `scanResults.location`.
 
-- workspace  
-  - size  
+- workspace
+  - size
     Size of the PersistentVolumeClaim the scan uses to download the image and vulnerability database.
-  - bindings  
-    Additional array of secrets, ConfigMaps, or EmptyDir volumes to mount to the running scan. The `name` is used as the mount path. 
- 
+  - bindings
+    Additional array of secrets, ConfigMaps, or EmptyDir volumes to mount to the running scan. The `name` is used as the mount path.
+
     ```yaml
     bindings:
     - name: additionalconfig
@@ -404,15 +404,15 @@ Optional fields:
 
 #### Default Environment
 
-Workspaces:  
+Workspaces:
 
 - /home/app-scanning: a memory-backed EmptyDir mount that contains service account credentials loaded by Tekton
 - /cred-helper: a memory-backed EmptyDir mount containing:
   - config.json combines static credentials with workload identity credentials when `activeKeychains` is enabled
-  - trusted-cas.crt when App Scanning is deployed with `caCertData` 
+  - trusted-cas.crt when App Scanning is deployed with `caCertData`
 - /workspace: a PVC to hold scan artifacts and results
 
-Environment Variables:  
+Environment Variables:
 If undefined by your `step` definition the environment uses the following default variables:
 
 - HOME=/home/app-scanning
@@ -421,7 +421,7 @@ If undefined by your `step` definition the environment uses the following defaul
 - TMPDIR=/workspace/tmp
 - SSL_CERT_DIR=/etc/ssl/certs:/cred-helper
 
-Parameters:  
+Parameters:
 
 - $(params.image): the image to be scanned
 - $(params.scan-results-path): location to save scanner output
@@ -454,15 +454,15 @@ published results.
 
 ## Retrieving Results
 
-Scan results are uploaded to the container image registry as an [imgpkg](https://carvel.dev/imgpkg/) bundle.  
+Scan results are uploaded to the container image registry as an [imgpkg](https://carvel.dev/imgpkg/) bundle.
 To retrieve a vulnerability report:
 
-1. Retrieve the result location from the ImageVulnerabilityScan CR Status  
+1. Retrieve the result location from the ImageVulnerabilityScan CR Status
    ```console
    SCAN_RESULT_URL=$(kubectl get imagevulnerabilityscan my-scan -o jsonpath='{.status.scanResult}')
    ```
 
-2. Download the bundle to a local directory and list the contents  
+2. Download the bundle to a local directory and list the content
    ```console
    imgpkg pull -b $SCAN_RESULT_URL -o myresults/
    ls myresults/
