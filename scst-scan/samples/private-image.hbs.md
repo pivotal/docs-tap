@@ -4,7 +4,42 @@ This example performs a scan against an image located in a private registry.
 
 ## <a id="define-resources"></a>Define the resources
 
-Create `sample-private-image-scan.yaml` and ensure you enter a valid docker config.json value in the secret:
+### <a id="set-up-target-secret"></a> Set up target image pull secret
+
+1. Confirm that target image secret was configured. This is typically completed during Tanzu Application Platform installation. If target image secret exists, skip to [Create the private image scan](./private-image.hbs.md#create-the-private-image-scan).
+2. If the target image secret was not previously configured, create a secret containing the credentials used to pull the target image you want to scan. For information about secret creation, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-secret-by-providing-credentials-on-the-command-line).
+  ```
+  kubectl create secret docker-registry TARGET-REGISTRY-CREDENTIALS-SECRET \
+    --docker-server=<your-registry-server> \
+    --docker-username=<your-name> \
+    --docker-password=<your-password> \
+    --docker-email=<your-email> \
+    -n DEV-NAMESPACE
+  ```
+
+  Where:
+  - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that is being created.
+  - `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
+
+1. Update the `tap-values.yaml` file to include the name of secret created above.
+
+  ```yaml
+  grype:
+    namespace: "MY-DEV-NAMESPACE"
+    targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
+  ```
+
+1. Upgrade Tanzu Application Platform with the modified `tap-values.yaml` file.
+
+  ```console
+  tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
+  ```
+
+  Where `TAP_VERSION` is the Tanzu Application Platform version
+
+
+### <a id="create-private-image-scan"></a>Create the private image scan
+Create `sample-private-image-scan.yaml`:
 
 ```yaml
 ---
@@ -28,32 +63,6 @@ spec:
 ```
 
 Where `IMAGE-URL` is the URL of an image in a private registry.
-
-> **Note** The private image scan assumes that the target image secret was configured during Tanzu Application Platform installation. If not, follow the instructions in [(Optional) Set up target image pull secret step](./private-image.hbs.md#set-up-target-image-pull-secret).
-
-## <a id="set-up-target-secret"></a>(Optional) Set up target image pull secret
-
-1. Create a secret containing the credentials used to pull the target image you want to scan. For information about secret creation, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-secret-by-providing-credentials-on-the-command-line).
-
-  ```
-  kubectl create secret docker-registry TARGET-REGISTRY-CREDENTIALS-SECRET \
-    --docker-server=<your-registry-server> \
-    --docker-username=<your-name> \
-    --docker-password=<your-password> \
-    --docker-email=<your-email>
-  ```
-
-  Where `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that is being created.
-
-1. Update the `tap-values.yaml` file to include the name of secret created above.
-
-  ```
-  grype:
-    namespace: "MY-DEV-NAMESPACE"
-    targetImagePullSecret: "TARGET-REGISTRY-CREDENTIALS-SECRET"
-  ```
-
-1. Upgrade Tanzu Application Platform with the modified `tap-values.yaml` file. See [Upgrade instructions for Profile-based installation](../../upgrading.hbs.md#profile-based-instruct).
 
 ## <a id="set-up-watch"></a>(Optional) Set up a watch
 
