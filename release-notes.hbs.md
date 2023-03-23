@@ -28,6 +28,12 @@ The following issues, listed by component and area, are resolved in this release
  
 - Resolved issue description.
  
+#### <a id='1-4-3-grype-scanner-ri'></a> Grype Scanner
+
+- **Bumped Syft version to fix image scans failing with panic:**
+
+  Syft was updated to fix a bug that causes the scanner to crash with index out of range, while parsing APK metadata to identify installed OS packages if a package's list of provided files is empty.
+
 ---
  
 ### <a id='1-4-3-known-issues'></a> Known issues 
@@ -37,6 +43,25 @@ This release has the following known issues, listed by component and area.
 #### <a id='1-4-3-COMPONENT-NAME-ki'></a> COMPONENT-NAME
  
 - Known issue description with link to workaround.
+
+#### <a id='1-4-3-grype-scanner-ki'></a> Grype Scanner
+
+- **Scanning Java source code that uses Gradle package manager might not reveal
+  vulnerabilities:**
+
+  For most languages, source code scanning only scans files present in the
+  source code repository. Except for support added for Java projects using
+  Maven, no network calls fetch dependencies. For languages using dependency
+  lock files, such as Golang and Node.js, Grype uses the lock files to check
+  dependencies for vulnerabilities.
+
+  For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
+  dependencies present in the built binaries, such as `.jar` or `.war` files.
+
+  Because VMware discourages committing binaries to source code repositories,
+  Grype fails to find vulnerabilities during a source scan. The vulnerabilities
+  are still found during the image scan after the binaries are built and
+  packaged as images.
  
 ---
 
