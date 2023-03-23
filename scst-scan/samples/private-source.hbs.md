@@ -2,14 +2,15 @@
 
 ## <a id="define-resources"></a>Define the resources
 
-1. Create a Kubernetes secret named `secret-ssh-auth` with an SSH key for cloning a Git repository. See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/secret/#use-case-pod-with-ssh-keys). 
+1. Create a Kubernetes secret with an SSH key for cloning a Git repository. See the [Kubernetes documentation](https://kubernetes.io/docs/concepts/configuration/secret/#use-case-pod-with-ssh-keys).
 
   ```console
   cat <<EOF | kubectl create -f -
   apiVersion: v1
   kind: Secret
   metadata:
-    name: secret-ssh-auth
+    name: SECRET-SSH-AUTH
+    namespace: DEV-NAMESPACE
     annotations:
       tekton.dev/git-0: https://github.com
       tekton.dev/git-1: https://gitlab.com
@@ -23,9 +24,28 @@
   EOF
   ```
 
-  Where `.stringData.ssh-privatekey` contains the private key with pull-permissions.
+  Where:
+  - `SECRET-SSH-AUTH` is the name of the secret that is being created
+  - `DEV-NAMESPACE` is the developer namespace where the scanner is installed
+  - `.stringData.ssh-privatekey` contains the private key with pull-permissions
 
-2. Create `sample-private-source-scan.yaml`:
+1. Update the `tap-values.yaml` file to include the name of secret created above.
+
+  ```yaml
+  grype:
+    namespace: "MY-DEV-NAMESPACE"
+    targetSourceSshSecret: "SECRET-SSH-AUTH"
+  ```
+
+1. Upgrade Tanzu Application Platform with the modified `tap-values.yaml` file.
+
+  ```console
+  tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
+  ```
+
+  Where `TAP_VERSION` is the Tanzu Application Platform version
+
+1. Create `sample-private-source-scan.yaml`:
 
   ```yaml
   ---
