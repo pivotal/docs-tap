@@ -2,7 +2,7 @@
 
 ## Git Authentication for using a private Git repository
 
-Namespaces provisioner enables users to use private git repositories for storing their Gitops based installation files as well as additional platform operator templated resources that they want to create in their developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources (See [Customize Installation](#heading=h.lc08xegj8s5n) for more details). 
+Namespaces provisioner enables users to use private git repositories for storing their Gitops based installation files as well as additional platform operator templated resources that they want to create in their developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources (See [Customize Installation](#heading=h.lc08xegj8s5n) for more details).
 
 ## Create the Git Authentication secret in tap-namespace-provisioning namespace.
 
@@ -17,42 +17,40 @@ The secrets for Git authentication allow the following keys:** **
 Using HTTP(s) based Authentication
 : If using Username and Password for authentication, create the git secret with authentication details as follows:
 
-
-```console
-cat << EOF | kubectl apply -f -
-apiVersion: v1
-kind: Secret
-metadata:
-  name: git-auth
-  namespace: tap-namespace-provisioning
-type: Opaque
-stringData:
-  username: GIT-USERNAME
-  password: GIT-PASSWORD
-EOF
-```
+    ```console
+    cat << EOF | kubectl apply -f -
+    apiVersion: v1
+    kind: Secret
+    metadata:
+    name: git-auth
+    namespace: tap-namespace-provisioning
+    type: Opaque
+    stringData:
+    username: GIT-USERNAME
+    password: GIT-PASSWORD
+    EOF
+    ```
 
 Using SSH based Authentication
 : If using SSH private key for authentication, create the git secret with authentication details as follows:
 
+    ```console
+    cat << EOF | kubectl apply -f -
+    apiVersion: v1
+    kind: Secret
+    metadata:
+    name: git-auth
+    namespace: tap-namespace-provisioning
+    type: Opaque
+    stringData:
+    ssh-privatekey: |
+        -----BEGIN OPENSSH PRIVATE KEY-----
+        ..
+        -----END OPENSSH PRIVATE KEY-----
+    EOF
+    ```
 
-```console
-cat << EOF | kubectl apply -f -
-apiVersion: v1
-kind: Secret
-metadata:
-  name: git-auth
-  namespace: tap-namespace-provisioning
-type: Opaque
-stringData:
-  ssh-privatekey: |
-    -----BEGIN OPENSSH PRIVATE KEY-----
-    ..
-    -----END OPENSSH PRIVATE KEY-----
-EOF
-```
-
-Next, Add the` secretRef` section to the` additional_sources` and the `gitops_install` section of the namespace provisioner configuration in your TAP values:
+Next, Add the` secretRef` section to the` additional_sources` and the `gitops_install` section of the namespace provisioner configuration in your TAP values: <!--is this outside tabs-->
 
 Using Namespace Provisioner Controller
 : Description
@@ -257,7 +255,7 @@ Using SSH based Authentication
     EOF
     ```
 
-* We will now put all this together in namespace provisioner configuration in TAP values as follows:<!--is this outside tabs>
+* We will now put all this together in namespace provisioner configuration in TAP values as follows:<!--is this outside tabs-->
 
 Using Namespace Provisioner Controller
 : Add the following configuration to your TAP values
