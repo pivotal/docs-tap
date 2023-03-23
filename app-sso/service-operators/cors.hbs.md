@@ -58,8 +58,8 @@ The `AuthServer` sends the `Access-Control-Allow-Origin: *` HTTP response header
 Requirements for allowed origin designations include:
 
 - Only `allowOrigins` or `allowAllOrigins` is allowed to be set.
-- When using `allowAllOrigins`, you must explicitly set annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
-  This is an acknowledgement that using the `allowAllOrigins` is inherently unsafe.
+- When using `allowAllOrigins`, you must explicitly set the annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
+  This is an acknowledgement that using `allowAllOrigins` is inherently unsafe.
 
 ## <a id="client-authentication"></a>Client authentication
 
