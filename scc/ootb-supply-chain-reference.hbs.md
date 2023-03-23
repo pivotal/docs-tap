@@ -3,11 +3,11 @@
 Tanzu Application Platform includes a number of supply chains packages,
 each of which installs two
 [ClusterSupplyChains](https://cartographer.sh/docs/v0.6.0/reference/workload/#clustersupplychain).
-Only one supply chain package can be installed at one time.
+You can only install one supply chain package at a time.
 
 The supply chains provide some [parameters](https://cartographer.sh/docs/v0.6.0/templating/#parameters)
 to the referenced templates.
-These might be overridden by the parameters provided by the workload.
+The parameters provided by the workload might override the parameters in this topic.
 
 ## <a id='source-url'></a> Source-to-URL
 
@@ -33,9 +33,9 @@ Parameters provided:
 
 #### <a id='source-url-image-provider'></a> image-provider
 
-Refers to [kaniko-template](ootb-template-reference.hbs.md#kaniko-template)
+Refers to [kaniko-template](ootb-template-reference.hbs.md#kaniko)
 when the workload provides a parameter `dockerfile`.
-Refers to [kpack-template](ootb-template-reference.hbs.md#kpack-template) otherwise.
+Refers to [kpack-template](ootb-template-reference.hbs.md#kpack) otherwise.
 
 Parameters provided:
 
@@ -59,7 +59,7 @@ Parameters provided:
 
 - `maven_repository_url` from tap-value `maven.repository.url`. NOT overridable by workload.
 - `maven_repository_secret_name` from tap-value `maven.repository.secret_name`. NOT overridable by workload.
-- See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources)
+- See [Params provided by all Supply Chains to all Resources](#all-params)
 
 ### <a id='package-source-url'></a> Package
 
@@ -97,9 +97,9 @@ No parameters are provided by the supply-chain.
 
 #### <a id='source-test-image-provider'></a> image-provider
 
-Refers to [kaniko-template](ootb-template-reference.hbs.md#kaniko-template)
+Refers to [kaniko-template](ootb-template-reference.hbs.md#kaniko)
 when the workload provides a parameter `dockerfile`.
-Refers to [kpack-template](ootb-template-reference.hbs.md#kpack-template) otherwise.
+Refers to [kpack-template](ootb-template-reference.hbs.md#kpack) otherwise.
 
 Parameters provided:
 
@@ -123,7 +123,7 @@ Parameters provided:
 
 - `maven_repository_url` from tap-value `maven.repository.url`. NOT overridable by workload.
 - `maven_repository_secret_name` from tap-value `maven.repository.secret_name`. NOT overridable by workload.
-- See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources).
+- See [Params provided by all Supply Chains to all Resources](#all-params).
 
 ### <a id='source-test-package'></a> Package
 
@@ -163,7 +163,7 @@ No parameters are provided by the supply-chain.
 
 #### <a id='source-test-scan-source-scanner'></a> source-scanner
 
-Refers to [source-scanner-template](ootb-template-reference.hbs.md#source-scanner-template).
+Refers to [source-scanner-template](ootb-template-reference.hbs.md#source-scanner).
 
 Parameters provided:
 
@@ -172,9 +172,9 @@ Parameters provided:
 
 #### <a id='source-test-scan-image-provider'></a> image-provider
 
-Refers to [kaniko-template](ootb-template-reference.hbs.md#kaniko-template)
+Refers to [kaniko-template](ootb-template-reference.hbs.md#kaniko)
 when the workload provides a parameter `dockerfile`.
-Refers to [kpack-template](ootb-template-reference.hbs.md#kpack-template) otherwise.
+Refers to [kpack-template](ootb-template-reference.hbs.md#kpack) otherwise.
 
 Parameters provided:
 
@@ -187,7 +187,7 @@ Parameters provided:
 
 #### <a id='source-test-scan-image-scanner'></a> image-scanner
 
-Refers to [image-scanner-template](ootb-template-reference.hbs.md#image-scanner-template).
+Refers to [image-scanner-template](ootb-template-reference.hbs.md#image-scanner).
 
 Parameters provided:
 
@@ -207,7 +207,7 @@ Parameters provided:
 
 - `maven_repository_url` from tap-value `maven.repository.url`. NOT overridable by workload.
 - `maven_repository_secret_name` from tap-value `maven.repository.secret_name`. NOT overridable by workload.
-- See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources)
+- See [Params provided by all Supply Chains to all Resources](#all-params)
 
 ### <a id='source-test-scan-package'></a> Package
 
@@ -228,7 +228,7 @@ for information about setting tap-values at installation time.
 
 #### <a id='basic-image-image-provider'></a> image-provider
 
-Refers to [image-provider-template](ootb-template-reference.hbs.md#image-provider-template).
+Refers to [image-provider-template](ootb-template-reference.hbs.md#image-provider).
 
 Parameters provided:
 
@@ -245,7 +245,7 @@ Parameters provided:
 
 ### <a id='basic-image-params'></a> Parameters provided to all resources
 
-- See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources)
+- See [Params provided by all Supply Chains to all Resources](#all-params)
 
 ### <a id='basic-image-package'></a> Package
 
@@ -266,7 +266,7 @@ for information about setting tap-values at installation time.
 
 #### <a id='testing-image-provider'></a> image-provider
 
-Refers to [image-provider-template](ootb-template-reference.hbs.md#image-provider-template).
+Refers to [image-provider-template](ootb-template-reference.hbs.md#image-provider).
 
 Parameters provided:
 
@@ -283,7 +283,7 @@ Parameters provided:
 
 ### <a id='testing-image-params'></a> Parameters provided to all resources
 
-- See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources)
+- See [Params provided by all Supply Chains to all Resources](#all-params)
 
 ### <a id='testing-image-package'></a> Package
 
@@ -305,7 +305,7 @@ for information about setting tap-values at installation time.
 
 #### <a id='scanning-image-provider'></a> image-provider
 
-Refers to [image-provider-template](ootb-template-reference.hbs.md#image-provider-template).
+Refers to [image-provider-template](ootb-template-reference.hbs.md#image-provider).
 
 Parameters provided:
 
@@ -313,7 +313,7 @@ Parameters provided:
 
 #### <a id='scanning-image-scanner'></a> image-scanner
 
-Refers to [image-scanner-template](ootb-template-reference.hbs.md#image-scanner-template).
+Refers to [image-scanner-template](ootb-template-reference.hbs.md#image-scanner).
 
 Parameters provided:
 
@@ -330,7 +330,7 @@ Parameters provided:
 
 ### <a id='scanning-image-params'></a> Parameters provided to all resources
 
-- See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources)
+- See [Params provided by all Supply Chains to all Resources](#all-params)
 
 ### <a id='scanning-image-package'></a> Package
 
@@ -365,9 +365,9 @@ Parameters provided:
 
 #### <a id='source-package-image-provider'></a> image-provider
 
-Refers to [kaniko-template](ootb-template-reference.hbs.md#kaniko-template)
+Refers to [kaniko-template](ootb-template-reference.hbs.md#kaniko)
 when the workload provides a parameter `dockerfile`.
-Refers to [kpack-template](ootb-template-reference.hbs.md#kpack-template) otherwise.
+Refers to [kpack-template](ootb-template-reference.hbs.md#kpack) otherwise.
 
 Parameters provided:
 
@@ -380,7 +380,7 @@ Parameters provided:
 
 #### <a id='source-package-carvel'></a>carvel-package
 
-Refers to [carvel-package](ootb-template-reference.hbs.md#carvel-package-experimental).
+Refers to [carvel-package](ootb-template-reference.hbs.md#carvel).
 
 Parameters provided:
 
@@ -390,9 +390,9 @@ Parameters provided:
 #### <a id='source-package-config-writer'></a> package-config-writer
 
 Refers to the
-[package-config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#package-config-writer-and-pull-requester-template-experimental)
+[package-config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#package-config-writer-pr)
 when the tap-value `gitops.commit_strategy` is `pull_request`.
-Otherwise, this resource refers to the [package-config-writer-template](ootb-template-reference.hbs.md#package-config-writer-template-experimental).
+Otherwise, this resource refers to the [package-config-writer-template](ootb-template-reference.hbs.md#package-config-writer).
 
 Parameters provided:
 
@@ -412,7 +412,7 @@ Parameters provided:
 - `maven_repository_secret_name` from tap-value `maven.repository.secret_name`. NOT overridable by workload.
 - `carvel_package_gitops_subpath` from tap-value `carvel_package.gitops_subpath`. Overridable by workload.
 - `carvel_package_name_suffix` from tap-value `carvel_package.name_suffix`. Overridable by workload.
-- See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources)
+- See [Params provided by all Supply Chains to all Resources](#all-params)
 
 ### <a id='source-package-package'></a>Package
 
@@ -433,7 +433,7 @@ for information about setting tap-values at installation time.
 
 #### <a id='basic-image-provider'></a> image-provider
 
-Refers to [image-provider-template](ootb-template-reference.hbs.md#image-provider-template).
+Refers to [image-provider-template](ootb-template-reference.hbs.md#image-provider).
 
 Parameters provided:
 
@@ -441,7 +441,7 @@ Parameters provided:
 
 #### <a id='basic-carvel'></a> carvel-package
 
-Refers to [carvel-package](ootb-template-reference.hbs.md#carvel-package-experimental).
+Refers to [carvel-package](ootb-template-reference.hbs.md#carvel).
 
 Parameters provided:
 
@@ -451,9 +451,9 @@ Parameters provided:
 #### <a id='basic-config-writer'></a> package-config-writer
 
 Refers to the
-[package-config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#package-config-writer-and-pull-requester-template-experimental)
+[package-config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#package-config-writer-pr)
 when the tap-value `gitops.commit_strategy` is `pull_request`.
-Otherwise, this resource refers to the [package-config-writer-template](ootb-template-reference.hbs.md#package-config-writer-template-experimental)
+Otherwise, this resource refers to the [package-config-writer-template](ootb-template-reference.hbs.md#package-config-writer)
 
 Parameters provided:
 
@@ -473,7 +473,7 @@ Parameters provided:
 
 - `carvel_package_gitops_subpath` from tap-value `carvel_package.gitops_subpath`. Overridable by workload.
 - `carvel_package_name_suffix` from tap-value `carvel_package.name_suffix`. Overridable by workload.
-- See [Params provided by all Supply Chains to all Resources](#params-provided-by-all-supply-chains-to-all-resources)
+- See [Params provided by all Supply Chains to all Resources](#all-params)
 
 ### <a id='basic-package-package'></a>Package
 
@@ -488,7 +488,7 @@ for information about setting tap-values at installation time.
 
 ### <a id='config-provider'></a> config-provider
 
-Refers to [convention-template](ootb-template-reference.hbs.md#convention-template).
+Refers to [convention-template](ootb-template-reference.hbs.md#convention).
 
 Parameters provided:
 
@@ -530,9 +530,9 @@ No parameters are provided by the supply-chain.
 ### <a id='config-writer'></a> config-writer
 
 Refers to the
-[config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
+[config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-pr)
 when the tap-value `gitops.commit_strategy` is `pull_request`.
-Otherwise, this resource refers to the [config-writer-template](ootb-template-reference.hbs.md#config-writer-template)
+Otherwise, this resource refers to the [config-writer-template](ootb-template-reference.hbs.md#config-writer)
 
 Parameters provided:
 
@@ -541,9 +541,9 @@ Parameters provided:
 
 ### <a id='deliverable'></a> deliverable
 
-Refers to the [external-deliverable-template](ootb-template-reference.hbs.md#external-deliverable-template)
+Refers to the [external-deliverable-template](ootb-template-reference.hbs.md#external-deliverable)
 when the tap-value `external_delivery` evaluates to `true`.
-Otherwise the resource refers to the [deliverable-template](ootb-template-reference.hbs.md#deliverable-template).
+Otherwise the resource refers to the [deliverable-template](ootb-template-reference.hbs.md#deliverable).
 
 Parameters provided:
 
