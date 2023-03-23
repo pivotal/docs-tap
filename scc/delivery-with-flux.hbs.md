@@ -1,51 +1,69 @@
-# Gitops with Flux
+# Gitops Delivery with FluxCD
+
+This guide outlines the delivery of packages created by the Out of the Box Supply Chain
+with `carvel-package-workflow-enabled` and added to a GitOps repo to Run cluster(s).
 
 ## Prerequisites
 
- - The Brain cluster is created and has network access to your run clusters. It must have the following components [installed](https://fluxcd.io/flux/installation/#dev-install) along with other TAP components:
-   - FluxCD Source Controller
-   - FluxCD Kustomize Controller
+ - The Build cluster is created and has network access to your run clusters. It must have the following components installed:
+   - FluxCD [Kustomize Controller](https://fluxcd.io/flux/installation/#dev-install).
 
-## Deploy Packages and PackageInstalls
+ - Run clusters serve as your deploy environments. They can either be TAP clusters, or regular Kubernetes clusters, but they need to have the following components installed:
+   - [kapp-controller](https://carvel.dev/kapp-controller/)
 
-After the supply chain created a Package yaml file in the gitops repo, you need to the add the packageInstall yaml file in the gitops repo as well:
+ - In order to target Run clusters from the Build cluster, you will need to create a secret containing each Run cluster Kubeconfig. These secrets will be used by the FluxCD Kustomization resource.
 
-### Create a PackageInstall
+    For each run cluster, run the following command:
 
-Create a PackageInstall CR (and a secret to hold the values used by the Package params)
+    ```sh
+    kubectl create secret generic <run-cluster>-kubeconfig \
+        -n <build_cluster_namespace> \
+        --from-file=value.yaml=<path_to_kubeconfig>
+    ```
 
-The PackageInstall should refereces an already existing secret in the same namespace as the PackageInstall. The secret that has the values for the Package param. The configurable properties of a package can be seen by inspecting the Package CR’s valuesSchema.
+## Prepare the PackageInstall
+
+After the `source-to-url-packag` or `basic-image-to-url-package` [supply chains](./ootb-supply-chain-reference.hbs.md) create a Package yaml file in the gitops repo,
+you need to the add the packageInstall yaml file in the gitops repo as well:
+
+### PackageInstall Prerequisites
+
+First, create a secret that has the values for the Package param. The configurable properties of a package can be seen by inspecting the Package CR’s valuesSchema.
 
 ```yaml
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: pkg-demo-values
+  name: hello-app-values
 stringData:
   values.yml: |
     ---
-    hello_msg: "to all my internet friends"
+    replicas: 2
+    hostname: hello-app.mycompany.com
 ```
 For adding the secret to the gitops repo to be deployed by flux, follow the instructions from flux [here](https://fluxcd.io/flux/security/secrets-management/)
 
-Now, the PackageInstall:
+
+### Create PackageInstall
+
+The PackageInstall references the secret created in the previous step in the same namespace targeted by the PackageInstall.
 
 ```yaml
 ---
 apiVersion: packaging.carvel.dev/v1alpha1
 kind: PackageInstall
 metadata:
-  name: pkg-demo
+  name: hello-app
 spec:
   serviceAccountName: default-ns-sa
   packageRef:
-    refName: simple-app.corp.com
+    refName: hello-app.mycompany.com
     versionSelection:
       constraints: 1.0.0
   values:
   - secretRef:
-      name: pkg-demo-values
+      name: hello-app-values
 ```
 
 The Package references the package’s refName and version fields as well as the versionSelection property which has a constraints subproperty to give more control over which versions are chosen for installation.
@@ -68,26 +86,38 @@ The ConfigMap permissions above are needed in addition to any other resource/ver
 
 [Security model](https://carvel.dev/kapp-controller/docs/v0.43.2/security-model/) for explanation of how service accounts are used.
 
-## FluxCD GitRepository + FluxCD Kustomization
+### Push PackageInstall
+Push the PackageInstall to the GitOps repo under the the same `$package-name`
+folder, but under a new folder for each run cluster
+
+```
+/$package-name
+    /packages/$package-id.yaml	        # Carvel Package definitions
+    /$run-cluster/packageinstall.yaml	# A Carvel PackageInstall
+    /$run-cluster/params.yaml	        # Values secret for PackageInstall
+    /...
+```
+
+## Create FluxCD GitRepository + FluxCD Kustomization
 
 The [Build cluster](../multicluster/installing-multicluster.hbs.md#install-build-cluster) will use FluxCD to deploy `Packages` and `PackageInstalls` by creating a FluxCD `GitRepository`
 on to watch for changes to the GitOps repo.
 
-Per environment, we will create:
-- A FluxCD `Kustomization` on our Brain cluster that applies `$component/packages/*` to environment
-- A FluxCD `Kustomization` on our Brain cluster that applies `$component/$environment/*` to environment
+Per Run cluster, we will create:
+- A FluxCD `Kustomization` on the Build cluster that applies `$package-name/packages/*` to the run cluster
+- A FluxCD `Kustomization` on the Build cluster that applies `$package-name/$run-cluster/*` to the run cluster
 
-### Create FluxCD GitRepository on Brain Cluster
+### Create FluxCD GitRepository on Build Cluster
 
-The following resources should be created on the Cluster:
+Create the following resources on the Cluster:
 
 ```yaml
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: GitRepository
 metadata:
-  name: <component>-gitops-repo
-  namespace: # brain cluster namespace
+  name: <package-name>-gitops-repo
+  namespace: # Build cluster namespace
 spec:
   url: # GitOps repo URL
   gitImplementation: go-git
@@ -100,39 +130,40 @@ spec:
 
   # only required if GitOps repo is private (recommended)
   secretRef:
-    name: <component>-gitops-auth
-    namespace: # brain cluster namespace
+    name: <package-name>-gitops-auth
+    namespace: # Build cluster namespace
 
 # only required if GitOps repo is private (recommended)
 ---
 apiVersion: v1
 kind: Secret
 metadata:
-  name: <component>-gitops-auth
-  namespace: # brain cluster namespace
+  name: <package-name>-gitops-auth
+  namespace: # Build cluster namespace
 type: Opaque
 data:
   username: # base64 encoded GitHub (or other git remote) username
-  password: # base64 encoded GitHub (or other git remote) password/personal access token
+  password: # base64 encoded GitHub (or other git remote) personal access token
 ```
 
-### Create FluxCD Kustomizations on Brain Cluster
+### Create FluxCD Kustomizations on Build Cluster
 
-For each environment, create the following resources:
+For each run cluster, create the following resources:
 
 ```yaml
 ---
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: <component>-<environment>-packages
-  namespace: # brain cluster namespace
+  # for the first run cluster, for example hello-app-prod1-packages
+  name: <package-name>-<run-cluster>-packages
+  namespace: # Build cluster namespace
 spec:
   sourceRef:
     kind: GitRepository
-    name: <component>-gitops-repo
-    namespace: # brain cluster namespace
-  path: "./<component>/packages"
+    name: <package-name>-gitops-repo
+    namespace: # Build cluster namespace
+  path: "./<package-name>/packages"
   interval: 5m
   timeout: 5m
   prune: true
@@ -141,8 +172,8 @@ spec:
   # where to deploy
   kubeConfig:
     secretRef:
-      name: <environment>-kubeconfig
-      namespace: # brain cluster namespace
+      name: <run-cluster>-kubeconfig
+      namespace: # Build cluster namespace
   targetNamespace: # run cluster target namespace
   serviceAccountName: # run cluster target namespace service account
 
@@ -150,14 +181,15 @@ spec:
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: <component>-<environment>-packageinstalls
-  namespace: # brain cluster namespace
+  # for the second run cluster, for example hello-app-prod2-packages
+  name: <package-name>-<run-cluster>-packageinstalls
+  namespace: # Build cluster namespace
 spec:
   sourceRef:
     kind: GitRepository
-    name: <component>-gitops-repo
-    namespace: # brain cluster namespace
-  path: "./<component>/<environment>"
+    name: <package-name>-gitops-repo
+    namespace: # Build cluster namespace
+  path: "./<package-name>/<run-cluster>"
   interval: 5m
   timeout: 5m
   prune: true
@@ -166,8 +198,8 @@ spec:
   # where to deploy
   kubeConfig:
     secretRef:
-      name: <environment>-kubeconfig
-      namespace: # brain cluster namespace
+      name: <run-cluster>-kubeconfig
+      namespace: # Build cluster namespace
   targetNamespace: # run cluster target namespace
   serviceAccountName: # run cluster target namespace service account
 ```
@@ -191,3 +223,4 @@ Confirm that all PackageInstalls have reconciled successfully:
 ```sh
 kubectl get packageinstalls -A
 ```
+Now your application can be accessed on each run cluster.
