@@ -9,7 +9,7 @@ To login to your cluster by using Pinniped, follow these steps:
     For more information, see [Pinniped documentation](https://pinniped.dev/docs/howto/install-cli/). 
 
     >**Important** The latest compatible version of Pinniped CLI is required not only for 
-    > the administrator to generate the `kubeconfig` 
+    > the administrator to generate the `kubeconfig`, 
     > but also for the user to log in with the provided configuration. 
     
 1. Generate and distribute `kubeconfig` to users.
@@ -19,7 +19,7 @@ To login to your cluster by using Pinniped, follow these steps:
 ## <a id="download"></a> Download the Pinniped CLI
 
 You must use a Pinniped CLI version that matches the installed Concierge or Supervisor. 
-For version `0.22.0`:
+Use one of the following links to download the Pinniped CLI version `0.22.0`:
 
 - [Mac OS with AMD64](https://get.pinniped.dev/v0.22.0/pinniped-cli-darwin-amd64)
 - [Linux with AMD64](https://get.pinniped.dev/v0.22.0/pinniped-cli-linux-amd64)

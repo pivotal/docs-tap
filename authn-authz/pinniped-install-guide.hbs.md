@@ -36,7 +36,7 @@ When running a multicluster setup you must decide which cluster to deploy the Su
 
 In contrast, the `Pinniped Concierge` must be deployed to every cluster that you want to enable authentication for, including the `view cluster` itself.
 
-See the following diagram showing a possible deployment model.
+See the following diagram showing a possible deployment model:
 ![Diagram showing the multicluster topology, where Pinniped Supervisor is deployed to View Cluster, and Pinniped Concierge instances are deployed across View, Build, and Run cluster.](../images/auth-pinniped-multi-cluster.jpg)
 
 For more information about the Pinniped architecture and deployment model, see the [Pinniped Documentation](https://pinniped.dev/docs/background/architecture/).
@@ -55,7 +55,7 @@ Follow these steps to install `pinniped-supervisor`:
 ### <a id="create-certs"></a>Create Certificates (letsencrypt/cert-manager)
 
 Create a ClusterIssuer for `letsencrypt` and a TLS certificate resource for Pinniped Supervisor
-by creating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`.
+by creating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`:
 
 ```yaml
 ---
@@ -101,7 +101,7 @@ Where:
 Create a Service and Ingress resource to make the `pinniped-supervisor` accessible from outside the
 cluster.
 
-To do so, create the following resources and save them into `workspace/pinniped-supervisor/ingress.yaml`.
+To do so, create the following resources and save them into `workspace/pinniped-supervisor/ingress.yaml`:
 
 ```yaml
 ---
@@ -139,7 +139,7 @@ spec:
 
 Where:
 
-- `DNS-NAME` is the domain in which the `pinniped-supervisor` is published. For example, `pinniped-supervisor.example.com`.
+- `DNS-NAME` is the domain in which the `pinniped-supervisor` is published. For example, `pinniped-supervisor.example.com`
 - `tls.passthrough: true` specifies that the TLS connection is forwarded to and terminated in the supervisor pod.
 
 ### <a id="create-pinniped-super-config"></a>Create Pinniped-Supervisor configuration
@@ -151,7 +151,7 @@ See the [Pinniped documentation](https://pinniped.dev/docs/howto/) to learn how 
 identity providers, including OKTA, GitLab, OpenLDAP, Dex, Microsoft AD, and more.
 
 To create Pinniped-Supervisor configuration, create the following resources and save them in
-`workspace/pinniped-supervisor/oidc_identity_provider.yaml`.
+`workspace/pinniped-supervisor/oidc_identity_provider.yaml`:
 
 ```yaml
 apiVersion: idp.supervisor.pinniped.dev/v1alpha1
@@ -303,7 +303,7 @@ To install Pinniped Concierge:
 
     **Note** the `tls.crt` contains the entire certificate chain including the CA certificate for `letsencrypt` generated certificates.
 
-1. Create the following resource to `workspace/pinniped-concierge/jwt_authenticator.yaml`.
+1. Create the following resource to `workspace/pinniped-concierge/jwt_authenticator.yaml`:
 
     ```yaml
     ---
