@@ -4,11 +4,11 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 
 ## <a id="cannot-view-workloads"></a> Unable to view workloads on the panel when connected to GKE cluster
 
-{{> 'partials/ide-extensions/cannot-view-workloads' }}
+{{> 'partials/ide-extensions/ki-cannot-view-workloads' }}
 
 ## <a id='lu-not-working-wl-types'></a> Live update might not work when using server or worker Workload types
 
-{{> 'partials/ide-extensions/lu-not-working-wl-types' }}
+{{> 'partials/ide-extensions/ki-lu-not-working-wl-types' }}
 
 ## <a id="dsbl-lnch-ctrl"></a> Deactivated launch controls after running a launch configuration
 
@@ -64,4 +64,4 @@ If that doesn't work for you, delete the old corrupted launch configuration and 
 
 ## <a id="live-update-timeout"></a> Timeout error when Live Updating
 
-{{> 'partials/ide-extensions/timeout-err-live-updating' }}
+{{> 'partials/ide-extensions/ki-timeout-err-live-updating' }}
