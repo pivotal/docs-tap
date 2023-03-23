@@ -9,7 +9,7 @@
 
 The App Scanning component within the Supply Chain Security Tools is responsible for providing the framework to scan applications for their security posture. Scanning container images for known Common Vulnerabilities and Exposures (CVEs) implements this framework .
 
-This component is in Alpha and supersedes the [SCST-Scan component](overview.hbs.md)
+This component is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md)
 
 A core tenet of the app-scanning framework architecture is to simplify integration for new plug-ins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
 
@@ -32,9 +32,9 @@ SCST - App Scanning requires the following prerequisites:
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 - Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is included in the Full and Build profiles of Tanzu Application Platform.
 
-## <a id='configure-app-scanning'></a> Configure properties
+### <a id='configure-app-scanning'></a> Configure properties
 
-When you install the SCST - App Scanning, you can configure the following optional properties:
+When you install SCST - App Scanning, you can configure the following optional properties:
 
 | Key | Default | Type | Description |
 | --- | --- | --- | --- |
@@ -65,6 +65,10 @@ To install Supply Chain Security Tools - App Scanning:
 
 1. (Optional) Make changes to the default installation settings:
 
+    Create a `app-scanning-values-file.yaml` file which will hold changes to the default installation settings.
+
+    Retrieve the configurable settings using the following command and append the key-value pairs to be modified to the `app-scanning-values-file.yaml` file.
+
     ```console
     tanzu package available get app-scanning.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
     ```
@@ -87,8 +91,6 @@ To install Supply Chain Security Tools - App Scanning:
                                                       used by tekton pipelineruns
       caCertData                              string   The custom certificates to be trusted by the scan's connections
     ```
-
-1. Create a file named `app-scanning-values-file.yaml` and add the settings you want for the installation
 
 1. Install the package by running:
 
@@ -119,8 +121,6 @@ To install Supply Chain Security Tools - App Scanning:
         'PackageInstall' resource install status: ReconcileSucceeded
     ```
 
-  App scanning package is up and running in your cluster.
-
 ## Configure namespace
 
 The following sections describe how to configure service accounts and registry credentials.
@@ -139,8 +139,11 @@ The following sections describe how to configure service accounts and registry c
     kubectl create secret docker-registry scanning-tap-component-read-creds \
       --docker-username=TAP-REGISTRY-USERNAME \
       --docker-password=$TAP_REGISTRY_PASSWORD \
-      --docker-server=TAP-REGISTRY-URL
+      --docker-server=TAP-REGISTRY-URL \
+      -n DEV-NAMESPACE
     ```
+
+    Where `DEV-NAMESPACE` is the developer namespace where scanning will occur.
 
 1. If you are scanning a private image, create a secret which has read access to that image.
 
@@ -151,7 +154,8 @@ The following sections describe how to configure service accounts and registry c
     kubectl create secret docker-registry scan-image-read-creds \
       --docker-username=REGISTRY-USERNAME \
       --docker-password=$REGISTRY_PASSWORD \
-      --docker-server=REGISTRY-URL
+      --docker-server=REGISTRY-URL \
+      -n DEV-NAMESPACE
     ```
 
 1. Create a `kubernetes.io/dockerconfigjson` secret which has write access to where you
@@ -162,7 +166,8 @@ want the scanner to upload the result .
     kubectl create secret docker-registry write-creds \
       --docker-username=WRITE-USERNAME \
       --docker-password=$WRITE_PASSWORD \
-      --docker-server=DESTINATION-REGISTRY-URL
+      --docker-server=DESTINATION-REGISTRY-URL \
+      -n DEV-NAMESPACE
     ```
 
 1. Create a service account and attach the read secret created earlier as `imagePullSecrets` and
@@ -173,6 +178,7 @@ the write secret as `secrets`.
     kind: ServiceAccount
     metadata:
       name: scanner
+      namespace: DEV-NAMESPACE
     imagePullSecrets:
     - name: scanning-tap-component-read-creds # Used by the component to pull the scan component image from tap registry
     secrets:
@@ -187,6 +193,7 @@ the write secret as `secrets`.
     kind: ServiceAccount
     metadata:
       name: publisher
+      namespace: DEV-NAMESPACE
     imagePullSecrets:
     - name: scanning-tap-component-read-creds # Used by the component to pull the scan component image from tap registry
     secrets:
@@ -244,7 +251,7 @@ This section describes optional and required GrypeImageVulnerabilityScan specifi
 
 Required fields:
 
-- image 
+- image
   The registry URL and digest of the scanned image.
   For example, `nginx@sha256:aa0afebbb3cfa473099a62c4b32e9b3fb73ed23f2a75a65ce1d4b4f55a5c2ef2`
 
@@ -304,19 +311,19 @@ To trigger a Grype scan:
 1. Apply the `GrypeImageVulnerabilityScan` to the cluster.
 
     ```console
-    kubectl apply -f grype-image-vulnerability-scan.yaml
+    kubectl apply -f grype-image-vulnerability-scan.yaml -n DEV-NAMESPACE
     ```
 
 1. Child resources are created.
 
-    - view the child ImageVulnerabilityScan by running: `kubectl get imagevulnerabilityscan`
-    - view the child PipelineRun, TaskRuns, and pods by running: `kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod`
+    - view the child ImageVulnerabilityScan by running: `kubectl get imagevulnerabilityscan -n DEV-NAMESPACE`
+    - view the child PipelineRun, TaskRuns, and pods by running: `kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod -n DEV-NAMESPACE`
 
 1. When the scanning completes, the status is shown. Specify `-o wide` to see
 the digest of the image scanned and the location of the published results.
 
     ```console
-    $ kubectl get givs grypescan -o wide
+    $ kubectl get grypeimagevulnerabilityscans grypescan -n DEV-NAMESPACE -o wide
 
     NAME        SCANRESULT                           SCANNEDIMAGE          SUCCEEDED   REASON
     grypescan   registry/project/scan-results@digest nginx:latest@digest   True        Succeeded
@@ -446,18 +453,18 @@ To trigger your scan:
 1. Deploy your ImageVulnerabilityScan to the cluster by running:
 
     ```console
-    kubectl apply -f image-vulnerability-scan.yaml
+    kubectl apply -f image-vulnerability-scan.yaml -n DEV-NAMESPACE
     ```
 
 2. Child resources are created.
 
-    - view the child PipelineRun, TaskRuns, and pods `kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod`
+    - view the child PipelineRun, TaskRuns, and pods `kubectl get -l imagevulnerabilityscan pipelinerun,taskrun,pod -n DEV-NAMESPACE`
 
 3. When the scanning completes, the status is shown. Specify `-o wide` to see the digest of the image scanned and the location of the
 published results.
 
     ```console
-    $ kubectl get ivs -o wide
+    $ kubectl get imagevulnerabilityscans -n DEV-NAMESPACE -o wide
 
     NAME                 SCANRESULT                           SCANNEDIMAGE          SUCCEEDED   REASON
     generic-image-scan   registry/project/scan-results@digest nginx:latest@digest   True        Succeeded
@@ -474,13 +481,14 @@ To retrieve a vulnerability report:
    SCAN_RESULT_URL=$(kubectl get imagevulnerabilityscan my-scan -o jsonpath='{.status.scanResult}')
    ```
 
-2. Download the bundle to a local directory and list the content
+1. Download the bundle to a local directory and list the content
    ```console
    imgpkg pull -b $SCAN_RESULT_URL -o myresults/
    ls myresults/
    ```
 
-## Troubleshooting
+
+## <a id="observability"></a> Observability
 
 To watch the status of the scanning CRDs and child resources:
 
@@ -515,3 +523,5 @@ Get the logs of the controller:
 ```console
 kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system -c manager
 ```
+
+## Troubleshooting
