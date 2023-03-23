@@ -1,4 +1,3 @@
-
 # Install multiple scanners in the developer namespace
 
 Refer to the [Provision Developer Namespaces](#heading=h.y3di0ufxnjb4) section to create a developer namespace.
