@@ -272,6 +272,7 @@ contour:
       type: LoadBalancer # This is set by default, but can be overridden by setting a different value.
 
 buildservice:
+  # Takes the value from shared section above by default, but can be overridden by setting a different value.
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
