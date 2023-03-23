@@ -116,16 +116,16 @@ Manual
     apiVersion: backstage.io/v1alpha1
     kind: Component
     metadata:
-    name: APP-NAME
-    description: APP-DESCRIPTION
-    tags:
-      - tanzu
-    annotations:
-      'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=APP-NAME'
+     name: APP-NAME
+     description: APP-DESCRIPTION
+     tags:
+       - tanzu
+     annotations:
+       'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=APP-NAME'
     spec:
-    type: service
-    lifecycle: experimental
-    owner: default-team
+     type: service
+     lifecycle: experimental
+     owner: default-team
     ```
 
     Where:
@@ -181,23 +181,23 @@ Manual
     NAMESPACE = os.getenv("NAMESPACE", default='default')
 
     k8s_custom_deploy(
-      'APP-NAME',
-      apply_cmd="tanzu apps workload apply -f PATH-TO-WORKLOAD-YAML --live-update" +
-          " --local-path " + LOCAL_PATH +
-          " --SOURCE-IMAGE " + SOURCE_IMAGE +
-          " --namespace " + NAMESPACE +
-          " --yes >/dev/null" +
-          " && kubectl get workload APP-NAME --namespace " + NAMESPACE + " -o yaml",
-      delete_cmd="tanzu apps workload delete -f PATH-TO-WORKLOAD-YAML --namespace " + NAMESPACE + " --yes" ,
-      deps=['pom.xml', './target/classes'],
-      container_selector='workload',
-      live_update=[
-          sync('./target/classes', '/workspace/BOOT-INF/classes')
-      ]
+       'APP-NAME',
+       apply_cmd="tanzu apps workload apply -f PATH-TO-WORKLOAD-YAML --live-update" +
+           " --local-path " + LOCAL_PATH +
+           " --SOURCE-IMAGE " + SOURCE_IMAGE +
+           " --namespace " + NAMESPACE +
+           " --yes >/dev/null" +
+           " && kubectl get workload APP-NAME --namespace " + NAMESPACE + " -o yaml",
+       delete_cmd="tanzu apps workload delete -f PATH-TO-WORKLOAD-YAML --namespace " + NAMESPACE + " --yes" ,
+       deps=['pom.xml', './target/classes'],
+       container_selector='workload',
+       live_update=[
+           sync('./target/classes', '/workspace/BOOT-INF/classes')
+       ]
     )
 
     k8s_resource('APP-NAME', port_forwards=["8080:8080"],
-      extra_pod_selectors=[{'carto.run/workload-name': 'APP-NAME', 'app.kubernetes.io/component': 'run'}])
+       extra_pod_selectors=[{'carto.run/workload-name': 'APP-NAME', 'app.kubernetes.io/component': 'run'}])
     allow_k8s_contexts('CONTEXT-NAME')
     ```
 
