@@ -49,9 +49,10 @@ Code snippets
      `my project/config/workload.yaml`.
   3. Open the new `workload.yaml` file in VS Code, enter `tanzu workload` in the file to trigger the
      code snippets, and either press Enter or left-click the `tanzu workload` text in the drop-down menu.
-  4. Fill in the template by pressing the Tab key.
 
-  ![A new file called workload dot yaml with the words tanzu workload written in it and an action menu showing tanzu workload.](../images/vscode-workload.png)
+     ![A new file called workload dot yaml with the words tanzu workload written in it and an action menu showing tanzu workload.](../images/vscode-workload.png)
+
+  4. Fill in the template by pressing the Tab key.
 
 Manual
 : To create your `workload.yaml` file manually, follow this example:
@@ -70,14 +71,14 @@ Manual
          url: GIT-SOURCE-URL
          ref:
            branch: GIT-BRANCH-NAME
-     ```
+    ```
 
-  Where:
+    Where:
 
-  - `APP-NAME` is the name of your application.
-  - `WORKLOAD-TYPE` is the type of this workload. For example, `web`.
-  - `GIT-SOURCE-URL` is your GitHub source code URL.
-  - `GIT-BRANCH-NAME` is the Git branch of your source code.
+    - `APP-NAME` is the name of your application.
+    - `WORKLOAD-TYPE` is the type of this workload. For example, `web`.
+    - `GIT-SOURCE-URL` is your GitHub source code URL.
+    - `GIT-BRANCH-NAME` is the Git branch of your source code.
 
   Alternatively, you can use the Tanzu CLI to create a `workload.yaml` file.
   For more information about the Tanzu CLI command, see
@@ -104,9 +105,10 @@ Code snippets
   3. Open the new `catalog-info.yaml` file in VS Code, enter `tanzu catalog-info` in the file to trigger
      the code snippets, and then either press Enter or left-click the `tanzu catalog-info` text in the
      drop-down menu.
-  4. Fill in the template by pressing the Tab key.
 
-  ![A new file called catalog-info dot yaml with the words tanzu catalog-info written in it and an action menu showing tanzu catalog-info.](../images/vscode-cataloginfo.png)
+     ![A new file called catalog-info dot yaml with the words tanzu catalog-info written in it and an action menu showing tanzu catalog-info.](../images/vscode-cataloginfo.png)
+
+  4. Fill in the template by pressing the Tab key.
 
 Manual
 : To create your `catalog-info.yaml` file manually, follow this example:
@@ -127,10 +129,10 @@ Manual
     owner: default-team
     ```
 
-  Where:
+    Where:
 
-  - `APP-NAME` is the name of your application
-  - `APP-DESCRIPTION` is the description of your application
+    - `APP-NAME` is the name of your application
+    - `APP-DESCRIPTION` is the description of your application
 
 ### <a id="tiltfile-file"></a> Create the Tiltfile file
 
@@ -169,47 +171,47 @@ Code Snippets
     allow_k8s_contexts('CONTEXT-NAME')
     ```
 
-  Where `CONTEXT-NAME` is the name of your current Kubernetes context.
+    Where `CONTEXT-NAME` is the name of your current Kubernetes context.
 
 Manual
 : To create a Tiltfile file manually, follow this example:
 
-     ```text
-     SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='SOURCE-IMAGE')
-     LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
-     NAMESPACE = os.getenv("NAMESPACE", default='default')
+    ```text
+    SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", default='SOURCE-IMAGE')
+    LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
+    NAMESPACE = os.getenv("NAMESPACE", default='default')
 
-     k8s_custom_deploy(
-        'APP-NAME',
-        apply_cmd="tanzu apps workload apply -f PATH-TO-WORKLOAD-YAML --live-update" +
-            " --local-path " + LOCAL_PATH +
-            " --SOURCE-IMAGE " + SOURCE_IMAGE +
-            " --namespace " + NAMESPACE +
-            " --yes >/dev/null" +
-            " && kubectl get workload APP-NAME --namespace " + NAMESPACE + " -o yaml",
-        delete_cmd="tanzu apps workload delete -f PATH-TO-WORKLOAD-YAML --namespace " + NAMESPACE + " --yes" ,
-        deps=['pom.xml', './target/classes'],
-        container_selector='workload',
-        live_update=[
-            sync('./target/classes', '/workspace/BOOT-INF/classes')
-        ]
-     )
+    k8s_custom_deploy(
+      'APP-NAME',
+      apply_cmd="tanzu apps workload apply -f PATH-TO-WORKLOAD-YAML --live-update" +
+          " --local-path " + LOCAL_PATH +
+          " --SOURCE-IMAGE " + SOURCE_IMAGE +
+          " --namespace " + NAMESPACE +
+          " --yes >/dev/null" +
+          " && kubectl get workload APP-NAME --namespace " + NAMESPACE + " -o yaml",
+      delete_cmd="tanzu apps workload delete -f PATH-TO-WORKLOAD-YAML --namespace " + NAMESPACE + " --yes" ,
+      deps=['pom.xml', './target/classes'],
+      container_selector='workload',
+      live_update=[
+          sync('./target/classes', '/workspace/BOOT-INF/classes')
+      ]
+    )
 
-     k8s_resource('APP-NAME', port_forwards=["8080:8080"],
-        extra_pod_selectors=[{'carto.run/workload-name': 'APP-NAME', 'app.kubernetes.io/component': 'run'}])
-     allow_k8s_contexts('CONTEXT-NAME')
-     ```
+    k8s_resource('APP-NAME', port_forwards=["8080:8080"],
+      extra_pod_selectors=[{'carto.run/workload-name': 'APP-NAME', 'app.kubernetes.io/component': 'run'}])
+    allow_k8s_contexts('CONTEXT-NAME')
+    ```
 
-  Where:
+    Where:
 
-  - `SOURCE-IMAGE` is the value of source image.
-  - `APP-NAME` is the name of your application.
-  - `PATH-TO-WORKLOAD-YAML` is the local file system path to `workload.yaml`. For example, `config/workload.yaml`.
-  - `CONTEXT-NAME` is the name of your current
-    [Kubernetes context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
-    If your Kubernetes cluster enabled by Tanzu Application Platform is running locally on your local
-    machine, you can remove the entire `allow_k8s_contexts` line. For more information, see the
-    [Tilt documentation](https://docs.tilt.dev/api.html#api.allow_k8s_contexts).
+    - `SOURCE-IMAGE` is the value of source image.
+    - `APP-NAME` is the name of your application.
+    - `PATH-TO-WORKLOAD-YAML` is the local file system path to `workload.yaml`. For example, `config/workload.yaml`.
+    - `CONTEXT-NAME` is the name of your current
+      [Kubernetes context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
+      If your Kubernetes cluster enabled by Tanzu Application Platform is running locally on your local
+      machine, you can remove the entire `allow_k8s_contexts` line. For more information, see the
+      [Tilt documentation](https://docs.tilt.dev/api.html#api.allow_k8s_contexts).
 
 ### <a id="create-tanzuignore-file"></a> Create a `.tanzuignore` file
 
