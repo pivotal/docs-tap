@@ -54,8 +54,14 @@ To install the Iterate profile cluster, follow the steps described in [Install t
 
 ## <a id='add-view'></a> Add Build, Run and Iterate clusters to Tanzu Application Platform GUI
 
-1. After installing the Build, Run and Iterate clusters, create the `Service Accounts` that Tanzu Application Platform GUI uses to read objects from the clusters.
-2. Follow the steps in [View resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.md) to add a remote cluster. These steps create the necessary RBAC elements allowing you to pull the URL and token from the Build, Run and Iterate clusters that allows them come back and add to the View cluster's values file. You must add the Build, Run and Iterate clusters to the View cluster for all plug-ins to function as expected.
+After installing the Build, Run and Iterate clusters, follow the steps in [View resources on multiple clusters in Tanzu Application Platform GUI](../tap-gui/cluster-view-setup.md) to:
+
+1. Create the `Service Accounts` that Tanzu Application Platform GUI uses to read objects from the clusters.
+1. Add a remote cluster. 
+
+These steps create the necessary RBAC elements allowing you to pull the URL and token from the Build, Run and Iterate clusters that allows them come back and add to the View cluster's values file. 
+
+You must add the Build, Run and Iterate clusters to the View cluster for all plug-ins to function as expected.
 
 ## Next steps
 
