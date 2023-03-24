@@ -468,7 +468,7 @@ docs.vmware.com is built.
             - [Prerequisites for Snyk Scanner (Beta)](scst-scan/install-snyk-integration.hbs.md)
             - [Prerequisites for Carbon Black Scanner (Beta)](scst-scan/install-carbonblack-integration.hbs.md)
             - [Prerequisites for Prisma Scanner (Alpha)](scst-scan/install-prisma-integration.hbs.md)
-            - [Prerequisites for Trivy Scanner (Alpha)](scst-scan/install-trivy-integration.hbs.md)
+            - [Install Trivy Scanner (Alpha)](scst-scan/install-trivy-integration.hbs.md)
         - [Spec reference](scst-scan/explanation.hbs.md)
         - [Scan samples](scst-scan/samples/overview.hbs.md)
             - [Overview](scst-scan/samples/overview.hbs.md)

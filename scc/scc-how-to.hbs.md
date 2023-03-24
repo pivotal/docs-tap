@@ -16,4 +16,4 @@ The following how-to guides apply to Supply Chain Choreographer for Tanzu:
 - [Building from source](building-from-source.hbs.md)
 - [Git authentication](git-auth.hbs.md)
 - [Deploy Package and PackageInstall using FluxCD Kustomization](delivery-with-flux.hbs.md)
-- [Use Blue-green deployment with Contour and PackageInstall](blue-green-with-packageinstall.hbs.md)
+- [Complete Blue-green deployment with Contour and PackageInstall](blue-green-with-packageinstall.hbs.md)

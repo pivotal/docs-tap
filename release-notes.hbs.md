@@ -83,10 +83,10 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
   - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts) documentation is updated to account for the impact of these changes.
 - In conformance with NIST 800-53, support for rotating certificates and TLS is added.
   - Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy. See [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
-- SCST - Scan now offers even more flexibility for users to leverage their existing investments in scanning solutions. In Tanzu Application Platform `v1.5.0`, users will have early access to:
-  - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security which can be utilized to scan source code and images from secure supply chains. See [Install Trivy Scanner (alpha)](./scst-scan/install-trivy-integration.hbs.md).
-  - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that aren't included out-of-the-box. Got a scanner that you'd like to use with Tanzu Application Platform? Check out the instructions [here](./scst-scan/app-scanning-alpha.hbs.md).
-  - The Tanzu team is looking for early adopters to test drive both of these alpha offerings and provide feedback; simply get in touch with your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
+- SCST - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform `v1.5.0`, users have early access to:
+  - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security scans source code and images from secure supply chains. See [Install Trivy (alpha)](./scst-scan/install-trivy-integration.hbs.md).
+  - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that aren't included by default. Got a scanner that you'd like to use with Tanzu Application Platform? See [Supply Chain Security Tools - App Scanning](./scst-scan/app-scanning-alpha.hbs.md).
+  - The Tanzu team is looking for early adopters to test drive both of these alpha offerings and provide feedback. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
 
 #### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
