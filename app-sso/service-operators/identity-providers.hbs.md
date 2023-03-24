@@ -99,10 +99,15 @@ spec:
   identityProviders:
     - name: "openid-idp"
       openid:
+        scopes:
+          - upstream-identity-providers-groups-claim # optional, based on identity provider
         roles:
           fromUpstream:
             claim: "upstream-identity-providers-groups-claim"
 ```
+
+> **Caution** Some OpenID providers, such as Okta OpenID, may require requesting the roles/groups scope from the
+> identity provider, and so it must be listed within `.openid.scopes` list.
 
 For every [ClientRegistration](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
 token will be populated with the `roles` claim:

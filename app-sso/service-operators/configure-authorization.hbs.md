@@ -73,6 +73,7 @@ kind: ClientRegistration
 # ...
 spec:
     scopes:
+    - name: "roles" # Must request special 'roles' scope
     - name: "hr.read"
     - name: "hr.write"
 ```
@@ -113,6 +114,7 @@ kind: ClientRegistration
 # ...
 spec:
     scopes:
+    - name: "roles" # Must request special 'roles' scope
     - name: "developer.read"
 ```
 
@@ -146,7 +148,7 @@ spec:
               - "developer.read"       # ^^
               - "developer.write"      # ^^
               - "developer.delete"     # ^^
-          rolesToScopes:
+            rolesToScopes:
             - fromRole: "hr"           # -> Role "hr" is mapped to "hr.read", "hr.write" scopes.
               toScopes:                #    Only users with "hr" role can be issued access token with these scopes.
                 - "hr.read"            # ^^
@@ -165,6 +167,7 @@ kind: ClientRegistration
 # ...
 spec:
   scopes:
+    - name: "roles" # Must request special 'roles' scope
     - name: "developer.read"
     - name: "developer.write"
     - name: "developer.delete"
