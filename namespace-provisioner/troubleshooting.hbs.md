@@ -16,7 +16,7 @@ Use - f to follow the log output.
 After the Namespace Provisioner is installed in the Tanzu Application Platform cluster, the main resource to check is the [provisioner](#heading=h.ppkq2k2gr7y8) Carvel Application in the `tap-namespace-provisioning` namespace. To check for the status of the Application, run the following kubectl command:
 
 ```console
-kubectl -n tap-namespace-provisioning get app/provisioner --template={{.status.usefulErrorMessage}}
+kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
 ```
 
 ## Common errors
@@ -51,7 +51,7 @@ When working with ytt, templating errors in the additional sources in your GitOp
 
 
 ```console
-kubectl -n tap-namespace-provisioning get app/provisioner --template={{.status.usefulErrorMessage}}
+kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
 ```
 
 
