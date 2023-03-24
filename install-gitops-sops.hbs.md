@@ -114,7 +114,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 4. Click **Tanzu Gitops Reference Implementation**.
 5. Unpack the downloaded TGZ file into the `$HOME/tap-gitops` directory by running:
    ```console
-   tar -xvf tanzu-gitops-ri-0.0.3.tgz -C $HOME/tap-gitops
+   tar xvf tanzu-gitops-ri-*.tgz -C $HOME/tap-gitops
    ```
 6. Commit the initial state:
    ```console
