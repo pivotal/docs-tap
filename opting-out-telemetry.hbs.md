@@ -9,6 +9,10 @@ and the other benefits that accompany participation in the CEIP.
 
 ## <a id="turn-off"></a> Turn off telemetry collection
 
+To turn off telemetry collection, follow the instructions below. To deactivate Pendo telemetry collection, please proceed to [Enable or deactivate the Pendo telemetry for the organization](../docs-tap/opting-out-telemetry.hbs.md#enable-or-deactivate-the-pendo-telemetry-for-the-organization).
+
+>**Note** If you decide to opt in Pendo telemetry collection, each user shall be given the option to opt in or opt out, according to the instruction [here](../docs-tap/tap-portal-telemetry.hbs.md).
+
 ### Using Kubectl
 To turn off telemetry collection on your Tanzu Application Platform installation:
 
@@ -84,4 +88,25 @@ tanzu telemetry update --CEIP-opt-in
 
 $ tanzu telemetry update --CEIP-opt-out
 *no output*
+```
+
+### <a id="nbl-or-dsbl-pendo-for-org"></a> Enable or deactivate the Pendo telemetry for the organization
+
+To enable Pendo telemetry for the organization, add the following parameters to your `tap-values.yaml` file:
+
+```yaml
+tap_gui:
+  app_config:
+    pendoAnalytics:
+      enabled: true
+```
+
+To deactivate the program for the entire organization, add the following parameters to your
+`tap-values.yaml` file:
+
+```yaml
+tap_gui:
+  app_config:
+    pendoAnalytics:
+      enabled: false
 ```
