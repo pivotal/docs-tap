@@ -160,7 +160,7 @@ that the resulting project is generated as expected.
     parameters passed in through the `--options` field, and outputs the project to a specified
     directory.
 
-    >**Important** This step requires that the `accelerator` endpoint is exposed and accessible.
+    >**Important** This step requires that the `TANZU-APPLICATION-ACCELERATOR-URL` endpoint is exposed and accessible. See: [Server API connections for operators and developers](../cli-plugins/accelerator/overview.hbs.md#server-api-connections-for-operators-and-developers).
 
     ```bash
     tanzu accelerator generate-from-local \
