@@ -30,7 +30,7 @@ Options if using Controller
    name: Name of the secret to be imported to use as valuesFrom in kapp.
    namespace: Namespace where the secret exists.
    create_export:  Boolean flag to control creation of a SecretExport resource in the namespace mentioned above. Default value is false. If the Secret is already exported, make sure it is exported to tap-namespace-provisioning namespace for this feature to work.
-   - path needs to start with the prefix _ytt_lib/. Namespace provisioner mounts all the additional sources as a ytt library so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the _ytt_lib prefix should be unique across all additional sources but it can be any string value.
+   - path needs to start with the prefix _ytt_lib/. Namespace Provisioner mounts all the additional sources as a ytt library so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the _ytt_lib prefix should be unique across all additional sources but it can be any string value.
 
    Sample TAP values configuration:
 
@@ -52,7 +52,7 @@ Options if using Controller
 
    See [Git Authentication](#fake) for using a private Git repository guide.
 
-   ## Adjust sync period of namespace provisioner
+   ## Adjust sync period of Namespace Provisioner
 
    - sync_period defines the wait time for the provisioner to reconcile. sync_period is specified in time + unit format. The minimum sync_period allowed is 30 seconds. Namespace Provisioner will set the sync_period value to 30s if a lesser value is specified in TAP values. If not specified, value is defaulted to 1m0s.
 
@@ -124,7 +124,7 @@ Options if using Controller
 
    ## Override default CPU and memory limits for controller pods
 
-   Compute Resources of namespace provisioner controllers are configurable using the controller_resources section in namespace provisioner configuration in TAP values.
+   Compute Resources of Namespace Provisioner controllers are configurable using the controller_resources section in Namespace Provisioner configuration in TAP values.
    By setting controller_resources.resources.limits.cpu and controller_resources.resources.limits.memory one can configure the maximum cpu and memory that are allowed for the controller to use.
    Similarly, by setting controller_resources.resources.requests.cpu and controller_resources.resources.requests.memory one can configure the minimum cpu capacity and memory available for the controller.
 
@@ -144,6 +144,7 @@ Options if using Controller
   ```
 
    ## Support for AWS IAM roles
+
    If the TAP installation is on AWS with EKS, use the IAM Role from aws_iam_role_arn for the Kubernetes Service Account that is used by Workload and the Supply chain to create resources.
    Sample TAP values configuration:
 
@@ -175,7 +176,7 @@ Options if using Controller
    ## Customize label/annotation prefixes that controller watches
 
    - parameter_prefixes is an array of label/annotation prefixes the controller will look for to add namespace specific parameters into the desired-namespaces ConfigMap which can be used as ytt data.values for templating default and additional resources.
-   - For Example the value tap.tanzu.vmware.com tells the namespace provisioner controller to look for the annotations/labels on a provisioned namespace that start with the prefix tap.tanzu.vmware.com/ and use those as parameters.
+   - For Example the value tap.tanzu.vmware.com tells the Namespace Provisioner controller to look for the annotations/labels on a provisioned namespace that start with the prefix tap.tanzu.vmware.com/ and use those as parameters.
 
    Sample TAP values configuration:
 
@@ -189,7 +190,7 @@ Options if using Controller
 
    ## Import Overlay secrets
 
-   - overlay_secrets is a list of secrets which contains carvel ytt overlay definitions that are applied to the resources created by the namespace provisioner. The secrets will be imported to namespace-provisioner namespace if it is in another namespace.
+   - overlay_secrets is a list of secrets which contains carvel ytt overlay definitions that are applied to the resources created by the Namespace Provisioner. The secrets will be imported to namespace-provisioner namespace if it is in another namespace.
 
    >**Note** stringData key of the secret should have .yaml or .yml suffix at the end.
 
@@ -295,8 +296,8 @@ Options if using GitOps
      - additional_sources[].git can have secretRef specified for providing auth details for connecting to a private git repository (see Git Authentication for Private repository for more details). It accepts name, namespace of the secrets and create_export parameters as shown in the example below.
          - name: Name of the secret to be imported to use as valuesFrom in kapp.
          - namespace: Namespace where the secret exists.
-         - create_export:  Boolean flag to decide creation of a SecretExport resource in the namespace mentioned above. Default value is false. If the Secret is already exported by user, please make sure it is exported for tap-namespace-provisioning namespace for this feature to work.
-     - path needs to start with the prefix _ytt_lib/. Namespace provisioner mounts all the additional sources as a ytt library so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the _ytt_lib prefix should be unique across all additional sources but it can be any string value.
+         - create_export:  Boolean flag to decide creation of a SecretExport resource in the namespace mentioned above. Default value is false. If the Secret is already exported by user, make sure it is exported for tap-namespace-provisioning namespace for this feature to work.
+     - path needs to start with the prefix _ytt_lib/. Namespace Provisioner mounts all the additional sources as a ytt library so it can expand the manifests in the additional sources for all managed namespaces using the logic in the expansion template. The path after the _ytt_lib prefix should be unique across all additional sources but it can be any string value.
 
      Sample TAP values configuration:
 
@@ -322,7 +323,7 @@ Options if using GitOps
 
      See [Git Authentication for using a private Git repository for Additional resources](#fake) guide.
 
-     ## Adjust sync period of namespace provisioner
+     ## Adjust sync period of Namespace Provisioner
 
      - sync_period defines the wait time for the provisioner to reconcile. sync_period is specified in time + unit format. 30 seconds would be defaulted if a value less than 30 seconds is specified. If not specified, value is defaulted to 1m0s.
 
@@ -335,10 +336,10 @@ Options if using GitOps
 
      ## Import user defined secrets in YAML format as ytt data.values
 
-     - import_data_values_secrets is an array of additional secrets in YAML format to import in the provisioner as data.values under the data.values.imported key. SecretImport for the secrets listed in the array will be created in tap-namespace-provisioning namespace by the namespace provisioner package. Users have a choice to create SecretExport for the same secrets manually and export it to tap-namespace-provisioning namespace or more broadly, or let the namespace provisioner package create it for them. Parameters include
+     - import_data_values_secrets is an array of additional secrets in YAML format to import in the provisioner as data.values under the data.values.imported key. SecretImport for the secrets listed in the array will be created in tap-namespace-provisioning namespace by the Namespace Provisioner package. Users have a choice to create SecretExport for the same secrets manually and export it to tap-namespace-provisioning namespace or more broadly, or let the Namespace Provisioner package create it for them. Parameters include
          - name: Name of the secret to be imported to use as valuesFrom in kapp.
          - namespace: Namespace where the secret exists.
-         - create_export:  Boolean flag to decide creation of a SecretExport resource in the namespace mentioned above. Default value is false. If the Secret is already exported by user, please make sure it is exported for tap-namespace-provisioning namespace for this feature to work.
+         - create_export:  Boolean flag to decide creation of a SecretExport resource in the namespace mentioned above. Default value is false. If the Secret is already exported by user, make sure it is exported for tap-namespace-provisioning namespace for this feature to work.
 
      > **Note** stringData key of the secret should have .yaml or .yml suffix at the end.
 
@@ -398,7 +399,7 @@ Options if using GitOps
 
      ## Import Overlay secrets
 
-     overlay_secrets is a list of secrets which contains carvel ytt overlay definitions that are applied to the resources created by the namespace provisioner. The secrets will be imported to namespace-provisioner namespace if it is in another namespace.
+     overlay_secrets is a list of secrets which contains carvel ytt overlay definitions that are applied to the resources created by the Namespace Provisioner. The secrets will be imported to namespace-provisioner namespace if it is in another namespace.
 
      > **Note** stringData key of the secret should have .yaml or .yml suffix.
 

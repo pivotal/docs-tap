@@ -38,6 +38,13 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
+#### <a id='1-5-0-tap-gui-new-features'></a> Tanzu Application Platform GUI
+
+- Tanzu Application Platform GUI now supports automatic configuration with Supply Chain Security Tools - Store. The instruction is referenced in [Automatically connect Tanzu Application Platform GUI to the Metadata Store](../docs-tap/tap-gui/plugins/scc-tap-gui.hbs.md#automatically-connect-tanzu-application-platform-gui-to-the-metadata-store).
+- Tanzu Application Platform GUI enables specification of security banners. To use this customization, please refer to [Customize security banners](../docs-tap/tap-gui/customize/customize-portal.hbs.md#customize-security-banners)
+- Tanzu Application Platform GUI includes optional plugin that collects telemetry via the Pendo tool. To configure Pendo telemetry and opt in or opt out, please follow the instruction specified [here](../docs-tap/opting-out-telemetry.hbs.md).
+  - **Disclosure**: this upgrade includes a java script operated by our service provider Pendo.io. The java script will be installed on selected pages of the VMware Software and will collect information on your use of the Software, such as clickstream data and page loads, hashed user ID and limited browser and device information. This information will be used to better understand the way you use the Software in order to improve VMware products and services and your experience. For more details please see the VMware Customer Experience Improvement Program at the following link: http://www.vmware.com/trustvmware
+
 #### <a id='1-5-0-services-toolkit-new-features'></a> Services Toolkit
 
 - Services Toolkit now supports the dynamic provisioning of Services Instances. `ClusterInstanceClass` now supports the new provisioner mode. When a `ClassClaims` is created and refers to a provisioner `ClusterInstanceClass` a new Service Instance is created on-demand and claimed. This is powered by [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane).
@@ -145,7 +152,7 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
-### <a id='1-5-0-cnrs-ki'></a> Cloud Native Runtimes
+#### <a id='1-5-0-cnrs-ki'></a> Cloud Native Runtimes
 
 - When using auto-tls, on by default, DomainMapping resources must have names that are less than 63 characters. Otherwise, the DomainMapping fails to become ready due to `CertificateNotReady`.
 
@@ -199,6 +206,10 @@ This release has the following known issues, listed by area and component.
   discourages committing binaries to source code repositories. The
   vulnerabilities are still found during the image scan after the binaries are
   built and packaged as images.
+
+#### <a id='1-5-0-tap-gui-ki'></a> Tanzu Application Platform GUI
+
+- Security Banners customization may be partially (bottom banner) overlayed by the information displayed by the portal. We expect to resolve this issue in the future release.
 
 ### <a id='1-5-0-deprecations'></a> Deprecations
 

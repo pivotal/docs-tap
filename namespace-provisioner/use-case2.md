@@ -2,10 +2,10 @@
 
 Refer to the [Provision Developer Namespaces](#heading=h.y3di0ufxnjb4) section to create a developer namespace.
 
-Namespace provisioner allows users to parameterize their additional resources and let them pass those parameters. This allows users to create a Tekton pipeline and ScanPolicy that is bespoke to certain namespaces that are running workloads using a particular language stack instead of creating all the pipelines in all provisioned namespaces. To achieve this, we will look at the pipelines and ScanPolicies in this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain-parameterized).
+Namespace Provisioner allows users to parameterize their additional resources and let them pass those parameters. This allows users to create a Tekton pipeline and ScanPolicy that is bespoke to certain namespaces that are running workloads using a particular language stack instead of creating all the pipelines in all provisioned namespaces. To achieve this, we will look at the pipelines and ScanPolicies in this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/testing-scanning-supplychain-parameterized).
 
 Using Namespace Provisioner Controller
-: When using the namespace provisioner controller, we can pass the parameters to a namespace via labels and annotations on the namespace. To enable this, we will set the `parameter_prefixes` in TAP configuration for Namespace provisioner so the controller will look for labels/annotations starting with that prefix to populate parameters for a given namespace (See Controller section of [Customize Installation](#heading=h.lc08xegj8s5n) guide for more information)
+: When using the Namespace Provisioner controller, we can pass the parameters to a namespace via labels and annotations on the namespace. To enable this, we will set the `parameter_prefixes` in TAP configuration for Namespace Provisioner so the controller will look for labels/annotations starting with that prefix to populate parameters for a given namespace (See Controller section of [Customize Installation](#heading=h.lc08xegj8s5n) guide for more information)
 
     Add the following configuration to your TAP values to add parameterized tekton pipelines and scan policies to your developer namespace:
 
@@ -21,8 +21,7 @@ Using Namespace Provisioner Controller
     parameter_prefixes:
     - tap.tanzu.vmware.com
     ```
-
-    **NOTE:** we added `tap.tanzu.vmware.com` as a parameter_prefixes in Namespace provisioner configuration. This tells the namespace provisioner controller to look for the annotations/labels on a provisioned namespace that start with the prefix `tap.tanzu.vmware.com/` and use those as parameters.
+    >**Note** we added `tap.tanzu.vmware.com` as a parameter_prefixes in Namespace Provisioner configuration. This tells the Namespace Provisioner controller to look for the annotations/labels on a provisioned namespace that start with the prefix `tap.tanzu.vmware.com/` and use those as parameters.
 
     The sample pipelines have the following ytt logic which creates this pipeline only if
 
@@ -82,7 +81,7 @@ Using GitOps
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
 
-    **NOTE:** we added `gitops_install` with this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps (See GitOps section of [Customize Installation](#heading=h.lc08xegj8s5n) guide for more information)
+    **Note** we added `gitops_install` with this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps (See GitOps section of [Customize Installation](#heading=h.lc08xegj8s5n) guide for more information)
 
     Sample of `gitops_install` files:
 

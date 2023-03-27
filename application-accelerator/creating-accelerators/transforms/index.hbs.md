@@ -18,6 +18,7 @@ Here is a list of available transforms and a brief description of their uses. Yo
 - [UseEncoding](use-encoding.md) to set the encoding to use when handling files as text.
 - [UniquePath](unique-path.md) to decide what to do when several files end up on the same path.
 - [Loop](loop.md) to iterate over a list and apply a transform for each element.
+- [Provenance](provenance.md) to generate a manifest of the accelerator run.
 
 ## See also
 
