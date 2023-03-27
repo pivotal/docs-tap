@@ -6,25 +6,25 @@ This repo contains the content for Tanzu Application Platform docs.
 
 ## Branches
 
-|Branch|Staging|Production|
-|----|----|----|
-|main| [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) (Pre-release v1.5 docs)|n/a|
-|1-4-2| [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) |
-|1-4-1|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
-|1-4-0|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
-|1-3-6| [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) |
-|1-3-5|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
-|1-3-4|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
-|1-3-3|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
-|1-3-2|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
-|1-3-1|Not in use. Do not PR to this branch.|Not in use. Do not PR to this branch.|
-|1-3-0|No longer in use. Do not PR to this branch.|No longer in use. Do not PR to this branch.|
-|1-2-2| [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html) |
-|1-2-1|No longer in use. Do not PR to this branch.|No longer in use. Do not PR to this branch.|
-|1-2-0|No longer in use. Do not PR to this branch.|No longer in use. Do not PR to this branch.|
-|1-2|No longer in use. Do not PR to this branch.|No longer in use. Do not PR to this branch.|
-|1-1| [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html) |
-|1-0| [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html) |
+| Branch | Staging | Production |
+|--------|---------|------------|
+| main   | [Staging](https://docs-staging.vmware.com/en/draft/VMware-Tanzu-Application-Platform/1.5/tap/overview.html) (Pre-release v1.5 docs) | n/a |
+| 1-4-2  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/overview.html) |
+| 1-4-1  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-4-0  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-3-6  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.3/tap/GUID-overview.html) |
+| 1-3-5  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-3-4  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-3-3  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-3-2  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-3-1  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-3-0  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-2-2  | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.2/tap/GUID-overview.html) |
+| 1-2-1  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-2-0  | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-2    | Not in use. Do not PR to this branch. | Not in use. Do not PR to this branch. |
+| 1-1    | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.1/tap/GUID-overview.html) |
+| 1-0    | [Staging](https://docs-staging.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html) | [Production](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.0/tap/GUID-overview.html) |
 
 ## Components with their own repositories
 
@@ -90,7 +90,7 @@ stored in dedicated repositories.
 
 ### Using names for the Supply Chain Security Tools components
 
-- Use the short name in the Table of Contents, Release Notes headings, and Components page headers.
+- Use the short name in the Table of Contents, Release Notes headers, and Components page headers.
 - Use the short name on the first occurrence in the component page description, and the first
   occurrence in the actual component doc, and then use the initialism after this.
 
