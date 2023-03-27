@@ -2,7 +2,7 @@
 
 Refer to the [Provision Developer Namespaces](#heading=h.y3di0ufxnjb4) section to create a developer namespace.
 
-This guide shows how you can automate multiple scanner installations in the developer namespace. By default, Grype scanner is installed Out-of-the-box in all namespaces managed by namespace provisioner. Following are the steps to install Snyk scanner in the developer namespace along with Grype and use both together in the supply chain (Grype for Source scans and Snyk for Image scans).
+This guide shows how you can automate multiple scanner installations in the developer namespace. By default, Grype scanner is installed Out-of-the-box in all namespaces managed by Namespace Provisioner. Following are the steps to install Snyk scanner in the developer namespace along with Grype and use both together in the supply chain (Grype for Source scans and Snyk for Image scans).
 
 Create a secret in the `tap-install` namespace (or any namespace of your preference) that contains the Snyk token in the YAML format **(must have .yaml or .yml in the key)** as shown below:
 
@@ -70,7 +70,7 @@ Using GitOps
         * `snyk-token-secret.yaml`
             1. is a Snyk token secret that needs to be created in our developer namespace. Instead of putting the actual snyk token in the secret in our Git repository, we will put the reference to the values in the scanner-auth secret created in Step 1 by using the `data.values.imported` keys.
         * `snyk-scanner-install.yaml`
-            2. which contains the PackageInstall for installing the Snyk package for our developer namespace. One particular thing to note on this file is that we have mentioned the namespace: tap-install in the PackageInstall resource. This signals the namespace provisioner to create a PackageInstall resource for all provisioned namespaces in the same namespace (in our case tap-install) and add` -{namespace}` as the suffix in the name to avoid name collisions.
+            2. which contains the PackageInstall for installing the Snyk package for our developer namespace. One particular thing to note on this file is that we have mentioned the namespace: tap-install in the PackageInstall resource. This signals the Namespace Provisioner to create a PackageInstall resource for all provisioned namespaces in the same namespace (in our case tap-install) and add` -{namespace}` as the suffix in the name to avoid name collisions.
 
     Our setup is complete. Run the following Tanzu CLI command to apply a workload in your developer namespace that uses Grype for source scan and Snyk for Image scan:
 

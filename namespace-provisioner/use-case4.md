@@ -2,35 +2,35 @@
 
 ## Disable Grype install
 
-Namespace provisioner creates Grype scanner install as one of the [default resources](#heading=h.9bbhl1opwx65). If users choose to use another scanner for all their namespaces instead of Grype, they can disable the installation of the Out-of-the-box Grype scanner as follows.
+Namespace Provisioner creates Grype scanner install as one of the [default resources](#heading=h.9bbhl1opwx65). If users choose to use another scanner for all their namespaces instead of Grype, they can disable the installation of the Out-of-the-box Grype scanner as follows.
 
-1. Create an overlay secret as follows which removes the Grype scanner and the secret that is automatically created by Namespace provisioner.
+1. Create an overlay secret as follows which removes the Grype scanner and the secret that is automatically created by Namespace Provisioner.
 
-```console
-cat << EOF | kubectl apply -f -
-apiVersion: v1
-kind: Secret
-metadata:
-  name: disable-ootb-grype-overlay
-  namespace: tap-install
-  annotations:
-    kapp.k14s.io/change-rule: "delete after deleting tap"
-stringData:
- disable-ootb-grype-overlay.yaml: |
-   #@ load("@ytt:overlay", "overlay")
-   #@ def matchGrypeStuff(index, left, right):
-   #@   if (left["apiVersion"] != "packaging.carvel.dev/v1alpha1" or left["kind"] != "PackageInstall") and (left["kind"] != "Secret"):
-   #@     return False
-   #@   end
-   #@   return "metadata" in left and "name" in left["metadata"] and left["metadata"]["name"].startswith("grype-scanner")
-   #@ end
+    ```console
+    cat << EOF | kubectl apply -f -
+    apiVersion: v1
+    kind: Secret
+    metadata:
+    name: disable-ootb-grype-overlay
+    namespace: tap-install
+    annotations:
+        kapp.k14s.io/change-rule: "delete after deleting tap"
+    stringData:
+    disable-ootb-grype-overlay.yaml: |
+    #@ load("@ytt:overlay", "overlay")
+    #@ def matchGrypeStuff(index, left, right):
+    #@   if (left["apiVersion"] != "packaging.carvel.dev/v1alpha1" or left["kind"] != "PackageInstall") and (left["kind"] != "Secret"):
+    #@     return False
+    #@   end
+    #@   return "metadata" in left and "name" in left["metadata"] and left["metadata"]["name"].startswith("grype-scanner")
+    #@ end
 
-   #@overlay/match by=matchGrypeStuff, expects="0+"
-   ---
-EOF
-```
+    #@overlay/match by=matchGrypeStuff, expects="0+"
+    ---
+    EOF
+    ```
 
-2. Import this overlay secret onto Namespace Provisioner configuration so it gets applied to the resources created by Namespace provisioner for all managed namespaces.
+2. Import this overlay secret onto Namespace Provisioner configuration so it gets applied to the resources created by Namespace Provisioner for all managed namespaces.
 
 Using Namespace Provisioner Controller
 : Add the following configuration to your TAP values
@@ -70,7 +70,7 @@ To configure the service account to work with private git repositories, follow t
     * `host`, `username` and `password` values for HTTP based Git Authentication.
     * `ssh-privatekey, identity, identity_pub`, and `known_hosts` for SSH based Git Authentication.
 
-**NOTE**: stringData key of the secret must have **.yaml** or **.yml** suffix at the end. 
+>**Note**: stringData key of the secret must have **.yaml** or **.yml** suffix at the end.
 
 ```console
 #! Example shows HTTP as well as SSH based authentication
@@ -136,7 +136,7 @@ stringData:
 EOF
 ```
 
-- We will now put all this together in namespace provisioner configuration in TAP values as follows:
+- We will now put all this together in Namespace Provisioner configuration in TAP values as follows:
 
 Using Namespace Provisioner Controller
 : Add the following configuration to your TAP values
@@ -186,15 +186,15 @@ Using GitOps
         create_export: true
     ```
 
-    * First additional source points to the location where our templated git secret resides which will be created in all developer namespaces.
-    * Second additional source points to the overlay file which will add the git secret onto the default service account
-    * Finally, import the newly created `workload-git-auth` secret into Namespace provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets` (See the [Templating additional sources](#heading=h.bcqllo8t167x) for more details)
+    - First additional source points to the location where our templated git secret resides which will be created in all developer namespaces.
+    - Second additional source points to the overlay file which will add the git secret onto the default service account
+    - Finally, import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets` (See the [Templating additional sources](#heading=h.bcqllo8t167x) for more details)
 
-    Note that `create_export` is set to` true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by namespace provisioner. After the changes are reconciled, you should see the secret named **git **in all provisioned namespaces and also added to the default service account of those namespaces.
+    >**Note** `create_export` is set to` true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by Namespace Provisioner. After the changes are reconciled, you should see the secret named **git ** in all provisioned namespaces and also added to the default service account of those namespaces.
 
 ## Customize Limit Range defaults
 
-**Namespace Provisioner **creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resource (see [Default Resource created by Namespace Provisioner](#heading=h.9bbhl1opwx65)) in all namespaces managed by provisioner. Default values in LimitRange resource are as follows:  \
+Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resource (see [Default Resource created by Namespace Provisioner](#heading=h.9bbhl1opwx65)) in all namespaces managed by provisioner. Default values in LimitRange resource are as follows:  \
 
 ```console
 limits:
@@ -208,7 +208,7 @@ limits:
 
 ### Update LimitRange defaults for all namespaces
 
-Namespace Provisioner provides options for updating the values in LimitRange for all namespaces managed by the provisioner by specifying the `default_parameters` configuration in namespace provisioner TAP values as follows:
+Namespace Provisioner provides options for updating the values in LimitRange for all namespaces managed by the provisioner by specifying the `default_parameters` configuration in Namespace Provisioner TAP values as follows:
 
 ```console
 namespace_provisioner:
@@ -241,7 +241,7 @@ Using Namespace Provisioner Controller
     ```
 
     * Controller will look at all the annotations/labels with prefix `param.nsp.tap/` and add the keys and its values in the desired-namespace configmaps as parameters for that namespace.
-    * Users can provide a custom prefix for the controller to look at if they do not want to use the default `param.nsp.tap` using parameter_prefixes configuration in namespace provisioner TAP values. See [Controller Customization](#heading=h.lc08xegj8s5n) for more information on setting parameter_prefixes.
+    * Users can provide a custom prefix for the controller to look at if they do not want to use the default `param.nsp.tap` using parameter_prefixes configuration in Namespace Provisioner TAP values. See [Controller Customization](#heading=h.lc08xegj8s5n) for more information on setting parameter_prefixes.
 
     >**Note** Labels take precedence over annotations if the same key is provided in both.
 
@@ -289,4 +289,4 @@ Using GitOps
     #@ end
     ```
 
-    The Namespace provisioner will create a LimitRange with default values for `qa` namespace and with the given values for `dev` namespace
+    The Namespace Provisioner will create a LimitRange with default values for `qa` namespace and with the given values for `dev` namespace

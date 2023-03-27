@@ -21,7 +21,7 @@ credentials exported for that managed  namespace.
 
 ## Manage a list of Developer namespaces
 
-There are 2 ways to manage the list of Developer namespaces that are managed by Namespace provisioner.
+There are 2 ways to manage the list of Developer namespaces that are managed by Namespace Provisioner.
 
 Using Namespace Provisioner Controller
 : Description
@@ -48,7 +48,7 @@ Using Namespace Provisioner Controller
         kubectl label namespaces YOUR-NEW-DEVELOPER-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
         ```
 
-      - This label tells the namespace provisioner controller to add this namespace to the
+      - This label tells the Namespace Provisioner controller to add this namespace to the
       desired-namespaces ConfigMap.
       - By default, the label’s value can be anything, including "".
       - If required, you can change the default label selector (See Controller section of the
@@ -98,7 +98,7 @@ Using GitOps
 
     This GitOps configuration will do the following things:
 
-    - controller: false will tell the namespace provisioner package to not install the controller
+    - controller: false will tell the Namespace Provisioner package to not install the controller
     as the list of namespaces will be managed in a GitOps repository.
     - The samples/gitops-install directory specified as the subPath value in the TAP values
     configuration sample above includes 2 files:
@@ -106,7 +106,7 @@ Using GitOps
     namespaces.yaml contains a Kubernetes namespace object.
 
     >**Note** If you have another tool like Tanzu Mission Control or some other process that is
-    taking care of creating namespaces for you, and you don’t want a namespace provisioner to create
+    taking care of creating namespaces for you, and you don’t want a Namespace Provisioner to create
     the namespaces, you can delete this file from your GitOps install repository.
     >**Important**  The GitOps sample creates the following two namespaces: `dev` and `qa`. If these
     namespaces already exist in your cluster, remove them or rename the namespaces in your GitOps

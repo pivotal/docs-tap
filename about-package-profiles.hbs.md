@@ -151,7 +151,7 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
 
 - **[Namespace Provisioner](namespace-provisioner/about.hbs.md)**
 
-  Namespace provisioner provides an easy, secure, automated way for Platform Operators to provision
+  Namespace Provisioner provides an easy, secure, automated way for Platform Operators to provision
   namespaces with the resources and proper namespace-level privileges needed for developer workloads
   to function as intended.
 

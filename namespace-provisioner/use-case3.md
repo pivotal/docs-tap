@@ -4,15 +4,15 @@
 
 Namespaces provisioner enables users to use private git repositories for storing their Gitops based installation files as well as additional platform operator templated resources that they want to create in their developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources (See [Customize Installation](#heading=h.lc08xegj8s5n) for more details).
 
-## Create the Git Authentication secret in tap-namespace-provisioning namespace.
+### Create the Git Authentication secret in tap-namespace-provisioning namespace.
 
-The secrets for Git authentication allow the following keys:** **
+The secrets for Git authentication allow the following keys:
 
-* ssh-privatekey
-* ssh-knownhosts
-    * if ssh-knownhosts is not specified, git will not perform strict host checking.
-* username
-* password
+- ssh-privatekey
+- ssh-knownhosts
+>**Note** if ssh-knownhosts is not specified, Git will not perform strict host checking.
+-  username
+- password
 
 Using HTTP(s) based Authentication
 : If using Username and Password for authentication, create the git secret with authentication details as follows:
@@ -50,7 +50,7 @@ Using SSH based Authentication
     EOF
     ```
 
-Next, Add the` secretRef` section to the` additional_sources` and the `gitops_install` section of the namespace provisioner configuration in your TAP values: <!--is this outside tabs-->
+Next, Add the` secretRef` section to the` additional_sources` and the `gitops_install` section of the Namespace Provisioner configuration in your TAP values: <!--is this outside tabs-->
 
 Using Namespace Provisioner Controller
 : Description
@@ -97,11 +97,11 @@ Using GitOps
         name: git-auth-install
     ```
 
-## Import from another namespace
+### Import from another namespace
 
-If you already have a Git secret created in a namespace other than `tap-namespace-provisioning `namespace and you want to refer to that, the secretRef section should have the namespace mentioned along with the` create_export` flag. The default value for create_export is false as it assumes the Secret is already exported for tap-namespace-provisioning namespace, but allows the user to specify if they want the Namespace provisioner to create a` Carvel SecretExport` for that secret. 
+If you already have a Git secret created in a namespace other than `tap-namespace-provisioning `namespace and you want to refer to that, the secretRef section should have the namespace mentioned along with the` create_export` flag. The default value for create_export is false as it assumes the Secret is already exported for tap-namespace-provisioning namespace, but allows the user to specify if they want the Namespace Provisioner to create a` Carvel SecretExport` for that secret.
 
-Please find the below example referring to<code> git-auth<strong> </strong></code>secret from<code> tap-install</code> in the secretRef section.
+Find the below example referring to `git-auth` secret from `tap-install` in the secretRef section.
 
 Using Namespace Provisioner Controller
 : Description
@@ -155,7 +155,7 @@ Using GitOps
 
 After reconciling, Namespace Provisioner will create:
 
-* [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) for the secret in the provided namespace (tap-install in the above example) to the namespace provisioner namespace.
+* [SecretExport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretexport) for the secret in the provided namespace (tap-install in the above example) to the Namespace Provisioner namespace.
 * [SecretImport](https://github.com/carvel-dev/secretgen-controller/blob/develop/docs/secret-export.md#secretimport) for the secret in Namespace Provisioning namespace (tap-namespace-provisioning) so Carvel [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) can create the required secret for the Provisioner to connect to the Private Git Repository.
 
 ## Git Authentication for Private Repository for Workloads and Supply chain
@@ -170,7 +170,7 @@ To configure the service account to work with private git repositories, follow t
     * `host`, `username` and `password` values for HTTP based Git Authentication.
     * `ssh-privatekey, identity, identity_pub`, and `known_hosts` for SSH based Git Authentication.
 
-**NOTE**: stringData key of the secret must have **.yaml** or **.yml** suffix at the end. 
+>**Note**: stringData key of the secret must have **.yaml** or **.yml** suffix at the end.
 
 Using HTTP(s) based Authentication
 : If using Username and Password for authentication, create the git secret with authentication details as follows:
@@ -255,7 +255,7 @@ Using SSH based Authentication
     EOF
     ```
 
-* We will now put all this together in namespace provisioner configuration in TAP values as follows:<!--is this outside tabs-->
+* We will now put all this together in Namespace Provisioner configuration in TAP values as follows:<!--is this outside tabs-->
 
 Using Namespace Provisioner Controller
 : Add the following configuration to your TAP values
@@ -307,6 +307,6 @@ Using GitOps
 
     * First additional source points to the location where our templated git secret resides which will be created in all developer namespaces.
     * Second additional source points to the overlay file which will add the git secret onto the default service account
-    * Finally, import the newly created `workload-git-auth` secret into Namespace provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets` (See the [Templating additional sources](#heading=h.bcqllo8t167x) for more details)
+    * Finally, import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets` (See the [Templating additional sources](#heading=h.bcqllo8t167x) for more details)
 
-    Note that `create_export` is set to` true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by namespace provisioner. After the changes are reconciled, you should see the secret named **git **in all provisioned namespaces and also added to the default service account of those namespaces.
+    >**Note** `create_export` is set to` true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by Namespace Provisioner. After the changes are reconciled, you should see the secret named **git **in all provisioned namespaces and also added to the default service account of those namespaces.
