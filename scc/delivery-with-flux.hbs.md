@@ -1,109 +1,108 @@
-# Gitops Delivery with FluxCD
+# Use Gitops Delivery with FluxCD
 
-This guide outlines the delivery of packages created by the Out of the Box Supply Chain
-with `carvel-package-workflow-enabled` and added to a GitOps repo to Run cluster(s).
+This topic outlines the delivery of packages created by the Out of the Box Supply Chain
+with `carvel-package-workflow-enabled` and added to a GitOps repository to one or more run clusters.
 
 ## Prerequisites
 
- - The Build cluster is created and has network access to your run clusters. It must have the following components installed:
+To use Gitops Delivery with FluxCD, complete the following prerequisites:
+
+ - The Build cluster is created and has network access to your run clusters. It must have the following component installed:
    - FluxCD [Kustomize Controller](https://fluxcd.io/flux/installation/#dev-install).
-
- - Run clusters serve as your deploy environments. They can either be TAP clusters, or regular Kubernetes clusters, but they need to have the following components installed:
+ - Run clusters serve as your deploy environments. They can either be Tanzu Application Platform clusters, or regular Kubernetes clusters, but they must have the following component installed:
    - [kapp-controller](https://carvel.dev/kapp-controller/)
+ - To target run clusters from the Build cluster, you must create a secret containing each run cluster Kubeconfig. The FluxCD Kustomization resource uses these secrets.
 
- - In order to target Run clusters from the Build cluster, you will need to create a secret containing each Run cluster Kubeconfig. These secrets will be used by the FluxCD Kustomization resource.
+    For each run cluster, run:
 
-    For each run cluster, run the following command:
-
-    ```sh
+    ```console
     kubectl create secret generic <run-cluster>-kubeconfig \
         -n <build_cluster_namespace> \
         --from-file=value.yaml=<path_to_kubeconfig>
     ```
 
-## Prepare the PackageInstall
+## Create the PackageInstall
 
-After the `source-to-url-packag` or `basic-image-to-url-package` [supply chains](./ootb-supply-chain-reference.hbs.md) create a Package yaml file in the gitops repo,
-you need to the add the packageInstall yaml file in the gitops repo as well:
+After the `source-to-url-packag` or `basic-image-to-url-package` [supply chains](./ootb-supply-chain-reference.hbs.md) create a Package YAML file in the GitOps repository,
+you must add the packageInstall YAML file in the GitOps repository.
 
-### PackageInstall Prerequisites
+To use PackageInstall: 
 
-First, create a secret that has the values for the Package param. The configurable properties of a package can be seen by inspecting the Package CR’s valuesSchema.
+1. Create a secret that has the values for the Package parameter. You can see the configurable properties of a package by inspecting the Package CR’s valuesSchema.
 
-```yaml
----
-apiVersion: v1
-kind: Secret
-metadata:
-  name: hello-app-values
-stringData:
-  values.yml: |
-    ---
-    replicas: 2
-    hostname: hello-app.mycompany.com
-```
-For adding the secret to the gitops repo to be deployed by flux, follow the instructions from flux [here](https://fluxcd.io/flux/security/secrets-management/)
+  ```yaml
+  ---
+  apiVersion: v1
+  kind: Secret
+  metadata:
+    name: hello-app-values
+  stringData:
+    values.yml: |
+      ---
+      replicas: 2
+      hostname: hello-app.mycompany.com
+  ```
 
+1. Add the secret to the GitOps repository that Flux deploys. See instructions in the [Flux documentation](https://fluxcd.io/flux/security/secrets-management/).
 
-### Create PackageInstall
+1. Reference the secret created earlier in the same namespace targeted by the PackageInstall.
 
-The PackageInstall references the secret created in the previous step in the same namespace targeted by the PackageInstall.
+  ```yaml
+  ---
+  apiVersion: packaging.carvel.dev/v1alpha1
+  kind: PackageInstall
+  metadata:
+    name: hello-app
+  spec:
+    serviceAccountName: default-ns-sa
+    packageRef:
+      refName: hello-app.mycompany.com
+      versionSelection:
+        constraints: 1.0.0
+    values:
+    - secretRef:
+        name: hello-app-values
+  ```
 
-```yaml
----
-apiVersion: packaging.carvel.dev/v1alpha1
-kind: PackageInstall
-metadata:
-  name: hello-app
-spec:
-  serviceAccountName: default-ns-sa
-  packageRef:
-    refName: hello-app.mycompany.com
-    versionSelection:
-      constraints: 1.0.0
-  values:
-  - secretRef:
-      name: hello-app-values
-```
+  The Package references the package’s refName, version fields, and the versionSelection property which has a constraint's subproperty to give more control over which versions you choose to install.
 
-The Package references the package’s refName and version fields as well as the versionSelection property which has a constraints subproperty to give more control over which versions are chosen for installation.
+1. To manage App and PackageInstall CR privileges by using a service account, you need the verbs in the following role to work with ConfigMaps:
 
-For managing App and PackageInstall CR privileges via a service account, the verbs in the role below are needed for working with ConfigMaps.
-```yaml
-kind: Role
-apiVersion: rbac.authorization.k8s.io/v1
-metadata:
-  name: app-ip-cr-role
-rules:
-- apiGroups: [""]
-  resources: ["configmaps"]
-  verbs: ["get", "list", "create", "update", "delete"]
-```
+  ```yaml
+  kind: Role
+  apiVersion: rbac.authorization.k8s.io/v1
+  metadata:
+    name: app-ip-cr-role
+  rules:
+  - apiGroups: [""]
+    resources: ["configmaps"]
+    verbs: ["get", "list", "create", "update", "delete"]
+  ```
 
-These permissions are needed because of how kapp tracks information about apps it manages, which is via storing information in a ConfigMap. So even if your App or PackageInstall CR does not create ConfigMaps, the service account will still need permissions for working with ConfigMaps.
+  You need these permissions because of how kapp tracks information about apps it manages by storing information in a ConfigMap. If your App or PackageInstall CR does not create ConfigMaps, the service account needs permissions for working with ConfigMaps.
 
-The ConfigMap permissions above are needed in addition to any other resource/verb combinations needed to deploy all resources created by the App and PackageInstall CRs.
+  You need the ConfigMap permissions, in addition to any other resource and verb combinations, to deploy all resources created by the App and PackageInstall CRs.
 
-[Security model](https://carvel.dev/kapp-controller/docs/v0.43.2/security-model/) for explanation of how service accounts are used.
+  For information about how service accounts are used, see [the Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.43.2/security-model/).
 
-### Push PackageInstall
-Push the PackageInstall to the GitOps repo under the the same `$package-name`
+1. Push the PackageInstall to the GitOps repository under the the same `$package-name`
 folder, but under a new folder for each run cluster
 
-```
-/$package-name
-    /packages/$package-id.yaml	        # Carvel Package definitions
-    /$run-cluster/packageinstall.yaml	# A Carvel PackageInstall
-    /$run-cluster/params.yaml	        # Values secret for PackageInstall
-    /...
-```
+  ```console
+  /$package-name
+      /packages/$package-id.yaml          # Carvel Package definitions
+      /$run-cluster/packageinstall.yaml  # A Carvel PackageInstall
+      /$run-cluster/params.yaml          # Values secret for PackageInstall
+      /...
+  ```
 
 ## Create FluxCD GitRepository + FluxCD Kustomization
 
-The [Build cluster](../multicluster/installing-multicluster.hbs.md#install-build-cluster) will use FluxCD to deploy `Packages` and `PackageInstalls` by creating a FluxCD `GitRepository`
-on to watch for changes to the GitOps repo.
+The [Build cluster](../multicluster/installing-multicluster.hbs.md#install-build-cluster) uses FluxCD to deploy `Packages` and `PackageInstalls` by creating a FluxCD `GitRepository`
+on to watch for changes to the GitOps repository.
 
-Per Run cluster, we will create:
+For each run cluster, create:
+
 - A FluxCD `Kustomization` on the Build cluster that applies `$package-name/packages/*` to the run cluster
 - A FluxCD `Kustomization` on the Build cluster that applies `$package-name/$run-cluster/*` to the run cluster
 
@@ -206,21 +205,24 @@ spec:
 
 ## Verifying Installation
 
-On your Build cluster, confirm that your FluxCD GitRepository and Kustomizations are all reconciling successfully:
+To verify your installation:
 
-```sh
-kubectl get gitrepositories,kustomizations -A
-```
+1. On your Build cluster, confirm that your FluxCD GitRepository and Kustomizations are reconciling:
 
-Now target a Run cluster. Confirm that all Packages from the GitOps repo have been deployed:
+  ```console
+  kubectl get gitrepositories,kustomizations -A
+  ```
 
-```sh
-kubectl get packages -A
-```
+1. Target a run cluster. Confirm that all Packages from the GitOps repository are deployed:
 
-Confirm that all PackageInstalls have reconciled successfully:
+  ```console
+  kubectl get packages -A
+  ```
 
-```sh
-kubectl get packageinstalls -A
-```
-Now your application can be accessed on each run cluster.
+1. Confirm that all PackageInstalls have reconciled:
+
+  ```console
+  kubectl get packageinstalls -A
+  ```
+
+  Now you can access your application on each run cluster.
