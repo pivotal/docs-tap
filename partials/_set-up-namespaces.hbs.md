@@ -1,6 +1,4 @@
-To automatically set up your developer namespaces. see [Provision namespace resources](/docs-tap/namespace-provisioner/tutorials.hbs.md).
-
-For more information about Namespace Provisioner, see [Namespace Provisioner overview](/docs-tap/namespace-provisioner/about.hbs.md).
+For details about how to automatically set up your developer namespaces, see [Namespace Provisioner](/docs-tap/namespace-provisioner/about.hbs.md).
 
 ## <a id="config-test-scan"></a> Additional configuration for testing and scanning
 
