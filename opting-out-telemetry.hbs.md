@@ -16,76 +16,76 @@ To turn off telemetry collection, follow the instructions below. To deactivate P
 Using kubectl
 :To turn off telemetry collection on your Tanzu Application Platform installation:
 
-1. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is installed.
+    1. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is installed.
 
-2. Run the following `kubectl` command:
+    2. Run the following `kubectl` command:
 
-    ```console
-    kubectl apply -f - <<EOF
-    apiVersion: v1
-    kind: Namespace
-    metadata:
-      name: vmware-system-telemetry
-    ---
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      namespace: vmware-system-telemetry
-      name: vmware-telemetry-cluster-ceip
-    data:
-      level: disabled
-    EOF
-    ```
+        ```console
+        kubectl apply -f - <<EOF
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: vmware-system-telemetry
+        ---
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          namespace: vmware-system-telemetry
+          name: vmware-telemetry-cluster-ceip
+        data:
+          level: disabled
+        EOF
+        ```
 
-3. If you already have Tanzu Application Platform installed, restart the telemetry collector to pick up the change:
+    3. If you already have Tanzu Application Platform installed, restart the telemetry collector to pick up the change:
 
-    ```console
-    kubectl delete pods --namespace tap-telemetry --all
-    ```
+        ```console
+        kubectl delete pods --namespace tap-telemetry --all
+        ```
 
 Your Tanzu Application Platform deployment no longer emits telemetry, and you are opted out of the CEIP.
 
 Using the Tanzu CLI
 :The Tanzu CLI provides a telemetry plugin enabled by the Tanzu Framework v0.25.0, which has been included in Tanzu Application Platform since v1.3.
 
-```console
-$ tanzu telemetry update --CEIP-opt-out
-*no output*
-```
+    ```console
+    $ tanzu telemetry update --CEIP-opt-out
+    *no output*
+    ```
 
-To learn more about how to update the telemetry settings:
+    To learn more about how to update the telemetry settings:
 
-```concole
-$ tanzu telemetry update --help
-Update tanzu telemetry settings
+    ```concole
+    $ tanzu telemetry update --help
+    Update tanzu telemetry settings
 
-Usage:
-  tanzu telemetry update [flags]
+    Usage:
+      tanzu telemetry update [flags]
 
-Examples:
+    Examples:
 
-    # opt into ceip
-    tanzu telemetry update --CEIP-opt-in
-    # opt out of ceip
-    tanzu telemetry update --CEIP-opt-out
-    # update shared configuration settings
-    tanzu telemetry update --env-is-prod "true" --entitlement-account-number "1234" --csp-org-id "XXXX"
+        # opt into ceip
+        tanzu telemetry update --CEIP-opt-in
+        # opt out of ceip
+        tanzu telemetry update --CEIP-opt-out
+        # update shared configuration settings
+        tanzu telemetry update --env-is-prod "true" --entitlement-account-number "1234" --csp-org-id "XXXX"
 
 
-Flags:
-      --CEIP-opt-in                         opt into VMware's CEIP program
-      --CEIP-opt-out                        opt out of VMware's CEIP program
-      --csp-org-id string                   Accepts a string and sets a cluster-wide CSP
-                                                                            org ID. Empty string is equivalent to
-                                                                            unsetting this value.
-      --entitlement-account-number string   Accepts a string and sets a cluster-wide
-                                                                            entitlement account number. Empty string is
-                                                                            equivalent to unsetting this value
-      --env-is-prod string                  Accepts a boolean and sets a cluster-wide
-                                                                            value denoting whether the target is a
-                                                                            production cluster or not.
-  -h, --help                                help for update
-```
+    Flags:
+          --CEIP-opt-in                         opt into VMware's CEIP program
+          --CEIP-opt-out                        opt out of VMware's CEIP program
+          --csp-org-id string                   Accepts a string and sets a cluster-wide CSP
+                                                                                org ID. Empty string is equivalent to
+                                                                                unsetting this value.
+          --entitlement-account-number string   Accepts a string and sets a cluster-wide
+                                                                                entitlement account number. Empty string is
+                                                                                equivalent to unsetting this value
+          --env-is-prod string                  Accepts a boolean and sets a cluster-wide
+                                                                                value denoting whether the target is a
+                                                                                production cluster or not.
+      -h, --help                                help for update
+    ```
 
 ### <a id="nbl-or-dsbl-pendo-for-org"></a> Enable or deactivate the Pendo telemetry for the organization
 
