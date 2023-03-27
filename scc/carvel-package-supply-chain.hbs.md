@@ -9,6 +9,7 @@ This feature is **experimental** and has the following limitations:
 1. Only the [Out of the Box Basic Supply Chain](ootb-supply-chain-basic.hbs.md) package is supported. The Testing and Scanning supply chains are not supported.
 2. Only workloads of type `server` are supported.
 3. Innerloop development is not supported.
+4. Azure GitOps repositories are not supported.
 
 This document explains what the Carvel Package Supply Chains do, how they work, how to enable them as an operator, and how to create a `Workload` that uses them.
 
