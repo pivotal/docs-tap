@@ -13,8 +13,8 @@ To turn off telemetry collection, follow the instructions below. To deactivate P
 
 >**Note** If you decide to opt in Pendo telemetry collection, each user shall be given the option to opt in or opt out, according to the instruction [here](../docs-tap/tap-portal-telemetry.hbs.md).
 
-### Using Kubectl
-To turn off telemetry collection on your Tanzu Application Platform installation:
+Using kubectl
+:To turn off telemetry collection on your Tanzu Application Platform installation:
 
 1. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is installed.
 
@@ -45,12 +45,17 @@ To turn off telemetry collection on your Tanzu Application Platform installation
 
 Your Tanzu Application Platform deployment no longer emits telemetry, and you are opted out of the CEIP.
 
+Using the Tanzu CLI
+:The Tanzu CLI provides a telemetry plugin enabled by the Tanzu Framework v0.25.0, which has been included in Tanzu Application Platform since v1.3.
 
-### Using the Tanzu CLI
-
-The tanzu CLI provides a telemetry plugin as of 0.25.0 of the tanzu framework. This version started shipping with TAP 1.3.
-
+```console
+$ tanzu telemetry update --CEIP-opt-out
+*no output*
 ```
+
+To learn more about how to update the telemetry settings:
+
+```concole
 $ tanzu telemetry update --help
 Update tanzu telemetry settings
 
@@ -80,14 +85,6 @@ Flags:
                                                                             value denoting whether the target is a
                                                                             production cluster or not.
   -h, --help                                help for update
-```
-
-```
-tanzu telemetry update --CEIP-opt-in
-*no output*
-
-$ tanzu telemetry update --CEIP-opt-out
-*no output*
 ```
 
 ### <a id="nbl-or-dsbl-pendo-for-org"></a> Enable or deactivate the Pendo telemetry for the organization
