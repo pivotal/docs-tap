@@ -5,7 +5,6 @@ namespaces with the resources and namespace-level privileges required for their 
 function as intended. It enables operators to add additional customized namespace-scoped resources
 using GitOps to meet their organization's requirements and provides continuous reconciliation using the kapp-controller to maintain the actual state of those namespace-scoped resources same as the desired state mentioned via GitOps.
 
-
 Namespace Provisioner enables operators that are new to Kubernetes to automate the provisioning of
 multiple developer namespaces in a shared cluster. For organizations that have already adopted
 Kubernetes, Namespace Provisioner is also compatible with existing Kubernetes tooling.
