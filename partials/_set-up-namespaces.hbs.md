@@ -4,7 +4,7 @@ For details about how to automatically set up your developer namespaces, see [Na
 
 If you plan to install or have already installed Out of the Box Supply Chains with Testing and
 Scanning, you can use Namespace Provisioner to set up the required resources. For more information, 
-see [Customize installation](../namespace-provisioner/customize-installation.md) in the Namespace Provisioner documentation for configuration steps.
+see [Customize installation](/docs-tap/namespace-provisioner/customize-installation.md) in the Namespace Provisioner documentation for configuration steps.
 
 ## <a id="legacy-setup"></a> Legacy namespace setup
 
