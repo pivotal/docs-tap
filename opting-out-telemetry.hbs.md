@@ -9,7 +9,7 @@ and the other benefits that accompany participation in the CEIP.
 
 To turn off telemetry collection:
 
-Using kubectl
+kubectl
 : To turn off telemetry collection on your Tanzu Application Platform by using kubectl:
 
     1. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is installed.
@@ -39,8 +39,10 @@ Using kubectl
         kubectl delete pods --namespace tap-telemetry --all
         ```
 
-Using the Tanzu CLI
-: The Tanzu CLI provides a telemetry plugin enabled by the Tanzu Framework v0.25.0, which has been included in Tanzu Application Platform since v1.3. To turn off telemetry collection on your Tanzu Application Platform by using the Tanzu CLI:
+Tanzu CLI
+: The Tanzu CLI provides a telemetry plugin enabled by the Tanzu Framework v0.25.0, which has been included in Tanzu Application Platform since v1.3. 
+
+    To turn off telemetry collection on your Tanzu Application Platform by using the Tanzu CLI:
 
     ```console
     $ tanzu telemetry update --CEIP-opt-out
