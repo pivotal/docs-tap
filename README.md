@@ -90,7 +90,7 @@ stored in dedicated repositories.
 
 ### Using names for the Supply Chain Security Tools components
 
-- Use the short name in the Table of Contents, Release Notes headings, and Components page headers.
+- Use the short name in the Table of Contents, Release Notes headers, and Components page headers.
 - Use the short name on the first occurrence in the component page description, and the first
   occurrence in the actual component doc, and then use the initialism after this.
 
