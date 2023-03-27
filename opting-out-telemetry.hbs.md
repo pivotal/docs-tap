@@ -7,81 +7,78 @@ To turn off telemetry collection, complete following the instructions.
 >**Note** If you opt out of telemetry collection, VMware cannot offer you proactive support
 and the other benefits that accompany participation in the CEIP.
 
-## <a id="turn-off"></a> Turn off telemetry collection
+To turn off telemetry collection:
 
-### Using Kubectl
-To turn off telemetry collection on your Tanzu Application Platform installation:
+Using kubectl
+: To turn off telemetry collection on your Tanzu Application Platform by using kubectl:
 
-1. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is installed.
+    1. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is installed.
 
-2. Run the following `kubectl` command:
+    2. Run the following `kubectl` command:
+
+        ```console
+        kubectl apply -f - <<EOF
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: vmware-system-telemetry
+        ---
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          namespace: vmware-system-telemetry
+          name: vmware-telemetry-cluster-ceip
+        data:
+          level: disabled
+        EOF
+        ```
+
+    3. If you already have Tanzu Application Platform installed, restart the telemetry collector to pick up the change:
+
+        ```console
+        kubectl delete pods --namespace tap-telemetry --all
+        ```
+
+Using the Tanzu CLI
+: The Tanzu CLI provides a telemetry plugin enabled by the Tanzu Framework v0.25.0, which has been included in Tanzu Application Platform since v1.3. To turn off telemetry collection on your Tanzu Application Platform by using the Tanzu CLI:
 
     ```console
-    kubectl apply -f - <<EOF
-    apiVersion: v1
-    kind: Namespace
-    metadata:
-      name: vmware-system-telemetry
-    ---
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      namespace: vmware-system-telemetry
-      name: vmware-telemetry-cluster-ceip
-    data:
-      level: disabled
-    EOF
+    $ tanzu telemetry update --CEIP-opt-out
+    *no output*
     ```
 
-3. If you already have Tanzu Application Platform installed, restart the telemetry collector to pick up the change:
+    To learn more about how to update the telemetry settings:
 
-    ```console
-    kubectl delete pods --namespace tap-telemetry --all
+    ```concole
+    $ tanzu telemetry update --help
+    Update tanzu telemetry settings
+
+    Usage:
+      tanzu telemetry update [flags]
+
+    Examples:
+
+        # opt into ceip
+        tanzu telemetry update --CEIP-opt-in
+        # opt out of ceip
+        tanzu telemetry update --CEIP-opt-out
+        # update shared configuration settings
+        tanzu telemetry update --env-is-prod "true" --entitlement-account-number "1234" --csp-org-id "XXXX"
+
+
+    Flags:
+          --CEIP-opt-in                         opt into VMware's CEIP program
+          --CEIP-opt-out                        opt out of VMware's CEIP program
+          --csp-org-id string                   Accepts a string and sets a cluster-wide CSP
+                                                                                org ID. Empty string is equivalent to
+                                                                                unsetting this value.
+          --entitlement-account-number string   Accepts a string and sets a cluster-wide
+                                                                                entitlement account number. Empty string is
+                                                                                equivalent to unsetting this value
+          --env-is-prod string                  Accepts a boolean and sets a cluster-wide
+                                                                                value denoting whether the target is a
+                                                                                production cluster or not.
+      -h, --help                                help for update
     ```
 
-Your Tanzu Application Platform deployment no longer emits telemetry, and you are opted out of the CEIP.
-
-
-### Using the Tanzu CLI
-
-The tanzu CLI provides a telemetry plugin as of 0.25.0 of the tanzu framework. This version started shipping with TAP 1.3.
-
-```
-$ tanzu telemetry update --help
-Update tanzu telemetry settings
-
-Usage:
-  tanzu telemetry update [flags]
-
-Examples:
-
-    # opt into ceip
-    tanzu telemetry update --CEIP-opt-in
-    # opt out of ceip
-    tanzu telemetry update --CEIP-opt-out
-    # update shared configuration settings
-    tanzu telemetry update --env-is-prod "true" --entitlement-account-number "1234" --csp-org-id "XXXX"
-
-
-Flags:
-      --CEIP-opt-in                         opt into VMware's CEIP program
-      --CEIP-opt-out                        opt out of VMware's CEIP program
-      --csp-org-id string                   Accepts a string and sets a cluster-wide CSP
-                                                                            org ID. Empty string is equivalent to
-                                                                            unsetting this value.
-      --entitlement-account-number string   Accepts a string and sets a cluster-wide
-                                                                            entitlement account number. Empty string is
-                                                                            equivalent to unsetting this value
-      --env-is-prod string                  Accepts a boolean and sets a cluster-wide
-                                                                            value denoting whether the target is a
-                                                                            production cluster or not.
-  -h, --help                                help for update
-```
-
-```
-tanzu telemetry update --CEIP-opt-in
-*no output*
-
-$ tanzu telemetry update --CEIP-opt-out
-*no output*
-```
+At this point, your Tanzu Application Platform deployment no longer emits telemetry, and you are opted out of the CEIP.
