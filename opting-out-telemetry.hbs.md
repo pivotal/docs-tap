@@ -2,12 +2,11 @@
 
 This topic describes how to opt out of the VMware Customer Experience Improvement Program (CEIP).
 By default, when you install Tanzu Application Platform, you are opted into telemetry collection.
-To turn off telemetry collection, complete following the instructions.
 
 >**Note** If you opt out of telemetry collection, VMware cannot offer you proactive support
 and the other benefits that accompany participation in the CEIP.
 
-To turn off telemetry collection:
+Follow these steps to turn off telemetry collection:
 
 kubectl
 : To turn off telemetry collection on your Tanzu Application Platform by using kubectl:
