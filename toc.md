@@ -394,7 +394,7 @@ docs.vmware.com is built.
           - [Customize OOTB default resources](namespace-provisioner/use-case4.md)
           - [Install multiple scanners in the developer namespace](namespace-provisioner/use-case5.md)
       - [Troubleshoot Namespace Provisioner](namespace-provisioner/troubleshooting.hbs.md)
-      - [Troubleshoot Namespace Provisioner](namespace-provisioner/reference.md)
+      - [Reference](namespace-provisioner/reference.md)
     - [Service Bindings](service-bindings/about.hbs.md)
       - [Service Bindings overview](service-bindings/about.hbs.md)
       - [Install Service Bindings](service-bindings/install-service-bindings.hbs.md)
