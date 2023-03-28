@@ -4,7 +4,7 @@ This topic describes what to do when encountering issues with Tanzu Developer To
 
 ## <a id='cannot-view-workloads'></a> Unable to view workloads on the panel when connected to GKE cluster
 
-{{> 'partials/ide-extensions/cannot-view-workloads' }}
+{{> 'partials/ide-extensions/ki-cannot-view-workloads' }}
 
 ## <a id='lu-not-working-classversion'></a> Live update fails with `UnsupportedClassVersionError`
 
@@ -59,7 +59,7 @@ For example, Java 11 in `tanzu-java-web-app`.
 
 ## <a id="live-update-timeout"></a> Timeout error when Live Updating
 
-{{> 'partials/ide-extensions/timeout-err-live-updating' }}
+{{> 'partials/ide-extensions/ki-timeout-err-live-updating' }}
 
 ## <a id="deprecated-task"></a> Task-related error when running a Tanzu Debug launch configuration
 
@@ -80,4 +80,8 @@ Delete the launch configuration from your `launch.json` file in your `.vscode` d
 
 ## <a id="tnz-panel-actions-unavail"></a> Tanzu Workloads panel workloads only show delete command
 
-{{> 'partials/ide-extensions/tnz-panel-actions-unavail' }}
+{{> 'partials/ide-extensions/ki-tnz-panel-actions-unavail' }}
+
+## <a id="projects-with-spaces"></a> Workload actions do not work when in a project with spaces in the name
+
+{{> 'partials/ide-extensions/ki-projects-with-spaces' }}

@@ -57,8 +57,8 @@ You see `Error: [invalid_request] OAuth 2.0 Parameter: redirect_uri` when signin
 
 ### Solution:
 
-The `redirectUri` of this `ClientRegistration` must refer to the URI of the registered Workload.
-It does not refer to the URI of the AuthServer.
+The `redirectURIs` of a `ClientRegistration` must refer to the URI of the registered `Workload`.
+It does not refer to the URI of the AuthServer. Read more [here](app-operators/workloads-and-appsso.hbs.md#redirect-uris).
 
 ## Unsupported `id_token_signed_response_alg` with openid `identityProviders`
 
@@ -85,7 +85,7 @@ Refer to your identity provider's documentation to enable `RS256` token signing.
 
 ### Problem:
 
-- When attempting to sign in, you see `client.samples.localhost.identity.team redirected you too many times.` It might
+- When attempting to sign in, you see `<WORKLOAD_URL> redirected you too many times.` It might
   be because the client secret of an identity provider is misconfigured.
 - If you have access to the authserver logs, verify if there is an entry with the text
   `"error":"[invalid_client] Client authentication failed: client_secret"`.

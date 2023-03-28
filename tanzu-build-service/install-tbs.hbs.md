@@ -48,6 +48,11 @@ To install Tanzu Build Service by using the Tanzu CLI:
     Where `VERSION` is the version of the Tanzu Build Service package you retrieved in the previous step.
 
 1. Create a `tbs-values.yaml` file using the following template:
+    > **Note** If `shared.image_registry.project_path`, `shared.image_registry.username`, and
+    > `shared.image_registry.password` are all configured in the `tap-values.yaml` file, Tanzu Build
+    > Service inherits all 3 values in that section.
+    >
+    > This can be disabled by setting any of the following 3 values.
 
     ```yaml
     ---
@@ -190,8 +195,14 @@ credentials for the writable repository in your registry (`kp_default_repository
 
 1. Use the following alternative configuration for `tbs-values.yaml`:
 
-    >**Note** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
-    >profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
+    > **Note** if you are installing Tanzu Build Service as part of a Tanzu Application Platform
+    > profile, you configure this in your `tap-values.yaml` file under the `buildservice` section.
+
+    > **Note** If `shared.image_registry.project_path`, `shared.image_registry.secret.name`, and
+    > `shared.image_registry.secret.namespace` are all configured in the `tap-values.yaml` file,
+    > Tanzu Build Service inherits all 3 values in that section.
+    >
+    > This can be disabled by setting any of the following 3 values.
 
     ```yaml
     ---

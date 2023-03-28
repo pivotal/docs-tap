@@ -9,7 +9,9 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 ### <a id="1-5-0-tap-new-features"></a> Tanzu Application Platform new features
 
 - A new Crossplane Package is now part of the iterate, run and full profiles.
+  - See [Crossplane](crossplane/about.hbs.md) to learn more.
 - A new Bitnami Services Package is now part of the iterate, run and full profiles.
+  - See [Bitnami Services](bitnami-services/about.hbs.md) to learn more.
 
 ### <a id='1-5-0-new-component-features'></a> New features by component and area
 
@@ -38,31 +40,58 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
+#### <a id='1-5-0-tap-gui-new-features'></a> Tanzu Application Platform GUI
+
+- Tanzu Application Platform GUI now supports automatic configuration with Supply Chain Security Tools - Store. The instruction is referenced in [Automatically connect Tanzu Application Platform GUI to the Metadata Store](../docs-tap/tap-gui/plugins/scc-tap-gui.hbs.md#automatically-connect-tanzu-application-platform-gui-to-the-metadata-store).
+- Tanzu Application Platform GUI enables specification of security banners. To use this customization, please refer to [Customize security banners](../docs-tap/tap-gui/customize/customize-portal.hbs.md#customize-security-banners)
+- Tanzu Application Platform GUI includes optional plugin that collects telemetry via the Pendo tool. To configure Pendo telemetry and opt in or opt out, please follow the instruction specified [here](../docs-tap/opting-out-telemetry.hbs.md).
+  - **Disclosure**: this upgrade includes a java script operated by our service provider Pendo.io. The java script will be installed on selected pages of the VMware Software and will collect information on your use of the Software, such as clickstream data and page loads, hashed user ID and limited browser and device information. This information will be used to better understand the way you use the Software in order to improve VMware products and services and your experience. For more details please see the VMware Customer Experience Improvement Program at the following link: http://www.vmware.com/trustvmware
+
 #### <a id='1-5-0-services-toolkit-new-features'></a> Services Toolkit
 
-- Services Toolkit now supports the dynamic provisioning of Services Instances. `ClusterInstanceClass` now supports the new provisioner mode. When a `ClassClaims` is created and refers to a provisioner `ClusterInstanceClass` a new Service Instance is created on-demand and claimed. This is powered by [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane).
-- `tanzu services class-claim` has been updated to allow the passing of parameters to `ClusterInstanceClass` that support dynamic provisioning.
-  - For example, `tanzu services class-claim create rmq-claim-1 --class rmq --parameter replicas=3  --parameter ha=true`
-- Services Toolkit integrates with the new Bitnami Services Package which provides out-of-the-box support for the following Helm charts:
+- Services Toolkit now supports the dynamic provisioning of Services Instances.
+  - `ClusterInstanceClass` now supports the new provisioner mode. When a `ClassClaim` is created which refers to a provisioner `ClusterInstanceClass`, a new Service Instance is created on-demand and claimed. This is powered by [Crossplane](crossplane/about.hbs.md).
+- The `tanzu service` CLI plug-in has had the following updates:
+  - `tanzu service class-claim crete` has been updated to allow the passing of parameters to provisioner-based `ClusterInstanceClass` that support dynamic provisioning.
+    - For example, `tanzu service class-claim create rmq-claim-1 --class rmq --parameter replicas=3  --parameter ha=true`
+  - `tanzu service class-claim get` has been updated to output parameters passed as part of claim creation.
+  - See [Tanzu Service CLI Plug-In](services-toolkit/reference/tanzu-service-cli.hbs.md) to learn more.
+- Services Toolkit integrates with the new [Bitnami Services](bitnami-services/about.hbs.md), which provides out-of-the-box, dynamic provisioning support for the following Helm charts:
   - PostgreSQL
   - MySQL
   - Redis
   - RabbitMQ
-- Improved the security model for which users can claim specific Service Instances. Introduced the `claim` custom RBAC verb that targets a specific `ClusterInstanceClass`. This can be bound to users for access control of who can create `ClassClaim` resources for a specific `ClusterInstanceClass`. `ResourceClaimPolicy` is now created automatically for successful `ClassClaims`.
-- `ResourceClaimPolicy` now supports targeting individual resources by name via `.spec.subject.resourceNames`
+- Improved the security model for which users can claim specific Service Instances.
+  - Introduced the `claim` custom RBAC verb that targets a specific `ClusterInstanceClass`.
+  - This can be bound to users for access control of who can create `ClassClaim` resources for a specific `ClusterInstanceClass`.
+  - `ResourceClaimPolicy` is now created automatically for successful `ClassClaims`.
+  - See [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-users-to-claim-from-provisioner-classes.hbs.md) to learn more.
+- `ResourceClaimPolicy` now supports targeting individual resources by name via `.spec.subject.resourceNames`.
+- The Where-For-Dinner sample application accelerator has been updated to support dynamic provisioning.
+- There have been big updates to the Services Toolkit component documentation.
+  - Check out the new [tutorials](services-toolkit/tutorials.hbs.md), [how-to guides](services-toolkit/how-to-guides.hbs.md), [explanations](services-toolkit/explanation.hbs.md) and [reference material](services-toolkit/reference.hbs.md) to learn more about working with services on Tanzu Application Platform.
+  - The separate documentation site hosted at https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html is no longer receiving updates.
+  - All services toolkit documentation can be found in the Tanzu Application Platform Component Documentation for [Services Toolkit](services-toolkit/about.hbs.md) section from now on.
 
 #### <a id='1-5-0-crossplane-new-features'></a> Crossplane
 
-- [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane) version `1.11.0` is a new package in TAP. This provides integration for dynamic provisioning in Services Toolkit and can be used for integration with Cloud Services.
-- This ships with two Crossplane [Providers](https://docs.crossplane.io/v1.9/concepts/providers/) out-of-the-box, `provider-kubernetes` and `provider-helm`. Other providers can be added manually as required.
+- A new [Crossplane](crossplane/about.hbs.md) Package has been added to TAP.
+  - It installs [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane) version `1.11.0`.
+  - This provides integration for dynamic provisioning in Services Toolkit and can be used for integration with Cloud Services.
+    - See [Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform](services-toolkit/tutorials/integrate-cloud-services-aws-azure-gcp-into-tap.hbs.md) to learn more.
+- This ships with two Crossplane [Providers](https://docs.crossplane.io/v1.9/concepts/providers/) out-of-the-box, `provider-kubernetes` and `provider-helm`.
+  - Other providers can be added manually as required.
+- See [Setup Dynamic Provisioning of Service Instances](services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md) to learn more.
 
-#### <a id='1-5-0-bitnami-services-new-features'></a> Crossplane
+#### <a id='1-5-0-bitnami-services-new-features'></a> Bitnami Services
 
-- Bitnami Helm charts are now shipped out-of-the-box with TAP and integrate with Services Toolkit. These include:
+- A new [Bitnami Services](bitnami-services/about.hbs.md) Package has been added to TAP.
+- This provides integration for dynamic provisioning of Bitnami Helm Charts out-of-the-box with TAP for the following backing services:
   - PostgreSQL
   - MySQL
   - Redis
   - RabbitMQ
+- See [Working with Bitnami Services](services-toolkit/tutorials/working-with-the-bitnami-services.hbs.md) to learn more.
 
 #### <a id='1-5-0-scc-new-features'></a> Supply Chain Choreographer
 
@@ -76,6 +105,17 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 - `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
+
+#### <a id="1-5-0-scst-scan-features"></a> Supply Chain Security Tools - Scan
+- SCST - Scan now runs on Tanzu Service Mesh-enabled clusters, enabling end to end, secure communication.
+  - Kubernetes Jobs that previously created the scan pods were replaced with [Tekton TaskRuns](https://tekton.dev/docs/pipelines/taskruns/#overview).
+  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts) documentation is updated to account for the impact of these changes.
+- In conformance with NIST 800-53, support for rotating certificates and TLS is added.
+  - Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy. See [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
+- SCST - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform `v1.5.0`, users have early access to:
+  - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security scans source code and images from secure supply chains. See [Install Trivy (alpha)](./scst-scan/install-trivy-integration.hbs.md).
+  - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that aren't included by default. Got a scanner that you'd like to use with Tanzu Application Platform? See [Supply Chain Security Tools - App Scanning](./scst-scan/app-scanning-alpha.hbs.md).
+  - The Tanzu team is looking for early adopters to test drive both of these alpha offerings and provide feedback. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
 
 #### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
@@ -134,7 +174,7 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
-### <a id='1-5-0-cnrs-ki'></a> Cloud Native Runtimes
+#### <a id='1-5-0-cnrs-ki'></a> Cloud Native Runtimes
 
 - When using auto-tls, on by default, DomainMapping resources must have names that are less than 63 characters. Otherwise, the DomainMapping fails to become ready due to `CertificateNotReady`.
 
@@ -146,9 +186,8 @@ This release has the following known issues, listed by area and component.
   The default file location is `~/.tilt-dev/config.lock`.
 
 - On Windows, workload commands don't work when in a project with spaces in the name, such as
-  `my-app project`. An error similar to
-  `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1`
-  is shown in the console.
+  `my-app project`.
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#ki-projects-with-spaces).
 
 #### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for Intellij
 
@@ -168,9 +207,8 @@ This release has the following known issues, listed by area and component.
   Deleting the Tilt lock file resolves this. The default location is `~/.tilt-dev/config.lock`.
 
 - On Windows, workload actions do not work when in a project with spaces in the name such as
-  `my-app project`. An error similar to
-  `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1`
-  is shown in the console.
+  `my-app project`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ki-projects-with-spaces).
 
 #### <a id="1-5-0-grype-scan-known-issues"></a>Grype scanner
 
@@ -190,6 +228,10 @@ This release has the following known issues, listed by area and component.
   discourages committing binaries to source code repositories. The
   vulnerabilities are still found during the image scan after the binaries are
   built and packaged as images.
+
+#### <a id='1-5-0-tap-gui-ki'></a> Tanzu Application Platform GUI
+
+- Security Banners customization may be partially (bottom banner) overlayed by the information displayed by the portal. We expect to resolve this issue in the future release.
 
 ### <a id='1-5-0-deprecations'></a> Deprecations
 

@@ -92,8 +92,8 @@ cannot be used to build PHP workloads.
 
 The `lite` dependencies contain the following stacks:
 
-- `base` (ubuntu Bionic)
-- `base-jammy` (ubuntu Jammy)
+- `base` (Ubuntu Bionic)
+- `base-jammy` (Ubuntu Jammy)
 - `default` (identical to `base-jammy`)
 
 For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)
@@ -140,12 +140,12 @@ For instructions for installing `full` dependencies, see [Install Tanzu Build Se
 
 The `full` dependencies contain the following stacks, which support different use cases:
 
-- `base` (ubuntu Bionic)
-- `full` (ubuntu Bionic)
-- `tiny` (ubuntu Bionic)
-- `base-jammy` (ubuntu Jammy)
-- `full-jammy` (ubuntu Jammy)
-- `tiny-jammy` (ubuntu Jammy)
+- `base` (Ubuntu Bionic)
+- `full` (Ubuntu Bionic)
+- `tiny` (Ubuntu Bionic)
+- `base-jammy` (Ubuntu Jammy)
+- `full-jammy` (Ubuntu Jammy)
+- `tiny-jammy` (Ubuntu Jammy)
 - `default` (identical to `base-jammy`)
 
 For more information, see [Stacks](https://docs.vmware.com/en/VMware-Tanzu-Buildpacks/services/tanzu-buildpacks/GUID-stacks.html)

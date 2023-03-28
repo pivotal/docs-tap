@@ -240,8 +240,9 @@ shared:
     username: "KP-DEFAULT-REPO-USERNAME"
     password: "KP-DEFAULT-REPO-PASSWORD"
 
-  kubernetes_distribution: "K8S-DISTRO"
-  kubernetes_version: "K8S-VERSION"
+  kubernetes_distribution: "K8S-DISTRO" # Only required if the distribution is OpenShift and must be used with the following kubernetes_version key.
+  
+  kubernetes_version: "K8S-VERSION" # Required regardless of distribution when Kubernetes version is 1.25 or later.
 
   ca_cert_data: | # To be passed if using custom certificates.
       -----BEGIN CERTIFICATE-----
@@ -271,6 +272,7 @@ contour:
       type: LoadBalancer # This is set by default, but can be overridden by setting a different value.
 
 buildservice:
+  # Takes the value from shared section above by default, but can be overridden by setting a different value.
   kp_default_repository: "KP-DEFAULT-REPO"
   kp_default_repository_username: "KP-DEFAULT-REPO-USERNAME"
   kp_default_repository_password: "KP-DEFAULT-REPO-PASSWORD"
@@ -316,7 +318,7 @@ service's External IP address. It is not required to know the External IP addres
 - `KP-DEFAULT-REPO-PASSWORD` is the password for the user that can write to `KP-DEFAULT-REPO`. You can `docker push` to this location with this credential.
     * For Google Cloud Registry, use the contents of the service account JSON file.
     * Alternatively, you can configure this credential as a [secret reference](tanzu-build-service/install-tbs.md#install-secret-refs).
-- `K8S-DISTRO` (optional) is the type of Kubernetes infrastructure in use. You can use it in coordination with `kubernetes_version`. For example, `openshift`.
+- `K8S-DISTRO` (optional) is the type of Kubernetes infrastructure in use. It is only required if the distribution is OpenShift and must be used in coordination with `kubernetes_version`. Supported value: `openshift`.
 - `K8S-VERSION` (optional) is the Kubernetes version in use. You can use it independently or in coordination with `kubernetes_distribution`. For example, `1.24.x`, where `x` is the Kubernetes patch version.
 - `SERVER-NAME` is the host name of the registry server. Examples:
     * Harbor has the form `server: "my-harbor.io"`.

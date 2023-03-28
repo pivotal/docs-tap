@@ -57,11 +57,11 @@ Alternatively, you can interactively discover the spec with:
 kubectl explain clientregistrations.sso.apps.tanzu.vmware.com
 ```
 
-## Client authentication methods
+## <a id='client-auth-methods'></a> Client authentication methods
 
 Client authentication methods supported by `ClientRegistration` resource are:
 
-- `client_secret_basic`: HTTP header based client authentication.
+- `client_secret_basic`: HTTP header based client authentication (default).
 - `client_secret_post`: HTTP POST body based client authentication.
 - `basic` (deprecated):  HTTP header based client authentication. Use `client_secret_basic` instead.
 - `post` (deprecated): HTTP POST body based client authentication. Use `client_secret_post` instead.

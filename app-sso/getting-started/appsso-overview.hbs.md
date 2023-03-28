@@ -66,7 +66,7 @@ In this section, you will:
 1. [Deploy an application](application.md) that uses the provisioned ClientRegistration to enable SSO
 
 After completing these steps, you can proceed with 
-[securing a Workload](../app-operators/tutorials/securing-first-workload.md).
+[securing a Workload](../app-operators/secure-spring-boot-workload.md).
 
 ## <a id='next-steps'></a>Next steps
 

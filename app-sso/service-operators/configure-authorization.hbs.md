@@ -73,8 +73,9 @@ kind: ClientRegistration
 # ...
 spec:
     scopes:
-    - "hr.read"
-    - "hr.write" 
+    - name: "roles" # Must request special 'roles' scope.
+    - name: "hr.read"
+    - name: "hr.write"
 ```
 
 Any client can request an access token with the scopes, but an access token can 
@@ -113,7 +114,8 @@ kind: ClientRegistration
 # ...
 spec:
     scopes:
-    - "developer.read"
+    - name: "roles" # Must request special 'roles' scope.
+    - name: "developer.read"
 ```
 
 When an application or `Workload` is registered by using the `ClientRegistration`, 
@@ -146,7 +148,7 @@ spec:
               - "developer.read"       # ^^
               - "developer.write"      # ^^
               - "developer.delete"     # ^^
-          rolesToScopes:
+            rolesToScopes:
             - fromRole: "hr"           # -> Role "hr" is mapped to "hr.read", "hr.write" scopes.
               toScopes:                #    Only users with "hr" role can be issued access token with these scopes.
                 - "hr.read"            # ^^
@@ -165,12 +167,13 @@ kind: ClientRegistration
 # ...
 spec:
   scopes:
-    - "developer.read"
-    - "developer.write"
-    - "developer.delete"
-    - "hr.read"
-    - "hr.write"
-    - "finance"
-    - "marketing-reader"
-    - "marketing-writer"
+    - name: "roles" # Must request special 'roles' scope.
+    - name: "developer.read"
+    - name: "developer.write"
+    - name: "developer.delete"
+    - name: "hr.read"
+    - name: "hr.write"
+    - name: "finance"
+    - name: "marketing-reader"
+    - name: "marketing-writer"
 ```
