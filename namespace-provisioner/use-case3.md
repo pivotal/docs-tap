@@ -12,7 +12,8 @@ The secrets for Git authentication allow the following keys: ssh-privatekey, ssh
 
 >**Note** if ssh-knownhosts is not specified, Git will not perform strict host checking.
 
-1. Create the Git secret:
+1. Create the Git secret.
+
     Using HTTP(s) based Authentication
     : If you are using Username and Password for authentication:
 
