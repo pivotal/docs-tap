@@ -2,7 +2,7 @@
 
 ## Git Authentication for using a private Git repository
 
-Namespaces provisioner enables users to use private git repositories for storing their Gitops based installation files as well as additional platform operator templated resources that they want to create in their developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources (See [Customize Installation](customize-installation) for more details).
+Namespaces provisioner enables users to use private git repositories for storing their Gitops based installation files as well as additional platform operator templated resources that they want to create in their developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources (See [Customize Installation](customize-installation.md) for more details).
 
 ### Create the Git Authentication secret in tap-namespace-provisioning namespace.
 
