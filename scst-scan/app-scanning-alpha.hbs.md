@@ -17,8 +17,8 @@ A core tenet of the app-scanning framework architecture is to simplify integrati
 
 SCST - App Scanning includes the following features:
 
-- Tekton is leveraged as the orchestrator of the scan to align with overall Tanzu Application Platform use of Tekton for multi-step activities.
-- New Scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan).  Mapping logic turns the domain-specific specifications into a Tekton PipelineRun.
+- Tekton is used as the orchestrator of the scan to align with overall Tanzu Application Platform use of Tekton for multi-step activities.
+- New scans are defined as CRDs that represent specific scanners (e.g. GrypeImageVulnerabilityScan).  Mapping logic turns the domain-specific specifications into a Tekton PipelineRun.
 - CycloneDX-formatted scan results are pushed to an OCI registry for long-term storage.
 
 ## Installing App Scanning in a cluster
@@ -30,7 +30,7 @@ The following sections describe how to install SCST - App Scanning.
 SCST - App Scanning requires the following prerequisites:
 
 - Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
-- Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is included in the Full and Build profiles of Tanzu Application Platform.
+- Install the [Tekton component](../tekton/install-tekton.hbs.md). Tekton is in the Full and Build profiles of Tanzu Application Platform.
 
 ### <a id='configure-app-scanning'></a> Configure properties
 
@@ -38,11 +38,11 @@ When you install SCST - App Scanning, you can configure the following optional p
 
 | Key | Default | Type | Description |
 | --- | --- | --- | --- |
-| caCertData | "" | string | The custom certificates to be trusted by the scan's connections. |
-| docker.import | true | boolean | Import `docker.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret will already be present. |
-| docker.pullSecret | registries-credentials | string | Name of a docker pull secret in the deployment namespace to pull the scanner images. |
-| workspace.storageSize  | 100Mi | string | Size of the Persistent Volume to be used by the tekton pipelineruns |
-| workspace.storageClass  | "" | string | Name of the storage class to use while creating the Persistent Volume Claims used by tekton pipelineruns |
+| caCertData | "" | string | The custom certificates trusted by the scan's connections |
+| docker.import | true | Boolean | Import `docker.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret is already present. |
+| docker.pullSecret | registries-credentials | string | Name of a Docker pull secret in the deployment namespace to pull the scanner images |
+| workspace.storageSize  | 100Mi | string | Size of the PersistentVolume that the Tekton pipelineruns uses |
+| workspace.storageClass  | "" | string | Name of the storage class to use while creating the PersistentVolume claims used by tekton pipelineruns |
 
 ### <a id='install-scst-app-scanning'></a> Install
 
@@ -65,9 +65,9 @@ To install Supply Chain Security Tools - App Scanning:
 
 1. (Optional) Make changes to the default installation settings:
 
-    Create a `app-scanning-values-file.yaml` file which will contain any changes to the default installation settings.
+    Create a `app-scanning-values-file.yaml` file which contains any changes to the default installation settings.
 
-    Retrieve the configurable settings using the following command and append the key-value pairs to be modified to the `app-scanning-values-file.yaml` file.
+    Retrieve the configurable settings and append the key-value pairs to be modified to the `app-scanning-values-file.yaml` file:
 
     ```console
     tanzu package available get app-scanning.apps.tanzu.vmware.com/VERSION --values-schema --namespace tap-install
@@ -92,7 +92,7 @@ To install Supply Chain Security Tools - App Scanning:
       caCertData                                      string   The custom certificates to be trusted by the scan's connections
     ```
 
-1. Install the package by running:
+2. Install the package by running:
 
     ```console
     tanzu package install app-scanning-alpha --package-name app-scanning.apps.tanzu.vmware.com \
@@ -126,11 +126,12 @@ To install Supply Chain Security Tools - App Scanning:
 The following sections describe how to configure service accounts and registry credentials.
 
 The following access is required:
-  - Read access to the registry containing the Tanzu Application Platform bundles. This is the registry from [Relocate images to a registry](../../docs-tap/install.hbs.md#relocate-images-to-a-registry) or `registry.tanzu.vmware.com`.
-  - Read access to the registry containing the image to scan (if scanning a private image)
-  - Write access to the registry to which results will published to
 
-1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This is used to pull the App Scanning component images.
+  - Read access to the registry containing the Tanzu Application Platform bundles. This is the registry from [Relocate images to a registry](../../docs-tap/install.hbs.md#relocate-images-to-a-registry) or `registry.tanzu.vmware.com`.
+  - Read access to the registry containing the image to scan, if scanning a private image
+  - Write access to the registry to which results are published
+
+1. Create a secret `scanning-tap-component-read-creds` with read access to the registry containing the Tanzu Application Platform bundles. This pulls the App Scanning component images.
 
     >**Important** If you followed the directions for [Install Tanzu Application Platform](../install-intro.hbs.md), you can skip this step and use the `tap-registry` secret with your service account.
 
@@ -143,7 +144,7 @@ The following access is required:
       -n DEV-NAMESPACE
     ```
 
-    Where `DEV-NAMESPACE` is the developer namespace where scanning will occur.
+    Where `DEV-NAMESPACE` is the developer namespace where scanning occurs.
 
 2. If you are scanning a private image, create a secret `scan-image-read-creds` with read access to the registry containing that image.
 
@@ -244,7 +245,6 @@ To create a sample Grype scan:
         publisher: publisher # Service account has the secrets to push the scan results
     ```
 
-
 #### Configuration Options
 
 This section describes optional and required GrypeImageVulnerabilityScan specifications.
@@ -262,7 +262,7 @@ Required fields:
 Optional fields:
 
 - activeKeychains
-  Array of enabled credential helpers to authenticate against registries using workload identity mechansims. See cloud registry documentation for details.
+  Array of enabled credential helpers to authenticate against registries using workload identity mechanisms. See cloud registry documentation for details.
 
   ```yaml
   activeKeychains:
@@ -332,9 +332,11 @@ the digest of the image scanned and the location of the published results.
 
 ### Integrate your own scanner
 
-To scan with any other scanner, use the generic `ImageVulnerabilityScan`. ImageVulnerabilityScans can also change the version of a scanner or customize the behavior of provided scanners.
+To scan with any other scanner, use the generic `ImageVulnerabilityScan`.
+ImageVulnerabilityScans can also change the version of a scanner or customize
+the behavior of provided scanners.
 
-ImageVulnerabilityScans allow you to define your scan as a [Tekton Step](https://tekton.dev/docs/pipelines/tasks/#defining-steps)
+ImageVulnerabilityScans allow you to define your scan as a [Tekton step](https://tekton.dev/docs/pipelines/tasks/#defining-steps)
 
 #### Sample ImageVulnerabilityScan
 
@@ -367,7 +369,7 @@ To create a sample Sample ImageVulnerabilityScan:
         - $(params.scan-results-path)/scan.cdx
     ```
 
-    Where `DEV-NAMESPACE` is the developer namespace where scanning will occur.
+    Where `DEV-NAMESPACE` is the developer namespace where scanning occurs.
 
 #### Configuration Options
 
@@ -428,11 +430,11 @@ Optional fields:
 
 Workspaces:
 
-- /home/app-scanning: a memory-backed EmptyDir mount that contains service account credentials loaded by Tekton
-- /cred-helper: a memory-backed EmptyDir mount containing:
+- `/home/app-scanning`: a memory-backed EmptyDir mount that contains service account credentials loaded by Tekton
+- `/cred-helper`: a memory-backed EmptyDir mount containing:
   - config.json combines static credentials with workload identity credentials when `activeKeychains` is enabled
   - trusted-cas.crt when App Scanning is deployed with `caCertData`
-- /workspace: a PVC to hold scan artifacts and results
+- `/workspace`: a PVC to hold scan artifacts and results
 
 Environment Variables:
 If undefined by your `step` definition the environment uses the following default variables:
@@ -526,5 +528,3 @@ Get the logs of the controller:
 ```console
 kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system -c manager
 ```
-
-## Troubleshooting
