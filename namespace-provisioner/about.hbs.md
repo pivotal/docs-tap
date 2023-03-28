@@ -68,7 +68,7 @@ Controller mode
 GitOps mode
 : Description of GitOps mode
 
-    - In the GitOps mode, the list of desired namespaces used by the `provisioner` application to create resources in, is maintained in a Git repository as a ytt data values file as shown [in this sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/desired-namespaces.yaml). This file provides a declarative way to indicate which namespaces should be populated with resources. For more information, see the options in [Customize Install](#fake).
+    - In the GitOps mode, the list of desired namespaces used by the `provisioner` application to create resources in, is maintained in a Git repository as a ytt data values file as shown [in this sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/desired-namespaces.yaml). This file provides a declarative way to indicate which namespaces should be populated with resources. For more information, see the options in [Customize Install](customize-installation.md).
 
 ## Namespace Provisioner Controller
 
