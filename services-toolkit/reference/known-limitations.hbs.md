@@ -30,7 +30,7 @@ While not strictly a limitation with Services Toolkit per se, care should be tak
 
 **Description**
 
-As of TAP 1.5.0 there is a known issue that occurrs if you try to [configure private registry integration for the Bitnami services](how-to-guides/configure-private-reg-integration-bitnami-services.hbs.md) after having already created a claim for one or more of the Bitnami services using the default configuration. The issue is that the updated private registry configuration does not appear to take effect. This is due to caching behaviour in the system which is not currently accounted for during configuration updates.
+As of TAP 1.5.0 there is a known issue that occurrs if you try to [configure private registry integration for the Bitnami services](..how-to-guides/configure-private-reg-integration-bitnami-services.hbs.md) after having already created a claim for one or more of the Bitnami services using the default configuration. The issue is that the updated private registry configuration does not appear to take effect. This is due to caching behaviour in the system which is not currently accounted for during configuration updates.
 
 **Workaround**
 
