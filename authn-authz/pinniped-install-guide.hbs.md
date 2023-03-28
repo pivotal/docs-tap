@@ -10,10 +10,10 @@ This topic introduces how to install Pinniped on a single cluster of Tanzu Appli
 
 You will deploy two Pinniped components into the cluster:
 
-The Pinniped Supervisor is an OIDC server which allows users to authenticate with an external
+- **Pinniped Supervisor:** An OIDC server which allows users to authenticate with an external
 identity provider (IDP). It hosts an API for the concierge component to fulfill authentication requests.
 
-The Pinniped Concierge is a credential exchange API that takes a credential from an identity
+- **Pinniped Concierge:** A credential exchange API that takes a credential from an identity
 source, for example, Pinniped Supervisor, proprietary IDP, as input.
 The Pinniped Concierge authenticates the user by using the credential, and returns another
 credential that is parsable by the host Kubernetes cluster or by an impersonation proxy that acts
@@ -29,16 +29,16 @@ Meet these prerequisites:
 
 ## <a id="env-plan"></a>Environment planning
 
-If you run Tanzu Application Platform on a single cluster, both components `Pinniped Supervisor` and `Pinniped Concierge` are installed to this cluster.
+If you run Tanzu Application Platform on a single cluster, both Pinniped Supervisor and Pinniped Concierge are installed to this cluster.
 
 When running a multicluster setup, you must decide which cluster to deploy the Supervisor onto. 
 Furthermore, every cluster must have the Concierge deployed.
-`Pinniped Supervisor` runs as a central component that is consumed by multiple `Pinniped Concierge` instances. 
-As a result, `Pinniped Supervisor` must be deployed to a single cluster that meets the [prerequisites](#prereqs). 
-You can deploy `Pinniped Supervisor` to the View Cluster of your Tanzu Application Platform, because it is a central single instance cluster. 
+Pinniped Supervisor runs as a central component that is consumed by multiple Pinniped Concierge instances. 
+As a result, Pinniped Supervisor must be deployed to a single cluster that meets the [prerequisites](#prereqs). 
+You can deploy Pinniped Supervisor to the View Cluster of your Tanzu Application Platform, because it is a central single instance cluster. 
 For more information, see [Overview of multicluster Tanzu Application Platform](../multicluster/about.md).
 
-You must deploy the `Pinniped Concierge` to every cluster that you want to enable authentication for, including the View Cluster itself.
+You must deploy the Pinniped Concierge to every cluster that you want to enable authentication for, including the View Cluster itself.
 
 See the following diagram for a possible deployment model:
 ![Diagram showing the multicluster topology, where Pinniped Supervisor is deployed to View Cluster, and Pinniped Concierge instances are deployed across View, Build, and Run cluster.](../images/auth-pinniped-multi-cluster.jpg)
@@ -149,7 +149,7 @@ Where:
 - `DNS-NAME` is the domain in which the `pinniped-supervisor` is published. For example, `pinniped-supervisor.example.com`
 - `tls.passthrough: true` specifies that the TLS connection is forwarded to and terminated in the supervisor pod.
 
-### <a id="create-pinniped-super-config"></a>Create Pinniped-Supervisor configuration
+### <a id="create-pinniped-super-config"></a>Create the `pinniped-supervisor` configuration
 
 Create a `FederationDomain` to link the concierge to the supervisor instance and configure an
 `OIDCIdentityProvider` to connect the supervisor to your OIDC Provider.
@@ -157,7 +157,7 @@ The following example uses `auth0` as the `OIDCIdentityProvider`.
 For more information about how to configure different identity providers, including 
 OKTA, GitLab, OpenLDAP, Dex, Microsoft AD and more, see [Pinniped documentation](https://pinniped.dev/docs/howto/).
 
-To create Pinniped-Supervisor configuration, create the following resources and save them into
+To create the `pinniped-supervisor` configuration, create the following resources and save them into
 `workspace/pinniped-supervisor/oidc_identity_provider.yaml`:
 
 ```yaml
@@ -212,14 +212,14 @@ Where:
 
 - `APPLICATION-SUBDOMAIN` is the application specific subdomain that is assigned after the application registration.
 - `AUTH0-CLIENT-ID` and `AUTH0-CLIENT-SECRET` are the credentials retrieved from the application registration.
-- `DNS-NAME` is the domain in which the pinniped-supervisor is published. For example, `pinniped-supervisor.example.com`
+- `DNS-NAME` is the domain in which the `pinniped-supervisor` is published. For example, `pinniped-supervisor.example.com`
 
 ### <a id="apply-resources"></a>Apply the resources
 
 After creating the resource files, you can install them into the cluster.
 Follow these steps to deploy them as a [kapp application](https://carvel.dev/kapp/):
 
-1. Install the supervisor by running:
+1. Install the `pinniped-supervisor` by running:
 
     ```console
     kapp deploy -y --app pinniped-supervisor -f pinniped-supervisor -f https://get.pinniped.dev/v0.22.0/install-pinniped-supervisor.yaml
@@ -244,7 +244,7 @@ add an entry to the DNS system to bind the external IP address with.
 Follow these steps to switch to a `letsencrypt` production issuer so the generated TLS certificate is recognized
 as valid by web browsers and clients:
 
-1. Edit the ClusterIssuer for `letsencrypt` and add TLS certificate resource for Pinniped Supervisor
+1. Edit the ClusterIssuer for `letsencrypt` and add TLS certificate resource for `pinniped-supervisor`
 by creating or updating the following resources and saving them into `workspace/pinniped-supervisor/certificates.yaml`:
 
     ```yaml
@@ -283,7 +283,7 @@ by creating or updating the following resources and saving them into `workspace/
     Where:
 
     - `EMAIL` is the user email address for `letsencrypt`. For example, `your-mail@example.com`
-    - `DNS-NAME` is the domain in which the pinniped-supervisor is published. For example, `pinniped-supervisor.example.com`
+    - `DNS-NAME` is the domain in which the `pinniped-supervisor` is published. For example, `pinniped-supervisor.example.com`
 
 2. Create or update the `pinniped-supervisor` kapp application:
 
@@ -296,7 +296,7 @@ by creating or updating the following resources and saving them into `workspace/
 Follow these steps to install `pinniped-supervisor`:
 
 1. Switch tooling to the desired cluster.
-1. Create the required certificate files.
+1. Create the necessary certificate files.
 1. Create the Ingress resources.
 1. Create the `pinniped-supervisor` configuration.
 1. Apply these resources to the cluster.
@@ -381,7 +381,7 @@ Where:
 - `DNS-NAME` is the domain in which the `pinniped-supervisor` is published. For example, `pinniped-supervisor.example.com`
 - `tls.passthrough: true` specifies that the TLS connection is forwarded to and terminated in the supervisor pod.
 
-### <a id="create-pinniped-super-config"></a>Create Pinniped-Supervisor configuration
+### <a id="create-pinniped-super-config"></a>Create the `pinniped-supervisor` configuration
 
 Create a `FederationDomain` to link the concierge to the supervisor instance and configure an
 `OIDCIdentityProvider` to connect the supervisor to your OIDC Provider.
@@ -389,7 +389,7 @@ The following example uses `auth0` as the `OIDCIdentityProvider`.
 For more information about how to configure different identity providers, including 
 OKTA, GitLab, OpenLDAP, Dex, Microsoft AD and more, see [Pinniped documentation](https://pinniped.dev/docs/howto/).
 
-To create Pinniped-Supervisor configuration, create the following resources and save them into
+To create the `pinniped-supervisor` configuration, create the following resources and save them into
 `workspace/pinniped-supervisor/oidc_identity_provider.yaml`:
 
 ```yaml
@@ -488,7 +488,7 @@ To install Pinniped Concierge:
     kubectl get secret pinniped-supervisor-tls-cert -n pinniped-supervisor -o 'go-template=\{{index .data "tls.crt"}}'
     ```
 
-    **Note** the `tls.crt` contains the entire certificate chain including the CA certificate for `letsencrypt` generated certificates.
+    >**Note** The `tls.crt` contains the entire certificate chain including the CA certificate for `letsencrypt` generated certificates.
 
 1. Create the following resource to `workspace/pinniped-concierge/jwt_authenticator.yaml`:
 
