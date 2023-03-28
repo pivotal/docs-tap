@@ -1,13 +1,10 @@
-The current state of the workloads is visible on the Tanzu Workloads panel in the bottom of the editor
-window.
-The panel shows the current status of each workload, namespace, and cluster.
+The current state of the workloads is visible in the Tanzu Workloads view. This view is a seperate section in the bottom of the Explorer view in the Side Bar.
+The view shows the current status of each workload, namespace, and cluster.
 It also shows whether Live Update and Debug is running, stopped, or deactivated.
 
-Because each workload is deployed on the cluster, the activity section on the right in the
-Tanzu Workloads panel enables developers to visualize the supply chain, delivery, and running
+The Tanzu Activity tab in the Panels view enables developers to visualize the supply chain, delivery, and running
 application pods.
-The panel displays detailed error messages on each resource and enables a developer to view and
-describe logs on these resources from within their editor.
+The tab enables a developer to view and describe logs on each resource associated with a workload from within their IDE, and displays detailed error messages for each resource in an error state.
 
 Workload commands are available from the Tanzu Workloads panel on workloads that have an associated
 module in the current project.
