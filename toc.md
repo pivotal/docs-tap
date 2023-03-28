@@ -49,6 +49,7 @@ docs.vmware.com is built.
   - [Ingress certificates](security-and-compliance/ingress-certificates.hbs.md)
   - [Custom CA certificates](security-and-compliance/custom-ca-certificates.hbs.md)
   - [External Secrets Operator (alpha)](external-secrets/about-external-secrets-operator.hbs.md)
+  - [NIST 800-53 Moderate Assessment](external-secrets/tap-nist-matrix.hbs.md)
 - [Multicluster topology](multicluster/about.hbs.md)
   - [Multicluster overview](multicluster/about.hbs.md)
   - [Install](multicluster/installing-multicluster.hbs.md)
