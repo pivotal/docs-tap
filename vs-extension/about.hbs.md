@@ -30,3 +30,5 @@ The extension has the following features:
   Deploy your workload straight to your Kubernetes cluster and, after you're finished using it, you
   can delete it. All the output for deleting a workload is filtered to its own output pane window
   within Visual Studio.
+
+**Note** The new variation of the out-of-the-box (OOTB) Basic supply chains, which output [Carvel packages](../scc/carvel-package-supply-chain.hbs.md) to enable configuring multiple runtime environment, is not yet supported in this plugin.
