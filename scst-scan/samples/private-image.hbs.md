@@ -6,8 +6,9 @@ This example performs a scan against an image located in a private registry.
 
 ### <a id="set-up-target-secret"></a> Set up target image pull secret
 
-1. Confirm that target image secret was configured. This is typically completed during Tanzu Application Platform installation. If target image secret exists, skip to [Create the private image scan](./private-image.hbs.md#create-the-private-image-scan).
-2. If the target image secret was not previously configured, create a secret containing the credentials used to pull the target image you want to scan. For information about secret creation, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-secret-by-providing-credentials-on-the-command-line).
+1. Confirm that target image secret is configured. This is completed during Tanzu Application Platform installation. If the target image secret exists, see [Create the private image scan](./private-image.hbs.md#create-the-private-image-scan).
+2. If the target image secret was not configured, create a secret containing the credentials used to pull the target image you want to scan. For information about secret creation, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-secret-by-providing-credentials-on-the-command-line).
+
   ```
   kubectl create secret docker-registry TARGET-REGISTRY-CREDENTIALS-SECRET \
     --docker-server=<your-registry-server> \
@@ -18,10 +19,11 @@ This example performs a scan against an image located in a private registry.
   ```
 
   Where:
-  - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that is being created.
+
+  - `TARGET-REGISTRY-CREDENTIALS-SECRET` is the name of the secret that is created.
   - `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
-1. Update the `tap-values.yaml` file to include the name of secret created above.
+1. Update the `tap-values.yaml` file to include the name of secret created earlier.
 
   ```yaml
   grype:
@@ -32,13 +34,13 @@ This example performs a scan against an image located in a private registry.
 1. Upgrade Tanzu Application Platform with the modified `tap-values.yaml` file.
 
   ```console
-  tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP_VERSION}  --values-file tap-values.yaml -n tap-install
+  tanzu package installed update tap -p tap.tanzu.vmware.com -v ${TAP-VERSION}  --values-file tap-values.yaml -n tap-install
   ```
 
-  Where `TAP_VERSION` is the Tanzu Application Platform version
-
+  Where `TAP-VERSION` is the Tanzu Application Platform version.
 
 ### <a id="create-private-image-scan"></a>Create the private image scan
+
 Create `sample-private-image-scan.yaml`:
 
 ```yaml
@@ -85,7 +87,7 @@ kubectl describe imagescan sample-private-image-scan -n DEV-NAMESPACE
 
 Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
-Notice that the `Status.Conditions` includes a `Reason: JobFinished` and
+>**Note** The `Status.Conditions` includes a `Reason: JobFinished` and
 `Message: The scan job finished`. See [Viewing and Understanding Scan Status
 Conditions](../results.md).
 
