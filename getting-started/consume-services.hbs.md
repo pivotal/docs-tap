@@ -166,61 +166,9 @@ This is the value to pass to `--service-ref` when creating the application workl
 Confirm that sensor data is passing from the `spring-sensors-producer` workload to
 the `spring-sensors-consumer-web` workload using the `RabbitmqCluster` service instance.
 
-## <a id="stk-use-cases"></a> Further use cases and reading
+## <a id="stk-use-cases"></a> Learn more
 
-There are more service use cases not covered in this getting started guide. See the following:
-
-<table class="nice">
-  <th><strong>Use Case</strong></th>
-  <th><strong>Short Description</strong></th>
-  <tr>
-    <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_ack.html#dscvr-claim-bind">Consuming AWS RDS on Tanzu Application Platform</a>
-    </td>
-    <td>
-      Using the Controllers for Kubernetes (ACK) to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
-      Involves making a third-party API consumable from Tanzu Application Platform.
-    </td>
-  </tr><tr>
-    <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_aws_rds_with_crossplane.html#claim-the-rds-postgresql-instance-and-connect-to-it-from-the-tanzu-application-platform-workload-8">Consuming AWS RDS on Tanzu Application Platform with Crossplane</a>
-    </td>
-    <td>
-      Using <a href="https://crossplane.io/">Crossplane</a> to provision an RDS instance and consume it from a Tanzu Application Platform workload.<br>
-      Involves making a third-party API consumable from Tanzu Application Platform.
-    </td>
-  </tr><tr>
-    <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_gcp_sql_with_config_connector.html#discover-claim-and-bind-to-a-google-cloud-sql-postgresql-instance-3">Consuming Google Cloud SQL on Tanzu Application Platform with Config Connector</a>
-    </td>
-    <td>
-      Using GCP Config Connector to provision a Cloud SQL instance and consume it from a Tanzu Application Platform workload.<br>
-      Involves making a third-party API consumable from Tanzu Application Platform.
-    </td>
-  </tr><tr>
-    <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-consuming_gcp_sql_with_crossplane.html#claim-the-cloudsql-postgresql-instance-and-connect-to-it-from-the-tanzu-application-platform-workload-8">Consuming Google Cloud SQL on Tanzu Application Platform with Crossplane</a>
-    </td>
-    <td>
-      Using <a href="https://crossplane.io/">Crossplane</a> to provision a Cloud SQL instance and consume it from a Tanzu Application Platform workload.<br>
-      Involves making a third-party API consumable from Tanzu Application Platform.
-    </td>
-  </tr><tr>
-    <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-direct_secret_references.html">Direct Secret References</a>
-    </td>
-    <td>
-      Binding to services running external to the cluster, for example, an in-house oracle database.<br>
-      Binding to services that do not conform with the binding specification.
-    </td>
-  </tr>
-  <tr>
-    <td>
-      <a href="https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/usecases-dedicated_service_clusters.html">Dedicated Service Clusters</a> (Experimental)
-    </td>
-    <td>Separates application workloads from service instances across dedicated clusters.</td>
-  </tr>
-</table>
+Refer to the services toolkit componenet documentation for further [tutorials](../services-toolkit/tutorials.hbs.md), [how-to guides](../services-toolkit/how-to-guides.hbs.md), [explanations](../services-toolkit/explanation.hbs.md) and [reference material](../services-toolkit/reference.hbs.md) to learn more about working with services on Tanzu Application Platform.
 
 For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
 [Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/overview.html).
