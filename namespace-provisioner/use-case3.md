@@ -1,10 +1,12 @@
 # Working with Private Git Repositories
 
+This topic describes how to work with private Git repositories.
+
 ## Git Authentication for using a private Git repository
 
-Namespaces provisioner enables users to use private git repositories for storing their Gitops based installation files as well as additional platform operator templated resources that they want to create in their developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources (See [Customize Installation](#heading=h.lc08xegj8s5n) for more details).
+Namespaces Provisioner enables you to use private Git repositories for storing your Gitops based installation files as well as additional platform operator templated resources that you want to create in your developer namespace. Authentication is provided using a secret in `tap-namespace-provisioning` namespace, or an existing secret in another namespace referred to in the secretRef in the additional sources. See [Customize Installation](customize-installation.md) for more details.
 
-### Create the Git Authentication secret in tap-namespace-provisioning namespace.
+### Create the Git Authentication secret in tap-namespace-provisioning namespace
 
 The secrets for Git authentication allow the following keys:
 
@@ -14,43 +16,45 @@ The secrets for Git authentication allow the following keys:
 -  username
 - password
 
-Using HTTP(s) based Authentication
-: If using Username and Password for authentication, create the git secret with authentication details as follows:
+1. Create the Git secret:
 
-    ```console
-    cat << EOF | kubectl apply -f -
-    apiVersion: v1
-    kind: Secret
-    metadata:
-    name: git-auth
-    namespace: tap-namespace-provisioning
-    type: Opaque
-    stringData:
-    username: GIT-USERNAME
-    password: GIT-PASSWORD
-    EOF
-    ```
+    Using HTTP(s) based Authentication
+    : If using Username and Password for authentication, create the git secret with authentication details as follows:
 
-Using SSH based Authentication
-: If using SSH private key for authentication, create the git secret with authentication details as follows:
+        ```console
+        cat << EOF | kubectl apply -f -
+        apiVersion: v1
+        kind: Secret
+        metadata:
+        name: git-auth
+        namespace: tap-namespace-provisioning
+        type: Opaque
+        stringData:
+        username: GIT-USERNAME
+        password: GIT-PASSWORD
+        EOF
+        ```
 
-    ```console
-    cat << EOF | kubectl apply -f -
-    apiVersion: v1
-    kind: Secret
-    metadata:
-    name: git-auth
-    namespace: tap-namespace-provisioning
-    type: Opaque
-    stringData:
-    ssh-privatekey: |
-        -----BEGIN OPENSSH PRIVATE KEY-----
-        ..
-        -----END OPENSSH PRIVATE KEY-----
-    EOF
-    ```
+    Using SSH based Authentication
+    : If using SSH private key for authentication, create the git secret with authentication details as follows:
 
-Next, Add the` secretRef` section to the` additional_sources` and the `gitops_install` section of the Namespace Provisioner configuration in your TAP values: <!--is this outside tabs-->
+        ```console
+        cat << EOF | kubectl apply -f -
+        apiVersion: v1
+        kind: Secret
+        metadata:
+        name: git-auth
+        namespace: tap-namespace-provisioning
+        type: Opaque
+        stringData:
+        ssh-privatekey: |
+            -----BEGIN OPENSSH PRIVATE KEY-----
+            ..
+            -----END OPENSSH PRIVATE KEY-----
+        EOF
+        ```
+
+2. Add the` secretRef` section to the` additional_sources` and the `gitops_install` section of the Namespace Provisioner configuration in your TAP values: <!--is this outside tabs-->
 
 Using Namespace Provisioner Controller
 : Description
@@ -307,6 +311,6 @@ Using GitOps
 
     * First additional source points to the location where our templated git secret resides which will be created in all developer namespaces.
     * Second additional source points to the overlay file which will add the git secret onto the default service account
-    * Finally, import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets` (See the [Templating additional sources](#heading=h.bcqllo8t167x) for more details)
+    * Finally, import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 
     >**Note** `create_export` is set to` true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by Namespace Provisioner. After the changes are reconciled, you should see the secret named **git **in all provisioned namespaces and also added to the default service account of those namespaces.

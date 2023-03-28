@@ -1,4 +1,4 @@
-# Login using Pinniped
+# Login by using Pinniped
 
 As a prerequisite, the administrator needs to provide users access to resources via `rolebindings`. It can be done with the `tanzu rbac` plug-in. See [Bind a user or group to a default role](binding.md).
 

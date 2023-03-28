@@ -17,7 +17,7 @@ Add the maven dependency in `pom.xml` as follows:
 </dependency>
 ```
 
-Add the below plugin configuration in `pom.xml` as follows:
+Add the following plugin configuration in `pom.xml`:
 
 ```xml
 <plugin>
@@ -38,11 +38,13 @@ Add the below plugin configuration in `pom.xml` as follows:
 </plugin>
 ```
 
-The above configuration is made to generate build-info.properties into your Spring Boot application. This information is then used to display the Spring Boot Version that the app uses in Application Live View.
+Add the preceding configuration to generate `build-info.properties` into your Spring Boot application.
+This information is then used to display the Spring Boot version that the app uses in Application Live View.
 
-
-To enable Application Live View for Spring Boot apps, Spring Boot conventions automatically sets the Application Live View labels onto the PodSpec.
-For more information about the labels automatically set by Spring Boot conventions, see [Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
+To enable Application Live View for Spring Boot apps, Spring Boot conventions automatically sets
+the Application Live View labels onto the PodSpec.
+For more information about the labels automatically set by Spring Boot conventions, see
+[Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
 
 
 ## Enable Spring Boot 3 apps
@@ -59,7 +61,7 @@ Add the maven dependency in `pom.xml` as follows:
 </dependency>
 ```
 
-Add the below plugin configuration in `pom.xml` as follows:
+Add the following plugin configuration in `pom.xml`:
 
 ```xml
 <plugin>
@@ -80,10 +82,13 @@ Add the below plugin configuration in `pom.xml` as follows:
 </plugin>
 ```
 
-The above configuration is made to generate build-info.properties into your Spring Boot application. This information is then used to display the Spring Boot Version that the app uses in Application Live View.
+Add the preceding configuration to generate `build-info.properties` into your Spring Boot application.
+This information is then used to display the Spring Boot version that the app uses in Application Live View.
 
-To enable Application Live View for Spring Boot 3 apps, Spring Boot conventions automatically sets the Application Live View labels onto the PodSpec.
-For more information about the labels automatically set by Spring Boot conventions, see [Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
+To enable Application Live View for Spring Boot 3 apps, Spring Boot conventions automatically sets
+the Application Live View labels onto the PodSpec.
+For more information about the labels automatically set by Spring Boot conventions, see
+[Enable Application Live View for Spring Boot applications](../../spring-boot-conventions/enabling-app-live-view.hbs.md).
 
 Here is an example of creating a workload for a Spring Boot 3 Application:
 

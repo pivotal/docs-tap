@@ -6,7 +6,7 @@ The Namespace Provisioner package is installed as part of all the standard insta
 except the view profile. The default set of resources provisioned in a namespace is based on a
 combination of the Tanzu Application Platform installation profile employed and the supply chain
 that is installed on the cluster. For a list of what resources are created for different profile
-and supply chain combinations, see the [default resource](#fake) mapping table.
+and supply chain combinations, see the [Default Resources](reference.md#default-resource) mapping table.
 
 To see the Namespace Provisioner Package Schema for all configurable values, run the following command:
 
@@ -26,7 +26,7 @@ Options if using Controller
    - See the “fetch” section of the kapp controller App specification section for the format.
    Only the Git type fetch is supported.
    - additional_sources[].git can have a secretRef specified for providing auth details for
-   connecting to a private git repository (see Git Authentication for Private repository for more details). It accepts name, namespace and create_export parameters as shown in the example below.
+   connecting to a private Git repository, see [Git Authentication for Private repository](use-case3.md) for more details. It accepts name, namespace and create_export parameters as shown in the example below.
    name: Name of the secret to be imported to use as valuesFrom in kapp.
    namespace: Namespace where the secret exists.
    create_export:  Boolean flag to control creation of a SecretExport resource in the namespace mentioned above. Default value is false. If the Secret is already exported, make sure it is exported to tap-namespace-provisioning namespace for this feature to work.
@@ -244,7 +244,7 @@ Options if using GitOps
          - subPath: the git repository subpath where the file is
          - ref: the git repository reference, default is origin/main
          - secretRef: if the repository needs authentication, the reference to the secret is set here
-             - name: the name of the secret to be used for the repository authentication, (see Git Authentication for Private repository for more details)
+             - name: the name of the secret to be used for the repository authentication, see [Git Authentication for Private repository](use-case3.md) for more details.
              - namespace: the namespace where the secret is created. Namespace Provisioner will create a carvel secretgen SecretImport from this given namespaces to Namespace Provisioner namespace.
              - create_export: boolean flag to create a carvel secretgen SecretExport from the given namespace to Namespace Provisioner namespace, default value is false
      - The gitops_install section must be used only when controller: false or else the package will fail reconciliation with error message set `controller: false` when using `gitops_install` in provided values.
@@ -293,7 +293,7 @@ Options if using GitOps
 
      - additional_sources is an array of locations of your Git repositories which contain Platform Operator templated resources to be created on the provisioned namespaces, in addition to the default resources that are shipped with Tanzu Application Platform.
      - See the fetch section of the kapp controller App specification section for the format. Only the Git type fetch is supported.
-     - additional_sources[].git can have secretRef specified for providing auth details for connecting to a private git repository (see Git Authentication for Private repository for more details). It accepts name, namespace of the secrets and create_export parameters as shown in the example below.
+     - additional_sources[].git can have secretRef specified for providing auth details for connecting to a private git repository see [Git Authentication for Private repository](use-case3.md) for more details. It accepts name, namespace of the secrets and create_export parameters as shown in the example below.
          - name: Name of the secret to be imported to use as valuesFrom in kapp.
          - namespace: Namespace where the secret exists.
          - create_export:  Boolean flag to decide creation of a SecretExport resource in the namespace mentioned above. Default value is false. If the Secret is already exported by user, make sure it is exported for tap-namespace-provisioning namespace for this feature to work.

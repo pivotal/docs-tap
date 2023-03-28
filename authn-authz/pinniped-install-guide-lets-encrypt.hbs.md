@@ -1,4 +1,4 @@
-# Install Pinniped on Tanzu Application Platform
+# Install Pinniped on Tanzu Application Platform by using Let's Encrypt
 
 [Pinniped](https://pinniped.dev/) is used to support authentication on Tanzu Application Platform.
 This topic introduces how to install Pinniped on a single cluster of Tanzu Application Platform.
@@ -8,14 +8,14 @@ This topic introduces how to install Pinniped on a single cluster of Tanzu Appli
 > See [Pinniped documentation](https://pinniped.dev/docs/howto/) for more information about the 
 > specific installation method that suits your environment.
 
-You will deploy two Pinniped components into the cluster.
+You will deploy two Pinniped components into the cluster:
 
-The **Pinniped Supervisor** is an OIDC server which allows users to authenticate with an external
+- The Pinniped Supervisor is an OIDC server which allows users to authenticate with an external
 identity provider (IDP). It hosts an API for the concierge component to fulfill authentication requests.
 
-The **Pinniped Concierge** is a credential exchange API that takes a credential from an identity
+- The Pinniped Concierge is a credential exchange API that takes a credential from an identity
 source, for example, Pinniped Supervisor, proprietary IDP, as input.
-The **Pinniped Concierge** authenticates the user by using the credential, and returns another
+The Pinniped Concierge authenticates the user by using the credential, and returns another
 credential that is parsable by the host Kubernetes cluster or by an impersonation proxy that acts
 on behalf of the user.
 
@@ -23,23 +23,27 @@ on behalf of the user.
 
 Meet these prerequisites:
 
-* Install the package `certmanager`. This is included in Tanzu Application Platform.
-* Install the package `contour`. This is included in Tanzu Application Platform.
-* Create a `workspace` directory to function as your workspace.
+- Install the package `certmanager`. This is included in Tanzu Application Platform.
+- Install the package `contour`. This is included in Tanzu Application Platform.
+- Create a `workspace` directory to function as your workspace.
 
 ## <a id="env-plan"></a>Environment planning
 
-If you are running Tanzu Application Platform on a single cluster, both components `Pinniped Supervisor` and `Pinniped Concierge` are installed to this cluster.
+If you run Tanzu Application Platform on a single cluster, both components `Pinniped Supervisor` and `Pinniped Concierge` are installed to this cluster.
 
-When running a multicluster setup you must decide which cluster to deploy the Supervisor onto. Furthermore, every cluster must have the Concierge deployed.
-`Pinniped Supervisor` is supposed to run as a central component that is consumed by potentially multiple `Pinniped Concierge` instances. That means that a `Pinniped Supervisor` must be deployed to a single cluster that meets the [prerequisites](#prereqs). In the current Tanzu Application Platform, the `view cluster` is a good place for it, because it is defined as a central single instance cluster. For more information, see [Overview of multicluster Tanzu Application Platform](../multicluster/about.md).
+When running a multicluster setup, you must decide which cluster to deploy the Supervisor onto. 
+Furthermore, every cluster must have the Concierge deployed.
+`Pinniped Supervisor` is supposed to run as a central component that is consumed by potentially multiple `Pinniped Concierge` instances. 
+That means that a `Pinniped Supervisor` must be deployed to a single cluster that meets the [prerequisites](#prereqs). 
+In the current Tanzu Application Platform, the `view cluster` is a good place for it, because it is defined as a central single instance cluster. 
+For more information, see [Overview of multicluster Tanzu Application Platform](../multicluster/about.md).
 
-In contrast, the `Pinniped Concierge` must be deployed to every cluster that you want to enable authentication for, including the `view cluster` itself.
+In contrast, you must deploy the `Pinniped Concierge` to every cluster that you want to enable authentication for, including the `view cluster` itself.
 
-See the following diagram showing a possible deployment model:
+See the following diagram for a possible deployment model:
 ![Diagram showing the multicluster topology, where Pinniped Supervisor is deployed to View Cluster, and Pinniped Concierge instances are deployed across View, Build, and Run cluster.](../images/auth-pinniped-multi-cluster.jpg)
 
-For more information about the Pinniped architecture and deployment model, see the [Pinniped Documentation](https://pinniped.dev/docs/background/architecture/).
+For more information about the Pinniped architecture and deployment model, see [Pinniped documentation](https://pinniped.dev/docs/background/architecture/).
 
 ## <a id="install-pinniped-super"></a>Install Pinniped Supervisor
 
@@ -54,8 +58,11 @@ Follow these steps to install `pinniped-supervisor`:
 
 ### <a id="create-certs"></a>Create Certificates (letsencrypt/cert-manager)
 
-Create a ClusterIssuer for `letsencrypt` and a TLS certificate resource for Pinniped Supervisor
-by creating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`:
+Choose a fully qualified domain name (FQDN) that can resolve to the Contour instance in the `tanzu-system-ingress` namespace. 
+The FQDN `pinniped-supervisor.example.com` is used in the following sections.
+
+Create a `ClusterIssuer` for `letsencrypt` and a TLS certificate resource for Pinniped Supervisor
+by creating the following resources and saving them into `workspace/pinniped-supervisor/certificates.yaml`:
 
 ```yaml
 ---
@@ -144,11 +151,11 @@ Where:
 
 ### <a id="create-pinniped-super-config"></a>Create Pinniped-Supervisor configuration
 
-Create a FederationDomain to link the concierge to the supervisor instance and configure an
-OIDCIdentityProvider to connect the supervisor to your OIDC Provider.
-The following example uses auth0 as the identity provider.
-See the [Pinniped documentation](https://pinniped.dev/docs/howto/) to learn how to configure different
-identity providers, including OKTA, GitLab, OpenLDAP, Dex, Microsoft AD, and more.
+Create a `FederationDomain` to link the concierge to the supervisor instance and configure an
+`OIDCIdentityProvider` to connect the supervisor to your OIDC Provider.
+The following example uses `auth0` as the `OIDCIdentityProvider`.
+For more information about how to configure different identity providers, including 
+OKTA, GitLab, OpenLDAP, Dex, Microsoft AD and more, see [Pinniped documentation](https://pinniped.dev/docs/howto/).
 
 To create Pinniped-Supervisor configuration, create the following resources and save them in
 `workspace/pinniped-supervisor/oidc_identity_provider.yaml`:
@@ -213,26 +220,31 @@ After creating the resource files, you can install them into the cluster.
 Follow these steps to deploy them as a [kapp application](https://carvel.dev/kapp/):
 
 1. Install the supervisor by running:
+
     ```console
     kapp deploy -y --app pinniped-supervisor --into-ns pinniped-supervisor -f pinniped-supervisor -f https://get.pinniped.dev/v0.22.0/install-pinniped-supervisor.yaml
     ```
+
    >**Note** To keep the security patches up to date, you must 
    > install the most recent version of Pinniped. 
    > See [Vmware Tanzu Pinniped Releases](https://github.com/vmware-tanzu/pinniped/releases) 
    > in GitHub for more information.  
 
 1. Get the external IP address of Ingress by running:
+
     ```console
     kubectl -n tanzu-system-ingress get svc/envoy -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
+
 1. Bind the Ingress DNS to the IP address by running:
+
     ```console
     *.example.com A 35.222.xxx.yyy
     ```
 
-### <a id="update-certs"></a>Switch to production issuer (letsencrypt/cert-manager)
+### <a id="update-certs"></a>Switch to production issuer (letsencrypt or cert-manager)
 
-Once everything works as expected, you can switch to
+After everything works as expected, you can switch to
 a `letsencrypt` production issuer so the generated TLS certificate is recognized
 as valid by web browsers and clients.
 

@@ -137,21 +137,21 @@ Using GitOps
     --yes
     ```
 
-## Testing & Scanning Supply Chain
+## <a id='test-scan'></a>Testing & Scanning Supply Chain
 
 The Testing Scanning supply chain adds the `source-tester`, `source-scanner` and `image-scanner` steps in the supply chain which tests the source code pulled by the supply chain as well as run scans for CVEs on the source and the image built by the supply chain. For these new testing and scanning steps to work, following additional resources must exist in the same namespace as the workload.
 
 * `Pipeline:`defines how to run the tests on the source code pulled by the supply chain and which image to use that has the tools to run those tests.
 * `ScanTemplate`: defines how to run a scan, allowing one to change details about the execution of the scan (either for images or source code)
     * A ScanTemplate defines the PodTemplateSpec used by a Job to run a particular scan (image or source). When the supply chain initiates an ImageScan a SourceScan, they reference these templates which must live in the same namespace as the workload.
-    * Although you can customize the templates, VMware recommends that you follow what is provided in the installation of the `grype.scanning.apps.tanzu.vmware.com` package. This is automatically created in all the namespace managed by Namespace Provisioner. For more information, see [About Source and Image Scans](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/scst-scan-explanation.html#about-src-and-image-scans).
+    * Although you can customize the templates, VMware recommends that you follow what is provided in the installation of the `grype.scanning.apps.tanzu.vmware.com` package. This is automatically created in all the namespace managed by Namespace Provisioner. For more information, see [About Source and Image Scans](../scst-scan/explanation.hbs.md#about-src-and-image-scans).
 * `ScanPolicy`: define how to evaluate whether the artifacts scanned are compliant. For example, allowing one to be either very strict, or restrictive about particular vulnerabilities found.
 * When an ImageScan or a SourceScan is created to run a scan, those reference a policy whose name must match the following [sample ScanPolicy](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/testing-scanning-supplychain/scanpolicy-grype.yaml).
 * See [Writing Policy Templates](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/scst-scan-policies.html).
 
 ### Add a Java Tekton Pipeline & Grype Scan Policy to your developer namespace
 
-Refer to the [Provision Developer Namespaces](#heading=h.y3di0ufxnjb4) section to create a developer namespace.
+Refer to the [Provision Developer Namespaces](provision-developer-ns.md) section to create a developer namespace.
 
 Namespace Provisioner can automate the creation of a Tekton pipeline and a ScanPolicy that is needed for the workload to run on a Testing & Scanning supply chain. You can create a sample Pipeline and a ScanPolicy in your GitOps repo and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. (See [Customize Installation](#fake) for more details)
 
