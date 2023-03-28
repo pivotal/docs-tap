@@ -1,4 +1,4 @@
-# Install Pinniped on Tanzu Application Platform Using Let's Encrypt
+# Install Pinniped on Tanzu Application Platform by using Let's Encrypt
 
 [Pinniped](https://pinniped.dev/) is used to support authentication on Tanzu Application Platform.
 This topic introduces how to install Pinniped on a single cluster of Tanzu Application Platform.
@@ -54,7 +54,8 @@ Follow these steps to install `pinniped-supervisor`:
 
 ### <a id="create-certs"></a>Create Certificates (letsencrypt/cert-manager)
 
-Choose an fqdn that can resolve to the Contour instance running inside the `tanzu-system-ingress` namespace. In the following sections `pinniped-supervisor.example.com` will be used.
+Choose a fully qualified domain name (FQDN) that can resolve to the Contour instance in the `tanzu-system-ingress` namespace. 
+The FQDN `pinniped-supervisor.example.com` is used in the following sections.
 
 Create a ClusterIssuer for `letsencrypt` and a TLS certificate resource for Pinniped Supervisor
 by creating the following resources and save them into `workspace/pinniped-supervisor/certificates.yaml`:

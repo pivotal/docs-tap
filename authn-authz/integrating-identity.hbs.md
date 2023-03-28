@@ -6,7 +6,7 @@ such as Tanzu Kubernetes Grid, EKS, AKS, or GKE.
 
 VMware recommends Pinniped for integrating your identity management into Tanzu Application Platform
 on multicloud. It provides many supported integrations for widely used identity providers.
-To use Pinniped, see [Installing Pinniped on Tanzu Application Platform](pinniped-install-guide.html) and
+To use Pinniped, see [Installing Pinniped on Tanzu Application Platform](pinniped-install-guide-lets-encrypt.hbs.md) and
 [Logging in using Pinniped](pinniped-login.html).
 
 See [Integrating Azure Active Directory](azure-ad.html) for Azure Active Directory Integration
