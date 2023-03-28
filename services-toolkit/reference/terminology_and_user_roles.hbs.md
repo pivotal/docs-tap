@@ -115,12 +115,16 @@
 
 ### Service Cluster
 
-* Applicable within the context of [Service API Projection and Service Resource Replication](../api_projection_and_resource_replication/api_docs.md)
+<!-- add back link [Service API Projection and Service Resource Replication](../api_projection_and_resource_replication/api_docs.md) -->
+
+* Applicable within the context of Service API Projection and Service Resource Replication
 * A Kubernetes cluster that has Service Resource Lifecycle APIs installed and a corresponding controller managing their life cycle
 
 ### Workload Cluster
 
-* Applicable within the context of [Service API Projection and Service Resource Replication](../api_projection_and_resource_replication/api_docs.md)
+<!-- add back link [Service API Projection and Service Resource Replication](../api_projection_and_resource_replication/api_docs.md) -->
+
+* Applicable within the context of Service API Projection and Service Resource Replication
 * A Kubernetes cluster that has developer-created applications running on it
 
 ## User Roles
@@ -158,5 +162,5 @@ Encompasses the [app-operator](https://docs.vmware.com/en/VMware-Tanzu-Applicati
 * Lifecycle management (CRUD) of Service Instances
 * Lifecycle management (CRUD) of Service Instance Classes
 * Lifecycle management (CRUD) of Resource Claim Policies
-* Identify pending Resource Claims and, if deemed appropriate, help to fulfil such claims through a combination of the above Jobs To Be Done 
+* Identify pending Resource Claims and, if deemed appropriate, help to fulfil such claims through a combination of the above Jobs To Be Done
 * Setup and configuration of Dynamic Provisioning
