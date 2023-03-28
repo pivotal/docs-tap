@@ -134,105 +134,117 @@ To install Application Live View back end:
     For more information about values schema options, see the properties listed
     earlier.
 
-2. Create `app-live-view-backend-values.yaml` with the following details:
+1. Create the file `app-live-view-backend-values.yaml` using the following information:
 
-    For a SINGLE-CLUSTER environment, the Application Live View back end is
-    exposed through the Kubernetes cluster service. By default, ingress is
-    disabled for back end.
+   - For a single-cluster environment, the Application Live View back end is
+   exposed through the Kubernetes cluster service. By default, ingress is
+   deactivated for back end.
 
-    ```yaml
-      ingressEnabled: false
-    ```
+       ```yaml
+         ingressEnabled: false
+       ```
 
-    For a multicluster environment, set the flag `ingressEnabled` to true for
-    the Application Live View back end to be exposed on the ingress domain.
+   - For a multicluster environment, set the flag `ingressEnabled` to true for
+   the Application Live View back end to be exposed on the ingress domain.
 
-    ```yaml
-      ingressEnabled: true
-    ```
+       ```yaml
+         ingressEnabled: true
+       ```
 
-    >**Note** If it is a Tanzu Application Platform profile installation and
-    >top-level key `shared.ingress_domain` is set in the `tap-values.yml`, the
-    >back end is automatically exposed through the shared ingress.
+   - If you are using a Tanzu Application Platform profile installation and the
+    top-level key `shared.ingress_domain` is set in the `tap-values.yaml`, the
+    back end is automatically exposed through the shared ingress.
 
-    If you want to override the shared ingress for Application Live View in a
-    multicluster environment, use the following values:
+       To override the shared ingress for Application Live View in a multicluster environment,
+       use the following values:
 
-    ```yaml
-      ingressEnabled: true
-      ingressDomain: ${INGRESS-DOMAIN}
-    ```
+       ```yaml
+         ingressEnabled: true
+         ingressDomain: ${INGRESS-DOMAIN}
+       ```
 
-    Where `INGRESS-DOMAIN` is the top-level domain you use for the
-    `tanzu-shared-ingress` service’s external IP address. The `appliveview`
-    subdomain is prepended to the value provided.
+       Where `INGRESS-DOMAIN` is the top-level domain you use for the
+       `tanzu-shared-ingress` service’s external IP address. The `appliveview`
+       subdomain is prepended to the value provided.
 
-    ### Enable TLS on App Live View back end using a self-signed certificate
+   - To enable TLS for Application Live View back end using a self-signed certificate:
 
-    To enable TLS for Application Live View back end using a self-signed certificate, the following properties must be provided in `app-live-view-backend-values.yaml`:
+       1. Create the `app-live-view` namespace and the TLS secret for the domain.
+       You must do this before installing the Tanzu Application Platform packages in the
+       cluster so that the HTTPProxy is updated with the TLS secret. To create a
+       TLS secret, run:
+       <!-- must the secret be named alv-cert? is this secret the one used in the values YAML file? -->
 
-    ```yaml
-    tls:
-      namespace: "NAMESPACE"
-      secretName: "SECRET NAME"
-    ```
+          ```console
+          kubectl create -n app-live-view secret tls alv-cert --cert=CERT-FILE --key=KEY-FILE
+          ```
 
-    Where:
+          Where:
 
-    - `NAMESPACE` is the targeted namespace of TLS secret for the domain.
-    - `SECRET NAME` is the name of TLS secret for the domain.
+          - `CERT-FILE` is a .crt file that contains the PEM encoded server certificate
+          - `KEY-FILE`  is a .key file that contains the PEM encoded server private key
 
-    You can edit the values to suit your project needs or leave the default
-    values as is.
+       1. Provide the following properties in your `app-live-view-backend-values.yaml`:
 
-    >**Note** The `ingressEnabled` key needs to be set to `true` for TLS to be enabled on Application Live View back end using a self-signed certificate.
-    
-    When `ingressEnabled` is `true`, HTTPProxy object gets created in the cluster. 
-    The app-live-view namespace and the TLS secret for the domain should be
-    created before installing the Tanzu Application Platform packages in the
-    cluster so that the HTTPProxy is updated with the TLS secret. To create a
-    TLS secret, run:
+          ```yaml
+          tls:
+            namespace: "NAMESPACE"
+            secretName: "SECRET NAME"
+          ```
 
-    ```console
-    kubectl create -n app-live-view secret tls alv-cert --cert=<.crt file> --key=<.key file>
-    ```
+          Where:
 
-    Where:
-    
-    - .crt file contains pem encoded server certificate
-    - .key file contains pem encoded server private key 
+          - `NAMESPACE` is the targeted namespace of TLS secret for the domain.
+          - `SECRET NAME` is the name of TLS secret for the domain.
 
-    To verify the HTTPProxy object with the TLS secret, run:
+          You can edit the values to suit your project needs or leave the default
+          values as is.
 
-    ```console
-    kubectl get httpproxy -A
-    NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
-    app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
-    ```
+       1. Set the `ingressEnabled` key to `true`.
 
+          When `ingressEnabled` is `true`, the HTTPProxy object is created in the cluster.
 
-    ### Enable TLS on App Live View back end using ClusterIssuer
+       1. Verify the HTTPProxy object with the TLS secret by running:
 
-    TLS is automatically enabled by default on Application Live View back end using the shared ClusterIssuer. 
-    The `appliveview-cert` certificate is generated by default and its issuerRef points to the `.ingress_issuer` value. 
-    The `ingress_issuer` key automatically consumes the new tap value `shared.ingress_issuer` by default when we don't 
-    specify the `ingress_issuer` in tap_values.yml.
+          ```console
+          kubectl get httpproxy -A
+          ```
 
-    >**Note** The `ingressEnabled` key needs to be set to `true` for TLS to be enabled on Application Live View back end using ClusterIssuer.
+          Expected output:
 
-    When `ingressEnabled` is `true`, HTTPProxy object gets created in the cluster and also `appliveview-cert` certificate is generated by default in
-    `app_live_view` namespace. Here, the secretName `appliveview-cert` is used to store this certificate.
+          ```console
+          NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
+          app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/alv-cert   valid    Valid HTTPProxy
+          ```
 
-    To verify the HTTPProxy object with the secret, run:
+   - To enable TLS for Application Live View back end using ClusterIssuer:
 
-    ```console
-    kubectl get httpproxy -A
-    NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
-    app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/appliveview-cert   valid    Valid HTTPProxy
-    ```
+       Set the `ingressEnabled` key to `true` for TLS to be enabled on Application Live View back
+       end using ClusterIssuer.
 
+       TLS is then automatically enabled on Application Live View back end using the shared ClusterIssuer.
+       The `appliveview-cert` certificate is generated by default and its issuerRef points to the `.ingress_issuer` value.
+       The `ingress_issuer` key consumes the value `shared.ingress_issuer` from `tap-values.yaml` by
+       default if you don't specify the `ingress_issuer` in `tap-values.yaml`.
 
-3. Install the Application Live View back-end package by running:
+       When `ingressEnabled` is `true`, HTTPProxy object is created in the cluster and also
+       `appliveview-cert` certificate is generated by default in the `app_live_view` namespace.
+       Here, the secretName `appliveview-cert` stores this certificate.
+
+       To verify the HTTPProxy object with the secret, run:
+
+       ```console
+       kubectl get httpproxy -A
+       ```
+
+       Expected output:
+
+       ```console
+       NAMESPACE            NAME                                                              FQDN                                                             TLS SECRET               STATUS   STATUS DESCRIPTION
+       app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/appliveview-cert   valid    Valid HTTPProxy
+       ```
+
+1. Install the Application Live View back-end package by running:
 
     ```console
     tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-backend-values.yaml
@@ -259,7 +271,7 @@ To install Application Live View back end:
     The Application Live View back-end component is deployed in `app-live-view`
     namespace by default.
 
-4. Verify the Application Live View back-end package installation by running:
+1. Verify the Application Live View back-end package installation by running:
 
     ```console
     tanzu package installed get appliveview -n tap-install
@@ -565,7 +577,7 @@ To install Application Live View Apiserver:
     $ tanzu package available list apiserver.appliveview.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for apiserver.appliveview.tanzu.vmware.com...
       NAME                                    VERSION       RELEASED-AT
-      apiserver.appliveview.tanzu.vmware.com  1.5.0         2023-03-19T00:00:00Z 
+      apiserver.appliveview.tanzu.vmware.com  1.5.0         2023-03-19T00:00:00Z
     ```
 
 1. (Optional) Change the default installation settings by running:
