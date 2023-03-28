@@ -30,9 +30,9 @@ The following issues, listed by component and area, are resolved in this release
  
 #### <a id='1-4-3-grype-scanner-ri'></a> Grype Scanner
 
-- **Bumped Syft version to fix image scans failing with panic:**
+- **Updated Syft version to fix image scans fails with panic:**
 
-  Syft was updated to fix a bug that causes the scanner to crash with index out of range, while parsing APK metadata to identify installed OS packages if a package's list of provided files is empty.
+  Syft was updated to fix an issue that causes the scanner to crash with index out of range, while parsing APK metadata to identify installed OS packages if a package's list of provided files is empty.
 
 ---
  
@@ -52,7 +52,7 @@ This release has the following known issues, listed by component and area.
   For most languages, source code scanning only scans files present in the
   source code repository. Except for support added for Java projects using
   Maven, no network calls fetch dependencies. For languages using dependency
-  lock files, such as Golang and Node.js, Grype uses the lock files to check
+  lock files, such as golang and Node.js, Grype uses the lock files to verify
   dependencies for vulnerabilities.
 
   For Java using Gradle, dependency lock files are not guaranteed, so Grype uses
