@@ -69,7 +69,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - `ResourceClaimPolicy` now supports targeting individual resources by name via `.spec.subject.resourceNames`.
 - The Where-For-Dinner sample application accelerator has been updated to support dynamic provisioning.
 - There have been big updates to the Services Toolkit component documentation.
-  - Check out the new [tutorials](../services-toolkit/tutorials.hbs.md), [how-to guides](../services-toolkit/how-to-guides.hbs.md), [explanations](../services-toolkit/explanation.hbs.md) and [reference material](../services-toolkit/reference.hbs.md) to learn more about working with services on Tanzu Application Platform.
+  - Check out the new [tutorials](services-toolkit/tutorials.hbs.md), [how-to guides](services-toolkit/how-to-guides.hbs.md), [explanations](services-toolkit/explanation.hbs.md) and [reference material](services-toolkit/reference.hbs.md) to learn more about working with services on Tanzu Application Platform.
   - The separate documentation site hosted at https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html is no longer receiving updates.
   - All services toolkit documentation can be found in the Tanzu Application Platform Component Documentation for [Services Toolkit](services-toolkit/about.hbs.md) section from now on.
 
