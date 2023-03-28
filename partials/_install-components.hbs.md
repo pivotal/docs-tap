@@ -18,6 +18,7 @@ For more information, see [Prerequisites](/docs-tap/prerequisites.hbs.md).
 - [Install Application Configuration Service](/docs-tap/application-configuration-service/install-app-config-service.hbs.md)
 - [Install Application Live View](/docs-tap/app-live-view/install.hbs.md)
 - [Install Application Single Sign-On](/docs-tap/app-sso/platform-operators/installation.hbs.md)
+- [Install Bitnami Services](/docs-tap/bitnami-services/install-bitnami-services.hbs.md)
 - [Install cert-manager](/docs-tap/cert-manager/install.hbs.md)
 - [Install Cloud Native Runtimes](/docs-tap/cloud-native-runtimes/install-cnrt.hbs.md)
 - [Install Contour](/docs-tap/contour/install.hbs.md)
