@@ -103,7 +103,8 @@ kubectl rollout restart deployment scan-link-controller-manager -n scan-link-sys
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
 ### <a id="troubleshooting-grype-in-airgap"></a> Troubleshooting Grype in Airgap Environments
-For any issues with grype in airgap environments see [here](offline-airgap.hbs.md).
+
+For information about issues with Grype in air-gap environments, see [Using Grype in offline and air-gapped environments](offline-airgap.hbs.md).
 
 ### <a id="miss-src-ps"></a> Missing target SSH secret
 
@@ -364,3 +365,15 @@ To resolve this issue, ensure that Grype has access to its vulnerability databas
   Verify that the cluster has access to https://anchore.com/.
 
 This issue is unrelated to Supply Chain Security Tools for Tanzu – Store.
+
+### <a id="scanner-pod-restarts"></a> Scanner Pod restarts once in SCST - Scan `v1.5.0` or later
+
+For SCST - Scan `v1.5.0` or later, you see scanner pods restart:
+
+```
+Pods
+   NAME                                  READY   STATUS      RESTARTS   AGE
+   my-scan-45smk-pod                     0/9     Completed   1          14m
+```
+
+One restart in scanner pods is expected with successful scans. To support Tanzu Service Mesh (TSM) integration, jobs were replaced with TaskRuns. This restart is an artifact of how Tekton cleans up sidecar containers by patching the container spec.

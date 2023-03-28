@@ -46,6 +46,18 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
   configurations and enable fleets of developers to use them. This helps ease operator concerns about
   whether developers are implementing their best practices.
 
+- **[Application Configuration Service](application-configuration-service/about.hbs.md)**
+
+  Application Configuration Service provides a Kubernetes-native experience to enable the runtime 
+  configuration of existing Spring applications that were previously leveraged by using
+  Spring Cloud Config Server.Application Configuration Service provides a Kubernetes-native 
+  experience to enable the runtime configuration of existing Spring applications that were previously
+  leveraged by using Spring Cloud Config Server.
+
+  Application Configuration Service is compatible with the existing Git repository configuration 
+  management approach.
+  It filters runtime configuration for any application by using slices that produce Secrets.
+
 - **[Application Live View](app-live-view/about-app-live-view.md)**
 
   Application Live View is a lightweight insight and troubleshooting tool that helps application
@@ -139,7 +151,7 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
 
 - **[Namespace Provisioner](namespace-provisioner/about.hbs.md)**
 
-  Namespace provisioner provides an easy, secure, automated way for Platform Operators to provision
+  Namespace Provisioner provides an easy, secure, automated way for Platform Operators to provision
   namespaces with the resources and proper namespace-level privileges needed for developer workloads
   to function as intended.
 
@@ -841,9 +853,8 @@ Tanzu Application Platform components.
    <td>
    </td>
    <td>&check;
-   <td>
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    </td>
@@ -853,12 +864,12 @@ Tanzu Application Platform components.
   <tr>
    <td>Steeltoe
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>
    <td>&check;
    </td>
-   <td>
+   <td>&check;
    </td>
    <td>&check;
    </td>

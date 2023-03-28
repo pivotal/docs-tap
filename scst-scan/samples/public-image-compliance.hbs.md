@@ -8,11 +8,11 @@ The policy in this example is set to only consider `Critical` severity CVEs as a
 
 >**Note** This example ScanPolicy is deliberately constructed to showcase the features available and must not be considered an acceptable base policy.
 
-In this example, the scan does the following (currently):
+In this example, the scan does the following:
 
-* Finds all 223 of the CVEs.
-* Ignores any CVEs with severities that are not critical.
-* Indicates in the `Status.Conditions` that 21 CVEs have violated policy compliance.
+- Finds all 223 of the CVEs
+- Ignores any CVEs with severities that are not critical
+- Indicates in the `Status.Conditions` that 21 CVEs have violated policy compliance
 
 ### <a id="define-scanpolicy-imgscan"></a> Define the ScanPolicy and ImageScan
 
@@ -76,38 +76,46 @@ spec:
 
 ### <a id="set-up-watch"></a> (Optional) Set up a watch
 
-Before deploying, set up a watch in another terminal to view the process:
+Before deploying the resources to a user specified namespace, set up a watch in another terminal to view the progression:
 
 ```console
-watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies
+watch kubectl get sourcescans,imagescans,pods,taskruns,scantemplates,scanpolicies -n DEV-NAMESPACE
 ```
+
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
 For more information about setting up a watch, see [Observing and Troubleshooting](../observing.md).
 
 ### <a id="deploy-resources"></a> Deploy the resources
 
 ```console
-kubectl apply -f sample-public-image-scan-with-compliance-check.yaml
+kubectl apply -f sample-public-image-scan-with-compliance-check.yaml -n DEV-NAMESPACE
 ```
+
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
 ### <a id="view-scan-results"></a> View the scan results
 
 ```console
-kubectl describe imagescan sample-public-image-scan-with-compliance-check
+kubectl describe imagescan sample-public-image-scan-with-compliance-check -n DEV-NAMESPACE
 ```
+
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.
 
 > **Note** The `Status.Conditions` includes a `Reason: EvaluationFailed` and `Message: Policy violated because of 21 CVEs`.
 
 For more information about scan status conditions, see [Viewing and Understanding Scan Status Conditions](../results.md).
 
-### <a id="modify-scanpolicy"></a> Modify the ScanPolicy
+### <a id="modify-scanpolicy"></a> Edit the ScanPolicy
 
-To modify the Scan Policy, see [Step 5: Sample Public Source Code Scan with Compliance Check](public-source-compliance.md#modify-scan-policy).
+To edit the Scan Policy, see [Step 5: Sample Public Source Code Scan with Compliance Check](public-source-compliance.md#modify-scan-policy).
 
 ### <a id="clean-up"></a> Clean up
 
 To clean up, run:
 
 ```console
-kubectl delete -f sample-public-image-scan-with-compliance-check.yaml
+kubectl delete -f sample-public-image-scan-with-compliance-check.yaml -n DEV-NAMESPACE
 ```
+
+Where `DEV-NAMESPACE` is the developer namespace where the scanner is installed.

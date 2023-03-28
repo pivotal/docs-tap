@@ -15,6 +15,14 @@
 
 1. Deploy the Tanzu Java Web App project that was generated in the [previous guide](generate-first-app.hbs.md) by running the `tanzu apps workload create` command:
 
+    >**Note** This assumes that you created a git repository during the project creation stage. If the project does not have an associated git repo, one will need to be created and the `workload.yaml` will need to be updated with the repository URL and branch.
+
+    ```console
+    tanzu apps workload create --file config/workload.yaml --namespace YOUR-NAMESPACE
+    ```
+
+    Alternatively, a workload can be created entirely using the command line:
+
     ```console
     tanzu apps workload create tanzu-java-web-app \
     --git-repo GIT-REPO-URL \

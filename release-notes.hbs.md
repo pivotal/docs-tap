@@ -38,6 +38,13 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
+#### <a id='1-5-0-tap-gui-new-features'></a> Tanzu Application Platform GUI
+
+- Tanzu Application Platform GUI now supports automatic configuration with Supply Chain Security Tools - Store. The instruction is referenced in [Automatically connect Tanzu Application Platform GUI to the Metadata Store](../docs-tap/tap-gui/plugins/scc-tap-gui.hbs.md#automatically-connect-tanzu-application-platform-gui-to-the-metadata-store).
+- Tanzu Application Platform GUI enables specification of security banners. To use this customization, please refer to [Customize security banners](../docs-tap/tap-gui/customize/customize-portal.hbs.md#customize-security-banners)
+- Tanzu Application Platform GUI includes optional plugin that collects telemetry via the Pendo tool. To configure Pendo telemetry and opt in or opt out, please follow the instruction specified [here](../docs-tap/opting-out-telemetry.hbs.md).
+  - **Disclosure**: this upgrade includes a java script operated by our service provider Pendo.io. The java script will be installed on selected pages of the VMware Software and will collect information on your use of the Software, such as clickstream data and page loads, hashed user ID and limited browser and device information. This information will be used to better understand the way you use the Software in order to improve VMware products and services and your experience. For more details please see the VMware Customer Experience Improvement Program at the following link: http://www.vmware.com/trustvmware
+
 #### <a id='1-5-0-services-toolkit-new-features'></a> Services Toolkit
 
 - Services Toolkit now supports the dynamic provisioning of Services Instances. `ClusterInstanceClass` now supports the new provisioner mode. When a `ClassClaims` is created and refers to a provisioner `ClusterInstanceClass` a new Service Instance is created on-demand and claimed. This is powered by [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane).
@@ -66,7 +73,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 #### <a id='1-5-0-scc-new-features'></a> Supply Chain Choreographer
 
-- Introduces ability to configure the OOTB Basic supply chain to [output Carvel Packages](scc/carvel-package-supply-chain.hbs.md). This feature is experimental.
+- Introduces a variation of the OOTB Basic supply chains that output Carvel packages. Carvel packages enable configuring for each runtime environment. See [Carvel Package Workflow](scc/carvel-package-supply-chain.hbs.md). This feature is experimental.
 
 #### <a id='1-5-0-scst-policy-new-features'></a> Supply Chain Security Tools - Policy Controller
 
@@ -76,6 +83,17 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 - `cert-manager.tanzu.vmware.com` has upgraded to cert-manager `v1.11.0`.
 For more information, see [cert-manager GitHub repository](https://github.com/cert-manager/cert-manager/releases/tag/v1.11.0).
+
+#### <a id="1-5-0-scst-scan-features"></a> Supply Chain Security Tools - Scan
+- SCST - Scan now runs on Tanzu Service Mesh-enabled clusters, enabling end to end, secure communication.
+  - Kubernetes Jobs that previously created the scan pods were replaced with [Tekton TaskRuns](https://tekton.dev/docs/pipelines/taskruns/#overview).
+  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts) documentation is updated to account for the impact of these changes.
+- In conformance with NIST 800-53, support for rotating certificates and TLS is added.
+  - Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy. See [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
+- SCST - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform `v1.5.0`, users have early access to:
+  - A new alpha integration with the [Trivy Open Source Vulnerability Scanner](https://www.aquasec.com/products/trivy/) by Aqua Security scans source code and images from secure supply chains. See [Install Trivy (alpha)](./scst-scan/install-trivy-integration.hbs.md).
+  - A simplified alpha user experience for creating custom integrations with additional vulnerability scanners that aren't included by default. Got a scanner that you'd like to use with Tanzu Application Platform? See [Supply Chain Security Tools - App Scanning](./scst-scan/app-scanning-alpha.hbs.md).
+  - The Tanzu team is looking for early adopters to test drive both of these alpha offerings and provide feedback. Email your Tanzu representative or [contact us here](https://tanzu.vmware.com/application-platform).
 
 #### <a id='1-5-0-intellij-plugin-ncf'></a> Tanzu Developer Tools for IntelliJ
 
@@ -134,7 +152,7 @@ The following issues, listed by area and component, are resolved in this release
 
 This release has the following known issues, listed by area and component.
 
-### <a id='1-5-0-cnrs-ki'></a> Cloud Native Runtimes
+#### <a id='1-5-0-cnrs-ki'></a> Cloud Native Runtimes
 
 - When using auto-tls, on by default, DomainMapping resources must have names that are less than 63 characters. Otherwise, the DomainMapping fails to become ready due to `CertificateNotReady`.
 
@@ -146,9 +164,8 @@ This release has the following known issues, listed by area and component.
   The default file location is `~/.tilt-dev/config.lock`.
 
 - On Windows, workload commands don't work when in a project with spaces in the name, such as
-  `my-app project`. An error similar to
-  `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1`
-  is shown in the console.
+  `my-app project`.
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#ki-projects-with-spaces).
 
 #### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for Intellij
 
@@ -168,9 +185,8 @@ This release has the following known issues, listed by area and component.
   Deleting the Tilt lock file resolves this. The default location is `~/.tilt-dev/config.lock`.
 
 - On Windows, workload actions do not work when in a project with spaces in the name such as
-  `my-app project`. An error similar to
-  `Error: unknown command "projects/my-app" for "apps workload apply"Process finished with exit code 1`
-  is shown in the console.
+  `my-app project`.
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ki-projects-with-spaces).
 
 #### <a id="1-5-0-grype-scan-known-issues"></a>Grype scanner
 
@@ -190,6 +206,10 @@ This release has the following known issues, listed by area and component.
   discourages committing binaries to source code repositories. The
   vulnerabilities are still found during the image scan after the binaries are
   built and packaged as images.
+
+#### <a id='1-5-0-tap-gui-ki'></a> Tanzu Application Platform GUI
+
+- Security Banners customization may be partially (bottom banner) overlayed by the information displayed by the portal. We expect to resolve this issue in the future release.
 
 ### <a id='1-5-0-deprecations'></a> Deprecations
 

@@ -15,6 +15,7 @@ For more information, see [Prerequisites](/docs-tap/prerequisites.hbs.md).
 - [Install API Auto Registration](/docs-tap/api-auto-registration/installation.hbs.md)
 - [Install API portal](/docs-tap/api-portal/install-api-portal.hbs.md)
 - [Install Application Accelerator](/docs-tap/application-accelerator/install-app-acc.hbs.md)
+- [Install Application Configuration Service](/docs-tap/application-configuration-service/install-app-config-service.hbs.md)
 - [Install Application Live View](/docs-tap/app-live-view/install.hbs.md)
 - [Install Application Single Sign-On](/docs-tap/app-sso/platform-operators/installation.hbs.md)
 - [Install cert-manager](/docs-tap/cert-manager/install.hbs.md)

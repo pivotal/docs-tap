@@ -6,23 +6,23 @@ packaged in [Out of the Box Templates](ootb-templates.hbs.md). This topic
 describes the one or more objects they create, the supply chains that include
 them, and the parameters they use.
 
-## tekton-source-pipelinerun
+## <a id='tekton-source'></a> tekton-source-pipelinerun
 
-### Purpose
+### <a id='source-pipelinerun-purpose'></a> Purpose
 
 Tests source code.
 
-### Used By
+### <a id='pipelinerun-used'></a> Used by
 
 - [testing-pipeline](ootb-template-reference.hbs.md#testing-pipeline)
 
-### Creates
+### <a id='pipelinerun-creates'></a> Creates
 
 This ClusterRunTemplate creates a [Tekton
 PipelineRun](https://tekton.dev/docs/pipelines/pipelineruns/) referring to the
 user's Tekton Pipeline.
 
-### Inputs
+### <a id='pipelinerun-creates'></a> Inputs
 
 <table>
   <tr>
@@ -37,7 +37,7 @@ user's Tekton Pipeline.
       Set of parameters to pass to the Tekton Pipeline
     </td>
     <td>
-      <pre>
+      `
       - name: source-url
         value: https://github.com/vmware-tanzu/cartographer.git
       - name: source-revision
@@ -46,34 +46,34 @@ user's Tekton Pipeline.
         value: true
       - name: foo
         value: bar
-      </pre>
+      `
     </td>
   </tr>
 
 </table>
 
-### More Information
+### <a id='pipelinerun-more-info'></a> More information
 
 For information about the runnable created in the OOTB Testing and OOTB Testing
 and Scanning, see [testing-pipeline](#testing-pipeline).
 
-For information about the Tekton Pipeline that the user must create, see [Out of the Box Supply Chain with Testing](ootb-supply-chain-testing.hbs.md#tekton-pipeline).
+For information about the Tekton Pipeline that the user must create, see [Tekton/Pipeline](ootb-supply-chain-testing.hbs.md#tekton-pipeline).
 
-## tekton-taskrun
+## <a id='taskrun'></a> tekton-taskrun
 
-### Purpose
+### <a id='taskrun-purpose'></a> Purpose
 
 Generic template for creating a Tekton TaskRun.
 
-### Used By
+### <a id='taskrun-used'></a> Used by
 
-- [config-writer-template](ootb-template-reference.hbs.md#config-writer-template)
+- [config-writer-template](ootb-template-reference.hbs.md#config-writer)
 
-### Creates
+### <a id='taskrun-creates'></a>Creates
 
 A Tekton TaskRun.
 
-### Inputs
+### <a id='taskrun-inputs'></a> Inputs
 
 <table>
   <tr>
@@ -88,8 +88,7 @@ A Tekton TaskRun.
       Service Account with permissions necessary for the Tekton Task
     </td>
     <td>
-      <pre>
-        default
+        `default`
       </pre>
     </td>
   </tr>
@@ -100,9 +99,8 @@ A Tekton TaskRun.
       Reference to the Tekton Task to which the TaskRun provides parameters
     </td>
     <td>
-      <pre>
-        kind: ClusterTask
-        name: git-writer
+        `kind: ClusterTask
+        name: git-writer`
       </pre>
     </td>
   </tr>
@@ -113,32 +111,30 @@ A Tekton TaskRun.
       Parameters which are provided to the Tekton Task
     </td>
     <td>
-      <pre>
-        - name: git_branch
+        `- name: git_branch
           value: main
         - name: git_user_name
-          value: "Some Name"
-      </pre>
+          value: "Some Name" `
     </td>
   </tr>
 
 </table>
 
-## commit-and-pr-pipelinerun
+## <a id='commit-pr'></a> commit-and-pr-pipelinerun
 
-### Purpose
+### <a id='commit-pr-purpose'></a> Purpose
 
 Commit configuration to a Git repository and open a pull request for review.
 
-### Used By
+### <a id='commit-pr-used'></a> Used by
 
-- [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template)
+- [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-pr)
 
-### Creates
+### <a id='commit-pr-creates'></a> Creates
 
 Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
 
-### Inputs
+### <a id='commit-pr-inputs'></a> Inputs
 
 <table>
   <tr>
@@ -153,9 +149,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Service Account with credentials for the Git repository
     </td>
     <td>
-      <pre>
-        default
-      </pre>
+        `default`
     </td>
   </tr>
 
@@ -165,9 +159,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Type of Git provider
     </td>
     <td>
-      <pre>
-        github
-      </pre>
+        `github`
     </td>
   </tr>
 
@@ -177,9 +169,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Server URL
     </td>
     <td>
-      <pre>
-        https://github.com
-      </pre>
+        `https://github.com`
     </td>
   </tr>
 
@@ -189,9 +179,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Owner or Organization in which the repository resides
     </td>
     <td>
-      <pre>
-        vmware-tanzu
-      </pre>
+        `vmware-tanzu`
     </td>
   </tr>
 
@@ -201,9 +189,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Name of the repository
     </td>
     <td>
-      <pre>
-        cartographer
-      </pre>
+        `cartographer`
     </td>
   </tr>
 
@@ -213,9 +199,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Name of the commit branch. Recommended value is an empty string.
     </td>
     <td>
-      <pre>
-        ""
-      </pre>
+       ` "" `
     </td>
   </tr>
 
@@ -225,9 +209,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Title of the PR to be opened
     </td>
     <td>
-      <pre>
-        "Update"
-      </pre>
+        ` "Update" `
     </td>
   </tr>
 
@@ -237,9 +219,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Body of the PR to be opened
     </td>
     <td>
-      <pre>
-        "Ready for review"
-      </pre>
+        ` "Ready for review" `
     </td>
   </tr>
 
@@ -249,9 +229,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Branch into which the PR is merged
     </td>
     <td>
-      <pre>
-        main
-      </pre>
+        `main`
     </td>
   </tr>
 
@@ -261,9 +239,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       User name associated with the commit
     </td>
     <td>
-      <pre>
-        Waciuma Rasheed
-      </pre>
+        `Waciuma Rasheed`
     </td>
   </tr>
 
@@ -273,9 +249,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       User email associated with the commit
     </td>
     <td>
-      <pre>
-        Sam@todd.com
-      </pre>
+        `Sam@todd.com`
     </td>
   </tr>
 
@@ -285,9 +259,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Message on commit
     </td>
     <td>
-      <pre>
-        "App update"
-      </pre>
+        ` "App update" `
     </td>
   </tr>
 
@@ -297,9 +269,7 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       Base64 encoded JSON file where keys equal the filename and the value is the file contents.
     </td>
     <td>
-      <pre>
-        "eyJkZWxpdmVyeS55bWwiOiJhcGlWZXJzaW9uOiBzZXJ2aW5nLmtuYXRpdmUuZGV2L3YxXG5raW5kOiBTZXJ2aWNlXG4ifQ=="
-      </pre>
+        ` "eyJkZWxpdmVyeS55bWwiOiJhcGlWZXJzaW9uOiBzZXJ2aW5nLmtuYXRpdmUuZGV2L3YxXG5raW5kOiBTZXJ2aWNlXG4ifQ==" `
     </td>
   </tr>
 
@@ -309,17 +279,15 @@ Creates a Tekton TaskRun referring to the `commit-and-pr` Tekton Task.
       The directory location in the repository in which to write the files.
     </td>
     <td>
-      <pre>
-        "."
-      </pre>
+        ` "." `
     </td>
   </tr>
 
 </table>
 
-### More Information
+### <a id='commit-pr-more-info'></a> More information
 
 For information about the template creating the related runnable,
-see [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-and-pull-requester-template).
+see [config-writer-and-pull-requester-template](ootb-template-reference.hbs.md#config-writer-pr).
 
 For information about gitops, see [GitOps versus RegistryOps](gitops-vs-regops.hbs.md).

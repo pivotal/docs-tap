@@ -230,5 +230,5 @@ of the supply chains), see the following sections:
   different ways of propagating the deployment configuration through external
   systems (Git repositories and image registries).
 
-- [Carvel Package Workflow (experimental)](carvel-package-supply-chain.hbs.md), for more information
+- [Carvel Package Workflow](carvel-package-supply-chain.hbs.md), for information
   about how to configure workloads to output Carvel Packages for delivery through Git repositories.
