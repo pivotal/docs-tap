@@ -31,4 +31,5 @@ The extension has the following features:
   can delete it. All the output for deleting a workload is filtered to its own output pane window
   within Visual Studio.
 
-**Note** The new variation of the out-of-the-box (OOTB) Basic supply chains, which output [Carvel packages](../scc/carvel-package-supply-chain.hbs.md) to enable configuring multiple runtime environment, is not yet supported in this plugin.
+**Note** The new variation of the out-of-the-box (OOTB) Basic supply chains: `source-to-url-package` and `basic-image-to-url-package`, which output [Carvel packages](../scc/carvel-package-supply-chain.hbs.md) to enable configuring multiple runtime environment, is not yet supported in this plugin.
+

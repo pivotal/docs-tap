@@ -39,7 +39,7 @@ This extension gives the following features.
   For more information about a typical monorepo setup, see
   [Working with microservices in a monorepo](using-the-extension.hbs.md#mono-repo).
 
--  **Note** The new variation of the out-of-the-box (OOTB) Basic supply chains, which output [Carvel packages](../scc/carvel-package-supply-chain.hbs.md) to enable configuring multiple runtime environment, is not yet supported in this plugin.
+-  **Note** The new variation of the out-of-the-box (OOTB) Basic supply chains: `source-to-url-package` and `basic-image-to-url-package`, which output [Carvel packages](../scc/carvel-package-supply-chain.hbs.md) to enable configuring multiple runtime environment, is not yet supported in this plugin.
 
 ## <a id="next-steps"></a> Next steps
 
