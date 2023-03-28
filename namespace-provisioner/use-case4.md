@@ -1,6 +1,7 @@
 # Customize OOTB default resources
 
 This topic describes how to disable Grype and how to configure the `default` service account to work with private Git repositories.
+
 ## Disable Grype install
 
 Namespace Provisioner creates Grype scanner install as one of the [default resources](reference.md#default-resources). If you choose to use another scanner for namespaces instead of Grype, you can disable the installation of the Out-of-the-box Grype scanner as follows:
