@@ -8,18 +8,13 @@ Namespaces Provisioner enables you to use private Git repositories for storing y
 
 ### Create the Git Authentication secret in tap-namespace-provisioning namespace
 
-The secrets for Git authentication allow the following keys:
+The secrets for Git authentication allow the following keys: ssh-privatekey, ssh-knownhosts, username, and password.
 
-- ssh-privatekey
-- ssh-knownhosts
 >**Note** if ssh-knownhosts is not specified, Git will not perform strict host checking.
--  username
-- password
 
 1. Create the Git secret:
     Using HTTP(s) based Authentication
-    : If you are using Username and Password for authentication, create the git secret with authentication
-    details as follows:
+    : If you are using Username and Password for authentication:
 
       ```console
       cat << EOF | kubectl apply -f -
@@ -36,8 +31,7 @@ The secrets for Git authentication allow the following keys:
       ```
 
     Using SSH based Authentication
-    : If using SSH private key for authentication, create the git secret with authentication details
-    as follows:
+    : If you are using SSH private key for authentication:
 
       ```console
       cat << EOF | kubectl apply -f -
@@ -55,8 +49,7 @@ The secrets for Git authentication allow the following keys:
       EOF
       ```
 
-2. Add the `secretRef` section to the `additional_sources` and the `gitops_install` section of the
-Namespace Provisioner configuration in your TAP values: 
+2. Add the `secretRef` section to the `additional_sources` and the `gitops_install` section of the Namespace Provisioner configuration in your TAP values:
 
     Using Namespace Provisioner Controller
     : Description
@@ -78,34 +71,34 @@ Namespace Provisioner configuration in your TAP values:
     Using GitOps
     : Description
 
-    **Caution** There is a current limitation in kapp-controller which does not allow the users to
-    re-use the same git secret multiple times. If you have multiple additional sources using private
-    repo with the same credentials, you will have to create different secrets with the same
-    authentication details for each of them.
+      **Caution** There is a current limitation in kapp-controller which does not allow the users to
+      re-use the same git secret multiple times. If you have multiple additional sources using private
+      repo with the same credentials, you will have to create different secrets with the same
+      authentication details for each of them.
 
-    In our example, the location where our list of namespace reside is also a private repository. So
-    we will create a secret named `git-auth-install` with the same authentication details.
+      In our example, the location where our list of namespace reside is also a private repository. So
+      we will create a secret named `git-auth-install` with the same authentication details.
 
-    ```console
-    namespace_provisioner:
-    controller: false
-    additional_sources:
-    - git:
-        ref: origin/main
-        subPath: tekton-pipelines
-        # This example URL is for SSH auth. Use https:// path if using HTTPS auth
-        url: git@github.com:private-repo-org/repo.git
-        secretRef:
-            name: git-auth
-        path: _ytt_lib/my-additional-source
-    gitops_install:
-        ref: origin/main
-        subPath: gitops-install
-        # This example URL is for SSH auth. Use https:// path if using HTTPS auth
-        url: git@github.com:private-repo-org/repo.git
-        secretRef:
-        name: git-auth-install
-    ```
+      ```console
+      namespace_provisioner:
+      controller: false
+      additional_sources:
+      - git:
+          ref: origin/main
+          subPath: tekton-pipelines
+          # This example URL is for SSH auth. Use https:// path if using HTTPS auth
+          url: git@github.com:private-repo-org/repo.git
+          secretRef:
+              name: git-auth
+          path: _ytt_lib/my-additional-source
+      gitops_install:
+          ref: origin/main
+          subPath: gitops-install
+          # This example URL is for SSH auth. Use https:// path if using HTTPS auth
+          url: git@github.com:private-repo-org/repo.git
+          secretRef:
+          name: git-auth-install
+      ```
 
 ### Import from another namespace
 
