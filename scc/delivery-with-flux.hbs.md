@@ -7,10 +7,8 @@ with `carvel-package-workflow-enabled` and added to a GitOps repository to one o
 
 To use Gitops Delivery with FluxCD, complete the following prerequisites:
 
- - The Build cluster is created and has network access to your run clusters. It must have the following component installed:
-   - FluxCD [Kustomize Controller](https://fluxcd.io/flux/installation/#dev-install).
- - Run clusters serve as your deploy environments. They can either be Tanzu Application Platform clusters, or regular Kubernetes clusters, but they must have the following component installed:
-   - [kapp-controller](https://carvel.dev/kapp-controller/)
+ - The Build cluster is created and has network access to your run clusters. It must have FluxCD Kustomize Controller installed. See the [Flux documentation](https://fluxcd.io/flux/installation/#dev-install).
+ - Run clusters serve as your deploy environments. They can either be Tanzu Application Platform clusters, or regular Kubernetes clusters, but they must have kapp-controller installed. See the [Carvel documentation](https://carvel.dev/kapp-controller/).
  - To target run clusters from the Build cluster, you must create a secret containing each run cluster Kubeconfig. The FluxCD Kustomization resource uses these secrets.
 
     For each run cluster, run:
@@ -37,7 +35,7 @@ To use PackageInstall:
   metadata:
     name: hello-app-values
   stringData:
-    values.yml: |
+    values.yaml: |
       ---
       replicas: 2
       hostname: hello-app.mycompany.com
@@ -64,9 +62,11 @@ To use PackageInstall:
         name: hello-app-values
   ```
 
-  The Package references the package’s refName, version fields, and the versionSelection property which has a constraint's subproperty to give more control over which versions you choose to install.
+  The Package references the package’s refName, version fields, and the
+  versionSelection property which has a constraint's subproperty to give more
+  control over which versions you install.
 
-1. To manage App and PackageInstall CR privileges by using a service account, you need the verbs in the following role to work with ConfigMaps:
+1. To manage App and PackageInstall custom resource (CR) privileges by using a service account, you need the following verbs to work with ConfigMaps:
 
   ```yaml
   kind: Role
@@ -79,14 +79,19 @@ To use PackageInstall:
     verbs: ["get", "list", "create", "update", "delete"]
   ```
 
-  You need these permissions because of how kapp tracks information about apps it manages by storing information in a ConfigMap. If your App or PackageInstall CR does not create ConfigMaps, the service account needs permissions for working with ConfigMaps.
+  You need these permissions because of how kapp tracks information about apps
+  it manages by storing information in a ConfigMap. If your App or
+  PackageInstall CR does not create ConfigMaps, the service account needs
+  permissions for working with ConfigMaps.
 
-  You need the ConfigMap permissions, in addition to any other resource and verb combinations, to deploy all resources created by the App and PackageInstall CRs.
+  You need the ConfigMap permissions, in addition to any other resource and verb
+  combinations, to deploy all resources created by the App and PackageInstall
+  CRs.
 
   For information about how service accounts are used, see [the Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.43.2/security-model/).
 
-1. Push the PackageInstall to the GitOps repository under the the same `$package-name`
-folder, but under a new folder for each run cluster
+1. Push the PackageInstall to the GitOps repository in the the same `$package-name`
+folder, but use a new folder for each run cluster.
 
   ```console
   /$package-name
@@ -99,7 +104,7 @@ folder, but under a new folder for each run cluster
 ## Create FluxCD GitRepository + FluxCD Kustomization
 
 The [Build cluster](../multicluster/installing-multicluster.hbs.md#install-build-cluster) uses FluxCD to deploy `Packages` and `PackageInstalls` by creating a FluxCD `GitRepository`
-on to watch for changes to the GitOps repository.
+to watch for changes to the GitOps repository.
 
 For each run cluster, create:
 
@@ -219,7 +224,7 @@ To verify your installation:
   kubectl get packages -A
   ```
 
-1. Confirm that all PackageInstalls have reconciled:
+1. Confirm that all PackageInstalls are reconciled:
 
   ```console
   kubectl get packageinstalls -A
