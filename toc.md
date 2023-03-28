@@ -486,7 +486,7 @@ docs.vmware.com is built.
           - [Use an existing image in Your Supply Chain](scc/pre-built-image.hbs.md)
           - [Authenticate Git](scc/git-auth.hbs.md)
           - [Author Supply Chains](scc/authoring-supply-chains.hbs.md)
-          - [Output Carvel Packages from your Supply Chain](scc/carvel-package-supply-chain.hbs.md)
+          - [Carvel Package Supply Chains (alpha)](scc/carvel-package-supply-chain.hbs.md)
       - [Reference guides](scc/scc-reference.hbs.md)
           - [Events Reference](scc/events.hbs.md)
           - [Workload Reference](scc/workload-reference.hbs.md)
