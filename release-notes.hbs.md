@@ -152,10 +152,10 @@ This release has the following known issues, listed by area and component.
   are still found during the image scan after the binaries are built and
   packaged as images.
 
-- **Scanning some Alpine-based container images will fail with a panic:**
+- **Scanning some Alpine-based container images fails with a panic:**
 
-  A bug in Syft causes the scanner to crash with index out of range, while parsing APK metadata to identify installed OS packages if a package's list of provided files is empty.
-  This problem is resolved in Supply Chain Security Tools - Scan (Grype) version `1.4.1` or in the Tanzu Application Platform version `1.5.0+`.
+  An issue in Syft causes the scanner to crash with index out of range, while parsing APK metadata to identify installed OS packages if a package's list of provided files is empty.
+  This problem is resolved in SCST - Scan (Grype) version `1.4.1` or in the Tanzu Application Platform version `1.5.0+`.
 
 ---
 
