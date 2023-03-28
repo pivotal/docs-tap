@@ -271,6 +271,11 @@ This release has the following known issues, listed by area and component.
   are still found during the image scan after the binaries are built and
   packaged as images.
 
+- **Scanning some Alpine-based container images fails with a panic:**
+
+  An issue in Syft causes the scanner to crash with index out of range, while parsing APK metadata to identify installed OS packages if a package's list of provided files is empty.
+  This problem is resolved in SCST - Scan (Grype) version `1.4.1` or in the Tanzu Application Platform version `1.5.0+`.
+
 #### <a id="1-4-1-sa-gui-known-issues"></a>Security Analysis GUI
 
 - After upgrading to Tanzu Application Platform v1.4 from v1.3, the Security
@@ -777,6 +782,11 @@ Registration](api-auto-registration/troubleshooting.hbs.md).
   Grype fails to find vulnerabilities during a source scan. The vulnerabilities
   are still found during the image scan after the binaries are built and
   packaged as images.
+
+- **Scanning some Alpine-based container images fails with a panic:**
+
+  An issue in Syft causes the scanner to crash with index out of range, while parsing APK metadata to identify installed OS packages if a package's list of provided files is empty.
+  This problem is resolved in SCST - Scan (Grype) version `1.4.1` or in the Tanzu Application Platform version `1.5.0+`.
 
 #### <a id="1-4-0-nsp-ki"></a> Namespace Provisioner
 
