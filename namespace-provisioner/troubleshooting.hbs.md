@@ -3,7 +3,7 @@
 This topic provides information to help troubleshoot Namespace Provisioner.
 ## View Controller logs
 
-To get the logs when using the [controller](#heading=h.fuuugva9krkd) workflow, run the following kubectl command:
+To get the logs when using the [controller](about.hbs.md#nsp-controller) workflow, run the following kubectl command:
 
 ```console
 kubectl -n tap-namespace-provisioning logs deployments/controller-manager
@@ -13,7 +13,7 @@ Use - f to follow the log output.
 
 ## Provisioner application error
 
-After the Namespace Provisioner is installed in the Tanzu Application Platform cluster, the main resource to check is the [provisioner](#heading=h.ppkq2k2gr7y8) Carvel Application in the `tap-namespace-provisioning` namespace. To check for the status of the Application, run the following kubectl command:
+After the Namespace Provisioner is installed in the Tanzu Application Platform cluster, the main resource to check is the [provisioner](about.hbs.md#carvel-app) Carvel Application in the `tap-namespace-provisioning` namespace. To check for the status of the Application, run the following kubectl command:
 
 ```console
 kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
@@ -25,7 +25,7 @@ You might encounter one of the following errors:
 
 ### Namespace selector malformed
 
-When using the [controller](#heading=h.fuuugva9krkd) and customizing the `namespace_selector` from `tap_values.yaml`, the match expression must be compliant with the [Kubernetes label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors). If it is not compliant, the Namespace Provisioner controller would fail and log an error message in the controller logs.
+When using the [controller](about.hbs.md#nsp-controller) and customizing the `namespace_selector` from `tap_values.yaml`, the match expression must be compliant with the [Kubernetes label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors). If it is not compliant, the Namespace Provisioner controller would fail and log an error message in the controller logs.
 
 For example, if the configured `namespace_selector` is as follows:
 
@@ -38,7 +38,7 @@ namespace_provisioner:
       operator: exists
 ```
 
-This is not compliant as the operator must be `Exist` instead of `exists`. When labeling the namespace `dev` with `apps.tanzu.vmware.com/tap-ns`, the [controller](#heading=h.fuuugva9krkd) produces an error message similar to the following, (followed by some reconciliation messages)
+This is not compliant as the operator must be `Exist` instead of `exists`. When labeling the namespace `dev` with `apps.tanzu.vmware.com/tap-ns`, the [controller](about.hbs.md#nsp-controller) produces an error message similar to the following, (followed by some reconciliation messages)
 
 ```console
 {"level":"error","ts":"2022-12-14T15:41:44.639402794Z","logger":".0.1.NamespaceSelectorReconciler","msg":"unable to sync","controller":"namespace","controllerGroup":"","controllerKind":"Namespace","Namespace":{"name":"dev"},"namespace":"","name":"dev","reconcileID":"26395d34-418b-446d-9b5e-a4a73cc657ed","resourceType":"/v1, Kind=Namespace","error":"\"exists\" is not a valid pod selector operator","stacktrace":"..."}

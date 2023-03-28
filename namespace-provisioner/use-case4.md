@@ -2,7 +2,7 @@
 
 ## Disable Grype install
 
-Namespace Provisioner creates Grype scanner install as one of the [default resources](#heading=h.9bbhl1opwx65). If users choose to use another scanner for all their namespaces instead of Grype, they can disable the installation of the Out-of-the-box Grype scanner as follows.
+Namespace Provisioner creates Grype scanner install as one of the [default resources](reference.md#default-resources). If users choose to use another scanner for all their namespaces instead of Grype, they can disable the installation of the Out-of-the-box Grype scanner as follows.
 
 1. Create an overlay secret as follows which removes the Grype scanner and the secret that is automatically created by Namespace Provisioner.
 
@@ -188,13 +188,13 @@ Using GitOps
 
     - First additional source points to the location where our templated git secret resides which will be created in all developer namespaces.
     - Second additional source points to the overlay file which will add the git secret onto the default service account
-    - Finally, import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets` (See the [Templating additional sources](#heading=h.bcqllo8t167x) for more details)
+    - Finally, import the newly created `workload-git-auth` secret into Namespace Provisioner to use in `data.values.imported` by adding the secret to the `import_data_values_secrets`.
 
     >**Note** `create_export` is set to` true` in `import_data_values_secrets` meaning that a SecretExport will be created for the `workload-git-auth` secret in the tap-install namespace automatically by Namespace Provisioner. After the changes are reconciled, you should see the secret named **git ** in all provisioned namespaces and also added to the default service account of those namespaces.
 
 ## Customize Limit Range defaults
 
-Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resource (see [Default Resource created by Namespace Provisioner](#heading=h.9bbhl1opwx65)) in all namespaces managed by provisioner. Default values in LimitRange resource are as follows:  \
+Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resource, see [Default Resources](reference.md#default-resources) in all namespaces managed by provisioner. Default values in LimitRange resource are as follows:  \
 
 ```console
 limits:
@@ -241,7 +241,7 @@ Using Namespace Provisioner Controller
     ```
 
     * Controller will look at all the annotations/labels with prefix `param.nsp.tap/` and add the keys and its values in the desired-namespace configmaps as parameters for that namespace.
-    * Users can provide a custom prefix for the controller to look at if they do not want to use the default `param.nsp.tap` using parameter_prefixes configuration in Namespace Provisioner TAP values. See [Controller Customization](#heading=h.lc08xegj8s5n) for more information on setting parameter_prefixes.
+    * Users can provide a custom prefix for the controller to look at if they do not want to use the default `param.nsp.tap` using parameter_prefixes configuration in Namespace Provisioner TAP values. See [Controller Customization](customize-installation.md) for more information on setting parameter_prefixes.
 
     >**Note** Labels take precedence over annotations if the same key is provided in both.
 
@@ -257,7 +257,7 @@ Using GitOps
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
 
-    >**Note** We added `gitops_install` with this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps (See GitOps section of [Customize Installation](#heading=h.lc08xegj8s5n) guide for more information)
+    >**Note** We added `gitops_install` with this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps. See GitOps section of [Customize Installation](customize-installation.md) guide for more information.
 
     Sample of `gitops_install` files:
 

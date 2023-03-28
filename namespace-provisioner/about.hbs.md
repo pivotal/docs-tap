@@ -23,7 +23,7 @@ GitOps mode
     - Namespace Provisioner creates default resources that are shipped Out of the Box in all managed namespaces.
     - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under additional_sources in Namespace Provisioner configuration. (See Customize Installation for more details)
 
-## Provisioner Carvel Application
+## <a id='carvel-app'></a>Provisioner Carvel Application
 
 Namespace Provisioner consists of a
 [Carvel](https://carvel.dev/kapp-controller/docs/latest/app-overview/) application called
@@ -70,13 +70,13 @@ GitOps mode
 
     - In the GitOps mode, the list of desired namespaces used by the `provisioner` application to create resources in, is maintained in a Git repository as a ytt data values file as shown [in this sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/desired-namespaces.yaml). This file provides a declarative way to indicate which namespaces should be populated with resources. For more information, see the options in [Customize Install](customize-installation.md).
 
-## Namespace Provisioner Controller
+## <a id ='nsp-controller'></a>Namespace Provisioner Controller
 
 The Namespace Provisioner controller is installed by default and manages the content contained in
 the `desired-namespaces` ConfigMap. The controller watches namespaces in the cluster and updates the
 `desired-namespaces` ConfigMap with a list of all namespaces that match the namespace label selector
 `(apps.tanzu.vmware.com/tap-ns by default`) configured in Namespace Provisioner configuration. The
 default label selector can be customized via Install configuration (See `Options if using
-Controller` in the [Customize Install](#fake) section for more information).
+Controller` in the [Customize Install](customize-installation.md) section for more information).
 
 ### <a id="fake"></a>Fake section -->

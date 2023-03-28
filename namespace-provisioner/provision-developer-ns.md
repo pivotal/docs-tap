@@ -1,4 +1,4 @@
-# Provision Developer Namespaces (WIP)
+# Provision Developer Namespaces
 
 This topic describes how to provision developer namespaces.
 
