@@ -1,4 +1,4 @@
-# Install Pinniped on Tanzu Application Platform Using a Private Certificate Authority
+# Install Pinniped on Tanzu Application Platform by using a Private Certificate Authority
 
 [Pinniped](https://pinniped.dev/) is used to support authentication on Tanzu Application Platform.
 This topic introduces how to install Pinniped on a single cluster of Tanzu Application Platform.
@@ -44,7 +44,6 @@ Follow these steps to install `pinniped-supervisor`:
 1. Create the Ingress resources.
 1. Create the `pinniped-supervisor` configuration.
 1. Apply these resources to the cluster.
-
 
 ### <a id="create-certs"></a>Create Certificate Secret
 
@@ -108,7 +107,6 @@ spec:
       port: 8443
 ```
 
-
 ### <a id="create-pinniped-super-config"></a>Create Pinniped-Supervisor configuration
 
 Create a FederationDomain to link the concierge to the supervisor instance and configure an
@@ -168,20 +166,22 @@ spec:
     secretName: pinniped-supervisor-tls-cert
 ```
 
-
 ### <a id="apply-resources"></a>Apply the resources
 
 After creating the resource files, you can install them into the cluster.
 Follow these steps to deploy them as a [kapp application](https://carvel.dev/kapp/):
 
 1. Install the supervisor by running:
+
     ```console
     kapp deploy -y --app pinniped-supervisor --into-ns pinniped-supervisor -f pinniped-supervisor -f https://get.pinniped.dev/v0.12.0/install-pinniped-supervisor.yaml
     ```
 1. Get the external IP address of Ingress by running:
+
     ```console
     kubectl -n tanzu-system-ingress get svc/envoy -o jsonpath='{.status.loadBalancer.ingress[0].ip}'
     ```
+
 1. If not already covered by a wildcard DNS entry, add and entry to the DNS system to bind the external IP address with the DNS entry.
 
 ## <a id="install-pinniped-concierge"></a>Install Pinniped Concierge
@@ -220,7 +220,7 @@ To install Pinniped Concierge:
         certificateAuthorityData: # insert the CA certificate data here
     ```
 
-2. Deploy the resource by running:
+1. Deploy the resource by running:
 
     ```console
     kapp deploy -y --app pinniped-concierge-jwt --into-ns pinniped-concierge -f pinniped-concierge/jwt_authenticator.yaml
