@@ -40,7 +40,7 @@ When you install SCST - App Scanning, you can configure the following optional p
 | --- | --- | --- | --- |
 | caCertData | "" | string | The custom certificates to be trusted by the scan's connections. |
 | docker.import | true | boolean | Import `docker.pullSecret` from another namespace (requires secretgen-controller). Set to false if the secret will already be present. |
-| docker.pullSecret | registry-creds | string | Name of a docker pull secret in the deployment namespace to pull the scanner images. |
+| docker.pullSecret | registries-credentials | string | Name of a docker pull secret in the deployment namespace to pull the scanner images. |
 | workspace.storageSize  | 100Mi | string | Size of the Persistent Volume to be used by the tekton pipelineruns |
 | workspace.storageClass  | "" | string | Name of the storage class to use while creating the Persistent Volume Claims used by tekton pipelineruns |
 
@@ -81,15 +81,15 @@ To install Supply Chain Security Tools - App Scanning:
     tanzu package available get app-scanning.apps.tanzu.vmware.com/0.1.0-alpha --values-schema --namespace tap-install
     | Retrieving package details for app-scanning.apps.tanzu.vmware.com/0.1.0-alpha...
 
-      KEY                     DEFAULT         TYPE     DESCRIPTION
-      docker.import           true            boolean  Import `docker.pullSecret` from another namespace (requires
-                                                      secretgen-controller). Set to false if the secret will already be present.
-      docker.pullSecret       registry-creds  string   Name of a docker pull secret in the deployment namespace to pull the scanner
-                                                      images.
-      workspace.storageSize   100Mi           string   Size of the Persistent Volume to be used by the tekton pipelineruns
-      workspace.storageClass                  string   Name of the storage class to use while creating the Persistent Volume Claims
-                                                      used by tekton pipelineruns
-      caCertData                              string   The custom certificates to be trusted by the scan's connections
+      KEY                     DEFAULT                 TYPE     DESCRIPTION
+      docker.import           true                    boolean  Import `docker.pullSecret` from another namespace (requires
+                                                               secretgen-controller). Set to false if the secret will already be present.
+      docker.pullSecret       registries-credentials  string   Name of a docker pull secret in the deployment namespace to pull the scanner
+                                                               images.
+      workspace.storageSize   100Mi                   string   Size of the Persistent Volume to be used by the tekton pipelineruns
+      workspace.storageClass                          string   Name of the storage class to use while creating the Persistent Volume Claims
+                                                               used by tekton pipelineruns
+      caCertData                                      string   The custom certificates to be trusted by the scan's connections
     ```
 
 1. Install the package by running:
@@ -342,29 +342,32 @@ To create a sample Sample ImageVulnerabilityScan:
 
 1. Create a file named `image-vulnerability-scan.yaml`. Configure the `image`, `scanResults.location` of the scan, and define the scanner `image`, `command`, and `args` for your scanner `step`:
 
-  ```yaml
-  apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
-  kind: ImageVulnerabilityScan
-  metadata:
-    name: generic-image-scan
-  spec:
-    image: nginx@sha256:...
-    scanResults:
-      location: registry/project/scan-results
-    serviceAccountNames:
-      scanner: scanner
-      publisher: publisher
-    steps:
-    - name: scan
-      image: anchore/grype:latest
-      command: ["grype"]
-      args:
-      - registry:$(params.image)
-      - -o
-      - cyclonedx
-      - --file
-      - $(params.scan-results-path)/scan.cdx
-  ```
+    ```yaml
+    apiVersion: app-scanning.apps.tanzu.vmware.com/v1alpha1
+    kind: ImageVulnerabilityScan
+    metadata:
+      name: generic-image-scan
+      namespace: DEV-NAMESPACE
+    spec:
+      image: nginx@sha256:...
+      scanResults:
+        location: registry/project/scan-results
+      serviceAccountNames:
+        scanner: scanner
+        publisher: publisher
+      steps:
+      - name: scan
+        image: anchore/grype:latest
+        command: ["grype"]
+        args:
+        - registry:$(params.image)
+        - -o
+        - cyclonedx
+        - --file
+        - $(params.scan-results-path)/scan.cdx
+    ```
+
+    Where `DEV-NAMESPACE` is the developer namespace where scanning will occur.
 
 #### Configuration Options
 
