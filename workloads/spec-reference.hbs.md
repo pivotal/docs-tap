@@ -1044,6 +1044,5 @@ The `--service-account` flag sets the `spec.serviceAccountName` key in  the deli
 To configure the `serviceAccount` parameter, use `--param serviceAccount=SERVICE-ACCOUNT`.
 
 For details about RBAC and how `kapp-controller` uses the ServiceAccount provided to it using the
-
 `serviceAccount` parameter in the `deliverable` object, see [kapp-controller's Security
 Model](https://carvel.dev/kapp-controller/docs/v0.41.0/security-model/) in the Carvel documentation.
