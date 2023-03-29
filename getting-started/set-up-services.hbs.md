@@ -52,7 +52,7 @@ This section covers the following:
 
 For this part of the walkthrough, you assume the role of the **service operator**.
 
->**Note:** Although this walkthrough uses the example of RabbitMQ Cluster Kubernetes operator, the setup steps remain largely the same for any compatible operator. Also, this walkthrough uses the open source RabbitMQ Cluster operator for Kubernetes. For most real-world deployments, VMware recommends using the official, supported version provided by VMware. For more information, see [VMware Tanzu RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
+>**Note:** Although this walkthrough uses the example of RabbitMQ Cluster Kubernetes operator, the setup steps remain largely the same for any compatible operator. Also, this walkthrough uses the open source RabbitMQ Cluster operator for Kubernetes. For most real-world deployments, VMware recommends using the official, supported version provided by VMware. For more information, see [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
 
 To set up a service:
 
@@ -65,7 +65,7 @@ To set up a service:
     As a result, a new API Group (`rabbitmq.com`) and Kind (`RabbitmqCluster`) are
     now available in the cluster.
 
-1. Apply RBAC rules to grant Tanzu Application Platform permission to interact with the new API.
+2. Apply RBAC rules to grant Tanzu Application Platform permission to interact with the new API.
 
     1. In a file named `resource-claims-rmq.yaml`, create a `ClusterRole` that defines the rules and label it so that the rules are aggregated to the appropriate controller:
 
@@ -84,13 +84,13 @@ To set up a service:
           verbs: ["get", "list", "watch"]
         ```
 
-    1. Apply `resource-claims-rmq.yaml` by running:
+    2. Apply `resource-claims-rmq.yaml` by running:
 
         ```console
         kubectl apply -f resource-claims-rmq.yaml
         ```
 
-1. Make the new API discoverable to application operators.
+3. Make the new API discoverable to application operators.
 
     1. In a file named `rabbitmqcluster-clusterinstanceclass.yaml`, create a `ClusterInstanceClass`
     that refers to the new service, and set any additional metadata. For example:
@@ -110,7 +110,7 @@ To set up a service:
             kind: RabbitmqCluster
         ```
 
-    1. Apply `rabbitmqcluster-clusterinstanceclass.yaml` by running:
+    2. Apply `rabbitmqcluster-clusterinstanceclass.yaml` by running:
 
         ```console
         kubectl apply -f rabbitmqcluster-clusterinstanceclass.yaml
