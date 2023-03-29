@@ -1,26 +1,38 @@
 # Consume services on Tanzu Application Platform
 
-This tutorial walks the application developer through deploying two application workloads and configuring them to communicate via a service instance. It uses RabbitMQ as an example, but the process is the same regardless of the service you want to set up. You will use the `tanzu service` CLI plug-in and will learn about classes, claims and bindings.
+This tutorial walks the app developer through deploying two application workloads and configuring
+them to communicate using a service instance.
+It uses RabbitMQ as an example, but the process is the same regardless of the service you want to set up.
+You will use the `tanzu service` CLI plug-in and will learn about classes, claims, and bindings.
 
 ## <a id="you-will"></a>What you will do
 
 - Discover the range of services available to you
 - Create a claim for an instance of one of the services
-- Create two application workloads and bind them to the claim so that the workloads utilize the service instance
+- Create two application workloads and bind them to the claim so that the workloads use the service instance
 
 ## <a id="overview"></a>Overview
 
 The following diagram depicts a summary of what this tutorial covers.
 
-![Diagram shows the default namespace and a glimpse at what is happening behind the scenes. The default namespace has two application workloads, each connected to a service binding. The service bindings refer to a single claim, which refers to a service instance.](../images/getting-started-stk-1.png)
+![Diagram shows the default namespace and a glimpse at what is happening behind the scenes.
+The default namespace has two application workloads, each connected to a service binding.
+The service bindings refer to a single claim, which refers to a service instance.](../images/getting-started-stk-1.png)
 
 Bear the following observations in mind as you work through this guide:
 
 1. There are a set of four classes preinstalled on the cluster.
-2. There is no configuration or setup required by Service Operators for these four out-of-the-box services.
-3. The life cycle of a service binding is implicitly tied to the life cycle of a workload, and hence managed by the Application Developer.
-4. The life cycles of claims are explicitly managed by the Application Operator.
-5. This diagram and tutorial are predominantly focussed on the Application Operator and Developer user roles, as such the inner workings of how service instances are provisioned are not pictured and have been labelled as "behind the scenes".
+
+1. There is no configuration or setup required by Service Operators for these four standard services.
+
+1. The life cycle of a service binding is implicitly tied to the life cycle of a workload,
+and is managed by the Application Developer.
+
+1. The life cycles of claims are explicitly managed by the Application Operator.
+
+1. This diagram and tutorial are predominantly focussed on the Application Operator and Developer user
+    roles, as such the inner workings of how service instances are provisioned are not in the diagram
+    and are labeled as "behind the scenes".
 
 ## <a id="stk-prereqs"></a> Prerequisites
 
@@ -34,11 +46,10 @@ For more information, see [Set up developer namespaces to use installed packages
 
 ## <a id="stk-discover"></a> Discover available services
 
-This section covers:
+This section covers using `tanzu service class list` and `tanzu service class get` to find
+information about the classes of services.
 
-* Using `tanzu service class list` and `tanzu service class get` to find information about the classes of services.
-
-The range of available services can be discovered using the `tanzu service class list` command.
+- To discover the range of available services, run the `tanzu service class list` command:
 
     ```console
     tanzu service class list
@@ -54,9 +65,12 @@ The range of available services can be discovered using the `tanzu service class
       redis-unmanaged       Redis by Bitnami
     ```
 
-You can see that four classes are listed covering a range of services - MySQL, PostgreSQL, RabbitMQ and Redis. This is the default set of services that come preconfigured with Tanzu Application Platform. They are backed by Bitnami Helm charts which run on the Tanzu Application Platform cluster itself. As such they can be considered "unmanaged" services.
+    You can see that four classes are listed covering a range of services - MySQL, PostgreSQL, RabbitMQ and Redis.
+    This is the default set of services that come preconfigured with Tanzu Application Platform.
+    They are backed by Bitnami Helm charts which run on the Tanzu Application Platform cluster itself.
+    You can consider these to be "unmanaged" services.
 
-You can see more detailed information for a given class by using the `tanzu service class get` command.
+- To see more detailed information for a class, run the `tanzu service class get` command:
 
     ```console
     tanzu service class get rabbitmq-unmanaged
@@ -75,20 +89,23 @@ You can see more detailed information for a given class by using the `tanzu serv
         storageGB  The desired storage capacity of a single replica, in Gigabytes.  integer  1        false
     ```
 
-The `PARAMETERS` section is of particular interest as it lists the range of configuration options available to you when it comes to creating a claim for the given class.
+    The `PARAMETERS` section is of particular interest as it lists the range of configuration
+    options available to you when it comes to creating a claim for the given class.
 
 ## <a id="stk-create-claim"></a> Create a claim for a service instance
 
-This section covers:
+This section covers using `tanzu service class-claim create` to create a claim for an instance of a class and
+using `tanzu service class-claim get` to get detailed information about the status of the claim.
 
-* Using `tanzu service class-claim create` to create a claim for an instance of a class.
-* Using `tanzu service class-claim get` to get detailed information on the status of the claim.
-
-You can create a claim for an instance of a class using the `tanzu service class-claim create` command. Let's create a claim for the `rabbitmq-unmanaged` class. We'll pass a parameter to the command to set the storage capacity of the resulting instance to 3 Gigabytes, rather than using the default 1 Gigabyte.
+- To create a claim for an instance of a class, run the `tanzu service class-claim create` command:
 
     ```console
     tanzu service class-claim create rabbitmq-1 --class rabbitmq-unmanaged --parameter storageGB=3
     ```
+
+    In this example, you create a claim for the `rabbitmq-unmanaged` class and pass a parameter to
+    the command to set the storage capacity of the resulting instance to 3 Gigabytes,
+    rather than using the default 1 Gigabyte.
 
     Expected output:
 
@@ -96,7 +113,7 @@ You can create a claim for an instance of a class using the `tanzu service class
       Creating claim 'rabbitmq-1' in namespace 'default'.
     ```
 
-You can get detailed information about the claim using the `tanzu service class-claim get` command.
+- To get detailed information about the claim, run the `tanzu service class-claim get` command:
 
     ```console
     tanzu service class-claim get rabbitmq-1
@@ -122,23 +139,36 @@ You can get detailed information about the claim using the `tanzu service class-
           Kind: Secret
     ```
 
-It may take a moment or two for the claim to report `Ready: True`. Behind the scenes, the creation of the claim has triggered the on-demand creation of a Helm release of the Bitnami RabbitMQ Helm chart. Credentials and connectivity information required to connect to the RabbitMQ cluster have been formatted according to the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec) and stored in a `Secret` in your namespace.
+    It might take a moment or two for the claim to report `Ready: True`.
 
-However, as an Application Developer you don't need to worry about what's going on behind the scenes. Tanzu Application Platform promotes a strong separation of concerns between Service Operators, who are responsible for managing service instances for the platform, and Application Developers, who just want to use those service instances with their application workloads. The class and claims abstractions work in service of that separation of concerns. Application Operators/Developers create claims and Service Operators do whatever work is necessary to fulfil them.
+Behind the scenes, the creation of the claim triggers the on-demand creation of a Helm release
+of the Bitnami RabbitMQ Helm chart.
+Credentials and connectivity information required to connect to the RabbitMQ cluster are
+formatted according to the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec)
+and stored in a `Secret` in your namespace.
+
+However, as an app developer you don't need to<!--฿ |must| is preferred or, better, rephrase as an imperative. ฿--> worry about what's<!--฿ Avoid a contraction if it is too colloquial or awkward or uncommonly used. ฿--> going on behind the scenes.
+Tanzu Application Platform promotes a strong separation of concerns between service operators,
+who are responsible for managing service instances for the platform, and app developers,
+who just<!--฿ Avoid uses that suggest a task is simple. ฿--> want to use those service instances with
+their application workloads.
+The class and claims abstractions work in service of that separation of concerns.
+App operators and developers create claims and service operators do whatever work is necessary to<!--฿ Consider deleting this or replacing it with the shorter |you must|. ฿--> fulfil them.
 
 Now that you have a claim for a RabbitMQ service instance, you can bind it to your application workloads.
 
 ## <a id="stk-bind"></a> Binding application workloads to the service instance
 
-This section covers:
+This section covers using `tanzu apps workload create` with the `--service-ref` flag to create
+workloads and to bind them to the service instance through the claim.
 
-* Using `tanzu apps workload create` with the `--service-ref` flag to create workloads and to bind them to the service instance via the claim.
-
-In Tanzu Application Platform, service bindings are created when you create application workloads using the `--service-ref` flag of the `tanzu apps workload create` command.
+In Tanzu Application Platform, service bindings are created when you create application workloads
+using the `--service-ref` flag of the `tanzu apps workload create` command.
 
 To create an application workload:
 
-1. Review the output of the `tanzu service class-claim get` command above and note the value of the `Claim Reference`.
+1. Review the output of the `tanzu service class-claim get` command you ran in
+[Create a claim for a service instance](#stk-create-claim) earlier, and note the value of the `Claim Reference`.
 This is the value to pass to `--service-ref` when creating the application workloads.
 
 1. Create the application workload by running:
@@ -168,10 +198,16 @@ the `spring-sensors-consumer-web` workload using the `RabbitmqCluster` service i
 
 ## <a id="stk-use-cases"></a> Learn more
 
-Refer to the services toolkit componenet documentation for further [tutorials](../services-toolkit/tutorials.hbs.md), [how-to guides](../services-toolkit/how-to-guides.hbs.md), [explanations](../services-toolkit/explanation.hbs.md) and [reference material](../services-toolkit/reference.hbs.md) to learn more about working with services on Tanzu Application Platform.
+To learn more about working with services on Tanzu Application Platform, see the Services Toolkit
+component documentation:
 
-For more information about the APIs and concepts underpinning Services on Tanzu Application Platform, see the
-[Services Toolkit Component documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/0.9/svc-tlk/overview.html).
+- [tutorials](../services-toolkit/tutorials.hbs.md),
+- [how-to guides](../services-toolkit/how-to-guides.hbs.md),
+- [explanations](../services-toolkit/explanation.hbs.md) and
+- [reference material](../services-toolkit/reference.hbs.md)
+
+For more information about the APIs and concepts underpinning Services on Tanzu Application Platform,
+see the [Services Toolkit Component documentation](../services-toolkit/about.hbs.md).
 
 ## Next steps
 
