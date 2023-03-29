@@ -6,7 +6,7 @@ For help on migrating your resources in between versions, see the [migration gui
 
 If you installed the `AppSSO` package on its own, and not as part of `TAP`, you can upgrade it individually by running:
 
-```
+```console
 tanzu package installed update PACKAGE-INSTALLATION-NAME -p sso.apps.tanzu.vmware.com -v {{ vars.app-sso.version }} --values-file PATH-TO-YOUR-VALUES-YAML -n YOUR-INSTALL-NAMESPACE
 ```
 
@@ -51,7 +51,7 @@ with the following changes:
     >**Note** AppSSO templates your issuer URI and enables TLS. When using the newer `.spec.tls`,
     a custom `Service` and an ingress resource are no longer required.
 
-    >**Note** It is not recommented to continue using `.spec.issuerURI` in AppSSO v2.0.0. 
+    >**Note** It is not recommended to continue using `.spec.issuerURI` in AppSSO v2.0.0. 
     To use `.spec.issuerURI` in AppSSO v2.0.0, you must provide a `Service` and an ingress resource as in AppSSO v1.0.0.
 
     1. Configure one of `.spec.tls.{issuerRef, certificateRef, secretRef}`. See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more information.

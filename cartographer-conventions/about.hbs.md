@@ -26,7 +26,7 @@ whether the configuration of a workload must change.
 The server receives the OCI metadata from the convention controller.
 If the metadata meets the criteria defined by the convention server,
 the conventions are applied.
-It is possible for a convention to apply to all workloads regardless of metadata.
+A convention can apply to all workloads regardless of metadata.
 
 ### <a id="apply-by-image-metadata"></a> Applying conventions by using image metadata
 
@@ -46,7 +46,7 @@ To see the metadata details, use the Docker CLI command:
 >**Note** Depending on how the image was built, metadata might not be available to reliably identify
 the image type and match the criteria for a convention server.
 Images built with Cloud Native Buildpacks reliably include rich descriptive metadata.
-Images built by some other process can not include the same metadata.
+Images built by some other process might not include the same metadata.
 
 ### <a id="apply-wo-image-metadata"></a> Applying conventions without using image metadata
 

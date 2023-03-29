@@ -2,7 +2,7 @@
 
 ## <a id="debugging-commands"></a> Debugging commands
 
-Run these commands to get more logs and details about the errors around scanning. The Jobs and pods
+Run these commands to get more logs and details about the errors around scanning. The TaskRuns and pods
 persist for a predefined amount of seconds before getting deleted.
 (`deleteScanJobsSecondsAfterFinished` is the tap pkg variable that defines this)
 
@@ -102,6 +102,10 @@ kubectl rollout restart deployment scan-link-controller-manager -n scan-link-sys
 
 ## <a id="troubleshooting-issues"></a> Troubleshooting issues
 
+### <a id="troubleshooting-grype-in-airgap"></a> Troubleshooting Grype in Airgap Environments
+
+For information about issues with Grype in air-gap environments, see [Using Grype in offline and air-gapped environments](offline-airgap.hbs.md).
+
 ### <a id="miss-src-ps"></a> Missing target SSH secret
 
 Scanning source code from a private source repository requires an SSH secret present in the
@@ -119,11 +123,10 @@ Scanning an image from a private registry requires an image pull secret to exist
 namespace and be referenced as `grype.targetImagePullSecret` in `tap-values.yaml`. See [Installing
 the Tanzu Application Platform Package and Profiles](../install.md).
 
-If a private image scan is triggered and the secret is not configured, the scan job fails with the
-error as follows:
+If a private image scan is triggered and the secret is not configured, the scan TaskRun's pod's `step-scan-plugin` container fails with the following error:
 
 ```console
-Job.batch "scan-${app}-${id}" is invalid: [spec.template.spec.volumes[2].secret.secretName: Required value, spec.template.spec.containers[0].volumeMounts[2].name: Not found: "registry-cred"]
+Error: GET https://dev.registry.tanzu.vmware.com/v2/vse-dev/spring-petclinic/manifests/sha256:128e38c1d3f10401a595c253743bee343967c81e8f22b94e30b2ab8292b3973f: UNAUTHORIZED: unauthorized to access repository: vse-dev/spring-petclinic, action: pull: unauthorized to access repository: vse-dev/spring-petclinic, action: pull
 ```
 
 ### <a id="deactivate-scst-store"></a> Deactivate Supply Chain Security Tools (SCST) - Store
@@ -362,3 +365,15 @@ To resolve this issue, ensure that Grype has access to its vulnerability databas
   Verify that the cluster has access to https://anchore.com/.
 
 This issue is unrelated to Supply Chain Security Tools for Tanzu – Store.
+
+### <a id="scanner-pod-restarts"></a> Scanner Pod restarts once in SCST - Scan `v1.5.0` or later
+
+For SCST - Scan `v1.5.0` or later, you see scanner pods restart:
+
+```
+Pods
+   NAME                                  READY   STATUS      RESTARTS   AGE
+   my-scan-45smk-pod                     0/9     Completed   1          14m
+```
+
+One restart in scanner pods is expected with successful scans. To support Tanzu Service Mesh (TSM) integration, jobs were replaced with TaskRuns. This restart is an artifact of how Tekton cleans up sidecar containers by patching the container spec.

@@ -154,7 +154,7 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
 
 >**Important** For this example, the package `model` defines [resource types](./reference/convention-resources.md).
 
-1. <a id='convention-1'></a> The example `server.go` configures the `ConventionHandler` to ingest the webhook requests from the convention controller. See [PodConventionContext](./reference/pod-convention-context.md). Here the handler must only deal with the existing [`PodTemplateSpec`](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [`ImageConfig`](./reference/image-config.md).
+1. <a id='convention-1'></a> The example `server.go` configures the `ConventionHandler` to ingest the webhook requests from the convention controller. See [PodConventionContext](./reference/pod-convention-context.md). Here the handler must only deal with the existing [PodTemplateSpec](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec) and [ImageConfig](./reference/image-config.md).
 
    ```go
    ...
@@ -171,7 +171,7 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
      Where:
 
      + `template` is the predefined `PodTemplateSpec` that the convention edits. For more information about `PodTemplateSpec`, see the [Kubernetes documentation](https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/pod-template-v1/#PodTemplateSpec).
-     + `images` are the [`ImageConfig`](./reference/image-config.md) used as reference to make decisions in the conventions. In this example, the type was created within the `model` package.
+     + `images` are the [ImageConfig](./reference/image-config.md) used as reference to make decisions in the conventions. In this example, the type was created within the `model` package.
 
 2. <a id='server-2'></a>The example `server.go` also configures the convention server to listen for requests:
 
@@ -200,11 +200,11 @@ For example, adding a Prometheus sidecar to web applications, or adding a `workl
 
     Where:
 
-    + `PORT` is a possible environment variable, for this example, defined in the [`Deployment`](#install-deployment).
+    + `PORT` is a possible environment variable, for this example, defined in the [Deployment](#install-deployment).
     + `ServerHandler` is the *handler* function called when any request comes to the server.
     + `NewConventionServer` is the function in charge of configuring and creating the *http webhook* server.
-    + `port` is the calculated port of the server to listen for requests. It must match the [`Deployment`](#install-deployment) if the `PORT` variable is not defined in it.
-    + The `path` or pattern (default to `/`) is the convention server's default path. If it is changed, it must be changed in the [`ClusterPodConvention`](#install-convention).
+    + `port` is the calculated port of the server to listen for requests. It must match the [Deployment](#install-deployment) if the `PORT` variable is not defined in it.
+    + The `path` or pattern (default to `/`) is the convention server's default path. If it is changed, it must be changed in the [ClusterPodConvention](#install-convention).
 
 >**Note** The *Server Handler*, `func ConventionHandler(...)`, and the configure or start web server, `func NewConventionServer(...)`, is defined in the convention controller in the `webhook` package, but you can use a custom one.
 
@@ -391,13 +391,13 @@ When using environment variables to define whether the convention is applicable,
 
 ### <a id='match-crit-img-metadata'></a>Matching criteria by image metadata
 
-For each image contained within the PodTemplateSpec, the convention controller fetches the OCI image metadata and known [`bill of materials (BOMs)`](reference/bom.md), providing it to the convention server as [`ImageConfig`](./reference/image-config.md). This metadata is introspected to make decisions about how to configure the PodTemplateSpec.
+For each image contained within the PodTemplateSpec, the convention controller fetches the OCI image metadata and known [bill of materials (BOMs)](reference/bom.md), providing it to the convention server as [ImageConfig](./reference/image-config.md). This metadata is introspected to make decisions about how to configure the PodTemplateSpec.
 
 ## <a id='install'></a> Configure and install the convention server
 
 The `server.yaml` defines the Kubernetes components that enable the convention server in the cluster. The next definitions are within the file.
 
-1. <a id='install-namespace'></a>A `namespace` is created for the convention server components and has the required objects to run the server. It's used in the [`ClusterPodConvention`](#install-convention) section to indicate to the controller where the server is.
+1. <a id='install-namespace'></a>A `namespace` is created for the convention server components and has the required objects to run the server. It's used in the [ClusterPodConvention](#install-convention) section to indicate to the controller where the server is.
 
     ```yaml
     ...
@@ -410,7 +410,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-2. <a id='install-cm'></a>(Optional) A certificate manager `Issuer` is created to issue the certificate needed for TLS communication.
+2. <a id='install-cm'></a>(Optional) A certificate manager `Issuer` is created to issue the> certificate needed for TLS communication.
 
     ```yaml
     ...
@@ -457,7 +457,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-4. <a id='install-deployment'></a>A Kubernetes `Deployment` is created to run the webhook from. The [`Service`](#install-service) uses the container port defined by the `Deployment` to expose the server.
+4. <a id='install-deployment'></a>A Kubernetes `Deployment` is created to run the webhook from. The [Service](#install-service) uses the container port defined by the `Deployment` to expose the server.
 
     ```yaml
     ...
@@ -511,7 +511,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-5. <a id='install-service'></a>A Kubernetes `Service` to expose the convention deployment is created. For this example, the exposed port is the default `443`. If you change the port, the [`ClusterPodConvention`](#install-convention) must be updated.
+5. <a id='install-service'></a>A Kubernetes `Service` to expose the convention deployment is created. For this example, the exposed port is the default `443`. If you change the port, the [ClusterPodConvention](#install-convention) must be updated.
 
     ```yaml
     ...
@@ -534,7 +534,7 @@ The `server.yaml` defines the Kubernetes components that enable the convention s
     ...
     ```
 
-6. <a id='install-convention'></a>The [`ClusterPodConvention`](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the convention controller:
+6. <a id='install-convention'></a>The [ClusterPodConvention](./reference/cluster-pod-convention.md) adds the convention to the cluster to make it available for the convention controller:
     >**Important** The `annotations` block is only needed if you use a self-signed certificate. See the [cert-manager documentation](https://cert-manager.io/docs/).
 
     ```yaml
@@ -568,7 +568,7 @@ To deploy a convention server:
         ko apply -f dist/server.yaml
         ```
 
-    + If a different tool builds the image, the configuration is also be applied using either kubectl or `kapp`, setting the correct image in the [`Deployment`](#install-convention) descriptor.
+    + If a different tool builds the image, the configuration is also be applied using either kubectl or `kapp`, setting the correct image in the [Deployment](#install-convention) descriptor.
 
        kubectl
 

@@ -142,6 +142,10 @@ To set up a Service Account to view resources on a cluster:
       resources:
       - podintents
       verbs: ['get', 'watch', 'list']
+    - apiGroups: ['appliveview.apps.tanzu.vmware.com']
+      resources:
+      - resourceinspectiongrants
+      verbs: ['get', 'watch', 'list', 'create']
     ```
 
     This YAML content creates `Namespace`, `ServiceAccount`, `ClusterRole`, and `ClusterRoleBinding`.

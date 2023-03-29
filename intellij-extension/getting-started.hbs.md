@@ -18,6 +18,10 @@ or use the files in the [View an example project](#example-project) section.
 
 Before you get started, ensure you have completed [Installing Tanzu Developer Tools for IntelliJ](install.md).
 
+## <a id="config-src-img-registry"></a> Configure source image registry
+
+{{> 'partials/ide-extensions/config-src-img-registry' }}
+
 ## <a id="create-workload-yaml"></a> Create the workload.yaml file
 
 You must include a file named `workload.yaml` in your project.

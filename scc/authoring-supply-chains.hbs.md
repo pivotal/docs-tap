@@ -49,6 +49,12 @@ supply chains of the corresponding packages:
      - `workload.spec.image` text box set
   - ClusterSupplyChain/**source-to-url**
      - label `apps.tanzu.vmware.com/workload-type: web`
+  - ClusterSupplyChain/**basic-image-to-url-package (experimental)**
+     - label `apps.tanzu.vmware.com/workload-type: server`
+     - label `apps.tanzu.vmware.com/carvel-package-workflow: true`
+  - ClusterSupplyChain/**source-to-url-package (experimental)**
+     - label `apps.tanzu.vmware.com/workload-type: server`
+     - label `apps.tanzu.vmware.com/carvel-package-workflow: true`
 
 - _ootb-supply-chain-testing_
   - ClusterSupplyChain/**testing-image-to-url**
@@ -115,6 +121,10 @@ The following set of objects are provided by `ootb-templates`:
 - ClusterTask/**image-writer**
 - ClusterTemplate/**config-writer-template**
 - ClusterTemplate/**deliverable-template**
+- ClusterTask/**carvel-package (experimental)**
+- ClusterConfigTemplate/**carvel-package (experimental)**
+- ClusterTemplate/**package-config-writer-and-pull-requester-template (experimental)**
+- ClusterTemplate/**package-config-writer-template (experimental)**
 
 Before submitting your own, either ensure that the name and resource has no
 conflicts with those installed by `ootb-templates`, or exclude from the

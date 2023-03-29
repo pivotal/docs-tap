@@ -41,6 +41,9 @@ To accept the Tanzu Application Platform EULA:
 
 ## <a id='cluster-context'></a> Set the Kubernetes cluster context
 
+For information about the supported Kubernetes cluster providers and versions, see
+[Kubernetes cluster requirements](prerequisites.hbs.md#k8s-cluster-reqs).
+
 To set the Kubernetes cluster context:
 
 1. List the existing contexts by running:
@@ -58,8 +61,8 @@ To set the Kubernetes cluster context:
     *       aks-tap-cluster                     aks-tap-cluster   clusterUser_aks-rg-01_aks-tap-cluster
     ```
 
-2. Set the context to the cluster that you want to use for the Tanzu Application Platform packages
-   installation by running:
+2. If you are managing multiple cluster contexts, set the context to the cluster that you want to use
+   for the Tanzu Application Platform packages installation by running:
 
     ```console
     kubectl config use-context CONTEXT
@@ -149,7 +152,7 @@ For Windows installation instructions, see [Install Tanzu CLI: Windows](#windows
     tanzu version
     ```
 
-    Expected outcome:
+    The outcome is similar to:
 
     ```console
     version: v0.25.4
@@ -239,22 +242,17 @@ To install or update Tanzu CLI plug-ins from your terminal, follow these steps:
    Expected outcome:
 
    ```console
-    NAME                DESCRIPTION                                                                       SCOPE       DISCOVERY  VERSION        STATUS
-      login               Log in to the platform                                                             Standalone  default    v0.25.0        not installed
-      management-cluster  Kubernetes management-cluster operations                                          Standalone  default    v0.25.0        not installed
-      package             Tanzu package management                                                          Standalone  default    v0.11.6        update available
-      pinniped-auth       Pinniped authentication operations (usually not directly invoked)                 Standalone  default    v0.25.0        not installed
-      secret              Tanzu secret management                                                           Standalone  default    v0.11.6        update available
-      telemetry           Configure cluster-wide telemetry settings                                         Standalone  default    v0.25.0        not installed
-      apps                Applications on Kubernetes                                                        Standalone             v0.7.0         installed
-      builder             Build Tanzu components                                                            Standalone             v0.25.0        installed
-      external-secrets    interacts with external-secrets.io resources                                      Standalone             v0.0.1         installed
-      insight             post & query image, package, source, and vulnerability data                       Standalone             v1.2.2         installed
-      rbac                The rbac plug-in allows the tap platform operator to add or remove subjects from   Standalone             v1.0.1-beta.1  installed
-                          a tap default user role with in a namespace.
-      services            Explore Service Instance Classes, discover claimable Service Instances and        Standalone             v0.3.0         installed
-                          manage Resource Claims
-      accelerator         Manage accelerators in a Kubernetes cluster                                       Standalone             v1.2.0         installed
+  NAME                DESCRIPTION                                                        SCOPE       DISCOVERY  VERSION  STATUS
+  login               Login to the platform                                              Standalone  default    v0.25.4  not installed
+  management-cluster  Kubernetes management-cluster operations                           Standalone  default    v0.25.4  not installed
+  package             Tanzu package management                                           Standalone  default    v0.25.4  installed
+  pinniped-auth       Pinniped authentication operations (usually not directly invoked)  Standalone  default    v0.25.4  not installed
+  secret              Tanzu secret management                                            Standalone  default    v0.25.4  installed
+  telemetry           Configure cluster-wide telemetry settings                          Standalone  default    v0.25.4  not installed
+  services            Commands for working with service instances, classes and claims    Standalone             v0.5.0   installed
+  accelerator         Manage accelerators in a Kubernetes cluster                        Standalone             v1.4.1   installed
+  apps                Applications on Kubernetes                                         Standalone             v0.10.0  installed
+  insight             post & query image, package, source, and vulnerability data        Standalone             v1.4.3   installed
   ```
 
 ## <a id='next-steps'></a>Next steps
@@ -268,6 +266,12 @@ For air-gapped installation:
 
 - [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
 - [Install Tanzu Application Platform in an air-gapped environment](install-air-gap.html)
+
+For GitOps (beta) installation:
+
+- [Deploy Cluster Essentials](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html)
+- [Install Tanzu Application Platform through GitOps with ESO](install-gitops-eso.hbs.md)
+- [Install Tanzu Application Platform through Gitops with SoPS](install-gitops-sops.hbs.md)
 
 \* _When you use a VMware Tanzu Kubernetes Grid cluster, you do not need to install Cluster
 Essentials because the contents of Cluster Essentials are already installed on your cluster._

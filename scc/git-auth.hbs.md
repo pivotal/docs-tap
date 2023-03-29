@@ -72,7 +72,7 @@ workload by including it in its set of secrets. For example:
 Aside from using HTTP(S) as a transport, the supply chains also allow you to
 use SSH.
 
->**Important** If you want to use the pull request feature, you must use
+>**Important** To use the pull request feature, you must use
 HTTP(S) authentication with an access token.
 
 1. To provide the credentials for any Git operations with SHH,
@@ -95,7 +95,7 @@ create the Kubernetes secret as follows:
 
 1. Generate a new SSH keypair: `identity` and `identity.pub`.
 
-    ```bash
+    ```console
     ssh-keygen -t ecdsa -b 521 -C "" -f "identity" -N ""
     ```
 
@@ -108,11 +108,11 @@ visit `https://github.com/<repository>/settings/keys/new`.
 
 1. Gather public keys from the provider, for example, GitHub:
 
-    ```bash
+    ```console
     ssh-keyscan github.com > ./known_hosts
     ```
 
-1. Create the Kubernetes secret by using the contents of the files in the first step:
+2. Create the Kubernetes secret by using the contents of the files in the first step:
 
     ```yaml
     apiVersion: v1
@@ -129,7 +129,6 @@ visit `https://github.com/<repository>/settings/keys/new`.
     ```
 
     For example, edit the credentials:
-
 
     ```yaml
     apiVersion: v1
@@ -175,4 +174,4 @@ workload by including it in its set of secrets. For example:
 
 ## Read more on Git
 
-See [Git Reference](git.hbs.md)
+For information about Git, see [Git Reference](git.hbs.md).

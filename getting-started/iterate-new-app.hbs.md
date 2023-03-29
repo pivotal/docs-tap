@@ -22,13 +22,14 @@ and allows you to debug your application directly on the cluster.
 For information about installing the prerequisites and the Tanzu Developer Tools for VS Code extension, see
 [Install Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.md).
 
->**Important** Use Tilt v0.27.2 or a later version for the sample application.
+>**Important** Use Tilt v0.30.12 or a later version for the sample application.
 
 1. Open the Tanzu Java Web App as a project within your VS Code IDE.
 
 2. To ensure your extension assists you with iterating on the correct project, configure its settings using the following instructions.
 
-   1. In Visual Studio Code, navigate to `Preferences` > `Settings` > `Extensions` > `Tanzu`.
+   1. In Visual Studio Code, navigate to **Preferences** > **Settings** >
+      **Extensions** > **Tanzu Developer Tools**.
    1. In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App. The current directory is the default.
    1. In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code.
     For example, `gcr.io/myteam/tanzu-java-web-app-source`.
@@ -59,7 +60,7 @@ You can view output from Tanzu Application Platform and from Tilt indicating tha
 3. In the IDE, make a change to the source code. For example, in `HelloController.java`, edit the string returned to say `Hello!` and save.
 4. The container is updated when the logs stop streaming. Navigate to your browser and refresh the page.
 5. View the changes to your workload running on the cluster.
-6. Either continue making changes, or stop and deactivate the live update when finished. Open the command palette (⇧⌘P), type `Tanzu`, and choose an option.
+6. Either continue making changes, or stop and deactivate the live update when finished. Open the command palette (⇧⌘P), type **Tanzu**, and choose an option.
 
 ## <a id="debug-your-app"></a>Debug your application
 

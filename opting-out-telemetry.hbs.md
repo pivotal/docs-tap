@@ -2,40 +2,109 @@
 
 This topic describes how to opt out of the VMware Customer Experience Improvement Program (CEIP).
 By default, when you install Tanzu Application Platform, you are opted into telemetry collection.
-To turn off telemetry collection, complete following the instructions.
 
 >**Note** If you opt out of telemetry collection, VMware cannot offer you proactive support
 and the other benefits that accompany participation in the CEIP.
 
 ## <a id="turn-off"></a> Turn off telemetry collection
 
-To turn off telemetry collection on your Tanzu Application Platform installation:
+To turn off telemetry collection, follow the instructions below. To deactivate Pendo telemetry collection, please proceed to [Enable or deactivate the Pendo telemetry for the organization](../docs-tap/opting-out-telemetry.hbs.md#enable-or-deactivate-the-pendo-telemetry-for-the-organization).
 
-1. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is installed.
+>**Note** If you decide to opt in Pendo telemetry collection, each user shall be given the option to opt in or opt out, according to the instruction [here](../docs-tap/tap-portal-telemetry.hbs.md).
 
-2. Run the following `kubectl` command:
+kubectl
+: To turn off telemetry collection on your Tanzu Application Platform by using kubectl:
+
+    1. Ensure your Kubernetes context is pointing to the cluster where Tanzu Application Platform is installed.
+
+    2. Run the following `kubectl` command:
+
+        ```console
+        kubectl apply -f - <<EOF
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: vmware-system-telemetry
+        ---
+        apiVersion: v1
+        kind: ConfigMap
+        metadata:
+          namespace: vmware-system-telemetry
+          name: vmware-telemetry-cluster-ceip
+        data:
+          level: disabled
+        EOF
+        ```
+
+    3. If you already have Tanzu Application Platform installed, restart the telemetry collector to pick up the change:
+
+        ```console
+        kubectl delete pods --namespace tap-telemetry --all
+        ```
+
+Tanzu CLI
+: The Tanzu CLI provides a telemetry plugin enabled by the Tanzu Framework v0.25.0, which has been included in Tanzu Application Platform since v1.3.
+
+    To turn off telemetry collection on your Tanzu Application Platform by using the Tanzu CLI:
 
     ```console
-    kubectl apply -f - <<EOF
-    apiVersion: v1
-    kind: Namespace
-    metadata:
-      name: vmware-system-telemetry
-    ---
-    apiVersion: v1
-    kind: ConfigMap
-    metadata:
-      namespace: vmware-system-telemetry
-      name: vmware-telemetry-cluster-ceip
-    data:
-      level: disabled
-    EOF
+    $ tanzu telemetry update --CEIP-opt-out
+    *no output*
     ```
 
-3. If you already have Tanzu Application Platform installed, restart the telemetry collector to pick up the change:
+    To learn more about how to update the telemetry settings:
 
-    ```console
-    kubectl delete pods --namespace tap-telemetry --all
+    ```concole
+    $ tanzu telemetry update --help
+    Update tanzu telemetry settings
+
+    Usage:
+      tanzu telemetry update [flags]
+
+    Examples:
+
+        # opt into ceip
+        tanzu telemetry update --CEIP-opt-in
+        # opt out of ceip
+        tanzu telemetry update --CEIP-opt-out
+        # update shared configuration settings
+        tanzu telemetry update --env-is-prod "true" --entitlement-account-number "1234" --csp-org-id "XXXX"
+
+
+    Flags:
+          --CEIP-opt-in                         opt into VMware's CEIP program
+          --CEIP-opt-out                        opt out of VMware's CEIP program
+          --csp-org-id string                   Accepts a string and sets a cluster-wide CSP
+                                                                                org ID. Empty string is equivalent to
+                                                                                unsetting this value.
+          --entitlement-account-number string   Accepts a string and sets a cluster-wide
+                                                                                entitlement account number. Empty string is
+                                                                                equivalent to unsetting this value
+          --env-is-prod string                  Accepts a boolean and sets a cluster-wide
+                                                                                value denoting whether the target is a
+                                                                                production cluster or not.
+      -h, --help                                help for update
     ```
 
-Your Tanzu Application Platform deployment no longer emits telemetry, and you are opted out of the CEIP.
+At this point, your Tanzu Application Platform deployment no longer emits telemetry, and you are opted out of the CEIP.
+
+### <a id="nbl-or-dsbl-pendo-for-org"></a> Enable or deactivate the Pendo telemetry for the organization
+
+To enable Pendo telemetry for the organization, add the following parameters to your `tap-values.yaml` file:
+
+```yaml
+tap_gui:
+  app_config:
+    pendoAnalytics:
+      enabled: true
+```
+
+To deactivate the program for the entire organization, add the following parameters to your
+`tap-values.yaml` file:
+
+```yaml
+tap_gui:
+  app_config:
+    pendoAnalytics:
+      enabled: false
+```

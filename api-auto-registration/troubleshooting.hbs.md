@@ -1,8 +1,10 @@
 # Troubleshoot API Auto Registration
 
+This topic contains troubleshooting information for API Auto Registration. 
+
 ## Debug API Auto Registration
 
-This topic includes commands for debugging or troubleshooting the APIDescriptor CR.
+This section includes commands for debugging or troubleshooting the APIDescriptor CR.
 
 1. Get the details of APIDescriptor CR.
 
@@ -62,17 +64,21 @@ This might be due to your workloads using a custom Ingress issuer. To solve this
    Run the following command to update the package.
 
    ```console
-   tanzu package installed update tap -p tap.tanzu.vmware.com -v <TAP_VERSION>  --values-file tap-values.yaml -n tap-install
+   tanzu package installed update tap -p tap.tanzu.vmware.com -v TAP-VERSION  --values-file tap-values.yaml -n tap-install
    ```
+
+    Where `TAP-VERSION` is the version of Tanzu Application Platform installed.
 
 3. If you installed the API Auto Registration package as standalone, you must update the `api-auto-registration-values.yaml` and then update the package.
    Place the PEM encoded certificate into the `ca_cert_data` key of the values file. See [Install API Auto Registration](installation.hbs.md).
    Run the following command to update the package.
 
    ```console
-   tanzu package installed update api-auto-registration --version <API_AUTO_REGISTRATION_VERSION> --namespace tap-install --values-file api-auto-registration-values.yaml
+   tanzu package installed update api-auto-registration --version API-AUTO-REGISTRATION-VERSION --namespace tap-install --values-file api-auto-registration-values.yaml
    ```
 
+    Where `API-AUTO-REGISTRATION-VERSION` is the version of API Auto Registration installed.
+    
    You can find the available api-auto-registration versions by running:
    
    ```console

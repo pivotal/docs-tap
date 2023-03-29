@@ -25,7 +25,36 @@ For more information, see [Overview of multicluster Tanzu Application Platform](
 
 ## <a id="scan"></a> Enable CVE scan results
 
-To enable CVE scan results:
+To see CVE scan results within Tanzu Application Platform GUI, connect Tanzu Application Platform GUI
+to the Tanzu Application Platform component Supply Chain Security Tools - Store (SCST - Store).
+
+### <a id="scan-auto"></a> Automatically connect Tanzu Application Platform GUI to the Metadata Store
+
+Tanzu Application Platform GUI has automation for enabling connection between
+Tanzu Application Platform GUI and SCST - Store.
+To use this automation, add it to the Tanzu Application Platform GUI section within your
+`tap-values.yaml` file.
+
+The default value for `tap_gui.metadataStoreAutoconfiguration` is `false`. See the following example:
+
+```yaml
+# tap-values.yaml
+
+# ...
+tap_gui:
+  # ...
+  metadataStoreAutoconfiguration: true
+```
+
+This file change creates a service account for the connection with privileges scoped only to the
+Metadata Store.
+In addition it mounts the token of the service account into the Tanzu Application Platform GUI
+pod and produces for you the `app_config` section necessary for Tanzu Application Platform GUI to
+communicate with SCST - Store.
+
+### <a id="scan-manual"></a> Manually connect Tanzu Application Platform GUI to the Metadata Store
+
+To manually enable CVE scan results:
 
 1. [Obtain the read-write token](../../scst-store/retrieve-access-tokens.hbs.md),
    which is created by default when installing Tanzu Application Platform. Alternatively,
@@ -51,9 +80,10 @@ To enable CVE scan results:
 
 ## <a id="view-approvals"></a> Enable GitOps Pull Request Flow
 
-To enable the supply chain box-and-line diagram to show **Approve a Request** in the **Config Writer**
-stage, set up for GitOps and pull requests. For more information, see
-[GitOps vs. RegistryOps](../../scc/gitops-vs-regops.hbs.md).
+Set up for GitOps and pull requests to enable the supply chain box-and-line diagram to show
+**Approve a Request** in the **Config Writer** stage details view when the **Config Writer** stage is
+clicked.
+For more information, see [GitOps vs. RegistryOps](../../scc/gitops-vs-regops.hbs.md).
 
 ## <a id="sc-visibility"></a> Supply Chain Visibility
 

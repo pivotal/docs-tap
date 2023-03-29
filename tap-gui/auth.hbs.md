@@ -1,27 +1,50 @@
-# Set up a Tanzu Application Platform GUI authentication provider
+# Set up authentication for Tanzu Application Platform GUI
 
-Tanzu Application Platform GUI extends the current Backstage's authentication plug-in so that you
+Tanzu Application Platform GUI extends the current Backstage authentication plug-in so that you
 can see a login page based on the authentication providers configured at installation.
-This feature is a work in progress. It currently supports the following authentication providers
-as standard:
+This feature is a work in progress.
 
-- [Auth0](https://backstage.io/docs/auth/auth0/provider)
-- [Azure](https://backstage.io/docs/auth/microsoft/provider)
-- [Bitbucket](https://backstage.io/docs/auth/bitbucket/provider)
-- [GitHub](https://backstage.io/docs/auth/github/provider)
-- [GitLab](https://backstage.io/docs/auth/gitlab/provider)
-- [Google](https://backstage.io/docs/auth/google/provider)
-- [Okta](https://backstage.io/docs/auth/okta/provider)
-- [OneLogin](https://backstage.io/docs/auth/onelogin/provider)
+Tanzu Application Platform GUI currently supports the following authentication providers:
+
+- [Auth0](https://backstage.io/docs/auth/auth0/provider/)
+- [Azure](https://backstage.io/docs/auth/microsoft/provider/)
+- [Bitbucket](https://backstage.io/docs/auth/bitbucket/provider/)
+- [GitHub](https://backstage.io/docs/auth/github/provider/)
+- [GitLab](https://backstage.io/docs/auth/gitlab/provider/)
+- [Google](https://backstage.io/docs/auth/google/provider/)
+- [Okta](https://backstage.io/docs/auth/okta/provider/)
+- [OneLogin](https://backstage.io/docs/auth/onelogin/provider/)
+
+You can also configure a custom OpenID Connect (OIDC) provider.
+
+## <a id='backstage-identity'></a> View your Backstage Identity
+
+A Backstage identity is defined as a combination of:
+
+- The user reference: each entity in the catalog is uniquely identified by the triplet of its
+  [kind](https://backstage.io/docs/features/software-catalog/descriptor-format/#apiversion-and-kind-required)
+- A [namespace](https://backstage.io/docs/features/software-catalog/descriptor-format/#namespace-optional)
+- A [name](https://backstage.io/docs/features/software-catalog/descriptor-format/#name-required)
+
+For example, the user Jane can be assigned to the user entity `user:default/jane` and an ownership
+reference, which is used to determine what that user owns.
+Jane (`user:default/jane`) might have the ownership references `user:default/jane`,
+`group:default/team-a`, and `group:default/admins`. This would mean that Jane belongs to those groups
+and, therefore, owns those references.
+
+To view your current Backstage identity, in the **Settings** section of the left side navigation
+pane click the **General** tab.
+
+  ![Screenshot of a Tanzu Application Platform catalog displayed within Tanzu Application Platform GUI.](images/backstage-identity.png)
 
 ## <a id='config-auth-prov'></a> Configure an authentication provider
 
-Configure a supported authentication provider or a custom OpenID Connect (OIDC) provider:
+Configure a supported authentication provider or a custom OIDC provider:
 
 - To configure a supported authentication provider, see the
 [Backstage authentication documentation](https://backstage.io/docs/auth/).
 
-- To configure a custom OpenID Connect (OIDC) provider, edit your `tap-values.yaml` file or your
+- To configure a custom OIDC provider, edit your `tap-values.yaml` file or your
   custom configuration file to include an OIDC authentication provider.
   Configure the OIDC provider with your OAuth App values. For example:
 
@@ -104,5 +127,5 @@ auth:
       message: Enter with your GitHub account
 ```
 
-For a provider to appear on the login page, ensure it is properly configured under the `auth.providers`
-section of your values file.
+For a provider to appear on the login page, ensure that it is properly configured under the
+`auth.providers` section of your values file.

@@ -5,10 +5,13 @@ from the defined accelerators in Tanzu Application Platform using VS Code.
 
 ## <a id="dependencies"></a> Dependencies
 
-To use the VS Code extension, the extension must access the Tanzu Application Platform GUI URL.
+- To use the VS Code extension, the extension must access the Tanzu Application Platform GUI URL.
+For information about how to retrieve the Tanzu Application Platform GUI URL, see
+[Retrieving the URL for the Tanzu Application Platform GUI](#fqdn-tap-gui-url).
 
-For information about how to retrieve the Tanzu Application Platform GUI URL,  see the later section
-entitled [Retrieving the URL for the Tanzu Application Platform GUI](#fqdn-tap-gui-url)
+- (Optionally) To use Git repository provisioning during project creation in the VS Code extension,
+you must enable GitHub repository creation in the Application Accelerator plug-in.
+For more information, see [Create an Application Accelerator Git repository during project creation](../tap-gui/plugins/application-accelerator-git-repo.hbs.md).
 
 ## <a id="vs-code-app-accel-install"></a> Installation
 
@@ -83,10 +86,42 @@ NAME      FQDN                                      TLS SECRET     STATUS   STAT
 tap-gui   tap-gui.tap.tapdemo.myorg.com             tap-gui-cert   valid    Valid HTTPProxy
 ```
 
-## <a id="app-acc-known-issues"></a> Known Issues
+## <a id="download-install-self-signed-certs">Download and Install Self-Signed Certificates from the Tanzu Application Platform GUI
+For the Application Accelerator extension for VS Code to communicate with a Tanzu Application Platform GUI instance that is secured using TLS, downloading and installing the certificates locally is required.
 
-In v0.1.5 of the Application Accelerator extension for VS Code, if an accelerator with [`custom
-types`](creating-accelerators/custom-types.hbs.md) is used _and_ the custom type form contains
-checkboxes, re-prioritizing the custom types entries cause the data to not properly reorder. This is
-a known issue and is resolved in an upcoming release.
+1. Find the name of the Tanzu Application Platform GUI certificate. Note that the name of the certificate may look different.
+    ```console
+    $ kubectl get secret -n cert-manager
+    ```
 
+    ```console
+    NAME                                           TYPE                             DATA   AGE
+    canonical-registry-secret                      kubernetes.io/dockerconfigjson   1      18d
+    cert-manager-webhook-ca                        Opaque                           3      18d
+    postgres-operator-ca-certificate               kubernetes.io/tls                3      18d
+    tanzu-sql-with-mysql-operator-ca-certificate   kubernetes.io/tls                3      18d
+    tap-ingress-selfsigned-root-ca                 kubernetes.io/tls                3      18d <------- This is the certificate that is needed
+    ```
+2. Download the certificate by running the following command.
+    >**Note** The following script depends on [`yq`](https://github.com/mikefarah/yq) to process the YAML output.
+
+    ```console
+    $ kubectl get secret -n cert-manager tap-ingress-selfsigned-root-ca -o yaml | yq '.data."ca.crt"' | base64 -d > ca.crt
+    ```
+
+3. Install the certificate on your local system
+    * Installing the certificate on Mac
+    ```console
+    $ sudo security add-trusted-cert -d -r trustRoot -k /Library/Keychains/System.keychain ca.crt
+    ```
+    * [Link on how to install certificates on Ubuntu](https://ubuntu.com/server/docs/security-trust-store)
+    * Installing the certificate on Windows
+        1. Using Windows Explorer, navigate to the directory where the certificate was downloaded and double click on the certificate.
+        2. In the Certificate window, click "Install Certificate...".
+        3. Change the "Store Location" from "Current User" to "Local Machine". Click Next.
+        4. Select "Place all certificates in the following store", click "Browse", and select "Trusted Root Certification Authorities"
+        5. Click Finish.
+        6. If successfully imported, a popup window stating "The import was successful." will appear.
+
+4. Fully restart any applications that will be leveraging the certificate.
+5. Once restarted, the application will be able to leverage the newly installed certificate to communicate with the endpoints using TLS.

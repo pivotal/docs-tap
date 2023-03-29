@@ -80,7 +80,7 @@ For Tanzu Application Platform GUI, you must have:
 
 ## <a id='k8s-cluster-reqs'></a>Kubernetes cluster requirements
 
-Installation requires Kubernetes cluster v1.23, v1.24 or v1.25 on one of the following Kubernetes
+Installation requires Kubernetes cluster v1.24, v1.25 or v1.26 on one of the following Kubernetes
 providers:
 
 - Azure Kubernetes Service.
@@ -97,7 +97,7 @@ providers:
 - Minikube.
     - Reference the [resource requirements](#resource-requirements) in the following section.
     - Hyperkit driver is supported on macOS only. Docker driver is not supported.
-- Red Hat OpenShift Container Platform v4.10 or v4.11.
+- Red Hat OpenShift Container Platform v4.11 or v4.12.
     - vSphere
     - Baremetal
 - Tanzu Kubernetes Grid multicloud.
@@ -131,10 +131,10 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
     - 12&nbsp;vCPUs available across all nodes to Tanzu Application Platform.
     - 100&nbsp;GB of disk space available per node.
 
-- For the [`full` profile](install.html#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
+- For the [full profile](install.html#full-profile) or use of Security Chain Security Tools - Store, your cluster must have a configured default StorageClass.
 
 - Pod security policies must be configured so that Tanzu Application Platform controller pods can run as root in the following optional configurations:
-    - Tanzu Build Service, in which CustomStacks require root privileges. For more information, see [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.9/vmware-tanzu-build-service/managing-custom-stacks.html).
+    - Tanzu Build Service, in which CustomStacks require root privileges. For more information, see [Tanzu Build Service documentation](https://docs.vmware.com/en/Tanzu-Build-Service/1.10/vmware-tanzu-build-service/managing-custom-stacks.html).
     - Supply Chain, in which Kaniko usage requires root privileges to build containers.
     - Tanzu Learning Center, which requires root privileges.
 
@@ -145,7 +145,7 @@ For more information, see the [Kubernetes documentation](https://kubernetes.io/d
 
 Installation requires:
 
-- The Kubernetes CLI (kubectl) v1.23, v1.24, or v1.25 installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
+- The Kubernetes CLI (kubectl) v1.24, v1.25, or v1.26 installed and authenticated with admin rights for your target cluster. See [Install Tools](https://kubernetes.io/docs/tasks/tools/) in the Kubernetes documentation.
 
 ## <a id='next-steps'></a>Next steps
 

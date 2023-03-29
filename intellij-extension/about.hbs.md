@@ -26,7 +26,7 @@ This extension gives the following features.
   variables.
 
 - **See workloads running on the cluster**
-  From the workload panel you can see any workload found within the cluster and namespace specified
+  From the Workloads panel you can see any workload found within the cluster and namespace specified
   in the current kubectl context.
 
 - **Work with microservices in a Java monorepo**
@@ -38,6 +38,8 @@ This extension gives the following features.
   [IntelliJ documentation](https://www.jetbrains.com/help/idea/creating-and-managing-modules.html#modules-idea-java).
   For more information about a typical monorepo setup, see
   [Working with microservices in a monorepo](using-the-extension.hbs.md#mono-repo).
+
+-  **Note** The new variation of the out-of-the-box (OOTB) Basic supply chains: `source-to-url-package` and `basic-image-to-url-package`, which output [Carvel packages](../scc/carvel-package-supply-chain.hbs.md) to enable configuring multiple runtime environment, is not yet supported in this plugin.
 
 ## <a id="next-steps"></a> Next steps
 

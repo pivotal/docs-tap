@@ -62,6 +62,7 @@ metadata:
     sso.apps.tanzu.vmware.com/allow-client-namespaces: "" # required, must be "*" or a comma-separated list of allowed client namespaces
     sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: "" # optional
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: "" # optional
+    sso.apps.tanzu.vmware.com/allow-unsafe-cors: "" # optional
 spec:
   # .tls is optional if a default issuer is set
   tls:
@@ -76,6 +77,12 @@ spec:
       name: ""
     deactivated: false # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
     disabled: false # deprecated, use 'deactivated' instead. If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-issuer-uri: ""`.
+  cors:
+    allowOrigins: # optional, cannot be combined with 'allowAllOrigins'.
+      - ""
+    allowAllOrigins: false # optional
+                           # If true, requires annotation `sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""`.
+                           # Cannot be combined with 'allowOrigins'.
   tokenSignature: # required
     signAndVerifyKeyRef:
       name: ""
@@ -103,6 +110,14 @@ spec:
             emailVerified: false
             roles:
               - ""
+        accessToken: # optional
+          scope:
+            defaults: # optional
+            - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                  - ""
     - name: "" # must be unique
       ldap:
         server:
@@ -128,6 +143,14 @@ spec:
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expression
+          accessToken: # optional
+            scope:
+              defaults: # optional
+              - ""
+              rolesToScopes: # optional
+                - fromRole: ""
+                  toScopes:
+                  - ""
         group:    # deprecated, use 'ldap.roles.fromUpstream' instead.
           search: # deprecated, use 'ldap.roles.fromUpstream.search' instead.
             filter: ""
@@ -151,6 +174,14 @@ spec:
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expression
+        accessToken: # optional
+          scope:
+            defaults: # optional
+            - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                - ""
     - name: "" # must be unique
       saml:
         metadataURI: ""
@@ -161,6 +192,14 @@ spec:
           filterBy: # optional
             - exactMatch: ""
             - regex: "" # must be valid regular expressions
+        accessToken: # optional
+          scope:
+            defaults: # optional
+              - ""
+            rolesToScopes: # optional
+              - fromRole: ""
+                toScopes:
+                  - ""
   replicas: 1 # optional, default 2
   logging: "" # optional, must be valid YAML
   server: "" # optional, must be valid YAML
@@ -369,6 +408,7 @@ metadata:
   annotations:
     sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
     sso.apps.tanzu.vmware.com/allow-unsafe-identity-provider: ""
+    sso.apps.tanzu.vmware.com/allow-unsafe-cors: ""
 spec:
   replicas: 1
   tls:
@@ -380,6 +420,8 @@ spec:
       name: sample-token-signing-key
     extraVerifyKeyRefs:
       - name: sample-token-verification-key
+  cors:
+    allowAllOrigins: true
   identityProviders:
     - name: internal
       internalUnsafe:
@@ -402,6 +444,16 @@ spec:
         roles:
           fromUpstream:
             claim: my_custom_okta_roles_claim
+        accessToken:
+          scope:
+            defaults:
+              - "developer.read"
+              - "developer.write"
+            rolesToScopes:
+              - fromRole: "finance"
+                toScopes:
+                  - "finance.read"
+                  - "finance.write"
 
 ---
 apiVersion: secretgen.k14s.io/v1alpha1

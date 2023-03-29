@@ -14,12 +14,13 @@ End-users will be able to log in with these providers when they go to `{spec.iss
 
 Learn how to configure identity providers for an `AuthServer`:
 
-- [OpenID Connect providers](#openid)
+- [OpenID](#openid)
 - [LDAP](#ldap)
 - [SAML (experimental)](#saml-experimental)
 - [Internal, static user](#internal-users)
 - [Roles claim filtering](#roles-filtering)
 - [Roles claim mapping and filtering explained](#roles-claim-mapping-and-filtering-explained)
+- [Configure authorization](./configure-authorization.md)
 - [Restrictions](#restrictions)
 
 ## <a id='openid'></a> OpenID Connect providers
@@ -98,12 +99,17 @@ spec:
   identityProviders:
     - name: "openid-idp"
       openid:
+        scopes:
+          - upstream-identity-providers-groups-claim # Optional based on the identity provider.
         roles:
           fromUpstream:
             claim: "upstream-identity-providers-groups-claim"
 ```
 
-For every [`ClientRegistration`](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
+> **Caution** Some OpenID providers, such as Okta OpenID, might require requesting the roles or groups scope from the
+> identity provider, as a result, you must include it in the `.openid.scopes` list.
+
+For every [ClientRegistration](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
 token will be populated with the `roles` claim:
 
 ```yaml
@@ -112,8 +118,8 @@ metadata:
   name: my-client-registration
 spec:
   scopes:
-    - openid
-    - roles
+    - name: openid
+    - name: roles
   # ...
 ```
 
@@ -239,7 +245,7 @@ spec:
             attribute: "upstream-identity-providers-groups-attribute" # e.g. "cn" or "dn"
 ```
 
-For every [`ClientRegistration`](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
+For every [ClientRegistration](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
 token will be populated with the `roles` claim:
 
 ```yaml
@@ -248,8 +254,8 @@ metadata:
   name: my-client-registration
 spec:
   scopes:
-    - openid
-    - roles
+    - name: openid
+    - name: roles
   # ...
 ```
 
@@ -600,7 +606,7 @@ spec:
             attribute: "saml-group-attribute"
 ```
 
-For every [`ClientRegistration`](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
+For every [ClientRegistration](../crds/clientregistration.hbs.md) that has the `roles` scope listed, the identity
 token will be populated with the `roles` claim:
 
 ```yaml
@@ -609,8 +615,8 @@ metadata:
   name: my-client-registration
 spec:
   scopes:
-    - openid
-    - roles
+    - name: openid
+    - name: roles
   # ...
 ```
 

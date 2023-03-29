@@ -21,7 +21,7 @@ that you can install in the `tap-install` namespace.  The External Secrets
 Operator is an optional Tanzu Application Platform component. It does not come installed with any of
 the default Tanzu Application Platform profiles.
 
-```console
+```sh
 ESO_VERSION=0.6.1+tap.2
 TAP_NAMESPACE=tap-install
 

@@ -129,7 +129,7 @@ Before using Remote Debug, ensure that you have the following prerequisites:
 To run a workload in Tanzu Application Platform:
 
 1. Clone the project
-   [`steeltoe-weatherforecast` accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/weatherforecast-steeltoe),
+   [steeltoe-weatherforecast accelerator](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/weatherforecast-steeltoe),
    which provides a sample .NET app that is ready for immediate deployment to Tanzu Application Platform.
 1. Go to `weatherforecast-steeltoe`.
 1. Right-click on the project node and then click **Tanzu: Apply Workload**.

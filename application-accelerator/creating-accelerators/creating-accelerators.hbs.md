@@ -9,14 +9,13 @@ projects that by default follow the standards defined in your accelerators.
 The following prerequisites are required to create an accelerator:
 
 - Application Accelerator is installed. For information about installing Application Accelerator,
-    see [Installing Application Accelerator for VMware Tanzu](../install-app-acc.md)
-- You can access Tanzu Application Platform GUI from a browser OR have configured the Application
+    see [Installing Application Accelerator for VMware Tanzu](../install-app-acc.md).
+- You can access Tanzu Application Platform GUI from a browser or use the Application
     Accelerator extension for VS Code.
-  - For more information about Tanzu Application Platform GUI, see the corresponding section in
-        the most recent release of the [Tanzu Application Platform
-        documentation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/index.html).
-  - For more information about Application Accelerator extension for VS Code, see the latest on
-        the [Application Accelerator Visual Studio Code extension page](../vscode.md)
+  - For more information about Tanzu Application Platform GUI, see
+    [Overview of Tanzu Application Platform GUI](../../tap-gui/about.hbs.md).
+  - For more information about Application Accelerator extension for VS Code, see
+    [Application Accelerator  Visual Studio Code extension](../vscode.md).
 - kubectl is installed and authenticated with admin rights for your target cluster.
 
 ## <a id="creating-acc-get-started"></a>Getting started
@@ -115,28 +114,28 @@ Where:
   accelerator source. If using Docker Hub, use something such as
   `docker.io/YOUR_DOCKER_ID/simple-accelerator-source`.
 
-After you have made any additional changes you can push the latest to the same OCI image repository using:
+After you have made any additional changes, you can push the latest to the same OCI image repository using:
 
 ```console
 tanzu accelerator push --local-path ${ACCELERATOR_PATH} --source-image ${SOURCE_IMAGE_REPO}
 ```
 
-The accelerator now reflects the new content after approximately a 10 second wait VMware specified
-that as the interval when VMware created the earlier accelerator.
+The accelerator now reflects the new content after approximately a 10-second wait as specified
+in the previous command.
 
 ## <a id="using-acc-fragments"></a>Using accelerator fragments
 
 Accelerator fragments are reusable accelerator components that can provide options, files, or
 transforms. They can be imported from accelerators using an `import` entry and the transforms from
 the fragment can be referenced in an `InvokeFragment` transform in the accelerator that is declaring
-the import. For more details see, [InvokeFragment transform](transforms/invoke-fragment.md).
+the import. For additional details see [InvokeFragment transform](transforms/invoke-fragment.md).
 
 The accelerator samples include three fragments - `java-version`, `tap-initialize`, and
 `live-update`. See
 [vmware-tanzu/application-accelerator-samples/fragments](https://github.com/vmware-tanzu/application-accelerator-samples/tree/tap-1.3/fragments)
 Git repository for the content of these fragments.
 
-To discover what fragments are available to use, you can run:
+To discover what fragments are available to use, run:
 
 ```console
 tanzu accelerator fragment list
@@ -187,17 +186,17 @@ This fragment contributes the following to any accelerator that imports it:
 
 1. An option named `javaVersion` with three choices `Java 8`, `Java 11`, and `Java 17`
 2. Three `ReplaceText` transforms:
-    - If the accelerator has a `pom.xml` file then what is specified for `<java.version>` is
+    - If the accelerator has a `pom.xml` file, then what is specified for `<java.version>` is
       replaced with the chosen version.
-    - If the accelerator has a `build.gradle` file then what is specified for `sourceCompatibility`
+    - If the accelerator has a `build.gradle` file, then what is specified for `sourceCompatibility`
       is replaced with the chosen version.
-    - If the accelerator has a `config/workload.yaml` file and the user selected "Java 17" then a
+    - If the accelerator has a `config/workload.yaml` file, and the user selected "Java 17" then a
       build environment entry of BP_JVM_VERSION is inserted into the `spec:` section.
 
 ## <a id="deploy-accelerator-frags"></a>Deploying accelerator fragments
 
-To deploy new fragments to the accelerator system you can use the new `tanzu accelerator fragment
-create` CLI command or you can apply a custom resource manifest file with either `kubectl apply` or
+To deploy new fragments to the accelerator system, use the new `tanzu accelerator fragment
+create` CLI command or apply a custom resource manifest file with either `kubectl apply` or
 the `tanzu accelerator apply` commands.
 
 The resource manifest for the `java-version` fragment looks like this:

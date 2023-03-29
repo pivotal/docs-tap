@@ -28,7 +28,7 @@ To install Cloud Native Runtimes:
     $ tanzu package available list cnrs.tanzu.vmware.com --namespace tap-install
     - Retrieving package versions for cnrs.tanzu.vmware.com...
       NAME                   VERSION  RELEASED-AT
-      cnrs.tanzu.vmware.com  2.1.0    2022-12-08 16:00:00 -0800 PST
+      cnrs.tanzu.vmware.com  2.2.0    2023-03-08 16:00:00 -0800 PST
     ```
 
 1. (Optional) Make changes to the default installation settings:
@@ -36,14 +36,14 @@ To install Cloud Native Runtimes:
     1. Gather values schema.
 
         ```console
-        tanzu package available get cnrs.tanzu.vmware.com/2.1.0 --values-schema -n tap-install
+        tanzu package available get cnrs.tanzu.vmware.com/2.2.0 --values-schema -n tap-install
         ```
 
         For example:
 
         ```console
-        $ tanzu package available get cnrs.tanzu.vmware.com/2.1.0 --values-schema -n tap-install
-        | Retrieving package details for cnrs.tanzu.vmware.com/2.1.0...
+        $ tanzu package available get cnrs.tanzu.vmware.com/2.2.0 --values-schema -n tap-install
+        | Retrieving package details for cnrs.tanzu.vmware.com/2.2.0...
           KEY                         DEFAULT                               TYPE     DESCRIPTION
           https_redirection           true                                  boolean  CNRs ingress will send a 301 redirect for all http connections, asking the clients to use HTTPS
           ingress.internal.namespace  tanzu-system-ingress                  string   Required. Specify a namespace where an existing Contour is installed on your cluster. CNR will use this Contour instance for internal services.
@@ -81,18 +81,18 @@ To install Cloud Native Runtimes:
 
         Cloud Native Runtimes uses the existing Contour installation in the  `tanzu-system-ingress` namespace by default for external and internal access.
 
-        If your environment has Contour installed already, and it is not the Tanzu Application Platform provided Contour, you can configure Cloud Native Runtimes to use it. See [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.1/tanzu-cloud-native-runtimes/contour.html) in the Cloud Native Runtimes documentation.
+        If your environment has Contour installed already, and it is not the Tanzu Application Platform provided Contour, you can configure Cloud Native Runtimes to use it. See [Installing Cloud Native Runtimes for Tanzu with an Existing Contour Installation](https://docs.vmware.com/en/Cloud-Native-Runtimes-for-VMware-Tanzu/2.2/tanzu-cloud-native-runtimes/contour.html) in the Cloud Native Runtimes documentation.
 
 2. Install the package by running:
 
     ```console
-    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.1.0 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.2.0 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     ```
 
     For example:
 
     ```console
-    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.1.0 -n tap-install -f cnr-values.yaml --poll-timeout 30m
+    $ tanzu package install cloud-native-runtimes -p cnrs.tanzu.vmware.com -v 2.2.0 -n tap-install -f cnr-values.yaml --poll-timeout 30m
     - Installing package 'cnrs.tanzu.vmware.com'
     | Getting package metadata for 'cnrs.tanzu.vmware.com'
     | Creating service account 'cloud-native-runtimes-tap-install-sa'
@@ -119,7 +119,7 @@ To install Cloud Native Runtimes:
     | Retrieving installation details for cc...
     NAME:                    cloud-native-runtimes
     PACKAGE-NAME:            cnrs.tanzu.vmware.com
-    PACKAGE-VERSION:         2.1.0
+    PACKAGE-VERSION:         2.2.0
     STATUS:                  Reconcile succeeded
     CONDITIONS:              [{ReconcileSucceeded True  }]
     USEFUL-ERROR-MESSAGE:
@@ -133,7 +133,7 @@ To install Cloud Native Runtimes:
    >If you rely on a SupplyChain to deploy Knative services into your cluster,
    >skip this step because namespace configuration is covered in
    >[Set up developer namespaces to use installed packages](../set-up-namespaces.hbs.md).
-   >Otherwise, you must complete the following steps for each namespace where you create Knative services.
+   >Otherwise, you must follow these steps for each namespace where you create Knative services.
 
    Service accounts that run workloads using Cloud Native Runtimes need access to the image pull secrets for the Tanzu package.
    This includes the `default` service account in a namespace, which is created automatically but not associated with any image pull secrets.
@@ -149,14 +149,14 @@ To install Cloud Native Runtimes:
         kubectl annotate secret pull-secret secretgen.carvel.dev/image-pull-secret=""
         ```
 
-    1. After you create a `pull-secret` secret in the same namespace as the service account,
+    2. After you create a `pull-secret` secret in the same namespace as the service account,
     run the following command to add the secret to the service account:
 
         ```console
         kubectl patch serviceaccount default -p '{"imagePullSecrets": [{"name": "pull-secret"}]}'
         ```
 
-    1. Verify that a service account is correctly configured by running:
+    3. Verify that a service account is correctly configured by running:
 
         ```console
         kubectl describe serviceaccount default
