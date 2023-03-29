@@ -2,8 +2,9 @@
 
 Tanzu Application Platform GUI extends the current Backstage authentication plug-in so that you
 can see a login page based on the authentication providers configured at installation.
-This feature is a work in progress. It currently supports the following authentication providers
-as standard:
+This feature is a work in progress.
+
+Tanzu Application Platform GUI currently supports the following authentication providers:
 
 - [Auth0](https://backstage.io/docs/auth/auth0/provider/)
 - [Azure](https://backstage.io/docs/auth/microsoft/provider/)
@@ -13,6 +14,8 @@ as standard:
 - [Google](https://backstage.io/docs/auth/google/provider/)
 - [Okta](https://backstage.io/docs/auth/okta/provider/)
 - [OneLogin](https://backstage.io/docs/auth/onelogin/provider/)
+
+You can also configure a custom OpenID Connect (OIDC) provider.
 
 ## <a id='backstage-identity'></a> View your Backstage Identity
 
@@ -36,12 +39,12 @@ pane click the **General** tab.
 
 ## <a id='config-auth-prov'></a> Configure an authentication provider
 
-Configure a supported authentication provider or a custom OpenID Connect (OIDC) provider:
+Configure a supported authentication provider or a custom OIDC provider:
 
 - To configure a supported authentication provider, see the
 [Backstage authentication documentation](https://backstage.io/docs/auth/).
 
-- To configure a custom OpenID Connect (OIDC) provider, edit your `tap-values.yaml` file or your
+- To configure a custom OIDC provider, edit your `tap-values.yaml` file or your
   custom configuration file to include an OIDC authentication provider.
   Configure the OIDC provider with your OAuth App values. For example:
 
