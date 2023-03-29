@@ -48,15 +48,13 @@ Tanzu Application Platform is a modular, composable platform that comprises the 
 
 - **[Application Configuration Service](application-configuration-service/about.hbs.md)**
 
-  Application Configuration Service provides a Kubernetes-native experience to enable the runtime 
+  Application Configuration Service provides a Kubernetes-native experience to enable the runtime
   configuration of existing Spring applications that were previously leveraged by using
-  Spring Cloud Config Server.Application Configuration Service provides a Kubernetes-native 
-  experience to enable the runtime configuration of existing Spring applications that were previously
-  leveraged by using Spring Cloud Config Server.
+  Spring Cloud Config Server.
 
-  Application Configuration Service is compatible with the existing Git repository configuration 
+  Application Configuration Service is compatible with the existing Git repository configuration
   management approach.
-  It filters runtime configuration for any application by using slices that produce Secrets.
+  It filters runtime configuration for any application by using slices that produce secrets.
 
 - **[Application Live View](app-live-view/about-app-live-view.md)**
 
@@ -162,12 +160,12 @@ access control (RBAC).Default roles only apply to a user interacting with the cl
 
 - **[Services Toolkit](services-toolkit/about.hbs.md)**
 
-  Services Toolkit ("STK" for short) is responsible for backing many of the most exciting and powerful
-  services capabilities in Tanzu Application Platform ("TAP" for short). From the integration of an
-  endless list of cloud-based and on-prem services, through to the offering and discovery of those
+  Services Toolkit is responsible for backing many of the most exciting and powerful
+  capabilities for services in Tanzu Application Platform. From the integration of an
+  extensive list of cloud-based and on-prem services, through to the offering and discovery of those
   services, and finally to the claiming and binding of service instances to application workloads,
-  services toolkit has the tools you need to make working with services on TAP simple, easy and
-  effective.
+  Services Toolkit has the tools you need to make working with services on Tanzu Application Platform
+  simple, easy, and effective.
 
 - **[Spring Boot conventions](spring-boot-conventions/about.hbs.md)**
 
