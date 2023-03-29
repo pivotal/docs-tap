@@ -90,7 +90,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
    >
    > This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository by using SSH. Support for authenticating by using HTTP Basic Auth will be added in a later version.
 
-2. Initialize a new git repository.
+1. Initialize a new git repository.
 
     Example:
 
@@ -102,23 +102,23 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     git remote add origin git@github.com:my-organization/tap-gitops.git
     ```
 
-3. Create a read-only "Deploy Key" for this new repo (recommended) or "SSH Key" for an account with read access to this repository.
+1. Create a read-only "Deploy Key" for this new repo (recommended) or "SSH Key" for an account with read access to this repository.
 
     The private portion of this key is referred to as `GIT_SSH_PRIVATE_KEY`.
 
 ## <a id='download-tanzu-gitops-ri'></a>Download and unpack Tanzu GitOps RI
 
 1. Sign in to [VMware Tanzu Network](https://network.tanzu.vmware.com).
-2. Go to the [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
-3. Select **Release {{ vars.tap_version }}** from the release drop-down menu.
-4. Click **Tanzu Gitops Reference Implementation**.
-5. Unpack the downloaded TGZ file into the `$HOME/tap-gitops` directory by running:
+1. Go to the [Tanzu Application Platform product page](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+1. Select **Release {{ vars.tap_version }}** from the release drop-down menu.
+1. Click **Tanzu Gitops Reference Implementation**.
+1. Unpack the downloaded TGZ file into the `$HOME/tap-gitops` directory by running:
 
     ```console
     tar xvf tanzu-gitops-ri-*.tgz -C $HOME/tap-gitops
     ```
 
-6. Commit the initial state:
+1. Commit the initial state:
 
     ```console
     cd $HOME/tap-gitops
@@ -154,7 +154,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
     This script creates the directory `clusters/full-tap-cluster/` and copies in the configuration required to sync this git repository with the cluster and installing Tanzu Application Platform.
 
-2. Commit and push:
+1. Commit and push:
 
     ```console
     git add . && git commit -m "Add full-tap-cluster"
@@ -166,7 +166,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 Tanzu Sync RI splits the values configuration of Tanzu Application Platform into two categories:
 
 1. Sensitive TAP values, for example, credentials, encryptions keys and so on.
-2. Non-sensitive TAP values, for example, packages to exclude, namespace configuration and so on.
+1. Non-sensitive TAP values, for example, packages to exclude, namespace configuration and so on.
 
 The following sections describe how to create these values files.
 
@@ -189,7 +189,7 @@ The following sections describe how to create these values files.
     AGE-SECRET-KEY-my-secret-key
     ```
 
-2. Create a plain YAML file `tap-sensitive-values.yaml` that contains a placeholder for the sensitive portion of TAP values:
+1. Create a plain YAML file `tap-sensitive-values.yaml` that contains a placeholder for the sensitive portion of TAP values:
 
     ```yaml
     ---
@@ -197,7 +197,7 @@ The following sections describe how to create these values files.
       sensitive_values:
     ```
 
-3. Encrypt `tap-sensitive-values.yaml` with Age using SoPS:
+1. Encrypt `tap-sensitive-values.yaml` with Age using SoPS:
 
     ```console
     export SOPS_AGE_RECIPIENTS=$(cat key.txt | grep "# public key: " | sed 's/# public key: //')
@@ -209,7 +209,7 @@ The following sections describe how to create these values files.
     - `grep` is used to find the line containing the public key portion of the generated secret.
     - `sed` is used to extract the public key from the line found by `grep`.
 
-4. (Optional) Verify the encrypted file can be decrypted:
+1. (Optional) Verify the encrypted file can be decrypted:
 
     ```console
     export SOPS_AGE_KEY_FILE=key.txt
@@ -222,7 +222,7 @@ The following sections describe how to create these values files.
     sops tap-sensitive-values.sops.yaml
     ```
  
-5. Move the sensitive TAP values into the cluster config:
+1. Move the sensitive TAP values into the cluster config:
 
     ```console
     mv tap-sensitive-values.sops.yaml <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/
@@ -234,7 +234,7 @@ The following sections describe how to create these values files.
     mv tap-sensitive-values.sops.yaml $HOME/tap-gitops/clusters/full-tap-cluster/cluster-config/values/
     ```
 
-6. (Optional) Retain the Age identity key file in a safe and secure place such as a password manager, and purge the scratch space:
+1. (Optional) Retain the Age identity key file in a safe and secure place such as a password manager, and purge the scratch space:
 
     ```console
     mv key.txt SAFE-LOCATION/
@@ -244,19 +244,19 @@ The following sections describe how to create these values files.
 
 ## <a id='prep-non-sensitive-tap-values'></a> Preparing non-sensitive TAP values
 
-1. Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-non-sensitive-values.yaml` by using the [Full Profile sample](install.md#full-profile) as a guide:
+Create a plain YAML file `<GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-non-sensitive-values.yaml` by using the [Full Profile sample](install.md#full-profile) as a guide:
 
-    Example:
+Example:
 
-    ```
-    ---
-    tap_install:
-      values:
-        ceip_policy_disclosed: true
-        excluded_packages:
-        - policy.apps.tanzu.vmware.com
-    ...
-    ```
+```
+---
+tap_install:
+  values:
+    ceip_policy_disclosed: true
+    excluded_packages:
+    - policy.apps.tanzu.vmware.com
+...
+```
 
 ## <a id='update-sensitive-tap-values'></a> Updating sensitive TAP values
 
@@ -274,7 +274,7 @@ After filling in the non-sensitive values, follow these steps to extract the sen
     sops $HOME/tap-gitops/clusters/full-tap-cluster/cluster-config/values/tap-sensitive-values.sops.yaml
     ```
 
-2. Add the sensitive values:
+1. Add the sensitive values:
 
     Example of the container registry credentials using basic authentication:
 
@@ -344,7 +344,7 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
     export SOPS_AGE_KEY=$(cat $HOME/key.txt)
     ```
 
-2. Generate the TAP Install and Tanzu Sync configuration files:
+1. Generate the TAP Install and Tanzu Sync configuration files:
 
     ```console
     ./tanzu-sync/scripts/configure.sh
@@ -352,7 +352,7 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
 
     >**Note** `configure.sh` provides a convenient way to generate the required data files. <!-- See the Advanced section to populate these without this script. -> Where? -->
 
-3. Commit the generated configured to Git repository:
+1. Commit the generated configured to Git repository:
 
     ```console
     git add cluster-config/ tanzu-sync/
@@ -369,7 +369,7 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
     sudo cp $HOME/tanzu-cluster-essentials/ytt /usr/local/bin/ytt
     ```
 
-2. Set the Kubernetes cluster context
+1. Set the Kubernetes cluster context
 
     1. List the existing contexts:
 
@@ -377,7 +377,7 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
         kubectl config get-contexts
         ``` 
 
-    2. Set the context to the cluster that you want to deploy:
+    1. Set the context to the cluster that you want to deploy:
 
         ```console
         kubectl config use-context CONTEXT-NAME
@@ -385,7 +385,7 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
 
         Where `CONTEXT-NAME` can be retrieved from the outputs of the previous step.
 
-3. Deploy the "Tanzu Sync" component:
+1. Deploy the "Tanzu Sync" component:
 
     ```console
     ./tanzu-sync/scripts/deploy.sh

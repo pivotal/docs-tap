@@ -10,31 +10,29 @@ To uninstall Tanzu Application Platform:
 
 ## <a id='del-tap'></a>Delete Tanzu Sync Application
 
+>**Caution** Deleting Tanzu Sync application will delete all associated resources of Tanzu Application Platform on the cluster.
+
+To delete Tanzu Sync Application, run:
+
 ```console
-❗ WARNING: Deleting Tanzu Sync application will delete all associated resources of Tanzu Application Platform on the cluster.
+kapp delete -a tanzu-sync
 ```
-
-Run:
-
-   ```console
-   kapp delete -a tanzu-sync
-   ```
 
 ## <a id='remove-tanzu-cli'></a> Remove Tanzu CLI, plug-ins, and associated files
 
 To completely remove the Tanzu CLI, plug-ins, and associated files, run the script for your OS:
 
-+ For Linux or MacOS, run:
+For Linux or MacOS, run:
 
-    ```console
-    #!/bin/zsh
-    rm -rf $HOME/tanzu/cli        # Remove previously downloaded cli files
-    sudo rm /usr/local/bin/tanzu  # Remove CLI binary (executable)
-    rm -rf ~/.config/tanzu/       # current location # Remove config directory
-    rm -rf ~/.tanzu/              # old location # Remove config directory
-    rm -rf ~/.cache/tanzu         # remove cached catalog.yaml
-    rm -rf ~/Library/Application\ Support/tanzu-cli/* # Remove plug-ins
-    ```
+```console
+#!/bin/zsh
+rm -rf $HOME/tanzu/cli        # Remove previously downloaded cli files
+sudo rm /usr/local/bin/tanzu  # Remove CLI binary (executable)
+rm -rf ~/.config/tanzu/       # current location # Remove config directory
+rm -rf ~/.tanzu/              # old location # Remove config directory
+rm -rf ~/.cache/tanzu         # remove cached catalog.yaml
+rm -rf ~/Library/Application\ Support/tanzu-cli/* # Remove plug-ins
+```
 
 ## <a id='remove-ce'></a> Remove Cluster Essentials
 
