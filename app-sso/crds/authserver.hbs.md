@@ -12,8 +12,7 @@ allowed Namespaces, e.g. `"app-team-red,app-team-green"`, or `"*"` if it should 
 the annotation is missing, no clients are allowed.
 
 The issuer URI, which is the point of entry for clients and end-users, is constructed through the package's `domain_template`.
-You can view the issuer URI by running
-`kubectl get authserver -n authservers`.
+You can view the issuer URI by running `kubectl get authserver -n authservers`.
 
 See [Issuer URI & TLS](../service-operators/issuer-uri-and-tls.md) for more information.
 
