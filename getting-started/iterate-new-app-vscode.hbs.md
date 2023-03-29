@@ -24,7 +24,7 @@ and allows you to debug your application directly on the cluster.
 For information about installing the prerequisites and the Tanzu Developer Tools for VS Code extension, see
 [Install Tanzu Developer Tools for Visual Studio Code](../vscode-extension/install.md).
 
->**Important** Use Tilt v0.27.2 or a later version for the sample application.
+>**Important** Use Tilt v0.30.12 or a later version for the sample application.
 
 1. Open the Tanzu Java Web App as a project within your VS Code IDE by selecting `File` > `Open Folder`, then selecting the Tanzu Java Web App folder and clicking the Open button. If you don't have the Tanzu Java Web App you can obtain it by following the [Generate a new project using an application accelerator](deploy-first-app.html#generate-a-new-project-using-an-application-accelerator-1) section of the Deploy an app page in the getting started guide, or from the [Application Accelerator Samples](https://github.com/vmware-tanzu/application-accelerator-samples) GitHub page.
 
