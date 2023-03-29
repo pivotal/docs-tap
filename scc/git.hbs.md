@@ -13,10 +13,11 @@ The out of the box supply chains/delivery leverage git in 3 ways:
 
 ## Supported Git Repositories
 
-TAP supports two git providers:
+TAP supports three git providers:
 
 - Github
 - Gitlab
+- [Azure DevOps](azure.hbs.md)
 
 ## Related Articles
 
@@ -26,3 +27,6 @@ to create on cluster to allow supply chain git operations to succeed.
 [GitOps versus RegistryOps](gitops-vs-regops.hbs.md): discusses the two methods of storing built kubernetes
 configuration (either in a git repository or an image registry) and walks through the parameters that must
 be provided for each.
+
+[Configuration for Azure DevOps](azure.hbs.md): discusses configuration necessary for working with this git
+provider.
