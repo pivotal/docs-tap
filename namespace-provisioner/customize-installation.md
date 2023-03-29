@@ -338,7 +338,7 @@ Options if using GitOps
      - import_data_values_secrets is an array of additional secrets in YAML format to import in the provisioner as data.values under the data.values.imported key. SecretImport for the secrets listed in the array are created in tap-namespace-provisioning namespace by the Namespace Provisioner package. Either, create SecretExport for the same secrets manually and export it to tap-namespace-provisioning namespace or let the Namespace Provisioner package create it. Parameters include:
          - name: Name of the secret to be imported to use as valuesFrom in kapp.
          - namespace: Namespace where the secret exists.
-         - create_export:  Boolean flag to decide creation of a SecretExport resource in the namespace mentioned above. Default value is false. If the secret is already exported by user, ensure that it is exported for tap-namespace-provisioning namespace.
+         - create_export:  Boolean flag to decide creation of a SecretExport resource in the namespace mentioned above. Default value is false. If the secret is already exported, ensure that it is exported for tap-namespace-provisioning namespace.
 
      > **Note** stringData key of the secret must have .yaml or .yml suffix at the end.
 
