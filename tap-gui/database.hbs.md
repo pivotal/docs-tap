@@ -31,19 +31,23 @@ See the following sections for configuring Tanzu Application Platform GUI to use
 Apply the following values in `tap-values.yaml`:
 
 ```yaml
-backend:
-  baseUrl: http://tap-gui.INGRESS-DOMAIN
-  cors:
-    origin: http://tap-gui.INGRESS-DOMAIN
-# Existing tap-values.yaml above
-  database:
-    client: pg
-    connection:
-      host: PG-SQL-HOSTNAME
-      port: 5432
-      user: PG-SQL-USERNAME
-      password: PG-SQL-PASSWORD
-      ssl: {rejectUnauthorized: false} # Set to true if using SSL
+# ... existing tap-values.yaml above
+tap_gui:
+  # ... existing tap_gui values
+  app_config:
+    backend:
+      baseUrl: http://tap-gui.INGRESS-DOMAIN
+      cors:
+        origin: http://tap-gui.INGRESS-DOMAIN
+    # Existing tap-values.yaml above
+      database:
+        client: pg
+        connection:
+          host: PG-SQL-HOSTNAME
+          port: 5432
+          user: PG-SQL-USERNAME
+          password: PG-SQL-PASSWORD
+          ssl: {rejectUnauthorized: false} # Set to true if using SSL
 ```
 
 Where:
