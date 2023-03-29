@@ -113,12 +113,10 @@ Use the following steps to debug the cluster:
    For example, `/Users/developer/Documents/tanzu-java-web-app`.
    1. In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code. The Source Image value tells the Tanzu Developer Tools extension where to publish the container image with your uncompiled source code, and what to name that image. The image must be published to a container registry where you have write (push) access.
    For example, `gcr.io/myteam/tanzu-java-web-app-source`.
+   >**Note** Consult the documentation for the registry you're using to determine which steps are necessary to authenticate and gain push access.
+   >For example, if you use docker consult [docker's docs](https://docs.docker.com/engine/reference/commandline/login/), if you use Harbor consult [Harbor's docs](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/), etc.
 
-  >**Note** Consult the documentation for the registry you're using to determine which steps are necessary to authenticate and gain push access.
-
-  >For example, if you use docker consult [docker's docs](https://docs.docker.com/engine/reference/commandline/login/), if you use Harbor consult [Harbor's docs](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/), etc.
-
-    8. In the **Namespace** field, optionally provide the namespace that the workload should be associated with on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](/iterate-new-app-intellij.hbs.md#prepare-to-iterate) you do not need to enter a namespace and IntelliJ will use the namespace you associated with your context.
+   8. In the **Namespace** field, optionally provide the namespace that the workload should be associated with on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](/iterate-new-app-intellij.hbs.md#prepare-to-iterate) you do not need to enter a namespace and IntelliJ will use the namespace you associated with your context.
 1. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name `tanzu-java-web-app` and select `Run \'Tanzu Debug Workload - tanzu-java-web-app\'` to begin debugging the application on the cluster.
 1. Alternatively, select the `Edit Run/Debug configurations` dropdown in the top-right corner, select `Tanzu Debug Workload - tanzu-java-web-app`, then click the green debug button to the right of the `Edit Run/Debug configurations` dropdown.
 The `Run` tab will open and display the output from Tanzu Application Platform and from Tilt indicating that the container is being built and deployed.
