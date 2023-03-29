@@ -39,7 +39,7 @@ There's quite a lot to digest there, but don't worry! We'll be covering everythi
 1. Service Operator creates a class pointing to the `CompositeResourceDefinition`, this advertises the availability of the service to application development teams
 1. Service Operator applies necessary RBAC to permit the system to create necessary resources, as well as to authorize application development teams to create claims for the class
 
-1. Application Developer creates a claim referring to the class, optionally passing through parameters to override any default configuration (where permissible) 
+1. Application Developer creates a claim referring to the class, optionally passing through parameters to override any default configuration (where permissible)
 1. The system creates a `CompositeResource`, merging info provided in the claim with default configuration specified by the system as well as configuration defined in the `Composition`
 1. Crossplane reconciles the `CompositeResource` into a service instance and writes credentials for the instance into a `Secret`
 1. The `Secret` is written back to the application developer's namespace, so that it can then be utilized by application workloads
@@ -52,7 +52,7 @@ The first step when it comes to adding any new service into TAP is to ensure the
 
     > **Note** The steps below use the open source version of the operator.
     > For most real-world deployments, VMware recommends using the official, supported version provided by VMware.
-    > For more information, see [VMware Tanzu RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
+    > For more information, see [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
 
 Use `kapp` to install the operator by running:
 
@@ -316,7 +316,7 @@ Then use `kubectl` to apply the file to the TAP cluster.
 kubectl apply -f xrabbitmqclusters.messaging.bigcorp.org.composition.yml
 ```
 
-And now let's chat through the `Composition` step-by-step. The first thing to note is `.spec.compositeTypeRef`, which we've configured to refer to `XRabbitmqCluster` on the `messaging.bigcorp.org/v1alpha1` API group/version. 
+And now let's chat through the `Composition` step-by-step. The first thing to note is `.spec.compositeTypeRef`, which we've configured to refer to `XRabbitmqCluster` on the `messaging.bigcorp.org/v1alpha1` API group/version.
 
 ```yaml
 spec:
@@ -426,7 +426,7 @@ readinessChecks:
 
 Configuring readiness checks helps to keep consumers of dynamic provisioning (i.e. application teams) informed about when the resulting service instances are actually up and ready to be used by application workloads. Where possible it is simplest to use the `Ready` condition to determine readiness. However the `RabbitmqCluster` API doesn't expose a simple `Ready` condition, thus we instead configure the ready check on `ClusterAvailable` instead.
 
-One final important decision to discuss before moving on is the name of the namespace in which to create the dynamically provisioned `RabbitmqCluster` resources. We have chosen the `rmq-clusters` namespace. 
+One final important decision to discuss before moving on is the name of the namespace in which to create the dynamically provisioned `RabbitmqCluster` resources. We have chosen the `rmq-clusters` namespace.
 
 ```yaml
 spec:
