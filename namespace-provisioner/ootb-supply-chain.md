@@ -4,7 +4,7 @@ This topic describes how to set up for OOTB supply chains.
 
 ## Basic Supply Chain
 
-To create a developer namespace, see the [Provision Developer Namespaces](provision-developer-ns).
+To create a developer namespace, see the [Provision Developer Namespaces](provision-developer-ns.md).
 
 Namespace Provisioner creates a set of [default resources](reference.md#default-resources) in all managed namespaces which are sufficient to run a workload through the Basic supply chain.
 
@@ -65,9 +65,9 @@ spec:
 
 ### Add a Java Tekton Pipeline to your developer namespace
 
-To create a developer namespace, see the [Provision Developer Namespaces](provision-developer-ns).
+To create a developer namespace, see the [Provision Developer Namespaces](provision-developer-ns.md).
 
-Namespace Provisioner can automate the creation of a Tekton pipeline that is needed for the workload to run on a Testing supply chain. You can create a sample pipeline in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation](customize-installation) for more details.
+Namespace Provisioner can automate the creation of a Tekton pipeline that is needed for the workload to run on a Testing supply chain. You can create a sample pipeline in your GitOps repository and add your GitOps repository as an additional source in Namespace Provisioner configuration in TAP values. See [Customize Installation](customize-installation.md) for more details.
 
 Add the following configuration to your TAP values to add [this sample java pipeline](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/testing-supplychain/tekton-pipeline-java.yaml) to your developer namespace:
 
