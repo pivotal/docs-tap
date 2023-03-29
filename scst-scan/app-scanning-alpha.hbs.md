@@ -11,9 +11,9 @@ The App Scanning component within the Supply Chain Security Tools is responsible
 
 During scanning:
 * Tekton Steps are created to perform operations such as setting up workspace and environment configuration, running scanning, and publishing results to a metadata store.
-* Tekton Sidecars are created as a no-op sidecar to trigger Tekton's injected sidecar cleanup. (See [here](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers) for more details)
+* A Tekton Sidecar is created as a no-op sidecar to trigger Tekton's injected sidecar cleanup. (See [here](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers) for more details)
 
-This App Scanning component is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md)
+The App Scanning component is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md)
 
 A core tenet of the app-scanning framework architecture is to simplify integration for new plug-ins by allowing users to integrate new scan engines by minimizing the scope of the scan engine to only scanning and pushing results to an OCI Compliant Registry.
 
@@ -434,7 +434,7 @@ Optional fields:
 
 #### Default Environment
 
-Workspaces:
+Tekton Workspaces:
 
 - `/home/app-scanning`: a memory-backed EmptyDir mount that contains service account credentials loaded by Tekton
 - `/cred-helper`: a memory-backed EmptyDir mount containing:
@@ -603,5 +603,4 @@ kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-syste
 
 ### <a id="debug-scanning-in-supplychain"></a> Debugging Scanning within a SupplyChain
 
-See [here](../cli-plugins/apps/debug-workload.md) for Tanzu workload commands for tailing build and
-runtime logs and getting workload status and details.
+See [here](../cli-plugins/apps/debug-workload.md) for Tanzu workload commands for tailing build and runtime logs and getting workload status and details.
