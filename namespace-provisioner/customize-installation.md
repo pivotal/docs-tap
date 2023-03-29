@@ -50,7 +50,7 @@ Options if using Controller
        path: _ytt_lib/testing-scanning-supplychain-setup
    ```
 
-   See [Git Authentication](#fake) for using a private Git repository guide.
+   See [Git Authentication for Private repository](use-case3.md).
 
    ## Adjust sync period of Namespace Provisioner
 
@@ -321,7 +321,7 @@ Options if using GitOps
          url: https://github.com/vmware-tanzu/application-accelerator-samples.git
      ```
 
-     See [Git Authentication for using a private Git repository for Additional resources](#fake) guide.
+     See [Git Authentication for using a private Git repository](use-case3.md#git-private) guide.
 
      ## Adjust sync period of Namespace Provisioner
 
@@ -445,4 +445,3 @@ Options if using GitOps
         create_export: true
      ```
 
-    ### <a id="fake"></a>Fake section -->

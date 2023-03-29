@@ -40,7 +40,7 @@ Controller mode
 : Description of controller mode:
 
     - In the controller mode, the list of desired namespaces used by the `provisioner` application
-    to create resources in, is maintained in the `desired-namespaces` ConfigMap. This ConfigMap is managed by the [Namespace Provisioner controller](#fake) and it provides a declarative way to indicate which namespaces should be populated with resources. The ConfigMap consists of a list of namespace objects, with a required name parameter, and optional additional parameters which are used as `data.values` for customizing defined resources.
+    to create resources in, is maintained in the `desired-namespaces` ConfigMap. This ConfigMap is managed by the [Namespace Provisioner controller](#provision-developer) and it provides a declarative way to indicate which namespaces should be populated with resources. The ConfigMap consists of a list of namespace objects, with a required name parameter, and optional additional parameters which are used as `data.values` for customizing defined resources.
 
     For example,
 
@@ -78,5 +78,3 @@ the `desired-namespaces` ConfigMap. The controller watches namespaces in the clu
 `(apps.tanzu.vmware.com/tap-ns by default`) configured in Namespace Provisioner configuration. The
 default label selector can be customized via Install configuration (See `Options if using
 Controller` in the [Customize Install](customize-installation.md) section for more information).
-
-### <a id="fake"></a>Fake section -->
