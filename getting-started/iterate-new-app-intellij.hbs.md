@@ -22,7 +22,7 @@ and allows you to debug your application directly on the cluster.
 For information about installing the prerequisites and the Tanzu Developer Tools for IntelliJ extension, see
 [Install Tanzu Developer Tools for IntelliJ](../intellij-extension/install.hbs.md).
 
->**Important** Use Tilt v0.27.2 or a later version for the sample application.
+>**Important** Use Tilt v0.30.12 or a later version for the sample application.
 
 1. Open the Tanzu Java Web App as a project within your IntelliJ IDE by selecting `File` > `Open`, then selecting the Tanzu Java Web App folder and clicking the Open button. If you don't have the Tanzu Java Web App you can obtain it by following the [Generate a new project using an application accelerator](deploy-first-app.html#generate-a-new-project-using-an-application-accelerator-1) section of the Deploy an app page in the getting started guide, or from the [Application Accelerator Samples](https://github.com/vmware-tanzu/application-accelerator-samples) GitHub page.
 1. Confirm your current Kubernetes context contains a default namespace. The `Tanzu Panel`, found by clicking `Tanzu Panel` at the bottom-left of the IntelliJ window, uses the default namespace associated with your current Kubernetes context to populate the workloads from the cluster.
@@ -71,9 +71,9 @@ Follow the following steps to live update your application:
    1. In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code. The Source Image value tells the Tanzu Developer Tools extension where to publish the container image with your uncompiled source code, and what to name that image. The image must be published to a container registry where you have write (push) access.
    For example, `gcr.io/myteam/tanzu-java-web-app-source`.
 
-  >**Note** Consult the documentation for the registry you're using to determine which steps are necessary to authenticate and gain push access.
+   >**Note** Consult the documentation for the registry you're using to determine which steps are necessary to authenticate and gain push access.
 
-  >For example, if you use docker consult [docker's docs](https://docs.docker.com/engine/reference/commandline/login/), if you use Harbor consult [Harbor's docs](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/), etc.
+   >For example, if you use docker consult [docker's docs](https://docs.docker.com/engine/reference/commandline/login/), if you use Harbor consult [Harbor's docs](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/), etc.
 
 1. In the Project tab of IntelliJ, right-click the `Tiltfile` file under the application name `tanzu-java-web-app` and select `Run \'Tanzu Live Update - tanzu-java-web-app\'` to begin Live Updating the application on the cluster.
 1. Alternatively, select the `Edit Run/Debug configurations` dropdown in the top-right corner, select `Tanzu Live Update - tanzu-java-web-app`, then click the green play button to the right of the `Edit Run/Debug configurations` dropdown.
@@ -86,8 +86,7 @@ The `Run` tab will open and display the output from Tanzu Application Platform a
     >`ERROR: Stop! cluster-name might be production.
     >If you're sure you want to deploy there, add:
     >allow_k8s_contexts('cluster-name')
-    >to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.
-      `
+    >to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.`
     >Follow the instructions and add the line, `allow_k8s_contexts('cluster-name')` to your `Tiltfile`.
 
 2. When the Live Update task in the `Run` tab says that it was successful, resolve to "Live Update Started," use the hyperlink at the top of the Run output following the words **Tilt started on** to  view your application in your browser.
@@ -113,10 +112,13 @@ Use the following steps to debug the cluster:
    For example, `/Users/developer/Documents/tanzu-java-web-app`.
    1. In the **Source Image** field, provide the destination image repository to publish an image containing your workload source code. The Source Image value tells the Tanzu Developer Tools extension where to publish the container image with your uncompiled source code, and what to name that image. The image must be published to a container registry where you have write (push) access.
    For example, `gcr.io/myteam/tanzu-java-web-app-source`.
+
    >**Note** Consult the documentation for the registry you're using to determine which steps are necessary to authenticate and gain push access.
+
    >For example, if you use docker consult [docker's docs](https://docs.docker.com/engine/reference/commandline/login/), if you use Harbor consult [Harbor's docs](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/), etc.
 
    8. In the **Namespace** field, optionally provide the namespace that the workload should be associated with on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](/iterate-new-app-intellij.hbs.md#prepare-to-iterate) you do not need to enter a namespace and IntelliJ will use the namespace you associated with your context.
+   
 1. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name `tanzu-java-web-app` and select `Run \'Tanzu Debug Workload - tanzu-java-web-app\'` to begin debugging the application on the cluster.
 1. Alternatively, select the `Edit Run/Debug configurations` dropdown in the top-right corner, select `Tanzu Debug Workload - tanzu-java-web-app`, then click the green debug button to the right of the `Edit Run/Debug configurations` dropdown.
 The `Run` tab will open and display the output from Tanzu Application Platform and from Tilt indicating that the container is being built and deployed.
