@@ -48,8 +48,8 @@ Tanzu Application Platform:
    documentation](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
 1. [VMware Tanzu SQL with Postgres for
    Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html).
-1. [VMware Tanzu SQL with MySQL for
-   Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html).
+2. [VMware SQL with MySQL for
+   Kubernetes](https://docs.vmware.com/en/VMware-SQL-with-MySQL-for-Kubernetes/index.html).
 
 Compatibility of a service with Tanzu Application Platform ranges on a scale
 between fully compatible and incompatible. The minimum requirement for
