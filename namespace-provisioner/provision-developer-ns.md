@@ -33,7 +33,7 @@ Using Namespace Provisioner Controller
     controller: true
   ```
 
-  The imperative way is to create the namespace using kubectl or via other means and label it using
+  The imperative way is to create the namespace using kubectl or using other means and label it using
   the default selector.
 
   1. Create a namespace using kubectl or any other means
@@ -97,14 +97,12 @@ by Namespace Provisioner.
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
   ```
 
-  This GitOps configuration will do the following things:
+  This GitOps configuration does the following things:
 
-  - controller: false will tell the Namespace Provisioner package to not install the controller
-  as the list of namespaces will be managed in a GitOps repository.
-  - The samples/gitops-install directory specified as the subPath value in the TAP values
-  configuration sample above includes 2 files:
-  desired-namespace.yaml contains the list of developer namespaces in a ytt data.values format.
-  namespaces.yaml contains a Kubernetes namespace object.
+  - `controller: false` - The Namespace Provisioner package does not install the controller. The list of namespaces is managed in a GitOps repository instead.
+  - The gitops-install directory specified as the subPath value includes two files:
+  [desired-namespace.yaml](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/desired-namespaces.yaml) contains the list of developer namespaces in a ytt data.values format.
+  [namespaces.yaml](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/namespaces.yaml) contains a Kubernetes namespace object.
 
   >**Note** If you have another tool like Tanzu Mission Control or some other process that is
   taking care of creating namespaces for you, and you don’t want a Namespace Provisioner to create
@@ -113,11 +111,10 @@ by Namespace Provisioner.
   namespaces already exist in your cluster, remove them or rename the namespaces in your GitOps
   repository so they do not conflict with existing resources.
 
-  Run the following command to verify the [default resources](reference.md#default-resources) have been created in the namespace:
+  Run the following command to verify the [default resources](reference.md#default-resources) are created in the namespace:
 
   ```console
   kubectl get secrets,serviceaccount,rolebinding,pods,workload,configmap,limitrange -n dev
-
 
   For example:
 
@@ -141,4 +138,4 @@ by Namespace Provisioner.
   limitrange/dev-lr   2023-03-08T04:22:20Z
   ```
 
-  See GitOps section of the [Customize Installation](customize-installation.md) guide for more details.
+  For more information, see the GitOps section of [Customize Installation](customize-installation.md).
