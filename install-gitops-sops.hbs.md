@@ -129,7 +129,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id=''></a>Create cluster configuration
 
-1. Seed configuration for a cluster by using SoPS:
+1. Seed configuration for a cluster using SoPS:
 
     ```console
     cd $HOME/tap-gitops
@@ -197,7 +197,7 @@ The following sections describe how to create these values files.
       sensitive_values:
     ```
 
-3. Encrypt `tap-sensitive-values.yaml` with Age by using SoPS:
+3. Encrypt `tap-sensitive-values.yaml` with Age using SoPS:
 
     ```console
     export SOPS_AGE_RECIPIENTS=$(cat key.txt | grep "# public key: " | sed 's/# public key: //')

@@ -20,12 +20,10 @@ Tanzu Sync consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest
 
 ### Supported Kubernetes Distributions and Secret Management Solutions:
 
-<!--
-||IaaS|Secrets Manager|
+|SOPS or ESO|IaaS|Secrets Manager|
 |----|----|---|
 | SOPS | Any TAP supported IaaS | N/A|
 | ESO  | AWS (EKS) | AWS Secrets Manager|
--->
 
 >**Note** Future release will include additional Secrets Managers for ESO.
 
