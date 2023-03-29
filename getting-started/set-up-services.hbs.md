@@ -37,7 +37,7 @@ Before following this walkthrough, you must:
 1. Have access to a cluster with Tanzu Application Platform installed.
 1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
 1. Ensure that your Tanzu Application Platform cluster can pull the container images required by the Kubernetes operator providing the service. For more information, see:
-   * [VMware Tanzu RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
+   * [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
    * [VMware Tanzu SQL with Postgres for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/index.html).
    * [VMware Tanzu SQL with MySQL for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/index.html).
 
@@ -55,7 +55,7 @@ Although this walkthrough uses the example of RabbitMQ Cluster Kubernetes operat
 steps remain largely the same for any compatible operator. Also, this walkthrough uses the
 open source RabbitMQ Cluster operator for Kubernetes. For most real-world deployments, VMware
 recommends using the official, supported version provided by VMware. For more information,
-see [VMware Tanzu RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-Tanzu-RabbitMQ-for-Kubernetes/index.html).
+see [VMware RabbitMQ for Kubernetes](https://docs.vmware.com/en/VMware-RabbitMQ-for-Kubernetes/index.html).
 
 To set up a service:
 
