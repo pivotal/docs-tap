@@ -173,7 +173,6 @@ To install Application Live View back end:
        You must do this before installing the Tanzu Application Platform packages in the
        cluster so that the HTTPProxy is updated with the TLS secret. To create a
        TLS secret, run:
-       <!-- must the secret be named alv-cert? is this secret the one used in the values YAML file? -->
 
           ```console
           kubectl create -n app-live-view secret tls alv-cert --cert=CERT-FILE --key=KEY-FILE
@@ -181,10 +180,11 @@ To install Application Live View back end:
 
           Where:
 
-          - `CERT-FILE` is a .crt file that contains the PEM encoded server certificate
-          - `KEY-FILE`  is a .key file that contains the PEM encoded server private key
+          - `SECRET-NAME` is the name you want for the TLS secret for the domain, for example, `alv-cert`.
+          - `CERT-FILE` is a .crt file that contains the PEM encoded server certificate.
+          - `KEY-FILE`  is a .key file that contains the PEM encoded server private key.
 
-       1. Provide the following properties in your `app-live-view-backend-values.yaml`:
+       2. Provide the following properties in your `app-live-view-backend-values.yaml`:
 
           ```yaml
           tls:
@@ -200,11 +200,11 @@ To install Application Live View back end:
           You can edit the values to suit your project needs or leave the default
           values as is.
 
-       1. Set the `ingressEnabled` key to `true`.
+       3. Set the `ingressEnabled` key to `true`.
 
           When `ingressEnabled` is `true`, the HTTPProxy object is created in the cluster.
 
-       1. Verify the HTTPProxy object with the TLS secret by running:
+       4. Verify the HTTPProxy object with the TLS secret by running:
 
           ```console
           kubectl get httpproxy -A
@@ -244,7 +244,7 @@ To install Application Live View back end:
        app-live-view        appliveview                                                       appliveview.192.168.42.55.nip.io                                 app-live-view/appliveview-cert   valid    Valid HTTPProxy
        ```
 
-1. Install the Application Live View back-end package by running:
+2. Install the Application Live View back-end package by running:
 
     ```console
     tanzu package install appliveview -p backend.appliveview.tanzu.vmware.com -v VERSION-NUMBER -n tap-install -f app-live-view-backend-values.yaml
@@ -271,7 +271,7 @@ To install Application Live View back end:
     The Application Live View back-end component is deployed in `app-live-view`
     namespace by default.
 
-1. Verify the Application Live View back-end package installation by running:
+3. Verify the Application Live View back-end package installation by running:
 
     ```console
     tanzu package installed get appliveview -n tap-install
