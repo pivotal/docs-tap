@@ -620,28 +620,37 @@ gitOpsRepo=https://github.com/gm2552/tap-play-gitops.git | kubectl apply -f-
 ### <a id="scg-deploy"></a> Spring Cloud Gateway deployment
 
 #### <a id="scg-package-install"></a> Spring Cloud Gateway Package Installation
-The section requires the Spring Cloud Gateway for Kubernetes package to be installed on `RunCluster01`.If Spring Cloud Gateway is already installed into the run cluster, you skip these install steps.
 
-Prior to TAP 1.5, the Spring Cloud Gateway operator must be installed manually; full instructions can be found [here](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/1.2/scg-k8s/GUID-installation-tanzu-cli.html).
+The section requires the Spring Cloud Gateway for Kubernetes package to be installed on `RunCluster01`.
+If Spring Cloud Gateway is already installed into the run cluster, you skip these install steps.
 
+Before Tanzu Application Platform v1.5, the Spring Cloud Gateway operator must be installed manually.
+For instructions, see the
+[VMware Spring Cloud Gateway for Kubernetes documentation](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/1.2/scg-k8s/GUID-installation-tanzu-cli.html).
 
-In TAP 1.5 and beyond, Spring Cloud Gateway is included as an optional package in the TAP carvel bundle.  You can simply install the Spring Cloud Gateway package with default setting using the following Tazu CLI template:
+In Tanzu Application Platform v1.5 and later, Spring Cloud Gateway is included as an optional package
+in the Tanzu Application Platform carvel bundle.
+You can simply install the Spring Cloud Gateway package with the default settings by using this Tanzu
+CLI template:
 
 ```console
-tanzu package install scg –package-name spring-cloud-gateway.tanzu.vmware.com -version <VERSION_NUMBER> -n <TAP_INSTALL_NAMESPACE>
+tanzu package install scg –package-name spring-cloud-gateway.tanzu.vmware.com \
+-version VERSION-NUMBER -n TAP-INSTALL-NAMESPACE
 ```
 
 For example:
 
 ```console
-tanzu package install scg --package-name spring-cloud-gateway.tanzu.vmware.com --version 2.0.0-tap.3 -n tap-install
+tanzu package install scg --package-name spring-cloud-gateway.tanzu.vmware.com \
+--version 2.0.0-tap.3 -n tap-install
 ```
+
 #### <a id="scg-config"></a> Spring Cloud Gateway Instance And Route Configuration
 
-NOTE: The Spring Cloud Gateway `spec.service.name` configuration was not built with multi, cross-cluster
-support. The configuration for the gateway routes currently implements a workaround, which is brittle
-in terms of where certain services are deployed.
-Future releases of the gateway might have better support for this use case.
+> **Caution** The Spring Cloud Gateway `spec.service.name` configuration was not built with multi,
+> cross-cluster support. The configuration for the gateway routes currently implements a workaround,
+> which is brittle in terms of where certain services are deployed.
+> Future releases of the gateway might have better support for this use case.
 
 The Tanzu Application Platform fork of the ACME fitness store uses Spring Cloud Gateway for routing
 API classes from the web frontend to the microservices.
@@ -651,13 +660,13 @@ Deploy the gateway along with applicable routes by running:
 ytt -f scgInstance.yaml -v workloadNamespace=WORKLOAD-NAMESPACE
 ```
 
-Where `WORKLOAD-NAMESPACE` is the namespace where the workloads will be deployed.
+Where `WORKLOAD-NAMESPACE` is the namespace where the workloads is deployed.
 
 ```console
 ytt -f scgRoutes.yaml -v workloadNamespace=WORKLOAD-NAMESPACE
 ```
 
-Where `WORKLOAD-NAMESPACE` is the namespace where the workloads will be deployed.
+Where `WORKLOAD-NAMESPACE` is the namespace where the workloads is deployed.
 
 For example:
 
