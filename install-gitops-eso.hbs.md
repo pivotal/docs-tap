@@ -644,6 +644,7 @@ You can track the progress of the installation by watching the installation of t
 watch kubectl get pkgi -n tap-install
 ```
 
+{{#unless vars.hide_content}}
 
 <!-- TODO: Write a "How-To" guide for changing the names of AWS Resources -->
 <!-- ## <a id='custom-aws-resource-names'></a>Using Custom Names for AWS Resources
@@ -661,3 +662,5 @@ If this convention meets the need, follow the instructions below, as is.
 
 If another convention is needed:
 - replace the default name with the custom one while following the instructions -->
+
+{{/unless}}
