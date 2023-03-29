@@ -53,7 +53,7 @@ cluster. Other resources in the supply chain can then access that code.
     <td>
       `
       - name: gitImplementation
-        value: libggit2`
+        value: libgit2`
     </td>
   </tr>
 
@@ -1784,7 +1784,7 @@ cluster. Other resources in the supply chain can then access that code.
     <td>
       `
       - name: gitImplementation
-        value: libggit2
+        value: libgit2
       `
     </td>
   </tr>
