@@ -48,12 +48,12 @@ cluster. Other resources in the supply chain can then access that code.
       The library used to fetch source code.
       If not provided, Tanzu Application Platform's default implementation uses <code>go-git</code>,
       which works with the providers supported by Tanzu Application Platform: GitHub and GitLab.
-      An alternate value that can be used with other Git providers is <code>libggit2</code>.
+      An alternate value that can be used with other Git providers is <code>libgit2</code>.
     </td>
     <td>
       `
       - name: gitImplementation
-        value: libggit2`
+        value: libgit2`
     </td>
   </tr>
 
@@ -1777,12 +1777,12 @@ cluster. Other resources in the supply chain can then access that code.
       The library used to fetch source code.
       If not provided, Tanzu Application Platform's default implementation uses <code>go-git</code>,
       which works with the providers supported by Tanzu Application Platform: GitHub and GitLab.
-      An alternate value that you can use with other Git providers is <code>libggit2</code>.
+      An alternate value that you can use with other Git providers is <code>libgit2</code>.
     </td>
     <td>
       `
       - name: gitImplementation
-        value: libggit2
+        value: libgit2
       `
     </td>
   </tr>
