@@ -189,13 +189,13 @@ To install Application Live View back end:
           ```yaml
           tls:
             namespace: "NAMESPACE"
-            secretName: "SECRET NAME"
+            secretName: "SECRET-NAME"
           ```
 
           Where:
 
           - `NAMESPACE` is the targeted namespace of TLS secret for the domain.
-          - `SECRET NAME` is the name of TLS secret for the domain.
+          - `SECRET-NAME` is the name of TLS secret for the domain.
 
           You can edit the values to suit your project needs or leave the default
           values as is.
