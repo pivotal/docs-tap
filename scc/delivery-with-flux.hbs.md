@@ -1,4 +1,4 @@
-# Use Gitops Delivery with FluxCD
+# Use Gitops Delivery with FluxCD (alpha)
 
 This topic outlines the delivery of packages created by the Out of the Box Supply Chain
 with `carvel-package-workflow-enabled` and added to a GitOps repository to one or more run clusters.

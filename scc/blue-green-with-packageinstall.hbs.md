@@ -1,4 +1,4 @@
-# Use blue-green deployment with Contour and PackageInstall
+# Use blue-green deployment with Contour and PackageInstall (alpha)
 
 Blue-green deployment is an application delivery model that gradually transfers
 user traffic from one version of an app to a later version while both are
