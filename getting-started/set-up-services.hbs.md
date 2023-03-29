@@ -64,9 +64,9 @@ To set up a service:
     As a result, a new API Group (`rabbitmq.com`) and Kind (`RabbitmqCluster`) are
     now available in the cluster.
 
-    PostgreSQL: [Installing a Tanzu Postgres Operator](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-install-operator.html)
+    PostgreSQL: [Installing a Tanzu Postgres Operator](https://docs.vmware.com/en/VMware-SQL-with-Postgres-for-Kubernetes/1.8/vmware-postgres-k8s/GUID-install-operator.html)
 
-    MySQL: [Installing the Tanzu SQL for Kubernetes Operator](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-install-operator.html)
+    MySQL: [Installing the Tanzu SQL for Kubernetes Operator](https://docs.vmware.com/en/VMware-SQL-with-MySQL-for-Kubernetes/1.5/vmware-mysql-k8s/install-operator.html)
 
 2. Apply RBAC rules to grant Tanzu Application Platform permission to interact with the new API.
 
@@ -93,9 +93,9 @@ To set up a service:
         kubectl apply -f resource-claims-rmq.yaml
         ```
 
-        PostgreSQL: [Creating Service Bindings](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-creating-service-bindings.html)
+        PostgreSQL: [Creating Service Bindings](https://docs.vmware.com/en/VMware-SQL-with-Postgres-for-Kubernetes/1.8/vmware-postgres-k8s/GUID-creating-service-bindings.html)
 
-        MySQL: [Connecting an Application to a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-creating-service-bindings.html)
+        MySQL: [Connecting an Application to a MySQL Instance](https://docs.vmware.com/en/VMware-SQL-with-MySQL-for-Kubernetes/1.5/vmware-mysql-k8s/creating-service-bindings.html)
 
 3. Make the new API discoverable to application operators.
 
@@ -176,9 +176,9 @@ To create a service instance:
         kubectl apply -f rmq-1-service-instance.yaml
         ```
 
-        PostgreSQL: [Deploying a Postgres Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-Postgres-for-Kubernetes/1.8/tanzu-postgres-k8s/GUID-create-delete-postgres.html#deploying-a-postgres-instance)
+        PostgreSQL: [Deploying a Postgres Instance](https://docs.vmware.com/en/VMware-SQL-with-Postgres-for-Kubernetes/1.8/vmware-postgres-k8s/GUID-create-delete-postgres.html#deploying-a-postgres-instance)
 
-        MySQL: [Creating a MySQL Instance](https://docs.vmware.com/en/VMware-Tanzu-SQL-with-MySQL-for-Kubernetes/1.5/tanzu-mysql-k8s/GUID-create-delete-mysql.html#create-a-mysql-instance)
+        MySQL: [Creating a MySQL Instance](https://docs.vmware.com/en/VMware-SQL-with-MySQL-for-Kubernetes/1.5/vmware-mysql-k8s/create-delete-mysql.html#create-a-mysql-instance)
 
 3. Create a resource claim policy to define the namespaces the instance can be claimed and bound from.
 
