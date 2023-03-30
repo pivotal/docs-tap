@@ -231,6 +231,8 @@ This release has the following known issues, listed by area and component.
   prevents it from starting again. Delete the Tilt lock file to resolve this.
   The default file location is `~/.tilt-dev/config.lock`.
 
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is miscategorized as `Unknown`, whereas it should be under the `Supply Chain` category.
+
 - On Windows, workload commands don't work when in a project with spaces in the name, such as
   `my-app project`.
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#projects-with-spaces).
@@ -257,6 +259,8 @@ This release has the following known issues, listed by area and component.
 - On Windows, workload actions do not work when in a project with spaces in the name such as
   `my-app project`.
   For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is miscategorized as `Unknown`, whereas it should be under the `Supply Chain` category.
 
 #### <a id="1-5-0-grype-scan-known-issues"></a>Grype scanner
 
