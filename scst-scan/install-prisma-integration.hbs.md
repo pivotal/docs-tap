@@ -14,15 +14,16 @@ Run this command to output a list of available tags.
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | sort -V
 ```
 
-Use the latest version returned in place of the sample version in this topic, such as `0.1.4-alpha.12` in the following output.
+Use the latest version returned in place of the sample version in this topic, such as `0.1.5-alpha.13` in the following output.
 
 ```console
 imgpkg tag list -i projects.registry.vmware.com/tanzu_practice/tap-scanners-package/prisma-repo-scanning-bundle | sort -V
-
-0.1.4-alpha.1  
-0.1.4-alpha.6  
-0.1.4-alpha.11
-0.1.4-alpha.12  
+0.1.4-alpha.11	
+0.1.4-alpha.12	
+0.1.4-alpha.15	
+0.1.5-alpha.11	
+0.1.5-alpha.12	
+0.1.5-alpha.13  
 ```
 
 ## Relocate images to a registry
@@ -375,15 +376,9 @@ spec:
     package main
     
     import future.keywords.in
-    import future.keywords.if
     
-    failedPrismaComplianceOrVulnerabilityChecks(metadata) {
-      x := false in cast_set(metadata.properties.property)
-      x
-    }
-
     deny[msg] {
-      failedPrismaComplianceOrVulnerabilityChecks(input.bom.metadata)
+      isThereAFailedScan := false in input.bom.metadata.properties.property[_]
       vulnerabilityMessages := { message |
         components := {e | e := input.bom.components.component} | {e | e := input.bom.components.component[_]}
         some component in components
@@ -510,6 +505,25 @@ shared:
    targetImagePullSecret: tap-registry
    caCertSecret: prisma-registry-cert
    ```
+
+## Connect to Prisma through a Proxy
+
+In order to connect to Prisma through a proxy you will need to add `environmentVariables` configuration to your `prisma-values.yaml`.
+
+**Note** - all valid container `env` configurations are supported
+
+Example:
+```yaml
+ namespace: dev
+ targetImagePullSecret: tap-registry
+ environmentVariables:
+ - name: HTTP_PROXY
+   value: "test.proxy.com"
+ - name: HTTPS_PROXY
+   value: "test.proxy.com"
+ - name: NO_PROXY
+   value: "127.0.0.1,.svc,.svc.cluster.local,demo.app"
+```
 
 ## Known Limits
 

@@ -6,6 +6,16 @@ Run these commands to get more logs and details about the errors around scanning
 persist for a predefined amount of seconds before getting deleted.
 (`deleteScanJobsSecondsAfterFinished` is the tap pkg variable that defines this)
 
+### <a id="debug-tekton-taskrun"></a> Debugging Tekton TaskRun
+
+To retrieve events of the TaskRun:
+
+```console
+kubectl describe taskrun TASKRUN-NAME -n DEV-NAMESPACE
+```
+
+WHERE `TASKRUN-NAME` is the name of the TaskRun.
+
 ### <a id="debugging-scan-pods"></a> Debugging Scan pods
 
 Run the following to get error logs from a pod when scan pods are in a failing state:
