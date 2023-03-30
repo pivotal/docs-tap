@@ -164,25 +164,18 @@ The following example uses the Azure DevOps GitOps repository:
 
 `https://dev.azure.com/vmware-tanzu/tap/_git/tap`
 
-You can configure the supply chain tap-values:
-
-```yaml
-ootb_supply_chain_testing_scanning:
-  git_implementation: libgit2
-```
-
-or the delivery tap-values:
+You can configure the delivery tap-values:
 
 ```yaml
 ootb_delivery_basic:
   git_implementation: libgit2
 ```
 
-or the workload parameter:
+or the deliverable parameter:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
-kind: Workload
+kind: Deliverable
 metadata:
   ...
 spec:
@@ -201,7 +194,6 @@ comes from the [delivery](ootb-delivery-reference.hbs.md) or the
 
 You can configure the delivery through by using tap-values.
 
-The supply chain creates the definition of a deliverable. The `gitImplementation` parameter passed to the deliverable
-template is written into the Deliverable's parameters field. You can propagate this to stamped objects when the
-Deliverable is applied to a cluster with a Delivery. You can configure the deliverable-template's `gitImplementation` parameter by setting the tap-value `git_implementation` for the supply chain at installation, or by setting the
-`gitImplementation` parameter on the workload.
+The supply chain creates the definition of a deliverable. TAP users are responsible for applying this definition to
+the run cluster. When undertaking this copy-paste, users can choose to add the `gitImplementation` parameter to the
+deliverable.
