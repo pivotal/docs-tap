@@ -41,8 +41,8 @@ controller and Gitops modes.
 Controller mode
 : 
 
-    - In the controller mode, the list of desired namespaces used by the `provisioner` application
-    to create resources in, is maintained in the `desired-namespaces` ConfigMap. This ConfigMap is managed by the [Namespace Provisioner controller](#provision-developer) and it provides a declarative way to indicate which namespaces should be populated with resources. The ConfigMap consists of a list of namespace objects, with a required name parameter, and optional additional parameters which are used as `data.values` for customizing defined resources.
+    In controller mode, the list of desired namespaces used by the `provisioner` application
+    to create resources in, is maintained in the `desired-namespaces` ConfigMap. This ConfigMap is managed by the [Namespace Provisioner controller](#nsp-controller) and it provides a declarative way to indicate which namespaces should be populated with resources. The ConfigMap consists of a list of namespace objects, with a required name parameter, and optional additional parameters which are used as `data.values` for customizing defined resources.
 
     For example,
 
@@ -76,7 +76,4 @@ GitOps mode
 
 The Namespace Provisioner controller is installed by default and manages the content contained in
 the `desired-namespaces` ConfigMap. The controller watches namespaces in the cluster and updates the
-`desired-namespaces` ConfigMap with a list of all namespaces that match the namespace label selector
-`(apps.tanzu.vmware.com/tap-ns by default`) configured in Namespace Provisioner configuration. Customize
-the default label selector via Install configuration. For more information, see `Options if using
-Controller` in the [Customize Install](customize-installation.md).
+`desired-namespaces` ConfigMap with a list of all namespaces that match the namespace label selector.The defalut namespace label selector is `apps.tanzu.vmware.com/tap-ns`. For more information, see [Use a different label selector than default](customize-installation.md#label-selector).
