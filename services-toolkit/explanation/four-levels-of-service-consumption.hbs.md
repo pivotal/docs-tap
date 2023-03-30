@@ -4,7 +4,7 @@ Over time, as Tanzu Application Platform (referred to as "TAP" from hereon in) h
 
 ## Level 1 - Direct Bindings
 
-When TAP 1.0 was first released way back when, it shipped with support for Service Bindings, which back the level 1 concept of direct bindings.
+When TAP 1.0 was first released, it shipped with support for Service Bindings, which back the level 1 concept of direct bindings.
 
 ![Diagram shows level 1 of service consumption in TAP](../../images/stk-4-levels-1.png)
 
