@@ -34,7 +34,6 @@ and connects the local control plane to your Tanzu Service Mesh tenant.
 
 ## <a id="set-up-tap"></a> Set up Tanzu Application Platform
 
-
 To enable Tanzu Service Mesh support in Tanzu Application Platform Build clusters:
 
 1. Add the following key to `tap-values.yaml` under the `buildservice` top-level key:
@@ -50,7 +49,7 @@ To enable Tanzu Service Mesh support in Tanzu Application Platform Build cluster
 
 The following sections describe how to build and deploy a workload.
 
-### <a id="end-to-end-workload-build"></a> Workload build
+### <a id="end-to-end-workload-build"></a> Apply a workload resource to a build cluster
 
 Workloads can be built using a Tanzu Application Platform supply chain by applying a workload
 resource to a build cluster.
@@ -131,7 +130,7 @@ resource that defaults to using port 8080.
 
    After your workload is built a `Deliverable` resource is created.
 
-### <a id="build-service-egress"></a> Build Service Requires Egress
+### <a id="build-service-egress"></a> Configure egress for Tanzu Build Service
 
 For Tanzu Build Service to properly work, egress must be provided to access the registry where
 Tanzu Build Service will write application images, as well as the registry defined in the
@@ -205,7 +204,7 @@ It requires the `ytt` command to execute the build and deployment commands.
 The configuration resources referenced in this scenario are located in the
 [hungryman-tap-tsm](https://github.com/gm2552/hungryman-tap-tsm) GitHub repository.
 
-### <a id="init-config-gen-acc"></a> Initial configuration generation from an accelerator
+### <a id="init-config-gen-acc"></a> Create an initial set of configuration files from the accelerator
 
 This use case deployment includes a pre-built set of configuration files in a Git repository.
 However, they were created from a set of configuration files by using a bootstrapped process that uses
@@ -213,7 +212,6 @@ the Hungryman accelerator, and were later modified.
 
 For reference, you can create an initial set of configuration files from the Hungryman accelerator,
 which is available in Tanzu Application Platform v1.3.
-<!-- Should this be v1.4? -->
 
 This section does not include instructions for modifying the configuration files from the accelerator
 into configuration files used in a later section.
@@ -225,7 +223,7 @@ From the accelerator, accept all of the default options with the following excep
 - **Service namespace:** Update this field with the name of the namespace you will use to deploy a
   RabbitMQ cluster on your Tanzu Application Platform run cluster
 
-### <a id="hungryman-workload-build"></a> Workload build
+### <a id="hungryman-workload-build"></a> Apply the workload resources to your build cluster
 
 To build the application services, run the following command to apply the workload resources to
 your build cluster.
@@ -253,7 +251,7 @@ that commit deployment information to the GtiOps repository might fail because o
 A workaround for this is to delete the failed workloads from the build cluster and re-run the command
 provided in the instructions.
 
-### <a id="serv-rsrc-clm-install"></a> Service and resource claim installation
+### <a id="serv-rsrc-clm-install"></a> Install service claim resources on the cluster
 
 Hungryman requires a RabbitMQ cluster installed on your run cluster.
 You must install RabbitMQ on the same run cluster that is named `RunCluster01` in the following
@@ -296,7 +294,6 @@ workloadNamespace=WORKLOAD-NAMESPACE | kubectl apply -f-
 
 Where `SERVICE-NAMESPACE` and `WORKLOAD-NAMESPACE` are the namespaces where you deployed your RabbitMQ
 cluster and the namespace where the application service will run.
-<!-- Which is which? -->
 
 For example:
 
@@ -424,7 +421,7 @@ execute the build and deployment commands.
 The configuration resources referenced in this scenario are located in the Git repository
 [here](https://github.com/gm2552/acme-fitness-tap-tsm).
 
-### <a id="appsso-deploy"></a> AppSSO deployment
+### <a id="appsso-deploy"></a> Deploy AppSSO
 
 ACME requires the use of an AppSSO authorization server and client registration resource.
 You need to install these resources on the same run cluster that is named `RunCluster01` in
@@ -482,7 +479,7 @@ Where `WORKLOAD-NAMESPACE` is the name of the namespace where the workloads will
 
 Record the Issuer URI because you need it for the next section.
 
-### <a id="acme-workload-build"></a> Workload build
+### <a id="acme-workload-build"></a> Apply the workload resources to your build cluster
 
 To build the application services, run the following command to apply the workload resources to
 your build cluster. You can also clone or fork the repository in the following command to either use
@@ -515,7 +512,7 @@ conflicts.
 A workaround for this is to delete the failed workloads from the build cluster and re-run the command
 provided in these instructions.
 
-### <a id="istio-ingress"></a> Istio ingress
+### <a id="istio-ingress"></a> Create the Istio ingress resources
 
 The authorization server requires a publicly accessible URL and must be available before
 the Spring Cloud Gateway can deploy properly.
@@ -543,7 +540,7 @@ ytt -f https://raw.githubusercontent.com/gm2552/acme-fitness-tap-tsm/main/istioG
 workloadNamespace=acme -v appDomainName=tsmdemo.perfect300rock.com | kubectl apply -f-
 ```
 
-### <a id="redis-deployment"></a> Redis deployment
+### <a id="redis-deployment"></a> Deploy Redis
 
 A Redis instance is needed for caching the ACME fitness store cart service.
 Deploy the Redis instance by running:
@@ -617,9 +614,11 @@ ytt -f https://raw.githubusercontent.com/gm2552/acme-fitness-tap-tsm/main/cluste
 gitOpsRepo=https://github.com/gm2552/tap-play-gitops.git | kubectl apply -f-
 ```
 
-### <a id="scg-deploy"></a> Spring Cloud Gateway deployment
+### <a id="scg-deploy"></a> Deploy Spring Cloud Gateway
 
-#### <a id="scg-package-install"></a> Spring Cloud Gateway Package Installation
+The following sections describe how to deploy Spring Cloud Gateway.
+
+#### <a id="scg-package-install"></a> Install the Spring Cloud Gateway package
 
 The section requires the Spring Cloud Gateway for Kubernetes package to be installed on `RunCluster01`.
 If Spring Cloud Gateway is already installed into the run cluster, you skip these install steps.
@@ -645,11 +644,11 @@ tanzu package install scg --package-name spring-cloud-gateway.tanzu.vmware.com \
 --version 2.0.0-tap.3 -n tap-install
 ```
 
-#### <a id="scg-config"></a> Spring Cloud Gateway Instance And Route Configuration
+#### <a id="scg-config"></a> Configure the Spring Cloud Gateway instance and route
 
-> **Caution** The Spring Cloud Gateway `spec.service.name` configuration was not built with multi,
-> cross-cluster support. The configuration for the gateway routes currently implements a workaround,
-> which is brittle in terms of where certain services are deployed.
+> **Caution** The Spring Cloud Gateway `spec.service.name` configuration was not built with
+> multicluster or cross-cluster support support. The configuration for the gateway routes currently
+> implements a workaround, which is brittle in terms of where certain services are deployed.
 > Future releases of the gateway might have better support for this use case.
 
 The Tanzu Application Platform fork of the ACME fitness store uses Spring Cloud Gateway for routing
