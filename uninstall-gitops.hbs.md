@@ -7,6 +7,7 @@ This document describes how to uninstall Tanzu Application Platform when install
 To uninstall Tanzu Application Platform:
 
 - [Delete Tanzu Sync Application](#del-tanzu-sync)
+- [Delete external resources (ESO installation only)](#del-aws-resources)
 - [Remove Tanzu CLI, plug-ins, and associated files](#remove-tanzu-cli)
 - [Remove Cluster Essentials](#remove-ce)
 
@@ -18,6 +19,16 @@ To delete Tanzu Sync Application, run:
 
 ```console
 kapp delete -a tanzu-sync
+```
+
+## <a id='del-aws-resources'></a>Delete external resources (ESO installation only)
+
+To delete external resources from AWS, run:
+
+```console
+cd $HOME/REPO-NAME/clusters/CLUSTER-NAME
+./tanzu-sync/aws/scripts/delete-irsa.sh
+./tanzu-sync/aws/scripts/delete-policies.sh
 ```
 
 ## <a id='remove-tanzu-cli'></a> Remove Tanzu CLI, plug-ins, and associated files
