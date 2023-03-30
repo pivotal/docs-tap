@@ -68,7 +68,7 @@ information about the classes of services.
     The output lists four classes that cover a range of services: MySQL, PostgreSQL, RabbitMQ and Redis.
     This is the default set of services that come preconfigured with Tanzu Application Platform.
     They are backed by Bitnami Helm charts that run on the Tanzu Application Platform cluster.
-    You can consider these to be "unmanaged" services.
+    You can consider these to be unmanaged services with no guarantees of service provided.
 
 - To see more detailed information for a class, run the `tanzu service class get` command:
 
@@ -147,9 +147,9 @@ Credentials and connectivity information required to connect to the RabbitMQ clu
 formatted according to the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec)
 and stored in a `Secret` in your namespace.
 
-As an application developer you don't need to know what's happening in the background.
+As an application operator you don't need to know what's happening in the background.
 Tanzu Application Platform promotes a strong separation of concerns between service operators,
-who are responsible for managing service instances for the platform, and application developers,
+who are responsible for managing service instances for the platform, and application operators and developers,
 who want to use those service instances with their application workloads.
 The class and claims abstractions enable that separation of concerns.
 Application operators and developers create claims and service operators help to fulfil them.
