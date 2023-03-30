@@ -989,7 +989,7 @@ Parameters:
     <td>
       <pre>
       - name: gitImplementation
-        value: libggit2
+        value: libgit2
       </pre>
     </td>
   </tr>
