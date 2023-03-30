@@ -85,6 +85,7 @@ docs.vmware.com is built.
       - [Generate an app](getting-started/generate-first-app.hbs.md)
       - [Deploy an app](getting-started/deploy-first-app.hbs.md)
       - [Iterate on your app](getting-started/iterate-new-app.hbs.md)
+      - [Claim services](getting-started/claim-services.md)
       - [Consume services](getting-started/consume-services.hbs.md)
       - [Deploy air-gapped workload](getting-started/air-gap-workload.hbs.md)
   - [Learn more](getting-started/concepts.hbs.md)

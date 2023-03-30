@@ -25,10 +25,11 @@ developer productivity.
 ## <a id="getting-started"></a>Getting started
 
 If this is your first time working with services on Tanzu Application Platform,
-then a great place to start is
+then great places to start are
+[Claim services on Tanzu Application Platform](../getting-started/claim-services.hbs.md) and
 [Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md)
 in the getting started guide.
-This guide runs through the basics, after which you can return here to the Services Toolkit
+These guides run through the basics, after which you can return here to the Services Toolkit
 component documentation to continue your services journey on Tanzu Application Platform.
 
 ## <a id="organization"></a>How this documentation is organized
