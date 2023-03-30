@@ -1,5 +1,7 @@
 # Tanzu GitOps RI Reference Documentation
 
+>**Caution** Tanzu Application Platform (GitOps)) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+
 ## Component Overview
 
 The following diagram shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:

@@ -1,5 +1,7 @@
 # Install Tanzu Application Platform (GitOps)
 
+>**Caution** Tanzu Application Platform (GitOps)) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+
 GitOps is an operational framework that uses Git repositories as a single source of truth. Under GitOps, you describe the desired state of a Tanzu Application Platform configuration using a declarative specification and place it in a Git repository.
 
 {{#unless vars.hide_content}}
