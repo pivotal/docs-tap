@@ -4,7 +4,7 @@ This topic describes how to install Tanzu Application Platform via Gitops with s
 
 >**Caution** 
 >
-> Tanzu GitOps RI does not support changing the secrets management strategy for a cluster. This topic is the ESO based approach to managing secrets in an external secrets store.
+> Tanzu GitOps RI does not support changing the secrets management strategy for a cluster.
 
 ## <a id='prereqs'></a>Prerequisites
 
