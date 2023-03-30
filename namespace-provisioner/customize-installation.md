@@ -3,7 +3,7 @@
 Namespace Provisioner is packaged and distributed using a set of Carvel tools.
 
 The Namespace Provisioner package is installed as part of all the standard installation profiles
-except the View profile. For more information about installation profiles, see [Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages)
+except the View profile. For more information about installation profiles, see [Installation profiles in Tanzu Application Platform](../about-package-profiles.hbs.md#profiles-and-packages).
 
 The default set of resources provisioned in a namespace is based on a
 combination of the Tanzu Application Platform installation profile employed and the supply chain
@@ -26,7 +26,7 @@ Options if using Controller
   - [Add additional resources to your namespaces from your GitOps repository](#con-add-additional)
   - [Adjust sync period of Namespace Provisioner](#con-adjust-sync)
   - [Import user defined secrets in YAML format as ytt data.values](#con-import-secret)
-  - [Use a different label selector than default](#on-label-selector)
+  - [Use a different label selector than default](#con-label-selector)
   - [Override default CPU and memory limits for controller pods](#con-override-cpu)
   - [Use AWS IAM roles](#con-support-iam)
   - [Apply default parameters to all namespaces](#con-default-param)
@@ -201,7 +201,7 @@ Options if using Controller
 
    **<a id='con-import-overlay'></a>Import Overlay secrets**
 
-   - overlay_secrets is a list of secrets which contains Carvel ytt overlay definitions that are applied to the resources created by the Namespace Provisioner. The secrets are imported to `namespace-provisioner` namespace if it is in another namespace.
+  overlay_secrets is a list of secrets which contains Carvel ytt overlay definitions that are applied to the resources created by the Namespace Provisioner. The secrets are imported to `namespace-provisioner` namespace if it is in another namespace.
 
    >**Note** stringData key of the secret must have .yaml or .yml suffix at the end.
 
@@ -250,13 +250,13 @@ Options if using GitOps
 :
   The following customization options are available if you are using GitOps to manage the developer namespaces list:
 
-  - (Use GitOps to manage developer namespaces list)[#git-install]
-  - (Add additional resources to your namespace from your GitOps repo)[#git-add-resources]
-  - (Adjust sync period of Namespace Provisioner)#[git-adjust-sync]
-  - (Import user defined secrets in YAML format as ytt data.values)[#git-import-user]
-  - (Use for AWS IAM roles)[#git-use-iam]
-  - (Apply default parameters to all namespaces)[#git-default-param]
-  - (Import Overlay secrets)[#git-import]
+  - [Use GitOps to manage developer namespaces list](#git-install)
+  - [Add additional resources to your namespace from your GitOps repo](#git-add-resources)
+  - [Adjust sync period of Namespace Provisioner](#git-adjust-sync)
+  - [Import user defined secrets in YAML format as ytt data.values](#git-import-user)
+  - [Use for AWS IAM roles](#git-use-iam)
+  - [Apply default parameters to all namespaces](#git-default-param)
+  - [Import Overlay secrets](#git-import)
 
   **<a id ='git-install'></a>Use GitOps to manage developer namespaces list**
 
