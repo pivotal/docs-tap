@@ -9,29 +9,15 @@ This topic guides you through getting started with VMware Tanzu Developer Tools 
 
 ## <a id="set-up-tanzu-dev-tools"></a> Set up Tanzu Developer Tools
 
-To use the extension with a project, the project must have these required files:
-
-- `workload.yaml`
-- `catalog-info.yaml`
-- `Tiltfile`
-- `.tanzuignore`
-
-There are two ways to create these files:
-
-- Using the VS Code snippets that Tanzu Developer Tools provide, which create templates in empty files
-  that you then fill in with the required information.
-  For more information about the snippets, see the
-  [VS Code documentation](https://code.visualstudio.com/docs/editor/userdefinedsnippets).
-
-- Writing the files by setting up manually.
+{{> 'partials/ide-extensions/set-up-tanzu-dev-tools' }}
 
 ### <a id="the-workload-yaml-file"></a> Create the `workload.yaml` file
 
-The `workload.yaml` file provides instructions to the Supply Chain Choreographer to build and manage
+`workload.yaml` provides instructions to the Supply Chain Choreographer about how to build and manage
 a workload.
 
-The extension requires only one `workload.yaml` per project. The `workload.yaml` must be a
-single-document YAML file, not a multidocument YAML file.
+The extension requires only one `workload.yaml` file per project.
+`workload.yaml` must be a single-document YAML file, not a multidocument YAML file.
 
 Before beginning to write your `workload.yaml` file, ensure that you know:
 
@@ -87,7 +73,7 @@ Manual
 
 ### <a id="catalog-info-yaml-file"></a> Create the `catalog-info.yaml` file
 
-The `catalog-info.yaml` file enables the workloads of this project to appear in
+`catalog-info.yaml` enables the workloads of this project to appear in
 [Tanzu Application Platform GUI](../tap-gui/about.hbs.md).
 
 Before beginning to write your `catalog-info.yaml` file, ensure that you:
@@ -222,7 +208,7 @@ Directories must not end with the system path separator (`/` or `\`).
 See this [example](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/.tanzuignore).
 in GitHub.
 
-## <a id="example-project"></a> Example project
+## <a id="example-project"></a> View an example project
 
 Before you begin, you need a container registry for the sample application.
 
@@ -250,4 +236,4 @@ Clone from GitHub
 
 ## <a id="next-steps"></a> Next steps
 
-Proceed to [Using Tanzu Developer Tools for VS Code](../vscode-extension/using-the-extension.hbs.md).
+[Using Tanzu Developer Tools for VS Code](../vscode-extension/using-the-extension.hbs.md).
