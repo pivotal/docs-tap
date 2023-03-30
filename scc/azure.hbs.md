@@ -8,10 +8,6 @@ There are two uses for Git in a supply chain:
 - As a repository of configuration created by the build cluster which is
   deployed on a run or production cluster
 
-> **Important** While you can configure supply chains to use Azure DevOps for only
-> one of these purposes, VMware recommends using Azure DevOps for either both purposes or
-> neither.
-
 Azure DevOps differs from other Git providers in the following ways:
 
 - Azure DevOps requires Git clients to support multi-ack.
