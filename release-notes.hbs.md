@@ -139,9 +139,10 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 
 ### <a id='1-5-0-vscode-plugin-ncf'></a> Tanzu Developer Tools for VS Code
 
-- The Tanzu Activity tab in the Panels view enables developers to visualize the supply chain, delivery, and running
-application pods.
-- The tab enables a developer to view and describe logs on each resource associated with a workload from within their IDE, and displays detailed error messages for each resource in an error state.
+- The Tanzu Activity tab in the Panels view enables developers to visualize the supply chain, delivery,
+  and running application pods.
+- The tab enables a developer to view and describe logs on each resource associated with a workload
+  from within their IDE. The tab displays detailed error messages for each resource in an error state.
 - The Tanzu Workloads panel is updated to show workloads deployed across multiple namespaces.
 - Tanzu commands for workload apply, workload delete, debug, and Live Update start are now available
   from the Tanzu Workloads panel.

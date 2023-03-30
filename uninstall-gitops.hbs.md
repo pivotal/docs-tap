@@ -1,5 +1,7 @@
 # Uninstall Tanzu Application Platform via Gitops
 
+>**Caution** Tanzu Application Platform (GitOps)) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+
 This document describes how to uninstall Tanzu Application Platform when installed via Gitops.
 
 To uninstall Tanzu Application Platform:
