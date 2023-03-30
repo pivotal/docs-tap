@@ -36,13 +36,13 @@ Bear the following observations in mind as you work through this guide:
 
 ## <a id="stk-prereqs"></a> Prerequisites
 
-Before following this tutorial, as application developer you must:
+Before following this tutorial, an application developer must:
 
 1. Have access to a cluster with Tanzu Application Platform installed.
-1. Have downloaded and installed the Tanzu CLI and the corresponding plug-ins.
-1. Have set up the `default` namespace to use installed packages and use it as your developer namespace.
+1. Have the Tanzu CLI and the corresponding plug-ins.
+1. Have access to the `default` namespace which has been set up to use installed packages.
 For more information, see [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
-1. Ensure that your Tanzu Application Platform cluster can pull source code from GitHub.
+1. Have a Tanzu Application Platform cluster that can pull source code from GitHub.
 
 ## <a id="stk-discover"></a> Discover available services
 
