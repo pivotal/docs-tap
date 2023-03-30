@@ -170,7 +170,7 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
   from the Tanzu Workloads panel.
 - Tanzu Developer Tools for IntelliJ can be used to iterate on Spring Boot applications.
 
-### <a id='1-5-0-vscode-plugin-ncf'></a> Tanzu Developer Tools for VS Code
+#### <a id='1-5-0-vscode-plugin-ncf'></a> Tanzu Developer Tools for VS Code
 
 - The Tanzu Activity tab in the Panels view enables developers to visualize the supply chain, delivery,
   and running application pods.
