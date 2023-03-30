@@ -14,7 +14,7 @@ This is a relatively straightforward concept to grasp. There are only a few reso
 
 However there are a number of limitations with this sort of setup. The first is that the Service Resource has to be bindable. That is to say that it must adhere to [Provisioned Service](https://github.com/servicebinding/spec#provisioned-service) as defined by the Service Binding Specification for Kubernetes. While there are _some_ resources out there that do adhere to this specification (primarily resources offered by VMware Tanzu's data services), the overhwelming majority of resources don't.
 
-The second limitation is that all resources have to be in the same namespace, which is ok, but it is a bit limiting.
+The second limitation is that all resources have to be in the same namespace.
 
 The third limitation is that the Service Binding has to know detailed and specific information about the Service Resource, including its name, namespace and API Group/Version and Kind. This is not a particularly nice or clear separation of concerns as it introduces tight coupling between app teams, who create the application Workloads, and ops teams, who create the Service Resources.
 
