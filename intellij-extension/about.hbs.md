@@ -32,14 +32,14 @@ This extension gives the following features.
 - **Work with microservices in a Java monorepo**
   Tanzu Developer Tools for IntelliJ v1.3 and later supports working with a monorepo containing
   multiple modules that represent different microservices.
-  This makes it possible to deploy, debug, and live update multiple workloads simultaneously from
+  This makes it possible to deploy, debug, and Live Update multiple workloads simultaneously from
   the same IntelliJ multimodule project. For more information about projects with multiple modules,
   see the
   [IntelliJ documentation](https://www.jetbrains.com/help/idea/creating-and-managing-modules.html#modules-idea-java).
   For more information about a typical monorepo setup, see
   [Working with microservices in a monorepo](using-the-extension.hbs.md#mono-repo).
 
--  **Note** The new variation of the out-of-the-box (OOTB) Basic supply chains: `source-to-url-package` and `basic-image-to-url-package`, which output [Carvel packages](../scc/carvel-package-supply-chain.hbs.md) to enable configuring multiple runtime environment, is not yet supported in this plugin.
+{{> 'partials/ide-extensions/no-ootb-basic-variation' }}
 
 ## <a id="next-steps"></a> Next steps
 
