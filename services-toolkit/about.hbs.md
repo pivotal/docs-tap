@@ -37,4 +37,4 @@ Per the documentation framework, tutorials and explanations are of most relevanc
 
 **For everyone**
 
-* [Explanation - Four Levels of Service Consumption in Tanzu Application Platform](./concepts/four-levels-of-service-consumption.hbs.md)
+* [Concept - Four Levels of Service Consumption in Tanzu Application Platform](./concepts/four-levels-of-service-consumption.hbs.md)
