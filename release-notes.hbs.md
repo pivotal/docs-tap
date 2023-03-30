@@ -155,7 +155,7 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 #### <a id="1-5-0-scst-scan-features"></a> Supply Chain Security Tools - Scan
 - SCST - Scan now runs on Tanzu Service Mesh-enabled clusters, enabling end to end, secure communication.
   - Kubernetes Jobs that previously created the scan pods were replaced with [Tekton TaskRuns](https://tekton.dev/docs/pipelines/taskruns/#overview).
-  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts) documentation is updated to account for the impact of these changes.
+  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md) documentation is updated to account for the impact of these changes. [One restart](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts) in scanner pods is expected with successful scans.
 - In conformance with NIST 800-53, support for rotating certificates and TLS is added.
   - Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy. See [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
 - SCST - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform `v1.5.0`, users have early access to:
@@ -170,7 +170,7 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
   from the Tanzu Workloads panel.
 - Tanzu Developer Tools for IntelliJ can be used to iterate on Spring Boot applications.
 
-### <a id='1-5-0-vscode-plugin-ncf'></a> Tanzu Developer Tools for VS Code
+#### <a id='1-5-0-vscode-plugin-ncf'></a> Tanzu Developer Tools for VS Code
 
 - The Tanzu Activity tab in the Panels view enables developers to visualize the supply chain, delivery,
   and running application pods.
@@ -231,9 +231,13 @@ This release has the following known issues, listed by area and component.
   prevents it from starting again. Delete the Tilt lock file to resolve this.
   The default file location is `~/.tilt-dev/config.lock`.
 
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is miscategorized as `Unknown`, whereas it should be under the `Supply Chain` category.
+
 - On Windows, workload commands don't work when in a project with spaces in the name, such as
   `my-app project`.
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- If the user's kubeconfig file (`~/.kube/config`) is malformed, then the user will not be able to apply a workload. The user will see a error message pop up when they attempt to apply a workload. To resolve this, ensure the kubeconfig file is well-formed.
 
 #### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for Intellij
 
@@ -255,6 +259,8 @@ This release has the following known issues, listed by area and component.
 - On Windows, workload actions do not work when in a project with spaces in the name such as
   `my-app project`.
   For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
+
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is miscategorized as `Unknown`, whereas it should be under the `Supply Chain` category.
 
 #### <a id="1-5-0-grype-scan-known-issues"></a>Grype scanner
 
