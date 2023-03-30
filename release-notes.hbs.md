@@ -8,10 +8,14 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ### <a id="1-5-0-tap-new-features"></a> Tanzu Application Platform new features
 
-- A new Crossplane Package is now part of the iterate, run and full profiles.
-  - See [Crossplane](crossplane/about.hbs.md) to learn more.
-- A new Bitnami Services Package is now part of the iterate, run and full profiles.
-  - See [Bitnami Services](bitnami-services/about.hbs.md) to learn more.
+- [Crossplane](crossplane/about.hbs.md) is a new package that powers a number of capabilities,
+  such as dynamic provisioning of service instances with Services Toolkit as well as the
+  pre-installed Bitnami Services. It is part of the iterate, run, and full profiles.
+
+- [Bitnami Services](bitnami-services/about.hbs.md) is a new package that provides a set of
+  pre-installed backing services for Tanzu Application Platform.
+  The services consist of MySQL, PostgreSQL, RabbitMQ and Redis, all of which are backed by
+  the corresponding Bitnami Helm Chart. It is part of the iterate, run and full profiles.
 
 ### <a id='1-5-0-new-component-features'></a> New features by component and area
 
@@ -62,7 +66,7 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 #### <a id='1-5-0-services-toolkit-new-features'></a> Services Toolkit
 
-- Services Toolkit now supports the dynamic provisioning of Services Instances.
+- Services Toolkit now supports the dynamic provisioning of services instances.
   - `ClusterInstanceClass` now supports the new provisioner mode. When a `ClassClaim` is created which refers to a provisioner `ClusterInstanceClass`, a new Service Instance is created on-demand and claimed. This is powered by [Crossplane](crossplane/about.hbs.md).
 - The `tanzu service` CLI plug-in has had the following updates:
   - `tanzu service class-claim crete` has been updated to allow the passing of parameters to provisioner-based `ClusterInstanceClass` that support dynamic provisioning.
