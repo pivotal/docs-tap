@@ -8,13 +8,13 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 
 ### <a id="1-5-0-tap-new-features"></a> Tanzu Application Platform new features
 
-- [Crossplane](crossplane/about.hbs.md) is a new package that powers a number of capabilities,
+- [Crossplane](crossplane/about.hbs.md) is a new component that powers a number of capabilities,
   such as dynamic provisioning of service instances with Services Toolkit as well as the
-  pre-installed Bitnami Services. It is part of the iterate, run, and full profiles.
+  provided Bitnami Services. It is part of the iterate, run, and full profiles.
 
-- [Bitnami Services](bitnami-services/about.hbs.md) is a new package that provides a set of
-  pre-installed backing services for Tanzu Application Platform.
-  The services consist of MySQL, PostgreSQL, RabbitMQ and Redis, all of which are backed by
+- [Bitnami Services](bitnami-services/about.hbs.md) is a new component that includes a set of
+  backing services for Tanzu Application Platform.
+  The provided services are MySQL, PostgreSQL, RabbitMQ and Redis, all of which are backed by
   the corresponding Bitnami Helm Chart. It is part of the iterate, run and full profiles.
 
 ### <a id='1-5-0-new-component-features'></a> New features by component and area
@@ -44,6 +44,35 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
+
+#### <a id='1-5-0-bitnami-services-new-features'></a> Bitnami Services
+
+- The new component [Bitnami Services](bitnami-services/about.hbs.md) is available with
+  Tanzu Application Platform.
+
+- This component provides integration for dynamic provisioning of Bitnami Helm Charts included with
+  Tanzu Application Platform for the following backing services:
+  - PostgreSQL
+  - MySQL
+  - Redis
+  - RabbitMQ
+
+- For more information, see [Working with Bitnami Services](services-toolkit/tutorials/working-with-the-bitnami-services.hbs.md).
+
+#### <a id='1-5-0-crossplane-new-features'></a> Crossplane
+
+- The new component [Crossplane](crossplane/about.hbs.md) is available with Tanzu Application Platform.
+  - It installs [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane) version `1.11.0`.
+  - This provides integration for dynamic provisioning in Services Toolkit and can be used for
+  integration with cloud services such as AWS, Azure, and GCP.
+  For more information, see
+  [Integrating cloud services into Tanzu Application Platform](services-toolkit/tutorials/integrate-cloud-services-aws-azure-gcp-into-tap.hbs.md).
+  - For more information about dynamic provisioning, see
+  [Set up dynamic provisioning of service instances](services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md) to learn more.
+
+- This release includes two Crossplane [Providers](https://docs.crossplane.io/v1.9/concepts/providers/), `provider-kubernetes` and `provider-helm`.
+You can add other providers manually as required.
+
 #### <a id='1-5-0-tap-gui-new-feats'></a> Tanzu Application Platform GUI
 
 - Tanzu Application Platform GUI now supports automatic configuration with
@@ -67,48 +96,48 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 #### <a id='1-5-0-services-toolkit-new-features'></a> Services Toolkit
 
 - Services Toolkit now supports the dynamic provisioning of services instances.
-  - `ClusterInstanceClass` now supports the new provisioner mode. When a `ClassClaim` is created which refers to a provisioner `ClusterInstanceClass`, a new Service Instance is created on-demand and claimed. This is powered by [Crossplane](crossplane/about.hbs.md).
-- The `tanzu service` CLI plug-in has had the following updates:
-  - `tanzu service class-claim crete` has been updated to allow the passing of parameters to provisioner-based `ClusterInstanceClass` that support dynamic provisioning.
-    - For example, `tanzu service class-claim create rmq-claim-1 --class rmq --parameter replicas=3  --parameter ha=true`
-  - `tanzu service class-claim get` has been updated to output parameters passed as part of claim creation.
-  - See [Tanzu Service CLI Plug-In](services-toolkit/reference/tanzu-service-cli.hbs.md) to learn more.
-- Services Toolkit integrates with the new [Bitnami Services](bitnami-services/about.hbs.md), which provides out-of-the-box, dynamic provisioning support for the following Helm charts:
+  - `ClusterInstanceClass` now supports the new provisioner mode.
+  When a `ClassClaim` is created which refers to a provisioner `ClusterInstanceClass`, a new
+  service instance is created on-demand and claimed.
+ This is powered by [Crossplane](crossplane/about.hbs.md).
+
+- The `tanzu service` CLI plug-in has the following updates:
+  - The command `tanzu service class-claim create`  now allows you to pass parameters to the
+  provisioner-based `ClusterInstanceClass` to support dynamic provisioning.
+  For example,
+  `tanzu service class-claim create rmq-claim-1 --class rmq --parameter replicas=3  --parameter ha=true`
+  - The `tanzu service class-claim get` now outputs parameters passed as part of claim creation.
+  - For more information about these commands, see [Tanzu Service CLI Plug-In](services-toolkit/reference/tanzu-service-cli.hbs.md#stk-cli-class-claim).
+
+- Services Toolkit integrates with the new component [Bitnami Services](bitnami-services/about.hbs.md),
+  which provides pre-installed dynamic provisioning support for the following Helm charts:
   - PostgreSQL
   - MySQL
   - Redis
   - RabbitMQ
-- Improved the security model for which users can claim specific Service Instances.
+
+- Improved the security model to control which users can claim specific service instances.
   - Introduced the `claim` custom RBAC verb that targets a specific `ClusterInstanceClass`.
-  - This can be bound to users for access control of who can create `ClassClaim` resources for a specific `ClusterInstanceClass`.
-  - `ResourceClaimPolicy` is now created automatically for successful `ClassClaims`.
-  - See [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-users-to-claim-from-provisioner-classes.hbs.md) to learn more.
-- `ResourceClaimPolicy` now supports targeting individual resources by name via `.spec.subject.resourceNames`.
-- The Where-For-Dinner sample application accelerator has been updated to support dynamic provisioning.
-- There have been big updates to the Services Toolkit component documentation.
-  - Check out the new [tutorials](services-toolkit/tutorials.hbs.md), [how-to guides](services-toolkit/how-to-guides.hbs.md), [explanations](services-toolkit/explanation.hbs.md) and [reference material](services-toolkit/reference.hbs.md) to learn more about working with services on Tanzu Application Platform.
-  - The separate documentation site hosted at https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html is no longer receiving updates.
-  - All services toolkit documentation can be found in the Tanzu Application Platform Component Documentation for [Services Toolkit](services-toolkit/about.hbs.md) section from now on.
+  You can bind this to users for access control of who can create `ClassClaim` resources for
+  a specific `ClusterInstanceClass`.
+  - A `ResourceClaimPolicy` is now created automatically for successful `ClassClaims`.
+  - For more information, see [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-users-to-claim-from-provisioner-classes.hbs.md) to learn more.
 
-#### <a id='1-5-0-crossplane-new-features'></a> Crossplane
+- `ResourceClaimPolicy` now supports targeting individual resources by name.
+  To do so, configure `.spec.subject.resourceNames`.
 
-- A new [Crossplane](crossplane/about.hbs.md) Package has been added to TAP.
-  - It installs [Upbound Universal Crossplane](https://github.com/upbound/universal-crossplane) version `1.11.0`.
-  - This provides integration for dynamic provisioning in Services Toolkit and can be used for integration with Cloud Services.
-    - See [Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform](services-toolkit/tutorials/integrate-cloud-services-aws-azure-gcp-into-tap.hbs.md) to learn more.
-- This ships with two Crossplane [Providers](https://docs.crossplane.io/v1.9/concepts/providers/) out-of-the-box, `provider-kubernetes` and `provider-helm`.
-  - Other providers can be added manually as required.
-- See [Setup Dynamic Provisioning of Service Instances](services-toolkit/tutorials/setup-dynamic-provisioning.hbs.md) to learn more.
+- The `Where-For-Dinner` sample application accelerator now supports dynamic provisioning.
 
-#### <a id='1-5-0-bitnami-services-new-features'></a> Bitnami Services
-
-- A new [Bitnami Services](bitnami-services/about.hbs.md) Package has been added to TAP.
-- This provides integration for dynamic provisioning of Bitnami Helm Charts out-of-the-box with TAP for the following backing services:
-  - PostgreSQL
-  - MySQL
-  - Redis
-  - RabbitMQ
-- See [Working with Bitnami Services](services-toolkit/tutorials/working-with-the-bitnami-services.hbs.md) to learn more.
+- There are large changes to the Services Toolkit component documentation.
+  - The [standalone Services Toolkit documentation](https://docs.vmware.com/en/Services-Toolkit-for-VMware-Tanzu-Application-Platform/index.html)
+  is no longer receiving updates.
+  From now on you can find all Services Toolkit documentation in the Tanzu Application Platform
+  component documentation section for [Services Toolkit](services-toolkit/about.hbs.md).
+  - See the new [tutorials](services-toolkit/tutorials.hbs.md),
+  [how-to guides](services-toolkit/how-to-guides.hbs.md),
+  [explanations](services-toolkit/explanation.hbs.md), and
+  [reference material](services-toolkit/reference.hbs.md) to learn more about working with services
+  on Tanzu Application Platform.
 
 #### <a id='1-5-0-scc-new-features'></a> Supply Chain Choreographer
 
