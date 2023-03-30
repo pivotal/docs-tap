@@ -14,7 +14,7 @@ Example secret creation, exported to all namespaces:
 tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --export-to-all-namespaces --yes --namespace tap-install
 ```
 
->**Important**: Namespace Provisioner creates a secret called registries-credentials in each managed
+>**Important** Namespace Provisioner creates a secret called registries-credentials in each managed
 namespace which is a placeholder secret filled indirectly by
 [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) with all the registry
 credentials exported for that managed  namespace.
@@ -24,13 +24,13 @@ credentials exported for that managed  namespace.
 There are two ways to manage the list of Developer namespaces that are managed by Namespace Provisioner.
 
 Using Namespace Provisioner Controller
-: Description
+:
 
   Sample TAP values configuration:
 
   ```console
   namespace_provisioner:
-    controller: true
+  controller: true
   ```
 
   The imperative way is to create the namespace using kubectl or using other means and label it using
@@ -42,7 +42,7 @@ Using Namespace Provisioner Controller
       kubectl create namespace YOUR-NEW-DEVELOPER-NAMESPACE
       ```
 
-  2. Label your new developer namespace with the default namespace_selector apps.tanzu.vmware.com/tap-ns="".
+  2. Label your new developer namespace with the default namespace_selector `apps.tanzu.vmware.com/tap-ns=""`.
 
       ```console
       kubectl label namespaces YOUR-NEW-DEVELOPER-NAMESPACE apps.tanzu.vmware.com/tap-ns=""
@@ -51,7 +51,7 @@ Using Namespace Provisioner Controller
     - This label tells the Namespace Provisioner controller to add this namespace to the
     desired-namespaces ConfigMap.
     - By default, the label’s value can be anything, including "".
-    - If required, you can change the default label selector (See Controller section of the
+    - If required, you can change the default label selector, see (customize-installation.md)See Controller section of the
     Customize Install for more details).
 
   3. Run the following command to verify the default resources have been created in the namespace:
@@ -100,13 +100,15 @@ by Namespace Provisioner.
   This GitOps configuration does the following things:
 
   - `controller: false` - The Namespace Provisioner package does not install the controller. The list of namespaces is managed in a GitOps repository instead.
-  - The gitops-install directory specified as the subPath value includes two files:
-  [desired-namespace.yaml](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/desired-namespaces.yaml) contains the list of developer namespaces in a ytt data.values format.
-  [namespaces.yaml](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/namespaces.yaml) contains a Kubernetes namespace object.
+  - The `gitops-install` directory specified as the `subPath` value includes two files:
+
+  1. [desired-namespace.yaml](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/desired-namespaces.yaml) contains the list of developer namespaces in a ytt data.values format.
+  2. [namespaces.yaml](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/namespaces.yaml) contains a Kubernetes namespace object.
 
   >**Note** If you have another tool like Tanzu Mission Control or some other process that is
   taking care of creating namespaces for you, and you don’t want a Namespace Provisioner to create
   the namespaces, you can delete this file from your GitOps install repository.
+  
   >**Important**  The GitOps sample creates the following two namespaces: `dev` and `qa`. If these
   namespaces already exist in your cluster, remove them or rename the namespaces in your GitOps
   repository so they do not conflict with existing resources.
