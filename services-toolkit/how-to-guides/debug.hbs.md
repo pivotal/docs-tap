@@ -9,14 +9,14 @@ This section of the document provides guidance on how to debug issues related to
 ### Step 1: Inspect the `ClassClaim`, `ClusterInstanceClass` and `CompositeResourceDefinition`
 
 ```console
-$ kubectl get classclaim claim-name -n namespace -o yaml
+$ kubectl describe classclaim claim-name -n namespace
 ```
 
 * Check the status conditions for any useful information which can lead you to the cause of the issue
 * Check `.spec.classRef.name`, and use the value to inspect the status of the `ClusterInstanceClass`, as follows:
 
 ```console
-$ kubectl get clusterinstanceclass class-name -o yaml
+$ kubectl describe clusterinstanceclass class-name
 ```
 
 * Check the status conditions for any useful information which can lead you to the cause of the issue
@@ -24,29 +24,31 @@ $ kubectl get clusterinstanceclass class-name -o yaml
 * Check `.spec.provisioner.crossplane`, and use the values to inspect the status of the `CompositeResourceDefinition`, as follows:
 
 ```console
-$ kubectl get xrd xrd-name -o yaml
+$ kubectl describe xrd xrd-name
 ```
 
 * Check the status conditions for any useful information which can lead you to the cause of the issue
 * Check that the `Established` condition has status `"True"`
+* Check events for any errors or warnings which can lead you to the cause of the issue
 * If both the `ClusterInstanceClass` reports `Ready="True"` and the `CompositeResourceDefinition` reports `Established="True"`, then move on to the next step.
 
 ### Step 2: Inspect the Composite Resource, the Managed Resources and the underlying resources
 
 ```console
-$ kubectl get classclaim claim-name -n namespace -o yaml
+$ kubectl describe classclaim claim-name -n namespace
 ```
 
 * Check `.status.provisionedResourceRef`, and use the values (`kind`, `apiVersion` and `name`) to inspect the status of the Composite Resource, as follows:
 
 ```console
-$ kubectl get <kind>.<api group> <name> -o yaml # <api group> = apiVersion minus the `/<version>` part
+$ kubectl describe <kind>.<api group> <name> # <api group> = apiVersion minus the `/<version>` part
 ```
 
 * Check the status conditions for any useful information which can lead you to the cause of the issue
 * Check that the `Synced` condition has status `"True"`, if it doesn't then there has been an issue creating the Managed Resources from which this Composite Resource is composed, in which case refer to `.spec.resourceRefs` in the output of the above command and for each:
   * Use the values (`kind`, `apiVersion` and `name`) to inspect the status of the Managed Resource
     * Check the status conditions for any useful information which can lead you to the cause of the issue
+* Check events for any errors or warnings which can lead you to the cause of the issue
 * If all Managed Resources appear healthy, move on to the next step.
 
 ### Step 3: Inspect the events log
