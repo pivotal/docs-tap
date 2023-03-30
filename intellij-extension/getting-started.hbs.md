@@ -1,24 +1,16 @@
 # Get Started with Tanzu Developer Tools for IntelliJ
 
-This topic describes how to set up the Tanzu Developer Tools for IntelliJ extension for your project.
+This topic guides you through getting started with Tanzu Developer Tools for IntelliJ.
 
-## <a id="overview"></a> Overview
+## <a id="prereqs"></a> Prerequisite
 
-The Tanzu Developer Tools for IntelliJ extension makes use of the following files within your project.
+[Install Tanzu Developer Tools for IntelliJ](install.hbs.md).
 
-- `workload.yaml`: Required
-- `catalog-info.yaml`: Required for Tanzu Application Platform GUI integration
-- `Tiltfile`: Required for live update
-- `.tanzuignore`: Recommended
+## <a id="set-up-tanzu-dev-tools"></a> Set up Tanzu Developer Tools
 
-You can create these files manually using the instructions in this topic,
-or use the files in the [View an example project](#example-project) section.
+{{> 'partials/ide-extensions/set-up-tanzu-dev-tools' }}
 
-## <a id="prereqs"></a> Prerequisites
-
-Before you get started, ensure you have completed [Installing Tanzu Developer Tools for IntelliJ](install.md).
-
-## <a id="create-workload-yaml"></a> Create the workload.yaml file
+## <a id="create-workload-yaml"></a> Create the `workload.yaml` file
 
 You must include a file named `workload.yaml` in your project.
 For example, `my-project/config/workload.yaml`.
@@ -29,12 +21,6 @@ For more information, see [Supply Chain Choreographer for Tanzu](../scc/about.hb
 
 The Tanzu Developer Tools for IntelliJ extension requires only one `workload.yaml` file per project.
 `workload.yaml` must be a single-document YAML file, not a multi-document YAML file.
-
-### <a id="create-wrkld-yaml-snippet"></a>Set up using code snippets
-
-Code snippets enable you to quickly add the files necessary to develop against the
-Tanzu Application Platform in existing projects.
-You do this by creating a template in an empty file and then filling it with the required information.
 
 To create a `workload.yaml` file by using code snippets:
 
@@ -73,13 +59,13 @@ Alternatively you can use the Tanzu CLI to create a `workload.yaml` file.
 For more information about the relevant Tanzu CLI command, see
 [Tanzu apps workload apply](../cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md).
 
-## <a id="create-catalog-info-yaml"></a> Create the catalog-info.yaml file
+## <a id="create-catalog-info-yaml"></a> Create the `catalog-info.yaml` file
 
 You must include a file named `catalog-info.yaml` in your project.
 For example, `my-project/catalog/catalog-info.yaml`.
 
-`catalog-info.yaml` enables the workloads created with Tanzu Developer Tools for IntelliJ to be visible
-in Tanzu Application Platform GUI.
+`catalog-info.yaml` enables the workloads created with Tanzu Developer Tools for IntelliJ to be
+visible in Tanzu Application Platform GUI.
 For more information, see [Overview of Tanzu Application Platform GUI](../tap-gui/about.hbs.md).
 
 To create a `catalog-info.yaml` file by using the code snippets:
@@ -114,16 +100,15 @@ Where:
 
 ## <a id="create-tiltfile"></a> Create the Tiltfile file
 
-In your project, you must include a file named `Tiltfile` with no extension (no filetype),
-for example, `my-project/Tiltfile`.
+In your project you must include a file named `Tiltfile` with no extension (no filetype), such as
+`my-project/Tiltfile`.
 
-The `Tiltfile` provides the configuration for Tilt to enable your project to [live update](glossary.md#live-update)
-on the Tanzu Application Platform enabled Kubernetes cluster.
+The `Tiltfile` provides the configuration for Tilt to enable your project to
+[Live Update](glossary.hbs.md#live-update) on the Tanzu Application Platform-enabled Kubernetes
+cluster.
 For more information, see the [Tilt](https://docs.tilt.dev/) documentation.
 
 The Tanzu Developer Tools for IntelliJ extension requires only one Tiltfile per project.
-
-### <a id="example-tiltfile"></a> Example Tiltfile
 
 The following is an example `Tiltfile`:
 
@@ -155,18 +140,20 @@ allow_k8s_contexts('CONTEXT-NAME')
 
 Where:
 
-- `SOURCE-IMAGE-VALUE` is your [source image](glossary.md#source-image).
+- `SOURCE-IMAGE-VALUE` is your [source image](glossary.hbs.md#source-image).
 - `APP-NAME` is the name of your application.
-- `PATH-TO-WORKLOAD-YAML` is the local file system path to your `workload.yaml` file. For example, `config/workload.yaml`.
+- `PATH-TO-WORKLOAD-YAML` is the local file system path to your `workload.yaml` file.
+  For example, `config/workload.yaml`.
 - `CONTEXT-NAME` is the name of your current
-[Kubernetes context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
-If your Tanzu Application Platform enabled Kubernetes cluster is running on your local machine,
-you can remove the entire `allow_k8s_contexts` line.
-For more information about this line, see the [Tilt documentation](https://docs.tilt.dev/api.html#api.allow_k8s_contexts).
+  [Kubernetes context](https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/).
+  If your Tanzu Application Platform-enabled Kubernetes cluster is running on your local machine,
+  you can remove the entire `allow_k8s_contexts` line.
+  For more information about this line, see the
+  [Tilt documentation](https://docs.tilt.dev/api.html#api.allow_k8s_contexts).
 
 If you want to compile the source image from a local directory other than the project directory,
 change the value of `local path`.
-For more information, see [local path](glossary.md#local-path) in the glossary.
+For more information, see [local path](glossary.hbs.md#local-path) in the glossary.
 
 ## <a id="create-tanzuignore"></a> Create the `.tanzuignore` file
 
@@ -177,8 +164,6 @@ When working with local source code, `.tanzuignore` excludes files from the sour
 uploaded within the image.
 It has syntax similar to the `.gitignore` file.
 
-### <a id="example-tanzuignore"></a> Example `.tanzuignore`
-
 For an example, see the `.tanzuignore`
 [file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/tanzu-java-web-app/.tanzuignore)
 in GitHub that is used for the sample Tanzu Java web app.
@@ -186,16 +171,16 @@ You can use the file as it is or edit it for your needs.
 
 ## <a id="example-project"></a> View an example project
 
-Before you begin, you will need a container image registry to use the sample application.
+Before you begin, you need a container image registry to use the sample application.
 There are two ways to view a sample application that demonstrates the necessary configuration files.
 
 Use Application Accelerator
 : If your company has configured
-[Application Accelerator](../application-accelerator/about-application-accelerator.md),
+[Application Accelerator](../application-accelerator/about-application-accelerator.hbs.md),
 you can obtain the sample application there if it was not removed.
 To view the example using Application Accelerator:
   1. Open Application Accelerator. The Application Accelerator location varies based on where your
-     company placed it. Contact the appropriate team to determine its location.
+     company placed it. Contact the appropriate team to learn its location.
   2. Search for `Tanzu Java Web App` in the Application Accelerator.
   3. Add the required configuration information and generate the application.
   4. Unzip the application and open the directory in IntelliJ.
@@ -210,4 +195,4 @@ Clone from GitHub
 
 ## <a id="whats-next"></a> Next steps
 
-- [Using the Tanzu Developer Tools for IntelliJ extension](using-the-extension.md).
+[Use Tanzu Developer Tools for IntelliJ](using-the-extension.hbs.md).
