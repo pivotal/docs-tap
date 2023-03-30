@@ -3,6 +3,9 @@
 This topic describes how to set up a Tanzu Application Platform application deployed on Kubernetes
 with Tanzu Service Mesh.
 
+Sample applications are used to demonstrate how a global namespace can provide a network for Kubernetes
+workloads that are connected and secured within and across clusters, and across clouds.
+
 ## <a id="prereqs"></a> Prerequisites
 
 Meet the [prerequisites](https://docs.vmware.com/en/VMware-Tanzu-Service-Mesh/services/tanzu-service-mesh-environment-requirements-and-supported-platforms/GUID-D0B939BE-474E-4075-9A65-3D72B5B9F237.html),
@@ -14,7 +17,7 @@ which includes having
 
 Connectivity is only required from your local clusters out to Tanzu Service Mesh and not inwards.
 This can traverse a corporate proxy as well. In addition, connectivity in the data plane is
-required between the clusters that need to communicate, specifically egress to ingress gateways.
+required between the clusters that must communicate, specifically egress to ingress gateways.
 No data plane traffic needs to reach the Tanzu Service Mesh software as a service (SaaS) management
 plane.
 
@@ -28,57 +31,11 @@ After purchasing your Tanzu Service Mesh subscription, the VMware Cloud team sen
 If you don't receive them, you can follow
 [these instructions](https://pathfinder.vmware.com/v3/path/tsm_activation).
 
-## <a id="onboard-clusters"></a> Onboard clusters
-
 Onboard your clusters to Tanzu Service Mesh as described later in this topic.
-This deploys the Tanzu Service Mesh local control plane and OSS Istio on your Kubernetes cluster
-and connects the local control plane to your Tanzu Service Mesh tenant.
-
-As part of the onboarding of the cluster and Tanzu Application Platform integration as well as
-upgrades to the clusters, these namespaces must remain excluded while getting the Envoy proxy
-sidecars injected for Run profiles.
-
-Including them might cause the components to stop working at some point in the future when a pod
-within them is rescheduled or updated.
-
-The following namespaces must be specified as part of the onboarding process and excluded:
-
-- api-auto-registration
-- app-live-view-connector
-- appsso
-- cartographer-system
-- cert-manager
-- cosign-system
-- default
-- flux-system
-- image-policy-system
-- kapp-controller
-- knative-eventing
-- knative-serving
-- knative-sources
-- kube-node-lease
-- kube-public
-- kube-system
-- secretgen-controller
-- service-bindings
-- services-toolkit
-- source-system
-- tanzu-cluster-essentials
-- tanzu-package-repo-global
-- tanzu-system-ingress
-- tap-install
-- tap-telemetry
-- triggermesh
-- Vmware-sources
-
-You must also exclude these namespaces in case of an upgrade to Tanzu Application Platform.
-For more information, see
-[Onboard a Cluster to Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Service-Mesh/services/getting-started-guide/GUID-DE9746FD-8369-4B1E-922C-67CF4FB22D21.html#:~:text=To%20exclude%20a%20specific%20namespace,the%20right%20drop%2Ddown%20menu).
+This deploys the Tanzu Service Mesh local control plane and OSS Istio on your Kubernetes cluster and
+connects the local control plane to your Tanzu Service Mesh tenant.
 
 ## <a id="set-up-tap"></a> Set up Tanzu Application Platform
-
-> **Important** Tanzu Application Platform Build cluster support for Tanzu Service Mesh is limited to
-> basic and testing supply chains. Supply Chains with scanning are not currently supported.
 
 To enable Tanzu Service Mesh support in Tanzu Application Platform Build clusters:
 
@@ -95,9 +52,9 @@ To enable Tanzu Service Mesh support in Tanzu Application Platform Build cluster
 
 The following sections describe how to build and deploy a workload.
 
-### <a id="end-to-end-workload-build"></a> Workload build
+### <a id="end-to-end-workload-build"></a> Apply a workload resource to a build cluster
 
-Workloads can be built using a Tanzu Application Platform supply chain by applying a workload
+Workloads can be built by using a Tanzu Application Platform supply chain by applying a workload
 resource to a build cluster.
 At this time, Tanzu Service Mesh and Tanzu Application Platform cannot use the Knative resources that
 are the default runtime target when using the `web` resource type.
@@ -106,10 +63,10 @@ In Tanzu Application Platform v1.4, two workload types support a Tanzu Service M
 Tanzu Application Platform integration: **server** and **worker**.
 
 To work with Tanzu Service Mesh, web workloads must be converted to the `server` or `worker` workload
-type. Server workloads cause a Kubernetes `Deployment` resource to be created along with a `Service`
-resource that defaults to using port 8080.
+type. Server workloads cause a Kubernetes `Deployment` resource to be created with a `Service`
+resource that uses port 8080 by default.
 
-1. If the desired service port is 80 or some other port, add port information to `workload.yaml`.
+1. If the service port that you want is 80 or some other port, add port information to `workload.yaml`.
    The following example YAML snippets show the changes to make from the `web` to `server` workload
    type. This is an example before applying the changes:
 
@@ -176,14 +133,14 @@ resource that defaults to using port 8080.
 
    After your workload is built a `Deliverable` resource is created.
 
-### <a id="build-service-egress"></a> Build Service Requires Egress
+### <a id="build-service-egress"></a> Configure egress for Tanzu Build Service
 
-For Tanzu Build Service to properly work, egress must be provided to access the registry where
-Tanzu Build Service will write application images, as well as the registry defined in the
-`kp_default_repository` key and the Tanzu Application Platform install registry.
+For Tanzu Build Service to properly work, provide egress to access the registry where
+Tanzu Build Service writes application images, and define the registry in the `kp_default_repository`
+key and the Tanzu Application Platform install registry.
 
-Additionally, egress needs to be configured for buildpack builds to download any required dependencies.
-This varies with different buildpacks and language environments.
+Additionally, configure egress for buildpack builds to download any required dependencies.
+This configuration varies with different buildpacks and language environments.
 For example, Java builds might need to download dependencies from Maven central.
 
 ### <a id="e-to-e-create-glob-nmspc"></a> Create a global namespace
@@ -196,7 +153,7 @@ Whether in a single cluster or multiple clusters, or within the same site or acr
 you add a namespace selection to the GNS, the services that Tanzu Application Platform deploys
 are connected based on the GNS configuration for service discovery and connectivity policies.
 
-If a service needs to be accessible through the ingress from the outside, it can be configured through
+If a service must be accessible through the ingress from the outside, it can be configured through
 the public service option in Tanzu Service Mesh or directly through Istio on the clusters where that
 service resides. It's best practice to configure the service’s accessibility through the GNS.
 
@@ -250,7 +207,7 @@ It requires the `ytt` command to execute the build and deployment commands.
 The configuration resources referenced in this scenario are located in the
 [hungryman-tap-tsm](https://github.com/gm2552/hungryman-tap-tsm) GitHub repository.
 
-### <a id="init-config-gen-acc"></a> Initial configuration generation from an accelerator
+### <a id="init-config-gen-acc"></a> Create an initial set of configuration files from the accelerator
 
 This use case deployment includes a pre-built set of configuration files in a Git repository.
 However, they were created from a set of configuration files by using a bootstrapped process that uses
@@ -258,7 +215,6 @@ the Hungryman accelerator, and were later modified.
 
 For reference, you can create an initial set of configuration files from the Hungryman accelerator,
 which is available in Tanzu Application Platform v1.3.
-<!-- Should this be v1.4? -->
 
 This section does not include instructions for modifying the configuration files from the accelerator
 into configuration files used in a later section.
@@ -270,11 +226,11 @@ From the accelerator, accept all of the default options with the following excep
 - **Service namespace:** Update this field with the name of the namespace you will use to deploy a
   RabbitMQ cluster on your Tanzu Application Platform run cluster
 
-### <a id="hungryman-workload-build"></a> Workload build
+### <a id="hungryman-workload-build"></a> Apply the workload resources to your build cluster
 
 To build the application services, run the following command to apply the workload resources to
 your build cluster.
-You can also clone or fork the repository in the following command to either use the YAML files locally
+You can also clone or fork the repository in this command to either use the YAML files locally
 or point to your own Git repository.
 
 ```console
@@ -298,57 +254,54 @@ that commit deployment information to the GtiOps repository might fail because o
 A workaround for this is to delete the failed workloads from the build cluster and re-run the command
 provided in the instructions.
 
-### <a id="serv-rsrc-clm-install"></a> Service and resource claim installation
+### <a id="serv-rsrc-clm-install"></a> Install service claim resources on the cluster
 
 Hungryman requires a RabbitMQ cluster installed on your run cluster.
 You must install RabbitMQ on the same run cluster that is named `RunCluster01` in the following
 deployment section.
 Additionally, you must install service claim resources on this cluster.
 
-If you haven’t already done so, install the RabbitMQ Cluster Operator on the run cluster by running:
+1. If you haven’t already done so, install the RabbitMQ Cluster Operator on the run cluster by running:
 
-```console
-kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/download/v1.13.1/cluster-operator.yml"
-```
+   ```console
+   kubectl apply -f "https://github.com/rabbitmq/cluster-operator/releases/download/v1.13.1/cluster-operator.yml"
+   ```
 
-Next, spin up an instance of a RabbitMQ cluster by running:
+1. Spin up an instance of a RabbitMQ cluster by running:
 
-```console
-kubectl create ns SERVICE-NAMESPACE
+   ```console
+   kubectl create ns SERVICE-NAMESPACE
 
-ytt -f rmqCluster.yaml -v serviceNamespace=SERVICE-NAMESPACE | kubectl apply -f-
-```
+   ytt -f rmqCluster.yaml -v serviceNamespace=SERVICE-NAMESPACE | kubectl apply -f-
+   ```
 
-Where `SERVICE-NAMESPACE` is the namespace of where you want to deploy your RabbitMQ cluster
+   Where `SERVICE-NAMESPACE` is the namespace of where you want to deploy your RabbitMQ cluster
 
-For example:
+   For example:
 
-```console
-kubectl create ns service-instances
-```
+   ```console
+   kubectl create ns service-instances
 
-```console
-ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/rmqCluster.yaml -v \
-serviceNamespace=service-instances | kubectl apply -f-
-```
+   ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/rmqCluster.yaml -v \
+   serviceNamespace=service-instances | kubectl apply -f-
+   ```
 
-Finally, create service toolkit resources for the RabbitMQ class and resource claim by running:
+1. Create service toolkit resources for the RabbitMQ class and resource claim by running:
 
-```console
-ytt -f rmqResourceClaim.yaml -v serviceNamespace=SERVICE-NAMESPACE -v \
-workloadNamespace=WORKLOAD-NAMESPACE | kubectl apply -f-
-```
+   ```console
+   ytt -f rmqResourceClaim.yaml -v serviceNamespace=SERVICE-NAMESPACE -v \
+   workloadNamespace=WORKLOAD-NAMESPACE | kubectl apply -f-
+   ```
 
-Where `SERVICE-NAMESPACE` and `WORKLOAD-NAMESPACE` are the namespaces where you deployed your RabbitMQ
-cluster and the namespace where the application service will run.
-<!-- Which is which? -->
+   Where `SERVICE-NAMESPACE` and `WORKLOAD-NAMESPACE` are the namespaces where you deployed your RabbitMQ
+   cluster and the namespace where the application service will run.
 
-For example:
+   For example:
 
-```console
-ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/rmqResourceClaim.yaml \
--v serviceNamespace=service-instances -v workloadNamespace=hungryman | kubectl apply -f-
-```
+   ```console
+   ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/rmqResourceClaim.yaml \
+   -v serviceNamespace=service-instances -v workloadNamespace=hungryman | kubectl apply -f-
+   ```
 
 ### <a id="hungryman-run-clstr-dply"></a> Run cluster deployment
 
@@ -362,9 +315,10 @@ The majority of the workload is deployed to `RunCluster01` while the crawler wor
 `RunCluster02`.
 
 The deliverable objects reference the GitOps repository, where the build cluster has written
-deployment information, and needs to reference this repository in the following command. To deploy
-the workloads to the run clusters, use the commands below against their respective clusters, and
-replace the following placeholders:
+deployment information, and needs to reference this repository in the following commands.
+
+Deploy the workloads to the run clusters by running these commands against their respective
+clusters:
 
 ```console
 ytt -f cluster01Deliverables.yaml -v workloadNamespace=WORKLOAD-NAMESPACE -v \
@@ -373,7 +327,7 @@ gitOpsSecret=GIT-OPS-SECRET -v gitOpsRepo=GIT-OPS-REPO | kubectl apply -f-
 
 Where:
 
-- `WORKLOAD-NAMESPACE` is the namespace where the workloads is deployed
+- `WORKLOAD-NAMESPACE` is the namespace where the workloads are deployed
 - `GIT-OPS-SECRET` is the GitOps secret used to access the GitOps repository
 - `GIT-OPS-REPO` is the URL of the GitOps repository where the build cluster wrote out deployment
   configuration information
@@ -385,12 +339,12 @@ gitOpsSecret=GIT-OPS-SECRET -v gitOpsRepo=GIT-OPS-REPO | kubectl apply -f-
 
 Where:
 
-- `WORKLOAD-NAMESPACE` is the namespace where the workloads is deployed
+- `WORKLOAD-NAMESPACE` is the namespace where the workloads are deployed
 - `GIT-OPS-SECRET` is the GitOps secret used to access the GitOps repository
 - `GIT-OPS-REPO` is the URL of the GitOps repository where the build cluster wrote out deployment
   configuration information
 
-To run this deployment on cluster `RunCluster01`, you run:
+To run this deployment on cluster `RunCluster01`, for example, you run:
 
 ```console
 ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/cluster01Deliverables.yaml -v \
@@ -398,7 +352,7 @@ workloadNamespace=hungryman -v gitOpsSecret=tap-play-gitops-secret -v \
 gitOpsRepo=https://github.com/gm2552/tap-play-gitops.git | kubectl apply -f-
 ```
 
-To run this deployment on cluster `RunCluster02`, you run:
+To run this deployment on cluster `RunCluster02`, for example, you run:
 
 ```console
 ytt -f https://raw.githubusercontent.com/gm2552/hungryman-tap-tsm/main/cluster02Deliverables.yaml -v \
@@ -409,7 +363,7 @@ gitOpsRepo=https://github.com/gm2552/tap-play-gitops.git | kubectl apply -f-
 You can create an Istio ingress resource on `RunCluster01` if you do not plan on using the GNS
 capabilities to expose the application to external networks.
 
-You need to create a domain name system address (DNS A) record in your DNS provider’s configuration
+You must create a domain name system address (DNS A) record in your DNS provider’s configuration
 tool to point to the Istio load-balanced IP address of `RunCluster01`.
 The DNS configuration is out of the scope of this topic.
 
@@ -433,101 +387,102 @@ workloadNamespace=hungryman -v domainName=tsmdemo.perfect300rock.com | kubectl a
 
 ### <a id="hungry-create-glob-nmspc"></a> Create a global namespace
 
-Load the Tanzu Service Mesh console and create a new GNS. Configure the following settings in each
-step. The example clusters have the names `RunCluster01` and `RunCluster02`, and they assume the
+The example clusters have the names `RunCluster01` and `RunCluster02`, and they assume the
 workload and service namespaces of Hungryman and service-instances, respectively.
 
-1. General details
-    - **GNS Name:** hungryman
-    - **Domain:** hungryman.lab
-2. Namespace mapping
-    - Namespace mapping Rule 1
-        - **Cluster name:** RunCluster01
-        - **Namespace:** hungryman
-    - Namespace Mapping Rule 2
-        - **Cluster name:** RunCluster02
-        - **Namespace:** hungryman
-    - Namespace Mapping Rule 3
-        - **Cluster name:** RunCluster01
-        - **Namespace:** service-instances
-3. Autodiscovery (use default settings)
-4. Public services
-    - **Service name:** hungryman
-    - **Service port:** 80
-    - **Public URL:** http hungryman . (select a domain)
-5. Global server load balancing and resiliency (use default settings)
+1. Open the Tanzu Service Mesh console and create a new GNS.
+2. Configure the following settings in each step:
+
+   1. General details
+       - **GNS Name:** hungryman
+       - **Domain:** hungryman.lab
+   2. Namespace mapping
+       - Namespace mapping Rule 1
+           - **Cluster name:** RunCluster01
+           - **Namespace:** hungryman
+       - Namespace Mapping Rule 2
+           - **Cluster name:** RunCluster02
+           - **Namespace:** hungryman
+       - Namespace Mapping Rule 3
+           - **Cluster name:** RunCluster01
+           - **Namespace:** service-instances
+   3. Autodiscovery. Use the default settings.
+   4. Public services
+       - **Service name:** hungryman
+       - **Service port:** 80
+       - **Public URL:** http hungryman . Select a domain.
+   5. Global server load balancing and resiliency. Use the default settings.
 
 You can now access the Hungryman application with the URL configured earlier.
 
 ## <a id="acme-use-case"></a> Deployment use case: ACME Fitness Store
 
 The following instructions describe an end-to-end process for configuring, building, and deploying
-the ACME Fitness Store application into a Tanzu Service Mesh GNS. The application will be deployed
-across two Tanzu Application Platform run clusters, and will require the use of the ytt command to
-execute the build and deployment commands.
+the ACME Fitness Store application into a Tanzu Service Mesh GNS.
+In this use case, the application is deployed across two Tanzu Application Platform run clusters.
+ytt is used to run the build and deployment commands.
 
-The configuration resources referenced in this scenario are located in the Git repository
-[here](https://github.com/gm2552/acme-fitness-tap-tsm).
+The configuration resources referenced in this scenario are in the
+[acme-fitness-tap-tsm](https://github.com/gm2552/acme-fitness-tap-tsm) Git repository.
 
-### <a id="appsso-deploy"></a> AppSSO deployment
+### <a id="appsso-deploy"></a> Deploy AppSSO
 
 ACME requires the use of an AppSSO authorization server and client registration resource.
-You need to install these resources on the same run cluster that is named `RunCluster01` in
-the deployment section.
+Install these resources on the same run cluster that is named `RunCluster01` in the deployment section.
 
-Deploy the authorization server instance by running:
+1. Deploy the authorization server instance by running:
 
-```console
-ytt -f appSSOInstance.yaml -v workloadNamespace=WORKLOAD-NAMESPACE \
--v devDefaultAccountUsername=DEV-DEFAULT-ACCOUNT-USERNAME -v \
-devDefaultAccountPassword=DEV-DEFAULT-ACCOUNT-PASSWORD | kubectl apply -f-
-```
+   ```console
+   ytt -f appSSOInstance.yaml -v workloadNamespace=WORKLOAD-NAMESPACE \
+   -v devDefaultAccountUsername=DEV-DEFAULT-ACCOUNT-USERNAME -v \
+   devDefaultAccountPassword=DEV-DEFAULT-ACCOUNT-PASSWORD | kubectl apply -f-
+   ```
 
-Where:
+   Where:
 
-- `WORKLOAD-NAMESPACE` is the namespace where the workloads will be deployed
-- `DEV-DEFAULT-ACCOUNT-USERNAME` is the username for the ACME application authentication
-- `DEV-DEFAULT-ACCOUNT-PASSWORD` is the password for the ACME application authentication
+   - `WORKLOAD-NAMESPACE` is the namespace where the workloads will be deployed
+   - `DEV-DEFAULT-ACCOUNT-USERNAME` is the user name for the ACME application authentication
+   - `DEV-DEFAULT-ACCOUNT-PASSWORD` is the password for the ACME application authentication
 
-For example:
+   For example:
 
-```console
-ytt -f https://raw.githubusercontent.com/gm2552/acme-fitness-tap-tsm/main/appSSOInstance.yaml -v \
-workloadNamespace=acme -v devDefaultAccountUsername=acme -v \
-devDefaultAccountPassword=fitness | kubectl apply -f-
-```
+   ```console
+   ytt -f https://raw.githubusercontent.com/gm2552/acme-fitness-tap-tsm/main/appSSOInstance.yaml -v \
+   workloadNamespace=acme -v devDefaultAccountUsername=acme -v \
+   devDefaultAccountPassword=fitness | kubectl apply -f-
+   ```
 
-Next, create a `ClientRegistration` resource by running:
+1. Create a `ClientRegistration` resource by running:
 
-```console
-ytt -f appSSOInstance.yaml -v workloadNamespace=WORKLOAD-NAMESPACE -v \
-appSSORedirectURI=APP-SSO-REDIRECT-URI | kubectl apply –f-
-```
+   ```console
+   ytt -f appSSOInstance.yaml -v workloadNamespace=WORKLOAD-NAMESPACE -v \
+   appSSORedirectURI=APP-SSO-REDIRECT-URI | kubectl apply –f-
+   ```
 
-Where:
+   Where:
 
-- `WORKLOAD-NAMESPACE` is the namespace where the workloads will be deployed.
-- `APP-SSO-REDIRECT-URI` is the public URI that the authorization server redirects to after a login
+   - `WORKLOAD-NAMESPACE` is the namespace where the workloads will be deployed.
+   - `APP-SSO-REDIRECT-URI` is the public URI that the authorization server redirects to after a login
 
-For example:
+   For example:
 
-```console
-ytt -f https://raw.githubusercontent.com/gm2552/acme-fitness-tap-tsm/main/clientRegistrationResourceClaim.yaml \
--v workloadNamespace=acme -v \
-appSSORedirectURI=http://acme-fitness.tsmdemo.perfect300rock.com/login/oauth2/code/sso | kubectl apply -f-
-```
+   ```console
+   ytt -f https://raw.githubusercontent.com/gm2552/acme-fitness-tap-tsm/main/clientRegistrationResourceClaim.yaml \
+   -v workloadNamespace=acme -v \
+   appSSORedirectURI=http://acme-fitness.tsmdemo.perfect300rock.com/login/oauth2/code/sso | kubectl apply -f-
+   ```
 
-Next, obtain the appSSO Issuer URI by running:
+1. Obtain the appSSO Issuer URI by running:
 
-```console
-kubectl get authserver -n WORKLOAD-NAMESPACE
-```
+   ```console
+   kubectl get authserver -n WORKLOAD-NAMESPACE
+   ```
 
-Where `WORKLOAD-NAMESPACE` is the name of the namespace where the workloads will be deployed.
+   Where `WORKLOAD-NAMESPACE` is the name of the namespace where the workloads will be deployed.
 
-Record the Issuer URI because you need it for the next section.
+1. Record the Issuer URI because you need it for the next section.
 
-### <a id="acme-workload-build"></a> Workload build
+### <a id="acme-workload-build"></a> Apply the workload resources to your build cluster
 
 To build the application services, run the following command to apply the workload resources to
 your build cluster. You can also clone or fork the repository in the following command to either use
@@ -551,7 +506,7 @@ workloadNamespace=workloads -v \
 appSSOIssuerURI=http://appsso-acme-fitness.acme.tsmdemo.perfect300rock.com | kubectl apply -f-
 ```
 
-If you are using a GitOps workflow with your build cluster, after the workloads have been built, the
+If you are using a GitOps workflow with your build cluster then, after building the workloads, the
 deployment information is pushed to your GitOps repository.
 
 If you follow these instructions without pull requests in the GitOps workflow, the `config-writer`
@@ -560,16 +515,17 @@ conflicts.
 A workaround for this is to delete the failed workloads from the build cluster and re-run the command
 provided in these instructions.
 
-### <a id="istio-ingress"></a> Istio ingress
+### <a id="istio-ingress"></a> Create the Istio ingress resources
 
 The authorization server requires a publicly accessible URL and must be available before
 the Spring Cloud Gateway can deploy properly.
 The authorization server is deployed at the URI authserver app domain.
 
-Run the following command to create the Istio ingress resources.
-You need to create a domain name system address (DNS A) record in your DNS provider’s configuration
+You must create a domain name system address (DNS A) record in your DNS provider’s configuration
 tool to point to the Istio load-balanced IP address of `RunCluster01`.
 The DNS configuration is out of the scope of this topic.
+
+Create the Istio ingress resources by running:
 
 ```console
 ytt -f istioGateway.yaml -v workloadNamespace=WORKLOAD-NAMESPACE -v \
@@ -588,7 +544,7 @@ ytt -f https://raw.githubusercontent.com/gm2552/acme-fitness-tap-tsm/main/istioG
 workloadNamespace=acme -v appDomainName=tsmdemo.perfect300rock.com | kubectl apply -f-
 ```
 
-### <a id="redis-deployment"></a> Redis deployment
+### <a id="redis-deployment"></a> Deploy Redis
 
 A Redis instance is needed for caching the ACME fitness store cart service.
 Deploy the Redis instance by running:
@@ -619,8 +575,9 @@ This deployment assumes that two clusters are part of the Tanzu Service Mesh GNS
 In this example these clusters are named `RunCluster01` and `RunCluster02`.
 
 The deliverable objects reference the GitOps repository, where the build cluster has written
-deployment information, and needs to reference this repository in the following command.
-To deploy the workloads to the run clusters, run the commands below against their respective clusters.
+deployment information, and need to reference this repository in the following commands.
+
+To deploy the workloads to the run clusters, run these commands against their respective clusters:
 
 ```console
 ytt -f cluster01Deliverables.yaml -v workloadNamespace=WORKLOAD-NAMESPACE -v \
@@ -646,7 +603,7 @@ Where:
 - `GIT-OPS-REPO` is the URL of the GitOps repository where the build cluster wrote out deployment
   configuration information
 
-For `RunCluster01` run:
+For the `RunCluster01` example, run:
 
 ```console
 ytt -f https://raw.githubusercontent.com/gm2552/acme-fitness-tap-tsm/main/cluster01Deliverables.yaml \
@@ -654,7 +611,7 @@ ytt -f https://raw.githubusercontent.com/gm2552/acme-fitness-tap-tsm/main/cluste
 gitOpsRepo=https://github.com/gm2552/tap-play-gitops.git | kubectl apply -f-
 ```
 
-For `RunCluster02` run:
+For the `RunCluster02` example, run:
 
 ```console
 ytt -f https://raw.githubusercontent.com/gm2552/acme-fitness-tap-tsm/main/cluster02Deliverables.yaml \
@@ -662,32 +619,54 @@ ytt -f https://raw.githubusercontent.com/gm2552/acme-fitness-tap-tsm/main/cluste
 gitOpsRepo=https://github.com/gm2552/tap-play-gitops.git | kubectl apply -f-
 ```
 
-### <a id="scg-deploy"></a> Spring Cloud Gateway deployment
+### <a id="scg-deploy"></a> Deploy Spring Cloud Gateway
+
+The following sections describe how to deploy Spring Cloud Gateway.
+
+#### <a id="scg-package-install"></a> Install the Spring Cloud Gateway package
 
 The section requires the Spring Cloud Gateway for Kubernetes package to be installed on `RunCluster01`.
-For instructions, see
-[Installing Spring Cloud Gateway for Kubernetes using the Tanzu CLI](https://docs.vmware.com/en/VMware-Spring-Cloud-Gateway-for-Kubernetes/1.2/scg-k8s/GUID-installation-tanzu-cli.html).
+If Spring Cloud Gateway is already installed on the run cluster, skip these install steps.
 
-The Spring Cloud Gateway `spec.service.name` configuration was not built with multi, cross-cluster
-support. The configuration for the gateway routes currently implements a workaround, which is brittle
-in terms of where certain services are deployed.
-Future releases of the gateway might have better support for this use case.
+In Tanzu Application Platform v1.5 and later, Spring Cloud Gateway is included as an optional package
+in the Tanzu Application Platform Carvel bundle.
+Install the Spring Cloud Gateway package with the default settings by using this Tanzu CLI template:
+
+```console
+tanzu package install scg –package-name spring-cloud-gateway.tanzu.vmware.com \
+-version VERSION-NUMBER -n TAP-INSTALL-NAMESPACE
+```
+
+For example:
+
+```console
+tanzu package install scg --package-name spring-cloud-gateway.tanzu.vmware.com \
+--version 2.0.0-tap.3 -n tap-install
+```
+
+#### <a id="scg-config"></a> Configure the Spring Cloud Gateway instance and route
 
 The Tanzu Application Platform fork of the ACME fitness store uses Spring Cloud Gateway for routing
-API classes from the web frontend to the microservices.
-Deploy the gateway along with applicable routes by running:
+API classes from the web front end to the microservices.
+
+> **Caution** The Spring Cloud Gateway `spec.service.name` configuration was not built with
+> multicluster or cross-cluster support. The configuration for the gateway routes currently
+> implements a workaround, which is brittle in terms of where certain services are deployed.
+> Future releases of the gateway might have better support for this use case.
+
+Deploy the gateway and applicable routes by running:
 
 ```console
 ytt -f scgInstance.yaml -v workloadNamespace=WORKLOAD-NAMESPACE
 ```
 
-Where `WORKLOAD-NAMESPACE` is the namespace where the workloads will be deployed.
+Where `WORKLOAD-NAMESPACE` is the namespace where the workloads is deployed.
 
 ```console
 ytt -f scgRoutes.yaml -v workloadNamespace=WORKLOAD-NAMESPACE
 ```
 
-Where `WORKLOAD-NAMESPACE` is the namespace where the workloads will be deployed.
+Where `WORKLOAD-NAMESPACE` is the namespace where the workloads is deployed.
 
 For example:
 
@@ -703,31 +682,25 @@ workloadNamespace=acme | kubectl apply -f-
 
 ### <a id="scg-create-glob-nmspc"></a> Create a global namespace
 
-Load the Tanzu Service Mesh console and create a new global namespace.
-Configure the following settings in each step.
 The example clusters are named `RunCluster01` and `RunCluster02`, and they assume a workload namespace
 of ACME.
 
-1. General details
-    - **GNS name:** acme-tap
-    - **Domain:** acme-tap.lab
-2. Namespace mapping
-    - Namespace mapping Rule 1
-        - **Cluster name:** RunCluster01
-        - **Namespace:** acme
-    - Namespace Mapping Rule 2
-        - **Cluster name:** RunCluster02
-        - **Namespace:** acme
-3. Autodiscovery (use default settings)
-4. Public Services
-    - No Public service.
-5. Global server load-balancing and resiliency (use default settings)
+1. Open the Tanzu Service Mesh console and create a new global namespace.
+1. Configure the following settings in each step:
+
+   1. General details
+       - **GNS name:** acme-tap
+       - **Domain:** acme-tap.lab
+   2. Namespace mapping
+       - Namespace mapping Rule 1
+           - **Cluster name:** RunCluster01
+           - **Namespace:** acme
+       - Namespace Mapping Rule 2
+           - **Cluster name:** RunCluster02
+           - **Namespace:** acme
+   3. Autodiscovery. Use the default settings.
+   4. Public Services
+       - No Public service
+   5. Global server load-balancing and resiliency. Use the default settings.
 
 You can access the application by going to the URL `http://acme-fitness`.
-
-## <a id="summary"></a> Summary
-
-This process enables customers to set up Tanzu Service Mesh-managed clusters and deploy
-Tanzu Application Platform on these clusters.
-As demonstrated with the sample application, a global namespace provides a network for Kubernetes
-workloads that are connected and secured within and across clusters, as well as across clouds.

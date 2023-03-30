@@ -1,5 +1,7 @@
 # Tanzu GitOps RI Reference Documentation
 
+>**Caution** Tanzu Application Platform (GitOps)) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+
 ## Component Overview
 
 The following diagram shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:
@@ -18,26 +20,24 @@ Tanzu Sync consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest
 
 ## <a id="sops-vs-eso"></a>Choosing SOPS or ESO
 
-### Supported Kubernetes Distributions and Secret Management Solutions:
+The following table outlines the Kubernetes distributions and secret management solutions that SOPS and ESO support:
 
-<!--
-||IaaS|Secrets Manager|
+|Choose|IaaS|Secrets Manager|
 |----|----|---|
 | SOPS | Any TAP supported IaaS | N/A|
 | ESO  | AWS (EKS) | AWS Secrets Manager|
--->
 
 >**Note** Future release will include additional Secrets Managers for ESO.
 
-### Use Cases
+The following table describes a few common use cases and scenarios for SOPS and ESO:
 
 |I want ...|SOPS|ESO|
 |----|:----:|:----:|
-|Sensitive data encrypted inside the git repository | ✅ | ❌ |
-|Sensitive data to be stored outside the git repository | ❌ | ✅ |
+|Sensitive data encrypted inside the Git repository. | ✅ | ❌ |
+|Sensitive data to be stored outside the Git repository. | ❌ | ✅ |
 |Minimal setup. No external secret storage system | ✅ | ❌ |
-|To manage sensitive data myself (storing keys, rotation, usage auditing) | ✅ | ❌ |
-|To utilize sensitive data management (storage, rotation, usage auditing) by a third-party solution | ❌ | ✅ |
+|To manage sensitive data myself. For example, storing keys, rotation and usage auditing.) | ✅ | ❌ |
+|To utilize sensitive data management. For example, storage, rotation and usage auditing by a third-party solution. | ❌ | ✅ |
 
 ## <a id="git-repo-structure"></a>Git Repository structure
 

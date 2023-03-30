@@ -1,5 +1,7 @@
 # Installing Tanzu Application Platform via GitOps with External Secrets Operator (ESO)
 
+>**Caution** Tanzu Application Platform (GitOps)) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+
 <!-- TODO: use markdown-generated anchor values to ease navigating within VS Code (and validating links). -->
 
 This topic describes how to install Tanzu Application Platform via GitOps with secrets managed in an external secrets store.
@@ -644,6 +646,7 @@ You can track the progress of the installation by watching the installation of t
 watch kubectl get pkgi -n tap-install
 ```
 
+{{#unless vars.hide_content}}
 
 <!-- TODO: Write a "How-To" guide for changing the names of AWS Resources -->
 <!-- ## <a id='custom-aws-resource-names'></a>Using Custom Names for AWS Resources
@@ -661,3 +664,5 @@ If this convention meets the need, follow the instructions below, as is.
 
 If another convention is needed:
 - replace the default name with the custom one while following the instructions -->
+
+{{/unless}}

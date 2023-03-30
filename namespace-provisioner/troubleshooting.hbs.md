@@ -25,7 +25,7 @@ You might encounter one of the following errors:
 
 ### Namespace selector malformed
 
-When using the [controller](about.hbs.md#nsp-controller) and customizing the `namespace_selector` from `tap_values.yaml`, the match expression must be compliant with the [Kubernetes label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors). If it is not compliant, the Namespace Provisioner controller would fail and log an error message in the controller logs.
+When using the [controller](about.hbs.md#nsp-controller) and customizing the `namespace_selector` from `tap_values.yaml`, the match expression must be compliant with the [Kubernetes label selector](https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/#label-selectors). If it is not compliant, the Namespace Provisioner controller fails and log an error message in the controller logs.
 
 For example, if the configured `namespace_selector` is as follows:
 
@@ -46,14 +46,13 @@ This is not compliant as the operator must be `Exist` instead of `exists`. When 
 
 ### Debugging ytt templating errors in additional sources
 
-When working with ytt, templating errors in the additional sources in your GitOps repo can cause the Provisioner Carvel Application to go into `Reconcile Failed` state. To debug the Application, run the following command:
+When working with ytt, templating errors in the additional sources in your GitOps repository can cause the Provisioner Carvel application to go into `Reconcile Failed` state. To debug the Application, run the following command:
 
 ```console
 kubectl -n tap-namespace-provisioning get app/provisioner --template=\{{.status.usefulErrorMessage}}
 ```
 
-
-Sample Error message from Application when there is a ytt templating error: 
+Sample Error message from Application when there is a ytt templating error:
 
 ```console
 ytt: Error:
@@ -68,12 +67,12 @@ ytt: Error:
 
 ### Unable to delete namespace
 
-When a user tries to delete a namespace that was managed by Namespace Provisioner, it gets stocks in the `Terminating` status.
+When a user tries to delete a namespace that was managed by Namespace Provisioner, it gets stucks in the `Terminating` status.
 
 **Possible Cause 1:** When a provisioned namespace that has a Cartographer Workload in it is deleted, the namespace will likely remain in the Terminating state because some resources can not be deleted. One of the causes of this behavior is that the Cartographer Workload using the Out of the Box supply chains and delivery creates a Carvel Kapp App for the workload that references the ServiceAccount in the namespace. Deleting the namespace deletes the Service Account that Kapp relies on before the App itself is deleted. As a result, the Carvel App blocks the namespace termination while waiting for the ServiceAccount to exist with a `finalizer` (`finalizers.kapp-ctrl.k14s.io/delete`) message.
 
 **Solution:** Remove the Kapp App finalizer in the Kapp App
 
-**Possible Cause 2**: When a user tries to delete a namespace that was previously managed by the Namespace Provisioner controller, and the namespace was not cleaned up before disabling the controller, it will get stuck in the `Terminating` state. This happens because the Namespace Provisioner controller adds a `finalizer` to the namespaces (`namespace-provisioner.apps.tanzu.vmware.com/finalizer`) it manages, and is no longer there to clean up that finalizer as it was disabled by the user.
+**Possible Cause 2**: When a user tries to delete a namespace that was previously managed by the Namespace Provisioner controller, and the namespace was not cleaned up before disabling the controller, it gets stuck in the `Terminating` state. This happens because the Namespace Provisioner controller adds a `finalizer` to the namespaces (`namespace-provisioner.apps.tanzu.vmware.com/finalizer`) it manages, and is no longer there to clean up that finalizer as it was disabled by the user.
 
 **Solution:** Remove manually the finalizer in the namespace

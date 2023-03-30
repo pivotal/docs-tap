@@ -11,10 +11,11 @@ The out of the box supply chains and delivery use Git in three ways:
 
 ## Supported Git Repositories
 
-Tanzu Application Platform supports two Git providers:
+Tanzu Application Platform supports three git providers:
 
-- GitHub
-- GitLab
+- Github
+- Gitlab
+- [Azure DevOps](azure.hbs.md)
 
 ## Related Articles
 
@@ -25,3 +26,6 @@ to create on cluster to allow supply chain Git operations to succeed.
 of storing built Kubernetes configuration, either in a Git repository or a
 container image registry, and walks through the parameters that must be provided
 for each.
+
+[Configuration for Azure DevOps](azure.hbs.md): discusses configuration necessary for working with this git
+provider.

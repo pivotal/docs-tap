@@ -2,13 +2,20 @@
 
 <!-- This topic must be accessible from https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tap-portal-telemetry.html -->
 
-Tanzu Application Platform GUI uses Pendo.io to better understand the way users interact with our Product in order to provide a better user experience for our customers and to improve VMware products and services and design them better. Pendo.io collects data based on your interaction with the VMware Product, such as clickstream data and page loads, hashed user ID and limited browser and device information. If you would like to opt-out, please follow these instructions.
+Tanzu Application Platform GUI uses Pendo.io to better understand the way users interact with it in
+order to provide a better user experience for our customers and to improve VMware products and
+services.
 
-To enable or disable Pendo telemetry for the organization, please refer to the instruction [Enable or deactivate the Pendo telemetry for the organization](../docs-tap/opting-out-telemetry.hbs.md#enable-or-deactivate-the-pendo-telemetry-for-the-organization).
+Pendo.io collects data based on your interaction with the software, such as clickstream data and page
+loads, hashed user ID, and limited browser and device information.
+
+To enable or deactivate Pendo telemetry for the organization, see
+[Enable or deactivate the Pendo telemetry for the organization](opting-out-telemetry.hbs.md#nbl-or-dsbl-pendo-for-org).
 
 ## <a id="opt-in-or-out"></a> Opt in or opt out of Pendo telemetry from Tanzu Application Platform GUI
 
-After the Pendo telemetry is enabled for the organization, in accordance with VMware policy each user is prompted to agree to participate in the program or decline.
+After the Pendo telemetry is enabled for the organization, in accordance with VMware policy each user
+is prompted to agree to participate in the program or decline.
 
   ![Screenshot of a Tanzu Application Platform GUI telemetry prompt.](tap-gui/images/tap-gui-telemetry-prompt.png)
 
