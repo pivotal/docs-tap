@@ -287,6 +287,9 @@ This release has the following known issues, listed by area and component.
 - The portal might partially overlay information on the Security Banners customization (bottom banner).
   A fix is planned for a future version.
 
+- The Impacted Workloads table will display empty in the CVE and Package details pages if the CVE belongs to a workload that has only completed one type of vulnerability scan (either image or source).
+  A fix is planned for 1.5.1.
+
 ## <a id='1-5-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
