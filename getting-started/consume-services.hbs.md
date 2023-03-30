@@ -30,7 +30,7 @@ Bear the following observations in mind as you work through this guide:
 
 1. The life cycles of claims are explicitly managed by the application operator.
 
-1. The diagram and tutorial in this guide are predominantly focussed on the application operator and
+1. The diagram and tutorial in this guide are predominantly focused on the application operator and
    developer user roles, as such the inner workings of how service instances are provisioned are not
    in the diagram and are labeled as "behind the scenes".
 
