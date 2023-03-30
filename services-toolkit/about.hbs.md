@@ -16,10 +16,10 @@ If this is your first time working with services on TAP, then a great place to s
 
 ## How this documentation is organized
 
-The services toolkit component documentation is loosely based around the framework laid out by https://documentation.divio.com/. As such, it primarily consists of [tutorials](tutorials/index.hbs.md), [how-to guides](how-to-guides/index.hbs.md), [explanations](explanation/index.hbs.md) and [reference material](reference/index.hbs.md). Which section to choose from will depend on what you are hoping to achieve.
+The services toolkit component documentation is loosely based around the framework laid out by https://documentation.divio.com/. As such, it primarily consists of [tutorials](tutorials/index.hbs.md), [how-to guides](how-to-guides/index.hbs.md), [concepts](concepts/index.hbs.md) and [reference material](reference/index.hbs.md). Which section to choose from will depend on what you are hoping to achieve.
 
 * I'm hoping to learn - refer to the [tutorials](tutorials/index.hbs.md) section
-* I'm hoping to gain a deeper understanding of services toolkit - refer to the [explanations](explanation/index.hbs.md) section
+* I'm hoping to gain a deeper understanding of services toolkit - refer to the [concepts](concepts/index.hbs.md) section
 * I'm hoping to find a set of steps to solve a specific problem - refer to the [how-to guides](how-to-guides/index.hbs.md) section
 * I'm hoping to find specific information about something - refer to the [reference material](reference/index.hbs.md) section
 
@@ -37,4 +37,4 @@ Per the documentation framework, tutorials and explanations are of most relevanc
 
 **For everyone**
 
-* [Explanation - Four Levels of Service Consumption in Tanzu Application Platform](./explanation/four-levels-of-service-consumption.hbs.md)
+* [Explanation - Four Levels of Service Consumption in Tanzu Application Platform](./concepts/four-levels-of-service-consumption.hbs.md)

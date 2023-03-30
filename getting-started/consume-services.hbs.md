@@ -202,7 +202,7 @@ To learn more about working with services on Tanzu Application Platform, see the
 
 - [Tutorials](../services-toolkit/tutorials/index.hbs.md)
 - [How-to guides](../services-toolkit/how-to-guides/index.hbs.md)
-- [Explanations](../services-toolkit/explanation/index.hbs.md)
+- [Concepts](../services-toolkit/concepts/index.hbs.md)
 - [Reference material](../services-toolkit/reference/index.hbs.md)
 
 ## Next steps

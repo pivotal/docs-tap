@@ -1,4 +1,4 @@
-# Explanation
+# Concepts
 
 In this section:
 

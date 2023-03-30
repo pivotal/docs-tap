@@ -135,7 +135,7 @@ You can add other providers manually as required.
   component documentation section for [Services Toolkit](services-toolkit/about.hbs.md).
   - See the new [tutorials](services-toolkit/tutorials/index.hbs.md),
   [how-to guides](services-toolkit/how-to-guides/index.hbs.md),
-  [explanations](services-toolkit/explanation/index.hbs.md), and
+  [concepts](services-toolkit/concepts/index.hbs.md), and
   [reference material](services-toolkit/reference/index.hbs.md) to learn more about working with services
   on Tanzu Application Platform.
 
