@@ -2,11 +2,11 @@
 
 `ClientRegistration` is the request for client credentials for an [AuthServer](./authserver.md).
 
-It implements the [Service Bindings'](https://servicebinding.io/spec/core/1.0.0/) `ProvisionedService`. The credentials
+It implements the [Service Bindings](https://servicebinding.io/spec/core/1.0.0/) `ProvisionedService`. The credentials
 are returned as a [Service Bindings](https://servicebinding.io/spec/core/1.0.0/) `Secret`.
 
 A `ClientRegistration` needs to uniquely identify an `AuthServer` via `spec.authServerSelector`. If it matches none,
-too many or a disallowed `AuthServer` it won't get credentials. The other fields are for the configuration of the
+too many or a disallowed `AuthServer` it will not get credentials. The other fields are for the configuration of the
 client on the `AuthServer`.
 
 ## Spec

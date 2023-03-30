@@ -40,12 +40,25 @@ This topic contains release notes for Tanzu Application Platform v1.5.
 - Introduces standardized client authentication methods to `ClientRegistration` custom resource.
   For more information, see [ClientRegistration](app-sso/crds/clientregistration.hbs.md).
 
-#### <a id='1-5-0-tap-gui-new-features'></a> Tanzu Application Platform GUI
+#### <a id='1-5-0-tap-gui-new-feats'></a> Tanzu Application Platform GUI
 
-- Tanzu Application Platform GUI now supports automatic configuration with Supply Chain Security Tools - Store. The instruction is referenced in [Automatically connect Tanzu Application Platform GUI to the Metadata Store](../docs-tap/tap-gui/plugins/scc-tap-gui.hbs.md#automatically-connect-tanzu-application-platform-gui-to-the-metadata-store).
-- Tanzu Application Platform GUI enables specification of security banners. To use this customization, please refer to [Customize security banners](../docs-tap/tap-gui/customize/customize-portal.hbs.md#customize-security-banners)
-- Tanzu Application Platform GUI includes optional plugin that collects telemetry via the Pendo tool. To configure Pendo telemetry and opt in or opt out, please follow the instruction specified [here](../docs-tap/opting-out-telemetry.hbs.md).
-  - **Disclosure**: this upgrade includes a java script operated by our service provider Pendo.io. The java script will be installed on selected pages of the VMware Software and will collect information on your use of the Software, such as clickstream data and page loads, hashed user ID and limited browser and device information. This information will be used to better understand the way you use the Software in order to improve VMware products and services and your experience. For more details please see the VMware Customer Experience Improvement Program at the following link: http://www.vmware.com/trustvmware
+- Tanzu Application Platform GUI now supports automatic configuration with
+  Supply Chain Security Tools - Store. For more information, see
+  [Automatically connect Tanzu Application Platform GUI to the Metadata Store](tap-gui/plugins/scc-tap-gui.hbs.md#scan-auto).
+- Tanzu Application Platform GUI enables specification of security banners. To use this customization,
+  see [Customize security banners](tap-gui/customize/customize-portal.hbs.md#cust-security-banners).
+- Tanzu Application Platform GUI includes an optional plug-in that collects telemetry by using the
+  Pendo tool. To configure Pendo telemetry and opt in or opt out, see
+  [Opt out of telemetry collection](../docs-tap/opting-out-telemetry.hbs.md).
+
+  **Disclosure:** This upgrade includes a Java script operated by our service provider Pendo.io.
+   The Java script is installed on selected pages of VMware software and collects information about
+   your use of the software, such as clickstream data and page loads, hashed user ID, and limited
+   browser and device information.
+   This information is used to better understand the way you use the software in order to improve
+   VMware products and services and your experience.
+   For more information, see the
+   [Customer Experience Improvement Program](https://www.vmware.com/solutions/trustvmware/ceip.html).
 
 #### <a id='1-5-0-services-toolkit-new-features'></a> Services Toolkit
 
@@ -126,10 +139,9 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 
 ### <a id='1-5-0-vscode-plugin-ncf'></a> Tanzu Developer Tools for VS Code
 
-- A Tanzu activity panel is added to visualize the supply chain, delivery, and running
-  application pods.
-  It displays detailed error messages on each resource and enables developers to describe and view
-  logs on these resources from within their IDE.
+- The Tanzu Activity tab in the Panels view enables developers to visualize the supply chain, delivery, and running
+application pods.
+- The tab enables a developer to view and describe logs on each resource associated with a workload from within their IDE, and displays detailed error messages for each resource in an error state.
 - The Tanzu Workloads panel is updated to show workloads deployed across multiple namespaces.
 - Tanzu commands for workload apply, workload delete, debug, and Live Update start are now available
   from the Tanzu Workloads panel.
@@ -187,7 +199,7 @@ This release has the following known issues, listed by area and component.
 
 - On Windows, workload commands don't work when in a project with spaces in the name, such as
   `my-app project`.
-  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#ki-projects-with-spaces).
+  For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#projects-with-spaces).
 
 #### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for Intellij
 
@@ -208,7 +220,7 @@ This release has the following known issues, listed by area and component.
 
 - On Windows, workload actions do not work when in a project with spaces in the name such as
   `my-app project`.
-  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#ki-projects-with-spaces).
+  For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
 
 #### <a id="1-5-0-grype-scan-known-issues"></a>Grype scanner
 
@@ -231,7 +243,8 @@ This release has the following known issues, listed by area and component.
 
 #### <a id='1-5-0-tap-gui-ki'></a> Tanzu Application Platform GUI
 
-- Security Banners customization may be partially (bottom banner) overlayed by the information displayed by the portal. We expect to resolve this issue in the future release.
+- The portal might partially overlay information on the Security Banners customization (bottom banner).
+  A fix is planned for a future version.
 
 ### <a id='1-5-0-deprecations'></a> Deprecations
 
