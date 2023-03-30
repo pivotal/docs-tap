@@ -10,13 +10,13 @@ combination of the Tanzu Application Platform installation profile employed and 
 that is installed on the cluster. For a list of what resources are created for different profile
 and supply chain combinations, see the [Default Resources](reference.md#default-resource) mapping table.
 
-To see the Namespace Provisioner Package Schema for all configurable values, run the following command:
+To see the Namespace Provisioner Package Schema for all configurable values, run:
 
 ```console
 tanzu package available get namespace-provisioner.apps.tanzu.vmware.com/0.3.0 --values-schema -n tap-install
 ```
 
-Different package customization options are available depending on what method is used to manage the list of developer namespaces:
+Different package customization options are available depending on what method you use to manage the list of developer namespaces:
 
 Options if using Controller
 :
@@ -35,7 +35,7 @@ Options if using Controller
 
   **<a id ='con-add-additional'></a>Add additional resources to your namespaces from your GitOps repository**
 
-   - `additional_sources` is an array of Git repository locations which contain Platform Operator
+   - `additional_sources` is an array of Git repository locations that contain Platform Operator
    templated resources to be created in the provisioned namespaces, in addition to the default
    resources that are shipped with Tanzu Application Platform. See the “fetch” section of the [kapp controller App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/) specification for the format. Only the Git type fetch is supported.
    - `additional_sources[].git` can have a secretRef specified for providing authentication details for
@@ -81,16 +81,16 @@ Options if using Controller
 
    - `import_data_values_secrets` is an array of additional secrets in YAML format to import in the
    provisioner as data.values under the data.values.imported key. SecretImport for the secrets
-   listed in the array is created in `tap-namespace-provisioning` namespace by the Namespace
+   listed in the array is created in the `tap-namespace-provisioning` namespace by the Namespace
    Provisioner package. Either, create SecretExport for the same secrets manually
-   and export it to tap-namespace-provisioning namespace, or let the Namespace
+   and export it to the `tap-namespace-provisioning` namespace, or let the Namespace
    Provisioner package create it. The following parameters are available:
 
      - name: Name of the secret to be imported to use as valuesFrom in kapp.
      - namespace: Namespace where the secret exists.
      - create_export:  Boolean flag to decide creation of a SecretExport resource in the
-      namespace mentioned above. The default value is false. If the secret is already exported,
-      ensure that it is exported for the tap-namespace-provisioning namespace.
+      namespace. The default value is false. If the secret is already exported,
+      ensure that it is exported for the `tap-namespace-provisioning` namespace.
 
    >**Note** stringData key of the secret must have .yaml or .yml suffix.
 
@@ -267,7 +267,7 @@ Options if using GitOps
   Files in the Git repository must have a .yaml or .yml extension.
 
   The gitops_install section can have the following entries:
-  - `url`: the Git repository url (mandatory)
+  - `url`: the Git repository URL (mandatory)
   - `subPath`: the Git repository subpath where the file is
   - `ref`: the Git repository reference, the default is origin/main
   - `secretRef`: if the repository needs authentication, the reference to the secret is set here
@@ -316,9 +316,9 @@ Options if using GitOps
 
   **<a id ='git-add-resources'></a>Add additional resources to your namespace from your GitOps repo**
 
-    - `additional_sources` is an array of locations of your Git repositories which contain Platform Operator templated resources to be created on the provisioned namespaces, in addition to the default resources that are shipped with Tanzu Application Platform.
+    - `additional_sources` is an array of locations of your Git repositories that contain Platform Operator templated resources to be created on the provisioned namespaces, in addition to the default resources that are shipped with Tanzu Application Platform.
     - See the "fetch" section of the  [kapp controller App](https://carvel.dev/kapp-controller/docs/v0.43.2/app-spec/) specification  for the format. Only the Git type fetch is supported.
-    - `additional_sources[].git` can have secretRef specified for providing authentication details for connecting to a private Git repository. See [Git Authentication for Private repository](use-case3.md) for more details. The following paramaeters are available:
+    - `additional_sources[].git` can have secretRef specified for providing authentication details for connecting to a private Git repository. See [Git Authentication for Private repository](use-case3.md) for more details. The following parameters are available:
 
        - `name`: Name of the secret to be imported to use as valuesFrom in kapp.
        - `namespace`: Namespace where the secret exists.
@@ -351,7 +351,7 @@ Options if using GitOps
 
   **<a id ='git-adjust-sync'></a>Adjust sync period of Namespace Provisioner**
 
-  - `sync_period` defines the wait time for the Namespace Provisioner to reconcile. sync_period is specified in time + unit format. If a value less than 30 seconds is specified, it defaults to 30 seconds. If not specified, the value is defaults to 1m0s.
+  - `sync_period` defines the wait time for the Namespace Provisioner to reconcile. sync_period is specified in time + unit format. If a value less than 30 seconds is specified, it defaults to 30 seconds. If not specified, the value defaults to 1m0s.
 
   Sample TAP values configuration:
 
@@ -362,7 +362,7 @@ Options if using GitOps
 
   **<a id ='git-import-user'></a>Import user defined secrets in YAML format as ytt data.values**
 
-  `import_data_values_secrets` is an array of additional secrets in YAML format to import in the provisioner as data.values under the `data.values.imported` key. SecretImport for the secrets listed in the array are created in the `tap-namespace-provisioning` namespace by the Namespace Provisioner package. Either, create SecretExport for the same secrets manually and export it to tap-namespace-provisioning namespace or let the Namespace Provisioner package create it. Parameters include:
+  `import_data_values_secrets` is an array of additional secrets in YAML format to import in the provisioner as data.values under the `data.values.imported` key. SecretImport for the secrets listed in the array are created in the `tap-namespace-provisioning` namespace by the Namespace Provisioner package. Either, create SecretExport for the same secrets manually and export it to `tap-namespace-provisioning` namespace or let the Namespace Provisioner package create it. Parameters include:
       - `name`: Name of the secret to be imported to use as valuesFrom in kapp.
       - `namespace`: Namespace where the secret exists.
       - `create_export`:  Boolean flag to decide creation of a SecretExport resource in the namespace. The default value is false. If the secret is already exported, ensure that it is exported for the `tap-namespace-provisioning` namespace.
