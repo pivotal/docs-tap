@@ -84,7 +84,7 @@ The following example uses the Azure DevOps Git repository:
 Configure the supply chain through tap-values:
 
 ```yaml
-otb_supply_chain_testing_scanning:
+ootb_supply_chain_testing_scanning:
   gitops:
     server_address: https://dev.azure.com
     repository_owner: vmware-tanzu/tap
