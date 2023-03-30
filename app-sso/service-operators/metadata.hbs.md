@@ -33,7 +33,7 @@ metadata:
 
 ## Allowing client namespaces
 
-`AuthServer` controls which namespace it allows `ClientRegistrations` with the annotation:
+`AuthServer` optionally controls from which namespace(s) it allows `ClientRegistrations` with the annotation:
 
 ```yaml
 ---
@@ -41,14 +41,15 @@ apiVersion: sso.apps.tanzu.vmware.com/v1alpha1
 kind: AuthServer
 metadata:
   annotations:
-    sso.apps.tanzu.vmware.com/allow-client-namespaces: "*"
+    sso.apps.tanzu.vmware.com/allow-client-namespaces: "my-apps"
 ```
 
-To allow `ClientRegistrations` from all or a restricted set of namespaces this annotation must be set. Its value is a
-comma-separated list of allowed Namespaces, e.g. `"app-team-red,app-team-green"`, or `"*"` if it should allow clients
-from all namespaces.
+To allow `ClientRegistrations` only from a restricted set of namespaces this annotation must be set. Its value is a
+comma-separated list of allowed `Namespaces`, e.g. `"app-team-red,app-team-green"`.
 
->**Caution** If the annotation is missing, no clients are allowed.
+>**Caution** If the annotation is missing, the default value is `*`, denoting that all client namespaces are allowed.
+
+VMware recommends explicitly restricting to only workload-related namespaces to narrow the scope of AuthServer operation.
 
 ## Unsafe configuration
 
