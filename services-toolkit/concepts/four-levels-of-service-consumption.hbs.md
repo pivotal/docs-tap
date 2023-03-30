@@ -1,6 +1,6 @@
 # Four Levels of Service Consumption in Tanzu Application Platform
 
-Over time, as Tanzu Application Platform (referred to as "TAP" from hereon in) has evolved and matured, so has the way in which services can be offered and consumed on the platform. In this document we chart the progress of this evolution in terms of four "levels" of service consumption. Keep in mind as you read your way through each level that the introduction of a higher level does not automatically mean that all lower levels are suddenly made obsolete. In fact, in most cases the higher levels build upon the foundations laid by the lower levels, and merely represent a higher-level, slightly more opinionated abstraction.
+Over time, as Tanzu Application Platform (referred to as "TAP" from hereon in) has evolved and matured, so has the way in which services can be offered and consumed on the platform. In this document we chart the progress of this evolution in terms of four levels of service consumption. Keep in mind as you read your way through each level that the introduction of a higher level does not automatically mean that all lower levels are suddenly made obsolete. In fact, in most cases the higher levels build upon the foundations laid by the lower levels, and merely represent a higher-level, slightly more opinionated abstraction.
 
 ## Level 1 - Direct Bindings
 
