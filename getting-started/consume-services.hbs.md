@@ -7,9 +7,9 @@ You will use the `tanzu service` CLI plug-in and will learn about classes, claim
 
 ## <a id="you-will"></a>What you will do
 
-- Discover the range of services available to you
-- Create a claim for an instance of one of the services
-- Create two application workloads and bind them to the claim so that the workloads use the service instance
+- Discover existing claims on service instances within your namespace
+- Create two application workloads and bind them to an existing claim so that
+the workloads use the service instance.
 
 ## <a id="overview"></a>Overview
 
@@ -44,76 +44,26 @@ Before following this tutorial, an application developer must:
 For more information, see [Set up developer namespaces to use installed packages](../set-up-namespaces.md).
 1. Have a Tanzu Application Platform cluster that can pull source code from GitHub.
 
-## <a id="stk-discover"></a> Discover available services
+## <a id="stk-discover-claims"></a> Discovering existing claims
 
-This section covers using `tanzu service class list` and `tanzu service class get` to find
-information about the classes of services.
+This section covers using `tanzu service class-claim list` and `tanzu service class-class get`
+to discover existing claims within your namespace and obtaining information needed †o bind your
+workload to them.
 
-- To discover the range of available services, run the `tanzu service class list` command:
+1. To get the list of claims within your namespace, run the `tanzu service class-claim list` command:
 
     ```console
-    tanzu service class list
+    tanzu service class-claim list
     ```
 
     Expected output:
 
     ```console
-      NAME                  DESCRIPTION
-      mysql-unmanaged       MySQL by Bitnami
-      postgresql-unmanaged  PostgreSQL by Bitnami
-      rabbitmq-unmanaged    RabbitMQ by Bitnami
-      redis-unmanaged       Redis by Bitnami
+    NAME        CLASS               READY  REASON
+    rabbitmq-1  rabbitmq-unmanaged  True   Ready
     ```
 
-    The output lists four classes that cover a range of services: MySQL, PostgreSQL, RabbitMQ and Redis.
-    This is the default set of services that come preconfigured with Tanzu Application Platform.
-    They are backed by Bitnami Helm charts that run on the Tanzu Application Platform cluster.
-    You can consider these to be unmanaged services with no guarantees of service provided.
-
-- To see more detailed information for a class, run the `tanzu service class get` command:
-
-    ```console
-    tanzu service class get rabbitmq-unmanaged
-    ```
-
-    Expected output:
-
-    ```console
-      NAME:           rabbitmq-unmanaged
-      DESCRIPTION:    RabbitMQ by Bitnami
-      READY:          true
-
-      PARAMETERS:
-        KEY        DESCRIPTION                                                      TYPE     DEFAULT  REQUIRED
-        replicas   The desired number of replicas forming the cluster               integer  1        false
-        storageGB  The desired storage capacity of a single replica, in Gigabytes.  integer  1        false
-    ```
-
-    The `PARAMETERS` section is of particular interest because it lists the range of configuration
-    options available to you when creating a claim for the given class.
-
-## <a id="stk-create-claim"></a> Create a claim for a service instance
-
-This section covers using `tanzu service class-claim create` to create a claim for an instance of a class and
-using `tanzu service class-claim get` to get detailed information about the status of the claim.
-
-- To create a claim for an instance of a class, run the `tanzu service class-claim create` command:
-
-    ```console
-    tanzu service class-claim create rabbitmq-1 --class rabbitmq-unmanaged --parameter storageGB=3
-    ```
-
-    In this example, you create a claim for the `rabbitmq-unmanaged` class and pass a parameter to
-    the command to set the storage capacity of the resulting instance to 3 Gigabytes,
-    rather than using the default 1 Gigabyte.
-
-    Expected output:
-
-    ```console
-      Creating claim 'rabbitmq-1' in namespace 'default'.
-    ```
-
-- To get detailed information about the claim, run the `tanzu service class-claim get` command:
+1. To get detailed information about the claim, run the `tanzu service class-claim get` command:
 
     ```console
     tanzu service class-claim get rabbitmq-1
@@ -139,23 +89,6 @@ using `tanzu service class-claim get` to get detailed information about the stat
           Kind: Secret
     ```
 
-    It might take a moment or two for the claim to report `Ready: True`.
-
-In the background, the creation of the claim triggers the on-demand creation of a Helm release
-of the Bitnami RabbitMQ Helm chart.
-Credentials and connectivity information required to connect to the RabbitMQ cluster are
-formatted according to the [Service Binding Specification for Kubernetes](https://github.com/servicebinding/spec)
-and stored in a `Secret` in your namespace.
-
-As an application operator you don't need to know what's happening in the background.
-Tanzu Application Platform promotes a strong separation of concerns between service operators,
-who are responsible for managing service instances for the platform, and application operators and developers,
-who want to use those service instances with their application workloads.
-The class and claims abstractions enable that separation of concerns.
-Application operators and developers create claims and service operators help to fulfil them.
-
-Now that you have a claim for a RabbitMQ service instance, you can bind it to your application workloads.
-
 ## <a id="stk-bind"></a> Binding application workloads to the service instance
 
 This section covers using `tanzu apps workload create` with the `--service-ref` flag to create
@@ -167,7 +100,7 @@ using the `--service-ref` flag of the `tanzu apps workload create` command.
 To create an application workload:
 
 1. Review the output of the `tanzu service class-claim get` command you ran in
-[Create a claim for a service instance](#stk-create-claim) earlier, and note the value of the `Claim Reference`.
+[Discovering existing claims](#stk-discover-claims) earlier, and note the value of the `Claim Reference`.
 This is the value to pass to `--service-ref` when creating the application workloads.
 
 1. Create the application workload by running:

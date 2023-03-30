@@ -12,7 +12,7 @@ The main capabilities on offer in TAP through services toolkit are:
 
 ## Where to start
 
-If this is your first time working with services on TAP, then a great place to start is the [Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md) walkthrough. This walkthrough runs through the basics and should leave you ready and wanting more! After which you can return here to the services toolkit component documentation to continue your services journey on TAP.
+If this is your first time working with services on TAP, then a great place to start are the [Claim services on Tanzu Application Platform](../getting-started/claim-services.hbs.md) and [Consume services on Tanzu Application Platform](../getting-started/consume-services.hbs.md) walkthroughs. This walkthrough runs through the basics and should leave you ready and wanting more! After which you can return here to the services toolkit component documentation to continue your services journey on TAP.
 
 ## How this documentation is organized
 
