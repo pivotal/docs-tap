@@ -485,6 +485,7 @@ docs.vmware.com is built.
             - [Use Blue-green deployment with Contour and PackageInstall (alpha)](scc/blue-green-with-packageinstall.hbs.md)
           - [Use an existing image in Your Supply Chain](scc/pre-built-image.hbs.md)
           - [Authenticate Git](scc/git-auth.hbs.md)
+          - [Use Azure DevOps as a Git provider](scc/azure.hbs.md)
           - [Author Supply Chains](scc/authoring-supply-chains.hbs.md)
           - [Carvel Package Supply Chains (alpha)](scc/carvel-package-supply-chain.hbs.md)
       - [Reference guides](scc/scc-reference.hbs.md)
