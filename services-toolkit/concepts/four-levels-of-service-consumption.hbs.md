@@ -8,7 +8,7 @@ When TAP 1.0 was first released, it shipped with support for Service Bindings, w
 
 ![Diagram shows level 1 of service consumption in TAP](../../images/stk-4-levels-1.png)
 
-Let's imagine that you have deployed an application Workload to TAP. As a result you have a Knative service sitting in namespace `foo`. Let's also imagine that there's some other API resource sitting in namespace `foo` which represents a service, perhaps something like a database or a cache. We'll call this resource a Service Resource. Using a Service Binding you can bind that Service Resource onto the Knative service. This has the effect of injecting the credentials for the Service Resource onto the Knative service, such that ultimately the application Workload can then consume it.
+Let's imagine that you have deployed an application Workload to TAP. As a result you have a Knative service sitting in namespace `foo`. Let's also imagine that there's some other API resource sitting in namespace `foo` which represents a service, perhaps something like a database or a cache. We'll call this resource a Service Resource. Using a Service Binding you can bind that Service Resource with the Knative service. This has the effect of injecting the credentials for the Service Resource into the Knative service, such that ultimately the application Workload can then consume it.
 
 This is a relatively straightforward concept to grasp. There are only a few resources at play and there's no unnecessary indirection. In fact, users of TAP are not even directly exposed to the Service Binding. The Service Binding is created automatically as part of the supply chain whenever an application Workload is configured to refer to a service.
 
