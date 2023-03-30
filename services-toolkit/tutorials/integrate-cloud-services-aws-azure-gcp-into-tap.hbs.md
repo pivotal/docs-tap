@@ -1,4 +1,4 @@
-# Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform
+# Integrating Cloud Services into Tanzu Application Platform
 
 **Target user role**:       Service Operator<br />
 **Complexity**:             Advanced<br />
@@ -10,7 +10,7 @@
 
 There are a countless and ever-growing number of cloud-based services available on the market for consumers today. The three big clouds - AWS, Azure and GCP all provide support for a wide range of fully-managed, performant and on-demand services ranging from databases, to message queues, to storage solutions and beyond. In this tutorial you will learn what it takes to integrate any one of these services into Tanzu Application Platform (referred to as "TAP" from hereon in), so that it can be can offered to and consumed by apps teams in a simple and effective way.
 
-This tutorial is written at a slightly higher level that the other [tutorials](../tutorials.hbs.md) in this documentation. This is because it is simply not feasible to write detailed, step-by-step documentation for integrating each and every cloud-based service into TAP. There are far too many of them, each bringing with them a different set of considerations and concerns. Instead, this tutorial guides you through the general approach to integrating cloud-based services into TAP. While specific configurations will of course change between services, the overall process remains the same through a consistent set of steps. It is these steps that this tutorial focusses on. The aim is to give you just enough understanding so that you are able to go off and to integrate whatever cloud-based service you like into TAP.
+This tutorial is written at a slightly higher level that the other tutorials in this documentation. This is because it is simply not feasible to write detailed, step-by-step documentation for integrating each and every cloud-based service into TAP. There are far too many of them, each bringing with them a different set of considerations and concerns. Instead, this tutorial guides you through the general approach to integrating cloud-based services into TAP. While specific configurations will of course change between services, the overall process remains the same through a consistent set of steps. It is these steps that this tutorial focusses on. The aim is to give you just enough understanding so that you are able to go off and to integrate whatever cloud-based service you like into TAP.
 
 If you are interested in a more specific and low-level walkthrough, then please refer to [Configure Dynamic Provisioning of AWS RDS Service Instances](../how-to-guides/configure-dynamic-provisioning-rds.hbs.md), which does walk through each step in detail for AWS RDS integration. It may be useful to read through that guide even if you are hoping to integrate with one of the other cloud providers.
 
@@ -26,7 +26,7 @@ The rest of this tutorial talks through each step, providing hints, tips and ref
 
 The first step is to install a suitable Crossplane `Provider` for your cloud of choice. Upbound provides support for the 3 main clouds via [provider-aws](https://marketplace.upbound.io/providers/upbound/provider-aws/latest), [provider-azure](https://marketplace.upbound.io/providers/upbound/provider-azure/latest) and [provider-gcp](https://marketplace.upbound.io/providers/upbound/provider-gcp/latest).
 
-Choose whichever Provider you want, then follow Upbound's official documentation to install the `Provider` and to create a corresponding `ProviderConfig`. 
+Choose whichever Provider you want, then follow Upbound's official documentation to install the `Provider` and to create a corresponding `ProviderConfig`.
 
     > **Note** The official documentation for the Providers include a step to "Install Universal Crossplane",
     > which you can safely skip over as Crossplane is already installed as part of TAP.

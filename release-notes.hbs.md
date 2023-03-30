@@ -133,10 +133,10 @@ You can add other providers manually as required.
   is no longer receiving updates.
   From now on you can find all Services Toolkit documentation in the Tanzu Application Platform
   component documentation section for [Services Toolkit](services-toolkit/about.hbs.md).
-  - See the new [tutorials](services-toolkit/tutorials.hbs.md),
-  [how-to guides](services-toolkit/how-to-guides.hbs.md),
-  [explanations](services-toolkit/explanation.hbs.md), and
-  [reference material](services-toolkit/reference.hbs.md) to learn more about working with services
+  - See the new [tutorials](services-toolkit/tutorials/index.hbs.md),
+  [how-to guides](services-toolkit/how-to-guides/index.hbs.md),
+  [explanations](services-toolkit/explanation/index.hbs.md), and
+  [reference material](services-toolkit/reference/index.hbs.md) to learn more about working with services
   on Tanzu Application Platform.
 
 #### <a id='1-5-0-scc-new-features'></a> Supply Chain Choreographer

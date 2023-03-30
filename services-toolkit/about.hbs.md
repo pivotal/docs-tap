@@ -16,12 +16,12 @@ If this is your first time working with services on TAP, then a great place to s
 
 ## How this documentation is organized
 
-The services toolkit component documentation is loosely based around the framework laid out by https://documentation.divio.com/. As such, it primarily consists of [tutorials](./tutorials.hbs.md), [how-to guides](./how-to-guides.hbs.md), [explanations](./explanation.hbs.md) and [reference material](./reference.hbs.md). Which section to choose from will depend on what you are hoping to achieve. 
+The services toolkit component documentation is loosely based around the framework laid out by https://documentation.divio.com/. As such, it primarily consists of [tutorials](tutorials/index.hbs.md), [how-to guides](how-to-guides/index.hbs.md), [explanations](explanation/index.hbs.md) and [reference material](reference/index.hbs.md). Which section to choose from will depend on what you are hoping to achieve.
 
-* I'm hoping to learn - refer to the [tutorials](./tutorials.hbs.md) section
-* I'm hoping to gain a deeper understanding of services toolkit - refer to the [explanations](./explanation.hbs.md) section
-* I'm hoping to find a set of steps to solve a specific problem - refer to the [how-to guides](./how-to-guides.hbs.md) section
-* I'm hoping to find specific information about something - refer to the [reference material](./reference.hbs.md) section
+* I'm hoping to learn - refer to the [tutorials](tutorials/index.hbs.md) section
+* I'm hoping to gain a deeper understanding of services toolkit - refer to the [explanations](explanation/index.hbs.md) section
+* I'm hoping to find a set of steps to solve a specific problem - refer to the [how-to guides](how-to-guides/index.hbs.md) section
+* I'm hoping to find specific information about something - refer to the [reference material](reference/index.hbs.md) section
 
 Per the documentation framework, tutorials and explanations are of most relevance when studying, while how-to guides and reference material are of most use while actively working. If you're still not sure, why not choose from this hand-picked selection of the most useful docs on offer.
 
