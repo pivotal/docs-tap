@@ -350,6 +350,16 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
 1. Generate the TAP Install and Tanzu Sync configuration files:
 
     ```console
+    cd <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>
+
+    ./tanzu-sync/scripts/configure.sh
+    ```
+
+    Example:
+
+    ```console
+    cd $HOME/tap-gitops/clusters/full-tap-cluster
+
     ./tanzu-sync/scripts/configure.sh
     ```
 
@@ -391,6 +401,16 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
 1. Deploy the "Tanzu Sync" component:
 
     ```console
+    cd <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>
+
+    ./tanzu-sync/scripts/deploy.sh
+    ```
+
+    Example:
+
+    ```console
+    cd $HOME/tap-gitops/clusters/full-tap-cluster
+
     ./tanzu-sync/scripts/deploy.sh
     ```
 
