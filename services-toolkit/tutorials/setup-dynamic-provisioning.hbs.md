@@ -553,7 +553,7 @@ This `ClusterRole` grants anyone holding the `app-operator` TAP user role the ab
 
 ## <a id="stk-setup-dynamic-provisioning-create-claim"></a> Create claim
 
-All that's left to do now is to actually create a claim for the class and thereby trigger the dynamic provisioning of a new RabbitMQ cluster. Note that this step is typically performed by the Application Operator role, rather than the Service Operator, however it is important for us to check that everything has been setup correctly.
+All that's left to do now is to actually create a claim for the class and thereby trigger the dynamic provisioning of a new RabbitMQ cluster. Note that this step is typically performed by the Application Operator, rather than the Service Operator, however it is important for us to check that everything has been setup correctly.
 
 Create a file named `bigcorp-rmq-1.claim.yml` and copy in the following contents.
 
