@@ -12,7 +12,7 @@ repository.
 
 Before installing Crossplane:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 
 ## <a id='install-crossplane'></a> Install Crossplane
 

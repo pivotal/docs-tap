@@ -12,7 +12,7 @@ repository.
 
 Before installing Bitnami Services:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 
 ## <a id='install-bitnami-services'></a> Install Bitnami Services
 

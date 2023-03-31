@@ -12,7 +12,7 @@ repository.
 
 Before installing Services Toolkit:
 
-- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.md).
+- Complete all prerequisites to install Tanzu Application Platform. For more information, see [Prerequisites](../prerequisites.hbs.md).
 - Install cert-manager. For more information, see [Install cert-manager](../cert-manager/install.hbs.md).
 
 ## <a id='install-services-toolkit'></a> Install Services Toolkit
