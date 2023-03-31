@@ -50,6 +50,7 @@ Apply your application to the cluster to get your application running.
     2. In the **Local Path** field, provide the path to the directory containing the Tanzu Java Web App. The current directory is the default. The Local Path value tells the Tanzu Developer Tools extension which directory on your local file system to bring into the source image container image.
     For example, `.` uses the working directory, or you can specify a full file path.
     3. In the **Namespace** field, optionally provide the namespace that the workload should be associated with on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](/iterate-new-app-intellij.hbs.md#prepare-to-iterate) you do not need to enter a namespace and IntelliJ will use the namespace you associated with your context.
+    1. Click the **OK** button.
 
 The Apply Workload command will run, which opens a terminal and shows you the output of the Workload Apply. You can also monitor your application as it's being deployed to the cluster on the `Tanzu Panel`. The `Tanzu Panel` shows the workloads in the namespace associated with your current Kubernetes context on the left side, and the details of the Kubernetes resources for the workloads running in the namespace associated with your current Kubernetes context in the center. The Apply Workload command can take a few minutes to deploy your application onto the cluster.
 
@@ -75,6 +76,8 @@ Follow the following steps to live update your application:
 
    >For example, if you use docker consult [docker's docs](https://docs.docker.com/engine/reference/commandline/login/), if you use Harbor consult [Harbor's docs](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/), etc.
 
+   1. Click the **Apply** button, then click the **OK** button.
+
 1. In the Project tab of IntelliJ, right-click the `Tiltfile` file under the application name `tanzu-java-web-app` and select `Run \'Tanzu Live Update - tanzu-java-web-app\'` to begin Live Updating the application on the cluster.
 1. Alternatively, select the `Edit Run/Debug configurations` dropdown in the top-right corner, select `Tanzu Live Update - tanzu-java-web-app`, then click the green play button to the right of the `Edit Run/Debug configurations` dropdown.
 The `Run` tab will open and display the output from Tanzu Application Platform and from Tilt indicating that the container is being built and deployed.
@@ -89,11 +92,11 @@ The `Run` tab will open and display the output from Tanzu Application Platform a
     >to your Tiltfile. Otherwise, switch k8scontexts and restart Tilt.`
     >Follow the instructions and add the line, `allow_k8s_contexts('cluster-name')` to your `Tiltfile`.
 
-2. When the Live Update task in the `Run` tab says that it was successful, resolve to "Live Update Started," use the hyperlink at the top of the Run output following the words **Tilt started on** to  view your application in your browser.
+2. When the Live Update task in the `Run` tab says that it was successful, resolve to "Live Update Started," use the hyperlink at the top of the Run output following the words **Tilt started on** to view your application in your browser.
 3. In the IDE, make a change to the source code. For example, in `HelloController.java`, edit the string returned to say `Hello!` and save.
 4. The container is updated when the logs stop streaming. Navigate to your browser and refresh the page.
 5. View the changes to your workload running on the cluster.
-6. Either continue making changes, or stop and deactivate the live update when finished. To stop Live Update navigate to the `Run` tab at the bottom left of the IntelliJ window and click the red stop icon on the left side of the screen.
+6. Either continue making changes, or stop the Live Update process when finished. To stop Live Update navigate to the `Run` tab at the bottom left of the IntelliJ window and click the red stop icon on the left side of the screen.
 
 ## <a id="debug-your-app"></a>Debug your application
 
@@ -101,7 +104,7 @@ Debug the cluster either on the application or in your local environment.
 
 Use the following steps to debug the cluster:
 
-1. Set a breakpoint in your code.
+1. Set a breakpoint in your code. For example, in `HelloController.java`, set a breakpoint on the line `return`ing text.
 1. Create a Run Configuration.
    1. In IntelliJ, select the `Edit Run/Debug configurations` dialog in the top-right corner. Alternatively, navigate to `Run` > `Edit Configurations`.
    1. Select `Tanzu Debug Workload`.
@@ -118,15 +121,22 @@ Use the following steps to debug the cluster:
    >For example, if you use docker consult [docker's docs](https://docs.docker.com/engine/reference/commandline/login/), if you use Harbor consult [Harbor's docs](https://goharbor.io/docs/1.10/working-with-projects/working-with-images/pulling-pushing-images/), etc.
 
    8. In the **Namespace** field, optionally provide the namespace that the workload should be associated with on the cluster. If you followed the steps to [Prepare your IDE to iterate on your application](/iterate-new-app-intellij.hbs.md#prepare-to-iterate) you do not need to enter a namespace and IntelliJ will use the namespace you associated with your context.
-   
+   9. Click the **Apply** button, then click the **OK** button.
+
+1. [Apply your application to the cluster.](#apply-your-app)
+1. Begin port forwarding.
+  1. In the center panel of the `Tanzu Panel` navigate to: `Workload/tanzu-java-web-app` > `Running Application` > `Service/tanzu-java-web-app` > `Configuration/tanzu-java-web-app` > `Revision/tanzu-java-web-app...` > `Deployment-tanzu-java-web-app...` > `ReplicaSet/tanzu-java-web-app...` > `Pod/tanzu-java-web-app...`
+  1. Right-click on the `Pod...` entry and select `Describe`.
+  1. Scroll to the top of the resulting output and highlight the content after `Name:`, it should begin with `tanz-java-web-app-0000...` and end with `deployment` followed by some characters. Copy this value.
+  1. In the Terminal tab, run the command `kubectl port-forward <NAME> <PORT>:8080`, where the <NAME> value is the `Name:` from the previous step, and the <PORT> value is some port you would like to use, such as 8080.
+  1. You will see output indicating that port forwarding has begun.
 1. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name `tanzu-java-web-app` and select `Run \'Tanzu Debug Workload - tanzu-java-web-app\'` to begin debugging the application on the cluster.
 1. Alternatively, select the `Edit Run/Debug configurations` dropdown in the top-right corner, select `Tanzu Debug Workload - tanzu-java-web-app`, then click the green debug button to the right of the `Edit Run/Debug configurations` dropdown.
-The `Run` tab will open and display the output from Tanzu Application Platform and from Tilt indicating that the container is being built and deployed.
-    - On the `Tanzu Panel` tab you will see the status of Live Update reflected under the `tanzu-java-web-app` workload entry.
-    - Live update can take 1 to 3 minutes while the workload deploys and the Knative service becomes available.
-
-1. In the Explorer tab of IntelliJ, right-click any file under the application name `tanzu-java-web-app` and select `Tanzu: Java Debug Start` to begin debugging your application on the cluster. In a few moments the workload is redeployed with debugging enabled. The `Debug` tab will show the **Connected to the target VM, address: 'localhost:** followed by a port number, indicating that the debugger has attached.
-1. Navigate to `http://localhost:<port number>` in your browser, where <port number> is the number found after `localhost` in the `Debug` tab. This hits the breakpoint within IntelliJ. Play to the end of the debug session using IntelliJ debugging controls.
+1. The Debug tab will open and display a message that it has **Connected**.
+1. In your browser, navigate to `localhost:<PORT>`, where the <PORT> value is the value you entered for <PORT> in the previous command.
+1. You will see the tanzu-java-web-app running in your browser, and IntelliJ will open to show your breakpoint.
+1. You can now resume the program, or stop debugging, in the `Debug` tab.
+1. To stop port forwarding, navigate back to the `Terminal` tab and close the port forward process with the `X` next to the label `Local`.
 
 ## <a id="delete-your-app"></a>Delete your application from the cluster
 

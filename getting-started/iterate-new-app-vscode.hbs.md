@@ -83,7 +83,7 @@ You can view output from Tanzu Application Platform indicating that the containe
 3. In the IDE, make a change to the source code. For example, in `HelloController.java`, edit the string returned to say `Hello!` and save.
 4. The container is updated when the logs stop streaming. Navigate to your browser and refresh the page.
 5. View the changes to the workload running on the cluster.
-6. Either continue making changes, or stop and deactivate the live update when finished. To stop Live Update, open the Terminal (⌃\`), or by navigating to `View` > `Terminal`, and click the trash can icon that appears when you place your mouse over the `tilt: up - tanzu-java-web-app` process, or select the process and use hotkey (⌘Backspace).
+6. Either continue making changes, or stop the live update process when finished. To stop Live Update, open the Terminal (⌃\`), or by navigating to `View` > `Terminal`, and click the trash can icon that appears when you place your mouse over the `tilt: up - tanzu-java-web-app` process, or select the process and use hotkey (⌘Backspace).
 
 ## <a id="debug-your-app"></a>Debug your application
 
@@ -91,13 +91,23 @@ Debug your application in a production-like environment by debugging on your Kub
 
 Use the following steps to debug the cluster:
 
-1. Set a breakpoint in your code.
+1. Set a breakpoint in your code. For example, in `HelloController.java`, set a breakpoint on the line `return`ing text.
+1. [Apply your application to the cluster.](#apply-your-app)
+1. Begin port forwarding.
+  1. In the panel (`View` > `Appearance` > `Panel`) open the `Tanzu Activity` tab.
+  1. Navigate to: `Workload/tanzu-java-web-app` > `Running Application` > `Service/tanzu-java-web-app` > `Configuration/tanzu-java-web-app` > `Revision/tanzu-java-web-app...` > `Deployment-tanzu-java-web-app...` > `ReplicaSet/tanzu-java-web-app...` > `Pod/tanzu-java-web-app...`
+  1. Right-click on the `Pod...` entry and select `Describe`.
+  1. Scroll to the top of the resulting output and highlight the content after `Name:`, it should begin with `tanz-java-web-app-0000...` and end with `deployment` followed by some characters. Copy this value.
+  1. Scroll to the bottom of the same Terminal tab and run the command `kubectl port-forward <NAME> <PORT>:8080`, where the <NAME> value is the `Name:` from the previous step, and the <PORT> value is some port you would like to use, such as 8080.
+  1. You will see output indicating that port forwarding has begun.
 1. In the Explorer tab of VS Code, right-click any file under the application name `tanzu-java-web-app` and select `Tanzu: Java Debug Start` to begin debugging the workload on the cluster.
 1. Alternatively, right-click the `tanzu-java-web-app` in the `TANZU WORKLOADS` panel and select `Tanzu: Java Debug Start`.
 1. In a few moments debugging is enabled on the workload. The **Deploy and Connect** task completes and the debug actions are made available to you in the debug overlay, indicating that the debugger has attached.
 1. You will notice that the `TANZU WORKLOADS` panel shows **Debug Running** under the `tanzu-java-web-app` workload.
-1. Navigate to `http://localhost:8080` in your browser. This hits the breakpoint within VS Code. Play to the end of the debug session using VS Code debugging controls.
-1. To stop debugging, click the "Disconnect" button in the debug overlay.
+1. In your browser, navigate to `localhost:<PORT>`, where the <PORT> value is the value you entered for <PORT> in the port forwarding command step.
+1. You will see the tanzu-java-web-app running in your browser, and VS Code will open to show your breakpoint.
+1. You can now resume the program, or stop debugging, using the debug controls overlay.
+1. To stop port forwarding, navigate back to the `Terminal` in the Explorer tab and select the trash can icon next to the port forwarding terminal process.
 
 ## <a id="monitor-running-app"></a>Monitor your running application
 
