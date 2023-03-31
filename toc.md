@@ -312,7 +312,7 @@ docs.vmware.com is built.
       - [Install Bitnami Services](bitnami-services/install-bitnami-services.hbs.md)
       - [Tutorials](bitnami-services/tutorials.hbs.md)
         - [Working with Bitnami Services](services-toolkit/tutorials/working-with-the-bitnami-services.hbs.md)
-      - [How-To Guides](services-toolkit/how-to-guides/how-to-guides.hbs.md)
+      - [How-To Guides](services-toolkit/how-to-guides/index.hbs.md)
         - [Configure Private Registry and VMware Application Catalog ("VAC") Integration for Bitnami Services](bitnami-services/how-to-guides/configure-private-reg-integration-bitnami-services.hbs.md)
         - [Debug](services-toolkit/how-to-guides/debug.hbs.md#stk-debug-dynamic-provisioning)
       - [Reference](bitnami-services/reference.hbs.md)
