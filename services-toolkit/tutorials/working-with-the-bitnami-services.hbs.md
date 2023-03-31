@@ -82,7 +82,7 @@ Please run `tanzu services class-claims get psql-1 --namespace dev-team-1` to se
 As the output states, you can then check on the status of the claim by using the `tanzu service class-claim get` command.
 
 ```console
-$ tanzu service class-claim get psql-1
+$ tanzu services class-claims get psql-1 --namespace dev-team-1
 
 Name: psql-1
 Namespace: dev-team-1
