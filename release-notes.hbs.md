@@ -133,10 +133,10 @@ You can add other providers manually as required.
   is no longer receiving updates.
   From now on you can find all Services Toolkit documentation in the Tanzu Application Platform
   component documentation section for [Services Toolkit](services-toolkit/about.hbs.md).
-  - See the new [tutorials](services-toolkit/tutorials.hbs.md),
-  [how-to guides](services-toolkit/how-to-guides.hbs.md),
-  [explanations](services-toolkit/explanation.hbs.md), and
-  [reference material](services-toolkit/reference.hbs.md) to learn more about working with services
+  - See the new [tutorials](services-toolkit/tutorials/index.hbs.md),
+  [how-to guides](services-toolkit/how-to-guides/index.hbs.md),
+  [concepts](services-toolkit/concepts/index.hbs.md), and
+  [reference material](services-toolkit/reference/index.hbs.md) to learn more about working with services
   on Tanzu Application Platform.
 
 #### <a id='1-5-0-scc-new-features'></a> Supply Chain Choreographer
@@ -210,11 +210,12 @@ The following issues, listed by area and component, are resolved in this release
 
 #### <a id='1-5-0-app-accelerator-resolved-issues'></a> Application Accelerator
 
-* Resolved issue with `custom types` not re-ordering fields correctly in the VS Code extension.
+- Resolved issue with `custom types` not re-ordering fields correctly in the VS Code extension.
 
 #### <a id='1-5-0-appsso-resolved-issues'></a> Application Single Sign-On (AppSSO)
 
-- Resolves redirect URI issue with insecure http redirection on TKGm clusters.
+- Resolved redirect URI issue with insecure HTTP redirection on Tanzu Kubernetes Grid multicloud
+(TKGm) clusters.
 
 ### <a id='1-5-0-known-issues'></a> Known issues
 
@@ -231,15 +232,17 @@ This release has the following known issues, listed by area and component.
   prevents it from starting again. Delete the Tilt lock file to resolve this.
   The default file location is `~/.tilt-dev/config.lock`.
 
-- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is miscategorized as `Unknown`, whereas it should be under the `Supply Chain` category.
-
 - On Windows, workload commands don't work when in a project with spaces in the name, such as
   `my-app project`.
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#projects-with-spaces).
 
-- If the user's kubeconfig file (`~/.kube/config`) is malformed, then the user will not be able to apply a workload. The user will see a error message pop up when they attempt to apply a workload. To resolve this, ensure the kubeconfig file is well-formed.
+- If your kubeconfig file (`~/.kube/config`) is malformed, you cannot apply a workload.
+  You see an error message when you attempt to do so. To resolve this, fix the kubeconfig file.
 
-#### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for Intellij
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
+  categorized as **Unknown**. It should be in the **Supply Chain** category.
+
+#### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for IntelliJ
 
 - A `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` error is shown in the
   error logs when attempting to take a workload action before having installed the Tanzu CLI apps
@@ -260,7 +263,8 @@ This release has the following known issues, listed by area and component.
   `my-app project`.
   For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
 
-- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is miscategorized as `Unknown`, whereas it should be under the `Supply Chain` category.
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
+  categorized as **Unknown**. It should be in the **Supply Chain** category.
 
 #### <a id="1-5-0-grype-scan-known-issues"></a>Grype scanner
 
@@ -284,18 +288,89 @@ This release has the following known issues, listed by area and component.
 #### <a id='1-5-0-tap-gui-ki'></a> Tanzu Application Platform GUI
 
 - The portal might partially overlay information on the Security Banners customization (bottom banner).
-  A fix is planned for a future version.
 
-### <a id='1-5-0-deprecations'></a> Deprecations
+- The Impacted Workloads table will display empty in the CVE and Package details pages if the CVE belongs to a workload that has only completed one type of vulnerability scan (either image or source).
+  A fix is planned for 1.5.1.
+
+## <a id='1-5-deprecations'></a> Deprecations
 
 The following features, listed by component, are deprecated.
 Deprecated features will remain on this list until they are retired from Tanzu Application Platform.
 
-#### <a id='1-5-0-appsso-deprecations'></a> Application Single Sign-On (AppSSO)
+### <a id='1-5-appsso-deprecations'></a> Application Single Sign-On (AppSSO)
 
 - `ClientRegistration` resource `clientAuthenticationMethod` field values `post` and `basic` are deprecated.
 Use `client_secret_post` and `client_secret_basic` instead.
+<!-- has this been removed already? If yes, should it be a breaking change. If not, when? -->
 
-#### <a id='1-5-0-convention-controller-dp'></a> Convention Controller
+### <a id='1-5-convention-controller-dp'></a> Convention Controller
 
 - This component is deprecated in this release and is replaced by [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions). Cartographer Conventions implements the `conventions.carto.run` API that includes all the features that were available in the Convention Controller component.
+<!-- has this been removed already? If yes, should it be a breaking change. If not, when? -->
+
+#### <a id="1-5-app-live-view-deprecations"></a> Application Live View
+
+- `appliveview_connnector.backend.sslDisabled` is deprecated and marked for
+  removal in Tanzu Application Platform 1.7.0. For more information on the
+  migration, see [Deprecate the sslDisabled
+  key](app-live-view/install.hbs.md#deprecate-the-ssldisabled-key).
+
+#### <a id="1-4-0-app-sso-deprecations"></a> Application Single Sign-On (AppSSO)
+
+- `AuthServer.spec.tls.disabled` is deprecated and marked for removal in the
+  next release. For more information about how to migrate to
+  `AuthServer.spec.tls.deactivated`, see [Migration
+  guides](app-sso/upgrades/index.md#migration-guides).
+  <!-- has this been removed in 1.5? If yes, should it be a breaking change. If not, when? -->
+
+#### <a id="1-4-0-stk-deprecations"></a> Services Toolkit
+
+- The `tanzu services claims` CLI plug-in command is now deprecated. It is
+  hidden from help text output, but continues to work until officially removed
+  after the deprecation period. The new `tanzu services resource-claims` command
+  provides the same functionality.
+  <!-- has this been removed already? If yes, should it be a breaking change. If not, when? -->
+
+#### <a id="1-5-scst-scan-deprecations"></a> Supply Chain Security Tools - Scan
+
+- Removed deprecated ScanTemplates:
+  - Deprecated Grype ScanTemplates shipped with versions prior to Tanzu
+    Application Platform 1.2.0 are removed and no longer supported. Use Grype
+    ScanTemplates v1.2 and later.
+  - `docker` field and related sub-fields used in Supply Chain Security Tools -
+    Scan are deprecated and marked for removal in Tanzu Application Platform
+    1.7.0.
+    - The deprecation impacts the following components: Scan Controller, Grype
+      Scanner, and Snyk Scanner. Carbon Black Scanner is not impacted.
+    - For information about the migration path, see
+  [Troubleshooting](scst-scan/observing.hbs.md#unable-to-pull-scanner-controller-images).
+
+#### <a id="1-4-scst-sign-deprecations"></a> Supply Chain Security Tools - Sign
+
+- [Supply Chain Security Tools - Sign](scst-sign/overview.md) is deprecated. For
+  migration information, see [Migration From Supply Chain Security Tools -
+  Sign](./scst-policy/migration.hbs.md).
+  <!-- has this been removed already? If yes, should it be a breaking change. If not, when? -->
+
+#### <a id="1-5-tbs-deprecations"></a> Tanzu Build Service
+
+- The Ubuntu Bionic stack is deprecated: Ubuntu Bionic stops receiving support
+in April 2023. VMware recommends you migrate builds to Jammy stacks in advance.
+For how to migrate builds, see [Use Jammy stacks for a
+workload](tanzu-build-service/dependencies.md#using-jammy).
+- The Cloud Native Buildpack Bill of Materials (CNB BOM) format is deprecated.
+VMware plans to deactivate this format by default in Tanzu Application Platform
+v1.5 and remove support in Tanzu Application Platform v1.6. To manually
+deactivate legacy CNB BOM support, see [Deactivate the CNB BOM
+format](tanzu-build-service/install-tbs.md#deactivate-cnb-bom).
+  <!-- is the plan to remove support still true? -->
+
+#### <a id="1-5-apps-plugin-deprecations"></a> Tanzu CLI Apps plug-in
+
+- The default value for the
+  [`--update-strategy`](./cli-plugins/apps/command-reference/workload_create_update_apply.hbs.md#update-strategy)
+  flag will change from `merge` to `replace` in Tanzu Application Platform
+  v1.7.0.
+- The `tanzu apps workload update` command is deprecated and marked for removal
+  in Tanzu Application Platform 1.5.0. Use `tanzu apps workload apply` instead.
+    <!-- Should this be a breaking change? -->

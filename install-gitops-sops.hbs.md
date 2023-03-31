@@ -6,7 +6,7 @@ This topic describes how to install Tanzu Application Platform via Gitops with s
 
 >**Caution** 
 >
-> Tanzu GitOps RI does not support changing the secrets management strategy for a cluster. This topic is the ESO based approach to managing secrets in an external secrets store.
+> Tanzu GitOps RI does not support changing the secrets management strategy for a cluster.
 
 ## <a id='prereqs'></a>Prerequisites
 
@@ -324,6 +324,7 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
     export GIT_SSH_PRIVATE_KEY=PRIVATE-KEY
     export GIT_KNOWN_HOSTS=KNOWN-HOST-LIST
     export SOPS_AGE_KEY=AGE-KEY
+    export TAP_PKGR_REPO=TAP-PACKAGE-OCI-REPOSITORY
     ```
 
     Where:
@@ -333,7 +334,8 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
     - `MY-REGISTRY-PASSWORD` is the password for `MY-REGISTRY-USER`.
     - `PRIVATE-KEY` is the contents of an SSH private key file with read access to your Git repository.
     - `HOST-LIST` is the list of known hosts for Git host service.
-    - `AGE-KEY` is the content of the Age key generated earlier.
+    - `AGE-KEY` is the contents of the Age key generated earlier.
+    - `TAP-PACKAGE-OCI-REPOSITORY` is the fully-qualified path to the OCI repository hosting the Tanzu Application Platform images. If those have been relocated as described above, then this value is `${INSTALL_REGISTRY_HOSTNAME}/${INSTALL_REPO}/tap-packages`.
 
     Example of the Git repo hosted on GitHub:
 
@@ -344,11 +346,22 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
     export GIT_SSH_PRIVATE_KEY=$(cat $HOME/.ssh/my_private_key)
     export GIT_KNOWN_HOSTS=$(ssh-keyscan github.com)
     export SOPS_AGE_KEY=$(cat $HOME/key.txt)
+    export TAP_PKGR_REPO=registry.tanzu.vmware.com/tanzu-application-platform/tap-packages
     ```
 
 1. Generate the TAP Install and Tanzu Sync configuration files:
 
     ```console
+    cd <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>
+
+    ./tanzu-sync/scripts/configure.sh
+    ```
+
+    Example:
+
+    ```console
+    cd $HOME/tap-gitops/clusters/full-tap-cluster
+
     ./tanzu-sync/scripts/configure.sh
     ```
 
@@ -390,6 +403,16 @@ Follow these steps to generate TAP installation and Tanzu Sync configuration:
 1. Deploy the "Tanzu Sync" component:
 
     ```console
+    cd <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>
+
+    ./tanzu-sync/scripts/deploy.sh
+    ```
+
+    Example:
+
+    ```console
+    cd $HOME/tap-gitops/clusters/full-tap-cluster
+
     ./tanzu-sync/scripts/deploy.sh
     ```
 

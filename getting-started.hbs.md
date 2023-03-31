@@ -46,4 +46,4 @@ For developers:
 
 For operators:
 
-- [Create an application accelerator](getting-started/create-app-accelerator.md)
+- [Create an application accelerator](getting-started/create-app-accelerator.hbs.md)
