@@ -21,11 +21,15 @@ Controller mode
 GitOps mode
 : Gitops mode has the following characteristics
 
+    ![Diagram of .](../images/namespace-provisioner-1.png)
+
     - The list of developer namespaces is managed in a Git repository that is specified in the `gitops_install` section of the Namespace Provisioner configuration.
     - Namespace Provisioner creates default resources that are shipped Out of the Box in all managed namespaces.
     - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under `additional_sources` in Namespace Provisioner configuration. For more information, see [Customize Installation](customize-installation.md).
 
 ## <a id='carvel-app'></a>Provisioner Carvel Application
+
+![Diagram of .](../images/namespace-provisioner-2.png)
 
 Namespace Provisioner consists of a
 [Carvel](https://carvel.dev/kapp-controller/docs/latest/app-overview/) application called

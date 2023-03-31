@@ -4,7 +4,7 @@ This topic describes how to provision developer namespaces.
 
 ## Prerequisite
 
-- The Namespace Provisioner package is installed and successfully reconciled.
+- The Namespace Provisioner package is installed and reconciled.
 - The registry-credential secret referenced by the Supply chain components for pulling and pushing
 images is added to tap-install and exported to all namespaces. Example secret creation, exported to all namespaces:
 
