@@ -104,7 +104,7 @@ If Grype was installed manually, you need to update your `PackageInstall` to inc
 
 For more information, see [Customize package installation](../../customize-package-installation.hbs.md#customize-a-package-that-was-manually-installed).
 
-1. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
+4. Configure tap-values.yaml to use `package_overlays`. Add the following to your tap-values.yaml:
 
   ```yaml
   package_overlays:
@@ -113,7 +113,7 @@ For more information, see [Customize package installation](../../customize-packa
           - name: "grype-airgap-overlay"
   ```
 
-4. Update Tanzu Application Platform
+5. Update Tanzu Application Platform
 
   ```console
   tanzu package installed update tap -f tap-values.yaml -n tap-install
