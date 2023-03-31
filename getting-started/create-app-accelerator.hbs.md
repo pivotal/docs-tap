@@ -16,8 +16,7 @@
 
 ## <a id="ide-set-up-for-authoring"></a>Set up Visual Studio Code
 
-1. To simplify accelerator authoring, code assist capabilities are available through the [YAML
-   plug-in](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml). To install the
+1. To simplify accelerator authoring, code assist capabilities are available. To install the
    extension, navigate to the [Marketplace page for the YAML
    plug-in](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) and click
    **Install**.
