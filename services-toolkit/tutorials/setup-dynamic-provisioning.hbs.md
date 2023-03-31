@@ -560,6 +560,7 @@ Create a file named `bigcorp-rmq-1.claim.yml` and copy in the following contents
 ```yaml
 # bigcorp-rmq-1.claim.yml
 
+---
 apiVersion: services.apps.tanzu.vmware.com/v1alpha1
 kind: ClassClaim
 metadata:
