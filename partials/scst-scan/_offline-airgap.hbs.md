@@ -152,3 +152,54 @@ the following steps:
        ```console
        tanzu package installed update tap -f tap-values.yaml -n tap-install
        ```
+
+### Grype package overlays are not applied to scantemplates created by Namespace Provisioner
+
+If you used the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you will need to add the annotation to reference the overlay `Secret`.
+
+Follow the steps below to resolve this issue. See [Customize Namespace Provisioner](../../namespace-provisioner/how-tos.hbs.md) for additional information on advanced use cases.
+#### Solution
+
+1. Create a file `pkgi.lib.yaml` with the below content and push it to a repository that is accessible from inside the cluster.
+
+```yaml
+#@ load("@ytt:overlay", "overlay")
+
+#@ def matchGrypeScanners(index, left, right):
+  #@ if left["apiVersion"] != "packaging.carvel.dev/v1alpha1" or left["kind"] != "PackageInstall":
+    #@ return False
+  #@ end
+
+  #@ return left["metadata"]["name"].startswith("grype-scanner")
+#@ end
+
+#@ def customize():
+
+#@overlay/match by=matchGrypeScanners, expects="0+"
+---
+metadata:
+  annotations:
+    #@overlay/match missing_ok=True
+    ext.packaging.carvel.dev/ytt-paths-from-secret-name.0: SECRET-NAME
+#@  end
+```
+Where `SECRET-NAME` is the name of the secret that contains the grype overlay such as `grype-airgap-override-stale-db-overlay`.
+
+For more information on annotations, see [Customize package installation](../../customize-package-installation.hbs.md#customize-a-package-that-was-manually-installed).
+
+1. Update your `tap-values.yaml`.
+```yaml
+namespace_provisioner:
+  additional_sources:
+  - git:
+      ref: origin/main
+      subPath: "" # path to folder containing the pkgi.lib.yaml file
+      url: https://github.com/user/repo-name.git
+    path: _ytt_lib/customize # this path must always be exactly "_ytt_lib/customize"
+```
+1. Update your tap installation.
+```console
+tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION --values-file "tap-values.yaml" -n tap-install
+```
+
+Where `VERSION` is is your Tanzu Application Platform version.
