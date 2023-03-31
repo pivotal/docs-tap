@@ -61,7 +61,16 @@ The output shows the name and a short description for the class, and indication 
 
 ## Claiming
 
-Let's assume that you have an application Workload that requires a PostgreSQL database in order to function correctly. You can use the out of the box Bitnami PostgreSQL service to obtain such a database. You can use the `tanzu service class-claim create` command to create a claim for the `postgresql-unmanaged` class, then bind your application Workload to the resulting claim. In the example below, we are also choosing to override the default value of `1` for the `storageGB` parameter, setting it instead to `3`. Finally, we are choosing to create the claim in a namespace named `dev-team-1`. You can override any of the options as you see fit.
+Let's assume that you have an application Workload that requires a PostgreSQL database in order to function correctly. You can claim the out of the box Bitnami PostgreSQL service to obtain such a database.
+
+We are choosing to create the claim in a namespace named `dev-team-1`. To create
+the namespace run the following:
+
+```console
+$ kubectl create namespace dev-team-1
+```
+
+You can use the `tanzu service class-claim create` command to create a claim for the `postgresql-unmanaged` class, then bind your application Workload to the resulting claim. In the example below, we are also choosing to override the default value of `1` for the `storageGB` parameter, setting it instead to `3`.  You can override any of the options as you see fit.
 
 ```console
 $ tanzu service class-claim create psql-1 --class postgresql-unmanaged --parameter storageGB=3 -n dev-team-1
