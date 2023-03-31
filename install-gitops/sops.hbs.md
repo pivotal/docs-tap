@@ -1,8 +1,8 @@
-# Installing Tanzu Application Platform via Gitops with SoPS
+# Install Tanzu Application Platform through Gitops with Secrets OPerationS (SOPS)
 
 >**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
-This topic describes how to install Tanzu Application Platform via Gitops with secrets managed in a git repository.
+This topic describes how to install Tanzu Application Platform through GitOps with secrets managed in a Git repository.
 
 >**Caution**
 >
@@ -14,7 +14,7 @@ Before installing Tanzu Application Platform, you need:
 
 <!-- TODO: link to download instructions -->
 
-- SoPS CLI. The SoPS CLI is used to view and edit SoPS encrypted files. To install the SoPS CLI, see [Installation](https://github.com/mozilla/sops/releases).
+- SOPS CLI. The SOPS CLI is used to view and edit SOPS encrypted files. To install the SOPS CLI, see [Installation](https://github.com/mozilla/sops/releases).
 - Age CLI. The Age CLI is used to create an ecryption key used to encrypt and decrypt sensitive data. To install the Age CLI, see [Installation](https://github.com/FiloSottile/age#installation).
 - Completed the [Prerequisites](../prerequisites.hbs.md).
 - [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.hbs.md) with any required plug-ins.
@@ -131,7 +131,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
 
 ## <a id=''></a>Create cluster configuration
 
-1. Seed configuration for a cluster using SoPS:
+1. Seed configuration for a cluster using SOPS:
 
     ```console
     cd $HOME/tap-gitops
@@ -199,7 +199,7 @@ The following sections describe how to create these values files.
       sensitive_values:
     ```
 
-1. Encrypt `tap-sensitive-values.yaml` with Age using SoPS:
+1. Encrypt `tap-sensitive-values.yaml` with Age using SOPS:
 
     ```console
     export SOPS_AGE_RECIPIENTS=$(cat key.txt | grep "# public key: " | sed 's/# public key: //')
@@ -218,7 +218,7 @@ The following sections describe how to create these values files.
     sops --decrypt tap-sensitive-values.sops.yaml
     ```
 
-    (Optional) Verify the encrypted file can be edited directly by using SoPS:
+    (Optional) Verify the encrypted file can be edited directly by using SOPS:
 
     ```console
     sops tap-sensitive-values.sops.yaml
@@ -264,7 +264,7 @@ tap_install:
 
 After filling in the non-sensitive values, follow these steps to extract the sensitive values into `tap-sensitive-values.sops.yaml` that you prepared earlier:
 
-1. Open an editor through SoPS to edit the encrypted sensitive values file:
+1. Open an editor through SOPS to edit the encrypted sensitive values file:
 
     ```console
     sops <GIT-REPO-ROOT>/clusters/<CLUSTER-NAME>/cluster-config/values/tap-sensitive-values.sops.yaml

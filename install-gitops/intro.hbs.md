@@ -13,10 +13,10 @@ GitOps is an operational framework that uses Git repositories as a single source
 -->
 {{/unless}}
 
-To install Tanzu Application Platform on your Kubernetes clusters using GitOps:
+Choose one of the following install paths to install Tanzu Application Platform on your Kubernetes clusters through GitOps:
 
-SoPS
-: GitOps with sensitive data encrypted in hosted Git repo:
+GitOps with Secrets OPerationS (SOPS)
+: Applies to the scenario when you want a simple instance and store sensitive data encrypted in your Git repo:
 
     |Step|Task|Link|
     |----|----|----|
@@ -28,8 +28,8 @@ SoPS
     |6.| Set up developer namespaces to use installed packages. |[Set up developer namespaces to use installed packages](set-up-namespaces.hbs.md)|
     |7.| Install developer tools into your integrated development environment (IDE). |[Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)|
 
-ESO
-: GitOps with sensitive data stored in external store:
+GitOps with External Secrets Operator (ESO)
+: Applies to the scenario when you want to store sensitive data in external store:  
 
     <!-- ... "Supported on AWS Secrets Manager" ... -->
 

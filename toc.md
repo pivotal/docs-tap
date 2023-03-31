@@ -53,7 +53,7 @@ docs.vmware.com is built.
   - [Install with GitOps (beta)](install-gitops/intro.hbs.md)
       - [Install overview](install-gitops/intro.hbs.md)
       - [GitOps with ESO](install-gitops/eso.hbs.md)
-      - [GitOps with SoPS](install-gitops/sops.hbs.md)
+      - [GitOps with SOPS](install-gitops/sops.hbs.md)
       - [Install individual packages](install-gitops/components.hbs.md)
       - [Set up namespaces](install-gitops/set-up-namespaces.hbs.md)
       - [Install Tanzu Developer Tools for VS Code](install-gitops/vscode-install.hbs.md)
