@@ -8,7 +8,7 @@ persist for a predefined amount of seconds before getting deleted.
 
 ### <a id="debug-tekton-taskrun"></a> Debugging Tekton TaskRun
 
-To retrieve events of the TaskRun:
+To retrieve TaskRun events:
 
 ```console
 kubectl describe taskrun TASKRUN-NAME -n DEV-NAMESPACE

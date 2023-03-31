@@ -7,11 +7,20 @@
 
 ## <a id="overview"></a>Overview
 
-The App Scanning component within the Supply Chain Security Tools is responsible for providing the framework to scan applications for their security posture. Scanning container images for known Common Vulnerabilities and Exposures (CVEs) implements this framework.
+The App Scanning component within the Supply Chain Security Tools is responsible
+for providing the framework to scan applications for their security posture.
+Scanning container images for known Common Vulnerabilities and Exposures (CVEs)
+implements this framework.
 
 During scanning:
-* Tekton Steps are created to perform operations such as setting up workspace and environment configuration, running scanning, and publishing results to a metadata store.
-* A Tekton Sidecar is created as a no-op sidecar to trigger Tekton's injected sidecar cleanup. (See [here](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers) for more details)
+
+- Tekton creates Tekton Steps to perform operations, such as setting up
+  workspace and environment configuration, running scanning, and publishing
+  results to a metadata store.
+- Tekton creates a Tekton Sidecar as a no-op sidecar to trigger Tekton's
+  injected sidecar cleanup. See [Tekton
+  pipeline](https://github.com/tektoncd/pipeline/blob/main/cmd/nop/README.md#stopping-sidecar-containers)
+  in github.
 
 The App Scanning component is in Alpha and supersedes the [SCST - Scan component](overview.hbs.md)
 
@@ -375,7 +384,7 @@ To create a sample Sample ImageVulnerabilityScan:
 
     Where `DEV-NAMESPACE` is the developer namespace where scanning occurs.
 
-    **NOTE**: Do not define `write-certs` or `cred-helper` as step names. These names will already be used as steps during the scan process.
+    **Note**: Do not define `write-certs` or `cred-helper` as step names. These names arealready used as steps during the scan process.
 
 #### Configuration Options
 
@@ -453,14 +462,13 @@ If undefined by your `step` definition the environment uses the following defaul
 
 Specifying Tekton Pipeline Parameters:
 
-These are parameters are populated after creating the GrypeImageVulnerabilityScan. See Tekton [docs](https://tekton.dev/docs/pipelines/pipelines/#specifying-parameters) for more details on parameters.
+These parameters are populated after creating the GrypeImageVulnerabilityScan. For information about parameters, see the [Tekton documentation](https://tekton.dev/docs/pipelines/pipelines/#specifying-parameters).
 
 | Parameters | Default | Type | Description |
 | --- | --- | --- | --- |
-| image | "" | string | The image to be scanned. |
-| scan-results-path | /workspace/scan-results | string | Location to save scanner output. |
+| image | "" | string | The scanned image |
+| scan-results-path | /workspace/scan-results | string | Location to save scanner output |
 | trusted-ca-certs  | "" | string | PEM data from the installation's `caCertData`. |
-
 
 #### Trigger your scan
 
@@ -544,26 +552,27 @@ kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-syste
 
 ## <a id="debugging-commands"></a> Debugging commands
 
-Run these commands to get more logs and details about the errors around scanning.
+The following sections describe commands you can run to get logs and details about scanning errors.
 
-### <a id="debug-source-image-scan"></a> Debugging Resources
+### <a id="debug-source-image-scan"></a> Debugging resources
 
-If a resource fails or runs into errors, inspect the resource for more information.
+If a resource fails or has errors, inspect the resource.
 
 To get status conditions on a resource:
-```
+
+```console
 kubectl describe RESOURCE RESOURCE-NAME -n DEV-NAMESPACE
 ```
 
 Where:
 
-* `RESOURCE` can be `GrypeImageVulnerabilityScan`, `ImageVulnerabilityScan`, `PipelineRun`, `TaskRun`.
-* `RESOURCE-NAME` is the name of the `RESOURCE`.
-* `DEV-NAMESPACE` is the name of the developer namespace you want to use.
+- `RESOURCE` is one of the following: `GrypeImageVulnerabilityScan`, `ImageVulnerabilityScan`, `PipelineRun`, or `TaskRun`.
+- `RESOURCE-NAME` is the name of the `RESOURCE`.
+- `DEV-NAMESPACE` is the name of the developer namespace you want to use.
 
-### <a id="debugging-scan-pods"></a> Debugging Scan pods
+### <a id="debugging-scan-pods"></a> Debugging scan pods
 
-Run the following to get error logs from a pod when scan pods are in a failing state:
+To get error logs from a pod when scan pods fail:
 
 ```console
 kubectl logs SCAN-POD-NAME -n DEV-NAMESPACE
@@ -571,22 +580,24 @@ kubectl logs SCAN-POD-NAME -n DEV-NAMESPACE
 
 Where `SCAN-POD-NAME` is the name of the scan pod.
 
-See [here](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/) for more details
-about debugging Kubernetes pods.
+For information
+about debugging Kubernetes pods, see the [Kubernetes documentation](https://jamesdefabia.github.io/docs/user-guide/kubectl/kubectl_logs/).
 
-A scan run that has an error means that one of the init containers: `step-write-certs`,
-`step-cred-helper`, `step-publisher`, `sidecar-sleep`, `working-dir-initializer` or any other additional containers had a
-failure.
+A scan run that has an error means that one of the following init containers has a failure:
 
-To inspect for a specific init container in a pod:
+- `step-write-certs`
+- `step-cred-helper`
+- `step-publisher`
+- `sidecar-sleep`
+- `working-dir-initializer`
+
+To inspect a specific init container in a pod:
 
 ```console
 kubectl logs scan-pod-name -n DEV-NAMESPACE -c init-container-name
 ```
 
-See [Debug Init
-Containers](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/) in the
-Kubernetes documentation for debug init container tips.
+For information about debugging init container, see the [Kubernetes documentation](https://kubernetes.io/docs/tasks/debug/debug-application/debug-init-containers/).
 
 ### <a id="view-scan-controller-manager-logs"></a> Viewing the Scan-Controller manager logs
 
@@ -597,10 +608,13 @@ kubectl logs deployment/app-scanning-controller-manager -n app-scanning-system
 ```
 
 To tail scan-controller manager logs:
+
 ```console
 kubectl logs -f deployment/app-scanning-controller-manager -n app-scanning-system
 ```
 
-### <a id="debug-scanning-in-supplychain"></a> Debugging Scanning within a SupplyChain
+### <a id="debug-scanning-in-supplychain"></a> Debugging scanning within a SupplyChain
 
-See [here](../cli-plugins/apps/debug-workload.md) for Tanzu workload commands for tailing build and runtime logs and getting workload status and details.
+You can use workload commands to tail build and runtime logs, get workload
+status, and get workload details. See [Debugging
+workloads](../cli-plugins/apps/debug-workload.hbs.md). 

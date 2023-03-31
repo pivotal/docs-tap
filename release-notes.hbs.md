@@ -155,7 +155,7 @@ For more information, see [cert-manager GitHub repository](https://github.com/ce
 #### <a id="1-5-0-scst-scan-features"></a> Supply Chain Security Tools - Scan
 - SCST - Scan now runs on Tanzu Service Mesh-enabled clusters, enabling end to end, secure communication.
   - Kubernetes Jobs that previously created the scan pods were replaced with [Tekton TaskRuns](https://tekton.dev/docs/pipelines/taskruns/#overview).
-  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md) documentation is updated to account for the impact of these changes. [One restart](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts) in scanner pods is expected with successful scans.
+  - [Observability](./scst-scan/observing.hbs.md) and [Troubleshooting](./scst-scan/troubleshoot-scan.hbs.md) documentation is updated to account for the impact of these changes. One restart in scanner pods is expected with successful scans. See [Scanner Pod restarts once in SCST - Scan `v1.5.0` or later](./scst-scan/troubleshoot-scan.hbs.md#scanner-pod-restarts).
 - In conformance with NIST 800-53, support for rotating certificates and TLS is added.
   - Users can specify a TLS certificate, minimum TLS version, and restrict TLS ciphers when using kube-rbac-proxy. See [Configure properties](./scst-scan/install-scst-scan.hbs.md#configure-scst-scan).
 - SCST - Scan now offers even more flexibility for users to use their existing investments in scanning solutions. In Tanzu Application Platform `v1.5.0`, users have early access to:
