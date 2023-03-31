@@ -238,8 +238,8 @@ This release has the following known issues, listed by area and component.
   `my-app project`.
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#projects-with-spaces).
 
-- If your kubeconfig file (`~/.kube/config`) is malformed, you cannot apply a workload and you see
-  an error message. To resolve this, fix the kubeconfig file.
+- If your kubeconfig file (`~/.kube/config`) is malformed, you cannot apply a workload.
+  You see an error message when you attempt to do so. To resolve this, fix the kubeconfig file.
 
 #### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for Intellij
 
