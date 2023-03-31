@@ -77,7 +77,7 @@ docs.vmware.com is built.
   - [How-to guides for operators](getting-started/add-test-and-security.hbs.md)
       - [Add testing and scanning](getting-started/add-test-and-security.hbs.md)
       - [Configure image signing](getting-started/config-supply-chain.hbs.md)
-  - [How-to guides for developers](getting-started/create-app-accelerators.md)
+  - [How-to guides for developers](getting-started/create-app-accelerator.hbs.md)
       - [Create an application accelerator](getting-started/create-app-accelerator.hbs.md)
       - [Generate an app](getting-started/generate-first-app.hbs.md)
       - [Deploy an app](getting-started/deploy-first-app.hbs.md)
