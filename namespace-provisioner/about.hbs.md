@@ -18,7 +18,7 @@ Controller mode
 
     - The list of developer namespaces is managed by the Namespace Provisioner controller using a label selector `apps.tanzu.vmware.com/tap-ns=""`
     - Namespace Provisioner creates default resources that are shipped Out of the Box in all managed namespaces.
-    - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under the `additional_sources` section in Namespace Provisioner configuration. For more information, see [Customize Installation](customize-installation.md).
+    - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under the `additional_sources` section in Namespace Provisioner configuration. For more information, see [Install Namespace Provisioner](customize-installation.md).
 
 GitOps mode
 : Gitops mode has the following characteristics
@@ -27,7 +27,7 @@ GitOps mode
 
     - The list of developer namespaces is managed in a Git repository that is specified in the `gitops_install` section of the Namespace Provisioner configuration.
     - Namespace Provisioner creates default resources that are shipped Out of the Box in all managed namespaces.
-    - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under `additional_sources` in Namespace Provisioner configuration. For more information, see [Customize Installation](customize-installation.md).
+    - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under `additional_sources` in Namespace Provisioner configuration. For more information, see [Install Namespace Provisioner](customize-installation.md).
 
 ## <a id='carvel-app'></a>Provisioner Carvel application
 

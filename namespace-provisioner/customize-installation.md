@@ -137,7 +137,9 @@ Options if using Controller
    **<a id= 'con-override-cpu'></a>Override default CPU and memory limits for controller pods**
 
   Use the `controller_resources` section in Namespace Provisioner configuration in TAP values to configure Namespace Provisioner Compute Resources controllers.
+
   Set `controller_resources.resources.limits.cpu` and `controller_resources.resources.limits.memory` to configure the maximum CPU and memory available for the controller.
+
   Similarly, set `controller_resources.resources.requests.cpu` and `controller_resources.resources.requests.memory` to configure the minimum CPU capacity and memory available for the controller.
 
    Sample TAP values configuration:

@@ -4,6 +4,6 @@ The getting started guide contains the following topics:
 
 [Provision Developer Namespaces](provision-developer-ns.md)
 
-[Customize Installation](customize-installation.md)
+[Install Namespace Provisioner](customize-installation.md)
 
-[Provision Developer Namespaces](provision-developer-ns.md)
+[Setup for OOTB Supply Chains](ootb-supply-chain.md)

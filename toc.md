@@ -404,7 +404,7 @@ docs.vmware.com is built.
       - [Namespace Provisioner overview](namespace-provisioner/about.hbs.md)
       - [Getting Started](namespace-provisioner/getting-started.md)
           - [Provision developer namespaces](namespace-provisioner/provision-developer-ns.md)
-          - [Customize Installation](namespace-provisioner/customize-installation.md)
+          - [Install Namespace Provisioner](namespace-provisioner/customize-installation.md)
           - [Setup for OOTB Supply Chains](namespace-provisioner/ootb-supply-chain.md)
       - [Use cases and examples](namespace-provisioner/use-cases.md)
           - [Tekton pipelines and Scan policies using GitOps](namespace-provisioner/use-case1.md)

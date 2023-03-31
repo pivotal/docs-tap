@@ -6,7 +6,7 @@ This topic describes how to provision developer namespaces.
 
 - The Namespace Provisioner package is installed and reconciled.
 - The registry-credential secret referenced by the Supply chain components for pulling and pushing
-images is added to tap-install and exported to all namespaces. Example secret creation, exported to all namespaces:
+images is added to tap-install and exported to all namespaces. Example secret creation is exported to all namespaces:
 
 ```console
 tanzu secret registry add registry-credentials --server REGISTRY-SERVER --username REGISTRY-USERNAME --password REGISTRY-PASSWORD --export-to-all-namespaces --yes --namespace tap-install
@@ -49,7 +49,7 @@ Using Namespace Provisioner Controller
     - This label tells the Namespace Provisioner controller to add this namespace to the
     desired-namespaces ConfigMap.
     - By default, the label’s value can be anything, including "".
-    - If required, you can change the default label selector, see [Customize Installation](customize-installation.md).
+    - If required, you can change the default label selector, see [Install Namespace Provisioner](customize-installation.md).
   3. Run the following command to verify the default resources have been created in the namespace:
 
       ```console
@@ -136,4 +136,4 @@ by Namespace Provisioner.
   limitrange/dev-lr   2023-03-08T04:22:20Z
   ```
 
-  For more information, see the GitOps section of [Customize Installation](customize-installation.md).
+  For more information, see the GitOps section of [Install Namespace Provisioner](customize-installation.md).

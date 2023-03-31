@@ -197,7 +197,7 @@ Finally, import the newly created `workload-git-auth` secret into Namespace Prov
 
 ## Customize Limit Range defaults
 
-Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resource, see [Default Resources](reference.md#default-resources) in all namespaces managed by provisioner. Default values in LimitRange resource are as follows:  \
+Namespace Provisioner creates [LimitRange](https://kubernetes.io/docs/concepts/policy/limit-range/) resource, see [Default Resources](reference.md#default-resources) in all namespaces managed by provisioner. Default values in LimitRange resource are as follows:  
 
 ```console
 limits:
@@ -260,7 +260,7 @@ Using GitOps
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
 
-    >**Note** We added `gitops_install` with this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps. See GitOps section of [Customize Installation](customize-installation.md) guide for more information.
+    >**Note** We added `gitops_install` with this [sample GitOps location](https://github.com/vmware-tanzu/application-accelerator-samples/tree/main/ns-provisioner-samples/gitops-install-with-params) to create the namespaces and manage the desired namespaces from GitOps. See GitOps section of [Install Namespace Provisioner](customize-installation.md) guide for more information.
 
     Sample of `gitops_install` files:
 
