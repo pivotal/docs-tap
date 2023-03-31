@@ -128,10 +128,12 @@ Use the following steps to debug the cluster:
 
     1. In the center panel of the `Tanzu Panel` navigate to: `Workload/tanzu-java-web-app` > `Running Application` > `Service/tanzu-java-web-app` > `Configuration/tanzu-java-web-app` > `Revision/tanzu-java-web-app...` > `Deployment-tanzu-java-web-app...` > `ReplicaSet/tanzu-java-web-app...` > `Pod/tanzu-java-web-app...`
     1. Right-click on the `Pod...` entry and select `Describe`.
+    ![IntelliJ Tanzu Panel showing the describe action on a pod.](..images/getting-started-intellij-pod-describe.png)
     1. Scroll to the top of the resulting output and highlight the content after `Name:`, it should begin with `tanz-java-web-app-0000...` and end with `deployment` followed by some characters. Copy this value.
+    ![IntelliJ terminal showing the pod name.](../images/getting-started-iterate-intellij-pod-name.png)
     1. In the Terminal tab, run the command `kubectl port-forward <NAME> <PORT>:8080`, where the <NAME> value is the `Name:` from the previous step, and the <PORT> value is some port you would like to use, such as 8080.
     1. You will see output indicating that port forwarding has begun.
-    
+
 1. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name `tanzu-java-web-app` and select `Run \'Tanzu Debug Workload - tanzu-java-web-app\'` to begin debugging the application on the cluster.
 1. Alternatively, select the `Edit Run/Debug configurations` dropdown in the top-right corner, select `Tanzu Debug Workload - tanzu-java-web-app`, then click the green debug button to the right of the `Edit Run/Debug configurations` dropdown.
 1. The Debug tab will open and display a message that it has **Connected**.
