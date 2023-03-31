@@ -1,6 +1,6 @@
 # Installing Tanzu Application Platform via Gitops with SoPS
 
->**Caution** Tanzu Application Platform (GitOps)) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
+>**Caution** Tanzu Application Platform (GitOps) is currently in beta and is intended for evaluation and test purposes only. Do not use in a production environment.
 
 This topic describes how to install Tanzu Application Platform via Gitops with secrets managed in a git repository.
 
