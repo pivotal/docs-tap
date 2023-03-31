@@ -518,7 +518,7 @@ While not necessary here, a corresponding label `services.tanzu.vmware.com/aggre
 
 The second piece of RBAC determines who is actually authorized to use the new service. This is an important piece of configuration! We are configuring an on-demand service and making it available to application teams. Without any other supporing policy in place, application teams will be able to create as many `RabbitmqClusters` as they like. This is of course the whole point of an on-demand service, however we do need to be concious of resource utilization, and we may not want just anyone who has access to the TAP cluster to be able to create new service instances on demand.
 
-Authorization can be granted using standard Kubernetes RBAC resources. Dynamic provisioning makes use of a customer RBAC verb - `claim` - which can be applied to classes in order to permit claiming from classes.
+Authorization can be granted using standard Kubernetes RBAC resources. Dynamic provisioning makes use of a custom RBAC verb - `claim` - which can be applied to classes in order to permit claiming from classes.
 
 Create a file named `app-operator-claim-class-bigcorp-rabbitmq.rbac.yml` and copy in the following contents.
 
