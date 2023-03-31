@@ -102,6 +102,8 @@ To use Grype in offline and air-gapped environments:
   tanzu package installed update tap -f tap-values.yaml -n tap-install
   ```
 
+Note: If Grype was installed manually rather than via a Tanzu Application Platform profile, see [Customize package installation](../../customize-package-installation.hbs.md#customize-a-package-that-was-manually-installed) for instructions on updating your `PackageInstall`.
+
 ## <a id='next-steps'></a>Next steps
 
 - [Setting up developer namespaces to use installed packages](/docs-tap/set-up-namespaces.hbs.md)
