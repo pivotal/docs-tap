@@ -336,8 +336,27 @@ app_config:
       - host: acc-server.accelerator-system.svc.cluster.local
 ```
 
+## Security Analysis plug-in
+
+These are troubleshooting issues for the [Security Analysis plug-in](plugins/sa-tap-gui.hbs.md).
+
+### <a id='empty-impctd-wrklds-table'></a> Empty Impacted Workloads table
+
+#### Symptom
+
+The Impacted Workloads table is empty on the **CVE and Package Details** pages.
+
+#### Cause
+
+The relevant CVE belongs to a workload that has only completed one type of vulnerability scan
+(either image or source).
+
+#### Solution
+
+A fix is planned for Tanzu Application Platform GUI v1.5.1.
+
 ## Supply Chain Choreographer plug-in
 
-These are troubleshooting steps for the [Supply Chain Choreographer plug-in](plugins/scc-tap-gui.hbs.md).
+These are troubleshooting issues for the [Supply Chain Choreographer plug-in](plugins/scc-tap-gui.hbs.md).
 
 {{> 'partials/tap-gui/ts-err-load-metadata-store' }}

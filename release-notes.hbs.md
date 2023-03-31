@@ -287,10 +287,11 @@ This release has the following known issues, listed by area and component.
 
 #### <a id='1-5-0-tap-gui-ki'></a> Tanzu Application Platform GUI
 
-- The portal might partially overlay information on the Security Banners customization (bottom banner).
+- The portal might partially overlay text on the Security Banners customization (bottom banner).
 
-- The Impacted Workloads table will display empty in the CVE and Package details pages if the CVE belongs to a workload that has only completed one type of vulnerability scan (either image or source).
-  A fix is planned for 1.5.1.
+- The Impacted Workloads table is empty on the **CVE and Package Details** pages if the relevant CVE
+  belongs to a workload that has only completed one type of vulnerability scan (either image or source).
+  A fix is planned for Tanzu Application Platform GUI v1.5.1.
 
 ## <a id='1-5-deprecations'></a> Deprecations
 
