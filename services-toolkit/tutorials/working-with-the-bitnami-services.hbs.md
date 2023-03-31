@@ -41,7 +41,7 @@ $ tanzu service class list
   redis-unmanaged       Redis by Bitnami
 ```
 
-Here the output shows 4 classes. These are what are commonly refered to as, "the out of the box Bitnami services". You can see from the names and descriptions that they are all _unmanaged_ services, which implies that the resulting service instances run on cluster (i.e. they are not a managed service running in the cloud). It's possible that other classes may be listed here as well. As an Application Operator, it is up to you to review the classes on offer and to choose one that meets whatever requirements you may have.
+Here the output shows 4 classes. These are what are commonly referred to as, "the out of the box Bitnami services". You can see from the names and descriptions that they are all _unmanaged_ services, which implies that the resulting service instances run on cluster (i.e. they are not a managed service running in the cloud). It's possible that other classes may be listed here as well. As an Application Operator, it is up to you to review the classes on offer and to choose one that meets whatever requirements you may have.
 
 You can learn and discover more about a given class by using the `tanzu service class get` command.
 
