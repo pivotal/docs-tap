@@ -183,3 +183,7 @@ Here is an example of a proper listing.json format:
 Options:
 
 1. Make sure that the built parameters in the listing.json has timestamps in this proper format `yyyy-MM-ddTHH:mm:ssZ`. See above []()
+
+### Grype package overlays are not applied to scantemplates created by Namespace Provisioner
+
+If you used the Namespace Provisioner to provision a new developer namespace and want to apply a package overlay for Grype, you will need to follow the [Import overlay secrets](../../namespace-provisioner/customize-installation.md) section for the Namespace Provisioner for the overlay `Secret`s to be imported.
