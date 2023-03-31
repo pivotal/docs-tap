@@ -225,6 +225,8 @@ To switch the namespace where you created the workload:
 
 {{> 'partials/ide-extensions/workload-panel-intro' }}
 
+![VS Code Tanzu Workloads Panel showing the Terminal log.](../images/vscode-workload-and-activity-panels.png)
+
 To add a namespace:
 
 1. View the current context and namespace by running:
@@ -239,10 +241,13 @@ To add a namespace:
    kubectl config set-context --current --namespace=YOUR-NAMESPACE
    ```
 
-3. Add additional namespaces to your Tanzu Workloads panel in **Preferences** > **Extensions** >
-   **Tanzu Developer Tools** > **Tracked Namespaces**.
+3. Add additional namespaces to your Tanzu Workloads panel by:
+   - **Workload Panel** > **Additional Options** > **Select Namespaces**
+   ![VS Code Tanzu Workloads Panel additional options menu.](../images/vscode-workload-panel-additional-options.png)
+   ![VS Code Tanzu Workloads Panel select namespaces dialog.](../images/vscode-workload-panel-select-namespaces.png)
 
-![VS Code Tanzu Workloads Panel showing the Terminal log.](../images/vscode-workload-and-activity-panels.png)
+   - Or **Preferences** > **Extensions** >
+   **Tanzu Developer Tools** > **Tracked Namespaces**.
 
 ## <a id="mono-repo"></a> Working with Microservices in a Monorepo
 
