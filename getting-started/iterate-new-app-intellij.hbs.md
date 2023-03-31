@@ -94,6 +94,7 @@ The `Run` tab will open and display the output from Tanzu Application Platform a
 
 2. When the Live Update task in the `Run` tab says that it was successful, resolve to "Live Update Started," use the hyperlink at the top of the Run output following the words **Tilt started on** to view your application in your browser.
 3. In the IDE, make a change to the source code. For example, in `HelloController.java`, edit the string returned to say `Hello!` and save.
+1. Optionally, Build your project (`Build` > `Build Project`) if you do not have `Build project automatically` (`Preferences` > `Build, Execution, Deployment` > `Compiler`) activated.
 4. The container is updated when the logs stop streaming. Navigate to your browser and refresh the page.
 5. View the changes to your workload running on the cluster.
 6. Either continue making changes, or stop the Live Update process when finished. To stop Live Update navigate to the `Run` tab at the bottom left of the IntelliJ window and click the red stop icon on the left side of the screen.
