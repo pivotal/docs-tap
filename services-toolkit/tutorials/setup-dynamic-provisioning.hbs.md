@@ -579,7 +579,8 @@ Then use `kubectl` to apply the file to the TAP cluster.
 kubectl apply -f bigcorp-rmq-1.claim.yml
 ```
 
-After a moment or two, you should see the claim status report `Ready=True`.
+Once the rabbitmq have been successfully provisioned, you should see the claim
+status report `Ready=True`.
 
 ```console
 kubectl get classclaim bigcorp-rmq-1
