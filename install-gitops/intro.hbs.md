@@ -17,7 +17,7 @@ To install Tanzu Application Platform on your Kubernetes clusters using GitOps:
 
 
 SoPS
-:GitOps with sensitive data encrypted in hosted Git repo:
+: GitOps with sensitive data encrypted in hosted Git repo:
     |Step|Task|Link|
     |----|----|----|
     |1.| Review the prerequisites to ensure you have met all requirements before installing. |[Prerequisites](../prerequisites.hbs.md)|
@@ -29,7 +29,7 @@ SoPS
     |7.| Install developer tools into your integrated development environment (IDE). |[Install Tanzu Developer Tools for VS Code](vscode-install.hbs.md)|
 
 ESO
-:GitOps with sensitive data stored in external store:
+: GitOps with sensitive data stored in external store:
     <!-- ... "Supported on AWS Secrets Manager" ... -->
     |Step|Task|Link|
     |----|----|----|
