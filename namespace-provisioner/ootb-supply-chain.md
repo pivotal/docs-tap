@@ -1,4 +1,4 @@
-# Setup for OOTB Supply chains
+# Setup for OOTB Supply Chains
 
 This topic describes how to set up Namespace Provisioner for OOTB supply chains.
 

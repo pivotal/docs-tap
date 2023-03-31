@@ -1,4 +1,4 @@
-# Provision Developer Namespaces
+# Provision developer namespaces
 
 This topic describes how to provision developer namespaces.
 
@@ -17,9 +17,9 @@ namespace which is a placeholder secret filled indirectly by
 [secretgen-controller](https://github.com/carvel-dev/secretgen-controller) with all the registry
 credentials exported for that managed  namespace.
 
-## Manage a list of Developer namespaces
+## <a id ='manage-list'></a>Manage a list of developer namespaces
 
-There are two ways to manage the list of Developer namespaces that are managed by Namespace Provisioner.
+There are two ways to manage the list of developer namespaces that are managed by Namespace Provisioner.
 
 Using Namespace Provisioner Controller
 :

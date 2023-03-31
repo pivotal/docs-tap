@@ -1,4 +1,4 @@
-# Customize Installation
+# Install Namespace Provisioner
 
 Namespace Provisioner is packaged and distributed using a set of Carvel tools.
 
@@ -199,7 +199,7 @@ Options if using Controller
      - tap.tanzu.vmware.com
    ```
 
-   **<a id='con-import-overlay'></a>Import Overlay secrets**
+   **<a id='con-import-overlay'></a>Import overlay secrets**
 
   `overlay_secrets` is a list of secrets which contains Carvel ytt overlay definitions that are applied to the resources created by the Namespace Provisioner. The secrets are imported to `namespace-provisioner` namespace if it is in another namespace. The `stringData` key of the secret must have .`yaml` or .`yml` suffix.
 
@@ -254,7 +254,7 @@ Options if using GitOps
   - [Import user defined secrets in YAML format as ytt data.values](#git-import-user)
   - [Use for AWS IAM roles](#git-use-iam)
   - [Apply default parameters to all namespaces](#git-default-param)
-  - [Import Overlay secrets](#git-import)
+  - [Import overlay secrets](#git-import)
 
   **<a id ='git-install'></a>Use GitOps to manage developer namespaces list**
 
@@ -264,7 +264,7 @@ Options if using GitOps
 
   Files in the Git repository must have a .`yaml` or .`yml` extension.
 
-  The gitops_install section can have the following entries:
+  The `gitops_install` section can have the following entries:
 
   - `url`: the Git repository URL (mandatory)
   - `subPath`: the Git repository subpath where the file is

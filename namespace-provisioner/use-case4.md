@@ -62,7 +62,7 @@ Using GitOps
         url: https://github.com/vmware-tanzu/application-accelerator-samples.git
     ```
 
-## Customize Service Accounts
+## Customize service accounts
 
 This section provides instructions on how to configure the `default` service account to work with private Git repositories for workloads and supply chain using Namespace Provisioner.
 
@@ -292,4 +292,4 @@ Using GitOps
     #@ end
     ```
 
-    The Namespace Provisioner will create a LimitRange with default values for `qa` namespace and with the given values for `dev` namespace
+    The Namespace Provisioner will create a LimitRange with default values for `qa` namespace and with the given values for `dev` namespace.

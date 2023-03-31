@@ -1,4 +1,4 @@
-# Namespace Provisioner (WIP)
+# Namespace Provisioner
 
 Namespace Provisioner provides a secure, automated way for platform operators to provision
 namespaces with the resources and namespace-level privileges required for their workloads to
@@ -8,6 +8,8 @@ using GitOps to meet their organization's requirements and provides continuous r
 Namespace Provisioner enables operators that are new to Kubernetes to automate the provisioning of
 multiple developer namespaces in a shared cluster. For organizations that have already adopted
 Kubernetes, Namespace Provisioner is also compatible with existing Kubernetes tooling.
+
+## <a id ='modes'></a>Modes
 
 Use Namespace Provisioner with one of the following modes:
 
@@ -27,7 +29,7 @@ GitOps mode
     - Namespace Provisioner creates default resources that are shipped Out of the Box in all managed namespaces.
     - Namespace Provisioner creates additional Platform Operator templated resources stored in Git repository locations specified under `additional_sources` in Namespace Provisioner configuration. For more information, see [Customize Installation](customize-installation.md).
 
-## <a id='carvel-app'></a>Provisioner Carvel Application
+## <a id='carvel-app'></a>Provisioner Carvel application
 
 ![Diagram of .](../images/namespace-provisioner-2.png)
 
@@ -37,7 +39,7 @@ Namespace Provisioner consists of a
 `provisioner` application uses ytt to templatize a set of resources into installations in multiple
 namespaces.
 
-## Desired Namespaces
+## Desired namespaces
 
 The following section describes how the list of desired developer namespaces is managed in
 controller and Gitops modes.
@@ -76,8 +78,8 @@ GitOps mode
 
     - In the GitOps mode, the list of desired namespaces used by the `provisioner` application to create resources in, is maintained in a Git repository as a ytt data values file as shown [in this sample file](https://github.com/vmware-tanzu/application-accelerator-samples/blob/main/ns-provisioner-samples/gitops-install/desired-namespaces.yaml). This file provides a declarative way to indicate which namespaces should be populated with resources. For more information, see the options in [Customize Install](customize-installation.md).
 
-## <a id ='nsp-controller'></a>Namespace Provisioner Controller
+## <a id ='nsp-controller'></a>Namespace Provisioner controller
 
-The Namespace Provisioner controller is installed by default and manages the content contained in
+The Namespace Provisioner controller (controller) is installed by default and manages the content contained in
 the `desired-namespaces` ConfigMap. The controller watches namespaces in the cluster and updates the
 `desired-namespaces` ConfigMap with a list of all namespaces that match the namespace label selector.The defalut namespace label selector is `apps.tanzu.vmware.com/tap-ns`. For more information, see [Use a different label selector than default](customize-installation.md#label-selector).

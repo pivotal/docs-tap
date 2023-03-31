@@ -1,4 +1,4 @@
-# Working with Private Git Repositories
+# Working with private Git Repositories
 
 This topic describes how to work with private Git repositories.
 
