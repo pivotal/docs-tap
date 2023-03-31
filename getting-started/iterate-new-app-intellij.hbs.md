@@ -125,23 +125,17 @@ Use the following steps to debug the cluster:
    9. Click the **Apply** button, then click the **OK** button.
 
 1. [Apply your application to the cluster.](#apply-your-app)
-1. Begin port forwarding.
-
-    1. In the center panel of the `Tanzu Panel` navigate to: `Workload/tanzu-java-web-app` > `Running Application` > `Service/tanzu-java-web-app` > `Configuration/tanzu-java-web-app` > `Revision/tanzu-java-web-app...` > `Deployment-tanzu-java-web-app...` > `ReplicaSet/tanzu-java-web-app...` > `Pod/tanzu-java-web-app...`
-    1. Right-click on the `Pod...` entry and select `Describe`.
-    ![IntelliJ Tanzu Panel showing the describe action on a pod.](../images/getting-started-intellij-pod-describe.png)
-    1. Scroll to the top of the resulting output and highlight the content after `Name:`, it should begin with `tanz-java-web-app-0000...` and end with `deployment` followed by some characters. Copy this value.
-    ![IntelliJ terminal showing the pod name.](../images/getting-started-iterate-intellij-pod-name.png)
-    1. In the Terminal tab, run the command `kubectl port-forward <NAME> <PORT>:8080`, where the <NAME> value is the `Name:` from the previous step, and the <PORT> value is some port you would like to use, such as 8080.
-    1. You will see output indicating that port forwarding has begun.
-
+1. In the center panel of the `Tanzu Panel` navigate to: `Workload/tanzu-java-web-app` > `Running Application` > `Service/tanzu-java-web-app`.
+1. Right-click on the `Service/tanzu-java-web-app` entry and select `Describe`.
+![IntelliJ Tanzu Panel showing the describe action on the tanzu-java-web-app service.](../images/getting-started-iterate-intellij-service-describe.png)
+1. In resulting output highlight the content after `Status` > `URL:`, it should begin with `https://tanzu-java-web-app...`. Copy this value. Ensure you have copied the value from `Status` > `URL:` and *not* the value under `Status` > `Address` > `URL`.
+![IntelliJ terminal showing the pod url.](../images/getting-started-iterate-intellij-service-url.png)
+1. Open your web browser and paste the URL you copied to access your workload.
 1. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name `tanzu-java-web-app` and select `Run \'Tanzu Debug Workload - tanzu-java-web-app\'` to begin debugging the application on the cluster.
 1. Alternatively, select the `Edit Run/Debug configurations` dropdown in the top-right corner, select `Tanzu Debug Workload - tanzu-java-web-app`, then click the green debug button to the right of the `Edit Run/Debug configurations` dropdown.
 1. The Debug tab will open and display a message that it has **Connected**.
-1. In your browser, navigate to `localhost:<PORT>`, where the <PORT> value is the value you entered for <PORT> in the previous command.
-1. You will see the tanzu-java-web-app running in your browser, and IntelliJ will open to show your breakpoint.
-1. You can now resume the program, or stop debugging, in the `Debug` tab.
-1. To stop port forwarding, navigate back to the `Terminal` tab and close the port forward process with the `X` next to the label `Local`.
+1. In your web browser, reload your workload. IntelliJ will open to show your breakpoint.
+1. You can now use the resume program action, or stop debugging, in the `Debug` tab.
 
 ## <a id="delete-your-app"></a>Delete your application from the cluster
 
