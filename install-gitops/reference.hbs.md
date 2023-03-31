@@ -44,7 +44,7 @@ The following table describes a few common use cases and scenarios for SOPS and 
 Tanzu Sync Application fetches our deployable content from a Git repository that must match the following structure:
 
 Git repository for a cluster named `full-tap-cluster`:
-    
+
   ```console
   ├── .catalog
   │   ├── tanzu-sync
@@ -107,7 +107,7 @@ Git repository for a cluster named `full-tap-cluster`:
         ```
 
         Example:
-        
+
         ```yaml
         ---
         git:
@@ -118,7 +118,7 @@ Git repository for a cluster named `full-tap-cluster`:
         tap_package_repository:
           oci_repository: registry.example.com/tanzu-application-platform/tap-packages
         ```
-      
+
 
     - Tanzu Application Platform Install:
 
@@ -155,7 +155,7 @@ Git repository for a cluster named `full-tap-cluster`:
         ---
         tap_install:
           #@schema/nullable
-          #@schema/validation not_null=True 
+          #@schema/validation not_null=True
           #@schema/type any=True
           sensitive_values: {}
         ```
@@ -175,7 +175,7 @@ Git repository for a cluster named `full-tap-cluster`:
 2. The following is used to deploy the application using `kapp`:
 
     ```terminal
-    kapp deploy --app tanzu-sync --file <(ytt \ 
+    kapp deploy --app tanzu-sync --file <(ytt \
         --file tanzu-sync/app/config \
         --file cluster-config/config/tap-install/.tanzu-managed/version.yaml \
         --data-values-file tanzu-sync/app/values/ \
@@ -187,10 +187,10 @@ Git repository for a cluster named `full-tap-cluster`:
         --data-value secrets.sops.git.ssh.known_hosts=$(ssh-keyscan github.com) \
     )
     ```
-    
+
 ## <a id="tanzu-sync-scripts"></a> Tanzu Sync Scripts
 
->**Caution** 
+>**Caution**
 >
 > The provided scripts are intended to help with the setup of your Git repository to work with a GitOps approach, they are subject to change and/or removal between releases.
 

@@ -57,7 +57,7 @@ docs.vmware.com is built.
       - [Install individual packages](install-gitops/components.hbs.md)
       - [Set up namespaces](install-gitops/set-up-namespaces.hbs.md)
       - [Install Tanzu Developer Tools for VS Code](install-gitops/vscode-install.hbs.md)
-      - [Reference](install-gitops/gitops-reference-docs.hbs.md)
+      - [Reference](install-gitops/reference.hbs.md)
   - [Customize package installation](customize-package-installation.hbs.md)
   - [Upgrade](upgrading.hbs.md)
   - [Opt out of telemetry collection](opting-out-telemetry.hbs.md)
