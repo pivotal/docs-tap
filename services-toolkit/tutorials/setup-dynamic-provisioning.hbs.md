@@ -64,7 +64,7 @@ This results in the availability of a new API Group/Version of `rabbitmq.com/v1b
 
 ## <a id="stk-setup-dynamic-provisioning-create-xrd"></a> Creating a `CompositeResourceDefinition`
 
-TAP's Dynamic Provisioning capability leans on [Crossplane](https://www.crossplane.io/) to do most of the heavy lifting. The specific integration point can be found at `.spec.provisioner.crossplane.compositeResourceDefinition` in TAP's `ClusterInstanceClass` API. As the name suggets, this field is looking for a `CompositeResourceDefinition`, and so that is what you will be creating in this step of the tutorial. The `CompositeResourceDefinition` (or "XRD" in Crossplane parlance) essentially defines the shape of a new, custom API type which can encompass the specific set of requirements laid out by the scenario in this tutorial.
+TAP's Dynamic Provisioning capability leans on [Crossplane](https://www.crossplane.io/) to do most of the heavy lifting. The specific integration point can be found at `.spec.provisioner.crossplane.compositeResourceDefinition` in TAP's `ClusterInstanceClass` API. As the name suggests, this field is looking for a `CompositeResourceDefinition`, and so that is what you will be creating in this step of the tutorial. The `CompositeResourceDefinition` (or "XRD" in Crossplane parlance) essentially defines the shape of a new, custom API type which can encompass the specific set of requirements laid out by the scenario in this tutorial.
 
 Create a file named `xrabbitmqclusters.messaging.bigcorp.org.xrd.yml` and copy in the following contents.
 
