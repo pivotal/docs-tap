@@ -232,8 +232,6 @@ This release has the following known issues, listed by area and component.
   prevents it from starting again. Delete the Tilt lock file to resolve this.
   The default file location is `~/.tilt-dev/config.lock`.
 
-- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is miscategorized as `Unknown`, whereas it should be under the `Supply Chain` category.
-
 - On Windows, workload commands don't work when in a project with spaces in the name, such as
   `my-app project`.
   For more information, see [Troubleshooting](vscode-extension/troubleshooting.hbs.md#projects-with-spaces).
@@ -241,7 +239,10 @@ This release has the following known issues, listed by area and component.
 - If your kubeconfig file (`~/.kube/config`) is malformed, you cannot apply a workload.
   You see an error message when you attempt to do so. To resolve this, fix the kubeconfig file.
 
-#### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for Intellij
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
+  categorized as **Unknown**. It should be in the **Supply Chain** category.
+
+#### <a id='1-5-0-intellij-plugin-ki'></a> Tanzu Developer Tools for IntelliJ
 
 - A `com.vdurmont.semver4j.SemverException: Invalid version (no major version)` error is shown in the
   error logs when attempting to take a workload action before having installed the Tanzu CLI apps
@@ -262,7 +263,8 @@ This release has the following known issues, listed by area and component.
   `my-app project`.
   For more information, see [Troubleshooting](intellij-extension/troubleshooting.hbs.md#projects-with-spaces).
 
-- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is miscategorized as `Unknown`, whereas it should be under the `Supply Chain` category.
+- In the Tanzu Activity Panel, the `config-writer-pull-requester` of type `Runnable` is incorrectly
+  categorized as **Unknown**. It should be in the **Supply Chain** category.
 
 #### <a id="1-5-0-grype-scan-known-issues"></a>Grype scanner
 
@@ -286,7 +288,6 @@ This release has the following known issues, listed by area and component.
 #### <a id='1-5-0-tap-gui-ki'></a> Tanzu Application Platform GUI
 
 - The portal might partially overlay information on the Security Banners customization (bottom banner).
-  A fix is planned for a future version.
 
 ## <a id='1-5-deprecations'></a> Deprecations
 
