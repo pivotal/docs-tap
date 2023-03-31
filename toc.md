@@ -425,7 +425,7 @@ docs.vmware.com is built.
         - [Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform](services-toolkit/tutorials/integrate-cloud-services-aws-azure-gcp-into-tap.hbs.md)
         - [Abstracting Service Implementations Behind A Class Across Clusters](services-toolkit/tutorials/abstracting-service-implementation-behind-class-across-clusters.hbs.md)
         - [Direct Secret References](services-toolkit/tutorials/direct-secret-references.hbs.md)
-      - [How-To Guides](services-toolkit/how-to-guides/index.hbs.md)
+      - [How-To Guides](services-toolkit/how-to-guides/how-to-guides.hbs.md)
         - [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-users-to-claim-from-provisioner-classes.hbs.md)
         - [Configure Dynamic Provisioning of AWS RDS Service Instances](services-toolkit/how-to-guides/configure-dynamic-provisioning-rds.hbs.md)
         - [Configure Dynamic Provisioning of VMware Tanzu Postgres Service Instances](services-toolkit/how-to-guides/configure-dynamic-provisioning-tanzu-postgresql.hbs.md)
