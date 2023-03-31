@@ -6,9 +6,9 @@
 
 This topic describes how to install Tanzu Application Platform via GitOps with secrets managed in an external secrets store.
 
->**Caution** 
+>**Caution**
 >
-> Tanzu GitOps RI does not support changing the secrets management strategy for a cluster. This topic is the ESO based approach to managing secrets in an external secrets store. For help in deciding which approach to use, see [Choosing SoPS or ESO](gitops-reference-docs.hbs.md#choosing-sops-or-eso).
+> Tanzu GitOps RI does not support changing the secrets management strategy for a cluster. This topic is the ESO based approach to managing secrets in an external secrets store. For help in deciding which approach to use, see [Choosing SoPS or ESO](../gitops-reference-docs.hbs.md#choosing-sops-or-eso).
 >
 > The External Secrets Operator integration in this release of Tanzu GitOps RI has been verified to work with an AWS Elastic Kubernetes Service cluster and AWS Secrets Manager. Other combinations of Kubernetes distribution and ESO Providers have yet to be verified.
 
@@ -16,9 +16,9 @@ This topic describes how to install Tanzu Application Platform via GitOps with s
 
 Before installing Tanzu Application Platform, ensure you have:
 
-- Completed the [Prerequisites](prerequisites.html).
-- Created [AWS Resources](aws-resources.hbs.md).
-- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](install-tanzu-cli.html) with any required plug-ins.
+- Completed the [Prerequisites](../prerequisites.html).
+- Created [AWS Resources](../aws-resources.hbs.md).
+- [Accepted Tanzu Application Platform EULA and installed Tanzu CLI](../install-tanzu-cli.html) with any required plug-ins.
 - Installed [Cluster Essentials for Tanzu](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html).
 
 ## <a id='relocate-images-to-a-registry'></a> Relocate images to a registry
@@ -69,7 +69,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     In this case, the value of `INSTALL_REGISTRY_USERNAME` is `_json_key` and
     the value of `INSTALL_REGISTRY_PASSWORD` is the content of the JSON key file.
     For more information about how to generate the JSON key file,
-    see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).  
+    see [Google Container Registry documentation](https://cloud.google.com/container-registry/docs/advanced-authentication).
 
 1. [Install the Carvel tool `imgpkg` CLI](https://docs.vmware.com/en/Cluster-Essentials-for-VMware-Tanzu/{{ vars.url_version }}/cluster-essentials/deploy.html#optionally-install-clis-onto-your-path).
 
@@ -98,7 +98,7 @@ To relocate images from the VMware Tanzu Network registry to your registry:
     ```console
     mkdir -p $HOME/tap-gitops
     cd $HOME/tap-gitops
-    
+
     git init
     git remote add origin git@github.com:my-organization/tap-gitops.git
     ```
@@ -204,7 +204,7 @@ Where:
 ### <a id='grant-read-access-to-secret-data'></a>Grant read access to secret data
 
 All sensitive configuration is stored in AWS Secrets Manager secrets.
-Both Tanzu Sync and the TAP installation need a means of accessing sensitive data stored in AWS Secrets Manager. 
+Both Tanzu Sync and the TAP installation need a means of accessing sensitive data stored in AWS Secrets Manager.
 
 The following implements the [IAM Role for a Service Account](https://docs.aws.amazon.com/eks/latest/userguide/iam-roles-for-service-accounts.html) configuration:
 
@@ -292,7 +292,7 @@ Create the sensitive configuration and review the non-sensitive configuration as
     - `ssh-keyscan` obtains the public keys for the SSH host.
     - `awk '{printf "%s\\n", $0}'` converts a multiline string into a single-line string with embedded newline chars (`\n`). JSON does not support multiline strings.
 
-    >**Caution** 
+    >**Caution**
     >
     > This version of Tanzu GitOps RI only supports authenticating to a hosted Git repository via SSH. Authenticating via HTTP Basic Authentication is not yet supported.
 
@@ -590,7 +590,7 @@ Once deployed, Tanzu Sync will periodically poll the git repository for changes.
 
         ```console
         kubectl config get-contexts
-        ``` 
+        ```
 
     1. Set the context to the cluster that you want to deploy (if not already the current):
 
