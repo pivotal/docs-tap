@@ -137,7 +137,7 @@ You should see `xrabbitmqclusters.messaging.bigcorp.org` listed with `ESTABLISHE
 As a result of creating the XRD, a new API Group/Version of `messaging.bigcorp.org/v1alpha1` and Kind named `XRabbitmqCluster` should now be available in the cluster. If you inspect this API further, you will note that the `replicas` and `storageGB` properties we configured in the XRD are present in the spec of `XRabbitmqCluster`.
 
 ```console
-kubectl explain xrabbitmqclusters.messaging.bigcorp.org.spec
+kubectl explain --api-version=messaging.bigcorp.org/v1alpha1 xrabbitmqclusters.spec
 ```
 
 You'll also note that Crossplane has injected some other fields into the spec as well, but you can mostly ignore these for now.
