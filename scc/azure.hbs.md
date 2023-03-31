@@ -8,10 +8,6 @@ There are two uses for Git in a supply chain:
 - As a repository of configuration created by the build cluster which is
   deployed on a run or production cluster
 
-> **Important** While you can configure supply chains to use Azure DevOps for only
-> one of these purposes, VMware recommends using Azure DevOps for either both purposes or
-> neither.
-
 Azure DevOps differs from other Git providers in the following ways:
 
 - Azure DevOps requires Git clients to support multi-ack.
@@ -84,7 +80,7 @@ The following example uses the Azure DevOps Git repository:
 Configure the supply chain through tap-values:
 
 ```yaml
-otb_supply_chain_testing_scanning:
+ootb_supply_chain_testing_scanning:
   gitops:
     server_address: https://dev.azure.com
     repository_owner: vmware-tanzu/tap
@@ -164,25 +160,18 @@ The following example uses the Azure DevOps GitOps repository:
 
 `https://dev.azure.com/vmware-tanzu/tap/_git/tap`
 
-You can configure the supply chain tap-values:
-
-```yaml
-ootb_supply_chain_testing_scanning:
-  git_implementation: libgit2
-```
-
-or the delivery tap-values:
+You can configure the delivery tap-values:
 
 ```yaml
 ootb_delivery_basic:
   git_implementation: libgit2
 ```
 
-or the workload parameter:
+or the deliverable parameter:
 
 ```yaml
 apiVersion: carto.run/v1alpha1
-kind: Workload
+kind: Deliverable
 metadata:
   ...
 spec:
@@ -201,7 +190,6 @@ comes from the [delivery](ootb-delivery-reference.hbs.md) or the
 
 You can configure the delivery through by using tap-values.
 
-The supply chain creates the definition of a deliverable. The `gitImplementation` parameter passed to the deliverable
-template is written into the Deliverable's parameters field. You can propagate this to stamped objects when the
-Deliverable is applied to a cluster with a Delivery. You can configure the deliverable-template's `gitImplementation` parameter by setting the tap-value `git_implementation` for the supply chain at installation, or by setting the
-`gitImplementation` parameter on the workload.
+The supply chain creates the definition of a deliverable. TAP users are responsible for applying this definition to
+the run cluster. When undertaking this copy-paste, users can choose to add the `gitImplementation` parameter to the
+deliverable.
