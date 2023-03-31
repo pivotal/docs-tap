@@ -132,7 +132,7 @@ Before moving on, let's check on the status of the XRD you just created.
 kubectl get xrds
 ```
 
-You should see `xrabbitmqclusters.messaging.bigcorp.org` listed with `ESTABLISHED=True`. It's quite possible that you will see some other XRDs listed as well - the `*.bitnami.*.tanzu.vmware.com` XRDs. These ship as part of the `bitnami.services.tanzu.vmware.com` Package with TAP and serve as the basis of the out of the box services. These other XRDs can be safely ignored for now, but if you'd like to see how they are used in practice, please refer to the Getting Started Guide "[Consume services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md)".
+You should see `xrabbitmqclusters.messaging.bigcorp.org` listed with `ESTABLISHED=True`. It's quite possible that you will see some other XRDs listed as well - the `*.bitnami.*.tanzu.vmware.com` XRDs. These ship as part of the `bitnami.services.tanzu.vmware.com` Package with TAP and serve as the basis of the out of the box services. These other XRDs can be safely ignored for now, but if you'd like to see how they are used in practice, please refer to the Getting Started Guide's [Claim services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md) and [Consume services on Tanzu Application Platform](../../getting-started/consume-services.hbs.md).
 
 As a result of creating the XRD, a new API Group/Version of `messaging.bigcorp.org/v1alpha1` and Kind named `XRabbitmqCluster` should now be available in the cluster. If you inspect this API further, you will note that the `replicas` and `storageGB` properties we configured in the XRD are present in the spec of `XRabbitmqCluster`.
 
