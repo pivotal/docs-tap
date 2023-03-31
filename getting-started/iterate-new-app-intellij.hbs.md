@@ -125,14 +125,19 @@ Use the following steps to debug the cluster:
    9. Click the **Apply** button, then click the **OK** button.
 
 1. [Apply your application to the cluster.](#apply-your-app)
-1. In the center panel of the `Tanzu Panel` navigate to: `Workload/tanzu-java-web-app` > `Running Application` > `Service/tanzu-java-web-app`.
-1. Right-click on the `Service/tanzu-java-web-app` entry and select `Describe`.
-![IntelliJ Tanzu Panel showing the describe action on the tanzu-java-web-app service.](../images/getting-started-iterate-intellij-service-describe.png)
-1. In resulting output highlight the content after `Status` > `URL:`, it should begin with `https://tanzu-java-web-app...`. Copy this value. Ensure you have copied the value from `Status` > `URL:` and *not* the value under `Status` > `Address` > `URL`.
-![IntelliJ terminal showing the pod url.](../images/getting-started-iterate-intellij-service-url.png)
-1. Open your web browser and paste the URL you copied to access your workload.
+1. Obtain your workload's URL.
+
+    1. In the center panel of the `Tanzu Panel` navigate to: `Workload/tanzu-java-web-app` > `Running Application` > `Service/tanzu-java-web-app`.
+    1. Right-click on the `Service/tanzu-java-web-app` entry and select `Describe`.
+    ![IntelliJ Tanzu Panel showing the describe action on the tanzu-java-web-app service.](../images/getting-started-iterate-intellij-service-describe.png)
+    1. In resulting output highlight the content after `Status` > `URL:`, it should begin with `https://tanzu-java-web-app...`. Copy this value. Ensure you have copied the value from `Status` > `URL:` and *not* the value under `Status` > `Address` > `URL`.
+    ![IntelliJ terminal showing the pod url.](../images/getting-started-iterate-intellij-service-url.png)
+    1. Open your web browser and paste the URL you copied to access your workload.
+
 1. In the Project tab of IntelliJ, right-click the `workload.yaml` file under the application name `tanzu-java-web-app` and select `Run \'Tanzu Debug Workload - tanzu-java-web-app\'` to begin debugging the application on the cluster.
-1. Alternatively, select the `Edit Run/Debug configurations` dropdown in the top-right corner, select `Tanzu Debug Workload - tanzu-java-web-app`, then click the green debug button to the right of the `Edit Run/Debug configurations` dropdown.
+
+    1. Alternatively, select the `Edit Run/Debug configurations` dropdown in the top-right corner, select `Tanzu Debug Workload - tanzu-java-web-app`, then click the green debug button to the right of the `Edit Run/Debug configurations` dropdown.
+    
 1. The Debug tab will open and display a message that it has **Connected**.
 1. In your web browser, reload your workload. IntelliJ will open to show your breakpoint.
 1. You can now use the resume program action, or stop debugging, in the `Debug` tab.
