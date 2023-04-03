@@ -241,7 +241,7 @@ Where `SCAN-NAME` is the name of the source/image scan that failed.
     kubectl get pods -n DEV-NAMESPACE
     ```
 
-1. Get a shell to the container by: (see docs https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/)
+1. Get a shell to the container by (see Kubernetes [documentation](https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/) for more details):
     ```console
     kubectl exec --stdin --tty SCAN-PLUGIN-POD -c step-scan-plugin -- /bin/bash
     ```
