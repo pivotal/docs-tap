@@ -9,7 +9,8 @@ This topic includes instructions for:
 - [Upgrade Supply Chain Security Tools - Scan](#upgrade-supply-chain-security-tools---scan)
   - [ Prerequisites](#-prerequisites)
   - [ General Upgrades for Supply Chain Security Tools - Scan](#-general-upgrades-for-supply-chain-security-tools---scan)
-  - [ Upgrading to Version v1.2.0](#-upgrading-to-version-v120)
+  - [ Upgrading the scanner in all namespaces](#-upgrading-the-scanner-in-all-namespaces)
+    - [ Upgrading to Version v1.2.0](#-upgrading-to-version-v120)
 
 
 ## <a id="prereqs"></a> Prerequisites
@@ -32,7 +33,14 @@ When you're upgrading to any version of SCST - Scan these are some factors to ac
    Where `$VERSION` is the new version. This gives you insights on the values you can configure in
    your `tap-values.yaml` for the new version.
 
-## <a id="upgrade-to-1-2-0"></a> Upgrading to Version v1.2.0
+## <a id="upgrade-scanner"></a> Upgrading the scanner in all namespaces
+This section describes how to upgrade the scanner in all namespaces depending on the method of installation.
+
+1. **Installation via Namespace Provisioner** All scanners installed by the Namespace provisioner in all managed namespaces are upgraded automatically. For example, if you upgrade your installation of Tanzu Application Platform and version of Grype gets updated, all the Grype scanners installed by Namespace provisioner for all managed namespaces will be automatically upgraded.
+
+1. **Manual installation**
+
+### <a id="upgrade-to-1-2-0"></a> Upgrading to Version v1.2.0
 
 To upgrade from a previous version of SCST - Scan to the version `v1.2.0`:
 
