@@ -161,7 +161,9 @@ For information about advanced use cases, see [Customize Namespace Provisioner](
 
 #### Solution
 
-1. Create a file `pkgi.lib.yaml` with the following content and push it to a repository that is accessible from inside the cluster.
+Examine the `listing.json` file you previously created. This should match the format of the "listing file" found at [Anchore Grype's public endpoint](https://github.com/anchore/grype#how-database-updates-work).
+
+Here is an example of a properly formatted `listing.json`:
 
 ```yaml
 #@ load("@ytt:overlay", "overlay")
@@ -185,26 +187,80 @@ metadata:
 #@  end
 ```
 
-Where `SECRET-NAME` is the name of the secret that contains the Grype overlay such as `grype-airgap-override-stale-db-overlay`.
+Where:
+- `5` refers to the Grype's vulnerability database schema.
+- `built` is the build timestamp in the format `yyyy-MM-ddTHH:mm:ssZ`.
+- `url` is the download url for the tarball containing the database. This should point at your internal endpoint. The tarball should contain the following files:
+  - ` vulnerability.db` is an SQLite file that is Grype's vulnerability database. Each time the data shape of the vulnerability database changes, a new schema is created thus different Grype versions require specific database schema versions. (For example, Grype `v0.54.0` requires database schema version 5.)
+  - `metadata.json` file
+- `checksum` is the sha used to verify the database's integrity.
 
-For information about annotations, see [Customize package installation](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/customize-package-installation.html).
+Check these possible reasons for why the vulnerability database may be invalid:
 
-1. Update your `tap-values.yaml`.
-
-```yaml
-namespace_provisioner:
-  additional_sources:
-  - git:
-      ref: origin/main
-      subPath: "" # path to folder containing the pkgi.lib.yaml file
-      url: https://github.com/user/repo-name.git
-    path: _ytt_lib/customize # this path must always be exactly "_ytt_lib/customize"
+1. The database schema is invalid. First confirm that the required database schema for the installed Grype version is being used. Next, confirm that the top level version key matches the nested `version`. For example, the top level version `1` in the below snippet does not match the nested `version: 5`.
+```json
+{
+  "available": {
+    "1": [{
+            "built": "2023-02-08T08_17_20Z",
+            "version": 5,
+            "url": "https://INTERNAL-ENDPOINT/releases/vulnerability-db_v5_2023-02-08T08_17_20Z_6ef73016d160043c630f.tar.gz",
+            "checksum": "sha256:aab8d369933c845878ef1b53bb5c26ee49b91ddc5cd87c9eb57ffb203a88a72f"
+    }]
+  }
+}
 ```
+As stale databases weaken your security posture, VMware recommends using the newest entry of the relevant schema version in the listing.json file. For more information on see Anchore’s [grype-db](https://github.com/anchore/grype-db).
 
-1. Update your Tanzu Application Platform installation.
+1. The `built` parameters in the `listing.json` file is incorrectly formatted. The proper format is `yyyy-MM-ddTHH:mm:ssZ`.
 
+1. The `url` which you modified to point at an internal endpoint is not reachable from within the cluster. Verify connectivity by following below [steps](_offline-airgap.hbs.md#debug-grype-database-in-a-cluster)
+
+#### Debug Grype database in a cluster
+
+1. Describe the failed source/image scan to determine the name of the ScanTemplate being used:
 ```console
-tanzu package installed update tap -p tap.tanzu.vmware.com -v VERSION --values-file "tap-values.yaml" -n tap-install
+kubectl describe sourcescan/imagescan SCAN-NAME -n DEV-NAMESPACE
 ```
 
-Where `VERSION` is is your Tanzu Application Platform version.
+Where `SCAN-NAME` is the name of the source/image scan that failed.
+
+1. Modify the ScanTemplate's `scan-plugin` container to include a "sleep" entrypoint which will allow you to troubleshoot inside the container:
+    ```yaml
+    - name: scan-plugin
+      volumeMounts:
+        ...
+      image: #@ data.values.scanner.image
+      imagePullPolicy: IfNotPresent
+      env:
+        ...
+      command: ["/bin/bash"]
+      args:
+      - "sleep 1800" # insert 30 min sleep here
+    ```
+
+1. Re-run the scan.
+
+1. Get the name of the `scan-plugin` pod.
+    ```console
+    kubectl get pods -n DEV-NAMESPACE
+    ```
+
+1. Get a shell to the container by: (see docs https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/)
+    ```console
+    kubectl exec --stdin --tty SCAN-PLUGIN-POD -c step-scan-plugin -- /bin/bash
+    ```
+
+    Where `SCAN-PLUGIN-POD` is the name of the `scan-plugin` pod.
+
+1. Inside the container, run Grype CLI commands to report database status and verify connectivity from cluster to mirror. See [here](https://github.com/anchore/grype#cli-commands-for-database-management) for more details.
+
+   * Report current status of Grype's database (location, build date, and checksum):
+      ```console
+      grype db status
+      ```
+
+   * Download the listing file configured at `db.update-url` and show databases that are available for download:
+     ```console
+     grype db list
+     ```
