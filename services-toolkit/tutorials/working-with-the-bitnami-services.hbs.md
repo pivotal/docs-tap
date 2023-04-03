@@ -17,7 +17,7 @@ Tanzu Application Platform (referred to as "TAP" from hereon in) ships with 4 di
 
 ## In a nutshell
 
-Let's begin with a bird's-eye overview of the pieces we'll use during the course of this tutorial and how they all fit together. 
+Let's begin with a bird's-eye overview of the pieces we'll use during the course of this tutorial and how they all fit together.
 
 ![Diagram shows a high-level overview of the out of the box bitnami services](../../images/stk-dynamic-provisioning-bitnami-services.png)
 
@@ -34,10 +34,10 @@ Application teams can discover the range of services on offer to them by using t
 ```console
 $ tanzu service class list
 
-  NAME                  DESCRIPTION                                                                     
-  mysql-unmanaged       MySQL by Bitnami                                                                
-  postgresql-unmanaged  PostgreSQL by Bitnami                                                           
-  rabbitmq-unmanaged    RabbitMQ by Bitnami                                                             
+  NAME                  DESCRIPTION
+  mysql-unmanaged       MySQL by Bitnami
+  postgresql-unmanaged  PostgreSQL by Bitnami
+  rabbitmq-unmanaged    RabbitMQ by Bitnami
   redis-unmanaged       Redis by Bitnami
 ```
 
@@ -53,7 +53,7 @@ DESCRIPTION:    PostgreSQL by Bitnami
 READY:          true
 
 PARAMETERS:
-  KEY        DESCRIPTION                                                  TYPE     DEFAULT  REQUIRED  
+  KEY        DESCRIPTION                                                  TYPE     DEFAULT  REQUIRED
   storageGB  The desired storage capacity of the database, in Gigabytes.  integer  1        false
 ```
 
@@ -78,16 +78,16 @@ $ tanzu service class-claim get psql-1
 Name: psql-1
 Namespace: dev-team-1
 Claim Reference: services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql-1
-Class Reference: 
+Class Reference:
   Name: postgresql-unmanaged
-Parameters: 
+Parameters:
   storageGB: 3
-Status: 
+Status:
   Ready: True
-  Claimed Resource: 
+  Claimed Resource:
     Name: 7974379c-7b4d-41c3-af57-f4f1ae08c65d
     Namespace: dev-team-1
-    Group: 
+    Group:
     Version: v1
     Kind: Secret
 ```
@@ -98,4 +98,4 @@ It may take a moment or two before the claim reports `Ready: True`, however once
 
 You are now free to bind this claim to one or more* of your application Workloads. This can be done by passing a reference to the claim to the `--service-ref` flag of the `tanzu apps workload create` command. The reference for the claim can be found in the output of the `tanzu service class-claim get psql-1` command under the heading "Claim Reference". The claim reference must be passed with a corresponding name following the format `--service-ref db=services.apps.tanzu.vmware.com/v1alpha1:ClassClaim:psql-1` (note the `db=` prefix to the ref - this is an arbitrary name for the reference).
 
-\* If binding to more than one application Workload then all application Workloads must exist in the same namespace. This is a [known limitation](../reference/known-limitations.hbs.md#stk-known-limitation-multi-workloads) that we hope to remove soon.
+\* If binding to more than one application Workload then all application Workloads must exist in the same namespace. This is a [known limitation](../how-to-guides/troubleshooting.hbs.md#stk-known-limitation-multi-workloads) that we hope to remove soon.

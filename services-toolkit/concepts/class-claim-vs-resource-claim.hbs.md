@@ -1,6 +1,6 @@
-# Class Claims vs Resource Claims
+# Class Claims compared to Resource Claims
 
-There are two types of claim to choose from when working with services on Tanzu Application Platform. These are `ClassClaim` and `ResourceClaim`. 
+There are two types of claim to choose from when working with services on Tanzu Application Platform. These are `ClassClaim` and `ResourceClaim`.
 This section explains the similarities and differences between the two and when usage of one is preferable over the other.
 
 In short, it is usually advisable to work with `ClassClaim`s where possible as they are easier to create and are more portable across multiple clusters.
@@ -35,7 +35,7 @@ If the above is not true, then it is recommended to look at the `ClassClaim` API
 ## `ClassClaim`
 
 A `ClassClaim` targets a `ClusterInstanceClass` in the Kubernetes cluster.  To
-target that class, the `ClassClaim` just needs its name.  The 
+target that class, the `ClassClaim` just needs its name.  The
 `ClusterInstanceClass` can represent any set of service instances and therefore
 each time you create a new `ClassClaim`, you could claim any of the service
 instances represented by that `ClusterInstanceClass`.  Once a `ClassClaim` has
