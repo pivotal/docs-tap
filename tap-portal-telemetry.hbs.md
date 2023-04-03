@@ -2,7 +2,8 @@
 
 <!-- This topic must be accessible from https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.5/tap/tap-portal-telemetry.html -->
 
-Tanzu Application Platform GUI uses Pendo.io to better understand the way users interact with it in order to provide a better user experience for our customers and to improve VMware products and services.
+Tanzu Application Platform GUI uses Pendo.io to better understand the way users interact with it in
+order to provide a better user experience for our customers and to improve VMware products and services.
 
 Pendo.io collects data based on your interaction with the software, such as clickstream data and page
 loads, hashed user ID, and limited browser and device information.
@@ -10,7 +11,8 @@ loads, hashed user ID, and limited browser and device information.
 To enable or deactivate Pendo telemetry for the organization, see
 [Enable or deactivate the Pendo telemetry for the organization](opting-out-telemetry.hbs.md#nbl-or-dsbl-pendo-for-org).
 
-> **Note** Pendo telemetry is separate from the VMware CEIP telemetry. There is a separate process for opting in or out of the VMware CEIP. For more information, see
+> **Note** Pendo telemetry is separate from the VMware CEIP telemetry.
+> There is a separate process for opting in or out of the VMware CEIP. For more information, see
 > [Opt out of telemetry collection](opting-out-telemetry.hbs.md).
 
 ## <a id="opt-in-or-out"></a> Opt in or opt out of Pendo telemetry from Tanzu Application Platform GUI
