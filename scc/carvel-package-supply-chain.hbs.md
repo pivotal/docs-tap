@@ -167,6 +167,8 @@ This section describes developer tasks for using the Carvel Package Supply Chain
 
 Your operator must [install the Carvel Package Supply Chains](#carvel-package-operator).
 
+You must create your workload in a [developer namespace](../set-up-namespaces.hbs.md).
+
 ### Creating a Workload
 
 To use the Carvel Package Supply Chains, you must add the label `apps.tanzu.vmware.com/carvel-package-workflow=true` to your workload.
@@ -177,6 +179,7 @@ To use the Carvel Package Supply Chains, you must add the label `apps.tanzu.vmwa
 
   ```console
   tanzu apps workload create tanzu-java-web-app \
+    --namespace DEVELOPER_NAMESPACE \
     --app tanzu-java-web-app \
     --type server \
     --label apps.tanzu.vmware.com/carvel-package-workflow=true \
@@ -196,7 +199,7 @@ Expect to see the following output:
       7 + |    apps.tanzu.vmware.com/carvel-package-workflow: "true"
       8 + |    apps.tanzu.vmware.com/workload-type: server
       9 + |  name: tanzu-java-web-app
-     10 + |  namespace: default
+     10 + |  namespace: DEVELOPER_NAMESPACE
      11 + |spec:
      12 + |  image: IMAGE
   ```
