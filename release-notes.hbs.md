@@ -324,7 +324,8 @@ Use `client_secret_post` and `client_secret_basic` instead.
 
 ### <a id='1-5-convention-controller-dp'></a> Convention Controller
 
-- This component is deprecated in this release and is replaced by [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions). Cartographer Conventions implements the `conventions.carto.run` API that includes all the features that were available in the Convention Controller component.
+- This deprecated component has now been removed in this release and is replaced by [Cartographer Conventions](https://github.com/vmware-tanzu/cartographer-conventions). Cartographer Conventions implements the `conventions.carto.run` API that includes all the features that were available in the Convention Controller component.
+
 <!-- has this been removed already? If yes, should it be a breaking change. If not, when? -->
 
 #### <a id="1-5-app-live-view-deprecations"></a> Application Live View
