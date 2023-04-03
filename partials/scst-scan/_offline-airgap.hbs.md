@@ -205,7 +205,7 @@ Check these possible reasons for why the vulnerability database may be invalid:
   }
 }
 ```
-As stale databases weaken your security posture, VMware recommends using the newest entry of the relevant schema version in the listing.json file. For more information on see Anchore’s [grype-db](https://github.com/anchore/grype-db).
+As stale databases weaken your security posture, VMware recommends using the newest entry of the relevant schema version in the `listing.json` file. For more information see Anchore’s [grype-db](https://github.com/anchore/grype-db).
 
 1. The `built` parameters in the `listing.json` file is incorrectly formatted. The proper format is `yyyy-MM-ddTHH:mm:ssZ`.
 
