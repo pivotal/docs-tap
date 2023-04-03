@@ -37,10 +37,10 @@ component documentation to continue your services journey on Tanzu Application P
 The Services Toolkit component documentation consists of the following sections that relate to what
 you are want to achieve:
 
-* [Concepts](concepts/index.hbs.md): To gain a deeper understanding of Services Toolkit.
-* [Tutorials](tutorials/index.hbs.md): To learn through following examples.
-* [How-to guides](how-to-guides/index.hbs.md): To find a set of steps to solve a specific problem.
-* [Reference material](reference/index.hbs.md): To find specific information such as Services Toolkit's
+- [Concepts](concepts/index.hbs.md): To gain a deeper understanding of Services Toolkit.
+- [Tutorials](tutorials/index.hbs.md): To learn through following examples.
+- [How-to guides](how-to-guides/index.hbs.md): To find a set of steps to solve a specific problem.
+- [Reference material](reference/index.hbs.md): To find specific information such as Services Toolkit's
 APIs, the Tanzu Service CLI plug-in, and troubleshooting information.
 
 Tutorials and concepts are of most relevance when studying, while how-to guides and reference material
@@ -48,16 +48,16 @@ are of most use while working.
 
 The following is a selection of useful topics on offer:
 
-**For apps teams**
+**For apps teams:**
 
-* Tutorial: [Working with Bitnami Services](./tutorials/working-with-the-bitnami-services.hbs.md)
+- Tutorial: [Working with Bitnami Services](./tutorials/working-with-the-bitnami-services.hbs.md)
 
-**For ops teams**
+**For ops teams:**
 
-* Tutorial: [Setup Dynamic Provisioning of Service Instances](./tutorials/setup-dynamic-provisioning.hbs.md)
-* Tutorial: [Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform](./tutorials/integrate-cloud-services-aws-azure-gcp-into-tap.hbs.md)
-* How-to guide: [Configure Dynamic Provisioning of AWS RDS Service Instances](./how-to-guides/configure-dynamic-provisioning-rds.hbs.md)
+- Tutorial: [Setup Dynamic Provisioning of Service Instances](./tutorials/setup-dynamic-provisioning.hbs.md)
+- Tutorial: [Integrating Cloud Services (AWS, Azure, GCP, etc.) into Tanzu Application Platform](./tutorials/integrate-cloud-services-aws-azure-gcp-into-tap.hbs.md)
+- How-to guide: [Configure Dynamic Provisioning of AWS RDS Service Instances](./how-to-guides/configure-dynamic-provisioning-rds.hbs.md)
 
-**For everyone**
+**For everyone:**
 
-* Concept: [Four Levels of Service Consumption in Tanzu Application Platform](./concepts/four-levels-of-service-consumption.hbs.md)
+- Concept: [Four Levels of Service Consumption in Tanzu Application Platform](./concepts/four-levels-of-service-consumption.hbs.md)
