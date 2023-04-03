@@ -317,7 +317,7 @@ docs.vmware.com is built.
         - [Working with Bitnami Services](services-toolkit/tutorials/working-with-the-bitnami-services.hbs.md)
       - [How-To Guides](bitnami-services/how-to-guides.hbs.md)
         - [Configure Private Registry and VMware Application Catalog ("VAC") Integration for Bitnami Services](bitnami-services/how-to-guides/configure-private-reg-integration-bitnami-services.hbs.md)
-        - [Troubleshooting and known limitations](services-toolkit/how-to-guides/troubleshooting.hbs.md#stk-debug-dynamic-provisioning)
+        - [Troubleshooting and known limitations](services-toolkit/how-to-guides/troubleshooting.hbs.md)
       - [Reference](bitnami-services/reference.hbs.md)
         - [Dependencies](bitnami-services/reference/dependencies.hbs.md)
         - [Package Values](bitnami-services/reference/package-values.hbs.md)
