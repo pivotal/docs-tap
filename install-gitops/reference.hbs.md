@@ -4,11 +4,15 @@
 
 ## Component Overview
 
-The following diagram shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:
+The following diagrams shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:
 
-![Diagram describing the architecture of GitOps Installer using SoPS.](./images/arch-sops.jpg)
+### <a id="arch-sops"></a>SoPS Architecture Diagram
 
-![Diagram describing the architecture of GitOps Installer using ESO.](./images/arch-eso.jpg)
+![Diagram describing the architecture of GitOps Installer using SoPS.](./images/arch-sops.png)
+
+### <a id="arch-eso"></a>ESO Architecture Diagram
+
+![Diagram describing the architecture of GitOps Installer using ESO.](./images/arch-eso.png)
 
 ### <a id="tanzu-sync-carvel-app"></a>Tanzu Sync Carvel Application
 
