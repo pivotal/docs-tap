@@ -4,9 +4,15 @@
 
 ## Component Overview
 
-The following diagram shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:
+The following diagrams shows the components that are installed as part of Tanzu GitOps RI and how they work together to automate the installation of Tanzu Application Platform:
 
-<!-- TODO DIAGRAM -->
+### <a id="arch-sops"></a>SoPS Architecture Diagram
+
+![Diagram describing the architecture of GitOps Installer using SoPS.](./images/arch-sops.png)
+
+### <a id="arch-eso"></a>ESO Architecture Diagram
+
+![Diagram describing the architecture of GitOps Installer using ESO.](./images/arch-eso.png)
 
 ### <a id="tanzu-sync-carvel-app"></a>Tanzu Sync Carvel Application
 
@@ -15,8 +21,6 @@ Tanzu Sync consists of a [Carvel](https://carvel.dev/kapp-controller/docs/latest
 1. Fetches a Git repository that contains configuration for Tanzu Application Platform.
 2. Templates with ytt a set of resources and data values.
 3. Deploys with kapp a set of resources to install Tanzu Application Platform, alongside any other user specified confiuration in the Git Repository.
-
-<!-- TODO DIAGRAM -->
 
 ## <a id="sops-vs-eso"></a>Choosing SOPS or ESO
 
