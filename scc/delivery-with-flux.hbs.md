@@ -24,43 +24,43 @@ To use Gitops Delivery with FluxCD, complete the following prerequisites:
 After the `source-to-url-packag` or `basic-image-to-url-package` [supply chains](./ootb-supply-chain-reference.hbs.md) create a Package YAML file in the GitOps repository,
 you must add the packageInstall YAML file in the GitOps repository.
 
-To use PackageInstall: 
+To use PackageInstall:
 
 1. Create a secret that has the values for the Package parameter. You can see the configurable properties of a package by inspecting the Package CR’s valuesSchema.
 
-  ```yaml
-  ---
-  apiVersion: v1
-  kind: Secret
-  metadata:
-    name: hello-app-values
-  stringData:
-    values.yaml: |
-      ---
-      replicas: 2
-      hostname: hello-app.mycompany.com
-  ```
+    ```yaml
+    ---
+    apiVersion: v1
+    kind: Secret
+    metadata:
+      name: hello-app-values
+    stringData:
+      values.yaml: |
+        ---
+        replicas: 2
+        hostname: hello-app.mycompany.com
+    ```
 
 1. Add the secret to the GitOps repository that Flux deploys. See instructions in the [Flux documentation](https://fluxcd.io/flux/security/secrets-management/).
 
 1. Reference the secret created earlier in the same namespace targeted by the PackageInstall.
 
-  ```yaml
-  ---
-  apiVersion: packaging.carvel.dev/v1alpha1
-  kind: PackageInstall
-  metadata:
-    name: hello-app
-  spec:
-    serviceAccountName: default-ns-sa
-    packageRef:
-      refName: hello-app.mycompany.com
-      versionSelection:
-        constraints: 1.0.0
-    values:
-    - secretRef:
-        name: hello-app-values
-  ```
+    ```yaml
+    ---
+    apiVersion: packaging.carvel.dev/v1alpha1
+    kind: PackageInstall
+    metadata:
+      name: hello-app
+    spec:
+      serviceAccountName: default-ns-sa
+      packageRef:
+        refName: hello-app.mycompany.com
+        versionSelection:
+          constraints: 1.0.0
+      values:
+      - secretRef:
+          name: hello-app-values
+    ```
 
   The Package references the package’s refName, version fields, and the
   versionSelection property which has a constraint's subproperty to give more
@@ -68,38 +68,38 @@ To use PackageInstall:
 
 1. To manage App and PackageInstall custom resource (CR) privileges by using a service account, you need the following verbs to work with ConfigMaps:
 
-  ```yaml
-  kind: Role
-  apiVersion: rbac.authorization.k8s.io/v1
-  metadata:
-    name: app-ip-cr-role
-  rules:
-  - apiGroups: [""]
-    resources: ["configmaps"]
-    verbs: ["get", "list", "create", "update", "delete"]
-  ```
+    ```yaml
+    kind: Role
+    apiVersion: rbac.authorization.k8s.io/v1
+    metadata:
+      name: app-ip-cr-role
+    rules:
+    - apiGroups: [""]
+      resources: ["configmaps"]
+      verbs: ["get", "list", "create", "update", "delete"]
+    ```
 
-  You need these permissions because of how kapp tracks information about apps
-  it manages by storing information in a ConfigMap. If your App or
-  PackageInstall CR does not create ConfigMaps, the service account needs
-  permissions for working with ConfigMaps.
+    You need these permissions because of how kapp tracks information about apps
+    it manages by storing information in a ConfigMap. If your App or
+    PackageInstall CR does not create ConfigMaps, the service account needs
+    permissions for working with ConfigMaps.
 
-  You need the ConfigMap permissions, in addition to any other resource and verb
-  combinations, to deploy all resources created by the App and PackageInstall
-  CRs.
+    You need the ConfigMap permissions, in addition to any other resource and verb
+    combinations, to deploy all resources created by the App and PackageInstall
+    CRs.
 
-  For information about how service accounts are used, see [the Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.43.2/security-model/).
+    For information about how service accounts are used, see [the Carvel documentation](https://carvel.dev/kapp-controller/docs/v0.43.2/security-model/).
 
 1. Push the PackageInstall to the GitOps repository in the the same `$package-name`
 folder, but use a new folder for each run cluster.
 
-  ```console
-  /$package-name
-      /packages/$package-id.yaml          # Carvel Package definitions
-      /$run-cluster/packageinstall.yaml  # A Carvel PackageInstall
-      /$run-cluster/params.yaml          # Values secret for PackageInstall
-      /...
-  ```
+    ```console
+    /$package-name
+        /packages/$package-id.yaml          # Carvel Package definitions
+        /$run-cluster/packageinstall.yaml  # A Carvel PackageInstall
+        /$run-cluster/params.yaml          # Values secret for PackageInstall
+        /...
+    ```
 
 ## Create FluxCD GitRepository + FluxCD Kustomization
 
