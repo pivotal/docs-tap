@@ -356,5 +356,5 @@ For these projects, make these adjustments:
 ## <a id="log-setting"></a> Changing logging verbosity
 
 The Tanzu Language Server saves logs to `~/tanzu-langserver.log`.
-You can change the log verbosity in **Preferences** > **Extensions** > **Tanzu Developer Tools** >
+You can change the log verbosity in **Preferences** > **Settings** > **Extensions** > **Tanzu Developer Tools** >
 **Language Server: Log Verbosity**.
