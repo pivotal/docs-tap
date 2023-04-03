@@ -167,7 +167,7 @@ This section describes developer tasks for using the Carvel Package Supply Chain
 
 Your operator must [install the Carvel Package Supply Chains](#carvel-package-operator).
 
-You must create your workload in a [developer namespace](../set-up-namespaces.hbs.md).
+You must create your workload in a developer namespace. See [Developer namespace](../set-up-namespaces.hbs.md).
 
 ### Creating a Workload
 
