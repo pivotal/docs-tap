@@ -4,9 +4,9 @@
 
 By default, only users with `cluster-admin` privileges are authorized to create claims for provisioner-based classes*. This is because the creation of claims for provisioner-based classes results in the creation of new service instances, all of which will consume resource and/or incur monetary cost. As such, some form of access control is desirable.
 
-    > **Note** There is one exception to this rule, which is that by default, users with the `app-operator` user role
-    > are authorized to create claims for the provisioner-based classes which ship as part of out of the box [Bitnami Services](../../bitnami-services/about.hbs.md)
-    > package. See below for how-to disable this default behaviour if desired.
+> **Note** There is one exception to this rule, which is that by default, users with the `app-operator` user role
+> are authorized to create claims for the provisioner-based classes which ship as part of out of the box [Bitnami Services](../../bitnami-services/about.hbs.md)
+> package. See below for how-to disable this default behaviour if desired.
 
 This form of access control is implemented through standard Kubernetes RBAC along with the use of a custom verb - `claim`. The general approach is to create a rule in a `ClusterRole` which specifies the `claim` verb for one or more `clusterinstanceclasses`, then to bind the `ClusterRole` to those you wish to authorize to create claims for the class(es). This approach is particularly effective when paired with Tanzu Application Platform's aggregated [user roles](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/authn-authz-role-descriptions.html).
 

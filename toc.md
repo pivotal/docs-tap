@@ -434,7 +434,7 @@ docs.vmware.com is built.
           - [Abstracting service implementations behind a class across clusters](services-toolkit/tutorials/abstracting-service-implementation-behind-class-across-clusters.hbs.md)
           - [Direct secret references](services-toolkit/tutorials/direct-secret-references.hbs.md)
       - [How-to guides](services-toolkit/how-to-guides/index.hbs.md)
-          - [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-users-to-claim-from-provisioner-classes.hbs.md)
+          - [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-claim-provisioner-classes.hbs.md)
           - [Configure dynamic provisioning of AWS RDS service instances](services-toolkit/how-to-guides/configure-dynamic-provisioning-rds.hbs.md)
           - [Configure dynamic provisioning of VMware Tanzu Postgres service instances](services-toolkit/how-to-guides/configure-dynamic-provisioning-tanzu-postgresql.hbs.md)
           - [Troubleshooting and known limitations](services-toolkit/how-to-guides/troubleshooting.hbs.md)

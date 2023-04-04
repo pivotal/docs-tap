@@ -97,29 +97,29 @@ You can add other providers manually as required.
 #### <a id="tap-gui-plug-in-known-issues"></a>Tanzu Application Platform GUI Plug-ins
 
 - **App Accelerator Plug-in:**
-  - Extracted application accelerator Entity Provider and template actions to a backend plugin 
-  - Added id generation for accelerator provenance 
-  - Hide context menu from the app accelerator scaffolder page, the edit template feature shouldn't be visible 
-  - Fixed JSON schema for git repository creation 
-  - Added missing query string parameters to accelerator provenance 
-  - Added fallback to displayName for telemetry call when email isn't present in the logged in user 
-  - Changed label for git repository confirmation checkbox 
+  - Extracted application accelerator Entity Provider and template actions to a backend plugin
+  - Added id generation for accelerator provenance
+  - Hide context menu from the app accelerator scaffolder page, the edit template feature shouldn't be visible
+  - Fixed JSON schema for git repository creation
+  - Added missing query string parameters to accelerator provenance
+  - Added fallback to displayName for telemetry call when email isn't present in the logged in user
+  - Changed label for git repository confirmation checkbox
   - Changed app accelerator telemetry call to use username instead of email in the user details
-  
+
 - **Supply Chain Plug-in:**
-  - Fix CPU stats in App Live View Steeltoe Threads and Memory pages 
-  - Retry logic to fetch a new token and retry the API call again when the alvToken has expired 
-  - Disable actions and display a message to the user when sensitive operations are deactivated for the app 
-  - Fix a bug on the App Live View Details page to show the correct Boot Version instead of UNKNOWN 
-  - Disable download heap dump button when sensitive operations are disabled for the application 
-  - Fix request params for post Api call 
-  - Fixes the UI error in ALV request-mapping page due to unused style. 
-  - Enable Secure Access Communication between App Live View components 
-  - Added API to connect to appliveview-apiserver by reusing tap-gui authentication 
-  - ALV plugin requests a token from appliveview-apiserver and passes it to every call to ALV backend 
-  - Secure sensitive operations (edit env, change log levels, download heap dump) and display a message in the UI 
-  - The k8s-logging-backend plugin is renamed to k8s-custom-apis-backend 
-  - Fetch token for logLevelsPanelToggle component loaded from the workload plugin PodLogs Page 
+  - Fix CPU stats in App Live View Steeltoe Threads and Memory pages
+  - Retry logic to fetch a new token and retry the API call again when the alvToken has expired
+  - Disable actions and display a message to the user when sensitive operations are deactivated for the app
+  - Fix a bug on the App Live View Details page to show the correct Boot Version instead of UNKNOWN
+  - Disable download heap dump button when sensitive operations are disabled for the application
+  - Fix request params for post Api call
+  - Fixes the UI error in ALV request-mapping page due to unused style.
+  - Enable Secure Access Communication between App Live View components
+  - Added API to connect to appliveview-apiserver by reusing tap-gui authentication
+  - ALV plugin requests a token from appliveview-apiserver and passes it to every call to ALV backend
+  - Secure sensitive operations (edit env, change log levels, download heap dump) and display a message in the UI
+  - The k8s-logging-backend plugin is renamed to k8s-custom-apis-backend
+  - Fetch token for logLevelsPanelToggle component loaded from the workload plugin PodLogs Page
   - Fix ALV Request Mappings and Threads Page to support Boot 3 apps
 
 - **Security Analysis GUI Plug-in:**
@@ -158,7 +158,7 @@ You can add other providers manually as required.
   You can bind this to users for access control of who can create `ClassClaim` resources for
   a specific `ClusterInstanceClass`.
   - A `ResourceClaimPolicy` is now created automatically for successful `ClassClaims`.
-  - For more information, see [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-users-to-claim-from-provisioner-classes.hbs.md) to learn more.
+  - For more information, see [Authorize users and groups to claim from provisioner-based classes](services-toolkit/how-to-guides/authorize-claim-provisioner-classes.hbs.md) to learn more.
 
 - `ResourceClaimPolicy` now supports targeting individual resources by name.
   To do so, configure `.spec.subject.resourceNames`.
@@ -188,7 +188,7 @@ You can add other providers manually as required.
 The external-secrets plug-in available in the Tanzu CLI interacts with the External Secrets Operator API. Users can use this CLI plug-in to create and view External Secrets Operator resources on a Kubernetes cluster.
 
 Refer to the official [External Secrets Operator](https://external-secrets.io) documentation to learn
-more about managing secrets with External Secrets in general. For installing the External Secrets 
+more about managing secrets with External Secrets in general. For installing the External Secrets
 Operator and the CLI plug-in refer to the following documentation. Additionally, refer to the example
 integration of External-Secrets with Hashicorp Vault
 
@@ -348,8 +348,8 @@ This release has the following known issues, listed by area and component.
 - Add support for BuildPack scan enhancer using cyclonedx.
 - Updated Syft version to 0.74.0
 - Update scan logic to reduce scan time.
-- Malware Detection added, log into the web interface to check for images file reputation. 
-  
+- Malware Detection added, log into the web interface to check for images file reputation.
+
   for the full patch-note check [VMware Carbon Black Cloud Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html).
 
 #### <a id="1-5-0-external-secrets-known-issue"></a>External Secrets CLI (Beta)
