@@ -241,8 +241,8 @@ shared:
   image_registry:
     project_path: "SERVER-NAME/REPO-NAME"
     secret:
-      name: "REGISTRY-SECRET"
-      namespace: "REGISTRY-SECRET-NAMESPACE"
+      name: "KP-DEFAULT-REPO-SECRET"
+      namespace: "KP-DEFAULT-REPO-SECRET-NAMESPACE"
   ca_cert_data: |
     -----BEGIN CERTIFICATE-----
     MIIFXzCCA0egAwIBAgIJAJYm37SFocjlMA0GCSqGSIb3DQEBDQUAMEY...
