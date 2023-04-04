@@ -3,9 +3,9 @@
 
 ## Objective
 
-This document aims to provide Tanzu Application Platform installation and configuration guidance for users looking to achieve an [800-53](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf) based Authorization to Operate. This is not a comprehensive security guide, but rather, an abbreviated TAP readiness checklist with considerations for hardening with 800-53 controls as a guide.
+This document aims to provide Tanzu Application Platform installation and configuration guidance for users looking to achieve an [800-53](https://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-53r5.pdf) based Authority to Operate. This is not a comprehensive security guide, but rather, an abbreviated TAP readiness outline with considerations for hardening TAP with 800-53 controls as a guide.
 
-Configuring your TAP installation to this standard does not guarantee approval given there are multiple organizational requirements and deviations that a platform team may make when setting it up.
+Configuring your TAP installation to this standard does not guarantee approval given there are multiple organizational requirements and deviations that a platform team may make during installation and configuration.
 
 
 ## Scope
@@ -58,7 +58,7 @@ As best practice, the users on the Kubernetes clusters that are used for remote 
 
 ### Kubernetes Cluster Authentication and Authorization
 
-While not necessarily a Tanzu Application Platform configuration, VMware recommends enabling authentication to the Kubernetes clusters that the Tanzu Application Platform components are installed on using the same identity provider that other components are using.
+Although not a Tanzu Application Platform configuration, VMware recommends enabling authentication to the Kubernetes clusters where the Tanzu Application Platform components are installed, using the same identity provider that other components are using.
 
 While there are many options on how to enable OIDC providers for authentication with the Kubernetes API, VMware supports the [Pinniped project](https://pinniped.dev/) and has [documented](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/authn-authz-integrating-identity.html) the process of setting it up as part of the Tanzu Application Platform documentation. By configuring this to use the same identify provider as the Tanzu Application Platform GUI, users can have a common identity across the Kubernetes clusters and the Tanzu Application Platform GUI.  Because the Tanzu CLI is making Kubernetes API calls, this configuration will also be enabled for the Tanzu CLI.
 
@@ -165,11 +165,10 @@ Please refer to [TAP Architecture Overview](https://docs.vmware.com/en/VMware-Ta
 * No NodePort services -> All traffic needs to go through Contour / LoadBalancer
 * [TAP supported by Tanzu Service Mesh](https://docs.vmware.com/en/VMware-Tanzu-Application-Platform/1.4/tap/integrations-tsm-tap-integration.html)
 * DDoS protection
-* 
 * Affinity rules on knative deployed services: [https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity](https://knative.dev/docs/serving/configuration/feature-flags/#kubernetes-node-affinity)
 * Shared responsibility with the customer to ensure that customer workloads only expose internal only routes.
 * [https://docs.google.com/document/d/1wYX3QAk6Bw2oRfLrRQT0oGIrtAwD2j_ZSCDtOUGUVks/edit#heading=h.hepm3ot731k5](https://docs.google.com/document/d/1wYX3QAk6Bw2oRfLrRQT0oGIrtAwD2j_ZSCDtOUGUVks/edit#heading=h.hepm3ot731k5)
-* 
+
 
 
 ## Key Management
