@@ -78,7 +78,10 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       --export-to-all-namespaces --yes --namespace tap-install
     ```
 
-1. (Optional) Create a registry secret for your writable image repository:
+1. (Optional) Create a registry secret for your writable image repository used for:
+
+    - Tanzu Build Service Dependencies
+    - Workloads when using the `shared.image_registry` key
 
     ```console
     tanzu secret registry add image-registry-creds \
@@ -88,17 +91,10 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       --namespace tap-install
     ```
 
-    The registry secret is used for:
-
-    - Tanzu Build Service Dependencies
-    - Workloads when using the `shared.image_registry` key
-
-    > **Note** If using the same repository as `tap-registry`, you can skip this step and use the `tap-registry` secret
-    > in your `tap-values.yaml` instead of `image-registry-creds`.
-
     Where:
 
-    - `REGISTRY_HOSTNAME` is the host name for the registry that contains your writable repository. Examples:
+    - `REGISTRY_HOSTNAME` is the host name for the registry that contains your writable repository. 
+        Examples:
         - Harbor has the form `--server "my-harbor.io"`.
         - Docker Hub has the form `--server "index.docker.io"`.
         - Google Cloud Registry has the form `--server "gcr.io"`.
@@ -106,6 +102,11 @@ To relocate images from the VMware Tanzu Network registry to your registry:
       and password for the user that can write to the repository used in the following step.
       For Google Cloud Registry, use `_json_key` as the user name and the contents
       of the service account JSON file for the password.
+
+    > **Note** If using the same repository as `tap-registry`, you can skip this step and use the `tap-registry` secret
+    > in your `tap-values.yaml` instead of `image-registry-creds`.
+
+
 
 1. Add the Tanzu Application Platform package repository to the cluster by running:
 
