@@ -343,6 +343,14 @@ This release has the following known issues, listed by area and component.
   belongs to a workload that has only completed one type of vulnerability scan (either image or source).
   A fix is planned for Tanzu Application Platform GUI v1.5.1.
 
+#### <a id='1-5-0-cb-scanner'></a> Supply Chain Security Tools - Scan
+- **Update binary use for scanning to v1.9.2**
+- Add support for BuildPack scan enhancer using cyclonedx.
+- Updated Syft version to 0.74.0
+- Update scan logic to reduce scan time.
+- Malware Detection added, log into the web interface to check for images file reputation. 
+  
+  for the full patch-note check [VMware Carbon Black Cloud Console Release Notes](https://docs.vmware.com/en/VMware-Carbon-Black-Cloud/services/rn/vmware-carbon-black-cloud-console-release-notes/index.html).
 
 #### <a id="1-5-0-external-secrets-known-issue"></a>External Secrets CLI (Beta)
 
